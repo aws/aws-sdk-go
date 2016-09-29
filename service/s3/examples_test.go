@@ -853,6 +853,7 @@ func ExampleS3_GetObject() {
 		IfModifiedSince:            aws.Time(time.Now()),
 		IfNoneMatch:                aws.String("IfNoneMatch"),
 		IfUnmodifiedSince:          aws.Time(time.Now()),
+		PartNumber:                 aws.Int64(1),
 		Range:                      aws.String("Range"),
 		RequestPayer:               aws.String("RequestPayer"),
 		ResponseCacheControl:       aws.String("ResponseCacheControl"),
@@ -975,6 +976,7 @@ func ExampleS3_HeadObject() {
 		IfModifiedSince:      aws.Time(time.Now()),
 		IfNoneMatch:          aws.String("IfNoneMatch"),
 		IfUnmodifiedSince:    aws.Time(time.Now()),
+		PartNumber:           aws.Int64(1),
 		Range:                aws.String("Range"),
 		RequestPayer:         aws.String("RequestPayer"),
 		SSECustomerAlgorithm: aws.String("SSECustomerAlgorithm"),
@@ -1096,6 +1098,7 @@ func ExampleS3_ListObjects() {
 		Marker:       aws.String("Marker"),
 		MaxKeys:      aws.Int64(1),
 		Prefix:       aws.String("Prefix"),
+		RequestPayer: aws.String("RequestPayer"),
 	}
 	resp, err := svc.ListObjects(params)
 
@@ -1127,6 +1130,7 @@ func ExampleS3_ListObjectsV2() {
 		FetchOwner:        aws.Bool(true),
 		MaxKeys:           aws.Int64(1),
 		Prefix:            aws.String("Prefix"),
+		RequestPayer:      aws.String("RequestPayer"),
 		StartAfter:        aws.String("StartAfter"),
 	}
 	resp, err := svc.ListObjectsV2(params)

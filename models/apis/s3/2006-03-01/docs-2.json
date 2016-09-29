@@ -1764,6 +1764,8 @@
       "base": null,
       "refs": {
         "CompletedPart$PartNumber": "Part number that identifies the part. This is a positive integer between 1 and 10,000.",
+        "GetObjectRequest$PartNumber": "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' GET request for the part specified. Useful for downloading just a part of an object.",
+        "HeadObjectRequest$PartNumber": "Part number of the object being read. This is a positive integer between 1 and 10,000. Effectively performs a 'ranged' HEAD request for the part specified. Useful querying about the size of the part and the number of parts in this object.",
         "Part$PartNumber": "Part number identifying the part. This is a positive integer between 1 and 10,000.",
         "UploadPartCopyRequest$PartNumber": "Part number of part being copied. This is a positive integer between 1 and 10,000.",
         "UploadPartRequest$PartNumber": "Part number of part being uploaded. This is a positive integer between 1 and 10,000."
@@ -1780,6 +1782,13 @@
       "base": null,
       "refs": {
         "ListPartsOutput$Parts": null
+      }
+    },
+    "PartsCount": {
+      "base": null,
+      "refs": {
+        "GetObjectOutput$PartsCount": "The count of parts this object has.",
+        "HeadObjectOutput$PartsCount": "The count of parts this object has."
       }
     },
     "Payer": {
@@ -2045,6 +2054,8 @@
         "GetObjectRequest$RequestPayer": null,
         "GetObjectTorrentRequest$RequestPayer": null,
         "HeadObjectRequest$RequestPayer": null,
+        "ListObjectsRequest$RequestPayer": null,
+        "ListObjectsV2Request$RequestPayer": null,
         "ListPartsRequest$RequestPayer": null,
         "PutObjectAclRequest$RequestPayer": null,
         "PutObjectRequest$RequestPayer": null,

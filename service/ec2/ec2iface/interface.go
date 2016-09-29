@@ -25,7 +25,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Elastic Compute Cloud.
 //    func myFunc(svc ec2iface.EC2API) bool {
-//        // Make svc.AcceptVpcPeeringConnection request
+//        // Make svc.AcceptReservedInstancesExchangeQuote request
 //    }
 //
 //    func main() {
@@ -41,7 +41,7 @@ import (
 //    type mockEC2Client struct {
 //        ec2iface.EC2API
 //    }
-//    func (m *mockEC2Client) AcceptVpcPeeringConnection(input *ec2.AcceptVpcPeeringConnectionInput) (*ec2.AcceptVpcPeeringConnectionOutput, error) {
+//    func (m *mockEC2Client) AcceptReservedInstancesExchangeQuote(input *ec2.AcceptReservedInstancesExchangeQuoteInput) (*ec2.AcceptReservedInstancesExchangeQuoteOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -59,6 +59,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type EC2API interface {
+	AcceptReservedInstancesExchangeQuoteRequest(*ec2.AcceptReservedInstancesExchangeQuoteInput) (*request.Request, *ec2.AcceptReservedInstancesExchangeQuoteOutput)
+
+	AcceptReservedInstancesExchangeQuote(*ec2.AcceptReservedInstancesExchangeQuoteInput) (*ec2.AcceptReservedInstancesExchangeQuoteOutput, error)
+
 	AcceptVpcPeeringConnectionRequest(*ec2.AcceptVpcPeeringConnectionInput) (*request.Request, *ec2.AcceptVpcPeeringConnectionOutput)
 
 	AcceptVpcPeeringConnection(*ec2.AcceptVpcPeeringConnectionInput) (*ec2.AcceptVpcPeeringConnectionOutput, error)
@@ -714,6 +718,10 @@ type EC2API interface {
 	GetPasswordDataRequest(*ec2.GetPasswordDataInput) (*request.Request, *ec2.GetPasswordDataOutput)
 
 	GetPasswordData(*ec2.GetPasswordDataInput) (*ec2.GetPasswordDataOutput, error)
+
+	GetReservedInstancesExchangeQuoteRequest(*ec2.GetReservedInstancesExchangeQuoteInput) (*request.Request, *ec2.GetReservedInstancesExchangeQuoteOutput)
+
+	GetReservedInstancesExchangeQuote(*ec2.GetReservedInstancesExchangeQuoteInput) (*ec2.GetReservedInstancesExchangeQuoteOutput, error)
 
 	ImportImageRequest(*ec2.ImportImageInput) (*request.Request, *ec2.ImportImageOutput)
 
