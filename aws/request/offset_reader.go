@@ -9,7 +9,7 @@ import (
 // with retrying requests
 type offsetReader struct {
 	buf    io.ReadSeeker
-	lock   sync.RWMutex
+	lock   sync.Mutex
 	closed bool
 }
 
@@ -31,14 +31,21 @@ func (o *offsetReader) Close() error {
 
 // Read is a thread-safe read using a read lock.
 func (o *offsetReader) Read(p []byte) (int, error) {
-	o.lock.RLock()
-	defer o.lock.RUnlock()
+	o.lock.Lock()
+	defer o.lock.Unlock()
 
 	if o.closed {
 		return 0, io.EOF
 	}
 
 	return o.buf.Read(p)
+}
+
+// Seek is a thread-safe seeking operation. Uses the write lock.
+func (o *offsetReader) Seek(offset int64, whence int) (int64, error) {
+	o.lock.Lock()
+	defer o.lock.Unlock()
+	return o.buf.Seek(offset, whence)
 }
 
 // CloseAndCopy will return a new offsetReader with a copy of the old buffer
