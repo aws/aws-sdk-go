@@ -2,7 +2,6 @@ package v4
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -217,7 +216,6 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 	SignSDKRequest(r)
 	sig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
 
-	fmt.Println(sig)
 	signSDKRequestWithCurrTime(r, func() time.Time {
 		// Simulate one second has passed so that signature's date changes
 		// when it is resigned.
