@@ -2,6 +2,8 @@ package ec2metadata_test
 
 import (
 	"bytes"
+	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -85,6 +87,51 @@ func TestGetMetadata(t *testing.T) {
 
 	assert.NoError(t, err)
 	assert.Equal(t, "success", resp)
+}
+
+func TestGetUserData(t *testing.T) {
+	server := initTestServer(
+		"/latest/user-data",
+		"success", // real response includes suffix
+	)
+	defer server.Close()
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	resp, err := c.GetUserData()
+
+	assert.NoError(t, err)
+	assert.Equal(t, "success", resp)
+}
+
+func TestGetUserData_Error(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		reader := strings.NewReader(`<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>404 - Not Found</title>
+ </head>
+ <body>
+  <h1>404 - Not Found</h1>
+ </body>
+</html>`)
+		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Content-Length", fmt.Sprintf("%d", reader.Len()))
+		w.WriteHeader(http.StatusNotFound)
+		io.Copy(w, reader)
+	}))
+
+	defer server.Close()
+	c := ec2metadata.New(unit.Session, &aws.Config{Endpoint: aws.String(server.URL + "/latest")})
+
+	resp, err := c.GetUserData()
+	assert.Error(t, err)
+	assert.Empty(t, resp)
+
+	aerr, ok := err.(awserr.Error)
+	assert.True(t, ok)
+	assert.Equal(t, "NotFoundError", aerr.Code())
 }
 
 func TestGetRegion(t *testing.T) {
