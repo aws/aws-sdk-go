@@ -15,7 +15,7 @@ type offsetReader struct {
 
 func newOffsetReader(buf io.ReadSeeker, offset int64) *offsetReader {
 	reader := &offsetReader{}
-	buf.Seek(offset, io.SeekStart)
+	buf.Seek(offset, 0)
 
 	reader.buf = buf
 	return reader
