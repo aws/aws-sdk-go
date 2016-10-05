@@ -366,7 +366,9 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		signingTime = req.LastSignedAt
 	}
 
-	signedHeaders, err := v4.signWithBody(req.HTTPRequest, req.Body, name, region, req.ExpireTime, signingTime)
+	signedHeaders, err := v4.signWithBody(req.HTTPRequest, req.GetBody(),
+		name, region, req.ExpireTime, signingTime,
+	)
 	if err != nil {
 		req.Error = err
 		req.SignedHeaderVals = nil
