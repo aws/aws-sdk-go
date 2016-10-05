@@ -28,15 +28,15 @@ func TestOffsetReaderSeek(t *testing.T) {
 	buf := []byte("testData")
 	reader := newOffsetReader(bytes.NewReader(buf), 0)
 
-	orig, err := reader.Seek(0, io.SeekCurrent)
+	orig, err := reader.Seek(0, 1)
 	assert.NoError(t, err)
 	assert.Equal(t, int64(0), orig)
 
-	n, err := reader.Seek(0, io.SeekEnd)
+	n, err := reader.Seek(0, 2)
 	assert.NoError(t, err)
 	assert.Equal(t, int64(len(buf)), n)
 
-	n, err = reader.Seek(orig, io.SeekStart)
+	n, err = reader.Seek(orig, 0)
 	assert.NoError(t, err)
 	assert.Equal(t, int64(0), n)
 }
