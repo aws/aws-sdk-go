@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -42,6 +41,7 @@ type Request struct {
 	LastSignedAt     time.Time
 
 	built bool
+	body  *offsetReader
 }
 
 // An Operation is the service API operation to be made.
@@ -135,7 +135,8 @@ func (r *Request) SetStringBody(s string) {
 
 // SetReaderBody will set the request's body reader.
 func (r *Request) SetReaderBody(reader io.ReadSeeker) {
-	r.HTTPRequest.Body = newOffsetReader(reader, 0)
+	r.body = newOffsetReader(reader, 0)
+	r.HTTPRequest.Body = r.body
 	r.Body = reader
 }
 
@@ -231,6 +232,8 @@ func (r *Request) Sign() error {
 //
 // readLoop() and getConn(req *Request, cm connectMethod)
 // https://github.com/golang/go/blob/master/src/net/http/transport.go
+//
+// Send will not close the request.Request's body.
 func (r *Request) Send() error {
 	for {
 		if aws.BoolValue(r.Retryable) {
@@ -239,18 +242,12 @@ func (r *Request) Send() error {
 					r.ClientInfo.ServiceName, r.Operation.Name, r.RetryCount))
 			}
 
-			var body io.ReadCloser
-			if reader, ok := r.HTTPRequest.Body.(*offsetReader); ok {
-				body = reader.CloseAndCopy(r.BodyStart)
-			} else {
-				if r.Config.Logger != nil {
-					r.Config.Logger.Log("Request body type has been overwritten. May cause race conditions")
-				}
-				r.Body.Seek(r.BodyStart, 0)
-				body = ioutil.NopCloser(r.Body)
+			if r.body == nil {
+				r.body = newOffsetReader(r.Body, -1)
 			}
 
-			r.HTTPRequest = copyHTTPRequest(r.HTTPRequest, body)
+			r.body = r.body.CloseAndCopy(r.BodyStart)
+			r.HTTPRequest = copyHTTPRequest(r.HTTPRequest, r.body)
 			if r.HTTPResponse != nil && r.HTTPResponse.Body != nil {
 				// Closing response body. Since we are setting a new request to send off, this
 				// response will get squashed and leaked.
@@ -281,7 +278,6 @@ func (r *Request) Send() error {
 			debugLogReqError(r, "Send Request", true, err)
 			continue
 		}
-
 		r.Handlers.UnmarshalMeta.Run(r)
 		r.Handlers.ValidateResponse.Run(r)
 		if r.Error != nil {
