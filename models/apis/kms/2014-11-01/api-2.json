@@ -407,7 +407,8 @@
       "output":{"shape":"ListKeysResponse"},
       "errors":[
         {"shape":"DependencyTimeoutException"},
-        {"shape":"KMSInternalException"}
+        {"shape":"KMSInternalException"},
+        {"shape":"InvalidMarkerException"}
       ]
     },
     "ListRetirableGrants":{

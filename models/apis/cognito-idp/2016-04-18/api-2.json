@@ -49,6 +49,33 @@
         {"shape":"InternalErrorException"}
       ]
     },
+    "AdminCreateUser":{
+      "name":"AdminCreateUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AdminCreateUserRequest"},
+      "output":{"shape":"AdminCreateUserResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UserNotFoundException"},
+        {"shape":"UsernameExistsException"},
+        {"shape":"InvalidPasswordException"},
+        {"shape":"CodeDeliveryFailureException"},
+        {"shape":"UnexpectedLambdaException"},
+        {"shape":"UserLambdaValidationException"},
+        {"shape":"InvalidLambdaResponseException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"InvalidSmsRoleAccessPolicyException"},
+        {"shape":"InvalidSmsRoleTrustRelationshipException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"UnsupportedUserStateException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "AdminDeleteUser":{
       "name":"AdminDeleteUser",
       "http":{
@@ -246,6 +273,7 @@
         {"shape":"CodeMismatchException"},
         {"shape":"ExpiredCodeException"},
         {"shape":"UnexpectedLambdaException"},
+        {"shape":"InvalidPasswordException"},
         {"shape":"UserLambdaValidationException"},
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
@@ -745,6 +773,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotAuthorizedException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"PasswordResetRequiredException"},
+        {"shape":"UserNotConfirmedException"},
         {"shape":"InternalErrorException"}
       ]
     },
@@ -896,6 +926,7 @@
         {"shape":"ExpiredCodeException"},
         {"shape":"UnexpectedLambdaException"},
         {"shape":"UserLambdaValidationException"},
+        {"shape":"InvalidPasswordException"},
         {"shape":"InvalidLambdaResponseException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidUserPoolConfigurationException"},
@@ -1131,6 +1162,42 @@
       "type":"structure",
       "members":{
       }
+    },
+    "AdminCreateUserConfigType":{
+      "type":"structure",
+      "members":{
+        "AllowAdminCreateUserOnly":{"shape":"BooleanType"},
+        "UnusedAccountValidityDays":{"shape":"AdminCreateUserUnusedAccountValidityDaysType"},
+        "InviteMessageTemplate":{"shape":"MessageTemplateType"}
+      }
+    },
+    "AdminCreateUserRequest":{
+      "type":"structure",
+      "required":[
+        "UserPoolId",
+        "Username"
+      ],
+      "members":{
+        "UserPoolId":{"shape":"UserPoolIdType"},
+        "Username":{"shape":"UsernameType"},
+        "UserAttributes":{"shape":"AttributeListType"},
+        "ValidationData":{"shape":"AttributeListType"},
+        "TemporaryPassword":{"shape":"PasswordType"},
+        "ForceAliasCreation":{"shape":"ForceAliasCreation"},
+        "MessageAction":{"shape":"MessageActionType"},
+        "DesiredDeliveryMediums":{"shape":"DeliveryMediumListType"}
+      }
+    },
+    "AdminCreateUserResponse":{
+      "type":"structure",
+      "members":{
+        "User":{"shape":"UserType"}
+      }
+    },
+    "AdminCreateUserUnusedAccountValidityDaysType":{
+      "type":"integer",
+      "max":90,
+      "min":0
     },
     "AdminDeleteUserAttributesRequest":{
       "type":"structure",
@@ -1501,7 +1568,8 @@
         "CUSTOM_CHALLENGE",
         "DEVICE_SRP_AUTH",
         "DEVICE_PASSWORD_VERIFIER",
-        "ADMIN_NO_SRP_AUTH"
+        "ADMIN_NO_SRP_AUTH",
+        "NEW_PASSWORD_REQUIRED"
       ]
     },
     "ChallengeParametersType":{
@@ -1727,7 +1795,8 @@
         "MfaConfiguration":{"shape":"UserPoolMfaType"},
         "DeviceConfiguration":{"shape":"DeviceConfigurationType"},
         "EmailConfiguration":{"shape":"EmailConfigurationType"},
-        "SmsConfiguration":{"shape":"SmsConfigurationType"}
+        "SmsConfiguration":{"shape":"SmsConfigurationType"},
+        "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"}
       }
     },
     "CreateUserPoolResponse":{
@@ -1785,6 +1854,10 @@
       "members":{
         "AccessToken":{"shape":"TokenModelType"}
       }
+    },
+    "DeliveryMediumListType":{
+      "type":"list",
+      "member":{"shape":"DeliveryMediumType"}
     },
     "DeliveryMediumType":{
       "type":"string",
@@ -2234,6 +2307,21 @@
         "AttributeName":{"shape":"AttributeNameType"}
       }
     },
+    "MessageActionType":{
+      "type":"string",
+      "enum":[
+        "RESEND",
+        "SUPPRESS"
+      ]
+    },
+    "MessageTemplateType":{
+      "type":"structure",
+      "members":{
+        "SMSMessage":{"shape":"SmsVerificationMessageType"},
+        "EmailMessage":{"shape":"EmailVerificationMessageType"},
+        "EmailSubject":{"shape":"EmailVerificationSubjectType"}
+      }
+    },
     "MessageType":{"type":"string"},
     "NewDeviceMetadataType":{
       "type":"structure",
@@ -2540,6 +2628,13 @@
       },
       "exception":true
     },
+    "UnsupportedUserStateException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
+    },
     "UpdateDeviceStatusRequest":{
       "type":"structure",
       "required":[
@@ -2608,7 +2703,8 @@
         "MfaConfiguration":{"shape":"UserPoolMfaType"},
         "DeviceConfiguration":{"shape":"DeviceConfigurationType"},
         "EmailConfiguration":{"shape":"EmailConfigurationType"},
-        "SmsConfiguration":{"shape":"SmsConfigurationType"}
+        "SmsConfiguration":{"shape":"SmsConfigurationType"},
+        "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"}
       }
     },
     "UpdateUserPoolResponse":{
@@ -2788,7 +2884,8 @@
         "EmailConfiguration":{"shape":"EmailConfigurationType"},
         "SmsConfiguration":{"shape":"SmsConfigurationType"},
         "SmsConfigurationFailure":{"shape":"StringType"},
-        "EmailConfigurationFailure":{"shape":"StringType"}
+        "EmailConfigurationFailure":{"shape":"StringType"},
+        "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"}
       }
     },
     "UserStatusType":{
@@ -2799,7 +2896,8 @@
         "ARCHIVED",
         "COMPROMISED",
         "UNKNOWN",
-        "RESET_REQUIRED"
+        "RESET_REQUIRED",
+        "FORCE_CHANGE_PASSWORD"
       ]
     },
     "UserType":{
@@ -2810,7 +2908,8 @@
         "UserCreateDate":{"shape":"DateType"},
         "UserLastModifiedDate":{"shape":"DateType"},
         "Enabled":{"shape":"BooleanType"},
-        "UserStatus":{"shape":"UserStatusType"}
+        "UserStatus":{"shape":"UserStatusType"},
+        "MFAOptions":{"shape":"MFAOptionListType"}
       }
     },
     "UsernameExistsException":{

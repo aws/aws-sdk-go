@@ -111,6 +111,60 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUp(input *AdminConfirmSignUpIn
 	return out, err
 }
 
+const opAdminCreateUser = "AdminCreateUser"
+
+// AdminCreateUserRequest generates a "aws/request.Request" representing the
+// client's request for the AdminCreateUser operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AdminCreateUser method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AdminCreateUserRequest method.
+//    req, resp := client.AdminCreateUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserInput) (req *request.Request, output *AdminCreateUserOutput) {
+	op := &request.Operation{
+		Name:       opAdminCreateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AdminCreateUserInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AdminCreateUserOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new user in the specified user pool and sends a welcome message
+// via email or phone (SMS). This message is based on a template that you configured
+// in your call to CreateUserPool or UpdateUserPool. This template includes
+// your custom sign-up instructions and placeholders for user name and temporary
+// password.
+//
+// Requires developer credentials.
+func (c *CognitoIdentityProvider) AdminCreateUser(input *AdminCreateUserInput) (*AdminCreateUserOutput, error) {
+	req, out := c.AdminCreateUserRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opAdminDeleteUser = "AdminDeleteUser"
 
 // AdminDeleteUserRequest generates a "aws/request.Request" representing the
@@ -2832,6 +2886,214 @@ func (s AdminConfirmSignUpOutput) GoString() string {
 	return s.String()
 }
 
+// The type of configuration for creating a new user profile.
+type AdminCreateUserConfigType struct {
+	_ struct{} `type:"structure"`
+
+	// Set to True if only the administrator is allowed to create user profiles.
+	// Set to False if users can sign themselves up via an app.
+	AllowAdminCreateUserOnly *bool `type:"boolean"`
+
+	// The message template to be used for the welcome message to new users.
+	InviteMessageTemplate *MessageTemplateType `type:"structure"`
+
+	// The user account expiration limit, in days, after which the account is no
+	// longer usable. To reset the account after that time limit, you must call
+	// AdminCreateUser again, specifying "RESEND" for the MessageAction parameter.
+	UnusedAccountValidityDays *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AdminCreateUserConfigType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminCreateUserConfigType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminCreateUserConfigType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminCreateUserConfigType"}
+	if s.InviteMessageTemplate != nil {
+		if err := s.InviteMessageTemplate.Validate(); err != nil {
+			invalidParams.AddNested("InviteMessageTemplate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the request to create a user in the specified user pool.
+type AdminCreateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify "EMAIL" if email will be used to send the welcome message. Specify
+	// "SMS" if the phone number will be used. The default value is "SMS". More
+	// than one value can be specified.
+	DesiredDeliveryMediums []*string `type:"list"`
+
+	// This parameter is only used if the phone_number_verified or email_verified
+	// attribute is set to True. Otherwise, it is ignored.
+	//
+	// If this parameter is set to True and the phone number or email address specified
+	// in the UserAttributes parameter already exists as an alias with a different
+	// user, the API call will migrate the alias from the previous user to the newly
+	// created user. The previous user will no longer be able to log in using that
+	// alias.
+	//
+	// If this parameter is set to False, the API throws an AliasExistsException
+	// error if the alias already exists. The default value is False.
+	ForceAliasCreation *bool `type:"boolean"`
+
+	// Set to "RESEND" to resend the invitation message to a user that already exists
+	// and reset the expiration limit on the user's account. Set to "SUPPRESS" to
+	// suppress sending the message. Only one value can be specified.
+	MessageAction *string `type:"string" enum:"MessageActionType"`
+
+	// The user's temporary password. This password must conform to the password
+	// policy that you specified when you created the user pool.
+	//
+	// The temporary password is valid only once. To complete the Admin Create
+	// User flow, the user must enter the temporary password in the sign-in page
+	// along with a new password to be used in all future sign-ins.
+	//
+	// This parameter is not required. If you do not specify a value, Amazon Cognito
+	// generates one for you.
+	//
+	// The temporary password can only be used until the user account expiration
+	// limit that you specified when you created the user pool. To reset the account
+	// after that time limit, you must call AdminCreateUser again, specifying "RESEND"
+	// for the MessageAction parameter.
+	TemporaryPassword *string `min:"6" type:"string"`
+
+	// An array of name-value pairs that contain user attributes and attribute values
+	// to be set for the user to be created. You can create a user without specifying
+	// any attributes other than Username. However, any attributes that you specify
+	// as required (in CreateUserPool or in the Attributes tab of the console) must
+	// be supplied either by you (in your call to AdminCreateUser) or by the user
+	// (when he or she signs up in response to your welcome message).
+	//
+	// To send a message inviting the user to sign up, you must specify the user's
+	// email address or phone number. This can be done in your call to AdminCreateUser
+	// or in the Users tab of the Amazon Cognito console for managing your user
+	// pools.
+	//
+	// In your call to AdminCreateUser, you can set the email_verified attribute
+	// to True, and you can set the phone_number_verified attribute to True. (You
+	// cannot do this by calling other operations such as AdminUpdateUserAttributes.)
+	//
+	//    email: The email address of the user to whom the message that contains
+	// the code and username will be sent. Required if the email_verified attribute
+	// is set to True, or if "EMAIL" is specified in the DesiredDeliveryMediums
+	// parameter.
+	//
+	//    phone_number: The phone number of the user to whom the message that contains
+	// the code and username will be sent. Required if the phone_number_verified
+	// attribute is set to True, or if "SMS" is specified in the DesiredDeliveryMediums
+	// parameter.
+	UserAttributes []*AttributeType `type:"list"`
+
+	// The user pool ID for the user pool where the user will be created.
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+
+	// The username for the user. Must be unique within the user pool. Must be a
+	// UTF-8 string between 1 and 128 characters. After the user is created, the
+	// username cannot be changed.
+	Username *string `min:"1" type:"string" required:"true"`
+
+	// The user's validation data. This is an array of name-value pairs that contain
+	// user attributes and attribute values that you can use for custom validation,
+	// such as restricting the types of user accounts that can be registered. For
+	// example, you might choose to allow or disallow user sign-up based on the
+	// user's domain.
+	//
+	// To configure custom validation, you must create a Pre Sign-up Lambda trigger
+	// for the user pool as described in the Amazon Cognito Developer Guide. The
+	// Lambda trigger receives the validation data and uses it in the validation
+	// process.
+	//
+	// The user's validation data is not persisted.
+	ValidationData []*AttributeType `type:"list"`
+}
+
+// String returns the string representation
+func (s AdminCreateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminCreateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminCreateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminCreateUserInput"}
+	if s.TemporaryPassword != nil && len(*s.TemporaryPassword) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("TemporaryPassword", 6))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+	if s.UserAttributes != nil {
+		for i, v := range s.UserAttributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserAttributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ValidationData != nil {
+		for i, v := range s.ValidationData {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ValidationData", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Represents the response from the server to the request to create the user.
+type AdminCreateUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The user returned in the request to create a new user.
+	User *UserType `type:"structure"`
+}
+
+// String returns the string representation
+func (s AdminCreateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminCreateUserOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the request to delete user attributes as an administrator.
 type AdminDeleteUserAttributesInput struct {
 	_ struct{} `type:"structure"`
@@ -3274,10 +3536,15 @@ type AdminGetUserOutput struct {
 
 	// The user status. Can be one of the following:
 	//
-	//  UNCONFIRMED - User has been created but not confirmed. CONFIRMED - User
-	// has been confirmed. ARCHIVED - User is no longer active. COMPROMISED - User
-	// is disabled due to a potential security threat. UNKNOWN - User status is
-	// not known.
+	//   UNCONFIRMED - User has been created but not confirmed.
+	//
+	//   CONFIRMED - User has been confirmed.
+	//
+	//   ARCHIVED - User is no longer active.
+	//
+	//   COMPROMISED - User is disabled due to a potential security threat.
+	//
+	//   UNKNOWN - User status is not known.
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user about whom you are receiving information.
@@ -4412,6 +4679,9 @@ func (s CreateUserPoolClientOutput) GoString() string {
 type CreateUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for AdminCreateUser requests.
+	AdminCreateUserConfig *AdminCreateUserConfigType `type:"structure"`
+
 	// Attributes supported as an alias for this user pool. Possible values: phone_number,
 	// email, or preferred_username.
 	AliasAttributes []*string `type:"list"`
@@ -4483,6 +4753,11 @@ func (s *CreateUserPoolInput) Validate() error {
 	}
 	if s.SmsVerificationMessage != nil && len(*s.SmsVerificationMessage) < 6 {
 		invalidParams.Add(request.NewErrParamMinLen("SmsVerificationMessage", 6))
+	}
+	if s.AdminCreateUserConfig != nil {
+		if err := s.AdminCreateUserConfig.Validate(); err != nil {
+			invalidParams.AddNested("AdminCreateUserConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EmailConfiguration != nil {
 		if err := s.EmailConfiguration.Validate(); err != nil {
@@ -5582,7 +5857,7 @@ type ListUserImportJobsInput struct {
 	// The maximum number of import jobs you want the request to return.
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
-	// An identifier that was returned from the previous call to this operation,
+	// An identifier that was returned from the previous call to ListUserImportJobs,
 	// which can be used to return the next set of import jobs in the list.
 	PaginationToken *string `min:"1" type:"string"`
 
@@ -5880,6 +6155,49 @@ func (s *MFAOptionType) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MFAOptionType"}
 	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// The message template structure.
+type MessageTemplateType struct {
+	_ struct{} `type:"structure"`
+
+	// The message template for email messages.
+	EmailMessage *string `min:"6" type:"string"`
+
+	// The subject line for email messages.
+	EmailSubject *string `min:"1" type:"string"`
+
+	// The message template for SMS messages.
+	SMSMessage *string `min:"6" type:"string"`
+}
+
+// String returns the string representation
+func (s MessageTemplateType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MessageTemplateType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageTemplateType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageTemplateType"}
+	if s.EmailMessage != nil && len(*s.EmailMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailMessage", 6))
+	}
+	if s.EmailSubject != nil && len(*s.EmailSubject) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailSubject", 1))
+	}
+	if s.SMSMessage != nil && len(*s.SMSMessage) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SMSMessage", 6))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6730,6 +7048,9 @@ func (s UpdateUserPoolClientOutput) GoString() string {
 type UpdateUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for AdminCreateUser requests.
+	AdminCreateUserConfig *AdminCreateUserConfigType `type:"structure"`
+
 	// The attributes that are automatically verified when the Amazon Cognito service
 	// makes a request to update user pools.
 	AutoVerifiedAttributes []*string `type:"list"`
@@ -6743,7 +7064,7 @@ type UpdateUserPoolInput struct {
 	// The contents of the email verification message.
 	EmailVerificationMessage *string `min:"6" type:"string"`
 
-	// The subject of the email verfication message
+	// The subject of the email verfication message.
 	EmailVerificationSubject *string `min:"1" type:"string"`
 
 	// The AWS Lambda configuration information from the request to update the user
@@ -6752,10 +7073,13 @@ type UpdateUserPoolInput struct {
 
 	// Can be one of the following values:
 	//
-	//  OFF - MFA tokens are not required and cannot be specified during user registration.
-	// ON - MFA tokens are required for all user registrations. You can only specify
-	// required when you are initially creating a user pool. OPTIONAL - Users have
-	// the option when registering to create an MFA token.
+	//    OFF - MFA tokens are not required and cannot be specified during user
+	// registration.
+	//
+	//    ON - MFA tokens are required for all user registrations. You can only
+	// specify required when you are initially creating a user pool.
+	//
+	//    OPTIONAL - Users have the option when registering to create an MFA token.
 	MfaConfiguration *string `type:"string" enum:"UserPoolMfaType"`
 
 	// A container with the policies you wish to update in a user pool.
@@ -6804,6 +7128,11 @@ func (s *UpdateUserPoolInput) Validate() error {
 	}
 	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.AdminCreateUserConfig != nil {
+		if err := s.AdminCreateUserConfig.Validate(); err != nil {
+			invalidParams.AddNested("AdminCreateUserConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.EmailConfiguration != nil {
 		if err := s.EmailConfiguration.Validate(); err != nil {
@@ -6889,15 +7218,25 @@ type UserImportJobType struct {
 
 	// The status of the user import job. One of the following:
 	//
-	//  Created - The job was created but not started. Pending - A transition state.
-	// You have started the job, but it has not begun importing users yet. InProgress
-	// - The job has started, and users are being imported. Stopping - You have
-	// stopped the job, but the job has not stopped importing users yet. Stopped
-	// - You have stopped the job, and the job has stopped importing users. Succeeded
-	// - The job has completed successfully. Failed - The job has stopped due to
-	// an error. Expired - You created a job, but did not start the job within 24-48
-	// hours. All data associated with the job was deleted, and the job cannot be
-	// started.
+	//   Created - The job was created but not started.
+	//
+	//   Pending - A transition state. You have started the job, but it has not
+	// begun importing users yet.
+	//
+	//   InProgress - The job has started, and users are being imported.
+	//
+	//   Stopping - You have stopped the job, but the job has not stopped importing
+	// users yet.
+	//
+	//   Stopped - You have stopped the job, and the job has stopped importing
+	// users.
+	//
+	//   Succeeded - The job has completed successfully.
+	//
+	//   Failed - The job has stopped due to an error.
+	//
+	//   Expired - You created a job, but did not start the job within 24-48 hours.
+	// All data associated with the job was deleted, and the job cannot be started.
 	Status *string `type:"string" enum:"UserImportJobStatusType"`
 
 	// The user pool ID for the user pool that the users are being imported into.
@@ -7054,6 +7393,9 @@ func (s *UserPoolPolicyType) Validate() error {
 type UserPoolType struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for AdminCreateUser requests.
+	AdminCreateUserConfig *AdminCreateUserConfigType `type:"structure"`
+
 	// Specifies the attributes that are aliased in a user pool.
 	AliasAttributes []*string `type:"list"`
 
@@ -7092,10 +7434,13 @@ type UserPoolType struct {
 
 	// Can be one of the following values:
 	//
-	//  OFF - MFA tokens are not required and cannot be specified during user registration.
-	// ON - MFA tokens are required for all user registrations. You can only specify
-	// required when you are initially creating a user pool. OPTIONAL - Users have
-	// the option when registering to create an MFA token.
+	//    OFF - MFA tokens are not required and cannot be specified during user
+	// registration.
+	//
+	//    ON - MFA tokens are required for all user registrations. You can only
+	// specify required when you are initially creating a user pool.
+	//
+	//    OPTIONAL - Users have the option when registering to create an MFA token.
 	MfaConfiguration *string `type:"string" enum:"UserPoolMfaType"`
 
 	// The name of the user pool.
@@ -7143,6 +7488,9 @@ type UserType struct {
 	// Specifies whether the user is enabled.
 	Enabled *bool `type:"boolean"`
 
+	// The MFA options for the user.
+	MFAOptions []*MFAOptionType `type:"list"`
+
 	// The creation date of the user.
 	UserCreateDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
@@ -7151,10 +7499,15 @@ type UserType struct {
 
 	// The user status. Can be one of the following:
 	//
-	//  UNCONFIRMED - User has been created but not confirmed. CONFIRMED - User
-	// has been confirmed. ARCHIVED - User is no longer active. COMPROMISED - User
-	// is disabled due to a potential security threat. UNKNOWN - User status is
-	// not known.
+	//   UNCONFIRMED - User has been created but not confirmed.
+	//
+	//   CONFIRMED - User has been confirmed.
+	//
+	//   ARCHIVED - User is no longer active.
+	//
+	//   COMPROMISED - User is disabled due to a potential security threat.
+	//
+	//   UNKNOWN - User status is not known.
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user you wish to describe.
@@ -7279,6 +7632,8 @@ const (
 	ChallengeNameTypeDevicePasswordVerifier = "DEVICE_PASSWORD_VERIFIER"
 	// @enum ChallengeNameType
 	ChallengeNameTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
+	// @enum ChallengeNameType
+	ChallengeNameTypeNewPasswordRequired = "NEW_PASSWORD_REQUIRED"
 )
 
 const (
@@ -7300,6 +7655,13 @@ const (
 	ExplicitAuthFlowsTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
 	// @enum ExplicitAuthFlowsType
 	ExplicitAuthFlowsTypeCustomAuthFlowOnly = "CUSTOM_AUTH_FLOW_ONLY"
+)
+
+const (
+	// @enum MessageActionType
+	MessageActionTypeResend = "RESEND"
+	// @enum MessageActionType
+	MessageActionTypeSuppress = "SUPPRESS"
 )
 
 const (
@@ -7350,6 +7712,8 @@ const (
 	UserStatusTypeUnknown = "UNKNOWN"
 	// @enum UserStatusType
 	UserStatusTypeResetRequired = "RESET_REQUIRED"
+	// @enum UserStatusType
+	UserStatusTypeForceChangePassword = "FORCE_CHANGE_PASSWORD"
 )
 
 const (

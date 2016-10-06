@@ -6571,9 +6571,8 @@ type ListObjectsInput struct {
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
 	// Confirms that the requester knows that she or he will be charged for the
-	// request. Bucket owners need not specify this parameter in their requests.
-	// Documentation on downloading objects from requester pays buckets can be found
-	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	// list objects request. Bucket owners need not specify this parameter in their
+	// requests.
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 }
 
@@ -6674,9 +6673,8 @@ type ListObjectsV2Input struct {
 	Prefix *string `location:"querystring" locationName:"prefix" type:"string"`
 
 	// Confirms that the requester knows that she or he will be charged for the
-	// request. Bucket owners need not specify this parameter in their requests.
-	// Documentation on downloading objects from requester pays buckets can be found
-	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+	// list objects request in V2 style. Bucket owners need not specify this parameter
+	// in their requests.
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// StartAfter is where you want Amazon S3 to start listing from. Amazon S3 starts
