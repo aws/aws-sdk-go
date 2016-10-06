@@ -2,6 +2,7 @@ package v4
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -189,8 +190,12 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 	SignSDKRequest(r)
 	sig := r.HTTPRequest.Header.Get("Authorization")
 
-	SignSDKRequest(r)
-	assert.Equal(t, sig, r.HTTPRequest.Header.Get("Authorization"))
+	signSDKRequestWithCurrTime(r, func() time.Time {
+		// Simulate one second has passed so that signature's date changes
+		// when it is resigned.
+		return time.Now().Add(1 * time.Second)
+	})
+	assert.NotEqual(t, sig, r.HTTPRequest.Header.Get("Authorization"))
 }
 
 func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
@@ -210,10 +215,15 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 	r.ExpireTime = time.Minute * 10
 
 	SignSDKRequest(r)
-	sig := r.HTTPRequest.Header.Get("X-Amz-Signature")
+	sig := r.HTTPRequest.URL.Query().Get("X-Amz-Signature")
 
-	SignSDKRequest(r)
-	assert.Equal(t, sig, r.HTTPRequest.Header.Get("X-Amz-Signature"))
+	fmt.Println(sig)
+	signSDKRequestWithCurrTime(r, func() time.Time {
+		// Simulate one second has passed so that signature's date changes
+		// when it is resigned.
+		return time.Now().Add(1 * time.Second)
+	})
+	assert.NotEqual(t, sig, r.HTTPRequest.URL.Query().Get("X-Amz-Signature"))
 }
 
 func TestResignRequestExpiredCreds(t *testing.T) {
