@@ -648,7 +648,7 @@ func ExampleWAF_ListByteMatchSets() {
 	svc := waf.New(sess)
 
 	params := &waf.ListByteMatchSetsInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListByteMatchSets(params)
@@ -674,7 +674,7 @@ func ExampleWAF_ListIPSets() {
 	svc := waf.New(sess)
 
 	params := &waf.ListIPSetsInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListIPSets(params)
@@ -700,7 +700,7 @@ func ExampleWAF_ListRules() {
 	svc := waf.New(sess)
 
 	params := &waf.ListRulesInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListRules(params)
@@ -726,7 +726,7 @@ func ExampleWAF_ListSizeConstraintSets() {
 	svc := waf.New(sess)
 
 	params := &waf.ListSizeConstraintSetsInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListSizeConstraintSets(params)
@@ -752,7 +752,7 @@ func ExampleWAF_ListSqlInjectionMatchSets() {
 	svc := waf.New(sess)
 
 	params := &waf.ListSqlInjectionMatchSetsInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListSqlInjectionMatchSets(params)
@@ -778,7 +778,7 @@ func ExampleWAF_ListWebACLs() {
 	svc := waf.New(sess)
 
 	params := &waf.ListWebACLsInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListWebACLs(params)
@@ -804,7 +804,7 @@ func ExampleWAF_ListXssMatchSets() {
 	svc := waf.New(sess)
 
 	params := &waf.ListXssMatchSetsInput{
-		Limit:      aws.Int64(1), // Required
+		Limit:      aws.Int64(1),
 		NextMarker: aws.String("NextMarker"),
 	}
 	resp, err := svc.ListXssMatchSets(params)

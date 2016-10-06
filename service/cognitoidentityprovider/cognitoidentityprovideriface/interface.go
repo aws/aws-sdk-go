@@ -67,6 +67,10 @@ type CognitoIdentityProviderAPI interface {
 
 	AdminConfirmSignUp(*cognitoidentityprovider.AdminConfirmSignUpInput) (*cognitoidentityprovider.AdminConfirmSignUpOutput, error)
 
+	AdminCreateUserRequest(*cognitoidentityprovider.AdminCreateUserInput) (*request.Request, *cognitoidentityprovider.AdminCreateUserOutput)
+
+	AdminCreateUser(*cognitoidentityprovider.AdminCreateUserInput) (*cognitoidentityprovider.AdminCreateUserOutput, error)
+
 	AdminDeleteUserRequest(*cognitoidentityprovider.AdminDeleteUserInput) (*request.Request, *cognitoidentityprovider.AdminDeleteUserOutput)
 
 	AdminDeleteUser(*cognitoidentityprovider.AdminDeleteUserInput) (*cognitoidentityprovider.AdminDeleteUserOutput, error)
