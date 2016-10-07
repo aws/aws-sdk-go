@@ -3,20 +3,20 @@ Release v1.4.15
 
 Service Model Updates
 ---
-`service/cognitoidentityprovider`: Update Amazon Cognito Identity Provider service model
-`service/devicefarm`: Update AWS Device Farm documentation
-`service/opsworks`: Update AWS OpsWorks service model
-`service/s3`: Update Amazon Simple Storage Service model
-`service/waf`: Update AWS WAF service model
+* `service/cognitoidentityprovider`: Update Amazon Cognito Identity Provider service model
+* `service/devicefarm`: Update AWS Device Farm documentation
+* `service/opsworks`: Update AWS OpsWorks service model
+* `service/s3`: Update Amazon Simple Storage Service model
+* `service/waf`: Update AWS WAF service model
 
 SDK Bug Fixes
 ---
-`aws/request`: Fix HTTP Request Body race condition #874
+* `aws/request`: Fix HTTP Request Body race condition #874
 
 SDK Feature Updates
 ---
-`aws/ec2metadata`: Add support for EC2 User Data #872 
-`aws/signer/v4`: Remove logic determining if request needs to be resigned #876
+* `aws/ec2metadata`: Add support for EC2 User Data #872 
+* `aws/signer/v4`: Remove logic determining if request needs to be resigned #876
 
 Release v1.4.14 (2016-09-29)
 ===
