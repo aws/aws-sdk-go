@@ -8,7 +8,7 @@ filter_ec2_by_tag is an example using the AWS SDK for Go to list ec2 instaces th
 The example uses the the bucket name provided, and lists all object keys in a bucket.
 
 ```sh
-go run filter_ec2_by_tag.go <name_filter>
+go run -tags example filter_ec2_by_tag.go <name_filter>
 ```
 
 Output:

@@ -13,5 +13,5 @@ If the object's bucket or key does not exist a specific error message will be pr
 Any other error will be printed as an unknown error.
 
 ```sh
-go run handleServiceErrorCodes.go mybucket mykey
+go run -tags example handleServiceErrorCodes.go mybucket mykey
 ```
