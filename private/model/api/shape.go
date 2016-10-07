@@ -28,6 +28,11 @@ type ShapeRef struct {
 	Deprecated       bool `json:"deprecated"`
 }
 
+type ErrorInfo struct {
+	Code           string
+	HTTPStatusCode int
+}
+
 // A XMLInfo defines URL and prefix for Shapes when rendered as XML
 type XMLInfo struct {
 	Prefix string
@@ -67,6 +72,22 @@ type Shape struct {
 	Deprecated bool `json:"deprecated"`
 
 	Validations ShapeValidations
+
+	// Error information that is set if the shape is an error shape.
+	IsError   bool
+	ErrorInfo ErrorInfo `json:"error"`
+}
+
+func (s *Shape) ErrorName() string {
+	name := s.ShapeName
+	switch s.API.Metadata.Protocol {
+	case "query", "ec2query", "rest-xml":
+		if len(s.ErrorInfo.Code) > 0 {
+			name = s.ErrorInfo.Code
+		}
+	}
+
+	return name
 }
 
 // GoTags returns the struct tags for a shape.
@@ -345,6 +366,11 @@ func (ref *ShapeRef) Docstring() string {
 // Docstring returns the godocs formated documentation
 func (s *Shape) Docstring() string {
 	return strings.Trim(s.Documentation, "\n ")
+}
+
+func (s *ShapeRef) IndentedDocstring() string {
+	doc := s.Docstring()
+	return strings.Replace(doc, "// ", "//   ", -1)
 }
 
 var goCodeStringerTmpl = template.Must(template.New("goCodeStringerTmpl").Parse(`

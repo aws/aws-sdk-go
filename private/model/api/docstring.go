@@ -48,7 +48,7 @@ func (d *apiDocumentation) setup() {
 	}
 
 	for op, doc := range d.Operations {
-		d.API.Operations[op].Documentation = docstring(doc)
+		d.API.Operations[op].Documentation = strings.TrimSpace(docstring(doc))
 	}
 
 	for shape, info := range d.Shapes {

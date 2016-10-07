@@ -16,8 +16,9 @@ type Operation struct {
 	Name          string
 	Documentation string
 	HTTP          HTTPInfo
-	InputRef      ShapeRef `json:"input"`
-	OutputRef     ShapeRef `json:"output"`
+	InputRef      ShapeRef   `json:"input"`
+	OutputRef     ShapeRef   `json:"output"`
+	ErrorRefs     []ShapeRef `json:"errors"`
 	Paginator     *Paginator
 	Deprecated    bool   `json:"deprecated"`
 	AuthType      string `json:"authtype"`
@@ -48,6 +49,8 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 // client's request for the {{ .ExportedName }} operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See {{ .ExportedName }} for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -97,7 +100,30 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	return
 }
 
-{{ .Documentation }}func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
+// {{ .ExportedName }} API operation for {{ .API.Metadata.ServiceFullName }}.
+{{ if .Documentation -}}
+//
+{{ .Documentation }}
+{{ end -}}
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for {{ .API.Metadata.ServiceFullName }}'s
+// API operation {{ .ExportedName }} for usage and error information.
+{{ if .ErrorRefs -}}
+//
+// Returned Error Codes:
+{{ range $_, $err := .ErrorRefs -}}
+	{{ $errDoc := $err.IndentedDocstring -}}
+//   * {{ $err.Shape.ErrorName }}
+{{ if $errDoc -}}
+{{ $errDoc }}{{ end }}
+//
+{{ end -}}
+{{ end -}}
+func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
 	`input {{ .InputRef.GoType }}) ({{ .OutputRef.GoType }}, error) {
 	req, out := c.{{ .ExportedName }}Request(input)
 	err := req.Send()
