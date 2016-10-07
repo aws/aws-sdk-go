@@ -1136,6 +1136,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Default: None
 	//
 	// Values: 50M, 100M, 200M, 300M, 400M, or 500M
+	//
+	// Bandwidth is a required field
 	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
 
 	// Name of the provisioned connection.
@@ -1143,6 +1145,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: "500M Connection to AWS"
 	//
 	// Default: None
+	//
+	// ConnectionName is a required field
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"`
 
 	// ID of the interconnect on which the connection will be provisioned.
@@ -1150,6 +1154,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: dxcon-456abc78
 	//
 	// Default: None
+	//
+	// InterconnectId is a required field
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	// Numeric account Id of the customer for whom the connection will be provisioned.
@@ -1157,6 +1163,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: 123443215678
 	//
 	// Default: None
+	//
+	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 
 	// The dedicated VLAN provisioned to the connection.
@@ -1164,6 +1172,8 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: 101
 	//
 	// Default: None
+	//
+	// Vlan is a required field
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
@@ -1209,16 +1219,22 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	// The connection ID on which the private virtual interface is provisioned.
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the private virtual interface to be provisioned.
 	//
 	// Default: None
+	//
+	// NewPrivateVirtualInterfaceAllocation is a required field
 	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" required:"true"`
 
 	// The AWS account that will own the new private virtual interface.
 	//
 	// Default: None
+	//
+	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 }
 
@@ -1263,16 +1279,22 @@ type AllocatePublicVirtualInterfaceInput struct {
 	// The connection ID on which the public virtual interface is provisioned.
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the public virtual interface to be provisioned.
 	//
 	// Default: None
+	//
+	// NewPublicVirtualInterfaceAllocation is a required field
 	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" required:"true"`
 
 	// The AWS account that will own the new public virtual interface.
 	//
 	// Default: None
+	//
+	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
 }
 
@@ -1319,6 +1341,8 @@ type ConfirmConnectionInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 }
 
@@ -1395,6 +1419,8 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	// action.
 	//
 	// Default: None
+	//
+	// VirtualGatewayId is a required field
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string" required:"true"`
 
 	// ID of the virtual interface.
@@ -1402,6 +1428,8 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
+	//
+	// VirtualInterfaceId is a required field
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
@@ -1485,6 +1513,8 @@ type ConfirmPublicVirtualInterfaceInput struct {
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
+	//
+	// VirtualInterfaceId is a required field
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
@@ -1672,6 +1702,8 @@ type CreateConnectionInput struct {
 	// Example: 1Gbps
 	//
 	// Default: None
+	//
+	// Bandwidth is a required field
 	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
 
 	// The name of the connection.
@@ -1679,6 +1711,8 @@ type CreateConnectionInput struct {
 	// Example: "My Connection to AWS"
 	//
 	// Default: None
+	//
+	// ConnectionName is a required field
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"`
 
 	// Where the connection is located.
@@ -1686,6 +1720,8 @@ type CreateConnectionInput struct {
 	// Example: EqSV5
 	//
 	// Default: None
+	//
+	// Location is a required field
 	Location *string `locationName:"location" type:"string" required:"true"`
 }
 
@@ -1729,6 +1765,8 @@ type CreateInterconnectInput struct {
 	// Default: None
 	//
 	// Available values: 1Gbps,10Gbps
+	//
+	// Bandwidth is a required field
 	Bandwidth *string `locationName:"bandwidth" type:"string" required:"true"`
 
 	// The name of the interconnect.
@@ -1736,6 +1774,8 @@ type CreateInterconnectInput struct {
 	// Example: "1G Interconnect to AWS"
 	//
 	// Default: None
+	//
+	// InterconnectName is a required field
 	InterconnectName *string `locationName:"interconnectName" type:"string" required:"true"`
 
 	// Where the interconnect is located
@@ -1743,6 +1783,8 @@ type CreateInterconnectInput struct {
 	// Example: EqSV5
 	//
 	// Default: None
+	//
+	// Location is a required field
 	Location *string `locationName:"location" type:"string" required:"true"`
 }
 
@@ -1784,11 +1826,15 @@ type CreatePrivateVirtualInterfaceInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the private virtual interface to be created.
 	//
 	// Default: None
+	//
+	// NewPrivateVirtualInterface is a required field
 	NewPrivateVirtualInterface *NewPrivateVirtualInterface `locationName:"newPrivateVirtualInterface" type:"structure" required:"true"`
 }
 
@@ -1832,11 +1878,15 @@ type CreatePublicVirtualInterfaceInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the public virtual interface to be created.
 	//
 	// Default: None
+	//
+	// NewPublicVirtualInterface is a required field
 	NewPublicVirtualInterface *NewPublicVirtualInterface `locationName:"newPublicVirtualInterface" type:"structure" required:"true"`
 }
 
@@ -1880,6 +1930,8 @@ type DeleteConnectionInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 }
 
@@ -1913,6 +1965,8 @@ type DeleteInterconnectInput struct {
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
+	//
+	// InterconnectId is a required field
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 }
 
@@ -1981,6 +2035,8 @@ type DeleteVirtualInterfaceInput struct {
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
+	//
+	// VirtualInterfaceId is a required field
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 }
 
@@ -2061,6 +2117,8 @@ type DescribeConnectionLoaInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
+	//
+	// ConnectionId is a required field
 	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// A standard media type indicating the content type of the LOA-CFA document.
@@ -2150,6 +2208,8 @@ type DescribeConnectionsOnInterconnectInput struct {
 	// Example: dxcon-abc123
 	//
 	// Default: None
+	//
+	// InterconnectId is a required field
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 }
 
@@ -2183,6 +2243,8 @@ type DescribeInterconnectLoaInput struct {
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
+	//
+	// InterconnectId is a required field
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	// A standard media type indicating the content type of the LOA-CFA document.
@@ -2534,6 +2596,8 @@ type NewPrivateVirtualInterface struct {
 	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 	//
 	// Example: 65000
+	//
+	// Asn is a required field
 	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
@@ -2550,16 +2614,22 @@ type NewPrivateVirtualInterface struct {
 	// virtual interfaces.
 	//
 	// Example: vgw-123er56
+	//
+	// VirtualGatewayId is a required field
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string" required:"true"`
 
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
+	//
+	// VirtualInterfaceName is a required field
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	// The VLAN ID.
 	//
 	// Example: 101
+	//
+	// Vlan is a required field
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
@@ -2608,6 +2678,8 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 	//
 	// Example: 65000
+	//
+	// Asn is a required field
 	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
@@ -2623,11 +2695,15 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
+	//
+	// VirtualInterfaceName is a required field
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	// The VLAN ID.
 	//
 	// Example: 101
+	//
+	// Vlan is a required field
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
@@ -2667,11 +2743,15 @@ type NewPublicVirtualInterface struct {
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
+	//
+	// AmazonAddress is a required field
 	AmazonAddress *string `locationName:"amazonAddress" type:"string" required:"true"`
 
 	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 	//
 	// Example: 65000
+	//
+	// Asn is a required field
 	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
@@ -2682,20 +2762,28 @@ type NewPublicVirtualInterface struct {
 	// IP address assigned to the customer interface.
 	//
 	// Example: 192.168.1.2/30
+	//
+	// CustomerAddress is a required field
 	CustomerAddress *string `locationName:"customerAddress" type:"string" required:"true"`
 
 	// A list of routes to be advertised to the AWS network in this region (public
 	// virtual interface).
+	//
+	// RouteFilterPrefixes is a required field
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
 
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
+	//
+	// VirtualInterfaceName is a required field
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	// The VLAN ID.
 	//
 	// Example: 101
+	//
+	// Vlan is a required field
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
@@ -2745,11 +2833,15 @@ type NewPublicVirtualInterfaceAllocation struct {
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
+	//
+	// AmazonAddress is a required field
 	AmazonAddress *string `locationName:"amazonAddress" type:"string" required:"true"`
 
 	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
 	//
 	// Example: 65000
+	//
+	// Asn is a required field
 	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
@@ -2760,20 +2852,28 @@ type NewPublicVirtualInterfaceAllocation struct {
 	// IP address assigned to the customer interface.
 	//
 	// Example: 192.168.1.2/30
+	//
+	// CustomerAddress is a required field
 	CustomerAddress *string `locationName:"customerAddress" type:"string" required:"true"`
 
 	// A list of routes to be advertised to the AWS network in this region (public
 	// virtual interface).
+	//
+	// RouteFilterPrefixes is a required field
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
 
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
+	//
+	// VirtualInterfaceName is a required field
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
 
 	// The VLAN ID.
 	//
 	// Example: 101
+	//
+	// Vlan is a required field
 	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 }
 
@@ -3016,21 +3116,28 @@ func (s VirtualInterface) GoString() string {
 //    Rejected: A hosted connection in the 'Ordering' state will enter the
 // 'Rejected' state if it is deleted by the end customer.
 const (
-	// @enum ConnectionState
+	// ConnectionStateOrdering is a ConnectionState enum value
 	ConnectionStateOrdering = "ordering"
-	// @enum ConnectionState
+
+	// ConnectionStateRequested is a ConnectionState enum value
 	ConnectionStateRequested = "requested"
-	// @enum ConnectionState
+
+	// ConnectionStatePending is a ConnectionState enum value
 	ConnectionStatePending = "pending"
-	// @enum ConnectionState
+
+	// ConnectionStateAvailable is a ConnectionState enum value
 	ConnectionStateAvailable = "available"
-	// @enum ConnectionState
+
+	// ConnectionStateDown is a ConnectionState enum value
 	ConnectionStateDown = "down"
-	// @enum ConnectionState
+
+	// ConnectionStateDeleting is a ConnectionState enum value
 	ConnectionStateDeleting = "deleting"
-	// @enum ConnectionState
+
+	// ConnectionStateDeleted is a ConnectionState enum value
 	ConnectionStateDeleted = "deleted"
-	// @enum ConnectionState
+
+	// ConnectionStateRejected is a ConnectionState enum value
 	ConnectionStateRejected = "rejected"
 )
 
@@ -3051,17 +3158,22 @@ const (
 //
 //    Deleted: The interconnect has been deleted.
 const (
-	// @enum InterconnectState
+	// InterconnectStateRequested is a InterconnectState enum value
 	InterconnectStateRequested = "requested"
-	// @enum InterconnectState
+
+	// InterconnectStatePending is a InterconnectState enum value
 	InterconnectStatePending = "pending"
-	// @enum InterconnectState
+
+	// InterconnectStateAvailable is a InterconnectState enum value
 	InterconnectStateAvailable = "available"
-	// @enum InterconnectState
+
+	// InterconnectStateDown is a InterconnectState enum value
 	InterconnectStateDown = "down"
-	// @enum InterconnectState
+
+	// InterconnectStateDeleting is a InterconnectState enum value
 	InterconnectStateDeleting = "deleting"
-	// @enum InterconnectState
+
+	// InterconnectStateDeleted is a InterconnectState enum value
 	InterconnectStateDeleted = "deleted"
 )
 
@@ -3070,7 +3182,7 @@ const (
 //
 // Default: application/pdf
 const (
-	// @enum LoaContentType
+	// LoaContentTypeApplicationPdf is a LoaContentType enum value
 	LoaContentTypeApplicationPdf = "application/pdf"
 )
 
@@ -3103,20 +3215,27 @@ const (
 // the virtual interface owner, the virtual interface will enter the 'Rejected'
 // state.
 const (
-	// @enum VirtualInterfaceState
+	// VirtualInterfaceStateConfirming is a VirtualInterfaceState enum value
 	VirtualInterfaceStateConfirming = "confirming"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStateVerifying is a VirtualInterfaceState enum value
 	VirtualInterfaceStateVerifying = "verifying"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStatePending is a VirtualInterfaceState enum value
 	VirtualInterfaceStatePending = "pending"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStateAvailable is a VirtualInterfaceState enum value
 	VirtualInterfaceStateAvailable = "available"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStateDown is a VirtualInterfaceState enum value
 	VirtualInterfaceStateDown = "down"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStateDeleting is a VirtualInterfaceState enum value
 	VirtualInterfaceStateDeleting = "deleting"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStateDeleted is a VirtualInterfaceState enum value
 	VirtualInterfaceStateDeleted = "deleted"
-	// @enum VirtualInterfaceState
+
+	// VirtualInterfaceStateRejected is a VirtualInterfaceState enum value
 	VirtualInterfaceStateRejected = "rejected"
 )

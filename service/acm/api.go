@@ -556,9 +556,13 @@ type AddTagsToCertificateInput struct {
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 
 	// The key-value pair that defines the tag. The tag value is optional.
+	//
+	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
@@ -741,6 +745,8 @@ type DeleteCertificateInput struct {
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -793,6 +799,8 @@ type DescribeCertificateInput struct {
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -846,6 +854,8 @@ type DomainValidation struct {
 	_ struct{} `type:"structure"`
 
 	// Fully Qualified Domain Name (FQDN) of the form www.example.com or  example.com.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
 	// The base validation domain that acts as the suffix of the email addresses
@@ -871,6 +881,8 @@ type DomainValidationOption struct {
 	_ struct{} `type:"structure"`
 
 	// Fully Qualified Domain Name (FQDN) of the certificate being requested.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
 	// The domain to which validation email is sent. This is the base validation
@@ -890,6 +902,8 @@ type DomainValidationOption struct {
 	//   postmaster@subdomain.example.com
 	//
 	//   webmaster@subdomain.example.com
+	//
+	// ValidationDomain is a required field
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
 }
 
@@ -934,6 +948,8 @@ type GetCertificateInput struct {
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -1060,6 +1076,8 @@ type ListTagsForCertificateInput struct {
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -1116,9 +1134,13 @@ type RemoveTagsFromCertificateInput struct {
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 
 	// The key-value pair that defines the tag to remove.
+	//
+	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
@@ -1185,6 +1207,8 @@ type RequestCertificateInput struct {
 	// you want to secure with an ACM Certificate. Use an asterisk (*) to create
 	// a wildcard certificate that protects several sites in the same domain. For
 	// example, *.example.com protects www.example.com, site.example.com, and images.example.com.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
 
 	// The base validation domain that will act as the suffix of the email addresses
@@ -1296,10 +1320,14 @@ type ResendValidationEmailInput struct {
 	// The ARN must be of the form:
 	//
 	//  arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
 
 	// The Fully Qualified Domain Name (FQDN) of the certificate that needs to be
 	// validated.
+	//
+	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
 
 	// The base validation domain that will act as the suffix of the email addresses
@@ -1318,6 +1346,8 @@ type ResendValidationEmailInput struct {
 	//   postmaster@subdomain.example.com
 	//
 	//   webmaster@subdomain.example.com
+	//
+	// ValidationDomain is a required field
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1378,6 +1408,8 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The key of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
@@ -1411,61 +1443,81 @@ func (s *Tag) Validate() error {
 }
 
 const (
-	// @enum CertificateStatus
+	// CertificateStatusPendingValidation is a CertificateStatus enum value
 	CertificateStatusPendingValidation = "PENDING_VALIDATION"
-	// @enum CertificateStatus
+
+	// CertificateStatusIssued is a CertificateStatus enum value
 	CertificateStatusIssued = "ISSUED"
-	// @enum CertificateStatus
+
+	// CertificateStatusInactive is a CertificateStatus enum value
 	CertificateStatusInactive = "INACTIVE"
-	// @enum CertificateStatus
+
+	// CertificateStatusExpired is a CertificateStatus enum value
 	CertificateStatusExpired = "EXPIRED"
-	// @enum CertificateStatus
+
+	// CertificateStatusValidationTimedOut is a CertificateStatus enum value
 	CertificateStatusValidationTimedOut = "VALIDATION_TIMED_OUT"
-	// @enum CertificateStatus
+
+	// CertificateStatusRevoked is a CertificateStatus enum value
 	CertificateStatusRevoked = "REVOKED"
-	// @enum CertificateStatus
+
+	// CertificateStatusFailed is a CertificateStatus enum value
 	CertificateStatusFailed = "FAILED"
 )
 
 const (
-	// @enum FailureReason
+	// FailureReasonNoAvailableContacts is a FailureReason enum value
 	FailureReasonNoAvailableContacts = "NO_AVAILABLE_CONTACTS"
-	// @enum FailureReason
+
+	// FailureReasonAdditionalVerificationRequired is a FailureReason enum value
 	FailureReasonAdditionalVerificationRequired = "ADDITIONAL_VERIFICATION_REQUIRED"
-	// @enum FailureReason
+
+	// FailureReasonDomainNotAllowed is a FailureReason enum value
 	FailureReasonDomainNotAllowed = "DOMAIN_NOT_ALLOWED"
-	// @enum FailureReason
+
+	// FailureReasonInvalidPublicDomain is a FailureReason enum value
 	FailureReasonInvalidPublicDomain = "INVALID_PUBLIC_DOMAIN"
-	// @enum FailureReason
+
+	// FailureReasonOther is a FailureReason enum value
 	FailureReasonOther = "OTHER"
 )
 
 const (
-	// @enum KeyAlgorithm
+	// KeyAlgorithmRsa2048 is a KeyAlgorithm enum value
 	KeyAlgorithmRsa2048 = "RSA_2048"
-	// @enum KeyAlgorithm
+
+	// KeyAlgorithmEcPrime256v1 is a KeyAlgorithm enum value
 	KeyAlgorithmEcPrime256v1 = "EC_prime256v1"
 )
 
 const (
-	// @enum RevocationReason
+	// RevocationReasonUnspecified is a RevocationReason enum value
 	RevocationReasonUnspecified = "UNSPECIFIED"
-	// @enum RevocationReason
+
+	// RevocationReasonKeyCompromise is a RevocationReason enum value
 	RevocationReasonKeyCompromise = "KEY_COMPROMISE"
-	// @enum RevocationReason
+
+	// RevocationReasonCaCompromise is a RevocationReason enum value
 	RevocationReasonCaCompromise = "CA_COMPROMISE"
-	// @enum RevocationReason
+
+	// RevocationReasonAffiliationChanged is a RevocationReason enum value
 	RevocationReasonAffiliationChanged = "AFFILIATION_CHANGED"
-	// @enum RevocationReason
+
+	// RevocationReasonSuperceded is a RevocationReason enum value
 	RevocationReasonSuperceded = "SUPERCEDED"
-	// @enum RevocationReason
+
+	// RevocationReasonCessationOfOperation is a RevocationReason enum value
 	RevocationReasonCessationOfOperation = "CESSATION_OF_OPERATION"
-	// @enum RevocationReason
+
+	// RevocationReasonCertificateHold is a RevocationReason enum value
 	RevocationReasonCertificateHold = "CERTIFICATE_HOLD"
-	// @enum RevocationReason
+
+	// RevocationReasonRemoveFromCrl is a RevocationReason enum value
 	RevocationReasonRemoveFromCrl = "REMOVE_FROM_CRL"
-	// @enum RevocationReason
+
+	// RevocationReasonPrivilegeWithdrawn is a RevocationReason enum value
 	RevocationReasonPrivilegeWithdrawn = "PRIVILEGE_WITHDRAWN"
-	// @enum RevocationReason
+
+	// RevocationReasonAACompromise is a RevocationReason enum value
 	RevocationReasonAACompromise = "A_A_COMPROMISE"
 )

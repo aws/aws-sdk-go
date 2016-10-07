@@ -1767,10 +1767,14 @@ type AddIpRoutesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Identifier (ID) of the directory to which to add the address block.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// IP address blocks, using CIDR format, of the traffic to route. This is often
 	// the IP address block of the DNS server used for your on-premises domain.
+	//
+	// IpRoutes is a required field
 	IpRoutes []*IpRoute `type:"list" required:"true"`
 
 	// If set to true, updates the inbound and outbound rules of the security group
@@ -1866,9 +1870,13 @@ type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Identifier (ID) for the directory to which to add the tag.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// The tags to be assigned to the Amazon Directory Services directory.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -2018,21 +2026,29 @@ type ConnectDirectoryInput struct {
 
 	// A DirectoryConnectSettings object that contains additional information for
 	// the operation.
+	//
+	// ConnectSettings is a required field
 	ConnectSettings *DirectoryConnectSettings `type:"structure" required:"true"`
 
 	// A textual description for the directory.
 	Description *string `type:"string"`
 
 	// The fully-qualified name of the on-premises directory, such as corp.example.com.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The password for the on-premises user account.
+	//
+	// Password is a required field
 	Password *string `min:"1" type:"string" required:"true"`
 
 	// The NetBIOS name of the on-premises directory, such as CORP.
 	ShortName *string `type:"string"`
 
 	// The size of the directory.
+	//
+	// Size is a required field
 	Size *string `type:"string" required:"true" enum:"DirectorySize"`
 }
 
@@ -2102,9 +2118,13 @@ type CreateAliasInput struct {
 	//
 	// The alias must be unique amongst all aliases in AWS. This operation throws
 	// an EntityAlreadyExistsException error if the alias already exists.
+	//
+	// Alias is a required field
 	Alias *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the directory for which to create the alias.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -2167,9 +2187,13 @@ type CreateComputerInput struct {
 	ComputerAttributes []*Attribute `type:"list"`
 
 	// The name of the computer account.
+	//
+	// ComputerName is a required field
 	ComputerName *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the directory in which to create the computer account.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The fully-qualified distinguished name of the organizational unit to place
@@ -2178,6 +2202,8 @@ type CreateComputerInput struct {
 
 	// A one-time password that is used to join the computer to the directory. You
 	// should generate a random, strong password to use for this parameter.
+	//
+	// Password is a required field
 	Password *string `min:"8" type:"string" required:"true"`
 }
 
@@ -2255,13 +2281,19 @@ type CreateConditionalForwarderInput struct {
 
 	// The directory ID of the AWS directory for which you are creating the conditional
 	// forwarder.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The IP addresses of the remote DNS server associated with RemoteDomainName.
+	//
+	// DnsIpAddrs is a required field
 	DnsIpAddrs []*string `type:"list" required:"true"`
 
 	// The fully qualified domain name (FQDN) of the remote domain with which you
 	// will set up a trust relationship.
+	//
+	// RemoteDomainName is a required field
 	RemoteDomainName *string `type:"string" required:"true"`
 }
 
@@ -2317,17 +2349,23 @@ type CreateDirectoryInput struct {
 	Description *string `type:"string"`
 
 	// The fully qualified name for the directory, such as corp.example.com.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The password for the directory administrator. The directory creation process
 	// creates a directory administrator account with the username Administrator
 	// and this password.
+	//
+	// Password is a required field
 	Password *string `type:"string" required:"true"`
 
 	// The short name of the directory, such as CORP.
 	ShortName *string `type:"string"`
 
 	// The size of the directory.
+	//
+	// Size is a required field
 	Size *string `type:"string" required:"true" enum:"DirectorySize"`
 
 	// A DirectoryVpcSettings object that contains additional information for the
@@ -2398,9 +2436,13 @@ type CreateMicrosoftADInput struct {
 	// The fully qualified domain name for the directory, such as corp.example.com.
 	// This name will resolve inside your VPC only. It does not need to be publicly
 	// resolvable.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The password for the default administrative user named Admin.
+	//
+	// Password is a required field
 	Password *string `type:"string" required:"true"`
 
 	// The NetBIOS name for your domain. A short identifier for your domain, such
@@ -2409,6 +2451,8 @@ type CreateMicrosoftADInput struct {
 	ShortName *string `type:"string"`
 
 	// Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
+	//
+	// VpcSettings is a required field
 	VpcSettings *DirectoryVpcSettings `type:"structure" required:"true"`
 }
 
@@ -2469,6 +2513,8 @@ type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory of which to take a snapshot.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The descriptive name to apply to the snapshot.
@@ -2532,17 +2578,25 @@ type CreateTrustInput struct {
 
 	// The Directory ID of the Microsoft AD in the AWS cloud for which to establish
 	// the trust relationship.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The Fully Qualified Domain Name (FQDN) of the external domain for which to
 	// create the trust relationship.
+	//
+	// RemoteDomainName is a required field
 	RemoteDomainName *string `type:"string" required:"true"`
 
 	// The direction of the trust relationship.
+	//
+	// TrustDirection is a required field
 	TrustDirection *string `type:"string" required:"true" enum:"TrustDirection"`
 
 	// The trust password. The must be the same password that was used when creating
 	// the trust relationship on the external domain.
+	//
+	// TrustPassword is a required field
 	TrustPassword *string `min:"1" type:"string" required:"true"`
 
 	// The trust relationship type.
@@ -2607,10 +2661,14 @@ type DeleteConditionalForwarderInput struct {
 	_ struct{} `type:"structure"`
 
 	// The directory ID for which you are deleting the conditional forwarder.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The fully qualified domain name (FQDN) of the remote domain with which you
 	// are deleting the conditional forwarder.
+	//
+	// RemoteDomainName is a required field
 	RemoteDomainName *string `type:"string" required:"true"`
 }
 
@@ -2660,6 +2718,8 @@ type DeleteDirectoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory to delete.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -2709,6 +2769,8 @@ type DeleteSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory snapshot to be deleted.
+	//
+	// SnapshotId is a required field
 	SnapshotId *string `type:"string" required:"true"`
 }
 
@@ -2762,6 +2824,8 @@ type DeleteTrustInput struct {
 	DeleteAssociatedConditionalForwarder *bool `type:"boolean"`
 
 	// The Trust ID of the trust relationship to be deleted.
+	//
+	// TrustId is a required field
 	TrustId *string `type:"string" required:"true"`
 }
 
@@ -2812,9 +2876,13 @@ type DeregisterEventTopicInput struct {
 
 	// The Directory ID to remove as a publisher. This directory will no longer
 	// send messages to the specified SNS topic.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The name of the SNS topic from which to remove the directory as a publisher.
+	//
+	// TopicName is a required field
 	TopicName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2867,6 +2935,8 @@ type DescribeConditionalForwardersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The directory ID for which to get the list of associated conditional forwarders.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The fully qualified domain names (FQDN) of the remote domains for which to
@@ -3145,6 +3215,8 @@ type DirectoryConnectSettings struct {
 
 	// A list of one or more IP addresses of DNS servers or domain controllers in
 	// the on-premises directory.
+	//
+	// CustomerDnsIps is a required field
 	CustomerDnsIps []*string `type:"list" required:"true"`
 
 	// The username of an account in the on-premises directory that is used to connect
@@ -3155,12 +3227,18 @@ type DirectoryConnectSettings struct {
 	//   Create computer objects
 	//
 	//   Join computers to the domain
+	//
+	// CustomerUserName is a required field
 	CustomerUserName *string `min:"1" type:"string" required:"true"`
 
 	// A list of subnet identifiers in the VPC in which the AD Connector is created.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
 
 	// The identifier of the VPC in which the AD Connector is created.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -3363,9 +3441,13 @@ type DirectoryVpcSettings struct {
 	// The identifiers of the subnets for the directory servers. The two subnets
 	// must be in different Availability Zones. AWS Directory Service creates a
 	// directory server and a DNS server in each of these subnets.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
 
 	// The identifier of the VPC in which to create the directory.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -3430,6 +3512,8 @@ type DisableRadiusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory for which to disable MFA.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -3476,6 +3560,8 @@ type DisableSsoInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory for which to disable single-sign on.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The password of an alternate account to use to disable single-sign on. This
@@ -3544,9 +3630,13 @@ type EnableRadiusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory for which to enable MFA.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
+	//
+	// RadiusSettings is a required field
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
 }
 
@@ -3601,6 +3691,8 @@ type EnableSsoInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory for which to enable single-sign on.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The password of an alternate account to use to enable single-sign on. This
@@ -3734,6 +3826,8 @@ type GetSnapshotLimitsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains the identifier of the directory to obtain the limits for.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -3840,6 +3934,8 @@ type ListIpRoutesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Identifier (ID) of the directory for which you want to retrieve the IP addresses.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// Maximum number of items to return. If this value is zero, the maximum number
@@ -3906,6 +4002,8 @@ type ListTagsForResourceInput struct {
 	NextToken *string `type:"string"`
 
 	// Identifier (ID) of the directory for which you want to retrieve tags.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 }
 
@@ -4023,10 +4121,14 @@ type RegisterEventTopicInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Directory ID that will publish status messages to the SNS topic.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The SNS topic name to which the directory will publish status messages. This
 	// SNS topic must be in the same region as the specified Directory ID.
+	//
+	// TopicName is a required field
 	TopicName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4078,9 +4180,13 @@ type RemoveIpRoutesInput struct {
 	_ struct{} `type:"structure"`
 
 	// IP address blocks that you want to remove.
+	//
+	// CidrIps is a required field
 	CidrIps []*string `type:"list" required:"true"`
 
 	// Identifier (ID) of the directory from which you want to remove the IP addresses.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 }
 
@@ -4128,9 +4234,13 @@ type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Identifier (ID) of the directory from which to remove the tag.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// The tag key (name) of the tag to be removed.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -4179,6 +4289,8 @@ type RestoreFromSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the snapshot to restore from.
+	//
+	// SnapshotId is a required field
 	SnapshotId *string `type:"string" required:"true"`
 }
 
@@ -4285,11 +4397,15 @@ type Tag struct {
 	// Required name of the tag. The string value can be Unicode characters and
 	// cannot be prefixed with "aws:". The string can contain only the set of Unicode
 	// letters, digits, white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The optional value of the tag. The string value can be Unicode characters.
 	// The string can contain only the set of Unicode letters, digits, white-space,
 	// '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -4375,14 +4491,20 @@ type UpdateConditionalForwarderInput struct {
 
 	// The directory ID of the AWS directory for which to update the conditional
 	// forwarder.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The updated IP addresses of the remote DNS server associated with the conditional
 	// forwarder.
+	//
+	// DnsIpAddrs is a required field
 	DnsIpAddrs []*string `type:"list" required:"true"`
 
 	// The fully qualified domain name (FQDN) of the remote domain with which you
 	// will set up a trust relationship.
+	//
+	// RemoteDomainName is a required field
 	RemoteDomainName *string `type:"string" required:"true"`
 }
 
@@ -4435,9 +4557,13 @@ type UpdateRadiusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the directory for which to update the RADIUS server information.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
+	//
+	// RadiusSettings is a required field
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
 }
 
@@ -4493,6 +4619,8 @@ type VerifyTrustInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique Trust ID of the trust relationship to verify.
+	//
+	// TrustId is a required field
 	TrustId *string `type:"string" required:"true"`
 }
 
@@ -4538,142 +4666,180 @@ func (s VerifyTrustOutput) GoString() string {
 }
 
 const (
-	// @enum DirectorySize
+	// DirectorySizeSmall is a DirectorySize enum value
 	DirectorySizeSmall = "Small"
-	// @enum DirectorySize
+
+	// DirectorySizeLarge is a DirectorySize enum value
 	DirectorySizeLarge = "Large"
 )
 
 const (
-	// @enum DirectoryStage
+	// DirectoryStageRequested is a DirectoryStage enum value
 	DirectoryStageRequested = "Requested"
-	// @enum DirectoryStage
+
+	// DirectoryStageCreating is a DirectoryStage enum value
 	DirectoryStageCreating = "Creating"
-	// @enum DirectoryStage
+
+	// DirectoryStageCreated is a DirectoryStage enum value
 	DirectoryStageCreated = "Created"
-	// @enum DirectoryStage
+
+	// DirectoryStageActive is a DirectoryStage enum value
 	DirectoryStageActive = "Active"
-	// @enum DirectoryStage
+
+	// DirectoryStageInoperable is a DirectoryStage enum value
 	DirectoryStageInoperable = "Inoperable"
-	// @enum DirectoryStage
+
+	// DirectoryStageImpaired is a DirectoryStage enum value
 	DirectoryStageImpaired = "Impaired"
-	// @enum DirectoryStage
+
+	// DirectoryStageRestoring is a DirectoryStage enum value
 	DirectoryStageRestoring = "Restoring"
-	// @enum DirectoryStage
+
+	// DirectoryStageRestoreFailed is a DirectoryStage enum value
 	DirectoryStageRestoreFailed = "RestoreFailed"
-	// @enum DirectoryStage
+
+	// DirectoryStageDeleting is a DirectoryStage enum value
 	DirectoryStageDeleting = "Deleting"
-	// @enum DirectoryStage
+
+	// DirectoryStageDeleted is a DirectoryStage enum value
 	DirectoryStageDeleted = "Deleted"
-	// @enum DirectoryStage
+
+	// DirectoryStageFailed is a DirectoryStage enum value
 	DirectoryStageFailed = "Failed"
 )
 
 const (
-	// @enum DirectoryType
+	// DirectoryTypeSimpleAd is a DirectoryType enum value
 	DirectoryTypeSimpleAd = "SimpleAD"
-	// @enum DirectoryType
+
+	// DirectoryTypeAdconnector is a DirectoryType enum value
 	DirectoryTypeAdconnector = "ADConnector"
-	// @enum DirectoryType
+
+	// DirectoryTypeMicrosoftAd is a DirectoryType enum value
 	DirectoryTypeMicrosoftAd = "MicrosoftAD"
 )
 
 const (
-	// @enum IpRouteStatusMsg
+	// IpRouteStatusMsgAdding is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgAdding = "Adding"
-	// @enum IpRouteStatusMsg
+
+	// IpRouteStatusMsgAdded is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgAdded = "Added"
-	// @enum IpRouteStatusMsg
+
+	// IpRouteStatusMsgRemoving is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgRemoving = "Removing"
-	// @enum IpRouteStatusMsg
+
+	// IpRouteStatusMsgRemoved is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgRemoved = "Removed"
-	// @enum IpRouteStatusMsg
+
+	// IpRouteStatusMsgAddFailed is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgAddFailed = "AddFailed"
-	// @enum IpRouteStatusMsg
+
+	// IpRouteStatusMsgRemoveFailed is a IpRouteStatusMsg enum value
 	IpRouteStatusMsgRemoveFailed = "RemoveFailed"
 )
 
 const (
-	// @enum RadiusAuthenticationProtocol
+	// RadiusAuthenticationProtocolPap is a RadiusAuthenticationProtocol enum value
 	RadiusAuthenticationProtocolPap = "PAP"
-	// @enum RadiusAuthenticationProtocol
+
+	// RadiusAuthenticationProtocolChap is a RadiusAuthenticationProtocol enum value
 	RadiusAuthenticationProtocolChap = "CHAP"
-	// @enum RadiusAuthenticationProtocol
+
+	// RadiusAuthenticationProtocolMsChapv1 is a RadiusAuthenticationProtocol enum value
 	RadiusAuthenticationProtocolMsChapv1 = "MS-CHAPv1"
-	// @enum RadiusAuthenticationProtocol
+
+	// RadiusAuthenticationProtocolMsChapv2 is a RadiusAuthenticationProtocol enum value
 	RadiusAuthenticationProtocolMsChapv2 = "MS-CHAPv2"
 )
 
 const (
-	// @enum RadiusStatus
+	// RadiusStatusCreating is a RadiusStatus enum value
 	RadiusStatusCreating = "Creating"
-	// @enum RadiusStatus
+
+	// RadiusStatusCompleted is a RadiusStatus enum value
 	RadiusStatusCompleted = "Completed"
-	// @enum RadiusStatus
+
+	// RadiusStatusFailed is a RadiusStatus enum value
 	RadiusStatusFailed = "Failed"
 )
 
 const (
-	// @enum ReplicationScope
+	// ReplicationScopeDomain is a ReplicationScope enum value
 	ReplicationScopeDomain = "Domain"
 )
 
 const (
-	// @enum SnapshotStatus
+	// SnapshotStatusCreating is a SnapshotStatus enum value
 	SnapshotStatusCreating = "Creating"
-	// @enum SnapshotStatus
+
+	// SnapshotStatusCompleted is a SnapshotStatus enum value
 	SnapshotStatusCompleted = "Completed"
-	// @enum SnapshotStatus
+
+	// SnapshotStatusFailed is a SnapshotStatus enum value
 	SnapshotStatusFailed = "Failed"
 )
 
 const (
-	// @enum SnapshotType
+	// SnapshotTypeAuto is a SnapshotType enum value
 	SnapshotTypeAuto = "Auto"
-	// @enum SnapshotType
+
+	// SnapshotTypeManual is a SnapshotType enum value
 	SnapshotTypeManual = "Manual"
 )
 
 const (
-	// @enum TopicStatus
+	// TopicStatusRegistered is a TopicStatus enum value
 	TopicStatusRegistered = "Registered"
-	// @enum TopicStatus
+
+	// TopicStatusTopicnotfound is a TopicStatus enum value
 	TopicStatusTopicnotfound = "Topic not found"
-	// @enum TopicStatus
+
+	// TopicStatusFailed is a TopicStatus enum value
 	TopicStatusFailed = "Failed"
-	// @enum TopicStatus
+
+	// TopicStatusDeleted is a TopicStatus enum value
 	TopicStatusDeleted = "Deleted"
 )
 
 const (
-	// @enum TrustDirection
+	// TrustDirectionOneWayOutgoing is a TrustDirection enum value
 	TrustDirectionOneWayOutgoing = "One-Way: Outgoing"
-	// @enum TrustDirection
+
+	// TrustDirectionOneWayIncoming is a TrustDirection enum value
 	TrustDirectionOneWayIncoming = "One-Way: Incoming"
-	// @enum TrustDirection
+
+	// TrustDirectionTwoWay is a TrustDirection enum value
 	TrustDirectionTwoWay = "Two-Way"
 )
 
 const (
-	// @enum TrustState
+	// TrustStateCreating is a TrustState enum value
 	TrustStateCreating = "Creating"
-	// @enum TrustState
+
+	// TrustStateCreated is a TrustState enum value
 	TrustStateCreated = "Created"
-	// @enum TrustState
+
+	// TrustStateVerifying is a TrustState enum value
 	TrustStateVerifying = "Verifying"
-	// @enum TrustState
+
+	// TrustStateVerifyFailed is a TrustState enum value
 	TrustStateVerifyFailed = "VerifyFailed"
-	// @enum TrustState
+
+	// TrustStateVerified is a TrustState enum value
 	TrustStateVerified = "Verified"
-	// @enum TrustState
+
+	// TrustStateDeleting is a TrustState enum value
 	TrustStateDeleting = "Deleting"
-	// @enum TrustState
+
+	// TrustStateDeleted is a TrustState enum value
 	TrustStateDeleted = "Deleted"
-	// @enum TrustState
+
+	// TrustStateFailed is a TrustState enum value
 	TrustStateFailed = "Failed"
 )
 
 const (
-	// @enum TrustType
+	// TrustTypeForest is a TrustType enum value
 	TrustTypeForest = "Forest"
 )

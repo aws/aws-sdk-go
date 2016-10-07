@@ -2377,10 +2377,14 @@ type AddTagsToResourceInput struct {
 	//
 	// For more information on ARNs, go to Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
 	// A list of cost allocation tags to be added to this resource. A tag is a key-value
 	// pair. A tag key must be accompanied by a tag value.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
@@ -2415,15 +2419,21 @@ type AuthorizeCacheSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cache security group which will allow network ingress.
+	//
+	// CacheSecurityGroupName is a required field
 	CacheSecurityGroupName *string `type:"string" required:"true"`
 
 	// The Amazon EC2 security group to be authorized for ingress to the cache security
 	// group.
+	//
+	// EC2SecurityGroupName is a required field
 	EC2SecurityGroupName *string `type:"string" required:"true"`
 
 	// The AWS account number of the Amazon EC2 security group owner. Note that
 	// this is not the same thing as an AWS access key ID - you must provide a valid
 	// AWS account number for this parameter.
+	//
+	// EC2SecurityGroupOwnerId is a required field
 	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 }
 
@@ -2994,6 +3004,8 @@ type CopySnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of an existing snapshot from which to make a copy.
+	//
+	// SourceSnapshotName is a required field
 	SourceSnapshotName *string `type:"string" required:"true"`
 
 	// The Amazon S3 bucket to which the snapshot will be exported. This parameter
@@ -3058,6 +3070,8 @@ type CopySnapshotInput struct {
 	//  Solution: Give the TargetSnapshotName a new and unique value. If exporting
 	// a snapshot, you could alternatively create a new Amazon S3 bucket and use
 	// this same value for TargetSnapshotName.
+	//
+	// TargetSnapshotName is a required field
 	TargetSnapshotName *string `type:"string" required:"true"`
 }
 
@@ -3131,6 +3145,8 @@ type CreateCacheClusterInput struct {
 	//   The first character must be a letter.
 	//
 	//   A name cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// CacheClusterId is a required field
 	CacheClusterId *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the nodes in the node group.
@@ -3385,12 +3401,18 @@ type CreateCacheParameterGroupInput struct {
 	// be used with.
 	//
 	// Valid values are: memcached1.4 | redis2.6 | redis2.8
+	//
+	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
 
 	// A user-specified name for the cache parameter group.
+	//
+	// CacheParameterGroupName is a required field
 	CacheParameterGroupName *string `type:"string" required:"true"`
 
 	// A user-specified description for the cache parameter group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 }
 
@@ -3451,9 +3473,13 @@ type CreateCacheSecurityGroupInput struct {
 	// be the word "Default".
 	//
 	// Example: mysecuritygroup
+	//
+	// CacheSecurityGroupName is a required field
 	CacheSecurityGroupName *string `type:"string" required:"true"`
 
 	// A description for the cache security group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 }
 
@@ -3511,6 +3537,8 @@ type CreateCacheSubnetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// A description for the cache subnet group.
+	//
+	// CacheSubnetGroupDescription is a required field
 	CacheSubnetGroupDescription *string `type:"string" required:"true"`
 
 	// A name for the cache subnet group. This value is stored as a lowercase string.
@@ -3518,9 +3546,13 @@ type CreateCacheSubnetGroupInput struct {
 	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
 	//
 	// Example: mysubnetgroup
+	//
+	// CacheSubnetGroupName is a required field
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	// A list of VPC subnet IDs for the cache subnet group.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 }
 
@@ -3728,6 +3760,8 @@ type CreateReplicationGroupInput struct {
 	PrimaryClusterId *string `type:"string"`
 
 	// A user-created description for the replication group.
+	//
+	// ReplicationGroupDescription is a required field
 	ReplicationGroupDescription *string `type:"string" required:"true"`
 
 	// The replication group identifier. This parameter is stored as a lowercase
@@ -3740,6 +3774,8 @@ type CreateReplicationGroupInput struct {
 	//   The first character must be a letter.
 	//
 	//   A name cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// One or more Amazon VPC security groups associated with this replication group.
@@ -3840,9 +3876,13 @@ type CreateSnapshotInput struct {
 
 	// The identifier of an existing cache cluster. The snapshot will be created
 	// from this cache cluster.
+	//
+	// CacheClusterId is a required field
 	CacheClusterId *string `type:"string" required:"true"`
 
 	// A name for the snapshot being created.
+	//
+	// SnapshotName is a required field
 	SnapshotName *string `type:"string" required:"true"`
 }
 
@@ -3896,6 +3936,8 @@ type DeleteCacheClusterInput struct {
 
 	// The cache cluster identifier for the cluster to be deleted. This parameter
 	// is not case sensitive.
+	//
+	// CacheClusterId is a required field
 	CacheClusterId *string `type:"string" required:"true"`
 
 	// The user-supplied name of a final cache cluster snapshot. This is the unique
@@ -3952,6 +3994,8 @@ type DeleteCacheParameterGroupInput struct {
 	//
 	//  The specified cache security group must not be associated with any cache
 	// clusters.
+	//
+	// CacheParameterGroupName is a required field
 	CacheParameterGroupName *string `type:"string" required:"true"`
 }
 
@@ -3999,6 +4043,8 @@ type DeleteCacheSecurityGroupInput struct {
 	// The name of the cache security group to delete.
 	//
 	//  You cannot delete the default security group.
+	//
+	// CacheSecurityGroupName is a required field
 	CacheSecurityGroupName *string `type:"string" required:"true"`
 }
 
@@ -4046,6 +4092,8 @@ type DeleteCacheSubnetGroupInput struct {
 	// The name of the cache subnet group to delete.
 	//
 	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
+	//
+	// CacheSubnetGroupName is a required field
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 }
 
@@ -4098,6 +4146,8 @@ type DeleteReplicationGroupInput struct {
 
 	// The identifier for the cluster to be deleted. This parameter is not case
 	// sensitive.
+	//
+	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// If set to true, all of the read replicas will be deleted, but the primary
@@ -4150,6 +4200,8 @@ type DeleteSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the snapshot to be deleted.
+	//
+	// SnapshotName is a required field
 	SnapshotName *string `type:"string" required:"true"`
 }
 
@@ -4387,6 +4439,8 @@ type DescribeCacheParametersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a specific cache parameter group to return details for.
+	//
+	// CacheParameterGroupName is a required field
 	CacheParameterGroupName *string `type:"string" required:"true"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
@@ -4571,6 +4625,8 @@ type DescribeEngineDefaultParametersInput struct {
 
 	// The name of the cache parameter group family. Valid values are: memcached1.4
 	// | redis2.6 | redis2.8
+	//
+	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
@@ -5220,6 +5276,8 @@ type ListTagsForResourceInput struct {
 	//
 	// For more information on ARNs, go to Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 }
 
@@ -5286,6 +5344,8 @@ type ModifyCacheClusterInput struct {
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The cache cluster identifier. This value is stored as a lowercase string.
+	//
+	// CacheClusterId is a required field
 	CacheClusterId *string `type:"string" required:"true"`
 
 	// A list of cache node IDs to be removed. A node ID is a numeric identifier
@@ -5537,11 +5597,15 @@ type ModifyCacheParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the cache parameter group to modify.
+	//
+	// CacheParameterGroupName is a required field
 	CacheParameterGroupName *string `type:"string" required:"true"`
 
 	// An array of parameter names and values for the parameter update. You must
 	// supply at least one parameter name and value; subsequent arguments are optional.
 	// A maximum of 20 parameters may be modified per request.
+	//
+	// ParameterNameValues is a required field
 	ParameterNameValues []*ParameterNameValue `locationNameList:"ParameterNameValue" type:"list" required:"true"`
 }
 
@@ -5584,6 +5648,8 @@ type ModifyCacheSubnetGroupInput struct {
 	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
 	//
 	// Example: mysubnetgroup
+	//
+	// CacheSubnetGroupName is a required field
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the cache subnet group.
@@ -5741,6 +5807,8 @@ type ModifyReplicationGroupInput struct {
 	ReplicationGroupDescription *string `type:"string"`
 
 	// The identifier of the replication group to modify.
+	//
+	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// Specifies the VPC Security Groups associated with the cache clusters in the
@@ -6048,6 +6116,8 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 	// The ID of the reserved cache node offering to purchase.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
+	//
+	// ReservedCacheNodesOfferingId is a required field
 	ReservedCacheNodesOfferingId *string `type:"string" required:"true"`
 }
 
@@ -6096,11 +6166,15 @@ type RebootCacheClusterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cache cluster identifier. This parameter is stored as a lowercase string.
+	//
+	// CacheClusterId is a required field
 	CacheClusterId *string `type:"string" required:"true"`
 
 	// A list of cache node IDs to reboot. A node ID is a numeric identifier (0001,
 	// 0002, etc.). To reboot an entire cache cluster, specify all of the cache
 	// node IDs.
+	//
+	// CacheNodeIdsToReboot is a required field
 	CacheNodeIdsToReboot []*string `locationNameList:"CacheNodeId" type:"list" required:"true"`
 }
 
@@ -6179,11 +6253,15 @@ type RemoveTagsFromResourceInput struct {
 	//
 	// For more information on ARNs, go to Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
 	// A list of TagKeys identifying the tags you want removed from the named resource.
 	// For example, TagKeys.member.1=Region removes the cost allocation tag with
 	// the key name Region from the resource named by the ResourceName parameter.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -6451,6 +6529,8 @@ type ResetCacheParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the cache parameter group to reset.
+	//
+	// CacheParameterGroupName is a required field
 	CacheParameterGroupName *string `type:"string" required:"true"`
 
 	// An array of parameter names to reset to their default values. If ResetAllParameters
@@ -6493,14 +6573,20 @@ type RevokeCacheSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the cache security group to revoke ingress from.
+	//
+	// CacheSecurityGroupName is a required field
 	CacheSecurityGroupName *string `type:"string" required:"true"`
 
 	// The name of the Amazon EC2 security group to revoke access from.
+	//
+	// EC2SecurityGroupName is a required field
 	EC2SecurityGroupName *string `type:"string" required:"true"`
 
 	// The AWS account number of the Amazon EC2 security group owner. Note that
 	// this is not the same thing as an AWS access key ID - you must provide a valid
 	// AWS account number for this parameter.
+	//
+	// EC2SecurityGroupOwnerId is a required field
 	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 }
 
@@ -6794,44 +6880,53 @@ func (s TagListMessage) GoString() string {
 }
 
 const (
-	// @enum AZMode
+	// AZModeSingleAz is a AZMode enum value
 	AZModeSingleAz = "single-az"
-	// @enum AZMode
+
+	// AZModeCrossAz is a AZMode enum value
 	AZModeCrossAz = "cross-az"
 )
 
 const (
-	// @enum AutomaticFailoverStatus
+	// AutomaticFailoverStatusEnabled is a AutomaticFailoverStatus enum value
 	AutomaticFailoverStatusEnabled = "enabled"
-	// @enum AutomaticFailoverStatus
+
+	// AutomaticFailoverStatusDisabled is a AutomaticFailoverStatus enum value
 	AutomaticFailoverStatusDisabled = "disabled"
-	// @enum AutomaticFailoverStatus
+
+	// AutomaticFailoverStatusEnabling is a AutomaticFailoverStatus enum value
 	AutomaticFailoverStatusEnabling = "enabling"
-	// @enum AutomaticFailoverStatus
+
+	// AutomaticFailoverStatusDisabling is a AutomaticFailoverStatus enum value
 	AutomaticFailoverStatusDisabling = "disabling"
 )
 
 const (
-	// @enum ChangeType
+	// ChangeTypeImmediate is a ChangeType enum value
 	ChangeTypeImmediate = "immediate"
-	// @enum ChangeType
+
+	// ChangeTypeRequiresReboot is a ChangeType enum value
 	ChangeTypeRequiresReboot = "requires-reboot"
 )
 
 const (
-	// @enum PendingAutomaticFailoverStatus
+	// PendingAutomaticFailoverStatusEnabled is a PendingAutomaticFailoverStatus enum value
 	PendingAutomaticFailoverStatusEnabled = "enabled"
-	// @enum PendingAutomaticFailoverStatus
+
+	// PendingAutomaticFailoverStatusDisabled is a PendingAutomaticFailoverStatus enum value
 	PendingAutomaticFailoverStatusDisabled = "disabled"
 )
 
 const (
-	// @enum SourceType
+	// SourceTypeCacheCluster is a SourceType enum value
 	SourceTypeCacheCluster = "cache-cluster"
-	// @enum SourceType
+
+	// SourceTypeCacheParameterGroup is a SourceType enum value
 	SourceTypeCacheParameterGroup = "cache-parameter-group"
-	// @enum SourceType
+
+	// SourceTypeCacheSecurityGroup is a SourceType enum value
 	SourceTypeCacheSecurityGroup = "cache-security-group"
-	// @enum SourceType
+
+	// SourceTypeCacheSubnetGroup is a SourceType enum value
 	SourceTypeCacheSubnetGroup = "cache-subnet-group"
 )

@@ -675,6 +675,8 @@ type DeleteRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule to be deleted.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -723,6 +725,8 @@ type DescribeRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule you want to describe details for.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -793,6 +797,8 @@ type DisableRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule you want to disable.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -841,6 +847,8 @@ type EnableRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule that you want to enable.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -897,6 +905,8 @@ type ListRuleNamesByTargetInput struct {
 
 	// The Amazon Resource Name (ARN) of the target resource that you want to list
 	// the rules for.
+	//
+	// TargetArn is a required field
 	TargetArn *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1030,6 +1040,8 @@ type ListTargetsByRuleInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The name of the rule whose targets you want to list.
+	//
+	// Rule is a required field
 	Rule *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1093,6 +1105,8 @@ type PutEventsInput struct {
 	// The entry that defines an event in your system. You can specify several parameters
 	// for the entry such as the source and type of the event, resources associated
 	// with the event, and so on.
+	//
+	// Entries is a required field
 	Entries []*PutEventsRequestEntry `min:"1" type:"list" required:"true"`
 }
 
@@ -1215,6 +1229,8 @@ type PutRuleInput struct {
 	EventPattern *string `type:"string"`
 
 	// The name of the rule that you are creating or updating.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role associated with the rule.
@@ -1279,9 +1295,13 @@ type PutTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule you want to add targets to.
+	//
+	// Rule is a required field
 	Rule *string `min:"1" type:"string" required:"true"`
 
 	// List of targets you want to update or add to the rule.
+	//
+	// Targets is a required field
 	Targets []*Target `type:"list" required:"true"`
 }
 
@@ -1374,9 +1394,13 @@ type RemoveTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of target IDs to remove from the rule.
+	//
+	// Ids is a required field
 	Ids []*string `min:"1" type:"list" required:"true"`
 
 	// The name of the rule you want to remove targets from.
+	//
+	// Rule is a required field
 	Rule *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1512,9 +1536,13 @@ type Target struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) associated of the target.
+	//
+	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
 	// The unique target assignment ID.
+	//
+	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
 	// Valid JSON text passed to the target. For more information about JSON text,
@@ -1564,9 +1592,13 @@ type TestEventPatternInput struct {
 	_ struct{} `type:"structure"`
 
 	// The event in the JSON format to test against the event pattern.
+	//
+	// Event is a required field
 	Event *string `type:"string" required:"true"`
 
 	// The event pattern you want to test.
+	//
+	// EventPattern is a required field
 	EventPattern *string `type:"string" required:"true"`
 }
 
@@ -1615,8 +1647,9 @@ func (s TestEventPatternOutput) GoString() string {
 }
 
 const (
-	// @enum RuleState
+	// RuleStateEnabled is a RuleState enum value
 	RuleStateEnabled = "ENABLED"
-	// @enum RuleState
+
+	// RuleStateDisabled is a RuleState enum value
 	RuleStateDisabled = "DISABLED"
 )

@@ -5003,21 +5003,29 @@ type CreateAuthorizerInput struct {
 	AuthorizerUri *string `locationName:"authorizerUri" type:"string"`
 
 	// [Required] The source of the identity in an incoming request.
+	//
+	// IdentitySource is a required field
 	IdentitySource *string `locationName:"identitySource" type:"string" required:"true"`
 
 	// A validation expression for the incoming identity.
 	IdentityValidationExpression *string `locationName:"identityValidationExpression" type:"string"`
 
 	// [Required] The name of the authorizer.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// A list of the Cognito Your User Pool authorizer's provider ARNs.
 	ProviderARNs []*string `locationName:"providerARNs" type:"list"`
 
 	// The RestApi identifier under which the Authorizer will be created.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// [Required] The type of the authorizer.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"AuthorizerType"`
 }
 
@@ -5064,9 +5072,13 @@ type CreateBasePathMappingInput struct {
 	BasePath *string `locationName:"basePath" type:"string"`
 
 	// The domain name of the BasePathMapping resource to create.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
 	// The name of the API that you want to apply this mapping to.
+	//
+	// RestApiId is a required field
 	RestApiId *string `locationName:"restApiId" type:"string" required:"true"`
 
 	// The name of the API's stage that you want to use for this mapping. Leave
@@ -5116,12 +5128,16 @@ type CreateDeploymentInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The RestApi resource identifier for the Deployment resource to create.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The description of the Stage resource for the Deployment resource to create.
 	StageDescription *string `locationName:"stageDescription" type:"string"`
 
 	// The name of the Stage resource for the Deployment resource to create.
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" type:"string" required:"true"`
 
 	// A map that defines the stage variables for the Stage resource that is associated
@@ -5161,6 +5177,8 @@ type CreateDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
 	// The body of the server certificate provided by your certificate authority.
+	//
+	// CertificateBody is a required field
 	CertificateBody *string `locationName:"certificateBody" type:"string" required:"true"`
 
 	// The intermediate certificates and optionally the root certificate, one after
@@ -5169,15 +5187,23 @@ type CreateDomainNameInput struct {
 	// the root certificate. Use the intermediate certificates that were provided
 	// by your certificate authority. Do not include any intermediaries that are
 	// not in the chain of trust path.
+	//
+	// CertificateChain is a required field
 	CertificateChain *string `locationName:"certificateChain" type:"string" required:"true"`
 
 	// The name of the certificate.
+	//
+	// CertificateName is a required field
 	CertificateName *string `locationName:"certificateName" type:"string" required:"true"`
 
 	// Your certificate's private key.
+	//
+	// CertificatePrivateKey is a required field
 	CertificatePrivateKey *string `locationName:"certificatePrivateKey" type:"string" required:"true"`
 
 	// The name of the DomainName resource.
+	//
+	// DomainName is a required field
 	DomainName *string `locationName:"domainName" type:"string" required:"true"`
 }
 
@@ -5221,15 +5247,21 @@ type CreateModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The content-type for the model.
+	//
+	// ContentType is a required field
 	ContentType *string `locationName:"contentType" type:"string" required:"true"`
 
 	// The description of the model.
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the model.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The RestApi identifier under which the Model will be created.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The schema for the model. For application/json models, this should be JSON-schema
@@ -5271,12 +5303,18 @@ type CreateResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The parent resource's identifier.
+	//
+	// ParentId is a required field
 	ParentId *string `location:"uri" locationName:"parent_id" type:"string" required:"true"`
 
 	// The last path segment for this resource.
+	//
+	// PathPart is a required field
 	PathPart *string `locationName:"pathPart" type:"string" required:"true"`
 
 	// The identifier of the RestApi for the resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -5320,6 +5358,8 @@ type CreateRestApiInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the RestApi.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 }
 
@@ -5357,15 +5397,21 @@ type CreateStageInput struct {
 	CacheClusterSize *string `locationName:"cacheClusterSize" type:"string" enum:"CacheClusterSize"`
 
 	// The identifier of the Deployment resource for the Stage resource.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The description of the Stage resource.
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the RestApi resource for the Stage resource to create.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name for the Stage resource.
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" type:"string" required:"true"`
 
 	// A map that defines the stage variables for the new Stage resource. Variable
@@ -5416,6 +5462,8 @@ type CreateUsagePlanInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the usage plan.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The quota of the usage plan.
@@ -5454,13 +5502,19 @@ type CreateUsagePlanKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of a UsagePlanKey resource for a plan customer.
+	//
+	// KeyId is a required field
 	KeyId *string `locationName:"keyId" type:"string" required:"true"`
 
 	// The type of a UsagePlanKey resource for a plan customer.
+	//
+	// KeyType is a required field
 	KeyType *string `locationName:"keyType" type:"string" required:"true"`
 
 	// The Id of the UsagePlan resource representing the usage plan containing the
 	// to-be-created UsagePlanKey resource representing a plan customer.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -5498,6 +5552,8 @@ type DeleteApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the ApiKey resource to be deleted.
+	//
+	// ApiKey is a required field
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 }
 
@@ -5543,9 +5599,13 @@ type DeleteAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Authorizer resource.
+	//
+	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Authorizer resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -5594,9 +5654,13 @@ type DeleteBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The base path name of the BasePathMapping resource to delete.
+	//
+	// BasePath is a required field
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
 	// The domain name of the BasePathMapping resource to delete.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 }
 
@@ -5645,6 +5709,8 @@ type DeleteClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the ClientCertificate resource to be deleted.
+	//
+	// ClientCertificateId is a required field
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 }
 
@@ -5690,9 +5756,13 @@ type DeleteDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Deployment resource to delete.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
 	// The identifier of the RestApi resource for the Deployment resource to delete.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -5741,6 +5811,8 @@ type DeleteDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the DomainName resource to be deleted.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 }
 
@@ -5786,12 +5858,18 @@ type DeleteIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a delete integration request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies a delete integration request's resource identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies a delete integration request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -5843,15 +5921,23 @@ type DeleteIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a delete integration response request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies a delete integration response request's resource identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies a delete integration response request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// Specifies a delete integration response request's status code.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -5906,12 +5992,18 @@ type DeleteMethodInput struct {
 	_ struct{} `type:"structure"`
 
 	// The HTTP verb of the Method resource.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// The Resource identifier for the Method resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Method resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -5963,15 +6055,23 @@ type DeleteMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The HTTP verb of the Method resource.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// The Resource identifier for the MethodResponse resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the MethodResponse resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The status code identifier for the MethodResponse resource.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -6026,9 +6126,13 @@ type DeleteModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the model to delete.
+	//
+	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
 	// The RestApi under which the model will be deleted.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -6077,9 +6181,13 @@ type DeleteResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Resource resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Resource resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -6128,6 +6236,8 @@ type DeleteRestApiInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the RestApi you want to delete.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -6173,9 +6283,13 @@ type DeleteStageInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the RestApi resource for the Stage resource to delete.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the Stage resource to delete.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -6224,6 +6338,8 @@ type DeleteUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Id of the to-be-deleted usage plan.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -6256,10 +6372,14 @@ type DeleteUsagePlanKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Id of the UsagePlanKey resource to be deleted.
+	//
+	// KeyId is a required field
 	KeyId *string `location:"uri" locationName:"keyId" type:"string" required:"true"`
 
 	// The Id of the UsagePlan resource representing the usage plan containing the
 	// to-be-deleted UsagePlanKey resource representing a plan customer.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -6391,9 +6511,13 @@ type FlushStageAuthorizersCacheInput struct {
 	_ struct{} `type:"structure"`
 
 	// The API identifier of the stage to flush.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the stage to flush.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -6442,9 +6566,13 @@ type FlushStageCacheInput struct {
 	_ struct{} `type:"structure"`
 
 	// The API identifier of the stage to flush its cache.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the stage to flush its cache.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -6527,6 +6655,8 @@ type GetApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the ApiKey resource.
+	//
+	// ApiKey is a required field
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 
 	// A boolean flag to specify whether (true) or not (false) the result contains
@@ -6616,9 +6746,13 @@ type GetAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Authorizer resource.
+	//
+	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Authorizer resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -6660,6 +6794,8 @@ type GetAuthorizersInput struct {
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
 	// The RestApi identifier for the Authorizers resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -6716,9 +6852,13 @@ type GetBasePathMappingInput struct {
 	// after the domain name. This value must be unique for all of the mappings
 	// across a single API. Leave this blank if you do not want callers to specify
 	// any base path name after the domain name.
+	//
+	// BasePath is a required field
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
 	// The domain name of the BasePathMapping resource to be described.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 }
 
@@ -6753,6 +6893,8 @@ type GetBasePathMappingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The domain name of a BasePathMapping resource.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
 	// The maximum number of BasePathMapping resources in the collection to get
@@ -6816,6 +6958,8 @@ type GetClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the ClientCertificate resource to be described.
+	//
+	// ClientCertificateId is a required field
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 }
 
@@ -6894,10 +7038,14 @@ type GetDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Deployment resource to get information about.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
 	// The identifier of the RestApi resource for the Deployment resource to get
 	// information about.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -6941,6 +7089,8 @@ type GetDeploymentsInput struct {
 
 	// The identifier of the RestApi resource for the collection of Deployment resources
 	// to get information about.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7003,6 +7153,8 @@ type GetDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the DomainName resource.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 }
 
@@ -7084,6 +7236,8 @@ type GetExportInput struct {
 	Accepts *string `location:"header" locationName:"Accept" type:"string"`
 
 	// The type of export. Currently only 'swagger' is supported.
+	//
+	// ExportType is a required field
 	ExportType *string `location:"uri" locationName:"export_type" type:"string" required:"true"`
 
 	// A key-value map of query string parameters that specify properties of the
@@ -7096,9 +7250,13 @@ type GetExportInput struct {
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
 	// The identifier of the RestApi to be exported.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the Stage that will be exported.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -7161,12 +7319,18 @@ type GetIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a get integration request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies a get integration request's resource identifier
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies a get integration request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7204,15 +7368,23 @@ type GetIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a get integration response request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies a get integration response request's resource identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies a get integration response request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// Specifies a get integration response request's status code.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -7253,12 +7425,18 @@ type GetMethodInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the method request's HTTP method type.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// The Resource identifier for the Method resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Method resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7296,15 +7474,23 @@ type GetMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The HTTP verb of the Method resource.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// The Resource identifier for the MethodResponse resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the MethodResponse resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The status code for the MethodResponse resource.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -7350,9 +7536,13 @@ type GetModelInput struct {
 	Flatten *bool `location:"querystring" locationName:"flatten" type:"boolean"`
 
 	// The name of the model as an identifier.
+	//
+	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
 	// The RestApi identifier under which the Model exists.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7387,9 +7577,13 @@ type GetModelTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the model for which to generate a template.
+	//
+	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
 	// The ID of the RestApi under which the model exists.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7453,6 +7647,8 @@ type GetModelsInput struct {
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
 	// The RestApi identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7506,9 +7702,13 @@ type GetResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Resource resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7551,6 +7751,8 @@ type GetResourcesInput struct {
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
 	// The RestApi identifier for the Resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7604,6 +7806,8 @@ type GetRestApiInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the RestApi resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7687,13 +7891,19 @@ type GetSdkInput struct {
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
 	// The identifier of the RestApi that the SDK will use.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The language for the generated SDK. Currently javascript, android, and objectivec
 	// (for iOS) are supported.
+	//
+	// SdkType is a required field
 	SdkType *string `location:"uri" locationName:"sdk_type" type:"string" required:"true"`
 
 	// The name of the Stage that the SDK will use.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -7756,9 +7966,13 @@ type GetStageInput struct {
 
 	// The identifier of the RestApi resource for the Stage resource to get information
 	// about.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the Stage resource to get information about.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -7796,6 +8010,8 @@ type GetStagesInput struct {
 	DeploymentId *string `location:"querystring" locationName:"deploymentId" type:"string"`
 
 	// The stages' API identifiers.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -7848,6 +8064,8 @@ type GetUsageInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ending date (e.g., 2016-12-31) of the usage data.
+	//
+	// EndDate is a required field
 	EndDate *string `location:"querystring" locationName:"endDate" type:"string" required:"true"`
 
 	// The Id of the API key associated with the resultant usage data.
@@ -7860,9 +8078,13 @@ type GetUsageInput struct {
 	Position *string `location:"querystring" locationName:"position" type:"string"`
 
 	// The starting date (e.g., 2016-01-01) of the usage data.
+	//
+	// StartDate is a required field
 	StartDate *string `location:"querystring" locationName:"startDate" type:"string" required:"true"`
 
 	// The Id of the usage plan associated with the usage data.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -7900,6 +8122,8 @@ type GetUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the UsagePlan resource to be retrieved.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -7932,10 +8156,14 @@ type GetUsagePlanKeyInput struct {
 
 	// The key Id of the to-be-retrieved UsagePlanKey resource representing a plan
 	// customer.
+	//
+	// KeyId is a required field
 	KeyId *string `location:"uri" locationName:"keyId" type:"string" required:"true"`
 
 	// The Id of the UsagePlan resource representing the usage plan containing the
 	// to-be-retrieved UsagePlanKey resource representing a plan customer.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -7983,6 +8211,8 @@ type GetUsagePlanKeysInput struct {
 
 	// The Id of the UsagePlan resource representing the usage plan containing the
 	// to-be-retrieved UsagePlanKey resource representing a plan customer.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -8086,6 +8316,8 @@ type ImportApiKeysInput struct {
 
 	// The payload of the POST request to import API keys. For the payload format,
 	// see API Key File Format (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-key-file-format.html).
+	//
+	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
 
 	// A query parameter to indicate whether to rollback ApiKey importation (true)
@@ -8094,6 +8326,8 @@ type ImportApiKeysInput struct {
 
 	// A query parameter to specify the input format to imported API keys. Currently,
 	// only the csv format is supported.
+	//
+	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"ApiKeysFormat"`
 }
 
@@ -8151,6 +8385,8 @@ type ImportRestApiInput struct {
 
 	// The POST request body containing external API definitions. Currently, only
 	// Swagger definition JSON files are supported.
+	//
+	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
 
 	// A query parameter to indicate whether to rollback the API creation (true)
@@ -8774,6 +9010,8 @@ type PutIntegrationInput struct {
 	Credentials *string `locationName:"credentials" type:"string"`
 
 	// Specifies a put integration request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies a put integration HTTP method. When the integration type is HTTP
@@ -8812,12 +9050,18 @@ type PutIntegrationInput struct {
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
 
 	// Specifies a put integration request's resource ID.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies a put integration request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// Specifies a put integration input's type.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"IntegrationType"`
 
 	// Specifies a put integration input's Uniform Resource Identifier (URI). When
@@ -8864,9 +9108,13 @@ type PutIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a put integration response request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies a put integration response request's resource identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// A key-value map specifying response parameters that are passed to the method
@@ -8885,6 +9133,8 @@ type PutIntegrationResponseInput struct {
 	ResponseTemplates map[string]*string `locationName:"responseTemplates" type:"map"`
 
 	// Specifies a put integration response request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// Specifies the selection pattern of a put integration response.
@@ -8892,6 +9142,8 @@ type PutIntegrationResponseInput struct {
 
 	// Specifies the status code that is used to map the integration response to
 	// an existing MethodResponse.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -8935,6 +9187,8 @@ type PutMethodInput struct {
 	ApiKeyRequired *bool `locationName:"apiKeyRequired" type:"boolean"`
 
 	// Specifies the type of authorization used for the method.
+	//
+	// AuthorizationType is a required field
 	AuthorizationType *string `locationName:"authorizationType" type:"string" required:"true"`
 
 	// Specifies the identifier of an Authorizer to use on this Method, if the type
@@ -8942,6 +9196,8 @@ type PutMethodInput struct {
 	AuthorizerId *string `locationName:"authorizerId" type:"string"`
 
 	// Specifies the method request's HTTP method type.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// Specifies the Model resources used for the request's content type. Request
@@ -8960,9 +9216,13 @@ type PutMethodInput struct {
 	RequestParameters map[string]*bool `locationName:"requestParameters" type:"map"`
 
 	// The Resource identifier for the new Method resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the new Method resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -9003,9 +9263,13 @@ type PutMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The HTTP verb of the Method resource.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// The Resource identifier for the Method resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies the Model resources used for the response's content type. Response
@@ -9027,9 +9291,13 @@ type PutMethodResponseInput struct {
 	ResponseParameters map[string]*bool `locationName:"responseParameters" type:"map"`
 
 	// The RestApi identifier for the Method resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The method response's status code.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -9072,6 +9340,8 @@ type PutRestApiInput struct {
 
 	// The PUT request body containing external API definitions. Currently, only
 	// Swagger definition JSON files are supported.
+	//
+	// Body is a required field
 	Body []byte `locationName:"body" type:"blob" required:"true"`
 
 	// A query parameter to indicate whether to rollback the API update (true) or
@@ -9086,6 +9356,8 @@ type PutRestApiInput struct {
 	Parameters map[string]*string `location:"querystring" locationName:"parameters" type:"map"`
 
 	// The identifier of the RestApi to be updated.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -9350,6 +9622,8 @@ type TestInvokeAuthorizerInput struct {
 	AdditionalContext map[string]*string `locationName:"additionalContext" type:"map"`
 
 	// Specifies a test invoke authorizer request's Authorizer ID.
+	//
+	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
 	// [Optional] The simulated request body of an incoming invocation request.
@@ -9365,6 +9639,8 @@ type TestInvokeAuthorizerInput struct {
 	PathWithQueryString *string `locationName:"pathWithQueryString" type:"string"`
 
 	// Specifies a test invoke authorizer request's RestApi identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// A key-value map of stage variables to simulate an invocation on a deployed
@@ -9452,6 +9728,8 @@ type TestInvokeMethodInput struct {
 	Headers map[string]*string `locationName:"headers" type:"map"`
 
 	// Specifies a test invoke method request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// The URI path, including query string, of the simulated invocation request.
@@ -9459,9 +9737,13 @@ type TestInvokeMethodInput struct {
 	PathWithQueryString *string `locationName:"pathWithQueryString" type:"string"`
 
 	// Specifies a test invoke method request's resource ID.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies a test invoke method request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// A key-value map of stage variables to simulate an invocation on a deployed
@@ -9578,6 +9860,8 @@ type UpdateApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the ApiKey resource to be updated.
+	//
+	// ApiKey is a required field
 	ApiKey *string `location:"uri" locationName:"api_Key" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9613,6 +9897,8 @@ type UpdateAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Authorizer resource.
+	//
+	// AuthorizerId is a required field
 	AuthorizerId *string `location:"uri" locationName:"authorizer_id" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9620,6 +9906,8 @@ type UpdateAuthorizerInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The RestApi identifier for the Authorizer resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -9654,9 +9942,13 @@ type UpdateBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The base path of the BasePathMapping resource to change.
+	//
+	// BasePath is a required field
 	BasePath *string `location:"uri" locationName:"base_path" type:"string" required:"true"`
 
 	// The domain name of the BasePathMapping resource to change.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9695,6 +9987,8 @@ type UpdateClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the ClientCertificate resource to be updated.
+	//
+	// ClientCertificateId is a required field
 	ClientCertificateId *string `location:"uri" locationName:"clientcertificate_id" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9731,6 +10025,8 @@ type UpdateDeploymentInput struct {
 
 	// The replacement identifier for the Deployment resource to change information
 	// about.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"deployment_id" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9739,6 +10035,8 @@ type UpdateDeploymentInput struct {
 
 	// The replacement identifier of the RestApi resource for the Deployment resource
 	// to change information about.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -9773,6 +10071,8 @@ type UpdateDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the DomainName resource to be changed.
+	//
+	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domain_name" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9808,6 +10108,8 @@ type UpdateIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Represents an update integration request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9815,9 +10117,13 @@ type UpdateIntegrationInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// Represents an update integration request's resource identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Represents an update integration request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -9855,6 +10161,8 @@ type UpdateIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies an update integration response request's HTTP method.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9862,12 +10170,18 @@ type UpdateIntegrationResponseInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// Specifies an update integration response request's resource identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// Specifies an update integration response request's API identifier.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// Specifies an update integration response request's status code.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -9908,6 +10222,8 @@ type UpdateMethodInput struct {
 	_ struct{} `type:"structure"`
 
 	// The HTTP verb of the Method resource.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9915,9 +10231,13 @@ type UpdateMethodInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The Resource identifier for the Method resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Method resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -9955,6 +10275,8 @@ type UpdateMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// The HTTP verb of the Method resource.
+	//
+	// HttpMethod is a required field
 	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -9962,12 +10284,18 @@ type UpdateMethodResponseInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The Resource identifier for the MethodResponse resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the MethodResponse resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The status code for the MethodResponse resource.
+	//
+	// StatusCode is a required field
 	StatusCode *string `location:"uri" locationName:"status_code" type:"string" required:"true"`
 }
 
@@ -10008,6 +10336,8 @@ type UpdateModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the model to update.
+	//
+	// ModelName is a required field
 	ModelName *string `location:"uri" locationName:"model_name" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -10015,6 +10345,8 @@ type UpdateModelInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The RestApi identifier under which the model exists.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -10053,9 +10385,13 @@ type UpdateResourceInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The identifier of the Resource resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	// The RestApi identifier for the Resource resource.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -10094,6 +10430,8 @@ type UpdateRestApiInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The ID of the RestApi you want to update.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 }
 
@@ -10130,9 +10468,13 @@ type UpdateStageInput struct {
 
 	// The identifier of the RestApi resource for the Stage resource to change information
 	// about.
+	//
+	// RestApiId is a required field
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The name of the Stage resource to change information about.
+	//
+	// StageName is a required field
 	StageName *string `location:"uri" locationName:"stage_name" type:"string" required:"true"`
 }
 
@@ -10169,6 +10511,8 @@ type UpdateUsageInput struct {
 
 	// The identifier of the API key associated with the usage plan in which a temporary
 	// extension is granted to the remaining quota.
+	//
+	// KeyId is a required field
 	KeyId *string `location:"uri" locationName:"keyId" type:"string" required:"true"`
 
 	// A list of update operations to be applied to the specified resource and in
@@ -10176,6 +10520,8 @@ type UpdateUsageInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The Id of the usage plan associated with the usage data.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -10214,6 +10560,8 @@ type UpdateUsagePlanInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// The Id of the to-be-updated usage plan.
+	//
+	// UsagePlanId is a required field
 	UsagePlanId *string `location:"uri" locationName:"usageplanId" type:"string" required:"true"`
 }
 
@@ -10349,49 +10697,61 @@ func (s UsagePlanKey) GoString() string {
 }
 
 const (
-	// @enum ApiKeysFormat
+	// ApiKeysFormatCsv is a ApiKeysFormat enum value
 	ApiKeysFormatCsv = "csv"
 )
 
 // The authorizer type. the only current value is TOKEN.
 const (
-	// @enum AuthorizerType
+	// AuthorizerTypeToken is a AuthorizerType enum value
 	AuthorizerTypeToken = "TOKEN"
-	// @enum AuthorizerType
+
+	// AuthorizerTypeCognitoUserPools is a AuthorizerType enum value
 	AuthorizerTypeCognitoUserPools = "COGNITO_USER_POOLS"
 )
 
 // Returns the size of the CacheCluster.
 const (
-	// @enum CacheClusterSize
+	// CacheClusterSize05 is a CacheClusterSize enum value
 	CacheClusterSize05 = "0.5"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize16 is a CacheClusterSize enum value
 	CacheClusterSize16 = "1.6"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize61 is a CacheClusterSize enum value
 	CacheClusterSize61 = "6.1"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize135 is a CacheClusterSize enum value
 	CacheClusterSize135 = "13.5"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize284 is a CacheClusterSize enum value
 	CacheClusterSize284 = "28.4"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize582 is a CacheClusterSize enum value
 	CacheClusterSize582 = "58.2"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize118 is a CacheClusterSize enum value
 	CacheClusterSize118 = "118"
-	// @enum CacheClusterSize
+
+	// CacheClusterSize237 is a CacheClusterSize enum value
 	CacheClusterSize237 = "237"
 )
 
 // Returns the status of the CacheCluster.
 const (
-	// @enum CacheClusterStatus
+	// CacheClusterStatusCreateInProgress is a CacheClusterStatus enum value
 	CacheClusterStatusCreateInProgress = "CREATE_IN_PROGRESS"
-	// @enum CacheClusterStatus
+
+	// CacheClusterStatusAvailable is a CacheClusterStatus enum value
 	CacheClusterStatusAvailable = "AVAILABLE"
-	// @enum CacheClusterStatus
+
+	// CacheClusterStatusDeleteInProgress is a CacheClusterStatus enum value
 	CacheClusterStatusDeleteInProgress = "DELETE_IN_PROGRESS"
-	// @enum CacheClusterStatus
+
+	// CacheClusterStatusNotAvailable is a CacheClusterStatus enum value
 	CacheClusterStatusNotAvailable = "NOT_AVAILABLE"
-	// @enum CacheClusterStatus
+
+	// CacheClusterStatusFlushInProgress is a CacheClusterStatus enum value
 	CacheClusterStatusFlushInProgress = "FLUSH_IN_PROGRESS"
 )
 
@@ -10400,54 +10760,68 @@ const (
 // invoking the back end, HTTP_PROXY for integrating with the HTTP proxy integration,
 // or AWS_PROXY for integrating with the Lambda proxy integration type.
 const (
-	// @enum IntegrationType
+	// IntegrationTypeHttp is a IntegrationType enum value
 	IntegrationTypeHttp = "HTTP"
-	// @enum IntegrationType
+
+	// IntegrationTypeAws is a IntegrationType enum value
 	IntegrationTypeAws = "AWS"
-	// @enum IntegrationType
+
+	// IntegrationTypeMock is a IntegrationType enum value
 	IntegrationTypeMock = "MOCK"
-	// @enum IntegrationType
+
+	// IntegrationTypeHttpProxy is a IntegrationType enum value
 	IntegrationTypeHttpProxy = "HTTP_PROXY"
-	// @enum IntegrationType
+
+	// IntegrationTypeAwsProxy is a IntegrationType enum value
 	IntegrationTypeAwsProxy = "AWS_PROXY"
 )
 
 const (
-	// @enum Op
+	// OpAdd is a Op enum value
 	OpAdd = "add"
-	// @enum Op
+
+	// OpRemove is a Op enum value
 	OpRemove = "remove"
-	// @enum Op
+
+	// OpReplace is a Op enum value
 	OpReplace = "replace"
-	// @enum Op
+
+	// OpMove is a Op enum value
 	OpMove = "move"
-	// @enum Op
+
+	// OpCopy is a Op enum value
 	OpCopy = "copy"
-	// @enum Op
+
+	// OpTest is a Op enum value
 	OpTest = "test"
 )
 
 const (
-	// @enum PutMode
+	// PutModeMerge is a PutMode enum value
 	PutModeMerge = "merge"
-	// @enum PutMode
+
+	// PutModeOverwrite is a PutMode enum value
 	PutModeOverwrite = "overwrite"
 )
 
 const (
-	// @enum QuotaPeriodType
+	// QuotaPeriodTypeDay is a QuotaPeriodType enum value
 	QuotaPeriodTypeDay = "DAY"
-	// @enum QuotaPeriodType
+
+	// QuotaPeriodTypeWeek is a QuotaPeriodType enum value
 	QuotaPeriodTypeWeek = "WEEK"
-	// @enum QuotaPeriodType
+
+	// QuotaPeriodTypeMonth is a QuotaPeriodType enum value
 	QuotaPeriodTypeMonth = "MONTH"
 )
 
 const (
-	// @enum UnauthorizedCacheControlHeaderStrategy
+	// UnauthorizedCacheControlHeaderStrategyFailWith403 is a UnauthorizedCacheControlHeaderStrategy enum value
 	UnauthorizedCacheControlHeaderStrategyFailWith403 = "FAIL_WITH_403"
-	// @enum UnauthorizedCacheControlHeaderStrategy
+
+	// UnauthorizedCacheControlHeaderStrategySucceedWithResponseHeader is a UnauthorizedCacheControlHeaderStrategy enum value
 	UnauthorizedCacheControlHeaderStrategySucceedWithResponseHeader = "SUCCEED_WITH_RESPONSE_HEADER"
-	// @enum UnauthorizedCacheControlHeaderStrategy
+
+	// UnauthorizedCacheControlHeaderStrategySucceedWithoutResponseHeader is a UnauthorizedCacheControlHeaderStrategy enum value
 	UnauthorizedCacheControlHeaderStrategySucceedWithoutResponseHeader = "SUCCEED_WITHOUT_RESPONSE_HEADER"
 )

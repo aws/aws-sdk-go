@@ -1653,13 +1653,19 @@ type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the ML object to tag. For example, exampleModelId.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The type of the ML object to tag.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"TaggableResourceType"`
 
 	// The key-value pairs to use to create tags. If you specify a key without specifying
 	// a value, Amazon ML creates a tag with the specified key and a value of null.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -1813,9 +1819,13 @@ type CreateBatchPredictionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the DataSource that points to the group of observations to predict.
+	//
+	// BatchPredictionDataSourceId is a required field
 	BatchPredictionDataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied ID that uniquely identifies the BatchPrediction.
+	//
+	// BatchPredictionId is a required field
 	BatchPredictionId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the BatchPrediction. BatchPredictionName
@@ -1823,6 +1833,8 @@ type CreateBatchPredictionInput struct {
 	BatchPredictionName *string `type:"string"`
 
 	// The ID of the MLModel that will generate predictions for the group of observations.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
 	// The location of an Amazon Simple Storage Service (Amazon S3) bucket or directory
@@ -1832,6 +1844,8 @@ type CreateBatchPredictionInput struct {
 	// Amazon ML needs permissions to store and retrieve the logs on your behalf.
 	// For information about how to set permissions, see the Amazon Machine Learning
 	// Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+	//
+	// OutputUri is a required field
 	OutputUri *string `type:"string" required:"true"`
 }
 
@@ -1911,6 +1925,8 @@ type CreateDataSourceFromRDSInput struct {
 
 	// A user-supplied ID that uniquely identifies the DataSource. Typically, an
 	// Amazon Resource Number (ARN) becomes the ID for a DataSource.
+	//
+	// DataSourceId is a required field
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the DataSource.
@@ -1956,11 +1972,15 @@ type CreateDataSourceFromRDSInput struct {
 	// requirements for the Datasource.
 	//
 	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//
+	// RDSData is a required field
 	RDSData *RDSDataSpec `type:"structure" required:"true"`
 
 	// The role that Amazon ML assumes on behalf of the user to create and activate
 	// a data pipeline in the user's account and copy data using the SelectSqlQuery
 	// query from Amazon RDS to Amazon S3.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2041,6 +2061,8 @@ type CreateDataSourceFromRedshiftInput struct {
 	ComputeStatistics *bool `type:"boolean"`
 
 	// A user-supplied ID that uniquely identifies the DataSource.
+	//
+	// DataSourceId is a required field
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the DataSource.
@@ -2070,6 +2092,8 @@ type CreateDataSourceFromRedshiftInput struct {
 	// requirements for the DataSource.
 	//
 	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//
+	// DataSpec is a required field
 	DataSpec *RedshiftDataSpec `type:"structure" required:"true"`
 
 	// A fully specified role Amazon Resource Name (ARN). Amazon ML assumes the
@@ -2080,6 +2104,8 @@ type CreateDataSourceFromRedshiftInput struct {
 	//
 	// An Amazon S3 bucket policy to grant Amazon ML read/write permissions on
 	// the S3StagingLocation
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2157,6 +2183,8 @@ type CreateDataSourceFromS3Input struct {
 	ComputeStatistics *bool `type:"boolean"`
 
 	// A user-supplied identifier that uniquely identifies the DataSource.
+	//
+	// DataSourceId is a required field
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the DataSource.
@@ -2175,6 +2203,8 @@ type CreateDataSourceFromS3Input struct {
 	// requirements for the Datasource.
 	//
 	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//
+	// DataSpec is a required field
 	DataSpec *S3DataSpec `type:"structure" required:"true"`
 }
 
@@ -2240,9 +2270,13 @@ type CreateEvaluationInput struct {
 
 	// The ID of the DataSource for the evaluation. The schema of the DataSource
 	// must match the schema used to create the MLModel.
+	//
+	// EvaluationDataSourceId is a required field
 	EvaluationDataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied ID that uniquely identifies the Evaluation.
+	//
+	// EvaluationId is a required field
 	EvaluationId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the Evaluation.
@@ -2252,6 +2286,8 @@ type CreateEvaluationInput struct {
 	//
 	// The schema used in creating the MLModel must match the schema of the DataSource
 	// used in the Evaluation.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2320,6 +2356,8 @@ type CreateMLModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// A user-supplied ID that uniquely identifies the MLModel.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the MLModel.
@@ -2332,6 +2370,8 @@ type CreateMLModelInput struct {
 	// Choose BINARY if the MLModel result has two possible values. Choose MULTICLASS
 	// if the MLModel result has a limited number of values.    For more information,
 	// see the Amazon Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+	//
+	// MLModelType is a required field
 	MLModelType *string `type:"string" required:"true" enum:"MLModelType"`
 
 	// A list of the training parameters in the MLModel. The list is implemented
@@ -2384,6 +2424,8 @@ type CreateMLModelInput struct {
 	RecipeUri *string `type:"string"`
 
 	// The DataSource that points to the training data.
+	//
+	// TrainingDataSourceId is a required field
 	TrainingDataSourceId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2449,6 +2491,8 @@ type CreateRealtimeEndpointInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the MLModel during creation.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2597,6 +2641,8 @@ type DeleteBatchPredictionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A user-supplied ID that uniquely identifies the BatchPrediction.
+	//
+	// BatchPredictionId is a required field
 	BatchPredictionId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2652,6 +2698,8 @@ type DeleteDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// A user-supplied ID that uniquely identifies the DataSource.
+	//
+	// DataSourceId is a required field
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2704,6 +2752,8 @@ type DeleteEvaluationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A user-supplied ID that uniquely identifies the Evaluation to delete.
+	//
+	// EvaluationId is a required field
 	EvaluationId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2760,6 +2810,8 @@ type DeleteMLModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// A user-supplied ID that uniquely identifies the MLModel.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2815,6 +2867,8 @@ type DeleteRealtimeEndpointInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the MLModel during creation.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2872,12 +2926,18 @@ type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the tagged ML object. For example, exampleModelId.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The type of the tagged ML object.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"TaggableResourceType"`
 
 	// One or more tags to delete.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -3394,9 +3454,13 @@ type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the ML object. For example, exampleModelId.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The type of the ML object.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"TaggableResourceType"`
 }
 
@@ -3544,6 +3608,8 @@ type GetBatchPredictionInput struct {
 	_ struct{} `type:"structure"`
 
 	// An ID assigned to the BatchPrediction at creation.
+	//
+	// BatchPredictionId is a required field
 	BatchPredictionId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3667,6 +3733,8 @@ type GetDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the DataSource at creation.
+	//
+	// DataSourceId is a required field
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the GetDataSource operation should return DataSourceSchema.
@@ -3808,6 +3876,8 @@ type GetEvaluationInput struct {
 
 	// The ID of the Evaluation to retrieve. The evaluation of each MLModel is recorded
 	// and cataloged. The ID provides the means to access the information.
+	//
+	// EvaluationId is a required field
 	EvaluationId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3933,6 +4003,8 @@ type GetMLModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the MLModel at creation.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the GetMLModel operation should return Recipe.
@@ -4282,11 +4354,16 @@ type PredictInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier of the MLModel.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
+	// PredictEndpoint is a required field
 	PredictEndpoint *string `type:"string" required:"true"`
 
 	// A map of variable name-value pairs that represent an observation.
+	//
+	// Record is a required field
 	Record map[string]*string `type:"map" required:"true"`
 }
 
@@ -4510,39 +4587,55 @@ type RDSDataSpec struct {
 
 	// The AWS Identity and Access Management (IAM) credentials that are used connect
 	// to the Amazon RDS database.
+	//
+	// DatabaseCredentials is a required field
 	DatabaseCredentials *RDSDatabaseCredentials `type:"structure" required:"true"`
 
 	// Describes the DatabaseName and InstanceIdentifier of an Amazon RDS database.
+	//
+	// DatabaseInformation is a required field
 	DatabaseInformation *RDSDatabase `type:"structure" required:"true"`
 
 	// The role (DataPipelineDefaultResourceRole) assumed by an Amazon Elastic Compute
 	// Cloud (Amazon EC2) instance to carry out the copy operation from Amazon RDS
 	// to an Amazon S3 task. For more information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	// for data pipelines.
+	//
+	// ResourceRole is a required field
 	ResourceRole *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon S3 location for staging Amazon RDS data. The data retrieved from
 	// Amazon RDS using SelectSqlQuery is stored in this location.
+	//
+	// S3StagingLocation is a required field
 	S3StagingLocation *string `type:"string" required:"true"`
 
 	// The security group IDs to be used to access a VPC-based RDS DB instance.
 	// Ensure that there are appropriate ingress rules set up to allow access to
 	// the RDS DB instance. This attribute is used by Data Pipeline to carry out
 	// the copy operation from Amazon RDS to an Amazon S3 task.
+	//
+	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `type:"list" required:"true"`
 
 	// The query that is used to retrieve the observation data for the DataSource.
+	//
+	// SelectSqlQuery is a required field
 	SelectSqlQuery *string `min:"1" type:"string" required:"true"`
 
 	// The role (DataPipelineDefaultRole) assumed by AWS Data Pipeline service to
 	// monitor the progress of the copy task from Amazon RDS to Amazon S3. For more
 	// information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	// for data pipelines.
+	//
+	// ServiceRole is a required field
 	ServiceRole *string `min:"1" type:"string" required:"true"`
 
 	// The subnet ID to be used to access a VPC-based RDS DB instance. This attribute
 	// is used by Data Pipeline to carry out the copy task from Amazon RDS to Amazon
 	// S3.
+	//
+	// SubnetId is a required field
 	SubnetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4617,9 +4710,13 @@ type RDSDatabase struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a database hosted on an RDS DB instance.
+	//
+	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
 	// The ID of an RDS DB instance.
+	//
+	// InstanceIdentifier is a required field
 	InstanceIdentifier *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4662,11 +4759,15 @@ type RDSDatabaseCredentials struct {
 	// The password to be used by Amazon ML to connect to a database on an RDS DB
 	// instance. The password should have sufficient permissions to execute the
 	// RDSSelectQuery query.
+	//
+	// Password is a required field
 	Password *string `min:"8" type:"string" required:"true"`
 
 	// The username to be used by Amazon ML to connect to database on an Amazon
 	// RDS instance. The username should have sufficient permissions to execute
 	// an RDSSelectSqlQuery query.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4907,17 +5008,25 @@ type RedshiftDataSpec struct {
 
 	// Describes AWS Identity and Access Management (IAM) credentials that are used
 	// connect to the Amazon Redshift database.
+	//
+	// DatabaseCredentials is a required field
 	DatabaseCredentials *RedshiftDatabaseCredentials `type:"structure" required:"true"`
 
 	// Describes the DatabaseName and ClusterIdentifier for an Amazon Redshift DataSource.
+	//
+	// DatabaseInformation is a required field
 	DatabaseInformation *RedshiftDatabase `type:"structure" required:"true"`
 
 	// Describes an Amazon S3 location to store the result set of the SelectSqlQuery
 	// query.
+	//
+	// S3StagingLocation is a required field
 	S3StagingLocation *string `type:"string" required:"true"`
 
 	// Describes the SQL Query to execute on an Amazon Redshift database for an
 	// Amazon Redshift DataSource.
+	//
+	// SelectSqlQuery is a required field
 	SelectSqlQuery *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4972,9 +5081,13 @@ type RedshiftDatabase struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of an Amazon Redshift cluster.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `min:"1" type:"string" required:"true"`
 
 	// The name of a database hosted on an Amazon Redshift cluster.
+	//
+	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5019,12 +5132,16 @@ type RedshiftDatabaseCredentials struct {
 	// Redshift cluster. The password should have sufficient permissions to execute
 	// a RedshiftSelectSqlQuery query. The password should be valid for an Amazon
 	// Redshift USER (http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
+	//
+	// Password is a required field
 	Password *string `min:"8" type:"string" required:"true"`
 
 	// A username to be used by Amazon Machine Learning (Amazon ML)to connect to
 	// a database on an Amazon Redshift cluster. The username should have sufficient
 	// permissions to execute the RedshiftSelectSqlQuery query. The username should
 	// be valid for an Amazon Redshift USER (http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5096,6 +5213,8 @@ type S3DataSpec struct {
 	// The location of the data file(s) used by a DataSource. The URI specifies
 	// a data file or an Amazon Simple Storage Service (Amazon S3) directory or
 	// bucket containing data files.
+	//
+	// DataLocationS3 is a required field
 	DataLocationS3 *string `type:"string" required:"true"`
 
 	// A JSON string that represents the splitting and rearrangement processing
@@ -5280,9 +5399,13 @@ type UpdateBatchPredictionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the BatchPrediction during creation.
+	//
+	// BatchPredictionId is a required field
 	BatchPredictionId *string `min:"1" type:"string" required:"true"`
 
 	// A new user-supplied name or description of the BatchPrediction.
+	//
+	// BatchPredictionName is a required field
 	BatchPredictionName *string `type:"string" required:"true"`
 }
 
@@ -5340,10 +5463,14 @@ type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the DataSource during creation.
+	//
+	// DataSourceId is a required field
 	DataSourceId *string `min:"1" type:"string" required:"true"`
 
 	// A new user-supplied name or description of the DataSource that will replace
 	// the current description.
+	//
+	// DataSourceName is a required field
 	DataSourceName *string `type:"string" required:"true"`
 }
 
@@ -5401,10 +5528,14 @@ type UpdateEvaluationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the Evaluation during creation.
+	//
+	// EvaluationId is a required field
 	EvaluationId *string `min:"1" type:"string" required:"true"`
 
 	// A new user-supplied name or description of the Evaluation that will replace
 	// the current content.
+	//
+	// EvaluationName is a required field
 	EvaluationName *string `type:"string" required:"true"`
 }
 
@@ -5462,6 +5593,8 @@ type UpdateMLModelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID assigned to the MLModel during creation.
+	//
+	// MLModelId is a required field
 	MLModelId *string `min:"1" type:"string" required:"true"`
 
 	// A user-supplied name or description of the MLModel.
@@ -5529,7 +5662,7 @@ func (s UpdateMLModelOutput) GoString() string {
 //   SGD - Stochastic Gradient Descent.  RandomForest - Random forest of decision
 // trees.
 const (
-	// @enum Algorithm
+	// AlgorithmSgd is a Algorithm enum value
 	AlgorithmSgd = "sgd"
 )
 
@@ -5545,21 +5678,28 @@ const (
 // file(s) used in the BatchPrediction. The URL can identify either a file or
 // an Amazon Simple Storage Service (Amazon S3) bucket or directory.
 const (
-	// @enum BatchPredictionFilterVariable
+	// BatchPredictionFilterVariableCreatedAt is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableCreatedAt = "CreatedAt"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableLastUpdatedAt is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableLastUpdatedAt = "LastUpdatedAt"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableStatus is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableStatus = "Status"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableName is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableName = "Name"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableIamuser is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableIamuser = "IAMUser"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableMlmodelId is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableMlmodelId = "MLModelId"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableDataSourceId is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableDataSourceId = "DataSourceId"
-	// @enum BatchPredictionFilterVariable
+
+	// BatchPredictionFilterVariableDataUri is a BatchPredictionFilterVariable enum value
 	BatchPredictionFilterVariableDataUri = "DataURI"
 )
 
@@ -5574,17 +5714,22 @@ const (
 // that invoked the DataSource creation.  Note The variable names should match
 // the variable names in the DataSource.
 const (
-	// @enum DataSourceFilterVariable
+	// DataSourceFilterVariableCreatedAt is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableCreatedAt = "CreatedAt"
-	// @enum DataSourceFilterVariable
+
+	// DataSourceFilterVariableLastUpdatedAt is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableLastUpdatedAt = "LastUpdatedAt"
-	// @enum DataSourceFilterVariable
+
+	// DataSourceFilterVariableStatus is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableStatus = "Status"
-	// @enum DataSourceFilterVariable
+
+	// DataSourceFilterVariableName is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableName = "Name"
-	// @enum DataSourceFilterVariable
+
+	// DataSourceFilterVariableDataLocationS3 is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableDataLocationS3 = "DataLocationS3"
-	// @enum DataSourceFilterVariable
+
+	// DataSourceFilterVariableIamuser is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableIamuser = "IAMUser"
 )
 
@@ -5592,9 +5737,10 @@ const (
 // type of the MLModel. Algorithm - Indicates the algorithm that was used for
 // the MLModel.
 const (
-	// @enum DetailsAttributes
+	// DetailsAttributesPredictiveModelType is a DetailsAttributes enum value
 	DetailsAttributesPredictiveModelType = "PredictiveModelType"
-	// @enum DetailsAttributes
+
+	// DetailsAttributesAlgorithm is a DetailsAttributes enum value
 	DetailsAttributesAlgorithm = "Algorithm"
 )
 
@@ -5602,15 +5748,19 @@ const (
 //
 //  PENDING INPROGRESS FAILED COMPLETED DELETED
 const (
-	// @enum EntityStatus
+	// EntityStatusPending is a EntityStatus enum value
 	EntityStatusPending = "PENDING"
-	// @enum EntityStatus
+
+	// EntityStatusInprogress is a EntityStatus enum value
 	EntityStatusInprogress = "INPROGRESS"
-	// @enum EntityStatus
+
+	// EntityStatusFailed is a EntityStatus enum value
 	EntityStatusFailed = "FAILED"
-	// @enum EntityStatus
+
+	// EntityStatusCompleted is a EntityStatus enum value
 	EntityStatusCompleted = "COMPLETED"
-	// @enum EntityStatus
+
+	// EntityStatusDeleted is a EntityStatus enum value
 	EntityStatusDeleted = "DELETED"
 )
 
@@ -5626,64 +5776,85 @@ const (
 // can identify either a file or an Amazon Simple Storage Service (Amazon S3)
 // bucket or directory.
 const (
-	// @enum EvaluationFilterVariable
+	// EvaluationFilterVariableCreatedAt is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableCreatedAt = "CreatedAt"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableLastUpdatedAt is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableLastUpdatedAt = "LastUpdatedAt"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableStatus is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableStatus = "Status"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableName is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableName = "Name"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableIamuser is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableIamuser = "IAMUser"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableMlmodelId is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableMlmodelId = "MLModelId"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableDataSourceId is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableDataSourceId = "DataSourceId"
-	// @enum EvaluationFilterVariable
+
+	// EvaluationFilterVariableDataUri is a EvaluationFilterVariable enum value
 	EvaluationFilterVariableDataUri = "DataURI"
 )
 
 const (
-	// @enum MLModelFilterVariable
+	// MLModelFilterVariableCreatedAt is a MLModelFilterVariable enum value
 	MLModelFilterVariableCreatedAt = "CreatedAt"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableLastUpdatedAt is a MLModelFilterVariable enum value
 	MLModelFilterVariableLastUpdatedAt = "LastUpdatedAt"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableStatus is a MLModelFilterVariable enum value
 	MLModelFilterVariableStatus = "Status"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableName is a MLModelFilterVariable enum value
 	MLModelFilterVariableName = "Name"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableIamuser is a MLModelFilterVariable enum value
 	MLModelFilterVariableIamuser = "IAMUser"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableTrainingDataSourceId is a MLModelFilterVariable enum value
 	MLModelFilterVariableTrainingDataSourceId = "TrainingDataSourceId"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableRealtimeEndpointStatus is a MLModelFilterVariable enum value
 	MLModelFilterVariableRealtimeEndpointStatus = "RealtimeEndpointStatus"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableMlmodelType is a MLModelFilterVariable enum value
 	MLModelFilterVariableMlmodelType = "MLModelType"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableAlgorithm is a MLModelFilterVariable enum value
 	MLModelFilterVariableAlgorithm = "Algorithm"
-	// @enum MLModelFilterVariable
+
+	// MLModelFilterVariableTrainingDataUri is a MLModelFilterVariable enum value
 	MLModelFilterVariableTrainingDataUri = "TrainingDataURI"
 )
 
 const (
-	// @enum MLModelType
+	// MLModelTypeRegression is a MLModelType enum value
 	MLModelTypeRegression = "REGRESSION"
-	// @enum MLModelType
+
+	// MLModelTypeBinary is a MLModelType enum value
 	MLModelTypeBinary = "BINARY"
-	// @enum MLModelType
+
+	// MLModelTypeMulticlass is a MLModelType enum value
 	MLModelTypeMulticlass = "MULTICLASS"
 )
 
 const (
-	// @enum RealtimeEndpointStatus
+	// RealtimeEndpointStatusNone is a RealtimeEndpointStatus enum value
 	RealtimeEndpointStatusNone = "NONE"
-	// @enum RealtimeEndpointStatus
+
+	// RealtimeEndpointStatusReady is a RealtimeEndpointStatus enum value
 	RealtimeEndpointStatusReady = "READY"
-	// @enum RealtimeEndpointStatus
+
+	// RealtimeEndpointStatusUpdating is a RealtimeEndpointStatus enum value
 	RealtimeEndpointStatusUpdating = "UPDATING"
-	// @enum RealtimeEndpointStatus
+
+	// RealtimeEndpointStatusFailed is a RealtimeEndpointStatus enum value
 	RealtimeEndpointStatusFailed = "FAILED"
 )
 
@@ -5693,19 +5864,23 @@ const (
 //   asc - Present the information in ascending order (from A-Z).  dsc - Present
 // the information in descending order (from Z-A).
 const (
-	// @enum SortOrder
+	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "asc"
-	// @enum SortOrder
+
+	// SortOrderDsc is a SortOrder enum value
 	SortOrderDsc = "dsc"
 )
 
 const (
-	// @enum TaggableResourceType
+	// TaggableResourceTypeBatchPrediction is a TaggableResourceType enum value
 	TaggableResourceTypeBatchPrediction = "BatchPrediction"
-	// @enum TaggableResourceType
+
+	// TaggableResourceTypeDataSource is a TaggableResourceType enum value
 	TaggableResourceTypeDataSource = "DataSource"
-	// @enum TaggableResourceType
+
+	// TaggableResourceTypeEvaluation is a TaggableResourceType enum value
 	TaggableResourceTypeEvaluation = "Evaluation"
-	// @enum TaggableResourceType
+
+	// TaggableResourceTypeMlmodel is a TaggableResourceType enum value
 	TaggableResourceTypeMlmodel = "MLModel"
 )

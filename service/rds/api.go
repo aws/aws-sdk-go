@@ -5047,10 +5047,14 @@ type AddSourceIdentifierToSubscriptionInput struct {
 	// be supplied.
 	//
 	//   If the source type is a DB snapshot, a DBSnapshotIdentifier must be supplied.
+	//
+	// SourceIdentifier is a required field
 	SourceIdentifier *string `type:"string" required:"true"`
 
 	// The name of the RDS event notification subscription you want to add a source
 	// identifier to.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
@@ -5104,9 +5108,13 @@ type AddTagsToResourceInput struct {
 	// The Amazon RDS resource the tags will be added to. This value is an Amazon
 	// Resource Name (ARN). For information about creating an ARN, see  Constructing
 	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing).
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
 	// The tags to be assigned to the Amazon RDS resource.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
@@ -5156,6 +5164,8 @@ type ApplyPendingMaintenanceActionInput struct {
 	// The pending maintenance action to apply to this resource.
 	//
 	// Valid values: system-update, db-upgrade
+	//
+	// ApplyAction is a required field
 	ApplyAction *string `type:"string" required:"true"`
 
 	// A value that specifies the type of opt-in request, or undoes an opt-in request.
@@ -5169,11 +5179,15 @@ type ApplyPendingMaintenanceActionInput struct {
 	// window for the resource.
 	//
 	//    undo-opt-in - Cancel any existing next-maintenance opt-in requests.
+	//
+	// OptInType is a required field
 	OptInType *string `type:"string" required:"true"`
 
 	// The RDS Amazon Resource Name (ARN) of the resource that the pending maintenance
 	// action applies to. For information about creating an ARN, see  Constructing
 	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing).
+	//
+	// ResourceIdentifier is a required field
 	ResourceIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5230,6 +5244,8 @@ type AuthorizeDBSecurityGroupIngressInput struct {
 	CIDRIP *string `type:"string"`
 
 	// The name of the DB security group to add authorization to.
+	//
+	// DBSecurityGroupName is a required field
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	// Id of the EC2 security group to authorize. For VPC DB security groups, EC2SecurityGroupId
@@ -5394,12 +5410,16 @@ type CopyDBClusterParameterGroupInput struct {
 	//
 	//   If the source DB parameter group is in a different region than the copy,
 	// specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
+	//
+	// SourceDBClusterParameterGroupIdentifier is a required field
 	SourceDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A description for the copied DB cluster parameter group.
+	//
+	// TargetDBClusterParameterGroupDescription is a required field
 	TargetDBClusterParameterGroupDescription *string `type:"string" required:"true"`
 
 	// The identifier for the copied DB cluster parameter group.
@@ -5415,6 +5435,8 @@ type CopyDBClusterParameterGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-cluster-param-group1
+	//
+	// TargetDBClusterParameterGroupIdentifier is a required field
 	TargetDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5484,6 +5506,8 @@ type CopyDBClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster-snapshot1
+	//
+	// SourceDBClusterSnapshotIdentifier is a required field
 	SourceDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -5501,6 +5525,8 @@ type CopyDBClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster-snapshot2
+	//
+	// TargetDBClusterSnapshotIdentifier is a required field
 	TargetDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5567,12 +5593,16 @@ type CopyDBParameterGroupInput struct {
 	//
 	//    Must specify a valid DB parameter group identifier, for example my-db-param-group,
 	// or a valid ARN.
+	//
+	// SourceDBParameterGroupIdentifier is a required field
 	SourceDBParameterGroupIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A description for the copied DB parameter group.
+	//
+	// TargetDBParameterGroupDescription is a required field
 	TargetDBParameterGroupDescription *string `type:"string" required:"true"`
 
 	// The identifier for the copied DB parameter group.
@@ -5588,6 +5618,8 @@ type CopyDBParameterGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-db-parameter-group
+	//
+	// TargetDBParameterGroupIdentifier is a required field
 	TargetDBParameterGroupIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5684,6 +5716,8 @@ type CopyDBSnapshotInput struct {
 	//   Example: rds:mydb-2012-04-02-00-01
 	//
 	// Example: arn:aws:rds:rr-regn-1:123456789012:snapshot:mysql-instance1-snapshot-20130805
+	//
+	// SourceDBSnapshotIdentifier is a required field
 	SourceDBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -5702,6 +5736,8 @@ type CopyDBSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-db-snapshot
+	//
+	// TargetDBSnapshotIdentifier is a required field
 	TargetDBSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5771,12 +5807,16 @@ type CopyOptionGroupInput struct {
 	//
 	//   If the source option group is in a different region than the copy, specify
 	// a valid option group ARN, for example arn:aws:rds:us-west-2:123456789012:og:special-options.
+	//
+	// SourceOptionGroupIdentifier is a required field
 	SourceOptionGroupIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The description for the copied option group.
+	//
+	// TargetOptionGroupDescription is a required field
 	TargetOptionGroupDescription *string `type:"string" required:"true"`
 
 	// The identifier for the copied option group.
@@ -5792,6 +5832,8 @@ type CopyOptionGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-option-group
+	//
+	// TargetOptionGroupIdentifier is a required field
 	TargetOptionGroupIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5873,6 +5915,8 @@ type CreateDBClusterInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster1
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to associate with this DB cluster.
@@ -5903,6 +5947,8 @@ type CreateDBClusterInput struct {
 	// The name of the database engine to be used for this DB cluster.
 	//
 	// Valid Values: aurora
+	//
+	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The version number of the database engine to use.
@@ -6074,15 +6120,21 @@ type CreateDBClusterParameterGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//    This value is stored as a lowercase string.
+	//
+	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
 
 	// The DB cluster parameter group family name. A DB cluster parameter group
 	// can be associated with one and only one DB cluster parameter group family,
 	// and can be applied only to a DB cluster running a database engine and engine
 	// version compatible with that DB cluster parameter group family.
+	//
+	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
 
 	// The description for the DB cluster parameter group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -6155,6 +6207,8 @@ type CreateDBClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster1
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The identifier of the DB cluster snapshot. This parameter is stored as a
@@ -6169,6 +6223,8 @@ type CreateDBClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster1-snapshot1
+	//
+	// DBClusterSnapshotIdentifier is a required field
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// The tags to be assigned to the DB cluster snapshot.
@@ -6310,6 +6366,8 @@ type CreateDBInstanceInput struct {
 	// | db.m4.2xlarge | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge
 	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
 	// | db.t2.medium | db.t2.large
+	//
+	// DBInstanceClass is a required field
 	DBInstanceClass *string `type:"string" required:"true"`
 
 	// The DB instance identifier. This parameter is stored as a lowercase string.
@@ -6324,6 +6382,8 @@ type CreateDBInstanceInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: mydbinstance
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The meaning of this parameter differs according to the database engine you
@@ -6432,6 +6492,8 @@ type CreateDBInstanceInput struct {
 	// aurora
 	//
 	// Not every database engine is available for every AWS region.
+	//
+	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The version number of the database engine to use.
@@ -6966,6 +7028,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// The DB instance identifier of the Read Replica. This identifier is the unique
 	// key that identifies a DB instance. This parameter is stored as a lowercase
 	// string.
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Specifies a DB subnet group for the DB instance. The new DB instance will
@@ -7071,6 +7135,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	//   If the source DB instance is in a different region than the Read Replica,
 	// specify a valid DB instance ARN. For more information, go to  Constructing
 	// a Amazon RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing).
+	//
+	// SourceDBInstanceIdentifier is a required field
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Specifies the storage type to be associated with the Read Replica.
@@ -7145,6 +7211,8 @@ type CreateDBParameterGroupInput struct {
 	// with one and only one DB parameter group family, and can be applied only
 	// to a DB instance running a database engine and engine version compatible
 	// with that DB parameter group family.
+	//
+	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
 
 	// The name of the DB parameter group.
@@ -7158,9 +7226,13 @@ type CreateDBParameterGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//    This value is stored as a lowercase string.
+	//
+	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
 
 	// The description for the DB parameter group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -7221,6 +7293,8 @@ type CreateDBSecurityGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description for the DB security group.
+	//
+	// DBSecurityGroupDescription is a required field
 	DBSecurityGroupDescription *string `type:"string" required:"true"`
 
 	// The name for the DB security group. This value is stored as a lowercase string.
@@ -7236,6 +7310,8 @@ type CreateDBSecurityGroupInput struct {
 	//   Must not be "Default"
 	//
 	//   Example: mysecuritygroup
+	//
+	// DBSecurityGroupName is a required field
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -7308,6 +7384,8 @@ type CreateDBSnapshotInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The identifier for the DB snapshot.
@@ -7323,6 +7401,8 @@ type CreateDBSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-snapshot-id
+	//
+	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -7383,6 +7463,8 @@ type CreateDBSubnetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description for the DB subnet group.
+	//
+	// DBSubnetGroupDescription is a required field
 	DBSubnetGroupDescription *string `type:"string" required:"true"`
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
@@ -7391,9 +7473,13 @@ type CreateDBSubnetGroupInput struct {
 	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
+	//
+	// DBSubnetGroupName is a required field
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 Subnet IDs for the DB subnet group.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	// A list of tags.
@@ -7474,6 +7560,8 @@ type CreateEventSubscriptionInput struct {
 	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
 	// The ARN is created by Amazon SNS when you create a topic and subscribe to
 	// it.
+	//
+	// SnsTopicArn is a required field
 	SnsTopicArn *string `type:"string" required:"true"`
 
 	// The list of identifiers of the event sources for which events will be returned.
@@ -7509,6 +7597,8 @@ type CreateEventSubscriptionInput struct {
 	// The name of the subscription.
 	//
 	// Constraints: The name must be less than 255 characters.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -7564,13 +7654,19 @@ type CreateOptionGroupInput struct {
 
 	// Specifies the name of the engine that this option group should be associated
 	// with.
+	//
+	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
 
 	// Specifies the major version of the engine that this option group should be
 	// associated with.
+	//
+	// MajorEngineVersion is a required field
 	MajorEngineVersion *string `type:"string" required:"true"`
 
 	// The description of the option group.
+	//
+	// OptionGroupDescription is a required field
 	OptionGroupDescription *string `type:"string" required:"true"`
 
 	// Specifies the name of the option group to be created.
@@ -7584,6 +7680,8 @@ type CreateOptionGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: myoptiongroup
+	//
+	// OptionGroupName is a required field
 	OptionGroupName *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -8725,6 +8823,8 @@ type DeleteDBClusterInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The DB cluster snapshot identifier of the new DB cluster snapshot created
@@ -8820,6 +8920,8 @@ type DeleteDBClusterParameterGroupInput struct {
 	//   You cannot delete a default DB cluster parameter group.
 	//
 	//   Cannot be associated with any DB clusters.
+	//
+	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
 }
 
@@ -8867,6 +8969,8 @@ type DeleteDBClusterSnapshotInput struct {
 	//
 	// Constraints: Must be the name of an existing DB cluster snapshot in the
 	// available state.
+	//
+	// DBClusterSnapshotIdentifier is a required field
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -8930,6 +9034,8 @@ type DeleteDBInstanceInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The DBSnapshotIdentifier of the new DBSnapshot created when SkipFinalSnapshot
@@ -9027,6 +9133,8 @@ type DeleteDBParameterGroupInput struct {
 	//   You cannot delete a default DB parameter group
 	//
 	//   Cannot be associated with any DB instances
+	//
+	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
 }
 
@@ -9083,6 +9191,8 @@ type DeleteDBSecurityGroupInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Must not be "Default"
+	//
+	// DBSecurityGroupName is a required field
 	DBSecurityGroupName *string `type:"string" required:"true"`
 }
 
@@ -9130,6 +9240,8 @@ type DeleteDBSnapshotInput struct {
 	//
 	// Constraints: Must be the name of an existing DB snapshot in the available
 	// state.
+	//
+	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -9193,6 +9305,8 @@ type DeleteDBSubnetGroupInput struct {
 	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
+	//
+	// DBSubnetGroupName is a required field
 	DBSubnetGroupName *string `type:"string" required:"true"`
 }
 
@@ -9237,6 +9351,8 @@ type DeleteEventSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the RDS event notification subscription you want to delete.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
@@ -9287,6 +9403,8 @@ type DeleteOptionGroupInput struct {
 	// The name of the option group to be deleted.
 	//
 	//  You cannot delete default option groups.
+	//
+	// OptionGroupName is a required field
 	OptionGroupName *string `type:"string" required:"true"`
 }
 
@@ -9544,6 +9662,8 @@ type DescribeDBClusterParametersInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
 
 	// This parameter is not currently supported.
@@ -9629,6 +9749,8 @@ type DescribeDBClusterSnapshotAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the DB cluster snapshot to describe the attributes for.
+	//
+	// DBClusterSnapshotIdentifier is a required field
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -10141,6 +10263,8 @@ type DescribeDBLogFilesInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Filters the available log files for files written since the specified date,
@@ -10320,6 +10444,8 @@ type DescribeDBParametersInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
 
 	// This parameter is not currently supported.
@@ -10486,6 +10612,8 @@ type DescribeDBSnapshotAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the DB snapshot to describe the attributes for.
+	//
+	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -10762,6 +10890,8 @@ type DescribeEngineDefaultClusterParametersInput struct {
 
 	// The name of the DB cluster parameter group family to return engine parameter
 	// information for.
+	//
+	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
 
 	// This parameter is not currently supported.
@@ -10837,6 +10967,8 @@ type DescribeEngineDefaultParametersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the DB parameter group family.
+	//
+	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
 
 	// Not currently supported.
@@ -11171,6 +11303,8 @@ type DescribeOptionGroupOptionsInput struct {
 
 	// A required parameter. Options available for the given engine name will be
 	// described.
+	//
+	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
 
 	// This parameter is not currently supported.
@@ -11345,6 +11479,8 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	DBInstanceClass *string `type:"string"`
 
 	// The name of the engine to retrieve DB instance options for.
+	//
+	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The engine version filter value. Specify this parameter to show only the
@@ -11856,9 +11992,13 @@ type DownloadDBLogFilePortionInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The name of the log file to be downloaded.
+	//
+	// LogFileName is a required field
 	LogFileName *string `type:"string" required:"true"`
 
 	// The pagination token provided in the previous request or "0". If the Marker
@@ -12214,9 +12354,13 @@ type Filter struct {
 	_ struct{} `type:"structure"`
 
 	// This parameter is not currently supported.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// This parameter is not currently supported.
+	//
+	// Values is a required field
 	Values []*string `locationNameList:"Value" type:"list" required:"true"`
 }
 
@@ -12278,6 +12422,8 @@ type ListTagsForResourceInput struct {
 	// The Amazon RDS resource with tags to be listed. This value is an Amazon Resource
 	// Name (ARN). For information about creating an ARN, see  Constructing an RDS
 	// Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing).
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 }
 
@@ -12372,6 +12518,8 @@ type ModifyDBClusterInput struct {
 	//   First character must be a letter.
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to use for the DB cluster.
@@ -12513,9 +12661,13 @@ type ModifyDBClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the DB cluster parameter group to modify.
+	//
+	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
 
 	// A list of parameters in the DB cluster parameter group to modify.
+	//
+	// Parameters is a required field
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 }
 
@@ -12552,9 +12704,13 @@ type ModifyDBClusterSnapshotAttributeInput struct {
 	//
 	// To manage authorization for other AWS accounts to copy or restore a manual
 	// DB cluster snapshot, set this value to restore.
+	//
+	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
 
 	// The identifier for the DB cluster snapshot to modify the attributes for.
+	//
+	// DBClusterSnapshotIdentifier is a required field
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of DB cluster snapshot attributes to add to the attribute specified
@@ -12793,6 +12949,8 @@ type ModifyDBInstanceInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB parameter group to apply to the DB instance. Changing
@@ -13170,6 +13328,8 @@ type ModifyDBParameterGroupInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
 
 	// An array of parameter names, values, and the apply method for the parameter
@@ -13182,6 +13342,8 @@ type ModifyDBParameterGroupInput struct {
 	//  You can use the immediate value with dynamic parameters only. You can use
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when you reboot the DB instance without failover.
+	//
+	// Parameters is a required field
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 }
 
@@ -13218,9 +13380,13 @@ type ModifyDBSnapshotAttributeInput struct {
 	//
 	// To manage authorization for other AWS accounts to copy or restore a manual
 	// DB snapshot, set this value to restore.
+	//
+	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
 
 	// The identifier for the DB snapshot to modify the attributes for.
+	//
+	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of DB snapshot attributes to add to the attribute specified by AttributeName.
@@ -13303,9 +13469,13 @@ type ModifyDBSubnetGroupInput struct {
 	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
+	//
+	// DBSubnetGroupName is a required field
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the DB subnet group.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 }
 
@@ -13390,6 +13560,8 @@ type ModifyEventSubscriptionInput struct {
 	SourceType *string `type:"string"`
 
 	// The name of the RDS event notification subscription.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
@@ -13446,6 +13618,8 @@ type ModifyOptionGroupInput struct {
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// cannot be removed from an option group, and that option group cannot be removed
 	// from a DB instance once it is associated with a DB instance
+	//
+	// OptionGroupName is a required field
 	OptionGroupName *string `type:"string" required:"true"`
 
 	// Options in this list are added to the option group or, if already present,
@@ -13557,6 +13731,8 @@ type OptionConfiguration struct {
 	DBSecurityGroupMemberships []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 
 	// The configuration of options to include in a group.
+	//
+	// OptionName is a required field
 	OptionName *string `type:"string" required:"true"`
 
 	// The option settings to include in an option group.
@@ -14050,6 +14226,8 @@ type PromoteReadReplicaDBClusterInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster-replica1
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -14135,6 +14313,8 @@ type PromoteReadReplicaInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: mydbinstance
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The daily time range during which automated backups are created if automated
@@ -14222,6 +14402,8 @@ type PurchaseReservedDBInstancesOfferingInput struct {
 	// The ID of the Reserved DB instance offering to purchase.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
+	//
+	// ReservedDBInstancesOfferingId is a required field
 	ReservedDBInstancesOfferingId *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -14281,6 +14463,8 @@ type RebootDBInstanceInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// When true, the reboot will be conducted through a MultiAZ failover.
@@ -14366,10 +14550,14 @@ type RemoveSourceIdentifierFromSubscriptionInput struct {
 
 	// The source identifier to be removed from the subscription, such as the DB
 	// instance identifier for a DB instance or the name of a security group.
+	//
+	// SourceIdentifier is a required field
 	SourceIdentifier *string `type:"string" required:"true"`
 
 	// The name of the RDS event notification subscription you want to remove a
 	// source identifier from.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
@@ -14423,9 +14611,13 @@ type RemoveTagsFromResourceInput struct {
 	// The Amazon RDS resource the tags will be removed from. This value is an Amazon
 	// Resource Name (ARN). For information about creating an ARN, see  Constructing
 	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing).
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
 	// The tag key (name) of the tag to be removed.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -14580,6 +14772,8 @@ type ResetDBClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the DB cluster parameter group to reset.
+	//
+	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
 
 	// A list of parameter names in the DB cluster parameter group to reset to the
@@ -14628,6 +14822,8 @@ type ResetDBParameterGroupInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
 
 	// An array of parameter names, values, and the apply method for the parameter
@@ -14741,6 +14937,8 @@ type RestoreDBClusterFromS3Input struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: my-cluster1
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to associate with the restored
@@ -14769,6 +14967,8 @@ type RestoreDBClusterFromS3Input struct {
 	// The name of the database engine to be used for the restored DB cluster.
 	//
 	// Valid Values: aurora
+	//
+	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The version number of the database engine to use.
@@ -14795,6 +14995,8 @@ type RestoreDBClusterFromS3Input struct {
 	// printable ASCII character except "/", """, or "@".
 	//
 	// Constraints: Must contain from 8 to 41 characters.
+	//
+	// MasterUserPassword is a required field
 	MasterUserPassword *string `type:"string" required:"true"`
 
 	// The name of the master user for the restored DB cluster.
@@ -14806,6 +15008,8 @@ type RestoreDBClusterFromS3Input struct {
 	//   First character must be a letter.
 	//
 	//   Cannot be a reserved word for the chosen database engine.
+	//
+	// MasterUsername is a required field
 	MasterUsername *string `type:"string" required:"true"`
 
 	// A value that indicates that the restored DB cluster should be associated
@@ -14857,11 +15061,15 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The name of the Amazon S3 bucket that contains the data used to create the
 	// Amazon Aurora DB cluster.
+	//
+	// S3BucketName is a required field
 	S3BucketName *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
 	// (IAM) role that authorizes Amazon RDS to access the Amazon S3 bucket on your
 	// behalf.
+	//
+	// S3IngestionRoleArn is a required field
 	S3IngestionRoleArn *string `type:"string" required:"true"`
 
 	// The prefix for all of the file names that contain the data used to create
@@ -14874,6 +15082,8 @@ type RestoreDBClusterFromS3Input struct {
 	// stored in the Amazon S3 bucket.
 	//
 	// Valid values: mysql
+	//
+	// SourceEngine is a required field
 	SourceEngine *string `type:"string" required:"true"`
 
 	// The version of the database that the backup files were created from.
@@ -14881,6 +15091,8 @@ type RestoreDBClusterFromS3Input struct {
 	// MySQL version 5.5 and 5.6 are supported.
 	//
 	// Example: 5.6.22
+	//
+	// SourceEngineVersion is a required field
 	SourceEngineVersion *string `type:"string" required:"true"`
 
 	// Specifies whether the restored DB cluster is encrypted.
@@ -14988,6 +15200,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-snapshot-id
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB subnet group to use for the new DB cluster.
@@ -15006,6 +15220,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Default: The same as source
 	//
 	// Constraint: Must be compatible with the engine of the source
+	//
+	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
 	// The version of the database engine to use for the new DB cluster.
@@ -15048,6 +15264,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
 	// The tags to be assigned to the restored DB cluster.
@@ -15130,6 +15348,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The DB subnet group name to use for the new DB cluster.
@@ -15200,6 +15420,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// SourceDBClusterIdentifier is a required field
 	SourceDBClusterIdentifier *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -15318,6 +15540,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-snapshot-id
+	//
+	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The database name for the restored DB instance.
@@ -15337,6 +15561,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//   If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
 	// must be the ARN of the shared DB snapshot.
+	//
+	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// The DB subnet group name to use for the new instance.
@@ -15638,6 +15864,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// SourceDBInstanceIdentifier is a required field
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Specifies the storage type to be associated with the DB instance.
@@ -15661,6 +15889,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//   First character must be a letter
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//
+	// TargetDBInstanceIdentifier is a required field
 	TargetDBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
@@ -15740,6 +15970,8 @@ type RevokeDBSecurityGroupIngressInput struct {
 	CIDRIP *string `type:"string"`
 
 	// The name of the DB security group to revoke ingress from.
+	//
+	// DBSecurityGroupName is a required field
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	// The id of the EC2 security group to revoke access from. For VPC DB security
@@ -15967,23 +16199,29 @@ func (s VpcSecurityGroupMembership) GoString() string {
 }
 
 const (
-	// @enum ApplyMethod
+	// ApplyMethodImmediate is a ApplyMethod enum value
 	ApplyMethodImmediate = "immediate"
-	// @enum ApplyMethod
+
+	// ApplyMethodPendingReboot is a ApplyMethod enum value
 	ApplyMethodPendingReboot = "pending-reboot"
 )
 
 const (
-	// @enum SourceType
+	// SourceTypeDbInstance is a SourceType enum value
 	SourceTypeDbInstance = "db-instance"
-	// @enum SourceType
+
+	// SourceTypeDbParameterGroup is a SourceType enum value
 	SourceTypeDbParameterGroup = "db-parameter-group"
-	// @enum SourceType
+
+	// SourceTypeDbSecurityGroup is a SourceType enum value
 	SourceTypeDbSecurityGroup = "db-security-group"
-	// @enum SourceType
+
+	// SourceTypeDbSnapshot is a SourceType enum value
 	SourceTypeDbSnapshot = "db-snapshot"
-	// @enum SourceType
+
+	// SourceTypeDbCluster is a SourceType enum value
 	SourceTypeDbCluster = "db-cluster"
-	// @enum SourceType
+
+	// SourceTypeDbClusterSnapshot is a SourceType enum value
 	SourceTypeDbClusterSnapshot = "db-cluster-snapshot"
 )

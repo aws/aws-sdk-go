@@ -1714,6 +1714,8 @@ type Attribute struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the container instance attribute.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The value of the container instance attribute (at this time, the value here
@@ -2338,6 +2340,8 @@ type CreateServiceInput struct {
 
 	// The number of instantiations of the specified task definition to place and
 	// keep running on your cluster.
+	//
+	// DesiredCount is a required field
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer" required:"true"`
 
 	// A load balancer object representing the load balancer to use with your service.
@@ -2377,11 +2381,15 @@ type CreateServiceInput struct {
 	// hyphens, and underscores are allowed. Service names must be unique within
 	// a cluster, but you can have similarly named services in multiple clusters
 	// within a region or across multiple regions.
+	//
+	// ServiceName is a required field
 	ServiceName *string `locationName:"serviceName" type:"string" required:"true"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition to run in your service. If a revision is not specified,
 	// the latest ACTIVE revision is used.
+	//
+	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 }
 
@@ -2435,6 +2443,8 @@ type DeleteClusterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster to delete.
+	//
+	// Cluster is a required field
 	Cluster *string `locationName:"cluster" type:"string" required:"true"`
 }
 
@@ -2486,6 +2496,8 @@ type DeleteServiceInput struct {
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The name of the service to delete.
+	//
+	// Service is a required field
 	Service *string `locationName:"service" type:"string" required:"true"`
 }
 
@@ -2615,6 +2627,8 @@ type DeregisterContainerInstanceInput struct {
 	// instance owner, the container-instance namespace, and then the container
 	// instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID
 	// .
+	//
+	// ContainerInstance is a required field
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
 
 	// Forces the deregistration of the container instance. If you have tasks running
@@ -2674,6 +2688,8 @@ type DeregisterTaskDefinitionInput struct {
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition to deregister. You must specify a revision.
+	//
+	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 }
 
@@ -2766,6 +2782,8 @@ type DescribeContainerInstancesInput struct {
 
 	// A space-separated list of container instance IDs or full Amazon Resource
 	// Name (ARN) entries.
+	//
+	// ContainerInstances is a required field
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
 }
 
@@ -2820,6 +2838,8 @@ type DescribeServicesInput struct {
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// A list of services to describe.
+	//
+	// Services is a required field
 	Services []*string `locationName:"services" type:"list" required:"true"`
 }
 
@@ -2872,6 +2892,8 @@ type DescribeTaskDefinitionInput struct {
 	// The family for the latest ACTIVE revision, family and revision (family:revision)
 	// for a specific revision in the family, or full Amazon Resource Name (ARN)
 	// of the task definition to describe.
+	//
+	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 }
 
@@ -2924,6 +2946,8 @@ type DescribeTasksInput struct {
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// A space-separated list of task IDs or full Amazon Resource Name (ARN) entries.
+	//
+	// Tasks is a required field
 	Tasks []*string `locationName:"tasks" type:"list" required:"true"`
 }
 
@@ -3042,9 +3066,13 @@ type HostEntry struct {
 	_ struct{} `type:"structure"`
 
 	// The hostname to use in the /etc/hosts entry.
+	//
+	// Hostname is a required field
 	Hostname *string `locationName:"hostname" type:"string" required:"true"`
 
 	// The IP address to use in the /etc/hosts entry.
+	//
+	// IpAddress is a required field
 	IpAddress *string `locationName:"ipAddress" type:"string" required:"true"`
 }
 
@@ -3590,6 +3618,8 @@ type LogConfiguration struct {
 	// on your container instance. To check the Docker Remote API version on your
 	// container instance, log into your container instance and run the following
 	// command: sudo docker version | grep "Server API version"
+	//
+	// LogDriver is a required field
 	LogDriver *string `locationName:"logDriver" type:"string" required:"true" enum:"LogDriver"`
 
 	// The configuration options to send to the log driver. This parameter requires
@@ -3819,12 +3849,16 @@ type RegisterTaskDefinitionInput struct {
 
 	// A list of container definitions in JSON format that describe the different
 	// containers that make up your task.
+	//
+	// ContainerDefinitions is a required field
 	ContainerDefinitions []*ContainerDefinition `locationName:"containerDefinitions" type:"list" required:"true"`
 
 	// You must specify a family for a task definition, which allows you to track
 	// multiple versions of the same task definition. The family is used as a name
 	// for your task definition. Up to 255 letters (uppercase and lowercase), numbers,
 	// hyphens, and underscores are allowed.
+	//
+	// Family is a required field
 	Family *string `locationName:"family" type:"string" required:"true"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
@@ -3982,6 +4016,8 @@ type RunTaskInput struct {
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition to run. If a revision is not specified, the latest
 	// ACTIVE revision is used.
+	//
+	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 }
 
@@ -4138,6 +4174,8 @@ type StartTaskInput struct {
 	// the container instances on which you would like to place your task.
 	//
 	//  The list of container instances to start tasks on is limited to 10.
+	//
+	// ContainerInstances is a required field
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
 
 	// A list of container overrides in JSON format that specify the name of a container
@@ -4166,6 +4204,8 @@ type StartTaskInput struct {
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
 	// of the task definition to start. If a revision is not specified, the latest
 	// ACTIVE revision is used.
+	//
+	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
 }
 
@@ -4231,6 +4271,8 @@ type StopTaskInput struct {
 	Reason *string `locationName:"reason" type:"string"`
 
 	// The task ID or full Amazon Resource Name (ARN) entry of the task to stop.
+	//
+	// Task is a required field
 	Task *string `locationName:"task" type:"string" required:"true"`
 }
 
@@ -4522,12 +4564,18 @@ type Ulimit struct {
 	_ struct{} `type:"structure"`
 
 	// The hard limit for the ulimit type.
+	//
+	// HardLimit is a required field
 	HardLimit *int64 `locationName:"hardLimit" type:"integer" required:"true"`
 
 	// The type of the ulimit.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true" enum:"UlimitName"`
 
 	// The soft limit for the ulimit type.
+	//
+	// SoftLimit is a required field
 	SoftLimit *int64 `locationName:"softLimit" type:"integer" required:"true"`
 }
 
@@ -4571,6 +4619,8 @@ type UpdateContainerAgentInput struct {
 	// The container instance ID or full Amazon Resource Name (ARN) entries for
 	// the container instance on which you would like to update the Amazon ECS container
 	// agent.
+	//
+	// ContainerInstance is a required field
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
 }
 
@@ -4632,6 +4682,8 @@ type UpdateServiceInput struct {
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
 
 	// The name of the service to update.
+	//
+	// Service is a required field
 	Service *string `locationName:"service" type:"string" required:"true"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
@@ -4759,114 +4811,148 @@ func (s VolumeFrom) GoString() string {
 }
 
 const (
-	// @enum AgentUpdateStatus
+	// AgentUpdateStatusPending is a AgentUpdateStatus enum value
 	AgentUpdateStatusPending = "PENDING"
-	// @enum AgentUpdateStatus
+
+	// AgentUpdateStatusStaging is a AgentUpdateStatus enum value
 	AgentUpdateStatusStaging = "STAGING"
-	// @enum AgentUpdateStatus
+
+	// AgentUpdateStatusStaged is a AgentUpdateStatus enum value
 	AgentUpdateStatusStaged = "STAGED"
-	// @enum AgentUpdateStatus
+
+	// AgentUpdateStatusUpdating is a AgentUpdateStatus enum value
 	AgentUpdateStatusUpdating = "UPDATING"
-	// @enum AgentUpdateStatus
+
+	// AgentUpdateStatusUpdated is a AgentUpdateStatus enum value
 	AgentUpdateStatusUpdated = "UPDATED"
-	// @enum AgentUpdateStatus
+
+	// AgentUpdateStatusFailed is a AgentUpdateStatus enum value
 	AgentUpdateStatusFailed = "FAILED"
 )
 
 const (
-	// @enum DesiredStatus
+	// DesiredStatusRunning is a DesiredStatus enum value
 	DesiredStatusRunning = "RUNNING"
-	// @enum DesiredStatus
+
+	// DesiredStatusPending is a DesiredStatus enum value
 	DesiredStatusPending = "PENDING"
-	// @enum DesiredStatus
+
+	// DesiredStatusStopped is a DesiredStatus enum value
 	DesiredStatusStopped = "STOPPED"
 )
 
 const (
-	// @enum LogDriver
+	// LogDriverJsonFile is a LogDriver enum value
 	LogDriverJsonFile = "json-file"
-	// @enum LogDriver
+
+	// LogDriverSyslog is a LogDriver enum value
 	LogDriverSyslog = "syslog"
-	// @enum LogDriver
+
+	// LogDriverJournald is a LogDriver enum value
 	LogDriverJournald = "journald"
-	// @enum LogDriver
+
+	// LogDriverGelf is a LogDriver enum value
 	LogDriverGelf = "gelf"
-	// @enum LogDriver
+
+	// LogDriverFluentd is a LogDriver enum value
 	LogDriverFluentd = "fluentd"
-	// @enum LogDriver
+
+	// LogDriverAwslogs is a LogDriver enum value
 	LogDriverAwslogs = "awslogs"
-	// @enum LogDriver
+
+	// LogDriverSplunk is a LogDriver enum value
 	LogDriverSplunk = "splunk"
 )
 
 const (
-	// @enum NetworkMode
+	// NetworkModeBridge is a NetworkMode enum value
 	NetworkModeBridge = "bridge"
-	// @enum NetworkMode
+
+	// NetworkModeHost is a NetworkMode enum value
 	NetworkModeHost = "host"
-	// @enum NetworkMode
+
+	// NetworkModeNone is a NetworkMode enum value
 	NetworkModeNone = "none"
 )
 
 const (
-	// @enum SortOrder
+	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "ASC"
-	// @enum SortOrder
+
+	// SortOrderDesc is a SortOrder enum value
 	SortOrderDesc = "DESC"
 )
 
 const (
-	// @enum TaskDefinitionFamilyStatus
+	// TaskDefinitionFamilyStatusActive is a TaskDefinitionFamilyStatus enum value
 	TaskDefinitionFamilyStatusActive = "ACTIVE"
-	// @enum TaskDefinitionFamilyStatus
+
+	// TaskDefinitionFamilyStatusInactive is a TaskDefinitionFamilyStatus enum value
 	TaskDefinitionFamilyStatusInactive = "INACTIVE"
-	// @enum TaskDefinitionFamilyStatus
+
+	// TaskDefinitionFamilyStatusAll is a TaskDefinitionFamilyStatus enum value
 	TaskDefinitionFamilyStatusAll = "ALL"
 )
 
 const (
-	// @enum TaskDefinitionStatus
+	// TaskDefinitionStatusActive is a TaskDefinitionStatus enum value
 	TaskDefinitionStatusActive = "ACTIVE"
-	// @enum TaskDefinitionStatus
+
+	// TaskDefinitionStatusInactive is a TaskDefinitionStatus enum value
 	TaskDefinitionStatusInactive = "INACTIVE"
 )
 
 const (
-	// @enum TransportProtocol
+	// TransportProtocolTcp is a TransportProtocol enum value
 	TransportProtocolTcp = "tcp"
-	// @enum TransportProtocol
+
+	// TransportProtocolUdp is a TransportProtocol enum value
 	TransportProtocolUdp = "udp"
 )
 
 const (
-	// @enum UlimitName
+	// UlimitNameCore is a UlimitName enum value
 	UlimitNameCore = "core"
-	// @enum UlimitName
+
+	// UlimitNameCpu is a UlimitName enum value
 	UlimitNameCpu = "cpu"
-	// @enum UlimitName
+
+	// UlimitNameData is a UlimitName enum value
 	UlimitNameData = "data"
-	// @enum UlimitName
+
+	// UlimitNameFsize is a UlimitName enum value
 	UlimitNameFsize = "fsize"
-	// @enum UlimitName
+
+	// UlimitNameLocks is a UlimitName enum value
 	UlimitNameLocks = "locks"
-	// @enum UlimitName
+
+	// UlimitNameMemlock is a UlimitName enum value
 	UlimitNameMemlock = "memlock"
-	// @enum UlimitName
+
+	// UlimitNameMsgqueue is a UlimitName enum value
 	UlimitNameMsgqueue = "msgqueue"
-	// @enum UlimitName
+
+	// UlimitNameNice is a UlimitName enum value
 	UlimitNameNice = "nice"
-	// @enum UlimitName
+
+	// UlimitNameNofile is a UlimitName enum value
 	UlimitNameNofile = "nofile"
-	// @enum UlimitName
+
+	// UlimitNameNproc is a UlimitName enum value
 	UlimitNameNproc = "nproc"
-	// @enum UlimitName
+
+	// UlimitNameRss is a UlimitName enum value
 	UlimitNameRss = "rss"
-	// @enum UlimitName
+
+	// UlimitNameRtprio is a UlimitName enum value
 	UlimitNameRtprio = "rtprio"
-	// @enum UlimitName
+
+	// UlimitNameRttime is a UlimitName enum value
 	UlimitNameRttime = "rttime"
-	// @enum UlimitName
+
+	// UlimitNameSigpending is a UlimitName enum value
 	UlimitNameSigpending = "sigpending"
-	// @enum UlimitName
+
+	// UlimitNameStack is a UlimitName enum value
 	UlimitNameStack = "stack"
 )

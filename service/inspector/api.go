@@ -1606,9 +1606,13 @@ type AddAttributesToFindingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The array of attributes that you want to assign to specified findings.
+	//
+	// Attributes is a required field
 	Attributes []*Attribute `locationName:"attributes" type:"list" required:"true"`
 
 	// The ARNs that specify the findings that you want to assign attributes to.
+	//
+	// FindingArns is a required field
 	FindingArns []*string `locationName:"findingArns" min:"1" type:"list" required:"true"`
 }
 
@@ -1656,6 +1660,8 @@ type AddAttributesToFindingsOutput struct {
 
 	// Attribute details that cannot be described. An error code is provided for
 	// each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 }
 
@@ -1677,9 +1683,13 @@ type AgentAlreadyRunningAssessment struct {
 
 	// ID of the agent that is running on an EC2 instance that is already participating
 	// in another started assessment run.
+	//
+	// AgentId is a required field
 	AgentId *string `locationName:"agentId" min:"1" type:"string" required:"true"`
 
 	// The ARN of the assessment run that has already been started.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 }
 
@@ -1700,9 +1710,13 @@ type AgentFilter struct {
 
 	// The detailed health state of the agent. Values can be set to IDLE, RUNNING,
 	// SHUTDOWN, UNHEALTHY, THROTTLED, and UNKNOWN.
+	//
+	// AgentHealthCodes is a required field
 	AgentHealthCodes []*string `locationName:"agentHealthCodes" type:"list" required:"true"`
 
 	// The current health state of the agent. Values can be set to HEALTHY or UNHEALTHY.
+	//
+	// AgentHealths is a required field
 	AgentHealths []*string `locationName:"agentHealths" type:"list" required:"true"`
 }
 
@@ -1737,6 +1751,8 @@ type AgentPreview struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the EC2 instance where the agent is installed.
+	//
+	// AgentId is a required field
 	AgentId *string `locationName:"agentId" min:"1" type:"string" required:"true"`
 
 	// The Auto Scaling group for the EC2 instance where the agent is installed.
@@ -1761,10 +1777,14 @@ type AssessmentRun struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the assessment run.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
 	// The ARN of the assessment template that is associated with the assessment
 	// run.
+	//
+	// AssessmentTemplateArn is a required field
 	AssessmentTemplateArn *string `locationName:"assessmentTemplateArn" min:"1" type:"string" required:"true"`
 
 	// The assessment run completion time that corresponds to the rules packages
@@ -1772,38 +1792,58 @@ type AssessmentRun struct {
 	CompletedAt *time.Time `locationName:"completedAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The time when StartAssessmentRun was called.
+	//
+	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// A Boolean value (true or false) that specifies whether the process of collecting
 	// data from the agents is completed.
+	//
+	// DataCollected is a required field
 	DataCollected *bool `locationName:"dataCollected" type:"boolean" required:"true"`
 
 	// The duration of the assessment run.
+	//
+	// DurationInSeconds is a required field
 	DurationInSeconds *int64 `locationName:"durationInSeconds" min:"180" type:"integer" required:"true"`
 
 	// The auto-generated name for the assessment run.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// A list of notifications for the event subscriptions. A notification about
 	// a particular generated finding is added to this list only once.
+	//
+	// Notifications is a required field
 	Notifications []*AssessmentRunNotification `locationName:"notifications" type:"list" required:"true"`
 
 	// The rules packages selected for the assessment run.
+	//
+	// RulesPackageArns is a required field
 	RulesPackageArns []*string `locationName:"rulesPackageArns" min:"1" type:"list" required:"true"`
 
 	// The time when StartAssessmentRun was called.
 	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the assessment run.
+	//
+	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"AssessmentRunState"`
 
 	// The last time when the assessment run's state changed.
+	//
+	// StateChangedAt is a required field
 	StateChangedAt *time.Time `locationName:"stateChangedAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// A list of the assessment run state changes.
+	//
+	// StateChanges is a required field
 	StateChanges []*AssessmentRunStateChange `locationName:"stateChanges" type:"list" required:"true"`
 
 	// The user-defined attributes that are assigned to every generated finding.
+	//
+	// UserAttributesForFindings is a required field
 	UserAttributesForFindings []*Attribute `locationName:"userAttributesForFindings" type:"list" required:"true"`
 }
 
@@ -1823,18 +1863,26 @@ type AssessmentRunAgent struct {
 	_ struct{} `type:"structure"`
 
 	// The current health state of the agent.
+	//
+	// AgentHealth is a required field
 	AgentHealth *string `locationName:"agentHealth" type:"string" required:"true" enum:"AgentHealth"`
 
 	// The detailed health state of the agent.
+	//
+	// AgentHealthCode is a required field
 	AgentHealthCode *string `locationName:"agentHealthCode" type:"string" required:"true" enum:"AgentHealthCode"`
 
 	// The description for the agent health code.
 	AgentHealthDetails *string `locationName:"agentHealthDetails" type:"string"`
 
 	// The AWS account of the EC2 instance where the agent is installed.
+	//
+	// AgentId is a required field
 	AgentId *string `locationName:"agentId" min:"1" type:"string" required:"true"`
 
 	// The ARN of the assessment run that is associated with the agent.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 
 	// The Auto Scaling group of the EC2 instance that is specified by the agent
@@ -1842,6 +1890,8 @@ type AssessmentRunAgent struct {
 	AutoScalingGroup *string `locationName:"autoScalingGroup" min:"1" type:"string"`
 
 	// The Amazon Inspector application data metrics that are collected by the agent.
+	//
+	// TelemetryMetadata is a required field
 	TelemetryMetadata []*TelemetryMetadata `locationName:"telemetryMetadata" type:"list" required:"true"`
 }
 
@@ -1930,12 +1980,18 @@ type AssessmentRunNotification struct {
 	_ struct{} `type:"structure"`
 
 	// The date of the notification.
+	//
+	// Date is a required field
 	Date *time.Time `locationName:"date" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The Boolean value that specifies whether the notification represents an error.
+	//
+	// Error is a required field
 	Error *bool `locationName:"error" type:"boolean" required:"true"`
 
 	// The event for which a notification is sent.
+	//
+	// Event is a required field
 	Event *string `locationName:"event" type:"string" required:"true" enum:"Event"`
 
 	Message *string `locationName:"message" type:"string"`
@@ -1962,9 +2018,13 @@ type AssessmentRunStateChange struct {
 	_ struct{} `type:"structure"`
 
 	// The assessment run state.
+	//
+	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"AssessmentRunState"`
 
 	// The last time the assessment run state changed.
+	//
+	// StateChangedAt is a required field
 	StateChangedAt *time.Time `locationName:"stateChangedAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
@@ -1984,19 +2044,29 @@ type AssessmentTarget struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the Amazon Inspector assessment target.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
 	// The time at which the assessment target is created.
+	//
+	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The name of the Amazon Inspector assessment target.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The ARN that specifies the resource group that is associated with the assessment
 	// target.
+	//
+	// ResourceGroupArn is a required field
 	ResourceGroupArn *string `locationName:"resourceGroupArn" min:"1" type:"string" required:"true"`
 
 	// The time at which UpdateAssessmentTarget is called.
+	//
+	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
@@ -2050,27 +2120,41 @@ type AssessmentTemplate struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the assessment template.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
 	// The ARN of the assessment target that corresponds to this assessment template.
+	//
+	// AssessmentTargetArn is a required field
 	AssessmentTargetArn *string `locationName:"assessmentTargetArn" min:"1" type:"string" required:"true"`
 
 	// The time at which the assessment template is created.
+	//
+	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The duration in seconds specified for this assessment tempate. The default
 	// value is 3600 seconds (one hour). The maximum value is 86400 seconds (one
 	// day).
+	//
+	// DurationInSeconds is a required field
 	DurationInSeconds *int64 `locationName:"durationInSeconds" min:"180" type:"integer" required:"true"`
 
 	// The name of the assessment template.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The rules packages that are specified for this assessment template.
+	//
+	// RulesPackageArns is a required field
 	RulesPackageArns []*string `locationName:"rulesPackageArns" type:"list" required:"true"`
 
 	// The user-defined attributes that are assigned to every generated finding
 	// from the assessment run that uses this assessment template.
+	//
+	// UserAttributesForFindings is a required field
 	UserAttributesForFindings []*Attribute `locationName:"userAttributesForFindings" type:"list" required:"true"`
 }
 
@@ -2154,6 +2238,8 @@ type AssetAttributes struct {
 	Ipv4Addresses []*string `locationName:"ipv4Addresses" type:"list"`
 
 	// The schema version of this data type.
+	//
+	// SchemaVersion is a required field
 	SchemaVersion *int64 `locationName:"schemaVersion" type:"integer" required:"true"`
 }
 
@@ -2173,6 +2259,8 @@ type Attribute struct {
 	_ struct{} `type:"structure"`
 
 	// The attribute key.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The value assigned to the attribute key.
@@ -2213,10 +2301,14 @@ type CreateAssessmentTargetInput struct {
 
 	// The user-defined name that identifies the assessment target that you want
 	// to create. The name must be unique within the AWS account.
+	//
+	// AssessmentTargetName is a required field
 	AssessmentTargetName *string `locationName:"assessmentTargetName" min:"1" type:"string" required:"true"`
 
 	// The ARN that specifies the resource group that is used to create the assessment
 	// target.
+	//
+	// ResourceGroupArn is a required field
 	ResourceGroupArn *string `locationName:"resourceGroupArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2256,6 +2348,8 @@ type CreateAssessmentTargetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment target that is created.
+	//
+	// AssessmentTargetArn is a required field
 	AssessmentTargetArn *string `locationName:"assessmentTargetArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2274,20 +2368,28 @@ type CreateAssessmentTemplateInput struct {
 
 	// The ARN that specifies the assessment target for which you want to create
 	// the assessment template.
+	//
+	// AssessmentTargetArn is a required field
 	AssessmentTargetArn *string `locationName:"assessmentTargetArn" min:"1" type:"string" required:"true"`
 
 	// The user-defined name that identifies the assessment template that you want
 	// to create. You can create several assessment templates for an assessment
 	// target. The names of the assessment templates that correspond to a particular
 	// assessment target must be unique.
+	//
+	// AssessmentTemplateName is a required field
 	AssessmentTemplateName *string `locationName:"assessmentTemplateName" min:"1" type:"string" required:"true"`
 
 	// The duration of the assessment run in seconds. The default value is 3600
 	// seconds (one hour).
+	//
+	// DurationInSeconds is a required field
 	DurationInSeconds *int64 `locationName:"durationInSeconds" min:"180" type:"integer" required:"true"`
 
 	// The ARNs that specify the rules packages that you want to attach to the assessment
 	// template.
+	//
+	// RulesPackageArns is a required field
 	RulesPackageArns []*string `locationName:"rulesPackageArns" type:"list" required:"true"`
 
 	// The user-defined attributes that are assigned to every finding that is generated
@@ -2350,6 +2452,8 @@ type CreateAssessmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment template that is created.
+	//
+	// AssessmentTemplateArn is a required field
 	AssessmentTemplateArn *string `locationName:"assessmentTemplateArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2369,6 +2473,8 @@ type CreateResourceGroupInput struct {
 	// A collection of keys and an array of possible values, '[{"key":"key1","values":["Value1","Value2"]},{"key":"Key2","values":["Value3"]}]'.
 	//
 	// For example,'[{"key":"Name","values":["TestEC2Instance"]}]'.
+	//
+	// ResourceGroupTags is a required field
 	ResourceGroupTags []*ResourceGroupTag `locationName:"resourceGroupTags" min:"1" type:"list" required:"true"`
 }
 
@@ -2412,6 +2518,8 @@ type CreateResourceGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the resource group that is created.
+	//
+	// ResourceGroupArn is a required field
 	ResourceGroupArn *string `locationName:"resourceGroupArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2429,6 +2537,8 @@ type DeleteAssessmentRunInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment run that you want to delete.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2476,6 +2586,8 @@ type DeleteAssessmentTargetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment target that you want to delete.
+	//
+	// AssessmentTargetArn is a required field
 	AssessmentTargetArn *string `locationName:"assessmentTargetArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2523,6 +2635,8 @@ type DeleteAssessmentTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment template that you want to delete.
+	//
+	// AssessmentTemplateArn is a required field
 	AssessmentTemplateArn *string `locationName:"assessmentTemplateArn" min:"1" type:"string" required:"true"`
 }
 
@@ -2570,6 +2684,8 @@ type DescribeAssessmentRunsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment run that you want to describe.
+	//
+	// AssessmentRunArns is a required field
 	AssessmentRunArns []*string `locationName:"assessmentRunArns" min:"1" type:"list" required:"true"`
 }
 
@@ -2603,10 +2719,14 @@ type DescribeAssessmentRunsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the assessment run.
+	//
+	// AssessmentRuns is a required field
 	AssessmentRuns []*AssessmentRun `locationName:"assessmentRuns" type:"list" required:"true"`
 
 	// Assessment run details that cannot be described. An error code is provided
 	// for each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 }
 
@@ -2624,6 +2744,8 @@ type DescribeAssessmentTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARNs that specifies the assessment targets that you want to describe.
+	//
+	// AssessmentTargetArns is a required field
 	AssessmentTargetArns []*string `locationName:"assessmentTargetArns" min:"1" type:"list" required:"true"`
 }
 
@@ -2657,10 +2779,14 @@ type DescribeAssessmentTargetsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the assessment targets.
+	//
+	// AssessmentTargets is a required field
 	AssessmentTargets []*AssessmentTarget `locationName:"assessmentTargets" type:"list" required:"true"`
 
 	// Assessment target details that cannot be described. An error code is provided
 	// for each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 }
 
@@ -2678,6 +2804,8 @@ type DescribeAssessmentTemplatesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifiesthe assessment templates that you want to describe.
+	//
+	// AssessmentTemplateArns is a required field
 	AssessmentTemplateArns []*string `locationName:"assessmentTemplateArns" min:"1" type:"list" required:"true"`
 }
 
@@ -2711,10 +2839,14 @@ type DescribeAssessmentTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the assessment templates.
+	//
+	// AssessmentTemplates is a required field
 	AssessmentTemplates []*AssessmentTemplate `locationName:"assessmentTemplates" type:"list" required:"true"`
 
 	// Assessment template details that cannot be described. An error code is provided
 	// for each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 }
 
@@ -2746,14 +2878,20 @@ type DescribeCrossAccountAccessRoleOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The date when the cross-account access role was registered.
+	//
+	// RegisteredAt is a required field
 	RegisteredAt *time.Time `locationName:"registeredAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The ARN that specifies the IAM role that Amazon Inspector uses to access
 	// your AWS account.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
 	// A Boolean value that specifies whether the IAM role has the necessary policies
 	// attached to enable Amazon Inspector to access your AWS account.
+	//
+	// Valid is a required field
 	Valid *bool `locationName:"valid" type:"boolean" required:"true"`
 }
 
@@ -2771,6 +2909,8 @@ type DescribeFindingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the finding that you want to describe.
+	//
+	// FindingArns is a required field
 	FindingArns []*string `locationName:"findingArns" min:"1" type:"list" required:"true"`
 
 	// The locale into which you want to translate a finding description, recommendation,
@@ -2809,9 +2949,13 @@ type DescribeFindingsOutput struct {
 
 	// Finding details that cannot be described. An error code is provided for each
 	// failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 
 	// Information about the finding.
+	//
+	// Findings is a required field
 	Findings []*Finding `locationName:"findings" type:"list" required:"true"`
 }
 
@@ -2829,6 +2973,8 @@ type DescribeResourceGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the resource group that you want to describe.
+	//
+	// ResourceGroupArns is a required field
 	ResourceGroupArns []*string `locationName:"resourceGroupArns" min:"1" type:"list" required:"true"`
 }
 
@@ -2863,9 +3009,13 @@ type DescribeResourceGroupsOutput struct {
 
 	// Resource group details that cannot be described. An error code is provided
 	// for each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 
 	// Information about a resource group.
+	//
+	// ResourceGroups is a required field
 	ResourceGroups []*ResourceGroup `locationName:"resourceGroups" type:"list" required:"true"`
 }
 
@@ -2886,6 +3036,8 @@ type DescribeRulesPackagesInput struct {
 	Locale *string `locationName:"locale" type:"string" enum:"Locale"`
 
 	// The ARN that specifies the rules package that you want to describe.
+	//
+	// RulesPackageArns is a required field
 	RulesPackageArns []*string `locationName:"rulesPackageArns" min:"1" type:"list" required:"true"`
 }
 
@@ -2920,9 +3072,13 @@ type DescribeRulesPackagesOutput struct {
 
 	// Rules package details that cannot be described. An error code is provided
 	// for each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 
 	// Information about the rules package.
+	//
+	// RulesPackages is a required field
 	RulesPackages []*RulesPackage `locationName:"rulesPackages" type:"list" required:"true"`
 }
 
@@ -2980,9 +3136,13 @@ type EventSubscription struct {
 
 	// The event for which Amazon Simple Notification Service (SNS) notifications
 	// are sent.
+	//
+	// Event is a required field
 	Event *string `locationName:"event" type:"string" required:"true" enum:"Event"`
 
 	// The time at which SubscribeToEvent is called.
+	//
+	// SubscribedAt is a required field
 	SubscribedAt *time.Time `locationName:"subscribedAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
@@ -3001,10 +3161,14 @@ type FailedItemDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The status code of a failed item.
+	//
+	// FailureCode is a required field
 	FailureCode *string `locationName:"failureCode" type:"string" required:"true" enum:"FailedItemErrorCode"`
 
 	// Indicates whether you can immediately retry a request for this item for a
 	// specified resource.
+	//
+	// Retryable is a required field
 	Retryable *bool `locationName:"retryable" type:"boolean" required:"true"`
 }
 
@@ -3024,6 +3188,8 @@ type Finding struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the finding.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
 	// A collection of attributes of the host from which the finding is generated.
@@ -3033,12 +3199,16 @@ type Finding struct {
 	AssetType *string `locationName:"assetType" type:"string" enum:"AssetType"`
 
 	// The system-defined attributes for the finding.
+	//
+	// Attributes is a required field
 	Attributes []*Attribute `locationName:"attributes" type:"list" required:"true"`
 
 	// This data element is currently not used.
 	Confidence *int64 `locationName:"confidence" type:"integer"`
 
 	// The time when the finding was generated.
+	//
+	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The description of the finding.
@@ -3072,9 +3242,13 @@ type Finding struct {
 	Title *string `locationName:"title" type:"string"`
 
 	// The time when AddAttributesToFindings is called.
+	//
+	// UpdatedAt is a required field
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The user-defined attributes that are assigned to the finding.
+	//
+	// UserAttributes is a required field
 	UserAttributes []*Attribute `locationName:"userAttributes" type:"list" required:"true"`
 }
 
@@ -3176,6 +3350,8 @@ type GetTelemetryMetadataInput struct {
 
 	// The ARN that specifies the assessment run that has the telemetry data that
 	// you want to obtain.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 }
 
@@ -3209,6 +3385,8 @@ type GetTelemetryMetadataOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Telemetry details.
+	//
+	// TelemetryMetadata is a required field
 	TelemetryMetadata []*TelemetryMetadata `locationName:"telemetryMetadata" type:"list" required:"true"`
 }
 
@@ -3226,6 +3404,8 @@ type ListAssessmentRunAgentsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment run whose agents you want to list.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 
 	// You can use this parameter to specify a subset of data to be included in
@@ -3285,6 +3465,8 @@ type ListAssessmentRunAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of ARNs that specifies the agents returned by the action.
+	//
+	// AssessmentRunAgents is a required field
 	AssessmentRunAgents []*AssessmentRunAgent `locationName:"assessmentRunAgents" type:"list" required:"true"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
@@ -3363,6 +3545,8 @@ type ListAssessmentRunsOutput struct {
 
 	// A list of ARNs that specifies the assessment runs that are returned by the
 	// action.
+	//
+	// AssessmentRunArns is a required field
 	AssessmentRunArns []*string `locationName:"assessmentRunArns" type:"list" required:"true"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
@@ -3437,6 +3621,8 @@ type ListAssessmentTargetsOutput struct {
 
 	// A list of ARNs that specifies the assessment targets that are returned by
 	// the action.
+	//
+	// AssessmentTargetArns is a required field
 	AssessmentTargetArns []*string `locationName:"assessmentTargetArns" type:"list" required:"true"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
@@ -3514,6 +3700,8 @@ type ListAssessmentTemplatesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of ARNs that specifies the assessment templates returned by the action.
+	//
+	// AssessmentTemplateArns is a required field
 	AssessmentTemplateArns []*string `locationName:"assessmentTemplateArns" type:"list" required:"true"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
@@ -3587,6 +3775,8 @@ type ListEventSubscriptionsOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// Details of the returned event subscriptions.
+	//
+	// Subscriptions is a required field
 	Subscriptions []*Subscription `locationName:"subscriptions" type:"list" required:"true"`
 }
 
@@ -3658,6 +3848,8 @@ type ListFindingsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of ARNs that specifies the findings returned by the action.
+	//
+	// FindingArns is a required field
 	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
@@ -3724,6 +3916,8 @@ type ListRulesPackagesOutput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The list of ARNs that specifies the rules packages returned by the action.
+	//
+	// RulesPackageArns is a required field
 	RulesPackageArns []*string `locationName:"rulesPackageArns" type:"list" required:"true"`
 }
 
@@ -3741,6 +3935,8 @@ type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN that specifies the assessment template whose tags you want to list.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 }
 
@@ -3774,6 +3970,8 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A collection of key and value pairs.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 }
 
@@ -3801,6 +3999,8 @@ type PreviewAgentsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The ARN of the assessment target whose agents you want to preview.
+	//
+	// PreviewAgentsArn is a required field
 	PreviewAgentsArn *string `locationName:"previewAgentsArn" min:"1" type:"string" required:"true"`
 }
 
@@ -3837,6 +4037,8 @@ type PreviewAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The resulting list of agents.
+	//
+	// AgentPreviews is a required field
 	AgentPreviews []*AgentPreview `locationName:"agentPreviews" type:"list" required:"true"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
@@ -3861,6 +4063,8 @@ type RegisterCrossAccountAccessRoleInput struct {
 
 	// The ARN of the IAM role that Amazon Inspector uses to list your EC2 instances
 	// during the assessment run or when you call the PreviewAgents action.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 }
 
@@ -3908,9 +4112,13 @@ type RemoveAttributesFromFindingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The array of attribute keys that you want to remove from specified findings.
+	//
+	// AttributeKeys is a required field
 	AttributeKeys []*string `locationName:"attributeKeys" type:"list" required:"true"`
 
 	// The ARNs that specify the findings that you want to remove attributes from.
+	//
+	// FindingArns is a required field
 	FindingArns []*string `locationName:"findingArns" min:"1" type:"list" required:"true"`
 }
 
@@ -3948,6 +4156,8 @@ type RemoveAttributesFromFindingsOutput struct {
 
 	// Attributes details that cannot be described. An error code is provided for
 	// each failed item.
+	//
+	// FailedItems is a required field
 	FailedItems map[string]*FailedItemDetails `locationName:"failedItems" type:"map" required:"true"`
 }
 
@@ -3969,13 +4179,19 @@ type ResourceGroup struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the resource group.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
 	// The time at which resource group is created.
+	//
+	// CreatedAt is a required field
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The tags (key and value pairs) of the resource group. This data type property
 	// is used in the CreateResourceGroup action.
+	//
+	// Tags is a required field
 	Tags []*ResourceGroupTag `locationName:"tags" min:"1" type:"list" required:"true"`
 }
 
@@ -3994,6 +4210,8 @@ type ResourceGroupTag struct {
 	_ struct{} `type:"structure"`
 
 	// A tag key.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The value assigned to a tag key.
@@ -4035,18 +4253,26 @@ type RulesPackage struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the rules package.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
 	// The description of the rules package.
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the rules package.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The provider of the rules package.
+	//
+	// Provider is a required field
 	Provider *string `locationName:"provider" type:"string" required:"true"`
 
 	// The version ID of the rules package.
+	//
+	// Version is a required field
 	Version *string `locationName:"version" type:"string" required:"true"`
 }
 
@@ -4071,6 +4297,8 @@ type ServiceAttributes struct {
 	RulesPackageArn *string `locationName:"rulesPackageArn" min:"1" type:"string"`
 
 	// The schema version of this data type.
+	//
+	// SchemaVersion is a required field
 	SchemaVersion *int64 `locationName:"schemaVersion" type:"integer" required:"true"`
 }
 
@@ -4088,6 +4316,8 @@ type SetTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the assessment template that you want to set tags to.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// A collection of key and value pairs that you want to set to the assessment
@@ -4155,6 +4385,8 @@ type StartAssessmentRunInput struct {
 
 	// The ARN of the assessment template of the assessment run that you want to
 	// start.
+	//
+	// AssessmentTemplateArn is a required field
 	AssessmentTemplateArn *string `locationName:"assessmentTemplateArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4191,6 +4423,8 @@ type StartAssessmentRunOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the assessment run that has been started.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4208,6 +4442,8 @@ type StopAssessmentRunInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the assessment run that you want to stop.
+	//
+	// AssessmentRunArn is a required field
 	AssessmentRunArn *string `locationName:"assessmentRunArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4255,13 +4491,19 @@ type SubscribeToEventInput struct {
 	_ struct{} `type:"structure"`
 
 	// The event for which you want to receive SNS notifications.
+	//
+	// Event is a required field
 	Event *string `locationName:"event" type:"string" required:"true" enum:"Event"`
 
 	// The ARN of the assessment template that is used during the event for which
 	// you want to receive SNS notifications.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The ARN of the SNS topic to which the SNS notifications are sent.
+	//
+	// TopicArn is a required field
 	TopicArn *string `locationName:"topicArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4320,14 +4562,20 @@ type Subscription struct {
 	_ struct{} `type:"structure"`
 
 	// The list of existing event subscriptions.
+	//
+	// EventSubscriptions is a required field
 	EventSubscriptions []*EventSubscription `locationName:"eventSubscriptions" min:"1" type:"list" required:"true"`
 
 	// The ARN of the assessment template that is used during the event for which
 	// the SNS notification is sent.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The ARN of the Amazon Simple Notification Service (SNS) topic to which the
 	// SNS notifications are sent.
+	//
+	// TopicArn is a required field
 	TopicArn *string `locationName:"topicArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4348,6 +4596,8 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// A tag key.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// A value assigned to a tag key.
@@ -4390,12 +4640,16 @@ type TelemetryMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The count of messages that the agent sends to the Amazon Inspector service.
+	//
+	// Count is a required field
 	Count *int64 `locationName:"count" type:"long" required:"true"`
 
 	// The data size of messages that the agent sends to the Amazon Inspector service.
 	DataSize *int64 `locationName:"dataSize" type:"long"`
 
 	// A specific type of behavioral data that is collected by the agent.
+	//
+	// MessageType is a required field
 	MessageType *string `locationName:"messageType" min:"1" type:"string" required:"true"`
 }
 
@@ -4434,13 +4688,19 @@ type UnsubscribeFromEventInput struct {
 	_ struct{} `type:"structure"`
 
 	// The event for which you want to stop receiving SNS notifications.
+	//
+	// Event is a required field
 	Event *string `locationName:"event" type:"string" required:"true" enum:"Event"`
 
 	// The ARN of the assessment template that is used during the event for which
 	// you want to stop receiving SNS notifications.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The ARN of the SNS topic to which SNS notifications are sent.
+	//
+	// TopicArn is a required field
 	TopicArn *string `locationName:"topicArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4497,13 +4757,19 @@ type UpdateAssessmentTargetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the assessment target that you want to update.
+	//
+	// AssessmentTargetArn is a required field
 	AssessmentTargetArn *string `locationName:"assessmentTargetArn" min:"1" type:"string" required:"true"`
 
 	// The name of the assessment target that you want to update.
+	//
+	// AssessmentTargetName is a required field
 	AssessmentTargetName *string `locationName:"assessmentTargetName" min:"1" type:"string" required:"true"`
 
 	// The ARN of the resource group that is used to specify the new resource group
 	// to associate with the assessment target.
+	//
+	// ResourceGroupArn is a required field
 	ResourceGroupArn *string `locationName:"resourceGroupArn" min:"1" type:"string" required:"true"`
 }
 
@@ -4560,277 +4826,380 @@ func (s UpdateAssessmentTargetOutput) GoString() string {
 }
 
 const (
-	// @enum AccessDeniedErrorCode
+	// AccessDeniedErrorCodeAccessDeniedToAssessmentTarget is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToAssessmentTarget = "ACCESS_DENIED_TO_ASSESSMENT_TARGET"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToAssessmentTemplate is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToAssessmentTemplate = "ACCESS_DENIED_TO_ASSESSMENT_TEMPLATE"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToAssessmentRun is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToAssessmentRun = "ACCESS_DENIED_TO_ASSESSMENT_RUN"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToFinding is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToFinding = "ACCESS_DENIED_TO_FINDING"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToResourceGroup is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToResourceGroup = "ACCESS_DENIED_TO_RESOURCE_GROUP"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToRulesPackage is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToRulesPackage = "ACCESS_DENIED_TO_RULES_PACKAGE"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToSnsTopic is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToSnsTopic = "ACCESS_DENIED_TO_SNS_TOPIC"
-	// @enum AccessDeniedErrorCode
+
+	// AccessDeniedErrorCodeAccessDeniedToIamRole is a AccessDeniedErrorCode enum value
 	AccessDeniedErrorCodeAccessDeniedToIamRole = "ACCESS_DENIED_TO_IAM_ROLE"
 )
 
 const (
-	// @enum AgentHealth
+	// AgentHealthHealthy is a AgentHealth enum value
 	AgentHealthHealthy = "HEALTHY"
-	// @enum AgentHealth
+
+	// AgentHealthUnhealthy is a AgentHealth enum value
 	AgentHealthUnhealthy = "UNHEALTHY"
 )
 
 const (
-	// @enum AgentHealthCode
+	// AgentHealthCodeIdle is a AgentHealthCode enum value
 	AgentHealthCodeIdle = "IDLE"
-	// @enum AgentHealthCode
+
+	// AgentHealthCodeRunning is a AgentHealthCode enum value
 	AgentHealthCodeRunning = "RUNNING"
-	// @enum AgentHealthCode
+
+	// AgentHealthCodeShutdown is a AgentHealthCode enum value
 	AgentHealthCodeShutdown = "SHUTDOWN"
-	// @enum AgentHealthCode
+
+	// AgentHealthCodeUnhealthy is a AgentHealthCode enum value
 	AgentHealthCodeUnhealthy = "UNHEALTHY"
-	// @enum AgentHealthCode
+
+	// AgentHealthCodeThrottled is a AgentHealthCode enum value
 	AgentHealthCodeThrottled = "THROTTLED"
-	// @enum AgentHealthCode
+
+	// AgentHealthCodeUnknown is a AgentHealthCode enum value
 	AgentHealthCodeUnknown = "UNKNOWN"
 )
 
 const (
-	// @enum AssessmentRunNotificationSnsStatusCode
+	// AssessmentRunNotificationSnsStatusCodeSuccess is a AssessmentRunNotificationSnsStatusCode enum value
 	AssessmentRunNotificationSnsStatusCodeSuccess = "SUCCESS"
-	// @enum AssessmentRunNotificationSnsStatusCode
+
+	// AssessmentRunNotificationSnsStatusCodeTopicDoesNotExist is a AssessmentRunNotificationSnsStatusCode enum value
 	AssessmentRunNotificationSnsStatusCodeTopicDoesNotExist = "TOPIC_DOES_NOT_EXIST"
-	// @enum AssessmentRunNotificationSnsStatusCode
+
+	// AssessmentRunNotificationSnsStatusCodeAccessDenied is a AssessmentRunNotificationSnsStatusCode enum value
 	AssessmentRunNotificationSnsStatusCodeAccessDenied = "ACCESS_DENIED"
-	// @enum AssessmentRunNotificationSnsStatusCode
+
+	// AssessmentRunNotificationSnsStatusCodeInternalError is a AssessmentRunNotificationSnsStatusCode enum value
 	AssessmentRunNotificationSnsStatusCodeInternalError = "INTERNAL_ERROR"
 )
 
 const (
-	// @enum AssessmentRunState
+	// AssessmentRunStateCreated is a AssessmentRunState enum value
 	AssessmentRunStateCreated = "CREATED"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateStartDataCollectionPending is a AssessmentRunState enum value
 	AssessmentRunStateStartDataCollectionPending = "START_DATA_COLLECTION_PENDING"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateStartDataCollectionInProgress is a AssessmentRunState enum value
 	AssessmentRunStateStartDataCollectionInProgress = "START_DATA_COLLECTION_IN_PROGRESS"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateCollectingData is a AssessmentRunState enum value
 	AssessmentRunStateCollectingData = "COLLECTING_DATA"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateStopDataCollectionPending is a AssessmentRunState enum value
 	AssessmentRunStateStopDataCollectionPending = "STOP_DATA_COLLECTION_PENDING"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateDataCollected is a AssessmentRunState enum value
 	AssessmentRunStateDataCollected = "DATA_COLLECTED"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateEvaluatingRules is a AssessmentRunState enum value
 	AssessmentRunStateEvaluatingRules = "EVALUATING_RULES"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateFailed is a AssessmentRunState enum value
 	AssessmentRunStateFailed = "FAILED"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateCompleted is a AssessmentRunState enum value
 	AssessmentRunStateCompleted = "COMPLETED"
-	// @enum AssessmentRunState
+
+	// AssessmentRunStateCompletedWithErrors is a AssessmentRunState enum value
 	AssessmentRunStateCompletedWithErrors = "COMPLETED_WITH_ERRORS"
 )
 
 const (
-	// @enum AssetType
+	// AssetTypeEc2Instance is a AssetType enum value
 	AssetTypeEc2Instance = "ec2-instance"
 )
 
 const (
-	// @enum Event
+	// EventAssessmentRunStarted is a Event enum value
 	EventAssessmentRunStarted = "ASSESSMENT_RUN_STARTED"
-	// @enum Event
+
+	// EventAssessmentRunCompleted is a Event enum value
 	EventAssessmentRunCompleted = "ASSESSMENT_RUN_COMPLETED"
-	// @enum Event
+
+	// EventAssessmentRunStateChanged is a Event enum value
 	EventAssessmentRunStateChanged = "ASSESSMENT_RUN_STATE_CHANGED"
-	// @enum Event
+
+	// EventFindingReported is a Event enum value
 	EventFindingReported = "FINDING_REPORTED"
-	// @enum Event
+
+	// EventOther is a Event enum value
 	EventOther = "OTHER"
 )
 
 const (
-	// @enum FailedItemErrorCode
+	// FailedItemErrorCodeInvalidArn is a FailedItemErrorCode enum value
 	FailedItemErrorCodeInvalidArn = "INVALID_ARN"
-	// @enum FailedItemErrorCode
+
+	// FailedItemErrorCodeDuplicateArn is a FailedItemErrorCode enum value
 	FailedItemErrorCodeDuplicateArn = "DUPLICATE_ARN"
-	// @enum FailedItemErrorCode
+
+	// FailedItemErrorCodeItemDoesNotExist is a FailedItemErrorCode enum value
 	FailedItemErrorCodeItemDoesNotExist = "ITEM_DOES_NOT_EXIST"
-	// @enum FailedItemErrorCode
+
+	// FailedItemErrorCodeAccessDenied is a FailedItemErrorCode enum value
 	FailedItemErrorCodeAccessDenied = "ACCESS_DENIED"
-	// @enum FailedItemErrorCode
+
+	// FailedItemErrorCodeLimitExceeded is a FailedItemErrorCode enum value
 	FailedItemErrorCodeLimitExceeded = "LIMIT_EXCEEDED"
-	// @enum FailedItemErrorCode
+
+	// FailedItemErrorCodeInternalError is a FailedItemErrorCode enum value
 	FailedItemErrorCodeInternalError = "INTERNAL_ERROR"
 )
 
 const (
-	// @enum InvalidCrossAccountRoleErrorCode
+	// InvalidCrossAccountRoleErrorCodeRoleDoesNotExistOrInvalidTrustRelationship is a InvalidCrossAccountRoleErrorCode enum value
 	InvalidCrossAccountRoleErrorCodeRoleDoesNotExistOrInvalidTrustRelationship = "ROLE_DOES_NOT_EXIST_OR_INVALID_TRUST_RELATIONSHIP"
-	// @enum InvalidCrossAccountRoleErrorCode
+
+	// InvalidCrossAccountRoleErrorCodeRoleDoesNotHaveCorrectPolicy is a InvalidCrossAccountRoleErrorCode enum value
 	InvalidCrossAccountRoleErrorCodeRoleDoesNotHaveCorrectPolicy = "ROLE_DOES_NOT_HAVE_CORRECT_POLICY"
 )
 
 const (
-	// @enum InvalidInputErrorCode
+	// InvalidInputErrorCodeInvalidAssessmentTargetArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTargetArn = "INVALID_ASSESSMENT_TARGET_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTemplateArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTemplateArn = "INVALID_ASSESSMENT_TEMPLATE_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentRunArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentRunArn = "INVALID_ASSESSMENT_RUN_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidFindingArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidFindingArn = "INVALID_FINDING_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidResourceGroupArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidResourceGroupArn = "INVALID_RESOURCE_GROUP_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidRulesPackageArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidRulesPackageArn = "INVALID_RULES_PACKAGE_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidResourceArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidResourceArn = "INVALID_RESOURCE_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidSnsTopicArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidSnsTopicArn = "INVALID_SNS_TOPIC_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidIamRoleArn is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidIamRoleArn = "INVALID_IAM_ROLE_ARN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTargetName is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTargetName = "INVALID_ASSESSMENT_TARGET_NAME"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTargetNamePattern is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTargetNamePattern = "INVALID_ASSESSMENT_TARGET_NAME_PATTERN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTemplateName is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTemplateName = "INVALID_ASSESSMENT_TEMPLATE_NAME"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTemplateNamePattern is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTemplateNamePattern = "INVALID_ASSESSMENT_TEMPLATE_NAME_PATTERN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTemplateDuration is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTemplateDuration = "INVALID_ASSESSMENT_TEMPLATE_DURATION"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentTemplateDurationRange is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentTemplateDurationRange = "INVALID_ASSESSMENT_TEMPLATE_DURATION_RANGE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentRunDurationRange is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentRunDurationRange = "INVALID_ASSESSMENT_RUN_DURATION_RANGE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentRunStartTimeRange is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentRunStartTimeRange = "INVALID_ASSESSMENT_RUN_START_TIME_RANGE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentRunCompletionTimeRange is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentRunCompletionTimeRange = "INVALID_ASSESSMENT_RUN_COMPLETION_TIME_RANGE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentRunStateChangeTimeRange is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentRunStateChangeTimeRange = "INVALID_ASSESSMENT_RUN_STATE_CHANGE_TIME_RANGE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAssessmentRunState is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAssessmentRunState = "INVALID_ASSESSMENT_RUN_STATE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidTag is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidTag = "INVALID_TAG"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidTagKey is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidTagKey = "INVALID_TAG_KEY"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidTagValue is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidTagValue = "INVALID_TAG_VALUE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidResourceGroupTagKey is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidResourceGroupTagKey = "INVALID_RESOURCE_GROUP_TAG_KEY"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidResourceGroupTagValue is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidResourceGroupTagValue = "INVALID_RESOURCE_GROUP_TAG_VALUE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAttribute is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAttribute = "INVALID_ATTRIBUTE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidUserAttribute is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidUserAttribute = "INVALID_USER_ATTRIBUTE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidUserAttributeKey is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidUserAttributeKey = "INVALID_USER_ATTRIBUTE_KEY"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidUserAttributeValue is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidUserAttributeValue = "INVALID_USER_ATTRIBUTE_VALUE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidPaginationToken is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidPaginationToken = "INVALID_PAGINATION_TOKEN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidMaxResults is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidMaxResults = "INVALID_MAX_RESULTS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAgentId is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAgentId = "INVALID_AGENT_ID"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidAutoScalingGroup is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidAutoScalingGroup = "INVALID_AUTO_SCALING_GROUP"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidRuleName is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidRuleName = "INVALID_RULE_NAME"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidSeverity is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidSeverity = "INVALID_SEVERITY"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidLocale is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidLocale = "INVALID_LOCALE"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidEvent is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidEvent = "INVALID_EVENT"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeAssessmentTargetNameAlreadyTaken is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeAssessmentTargetNameAlreadyTaken = "ASSESSMENT_TARGET_NAME_ALREADY_TAKEN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeAssessmentTemplateNameAlreadyTaken is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeAssessmentTemplateNameAlreadyTaken = "ASSESSMENT_TEMPLATE_NAME_ALREADY_TAKEN"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAssessmentTargetArns is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAssessmentTargetArns = "INVALID_NUMBER_OF_ASSESSMENT_TARGET_ARNS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAssessmentTemplateArns is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAssessmentTemplateArns = "INVALID_NUMBER_OF_ASSESSMENT_TEMPLATE_ARNS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAssessmentRunArns is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAssessmentRunArns = "INVALID_NUMBER_OF_ASSESSMENT_RUN_ARNS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfFindingArns is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfFindingArns = "INVALID_NUMBER_OF_FINDING_ARNS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfResourceGroupArns is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfResourceGroupArns = "INVALID_NUMBER_OF_RESOURCE_GROUP_ARNS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfRulesPackageArns is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfRulesPackageArns = "INVALID_NUMBER_OF_RULES_PACKAGE_ARNS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAssessmentRunStates is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAssessmentRunStates = "INVALID_NUMBER_OF_ASSESSMENT_RUN_STATES"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfTags is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfTags = "INVALID_NUMBER_OF_TAGS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfResourceGroupTags is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfResourceGroupTags = "INVALID_NUMBER_OF_RESOURCE_GROUP_TAGS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAttributes is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAttributes = "INVALID_NUMBER_OF_ATTRIBUTES"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfUserAttributes is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfUserAttributes = "INVALID_NUMBER_OF_USER_ATTRIBUTES"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAgentIds is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAgentIds = "INVALID_NUMBER_OF_AGENT_IDS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfAutoScalingGroups is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfAutoScalingGroups = "INVALID_NUMBER_OF_AUTO_SCALING_GROUPS"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfRuleNames is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfRuleNames = "INVALID_NUMBER_OF_RULE_NAMES"
-	// @enum InvalidInputErrorCode
+
+	// InvalidInputErrorCodeInvalidNumberOfSeverities is a InvalidInputErrorCode enum value
 	InvalidInputErrorCodeInvalidNumberOfSeverities = "INVALID_NUMBER_OF_SEVERITIES"
 )
 
 const (
-	// @enum LimitExceededErrorCode
+	// LimitExceededErrorCodeAssessmentTargetLimitExceeded is a LimitExceededErrorCode enum value
 	LimitExceededErrorCodeAssessmentTargetLimitExceeded = "ASSESSMENT_TARGET_LIMIT_EXCEEDED"
-	// @enum LimitExceededErrorCode
+
+	// LimitExceededErrorCodeAssessmentTemplateLimitExceeded is a LimitExceededErrorCode enum value
 	LimitExceededErrorCodeAssessmentTemplateLimitExceeded = "ASSESSMENT_TEMPLATE_LIMIT_EXCEEDED"
-	// @enum LimitExceededErrorCode
+
+	// LimitExceededErrorCodeAssessmentRunLimitExceeded is a LimitExceededErrorCode enum value
 	LimitExceededErrorCodeAssessmentRunLimitExceeded = "ASSESSMENT_RUN_LIMIT_EXCEEDED"
-	// @enum LimitExceededErrorCode
+
+	// LimitExceededErrorCodeResourceGroupLimitExceeded is a LimitExceededErrorCode enum value
 	LimitExceededErrorCodeResourceGroupLimitExceeded = "RESOURCE_GROUP_LIMIT_EXCEEDED"
-	// @enum LimitExceededErrorCode
+
+	// LimitExceededErrorCodeEventSubscriptionLimitExceeded is a LimitExceededErrorCode enum value
 	LimitExceededErrorCodeEventSubscriptionLimitExceeded = "EVENT_SUBSCRIPTION_LIMIT_EXCEEDED"
 )
 
 const (
-	// @enum Locale
+	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "EN_US"
 )
 
 const (
-	// @enum NoSuchEntityErrorCode
+	// NoSuchEntityErrorCodeAssessmentTargetDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeAssessmentTargetDoesNotExist = "ASSESSMENT_TARGET_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeAssessmentTemplateDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeAssessmentTemplateDoesNotExist = "ASSESSMENT_TEMPLATE_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeAssessmentRunDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeAssessmentRunDoesNotExist = "ASSESSMENT_RUN_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeFindingDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeFindingDoesNotExist = "FINDING_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeResourceGroupDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeResourceGroupDoesNotExist = "RESOURCE_GROUP_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeRulesPackageDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeRulesPackageDoesNotExist = "RULES_PACKAGE_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeSnsTopicDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeSnsTopicDoesNotExist = "SNS_TOPIC_DOES_NOT_EXIST"
-	// @enum NoSuchEntityErrorCode
+
+	// NoSuchEntityErrorCodeIamRoleDoesNotExist is a NoSuchEntityErrorCode enum value
 	NoSuchEntityErrorCodeIamRoleDoesNotExist = "IAM_ROLE_DOES_NOT_EXIST"
 )
 
 const (
-	// @enum Severity
+	// SeverityLow is a Severity enum value
 	SeverityLow = "Low"
-	// @enum Severity
+
+	// SeverityMedium is a Severity enum value
 	SeverityMedium = "Medium"
-	// @enum Severity
+
+	// SeverityHigh is a Severity enum value
 	SeverityHigh = "High"
-	// @enum Severity
+
+	// SeverityInformational is a Severity enum value
 	SeverityInformational = "Informational"
-	// @enum Severity
+
+	// SeverityUndefined is a Severity enum value
 	SeverityUndefined = "Undefined"
 )

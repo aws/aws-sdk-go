@@ -76,6 +76,8 @@ type Event struct {
 
 	// A name signifying an event that occurred in your app. This is used for grouping
 	// and aggregating like events together for reporting purposes.
+	//
+	// EventType is a required field
 	EventType *string `locationName:"eventType" min:"1" type:"string" required:"true"`
 
 	// A collection of key-value pairs that gives additional, measurable context
@@ -89,6 +91,8 @@ type Event struct {
 
 	// The time the event occurred in ISO 8601 standard date time format. For example,
 	// 2014-06-30T19:07:47.885Z
+	//
+	// Timestamp is a required field
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
 	// The version of the event.
@@ -138,12 +142,16 @@ type PutEventsInput struct {
 
 	// The client context including the client ID, app title, app version and package
 	// name.
+	//
+	// ClientContext is a required field
 	ClientContext *string `location:"header" locationName:"x-amz-Client-Context" type:"string" required:"true"`
 
 	// The encoding used for the client context.
 	ClientContextEncoding *string `location:"header" locationName:"x-amz-Client-Context-Encoding" type:"string"`
 
 	// An array of Event JSON objects
+	//
+	// Events is a required field
 	Events []*Event `locationName:"events" type:"list" required:"true"`
 }
 

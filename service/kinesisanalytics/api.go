@@ -790,15 +790,21 @@ type AddApplicationInputInput struct {
 
 	// Name of your existing Amazon Kinesis Analytics application to which you want
 	// to add the streaming source.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Current version of your Amazon Kinesis Analytics application. You can use
 	// the DescribeApplication operation to find the current application version.
+	//
+	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
 	// When you configure the application input, you specify the streaming source,
 	// the in-application stream name that is created, and the mapping between the
 	// two. For more information, see Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
+	//
+	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
 }
 
@@ -860,18 +866,24 @@ type AddApplicationOutputInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the application to which you want to add the output configuration.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Version of the application to which you want add the output configuration.
 	// You can use the DescribeApplication operation to get the current application
 	// version. If the version specified is not the current version, the ConcurrentModificationException
 	// is returned.
+	//
+	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
 	// An array of objects, each describing one output configuration. In the output
 	// configuration, you specify the name of an in-application stream, a destination
 	// (that is, an Amazon Kinesis stream or an Amazon Kinesis Firehose delivery
 	// stream), and record the formation to use when writing to the destination.
+	//
+	// Output is a required field
 	Output *Output `type:"structure" required:"true"`
 }
 
@@ -933,12 +945,16 @@ type AddApplicationReferenceDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of an existing application.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Version of the application for which you are adding the reference data source.
 	// You can use the DescribeApplication operation to get the current application
 	// version. If the version specified is not the current version, the ConcurrentModificationException
 	// is returned.
+	//
+	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
 	// The reference data source can be an object in your Amazon S3 bucket. Amazon
@@ -947,6 +963,8 @@ type AddApplicationReferenceDataSourceInput struct {
 	// resulting in-application table that is created. You must also provide an
 	// IAM role with the necessary permissions that Amazon Kinesis Analytics can
 	// assume to read the object from your S3 bucket on your behalf.
+	//
+	// ReferenceDataSource is a required field
 	ReferenceDataSource *ReferenceDataSource `type:"structure" required:"true"`
 }
 
@@ -1010,6 +1028,8 @@ type ApplicationDetail struct {
 	_ struct{} `type:"structure"`
 
 	// ARN of the application.
+	//
+	// ApplicationARN is a required field
 	ApplicationARN *string `min:"1" type:"string" required:"true"`
 
 	// Returns the application code that you provided to perform data analysis on
@@ -1020,12 +1040,18 @@ type ApplicationDetail struct {
 	ApplicationDescription *string `type:"string"`
 
 	// Name of the application.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Status of the application.
+	//
+	// ApplicationStatus is a required field
 	ApplicationStatus *string `type:"string" required:"true" enum:"ApplicationStatus"`
 
 	// Provides the current application version.
+	//
+	// ApplicationVersionId is a required field
 	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
 	// Timestamp when the application version was created.
@@ -1063,12 +1089,18 @@ type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
 
 	// ARN of the application.
+	//
+	// ApplicationARN is a required field
 	ApplicationARN *string `min:"1" type:"string" required:"true"`
 
 	// Name of the application.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Status of the application.
+	//
+	// ApplicationStatus is a required field
 	ApplicationStatus *string `type:"string" required:"true" enum:"ApplicationStatus"`
 }
 
@@ -1162,9 +1194,13 @@ type CSVMappingParameters struct {
 
 	// Column delimiter. For example, in a CSV format, a comma (",") is the typical
 	// column delimiter.
+	//
+	// RecordColumnDelimiter is a required field
 	RecordColumnDelimiter *string `type:"string" required:"true"`
 
 	// Row delimiter. For example, in a CSV format, '\n' is the typical row delimiter.
+	//
+	// RecordRowDelimiter is a required field
 	RecordRowDelimiter *string `type:"string" required:"true"`
 }
 
@@ -1216,6 +1252,8 @@ type CreateApplicationInput struct {
 	ApplicationDescription *string `type:"string"`
 
 	// Name of your Amazon Kinesis Analytics application (for example, sample-app).
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter to configure the application input.
@@ -1307,6 +1345,8 @@ type CreateApplicationOutput struct {
 	// In response to your CreateApplication request, Amazon Kinesis Analytics returns
 	// a response with a summary of the application it created, including the application
 	// Amazon Resource Name (ARN), name, and status.
+	//
+	// ApplicationSummary is a required field
 	ApplicationSummary *ApplicationSummary `type:"structure" required:"true"`
 }
 
@@ -1324,9 +1364,13 @@ type DeleteApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the Amazon Kinesis Analytics application to delete.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// You can use the DescribeApplication operation to get this value.
+	//
+	// CreateTimestamp is a required field
 	CreateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
@@ -1377,11 +1421,15 @@ type DeleteApplicationOutputInput struct {
 	_ struct{} `type:"structure"`
 
 	// Amazon Kinesis Analytics application name.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Amazon Kinesis Analytics application version. You can use the DescribeApplication
 	// operation to get the current application version. If the version specified
 	// is not the current version, the ConcurrentModificationException is returned.
+	//
+	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
 	// The ID of the configuration to delete. Each output configuration that is
@@ -1390,6 +1438,8 @@ type DeleteApplicationOutputInput struct {
 	// the ID to uniquely identify the output configuration that you want to delete
 	// from the application configuration. You can use the DescribeApplication operation
 	// to get the specific OutputId.
+	//
+	// OutputId is a required field
 	OutputId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1449,17 +1499,23 @@ type DeleteApplicationReferenceDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of an existing application.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Version of the application. You can use the DescribeApplication operation
 	// to get the current application version. If the version specified is not the
 	// current version, the ConcurrentModificationException is returned.
+	//
+	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
 	// ID of the reference data source. When you add a reference data source to
 	// your application using the AddApplicationReferenceDataSource, Amazon Kinesis
 	// Analytics assigns an ID. You can use the DescribeApplication operation to
 	// get the reference ID.
+	//
+	// ReferenceId is a required field
 	ReferenceId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1519,6 +1575,8 @@ type DescribeApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the application.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1554,6 +1612,8 @@ type DescribeApplicationOutput struct {
 	// Provides a description of the application, such as the application Amazon
 	// Resource Name (ARN), status, latest version, and input and output configuration
 	// details.
+	//
+	// ApplicationDetail is a required field
 	ApplicationDetail *ApplicationDetail `type:"structure" required:"true"`
 }
 
@@ -1591,13 +1651,19 @@ type DiscoverInputSchemaInput struct {
 
 	// Point at which you want Amazon Kinesis Analytics to start reading records
 	// from the specified streaming source discovery purposes.
+	//
+	// InputStartingPositionConfiguration is a required field
 	InputStartingPositionConfiguration *InputStartingPositionConfiguration `type:"structure" required:"true"`
 
 	// Amazon Resource Name (ARN) of the streaming source.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// ARN of the IAM role that Amazon Kinesis Analytics can assume to access the
 	// stream on your behalf.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1697,6 +1763,8 @@ type Input struct {
 	// or more (as per the InputParallelism count you specified) in-application
 	// streams with names "MyInApplicationStream_001", "MyInApplicationStream_002"
 	// and so on.
+	//
+	// NamePrefix is a required field
 	NamePrefix *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1753,10 +1821,14 @@ type InputConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Input source ID. You can get this ID by calling the DescribeApplication operation.
+	//
+	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
 	// Point at which you want the application to start processing records from
 	// the streaming source.
+	//
+	// InputStartingPositionConfiguration is a required field
 	InputStartingPositionConfiguration *InputStartingPositionConfiguration `type:"structure" required:"true"`
 }
 
@@ -1990,6 +2062,8 @@ type InputUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// Input ID of the application input to be updated.
+	//
+	// InputId is a required field
 	InputId *string `min:"1" type:"string" required:"true"`
 
 	// Describes the parallelism updates (the number in-application streams Kinesis
@@ -2075,6 +2149,8 @@ type JSONMappingParameters struct {
 	//
 	// In the RecordRowPath, "$" refers to the root and path "$.vehicle.Model"
 	// refers to the specific "Model" key in the JSON.
+	//
+	// RecordRowPath is a required field
 	RecordRowPath *string `type:"string" required:"true"`
 }
 
@@ -2109,11 +2185,15 @@ type KinesisFirehoseInput struct {
 	_ struct{} `type:"structure"`
 
 	// ARN of the input Firehose delivery stream.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// ARN of the IAM role that Amazon Kinesis Analytics can assume to access the
 	// stream on your behalf. You need to make sure the role has necessary permissions
 	// to access the stream.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2219,11 +2299,15 @@ type KinesisFirehoseOutput struct {
 	_ struct{} `type:"structure"`
 
 	// ARN of the destination Amazon Kinesis Firehose delivery stream to write to.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// ARN of the IAM role that Amazon Kinesis Analytics can assume to write to
 	// the destination stream on your behalf. You need to grant the necessary permissions
 	// to this role.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2330,11 +2414,15 @@ type KinesisStreamsInput struct {
 	_ struct{} `type:"structure"`
 
 	// ARN of the input Amazon Kinesis stream to read.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// ARN of the IAM role that Amazon Kinesis Analytics can assume to access the
 	// stream on your behalf. You need to grant the necessary permissions to this
 	// role.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2441,11 +2529,15 @@ type KinesisStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// ARN of the destination Amazon Kinesis stream to write to.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
 	// ARN of the IAM role that Amazon Kinesis Analytics can assume to write to
 	// the destination stream on your behalf. You need to grant the necessary permissions
 	// to this role.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2588,9 +2680,13 @@ type ListApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// List of ApplicationSummary objects.
+	//
+	// ApplicationSummaries is a required field
 	ApplicationSummaries []*ApplicationSummary `type:"list" required:"true"`
 
 	// Returns true if there are more applications to retrieve.
+	//
+	// HasMoreApplications is a required field
 	HasMoreApplications *bool `type:"boolean" required:"true"`
 }
 
@@ -2661,6 +2757,8 @@ type Output struct {
 
 	// Describes the data format when records are written to the destination. For
 	// more information, see Configuring Application Output (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html).
+	//
+	// DestinationSchema is a required field
 	DestinationSchema *DestinationSchema `type:"structure" required:"true"`
 
 	// Identifies an Amazon Kinesis Firehose delivery stream as the destination.
@@ -2670,6 +2768,8 @@ type Output struct {
 	KinesisStreamsOutput *KinesisStreamsOutput `type:"structure"`
 
 	// Name of the in-application stream.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2766,6 +2866,8 @@ type OutputUpdate struct {
 	NameUpdate *string `min:"1" type:"string"`
 
 	// Identifies the specific output configuration that you want to update.
+	//
+	// OutputId is a required field
 	OutputId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2821,9 +2923,13 @@ type RecordColumn struct {
 
 	// Name of the column created in the in-application input stream or reference
 	// table.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// Type of column created in the in-application input stream or reference table.
+	//
+	// SqlType is a required field
 	SqlType *string `type:"string" required:"true"`
 }
 
@@ -2865,6 +2971,8 @@ type RecordFormat struct {
 	MappingParameters *MappingParameters `type:"structure"`
 
 	// The type of record format.
+	//
+	// RecordFormatType is a required field
 	RecordFormatType *string `type:"string" required:"true" enum:"RecordFormatType"`
 }
 
@@ -2905,6 +3013,8 @@ type ReferenceDataSource struct {
 
 	// Describes the format of the data in the streaming source, and how each data
 	// element maps to corresponding columns created in the in-application stream.
+	//
+	// ReferenceSchema is a required field
 	ReferenceSchema *SourceSchema `type:"structure" required:"true"`
 
 	// Identifies the S3 bucket and object that contains the reference data. Also
@@ -2917,6 +3027,8 @@ type ReferenceDataSource struct {
 	S3ReferenceDataSource *S3ReferenceDataSource `type:"structure"`
 
 	// Name of the in-application table to create.
+	//
+	// TableName is a required field
 	TableName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2966,6 +3078,8 @@ type ReferenceDataSourceDescription struct {
 	// ID of the reference data source. This is the ID that Amazon Kinesis Analytics
 	// assigns when you add the reference data source to your application using
 	// the AddApplicationReferenceDataSource operation.
+	//
+	// ReferenceId is a required field
 	ReferenceId *string `min:"1" type:"string" required:"true"`
 
 	// Describes the format of the data in the streaming source, and how each data
@@ -2976,10 +3090,14 @@ type ReferenceDataSourceDescription struct {
 	// data. It also provides the Amazon Resource Name (ARN) of the IAM role that
 	// Amazon Kinesis Analytics can assume to read the Amazon S3 object and populate
 	// the in-application reference table.
+	//
+	// S3ReferenceDataSourceDescription is a required field
 	S3ReferenceDataSourceDescription *S3ReferenceDataSourceDescription `type:"structure" required:"true"`
 
 	// The in-application table name created by the specific reference data source
 	// configuration.
+	//
+	// TableName is a required field
 	TableName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3003,6 +3121,8 @@ type ReferenceDataSourceUpdate struct {
 
 	// ID of the reference data source being updated. You can use the DescribeApplication
 	// operation to get this value.
+	//
+	// ReferenceId is a required field
 	ReferenceId *string `min:"1" type:"string" required:"true"`
 
 	// Describes the format of the data in the streaming source, and how each data
@@ -3068,15 +3188,21 @@ type S3ReferenceDataSource struct {
 	_ struct{} `type:"structure"`
 
 	// Amazon Resource Name (ARN) of the S3 bucket.
+	//
+	// BucketARN is a required field
 	BucketARN *string `min:"1" type:"string" required:"true"`
 
 	// Object key name containing reference data.
+	//
+	// FileKey is a required field
 	FileKey *string `type:"string" required:"true"`
 
 	// ARN of the IAM role that the service can assume to read data on your behalf.
 	// This role must have permission for the s3:GetObject action on the object
 	// and trust policy that allows Amazon Kinesis Analytics service principal to
 	// assume this role.
+	//
+	// ReferenceRoleARN is a required field
 	ReferenceRoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3120,14 +3246,20 @@ type S3ReferenceDataSourceDescription struct {
 	_ struct{} `type:"structure"`
 
 	// Amazon Resource Name (ARN) of the S3 bucket.
+	//
+	// BucketARN is a required field
 	BucketARN *string `min:"1" type:"string" required:"true"`
 
 	// Amazon S3 object key name.
+	//
+	// FileKey is a required field
 	FileKey *string `type:"string" required:"true"`
 
 	// ARN of the IAM role that Amazon Kinesis Analytics can assume to read the
 	// Amazon S3 object on your behalf to populate the in-application reference
 	// table.
+	//
+	// ReferenceRoleARN is a required field
 	ReferenceRoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3190,6 +3322,8 @@ type SourceSchema struct {
 	_ struct{} `type:"structure"`
 
 	// A list of RecordColumn objects.
+	//
+	// RecordColumns is a required field
 	RecordColumns []*RecordColumn `min:"1" type:"list" required:"true"`
 
 	// Specifies the encoding of the records in the streaming source. For example,
@@ -3197,6 +3331,8 @@ type SourceSchema struct {
 	RecordEncoding *string `type:"string"`
 
 	// Specifies the format of the records on the streaming source.
+	//
+	// RecordFormat is a required field
 	RecordFormat *RecordFormat `type:"structure" required:"true"`
 }
 
@@ -3248,12 +3384,16 @@ type StartApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the application.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Identifies the specific input, by ID, that the application starts consuming.
 	// Amazon Kinesis Analytics starts reading the streaming source associated with
 	// the input. You can also specify where in the streaming source you want Amazon
 	// Kinesis Analytics to start reading.
+	//
+	// InputConfigurations is a required field
 	InputConfigurations []*InputConfiguration `type:"list" required:"true"`
 }
 
@@ -3314,6 +3454,8 @@ type StopApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the running application to stop.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3361,13 +3503,19 @@ type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the Kinesis Analytics application to update.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Describes application updates.
+	//
+	// ApplicationUpdate is a required field
 	ApplicationUpdate *ApplicationUpdate `type:"structure" required:"true"`
 
 	// The current application version ID. You can use the DescribeApplication operation
 	// to get this value.
+	//
+	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 }
 
@@ -3426,32 +3574,40 @@ func (s UpdateApplicationOutput) GoString() string {
 }
 
 const (
-	// @enum ApplicationStatus
+	// ApplicationStatusDeleting is a ApplicationStatus enum value
 	ApplicationStatusDeleting = "DELETING"
-	// @enum ApplicationStatus
+
+	// ApplicationStatusStarting is a ApplicationStatus enum value
 	ApplicationStatusStarting = "STARTING"
-	// @enum ApplicationStatus
+
+	// ApplicationStatusStopping is a ApplicationStatus enum value
 	ApplicationStatusStopping = "STOPPING"
-	// @enum ApplicationStatus
+
+	// ApplicationStatusReady is a ApplicationStatus enum value
 	ApplicationStatusReady = "READY"
-	// @enum ApplicationStatus
+
+	// ApplicationStatusRunning is a ApplicationStatus enum value
 	ApplicationStatusRunning = "RUNNING"
-	// @enum ApplicationStatus
+
+	// ApplicationStatusUpdating is a ApplicationStatus enum value
 	ApplicationStatusUpdating = "UPDATING"
 )
 
 const (
-	// @enum InputStartingPosition
+	// InputStartingPositionNow is a InputStartingPosition enum value
 	InputStartingPositionNow = "NOW"
-	// @enum InputStartingPosition
+
+	// InputStartingPositionTrimHorizon is a InputStartingPosition enum value
 	InputStartingPositionTrimHorizon = "TRIM_HORIZON"
-	// @enum InputStartingPosition
+
+	// InputStartingPositionLastStoppedPoint is a InputStartingPosition enum value
 	InputStartingPositionLastStoppedPoint = "LAST_STOPPED_POINT"
 )
 
 const (
-	// @enum RecordFormatType
+	// RecordFormatTypeJson is a RecordFormatType enum value
 	RecordFormatTypeJson = "JSON"
-	// @enum RecordFormatType
+
+	// RecordFormatTypeCsv is a RecordFormatType enum value
 	RecordFormatTypeCsv = "CSV"
 )

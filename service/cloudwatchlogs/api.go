@@ -1620,6 +1620,8 @@ type CancelExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// Id of the export task to cancel.
+	//
+	// TaskId is a required field
 	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
 }
 
@@ -1669,6 +1671,8 @@ type CreateExportTaskInput struct {
 	// Name of Amazon S3 bucket to which the log data will be exported.
 	//
 	//  Note: Only buckets in the same AWS region are supported.
+	//
+	// Destination is a required field
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
 
 	// Prefix that will be used as the start of Amazon S3 key for every object exported.
@@ -1678,9 +1682,13 @@ type CreateExportTaskInput struct {
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC. It indicates the start time of the range for the request. Events
 	// with a timestamp prior to this time will not be exported.
+	//
+	// From is a required field
 	From *int64 `locationName:"from" type:"long" required:"true"`
 
 	// The name of the log group to export.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Will only export log streams that match the provided logStreamNamePrefix.
@@ -1693,6 +1701,8 @@ type CreateExportTaskInput struct {
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC. It indicates the end time of the range for the request. Events
 	// with a timestamp later than this time will not be exported.
+	//
+	// To is a required field
 	To *int64 `locationName:"to" type:"long" required:"true"`
 }
 
@@ -1761,6 +1771,8 @@ type CreateLogGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the log group to create.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -1808,9 +1820,13 @@ type CreateLogStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the log group under which the log stream is to be created.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to create.
+	//
+	// LogStreamName is a required field
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 }
 
@@ -1864,6 +1880,8 @@ type DeleteDestinationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of destination to delete.
+	//
+	// DestinationName is a required field
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 }
 
@@ -1911,6 +1929,8 @@ type DeleteLogGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the log group to delete.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -1958,9 +1978,13 @@ type DeleteLogStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the log group under which the log stream to delete belongs.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to delete.
+	//
+	// LogStreamName is a required field
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 }
 
@@ -2014,9 +2038,13 @@ type DeleteMetricFilterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the metric filter to delete.
+	//
+	// FilterName is a required field
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// The name of the log group that is associated with the metric filter to delete.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -2071,6 +2099,8 @@ type DeleteRetentionPolicyInput struct {
 
 	// The name of the log group that is associated with the retention policy to
 	// delete.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -2118,10 +2148,14 @@ type DeleteSubscriptionFilterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the subscription filter to delete.
+	//
+	// FilterName is a required field
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// The name of the log group that is associated with the subscription filter
 	// to delete.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -2389,6 +2423,8 @@ type DescribeLogStreamsInput struct {
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The log group name for which log streams are to be listed.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Will only return log streams that match the provided logStreamNamePrefix.
@@ -2476,6 +2512,8 @@ type DescribeMetricFiltersInput struct {
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The log group name for which metric filters are to be listed.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// A string token used for pagination that points to the next page of results.
@@ -2551,6 +2589,8 @@ type DescribeSubscriptionFiltersInput struct {
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The log group name for which subscription filters are to be listed.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// A string token used for pagination that points to the next page of results.
@@ -2760,6 +2800,8 @@ type FilterLogEventsInput struct {
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The name of the log group to query.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Optional list of log stream names within the specified log group to search.
@@ -2885,9 +2927,13 @@ type GetLogEventsInput struct {
 	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The name of the log group to query.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to query.
+	//
+	// LogStreamName is a required field
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	// A string token used for pagination that points to the next page of results.
@@ -2975,10 +3021,13 @@ func (s GetLogEventsOutput) GoString() string {
 type InputLogEvent struct {
 	_ struct{} `type:"structure"`
 
+	// Message is a required field
 	Message *string `locationName:"message" min:"1" type:"string" required:"true"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
+	//
+	// Timestamp is a required field
 	Timestamp *int64 `locationName:"timestamp" type:"long" required:"true"`
 }
 
@@ -3145,13 +3194,19 @@ type MetricTransformation struct {
 	DefaultValue *float64 `locationName:"defaultValue" type:"double"`
 
 	// Name of the metric.
+	//
+	// MetricName is a required field
 	MetricName *string `locationName:"metricName" type:"string" required:"true"`
 
 	// Namespace to which the metric belongs.
+	//
+	// MetricNamespace is a required field
 	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"`
 
 	// A string representing a value to publish to this metric when a filter pattern
 	// matches a log event.
+	//
+	// MetricValue is a required field
 	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
 }
 
@@ -3212,13 +3267,19 @@ type PutDestinationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the destination.
+	//
+	// DestinationName is a required field
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 
 	// The ARN of an IAM role that grants CloudWatch Logs permissions to do Amazon
 	// Kinesis PutRecord requests on the destination stream.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
 	// The ARN of an Amazon Kinesis stream to deliver matching log events to.
+	//
+	// TargetArn is a required field
 	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
 }
 
@@ -3282,9 +3343,13 @@ type PutDestinationPolicyInput struct {
 
 	// An IAM policy document that authorizes cross-account users to deliver their
 	// log events to associated destination.
+	//
+	// AccessPolicy is a required field
 	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string" required:"true"`
 
 	// A name for an existing destination.
+	//
+	// DestinationName is a required field
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 }
 
@@ -3338,12 +3403,18 @@ type PutLogEventsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of log events belonging to a log stream.
+	//
+	// LogEvents is a required field
 	LogEvents []*InputLogEvent `locationName:"logEvents" min:"1" type:"list" required:"true"`
 
 	// The name of the log group to put log events to.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to put log events to.
+	//
+	// LogStreamName is a required field
 	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	// A string token that must be obtained from the response of the previous PutLogEvents
@@ -3427,16 +3498,24 @@ type PutMetricFilterInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the metric filter.
+	//
+	// FilterName is a required field
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// A valid CloudWatch Logs filter pattern for extracting metric data out of
 	// ingested log events.
+	//
+	// FilterPattern is a required field
 	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
 
 	// The name of the log group to associate the metric filter with.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// A collection of information needed to define how metric data gets emitted.
+	//
+	// MetricTransformations is a required field
 	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" min:"1" type:"list" required:"true"`
 }
 
@@ -3509,11 +3588,15 @@ type PutRetentionPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the log group to associate the retention policy with.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Specifies the number of days you want to retain log events in the specified
 	// log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180,
 	// 365, 400, 545, 731, 1827, 3653.
+	//
+	// RetentionInDays is a required field
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer" required:"true"`
 }
 
@@ -3577,16 +3660,24 @@ type PutSubscriptionFilterInput struct {
 	//
 	//   An AWS Lambda function belonging to the same account as the subscription
 	// filter, for same-account delivery.
+	//
+	// DestinationArn is a required field
 	DestinationArn *string `locationName:"destinationArn" min:"1" type:"string" required:"true"`
 
 	// A name for the subscription filter.
+	//
+	// FilterName is a required field
 	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// A valid CloudWatch Logs filter pattern for subscribing to a filtered stream
 	// of log events.
+	//
+	// FilterPattern is a required field
 	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
 
 	// The name of the log group to associate the subscription filter with.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The ARN of an IAM role that grants CloudWatch Logs permissions to deliver
@@ -3737,9 +3828,13 @@ type TestMetricFilterInput struct {
 	// each log event. For example, a log event may contain timestamps, IP addresses,
 	// strings, and so on. You use the filter pattern to specify what to look for
 	// in the log event message.
+	//
+	// FilterPattern is a required field
 	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
 
 	// A list of log event messages to test.
+	//
+	// LogEventMessages is a required field
 	LogEventMessages []*string `locationName:"logEventMessages" min:"1" type:"list" required:"true"`
 }
 
@@ -3789,23 +3884,29 @@ func (s TestMetricFilterOutput) GoString() string {
 }
 
 const (
-	// @enum ExportTaskStatusCode
+	// ExportTaskStatusCodeCancelled is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodeCancelled = "CANCELLED"
-	// @enum ExportTaskStatusCode
+
+	// ExportTaskStatusCodeCompleted is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodeCompleted = "COMPLETED"
-	// @enum ExportTaskStatusCode
+
+	// ExportTaskStatusCodeFailed is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodeFailed = "FAILED"
-	// @enum ExportTaskStatusCode
+
+	// ExportTaskStatusCodePending is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodePending = "PENDING"
-	// @enum ExportTaskStatusCode
+
+	// ExportTaskStatusCodePendingCancel is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodePendingCancel = "PENDING_CANCEL"
-	// @enum ExportTaskStatusCode
+
+	// ExportTaskStatusCodeRunning is a ExportTaskStatusCode enum value
 	ExportTaskStatusCodeRunning = "RUNNING"
 )
 
 const (
-	// @enum OrderBy
+	// OrderByLogStreamName is a OrderBy enum value
 	OrderByLogStreamName = "LogStreamName"
-	// @enum OrderBy
+
+	// OrderByLastEventTime is a OrderBy enum value
 	OrderByLastEventTime = "LastEventTime"
 )

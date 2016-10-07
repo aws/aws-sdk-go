@@ -628,12 +628,16 @@ type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of configuration items that you want to tag.
+	//
+	// ConfigurationIds is a required field
 	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
 
 	// Tags that you want to associate with one or more configuration items. Specify
 	// the tags that you want to create in a key-value format. For example:
 	//
 	//  {"key": "serverType", "value": "webServer"}
+	//
+	// Tags is a required field
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -691,6 +695,8 @@ type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of configuration items with tags that you want to delete.
+	//
+	// ConfigurationIds is a required field
 	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
 
 	// Tags that you want to delete from one or more configuration items. Specify
@@ -799,6 +805,8 @@ type DescribeConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more configuration IDs.
+	//
+	// ConfigurationIds is a required field
 	ConfigurationIds []*string `locationName:"configurationIds" type:"list" required:"true"`
 }
 
@@ -999,17 +1007,25 @@ type ExportInfo struct {
 	ConfigurationsDownloadUrl *string `locationName:"configurationsDownloadUrl" type:"string"`
 
 	// A unique identifier that you can use to query the export.
+	//
+	// ExportId is a required field
 	ExportId *string `locationName:"exportId" type:"string" required:"true"`
 
 	// The time the configuration data export was initiated.
+	//
+	// ExportRequestTime is a required field
 	ExportRequestTime *time.Time `locationName:"exportRequestTime" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The status of the configuration data export. The status can succeed, fail,
 	// or be in-progress.
+	//
+	// ExportStatus is a required field
 	ExportStatus *string `locationName:"exportStatus" type:"string" required:"true" enum:"ExportStatus"`
 
 	// Helpful status messages for API callers. For example: Too many exports in
 	// the last 6 hours. Export in progress. Export was successful.
+	//
+	// StatusMessage is a required field
 	StatusMessage *string `locationName:"statusMessage" type:"string" required:"true"`
 }
 
@@ -1033,6 +1049,8 @@ type Filter struct {
 	// for a particular filter, the system differentiates the values using OR. Calling
 	// either DescribeConfigurations or ListConfigurations returns attributes of
 	// matching configuration items.
+	//
+	// Condition is a required field
 	Condition *string `locationName:"condition" type:"string" required:"true"`
 
 	// The name of the filter. The following filter names are allowed for SERVER
@@ -1107,11 +1125,15 @@ type Filter struct {
 	//    destinationServer.osVersion
 	//
 	//    destinationServer.agentId
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// A string value that you want to filter on. For example, if you choose the
 	// destinationServer.osVersion filter name, you could specify Ubuntu for the
 	// value.
+	//
+	// Values is a required field
 	Values []*string `locationName:"values" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -1148,6 +1170,8 @@ type ListConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A valid configuration identified by the Discovery Service.
+	//
+	// ConfigurationType is a required field
 	ConfigurationType *string `locationName:"configurationType" type:"string" required:"true" enum:"ConfigurationItemType"`
 
 	// You can filter the list using a key-value format. For example:
@@ -1228,6 +1252,8 @@ type StartDataCollectionByAgentIdsInput struct {
 	// agents and you do not have permission to contact some of those agents, the
 	// system does not throw an exception. Instead, the system shows Failed in the
 	// Description field.
+	//
+	// AgentIds is a required field
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
 }
 
@@ -1277,6 +1303,8 @@ type StopDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IDs of the agents that you want to stop collecting data.
+	//
+	// AgentIds is a required field
 	AgentIds []*string `locationName:"agentIds" type:"list" required:"true"`
 }
 
@@ -1327,9 +1355,13 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// A type of tag to filter on.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true"`
 
 	// A value for a tag key to filter on.
+	//
+	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
@@ -1364,9 +1396,13 @@ type TagFilter struct {
 	_ struct{} `type:"structure"`
 
 	// A name of a tag filter.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// Values of a tag filter.
+	//
+	// Values is a required field
 	Values []*string `locationName:"values" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -1397,34 +1433,43 @@ func (s *TagFilter) Validate() error {
 }
 
 const (
-	// @enum AgentStatus
+	// AgentStatusHealthy is a AgentStatus enum value
 	AgentStatusHealthy = "HEALTHY"
-	// @enum AgentStatus
+
+	// AgentStatusUnhealthy is a AgentStatus enum value
 	AgentStatusUnhealthy = "UNHEALTHY"
-	// @enum AgentStatus
+
+	// AgentStatusRunning is a AgentStatus enum value
 	AgentStatusRunning = "RUNNING"
-	// @enum AgentStatus
+
+	// AgentStatusUnknown is a AgentStatus enum value
 	AgentStatusUnknown = "UNKNOWN"
-	// @enum AgentStatus
+
+	// AgentStatusBlacklisted is a AgentStatus enum value
 	AgentStatusBlacklisted = "BLACKLISTED"
-	// @enum AgentStatus
+
+	// AgentStatusShutdown is a AgentStatus enum value
 	AgentStatusShutdown = "SHUTDOWN"
 )
 
 const (
-	// @enum ConfigurationItemType
+	// ConfigurationItemTypeServer is a ConfigurationItemType enum value
 	ConfigurationItemTypeServer = "SERVER"
-	// @enum ConfigurationItemType
+
+	// ConfigurationItemTypeProcess is a ConfigurationItemType enum value
 	ConfigurationItemTypeProcess = "PROCESS"
-	// @enum ConfigurationItemType
+
+	// ConfigurationItemTypeConnection is a ConfigurationItemType enum value
 	ConfigurationItemTypeConnection = "CONNECTION"
 )
 
 const (
-	// @enum ExportStatus
+	// ExportStatusFailed is a ExportStatus enum value
 	ExportStatusFailed = "FAILED"
-	// @enum ExportStatus
+
+	// ExportStatusSucceeded is a ExportStatus enum value
 	ExportStatusSucceeded = "SUCCEEDED"
-	// @enum ExportStatus
+
+	// ExportStatusInProgress is a ExportStatus enum value
 	ExportStatusInProgress = "IN_PROGRESS"
 )

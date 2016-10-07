@@ -973,6 +973,8 @@ type CreateIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
 
 	// TRUE if the identity pool supports unauthenticated logins.
+	//
+	// AllowUnauthenticatedIdentities is a required field
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
 	// An array of Amazon Cognito Identity user pools.
@@ -988,6 +990,8 @@ type CreateIdentityPoolInput struct {
 	DeveloperProviderName *string `min:"1" type:"string"`
 
 	// A string that you provide.
+	//
+	// IdentityPoolName is a required field
 	IdentityPoolName *string `min:"1" type:"string" required:"true"`
 
 	// A list of OpendID Connect provider ARNs.
@@ -1075,6 +1079,8 @@ type DeleteIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of 1-60 identities that you want to delete.
+	//
+	// IdentityIdsToDelete is a required field
 	IdentityIdsToDelete []*string `min:"1" type:"list" required:"true"`
 }
 
@@ -1128,6 +1134,8 @@ type DeleteIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1176,6 +1184,8 @@ type DescribeIdentityInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier in the format REGION:GUID.
+	//
+	// IdentityId is a required field
 	IdentityId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1210,6 +1220,8 @@ type DescribeIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1250,6 +1262,8 @@ type GetCredentialsForIdentityInput struct {
 	CustomRoleArn *string `min:"20" type:"string"`
 
 	// A unique identifier in the format REGION:GUID.
+	//
+	// IdentityId is a required field
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
@@ -1314,6 +1328,8 @@ type GetIdInput struct {
 	AccountId *string `min:"1" type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
@@ -1376,6 +1392,8 @@ type GetIdentityPoolRolesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1435,6 +1453,8 @@ type GetOpenIdTokenForDeveloperIdentityInput struct {
 	IdentityId *string `min:"1" type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
@@ -1446,6 +1466,8 @@ type GetOpenIdTokenForDeveloperIdentityInput struct {
 	// The developer user identifier is an identifier from your backend that uniquely
 	// identifies a user. When you create an identity pool, you can specify the
 	// supported logins.
+	//
+	// Logins is a required field
 	Logins map[string]*string `type:"map" required:"true"`
 
 	// The expiration time of the token, in seconds. You can specify a custom expiration
@@ -1520,6 +1542,8 @@ type GetOpenIdTokenInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier in the format REGION:GUID.
+	//
+	// IdentityId is a required field
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
@@ -1609,6 +1633,8 @@ type IdentityPool struct {
 	_ struct{} `type:"structure"`
 
 	// TRUE if the identity pool supports unauthenticated logins.
+	//
+	// AllowUnauthenticatedIdentities is a required field
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
 	// A list representing an Amazon Cognito Identity User Pool and its client ID.
@@ -1618,9 +1644,13 @@ type IdentityPool struct {
 	DeveloperProviderName *string `min:"1" type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// A string that you provide.
+	//
+	// IdentityPoolName is a required field
 	IdentityPoolName *string `min:"1" type:"string" required:"true"`
 
 	// A list of OpendID Connect provider ARNs.
@@ -1713,9 +1743,13 @@ type ListIdentitiesInput struct {
 	HideDisabled *bool `type:"boolean"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of identities to return.
+	//
+	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// A pagination token.
@@ -1786,6 +1820,8 @@ type ListIdentityPoolsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of identities to return.
+	//
+	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// A pagination token.
@@ -1855,6 +1891,8 @@ type LookupDeveloperIdentityInput struct {
 	IdentityId *string `min:"1" type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of identities to return.
@@ -1943,6 +1981,8 @@ type MergeDeveloperIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// User identifier for the destination user. The value should be a DeveloperUserIdentifier.
+	//
+	// DestinationUserIdentifier is a required field
 	DestinationUserIdentifier *string `min:"1" type:"string" required:"true"`
 
 	// The "domain" by which Cognito will refer to your users. This is a (pseudo)
@@ -1950,12 +1990,18 @@ type MergeDeveloperIdentitiesInput struct {
 	// as a placeholder that allows your backend and the Cognito service to communicate
 	// about the developer provider. For the DeveloperProviderName, you can use
 	// letters as well as period (.), underscore (_), and dash (-).
+	//
+	// DeveloperProviderName is a required field
 	DeveloperProviderName *string `min:"1" type:"string" required:"true"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// User identifier for the source user. The value should be a DeveloperUserIdentifier.
+	//
+	// SourceUserIdentifier is a required field
 	SourceUserIdentifier *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2065,11 +2111,15 @@ type SetIdentityPoolRolesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The map of roles associated with this pool. For a given role, the key will
 	// be either "authenticated" or "unauthenticated" and the value will be the
 	// Role ARN.
+	//
+	// Roles is a required field
 	Roles map[string]*string `type:"map" required:"true"`
 }
 
@@ -2121,15 +2171,23 @@ type UnlinkDeveloperIdentityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The "domain" by which Cognito will refer to your users.
+	//
+	// DeveloperProviderName is a required field
 	DeveloperProviderName *string `min:"1" type:"string" required:"true"`
 
 	// A unique ID used by your backend authentication process to identify a user.
+	//
+	// DeveloperUserIdentifier is a required field
 	DeveloperUserIdentifier *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier in the format REGION:GUID.
+	//
+	// IdentityId is a required field
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
 	// An identity pool ID in the format REGION:GUID.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2196,12 +2254,18 @@ type UnlinkIdentityInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier in the format REGION:GUID.
+	//
+	// IdentityId is a required field
 	IdentityId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
+	//
+	// Logins is a required field
 	Logins map[string]*string `type:"map" required:"true"`
 
 	// Provider names to unlink from this identity.
+	//
+	// LoginsToRemove is a required field
 	LoginsToRemove []*string `type:"list" required:"true"`
 }
 
@@ -2274,8 +2338,9 @@ func (s UnprocessedIdentityId) GoString() string {
 }
 
 const (
-	// @enum ErrorCode
+	// ErrorCodeAccessDenied is a ErrorCode enum value
 	ErrorCodeAccessDenied = "AccessDenied"
-	// @enum ErrorCode
+
+	// ErrorCodeInternalServerError is a ErrorCode enum value
 	ErrorCodeInternalServerError = "InternalServerError"
 )

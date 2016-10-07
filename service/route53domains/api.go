@@ -1361,6 +1361,8 @@ type CheckDomainAvailabilityInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// Reserved for future use.
@@ -1411,6 +1413,8 @@ type CheckDomainAvailabilityOutput struct {
 	// with a definitive answer about whether the domain name is available. Amazon
 	// Route 53 can return this response for a variety of reasons, for example,
 	// the registry is performing maintenance. Try again later.
+	//
+	// Availability is a required field
 	Availability *string `type:"string" required:"true" enum:"DomainAvailability"`
 }
 
@@ -1668,6 +1672,8 @@ type DeleteTagsForDomainInput struct {
 	// Name, you must convert the name to Punycode.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// A list of tag keys to delete.
@@ -1679,6 +1685,8 @@ type DeleteTagsForDomainInput struct {
 	// Required: No
 	//
 	// '>
+	//
+	// TagsToDelete is a required field
 	TagsToDelete []*string `type:"list" required:"true"`
 }
 
@@ -1725,6 +1733,7 @@ func (s DeleteTagsForDomainOutput) GoString() string {
 type DisableDomainAutoRenewInput struct {
 	_ struct{} `type:"structure"`
 
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1780,6 +1789,8 @@ type DisableDomainTransferLockInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1818,6 +1829,8 @@ type DisableDomainTransferLockOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -1862,6 +1875,8 @@ type DomainSummary struct {
 	// The name of a domain.
 	//
 	// Type: String
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// Expiration date of the domain in Coordinated Universal Time (UTC).
@@ -1891,6 +1906,7 @@ func (s DomainSummary) GoString() string {
 type EnableDomainAutoRenewInput struct {
 	_ struct{} `type:"structure"`
 
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1946,6 +1962,8 @@ type EnableDomainTransferLockInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1984,6 +2002,8 @@ type EnableDomainTransferLockOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -2016,6 +2036,8 @@ type ExtraParam struct {
 	// Parent: ExtraParams
 	//
 	// Required: Yes
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"ExtraParamName"`
 
 	// Values corresponding to the additional parameter names required by some top-level
@@ -2030,6 +2052,8 @@ type ExtraParam struct {
 	// Parent: ExtraParams
 	//
 	// Required: Yes
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -2126,6 +2150,8 @@ type GetDomainDetailInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -2175,6 +2201,8 @@ type GetDomainDetailOutput struct {
 	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
 	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
 	// Email, Fax, ExtraParams
+	//
+	// AdminContact is a required field
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
 	// Specifies whether contact information for the admin contact is concealed
@@ -2200,6 +2228,8 @@ type GetDomainDetailOutput struct {
 	// The name of a domain.
 	//
 	// Type: String
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The date when the registration for the domain is set to expire. The date
@@ -2209,6 +2239,8 @@ type GetDomainDetailOutput struct {
 	// The name of the domain.
 	//
 	// Type: String
+	//
+	// Nameservers is a required field
 	Nameservers []*Nameserver `type:"list" required:"true"`
 
 	// Provides details about the domain registrant.
@@ -2218,6 +2250,8 @@ type GetDomainDetailOutput struct {
 	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
 	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
 	// Email, Fax, ExtraParams
+	//
+	// RegistrantContact is a required field
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
 	// Specifies whether contact information for the registrant contact is concealed
@@ -2273,6 +2307,8 @@ type GetDomainDetailOutput struct {
 	// Children: FirstName, MiddleName, LastName, ContactType, OrganizationName,
 	// AddressLine1, AddressLine2, City, State, CountryCode, ZipCode, PhoneNumber,
 	// Email, Fax, ExtraParams
+	//
+	// TechContact is a required field
 	TechContact *ContactDetail `type:"structure" required:"true"`
 
 	// Specifies whether contact information for the tech contact is concealed from
@@ -2307,10 +2343,13 @@ func (s GetDomainDetailOutput) GoString() string {
 type GetDomainSuggestionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
+	// OnlyAvailable is a required field
 	OnlyAvailable *bool `type:"boolean" required:"true"`
 
+	// SuggestionCount is a required field
 	SuggestionCount *int64 `type:"integer" required:"true"`
 }
 
@@ -2371,6 +2410,8 @@ type GetOperationDetailInput struct {
 	// Default: None
 	//
 	// Required: Yes
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -2491,6 +2532,8 @@ type ListDomainsOutput struct {
 	// Type: Complex type containing a list of domain summaries.
 	//
 	// Children: AutoRenew, DomainName, Expiry, TransferLock
+	//
+	// Domains is a required field
 	Domains []*DomainSummary `type:"list" required:"true"`
 
 	// If there are more domains than you specified for MaxItems in the request,
@@ -2571,6 +2614,8 @@ type ListOperationsOutput struct {
 	// Type: Complex type containing a list of operation summaries
 	//
 	// Children: OperationId, Status, SubmittedDate, Type
+	//
+	// Operations is a required field
 	Operations []*OperationSummary `type:"list" required:"true"`
 }
 
@@ -2589,6 +2634,8 @@ type ListTagsForDomainInput struct {
 	_ struct{} `type:"structure"`
 
 	// The domain for which you want to get a list of tags.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -2636,6 +2683,8 @@ type ListTagsForDomainOutput struct {
 	// The value of a tag.
 	//
 	// Type: String
+	//
+	// TagList is a required field
 	TagList []*Tag `type:"list" required:"true"`
 }
 
@@ -2672,6 +2721,8 @@ type Nameserver struct {
 	// Constraint: Maximum 255 characterss
 	//
 	// Parent: Nameservers
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2705,14 +2756,20 @@ type OperationSummary struct {
 	// Identifier returned to track the requested action.
 	//
 	// Type: String
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 
 	// The current status of the requested operation in the system.
 	//
 	// Type: String
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"OperationStatus"`
 
 	// The date when the request was submitted.
+	//
+	// SubmittedDate is a required field
 	SubmittedDate *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// Type of the action requested.
@@ -2721,6 +2778,8 @@ type OperationSummary struct {
 	//
 	// Valid values: REGISTER_DOMAIN | DELETE_DOMAIN | TRANSFER_IN_DOMAIN | UPDATE_DOMAIN_CONTACT
 	// | UPDATE_NAMESERVER | CHANGE_PRIVACY_PROTECTION | DOMAIN_LOCK
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"OperationType"`
 }
 
@@ -2747,6 +2806,8 @@ type RegisterDomainInput struct {
 	// Email, Fax, ExtraParams
 	//
 	// Required: Yes
+	//
+	// AdminContact is a required field
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
 	// Indicates whether the domain will be automatically renewed (true) or not
@@ -2772,6 +2833,8 @@ type RegisterDomainInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The number of years the domain will be registered. Domains are registered
@@ -2784,6 +2847,8 @@ type RegisterDomainInput struct {
 	// Valid values: Integer from 1 to 10
 	//
 	// Required: Yes
+	//
+	// DurationInYears is a required field
 	DurationInYears *int64 `min:"1" type:"integer" required:"true"`
 
 	// Reserved for future use.
@@ -2840,6 +2905,8 @@ type RegisterDomainInput struct {
 	// Email, Fax, ExtraParams
 	//
 	// Required: Yes
+	//
+	// RegistrantContact is a required field
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
 	// Provides detailed contact information.
@@ -2851,6 +2918,8 @@ type RegisterDomainInput struct {
 	// Email, Fax, ExtraParams
 	//
 	// Required: Yes
+	//
+	// TechContact is a required field
 	TechContact *ContactDetail `type:"structure" required:"true"`
 }
 
@@ -2919,6 +2988,8 @@ type RegisterDomainOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -2947,8 +3018,11 @@ type RenewDomainInput struct {
 	// Valid values: Integer
 	//
 	// Required: Yes
+	//
+	// CurrentExpiryYear is a required field
 	CurrentExpiryYear *int64 `type:"integer" required:"true"`
 
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The number of years that you want to renew the domain for. The maximum number
@@ -2998,6 +3072,7 @@ func (s *RenewDomainInput) Validate() error {
 type RenewDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3076,6 +3151,8 @@ type RetrieveDomainAuthCodeInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -3109,6 +3186,8 @@ type RetrieveDomainAuthCodeOutput struct {
 	// The authorization code for the domain.
 	//
 	// Type: String
+	//
+	// AuthCode is a required field
 	AuthCode *string `type:"string" required:"true"`
 }
 
@@ -3176,6 +3255,8 @@ type TransferDomainInput struct {
 	// Email, Fax, ExtraParams
 	//
 	// Required: Yes
+	//
+	// AdminContact is a required field
 	AdminContact *ContactDetail `type:"structure" required:"true"`
 
 	// The authorization code for the domain. You get this value from the current
@@ -3209,6 +3290,8 @@ type TransferDomainInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The number of years the domain will be registered. Domains are registered
@@ -3221,6 +3304,8 @@ type TransferDomainInput struct {
 	// Valid values: Integer from 1 to 10
 	//
 	// Required: Yes
+	//
+	// DurationInYears is a required field
 	DurationInYears *int64 `min:"1" type:"integer" required:"true"`
 
 	// Reserved for future use.
@@ -3286,6 +3371,8 @@ type TransferDomainInput struct {
 	// Email, Fax, ExtraParams
 	//
 	// Required: Yes
+	//
+	// RegistrantContact is a required field
 	RegistrantContact *ContactDetail `type:"structure" required:"true"`
 
 	// Provides detailed contact information.
@@ -3297,6 +3384,8 @@ type TransferDomainInput struct {
 	// Email, Fax, ExtraParams
 	//
 	// Required: Yes
+	//
+	// TechContact is a required field
 	TechContact *ContactDetail `type:"structure" required:"true"`
 }
 
@@ -3375,6 +3464,8 @@ type TransferDomainOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3414,6 +3505,8 @@ type UpdateDomainContactInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// Provides detailed contact information.
@@ -3489,6 +3582,8 @@ type UpdateDomainContactOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3531,6 +3626,8 @@ type UpdateDomainContactPrivacyInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// Whether you want to conceal contact information from WHOIS queries. If you
@@ -3597,6 +3694,8 @@ type UpdateDomainContactPrivacyOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3625,6 +3724,8 @@ type UpdateDomainNameserversInput struct {
 	// supported.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The authorization key for .fi domains
@@ -3637,6 +3738,8 @@ type UpdateDomainNameserversInput struct {
 	// Children: Name, GlueIps
 	//
 	// Required: Yes
+	//
+	// Nameservers is a required field
 	Nameservers []*Nameserver `type:"list" required:"true"`
 }
 
@@ -3688,6 +3791,8 @@ type UpdateDomainNameserversOutput struct {
 	// Default: None
 	//
 	// Constraints: Maximum 255 characters.
+	//
+	// OperationId is a required field
 	OperationId *string `type:"string" required:"true"`
 }
 
@@ -3720,6 +3825,8 @@ type UpdateTagsForDomainInput struct {
 	// Name, you must convert the name to Punycode.
 	//
 	// Required: Yes
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// A list of the tag keys and values that you want to add or update. If you
@@ -3895,578 +4002,849 @@ func (s ViewBillingOutput) GoString() string {
 }
 
 const (
-	// @enum ContactType
+	// ContactTypePerson is a ContactType enum value
 	ContactTypePerson = "PERSON"
-	// @enum ContactType
+
+	// ContactTypeCompany is a ContactType enum value
 	ContactTypeCompany = "COMPANY"
-	// @enum ContactType
+
+	// ContactTypeAssociation is a ContactType enum value
 	ContactTypeAssociation = "ASSOCIATION"
-	// @enum ContactType
+
+	// ContactTypePublicBody is a ContactType enum value
 	ContactTypePublicBody = "PUBLIC_BODY"
-	// @enum ContactType
+
+	// ContactTypeReseller is a ContactType enum value
 	ContactTypeReseller = "RESELLER"
 )
 
 const (
-	// @enum CountryCode
+	// CountryCodeAd is a CountryCode enum value
 	CountryCodeAd = "AD"
-	// @enum CountryCode
+
+	// CountryCodeAe is a CountryCode enum value
 	CountryCodeAe = "AE"
-	// @enum CountryCode
+
+	// CountryCodeAf is a CountryCode enum value
 	CountryCodeAf = "AF"
-	// @enum CountryCode
+
+	// CountryCodeAg is a CountryCode enum value
 	CountryCodeAg = "AG"
-	// @enum CountryCode
+
+	// CountryCodeAi is a CountryCode enum value
 	CountryCodeAi = "AI"
-	// @enum CountryCode
+
+	// CountryCodeAl is a CountryCode enum value
 	CountryCodeAl = "AL"
-	// @enum CountryCode
+
+	// CountryCodeAm is a CountryCode enum value
 	CountryCodeAm = "AM"
-	// @enum CountryCode
+
+	// CountryCodeAn is a CountryCode enum value
 	CountryCodeAn = "AN"
-	// @enum CountryCode
+
+	// CountryCodeAo is a CountryCode enum value
 	CountryCodeAo = "AO"
-	// @enum CountryCode
+
+	// CountryCodeAq is a CountryCode enum value
 	CountryCodeAq = "AQ"
-	// @enum CountryCode
+
+	// CountryCodeAr is a CountryCode enum value
 	CountryCodeAr = "AR"
-	// @enum CountryCode
+
+	// CountryCodeAs is a CountryCode enum value
 	CountryCodeAs = "AS"
-	// @enum CountryCode
+
+	// CountryCodeAt is a CountryCode enum value
 	CountryCodeAt = "AT"
-	// @enum CountryCode
+
+	// CountryCodeAu is a CountryCode enum value
 	CountryCodeAu = "AU"
-	// @enum CountryCode
+
+	// CountryCodeAw is a CountryCode enum value
 	CountryCodeAw = "AW"
-	// @enum CountryCode
+
+	// CountryCodeAz is a CountryCode enum value
 	CountryCodeAz = "AZ"
-	// @enum CountryCode
+
+	// CountryCodeBa is a CountryCode enum value
 	CountryCodeBa = "BA"
-	// @enum CountryCode
+
+	// CountryCodeBb is a CountryCode enum value
 	CountryCodeBb = "BB"
-	// @enum CountryCode
+
+	// CountryCodeBd is a CountryCode enum value
 	CountryCodeBd = "BD"
-	// @enum CountryCode
+
+	// CountryCodeBe is a CountryCode enum value
 	CountryCodeBe = "BE"
-	// @enum CountryCode
+
+	// CountryCodeBf is a CountryCode enum value
 	CountryCodeBf = "BF"
-	// @enum CountryCode
+
+	// CountryCodeBg is a CountryCode enum value
 	CountryCodeBg = "BG"
-	// @enum CountryCode
+
+	// CountryCodeBh is a CountryCode enum value
 	CountryCodeBh = "BH"
-	// @enum CountryCode
+
+	// CountryCodeBi is a CountryCode enum value
 	CountryCodeBi = "BI"
-	// @enum CountryCode
+
+	// CountryCodeBj is a CountryCode enum value
 	CountryCodeBj = "BJ"
-	// @enum CountryCode
+
+	// CountryCodeBl is a CountryCode enum value
 	CountryCodeBl = "BL"
-	// @enum CountryCode
+
+	// CountryCodeBm is a CountryCode enum value
 	CountryCodeBm = "BM"
-	// @enum CountryCode
+
+	// CountryCodeBn is a CountryCode enum value
 	CountryCodeBn = "BN"
-	// @enum CountryCode
+
+	// CountryCodeBo is a CountryCode enum value
 	CountryCodeBo = "BO"
-	// @enum CountryCode
+
+	// CountryCodeBr is a CountryCode enum value
 	CountryCodeBr = "BR"
-	// @enum CountryCode
+
+	// CountryCodeBs is a CountryCode enum value
 	CountryCodeBs = "BS"
-	// @enum CountryCode
+
+	// CountryCodeBt is a CountryCode enum value
 	CountryCodeBt = "BT"
-	// @enum CountryCode
+
+	// CountryCodeBw is a CountryCode enum value
 	CountryCodeBw = "BW"
-	// @enum CountryCode
+
+	// CountryCodeBy is a CountryCode enum value
 	CountryCodeBy = "BY"
-	// @enum CountryCode
+
+	// CountryCodeBz is a CountryCode enum value
 	CountryCodeBz = "BZ"
-	// @enum CountryCode
+
+	// CountryCodeCa is a CountryCode enum value
 	CountryCodeCa = "CA"
-	// @enum CountryCode
+
+	// CountryCodeCc is a CountryCode enum value
 	CountryCodeCc = "CC"
-	// @enum CountryCode
+
+	// CountryCodeCd is a CountryCode enum value
 	CountryCodeCd = "CD"
-	// @enum CountryCode
+
+	// CountryCodeCf is a CountryCode enum value
 	CountryCodeCf = "CF"
-	// @enum CountryCode
+
+	// CountryCodeCg is a CountryCode enum value
 	CountryCodeCg = "CG"
-	// @enum CountryCode
+
+	// CountryCodeCh is a CountryCode enum value
 	CountryCodeCh = "CH"
-	// @enum CountryCode
+
+	// CountryCodeCi is a CountryCode enum value
 	CountryCodeCi = "CI"
-	// @enum CountryCode
+
+	// CountryCodeCk is a CountryCode enum value
 	CountryCodeCk = "CK"
-	// @enum CountryCode
+
+	// CountryCodeCl is a CountryCode enum value
 	CountryCodeCl = "CL"
-	// @enum CountryCode
+
+	// CountryCodeCm is a CountryCode enum value
 	CountryCodeCm = "CM"
-	// @enum CountryCode
+
+	// CountryCodeCn is a CountryCode enum value
 	CountryCodeCn = "CN"
-	// @enum CountryCode
+
+	// CountryCodeCo is a CountryCode enum value
 	CountryCodeCo = "CO"
-	// @enum CountryCode
+
+	// CountryCodeCr is a CountryCode enum value
 	CountryCodeCr = "CR"
-	// @enum CountryCode
+
+	// CountryCodeCu is a CountryCode enum value
 	CountryCodeCu = "CU"
-	// @enum CountryCode
+
+	// CountryCodeCv is a CountryCode enum value
 	CountryCodeCv = "CV"
-	// @enum CountryCode
+
+	// CountryCodeCx is a CountryCode enum value
 	CountryCodeCx = "CX"
-	// @enum CountryCode
+
+	// CountryCodeCy is a CountryCode enum value
 	CountryCodeCy = "CY"
-	// @enum CountryCode
+
+	// CountryCodeCz is a CountryCode enum value
 	CountryCodeCz = "CZ"
-	// @enum CountryCode
+
+	// CountryCodeDe is a CountryCode enum value
 	CountryCodeDe = "DE"
-	// @enum CountryCode
+
+	// CountryCodeDj is a CountryCode enum value
 	CountryCodeDj = "DJ"
-	// @enum CountryCode
+
+	// CountryCodeDk is a CountryCode enum value
 	CountryCodeDk = "DK"
-	// @enum CountryCode
+
+	// CountryCodeDm is a CountryCode enum value
 	CountryCodeDm = "DM"
-	// @enum CountryCode
+
+	// CountryCodeDo is a CountryCode enum value
 	CountryCodeDo = "DO"
-	// @enum CountryCode
+
+	// CountryCodeDz is a CountryCode enum value
 	CountryCodeDz = "DZ"
-	// @enum CountryCode
+
+	// CountryCodeEc is a CountryCode enum value
 	CountryCodeEc = "EC"
-	// @enum CountryCode
+
+	// CountryCodeEe is a CountryCode enum value
 	CountryCodeEe = "EE"
-	// @enum CountryCode
+
+	// CountryCodeEg is a CountryCode enum value
 	CountryCodeEg = "EG"
-	// @enum CountryCode
+
+	// CountryCodeEr is a CountryCode enum value
 	CountryCodeEr = "ER"
-	// @enum CountryCode
+
+	// CountryCodeEs is a CountryCode enum value
 	CountryCodeEs = "ES"
-	// @enum CountryCode
+
+	// CountryCodeEt is a CountryCode enum value
 	CountryCodeEt = "ET"
-	// @enum CountryCode
+
+	// CountryCodeFi is a CountryCode enum value
 	CountryCodeFi = "FI"
-	// @enum CountryCode
+
+	// CountryCodeFj is a CountryCode enum value
 	CountryCodeFj = "FJ"
-	// @enum CountryCode
+
+	// CountryCodeFk is a CountryCode enum value
 	CountryCodeFk = "FK"
-	// @enum CountryCode
+
+	// CountryCodeFm is a CountryCode enum value
 	CountryCodeFm = "FM"
-	// @enum CountryCode
+
+	// CountryCodeFo is a CountryCode enum value
 	CountryCodeFo = "FO"
-	// @enum CountryCode
+
+	// CountryCodeFr is a CountryCode enum value
 	CountryCodeFr = "FR"
-	// @enum CountryCode
+
+	// CountryCodeGa is a CountryCode enum value
 	CountryCodeGa = "GA"
-	// @enum CountryCode
+
+	// CountryCodeGb is a CountryCode enum value
 	CountryCodeGb = "GB"
-	// @enum CountryCode
+
+	// CountryCodeGd is a CountryCode enum value
 	CountryCodeGd = "GD"
-	// @enum CountryCode
+
+	// CountryCodeGe is a CountryCode enum value
 	CountryCodeGe = "GE"
-	// @enum CountryCode
+
+	// CountryCodeGh is a CountryCode enum value
 	CountryCodeGh = "GH"
-	// @enum CountryCode
+
+	// CountryCodeGi is a CountryCode enum value
 	CountryCodeGi = "GI"
-	// @enum CountryCode
+
+	// CountryCodeGl is a CountryCode enum value
 	CountryCodeGl = "GL"
-	// @enum CountryCode
+
+	// CountryCodeGm is a CountryCode enum value
 	CountryCodeGm = "GM"
-	// @enum CountryCode
+
+	// CountryCodeGn is a CountryCode enum value
 	CountryCodeGn = "GN"
-	// @enum CountryCode
+
+	// CountryCodeGq is a CountryCode enum value
 	CountryCodeGq = "GQ"
-	// @enum CountryCode
+
+	// CountryCodeGr is a CountryCode enum value
 	CountryCodeGr = "GR"
-	// @enum CountryCode
+
+	// CountryCodeGt is a CountryCode enum value
 	CountryCodeGt = "GT"
-	// @enum CountryCode
+
+	// CountryCodeGu is a CountryCode enum value
 	CountryCodeGu = "GU"
-	// @enum CountryCode
+
+	// CountryCodeGw is a CountryCode enum value
 	CountryCodeGw = "GW"
-	// @enum CountryCode
+
+	// CountryCodeGy is a CountryCode enum value
 	CountryCodeGy = "GY"
-	// @enum CountryCode
+
+	// CountryCodeHk is a CountryCode enum value
 	CountryCodeHk = "HK"
-	// @enum CountryCode
+
+	// CountryCodeHn is a CountryCode enum value
 	CountryCodeHn = "HN"
-	// @enum CountryCode
+
+	// CountryCodeHr is a CountryCode enum value
 	CountryCodeHr = "HR"
-	// @enum CountryCode
+
+	// CountryCodeHt is a CountryCode enum value
 	CountryCodeHt = "HT"
-	// @enum CountryCode
+
+	// CountryCodeHu is a CountryCode enum value
 	CountryCodeHu = "HU"
-	// @enum CountryCode
+
+	// CountryCodeId is a CountryCode enum value
 	CountryCodeId = "ID"
-	// @enum CountryCode
+
+	// CountryCodeIe is a CountryCode enum value
 	CountryCodeIe = "IE"
-	// @enum CountryCode
+
+	// CountryCodeIl is a CountryCode enum value
 	CountryCodeIl = "IL"
-	// @enum CountryCode
+
+	// CountryCodeIm is a CountryCode enum value
 	CountryCodeIm = "IM"
-	// @enum CountryCode
+
+	// CountryCodeIn is a CountryCode enum value
 	CountryCodeIn = "IN"
-	// @enum CountryCode
+
+	// CountryCodeIq is a CountryCode enum value
 	CountryCodeIq = "IQ"
-	// @enum CountryCode
+
+	// CountryCodeIr is a CountryCode enum value
 	CountryCodeIr = "IR"
-	// @enum CountryCode
+
+	// CountryCodeIs is a CountryCode enum value
 	CountryCodeIs = "IS"
-	// @enum CountryCode
+
+	// CountryCodeIt is a CountryCode enum value
 	CountryCodeIt = "IT"
-	// @enum CountryCode
+
+	// CountryCodeJm is a CountryCode enum value
 	CountryCodeJm = "JM"
-	// @enum CountryCode
+
+	// CountryCodeJo is a CountryCode enum value
 	CountryCodeJo = "JO"
-	// @enum CountryCode
+
+	// CountryCodeJp is a CountryCode enum value
 	CountryCodeJp = "JP"
-	// @enum CountryCode
+
+	// CountryCodeKe is a CountryCode enum value
 	CountryCodeKe = "KE"
-	// @enum CountryCode
+
+	// CountryCodeKg is a CountryCode enum value
 	CountryCodeKg = "KG"
-	// @enum CountryCode
+
+	// CountryCodeKh is a CountryCode enum value
 	CountryCodeKh = "KH"
-	// @enum CountryCode
+
+	// CountryCodeKi is a CountryCode enum value
 	CountryCodeKi = "KI"
-	// @enum CountryCode
+
+	// CountryCodeKm is a CountryCode enum value
 	CountryCodeKm = "KM"
-	// @enum CountryCode
+
+	// CountryCodeKn is a CountryCode enum value
 	CountryCodeKn = "KN"
-	// @enum CountryCode
+
+	// CountryCodeKp is a CountryCode enum value
 	CountryCodeKp = "KP"
-	// @enum CountryCode
+
+	// CountryCodeKr is a CountryCode enum value
 	CountryCodeKr = "KR"
-	// @enum CountryCode
+
+	// CountryCodeKw is a CountryCode enum value
 	CountryCodeKw = "KW"
-	// @enum CountryCode
+
+	// CountryCodeKy is a CountryCode enum value
 	CountryCodeKy = "KY"
-	// @enum CountryCode
+
+	// CountryCodeKz is a CountryCode enum value
 	CountryCodeKz = "KZ"
-	// @enum CountryCode
+
+	// CountryCodeLa is a CountryCode enum value
 	CountryCodeLa = "LA"
-	// @enum CountryCode
+
+	// CountryCodeLb is a CountryCode enum value
 	CountryCodeLb = "LB"
-	// @enum CountryCode
+
+	// CountryCodeLc is a CountryCode enum value
 	CountryCodeLc = "LC"
-	// @enum CountryCode
+
+	// CountryCodeLi is a CountryCode enum value
 	CountryCodeLi = "LI"
-	// @enum CountryCode
+
+	// CountryCodeLk is a CountryCode enum value
 	CountryCodeLk = "LK"
-	// @enum CountryCode
+
+	// CountryCodeLr is a CountryCode enum value
 	CountryCodeLr = "LR"
-	// @enum CountryCode
+
+	// CountryCodeLs is a CountryCode enum value
 	CountryCodeLs = "LS"
-	// @enum CountryCode
+
+	// CountryCodeLt is a CountryCode enum value
 	CountryCodeLt = "LT"
-	// @enum CountryCode
+
+	// CountryCodeLu is a CountryCode enum value
 	CountryCodeLu = "LU"
-	// @enum CountryCode
+
+	// CountryCodeLv is a CountryCode enum value
 	CountryCodeLv = "LV"
-	// @enum CountryCode
+
+	// CountryCodeLy is a CountryCode enum value
 	CountryCodeLy = "LY"
-	// @enum CountryCode
+
+	// CountryCodeMa is a CountryCode enum value
 	CountryCodeMa = "MA"
-	// @enum CountryCode
+
+	// CountryCodeMc is a CountryCode enum value
 	CountryCodeMc = "MC"
-	// @enum CountryCode
+
+	// CountryCodeMd is a CountryCode enum value
 	CountryCodeMd = "MD"
-	// @enum CountryCode
+
+	// CountryCodeMe is a CountryCode enum value
 	CountryCodeMe = "ME"
-	// @enum CountryCode
+
+	// CountryCodeMf is a CountryCode enum value
 	CountryCodeMf = "MF"
-	// @enum CountryCode
+
+	// CountryCodeMg is a CountryCode enum value
 	CountryCodeMg = "MG"
-	// @enum CountryCode
+
+	// CountryCodeMh is a CountryCode enum value
 	CountryCodeMh = "MH"
-	// @enum CountryCode
+
+	// CountryCodeMk is a CountryCode enum value
 	CountryCodeMk = "MK"
-	// @enum CountryCode
+
+	// CountryCodeMl is a CountryCode enum value
 	CountryCodeMl = "ML"
-	// @enum CountryCode
+
+	// CountryCodeMm is a CountryCode enum value
 	CountryCodeMm = "MM"
-	// @enum CountryCode
+
+	// CountryCodeMn is a CountryCode enum value
 	CountryCodeMn = "MN"
-	// @enum CountryCode
+
+	// CountryCodeMo is a CountryCode enum value
 	CountryCodeMo = "MO"
-	// @enum CountryCode
+
+	// CountryCodeMp is a CountryCode enum value
 	CountryCodeMp = "MP"
-	// @enum CountryCode
+
+	// CountryCodeMr is a CountryCode enum value
 	CountryCodeMr = "MR"
-	// @enum CountryCode
+
+	// CountryCodeMs is a CountryCode enum value
 	CountryCodeMs = "MS"
-	// @enum CountryCode
+
+	// CountryCodeMt is a CountryCode enum value
 	CountryCodeMt = "MT"
-	// @enum CountryCode
+
+	// CountryCodeMu is a CountryCode enum value
 	CountryCodeMu = "MU"
-	// @enum CountryCode
+
+	// CountryCodeMv is a CountryCode enum value
 	CountryCodeMv = "MV"
-	// @enum CountryCode
+
+	// CountryCodeMw is a CountryCode enum value
 	CountryCodeMw = "MW"
-	// @enum CountryCode
+
+	// CountryCodeMx is a CountryCode enum value
 	CountryCodeMx = "MX"
-	// @enum CountryCode
+
+	// CountryCodeMy is a CountryCode enum value
 	CountryCodeMy = "MY"
-	// @enum CountryCode
+
+	// CountryCodeMz is a CountryCode enum value
 	CountryCodeMz = "MZ"
-	// @enum CountryCode
+
+	// CountryCodeNa is a CountryCode enum value
 	CountryCodeNa = "NA"
-	// @enum CountryCode
+
+	// CountryCodeNc is a CountryCode enum value
 	CountryCodeNc = "NC"
-	// @enum CountryCode
+
+	// CountryCodeNe is a CountryCode enum value
 	CountryCodeNe = "NE"
-	// @enum CountryCode
+
+	// CountryCodeNg is a CountryCode enum value
 	CountryCodeNg = "NG"
-	// @enum CountryCode
+
+	// CountryCodeNi is a CountryCode enum value
 	CountryCodeNi = "NI"
-	// @enum CountryCode
+
+	// CountryCodeNl is a CountryCode enum value
 	CountryCodeNl = "NL"
-	// @enum CountryCode
+
+	// CountryCodeNo is a CountryCode enum value
 	CountryCodeNo = "NO"
-	// @enum CountryCode
+
+	// CountryCodeNp is a CountryCode enum value
 	CountryCodeNp = "NP"
-	// @enum CountryCode
+
+	// CountryCodeNr is a CountryCode enum value
 	CountryCodeNr = "NR"
-	// @enum CountryCode
+
+	// CountryCodeNu is a CountryCode enum value
 	CountryCodeNu = "NU"
-	// @enum CountryCode
+
+	// CountryCodeNz is a CountryCode enum value
 	CountryCodeNz = "NZ"
-	// @enum CountryCode
+
+	// CountryCodeOm is a CountryCode enum value
 	CountryCodeOm = "OM"
-	// @enum CountryCode
+
+	// CountryCodePa is a CountryCode enum value
 	CountryCodePa = "PA"
-	// @enum CountryCode
+
+	// CountryCodePe is a CountryCode enum value
 	CountryCodePe = "PE"
-	// @enum CountryCode
+
+	// CountryCodePf is a CountryCode enum value
 	CountryCodePf = "PF"
-	// @enum CountryCode
+
+	// CountryCodePg is a CountryCode enum value
 	CountryCodePg = "PG"
-	// @enum CountryCode
+
+	// CountryCodePh is a CountryCode enum value
 	CountryCodePh = "PH"
-	// @enum CountryCode
+
+	// CountryCodePk is a CountryCode enum value
 	CountryCodePk = "PK"
-	// @enum CountryCode
+
+	// CountryCodePl is a CountryCode enum value
 	CountryCodePl = "PL"
-	// @enum CountryCode
+
+	// CountryCodePm is a CountryCode enum value
 	CountryCodePm = "PM"
-	// @enum CountryCode
+
+	// CountryCodePn is a CountryCode enum value
 	CountryCodePn = "PN"
-	// @enum CountryCode
+
+	// CountryCodePr is a CountryCode enum value
 	CountryCodePr = "PR"
-	// @enum CountryCode
+
+	// CountryCodePt is a CountryCode enum value
 	CountryCodePt = "PT"
-	// @enum CountryCode
+
+	// CountryCodePw is a CountryCode enum value
 	CountryCodePw = "PW"
-	// @enum CountryCode
+
+	// CountryCodePy is a CountryCode enum value
 	CountryCodePy = "PY"
-	// @enum CountryCode
+
+	// CountryCodeQa is a CountryCode enum value
 	CountryCodeQa = "QA"
-	// @enum CountryCode
+
+	// CountryCodeRo is a CountryCode enum value
 	CountryCodeRo = "RO"
-	// @enum CountryCode
+
+	// CountryCodeRs is a CountryCode enum value
 	CountryCodeRs = "RS"
-	// @enum CountryCode
+
+	// CountryCodeRu is a CountryCode enum value
 	CountryCodeRu = "RU"
-	// @enum CountryCode
+
+	// CountryCodeRw is a CountryCode enum value
 	CountryCodeRw = "RW"
-	// @enum CountryCode
+
+	// CountryCodeSa is a CountryCode enum value
 	CountryCodeSa = "SA"
-	// @enum CountryCode
+
+	// CountryCodeSb is a CountryCode enum value
 	CountryCodeSb = "SB"
-	// @enum CountryCode
+
+	// CountryCodeSc is a CountryCode enum value
 	CountryCodeSc = "SC"
-	// @enum CountryCode
+
+	// CountryCodeSd is a CountryCode enum value
 	CountryCodeSd = "SD"
-	// @enum CountryCode
+
+	// CountryCodeSe is a CountryCode enum value
 	CountryCodeSe = "SE"
-	// @enum CountryCode
+
+	// CountryCodeSg is a CountryCode enum value
 	CountryCodeSg = "SG"
-	// @enum CountryCode
+
+	// CountryCodeSh is a CountryCode enum value
 	CountryCodeSh = "SH"
-	// @enum CountryCode
+
+	// CountryCodeSi is a CountryCode enum value
 	CountryCodeSi = "SI"
-	// @enum CountryCode
+
+	// CountryCodeSk is a CountryCode enum value
 	CountryCodeSk = "SK"
-	// @enum CountryCode
+
+	// CountryCodeSl is a CountryCode enum value
 	CountryCodeSl = "SL"
-	// @enum CountryCode
+
+	// CountryCodeSm is a CountryCode enum value
 	CountryCodeSm = "SM"
-	// @enum CountryCode
+
+	// CountryCodeSn is a CountryCode enum value
 	CountryCodeSn = "SN"
-	// @enum CountryCode
+
+	// CountryCodeSo is a CountryCode enum value
 	CountryCodeSo = "SO"
-	// @enum CountryCode
+
+	// CountryCodeSr is a CountryCode enum value
 	CountryCodeSr = "SR"
-	// @enum CountryCode
+
+	// CountryCodeSt is a CountryCode enum value
 	CountryCodeSt = "ST"
-	// @enum CountryCode
+
+	// CountryCodeSv is a CountryCode enum value
 	CountryCodeSv = "SV"
-	// @enum CountryCode
+
+	// CountryCodeSy is a CountryCode enum value
 	CountryCodeSy = "SY"
-	// @enum CountryCode
+
+	// CountryCodeSz is a CountryCode enum value
 	CountryCodeSz = "SZ"
-	// @enum CountryCode
+
+	// CountryCodeTc is a CountryCode enum value
 	CountryCodeTc = "TC"
-	// @enum CountryCode
+
+	// CountryCodeTd is a CountryCode enum value
 	CountryCodeTd = "TD"
-	// @enum CountryCode
+
+	// CountryCodeTg is a CountryCode enum value
 	CountryCodeTg = "TG"
-	// @enum CountryCode
+
+	// CountryCodeTh is a CountryCode enum value
 	CountryCodeTh = "TH"
-	// @enum CountryCode
+
+	// CountryCodeTj is a CountryCode enum value
 	CountryCodeTj = "TJ"
-	// @enum CountryCode
+
+	// CountryCodeTk is a CountryCode enum value
 	CountryCodeTk = "TK"
-	// @enum CountryCode
+
+	// CountryCodeTl is a CountryCode enum value
 	CountryCodeTl = "TL"
-	// @enum CountryCode
+
+	// CountryCodeTm is a CountryCode enum value
 	CountryCodeTm = "TM"
-	// @enum CountryCode
+
+	// CountryCodeTn is a CountryCode enum value
 	CountryCodeTn = "TN"
-	// @enum CountryCode
+
+	// CountryCodeTo is a CountryCode enum value
 	CountryCodeTo = "TO"
-	// @enum CountryCode
+
+	// CountryCodeTr is a CountryCode enum value
 	CountryCodeTr = "TR"
-	// @enum CountryCode
+
+	// CountryCodeTt is a CountryCode enum value
 	CountryCodeTt = "TT"
-	// @enum CountryCode
+
+	// CountryCodeTv is a CountryCode enum value
 	CountryCodeTv = "TV"
-	// @enum CountryCode
+
+	// CountryCodeTw is a CountryCode enum value
 	CountryCodeTw = "TW"
-	// @enum CountryCode
+
+	// CountryCodeTz is a CountryCode enum value
 	CountryCodeTz = "TZ"
-	// @enum CountryCode
+
+	// CountryCodeUa is a CountryCode enum value
 	CountryCodeUa = "UA"
-	// @enum CountryCode
+
+	// CountryCodeUg is a CountryCode enum value
 	CountryCodeUg = "UG"
-	// @enum CountryCode
+
+	// CountryCodeUs is a CountryCode enum value
 	CountryCodeUs = "US"
-	// @enum CountryCode
+
+	// CountryCodeUy is a CountryCode enum value
 	CountryCodeUy = "UY"
-	// @enum CountryCode
+
+	// CountryCodeUz is a CountryCode enum value
 	CountryCodeUz = "UZ"
-	// @enum CountryCode
+
+	// CountryCodeVa is a CountryCode enum value
 	CountryCodeVa = "VA"
-	// @enum CountryCode
+
+	// CountryCodeVc is a CountryCode enum value
 	CountryCodeVc = "VC"
-	// @enum CountryCode
+
+	// CountryCodeVe is a CountryCode enum value
 	CountryCodeVe = "VE"
-	// @enum CountryCode
+
+	// CountryCodeVg is a CountryCode enum value
 	CountryCodeVg = "VG"
-	// @enum CountryCode
+
+	// CountryCodeVi is a CountryCode enum value
 	CountryCodeVi = "VI"
-	// @enum CountryCode
+
+	// CountryCodeVn is a CountryCode enum value
 	CountryCodeVn = "VN"
-	// @enum CountryCode
+
+	// CountryCodeVu is a CountryCode enum value
 	CountryCodeVu = "VU"
-	// @enum CountryCode
+
+	// CountryCodeWf is a CountryCode enum value
 	CountryCodeWf = "WF"
-	// @enum CountryCode
+
+	// CountryCodeWs is a CountryCode enum value
 	CountryCodeWs = "WS"
-	// @enum CountryCode
+
+	// CountryCodeYe is a CountryCode enum value
 	CountryCodeYe = "YE"
-	// @enum CountryCode
+
+	// CountryCodeYt is a CountryCode enum value
 	CountryCodeYt = "YT"
-	// @enum CountryCode
+
+	// CountryCodeZa is a CountryCode enum value
 	CountryCodeZa = "ZA"
-	// @enum CountryCode
+
+	// CountryCodeZm is a CountryCode enum value
 	CountryCodeZm = "ZM"
-	// @enum CountryCode
+
+	// CountryCodeZw is a CountryCode enum value
 	CountryCodeZw = "ZW"
 )
 
 const (
-	// @enum DomainAvailability
+	// DomainAvailabilityAvailable is a DomainAvailability enum value
 	DomainAvailabilityAvailable = "AVAILABLE"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityAvailableReserved is a DomainAvailability enum value
 	DomainAvailabilityAvailableReserved = "AVAILABLE_RESERVED"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityAvailablePreorder is a DomainAvailability enum value
 	DomainAvailabilityAvailablePreorder = "AVAILABLE_PREORDER"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityUnavailable is a DomainAvailability enum value
 	DomainAvailabilityUnavailable = "UNAVAILABLE"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityUnavailablePremium is a DomainAvailability enum value
 	DomainAvailabilityUnavailablePremium = "UNAVAILABLE_PREMIUM"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityUnavailableRestricted is a DomainAvailability enum value
 	DomainAvailabilityUnavailableRestricted = "UNAVAILABLE_RESTRICTED"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityReserved is a DomainAvailability enum value
 	DomainAvailabilityReserved = "RESERVED"
-	// @enum DomainAvailability
+
+	// DomainAvailabilityDontKnow is a DomainAvailability enum value
 	DomainAvailabilityDontKnow = "DONT_KNOW"
 )
 
 const (
-	// @enum ExtraParamName
+	// ExtraParamNameDunsNumber is a ExtraParamName enum value
 	ExtraParamNameDunsNumber = "DUNS_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameBrandNumber is a ExtraParamName enum value
 	ExtraParamNameBrandNumber = "BRAND_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameBirthDepartment is a ExtraParamName enum value
 	ExtraParamNameBirthDepartment = "BIRTH_DEPARTMENT"
-	// @enum ExtraParamName
+
+	// ExtraParamNameBirthDateInYyyyMmDd is a ExtraParamName enum value
 	ExtraParamNameBirthDateInYyyyMmDd = "BIRTH_DATE_IN_YYYY_MM_DD"
-	// @enum ExtraParamName
+
+	// ExtraParamNameBirthCountry is a ExtraParamName enum value
 	ExtraParamNameBirthCountry = "BIRTH_COUNTRY"
-	// @enum ExtraParamName
+
+	// ExtraParamNameBirthCity is a ExtraParamName enum value
 	ExtraParamNameBirthCity = "BIRTH_CITY"
-	// @enum ExtraParamName
+
+	// ExtraParamNameDocumentNumber is a ExtraParamName enum value
 	ExtraParamNameDocumentNumber = "DOCUMENT_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameAuIdNumber is a ExtraParamName enum value
 	ExtraParamNameAuIdNumber = "AU_ID_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameAuIdType is a ExtraParamName enum value
 	ExtraParamNameAuIdType = "AU_ID_TYPE"
-	// @enum ExtraParamName
+
+	// ExtraParamNameCaLegalType is a ExtraParamName enum value
 	ExtraParamNameCaLegalType = "CA_LEGAL_TYPE"
-	// @enum ExtraParamName
+
+	// ExtraParamNameCaBusinessEntityType is a ExtraParamName enum value
 	ExtraParamNameCaBusinessEntityType = "CA_BUSINESS_ENTITY_TYPE"
-	// @enum ExtraParamName
+
+	// ExtraParamNameEsIdentification is a ExtraParamName enum value
 	ExtraParamNameEsIdentification = "ES_IDENTIFICATION"
-	// @enum ExtraParamName
+
+	// ExtraParamNameEsIdentificationType is a ExtraParamName enum value
 	ExtraParamNameEsIdentificationType = "ES_IDENTIFICATION_TYPE"
-	// @enum ExtraParamName
+
+	// ExtraParamNameEsLegalForm is a ExtraParamName enum value
 	ExtraParamNameEsLegalForm = "ES_LEGAL_FORM"
-	// @enum ExtraParamName
+
+	// ExtraParamNameFiBusinessNumber is a ExtraParamName enum value
 	ExtraParamNameFiBusinessNumber = "FI_BUSINESS_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameFiIdNumber is a ExtraParamName enum value
 	ExtraParamNameFiIdNumber = "FI_ID_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameItPin is a ExtraParamName enum value
 	ExtraParamNameItPin = "IT_PIN"
-	// @enum ExtraParamName
+
+	// ExtraParamNameRuPassportData is a ExtraParamName enum value
 	ExtraParamNameRuPassportData = "RU_PASSPORT_DATA"
-	// @enum ExtraParamName
+
+	// ExtraParamNameSeIdNumber is a ExtraParamName enum value
 	ExtraParamNameSeIdNumber = "SE_ID_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameSgIdNumber is a ExtraParamName enum value
 	ExtraParamNameSgIdNumber = "SG_ID_NUMBER"
-	// @enum ExtraParamName
+
+	// ExtraParamNameVatNumber is a ExtraParamName enum value
 	ExtraParamNameVatNumber = "VAT_NUMBER"
 )
 
 const (
-	// @enum OperationStatus
+	// OperationStatusSubmitted is a OperationStatus enum value
 	OperationStatusSubmitted = "SUBMITTED"
-	// @enum OperationStatus
+
+	// OperationStatusInProgress is a OperationStatus enum value
 	OperationStatusInProgress = "IN_PROGRESS"
-	// @enum OperationStatus
+
+	// OperationStatusError is a OperationStatus enum value
 	OperationStatusError = "ERROR"
-	// @enum OperationStatus
+
+	// OperationStatusSuccessful is a OperationStatus enum value
 	OperationStatusSuccessful = "SUCCESSFUL"
-	// @enum OperationStatus
+
+	// OperationStatusFailed is a OperationStatus enum value
 	OperationStatusFailed = "FAILED"
 )
 
 const (
-	// @enum OperationType
+	// OperationTypeRegisterDomain is a OperationType enum value
 	OperationTypeRegisterDomain = "REGISTER_DOMAIN"
-	// @enum OperationType
+
+	// OperationTypeDeleteDomain is a OperationType enum value
 	OperationTypeDeleteDomain = "DELETE_DOMAIN"
-	// @enum OperationType
+
+	// OperationTypeTransferInDomain is a OperationType enum value
 	OperationTypeTransferInDomain = "TRANSFER_IN_DOMAIN"
-	// @enum OperationType
+
+	// OperationTypeUpdateDomainContact is a OperationType enum value
 	OperationTypeUpdateDomainContact = "UPDATE_DOMAIN_CONTACT"
-	// @enum OperationType
+
+	// OperationTypeUpdateNameserver is a OperationType enum value
 	OperationTypeUpdateNameserver = "UPDATE_NAMESERVER"
-	// @enum OperationType
+
+	// OperationTypeChangePrivacyProtection is a OperationType enum value
 	OperationTypeChangePrivacyProtection = "CHANGE_PRIVACY_PROTECTION"
-	// @enum OperationType
+
+	// OperationTypeDomainLock is a OperationType enum value
 	OperationTypeDomainLock = "DOMAIN_LOCK"
 )
 
 const (
-	// @enum ReachabilityStatus
+	// ReachabilityStatusPending is a ReachabilityStatus enum value
 	ReachabilityStatusPending = "PENDING"
-	// @enum ReachabilityStatus
+
+	// ReachabilityStatusDone is a ReachabilityStatus enum value
 	ReachabilityStatusDone = "DONE"
-	// @enum ReachabilityStatus
+
+	// ReachabilityStatusExpired is a ReachabilityStatus enum value
 	ReachabilityStatusExpired = "EXPIRED"
 )

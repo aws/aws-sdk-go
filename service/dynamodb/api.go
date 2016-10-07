@@ -1140,6 +1140,8 @@ type AttributeDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the attribute.
+	//
+	// AttributeName is a required field
 	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The data type for the attribute, where:
@@ -1149,6 +1151,8 @@ type AttributeDefinition struct {
 	//   N - the attribute is of type Number
 	//
 	//   B - the attribute is of type Binary
+	//
+	// AttributeType is a required field
 	AttributeType *string `type:"string" required:"true" enum:"ScalarAttributeType"`
 }
 
@@ -1415,6 +1419,8 @@ type BatchGetItemInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
+	//
+	// RequestItems is a required field
 	RequestItems map[string]*KeysAndAttributes `min:"1" type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
@@ -1552,6 +1558,8 @@ type BatchWriteItemInput struct {
 	// If you specify any attributes that are part of an index key, then the data
 	// types for those attributes must match those of the schema in the table's
 	// attribute definition.
+	//
+	// RequestItems is a required field
 	RequestItems map[string][]*WriteRequest `min:"1" type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
@@ -1860,6 +1868,8 @@ type Condition struct {
 	//   For usage examples of AttributeValueList and ComparisonOperator, see Legacy
 	// Conditional Parameters (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 }
 
@@ -1926,14 +1936,20 @@ type CreateGlobalSecondaryIndexAction struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the global secondary index to be created.
+	//
+	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The key schema for the global secondary index.
+	//
+	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
 	// attributes, which are automatically projected.
+	//
+	// Projection is a required field
 	Projection *Projection `type:"structure" required:"true"`
 
 	// Represents the provisioned throughput settings for a specified table or index.
@@ -1942,6 +1958,8 @@ type CreateGlobalSecondaryIndexAction struct {
 	// For current minimum and maximum provisioned throughput values, see Limits
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// ProvisionedThroughput is a required field
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 }
 
@@ -2008,6 +2026,8 @@ type CreateTableInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of attributes that describe the key schema for the table and indexes.
+	//
+	// AttributeDefinitions is a required field
 	AttributeDefinitions []*AttributeDefinition `type:"list" required:"true"`
 
 	// One or more global secondary indexes (the maximum is five) to be created
@@ -2075,6 +2095,8 @@ type CreateTableInput struct {
 	//
 	// For more information, see Specifying the Primary Key (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// One or more local secondary indexes (the maximum is five) to be created on
@@ -2117,6 +2139,8 @@ type CreateTableInput struct {
 	// For current minimum and maximum provisioned throughput values, see Limits
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// ProvisionedThroughput is a required field
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
 	// The settings for DynamoDB Streams on the table. These settings consist of:
@@ -2142,6 +2166,8 @@ type CreateTableInput struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to create.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2251,6 +2277,8 @@ type DeleteGlobalSecondaryIndexAction struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the global secondary index to be deleted.
+	//
+	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2588,6 +2616,8 @@ type DeleteItemInput struct {
 	// with a simple primary key, you only need to provide a value for the partition
 	// key. For a composite primary key, you must provide values for both the partition
 	// key and the sort key.
+	//
+	// Key is a required field
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
@@ -2626,6 +2656,8 @@ type DeleteItemInput struct {
 	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table from which to delete the item.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2714,6 +2746,8 @@ type DeleteRequest struct {
 	// A map of attribute name to attribute values, representing the primary key
 	// of the item to delete. All of the table's primary key attributes must be
 	// specified, and their data types must match those of the table's key schema.
+	//
+	// Key is a required field
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 }
 
@@ -2732,6 +2766,8 @@ type DeleteTableInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the table to delete.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2832,6 +2868,8 @@ type DescribeTableInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the table to describe.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -3161,6 +3199,8 @@ type GetItemInput struct {
 	// with a simple primary key, you only need to provide a value for the partition
 	// key. For a composite primary key, you must provide values for both the partition
 	// key and the sort key.
+	//
+	// Key is a required field
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
@@ -3195,6 +3235,8 @@ type GetItemInput struct {
 	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// The name of the table containing the requested item.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -3262,6 +3304,8 @@ type GlobalSecondaryIndex struct {
 
 	// The name of the global secondary index. The name must be unique among all
 	// other indexes on this table.
+	//
+	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The complete key schema for a global secondary index, which consists of one
@@ -3279,11 +3323,15 @@ type GlobalSecondaryIndex struct {
 	// The sort key of an item is also known as its range attribute. The term "range
 	// attribute" derives from the way DynamoDB stores items with the same partition
 	// key physically close together, in sorted order by the sort key value.
+	//
+	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
 	// attributes, which are automatically projected.
+	//
+	// Projection is a required field
 	Projection *Projection `type:"structure" required:"true"`
 
 	// Represents the provisioned throughput settings for a specified table or index.
@@ -3292,6 +3340,8 @@ type GlobalSecondaryIndex struct {
 	// For current minimum and maximum provisioned throughput values, see Limits
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// ProvisionedThroughput is a required field
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 }
 
@@ -3547,6 +3597,8 @@ type KeySchemaElement struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a key attribute.
+	//
+	// AttributeName is a required field
 	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The role that this key attribute will assume:
@@ -3563,6 +3615,8 @@ type KeySchemaElement struct {
 	// The sort key of an item is also known as its range attribute. The term "range
 	// attribute" derives from the way DynamoDB stores items with the same partition
 	// key physically close together, in sorted order by the sort key value.
+	//
+	// KeyType is a required field
 	KeyType *string `type:"string" required:"true" enum:"KeyType"`
 }
 
@@ -3652,6 +3706,8 @@ type KeysAndAttributes struct {
 
 	// The primary key attribute values that define the items and the attributes
 	// associated with the items.
+	//
+	// Keys is a required field
 	Keys []map[string]*AttributeValue `min:"1" type:"list" required:"true"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
@@ -3775,6 +3831,8 @@ type LocalSecondaryIndex struct {
 
 	// The name of the local secondary index. The name must be unique among all
 	// other indexes on this table.
+	//
+	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The complete key schema for the local secondary index, consisting of one
@@ -3792,11 +3850,15 @@ type LocalSecondaryIndex struct {
 	// The sort key of an item is also known as its range attribute. The term "range
 	// attribute" derives from the way DynamoDB stores items with the same partition
 	// key physically close together, in sorted order by the sort key value.
+	//
+	// KeySchema is a required field
 	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
 	// attributes, which are automatically projected.
+	//
+	// Projection is a required field
 	Projection *Projection `type:"structure" required:"true"`
 }
 
@@ -3963,12 +4025,16 @@ type ProvisionedThroughput struct {
 	// DynamoDB returns a ThrottlingException. For more information, see Specifying
 	// Read and Write Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// ReadCapacityUnits is a required field
 	ReadCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 
 	// The maximum number of writes consumed per second before DynamoDB returns
 	// a ThrottlingException. For more information, see Specifying Read and Write
 	// Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// WriteCapacityUnits is a required field
 	WriteCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 }
 
@@ -4360,6 +4426,8 @@ type PutItemInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	//
 	// Each element in the Item map is an AttributeValue object.
+	//
+	// Item is a required field
 	Item map[string]*AttributeValue `type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
@@ -4400,6 +4468,8 @@ type PutItemInput struct {
 	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table to contain the item.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -4490,6 +4560,8 @@ type PutRequest struct {
 	// must be specified, and their data types must match those of the table's key
 	// schema. If any attributes are present in the item which are part of an index
 	// key schema for the table, their types must match the index key schema.
+	//
+	// Item is a required field
 	Item map[string]*AttributeValue `type:"map" required:"true"`
 }
 
@@ -4988,6 +5060,8 @@ type QueryInput struct {
 	Select *string `type:"string" enum:"Select"`
 
 	// The name of the table containing the requested items.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -5383,6 +5457,8 @@ type ScanInput struct {
 
 	// The name of the table containing the requested items; or, if you provide
 	// IndexName, the name of the table to which that index belongs.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 
 	// For a parallel Scan request, TotalSegments represents the total number of
@@ -5759,6 +5835,8 @@ type UpdateGlobalSecondaryIndexAction struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the global secondary index to be updated.
+	//
+	// IndexName is a required field
 	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// Represents the provisioned throughput settings for a specified table or index.
@@ -5767,6 +5845,8 @@ type UpdateGlobalSecondaryIndexAction struct {
 	// For current minimum and maximum provisioned throughput values, see Limits
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
+	//
+	// ProvisionedThroughput is a required field
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 }
 
@@ -6201,6 +6281,8 @@ type UpdateItemInput struct {
 	// with a simple primary key, you only need to provide a value for the partition
 	// key. For a composite primary key, you must provide values for both the partition
 	// key and the sort key.
+	//
+	// Key is a required field
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
@@ -6250,6 +6332,8 @@ type UpdateItemInput struct {
 	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table containing the item to update.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 
 	// An expression that defines one or more attributes to be updated, the action
@@ -6431,6 +6515,8 @@ type UpdateTableInput struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to be updated.
+	//
+	// TableName is a required field
 	TableName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -6528,74 +6614,95 @@ func (s WriteRequest) GoString() string {
 }
 
 const (
-	// @enum AttributeAction
+	// AttributeActionAdd is a AttributeAction enum value
 	AttributeActionAdd = "ADD"
-	// @enum AttributeAction
+
+	// AttributeActionPut is a AttributeAction enum value
 	AttributeActionPut = "PUT"
-	// @enum AttributeAction
+
+	// AttributeActionDelete is a AttributeAction enum value
 	AttributeActionDelete = "DELETE"
 )
 
 const (
-	// @enum ComparisonOperator
+	// ComparisonOperatorEq is a ComparisonOperator enum value
 	ComparisonOperatorEq = "EQ"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorNe is a ComparisonOperator enum value
 	ComparisonOperatorNe = "NE"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorIn is a ComparisonOperator enum value
 	ComparisonOperatorIn = "IN"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLe is a ComparisonOperator enum value
 	ComparisonOperatorLe = "LE"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLt is a ComparisonOperator enum value
 	ComparisonOperatorLt = "LT"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorGe is a ComparisonOperator enum value
 	ComparisonOperatorGe = "GE"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorGt is a ComparisonOperator enum value
 	ComparisonOperatorGt = "GT"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorBetween is a ComparisonOperator enum value
 	ComparisonOperatorBetween = "BETWEEN"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorNotNull is a ComparisonOperator enum value
 	ComparisonOperatorNotNull = "NOT_NULL"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorNull is a ComparisonOperator enum value
 	ComparisonOperatorNull = "NULL"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorContains is a ComparisonOperator enum value
 	ComparisonOperatorContains = "CONTAINS"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorNotContains is a ComparisonOperator enum value
 	ComparisonOperatorNotContains = "NOT_CONTAINS"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorBeginsWith is a ComparisonOperator enum value
 	ComparisonOperatorBeginsWith = "BEGINS_WITH"
 )
 
 const (
-	// @enum ConditionalOperator
+	// ConditionalOperatorAnd is a ConditionalOperator enum value
 	ConditionalOperatorAnd = "AND"
-	// @enum ConditionalOperator
+
+	// ConditionalOperatorOr is a ConditionalOperator enum value
 	ConditionalOperatorOr = "OR"
 )
 
 const (
-	// @enum IndexStatus
+	// IndexStatusCreating is a IndexStatus enum value
 	IndexStatusCreating = "CREATING"
-	// @enum IndexStatus
+
+	// IndexStatusUpdating is a IndexStatus enum value
 	IndexStatusUpdating = "UPDATING"
-	// @enum IndexStatus
+
+	// IndexStatusDeleting is a IndexStatus enum value
 	IndexStatusDeleting = "DELETING"
-	// @enum IndexStatus
+
+	// IndexStatusActive is a IndexStatus enum value
 	IndexStatusActive = "ACTIVE"
 )
 
 const (
-	// @enum KeyType
+	// KeyTypeHash is a KeyType enum value
 	KeyTypeHash = "HASH"
-	// @enum KeyType
+
+	// KeyTypeRange is a KeyType enum value
 	KeyTypeRange = "RANGE"
 )
 
 const (
-	// @enum ProjectionType
+	// ProjectionTypeAll is a ProjectionType enum value
 	ProjectionTypeAll = "ALL"
-	// @enum ProjectionType
+
+	// ProjectionTypeKeysOnly is a ProjectionType enum value
 	ProjectionTypeKeysOnly = "KEYS_ONLY"
-	// @enum ProjectionType
+
+	// ProjectionTypeInclude is a ProjectionType enum value
 	ProjectionTypeInclude = "INCLUDE"
 )
 
@@ -6615,72 +6722,90 @@ const (
 //
 //    NONE - No ConsumedCapacity details are included in the response.
 const (
-	// @enum ReturnConsumedCapacity
+	// ReturnConsumedCapacityIndexes is a ReturnConsumedCapacity enum value
 	ReturnConsumedCapacityIndexes = "INDEXES"
-	// @enum ReturnConsumedCapacity
+
+	// ReturnConsumedCapacityTotal is a ReturnConsumedCapacity enum value
 	ReturnConsumedCapacityTotal = "TOTAL"
-	// @enum ReturnConsumedCapacity
+
+	// ReturnConsumedCapacityNone is a ReturnConsumedCapacity enum value
 	ReturnConsumedCapacityNone = "NONE"
 )
 
 const (
-	// @enum ReturnItemCollectionMetrics
+	// ReturnItemCollectionMetricsSize is a ReturnItemCollectionMetrics enum value
 	ReturnItemCollectionMetricsSize = "SIZE"
-	// @enum ReturnItemCollectionMetrics
+
+	// ReturnItemCollectionMetricsNone is a ReturnItemCollectionMetrics enum value
 	ReturnItemCollectionMetricsNone = "NONE"
 )
 
 const (
-	// @enum ReturnValue
+	// ReturnValueNone is a ReturnValue enum value
 	ReturnValueNone = "NONE"
-	// @enum ReturnValue
+
+	// ReturnValueAllOld is a ReturnValue enum value
 	ReturnValueAllOld = "ALL_OLD"
-	// @enum ReturnValue
+
+	// ReturnValueUpdatedOld is a ReturnValue enum value
 	ReturnValueUpdatedOld = "UPDATED_OLD"
-	// @enum ReturnValue
+
+	// ReturnValueAllNew is a ReturnValue enum value
 	ReturnValueAllNew = "ALL_NEW"
-	// @enum ReturnValue
+
+	// ReturnValueUpdatedNew is a ReturnValue enum value
 	ReturnValueUpdatedNew = "UPDATED_NEW"
 )
 
 const (
-	// @enum ScalarAttributeType
+	// ScalarAttributeTypeS is a ScalarAttributeType enum value
 	ScalarAttributeTypeS = "S"
-	// @enum ScalarAttributeType
+
+	// ScalarAttributeTypeN is a ScalarAttributeType enum value
 	ScalarAttributeTypeN = "N"
-	// @enum ScalarAttributeType
+
+	// ScalarAttributeTypeB is a ScalarAttributeType enum value
 	ScalarAttributeTypeB = "B"
 )
 
 const (
-	// @enum Select
+	// SelectAllAttributes is a Select enum value
 	SelectAllAttributes = "ALL_ATTRIBUTES"
-	// @enum Select
+
+	// SelectAllProjectedAttributes is a Select enum value
 	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
-	// @enum Select
+
+	// SelectSpecificAttributes is a Select enum value
 	SelectSpecificAttributes = "SPECIFIC_ATTRIBUTES"
-	// @enum Select
+
+	// SelectCount is a Select enum value
 	SelectCount = "COUNT"
 )
 
 const (
-	// @enum StreamViewType
+	// StreamViewTypeNewImage is a StreamViewType enum value
 	StreamViewTypeNewImage = "NEW_IMAGE"
-	// @enum StreamViewType
+
+	// StreamViewTypeOldImage is a StreamViewType enum value
 	StreamViewTypeOldImage = "OLD_IMAGE"
-	// @enum StreamViewType
+
+	// StreamViewTypeNewAndOldImages is a StreamViewType enum value
 	StreamViewTypeNewAndOldImages = "NEW_AND_OLD_IMAGES"
-	// @enum StreamViewType
+
+	// StreamViewTypeKeysOnly is a StreamViewType enum value
 	StreamViewTypeKeysOnly = "KEYS_ONLY"
 )
 
 const (
-	// @enum TableStatus
+	// TableStatusCreating is a TableStatus enum value
 	TableStatusCreating = "CREATING"
-	// @enum TableStatus
+
+	// TableStatusUpdating is a TableStatus enum value
 	TableStatusUpdating = "UPDATING"
-	// @enum TableStatus
+
+	// TableStatusDeleting is a TableStatus enum value
 	TableStatusDeleting = "DELETING"
-	// @enum TableStatus
+
+	// TableStatusActive is a TableStatus enum value
 	TableStatusActive = "ACTIVE"
 )

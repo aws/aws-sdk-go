@@ -525,6 +525,8 @@ type SearchInput struct {
 	// For more information about specifying search criteria, see Searching Your
 	// Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html)
 	// in the Amazon CloudSearch Developer Guide.
+	//
+	// Query is a required field
 	Query *string `location:"querystring" locationName:"q" type:"string" required:"true"`
 
 	// Configures options for the query parser specified in the queryParser parameter.
@@ -751,12 +753,16 @@ type SuggestInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the string for which you want to get suggestions.
+	//
+	// Query is a required field
 	Query *string `location:"querystring" locationName:"q" type:"string" required:"true"`
 
 	// Specifies the maximum number of suggestions to return.
 	Size *int64 `location:"querystring" locationName:"size" type:"long"`
 
 	// Specifies the name of the suggester to use to find suggested matches.
+	//
+	// Suggester is a required field
 	Suggester *string `location:"querystring" locationName:"suggester" type:"string" required:"true"`
 }
 
@@ -886,9 +892,13 @@ type UploadDocumentsInput struct {
 	// document batch formats:
 	//
 	//  application/json application/xml
+	//
+	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true" enum:"ContentType"`
 
 	// A batch of documents formatted in JSON or HTML.
+	//
+	// Documents is a required field
 	Documents io.ReadSeeker `locationName:"documents" type:"blob" required:"true"`
 }
 
@@ -946,19 +956,23 @@ func (s UploadDocumentsOutput) GoString() string {
 }
 
 const (
-	// @enum ContentType
+	// ContentTypeApplicationJson is a ContentType enum value
 	ContentTypeApplicationJson = "application/json"
-	// @enum ContentType
+
+	// ContentTypeApplicationXml is a ContentType enum value
 	ContentTypeApplicationXml = "application/xml"
 )
 
 const (
-	// @enum QueryParser
+	// QueryParserSimple is a QueryParser enum value
 	QueryParserSimple = "simple"
-	// @enum QueryParser
+
+	// QueryParserStructured is a QueryParser enum value
 	QueryParserStructured = "structured"
-	// @enum QueryParser
+
+	// QueryParserLucene is a QueryParser enum value
 	QueryParserLucene = "lucene"
-	// @enum QueryParser
+
+	// QueryParserDismax is a QueryParser enum value
 	QueryParserDismax = "dismax"
 )

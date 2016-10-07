@@ -1610,9 +1610,13 @@ type Action struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
 	// The type of action.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ActionTypeEnum"`
 }
 
@@ -1647,9 +1651,13 @@ type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArns is a required field
 	ResourceArns []*string `type:"list" required:"true"`
 
 	// The tags. Each resource can have a maximum of 10 tags.
+	//
+	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
@@ -1776,15 +1784,23 @@ type CreateListenerInput struct {
 	Certificates []*Certificate `type:"list"`
 
 	// The default actions for the listener.
+	//
+	// DefaultActions is a required field
 	DefaultActions []*Action `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
+	//
+	// LoadBalancerArn is a required field
 	LoadBalancerArn *string `type:"string" required:"true"`
 
 	// The port on which the load balancer is listening.
+	//
+	// Port is a required field
 	Port *int64 `min:"1" type:"integer" required:"true"`
 
 	// The protocol for connections from clients to the load balancer.
+	//
+	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"ProtocolEnum"`
 
 	// The security policy that defines which ciphers and protocols are supported.
@@ -1864,6 +1880,8 @@ type CreateLoadBalancerInput struct {
 	// This name must be unique within your AWS account, can have a maximum of
 	// 32 characters, must contain only alphanumeric characters or hyphens, and
 	// must not begin or end with a hyphen.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The nodes of an Internet-facing load balancer have public IP addresses. The
@@ -1885,6 +1903,8 @@ type CreateLoadBalancerInput struct {
 	// The IDs of the subnets to attach to the load balancer. You can specify only
 	// one subnet per Availability Zone. You must specify subnets from at least
 	// two Availability Zones.
+	//
+	// Subnets is a required field
 	Subnets []*string `type:"list" required:"true"`
 
 	// One or more tags to assign to the load balancer.
@@ -1953,16 +1973,24 @@ type CreateRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The actions for the rule.
+	//
+	// Actions is a required field
 	Actions []*Action `type:"list" required:"true"`
 
 	// The conditions.
+	//
+	// Conditions is a required field
 	Conditions []*RuleCondition `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the listener.
+	//
+	// ListenerArn is a required field
 	ListenerArn *string `type:"string" required:"true"`
 
 	// The priority for the rule. A listener can't have multiple rules with the
 	// same priority.
+	//
+	// Priority is a required field
 	Priority *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -2063,13 +2091,19 @@ type CreateTargetGroupInput struct {
 	Matcher *Matcher `type:"structure"`
 
 	// The name of the target group.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The port on which the targets receive traffic. This port is used unless you
 	// specify a port override when registering the target.
+	//
+	// Port is a required field
 	Port *int64 `min:"1" type:"integer" required:"true"`
 
 	// The protocol to use for routing traffic to the targets.
+	//
+	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"ProtocolEnum"`
 
 	// The number of consecutive health check failures required before considering
@@ -2077,6 +2111,8 @@ type CreateTargetGroupInput struct {
 	UnhealthyThresholdCount *int64 `min:"2" type:"integer"`
 
 	// The identifier of the virtual private cloud (VPC).
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -2158,6 +2194,8 @@ type DeleteListenerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the listener.
+	//
+	// ListenerArn is a required field
 	ListenerArn *string `type:"string" required:"true"`
 }
 
@@ -2204,6 +2242,8 @@ type DeleteLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
+	//
+	// LoadBalancerArn is a required field
 	LoadBalancerArn *string `type:"string" required:"true"`
 }
 
@@ -2250,6 +2290,8 @@ type DeleteRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the rule.
+	//
+	// RuleArn is a required field
 	RuleArn *string `type:"string" required:"true"`
 }
 
@@ -2296,6 +2338,8 @@ type DeleteTargetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 }
 
@@ -2342,9 +2386,13 @@ type DeregisterTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
 	// The targets.
+	//
+	// Targets is a required field
 	Targets []*TargetDescription `type:"list" required:"true"`
 }
 
@@ -2467,6 +2515,8 @@ type DescribeLoadBalancerAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
+	//
+	// LoadBalancerArn is a required field
 	LoadBalancerArn *string `type:"string" required:"true"`
 }
 
@@ -2678,6 +2728,8 @@ type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Names (ARN) of the resources.
+	//
+	// ResourceArns is a required field
 	ResourceArns []*string `type:"list" required:"true"`
 }
 
@@ -2727,6 +2779,8 @@ type DescribeTargetGroupAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 }
 
@@ -2842,6 +2896,8 @@ type DescribeTargetHealthInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
 	// The targets.
@@ -3061,6 +3117,8 @@ type Matcher struct {
 
 	// The HTTP codes. The default value is 200. You can specify multiple values
 	// (for example, "200,202") or a range of values (for example, "200-299").
+	//
+	// HttpCode is a required field
 	HttpCode *string `type:"string" required:"true"`
 }
 
@@ -3098,6 +3156,8 @@ type ModifyListenerInput struct {
 	DefaultActions []*Action `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the listener.
+	//
+	// ListenerArn is a required field
 	ListenerArn *string `type:"string" required:"true"`
 
 	// The port for connections from clients to the load balancer.
@@ -3169,9 +3229,13 @@ type ModifyLoadBalancerAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The load balancer attributes.
+	//
+	// Attributes is a required field
 	Attributes []*LoadBalancerAttribute `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
+	//
+	// LoadBalancerArn is a required field
 	LoadBalancerArn *string `type:"string" required:"true"`
 }
 
@@ -3230,6 +3294,8 @@ type ModifyRuleInput struct {
 	Conditions []*RuleCondition `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the rule.
+	//
+	// RuleArn is a required field
 	RuleArn *string `type:"string" required:"true"`
 }
 
@@ -3289,9 +3355,13 @@ type ModifyTargetGroupAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The attributes.
+	//
+	// Attributes is a required field
 	Attributes []*TargetGroupAttribute `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 }
 
@@ -3368,6 +3438,8 @@ type ModifyTargetGroupInput struct {
 	Matcher *Matcher `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
 	// The number of consecutive health check failures required before considering
@@ -3441,9 +3513,13 @@ type RegisterTargetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the target group.
+	//
+	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
 	// The targets.
+	//
+	// Targets is a required field
 	Targets []*TargetDescription `type:"list" required:"true"`
 }
 
@@ -3503,9 +3579,13 @@ type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArns is a required field
 	ResourceArns []*string `type:"list" required:"true"`
 
 	// The tag keys for the tags to remove.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -3653,6 +3733,8 @@ type SetRulePrioritiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The rule priorities.
+	//
+	// RulePriorities is a required field
 	RulePriorities []*RulePriorityPair `type:"list" required:"true"`
 }
 
@@ -3712,9 +3794,13 @@ type SetSecurityGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
+	//
+	// LoadBalancerArn is a required field
 	LoadBalancerArn *string `type:"string" required:"true"`
 
 	// The IDs of the security groups.
+	//
+	// SecurityGroups is a required field
 	SecurityGroups []*string `type:"list" required:"true"`
 }
 
@@ -3767,10 +3853,14 @@ type SetSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the load balancer.
+	//
+	// LoadBalancerArn is a required field
 	LoadBalancerArn *string `type:"string" required:"true"`
 
 	// The IDs of the subnets. You must specify at least two subnets. You can add
 	// only one subnet per Availability Zone.
+	//
+	// Subnets is a required field
 	Subnets []*string `type:"list" required:"true"`
 }
 
@@ -3847,6 +3937,8 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The key of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
@@ -3905,6 +3997,8 @@ type TargetDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the target.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// The port on which the target is listening.
@@ -4125,70 +4219,87 @@ func (s TargetHealthDescription) GoString() string {
 }
 
 const (
-	// @enum ActionTypeEnum
+	// ActionTypeEnumForward is a ActionTypeEnum enum value
 	ActionTypeEnumForward = "forward"
 )
 
 const (
-	// @enum LoadBalancerSchemeEnum
+	// LoadBalancerSchemeEnumInternetFacing is a LoadBalancerSchemeEnum enum value
 	LoadBalancerSchemeEnumInternetFacing = "internet-facing"
-	// @enum LoadBalancerSchemeEnum
+
+	// LoadBalancerSchemeEnumInternal is a LoadBalancerSchemeEnum enum value
 	LoadBalancerSchemeEnumInternal = "internal"
 )
 
 const (
-	// @enum LoadBalancerStateEnum
+	// LoadBalancerStateEnumActive is a LoadBalancerStateEnum enum value
 	LoadBalancerStateEnumActive = "active"
-	// @enum LoadBalancerStateEnum
+
+	// LoadBalancerStateEnumProvisioning is a LoadBalancerStateEnum enum value
 	LoadBalancerStateEnumProvisioning = "provisioning"
-	// @enum LoadBalancerStateEnum
+
+	// LoadBalancerStateEnumFailed is a LoadBalancerStateEnum enum value
 	LoadBalancerStateEnumFailed = "failed"
 )
 
 const (
-	// @enum LoadBalancerTypeEnum
+	// LoadBalancerTypeEnumApplication is a LoadBalancerTypeEnum enum value
 	LoadBalancerTypeEnumApplication = "application"
 )
 
 const (
-	// @enum ProtocolEnum
+	// ProtocolEnumHttp is a ProtocolEnum enum value
 	ProtocolEnumHttp = "HTTP"
-	// @enum ProtocolEnum
+
+	// ProtocolEnumHttps is a ProtocolEnum enum value
 	ProtocolEnumHttps = "HTTPS"
 )
 
 const (
-	// @enum TargetHealthReasonEnum
+	// TargetHealthReasonEnumElbRegistrationInProgress is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumElbRegistrationInProgress = "Elb.RegistrationInProgress"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumElbInitialHealthChecking is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumElbInitialHealthChecking = "Elb.InitialHealthChecking"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetResponseCodeMismatch is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetResponseCodeMismatch = "Target.ResponseCodeMismatch"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetTimeout is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetTimeout = "Target.Timeout"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetFailedHealthChecks is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetFailedHealthChecks = "Target.FailedHealthChecks"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetNotRegistered is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetNotRegistered = "Target.NotRegistered"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetNotInUse is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetNotInUse = "Target.NotInUse"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetDeregistrationInProgress is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetDeregistrationInProgress = "Target.DeregistrationInProgress"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumTargetInvalidState is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumTargetInvalidState = "Target.InvalidState"
-	// @enum TargetHealthReasonEnum
+
+	// TargetHealthReasonEnumElbInternalError is a TargetHealthReasonEnum enum value
 	TargetHealthReasonEnumElbInternalError = "Elb.InternalError"
 )
 
 const (
-	// @enum TargetHealthStateEnum
+	// TargetHealthStateEnumInitial is a TargetHealthStateEnum enum value
 	TargetHealthStateEnumInitial = "initial"
-	// @enum TargetHealthStateEnum
+
+	// TargetHealthStateEnumHealthy is a TargetHealthStateEnum enum value
 	TargetHealthStateEnumHealthy = "healthy"
-	// @enum TargetHealthStateEnum
+
+	// TargetHealthStateEnumUnhealthy is a TargetHealthStateEnum enum value
 	TargetHealthStateEnumUnhealthy = "unhealthy"
-	// @enum TargetHealthStateEnum
+
+	// TargetHealthStateEnumUnused is a TargetHealthStateEnum enum value
 	TargetHealthStateEnumUnused = "unused"
-	// @enum TargetHealthStateEnum
+
+	// TargetHealthStateEnumDraining is a TargetHealthStateEnum enum value
 	TargetHealthStateEnumDraining = "draining"
 )

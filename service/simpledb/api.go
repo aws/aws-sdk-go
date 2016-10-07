@@ -717,9 +717,13 @@ type Attribute struct {
 	AlternateValueEncoding *string `type:"string"`
 
 	// The name of the attribute.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The value of the attribute.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -737,9 +741,13 @@ type BatchDeleteAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the domain in which the attributes are being deleted.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// A list of items on which to perform the operation.
+	//
+	// Items is a required field
 	Items []*DeletableItem `locationNameList:"Item" type:"list" flattened:"true" required:"true"`
 }
 
@@ -797,9 +805,13 @@ type BatchPutAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the domain in which the attributes are being stored.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// A list of items on which to perform the operation.
+	//
+	// Items is a required field
 	Items []*ReplaceableItem `locationNameList:"Item" type:"list" flattened:"true" required:"true"`
 }
 
@@ -858,6 +870,8 @@ type CreateDomainInput struct {
 
 	// The name of the domain to create. The name can range between 3 and 255 characters
 	// and can contain the following characters: a-z, A-Z, 0-9, '_', '-', and '.'.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -902,6 +916,8 @@ type DeletableAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the attribute.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The value of the attribute.
@@ -936,6 +952,7 @@ type DeletableItem struct {
 
 	Attributes []*DeletableAttribute `locationNameList:"Attribute" type:"list" flattened:"true"`
 
+	// Name is a required field
 	Name *string `locationName:"ItemName" type:"string" required:"true"`
 }
 
@@ -980,6 +997,8 @@ type DeleteAttributesInput struct {
 	Attributes []*DeletableAttribute `locationNameList:"Attribute" type:"list" flattened:"true"`
 
 	// The name of the domain in which to perform the operation.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The update condition which, if specified, determines whether the specified
@@ -989,6 +1008,8 @@ type DeleteAttributesInput struct {
 
 	// The name of the item. Similar to rows on a spreadsheet, items represent individual
 	// objects that contain one or more value-attribute pairs.
+	//
+	// ItemName is a required field
 	ItemName *string `type:"string" required:"true"`
 }
 
@@ -1046,6 +1067,8 @@ type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the domain to delete.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1090,6 +1113,8 @@ type DomainMetadataInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the domain for which to display the metadata of.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 }
 
@@ -1164,9 +1189,13 @@ type GetAttributesInput struct {
 	ConsistentRead *bool `type:"boolean"`
 
 	// The name of the domain in which to perform the operation.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The name of the item.
+	//
+	// ItemName is a required field
 	ItemName *string `type:"string" required:"true"`
 }
 
@@ -1219,9 +1248,13 @@ type Item struct {
 	AlternateNameEncoding *string `type:"string"`
 
 	// A list of attributes.
+	//
+	// Attributes is a required field
 	Attributes []*Attribute `locationNameList:"Attribute" type:"list" flattened:"true" required:"true"`
 
 	// The name of the item.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1282,9 +1315,13 @@ type PutAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of attributes.
+	//
+	// Attributes is a required field
 	Attributes []*ReplaceableAttribute `locationNameList:"Attribute" type:"list" flattened:"true" required:"true"`
 
 	// The name of the domain in which to perform the operation.
+	//
+	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
 	// The update condition which, if specified, determines whether the specified
@@ -1293,6 +1330,8 @@ type PutAttributesInput struct {
 	Expected *UpdateCondition `type:"structure"`
 
 	// The name of the item.
+	//
+	// ItemName is a required field
 	ItemName *string `type:"string" required:"true"`
 }
 
@@ -1353,6 +1392,8 @@ type ReplaceableAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the replaceable attribute.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// A flag specifying whether or not to replace the attribute/value pair or to
@@ -1360,6 +1401,8 @@ type ReplaceableAttribute struct {
 	Replace *bool `type:"boolean"`
 
 	// The value of the replaceable attribute.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -1393,9 +1436,13 @@ type ReplaceableItem struct {
 	_ struct{} `type:"structure"`
 
 	// The list of attributes for a replaceable item.
+	//
+	// Attributes is a required field
 	Attributes []*ReplaceableAttribute `locationNameList:"Attribute" type:"list" flattened:"true" required:"true"`
 
 	// The name of the replaceable item.
+	//
+	// Name is a required field
 	Name *string `locationName:"ItemName" type:"string" required:"true"`
 }
 
@@ -1448,6 +1495,8 @@ type SelectInput struct {
 	NextToken *string `type:"string"`
 
 	// The expression used to query the domain.
+	//
+	// SelectExpression is a required field
 	SelectExpression *string `type:"string" required:"true"`
 }
 

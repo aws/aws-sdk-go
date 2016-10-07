@@ -1450,6 +1450,8 @@ type AddPermissionInput struct {
 	// is a string starting with lambda: followed by the API name . For example,
 	// lambda:CreateFunction. You can use wildcard (lambda:*) to grant permission
 	// for all AWS Lambda actions.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true"`
 
 	// A unique token that must be supplied by the principal invoking the function.
@@ -1464,6 +1466,8 @@ type AddPermissionInput struct {
 	// AWS Lambda also allows you to specify partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// The principal who is getting this permission. It can be Amazon S3 service
@@ -1472,6 +1476,8 @@ type AddPermissionInput struct {
 	// AWS service principal such as sns.amazonaws.com. For example, you might want
 	// to allow a custom application in another AWS account to push events to AWS
 	// Lambda by invoking your function.
+	//
+	// Principal is a required field
 	Principal *string `type:"string" required:"true"`
 
 	// You can use this optional query parameter to describe a qualified ARN using
@@ -1513,6 +1519,8 @@ type AddPermissionInput struct {
 	SourceArn *string `type:"string"`
 
 	// A unique statement identifier.
+	//
+	// StatementId is a required field
 	StatementId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1612,12 +1620,18 @@ type CreateAliasInput struct {
 	Description *string `type:"string"`
 
 	// Name of the Lambda function for which you want to create an alias.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Lambda function version for which you are creating the alias.
+	//
+	// FunctionVersion is a required field
 	FunctionVersion *string `min:"1" type:"string" required:"true"`
 
 	// Name for the alias you are creating.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1676,6 +1690,8 @@ type CreateEventSourceMappingInput struct {
 	// AWS Lambda to invoke your Lambda function, it depends on the BatchSize. AWS
 	// Lambda POSTs the Amazon Kinesis event, containing records, to your Lambda
 	// function as JSON.
+	//
+	// EventSourceArn is a required field
 	EventSourceArn *string `type:"string" required:"true"`
 
 	// The Lambda function to invoke when AWS Lambda detects an event on the stream.
@@ -1693,11 +1709,15 @@ type CreateEventSourceMappingInput struct {
 	//
 	// Note that the length constraint applies only to the ARN. If you specify
 	// only the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `min:"1" type:"string" required:"true"`
 
 	// The position in the stream where AWS Lambda should start reading. For more
 	// information, go to ShardIteratorType (http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType)
 	// in the Amazon Kinesis API Reference.
+	//
+	// StartingPosition is a required field
 	StartingPosition *string `type:"string" required:"true" enum:"EventSourcePosition"`
 }
 
@@ -1740,6 +1760,8 @@ type CreateFunctionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The code for the Lambda function.
+	//
+	// Code is a required field
 	Code *FunctionCode `type:"structure" required:"true"`
 
 	// A short, user-defined function description. Lambda does not use this value.
@@ -1749,12 +1771,16 @@ type CreateFunctionInput struct {
 	// The name you want to assign to the function you are uploading. The function
 	// names appear in the console and are returned in the ListFunctions API. Function
 	// names are used to specify functions to other AWS Lambda APIs, such as Invoke.
+	//
+	// FunctionName is a required field
 	FunctionName *string `min:"1" type:"string" required:"true"`
 
 	// The function within your code that Lambda calls to begin execution. For Node.js,
 	// it is the module-name.export value in your function. For Java, it can be
 	// package.class-name::handler or package.class-name. For more information,
 	// see Lambda Function Handler (Java) (http://docs.aws.amazon.com/lambda/latest/dg/java-programming-model-handler-types.html).
+	//
+	// Handler is a required field
 	Handler *string `type:"string" required:"true"`
 
 	// The amount of memory, in MB, your Lambda function is given. Lambda uses this
@@ -1772,12 +1798,16 @@ type CreateFunctionInput struct {
 	// The Amazon Resource Name (ARN) of the IAM role that Lambda assumes when it
 	// executes your function to access any other Amazon Web Services (AWS) resources.
 	// For more information, see AWS Lambda: How it Works (http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html).
+	//
+	// Role is a required field
 	Role *string `type:"string" required:"true"`
 
 	// The runtime environment for the Lambda function you are uploading.
 	//
 	// To use the Node.js runtime v4.3, set the value to "nodejs4.3". To use earlier
 	// runtime (v0.10.42), set the value to "nodejs".
+	//
+	// Runtime is a required field
 	Runtime *string `type:"string" required:"true" enum:"Runtime"`
 
 	// The function execution time at which Lambda should terminate the function.
@@ -1846,9 +1876,13 @@ type DeleteAliasInput struct {
 
 	// The Lambda function name for which the alias is created. Deleting an alias
 	// does not delete the function version to which it is pointing.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Name of the alias to delete.
+	//
+	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 }
 
@@ -1902,6 +1936,8 @@ type DeleteEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The event source mapping ID.
+	//
+	// UUID is a required field
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 }
 
@@ -1941,6 +1977,8 @@ type DeleteFunctionInput struct {
 	// ID qualifier (for example, account-id:Thumbnail). Note that the length constraint
 	// applies only to the ARN. If you specify only the function name, it is limited
 	// to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Using this optional parameter you can specify a function version (but not
@@ -2190,9 +2228,13 @@ type GetAliasInput struct {
 	// Function name for which the alias is created. An alias is a subresource that
 	// exists only in the context of an existing Lambda function so you must specify
 	// the function name.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Name of the alias for which you want to retrieve information.
+	//
+	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 }
 
@@ -2232,6 +2274,8 @@ type GetEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS Lambda assigned ID of the event source mapping.
+	//
+	// UUID is a required field
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 }
 
@@ -2269,6 +2313,8 @@ type GetFunctionConfigurationInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Using this optional parameter you can specify a function version or an alias
@@ -2321,6 +2367,8 @@ type GetFunctionInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Using this optional parameter to specify a function version or an alias name.
@@ -2396,6 +2444,8 @@ type GetPolicyInput struct {
 	// ID qualifier (for example, account-id:Thumbnail). Note that the length constraint
 	// applies only to the ARN. If you specify only the function name, it is limited
 	// to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// You can specify this optional query parameter to specify a function version
@@ -2457,9 +2507,13 @@ type InvokeAsyncInput struct {
 	_ struct{} `deprecated:"true" type:"structure" payload:"InvokeArgs"`
 
 	// The Lambda function name.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// JSON that you want to provide to your Lambda function as input.
+	//
+	// InvokeArgs is a required field
 	InvokeArgs io.ReadSeeker `type:"blob" required:"true"`
 }
 
@@ -2529,6 +2583,8 @@ type InvokeInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// By default, the Invoke API assumes RequestResponse invocation type. You can
@@ -2635,6 +2691,8 @@ type ListAliasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Lambda function name for which the alias is created.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// If you specify this optional parameter, the API returns only the aliases
@@ -2844,6 +2902,8 @@ type ListVersionsByFunctionInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Optional string. An opaque pagination token returned from a previous ListVersionsByFunction
@@ -2923,6 +2983,8 @@ type PublishVersionInput struct {
 	// allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 }
 
@@ -2962,6 +3024,8 @@ type RemovePermissionInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// You can specify this optional parameter to remove permission associated with
@@ -2971,6 +3035,8 @@ type RemovePermissionInput struct {
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
 	// Statement ID of the permission to remove.
+	//
+	// StatementId is a required field
 	StatementId *string `location:"uri" locationName:"StatementId" min:"1" type:"string" required:"true"`
 }
 
@@ -3030,6 +3096,8 @@ type UpdateAliasInput struct {
 	Description *string `type:"string"`
 
 	// The function name for which the alias is created.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Using this parameter you can change the Lambda function version to which
@@ -3037,6 +3105,8 @@ type UpdateAliasInput struct {
 	FunctionVersion *string `min:"1" type:"string"`
 
 	// The alias name.
+	//
+	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" min:"1" type:"string" required:"true"`
 }
 
@@ -3102,6 +3172,8 @@ type UpdateEventSourceMappingInput struct {
 	FunctionName *string `min:"1" type:"string"`
 
 	// The event source mapping identifier.
+	//
+	// UUID is a required field
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
 }
 
@@ -3144,6 +3216,8 @@ type UpdateFunctionCodeInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// This boolean parameter can be used to request AWS Lambda to update the Lambda
@@ -3221,6 +3295,8 @@ type UpdateFunctionConfigurationInput struct {
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
+	//
+	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// The function that Lambda calls to begin executing your function. For Node.js,
@@ -3338,44 +3414,53 @@ func (s VpcConfigResponse) GoString() string {
 }
 
 const (
-	// @enum EventSourcePosition
+	// EventSourcePositionTrimHorizon is a EventSourcePosition enum value
 	EventSourcePositionTrimHorizon = "TRIM_HORIZON"
-	// @enum EventSourcePosition
+
+	// EventSourcePositionLatest is a EventSourcePosition enum value
 	EventSourcePositionLatest = "LATEST"
 )
 
 const (
-	// @enum InvocationType
+	// InvocationTypeEvent is a InvocationType enum value
 	InvocationTypeEvent = "Event"
-	// @enum InvocationType
+
+	// InvocationTypeRequestResponse is a InvocationType enum value
 	InvocationTypeRequestResponse = "RequestResponse"
-	// @enum InvocationType
+
+	// InvocationTypeDryRun is a InvocationType enum value
 	InvocationTypeDryRun = "DryRun"
 )
 
 const (
-	// @enum LogType
+	// LogTypeNone is a LogType enum value
 	LogTypeNone = "None"
-	// @enum LogType
+
+	// LogTypeTail is a LogType enum value
 	LogTypeTail = "Tail"
 )
 
 const (
-	// @enum Runtime
+	// RuntimeNodejs is a Runtime enum value
 	RuntimeNodejs = "nodejs"
-	// @enum Runtime
+
+	// RuntimeNodejs43 is a Runtime enum value
 	RuntimeNodejs43 = "nodejs4.3"
-	// @enum Runtime
+
+	// RuntimeJava8 is a Runtime enum value
 	RuntimeJava8 = "java8"
-	// @enum Runtime
+
+	// RuntimePython27 is a Runtime enum value
 	RuntimePython27 = "python2.7"
 )
 
 const (
-	// @enum ThrottleReason
+	// ThrottleReasonConcurrentInvocationLimitExceeded is a ThrottleReason enum value
 	ThrottleReasonConcurrentInvocationLimitExceeded = "ConcurrentInvocationLimitExceeded"
-	// @enum ThrottleReason
+
+	// ThrottleReasonFunctionInvocationRateLimitExceeded is a ThrottleReason enum value
 	ThrottleReasonFunctionInvocationRateLimitExceeded = "FunctionInvocationRateLimitExceeded"
-	// @enum ThrottleReason
+
+	// ThrottleReasonCallerRateLimitExceeded is a ThrottleReason enum value
 	ThrottleReasonCallerRateLimitExceeded = "CallerRateLimitExceeded"
 )

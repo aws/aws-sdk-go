@@ -637,6 +637,8 @@ type CopyCommand struct {
 	DataTableColumns *string `type:"string"`
 
 	// The name of the target table. The table must already exist in the database.
+	//
+	// DataTableName is a required field
 	DataTableName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -671,6 +673,8 @@ type CreateDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
 	// The destination in Amazon ES. This value cannot be specified if Amazon S3
@@ -752,6 +756,8 @@ type DeleteDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -804,18 +810,28 @@ type DeliveryStreamDescription struct {
 	CreateTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The Amazon Resource Name (ARN) of the delivery stream.
+	//
+	// DeliveryStreamARN is a required field
 	DeliveryStreamARN *string `type:"string" required:"true"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
 	// The status of the delivery stream.
+	//
+	// DeliveryStreamStatus is a required field
 	DeliveryStreamStatus *string `type:"string" required:"true" enum:"DeliveryStreamStatus"`
 
 	// The destinations.
+	//
+	// Destinations is a required field
 	Destinations []*DestinationDescription `type:"list" required:"true"`
 
 	// Indicates whether there are more destinations available to list.
+	//
+	// HasMoreDestinations is a required field
 	HasMoreDestinations *bool `type:"boolean" required:"true"`
 
 	// The date and time that the delivery stream was last updated.
@@ -826,6 +842,8 @@ type DeliveryStreamDescription struct {
 	// VersionId is required when updating the destination. This is so that the
 	// service knows it is applying the changes to the correct version of the delivery
 	// stream.
+	//
+	// VersionId is a required field
 	VersionId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -844,6 +862,8 @@ type DescribeDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
 	// Specifies the destination ID to start returning the destination information.
@@ -892,6 +912,8 @@ type DescribeDeliveryStreamOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the delivery stream.
+	//
+	// DeliveryStreamDescription is a required field
 	DeliveryStreamDescription *DeliveryStreamDescription `type:"structure" required:"true"`
 }
 
@@ -910,6 +932,8 @@ type DestinationDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the destination.
+	//
+	// DestinationId is a required field
 	DestinationId *string `min:"1" type:"string" required:"true"`
 
 	// The destination in Amazon ES.
@@ -990,9 +1014,13 @@ type ElasticsearchDestinationConfiguration struct {
 	// The ARN of the Amazon ES domain. The IAM role must have permission for DescribeElasticsearchDomain,
 	// DescribeElasticsearchDomains , and DescribeElasticsearchDomainConfig after
 	// assuming RoleARN.
+	//
+	// DomainARN is a required field
 	DomainARN *string `min:"1" type:"string" required:"true"`
 
 	// The Elasticsearch index name.
+	//
+	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
 	// The Elasticsearch index rotation period. Index rotation appends a timestamp
@@ -1008,6 +1036,8 @@ type ElasticsearchDestinationConfiguration struct {
 	// The ARN of the IAM role to be assumed by Firehose for calling the Amazon
 	// ES Configuration API and for indexing documents. For more information, see
 	// Amazon S3 Bucket Access (http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3).
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
 	// Defines how documents should be delivered to Amazon S3. When set to FailedDocumentsOnly,
@@ -1021,9 +1051,13 @@ type ElasticsearchDestinationConfiguration struct {
 	S3BackupMode *string `type:"string" enum:"ElasticsearchS3BackupMode"`
 
 	// Describes the configuration of a destination in Amazon S3.
+	//
+	// S3Configuration is a required field
 	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
 
 	// The Elasticsearch type name.
+	//
+	// TypeName is a required field
 	TypeName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1278,6 +1312,8 @@ type KMSEncryptionConfig struct {
 
 	// The ARN of the encryption key. Must belong to the same region as the destination
 	// Amazon S3 bucket.
+	//
+	// AWSKMSKeyARN is a required field
 	AWSKMSKeyARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1349,9 +1385,13 @@ type ListDeliveryStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the delivery streams.
+	//
+	// DeliveryStreamNames is a required field
 	DeliveryStreamNames []*string `type:"list" required:"true"`
 
 	// Indicates whether there are more delivery streams available to list.
+	//
+	// HasMoreDeliveryStreams is a required field
 	HasMoreDeliveryStreams *bool `type:"boolean" required:"true"`
 }
 
@@ -1370,9 +1410,13 @@ type PutRecordBatchInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
 	// One or more records.
+	//
+	// Records is a required field
 	Records []*Record `min:"1" type:"list" required:"true"`
 }
 
@@ -1423,10 +1467,14 @@ type PutRecordBatchOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of unsuccessfully written records.
+	//
+	// FailedPutCount is a required field
 	FailedPutCount *int64 `type:"integer" required:"true"`
 
 	// The results for the individual records. The index of each element matches
 	// the same index in which records were sent.
+	//
+	// RequestResponses is a required field
 	RequestResponses []*PutRecordBatchResponseEntry `min:"1" type:"list" required:"true"`
 }
 
@@ -1472,9 +1520,13 @@ type PutRecordInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
 	// The record.
+	//
+	// Record is a required field
 	Record *Record `type:"structure" required:"true"`
 }
 
@@ -1517,6 +1569,8 @@ type PutRecordOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the record.
+	//
+	// RecordId is a required field
 	RecordId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1538,6 +1592,8 @@ type Record struct {
 	// size of the data blob, before base64-encoding, is 1,000 KB.
 	//
 	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 }
 
@@ -1572,12 +1628,18 @@ type RedshiftDestinationConfiguration struct {
 	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
 
 	// The database connection string.
+	//
+	// ClusterJDBCURL is a required field
 	ClusterJDBCURL *string `min:"1" type:"string" required:"true"`
 
 	// The COPY command.
+	//
+	// CopyCommand is a required field
 	CopyCommand *CopyCommand `type:"structure" required:"true"`
 
 	// The user password.
+	//
+	// Password is a required field
 	Password *string `min:"6" type:"string" required:"true"`
 
 	// Configures retry behavior in the event that Firehose is unable to deliver
@@ -1585,6 +1647,8 @@ type RedshiftDestinationConfiguration struct {
 	RetryOptions *RedshiftRetryOptions `type:"structure"`
 
 	// The ARN of the AWS credentials.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
 	// The S3 configuration for the intermediate location from which Amazon Redshift
@@ -1593,9 +1657,13 @@ type RedshiftDestinationConfiguration struct {
 	// The compression formats SNAPPY or ZIP cannot be specified in RedshiftDestinationConfiguration.S3Configuration
 	// because the Amazon Redshift COPY operation that reads from the S3 bucket
 	// doesn't support these compression formats.
+	//
+	// S3Configuration is a required field
 	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
 
 	// The name of the user.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1667,9 +1735,13 @@ type RedshiftDestinationDescription struct {
 	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
 
 	// The database connection string.
+	//
+	// ClusterJDBCURL is a required field
 	ClusterJDBCURL *string `min:"1" type:"string" required:"true"`
 
 	// The COPY command.
+	//
+	// CopyCommand is a required field
 	CopyCommand *CopyCommand `type:"structure" required:"true"`
 
 	// Configures retry behavior in the event that Firehose is unable to deliver
@@ -1677,12 +1749,18 @@ type RedshiftDestinationDescription struct {
 	RetryOptions *RedshiftRetryOptions `type:"structure"`
 
 	// The ARN of the AWS credentials.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon S3 destination.
+	//
+	// S3DestinationDescription is a required field
 	S3DestinationDescription *S3DestinationDescription `type:"structure" required:"true"`
 
 	// The name of the user.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1800,6 +1878,8 @@ type S3DestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the S3 bucket.
+	//
+	// BucketARN is a required field
 	BucketARN *string `min:"1" type:"string" required:"true"`
 
 	// The buffering option. If no value is specified, BufferingHints object default
@@ -1829,6 +1909,8 @@ type S3DestinationConfiguration struct {
 	Prefix *string `type:"string"`
 
 	// The ARN of the AWS credentials.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1879,20 +1961,28 @@ type S3DestinationDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the S3 bucket.
+	//
+	// BucketARN is a required field
 	BucketARN *string `min:"1" type:"string" required:"true"`
 
 	// The buffering option. If no value is specified, BufferingHints object default
 	// values are used.
+	//
+	// BufferingHints is a required field
 	BufferingHints *BufferingHints `type:"structure" required:"true"`
 
 	// Describes CloudWatch logging options for your delivery stream.
 	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
 
 	// The compression format. If no value is specified, the default is NOCOMPRESSION.
+	//
+	// CompressionFormat is a required field
 	CompressionFormat *string `type:"string" required:"true" enum:"CompressionFormat"`
 
 	// The encryption configuration. If no value is specified, the default is no
 	// encryption.
+	//
+	// EncryptionConfiguration is a required field
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure" required:"true"`
 
 	// The "YYYY/MM/DD/HH" time format prefix is automatically used for delivered
@@ -1904,6 +1994,8 @@ type S3DestinationDescription struct {
 	Prefix *string `type:"string"`
 
 	// The ARN of the AWS credentials.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2000,12 +2092,18 @@ type UpdateDestinationInput struct {
 	// is null, then the update destination fails. After the update is successful,
 	// the VersionId value is updated. The service then performs a merge of the
 	// old configuration with the new configuration.
+	//
+	// CurrentDeliveryStreamVersionId is a required field
 	CurrentDeliveryStreamVersionId *string `min:"1" type:"string" required:"true"`
 
 	// The name of the delivery stream.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the destination.
+	//
+	// DestinationId is a required field
 	DestinationId *string `min:"1" type:"string" required:"true"`
 
 	// Describes an update for a destination in Amazon ES.
@@ -2087,46 +2185,56 @@ func (s UpdateDestinationOutput) GoString() string {
 }
 
 const (
-	// @enum CompressionFormat
+	// CompressionFormatUncompressed is a CompressionFormat enum value
 	CompressionFormatUncompressed = "UNCOMPRESSED"
-	// @enum CompressionFormat
+
+	// CompressionFormatGzip is a CompressionFormat enum value
 	CompressionFormatGzip = "GZIP"
-	// @enum CompressionFormat
+
+	// CompressionFormatZip is a CompressionFormat enum value
 	CompressionFormatZip = "ZIP"
-	// @enum CompressionFormat
+
+	// CompressionFormatSnappy is a CompressionFormat enum value
 	CompressionFormatSnappy = "Snappy"
 )
 
 const (
-	// @enum DeliveryStreamStatus
+	// DeliveryStreamStatusCreating is a DeliveryStreamStatus enum value
 	DeliveryStreamStatusCreating = "CREATING"
-	// @enum DeliveryStreamStatus
+
+	// DeliveryStreamStatusDeleting is a DeliveryStreamStatus enum value
 	DeliveryStreamStatusDeleting = "DELETING"
-	// @enum DeliveryStreamStatus
+
+	// DeliveryStreamStatusActive is a DeliveryStreamStatus enum value
 	DeliveryStreamStatusActive = "ACTIVE"
 )
 
 const (
-	// @enum ElasticsearchIndexRotationPeriod
+	// ElasticsearchIndexRotationPeriodNoRotation is a ElasticsearchIndexRotationPeriod enum value
 	ElasticsearchIndexRotationPeriodNoRotation = "NoRotation"
-	// @enum ElasticsearchIndexRotationPeriod
+
+	// ElasticsearchIndexRotationPeriodOneHour is a ElasticsearchIndexRotationPeriod enum value
 	ElasticsearchIndexRotationPeriodOneHour = "OneHour"
-	// @enum ElasticsearchIndexRotationPeriod
+
+	// ElasticsearchIndexRotationPeriodOneDay is a ElasticsearchIndexRotationPeriod enum value
 	ElasticsearchIndexRotationPeriodOneDay = "OneDay"
-	// @enum ElasticsearchIndexRotationPeriod
+
+	// ElasticsearchIndexRotationPeriodOneWeek is a ElasticsearchIndexRotationPeriod enum value
 	ElasticsearchIndexRotationPeriodOneWeek = "OneWeek"
-	// @enum ElasticsearchIndexRotationPeriod
+
+	// ElasticsearchIndexRotationPeriodOneMonth is a ElasticsearchIndexRotationPeriod enum value
 	ElasticsearchIndexRotationPeriodOneMonth = "OneMonth"
 )
 
 const (
-	// @enum ElasticsearchS3BackupMode
+	// ElasticsearchS3BackupModeFailedDocumentsOnly is a ElasticsearchS3BackupMode enum value
 	ElasticsearchS3BackupModeFailedDocumentsOnly = "FailedDocumentsOnly"
-	// @enum ElasticsearchS3BackupMode
+
+	// ElasticsearchS3BackupModeAllDocuments is a ElasticsearchS3BackupMode enum value
 	ElasticsearchS3BackupModeAllDocuments = "AllDocuments"
 )
 
 const (
-	// @enum NoEncryptionConfig
+	// NoEncryptionConfigNoEncryption is a NoEncryptionConfig enum value
 	NoEncryptionConfigNoEncryption = "NoEncryption"
 )

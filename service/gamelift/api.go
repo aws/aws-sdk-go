@@ -2281,9 +2281,13 @@ type CreateAliasInput struct {
 
 	// Descriptive label associated with an alias. Alias names do not need to be
 	// unique.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Object specifying the fleet and routing type to use for the alias.
+	//
+	// RoutingStrategy is a required field
 	RoutingStrategy *RoutingStrategy `type:"structure" required:"true"`
 }
 
@@ -2424,6 +2428,8 @@ type CreateFleetInput struct {
 	// Unique identifier of the build to be deployed on the new fleet. The build
 	// must have been successfully uploaded to GameLift and be in a READY status.
 	// This fleet setting cannot be changed once the fleet is created.
+	//
+	// BuildId is a required field
 	BuildId *string `type:"string" required:"true"`
 
 	// Human-readable description of a fleet.
@@ -2441,6 +2447,8 @@ type CreateFleetInput struct {
 	// fleet, including CPU, memory, storage, and networking capacity. GameLift
 	// supports the following EC2 instance types. See Amazon EC2 Instance Types
 	// (https://aws.amazon.com/ec2/instance-types/) for detailed descriptions.
+	//
+	// EC2InstanceType is a required field
 	EC2InstanceType *string `type:"string" required:"true" enum:"EC2InstanceType"`
 
 	// Location of default log files. When a server process is shut down, Amazon
@@ -2454,6 +2462,8 @@ type CreateFleetInput struct {
 
 	// Descriptive label associated with a fleet. Fleet names do not need to be
 	// unique.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Game session protection policy to apply to all instances in this fleet. If
@@ -2585,6 +2595,8 @@ type CreateGameSessionInput struct {
 
 	// Maximum number of players that can be connected simultaneously to the game
 	// session.
+	//
+	// MaximumPlayerSessionCount is a required field
 	MaximumPlayerSessionCount *int64 `type:"integer" required:"true"`
 
 	// Descriptive label associated with a game session. Session names do not need
@@ -2652,9 +2664,13 @@ type CreatePlayerSessionInput struct {
 
 	// Unique identifier for a game session. Specify the game session you want to
 	// add a player to.
+	//
+	// GameSessionId is a required field
 	GameSessionId *string `type:"string" required:"true"`
 
 	// Unique identifier for the player to be added.
+	//
+	// PlayerId is a required field
 	PlayerId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2710,9 +2726,13 @@ type CreatePlayerSessionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for a game session.
+	//
+	// GameSessionId is a required field
 	GameSessionId *string `type:"string" required:"true"`
 
 	// List of unique identifiers for the players to be added.
+	//
+	// PlayerIds is a required field
 	PlayerIds []*string `min:"1" type:"list" required:"true"`
 }
 
@@ -2768,6 +2788,8 @@ type DeleteAliasInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for a fleet alias. Specify the alias you want to delete.
+	//
+	// AliasId is a required field
 	AliasId *string `type:"string" required:"true"`
 }
 
@@ -2813,6 +2835,8 @@ type DeleteBuildInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for the build you want to delete.
+	//
+	// BuildId is a required field
 	BuildId *string `type:"string" required:"true"`
 }
 
@@ -2858,6 +2882,8 @@ type DeleteFleetInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for the fleet you want to delete.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 }
 
@@ -2903,10 +2929,14 @@ type DeleteScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for a fleet.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Descriptive label associated with a scaling policy. Policy names do not need
 	// to be unique.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2958,6 +2988,8 @@ type DescribeAliasInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for a fleet alias. Specify the alias you want to retrieve.
+	//
+	// AliasId is a required field
 	AliasId *string `type:"string" required:"true"`
 }
 
@@ -3007,6 +3039,8 @@ type DescribeBuildInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier of the build that you want to retrieve properties for.
+	//
+	// BuildId is a required field
 	BuildId *string `type:"string" required:"true"`
 }
 
@@ -3255,6 +3289,8 @@ type DescribeFleetEventsInput struct {
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Unique identifier for the fleet to get event logs for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Maximum number of results to return. Use this parameter with NextToken to
@@ -3332,6 +3368,8 @@ type DescribeFleetPortSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for the fleet you want to retrieve port settings for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 }
 
@@ -3723,6 +3761,8 @@ type DescribeRuntimeConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier of the fleet to get the runtime configuration for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 }
 
@@ -3774,6 +3814,8 @@ type DescribeScalingPoliciesInput struct {
 
 	// Unique identifier for a fleet. Specify the fleet to retrieve scaling policies
 	// for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Maximum number of results to return. Use this parameter with NextToken to
@@ -4108,8 +4150,10 @@ func (s FleetUtilization) GoString() string {
 type GameProperty struct {
 	_ struct{} `type:"structure"`
 
+	// Key is a required field
 	Key *string `type:"string" required:"true"`
 
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -4227,6 +4271,8 @@ type GetGameSessionLogUrlInput struct {
 
 	// Unique identifier for a game session. Specify the game session you want to
 	// get logs for.
+	//
+	// GameSessionId is a required field
 	GameSessionId *string `type:"string" required:"true"`
 }
 
@@ -4280,18 +4326,26 @@ type IpPermission struct {
 	_ struct{} `type:"structure"`
 
 	// Starting value for a range of allowed port numbers.
+	//
+	// FromPort is a required field
 	FromPort *int64 `min:"1025" type:"integer" required:"true"`
 
 	// Range of allowed IP addresses. This value must be expressed in CIDR notation
 	// (https://tools.ietf.org/id/cidr). Example: "000.000.000.000/[subnet mask]"
 	// or optionally the shortened version "0.0.0.0/[subnet mask]".
+	//
+	// IpRange is a required field
 	IpRange *string `type:"string" required:"true"`
 
 	// Network communication protocol used by the fleet.
+	//
+	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"IpProtocol"`
 
 	// Ending value for a range of allowed port numbers. Port numbers are end-inclusive.
 	// This value must be higher than FromPort.
+	//
+	// ToPort is a required field
 	ToPort *int64 `min:"1025" type:"integer" required:"true"`
 }
 
@@ -4627,13 +4681,19 @@ type PutScalingPolicyInput struct {
 
 	// Comparison operator to use when measuring the metric against the threshold
 	// value.
+	//
+	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperatorType"`
 
 	// Length of time (in minutes) the metric must be at or beyond the threshold
 	// before a scaling event is triggered.
+	//
+	// EvaluationPeriods is a required field
 	EvaluationPeriods *int64 `min:"1" type:"integer" required:"true"`
 
 	// Unique identity for the fleet to scale with this policy.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Name of the Amazon GameLift-defined metric that is used to trigger an adjustment.
@@ -4649,13 +4709,19 @@ type PutScalingPolicyInput struct {
 	// accepting players (game session PlayerSessionCreationPolicy = DENY_ALL).
 	//  ActiveInstances – number of instances currently running a game session.
 	//  IdleInstances – number of instances not currently running a game session.
+	//
+	// MetricName is a required field
 	MetricName *string `type:"string" required:"true" enum:"MetricName"`
 
 	// Descriptive label associated with a scaling policy. Policy names do not need
 	// to be unique. A fleet can have only one scaling policy with the same name.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// Amount of adjustment to make, based on the scaling adjustment type.
+	//
+	// ScalingAdjustment is a required field
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 
 	// Type of adjustment to make to a fleet's instance count (see FleetCapacity):
@@ -4667,9 +4733,13 @@ type PutScalingPolicyInput struct {
 	// count by the scaling adjustment, read as a percentage. Positive values scale
 	// up while negative values scale down; for example, a value of "-10" scales
 	// the fleet down by 10%.
+	//
+	// ScalingAdjustmentType is a required field
 	ScalingAdjustmentType *string `type:"string" required:"true" enum:"ScalingAdjustmentType"`
 
 	// Metric value used to trigger a scaling event.
+	//
+	// Threshold is a required field
 	Threshold *float64 `type:"double" required:"true"`
 }
 
@@ -4747,6 +4817,8 @@ type RequestUploadCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for the build you want to get credentials for.
+	//
+	// BuildId is a required field
 	BuildId *string `type:"string" required:"true"`
 }
 
@@ -4801,6 +4873,8 @@ type ResolveAliasInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for the alias you want to resolve.
+	//
+	// AliasId is a required field
 	AliasId *string `type:"string" required:"true"`
 }
 
@@ -5185,11 +5259,15 @@ type ServerProcess struct {
 
 	// Number of server processes using this configuration to run concurrently on
 	// an instance.
+	//
+	// ConcurrentExecutions is a required field
 	ConcurrentExecutions *int64 `min:"1" type:"integer" required:"true"`
 
 	// Location in the game build of the server executable. All game builds are
 	// installed on instances at the root C:\game\..., so an executable file located
 	// at MyGame\latest\server.exe has a launch path of "C:\game\MyGame\latest\server.exe".
+	//
+	// LaunchPath is a required field
 	LaunchPath *string `min:"1" type:"string" required:"true"`
 
 	// Optional list of parameters to pass to the server executable on launch.
@@ -5236,6 +5314,8 @@ type UpdateAliasInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for a fleet alias. Specify the alias you want to update.
+	//
+	// AliasId is a required field
 	AliasId *string `type:"string" required:"true"`
 
 	// Human-readable description of an alias.
@@ -5301,6 +5381,8 @@ type UpdateBuildInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier of the build you want to update.
+	//
+	// BuildId is a required field
 	BuildId *string `type:"string" required:"true"`
 
 	// Descriptive label associated with a build. Build names do not need to be
@@ -5367,6 +5449,8 @@ type UpdateFleetAttributesInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// Unique identifier for the fleet you want to update attribute metadata for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Descriptive label associated with a fleet. Fleet names do not need to be
@@ -5438,6 +5522,8 @@ type UpdateFleetCapacityInput struct {
 	DesiredInstances *int64 `type:"integer"`
 
 	// Unique identifier for the fleet you want to update capacity for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Maximum value allowed for the fleet's instance count. Default if not set
@@ -5495,6 +5581,8 @@ type UpdateFleetPortSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier for the fleet you want to update port settings for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Collection of port settings to be added to the fleet record.
@@ -5571,6 +5659,8 @@ type UpdateGameSessionInput struct {
 
 	// Unique identifier for a game session. Specify the game session you want to
 	// update.
+	//
+	// GameSessionId is a required field
 	GameSessionId *string `type:"string" required:"true"`
 
 	// Maximum number of players that can be simultaneously connected to the game
@@ -5641,6 +5731,8 @@ type UpdateRuntimeConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Unique identifier of the fleet to update runtime configuration for.
+	//
+	// FleetId is a required field
 	FleetId *string `type:"string" required:"true"`
 
 	// Instructions for launching server processes on each instance in the fleet.
@@ -5649,6 +5741,8 @@ type UpdateRuntimeConfigurationInput struct {
 	// A server process configuration specifies the location of the server executable,
 	// launch parameters, and the number of concurrent processes with that configuration
 	// to maintain on each instance.
+	//
+	// RuntimeConfiguration is a required field
 	RuntimeConfiguration *RuntimeConfiguration `type:"structure" required:"true"`
 }
 
@@ -5703,238 +5797,319 @@ func (s UpdateRuntimeConfigurationOutput) GoString() string {
 }
 
 const (
-	// @enum BuildStatus
+	// BuildStatusInitialized is a BuildStatus enum value
 	BuildStatusInitialized = "INITIALIZED"
-	// @enum BuildStatus
+
+	// BuildStatusReady is a BuildStatus enum value
 	BuildStatusReady = "READY"
-	// @enum BuildStatus
+
+	// BuildStatusFailed is a BuildStatus enum value
 	BuildStatusFailed = "FAILED"
 )
 
 const (
-	// @enum ComparisonOperatorType
+	// ComparisonOperatorTypeGreaterThanOrEqualToThreshold is a ComparisonOperatorType enum value
 	ComparisonOperatorTypeGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
-	// @enum ComparisonOperatorType
+
+	// ComparisonOperatorTypeGreaterThanThreshold is a ComparisonOperatorType enum value
 	ComparisonOperatorTypeGreaterThanThreshold = "GreaterThanThreshold"
-	// @enum ComparisonOperatorType
+
+	// ComparisonOperatorTypeLessThanThreshold is a ComparisonOperatorType enum value
 	ComparisonOperatorTypeLessThanThreshold = "LessThanThreshold"
-	// @enum ComparisonOperatorType
+
+	// ComparisonOperatorTypeLessThanOrEqualToThreshold is a ComparisonOperatorType enum value
 	ComparisonOperatorTypeLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
 )
 
 const (
-	// @enum EC2InstanceType
+	// EC2InstanceTypeT2Micro is a EC2InstanceType enum value
 	EC2InstanceTypeT2Micro = "t2.micro"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeT2Small is a EC2InstanceType enum value
 	EC2InstanceTypeT2Small = "t2.small"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeT2Medium is a EC2InstanceType enum value
 	EC2InstanceTypeT2Medium = "t2.medium"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeT2Large is a EC2InstanceType enum value
 	EC2InstanceTypeT2Large = "t2.large"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC3Large is a EC2InstanceType enum value
 	EC2InstanceTypeC3Large = "c3.large"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC3Xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC3Xlarge = "c3.xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC32xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC32xlarge = "c3.2xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC34xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC34xlarge = "c3.4xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC38xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC38xlarge = "c3.8xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC4Large is a EC2InstanceType enum value
 	EC2InstanceTypeC4Large = "c4.large"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC4Xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC4Xlarge = "c4.xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC42xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC42xlarge = "c4.2xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC44xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC44xlarge = "c4.4xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeC48xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC48xlarge = "c4.8xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeR3Large is a EC2InstanceType enum value
 	EC2InstanceTypeR3Large = "r3.large"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeR3Xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeR3Xlarge = "r3.xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeR32xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeR32xlarge = "r3.2xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeR34xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeR34xlarge = "r3.4xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeR38xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeR38xlarge = "r3.8xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM3Medium is a EC2InstanceType enum value
 	EC2InstanceTypeM3Medium = "m3.medium"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM3Large is a EC2InstanceType enum value
 	EC2InstanceTypeM3Large = "m3.large"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM3Xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM3Xlarge = "m3.xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM32xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM32xlarge = "m3.2xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM4Large is a EC2InstanceType enum value
 	EC2InstanceTypeM4Large = "m4.large"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM4Xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM4Xlarge = "m4.xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM42xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM42xlarge = "m4.2xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM44xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM44xlarge = "m4.4xlarge"
-	// @enum EC2InstanceType
+
+	// EC2InstanceTypeM410xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM410xlarge = "m4.10xlarge"
 )
 
 const (
-	// @enum EventCode
+	// EventCodeGenericEvent is a EventCode enum value
 	EventCodeGenericEvent = "GENERIC_EVENT"
-	// @enum EventCode
+
+	// EventCodeFleetCreated is a EventCode enum value
 	EventCodeFleetCreated = "FLEET_CREATED"
-	// @enum EventCode
+
+	// EventCodeFleetDeleted is a EventCode enum value
 	EventCodeFleetDeleted = "FLEET_DELETED"
-	// @enum EventCode
+
+	// EventCodeFleetScalingEvent is a EventCode enum value
 	EventCodeFleetScalingEvent = "FLEET_SCALING_EVENT"
-	// @enum EventCode
+
+	// EventCodeFleetStateDownloading is a EventCode enum value
 	EventCodeFleetStateDownloading = "FLEET_STATE_DOWNLOADING"
-	// @enum EventCode
+
+	// EventCodeFleetStateValidating is a EventCode enum value
 	EventCodeFleetStateValidating = "FLEET_STATE_VALIDATING"
-	// @enum EventCode
+
+	// EventCodeFleetStateBuilding is a EventCode enum value
 	EventCodeFleetStateBuilding = "FLEET_STATE_BUILDING"
-	// @enum EventCode
+
+	// EventCodeFleetStateActivating is a EventCode enum value
 	EventCodeFleetStateActivating = "FLEET_STATE_ACTIVATING"
-	// @enum EventCode
+
+	// EventCodeFleetStateActive is a EventCode enum value
 	EventCodeFleetStateActive = "FLEET_STATE_ACTIVE"
-	// @enum EventCode
+
+	// EventCodeFleetStateError is a EventCode enum value
 	EventCodeFleetStateError = "FLEET_STATE_ERROR"
-	// @enum EventCode
+
+	// EventCodeFleetInitializationFailed is a EventCode enum value
 	EventCodeFleetInitializationFailed = "FLEET_INITIALIZATION_FAILED"
-	// @enum EventCode
+
+	// EventCodeFleetBinaryDownloadFailed is a EventCode enum value
 	EventCodeFleetBinaryDownloadFailed = "FLEET_BINARY_DOWNLOAD_FAILED"
-	// @enum EventCode
+
+	// EventCodeFleetValidationLaunchPathNotFound is a EventCode enum value
 	EventCodeFleetValidationLaunchPathNotFound = "FLEET_VALIDATION_LAUNCH_PATH_NOT_FOUND"
-	// @enum EventCode
+
+	// EventCodeFleetValidationExecutableRuntimeFailure is a EventCode enum value
 	EventCodeFleetValidationExecutableRuntimeFailure = "FLEET_VALIDATION_EXECUTABLE_RUNTIME_FAILURE"
-	// @enum EventCode
+
+	// EventCodeFleetValidationTimedOut is a EventCode enum value
 	EventCodeFleetValidationTimedOut = "FLEET_VALIDATION_TIMED_OUT"
-	// @enum EventCode
+
+	// EventCodeFleetActivationFailed is a EventCode enum value
 	EventCodeFleetActivationFailed = "FLEET_ACTIVATION_FAILED"
-	// @enum EventCode
+
+	// EventCodeFleetActivationFailedNoInstances is a EventCode enum value
 	EventCodeFleetActivationFailedNoInstances = "FLEET_ACTIVATION_FAILED_NO_INSTANCES"
-	// @enum EventCode
+
+	// EventCodeFleetNewGameSessionProtectionPolicyUpdated is a EventCode enum value
 	EventCodeFleetNewGameSessionProtectionPolicyUpdated = "FLEET_NEW_GAME_SESSION_PROTECTION_POLICY_UPDATED"
 )
 
 const (
-	// @enum FleetStatus
+	// FleetStatusNew is a FleetStatus enum value
 	FleetStatusNew = "NEW"
-	// @enum FleetStatus
+
+	// FleetStatusDownloading is a FleetStatus enum value
 	FleetStatusDownloading = "DOWNLOADING"
-	// @enum FleetStatus
+
+	// FleetStatusValidating is a FleetStatus enum value
 	FleetStatusValidating = "VALIDATING"
-	// @enum FleetStatus
+
+	// FleetStatusBuilding is a FleetStatus enum value
 	FleetStatusBuilding = "BUILDING"
-	// @enum FleetStatus
+
+	// FleetStatusActivating is a FleetStatus enum value
 	FleetStatusActivating = "ACTIVATING"
-	// @enum FleetStatus
+
+	// FleetStatusActive is a FleetStatus enum value
 	FleetStatusActive = "ACTIVE"
-	// @enum FleetStatus
+
+	// FleetStatusDeleting is a FleetStatus enum value
 	FleetStatusDeleting = "DELETING"
-	// @enum FleetStatus
+
+	// FleetStatusError is a FleetStatus enum value
 	FleetStatusError = "ERROR"
-	// @enum FleetStatus
+
+	// FleetStatusTerminated is a FleetStatus enum value
 	FleetStatusTerminated = "TERMINATED"
 )
 
 const (
-	// @enum GameSessionStatus
+	// GameSessionStatusActive is a GameSessionStatus enum value
 	GameSessionStatusActive = "ACTIVE"
-	// @enum GameSessionStatus
+
+	// GameSessionStatusActivating is a GameSessionStatus enum value
 	GameSessionStatusActivating = "ACTIVATING"
-	// @enum GameSessionStatus
+
+	// GameSessionStatusTerminated is a GameSessionStatus enum value
 	GameSessionStatusTerminated = "TERMINATED"
-	// @enum GameSessionStatus
+
+	// GameSessionStatusTerminating is a GameSessionStatus enum value
 	GameSessionStatusTerminating = "TERMINATING"
 )
 
 const (
-	// @enum IpProtocol
+	// IpProtocolTcp is a IpProtocol enum value
 	IpProtocolTcp = "TCP"
-	// @enum IpProtocol
+
+	// IpProtocolUdp is a IpProtocol enum value
 	IpProtocolUdp = "UDP"
 )
 
 const (
-	// @enum MetricName
+	// MetricNameActivatingGameSessions is a MetricName enum value
 	MetricNameActivatingGameSessions = "ActivatingGameSessions"
-	// @enum MetricName
+
+	// MetricNameActiveGameSessions is a MetricName enum value
 	MetricNameActiveGameSessions = "ActiveGameSessions"
-	// @enum MetricName
+
+	// MetricNameActiveInstances is a MetricName enum value
 	MetricNameActiveInstances = "ActiveInstances"
-	// @enum MetricName
+
+	// MetricNameAvailablePlayerSessions is a MetricName enum value
 	MetricNameAvailablePlayerSessions = "AvailablePlayerSessions"
-	// @enum MetricName
+
+	// MetricNameCurrentPlayerSessions is a MetricName enum value
 	MetricNameCurrentPlayerSessions = "CurrentPlayerSessions"
-	// @enum MetricName
+
+	// MetricNameIdleInstances is a MetricName enum value
 	MetricNameIdleInstances = "IdleInstances"
 )
 
 const (
-	// @enum OperatingSystem
+	// OperatingSystemWindows2012 is a OperatingSystem enum value
 	OperatingSystemWindows2012 = "WINDOWS_2012"
-	// @enum OperatingSystem
+
+	// OperatingSystemAmazonLinux is a OperatingSystem enum value
 	OperatingSystemAmazonLinux = "AMAZON_LINUX"
 )
 
 const (
-	// @enum PlayerSessionCreationPolicy
+	// PlayerSessionCreationPolicyAcceptAll is a PlayerSessionCreationPolicy enum value
 	PlayerSessionCreationPolicyAcceptAll = "ACCEPT_ALL"
-	// @enum PlayerSessionCreationPolicy
+
+	// PlayerSessionCreationPolicyDenyAll is a PlayerSessionCreationPolicy enum value
 	PlayerSessionCreationPolicyDenyAll = "DENY_ALL"
 )
 
 const (
-	// @enum PlayerSessionStatus
+	// PlayerSessionStatusReserved is a PlayerSessionStatus enum value
 	PlayerSessionStatusReserved = "RESERVED"
-	// @enum PlayerSessionStatus
+
+	// PlayerSessionStatusActive is a PlayerSessionStatus enum value
 	PlayerSessionStatusActive = "ACTIVE"
-	// @enum PlayerSessionStatus
+
+	// PlayerSessionStatusCompleted is a PlayerSessionStatus enum value
 	PlayerSessionStatusCompleted = "COMPLETED"
-	// @enum PlayerSessionStatus
+
+	// PlayerSessionStatusTimedout is a PlayerSessionStatus enum value
 	PlayerSessionStatusTimedout = "TIMEDOUT"
 )
 
 const (
-	// @enum ProtectionPolicy
+	// ProtectionPolicyNoProtection is a ProtectionPolicy enum value
 	ProtectionPolicyNoProtection = "NoProtection"
-	// @enum ProtectionPolicy
+
+	// ProtectionPolicyFullProtection is a ProtectionPolicy enum value
 	ProtectionPolicyFullProtection = "FullProtection"
 )
 
 const (
-	// @enum RoutingStrategyType
+	// RoutingStrategyTypeSimple is a RoutingStrategyType enum value
 	RoutingStrategyTypeSimple = "SIMPLE"
-	// @enum RoutingStrategyType
+
+	// RoutingStrategyTypeTerminal is a RoutingStrategyType enum value
 	RoutingStrategyTypeTerminal = "TERMINAL"
 )
 
 const (
-	// @enum ScalingAdjustmentType
+	// ScalingAdjustmentTypeChangeInCapacity is a ScalingAdjustmentType enum value
 	ScalingAdjustmentTypeChangeInCapacity = "ChangeInCapacity"
-	// @enum ScalingAdjustmentType
+
+	// ScalingAdjustmentTypeExactCapacity is a ScalingAdjustmentType enum value
 	ScalingAdjustmentTypeExactCapacity = "ExactCapacity"
-	// @enum ScalingAdjustmentType
+
+	// ScalingAdjustmentTypePercentChangeInCapacity is a ScalingAdjustmentType enum value
 	ScalingAdjustmentTypePercentChangeInCapacity = "PercentChangeInCapacity"
 )
 
 const (
-	// @enum ScalingStatusType
+	// ScalingStatusTypeActive is a ScalingStatusType enum value
 	ScalingStatusTypeActive = "ACTIVE"
-	// @enum ScalingStatusType
+
+	// ScalingStatusTypeUpdateRequested is a ScalingStatusType enum value
 	ScalingStatusTypeUpdateRequested = "UPDATE_REQUESTED"
-	// @enum ScalingStatusType
+
+	// ScalingStatusTypeUpdating is a ScalingStatusType enum value
 	ScalingStatusTypeUpdating = "UPDATING"
-	// @enum ScalingStatusType
+
+	// ScalingStatusTypeDeleteRequested is a ScalingStatusType enum value
 	ScalingStatusTypeDeleteRequested = "DELETE_REQUESTED"
-	// @enum ScalingStatusType
+
+	// ScalingStatusTypeDeleting is a ScalingStatusType enum value
 	ScalingStatusTypeDeleting = "DELETING"
-	// @enum ScalingStatusType
+
+	// ScalingStatusTypeDeleted is a ScalingStatusType enum value
 	ScalingStatusTypeDeleted = "DELETED"
-	// @enum ScalingStatusType
+
+	// ScalingStatusTypeError is a ScalingStatusType enum value
 	ScalingStatusTypeError = "ERROR"
 )

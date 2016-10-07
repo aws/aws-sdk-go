@@ -2723,12 +2723,18 @@ type CreateDevicePoolInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The device pool's name.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The ARN of the project for the device pool.
+	//
+	// ProjectArn is a required field
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 
 	// The device pool's rules.
+	//
+	// Rules is a required field
 	Rules []*Rule `locationName:"rules" type:"list" required:"true"`
 }
 
@@ -2787,6 +2793,8 @@ type CreateProjectInput struct {
 	_ struct{} `type:"structure"`
 
 	// The project's name.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 }
 
@@ -2859,6 +2867,8 @@ type CreateRemoteAccessSessionInput struct {
 
 	// The Amazon Resource Name (ARN) of the device for which you want to create
 	// a remote access session.
+	//
+	// DeviceArn is a required field
 	DeviceArn *string `locationName:"deviceArn" min:"32" type:"string" required:"true"`
 
 	// The name of the remote access session that you wish to create.
@@ -2866,6 +2876,8 @@ type CreateRemoteAccessSessionInput struct {
 
 	// The Amazon Resource Name (ARN) of the project for which you want to create
 	// a remote access session.
+	//
+	// ProjectArn is a required field
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 }
 
@@ -2931,9 +2943,13 @@ type CreateUploadInput struct {
 	// uploading an iOS app, the file name needs to end with the .ipa extension.
 	// If uploading an Android app, the file name needs to end with the .apk extension.
 	// For all others, the file name must end with the .zip file extension.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The ARN of the project for the upload.
+	//
+	// ProjectArn is a required field
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 
 	// The upload's upload type.
@@ -2976,6 +2992,8 @@ type CreateUploadInput struct {
 	//
 	//    Note If you call CreateUpload with WEB_APP specified, AWS Device Farm
 	// throws an ArgumentException error.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"UploadType"`
 }
 
@@ -3035,6 +3053,8 @@ type DeleteDevicePoolInput struct {
 
 	// Represents the Amazon Resource Name (ARN) of the Device Farm device pool
 	// you wish to delete.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3085,6 +3105,8 @@ type DeleteProjectInput struct {
 
 	// Represents the Amazon Resource Name (ARN) of the Device Farm project you
 	// wish to delete.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3135,6 +3157,8 @@ type DeleteRemoteAccessSessionInput struct {
 
 	// The Amazon Resource Name (ARN) of the sesssion for which you want to delete
 	// remote access.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3185,6 +3209,8 @@ type DeleteRunInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the run you wish to delete.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3235,6 +3261,8 @@ type DeleteUploadInput struct {
 
 	// Represents the Amazon Resource Name (ARN) of the Device Farm upload you wish
 	// to delete.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3487,6 +3515,8 @@ type GetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The device type's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3542,6 +3572,8 @@ type GetDevicePoolCompatibilityInput struct {
 	AppArn *string `locationName:"appArn" min:"32" type:"string"`
 
 	// The device pool's ARN.
+	//
+	// DevicePoolArn is a required field
 	DevicePoolArn *string `locationName:"devicePoolArn" min:"32" type:"string" required:"true"`
 
 	// The test type for the specified device pool.
@@ -3634,6 +3666,8 @@ type GetDevicePoolInput struct {
 	_ struct{} `type:"structure"`
 
 	// The device pool's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3686,6 +3720,8 @@ type GetJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The job's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3796,6 +3832,8 @@ type GetProjectInput struct {
 	_ struct{} `type:"structure"`
 
 	// The project's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3851,6 +3889,8 @@ type GetRemoteAccessSessionInput struct {
 
 	// The Amazon Resource Name (ARN) of the remote access session about which you
 	// want to get session information.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3904,6 +3944,8 @@ type GetRunInput struct {
 	_ struct{} `type:"structure"`
 
 	// The run's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -3956,6 +3998,8 @@ type GetSuiteInput struct {
 	_ struct{} `type:"structure"`
 
 	// The suite's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -4008,6 +4052,8 @@ type GetTestInput struct {
 	_ struct{} `type:"structure"`
 
 	// The test's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -4060,6 +4106,8 @@ type GetUploadInput struct {
 	_ struct{} `type:"structure"`
 
 	// The upload's ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -4145,10 +4193,14 @@ type InstallToRemoteAccessSessionInput struct {
 
 	// The Amazon Resource Name (ARN) of the app about which you are requesting
 	// information.
+	//
+	// AppArn is a required field
 	AppArn *string `locationName:"appArn" min:"32" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the remote access session about which you
 	// are requesting information.
+	//
+	// RemoteAccessSessionArn is a required field
 	RemoteAccessSessionArn *string `locationName:"remoteAccessSessionArn" min:"32" type:"string" required:"true"`
 }
 
@@ -4326,6 +4378,8 @@ type ListArtifactsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Run, Job, Suite, or Test ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -4341,6 +4395,8 @@ type ListArtifactsInput struct {
 	//   LOG: The artifacts are logs.
 	//
 	//   SCREENSHOT: The artifacts are screenshots.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactCategory"`
 }
 
@@ -4404,6 +4460,8 @@ type ListDevicePoolsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The project ARN.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -4539,6 +4597,8 @@ type ListJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The jobs' ARNs.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -4776,6 +4836,8 @@ type ListRemoteAccessSessionsInput struct {
 
 	// The Amazon Resource Name (ARN) of the remote access session about which you
 	// are requesting information.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -4842,6 +4904,8 @@ type ListRunsInput struct {
 
 	// The Amazon Resource Name (ARN) of the project for which you want to list
 	// runs.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -4907,6 +4971,8 @@ type ListSamplesInput struct {
 
 	// The Amazon Resource Name (ARN) of the project for which you want to list
 	// samples.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -4971,6 +5037,8 @@ type ListSuitesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The suites' ARNs.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -5035,6 +5103,8 @@ type ListTestsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The tests' ARNs.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -5099,6 +5169,8 @@ type ListUniqueProblemsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique problems' ARNs.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -5180,6 +5252,8 @@ type ListUploadsInput struct {
 
 	// The Amazon Resource Name (ARN) of the project for which you want to list
 	// uploads.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -5247,9 +5321,13 @@ type Location struct {
 	_ struct{} `type:"structure"`
 
 	// The latitude.
+	//
+	// Latitude is a required field
 	Latitude *float64 `locationName:"latitude" type:"double" required:"true"`
 
 	// The longitude.
+	//
+	// Longitude is a required field
 	Longitude *float64 `locationName:"longitude" type:"double" required:"true"`
 }
 
@@ -6059,15 +6137,21 @@ type ScheduleRunInput struct {
 	Configuration *ScheduleRunConfiguration `locationName:"configuration" type:"structure"`
 
 	// The ARN of the device pool for the run to be scheduled.
+	//
+	// DevicePoolArn is a required field
 	DevicePoolArn *string `locationName:"devicePoolArn" min:"32" type:"string" required:"true"`
 
 	// The name for the run to be scheduled.
 	Name *string `locationName:"name" type:"string"`
 
 	// The ARN of the project for the run to be scheduled.
+	//
+	// ProjectArn is a required field
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 
 	// Information about the test for the run to be scheduled.
+	//
+	// Test is a required field
 	Test *ScheduleRunTest `locationName:"test" type:"structure" required:"true"`
 }
 
@@ -6182,6 +6266,8 @@ type ScheduleRunTest struct {
 	//   XCTEST: The XCode test type.
 	//
 	//   XCTEST_UI: The XCode UI test type.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"TestType"`
 }
 
@@ -6216,6 +6302,8 @@ type StopRemoteAccessSessionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the remote access session you wish to stop.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -6271,6 +6359,8 @@ type StopRunInput struct {
 
 	// Represents the Amazon Resource Name (ARN) of the Device Farm run you wish
 	// to stop.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 }
 
@@ -6575,6 +6665,8 @@ type UpdateDevicePoolInput struct {
 
 	// The Amazon Resourc Name (ARN) of the Device Farm device pool you wish to
 	// update.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// A description of the device pool you wish to update.
@@ -6638,6 +6730,8 @@ type UpdateProjectInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the project whose name you wish to update.
+	//
+	// Arn is a required field
 	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// A string representing the new name of the project that you are updating.
@@ -6781,293 +6875,394 @@ func (s Upload) GoString() string {
 }
 
 const (
-	// @enum ArtifactCategory
+	// ArtifactCategoryScreenshot is a ArtifactCategory enum value
 	ArtifactCategoryScreenshot = "SCREENSHOT"
-	// @enum ArtifactCategory
+
+	// ArtifactCategoryFile is a ArtifactCategory enum value
 	ArtifactCategoryFile = "FILE"
-	// @enum ArtifactCategory
+
+	// ArtifactCategoryLog is a ArtifactCategory enum value
 	ArtifactCategoryLog = "LOG"
 )
 
 const (
-	// @enum ArtifactType
+	// ArtifactTypeUnknown is a ArtifactType enum value
 	ArtifactTypeUnknown = "UNKNOWN"
-	// @enum ArtifactType
+
+	// ArtifactTypeScreenshot is a ArtifactType enum value
 	ArtifactTypeScreenshot = "SCREENSHOT"
-	// @enum ArtifactType
+
+	// ArtifactTypeDeviceLog is a ArtifactType enum value
 	ArtifactTypeDeviceLog = "DEVICE_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeMessageLog is a ArtifactType enum value
 	ArtifactTypeMessageLog = "MESSAGE_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeVideoLog is a ArtifactType enum value
 	ArtifactTypeVideoLog = "VIDEO_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeResultLog is a ArtifactType enum value
 	ArtifactTypeResultLog = "RESULT_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeServiceLog is a ArtifactType enum value
 	ArtifactTypeServiceLog = "SERVICE_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeWebkitLog is a ArtifactType enum value
 	ArtifactTypeWebkitLog = "WEBKIT_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeInstrumentationOutput is a ArtifactType enum value
 	ArtifactTypeInstrumentationOutput = "INSTRUMENTATION_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeExerciserMonkeyOutput is a ArtifactType enum value
 	ArtifactTypeExerciserMonkeyOutput = "EXERCISER_MONKEY_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeCalabashJsonOutput is a ArtifactType enum value
 	ArtifactTypeCalabashJsonOutput = "CALABASH_JSON_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeCalabashPrettyOutput is a ArtifactType enum value
 	ArtifactTypeCalabashPrettyOutput = "CALABASH_PRETTY_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeCalabashStandardOutput is a ArtifactType enum value
 	ArtifactTypeCalabashStandardOutput = "CALABASH_STANDARD_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeCalabashJavaXmlOutput is a ArtifactType enum value
 	ArtifactTypeCalabashJavaXmlOutput = "CALABASH_JAVA_XML_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeAutomationOutput is a ArtifactType enum value
 	ArtifactTypeAutomationOutput = "AUTOMATION_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeAppiumServerOutput is a ArtifactType enum value
 	ArtifactTypeAppiumServerOutput = "APPIUM_SERVER_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeAppiumJavaOutput is a ArtifactType enum value
 	ArtifactTypeAppiumJavaOutput = "APPIUM_JAVA_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeAppiumJavaXmlOutput is a ArtifactType enum value
 	ArtifactTypeAppiumJavaXmlOutput = "APPIUM_JAVA_XML_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeAppiumPythonOutput is a ArtifactType enum value
 	ArtifactTypeAppiumPythonOutput = "APPIUM_PYTHON_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeAppiumPythonXmlOutput is a ArtifactType enum value
 	ArtifactTypeAppiumPythonXmlOutput = "APPIUM_PYTHON_XML_OUTPUT"
-	// @enum ArtifactType
+
+	// ArtifactTypeExplorerEventLog is a ArtifactType enum value
 	ArtifactTypeExplorerEventLog = "EXPLORER_EVENT_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeExplorerSummaryLog is a ArtifactType enum value
 	ArtifactTypeExplorerSummaryLog = "EXPLORER_SUMMARY_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeApplicationCrashReport is a ArtifactType enum value
 	ArtifactTypeApplicationCrashReport = "APPLICATION_CRASH_REPORT"
-	// @enum ArtifactType
+
+	// ArtifactTypeXctestLog is a ArtifactType enum value
 	ArtifactTypeXctestLog = "XCTEST_LOG"
-	// @enum ArtifactType
+
+	// ArtifactTypeVideo is a ArtifactType enum value
 	ArtifactTypeVideo = "VIDEO"
 )
 
 const (
-	// @enum BillingMethod
+	// BillingMethodMetered is a BillingMethod enum value
 	BillingMethodMetered = "METERED"
-	// @enum BillingMethod
+
+	// BillingMethodUnmetered is a BillingMethod enum value
 	BillingMethodUnmetered = "UNMETERED"
 )
 
 const (
-	// @enum CurrencyCode
+	// CurrencyCodeUsd is a CurrencyCode enum value
 	CurrencyCodeUsd = "USD"
 )
 
 const (
-	// @enum DeviceAttribute
+	// DeviceAttributeArn is a DeviceAttribute enum value
 	DeviceAttributeArn = "ARN"
-	// @enum DeviceAttribute
+
+	// DeviceAttributePlatform is a DeviceAttribute enum value
 	DeviceAttributePlatform = "PLATFORM"
-	// @enum DeviceAttribute
+
+	// DeviceAttributeFormFactor is a DeviceAttribute enum value
 	DeviceAttributeFormFactor = "FORM_FACTOR"
-	// @enum DeviceAttribute
+
+	// DeviceAttributeManufacturer is a DeviceAttribute enum value
 	DeviceAttributeManufacturer = "MANUFACTURER"
-	// @enum DeviceAttribute
+
+	// DeviceAttributeRemoteAccessEnabled is a DeviceAttribute enum value
 	DeviceAttributeRemoteAccessEnabled = "REMOTE_ACCESS_ENABLED"
 )
 
 const (
-	// @enum DeviceFormFactor
+	// DeviceFormFactorPhone is a DeviceFormFactor enum value
 	DeviceFormFactorPhone = "PHONE"
-	// @enum DeviceFormFactor
+
+	// DeviceFormFactorTablet is a DeviceFormFactor enum value
 	DeviceFormFactorTablet = "TABLET"
 )
 
 const (
-	// @enum DevicePlatform
+	// DevicePlatformAndroid is a DevicePlatform enum value
 	DevicePlatformAndroid = "ANDROID"
-	// @enum DevicePlatform
+
+	// DevicePlatformIos is a DevicePlatform enum value
 	DevicePlatformIos = "IOS"
 )
 
 const (
-	// @enum DevicePoolType
+	// DevicePoolTypeCurated is a DevicePoolType enum value
 	DevicePoolTypeCurated = "CURATED"
-	// @enum DevicePoolType
+
+	// DevicePoolTypePrivate is a DevicePoolType enum value
 	DevicePoolTypePrivate = "PRIVATE"
 )
 
 const (
-	// @enum ExecutionResult
+	// ExecutionResultPending is a ExecutionResult enum value
 	ExecutionResultPending = "PENDING"
-	// @enum ExecutionResult
+
+	// ExecutionResultPassed is a ExecutionResult enum value
 	ExecutionResultPassed = "PASSED"
-	// @enum ExecutionResult
+
+	// ExecutionResultWarned is a ExecutionResult enum value
 	ExecutionResultWarned = "WARNED"
-	// @enum ExecutionResult
+
+	// ExecutionResultFailed is a ExecutionResult enum value
 	ExecutionResultFailed = "FAILED"
-	// @enum ExecutionResult
+
+	// ExecutionResultSkipped is a ExecutionResult enum value
 	ExecutionResultSkipped = "SKIPPED"
-	// @enum ExecutionResult
+
+	// ExecutionResultErrored is a ExecutionResult enum value
 	ExecutionResultErrored = "ERRORED"
-	// @enum ExecutionResult
+
+	// ExecutionResultStopped is a ExecutionResult enum value
 	ExecutionResultStopped = "STOPPED"
 )
 
 const (
-	// @enum ExecutionStatus
+	// ExecutionStatusPending is a ExecutionStatus enum value
 	ExecutionStatusPending = "PENDING"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusPendingConcurrency is a ExecutionStatus enum value
 	ExecutionStatusPendingConcurrency = "PENDING_CONCURRENCY"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusPendingDevice is a ExecutionStatus enum value
 	ExecutionStatusPendingDevice = "PENDING_DEVICE"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusProcessing is a ExecutionStatus enum value
 	ExecutionStatusProcessing = "PROCESSING"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusScheduling is a ExecutionStatus enum value
 	ExecutionStatusScheduling = "SCHEDULING"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusPreparing is a ExecutionStatus enum value
 	ExecutionStatusPreparing = "PREPARING"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusRunning is a ExecutionStatus enum value
 	ExecutionStatusRunning = "RUNNING"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusCompleted is a ExecutionStatus enum value
 	ExecutionStatusCompleted = "COMPLETED"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusStopping is a ExecutionStatus enum value
 	ExecutionStatusStopping = "STOPPING"
 )
 
 const (
-	// @enum OfferingTransactionType
+	// OfferingTransactionTypePurchase is a OfferingTransactionType enum value
 	OfferingTransactionTypePurchase = "PURCHASE"
-	// @enum OfferingTransactionType
+
+	// OfferingTransactionTypeRenew is a OfferingTransactionType enum value
 	OfferingTransactionTypeRenew = "RENEW"
-	// @enum OfferingTransactionType
+
+	// OfferingTransactionTypeSystem is a OfferingTransactionType enum value
 	OfferingTransactionTypeSystem = "SYSTEM"
 )
 
 const (
-	// @enum OfferingType
+	// OfferingTypeRecurring is a OfferingType enum value
 	OfferingTypeRecurring = "RECURRING"
 )
 
 const (
-	// @enum RecurringChargeFrequency
+	// RecurringChargeFrequencyMonthly is a RecurringChargeFrequency enum value
 	RecurringChargeFrequencyMonthly = "MONTHLY"
 )
 
 const (
-	// @enum RuleOperator
+	// RuleOperatorEquals is a RuleOperator enum value
 	RuleOperatorEquals = "EQUALS"
-	// @enum RuleOperator
+
+	// RuleOperatorLessThan is a RuleOperator enum value
 	RuleOperatorLessThan = "LESS_THAN"
-	// @enum RuleOperator
+
+	// RuleOperatorGreaterThan is a RuleOperator enum value
 	RuleOperatorGreaterThan = "GREATER_THAN"
-	// @enum RuleOperator
+
+	// RuleOperatorIn is a RuleOperator enum value
 	RuleOperatorIn = "IN"
-	// @enum RuleOperator
+
+	// RuleOperatorNotIn is a RuleOperator enum value
 	RuleOperatorNotIn = "NOT_IN"
 )
 
 const (
-	// @enum SampleType
+	// SampleTypeCpu is a SampleType enum value
 	SampleTypeCpu = "CPU"
-	// @enum SampleType
+
+	// SampleTypeMemory is a SampleType enum value
 	SampleTypeMemory = "MEMORY"
-	// @enum SampleType
+
+	// SampleTypeThreads is a SampleType enum value
 	SampleTypeThreads = "THREADS"
-	// @enum SampleType
+
+	// SampleTypeRxRate is a SampleType enum value
 	SampleTypeRxRate = "RX_RATE"
-	// @enum SampleType
+
+	// SampleTypeTxRate is a SampleType enum value
 	SampleTypeTxRate = "TX_RATE"
-	// @enum SampleType
+
+	// SampleTypeRx is a SampleType enum value
 	SampleTypeRx = "RX"
-	// @enum SampleType
+
+	// SampleTypeTx is a SampleType enum value
 	SampleTypeTx = "TX"
-	// @enum SampleType
+
+	// SampleTypeNativeFrames is a SampleType enum value
 	SampleTypeNativeFrames = "NATIVE_FRAMES"
-	// @enum SampleType
+
+	// SampleTypeNativeFps is a SampleType enum value
 	SampleTypeNativeFps = "NATIVE_FPS"
-	// @enum SampleType
+
+	// SampleTypeNativeMinDrawtime is a SampleType enum value
 	SampleTypeNativeMinDrawtime = "NATIVE_MIN_DRAWTIME"
-	// @enum SampleType
+
+	// SampleTypeNativeAvgDrawtime is a SampleType enum value
 	SampleTypeNativeAvgDrawtime = "NATIVE_AVG_DRAWTIME"
-	// @enum SampleType
+
+	// SampleTypeNativeMaxDrawtime is a SampleType enum value
 	SampleTypeNativeMaxDrawtime = "NATIVE_MAX_DRAWTIME"
-	// @enum SampleType
+
+	// SampleTypeOpenglFrames is a SampleType enum value
 	SampleTypeOpenglFrames = "OPENGL_FRAMES"
-	// @enum SampleType
+
+	// SampleTypeOpenglFps is a SampleType enum value
 	SampleTypeOpenglFps = "OPENGL_FPS"
-	// @enum SampleType
+
+	// SampleTypeOpenglMinDrawtime is a SampleType enum value
 	SampleTypeOpenglMinDrawtime = "OPENGL_MIN_DRAWTIME"
-	// @enum SampleType
+
+	// SampleTypeOpenglAvgDrawtime is a SampleType enum value
 	SampleTypeOpenglAvgDrawtime = "OPENGL_AVG_DRAWTIME"
-	// @enum SampleType
+
+	// SampleTypeOpenglMaxDrawtime is a SampleType enum value
 	SampleTypeOpenglMaxDrawtime = "OPENGL_MAX_DRAWTIME"
 )
 
 const (
-	// @enum TestType
+	// TestTypeBuiltinFuzz is a TestType enum value
 	TestTypeBuiltinFuzz = "BUILTIN_FUZZ"
-	// @enum TestType
+
+	// TestTypeBuiltinExplorer is a TestType enum value
 	TestTypeBuiltinExplorer = "BUILTIN_EXPLORER"
-	// @enum TestType
+
+	// TestTypeAppiumJavaJunit is a TestType enum value
 	TestTypeAppiumJavaJunit = "APPIUM_JAVA_JUNIT"
-	// @enum TestType
+
+	// TestTypeAppiumJavaTestng is a TestType enum value
 	TestTypeAppiumJavaTestng = "APPIUM_JAVA_TESTNG"
-	// @enum TestType
+
+	// TestTypeAppiumPython is a TestType enum value
 	TestTypeAppiumPython = "APPIUM_PYTHON"
-	// @enum TestType
+
+	// TestTypeAppiumWebJavaJunit is a TestType enum value
 	TestTypeAppiumWebJavaJunit = "APPIUM_WEB_JAVA_JUNIT"
-	// @enum TestType
+
+	// TestTypeAppiumWebJavaTestng is a TestType enum value
 	TestTypeAppiumWebJavaTestng = "APPIUM_WEB_JAVA_TESTNG"
-	// @enum TestType
+
+	// TestTypeAppiumWebPython is a TestType enum value
 	TestTypeAppiumWebPython = "APPIUM_WEB_PYTHON"
-	// @enum TestType
+
+	// TestTypeCalabash is a TestType enum value
 	TestTypeCalabash = "CALABASH"
-	// @enum TestType
+
+	// TestTypeInstrumentation is a TestType enum value
 	TestTypeInstrumentation = "INSTRUMENTATION"
-	// @enum TestType
+
+	// TestTypeUiautomation is a TestType enum value
 	TestTypeUiautomation = "UIAUTOMATION"
-	// @enum TestType
+
+	// TestTypeUiautomator is a TestType enum value
 	TestTypeUiautomator = "UIAUTOMATOR"
-	// @enum TestType
+
+	// TestTypeXctest is a TestType enum value
 	TestTypeXctest = "XCTEST"
-	// @enum TestType
+
+	// TestTypeXctestUi is a TestType enum value
 	TestTypeXctestUi = "XCTEST_UI"
 )
 
 const (
-	// @enum UploadStatus
+	// UploadStatusInitialized is a UploadStatus enum value
 	UploadStatusInitialized = "INITIALIZED"
-	// @enum UploadStatus
+
+	// UploadStatusProcessing is a UploadStatus enum value
 	UploadStatusProcessing = "PROCESSING"
-	// @enum UploadStatus
+
+	// UploadStatusSucceeded is a UploadStatus enum value
 	UploadStatusSucceeded = "SUCCEEDED"
-	// @enum UploadStatus
+
+	// UploadStatusFailed is a UploadStatus enum value
 	UploadStatusFailed = "FAILED"
 )
 
 const (
-	// @enum UploadType
+	// UploadTypeAndroidApp is a UploadType enum value
 	UploadTypeAndroidApp = "ANDROID_APP"
-	// @enum UploadType
+
+	// UploadTypeIosApp is a UploadType enum value
 	UploadTypeIosApp = "IOS_APP"
-	// @enum UploadType
+
+	// UploadTypeWebApp is a UploadType enum value
 	UploadTypeWebApp = "WEB_APP"
-	// @enum UploadType
+
+	// UploadTypeExternalData is a UploadType enum value
 	UploadTypeExternalData = "EXTERNAL_DATA"
-	// @enum UploadType
+
+	// UploadTypeAppiumJavaJunitTestPackage is a UploadType enum value
 	UploadTypeAppiumJavaJunitTestPackage = "APPIUM_JAVA_JUNIT_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeAppiumJavaTestngTestPackage is a UploadType enum value
 	UploadTypeAppiumJavaTestngTestPackage = "APPIUM_JAVA_TESTNG_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeAppiumPythonTestPackage is a UploadType enum value
 	UploadTypeAppiumPythonTestPackage = "APPIUM_PYTHON_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeAppiumWebJavaJunitTestPackage is a UploadType enum value
 	UploadTypeAppiumWebJavaJunitTestPackage = "APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeAppiumWebJavaTestngTestPackage is a UploadType enum value
 	UploadTypeAppiumWebJavaTestngTestPackage = "APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeAppiumWebPythonTestPackage is a UploadType enum value
 	UploadTypeAppiumWebPythonTestPackage = "APPIUM_WEB_PYTHON_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeCalabashTestPackage is a UploadType enum value
 	UploadTypeCalabashTestPackage = "CALABASH_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeInstrumentationTestPackage is a UploadType enum value
 	UploadTypeInstrumentationTestPackage = "INSTRUMENTATION_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeUiautomationTestPackage is a UploadType enum value
 	UploadTypeUiautomationTestPackage = "UIAUTOMATION_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeUiautomatorTestPackage is a UploadType enum value
 	UploadTypeUiautomatorTestPackage = "UIAUTOMATOR_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeXctestTestPackage is a UploadType enum value
 	UploadTypeXctestTestPackage = "XCTEST_TEST_PACKAGE"
-	// @enum UploadType
+
+	// UploadTypeXctestUiTestPackage is a UploadType enum value
 	UploadTypeXctestUiTestPackage = "XCTEST_UI_TEST_PACKAGE"
 )

@@ -3907,6 +3907,8 @@ type AuthorizeClusterSecurityGroupIngressInput struct {
 	CIDRIP *string `type:"string"`
 
 	// The name of the security group to which the ingress rule is added.
+	//
+	// ClusterSecurityGroupName is a required field
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
 
 	// The EC2 security group to be added the Amazon Redshift security group.
@@ -3965,6 +3967,8 @@ type AuthorizeSnapshotAccessInput struct {
 
 	// The identifier of the AWS customer account authorized to restore the specified
 	// snapshot.
+	//
+	// AccountWithRestoreAccess is a required field
 	AccountWithRestoreAccess *string `type:"string" required:"true"`
 
 	// The identifier of the cluster the snapshot was created from. This parameter
@@ -3973,6 +3977,8 @@ type AuthorizeSnapshotAccessInput struct {
 	SnapshotClusterIdentifier *string `type:"string"`
 
 	// The identifier of the snapshot the account is authorized to restore.
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -4554,6 +4560,8 @@ type CopyClusterSnapshotInput struct {
 	// Constraints:
 	//
 	//   Must be the identifier for a valid automated snapshot whose state is available.
+	//
+	// SourceSnapshotIdentifier is a required field
 	SourceSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// The identifier given to the new manual snapshot.
@@ -4569,6 +4577,8 @@ type CopyClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Must be unique for the AWS account that is making the request.
+	//
+	// TargetSnapshotIdentifier is a required field
 	TargetSnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -4671,6 +4681,8 @@ type CreateClusterInput struct {
 	//   Must be unique for all clusters within an AWS account.
 	//
 	//   Example: myexamplecluster
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the parameter group to be associated with this cluster.
@@ -4799,6 +4811,8 @@ type CreateClusterInput struct {
 	//
 	//   Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
 	// quote), " (double quote), \, /, @, or space.
+	//
+	// MasterUserPassword is a required field
 	MasterUserPassword *string `type:"string" required:"true"`
 
 	// The user name associated with the master user account for the cluster that
@@ -4813,6 +4827,8 @@ type CreateClusterInput struct {
 	//   Cannot be a reserved word. A list of reserved words can be found in Reserved
 	// Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
 	// in the Amazon Redshift Database Developer Guide.
+	//
+	// MasterUsername is a required field
 	MasterUsername *string `type:"string" required:"true"`
 
 	// The node type to be provisioned for the cluster. For information about node
@@ -4821,6 +4837,8 @@ type CreateClusterInput struct {
 	//
 	// Valid Values: ds1.xlarge | ds1.8xlarge | ds2.xlarge | ds2.8xlarge | dc1.large
 	// | dc1.8xlarge.
+	//
+	// NodeType is a required field
 	NodeType *string `type:"string" required:"true"`
 
 	// The number of compute nodes in the cluster. This parameter is required when
@@ -4931,6 +4949,8 @@ type CreateClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// A description of the parameter group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// The Amazon Redshift engine version to which the cluster parameter group applies.
@@ -4942,6 +4962,8 @@ type CreateClusterParameterGroupInput struct {
 	// each Amazon Redshift engine version. The parameter group family names associated
 	// with the default parameter groups provide you the valid values. For example,
 	// a valid family name is "redshift-1.0".
+	//
+	// ParameterGroupFamily is a required field
 	ParameterGroupFamily *string `type:"string" required:"true"`
 
 	// The name of the cluster parameter group.
@@ -4957,6 +4979,8 @@ type CreateClusterParameterGroupInput struct {
 	//   Must be unique withing your AWS account.
 	//
 	//    This value is stored as a lower-case string.
+	//
+	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5024,9 +5048,13 @@ type CreateClusterSecurityGroupInput struct {
 	//   Must be unique for all security groups that are created by your AWS account.
 	//
 	//   Example: examplesecuritygroup
+	//
+	// ClusterSecurityGroupName is a required field
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
 
 	// A description for the security group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5080,6 +5108,8 @@ type CreateClusterSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier for which you want a snapshot.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// A unique identifier for the snapshot that you are requesting. This identifier
@@ -5096,6 +5126,8 @@ type CreateClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	//   Example: my-snapshot-id
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5160,13 +5192,19 @@ type CreateClusterSubnetGroupInput struct {
 	//   Must be unique for all subnet groups that are created by your AWS account.
 	//
 	//   Example: examplesubnetgroup
+	//
+	// ClusterSubnetGroupName is a required field
 	ClusterSubnetGroupName *string `type:"string" required:"true"`
 
 	// A description for the subnet group.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// An array of VPC subnet IDs. A maximum of 20 subnets can be modified in a
 	// single request.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	// A list of tag instances.
@@ -5241,6 +5279,8 @@ type CreateEventSubscriptionInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic used to transmit the
 	// event notifications. The ARN is created by Amazon SNS when you create a topic
 	// and subscribe to it.
+	//
+	// SnsTopicArn is a required field
 	SnsTopicArn *string `type:"string" required:"true"`
 
 	// A list of one or more identifiers of Amazon Redshift source objects. All
@@ -5275,6 +5315,8 @@ type CreateEventSubscriptionInput struct {
 	//   First character must be a letter.
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5329,6 +5371,8 @@ type CreateHsmClientCertificateInput struct {
 
 	// The identifier to be assigned to the new HSM client certificate that the
 	// cluster will use to connect to the HSM to use the database encryption keys.
+	//
+	// HsmClientCertificateIdentifier is a required field
 	HsmClientCertificateIdentifier *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5381,23 +5425,35 @@ type CreateHsmConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A text description of the HSM configuration to be created.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// The identifier to be assigned to the new Amazon Redshift HSM configuration.
+	//
+	// HsmConfigurationIdentifier is a required field
 	HsmConfigurationIdentifier *string `type:"string" required:"true"`
 
 	// The IP address that the Amazon Redshift cluster must use to access the HSM.
+	//
+	// HsmIpAddress is a required field
 	HsmIpAddress *string `type:"string" required:"true"`
 
 	// The name of the partition in the HSM where the Amazon Redshift clusters will
 	// store their database encryption keys.
+	//
+	// HsmPartitionName is a required field
 	HsmPartitionName *string `type:"string" required:"true"`
 
 	// The password required to access the HSM partition.
+	//
+	// HsmPartitionPassword is a required field
 	HsmPartitionPassword *string `type:"string" required:"true"`
 
 	// The HSMs public certificate file. When using Cloud HSM, the file name is
 	// server.pem.
+	//
+	// HsmServerPublicCertificate is a required field
 	HsmServerPublicCertificate *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5483,6 +5539,8 @@ type CreateSnapshotCopyGrantInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Must be unique for all clusters within an AWS account.
+	//
+	// SnapshotCopyGrantName is a required field
 	SnapshotCopyGrantName *string `type:"string" required:"true"`
 
 	// A list of tag instances.
@@ -5541,6 +5599,8 @@ type CreateTagsInput struct {
 
 	// The Amazon Resource Name (ARN) to which you want to add the tag or tags.
 	// For example, arn:aws:redshift:us-east-1:123456789:cluster:t1.
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
 	// One or more name/value pairs to add as tags to the specified resource. Each
@@ -5548,6 +5608,8 @@ type CreateTagsInput struct {
 	// is passed in with the parameter Value. The Key and Value parameters are separated
 	// by a comma (,). Separate multiple tags with a space. For example, --tags
 	// "Key"="owner","Value"="admin" "Key"="environment","Value"="test" "Key"="version","Value"="1.0".
+	//
+	// Tags is a required field
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
@@ -5634,6 +5696,8 @@ type DeleteClusterInput struct {
 	//   First character must be a letter.
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The identifier of the final snapshot that is to be created immediately before
@@ -5710,6 +5774,8 @@ type DeleteClusterParameterGroupInput struct {
 	//   Must be the name of an existing cluster parameter group.
 	//
 	//   Cannot delete a default cluster parameter group.
+	//
+	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
 }
 
@@ -5754,6 +5820,8 @@ type DeleteClusterSecurityGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the cluster security group to be deleted.
+	//
+	// ClusterSecurityGroupName is a required field
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
 }
 
@@ -5808,6 +5876,8 @@ type DeleteClusterSnapshotInput struct {
 	//
 	// Constraints: Must be the name of an existing snapshot that is in the available
 	// state.
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5855,6 +5925,8 @@ type DeleteClusterSubnetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the cluster subnet group name to be deleted.
+	//
+	// ClusterSubnetGroupName is a required field
 	ClusterSubnetGroupName *string `type:"string" required:"true"`
 }
 
@@ -5899,6 +5971,8 @@ type DeleteEventSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Amazon Redshift event notification subscription to be deleted.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
@@ -5943,6 +6017,8 @@ type DeleteHsmClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the HSM client certificate to be deleted.
+	//
+	// HsmClientCertificateIdentifier is a required field
 	HsmClientCertificateIdentifier *string `type:"string" required:"true"`
 }
 
@@ -5987,6 +6063,8 @@ type DeleteHsmConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Amazon Redshift HSM configuration to be deleted.
+	//
+	// HsmConfigurationIdentifier is a required field
 	HsmConfigurationIdentifier *string `type:"string" required:"true"`
 }
 
@@ -6032,6 +6110,8 @@ type DeleteSnapshotCopyGrantInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the snapshot copy grant to delete.
+	//
+	// SnapshotCopyGrantName is a required field
 	SnapshotCopyGrantName *string `type:"string" required:"true"`
 }
 
@@ -6078,9 +6158,13 @@ type DeleteTagsInput struct {
 
 	// The Amazon Resource Name (ARN) from which you want to remove the tag or tags.
 	// For example, arn:aws:redshift:us-east-1:123456789:cluster:t1.
+	//
+	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
 	// The tag key that you want to delete.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `locationNameList:"TagKey" type:"list" required:"true"`
 }
 
@@ -6224,6 +6308,8 @@ type DescribeClusterParametersInput struct {
 	MaxRecords *int64 `type:"integer"`
 
 	// The name of a cluster parameter group for which to return details.
+	//
+	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
 
 	// The parameter types to return. Specify user to show parameters that are different
@@ -6723,6 +6809,8 @@ type DescribeDefaultClusterParametersInput struct {
 	MaxRecords *int64 `type:"integer"`
 
 	// The name of the cluster parameter group family.
+	//
+	// ParameterGroupFamily is a required field
 	ParameterGroupFamily *string `type:"string" required:"true"`
 }
 
@@ -7134,6 +7222,8 @@ type DescribeLoggingStatusInput struct {
 	// The identifier of the cluster from which to get the logging status.
 	//
 	// Example: examplecluster
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -7355,6 +7445,8 @@ type DescribeResizeInput struct {
 	//
 	// By default, resize operations for all clusters defined for an AWS account
 	// are returned.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -7696,6 +7788,8 @@ type DisableLoggingInput struct {
 	// The identifier of the cluster on which logging is to be stopped.
 	//
 	// Example: examplecluster
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -7730,6 +7824,8 @@ type DisableSnapshotCopyInput struct {
 	//
 	// Constraints: Must be the valid name of an existing cluster that has cross-region
 	// snapshot copy enabled.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -7832,11 +7928,15 @@ type EnableLoggingInput struct {
 	//   Must be in the same region as the cluster
 	//
 	//   The cluster must have read bucket and put object permissions
+	//
+	// BucketName is a required field
 	BucketName *string `type:"string" required:"true"`
 
 	// The identifier of the cluster on which logging is to be started.
 	//
 	// Example: examplecluster
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The prefix applied to the log file names.
@@ -7894,6 +7994,8 @@ type EnableSnapshotCopyInput struct {
 	//
 	// Constraints: Must be the valid name of an existing cluster that does not
 	// already have cross-region snapshot copy enabled.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The destination region that you want to copy snapshots to.
@@ -7901,6 +8003,8 @@ type EnableSnapshotCopyInput struct {
 	// Constraints: Must be the name of a valid region. For more information, see
 	// Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region)
 	// in the Amazon Web Services General Reference.
+	//
+	// DestinationRegion is a required field
 	DestinationRegion *string `type:"string" required:"true"`
 
 	// The number of days to retain automated snapshots in the destination region
@@ -8294,6 +8398,8 @@ type ModifyClusterIamRolesInput struct {
 
 	// The unique identifier of the cluster for which you want to associate or disassociate
 	// IAM roles.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// Zero or more IAM roles in ARN format to disassociate from the cluster. You
@@ -8366,6 +8472,8 @@ type ModifyClusterInput struct {
 	// The unique identifier of the cluster to be modified.
 	//
 	// Example: examplecluster
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the cluster parameter group to apply to this cluster. This change
@@ -8585,6 +8693,8 @@ type ModifyClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the parameter group to be modified.
+	//
+	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
 
 	// An array of parameters to be modified. A maximum of 20 parameters can be
@@ -8595,6 +8705,8 @@ type ModifyClusterParameterGroupInput struct {
 	//
 	// For the workload management (WLM) configuration, you must supply all the
 	// name-value pairs in the wlm_json_configuration parameter.
+	//
+	// Parameters is a required field
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 }
 
@@ -8628,6 +8740,8 @@ type ModifyClusterSubnetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the subnet group to be modified.
+	//
+	// ClusterSubnetGroupName is a required field
 	ClusterSubnetGroupName *string `type:"string" required:"true"`
 
 	// A text description of the subnet group to be modified.
@@ -8635,6 +8749,8 @@ type ModifyClusterSubnetGroupInput struct {
 
 	// An array of VPC subnet IDs. A maximum of 20 subnets can be modified in a
 	// single request.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 }
 
@@ -8726,6 +8842,8 @@ type ModifyEventSubscriptionInput struct {
 	SourceType *string `type:"string"`
 
 	// The name of the modified Amazon Redshift event notification subscription.
+	//
+	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
 }
 
@@ -8777,6 +8895,8 @@ type ModifySnapshotCopyRetentionPeriodInput struct {
 	//
 	// Constraints: Must be the valid name of an existing cluster that has cross-region
 	// snapshot copy enabled.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The number of days to retain automated snapshots in the destination region
@@ -8788,6 +8908,8 @@ type ModifySnapshotCopyRetentionPeriodInput struct {
 	// of the new retention period.
 	//
 	// Constraints: Must be at least 1 and no more than 35.
+	//
+	// RetentionPeriod is a required field
 	RetentionPeriod *int64 `type:"integer" required:"true"`
 }
 
@@ -8970,6 +9092,8 @@ type PurchaseReservedNodeOfferingInput struct {
 	NodeCount *int64 `type:"integer"`
 
 	// The unique identifier of the reserved node offering you want to purchase.
+	//
+	// ReservedNodeOfferingId is a required field
 	ReservedNodeOfferingId *string `type:"string" required:"true"`
 }
 
@@ -9018,6 +9142,8 @@ type RebootClusterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -9195,6 +9321,8 @@ type ResetClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the cluster parameter group to be reset.
+	//
+	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
 
 	// An array of names of parameters to be reset. If ResetAllParameters option
@@ -9275,6 +9403,8 @@ type RestoreFromClusterSnapshotInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Must be unique for all clusters within an AWS account.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the parameter group to be associated with this cluster.
@@ -9391,6 +9521,8 @@ type RestoreFromClusterSnapshotInput struct {
 	// isn't case sensitive.
 	//
 	// Example: my-snapshot-id
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
 	// A list of Virtual Private Cloud (VPC) security groups to be associated with
@@ -9487,17 +9619,25 @@ type RestoreTableFromClusterSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the Amazon Redshift cluster to restore the table to.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the table to create as a result of the current request.
+	//
+	// NewTableName is a required field
 	NewTableName *string `type:"string" required:"true"`
 
 	// The identifier of the snapshot to restore the table from. This snapshot must
 	// have been created from the Amazon Redshift cluster specified by the ClusterIdentifier
 	// parameter.
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
 	// The name of the source database that contains the table to restore from.
+	//
+	// SourceDatabaseName is a required field
 	SourceDatabaseName *string `type:"string" required:"true"`
 
 	// The name of the source schema that contains the table to restore from. If
@@ -9505,6 +9645,8 @@ type RestoreTableFromClusterSnapshotInput struct {
 	SourceSchemaName *string `type:"string"`
 
 	// The name of the source table to restore from.
+	//
+	// SourceTableName is a required field
 	SourceTableName *string `type:"string" required:"true"`
 
 	// The name of the database to restore the table to.
@@ -9575,6 +9717,8 @@ type RevokeClusterSecurityGroupIngressInput struct {
 	CIDRIP *string `type:"string"`
 
 	// The name of the security Group from which to revoke the ingress rule.
+	//
+	// ClusterSecurityGroupName is a required field
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
 
 	// The name of the EC2 Security Group whose access is to be revoked. If EC2SecurityGroupName
@@ -9636,6 +9780,8 @@ type RevokeSnapshotAccessInput struct {
 
 	// The identifier of the AWS customer account that can no longer restore the
 	// specified snapshot.
+	//
+	// AccountWithRestoreAccess is a required field
 	AccountWithRestoreAccess *string `type:"string" required:"true"`
 
 	// The identifier of the cluster the snapshot was created from. This parameter
@@ -9644,6 +9790,8 @@ type RevokeSnapshotAccessInput struct {
 	SnapshotClusterIdentifier *string `type:"string"`
 
 	// The identifier of the snapshot that the account can no longer access.
+	//
+	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 }
 
@@ -9697,6 +9845,8 @@ type RotateEncryptionKeyInput struct {
 	// keys for.
 	//
 	// Constraints: Must be the name of valid cluster that has encryption enabled.
+	//
+	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 }
 
@@ -10079,32 +10229,40 @@ func (s VpcSecurityGroupMembership) GoString() string {
 }
 
 const (
-	// @enum ParameterApplyType
+	// ParameterApplyTypeStatic is a ParameterApplyType enum value
 	ParameterApplyTypeStatic = "static"
-	// @enum ParameterApplyType
+
+	// ParameterApplyTypeDynamic is a ParameterApplyType enum value
 	ParameterApplyTypeDynamic = "dynamic"
 )
 
 const (
-	// @enum SourceType
+	// SourceTypeCluster is a SourceType enum value
 	SourceTypeCluster = "cluster"
-	// @enum SourceType
+
+	// SourceTypeClusterParameterGroup is a SourceType enum value
 	SourceTypeClusterParameterGroup = "cluster-parameter-group"
-	// @enum SourceType
+
+	// SourceTypeClusterSecurityGroup is a SourceType enum value
 	SourceTypeClusterSecurityGroup = "cluster-security-group"
-	// @enum SourceType
+
+	// SourceTypeClusterSnapshot is a SourceType enum value
 	SourceTypeClusterSnapshot = "cluster-snapshot"
 )
 
 const (
-	// @enum TableRestoreStatusType
+	// TableRestoreStatusTypePending is a TableRestoreStatusType enum value
 	TableRestoreStatusTypePending = "PENDING"
-	// @enum TableRestoreStatusType
+
+	// TableRestoreStatusTypeInProgress is a TableRestoreStatusType enum value
 	TableRestoreStatusTypeInProgress = "IN_PROGRESS"
-	// @enum TableRestoreStatusType
+
+	// TableRestoreStatusTypeSucceeded is a TableRestoreStatusType enum value
 	TableRestoreStatusTypeSucceeded = "SUCCEEDED"
-	// @enum TableRestoreStatusType
+
+	// TableRestoreStatusTypeFailed is a TableRestoreStatusType enum value
 	TableRestoreStatusTypeFailed = "FAILED"
-	// @enum TableRestoreStatusType
+
+	// TableRestoreStatusTypeCanceled is a TableRestoreStatusType enum value
 	TableRestoreStatusTypeCanceled = "CANCELED"
 )

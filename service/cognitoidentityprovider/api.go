@@ -2765,9 +2765,13 @@ type AddCustomAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of custom attributes, such as Mutable and Name.
+	//
+	// CustomAttributes is a required field
 	CustomAttributes []*SchemaAttributeType `min:"1" type:"list" required:"true"`
 
 	// The user pool ID for the user pool where you want to add custom attributes.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2833,9 +2837,13 @@ type AdminConfirmSignUpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for which you want to confirm user registration.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name for which you want to confirm user registration.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2999,11 +3007,15 @@ type AdminCreateUserInput struct {
 	UserAttributes []*AttributeType `type:"list"`
 
 	// The user pool ID for the user pool where the user will be created.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The username for the user. Must be unique within the user pool. Must be a
 	// UTF-8 string between 1 and 128 characters. After the user is created, the
 	// username cannot be changed.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 
 	// The user's validation data. This is an array of name-value pairs that contain
@@ -3099,12 +3111,18 @@ type AdminDeleteUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of strings representing the user attribute names you wish to delete.
+	//
+	// UserAttributeNames is a required field
 	UserAttributeNames []*string `type:"list" required:"true"`
 
 	// The user pool ID for the user pool where you want to delete user attributes.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user from which you would like to delete attributes.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3164,9 +3182,13 @@ type AdminDeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool where you want to delete the user.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user you wish to delete.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3221,9 +3243,13 @@ type AdminDisableUserInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool where you want to disable the user.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user you wish to disable.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3280,9 +3306,13 @@ type AdminEnableUserInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool where you want to enable the user.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user you wish to ebable.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3339,12 +3369,18 @@ type AdminForgetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3405,12 +3441,18 @@ type AdminGetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3457,6 +3499,8 @@ type AdminGetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The device.
+	//
+	// Device is a required field
 	Device *DeviceType `type:"structure" required:"true"`
 }
 
@@ -3476,9 +3520,13 @@ type AdminGetUserInput struct {
 
 	// The user pool ID for the user pool where you want to get information about
 	// the user.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user you wish to retrieve.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3548,6 +3596,8 @@ type AdminGetUserOutput struct {
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user about whom you are receiving information.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3566,18 +3616,24 @@ type AdminInitiateAuthInput struct {
 	_ struct{} `type:"structure"`
 
 	// The authentication flow.
+	//
+	// AuthFlow is a required field
 	AuthFlow *string `type:"string" required:"true" enum:"AuthFlowType"`
 
 	// The authentication parameters.
 	AuthParameters map[string]*string `type:"map"`
 
 	// The client app ID.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The client app metadata.
 	ClientMetadata map[string]*string `type:"map"`
 
 	// The ID of the Amazon Cognito user pool.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3654,9 +3710,13 @@ type AdminListDevicesInput struct {
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user pool ID.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3721,9 +3781,13 @@ type AdminResetUserPasswordInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool where you want to reset the user's password.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user whose password you wish to reset.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3779,18 +3843,24 @@ type AdminRespondToAuthChallengeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the challenge.
+	//
+	// ChallengeName is a required field
 	ChallengeName *string `type:"string" required:"true" enum:"ChallengeNameType"`
 
 	// The challenge response.
 	ChallengeResponses map[string]*string `type:"map"`
 
 	// The client ID.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The session.
 	Session *string `min:"20" type:"string"`
 
 	// The ID of the Amazon Cognito user pool.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3864,13 +3934,19 @@ type AdminSetUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the options for MFA (e.g., email or phone number).
+	//
+	// MFAOptions is a required field
 	MFAOptions []*MFAOptionType `type:"list" required:"true"`
 
 	// The user pool ID for the user pool where you want to set the user's settings,
 	// such as MFA options.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user for whom you wish to set user settings.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3939,15 +4015,21 @@ type AdminUpdateDeviceStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 
 	// The status indicating whether a device has been remembered or not.
 	DeviceRememberedStatus *string `type:"string" enum:"DeviceRememberedStatusType"`
 
 	// The user pool ID>
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4009,12 +4091,18 @@ type AdminUpdateUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of name-value pairs representing user attributes.
+	//
+	// UserAttributes is a required field
 	UserAttributes []*AttributeType `type:"list" required:"true"`
 
 	// The user pool ID for the user pool where you want to update user attributes.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name of the user for whom you want to update user attributes.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4084,9 +4172,13 @@ type AdminUserGlobalSignOutInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The user name.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4142,6 +4234,8 @@ type AttributeType struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the attribute.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The value of the attribute.
@@ -4215,9 +4309,13 @@ type ChangePasswordInput struct {
 	AccessToken *string `type:"string"`
 
 	// The old password in the change password request.
+	//
+	// PreviousPassword is a required field
 	PreviousPassword *string `min:"6" type:"string" required:"true"`
 
 	// The new password in the change password request.
+	//
+	// ProposedPassword is a required field
 	ProposedPassword *string `min:"6" type:"string" required:"true"`
 }
 
@@ -4297,9 +4395,13 @@ type ConfirmDeviceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The access token.
+	//
+	// AccessToken is a required field
 	AccessToken *string `type:"string" required:"true"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 
 	// The device name.
@@ -4365,12 +4467,18 @@ type ConfirmForgotPasswordInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The confirmation code sent by a user's request to retrieve a forgotten password.
+	//
+	// ConfirmationCode is a required field
 	ConfirmationCode *string `min:"1" type:"string" required:"true"`
 
 	// The password sent by sent by a user's request to retrieve a forgotten password.
+	//
+	// Password is a required field
 	Password *string `min:"6" type:"string" required:"true"`
 
 	// A keyed-hash message authentication code (HMAC) calculated using the secret
@@ -4379,6 +4487,8 @@ type ConfirmForgotPasswordInput struct {
 
 	// The user name of the user for whom you want to enter a code to retrieve a
 	// forgotten password.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4450,9 +4560,13 @@ type ConfirmSignUpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The confirmation code sent by a user's request to confirm registration.
+	//
+	// ConfirmationCode is a required field
 	ConfirmationCode *string `min:"1" type:"string" required:"true"`
 
 	// Boolean to be specified to force user confirmation irrespective of existing
@@ -4468,6 +4582,8 @@ type ConfirmSignUpInput struct {
 	SecretHash *string `min:"1" type:"string"`
 
 	// The user name of the user whose registration you wish to confirm.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4532,12 +4648,18 @@ type CreateUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The role ARN for the Amazon CloudWatch Logging role for the user import job.
+	//
+	// CloudWatchLogsRoleArn is a required field
 	CloudWatchLogsRoleArn *string `min:"20" type:"string" required:"true"`
 
 	// The job name for the user import job.
+	//
+	// JobName is a required field
 	JobName *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID for the user pool that the users are being imported into.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4603,6 +4725,8 @@ type CreateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
 	// The client name for the user pool client you would like to create.
+	//
+	// ClientName is a required field
 	ClientName *string `min:"1" type:"string" required:"true"`
 
 	// The explicit authentication flows.
@@ -4619,6 +4743,8 @@ type CreateUserPoolClientInput struct {
 	RefreshTokenValidity *int64 `type:"integer"`
 
 	// The user pool ID for the user pool where you want to create a user pool client.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The write attributes.
@@ -4711,6 +4837,8 @@ type CreateUserPoolInput struct {
 	Policies *UserPoolPolicyType `type:"structure"`
 
 	// A string used to name the user pool.
+	//
+	// PoolName is a required field
 	PoolName *string `min:"1" type:"string" required:"true"`
 
 	// A string representing the SMS authentication message.
@@ -4813,6 +4941,8 @@ type DeleteUserAttributesInput struct {
 	AccessToken *string `type:"string"`
 
 	// An array of strings representing the user attribute names you wish to delete.
+	//
+	// UserAttributeNames is a required field
 	UserAttributeNames []*string `type:"list" required:"true"`
 }
 
@@ -4891,9 +5021,13 @@ type DeleteUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID for the user pool where you want to delete the client.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4948,6 +5082,8 @@ type DeleteUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool you want to delete.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4996,9 +5132,13 @@ type DescribeUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The job ID for the user import job.
+	//
+	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID for the user pool that the users are being imported into.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5058,9 +5198,13 @@ type DescribeUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID for the user pool you want to describe.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5120,6 +5264,8 @@ type DescribeUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool you want to describe.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5282,6 +5428,8 @@ type ForgetDeviceInput struct {
 	AccessToken *string `type:"string"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5330,6 +5478,8 @@ type ForgotPasswordInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// A keyed-hash message authentication code (HMAC) calculated using the secret
@@ -5338,6 +5488,8 @@ type ForgotPasswordInput struct {
 
 	// The user name of the user for whom you want to enter a code to retrieve a
 	// forgotten password.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5401,6 +5553,8 @@ type GetCSVHeaderInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user pool ID for the user pool that the users are to be imported into.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5460,6 +5614,8 @@ type GetDeviceInput struct {
 	AccessToken *string `type:"string"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5494,6 +5650,8 @@ type GetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The device.
+	//
+	// Device is a required field
 	Device *DeviceType `type:"structure" required:"true"`
 }
 
@@ -5517,6 +5675,8 @@ type GetUserAttributeVerificationCodeInput struct {
 
 	// The attribute name returned by the server response to get the user attribute
 	// verification code.
+	//
+	// AttributeName is a required field
 	AttributeName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5594,9 +5754,13 @@ type GetUserOutput struct {
 	MFAOptions []*MFAOptionType `type:"list"`
 
 	// An array of name-value pairs representing user attributes.
+	//
+	// UserAttributes is a required field
 	UserAttributes []*AttributeType `type:"list" required:"true"`
 
 	// The user name of the user you wish to retrieve from the get user request.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5648,12 +5812,16 @@ type InitiateAuthInput struct {
 	_ struct{} `type:"structure"`
 
 	// The authentication flow.
+	//
+	// AuthFlow is a required field
 	AuthFlow *string `type:"string" required:"true" enum:"AuthFlowType"`
 
 	// The authentication parameters.
 	AuthParameters map[string]*string `type:"map"`
 
 	// The client ID.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The client app's metadata.
@@ -5794,6 +5962,8 @@ type ListDevicesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The access tokens for the request to list devices.
+	//
+	// AccessToken is a required field
 	AccessToken *string `type:"string" required:"true"`
 
 	// The limit of the device request.
@@ -5855,6 +6025,8 @@ type ListUserImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of import jobs you want the request to return.
+	//
+	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// An identifier that was returned from the previous call to ListUserImportJobs,
@@ -5862,6 +6034,8 @@ type ListUserImportJobsInput struct {
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user pool ID for the user pool that the users are being imported into.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5936,6 +6110,8 @@ type ListUserPoolClientsInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The user pool ID for the user pool where you want to list user pool clients.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5999,6 +6175,8 @@ type ListUserPoolsInput struct {
 
 	// The maximum number of results you want the request to return when listing
 	// the user pools.
+	//
+	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
@@ -6075,6 +6253,8 @@ type ListUsersInput struct {
 	PaginationToken *string `min:"1" type:"string"`
 
 	// The user pool ID for which you want to list users.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6302,6 +6482,8 @@ type ResendConfirmationCodeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// A keyed-hash message authentication code (HMAC) calculated using the secret
@@ -6309,6 +6491,8 @@ type ResendConfirmationCodeInput struct {
 	SecretHash *string `min:"1" type:"string"`
 
 	// The user name of the user to whom you wish to resend a confirmation code.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6371,12 +6555,16 @@ type RespondToAuthChallengeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the challenge.
+	//
+	// ChallengeName is a required field
 	ChallengeName *string `type:"string" required:"true" enum:"ChallengeNameType"`
 
 	// The responses to the authentication challenge.
 	ChallengeResponses map[string]*string `type:"map"`
 
 	// The client ID.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The session.
@@ -6498,9 +6686,13 @@ type SetUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The access token for the set user settings request.
+	//
+	// AccessToken is a required field
 	AccessToken *string `type:"string" required:"true"`
 
 	// Specifies the options for MFA (e.g., email or phone number).
+	//
+	// MFAOptions is a required field
 	MFAOptions []*MFAOptionType `type:"list" required:"true"`
 }
 
@@ -6560,9 +6752,13 @@ type SignUpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The password of the user you wish to register.
+	//
+	// Password is a required field
 	Password *string `min:"6" type:"string" required:"true"`
 
 	// A keyed-hash message authentication code (HMAC) calculated using the secret
@@ -6573,6 +6769,8 @@ type SignUpInput struct {
 	UserAttributes []*AttributeType `type:"list"`
 
 	// The user name of the user you wish to register.
+	//
+	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
 
 	// The validation data in the request to register a user.
@@ -6701,9 +6899,13 @@ type StartUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The job ID for the user import job.
+	//
+	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID for the user pool that the users are being imported into.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6763,9 +6965,13 @@ type StopUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The job ID for the user import job.
+	//
+	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
 
 	// The user pool ID for the user pool that the users are being imported into.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6846,9 +7052,13 @@ type UpdateDeviceStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The access token.
+	//
+	// AccessToken is a required field
 	AccessToken *string `type:"string" required:"true"`
 
 	// The device key.
+	//
+	// DeviceKey is a required field
 	DeviceKey *string `min:"1" type:"string" required:"true"`
 
 	// The status of whether a device is remembered.
@@ -6907,6 +7117,8 @@ type UpdateUserAttributesInput struct {
 	AccessToken *string `type:"string"`
 
 	// An array of name-value pairs representing user attributes.
+	//
+	// UserAttributes is a required field
 	UserAttributes []*AttributeType `type:"list" required:"true"`
 }
 
@@ -6967,6 +7179,8 @@ type UpdateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the client associated with the user pool.
+	//
+	// ClientId is a required field
 	ClientId *string `min:"1" type:"string" required:"true"`
 
 	// The client name from the update user pool client request.
@@ -6983,6 +7197,8 @@ type UpdateUserPoolClientInput struct {
 
 	// The user pool ID for the user pool where you want to update the user pool
 	// client.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 
 	// The writeable attributes of the user pool.
@@ -7095,6 +7311,8 @@ type UpdateUserPoolInput struct {
 	SmsVerificationMessage *string `min:"6" type:"string"`
 
 	// The user pool ID for the user pool you want to update.
+	//
+	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7532,9 +7750,13 @@ type VerifyUserAttributeInput struct {
 	AccessToken *string `type:"string"`
 
 	// The attribute name in the request to verify user attributes.
+	//
+	// AttributeName is a required field
 	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The verification code in the request to verify user attributes.
+	//
+	// Code is a required field
 	Code *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7587,138 +7809,174 @@ func (s VerifyUserAttributeOutput) GoString() string {
 }
 
 const (
-	// @enum AliasAttributeType
+	// AliasAttributeTypePhoneNumber is a AliasAttributeType enum value
 	AliasAttributeTypePhoneNumber = "phone_number"
-	// @enum AliasAttributeType
+
+	// AliasAttributeTypeEmail is a AliasAttributeType enum value
 	AliasAttributeTypeEmail = "email"
-	// @enum AliasAttributeType
+
+	// AliasAttributeTypePreferredUsername is a AliasAttributeType enum value
 	AliasAttributeTypePreferredUsername = "preferred_username"
 )
 
 const (
-	// @enum AttributeDataType
+	// AttributeDataTypeString is a AttributeDataType enum value
 	AttributeDataTypeString = "String"
-	// @enum AttributeDataType
+
+	// AttributeDataTypeNumber is a AttributeDataType enum value
 	AttributeDataTypeNumber = "Number"
-	// @enum AttributeDataType
+
+	// AttributeDataTypeDateTime is a AttributeDataType enum value
 	AttributeDataTypeDateTime = "DateTime"
-	// @enum AttributeDataType
+
+	// AttributeDataTypeBoolean is a AttributeDataType enum value
 	AttributeDataTypeBoolean = "Boolean"
 )
 
 const (
-	// @enum AuthFlowType
+	// AuthFlowTypeUserSrpAuth is a AuthFlowType enum value
 	AuthFlowTypeUserSrpAuth = "USER_SRP_AUTH"
-	// @enum AuthFlowType
+
+	// AuthFlowTypeRefreshTokenAuth is a AuthFlowType enum value
 	AuthFlowTypeRefreshTokenAuth = "REFRESH_TOKEN_AUTH"
-	// @enum AuthFlowType
+
+	// AuthFlowTypeRefreshToken is a AuthFlowType enum value
 	AuthFlowTypeRefreshToken = "REFRESH_TOKEN"
-	// @enum AuthFlowType
+
+	// AuthFlowTypeCustomAuth is a AuthFlowType enum value
 	AuthFlowTypeCustomAuth = "CUSTOM_AUTH"
-	// @enum AuthFlowType
+
+	// AuthFlowTypeAdminNoSrpAuth is a AuthFlowType enum value
 	AuthFlowTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
 )
 
 const (
-	// @enum ChallengeNameType
+	// ChallengeNameTypeSmsMfa is a ChallengeNameType enum value
 	ChallengeNameTypeSmsMfa = "SMS_MFA"
-	// @enum ChallengeNameType
+
+	// ChallengeNameTypePasswordVerifier is a ChallengeNameType enum value
 	ChallengeNameTypePasswordVerifier = "PASSWORD_VERIFIER"
-	// @enum ChallengeNameType
+
+	// ChallengeNameTypeCustomChallenge is a ChallengeNameType enum value
 	ChallengeNameTypeCustomChallenge = "CUSTOM_CHALLENGE"
-	// @enum ChallengeNameType
+
+	// ChallengeNameTypeDeviceSrpAuth is a ChallengeNameType enum value
 	ChallengeNameTypeDeviceSrpAuth = "DEVICE_SRP_AUTH"
-	// @enum ChallengeNameType
+
+	// ChallengeNameTypeDevicePasswordVerifier is a ChallengeNameType enum value
 	ChallengeNameTypeDevicePasswordVerifier = "DEVICE_PASSWORD_VERIFIER"
-	// @enum ChallengeNameType
+
+	// ChallengeNameTypeAdminNoSrpAuth is a ChallengeNameType enum value
 	ChallengeNameTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
-	// @enum ChallengeNameType
+
+	// ChallengeNameTypeNewPasswordRequired is a ChallengeNameType enum value
 	ChallengeNameTypeNewPasswordRequired = "NEW_PASSWORD_REQUIRED"
 )
 
 const (
-	// @enum DeliveryMediumType
+	// DeliveryMediumTypeSms is a DeliveryMediumType enum value
 	DeliveryMediumTypeSms = "SMS"
-	// @enum DeliveryMediumType
+
+	// DeliveryMediumTypeEmail is a DeliveryMediumType enum value
 	DeliveryMediumTypeEmail = "EMAIL"
 )
 
 const (
-	// @enum DeviceRememberedStatusType
+	// DeviceRememberedStatusTypeRemembered is a DeviceRememberedStatusType enum value
 	DeviceRememberedStatusTypeRemembered = "remembered"
-	// @enum DeviceRememberedStatusType
+
+	// DeviceRememberedStatusTypeNotRemembered is a DeviceRememberedStatusType enum value
 	DeviceRememberedStatusTypeNotRemembered = "not_remembered"
 )
 
 const (
-	// @enum ExplicitAuthFlowsType
+	// ExplicitAuthFlowsTypeAdminNoSrpAuth is a ExplicitAuthFlowsType enum value
 	ExplicitAuthFlowsTypeAdminNoSrpAuth = "ADMIN_NO_SRP_AUTH"
-	// @enum ExplicitAuthFlowsType
+
+	// ExplicitAuthFlowsTypeCustomAuthFlowOnly is a ExplicitAuthFlowsType enum value
 	ExplicitAuthFlowsTypeCustomAuthFlowOnly = "CUSTOM_AUTH_FLOW_ONLY"
 )
 
 const (
-	// @enum MessageActionType
+	// MessageActionTypeResend is a MessageActionType enum value
 	MessageActionTypeResend = "RESEND"
-	// @enum MessageActionType
+
+	// MessageActionTypeSuppress is a MessageActionType enum value
 	MessageActionTypeSuppress = "SUPPRESS"
 )
 
 const (
-	// @enum StatusType
+	// StatusTypeEnabled is a StatusType enum value
 	StatusTypeEnabled = "Enabled"
-	// @enum StatusType
+
+	// StatusTypeDisabled is a StatusType enum value
 	StatusTypeDisabled = "Disabled"
 )
 
 const (
-	// @enum UserImportJobStatusType
+	// UserImportJobStatusTypeCreated is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeCreated = "Created"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypePending is a UserImportJobStatusType enum value
 	UserImportJobStatusTypePending = "Pending"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypeInProgress is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeInProgress = "InProgress"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypeStopping is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeStopping = "Stopping"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypeExpired is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeExpired = "Expired"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypeStopped is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeStopped = "Stopped"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypeFailed is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeFailed = "Failed"
-	// @enum UserImportJobStatusType
+
+	// UserImportJobStatusTypeSucceeded is a UserImportJobStatusType enum value
 	UserImportJobStatusTypeSucceeded = "Succeeded"
 )
 
 const (
-	// @enum UserPoolMfaType
+	// UserPoolMfaTypeOff is a UserPoolMfaType enum value
 	UserPoolMfaTypeOff = "OFF"
-	// @enum UserPoolMfaType
+
+	// UserPoolMfaTypeOn is a UserPoolMfaType enum value
 	UserPoolMfaTypeOn = "ON"
-	// @enum UserPoolMfaType
+
+	// UserPoolMfaTypeOptional is a UserPoolMfaType enum value
 	UserPoolMfaTypeOptional = "OPTIONAL"
 )
 
 const (
-	// @enum UserStatusType
+	// UserStatusTypeUnconfirmed is a UserStatusType enum value
 	UserStatusTypeUnconfirmed = "UNCONFIRMED"
-	// @enum UserStatusType
+
+	// UserStatusTypeConfirmed is a UserStatusType enum value
 	UserStatusTypeConfirmed = "CONFIRMED"
-	// @enum UserStatusType
+
+	// UserStatusTypeArchived is a UserStatusType enum value
 	UserStatusTypeArchived = "ARCHIVED"
-	// @enum UserStatusType
+
+	// UserStatusTypeCompromised is a UserStatusType enum value
 	UserStatusTypeCompromised = "COMPROMISED"
-	// @enum UserStatusType
+
+	// UserStatusTypeUnknown is a UserStatusType enum value
 	UserStatusTypeUnknown = "UNKNOWN"
-	// @enum UserStatusType
+
+	// UserStatusTypeResetRequired is a UserStatusType enum value
 	UserStatusTypeResetRequired = "RESET_REQUIRED"
-	// @enum UserStatusType
+
+	// UserStatusTypeForceChangePassword is a UserStatusType enum value
 	UserStatusTypeForceChangePassword = "FORCE_CHANGE_PASSWORD"
 )
 
 const (
-	// @enum VerifiedAttributeType
+	// VerifiedAttributeTypePhoneNumber is a VerifiedAttributeType enum value
 	VerifiedAttributeTypePhoneNumber = "phone_number"
-	// @enum VerifiedAttributeType
+
+	// VerifiedAttributeTypeEmail is a VerifiedAttributeType enum value
 	VerifiedAttributeTypeEmail = "email"
 )

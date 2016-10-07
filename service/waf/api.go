@@ -2408,12 +2408,16 @@ type ActivatedRule struct {
 	//    COUNT: AWS WAF increments a counter of requests that match the conditions
 	// in the rule and then continues to inspect the web request based on the remaining
 	// rules in the web ACL.
+	//
+	// Action is a required field
 	Action *WafAction `type:"structure" required:"true"`
 
 	// Specifies the order in which the Rules in a WebACL are evaluated. Rules with
 	// a lower value for Priority are evaluated before Rules with a higher value.
 	// The value must be a unique integer. If you add multiple Rules to a WebACL,
 	// the values don't need to be consecutive.
+	//
+	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
 
 	// The RuleId for a Rule. You use RuleId to get more information about a Rule
@@ -2422,6 +2426,8 @@ type ActivatedRule struct {
 	// WAF (see DeleteRule).
 	//
 	//  RuleId is returned by CreateRule and by ListRules.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2480,11 +2486,15 @@ type ByteMatchSet struct {
 	// and delete a ByteMatchSet from AWS WAF (see DeleteByteMatchSet).
 	//
 	//  ByteMatchSetId is returned by CreateByteMatchSet and by ListByteMatchSets.
+	//
+	// ByteMatchSetId is a required field
 	ByteMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// Specifies the bytes (typically a string that corresponds with ASCII characters)
 	// that you want AWS WAF to search for in web requests, the location in requests
 	// that you want AWS WAF to search, and other settings.
+	//
+	// ByteMatchTuples is a required field
 	ByteMatchTuples []*ByteMatchTuple `type:"list" required:"true"`
 
 	// A friendly name or description of the ByteMatchSet. You can't change Name
@@ -2512,10 +2522,14 @@ type ByteMatchSetSummary struct {
 	// Rule, and delete a ByteMatchSet from AWS WAF.
 	//
 	//  ByteMatchSetId is returned by CreateByteMatchSet and by ListByteMatchSets.
+	//
+	// ByteMatchSetId is a required field
 	ByteMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description of the ByteMatchSet. You can't change Name
 	// after you create a ByteMatchSet.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2535,12 +2549,16 @@ type ByteMatchSetUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether to insert or delete a ByteMatchTuple.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Information about the part of a web request that you want AWS WAF to inspect
 	// and the value that you want AWS WAF to search for. If you specify DELETE
 	// for the value of Action, the ByteMatchTuple values must exactly match the
 	// values in the ByteMatchTuple that you want to delete from the ByteMatchSet.
+	//
+	// ByteMatchTuple is a required field
 	ByteMatchTuple *ByteMatchTuple `type:"structure" required:"true"`
 }
 
@@ -2583,6 +2601,8 @@ type ByteMatchTuple struct {
 
 	// The part of a web request that you want AWS WAF to search, such as a specified
 	// header or a query string. For more information, see FieldToMatch.
+	//
+	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Within the portion of a web request that you want to search (for example,
@@ -2630,6 +2650,8 @@ type ByteMatchTuple struct {
 	//
 	// The value of TargetString must appear at the end of the specified part of
 	// the web request.
+	//
+	// PositionalConstraint is a required field
 	PositionalConstraint *string `type:"string" required:"true" enum:"PositionalConstraint"`
 
 	// The value that you want AWS WAF to search for. AWS WAF searches for the specified
@@ -2678,6 +2700,8 @@ type ByteMatchTuple struct {
 	// encodes the value.
 	//
 	// TargetString is automatically base64 encoded/decoded by the SDK.
+	//
+	// TargetString is a required field
 	TargetString []byte `type:"blob" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
@@ -2750,6 +2774,8 @@ type ByteMatchTuple struct {
 	//  NONE
 	//
 	// Specify NONE if you don't want to perform any text transformations.
+	//
+	// TextTransformation is a required field
 	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
 }
 
@@ -2794,10 +2820,14 @@ type CreateByteMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description of the ByteMatchSet. You can't change Name
 	// after you create a ByteMatchSet.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2859,10 +2889,14 @@ type CreateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description of the IPSet. You can't change Name after
 	// you create the IPSet.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2924,16 +2958,22 @@ type CreateRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description for the metrics for this Rule. The name can
 	// contain only alphanumeric characters (A-Z, a-z, 0-9); the name can't contain
 	// whitespace. You can't change the name of the metric after you create the
 	// Rule.
+	//
+	// MetricName is a required field
 	MetricName *string `type:"string" required:"true"`
 
 	// A friendly name or description of the Rule. You can't change the name of
 	// a Rule after you create it.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2998,10 +3038,14 @@ type CreateSizeConstraintSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description of the SizeConstraintSet. You can't change
 	// Name after you create a SizeConstraintSet.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3064,10 +3108,14 @@ type CreateSqlInjectionMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description for the SqlInjectionMatchSet that you're creating.
 	// You can't change Name after you create the SqlInjectionMatchSet.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3130,20 +3178,28 @@ type CreateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The action that you want AWS WAF to take when a request doesn't match the
 	// criteria specified in any of the Rule objects that are associated with the
 	// WebACL.
+	//
+	// DefaultAction is a required field
 	DefaultAction *WafAction `type:"structure" required:"true"`
 
 	// A friendly name or description for the metrics for this WebACL. The name
 	// can contain only alphanumeric characters (A-Z, a-z, 0-9); the name can't
 	// contain whitespace. You can't change MetricName after you create the WebACL.
+	//
+	// MetricName is a required field
 	MetricName *string `type:"string" required:"true"`
 
 	// A friendly name or description of the WebACL. You can't change Name after
 	// you create the WebACL.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3217,10 +3273,14 @@ type CreateXssMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description for the XssMatchSet that you're creating.
 	// You can't change Name after you create the XssMatchSet.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3284,9 +3344,13 @@ type DeleteByteMatchSetInput struct {
 
 	// The ByteMatchSetId of the ByteMatchSet that you want to delete. ByteMatchSetId
 	// is returned by CreateByteMatchSet and by ListByteMatchSets.
+	//
+	// ByteMatchSetId is a required field
 	ByteMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3345,10 +3409,14 @@ type DeleteIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The IPSetId of the IPSet that you want to delete. IPSetId is returned by
 	// CreateIPSet and by ListIPSets.
+	//
+	// IPSetId is a required field
 	IPSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3407,10 +3475,14 @@ type DeleteRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The RuleId of the Rule that you want to delete. RuleId is returned by CreateRule
 	// and by ListRules.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3469,10 +3541,14 @@ type DeleteSizeConstraintSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The SizeConstraintSetId of the SizeConstraintSet that you want to delete.
 	// SizeConstraintSetId is returned by CreateSizeConstraintSet and by ListSizeConstraintSets.
+	//
+	// SizeConstraintSetId is a required field
 	SizeConstraintSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3532,10 +3608,14 @@ type DeleteSqlInjectionMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The SqlInjectionMatchSetId of the SqlInjectionMatchSet that you want to delete.
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by ListSqlInjectionMatchSets.
+	//
+	// SqlInjectionMatchSetId is a required field
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3595,10 +3675,14 @@ type DeleteWebACLInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The WebACLId of the WebACL that you want to delete. WebACLId is returned
 	// by CreateWebACL and by ListWebACLs.
+	//
+	// WebACLId is a required field
 	WebACLId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3658,10 +3742,14 @@ type DeleteXssMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The XssMatchSetId of the XssMatchSet that you want to delete. XssMatchSetId
 	// is returned by CreateXssMatchSet and by ListXssMatchSets.
+	//
+	// XssMatchSetId is a required field
 	XssMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3751,6 +3839,8 @@ type FieldToMatch struct {
 	// only the first 8192 bytes of the request body are forwarded to AWS WAF for
 	// inspection. To allow or block requests based on the length of the body, you
 	// can create a size constraint set. For more information, see CreateSizeConstraintSet.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"MatchFieldType"`
 }
 
@@ -3782,6 +3872,8 @@ type GetByteMatchSetInput struct {
 
 	// The ByteMatchSetId of the ByteMatchSet that you want to get. ByteMatchSetId
 	// is returned by CreateByteMatchSet and by ListByteMatchSets.
+	//
+	// ByteMatchSetId is a required field
 	ByteMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3873,6 +3965,8 @@ type GetChangeTokenStatusInput struct {
 
 	// The change token for which you want to get the status. This change token
 	// was previously returned in the GetChangeToken response.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3924,6 +4018,8 @@ type GetIPSetInput struct {
 
 	// The IPSetId of the IPSet that you want to get. IPSetId is returned by CreateIPSet
 	// and by ListIPSets.
+	//
+	// IPSetId is a required field
 	IPSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3981,6 +4077,8 @@ type GetRuleInput struct {
 
 	// The RuleId of the Rule that you want to get. RuleId is returned by CreateRule
 	// and by ListRules.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4039,6 +4137,8 @@ type GetSampledRequestsInput struct {
 	// 5,000 requests that your AWS resource received during the time range. If
 	// your resource received fewer requests than the value of MaxItems, GetSampledRequests
 	// returns information about all of them.
+	//
+	// MaxItems is a required field
 	MaxItems *int64 `min:"1" type:"long" required:"true"`
 
 	// RuleId is one of two values:
@@ -4048,16 +4148,22 @@ type GetSampledRequestsInput struct {
 	//
 	//    Default_Action, which causes GetSampledRequests to return a sample of
 	// the requests that didn't match any of the rules in the specified WebACL.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 
 	// The start date and time and the end date and time of the range for which
 	// you want GetSampledRequests to return a sample of requests. Specify the date
 	// and time in Unix time format (in seconds). You can specify any time range
 	// in the previous three hours.
+	//
+	// TimeWindow is a required field
 	TimeWindow *TimeWindow `type:"structure" required:"true"`
 
 	// The WebACLId of the WebACL for which you want GetSampledRequests to return
 	// a sample of requests.
+	//
+	// WebAclId is a required field
 	WebAclId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4141,6 +4247,8 @@ type GetSizeConstraintSetInput struct {
 
 	// The SizeConstraintSetId of the SizeConstraintSet that you want to get. SizeConstraintSetId
 	// is returned by CreateSizeConstraintSet and by ListSizeConstraintSets.
+	//
+	// SizeConstraintSetId is a required field
 	SizeConstraintSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4203,6 +4311,8 @@ type GetSqlInjectionMatchSetInput struct {
 
 	// The SqlInjectionMatchSetId of the SqlInjectionMatchSet that you want to get.
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by ListSqlInjectionMatchSets.
+	//
+	// SqlInjectionMatchSetId is a required field
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4264,6 +4374,8 @@ type GetWebACLInput struct {
 
 	// The WebACLId of the WebACL that you want to get. WebACLId is returned by
 	// CreateWebACL and by ListWebACLs.
+	//
+	// WebACLId is a required field
 	WebACLId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4327,6 +4439,8 @@ type GetXssMatchSetInput struct {
 
 	// The XssMatchSetId of the XssMatchSet that you want to get. XssMatchSetId
 	// is returned by CreateXssMatchSet and by ListXssMatchSets.
+	//
+	// XssMatchSetId is a required field
 	XssMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4476,6 +4590,8 @@ type IPSet struct {
 	//
 	//    x-forwarded-for, if the viewer did use an HTTP proxy or a load balancer
 	// to send the request
+	//
+	// IPSetDescriptors is a required field
 	IPSetDescriptors []*IPSetDescriptor `type:"list" required:"true"`
 
 	// The IPSetId for an IPSet. You use IPSetId to get information about an IPSet
@@ -4484,6 +4600,8 @@ type IPSet struct {
 	// AWS WAF (see DeleteIPSet).
 	//
 	//  IPSetId is returned by CreateIPSet and by ListIPSets.
+	//
+	// IPSetId is a required field
 	IPSetId *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description of the IPSet. You can't change the name of
@@ -4507,6 +4625,8 @@ type IPSetDescriptor struct {
 	_ struct{} `type:"structure"`
 
 	// Specify IPV4 or IPV6.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"IPSetDescriptorType"`
 
 	// Specify an IPv4 address by using CIDR notation. For example:
@@ -4528,6 +4648,8 @@ type IPSetDescriptor struct {
 	//   To configure AWS WAF to allow, block, or count requests that originated
 	// from IP addresses 1111:0000:0000:0000:0000:0000:0000:0000 to 1111:0000:0000:0000:ffff:ffff:ffff:ffff,
 	// specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -4563,10 +4685,14 @@ type IPSetSummary struct {
 
 	// The IPSetId for an IPSet. You can use IPSetId in a GetIPSet request to get
 	// detailed information about an IPSet.
+	//
+	// IPSetId is a required field
 	IPSetId *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name or description of the IPSet. You can't change the name of
 	// an IPSet after you create it.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4585,10 +4711,14 @@ type IPSetUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether to insert or delete an IP address with UpdateIPSet.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// The IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation)
 	// that web requests originate from.
+	//
+	// IPSetDescriptor is a required field
 	IPSetDescriptor *IPSetDescriptor `type:"structure" required:"true"`
 }
 
@@ -5082,6 +5212,8 @@ type Predicate struct {
 
 	// A unique identifier for a predicate in a Rule, such as ByteMatchSetId or
 	// IPSetId. The ID is returned by the corresponding Create or List command.
+	//
+	// DataId is a required field
 	DataId *string `min:"1" type:"string" required:"true"`
 
 	// Set Negated to False if you want AWS WAF to allow, block, or count requests
@@ -5095,9 +5227,13 @@ type Predicate struct {
 	// XssMatchSet, or SizeConstraintSet. For example, if an IPSet includes the
 	// IP address 192.0.2.44, AWS WAF will allow, block, or count requests based
 	// on all IP addresses except 192.0.2.44.
+	//
+	// Negated is a required field
 	Negated *bool `type:"boolean" required:"true"`
 
 	// The type of predicate in a Rule, such as ByteMatchSet or IPSet.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"PredicateType"`
 }
 
@@ -5156,6 +5292,8 @@ type Rule struct {
 
 	// The Predicates object contains one Predicate element for each ByteMatchSet,
 	// IPSet, or SqlInjectionMatchSet object that you want to include in a Rule.
+	//
+	// Predicates is a required field
 	Predicates []*Predicate `type:"list" required:"true"`
 
 	// A unique identifier for a Rule. You use RuleId to get more information about
@@ -5164,6 +5302,8 @@ type Rule struct {
 	// from AWS WAF (see DeleteRule).
 	//
 	//  RuleId is returned by CreateRule and by ListRules.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5183,6 +5323,8 @@ type RuleSummary struct {
 
 	// A friendly name or description of the Rule. You can't change the name of
 	// a Rule after you create it.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a Rule. You use RuleId to get more information about
@@ -5191,6 +5333,8 @@ type RuleSummary struct {
 	// from AWS WAF (see DeleteRule).
 	//
 	//  RuleId is returned by CreateRule and by ListRules.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5211,9 +5355,13 @@ type RuleUpdate struct {
 
 	// Specify INSERT to add a Predicate to a Rule. Use DELETE to remove a Predicate
 	// from a Rule.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// The ID of the Predicate (such as an IPSet) that you want to add to a Rule.
+	//
+	// Predicate is a required field
 	Predicate *Predicate `type:"structure" required:"true"`
 }
 
@@ -5259,6 +5407,8 @@ type SampledHTTPRequest struct {
 	Action *string `type:"string"`
 
 	// A complex type that contains detailed information about the request.
+	//
+	// Request is a required field
 	Request *HTTPRequest `type:"structure" required:"true"`
 
 	// The time at which AWS WAF received the request from your AWS resource, in
@@ -5269,6 +5419,8 @@ type SampledHTTPRequest struct {
 	// to other results in the response. A result that has a weight of 2 represents
 	// roughly twice as many CloudFront web requests as a result that has a weight
 	// of 1.
+	//
+	// Weight is a required field
 	Weight *int64 `type:"long" required:"true"`
 }
 
@@ -5306,9 +5458,13 @@ type SizeConstraint struct {
 	// FieldToMatch
 	//
 	//  GT: Used to test if the Size is strictly greater than the size of the FieldToMatch
+	//
+	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
 	// Specifies where in a web request to look for TargetString.
+	//
+	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// The size in bytes that you want AWS WAF to compare against the size of the
@@ -5321,6 +5477,8 @@ type SizeConstraint struct {
 	//
 	// If you specify URI for the value of Type, the / in the URI counts as one
 	// character. For example, the URI /logo.jpg is nine characters long.
+	//
+	// Size is a required field
 	Size *int64 `type:"long" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
@@ -5397,6 +5555,8 @@ type SizeConstraint struct {
 	//  URL_DECODE
 	//
 	// Use this option to decode a URL-encoded value.
+	//
+	// TextTransformation is a required field
 	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
 }
 
@@ -5454,9 +5614,13 @@ type SizeConstraintSet struct {
 	// from AWS WAF (see DeleteSizeConstraintSet).
 	//
 	//  SizeConstraintSetId is returned by CreateSizeConstraintSet and by ListSizeConstraintSets.
+	//
+	// SizeConstraintSetId is a required field
 	SizeConstraintSetId *string `min:"1" type:"string" required:"true"`
 
 	// Specifies the parts of web requests that you want to inspect the size of.
+	//
+	// SizeConstraints is a required field
 	SizeConstraints []*SizeConstraint `type:"list" required:"true"`
 }
 
@@ -5475,6 +5639,8 @@ type SizeConstraintSetSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the SizeConstraintSet, if any.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a SizeConstraintSet. You use SizeConstraintSetId
@@ -5484,6 +5650,8 @@ type SizeConstraintSetSummary struct {
 	// from AWS WAF (see DeleteSizeConstraintSet).
 	//
 	//  SizeConstraintSetId is returned by CreateSizeConstraintSet and by ListSizeConstraintSets.
+	//
+	// SizeConstraintSetId is a required field
 	SizeConstraintSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5505,12 +5673,16 @@ type SizeConstraintSetUpdate struct {
 
 	// Specify INSERT to add a SizeConstraintSetUpdate to a SizeConstraintSet. Use
 	// DELETE to remove a SizeConstraintSetUpdate from a SizeConstraintSet.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Specifies a constraint on the size of a part of the web request. AWS WAF
 	// uses the Size, ComparisonOperator, and FieldToMatch to build an expression
 	// in the form of "Size ComparisonOperator size in bytes of FieldToMatch". If
 	// that expression is true, the SizeConstraint is considered to match.
+	//
+	// SizeConstraint is a required field
 	SizeConstraint *SizeConstraint `type:"structure" required:"true"`
 }
 
@@ -5565,10 +5737,14 @@ type SqlInjectionMatchSet struct {
 	//
 	//  SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by
 	// ListSqlInjectionMatchSets.
+	//
+	// SqlInjectionMatchSetId is a required field
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// Specifies the parts of web requests that you want to inspect for snippets
 	// of malicious SQL code.
+	//
+	// SqlInjectionMatchTuples is a required field
 	SqlInjectionMatchTuples []*SqlInjectionMatchTuple `type:"list" required:"true"`
 }
 
@@ -5587,6 +5763,8 @@ type SqlInjectionMatchSetSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the SqlInjectionMatchSet, if any, specified by Id.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a SqlInjectionMatchSet. You use SqlInjectionMatchSetId
@@ -5597,6 +5775,8 @@ type SqlInjectionMatchSetSummary struct {
 	//
 	//  SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by
 	// ListSqlInjectionMatchSets.
+	//
+	// SqlInjectionMatchSetId is a required field
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5618,11 +5798,15 @@ type SqlInjectionMatchSetUpdate struct {
 
 	// Specify INSERT to add a SqlInjectionMatchSetUpdate to a SqlInjectionMatchSet.
 	// Use DELETE to remove a SqlInjectionMatchSetUpdate from a SqlInjectionMatchSet.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Specifies the part of a web request that you want AWS WAF to inspect for
 	// snippets of malicious SQL code and, if you want AWS WAF to inspect a header,
 	// the name of the header.
+	//
+	// SqlInjectionMatchTuple is a required field
 	SqlInjectionMatchTuple *SqlInjectionMatchTuple `type:"structure" required:"true"`
 }
 
@@ -5664,6 +5848,8 @@ type SqlInjectionMatchTuple struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies where in a web request to look for TargetString.
+	//
+	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
@@ -5736,6 +5922,8 @@ type SqlInjectionMatchTuple struct {
 	//  NONE
 	//
 	// Specify NONE if you don't want to perform any text transformations.
+	//
+	// TextTransformation is a required field
 	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
 }
 
@@ -5786,11 +5974,15 @@ type TimeWindow struct {
 	// The end of the time range from which you want GetSampledRequests to return
 	// a sample of the requests that your AWS resource received. You can specify
 	// any time range in the previous three hours.
+	//
+	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The beginning of the time range from which you want GetSampledRequests to
 	// return a sample of the requests that your AWS resource received. You can
 	// specify any time range in the previous three hours.
+	//
+	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
@@ -5825,9 +6017,13 @@ type UpdateByteMatchSetInput struct {
 
 	// The ByteMatchSetId of the ByteMatchSet that you want to update. ByteMatchSetId
 	// is returned by CreateByteMatchSet and by ListByteMatchSets.
+	//
+	// ByteMatchSetId is a required field
 	ByteMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// An array of ByteMatchSetUpdate objects that you want to insert into or delete
@@ -5839,6 +6035,8 @@ type UpdateByteMatchSetInput struct {
 	// and TextTransformation
 	//
 	//    FieldToMatch: Contains Data and Type
+	//
+	// Updates is a required field
 	Updates []*ByteMatchSetUpdate `type:"list" required:"true"`
 }
 
@@ -5910,10 +6108,14 @@ type UpdateIPSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The IPSetId of the IPSet that you want to update. IPSetId is returned by
 	// CreateIPSet and by ListIPSets.
+	//
+	// IPSetId is a required field
 	IPSetId *string `min:"1" type:"string" required:"true"`
 
 	// An array of IPSetUpdate objects that you want to insert into or delete from
@@ -5922,6 +6124,8 @@ type UpdateIPSetInput struct {
 	//    IPSetUpdate: Contains Action and IPSetDescriptor
 	//
 	//    IPSetDescriptor: Contains Type and Value
+	//
+	// Updates is a required field
 	Updates []*IPSetUpdate `type:"list" required:"true"`
 }
 
@@ -5993,10 +6197,14 @@ type UpdateRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The RuleId of the Rule that you want to update. RuleId is returned by CreateRule
 	// and by ListRules.
+	//
+	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
 
 	// An array of RuleUpdate objects that you want to insert into or delete from
@@ -6007,6 +6215,8 @@ type UpdateRuleInput struct {
 	//    Predicate: Contains DataId, Negated, and Type
 	//
 	//    FieldToMatch: Contains Data and Type
+	//
+	// Updates is a required field
 	Updates []*RuleUpdate `type:"list" required:"true"`
 }
 
@@ -6078,10 +6288,14 @@ type UpdateSizeConstraintSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The SizeConstraintSetId of the SizeConstraintSet that you want to update.
 	// SizeConstraintSetId is returned by CreateSizeConstraintSet and by ListSizeConstraintSets.
+	//
+	// SizeConstraintSetId is a required field
 	SizeConstraintSetId *string `min:"1" type:"string" required:"true"`
 
 	// An array of SizeConstraintSetUpdate objects that you want to insert into
@@ -6094,6 +6308,8 @@ type UpdateSizeConstraintSetInput struct {
 	// and Size
 	//
 	//    FieldToMatch: Contains Data and Type
+	//
+	// Updates is a required field
 	Updates []*SizeConstraintSetUpdate `type:"list" required:"true"`
 }
 
@@ -6166,10 +6382,14 @@ type UpdateSqlInjectionMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// The SqlInjectionMatchSetId of the SqlInjectionMatchSet that you want to update.
 	// SqlInjectionMatchSetId is returned by CreateSqlInjectionMatchSet and by ListSqlInjectionMatchSets.
+	//
+	// SqlInjectionMatchSetId is a required field
 	SqlInjectionMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// An array of SqlInjectionMatchSetUpdate objects that you want to insert into
@@ -6181,6 +6401,8 @@ type UpdateSqlInjectionMatchSetInput struct {
 	//    SqlInjectionMatchTuple: Contains FieldToMatch and TextTransformation
 	//
 	//    FieldToMatch: Contains Data and Type
+	//
+	// Updates is a required field
 	Updates []*SqlInjectionMatchSetUpdate `type:"list" required:"true"`
 }
 
@@ -6253,6 +6475,8 @@ type UpdateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// For the action that is associated with a rule in a WebACL, specifies the
@@ -6276,6 +6500,8 @@ type UpdateWebACLInput struct {
 
 	// The WebACLId of the WebACL that you want to update. WebACLId is returned
 	// by CreateWebACL and by ListWebACLs.
+	//
+	// WebACLId is a required field
 	WebACLId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6350,6 +6576,8 @@ type UpdateXssMatchSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value returned by the most recent call to GetChangeToken.
+	//
+	// ChangeToken is a required field
 	ChangeToken *string `min:"1" type:"string" required:"true"`
 
 	// An array of XssMatchSetUpdate objects that you want to insert into or delete
@@ -6360,10 +6588,14 @@ type UpdateXssMatchSetInput struct {
 	//    XssMatchTuple: Contains FieldToMatch and TextTransformation
 	//
 	//    FieldToMatch: Contains Data and Type
+	//
+	// Updates is a required field
 	Updates []*XssMatchSetUpdate `type:"list" required:"true"`
 
 	// The XssMatchSetId of the XssMatchSet that you want to update. XssMatchSetId
 	// is returned by CreateXssMatchSet and by ListXssMatchSets.
+	//
+	// XssMatchSetId is a required field
 	XssMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6451,6 +6683,8 @@ type WafAction struct {
 	// the conditions in the rule. AWS WAF then continues to inspect the web request
 	// based on the remaining rules in the web ACL. You can't specify COUNT for
 	// the default action for a WebACL.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"WafActionType"`
 }
 
@@ -6490,6 +6724,8 @@ type WebACL struct {
 
 	// The action to perform if none of the Rules contained in the WebACL match.
 	// The action is specified by the WafAction object.
+	//
+	// DefaultAction is a required field
 	DefaultAction *WafAction `type:"structure" required:"true"`
 
 	MetricName *string `type:"string"`
@@ -6500,6 +6736,8 @@ type WebACL struct {
 
 	// An array that contains the action for each Rule in a WebACL, the priority
 	// of the Rule, and the ID of the Rule.
+	//
+	// Rules is a required field
 	Rules []*ActivatedRule `type:"list" required:"true"`
 
 	// A unique identifier for a WebACL. You use WebACLId to get information about
@@ -6507,6 +6745,8 @@ type WebACL struct {
 	// a WebACL from AWS WAF (see DeleteWebACL).
 	//
 	//  WebACLId is returned by CreateWebACL and by ListWebACLs.
+	//
+	// WebACLId is a required field
 	WebACLId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6526,6 +6766,8 @@ type WebACLSummary struct {
 
 	// A friendly name or description of the WebACL. You can't change the name of
 	// a WebACL after you create it.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for a WebACL. You use WebACLId to get information about
@@ -6533,6 +6775,8 @@ type WebACLSummary struct {
 	// a WebACL from AWS WAF (see DeleteWebACL).
 	//
 	//  WebACLId is returned by CreateWebACL and by ListWebACLs.
+	//
+	// WebACLId is a required field
 	WebACLId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6551,6 +6795,8 @@ type WebACLUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether to insert a Rule into or delete a Rule from a WebACL.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// The ActivatedRule object in an UpdateWebACL request specifies a Rule that
@@ -6560,6 +6806,8 @@ type WebACLUpdate struct {
 	//
 	// To specify whether to insert or delete a Rule, use the Action parameter
 	// in the WebACLUpdate data type.
+	//
+	// ActivatedRule is a required field
 	ActivatedRule *ActivatedRule `type:"structure" required:"true"`
 }
 
@@ -6612,10 +6860,14 @@ type XssMatchSet struct {
 	// and delete an XssMatchSet from AWS WAF (see DeleteXssMatchSet).
 	//
 	//  XssMatchSetId is returned by CreateXssMatchSet and by ListXssMatchSets.
+	//
+	// XssMatchSetId is a required field
 	XssMatchSetId *string `min:"1" type:"string" required:"true"`
 
 	// Specifies the parts of web requests that you want to inspect for cross-site
 	// scripting attacks.
+	//
+	// XssMatchTuples is a required field
 	XssMatchTuples []*XssMatchTuple `type:"list" required:"true"`
 }
 
@@ -6634,6 +6886,8 @@ type XssMatchSetSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the XssMatchSet, if any, specified by Id.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for an XssMatchSet. You use XssMatchSetId to get information
@@ -6642,6 +6896,8 @@ type XssMatchSetSummary struct {
 	// and delete an XssMatchSet from AWS WAF (see DeleteXssMatchSet).
 	//
 	//  XssMatchSetId is returned by CreateXssMatchSet and by ListXssMatchSets.
+	//
+	// XssMatchSetId is a required field
 	XssMatchSetId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6663,11 +6919,15 @@ type XssMatchSetUpdate struct {
 
 	// Specify INSERT to add a XssMatchSetUpdate to an XssMatchSet. Use DELETE to
 	// remove a XssMatchSetUpdate from an XssMatchSet.
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Specifies the part of a web request that you want AWS WAF to inspect for
 	// cross-site scripting attacks and, if you want AWS WAF to inspect a header,
 	// the name of the header.
+	//
+	// XssMatchTuple is a required field
 	XssMatchTuple *XssMatchTuple `type:"structure" required:"true"`
 }
 
@@ -6709,6 +6969,8 @@ type XssMatchTuple struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies where in a web request to look for TargetString.
+	//
+	// FieldToMatch is a required field
 	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
 
 	// Text transformations eliminate some of the unusual formatting that attackers
@@ -6781,6 +7043,8 @@ type XssMatchTuple struct {
 	//  NONE
 	//
 	// Specify NONE if you don't want to perform any text transformations.
+	//
+	// TextTransformation is a required field
 	TextTransformation *string `type:"string" required:"true" enum:"TextTransformation"`
 }
 
@@ -6816,130 +7080,167 @@ func (s *XssMatchTuple) Validate() error {
 }
 
 const (
-	// @enum ChangeAction
+	// ChangeActionInsert is a ChangeAction enum value
 	ChangeActionInsert = "INSERT"
-	// @enum ChangeAction
+
+	// ChangeActionDelete is a ChangeAction enum value
 	ChangeActionDelete = "DELETE"
 )
 
 const (
-	// @enum ChangeTokenStatus
+	// ChangeTokenStatusProvisioned is a ChangeTokenStatus enum value
 	ChangeTokenStatusProvisioned = "PROVISIONED"
-	// @enum ChangeTokenStatus
+
+	// ChangeTokenStatusPending is a ChangeTokenStatus enum value
 	ChangeTokenStatusPending = "PENDING"
-	// @enum ChangeTokenStatus
+
+	// ChangeTokenStatusInsync is a ChangeTokenStatus enum value
 	ChangeTokenStatusInsync = "INSYNC"
 )
 
 const (
-	// @enum ComparisonOperator
+	// ComparisonOperatorEq is a ComparisonOperator enum value
 	ComparisonOperatorEq = "EQ"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorNe is a ComparisonOperator enum value
 	ComparisonOperatorNe = "NE"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLe is a ComparisonOperator enum value
 	ComparisonOperatorLe = "LE"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLt is a ComparisonOperator enum value
 	ComparisonOperatorLt = "LT"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorGe is a ComparisonOperator enum value
 	ComparisonOperatorGe = "GE"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorGt is a ComparisonOperator enum value
 	ComparisonOperatorGt = "GT"
 )
 
 const (
-	// @enum IPSetDescriptorType
+	// IPSetDescriptorTypeIpv4 is a IPSetDescriptorType enum value
 	IPSetDescriptorTypeIpv4 = "IPV4"
-	// @enum IPSetDescriptorType
+
+	// IPSetDescriptorTypeIpv6 is a IPSetDescriptorType enum value
 	IPSetDescriptorTypeIpv6 = "IPV6"
 )
 
 const (
-	// @enum MatchFieldType
+	// MatchFieldTypeUri is a MatchFieldType enum value
 	MatchFieldTypeUri = "URI"
-	// @enum MatchFieldType
+
+	// MatchFieldTypeQueryString is a MatchFieldType enum value
 	MatchFieldTypeQueryString = "QUERY_STRING"
-	// @enum MatchFieldType
+
+	// MatchFieldTypeHeader is a MatchFieldType enum value
 	MatchFieldTypeHeader = "HEADER"
-	// @enum MatchFieldType
+
+	// MatchFieldTypeMethod is a MatchFieldType enum value
 	MatchFieldTypeMethod = "METHOD"
-	// @enum MatchFieldType
+
+	// MatchFieldTypeBody is a MatchFieldType enum value
 	MatchFieldTypeBody = "BODY"
 )
 
 const (
-	// @enum ParameterExceptionField
+	// ParameterExceptionFieldChangeAction is a ParameterExceptionField enum value
 	ParameterExceptionFieldChangeAction = "CHANGE_ACTION"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldWafAction is a ParameterExceptionField enum value
 	ParameterExceptionFieldWafAction = "WAF_ACTION"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldPredicateType is a ParameterExceptionField enum value
 	ParameterExceptionFieldPredicateType = "PREDICATE_TYPE"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldIpsetType is a ParameterExceptionField enum value
 	ParameterExceptionFieldIpsetType = "IPSET_TYPE"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldByteMatchFieldType is a ParameterExceptionField enum value
 	ParameterExceptionFieldByteMatchFieldType = "BYTE_MATCH_FIELD_TYPE"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldSqlInjectionMatchFieldType is a ParameterExceptionField enum value
 	ParameterExceptionFieldSqlInjectionMatchFieldType = "SQL_INJECTION_MATCH_FIELD_TYPE"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldByteMatchTextTransformation is a ParameterExceptionField enum value
 	ParameterExceptionFieldByteMatchTextTransformation = "BYTE_MATCH_TEXT_TRANSFORMATION"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldByteMatchPositionalConstraint is a ParameterExceptionField enum value
 	ParameterExceptionFieldByteMatchPositionalConstraint = "BYTE_MATCH_POSITIONAL_CONSTRAINT"
-	// @enum ParameterExceptionField
+
+	// ParameterExceptionFieldSizeConstraintComparisonOperator is a ParameterExceptionField enum value
 	ParameterExceptionFieldSizeConstraintComparisonOperator = "SIZE_CONSTRAINT_COMPARISON_OPERATOR"
 )
 
 const (
-	// @enum ParameterExceptionReason
+	// ParameterExceptionReasonInvalidOption is a ParameterExceptionReason enum value
 	ParameterExceptionReasonInvalidOption = "INVALID_OPTION"
-	// @enum ParameterExceptionReason
+
+	// ParameterExceptionReasonIllegalCombination is a ParameterExceptionReason enum value
 	ParameterExceptionReasonIllegalCombination = "ILLEGAL_COMBINATION"
 )
 
 const (
-	// @enum PositionalConstraint
+	// PositionalConstraintExactly is a PositionalConstraint enum value
 	PositionalConstraintExactly = "EXACTLY"
-	// @enum PositionalConstraint
+
+	// PositionalConstraintStartsWith is a PositionalConstraint enum value
 	PositionalConstraintStartsWith = "STARTS_WITH"
-	// @enum PositionalConstraint
+
+	// PositionalConstraintEndsWith is a PositionalConstraint enum value
 	PositionalConstraintEndsWith = "ENDS_WITH"
-	// @enum PositionalConstraint
+
+	// PositionalConstraintContains is a PositionalConstraint enum value
 	PositionalConstraintContains = "CONTAINS"
-	// @enum PositionalConstraint
+
+	// PositionalConstraintContainsWord is a PositionalConstraint enum value
 	PositionalConstraintContainsWord = "CONTAINS_WORD"
 )
 
 const (
-	// @enum PredicateType
+	// PredicateTypeIpmatch is a PredicateType enum value
 	PredicateTypeIpmatch = "IPMatch"
-	// @enum PredicateType
+
+	// PredicateTypeByteMatch is a PredicateType enum value
 	PredicateTypeByteMatch = "ByteMatch"
-	// @enum PredicateType
+
+	// PredicateTypeSqlInjectionMatch is a PredicateType enum value
 	PredicateTypeSqlInjectionMatch = "SqlInjectionMatch"
-	// @enum PredicateType
+
+	// PredicateTypeSizeConstraint is a PredicateType enum value
 	PredicateTypeSizeConstraint = "SizeConstraint"
-	// @enum PredicateType
+
+	// PredicateTypeXssMatch is a PredicateType enum value
 	PredicateTypeXssMatch = "XssMatch"
 )
 
 const (
-	// @enum TextTransformation
+	// TextTransformationNone is a TextTransformation enum value
 	TextTransformationNone = "NONE"
-	// @enum TextTransformation
+
+	// TextTransformationCompressWhiteSpace is a TextTransformation enum value
 	TextTransformationCompressWhiteSpace = "COMPRESS_WHITE_SPACE"
-	// @enum TextTransformation
+
+	// TextTransformationHtmlEntityDecode is a TextTransformation enum value
 	TextTransformationHtmlEntityDecode = "HTML_ENTITY_DECODE"
-	// @enum TextTransformation
+
+	// TextTransformationLowercase is a TextTransformation enum value
 	TextTransformationLowercase = "LOWERCASE"
-	// @enum TextTransformation
+
+	// TextTransformationCmdLine is a TextTransformation enum value
 	TextTransformationCmdLine = "CMD_LINE"
-	// @enum TextTransformation
+
+	// TextTransformationUrlDecode is a TextTransformation enum value
 	TextTransformationUrlDecode = "URL_DECODE"
 )
 
 const (
-	// @enum WafActionType
+	// WafActionTypeBlock is a WafActionType enum value
 	WafActionTypeBlock = "BLOCK"
-	// @enum WafActionType
+
+	// WafActionTypeAllow is a WafActionType enum value
 	WafActionTypeAllow = "ALLOW"
-	// @enum WafActionType
+
+	// WafActionTypeCount is a WafActionType enum value
 	WafActionTypeCount = "COUNT"
 )

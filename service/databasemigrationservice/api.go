@@ -1603,9 +1603,13 @@ type AddTagsToResourceInput struct {
 	// The Amazon Resource Name (ARN) of the AWS DMS resource the tag is to be added
 	// to. AWS DMS resources include a replication instance, endpoint, and a replication
 	// task.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
 	// The tag to be assigned to the DMS resource.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
@@ -1756,13 +1760,19 @@ type CreateEndpointInput struct {
 	// The database endpoint identifier. Identifiers must begin with a letter; must
 	// contain only ASCII letters, digits, and hyphens; and must not end with a
 	// hyphen or contain two consecutive hyphens.
+	//
+	// EndpointIdentifier is a required field
 	EndpointIdentifier *string `type:"string" required:"true"`
 
 	// The type of endpoint.
+	//
+	// EndpointType is a required field
 	EndpointType *string `type:"string" required:"true" enum:"ReplicationEndpointTypeValue"`
 
 	// The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
 	// POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.
+	//
+	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
 
 	// Additional attributes associated with the connection.
@@ -1776,12 +1786,18 @@ type CreateEndpointInput struct {
 	KmsKeyId *string `type:"string"`
 
 	// The password to be used to login to the endpoint database.
+	//
+	// Password is a required field
 	Password *string `type:"string" required:"true"`
 
 	// The port used by the endpoint database.
+	//
+	// Port is a required field
 	Port *int64 `type:"integer" required:"true"`
 
 	// The name of the server where the endpoint database resides.
+	//
+	// ServerName is a required field
 	ServerName *string `type:"string" required:"true"`
 
 	// The SSL mode to use for the SSL connection.
@@ -1795,6 +1811,8 @@ type CreateEndpointInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The user name to be used to login to the endpoint database.
+	//
+	// Username is a required field
 	Username *string `type:"string" required:"true"`
 }
 
@@ -1913,6 +1931,8 @@ type CreateReplicationInstanceInput struct {
 	//
 	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
+	//
+	// ReplicationInstanceClass is a required field
 	ReplicationInstanceClass *string `type:"string" required:"true"`
 
 	// The replication instance identifier. This parameter is stored as a lowercase
@@ -1927,6 +1947,8 @@ type CreateReplicationInstanceInput struct {
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	//   Example: myrepinstance
+	//
+	// ReplicationInstanceIdentifier is a required field
 	ReplicationInstanceIdentifier *string `type:"string" required:"true"`
 
 	// A subnet group to associate with the replication instance.
@@ -1988,6 +2010,8 @@ type CreateReplicationSubnetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description for the subnet group.
+	//
+	// ReplicationSubnetGroupDescription is a required field
 	ReplicationSubnetGroupDescription *string `type:"string" required:"true"`
 
 	// The name for the replication subnet group. This value is stored as a lowercase
@@ -1997,9 +2021,13 @@ type CreateReplicationSubnetGroupInput struct {
 	// spaces, underscores, or hyphens. Must not be "default".
 	//
 	// Example: mySubnetgroup
+	//
+	// ReplicationSubnetGroupIdentifier is a required field
 	ReplicationSubnetGroupIdentifier *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the subnet group.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	// The tag to be assigned to the subnet group.
@@ -2059,9 +2087,13 @@ type CreateReplicationTaskInput struct {
 	CdcStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The migration type.
+	//
+	// MigrationType is a required field
 	MigrationType *string `type:"string" required:"true" enum:"MigrationTypeValue"`
 
 	// The Amazon Resource Name (ARN) of the replication instance.
+	//
+	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 
 	// The replication task identifier.
@@ -2073,24 +2105,32 @@ type CreateReplicationTaskInput struct {
 	//   First character must be a letter.
 	//
 	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//
+	// ReplicationTaskIdentifier is a required field
 	ReplicationTaskIdentifier *string `type:"string" required:"true"`
 
 	// Settings for the task, such as target metadata settings.
 	ReplicationTaskSettings *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// SourceEndpointArn is a required field
 	SourceEndpointArn *string `type:"string" required:"true"`
 
 	// The path of the JSON file that contains the table mappings. Preceed the path
 	// with "file://".
 	//
 	// For example, --table-mappings file://mappingfile.json
+	//
+	// TableMappings is a required field
 	TableMappings *string `type:"string" required:"true"`
 
 	// Tags to be added to the replication instance.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// TargetEndpointArn is a required field
 	TargetEndpointArn *string `type:"string" required:"true"`
 }
 
@@ -2153,6 +2193,8 @@ type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// the Amazon Resource Name (ARN) of the deleted certificate.
+	//
+	// CertificateArn is a required field
 	CertificateArn *string `type:"string" required:"true"`
 }
 
@@ -2200,6 +2242,8 @@ type DeleteEndpointInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 }
 
@@ -2247,6 +2291,8 @@ type DeleteReplicationInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the replication instance to be deleted.
+	//
+	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
@@ -2294,6 +2340,8 @@ type DeleteReplicationSubnetGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The subnet group name of the replication instance.
+	//
+	// ReplicationSubnetGroupIdentifier is a required field
 	ReplicationSubnetGroupIdentifier *string `type:"string" required:"true"`
 }
 
@@ -2338,6 +2386,8 @@ type DeleteReplicationTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the replication task to be deleted.
+	//
+	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
@@ -2760,6 +2810,8 @@ type DescribeRefreshSchemasStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 }
 
@@ -3032,6 +3084,8 @@ type DescribeSchemasInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -3112,6 +3166,8 @@ type DescribeTableStatisticsInput struct {
 	MaxRecords *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the replication task.
+	//
+	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
@@ -3230,9 +3286,13 @@ type Filter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The filter value.
+	//
+	// Values is a required field
 	Values []*string `locationNameList:"Value" type:"list" required:"true"`
 }
 
@@ -3266,6 +3326,8 @@ type ImportCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The customer-assigned name of the certificate. Valid characters are [A-z_0-9].
+	//
+	// CertificateIdentifier is a required field
 	CertificateIdentifier *string `type:"string" required:"true"`
 
 	// The contents of the .pem X.509 certificate file.
@@ -3317,6 +3379,8 @@ type ListTagsForResourceInput struct {
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the AWS DMS
 	// resource.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 }
 
@@ -3370,6 +3434,8 @@ type ModifyEndpointInput struct {
 	DatabaseName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 
 	// The database endpoint identifier. Identifiers must begin with a letter; must
@@ -3500,6 +3566,8 @@ type ModifyReplicationInstanceInput struct {
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the replication instance.
+	//
+	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the replication instance.
@@ -3565,9 +3633,13 @@ type ModifyReplicationSubnetGroupInput struct {
 	ReplicationSubnetGroupDescription *string `type:"string"`
 
 	// The name of the replication instance subnet group.
+	//
+	// ReplicationSubnetGroupIdentifier is a required field
 	ReplicationSubnetGroupIdentifier *string `type:"string" required:"true"`
 
 	// A list of subnet IDs.
+	//
+	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 }
 
@@ -3660,9 +3732,13 @@ type RefreshSchemasInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the replication instance.
+	//
+	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
@@ -3743,9 +3819,13 @@ type RemoveTagsFromResourceInput struct {
 
 	// >The Amazon Resource Name (ARN) of the AWS DMS resource the tag is to be
 	// removed from.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
 	// The tag key (name) of the tag to be removed.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -4047,9 +4127,13 @@ type StartReplicationTaskInput struct {
 	CdcStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The Amazon Resource Number (ARN) of the replication task to be started.
+	//
+	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 
 	// The type of replication task.
+	//
+	// StartReplicationTaskType is a required field
 	StartReplicationTaskType *string `type:"string" required:"true" enum:"StartReplicationTaskTypeValue"`
 }
 
@@ -4100,6 +4184,8 @@ type StopReplicationTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Number(ARN) of the replication task to be stopped.
+	//
+	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 }
 
@@ -4261,9 +4347,13 @@ type TestConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the replication instance.
+	//
+	// ReplicationInstanceArn is a required field
 	ReplicationInstanceArn *string `type:"string" required:"true"`
 }
 
@@ -4331,46 +4421,56 @@ func (s VpcSecurityGroupMembership) GoString() string {
 }
 
 const (
-	// @enum DmsSslModeValue
+	// DmsSslModeValueNone is a DmsSslModeValue enum value
 	DmsSslModeValueNone = "none"
-	// @enum DmsSslModeValue
+
+	// DmsSslModeValueRequire is a DmsSslModeValue enum value
 	DmsSslModeValueRequire = "require"
-	// @enum DmsSslModeValue
+
+	// DmsSslModeValueVerifyCa is a DmsSslModeValue enum value
 	DmsSslModeValueVerifyCa = "verify-ca"
-	// @enum DmsSslModeValue
+
+	// DmsSslModeValueVerifyFull is a DmsSslModeValue enum value
 	DmsSslModeValueVerifyFull = "verify-full"
 )
 
 const (
-	// @enum MigrationTypeValue
+	// MigrationTypeValueFullLoad is a MigrationTypeValue enum value
 	MigrationTypeValueFullLoad = "full-load"
-	// @enum MigrationTypeValue
+
+	// MigrationTypeValueCdc is a MigrationTypeValue enum value
 	MigrationTypeValueCdc = "cdc"
-	// @enum MigrationTypeValue
+
+	// MigrationTypeValueFullLoadAndCdc is a MigrationTypeValue enum value
 	MigrationTypeValueFullLoadAndCdc = "full-load-and-cdc"
 )
 
 const (
-	// @enum RefreshSchemasStatusTypeValue
+	// RefreshSchemasStatusTypeValueSuccessful is a RefreshSchemasStatusTypeValue enum value
 	RefreshSchemasStatusTypeValueSuccessful = "successful"
-	// @enum RefreshSchemasStatusTypeValue
+
+	// RefreshSchemasStatusTypeValueFailed is a RefreshSchemasStatusTypeValue enum value
 	RefreshSchemasStatusTypeValueFailed = "failed"
-	// @enum RefreshSchemasStatusTypeValue
+
+	// RefreshSchemasStatusTypeValueRefreshing is a RefreshSchemasStatusTypeValue enum value
 	RefreshSchemasStatusTypeValueRefreshing = "refreshing"
 )
 
 const (
-	// @enum ReplicationEndpointTypeValue
+	// ReplicationEndpointTypeValueSource is a ReplicationEndpointTypeValue enum value
 	ReplicationEndpointTypeValueSource = "source"
-	// @enum ReplicationEndpointTypeValue
+
+	// ReplicationEndpointTypeValueTarget is a ReplicationEndpointTypeValue enum value
 	ReplicationEndpointTypeValueTarget = "target"
 )
 
 const (
-	// @enum StartReplicationTaskTypeValue
+	// StartReplicationTaskTypeValueStartReplication is a StartReplicationTaskTypeValue enum value
 	StartReplicationTaskTypeValueStartReplication = "start-replication"
-	// @enum StartReplicationTaskTypeValue
+
+	// StartReplicationTaskTypeValueResumeProcessing is a StartReplicationTaskTypeValue enum value
 	StartReplicationTaskTypeValueResumeProcessing = "resume-processing"
-	// @enum StartReplicationTaskTypeValue
+
+	// StartReplicationTaskTypeValueReloadTarget is a StartReplicationTaskTypeValue enum value
 	StartReplicationTaskTypeValueReloadTarget = "reload-target"
 )

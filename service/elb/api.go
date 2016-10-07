@@ -1604,6 +1604,8 @@ type AccessLog struct {
 	EmitInterval *int64 `type:"integer"`
 
 	// Specifies whether access logs are enabled for the load balancer.
+	//
+	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
 	// The name of the Amazon S3 bucket where the access logs are stored.
@@ -1643,9 +1645,13 @@ type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer. You can specify one load balancer only.
+	//
+	// LoadBalancerNames is a required field
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	// The tags.
+	//
+	// Tags is a required field
 	Tags []*Tag `min:"1" type:"list" required:"true"`
 }
 
@@ -1751,10 +1757,14 @@ type ApplySecurityGroupsToLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The IDs of the security groups to associate with the load balancer. Note
 	// that you cannot specify the name of the security group.
+	//
+	// SecurityGroups is a required field
 	SecurityGroups []*string `type:"list" required:"true"`
 }
 
@@ -1807,10 +1817,14 @@ type AttachLoadBalancerToSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The IDs of the subnets to add. You can add only one subnet per Availability
 	// Zone.
+	//
+	// Subnets is a required field
 	Subnets []*string `type:"list" required:"true"`
 }
 
@@ -1884,9 +1898,13 @@ type ConfigureHealthCheckInput struct {
 	_ struct{} `type:"structure"`
 
 	// The configuration information.
+	//
+	// HealthCheck is a required field
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -1944,6 +1962,8 @@ type ConnectionDraining struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether connection draining is enabled for the load balancer.
+	//
+	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
 	// The maximum time, in seconds, to keep the existing connections open before
@@ -1980,6 +2000,8 @@ type ConnectionSettings struct {
 
 	// The time, in seconds, that the connection is allowed to be idle (no data
 	// has been sent over the connection) before it is closed by the load balancer.
+	//
+	// IdleTimeout is a required field
 	IdleTimeout *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -2014,14 +2036,20 @@ type CreateAppCookieStickinessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application cookie used for stickiness.
+	//
+	// CookieName is a required field
 	CookieName *string `type:"string" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The name of the policy being created. Policy names must consist of alphanumeric
 	// characters and dashes (-). This name must be unique within the set of policies
 	// for this load balancer.
+	//
+	// PolicyName is a required field
 	PolicyName *string `type:"string" required:"true"`
 }
 
@@ -2080,11 +2108,15 @@ type CreateLBCookieStickinessPolicyInput struct {
 	CookieExpirationPeriod *int64 `type:"long"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The name of the policy being created. Policy names must consist of alphanumeric
 	// characters and dashes (-). This name must be unique within the set of policies
 	// for this load balancer.
+	//
+	// PolicyName is a required field
 	PolicyName *string `type:"string" required:"true"`
 }
 
@@ -2145,6 +2177,8 @@ type CreateLoadBalancerInput struct {
 	//
 	// For more information, see Listeners for Your Classic Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html)
 	// in the Classic Load Balancers Guide.
+	//
+	// Listeners is a required field
 	Listeners []*Listener `type:"list" required:"true"`
 
 	// The name of the load balancer.
@@ -2152,6 +2186,8 @@ type CreateLoadBalancerInput struct {
 	// This name must be unique within your set of load balancers for the region,
 	// must have a maximum of 32 characters, must contain only alphanumeric characters
 	// or hyphens, and cannot begin or end with a hyphen.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The type of a load balancer. Valid only for load balancers in a VPC.
@@ -2235,9 +2271,13 @@ type CreateLoadBalancerListenersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The listeners.
+	//
+	// Listeners is a required field
 	Listeners []*Listener `type:"list" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -2315,6 +2355,8 @@ type CreateLoadBalancerPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The policy attributes.
@@ -2322,9 +2364,13 @@ type CreateLoadBalancerPolicyInput struct {
 
 	// The name of the load balancer policy to be created. This name must be unique
 	// within the set of policies for this load balancer.
+	//
+	// PolicyName is a required field
 	PolicyName *string `type:"string" required:"true"`
 
 	// The name of the base policy type. To get the list of policy types, use DescribeLoadBalancerPolicyTypes.
+	//
+	// PolicyTypeName is a required field
 	PolicyTypeName *string `type:"string" required:"true"`
 }
 
@@ -2377,6 +2423,8 @@ type CrossZoneLoadBalancing struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether cross-zone load balancing is enabled for the load balancer.
+	//
+	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 }
 
@@ -2408,6 +2456,8 @@ type DeleteLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -2439,9 +2489,13 @@ type DeleteLoadBalancerListenersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The client port numbers of the listeners.
+	//
+	// LoadBalancerPorts is a required field
 	LoadBalancerPorts []*int64 `type:"list" required:"true"`
 }
 
@@ -2506,9 +2560,13 @@ type DeleteLoadBalancerPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `type:"string" required:"true"`
 }
 
@@ -2558,9 +2616,13 @@ type DeregisterInstancesFromLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IDs of the instances.
+	//
+	// Instances is a required field
 	Instances []*Instance `type:"list" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -2616,6 +2678,8 @@ type DescribeInstanceHealthInput struct {
 	Instances []*Instance `type:"list"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -2665,6 +2729,8 @@ type DescribeLoadBalancerAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -2851,6 +2917,8 @@ type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the load balancers.
+	//
+	// LoadBalancerNames is a required field
 	LoadBalancerNames []*string `min:"1" type:"list" required:"true"`
 }
 
@@ -2903,9 +2971,13 @@ type DetachLoadBalancerFromSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The IDs of the subnets.
+	//
+	// Subnets is a required field
 	Subnets []*string `type:"list" required:"true"`
 }
 
@@ -2958,9 +3030,13 @@ type DisableAvailabilityZonesForLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zones.
+	//
+	// AvailabilityZones is a required field
 	AvailabilityZones []*string `type:"list" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -3013,9 +3089,13 @@ type EnableAvailabilityZonesForLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zones. These must be in the same region as the load balancer.
+	//
+	// AvailabilityZones is a required field
 	AvailabilityZones []*string `type:"list" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -3069,10 +3149,14 @@ type HealthCheck struct {
 
 	// The number of consecutive health checks successes required before moving
 	// the instance to the Healthy state.
+	//
+	// HealthyThreshold is a required field
 	HealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 
 	// The approximate interval, in seconds, between health checks of an individual
 	// instance.
+	//
+	// Interval is a required field
 	Interval *int64 `min:"5" type:"integer" required:"true"`
 
 	// The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
@@ -3093,16 +3177,22 @@ type HealthCheck struct {
 	//
 	// The total length of the HTTP ping target must be 1024 16-bit Unicode characters
 	// or less.
+	//
+	// Target is a required field
 	Target *string `type:"string" required:"true"`
 
 	// The amount of time, in seconds, during which no response means a failed health
 	// check.
 	//
 	// This value must be less than the Interval value.
+	//
+	// Timeout is a required field
 	Timeout *int64 `min:"2" type:"integer" required:"true"`
 
 	// The number of consecutive health check failures required before moving the
 	// instance to the Unhealthy state.
+	//
+	// UnhealthyThreshold is a required field
 	UnhealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 }
 
@@ -3264,6 +3354,8 @@ type Listener struct {
 	_ struct{} `type:"structure"`
 
 	// The port on which the instance is listening.
+	//
+	// InstancePort is a required field
 	InstancePort *int64 `min:"1" type:"integer" required:"true"`
 
 	// The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP, or
@@ -3282,10 +3374,14 @@ type Listener struct {
 	// The port on which the load balancer is listening. On EC2-VPC, you can specify
 	// any port from the range 1-65535. On EC2-Classic, you can specify any port
 	// from the following list: 25, 80, 443, 465, 587, 1024-65535.
+	//
+	// LoadBalancerPort is a required field
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// The load balancer transport protocol to use for routing: HTTP, HTTPS, TCP,
 	// or SSL.
+	//
+	// Protocol is a required field
 	Protocol *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the server certificate.
@@ -3508,9 +3604,13 @@ type ModifyLoadBalancerAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The attributes of the load balancer.
+	//
+	// LoadBalancerAttributes is a required field
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -3726,9 +3826,13 @@ type RegisterInstancesWithLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IDs of the instances.
+	//
+	// Instances is a required field
 	Instances []*Instance `type:"list" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 }
 
@@ -3782,9 +3886,13 @@ type RemoveTagsInput struct {
 
 	// The name of the load balancer. You can specify a maximum of one load balancer
 	// name.
+	//
+	// LoadBalancerNames is a required field
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	// The list of tag keys to remove.
+	//
+	// Tags is a required field
 	Tags []*TagKeyOnly `min:"1" type:"list" required:"true"`
 }
 
@@ -3847,12 +3955,18 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The port that uses the specified SSL certificate.
+	//
+	// LoadBalancerPort is a required field
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SSL certificate.
+	//
+	// SSLCertificateId is a required field
 	SSLCertificateId *string `type:"string" required:"true"`
 }
 
@@ -3905,13 +4019,19 @@ type SetLoadBalancerPoliciesForBackendServerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The port number associated with the EC2 instance.
+	//
+	// InstancePort is a required field
 	InstancePort *int64 `type:"integer" required:"true"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The names of the policies. If the list is empty, then all current polices
 	// are removed from the EC2 instance.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -3964,14 +4084,20 @@ type SetLoadBalancerPoliciesOfListenerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the load balancer.
+	//
+	// LoadBalancerName is a required field
 	LoadBalancerName *string `type:"string" required:"true"`
 
 	// The external port of the load balancer.
+	//
+	// LoadBalancerPort is a required field
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// The names of the policies. This list must include all policies to be enabled.
 	// If you omit a policy that is currently enabled, it is disabled. If the list
 	// is empty, all current policies are disabled.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -4045,6 +4171,8 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The key of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.

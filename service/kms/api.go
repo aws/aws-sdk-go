@@ -1967,6 +1967,8 @@ type CancelKeyDeletionInput struct {
 	//
 	//   To obtain the unique key ID and key ARN for a given CMK, use ListKeys
 	// or DescribeKey.
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2019,6 +2021,8 @@ type CreateAliasInput struct {
 	// String that contains the display name. The name must start with the word
 	// "alias" followed by a forward slash (alias/). Aliases that begin with "alias/AWS"
 	// are reserved.
+	//
+	// AliasName is a required field
 	AliasName *string `min:"1" type:"string" required:"true"`
 
 	// An identifier of the key for which you are creating the alias. This value
@@ -2028,6 +2032,8 @@ type CreateAliasInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// TargetKeyId is a required field
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2103,6 +2109,8 @@ type CreateGrantInput struct {
 	// to use for specifying a principal, see AWS Identity and Access Management
 	// (IAM) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
 	// in the Example ARNs section of the AWS General Reference.
+	//
+	// GranteePrincipal is a required field
 	GranteePrincipal *string `min:"1" type:"string" required:"true"`
 
 	// The unique identifier for the customer master key (CMK) that the grant applies
@@ -2114,6 +2122,8 @@ type CreateGrantInput struct {
 	//   Globally unique key ID: 12345678-1234-1234-1234-123456789012
 	//
 	//   Key ARN: arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// A friendly name for identifying the grant. Use this value to prevent unintended
@@ -2341,6 +2351,8 @@ type DecryptInput struct {
 	// Ciphertext to be decrypted. The blob includes metadata.
 	//
 	// CiphertextBlob is automatically base64 encoded/decoded by the SDK.
+	//
+	// CiphertextBlob is a required field
 	CiphertextBlob []byte `min:"1" type:"blob" required:"true"`
 
 	// The encryption context. If this was specified in the Encrypt function, it
@@ -2410,6 +2422,8 @@ type DeleteAliasInput struct {
 
 	// The alias to be deleted. The name must start with the word "alias" followed
 	// by a forward slash (alias/). Aliases that begin with "alias/AWS" are reserved.
+	//
+	// AliasName is a required field
 	AliasName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2465,6 +2479,8 @@ type DeleteImportedKeyMaterialInput struct {
 	//   Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	//   Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2528,6 +2544,8 @@ type DescribeKeyInput struct {
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	//   Alias Name Example - alias/MyAliasName
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2584,6 +2602,8 @@ type DisableKeyInput struct {
 	//   Unique ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	//   ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2636,6 +2656,8 @@ type DisableKeyRotationInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2688,6 +2710,8 @@ type EnableKeyInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2740,6 +2764,8 @@ type EnableKeyRotationInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2809,11 +2835,15 @@ type EncryptInput struct {
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	//   Alias Name Example - alias/MyAliasName
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// Data to be encrypted.
 	//
 	// Plaintext is automatically base64 encoded/decoded by the SDK.
+	//
+	// Plaintext is a required field
 	Plaintext []byte `min:"1" type:"blob" required:"true"`
 }
 
@@ -2901,6 +2931,8 @@ type GenerateDataKeyInput struct {
 	//   Alias name: alias/ExampleAlias
 	//
 	//   Alias ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The length of the data encryption key. Use AES_128 to generate a 128-bit
@@ -3001,6 +3033,8 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	//   Alias name: alias/ExampleAlias
 	//
 	//   Alias ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The length of the data encryption key. Use AES_128 to generate a 128-bit
@@ -3124,10 +3158,14 @@ type GetKeyPolicyInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// String that contains the name of the policy. Currently, this must be "default".
 	// Policy names can be discovered by calling ListKeyPolicies.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3189,6 +3227,8 @@ type GetKeyRotationStatusInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3247,16 +3287,22 @@ type GetParametersForImportInput struct {
 	//   Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	//   Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The algorithm you will use to encrypt the key material before importing it
 	// with ImportKeyMaterial. For more information, see Encrypt the Key Material
 	// (http://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html)
 	// in the AWS Key Management Service Developer Guide.
+	//
+	// WrappingAlgorithm is a required field
 	WrappingAlgorithm *string `type:"string" required:"true" enum:"AlgorithmSpec"`
 
 	// The type of wrapping key (public key) to return in the response. Only 2048-bit
 	// RSA public keys are supported.
+	//
+	// WrappingKeySpec is a required field
 	WrappingKeySpec *string `type:"string" required:"true" enum:"WrappingKeySpec"`
 }
 
@@ -3413,6 +3459,8 @@ type ImportKeyMaterialInput struct {
 	// request, using the wrapping algorithm that you specified in that request.
 	//
 	// EncryptedKeyMaterial is automatically base64 encoded/decoded by the SDK.
+	//
+	// EncryptedKeyMaterial is a required field
 	EncryptedKeyMaterial []byte `min:"1" type:"blob" required:"true"`
 
 	// Specifies whether the key material expires. The default is KEY_MATERIAL_EXPIRES,
@@ -3425,6 +3473,8 @@ type ImportKeyMaterialInput struct {
 	// that you used to encrypt the key material.
 	//
 	// ImportToken is automatically base64 encoded/decoded by the SDK.
+	//
+	// ImportToken is a required field
 	ImportToken []byte `min:"1" type:"blob" required:"true"`
 
 	// The identifier of the CMK to import the key material into. The CMK's Origin
@@ -3436,6 +3486,8 @@ type ImportKeyMaterialInput struct {
 	//   Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	//   Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The time at which the imported key material expires. When the key material
@@ -3552,6 +3604,8 @@ type KeyMetadata struct {
 	ExpirationModel *string `type:"string" enum:"ExpirationModelType"`
 
 	// The globally unique identifier for the CMK.
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The state of the CMK.
@@ -3667,6 +3721,8 @@ type ListGrantsInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// When paginating results, specify the maximum number of items to return in
@@ -3755,6 +3811,8 @@ type ListKeyPoliciesInput struct {
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	//   Alias Name Example - alias/MyAliasName
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// When paginating results, specify the maximum number of items to return in
@@ -3925,6 +3983,8 @@ type ListRetirableGrantsInput struct {
 	// for specifying a principal, see AWS Identity and Access Management (IAM)
 	// (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
 	// in the Example ARNs section of the Amazon Web Services General Reference.
+	//
+	// RetiringPrincipal is a required field
 	RetiringPrincipal *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3984,6 +4044,8 @@ type PutKeyPolicyInput struct {
 	//   Unique ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	//   ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The key policy to attach to the CMK.
@@ -4006,11 +4068,15 @@ type PutKeyPolicyInput struct {
 	// in the IAM User Guide.
 	//
 	//   The policy size limit is 32 KiB (32768 bytes).
+	//
+	// Policy is a required field
 	Policy *string `min:"1" type:"string" required:"true"`
 
 	// The name of the key policy.
 	//
 	// This value must be default.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4072,6 +4138,8 @@ type ReEncryptInput struct {
 	// Ciphertext of the data to re-encrypt.
 	//
 	// CiphertextBlob is automatically base64 encoded/decoded by the SDK.
+	//
+	// CiphertextBlob is a required field
 	CiphertextBlob []byte `min:"1" type:"blob" required:"true"`
 
 	// Encryption context to be used when the data is re-encrypted.
@@ -4088,6 +4156,8 @@ type ReEncryptInput struct {
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	//   Alias Name Example - alias/MyAliasName
+	//
+	// DestinationKeyId is a required field
 	DestinationKeyId *string `min:"1" type:"string" required:"true"`
 
 	// A list of grant tokens.
@@ -4228,6 +4298,8 @@ type RevokeGrantInput struct {
 	_ struct{} `type:"structure"`
 
 	// Identifier of the grant to be revoked.
+	//
+	// GrantId is a required field
 	GrantId *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for the customer master key associated with the grant.
@@ -4237,6 +4309,8 @@ type RevokeGrantInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4300,6 +4374,8 @@ type ScheduleKeyDeletionInput struct {
 	//
 	//   To obtain the unique key ID and key ARN for a given CMK, use ListKeys
 	// or DescribeKey.
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The waiting period, specified in number of days. After the waiting period
@@ -4366,6 +4442,8 @@ type UpdateAliasInput struct {
 	// String that contains the name of the alias to be modified. The name must
 	// start with the word "alias" followed by a forward slash (alias/). Aliases
 	// that begin with "alias/aws" are reserved.
+	//
+	// AliasName is a required field
 	AliasName *string `min:"1" type:"string" required:"true"`
 
 	// Unique identifier of the customer master key to be mapped to the alias. This
@@ -4378,6 +4456,8 @@ type UpdateAliasInput struct {
 	//
 	//   You can call ListAliases to verify that the alias is mapped to the correct
 	// TargetKeyId.
+	//
+	// TargetKeyId is a required field
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4431,6 +4511,8 @@ type UpdateKeyDescriptionInput struct {
 	_ struct{} `type:"structure"`
 
 	// New description for the key.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// A unique identifier for the customer master key. This value can be a globally
@@ -4439,6 +4521,8 @@ type UpdateKeyDescriptionInput struct {
 	//   Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	//   Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4486,73 +4570,89 @@ func (s UpdateKeyDescriptionOutput) GoString() string {
 }
 
 const (
-	// @enum AlgorithmSpec
+	// AlgorithmSpecRsaesPkcs1V15 is a AlgorithmSpec enum value
 	AlgorithmSpecRsaesPkcs1V15 = "RSAES_PKCS1_V1_5"
-	// @enum AlgorithmSpec
+
+	// AlgorithmSpecRsaesOaepSha1 is a AlgorithmSpec enum value
 	AlgorithmSpecRsaesOaepSha1 = "RSAES_OAEP_SHA_1"
-	// @enum AlgorithmSpec
+
+	// AlgorithmSpecRsaesOaepSha256 is a AlgorithmSpec enum value
 	AlgorithmSpecRsaesOaepSha256 = "RSAES_OAEP_SHA_256"
 )
 
 const (
-	// @enum DataKeySpec
+	// DataKeySpecAes256 is a DataKeySpec enum value
 	DataKeySpecAes256 = "AES_256"
-	// @enum DataKeySpec
+
+	// DataKeySpecAes128 is a DataKeySpec enum value
 	DataKeySpecAes128 = "AES_128"
 )
 
 const (
-	// @enum ExpirationModelType
+	// ExpirationModelTypeKeyMaterialExpires is a ExpirationModelType enum value
 	ExpirationModelTypeKeyMaterialExpires = "KEY_MATERIAL_EXPIRES"
-	// @enum ExpirationModelType
+
+	// ExpirationModelTypeKeyMaterialDoesNotExpire is a ExpirationModelType enum value
 	ExpirationModelTypeKeyMaterialDoesNotExpire = "KEY_MATERIAL_DOES_NOT_EXPIRE"
 )
 
 const (
-	// @enum GrantOperation
+	// GrantOperationDecrypt is a GrantOperation enum value
 	GrantOperationDecrypt = "Decrypt"
-	// @enum GrantOperation
+
+	// GrantOperationEncrypt is a GrantOperation enum value
 	GrantOperationEncrypt = "Encrypt"
-	// @enum GrantOperation
+
+	// GrantOperationGenerateDataKey is a GrantOperation enum value
 	GrantOperationGenerateDataKey = "GenerateDataKey"
-	// @enum GrantOperation
+
+	// GrantOperationGenerateDataKeyWithoutPlaintext is a GrantOperation enum value
 	GrantOperationGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
-	// @enum GrantOperation
+
+	// GrantOperationReEncryptFrom is a GrantOperation enum value
 	GrantOperationReEncryptFrom = "ReEncryptFrom"
-	// @enum GrantOperation
+
+	// GrantOperationReEncryptTo is a GrantOperation enum value
 	GrantOperationReEncryptTo = "ReEncryptTo"
-	// @enum GrantOperation
+
+	// GrantOperationCreateGrant is a GrantOperation enum value
 	GrantOperationCreateGrant = "CreateGrant"
-	// @enum GrantOperation
+
+	// GrantOperationRetireGrant is a GrantOperation enum value
 	GrantOperationRetireGrant = "RetireGrant"
-	// @enum GrantOperation
+
+	// GrantOperationDescribeKey is a GrantOperation enum value
 	GrantOperationDescribeKey = "DescribeKey"
 )
 
 const (
-	// @enum KeyState
+	// KeyStateEnabled is a KeyState enum value
 	KeyStateEnabled = "Enabled"
-	// @enum KeyState
+
+	// KeyStateDisabled is a KeyState enum value
 	KeyStateDisabled = "Disabled"
-	// @enum KeyState
+
+	// KeyStatePendingDeletion is a KeyState enum value
 	KeyStatePendingDeletion = "PendingDeletion"
-	// @enum KeyState
+
+	// KeyStatePendingImport is a KeyState enum value
 	KeyStatePendingImport = "PendingImport"
 )
 
 const (
-	// @enum KeyUsageType
+	// KeyUsageTypeEncryptDecrypt is a KeyUsageType enum value
 	KeyUsageTypeEncryptDecrypt = "ENCRYPT_DECRYPT"
 )
 
 const (
-	// @enum OriginType
+	// OriginTypeAwsKms is a OriginType enum value
 	OriginTypeAwsKms = "AWS_KMS"
-	// @enum OriginType
+
+	// OriginTypeExternal is a OriginType enum value
 	OriginTypeExternal = "EXTERNAL"
 )
 
 const (
-	// @enum WrappingKeySpec
+	// WrappingKeySpecRsa2048 is a WrappingKeySpec enum value
 	WrappingKeySpecRsa2048 = "RSA_2048"
 )

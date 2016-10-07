@@ -769,6 +769,8 @@ type CancelJobInput struct {
 
 	// The 39 character job ID for the job that you want to cancel, for example
 	// JID123e4567-e89b-12d3-a456-426655440000.
+	//
+	// JobId is a required field
 	JobId *string `min:"39" type:"string" required:"true"`
 }
 
@@ -816,6 +818,8 @@ type CreateAddressInput struct {
 	_ struct{} `type:"structure"`
 
 	// The address that you want the Snowball shipped to.
+	//
+	// Address is a required field
 	Address *Address `type:"structure" required:"true"`
 }
 
@@ -870,6 +874,8 @@ type CreateJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID for the address that you want the Snowball shipped to.
+	//
+	// AddressId is a required field
 	AddressId *string `min:"40" type:"string" required:"true"`
 
 	// Defines an optional description of this specific job, for example Important
@@ -877,6 +883,8 @@ type CreateJobInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// Defines the type of job that you're creating.
+	//
+	// JobType is a required field
 	JobType *string `type:"string" required:"true" enum:"JobType"`
 
 	// The KmsKeyARN that you want to associate with this job. KmsKeyARNs are created
@@ -898,11 +906,15 @@ type CreateJobInput struct {
 	// If you choose to export a range, you define the length of the range by providing
 	// either an inclusive BeginMarker value, an inclusive EndMarker value, or both.
 	// Ranges are UTF-8 binary sorted.
+	//
+	// Resources is a required field
 	Resources *JobResource `type:"structure" required:"true"`
 
 	// The RoleARN that you want to associate with this job. RoleArns are created
 	// using the CreateRole (http://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
 	// AWS Identity and Access Management (IAM) API action.
+	//
+	// RoleARN is a required field
 	RoleARN *string `type:"string" required:"true"`
 
 	// The shipping speed for this job. Note that this speed does not dictate how
@@ -921,6 +933,8 @@ type CreateJobInput struct {
 	//   In India, Snowballs are delivered in one to seven days.
 	//
 	//   In the US, you have access to one-day shipping and two-day shipping.
+	//
+	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
 
 	// If your job is being created in one of the US regions, you have the option
@@ -1029,6 +1043,8 @@ type DescribeAddressInput struct {
 	_ struct{} `type:"structure"`
 
 	// The automatically generated ID for a specific address.
+	//
+	// AddressId is a required field
 	AddressId *string `min:"40" type:"string" required:"true"`
 }
 
@@ -1137,6 +1153,8 @@ type DescribeJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The automatically generated ID for a job, for example JID123e4567-e89b-12d3-a456-426655440000.
+	//
+	// JobId is a required field
 	JobId *string `min:"39" type:"string" required:"true"`
 }
 
@@ -1193,6 +1211,8 @@ type GetJobManifestInput struct {
 
 	// The ID for a job that you want to get the manifest file for, for example
 	// JID123e4567-e89b-12d3-a456-426655440000.
+	//
+	// JobId is a required field
 	JobId *string `min:"39" type:"string" required:"true"`
 }
 
@@ -1245,6 +1265,8 @@ type GetJobUnlockCodeInput struct {
 
 	// The ID for the job that you want to get the UnlockCode value for, for example
 	// JID123e4567-e89b-12d3-a456-426655440000.
+	//
+	// JobId is a required field
 	JobId *string `min:"39" type:"string" required:"true"`
 }
 
@@ -1774,6 +1796,8 @@ type UpdateJobInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The job ID of the job that you want to update, for example JID123e4567-e89b-12d3-a456-426655440000.
+	//
+	// JobId is a required field
 	JobId *string `min:"39" type:"string" required:"true"`
 
 	// The new or updated Notification object.
@@ -1848,55 +1872,72 @@ func (s UpdateJobOutput) GoString() string {
 }
 
 const (
-	// @enum Capacity
+	// CapacityT50 is a Capacity enum value
 	CapacityT50 = "T50"
-	// @enum Capacity
+
+	// CapacityT80 is a Capacity enum value
 	CapacityT80 = "T80"
-	// @enum Capacity
+
+	// CapacityNoPreference is a Capacity enum value
 	CapacityNoPreference = "NoPreference"
 )
 
 const (
-	// @enum JobState
+	// JobStateNew is a JobState enum value
 	JobStateNew = "New"
-	// @enum JobState
+
+	// JobStatePreparingAppliance is a JobState enum value
 	JobStatePreparingAppliance = "PreparingAppliance"
-	// @enum JobState
+
+	// JobStatePreparingShipment is a JobState enum value
 	JobStatePreparingShipment = "PreparingShipment"
-	// @enum JobState
+
+	// JobStateInTransitToCustomer is a JobState enum value
 	JobStateInTransitToCustomer = "InTransitToCustomer"
-	// @enum JobState
+
+	// JobStateWithCustomer is a JobState enum value
 	JobStateWithCustomer = "WithCustomer"
-	// @enum JobState
+
+	// JobStateInTransitToAws is a JobState enum value
 	JobStateInTransitToAws = "InTransitToAWS"
-	// @enum JobState
+
+	// JobStateWithAws is a JobState enum value
 	JobStateWithAws = "WithAWS"
-	// @enum JobState
+
+	// JobStateInProgress is a JobState enum value
 	JobStateInProgress = "InProgress"
-	// @enum JobState
+
+	// JobStateComplete is a JobState enum value
 	JobStateComplete = "Complete"
-	// @enum JobState
+
+	// JobStateCancelled is a JobState enum value
 	JobStateCancelled = "Cancelled"
-	// @enum JobState
+
+	// JobStateListing is a JobState enum value
 	JobStateListing = "Listing"
-	// @enum JobState
+
+	// JobStatePending is a JobState enum value
 	JobStatePending = "Pending"
 )
 
 const (
-	// @enum JobType
+	// JobTypeImport is a JobType enum value
 	JobTypeImport = "IMPORT"
-	// @enum JobType
+
+	// JobTypeExport is a JobType enum value
 	JobTypeExport = "EXPORT"
 )
 
 const (
-	// @enum ShippingOption
+	// ShippingOptionSecondDay is a ShippingOption enum value
 	ShippingOptionSecondDay = "SECOND_DAY"
-	// @enum ShippingOption
+
+	// ShippingOptionNextDay is a ShippingOption enum value
 	ShippingOptionNextDay = "NEXT_DAY"
-	// @enum ShippingOption
+
+	// ShippingOptionExpress is a ShippingOption enum value
 	ShippingOptionExpress = "EXPRESS"
-	// @enum ShippingOption
+
+	// ShippingOptionStandard is a ShippingOption enum value
 	ShippingOptionStandard = "STANDARD"
 )

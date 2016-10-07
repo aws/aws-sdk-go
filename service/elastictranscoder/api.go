@@ -1299,6 +1299,8 @@ type CancelJobInput struct {
 	//
 	// To get a list of the jobs (including their jobId) that have a status of
 	// Submitted, use the ListJobsByStatus API action.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -1557,6 +1559,8 @@ type CreateJobInput struct {
 
 	// A section of the request body that provides information about the file that
 	// is being transcoded.
+	//
+	// Input is a required field
 	Input *JobInput `type:"structure" required:"true"`
 
 	// The CreateJobOutput structure.
@@ -1576,6 +1580,8 @@ type CreateJobInput struct {
 	// The pipeline determines several settings, including the Amazon S3 bucket
 	// from which Elastic Transcoder gets the files to transcode and the bucket
 	// into which Elastic Transcoder puts the transcoded files.
+	//
+	// PipelineId is a required field
 	PipelineId *string `type:"string" required:"true"`
 
 	// If you specify a preset in PresetId for which the value of Container is fmp4
@@ -2015,12 +2021,16 @@ type CreatePipelineInput struct {
 
 	// The Amazon S3 bucket in which you saved the media files that you want to
 	// transcode.
+	//
+	// InputBucket is a required field
 	InputBucket *string `type:"string" required:"true"`
 
 	// The name of the pipeline. We recommend that the name be unique within the
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic that you want to
@@ -2064,6 +2074,8 @@ type CreatePipelineInput struct {
 
 	// The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder
 	// to use to create the pipeline.
+	//
+	// Role is a required field
 	Role *string `type:"string" required:"true"`
 
 	// The ThumbnailConfig object specifies several values, including the Amazon
@@ -2187,6 +2199,8 @@ type CreatePresetInput struct {
 
 	// The container type for the output file. Valid values include flac, flv, fmp4,
 	// gif, mp3, mp4, mpg, mxf, oga, ogg, ts, and webm.
+	//
+	// Container is a required field
 	Container *string `type:"string" required:"true"`
 
 	// A description of the preset.
@@ -2194,6 +2208,8 @@ type CreatePresetInput struct {
 
 	// The name of the preset. We recommend that the name be unique within the AWS
 	// account, but uniqueness is not enforced.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A section of the request body that specifies the thumbnail parameters, if
@@ -2268,6 +2284,8 @@ type DeletePipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the pipeline that you want to delete.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -2314,6 +2332,8 @@ type DeletePresetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the preset for which you want to get detailed information.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -3033,6 +3053,8 @@ type ListJobsByPipelineInput struct {
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
 	// The ID of the pipeline for which you want to get job information.
+	//
+	// PipelineId is a required field
 	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
 }
 
@@ -3097,6 +3119,8 @@ type ListJobsByStatusInput struct {
 	// To get information about all of the jobs associated with the current AWS
 	// account that have a given status, specify the following status: Submitted,
 	// Progressing, Complete, Canceled, or Error.
+	//
+	// Status is a required field
 	Status *string `location:"uri" locationName:"Status" type:"string" required:"true"`
 }
 
@@ -3894,6 +3918,8 @@ type ReadJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the job for which you want to get detailed information.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -3943,6 +3969,8 @@ type ReadPipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the pipeline to read.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4000,6 +4028,8 @@ type ReadPresetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the preset for which you want to get detailed information.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4050,18 +4080,26 @@ type TestRoleInput struct {
 
 	// The Amazon S3 bucket that contains media files to be transcoded. The action
 	// attempts to read from this bucket.
+	//
+	// InputBucket is a required field
 	InputBucket *string `type:"string" required:"true"`
 
 	// The Amazon S3 bucket that Elastic Transcoder will write transcoded media
 	// files to. The action attempts to read from this bucket.
+	//
+	// OutputBucket is a required field
 	OutputBucket *string `type:"string" required:"true"`
 
 	// The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder
 	// to test.
+	//
+	// Role is a required field
 	Role *string `type:"string" required:"true"`
 
 	// The ARNs of one or more Amazon Simple Notification Service (Amazon SNS) topics
 	// that you want the action to send a test notification to.
+	//
+	// Topics is a required field
 	Topics []*string `type:"list" required:"true"`
 }
 
@@ -4324,6 +4362,8 @@ type UpdatePipelineInput struct {
 	ContentConfig *PipelineOutputConfig `type:"structure"`
 
 	// The ID of the pipeline that you want to update.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The Amazon S3 bucket in which you saved the media files that you want to
@@ -4431,6 +4471,8 @@ type UpdatePipelineNotificationsInput struct {
 
 	// The identifier of the pipeline for which you want to change notification
 	// settings.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The topic ARN for the Amazon Simple Notification Service (Amazon SNS) topic
@@ -4449,6 +4491,8 @@ type UpdatePipelineNotificationsInput struct {
 	// The topic ARN for the Amazon SNS topic that you want to notify when Elastic
 	// Transcoder encounters an error condition. This is the ARN that Amazon SNS
 	// returned when you created the topic.
+	//
+	// Notifications is a required field
 	Notifications *Notifications `type:"structure" required:"true"`
 }
 
@@ -4528,12 +4572,16 @@ type UpdatePipelineStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the pipeline to update.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The desired status of the pipeline:
 	//
 	//   Active: The pipeline is processing jobs.  Paused: The pipeline is not
 	// currently processing jobs.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 

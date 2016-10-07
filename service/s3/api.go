@@ -3120,8 +3120,10 @@ func (s AbortIncompleteMultipartUpload) GoString() string {
 type AbortMultipartUploadInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -3130,6 +3132,7 @@ type AbortMultipartUploadInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
+	// UploadId is a required field
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -3262,6 +3265,7 @@ func (s Bucket) GoString() string {
 type BucketLifecycleConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Rules is a required field
 	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 }
 
@@ -3332,6 +3336,7 @@ func (s *BucketLoggingStatus) Validate() error {
 type CORSConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// CORSRules is a required field
 	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true" required:"true"`
 }
 
@@ -3376,9 +3381,13 @@ type CORSRule struct {
 
 	// Identifies HTTP methods that the domain/origin specified in the rule is allowed
 	// to execute.
+	//
+	// AllowedMethods is a required field
 	AllowedMethods []*string `locationName:"AllowedMethod" type:"list" flattened:"true" required:"true"`
 
 	// One or more origins you want customers to be able to access the bucket from.
+	//
+	// AllowedOrigins is a required field
 	AllowedOrigins []*string `locationName:"AllowedOrigin" type:"list" flattened:"true" required:"true"`
 
 	// One or more headers in the response that you want customers to be able to
@@ -3463,8 +3472,10 @@ func (s CommonPrefix) GoString() string {
 type CompleteMultipartUploadInput struct {
 	_ struct{} `type:"structure" payload:"MultipartUpload"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	MultipartUpload *CompletedMultipartUpload `locationName:"CompleteMultipartUpload" type:"structure"`
@@ -3475,6 +3486,7 @@ type CompleteMultipartUploadInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
+	// UploadId is a required field
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -3625,6 +3637,7 @@ type CopyObjectInput struct {
 	// The canned ACL to apply to the object.
 	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Specifies caching behavior along the request/reply chain.
@@ -3646,6 +3659,8 @@ type CopyObjectInput struct {
 
 	// The name of the source bucket and key name of the source object, separated
 	// by a slash (/). Must be URL-encoded.
+	//
+	// CopySource is a required field
 	CopySource *string `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
 
 	// Copies the object if its entity tag (ETag) matches the specified tag.
@@ -3689,6 +3704,7 @@ type CopyObjectInput struct {
 	// Allows grantee to write the ACL for the applicable object.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
@@ -3878,6 +3894,7 @@ type CreateBucketInput struct {
 	// The canned ACL to apply to the bucket.
 	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"BucketCannedACL"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	CreateBucketConfiguration *CreateBucketConfiguration `locationName:"CreateBucketConfiguration" type:"structure"`
@@ -3944,6 +3961,7 @@ type CreateMultipartUploadInput struct {
 	// The canned ACL to apply to the object.
 	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Specifies caching behavior along the request/reply chain.
@@ -3978,6 +3996,7 @@ type CreateMultipartUploadInput struct {
 	// Allows grantee to write the ACL for the applicable object.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
@@ -4107,6 +4126,7 @@ func (s CreateMultipartUploadOutput) GoString() string {
 type Delete struct {
 	_ struct{} `type:"structure"`
 
+	// Objects is a required field
 	Objects []*ObjectIdentifier `locationName:"Object" type:"list" flattened:"true" required:"true"`
 
 	// Element to enable quiet mode for the request. When you add this element,
@@ -4150,6 +4170,7 @@ func (s *Delete) Validate() error {
 type DeleteBucketCorsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4193,6 +4214,7 @@ func (s DeleteBucketCorsOutput) GoString() string {
 type DeleteBucketInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4222,6 +4244,7 @@ func (s *DeleteBucketInput) Validate() error {
 type DeleteBucketLifecycleInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4279,6 +4302,7 @@ func (s DeleteBucketOutput) GoString() string {
 type DeleteBucketPolicyInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4322,6 +4346,7 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 type DeleteBucketReplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4365,6 +4390,7 @@ func (s DeleteBucketReplicationOutput) GoString() string {
 type DeleteBucketTaggingInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4408,6 +4434,7 @@ func (s DeleteBucketTaggingOutput) GoString() string {
 type DeleteBucketWebsiteInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4480,8 +4507,10 @@ func (s DeleteMarkerEntry) GoString() string {
 type DeleteObjectInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// The concatenation of the authentication device's serial number, a space,
@@ -4556,8 +4585,10 @@ func (s DeleteObjectOutput) GoString() string {
 type DeleteObjectsInput struct {
 	_ struct{} `type:"structure" payload:"Delete"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Delete is a required field
 	Delete *Delete `locationName:"Delete" type:"structure" required:"true"`
 
 	// The concatenation of the authentication device's serial number, a space,
@@ -4651,6 +4682,8 @@ type Destination struct {
 
 	// Amazon resource name (ARN) of the bucket where you want Amazon S3 to store
 	// replicas of the object identified by the rule.
+	//
+	// Bucket is a required field
 	Bucket *string `type:"string" required:"true"`
 
 	// The class of storage used to store the object.
@@ -4706,6 +4739,8 @@ type ErrorDocument struct {
 	_ struct{} `type:"structure"`
 
 	// The object key name to use when a 4XX class error occurs.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4763,6 +4798,8 @@ type GetBucketAccelerateConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the bucket for which the accelerate configuration is retrieved.
+	//
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4809,6 +4846,7 @@ func (s GetBucketAccelerateConfigurationOutput) GoString() string {
 type GetBucketAclInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4857,6 +4895,7 @@ func (s GetBucketAclOutput) GoString() string {
 type GetBucketCorsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4902,6 +4941,7 @@ func (s GetBucketCorsOutput) GoString() string {
 type GetBucketLifecycleConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4947,6 +4987,7 @@ func (s GetBucketLifecycleConfigurationOutput) GoString() string {
 type GetBucketLifecycleInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -4992,6 +5033,7 @@ func (s GetBucketLifecycleOutput) GoString() string {
 type GetBucketLocationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5037,6 +5079,7 @@ func (s GetBucketLocationOutput) GoString() string {
 type GetBucketLoggingInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5083,6 +5126,8 @@ type GetBucketNotificationConfigurationRequest struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the bucket to get the notification configuration for.
+	//
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5112,6 +5157,7 @@ func (s *GetBucketNotificationConfigurationRequest) Validate() error {
 type GetBucketPolicyInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5158,6 +5204,7 @@ func (s GetBucketPolicyOutput) GoString() string {
 type GetBucketReplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5205,6 +5252,7 @@ func (s GetBucketReplicationOutput) GoString() string {
 type GetBucketRequestPaymentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5251,6 +5299,7 @@ func (s GetBucketRequestPaymentOutput) GoString() string {
 type GetBucketTaggingInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5280,6 +5329,7 @@ func (s *GetBucketTaggingInput) Validate() error {
 type GetBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
+	// TagSet is a required field
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
@@ -5296,6 +5346,7 @@ func (s GetBucketTaggingOutput) GoString() string {
 type GetBucketVersioningInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5347,6 +5398,7 @@ func (s GetBucketVersioningOutput) GoString() string {
 type GetBucketWebsiteInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5398,8 +5450,10 @@ func (s GetBucketWebsiteOutput) GoString() string {
 type GetObjectAclInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -5467,6 +5521,7 @@ func (s GetObjectAclOutput) GoString() string {
 type GetObjectInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Return the object only if its entity tag (ETag) is the same as the one specified,
@@ -5485,6 +5540,7 @@ type GetObjectInput struct {
 	// otherwise return a 412 (precondition failed).
 	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Part number of the object being read. This is a positive integer between
@@ -5683,8 +5739,10 @@ func (s GetObjectOutput) GoString() string {
 type GetObjectTorrentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -5790,6 +5848,8 @@ type Grantee struct {
 	ID *string `type:"string"`
 
 	// Type of grantee
+	//
+	// Type is a required field
 	Type *string `locationName:"xsi:type" type:"string" xmlAttribute:"true" required:"true" enum:"Type"`
 
 	// URI of the grantee group.
@@ -5822,6 +5882,7 @@ func (s *Grantee) Validate() error {
 type HeadBucketInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -5865,6 +5926,7 @@ func (s HeadBucketOutput) GoString() string {
 type HeadObjectInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Return the object only if its entity tag (ETag) is the same as the one specified,
@@ -5883,6 +5945,7 @@ type HeadObjectInput struct {
 	// otherwise return a 412 (precondition failed).
 	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Part number of the object being read. This is a positive integer between
@@ -6062,6 +6125,8 @@ type IndexDocument struct {
 	// endpoint (e.g. if the suffix is index.html and you make a request to samplebucket/images/
 	// the data that is returned will be for the object with the key name images/index.html)
 	// The suffix must not be empty and must not include a slash character.
+	//
+	// Suffix is a required field
 	Suffix *string `type:"string" required:"true"`
 }
 
@@ -6132,6 +6197,7 @@ func (s KeyFilter) GoString() string {
 type LambdaFunctionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Events is a required field
 	Events []*string `locationName:"Event" type:"list" flattened:"true" required:"true"`
 
 	// Container for object key name filtering rules. For information about key
@@ -6145,6 +6211,8 @@ type LambdaFunctionConfiguration struct {
 
 	// Lambda cloud function ARN that Amazon S3 can invoke when it detects events
 	// of the specified type.
+	//
+	// LambdaFunctionArn is a required field
 	LambdaFunctionArn *string `locationName:"CloudFunction" type:"string" required:"true"`
 }
 
@@ -6177,6 +6245,7 @@ func (s *LambdaFunctionConfiguration) Validate() error {
 type LifecycleConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Rules is a required field
 	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 }
 
@@ -6263,10 +6332,14 @@ type LifecycleRule struct {
 	NoncurrentVersionTransitions []*NoncurrentVersionTransition `locationName:"NoncurrentVersionTransition" type:"list" flattened:"true"`
 
 	// Prefix identifying one or more objects to which the rule applies.
+	//
+	// Prefix is a required field
 	Prefix *string `type:"string" required:"true"`
 
 	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
 	// is not currently being applied.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
 
 	Transitions []*Transition `locationName:"Transition" type:"list" flattened:"true"`
@@ -6333,6 +6406,7 @@ func (s ListBucketsOutput) GoString() string {
 type ListMultipartUploadsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Character you use to group keys.
@@ -6445,6 +6519,7 @@ func (s ListMultipartUploadsOutput) GoString() string {
 type ListObjectVersionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// A delimiter is a character you use to group keys.
@@ -6547,6 +6622,7 @@ func (s ListObjectVersionsOutput) GoString() string {
 type ListObjectsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// A delimiter is a character you use to group keys.
@@ -6647,6 +6723,8 @@ type ListObjectsV2Input struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the bucket to list.
+	//
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// ContinuationToken indicates Amazon S3 that the list is being continued on
@@ -6769,8 +6847,10 @@ func (s ListObjectsV2Output) GoString() string {
 type ListPartsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Sets the maximum number of parts to return.
@@ -6787,6 +6867,8 @@ type ListPartsInput struct {
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Upload ID identifying the multipart upload whose parts are being listed.
+	//
+	// UploadId is a required field
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -7147,6 +7229,8 @@ type ObjectIdentifier struct {
 	_ struct{} `type:"structure"`
 
 	// Key name of the object to delete.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// VersionId for the specific version of the object to delete.
@@ -7265,9 +7349,13 @@ type PutBucketAccelerateConfigurationInput struct {
 	_ struct{} `type:"structure" payload:"AccelerateConfiguration"`
 
 	// Specifies the Accelerate Configuration you want to set for the bucket.
+	//
+	// AccelerateConfiguration is a required field
 	AccelerateConfiguration *AccelerateConfiguration `locationName:"AccelerateConfiguration" type:"structure" required:"true"`
 
 	// Name of the bucket for which the accelerate configuration is set.
+	//
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 }
 
@@ -7319,6 +7407,7 @@ type PutBucketAclInput struct {
 
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Allows grantee the read, write, read ACP, and write ACP permissions on the
@@ -7383,8 +7472,10 @@ func (s PutBucketAclOutput) GoString() string {
 type PutBucketCorsInput struct {
 	_ struct{} `type:"structure" payload:"CORSConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// CORSConfiguration is a required field
 	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure" required:"true"`
 }
 
@@ -7436,6 +7527,7 @@ func (s PutBucketCorsOutput) GoString() string {
 type PutBucketLifecycleConfigurationInput struct {
 	_ struct{} `type:"structure" payload:"LifecycleConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	LifecycleConfiguration *BucketLifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
@@ -7486,6 +7578,7 @@ func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 type PutBucketLifecycleInput struct {
 	_ struct{} `type:"structure" payload:"LifecycleConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
@@ -7536,8 +7629,10 @@ func (s PutBucketLifecycleOutput) GoString() string {
 type PutBucketLoggingInput struct {
 	_ struct{} `type:"structure" payload:"BucketLoggingStatus"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// BucketLoggingStatus is a required field
 	BucketLoggingStatus *BucketLoggingStatus `locationName:"BucketLoggingStatus" type:"structure" required:"true"`
 }
 
@@ -7589,10 +7684,13 @@ func (s PutBucketLoggingOutput) GoString() string {
 type PutBucketNotificationConfigurationInput struct {
 	_ struct{} `type:"structure" payload:"NotificationConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Container for specifying the notification configuration of the bucket. If
 	// this element is empty, notifications are turned off on the bucket.
+	//
+	// NotificationConfiguration is a required field
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 }
 
@@ -7644,8 +7742,10 @@ func (s PutBucketNotificationConfigurationOutput) GoString() string {
 type PutBucketNotificationInput struct {
 	_ struct{} `type:"structure" payload:"NotificationConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// NotificationConfiguration is a required field
 	NotificationConfiguration *NotificationConfigurationDeprecated `locationName:"NotificationConfiguration" type:"structure" required:"true"`
 }
 
@@ -7692,9 +7792,12 @@ func (s PutBucketNotificationOutput) GoString() string {
 type PutBucketPolicyInput struct {
 	_ struct{} `type:"structure" payload:"Policy"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// The bucket policy as a JSON document.
+	//
+	// Policy is a required field
 	Policy *string `type:"string" required:"true"`
 }
 
@@ -7741,10 +7844,13 @@ func (s PutBucketPolicyOutput) GoString() string {
 type PutBucketReplicationInput struct {
 	_ struct{} `type:"structure" payload:"ReplicationConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Container for replication rules. You can add as many as 1,000 rules. Total
 	// replication configuration size can be up to 2 MB.
+	//
+	// ReplicationConfiguration is a required field
 	ReplicationConfiguration *ReplicationConfiguration `locationName:"ReplicationConfiguration" type:"structure" required:"true"`
 }
 
@@ -7796,8 +7902,10 @@ func (s PutBucketReplicationOutput) GoString() string {
 type PutBucketRequestPaymentInput struct {
 	_ struct{} `type:"structure" payload:"RequestPaymentConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// RequestPaymentConfiguration is a required field
 	RequestPaymentConfiguration *RequestPaymentConfiguration `locationName:"RequestPaymentConfiguration" type:"structure" required:"true"`
 }
 
@@ -7849,8 +7957,10 @@ func (s PutBucketRequestPaymentOutput) GoString() string {
 type PutBucketTaggingInput struct {
 	_ struct{} `type:"structure" payload:"Tagging"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Tagging is a required field
 	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true"`
 }
 
@@ -7902,12 +8012,14 @@ func (s PutBucketTaggingOutput) GoString() string {
 type PutBucketVersioningInput struct {
 	_ struct{} `type:"structure" payload:"VersioningConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// The concatenation of the authentication device's serial number, a space,
 	// and the value that is displayed on your authentication device.
 	MFA *string `location:"header" locationName:"x-amz-mfa" type:"string"`
 
+	// VersioningConfiguration is a required field
 	VersioningConfiguration *VersioningConfiguration `locationName:"VersioningConfiguration" type:"structure" required:"true"`
 }
 
@@ -7954,8 +8066,10 @@ func (s PutBucketVersioningOutput) GoString() string {
 type PutBucketWebsiteInput struct {
 	_ struct{} `type:"structure" payload:"WebsiteConfiguration"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// WebsiteConfiguration is a required field
 	WebsiteConfiguration *WebsiteConfiguration `locationName:"WebsiteConfiguration" type:"structure" required:"true"`
 }
 
@@ -8012,6 +8126,7 @@ type PutObjectAclInput struct {
 
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Allows grantee the read, write, read ACP, and write ACP permissions on the
@@ -8030,6 +8145,7 @@ type PutObjectAclInput struct {
 	// Allows grantee to write the ACL for the applicable bucket.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -8104,6 +8220,8 @@ type PutObjectInput struct {
 	Body io.ReadSeeker `type:"blob"`
 
 	// Name of the bucket to which the PUT operation was initiated.
+	//
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Specifies caching behavior along the request/reply chain.
@@ -8143,6 +8261,8 @@ type PutObjectInput struct {
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	// Object key for which the PUT operation was initiated.
+	//
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
@@ -8268,6 +8388,7 @@ func (s PutObjectOutput) GoString() string {
 type QueueConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Events is a required field
 	Events []*string `locationName:"Event" type:"list" flattened:"true" required:"true"`
 
 	// Container for object key name filtering rules. For information about key
@@ -8281,6 +8402,8 @@ type QueueConfiguration struct {
 
 	// Amazon SQS queue ARN to which Amazon S3 will publish a message when it detects
 	// events of specified type.
+	//
+	// QueueArn is a required field
 	QueueArn *string `locationName:"Queue" type:"string" required:"true"`
 }
 
@@ -8377,6 +8500,8 @@ type RedirectAllRequestsTo struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the host where requests will be redirected.
+	//
+	// HostName is a required field
 	HostName *string `type:"string" required:"true"`
 
 	// Protocol to use (http, https) when redirecting requests. The default is the
@@ -8414,10 +8539,14 @@ type ReplicationConfiguration struct {
 
 	// Amazon Resource Name (ARN) of an IAM role for Amazon S3 to assume when replicating
 	// the objects.
+	//
+	// Role is a required field
 	Role *string `type:"string" required:"true"`
 
 	// Container for information about a particular replication rule. Replication
 	// configuration must have at least one rule and can contain up to 1,000 rules.
+	//
+	// Rules is a required field
 	Rules []*ReplicationRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 }
 
@@ -8460,6 +8589,7 @@ func (s *ReplicationConfiguration) Validate() error {
 type ReplicationRule struct {
 	_ struct{} `type:"structure"`
 
+	// Destination is a required field
 	Destination *Destination `type:"structure" required:"true"`
 
 	// Unique identifier for the rule. The value cannot be longer than 255 characters.
@@ -8468,9 +8598,13 @@ type ReplicationRule struct {
 	// Object keyname prefix identifying one or more objects to which the rule applies.
 	// Maximum prefix length can be up to 1,024 characters. Overlapping prefixes
 	// are not supported.
+	//
+	// Prefix is a required field
 	Prefix *string `type:"string" required:"true"`
 
 	// The rule is ignored if status is not Enabled.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ReplicationRuleStatus"`
 }
 
@@ -8512,6 +8646,8 @@ type RequestPaymentConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies who pays for the download and request fees.
+	//
+	// Payer is a required field
 	Payer *string `type:"string" required:"true" enum:"Payer"`
 }
 
@@ -8541,8 +8677,10 @@ func (s *RequestPaymentConfiguration) Validate() error {
 type RestoreObjectInput struct {
 	_ struct{} `type:"structure" payload:"RestoreRequest"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -8612,6 +8750,8 @@ type RestoreRequest struct {
 	_ struct{} `type:"structure"`
 
 	// Lifetime of the active copy in days
+	//
+	// Days is a required field
 	Days *int64 `type:"integer" required:"true"`
 }
 
@@ -8650,6 +8790,8 @@ type RoutingRule struct {
 	// Container for redirect information. You can redirect requests to another
 	// host, to another page, or with another protocol. In the event of an error,
 	// you can can specify a different error code to return.
+	//
+	// Redirect is a required field
 	Redirect *Redirect `type:"structure" required:"true"`
 }
 
@@ -8703,10 +8845,14 @@ type Rule struct {
 	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
 
 	// Prefix identifying one or more objects to which the rule applies.
+	//
+	// Prefix is a required field
 	Prefix *string `type:"string" required:"true"`
 
 	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
 	// is not currently being applied.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
 
 	Transition *Transition `type:"structure"`
@@ -8742,9 +8888,13 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// Name of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// Value of the tag.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -8780,6 +8930,7 @@ func (s *Tag) Validate() error {
 type Tagging struct {
 	_ struct{} `type:"structure"`
 
+	// TagSet is a required field
 	TagSet []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 }
 
@@ -8855,6 +9006,7 @@ func (s *TargetGrant) Validate() error {
 type TopicConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Events is a required field
 	Events []*string `locationName:"Event" type:"list" flattened:"true" required:"true"`
 
 	// Container for object key name filtering rules. For information about key
@@ -8868,6 +9020,8 @@ type TopicConfiguration struct {
 
 	// Amazon SNS topic ARN to which Amazon S3 will publish a message when it detects
 	// events of specified type.
+	//
+	// TopicArn is a required field
 	TopicArn *string `locationName:"Topic" type:"string" required:"true"`
 }
 
@@ -8952,10 +9106,13 @@ func (s Transition) GoString() string {
 type UploadPartCopyInput struct {
 	_ struct{} `type:"structure"`
 
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// The name of the source bucket and key name of the source object, separated
 	// by a slash (/). Must be URL-encoded.
+	//
+	// CopySource is a required field
 	CopySource *string `location:"header" locationName:"x-amz-copy-source" type:"string" required:"true"`
 
 	// Copies the object if its entity tag (ETag) matches the specified tag.
@@ -8991,10 +9148,13 @@ type UploadPartCopyInput struct {
 	// key was transmitted without error.
 	CopySourceSSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
 
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Part number of part being copied. This is a positive integer between 1 and
 	// 10,000.
+	//
+	// PartNumber is a required field
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -9020,6 +9180,8 @@ type UploadPartCopyInput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// Upload ID identifying the multipart upload whose part is being copied.
+	//
+	// UploadId is a required field
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -9110,6 +9272,8 @@ type UploadPartInput struct {
 	Body io.ReadSeeker `type:"blob"`
 
 	// Name of the bucket to which the multipart upload was initiated.
+	//
+	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
 	// Size of the body in bytes. This parameter is useful when the size of the
@@ -9117,10 +9281,14 @@ type UploadPartInput struct {
 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"long"`
 
 	// Object key for which the multipart upload was initiated.
+	//
+	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Part number of part being uploaded. This is a positive integer between 1
 	// and 10,000.
+	//
+	// PartNumber is a required field
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -9146,6 +9314,8 @@ type UploadPartInput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// Upload ID identifying the multipart upload whose part is being uploaded.
+	//
+	// UploadId is a required field
 	UploadId *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -9303,61 +9473,78 @@ func (s *WebsiteConfiguration) Validate() error {
 }
 
 const (
-	// @enum BucketAccelerateStatus
+	// BucketAccelerateStatusEnabled is a BucketAccelerateStatus enum value
 	BucketAccelerateStatusEnabled = "Enabled"
-	// @enum BucketAccelerateStatus
+
+	// BucketAccelerateStatusSuspended is a BucketAccelerateStatus enum value
 	BucketAccelerateStatusSuspended = "Suspended"
 )
 
 const (
-	// @enum BucketCannedACL
+	// BucketCannedACLPrivate is a BucketCannedACL enum value
 	BucketCannedACLPrivate = "private"
-	// @enum BucketCannedACL
+
+	// BucketCannedACLPublicRead is a BucketCannedACL enum value
 	BucketCannedACLPublicRead = "public-read"
-	// @enum BucketCannedACL
+
+	// BucketCannedACLPublicReadWrite is a BucketCannedACL enum value
 	BucketCannedACLPublicReadWrite = "public-read-write"
-	// @enum BucketCannedACL
+
+	// BucketCannedACLAuthenticatedRead is a BucketCannedACL enum value
 	BucketCannedACLAuthenticatedRead = "authenticated-read"
 )
 
 const (
-	// @enum BucketLocationConstraint
+	// BucketLocationConstraintEu is a BucketLocationConstraint enum value
 	BucketLocationConstraintEu = "EU"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintEuWest1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintEuWest1 = "eu-west-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintUsWest1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintUsWest1 = "us-west-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintUsWest2 is a BucketLocationConstraint enum value
 	BucketLocationConstraintUsWest2 = "us-west-2"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintApSouth1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintApSouth1 = "ap-south-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintApSoutheast1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintApSoutheast2 is a BucketLocationConstraint enum value
 	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintApNortheast1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintSaEast1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintSaEast1 = "sa-east-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintCnNorth1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintCnNorth1 = "cn-north-1"
-	// @enum BucketLocationConstraint
+
+	// BucketLocationConstraintEuCentral1 is a BucketLocationConstraint enum value
 	BucketLocationConstraintEuCentral1 = "eu-central-1"
 )
 
 const (
-	// @enum BucketLogsPermission
+	// BucketLogsPermissionFullControl is a BucketLogsPermission enum value
 	BucketLogsPermissionFullControl = "FULL_CONTROL"
-	// @enum BucketLogsPermission
+
+	// BucketLogsPermissionRead is a BucketLogsPermission enum value
 	BucketLogsPermissionRead = "READ"
-	// @enum BucketLogsPermission
+
+	// BucketLogsPermissionWrite is a BucketLogsPermission enum value
 	BucketLogsPermissionWrite = "WRITE"
 )
 
 const (
-	// @enum BucketVersioningStatus
+	// BucketVersioningStatusEnabled is a BucketVersioningStatus enum value
 	BucketVersioningStatusEnabled = "Enabled"
-	// @enum BucketVersioningStatus
+
+	// BucketVersioningStatusSuspended is a BucketVersioningStatus enum value
 	BucketVersioningStatusSuspended = "Suspended"
 )
 
@@ -9368,147 +9555,178 @@ const (
 // XML 1.0, you can add this parameter to request that Amazon S3 encode the
 // keys in the response.
 const (
-	// @enum EncodingType
+	// EncodingTypeUrl is a EncodingType enum value
 	EncodingTypeUrl = "url"
 )
 
 // Bucket event for which to send notifications.
 const (
-	// @enum Event
+	// EventS3ReducedRedundancyLostObject is a Event enum value
 	EventS3ReducedRedundancyLostObject = "s3:ReducedRedundancyLostObject"
-	// @enum Event
+
+	// EventS3ObjectCreated is a Event enum value
 	EventS3ObjectCreated = "s3:ObjectCreated:*"
-	// @enum Event
+
+	// EventS3ObjectCreatedPut is a Event enum value
 	EventS3ObjectCreatedPut = "s3:ObjectCreated:Put"
-	// @enum Event
+
+	// EventS3ObjectCreatedPost is a Event enum value
 	EventS3ObjectCreatedPost = "s3:ObjectCreated:Post"
-	// @enum Event
+
+	// EventS3ObjectCreatedCopy is a Event enum value
 	EventS3ObjectCreatedCopy = "s3:ObjectCreated:Copy"
-	// @enum Event
+
+	// EventS3ObjectCreatedCompleteMultipartUpload is a Event enum value
 	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
-	// @enum Event
+
+	// EventS3ObjectRemoved is a Event enum value
 	EventS3ObjectRemoved = "s3:ObjectRemoved:*"
-	// @enum Event
+
+	// EventS3ObjectRemovedDelete is a Event enum value
 	EventS3ObjectRemovedDelete = "s3:ObjectRemoved:Delete"
-	// @enum Event
+
+	// EventS3ObjectRemovedDeleteMarkerCreated is a Event enum value
 	EventS3ObjectRemovedDeleteMarkerCreated = "s3:ObjectRemoved:DeleteMarkerCreated"
 )
 
 const (
-	// @enum ExpirationStatus
+	// ExpirationStatusEnabled is a ExpirationStatus enum value
 	ExpirationStatusEnabled = "Enabled"
-	// @enum ExpirationStatus
+
+	// ExpirationStatusDisabled is a ExpirationStatus enum value
 	ExpirationStatusDisabled = "Disabled"
 )
 
 const (
-	// @enum FilterRuleName
+	// FilterRuleNamePrefix is a FilterRuleName enum value
 	FilterRuleNamePrefix = "prefix"
-	// @enum FilterRuleName
+
+	// FilterRuleNameSuffix is a FilterRuleName enum value
 	FilterRuleNameSuffix = "suffix"
 )
 
 const (
-	// @enum MFADelete
+	// MFADeleteEnabled is a MFADelete enum value
 	MFADeleteEnabled = "Enabled"
-	// @enum MFADelete
+
+	// MFADeleteDisabled is a MFADelete enum value
 	MFADeleteDisabled = "Disabled"
 )
 
 const (
-	// @enum MFADeleteStatus
+	// MFADeleteStatusEnabled is a MFADeleteStatus enum value
 	MFADeleteStatusEnabled = "Enabled"
-	// @enum MFADeleteStatus
+
+	// MFADeleteStatusDisabled is a MFADeleteStatus enum value
 	MFADeleteStatusDisabled = "Disabled"
 )
 
 const (
-	// @enum MetadataDirective
+	// MetadataDirectiveCopy is a MetadataDirective enum value
 	MetadataDirectiveCopy = "COPY"
-	// @enum MetadataDirective
+
+	// MetadataDirectiveReplace is a MetadataDirective enum value
 	MetadataDirectiveReplace = "REPLACE"
 )
 
 const (
-	// @enum ObjectCannedACL
+	// ObjectCannedACLPrivate is a ObjectCannedACL enum value
 	ObjectCannedACLPrivate = "private"
-	// @enum ObjectCannedACL
+
+	// ObjectCannedACLPublicRead is a ObjectCannedACL enum value
 	ObjectCannedACLPublicRead = "public-read"
-	// @enum ObjectCannedACL
+
+	// ObjectCannedACLPublicReadWrite is a ObjectCannedACL enum value
 	ObjectCannedACLPublicReadWrite = "public-read-write"
-	// @enum ObjectCannedACL
+
+	// ObjectCannedACLAuthenticatedRead is a ObjectCannedACL enum value
 	ObjectCannedACLAuthenticatedRead = "authenticated-read"
-	// @enum ObjectCannedACL
+
+	// ObjectCannedACLAwsExecRead is a ObjectCannedACL enum value
 	ObjectCannedACLAwsExecRead = "aws-exec-read"
-	// @enum ObjectCannedACL
+
+	// ObjectCannedACLBucketOwnerRead is a ObjectCannedACL enum value
 	ObjectCannedACLBucketOwnerRead = "bucket-owner-read"
-	// @enum ObjectCannedACL
+
+	// ObjectCannedACLBucketOwnerFullControl is a ObjectCannedACL enum value
 	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
 )
 
 const (
-	// @enum ObjectStorageClass
+	// ObjectStorageClassStandard is a ObjectStorageClass enum value
 	ObjectStorageClassStandard = "STANDARD"
-	// @enum ObjectStorageClass
+
+	// ObjectStorageClassReducedRedundancy is a ObjectStorageClass enum value
 	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
-	// @enum ObjectStorageClass
+
+	// ObjectStorageClassGlacier is a ObjectStorageClass enum value
 	ObjectStorageClassGlacier = "GLACIER"
 )
 
 const (
-	// @enum ObjectVersionStorageClass
+	// ObjectVersionStorageClassStandard is a ObjectVersionStorageClass enum value
 	ObjectVersionStorageClassStandard = "STANDARD"
 )
 
 const (
-	// @enum Payer
+	// PayerRequester is a Payer enum value
 	PayerRequester = "Requester"
-	// @enum Payer
+
+	// PayerBucketOwner is a Payer enum value
 	PayerBucketOwner = "BucketOwner"
 )
 
 const (
-	// @enum Permission
+	// PermissionFullControl is a Permission enum value
 	PermissionFullControl = "FULL_CONTROL"
-	// @enum Permission
+
+	// PermissionWrite is a Permission enum value
 	PermissionWrite = "WRITE"
-	// @enum Permission
+
+	// PermissionWriteAcp is a Permission enum value
 	PermissionWriteAcp = "WRITE_ACP"
-	// @enum Permission
+
+	// PermissionRead is a Permission enum value
 	PermissionRead = "READ"
-	// @enum Permission
+
+	// PermissionReadAcp is a Permission enum value
 	PermissionReadAcp = "READ_ACP"
 )
 
 const (
-	// @enum Protocol
+	// ProtocolHttp is a Protocol enum value
 	ProtocolHttp = "http"
-	// @enum Protocol
+
+	// ProtocolHttps is a Protocol enum value
 	ProtocolHttps = "https"
 )
 
 const (
-	// @enum ReplicationRuleStatus
+	// ReplicationRuleStatusEnabled is a ReplicationRuleStatus enum value
 	ReplicationRuleStatusEnabled = "Enabled"
-	// @enum ReplicationRuleStatus
+
+	// ReplicationRuleStatusDisabled is a ReplicationRuleStatus enum value
 	ReplicationRuleStatusDisabled = "Disabled"
 )
 
 const (
-	// @enum ReplicationStatus
+	// ReplicationStatusComplete is a ReplicationStatus enum value
 	ReplicationStatusComplete = "COMPLETE"
-	// @enum ReplicationStatus
+
+	// ReplicationStatusPending is a ReplicationStatus enum value
 	ReplicationStatusPending = "PENDING"
-	// @enum ReplicationStatus
+
+	// ReplicationStatusFailed is a ReplicationStatus enum value
 	ReplicationStatusFailed = "FAILED"
-	// @enum ReplicationStatus
+
+	// ReplicationStatusReplica is a ReplicationStatus enum value
 	ReplicationStatusReplica = "REPLICA"
 )
 
 // If present, indicates that the requester was successfully charged for the
 // request.
 const (
-	// @enum RequestCharged
+	// RequestChargedRequester is a RequestCharged enum value
 	RequestChargedRequester = "requester"
 )
 
@@ -9517,38 +9735,44 @@ const (
 // Documentation on downloading objects from requester pays buckets can be found
 // at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 const (
-	// @enum RequestPayer
+	// RequestPayerRequester is a RequestPayer enum value
 	RequestPayerRequester = "requester"
 )
 
 const (
-	// @enum ServerSideEncryption
+	// ServerSideEncryptionAes256 is a ServerSideEncryption enum value
 	ServerSideEncryptionAes256 = "AES256"
-	// @enum ServerSideEncryption
+
+	// ServerSideEncryptionAwsKms is a ServerSideEncryption enum value
 	ServerSideEncryptionAwsKms = "aws:kms"
 )
 
 const (
-	// @enum StorageClass
+	// StorageClassStandard is a StorageClass enum value
 	StorageClassStandard = "STANDARD"
-	// @enum StorageClass
+
+	// StorageClassReducedRedundancy is a StorageClass enum value
 	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
-	// @enum StorageClass
+
+	// StorageClassStandardIa is a StorageClass enum value
 	StorageClassStandardIa = "STANDARD_IA"
 )
 
 const (
-	// @enum TransitionStorageClass
+	// TransitionStorageClassGlacier is a TransitionStorageClass enum value
 	TransitionStorageClassGlacier = "GLACIER"
-	// @enum TransitionStorageClass
+
+	// TransitionStorageClassStandardIa is a TransitionStorageClass enum value
 	TransitionStorageClassStandardIa = "STANDARD_IA"
 )
 
 const (
-	// @enum Type
+	// TypeCanonicalUser is a Type enum value
 	TypeCanonicalUser = "CanonicalUser"
-	// @enum Type
+
+	// TypeAmazonCustomerByEmail is a Type enum value
 	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
-	// @enum Type
+
+	// TypeGroup is a Type enum value
 	TypeGroup = "Group"
 )

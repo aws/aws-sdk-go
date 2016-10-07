@@ -1019,9 +1019,13 @@ type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS CloudHSM resource to tag.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
 	// One or more tags.
+	//
+	// TagList is a required field
 	TagList []*Tag `type:"list" required:"true"`
 }
 
@@ -1065,6 +1069,8 @@ type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the operation.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 
@@ -1083,6 +1089,8 @@ type CreateHapgInput struct {
 	_ struct{} `type:"structure"`
 
 	// The label of the new high-availability partition group.
+	//
+	// Label is a required field
 	Label *string `type:"string" required:"true"`
 }
 
@@ -1146,18 +1154,26 @@ type CreateHsmInput struct {
 
 	// The ARN of an IAM role to enable the AWS CloudHSM service to allocate an
 	// ENI on your behalf.
+	//
+	// IamRoleArn is a required field
 	IamRoleArn *string `locationName:"IamRoleArn" type:"string" required:"true"`
 
 	// The SSH public key to install on the HSM.
+	//
+	// SshKey is a required field
 	SshKey *string `locationName:"SshKey" type:"string" required:"true"`
 
 	// The identifier of the subnet in your VPC in which to place the HSM.
+	//
+	// SubnetId is a required field
 	SubnetId *string `locationName:"SubnetId" type:"string" required:"true"`
 
 	// Specifies the type of subscription for the HSM.
 	//
 	//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
 	// The HSM is being used in a product trial.
+	//
+	// SubscriptionType is a required field
 	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true" enum:"SubscriptionType"`
 
 	// The IP address for the syslog monitoring server. The AWS CloudHSM service
@@ -1221,6 +1237,8 @@ type CreateLunaClientInput struct {
 
 	// The contents of a Base64-Encoded X.509 v3 certificate to be installed on
 	// the HSMs used by this client.
+	//
+	// Certificate is a required field
 	Certificate *string `min:"600" type:"string" required:"true"`
 
 	// The label for the client.
@@ -1276,6 +1294,8 @@ type DeleteHapgInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the high-availability partition group to delete.
+	//
+	// HapgArn is a required field
 	HapgArn *string `type:"string" required:"true"`
 }
 
@@ -1307,6 +1327,8 @@ type DeleteHapgOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the action.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 
@@ -1325,6 +1347,8 @@ type DeleteHsmInput struct {
 	_ struct{} `locationName:"DeleteHsmRequest" type:"structure"`
 
 	// The ARN of the HSM to delete.
+	//
+	// HsmArn is a required field
 	HsmArn *string `locationName:"HsmArn" type:"string" required:"true"`
 }
 
@@ -1356,6 +1380,8 @@ type DeleteHsmOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the operation.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 
@@ -1373,6 +1399,8 @@ type DeleteLunaClientInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the client to delete.
+	//
+	// ClientArn is a required field
 	ClientArn *string `type:"string" required:"true"`
 }
 
@@ -1403,6 +1431,8 @@ type DeleteLunaClientOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the action.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 
@@ -1421,6 +1451,8 @@ type DescribeHapgInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the high-availability partition group to describe.
+	//
+	// HapgArn is a required field
 	HapgArn *string `type:"string" required:"true"`
 }
 
@@ -1647,13 +1679,19 @@ type GetConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the client.
+	//
+	// ClientArn is a required field
 	ClientArn *string `type:"string" required:"true"`
 
 	// The client version.
+	//
+	// ClientVersion is a required field
 	ClientVersion *string `type:"string" required:"true" enum:"ClientVersion"`
 
 	// A list of ARNs that identify the high-availability partition groups that
 	// are associated with the client.
+	//
+	// HapgList is a required field
 	HapgList []*string `type:"list" required:"true"`
 }
 
@@ -1763,6 +1801,8 @@ type ListHapgsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of high-availability partition groups.
+	//
+	// HapgList is a required field
 	HapgList []*string `type:"list" required:"true"`
 
 	// If not null, more results are available. Pass this value to ListHapgs to
@@ -1842,6 +1882,8 @@ type ListLunaClientsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of clients.
+	//
+	// ClientList is a required field
 	ClientList []*string `type:"list" required:"true"`
 
 	// If not null, more results are available. Pass this to ListLunaClients to
@@ -1863,6 +1905,8 @@ type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS CloudHSM resource.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 }
 
@@ -1893,6 +1937,8 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more tags.
+	//
+	// TagList is a required field
 	TagList []*Tag `type:"list" required:"true"`
 }
 
@@ -1910,6 +1956,8 @@ type ModifyHapgInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the high-availability partition group to modify.
+	//
+	// HapgArn is a required field
 	HapgArn *string `type:"string" required:"true"`
 
 	// The new label for the high-availability partition group.
@@ -1975,6 +2023,8 @@ type ModifyHsmInput struct {
 	ExternalId *string `locationName:"ExternalId" type:"string"`
 
 	// The ARN of the HSM to modify.
+	//
+	// HsmArn is a required field
 	HsmArn *string `locationName:"HsmArn" type:"string" required:"true"`
 
 	// The new IAM role ARN.
@@ -2034,9 +2084,13 @@ type ModifyLunaClientInput struct {
 	_ struct{} `type:"structure"`
 
 	// The new certificate for the client.
+	//
+	// Certificate is a required field
 	Certificate *string `min:"600" type:"string" required:"true"`
 
 	// The ARN of the client.
+	//
+	// ClientArn is a required field
 	ClientArn *string `type:"string" required:"true"`
 }
 
@@ -2090,12 +2144,16 @@ type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS CloudHSM resource.
+	//
+	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
 	// The tag key or keys to remove.
 	//
 	// Specify only the tag key to remove (not the value). To overwrite the value
 	// for an existing tag, use AddTagsToResource.
+	//
+	// TagKeyList is a required field
 	TagKeyList []*string `type:"list" required:"true"`
 }
 
@@ -2129,6 +2187,8 @@ type RemoveTagsFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the operation.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 
@@ -2148,9 +2208,13 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The key of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -2184,35 +2248,44 @@ func (s *Tag) Validate() error {
 }
 
 const (
-	// @enum ClientVersion
+	// ClientVersion51 is a ClientVersion enum value
 	ClientVersion51 = "5.1"
-	// @enum ClientVersion
+
+	// ClientVersion53 is a ClientVersion enum value
 	ClientVersion53 = "5.3"
 )
 
 const (
-	// @enum CloudHsmObjectState
+	// CloudHsmObjectStateReady is a CloudHsmObjectState enum value
 	CloudHsmObjectStateReady = "READY"
-	// @enum CloudHsmObjectState
+
+	// CloudHsmObjectStateUpdating is a CloudHsmObjectState enum value
 	CloudHsmObjectStateUpdating = "UPDATING"
-	// @enum CloudHsmObjectState
+
+	// CloudHsmObjectStateDegraded is a CloudHsmObjectState enum value
 	CloudHsmObjectStateDegraded = "DEGRADED"
 )
 
 const (
-	// @enum HsmStatus
+	// HsmStatusPending is a HsmStatus enum value
 	HsmStatusPending = "PENDING"
-	// @enum HsmStatus
+
+	// HsmStatusRunning is a HsmStatus enum value
 	HsmStatusRunning = "RUNNING"
-	// @enum HsmStatus
+
+	// HsmStatusUpdating is a HsmStatus enum value
 	HsmStatusUpdating = "UPDATING"
-	// @enum HsmStatus
+
+	// HsmStatusSuspended is a HsmStatus enum value
 	HsmStatusSuspended = "SUSPENDED"
-	// @enum HsmStatus
+
+	// HsmStatusTerminating is a HsmStatus enum value
 	HsmStatusTerminating = "TERMINATING"
-	// @enum HsmStatus
+
+	// HsmStatusTerminated is a HsmStatus enum value
 	HsmStatusTerminated = "TERMINATED"
-	// @enum HsmStatus
+
+	// HsmStatusDegraded is a HsmStatus enum value
 	HsmStatusDegraded = "DEGRADED"
 )
 
@@ -2221,6 +2294,6 @@ const (
 //  PRODUCTION - The HSM is being used in a production environment. TRIAL -
 // The HSM is being used in a product trial.
 const (
-	// @enum SubscriptionType
+	// SubscriptionTypeProduction is a SubscriptionType enum value
 	SubscriptionTypeProduction = "PRODUCTION"
 )

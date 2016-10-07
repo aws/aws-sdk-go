@@ -1910,12 +1910,16 @@ type AddTagsToOnPremisesInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the on-premises instances to which to add tags.
+	//
+	// InstanceNames is a required field
 	InstanceNames []*string `locationName:"instanceNames" type:"list" required:"true"`
 
 	// The tag key-value pairs to add to the on-premises instances.
 	//
 	// Keys and values are both required. Keys cannot be null or empty strings.
 	// Value-only tags are not allowed.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 }
 
@@ -2088,9 +2092,13 @@ type BatchGetApplicationRevisionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of an AWS CodeDeploy application about which to get revision information.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Information to get about the application revisions, including type and location.
+	//
+	// Revisions is a required field
 	Revisions []*RevisionLocation `locationName:"revisions" type:"list" required:"true"`
 }
 
@@ -2189,9 +2197,13 @@ type BatchGetDeploymentGroupsInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The deployment groups' names.
+	//
+	// DeploymentGroupNames is a required field
 	DeploymentGroupNames []*string `locationName:"deploymentGroupNames" type:"list" required:"true"`
 }
 
@@ -2250,9 +2262,13 @@ type BatchGetDeploymentInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of a deployment.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique IDs of instances in the deployment group.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"instanceIds" type:"list" required:"true"`
 }
 
@@ -2381,6 +2397,8 @@ type CreateApplicationInput struct {
 
 	// The name of the application. This name must be unique with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 }
 
@@ -2433,6 +2451,8 @@ type CreateDeploymentConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the deployment configuration to create.
+	//
+	// DeploymentConfigName is a required field
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	// The minimum number of healthy instances that should be available at any time
@@ -2511,6 +2531,8 @@ type CreateDeploymentGroupInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Configuration information for an automatic rollback that is added when a
@@ -2575,6 +2597,8 @@ type CreateDeploymentGroupInput struct {
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The name of a new deployment group for the specified application.
+	//
+	// DeploymentGroupName is a required field
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	// The Amazon EC2 tags on which to filter.
@@ -2585,6 +2609,8 @@ type CreateDeploymentGroupInput struct {
 
 	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
 	// when interacting with AWS services.
+	//
+	// ServiceRoleArn is a required field
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string" required:"true"`
 
 	// Information about triggers to create when the deployment group is created.
@@ -2655,6 +2681,8 @@ type CreateDeploymentInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Configuration information for an automatic rollback that is added when a
@@ -2750,6 +2778,8 @@ type DeleteApplicationInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 }
 
@@ -2799,6 +2829,8 @@ type DeleteDeploymentConfigInput struct {
 
 	// The name of a deployment configuration associated with the applicable IAM
 	// user or AWS account.
+	//
+	// DeploymentConfigName is a required field
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 }
 
@@ -2848,9 +2880,13 @@ type DeleteDeploymentGroupInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
+	//
+	// DeploymentGroupName is a required field
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -3113,6 +3149,8 @@ type DeregisterOnPremisesInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the on-premises instance to deregister.
+	//
+	// InstanceName is a required field
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
 }
 
@@ -3320,6 +3358,8 @@ type GetApplicationInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 }
 
@@ -3372,9 +3412,13 @@ type GetApplicationRevisionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application that corresponds to the revision.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Information about the application revision to get, including type and location.
+	//
+	// Revision is a required field
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 }
 
@@ -3437,6 +3481,8 @@ type GetDeploymentConfigInput struct {
 
 	// The name of a deployment configuration associated with the applicable IAM
 	// user or AWS account.
+	//
+	// DeploymentConfigName is a required field
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 }
 
@@ -3490,9 +3536,13 @@ type GetDeploymentGroupInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
+	//
+	// DeploymentGroupName is a required field
 	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 }
 
@@ -3551,6 +3601,8 @@ type GetDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
 	// A deployment ID associated with the applicable IAM user or AWS account.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 }
 
@@ -3582,9 +3634,13 @@ type GetDeploymentInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of a deployment.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique ID of an instance in the deployment group.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 }
 
@@ -3655,6 +3711,8 @@ type GetOnPremisesInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the on-premises instance about which to get information.
+	//
+	// InstanceName is a required field
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
 }
 
@@ -3849,6 +3907,8 @@ type ListApplicationRevisionsInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Whether to list revisions based on whether the revision is the target revision
@@ -4040,6 +4100,8 @@ type ListDeploymentGroupsInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// An identifier returned from the previous list deployment groups call. It
@@ -4104,6 +4166,8 @@ type ListDeploymentInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of a deployment.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// A subset of instances to list by status:
@@ -4359,6 +4423,8 @@ type RegisterApplicationRevisionInput struct {
 
 	// The name of an AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// A comment about the revision.
@@ -4366,6 +4432,8 @@ type RegisterApplicationRevisionInput struct {
 
 	// Information about the application revision to register, including type and
 	// location.
+	//
+	// Revision is a required field
 	Revision *RevisionLocation `locationName:"revision" type:"structure" required:"true"`
 }
 
@@ -4417,9 +4485,13 @@ type RegisterOnPremisesInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the IAM user to associate with the on-premises instance.
+	//
+	// IamUserArn is a required field
 	IamUserArn *string `locationName:"iamUserArn" type:"string" required:"true"`
 
 	// The name of the on-premises instance to register.
+	//
+	// InstanceName is a required field
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
 }
 
@@ -4468,9 +4540,13 @@ type RemoveTagsFromOnPremisesInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the on-premises instances from which to remove tags.
+	//
+	// InstanceNames is a required field
 	InstanceNames []*string `locationName:"instanceNames" type:"list" required:"true"`
 
 	// The tag key-value pairs to remove from the on-premises instances.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 }
 
@@ -4646,6 +4722,8 @@ type StopDeploymentInput struct {
 	AutoRollbackEnabled *bool `locationName:"autoRollbackEnabled" type:"boolean"`
 
 	// The unique ID of a deployment.
+	//
+	// DeploymentId is a required field
 	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 }
 
@@ -4858,6 +4936,8 @@ type UpdateDeploymentGroupInput struct {
 	AlarmConfiguration *AlarmConfiguration `locationName:"alarmConfiguration" type:"structure"`
 
 	// The application name corresponding to the deployment group to update.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Information for an automatic rollback configuration that is added or changed
@@ -4871,6 +4951,8 @@ type UpdateDeploymentGroupInput struct {
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
 
 	// The current name of the deployment group.
+	//
+	// CurrentDeploymentGroupName is a required field
 	CurrentDeploymentGroupName *string `locationName:"currentDeploymentGroupName" min:"1" type:"string" required:"true"`
 
 	// The replacement deployment configuration name to use, if you want to change
@@ -4960,217 +5042,280 @@ func (s UpdateDeploymentGroupOutput) GoString() string {
 }
 
 const (
-	// @enum ApplicationRevisionSortBy
+	// ApplicationRevisionSortByRegisterTime is a ApplicationRevisionSortBy enum value
 	ApplicationRevisionSortByRegisterTime = "registerTime"
-	// @enum ApplicationRevisionSortBy
+
+	// ApplicationRevisionSortByFirstUsedTime is a ApplicationRevisionSortBy enum value
 	ApplicationRevisionSortByFirstUsedTime = "firstUsedTime"
-	// @enum ApplicationRevisionSortBy
+
+	// ApplicationRevisionSortByLastUsedTime is a ApplicationRevisionSortBy enum value
 	ApplicationRevisionSortByLastUsedTime = "lastUsedTime"
 )
 
 const (
-	// @enum AutoRollbackEvent
+	// AutoRollbackEventDeploymentFailure is a AutoRollbackEvent enum value
 	AutoRollbackEventDeploymentFailure = "DEPLOYMENT_FAILURE"
-	// @enum AutoRollbackEvent
+
+	// AutoRollbackEventDeploymentStopOnAlarm is a AutoRollbackEvent enum value
 	AutoRollbackEventDeploymentStopOnAlarm = "DEPLOYMENT_STOP_ON_ALARM"
-	// @enum AutoRollbackEvent
+
+	// AutoRollbackEventDeploymentStopOnRequest is a AutoRollbackEvent enum value
 	AutoRollbackEventDeploymentStopOnRequest = "DEPLOYMENT_STOP_ON_REQUEST"
 )
 
 const (
-	// @enum BundleType
+	// BundleTypeTar is a BundleType enum value
 	BundleTypeTar = "tar"
-	// @enum BundleType
+
+	// BundleTypeTgz is a BundleType enum value
 	BundleTypeTgz = "tgz"
-	// @enum BundleType
+
+	// BundleTypeZip is a BundleType enum value
 	BundleTypeZip = "zip"
 )
 
 const (
-	// @enum DeploymentCreator
+	// DeploymentCreatorUser is a DeploymentCreator enum value
 	DeploymentCreatorUser = "user"
-	// @enum DeploymentCreator
+
+	// DeploymentCreatorAutoscaling is a DeploymentCreator enum value
 	DeploymentCreatorAutoscaling = "autoscaling"
-	// @enum DeploymentCreator
+
+	// DeploymentCreatorCodeDeployRollback is a DeploymentCreator enum value
 	DeploymentCreatorCodeDeployRollback = "codeDeployRollback"
 )
 
 const (
-	// @enum DeploymentStatus
+	// DeploymentStatusCreated is a DeploymentStatus enum value
 	DeploymentStatusCreated = "Created"
-	// @enum DeploymentStatus
+
+	// DeploymentStatusQueued is a DeploymentStatus enum value
 	DeploymentStatusQueued = "Queued"
-	// @enum DeploymentStatus
+
+	// DeploymentStatusInProgress is a DeploymentStatus enum value
 	DeploymentStatusInProgress = "InProgress"
-	// @enum DeploymentStatus
+
+	// DeploymentStatusSucceeded is a DeploymentStatus enum value
 	DeploymentStatusSucceeded = "Succeeded"
-	// @enum DeploymentStatus
+
+	// DeploymentStatusFailed is a DeploymentStatus enum value
 	DeploymentStatusFailed = "Failed"
-	// @enum DeploymentStatus
+
+	// DeploymentStatusStopped is a DeploymentStatus enum value
 	DeploymentStatusStopped = "Stopped"
 )
 
 const (
-	// @enum EC2TagFilterType
+	// EC2TagFilterTypeKeyOnly is a EC2TagFilterType enum value
 	EC2TagFilterTypeKeyOnly = "KEY_ONLY"
-	// @enum EC2TagFilterType
+
+	// EC2TagFilterTypeValueOnly is a EC2TagFilterType enum value
 	EC2TagFilterTypeValueOnly = "VALUE_ONLY"
-	// @enum EC2TagFilterType
+
+	// EC2TagFilterTypeKeyAndValue is a EC2TagFilterType enum value
 	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
 )
 
 const (
-	// @enum ErrorCode
+	// ErrorCodeDeploymentGroupMissing is a ErrorCode enum value
 	ErrorCodeDeploymentGroupMissing = "DEPLOYMENT_GROUP_MISSING"
-	// @enum ErrorCode
+
+	// ErrorCodeApplicationMissing is a ErrorCode enum value
 	ErrorCodeApplicationMissing = "APPLICATION_MISSING"
-	// @enum ErrorCode
+
+	// ErrorCodeRevisionMissing is a ErrorCode enum value
 	ErrorCodeRevisionMissing = "REVISION_MISSING"
-	// @enum ErrorCode
+
+	// ErrorCodeIamRoleMissing is a ErrorCode enum value
 	ErrorCodeIamRoleMissing = "IAM_ROLE_MISSING"
-	// @enum ErrorCode
+
+	// ErrorCodeIamRolePermissions is a ErrorCode enum value
 	ErrorCodeIamRolePermissions = "IAM_ROLE_PERMISSIONS"
-	// @enum ErrorCode
+
+	// ErrorCodeNoEc2Subscription is a ErrorCode enum value
 	ErrorCodeNoEc2Subscription = "NO_EC2_SUBSCRIPTION"
-	// @enum ErrorCode
+
+	// ErrorCodeOverMaxInstances is a ErrorCode enum value
 	ErrorCodeOverMaxInstances = "OVER_MAX_INSTANCES"
-	// @enum ErrorCode
+
+	// ErrorCodeNoInstances is a ErrorCode enum value
 	ErrorCodeNoInstances = "NO_INSTANCES"
-	// @enum ErrorCode
+
+	// ErrorCodeTimeout is a ErrorCode enum value
 	ErrorCodeTimeout = "TIMEOUT"
-	// @enum ErrorCode
+
+	// ErrorCodeHealthConstraintsInvalid is a ErrorCode enum value
 	ErrorCodeHealthConstraintsInvalid = "HEALTH_CONSTRAINTS_INVALID"
-	// @enum ErrorCode
+
+	// ErrorCodeHealthConstraints is a ErrorCode enum value
 	ErrorCodeHealthConstraints = "HEALTH_CONSTRAINTS"
-	// @enum ErrorCode
+
+	// ErrorCodeInternalError is a ErrorCode enum value
 	ErrorCodeInternalError = "INTERNAL_ERROR"
-	// @enum ErrorCode
+
+	// ErrorCodeThrottled is a ErrorCode enum value
 	ErrorCodeThrottled = "THROTTLED"
-	// @enum ErrorCode
+
+	// ErrorCodeAlarmActive is a ErrorCode enum value
 	ErrorCodeAlarmActive = "ALARM_ACTIVE"
-	// @enum ErrorCode
+
+	// ErrorCodeAgentIssue is a ErrorCode enum value
 	ErrorCodeAgentIssue = "AGENT_ISSUE"
-	// @enum ErrorCode
+
+	// ErrorCodeAutoScalingIamRolePermissions is a ErrorCode enum value
 	ErrorCodeAutoScalingIamRolePermissions = "AUTO_SCALING_IAM_ROLE_PERMISSIONS"
-	// @enum ErrorCode
+
+	// ErrorCodeAutoScalingConfiguration is a ErrorCode enum value
 	ErrorCodeAutoScalingConfiguration = "AUTO_SCALING_CONFIGURATION"
-	// @enum ErrorCode
+
+	// ErrorCodeManualStop is a ErrorCode enum value
 	ErrorCodeManualStop = "MANUAL_STOP"
 )
 
 const (
-	// @enum InstanceStatus
+	// InstanceStatusPending is a InstanceStatus enum value
 	InstanceStatusPending = "Pending"
-	// @enum InstanceStatus
+
+	// InstanceStatusInProgress is a InstanceStatus enum value
 	InstanceStatusInProgress = "InProgress"
-	// @enum InstanceStatus
+
+	// InstanceStatusSucceeded is a InstanceStatus enum value
 	InstanceStatusSucceeded = "Succeeded"
-	// @enum InstanceStatus
+
+	// InstanceStatusFailed is a InstanceStatus enum value
 	InstanceStatusFailed = "Failed"
-	// @enum InstanceStatus
+
+	// InstanceStatusSkipped is a InstanceStatus enum value
 	InstanceStatusSkipped = "Skipped"
-	// @enum InstanceStatus
+
+	// InstanceStatusUnknown is a InstanceStatus enum value
 	InstanceStatusUnknown = "Unknown"
 )
 
 const (
-	// @enum LifecycleErrorCode
+	// LifecycleErrorCodeSuccess is a LifecycleErrorCode enum value
 	LifecycleErrorCodeSuccess = "Success"
-	// @enum LifecycleErrorCode
+
+	// LifecycleErrorCodeScriptMissing is a LifecycleErrorCode enum value
 	LifecycleErrorCodeScriptMissing = "ScriptMissing"
-	// @enum LifecycleErrorCode
+
+	// LifecycleErrorCodeScriptNotExecutable is a LifecycleErrorCode enum value
 	LifecycleErrorCodeScriptNotExecutable = "ScriptNotExecutable"
-	// @enum LifecycleErrorCode
+
+	// LifecycleErrorCodeScriptTimedOut is a LifecycleErrorCode enum value
 	LifecycleErrorCodeScriptTimedOut = "ScriptTimedOut"
-	// @enum LifecycleErrorCode
+
+	// LifecycleErrorCodeScriptFailed is a LifecycleErrorCode enum value
 	LifecycleErrorCodeScriptFailed = "ScriptFailed"
-	// @enum LifecycleErrorCode
+
+	// LifecycleErrorCodeUnknownError is a LifecycleErrorCode enum value
 	LifecycleErrorCodeUnknownError = "UnknownError"
 )
 
 const (
-	// @enum LifecycleEventStatus
+	// LifecycleEventStatusPending is a LifecycleEventStatus enum value
 	LifecycleEventStatusPending = "Pending"
-	// @enum LifecycleEventStatus
+
+	// LifecycleEventStatusInProgress is a LifecycleEventStatus enum value
 	LifecycleEventStatusInProgress = "InProgress"
-	// @enum LifecycleEventStatus
+
+	// LifecycleEventStatusSucceeded is a LifecycleEventStatus enum value
 	LifecycleEventStatusSucceeded = "Succeeded"
-	// @enum LifecycleEventStatus
+
+	// LifecycleEventStatusFailed is a LifecycleEventStatus enum value
 	LifecycleEventStatusFailed = "Failed"
-	// @enum LifecycleEventStatus
+
+	// LifecycleEventStatusSkipped is a LifecycleEventStatus enum value
 	LifecycleEventStatusSkipped = "Skipped"
-	// @enum LifecycleEventStatus
+
+	// LifecycleEventStatusUnknown is a LifecycleEventStatus enum value
 	LifecycleEventStatusUnknown = "Unknown"
 )
 
 const (
-	// @enum ListStateFilterAction
+	// ListStateFilterActionInclude is a ListStateFilterAction enum value
 	ListStateFilterActionInclude = "include"
-	// @enum ListStateFilterAction
+
+	// ListStateFilterActionExclude is a ListStateFilterAction enum value
 	ListStateFilterActionExclude = "exclude"
-	// @enum ListStateFilterAction
+
+	// ListStateFilterActionIgnore is a ListStateFilterAction enum value
 	ListStateFilterActionIgnore = "ignore"
 )
 
 const (
-	// @enum MinimumHealthyHostsType
+	// MinimumHealthyHostsTypeHostCount is a MinimumHealthyHostsType enum value
 	MinimumHealthyHostsTypeHostCount = "HOST_COUNT"
-	// @enum MinimumHealthyHostsType
+
+	// MinimumHealthyHostsTypeFleetPercent is a MinimumHealthyHostsType enum value
 	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
 )
 
 const (
-	// @enum RegistrationStatus
+	// RegistrationStatusRegistered is a RegistrationStatus enum value
 	RegistrationStatusRegistered = "Registered"
-	// @enum RegistrationStatus
+
+	// RegistrationStatusDeregistered is a RegistrationStatus enum value
 	RegistrationStatusDeregistered = "Deregistered"
 )
 
 const (
-	// @enum RevisionLocationType
+	// RevisionLocationTypeS3 is a RevisionLocationType enum value
 	RevisionLocationTypeS3 = "S3"
-	// @enum RevisionLocationType
+
+	// RevisionLocationTypeGitHub is a RevisionLocationType enum value
 	RevisionLocationTypeGitHub = "GitHub"
 )
 
 const (
-	// @enum SortOrder
+	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ascending"
-	// @enum SortOrder
+
+	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "descending"
 )
 
 const (
-	// @enum StopStatus
+	// StopStatusPending is a StopStatus enum value
 	StopStatusPending = "Pending"
-	// @enum StopStatus
+
+	// StopStatusSucceeded is a StopStatus enum value
 	StopStatusSucceeded = "Succeeded"
 )
 
 const (
-	// @enum TagFilterType
+	// TagFilterTypeKeyOnly is a TagFilterType enum value
 	TagFilterTypeKeyOnly = "KEY_ONLY"
-	// @enum TagFilterType
+
+	// TagFilterTypeValueOnly is a TagFilterType enum value
 	TagFilterTypeValueOnly = "VALUE_ONLY"
-	// @enum TagFilterType
+
+	// TagFilterTypeKeyAndValue is a TagFilterType enum value
 	TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
 )
 
 const (
-	// @enum TriggerEventType
+	// TriggerEventTypeDeploymentStart is a TriggerEventType enum value
 	TriggerEventTypeDeploymentStart = "DeploymentStart"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeDeploymentSuccess is a TriggerEventType enum value
 	TriggerEventTypeDeploymentSuccess = "DeploymentSuccess"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeDeploymentFailure is a TriggerEventType enum value
 	TriggerEventTypeDeploymentFailure = "DeploymentFailure"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeDeploymentStop is a TriggerEventType enum value
 	TriggerEventTypeDeploymentStop = "DeploymentStop"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeDeploymentRollback is a TriggerEventType enum value
 	TriggerEventTypeDeploymentRollback = "DeploymentRollback"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeInstanceStart is a TriggerEventType enum value
 	TriggerEventTypeInstanceStart = "InstanceStart"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeInstanceSuccess is a TriggerEventType enum value
 	TriggerEventTypeInstanceSuccess = "InstanceSuccess"
-	// @enum TriggerEventType
+
+	// TriggerEventTypeInstanceFailure is a TriggerEventType enum value
 	TriggerEventTypeInstanceFailure = "InstanceFailure"
 )

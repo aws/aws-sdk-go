@@ -221,6 +221,8 @@ type DeleteThingShadowInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -255,6 +257,8 @@ type DeleteThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
 	// The state information, in JSON format.
+	//
+	// Payload is a required field
 	Payload []byte `locationName:"payload" type:"blob" required:"true"`
 }
 
@@ -273,6 +277,8 @@ type GetThingShadowInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -331,6 +337,8 @@ type PublishInput struct {
 	Qos *int64 `location:"querystring" locationName:"qos" type:"integer"`
 
 	// The name of the MQTT topic.
+	//
+	// Topic is a required field
 	Topic *string `location:"uri" locationName:"topic" type:"string" required:"true"`
 }
 
@@ -376,9 +384,13 @@ type UpdateThingShadowInput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
 	// The state information, in JSON format.
+	//
+	// Payload is a required field
 	Payload []byte `locationName:"payload" type:"blob" required:"true"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
