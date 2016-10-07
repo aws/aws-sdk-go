@@ -1774,6 +1774,8 @@ type ConfigRule struct {
 
 	// Provides the rule owner (AWS or customer), the rule identifier, and the notifications
 	// that cause the function to evaluate your AWS resources.
+	//
+	// Source is a required field
 	Source *Source `type:"structure" required:"true"`
 }
 
@@ -2134,6 +2136,8 @@ type DeleteConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the AWS Config rule that you want to delete.
+	//
+	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2184,6 +2188,8 @@ type DeleteConfigurationRecorderInput struct {
 	// The name of the configuration recorder to be deleted. You can retrieve the
 	// name of your configuration recorder by using the DescribeConfigurationRecorders
 	// action.
+	//
+	// ConfigurationRecorderName is a required field
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2233,6 +2239,8 @@ type DeleteDeliveryChannelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery channel to delete.
+	//
+	// DeliveryChannelName is a required field
 	DeliveryChannelName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2280,6 +2288,8 @@ type DeleteEvaluationResultsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Config rule for which you want to delete the evaluation results.
+	//
+	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2330,6 +2340,8 @@ type DeliverConfigSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the delivery channel through which the snapshot is delivered.
+	//
+	// DeliveryChannelName is a required field
 	DeliveryChannelName *string `locationName:"deliveryChannelName" min:"1" type:"string" required:"true"`
 }
 
@@ -2864,9 +2876,13 @@ type Evaluation struct {
 	Annotation *string `min:"1" type:"string"`
 
 	// The ID of the AWS resource that was evaluated.
+	//
+	// ComplianceResourceId is a required field
 	ComplianceResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The type of AWS resource that was evaluated.
+	//
+	// ComplianceResourceType is a required field
 	ComplianceResourceType *string `min:"1" type:"string" required:"true"`
 
 	// Indicates whether the AWS resource complies with the AWS Config rule that
@@ -2880,12 +2896,16 @@ type Evaluation struct {
 	// ComplianceType from a PutEvaluations request. For example, an AWS Lambda
 	// function for a custom Config rule cannot pass an INSUFFICIENT_DATA value
 	// to AWS Config.
+	//
+	// ComplianceType is a required field
 	ComplianceType *string `type:"string" required:"true" enum:"ComplianceType"`
 
 	// The time of the event in AWS Config that triggered the evaluation. For event-based
 	// evaluations, the time indicates when AWS Config created the configuration
 	// item that triggered the evaluation. For periodic evaluations, the time indicates
 	// when AWS Config delivered the configuration snapshot that triggered the evaluation.
+	//
+	// OrderingTimestamp is a required field
 	OrderingTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 }
 
@@ -3031,6 +3051,8 @@ type GetComplianceDetailsByConfigRuleInput struct {
 	ComplianceTypes []*string `type:"list"`
 
 	// The name of the AWS Config rule for which you want compliance information.
+	//
+	// ConfigRuleName is a required field
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of evaluation results returned on each page. The default
@@ -3104,9 +3126,13 @@ type GetComplianceDetailsByResourceInput struct {
 	NextToken *string `type:"string"`
 
 	// The ID of the AWS resource for which you want compliance information.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The type of the AWS resource for which you want compliance information.
+	//
+	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3263,9 +3289,13 @@ type GetResourceConfigHistoryInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
+	//
+	// ResourceId is a required field
 	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
 
 	// The resource type.
+	//
+	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 }
 
@@ -3344,6 +3374,8 @@ type ListDiscoveredResourcesInput struct {
 	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The type of resources that you want AWS Config to list in the response.
+	//
+	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 }
 
@@ -3409,6 +3441,8 @@ type PutConfigRuleInput struct {
 	//  For more information about developing and using AWS Config rules, see Evaluating
 	// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 	// in the AWS Config Developer Guide.
+	//
+	// ConfigRule is a required field
 	ConfigRule *ConfigRule `type:"structure" required:"true"`
 }
 
@@ -3460,6 +3494,8 @@ type PutConfigurationRecorderInput struct {
 
 	// The configuration recorder object that records each configuration change
 	// made to the resources.
+	//
+	// ConfigurationRecorder is a required field
 	ConfigurationRecorder *ConfigurationRecorder `type:"structure" required:"true"`
 }
 
@@ -3511,6 +3547,8 @@ type PutDeliveryChannelInput struct {
 
 	// The configuration delivery channel object that delivers the configuration
 	// information to an Amazon S3 bucket, and to an Amazon SNS topic.
+	//
+	// DeliveryChannel is a required field
 	DeliveryChannel *DeliveryChannel `type:"structure" required:"true"`
 }
 
@@ -3566,6 +3604,8 @@ type PutEvaluationsInput struct {
 
 	// An encrypted token that associates an evaluation with an AWS Config rule.
 	// Identifies the rule and the event that triggered the evaluation
+	//
+	// ResultToken is a required field
 	ResultToken *string `type:"string" required:"true"`
 }
 
@@ -3950,6 +3990,8 @@ type StartConfigurationRecorderInput struct {
 
 	// The name of the recorder object that records each configuration change made
 	// to the resources.
+	//
+	// ConfigurationRecorderName is a required field
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3999,6 +4041,8 @@ type StopConfigurationRecorderInput struct {
 
 	// The name of the recorder object that records each configuration change made
 	// to the resources.
+	//
+	// ConfigurationRecorderName is a required field
 	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4043,148 +4087,194 @@ func (s StopConfigurationRecorderOutput) GoString() string {
 }
 
 const (
-	// @enum ChronologicalOrder
+	// ChronologicalOrderReverse is a ChronologicalOrder enum value
 	ChronologicalOrderReverse = "Reverse"
-	// @enum ChronologicalOrder
+
+	// ChronologicalOrderForward is a ChronologicalOrder enum value
 	ChronologicalOrderForward = "Forward"
 )
 
 const (
-	// @enum ComplianceType
+	// ComplianceTypeCompliant is a ComplianceType enum value
 	ComplianceTypeCompliant = "COMPLIANT"
-	// @enum ComplianceType
+
+	// ComplianceTypeNonCompliant is a ComplianceType enum value
 	ComplianceTypeNonCompliant = "NON_COMPLIANT"
-	// @enum ComplianceType
+
+	// ComplianceTypeNotApplicable is a ComplianceType enum value
 	ComplianceTypeNotApplicable = "NOT_APPLICABLE"
-	// @enum ComplianceType
+
+	// ComplianceTypeInsufficientData is a ComplianceType enum value
 	ComplianceTypeInsufficientData = "INSUFFICIENT_DATA"
 )
 
 const (
-	// @enum ConfigRuleState
+	// ConfigRuleStateActive is a ConfigRuleState enum value
 	ConfigRuleStateActive = "ACTIVE"
-	// @enum ConfigRuleState
+
+	// ConfigRuleStateDeleting is a ConfigRuleState enum value
 	ConfigRuleStateDeleting = "DELETING"
-	// @enum ConfigRuleState
+
+	// ConfigRuleStateDeletingResults is a ConfigRuleState enum value
 	ConfigRuleStateDeletingResults = "DELETING_RESULTS"
-	// @enum ConfigRuleState
+
+	// ConfigRuleStateEvaluating is a ConfigRuleState enum value
 	ConfigRuleStateEvaluating = "EVALUATING"
 )
 
 const (
-	// @enum ConfigurationItemStatus
+	// ConfigurationItemStatusOk is a ConfigurationItemStatus enum value
 	ConfigurationItemStatusOk = "Ok"
-	// @enum ConfigurationItemStatus
+
+	// ConfigurationItemStatusFailed is a ConfigurationItemStatus enum value
 	ConfigurationItemStatusFailed = "Failed"
-	// @enum ConfigurationItemStatus
+
+	// ConfigurationItemStatusDiscovered is a ConfigurationItemStatus enum value
 	ConfigurationItemStatusDiscovered = "Discovered"
-	// @enum ConfigurationItemStatus
+
+	// ConfigurationItemStatusDeleted is a ConfigurationItemStatus enum value
 	ConfigurationItemStatusDeleted = "Deleted"
 )
 
 const (
-	// @enum DeliveryStatus
+	// DeliveryStatusSuccess is a DeliveryStatus enum value
 	DeliveryStatusSuccess = "Success"
-	// @enum DeliveryStatus
+
+	// DeliveryStatusFailure is a DeliveryStatus enum value
 	DeliveryStatusFailure = "Failure"
-	// @enum DeliveryStatus
+
+	// DeliveryStatusNotApplicable is a DeliveryStatus enum value
 	DeliveryStatusNotApplicable = "Not_Applicable"
 )
 
 const (
-	// @enum EventSource
+	// EventSourceAwsConfig is a EventSource enum value
 	EventSourceAwsConfig = "aws.config"
 )
 
 const (
-	// @enum MaximumExecutionFrequency
+	// MaximumExecutionFrequencyOneHour is a MaximumExecutionFrequency enum value
 	MaximumExecutionFrequencyOneHour = "One_Hour"
-	// @enum MaximumExecutionFrequency
+
+	// MaximumExecutionFrequencyThreeHours is a MaximumExecutionFrequency enum value
 	MaximumExecutionFrequencyThreeHours = "Three_Hours"
-	// @enum MaximumExecutionFrequency
+
+	// MaximumExecutionFrequencySixHours is a MaximumExecutionFrequency enum value
 	MaximumExecutionFrequencySixHours = "Six_Hours"
-	// @enum MaximumExecutionFrequency
+
+	// MaximumExecutionFrequencyTwelveHours is a MaximumExecutionFrequency enum value
 	MaximumExecutionFrequencyTwelveHours = "Twelve_Hours"
-	// @enum MaximumExecutionFrequency
+
+	// MaximumExecutionFrequencyTwentyFourHours is a MaximumExecutionFrequency enum value
 	MaximumExecutionFrequencyTwentyFourHours = "TwentyFour_Hours"
 )
 
 const (
-	// @enum MessageType
+	// MessageTypeConfigurationItemChangeNotification is a MessageType enum value
 	MessageTypeConfigurationItemChangeNotification = "ConfigurationItemChangeNotification"
-	// @enum MessageType
+
+	// MessageTypeConfigurationSnapshotDeliveryCompleted is a MessageType enum value
 	MessageTypeConfigurationSnapshotDeliveryCompleted = "ConfigurationSnapshotDeliveryCompleted"
-	// @enum MessageType
+
+	// MessageTypeScheduledNotification is a MessageType enum value
 	MessageTypeScheduledNotification = "ScheduledNotification"
 )
 
 const (
-	// @enum Owner
+	// OwnerCustomLambda is a Owner enum value
 	OwnerCustomLambda = "CUSTOM_LAMBDA"
-	// @enum Owner
+
+	// OwnerAws is a Owner enum value
 	OwnerAws = "AWS"
 )
 
 const (
-	// @enum RecorderStatus
+	// RecorderStatusPending is a RecorderStatus enum value
 	RecorderStatusPending = "Pending"
-	// @enum RecorderStatus
+
+	// RecorderStatusSuccess is a RecorderStatus enum value
 	RecorderStatusSuccess = "Success"
-	// @enum RecorderStatus
+
+	// RecorderStatusFailure is a RecorderStatus enum value
 	RecorderStatusFailure = "Failure"
 )
 
 const (
-	// @enum ResourceType
+	// ResourceTypeAwsEc2CustomerGateway is a ResourceType enum value
 	ResourceTypeAwsEc2CustomerGateway = "AWS::EC2::CustomerGateway"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Eip is a ResourceType enum value
 	ResourceTypeAwsEc2Eip = "AWS::EC2::EIP"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Host is a ResourceType enum value
 	ResourceTypeAwsEc2Host = "AWS::EC2::Host"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Instance is a ResourceType enum value
 	ResourceTypeAwsEc2Instance = "AWS::EC2::Instance"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2InternetGateway is a ResourceType enum value
 	ResourceTypeAwsEc2InternetGateway = "AWS::EC2::InternetGateway"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2NetworkAcl is a ResourceType enum value
 	ResourceTypeAwsEc2NetworkAcl = "AWS::EC2::NetworkAcl"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2NetworkInterface is a ResourceType enum value
 	ResourceTypeAwsEc2NetworkInterface = "AWS::EC2::NetworkInterface"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2RouteTable is a ResourceType enum value
 	ResourceTypeAwsEc2RouteTable = "AWS::EC2::RouteTable"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2SecurityGroup is a ResourceType enum value
 	ResourceTypeAwsEc2SecurityGroup = "AWS::EC2::SecurityGroup"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Subnet is a ResourceType enum value
 	ResourceTypeAwsEc2Subnet = "AWS::EC2::Subnet"
-	// @enum ResourceType
+
+	// ResourceTypeAwsCloudTrailTrail is a ResourceType enum value
 	ResourceTypeAwsCloudTrailTrail = "AWS::CloudTrail::Trail"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Volume is a ResourceType enum value
 	ResourceTypeAwsEc2Volume = "AWS::EC2::Volume"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Vpc is a ResourceType enum value
 	ResourceTypeAwsEc2Vpc = "AWS::EC2::VPC"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Vpnconnection is a ResourceType enum value
 	ResourceTypeAwsEc2Vpnconnection = "AWS::EC2::VPNConnection"
-	// @enum ResourceType
+
+	// ResourceTypeAwsEc2Vpngateway is a ResourceType enum value
 	ResourceTypeAwsEc2Vpngateway = "AWS::EC2::VPNGateway"
-	// @enum ResourceType
+
+	// ResourceTypeAwsIamGroup is a ResourceType enum value
 	ResourceTypeAwsIamGroup = "AWS::IAM::Group"
-	// @enum ResourceType
+
+	// ResourceTypeAwsIamPolicy is a ResourceType enum value
 	ResourceTypeAwsIamPolicy = "AWS::IAM::Policy"
-	// @enum ResourceType
+
+	// ResourceTypeAwsIamRole is a ResourceType enum value
 	ResourceTypeAwsIamRole = "AWS::IAM::Role"
-	// @enum ResourceType
+
+	// ResourceTypeAwsIamUser is a ResourceType enum value
 	ResourceTypeAwsIamUser = "AWS::IAM::User"
-	// @enum ResourceType
+
+	// ResourceTypeAwsAcmCertificate is a ResourceType enum value
 	ResourceTypeAwsAcmCertificate = "AWS::ACM::Certificate"
-	// @enum ResourceType
+
+	// ResourceTypeAwsRdsDbinstance is a ResourceType enum value
 	ResourceTypeAwsRdsDbinstance = "AWS::RDS::DBInstance"
-	// @enum ResourceType
+
+	// ResourceTypeAwsRdsDbsubnetGroup is a ResourceType enum value
 	ResourceTypeAwsRdsDbsubnetGroup = "AWS::RDS::DBSubnetGroup"
-	// @enum ResourceType
+
+	// ResourceTypeAwsRdsDbsecurityGroup is a ResourceType enum value
 	ResourceTypeAwsRdsDbsecurityGroup = "AWS::RDS::DBSecurityGroup"
-	// @enum ResourceType
+
+	// ResourceTypeAwsRdsDbsnapshot is a ResourceType enum value
 	ResourceTypeAwsRdsDbsnapshot = "AWS::RDS::DBSnapshot"
-	// @enum ResourceType
+
+	// ResourceTypeAwsRdsEventSubscription is a ResourceType enum value
 	ResourceTypeAwsRdsEventSubscription = "AWS::RDS::EventSubscription"
-	// @enum ResourceType
+
+	// ResourceTypeAwsElasticLoadBalancingV2LoadBalancer is a ResourceType enum value
 	ResourceTypeAwsElasticLoadBalancingV2LoadBalancer = "AWS::ElasticLoadBalancingV2::LoadBalancer"
 )

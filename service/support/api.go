@@ -896,6 +896,8 @@ type AddAttachmentsToSetInput struct {
 
 	// One or more attachments to add to the set. The limit is 3 attachments per
 	// set, and the size limit is 5 MB per attachment.
+	//
+	// Attachments is a required field
 	Attachments []*Attachment `locationName:"attachments" type:"list" required:"true"`
 }
 
@@ -964,6 +966,8 @@ type AddCommunicationToCaseInput struct {
 	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
 
 	// The body of an email communication to add to the support case.
+	//
+	// CommunicationBody is a required field
 	CommunicationBody *string `locationName:"communicationBody" min:"1" type:"string" required:"true"`
 }
 
@@ -1218,6 +1222,8 @@ type CreateCaseInput struct {
 
 	// The communication body text when you create an AWS Support case by calling
 	// CreateCase.
+	//
+	// CommunicationBody is a required field
 	CommunicationBody *string `locationName:"communicationBody" min:"1" type:"string" required:"true"`
 
 	// The type of issue for the case. You can specify either "customer-service"
@@ -1240,6 +1246,8 @@ type CreateCaseInput struct {
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
 	// The title of the AWS Support case.
+	//
+	// Subject is a required field
 	Subject *string `locationName:"subject" type:"string" required:"true"`
 }
 
@@ -1297,6 +1305,8 @@ type DescribeAttachmentInput struct {
 
 	// The ID of the attachment to return. Attachment IDs are returned by the DescribeCommunications
 	// operation.
+	//
+	// AttachmentId is a required field
 	AttachmentId *string `locationName:"attachmentId" type:"string" required:"true"`
 }
 
@@ -1438,6 +1448,8 @@ type DescribeCommunicationsInput struct {
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	//
+	// CaseId is a required field
 	CaseId *string `locationName:"caseId" type:"string" required:"true"`
 
 	// The maximum number of results to return before paginating.
@@ -1578,6 +1590,8 @@ type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	// The IDs of the Trusted Advisor checks to get the status of. Note: Specifying
 	// the check ID of a check that is automatically refreshed causes an InvalidParameterValue
 	// error.
+	//
+	// CheckIds is a required field
 	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 }
 
@@ -1610,6 +1624,8 @@ type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The refresh status of the specified Trusted Advisor checks.
+	//
+	// Statuses is a required field
 	Statuses []*TrustedAdvisorCheckRefreshStatus `locationName:"statuses" type:"list" required:"true"`
 }
 
@@ -1627,6 +1643,8 @@ type DescribeTrustedAdvisorCheckResultInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier for the Trusted Advisor check.
+	//
+	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
@@ -1681,6 +1699,8 @@ type DescribeTrustedAdvisorCheckSummariesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IDs of the Trusted Advisor checks.
+	//
+	// CheckIds is a required field
 	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 }
 
@@ -1713,6 +1733,8 @@ type DescribeTrustedAdvisorCheckSummariesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The summary information for the requested Trusted Advisor checks.
+	//
+	// Summaries is a required field
 	Summaries []*TrustedAdvisorCheckSummary `locationName:"summaries" type:"list" required:"true"`
 }
 
@@ -1732,6 +1754,8 @@ type DescribeTrustedAdvisorChecksInput struct {
 	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
 	// currently supports English ("en") and Japanese ("ja"). Language parameters
 	// must be passed explicitly for operations that take them.
+	//
+	// Language is a required field
 	Language *string `locationName:"language" type:"string" required:"true"`
 }
 
@@ -1764,6 +1788,8 @@ type DescribeTrustedAdvisorChecksOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about all available Trusted Advisor checks.
+	//
+	// Checks is a required field
 	Checks []*TrustedAdvisorCheckDescription `locationName:"checks" type:"list" required:"true"`
 }
 
@@ -1804,6 +1830,8 @@ type RefreshTrustedAdvisorCheckInput struct {
 	// The unique identifier for the Trusted Advisor check to refresh. Note: Specifying
 	// the check ID of a check that is automatically refreshed causes an InvalidParameterValue
 	// error.
+	//
+	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 }
 
@@ -1836,6 +1864,8 @@ type RefreshTrustedAdvisorCheckOutput struct {
 
 	// The current refresh status for a check, including the amount of time until
 	// the check is eligible for refresh.
+	//
+	// Status is a required field
 	Status *TrustedAdvisorCheckRefreshStatus `locationName:"status" type:"structure" required:"true"`
 }
 
@@ -1964,13 +1994,19 @@ type TrustedAdvisorCheckDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The category of the Trusted Advisor check.
+	//
+	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true"`
 
 	// The description of the Trusted Advisor check, which includes the alert criteria
 	// and recommended actions (contains HTML markup).
+	//
+	// Description is a required field
 	Description *string `locationName:"description" type:"string" required:"true"`
 
 	// The unique identifier for the Trusted Advisor check.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The column headings for the data returned by the Trusted Advisor check. The
@@ -1978,9 +2014,13 @@ type TrustedAdvisorCheckDescription struct {
 	// element of the TrustedAdvisorResourceDetail for the check. Metadata contains
 	// all the data that is shown in the Excel download, even in those cases where
 	// the UI shows just summary data.
+	//
+	// Metadata is a required field
 	Metadata []*string `locationName:"metadata" type:"list" required:"true"`
 
 	// The display name for the Trusted Advisor check.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 }
 
@@ -1999,14 +2039,20 @@ type TrustedAdvisorCheckRefreshStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier for the Trusted Advisor check.
+	//
+	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// The amount of time, in milliseconds, until the Trusted Advisor check is eligible
 	// for refresh.
+	//
+	// MillisUntilNextRefreshable is a required field
 	MillisUntilNextRefreshable *int64 `locationName:"millisUntilNextRefreshable" type:"long" required:"true"`
 
 	// The status of the Trusted Advisor check for which a refresh has been requested:
 	// "none", "enqueued", "processing", "success", or "abandoned".
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
 }
 
@@ -2026,23 +2072,35 @@ type TrustedAdvisorCheckResult struct {
 
 	// Summary information that relates to the category of the check. Cost Optimizing
 	// is the only category that is currently supported.
+	//
+	// CategorySpecificSummary is a required field
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"`
 
 	// The unique identifier for the Trusted Advisor check.
+	//
+	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// The details about each resource listed in the check result.
+	//
+	// FlaggedResources is a required field
 	FlaggedResources []*TrustedAdvisorResourceDetail `locationName:"flaggedResources" type:"list" required:"true"`
 
 	// Details about AWS resources that were analyzed in a call to Trusted Advisor
 	// DescribeTrustedAdvisorCheckSummaries.
+	//
+	// ResourcesSummary is a required field
 	ResourcesSummary *TrustedAdvisorResourcesSummary `locationName:"resourcesSummary" type:"structure" required:"true"`
 
 	// The alert status of the check: "ok" (green), "warning" (yellow), "error"
 	// (red), or "not_available".
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
 
 	// The time of the last refresh of the check.
+	//
+	// Timestamp is a required field
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 }
 
@@ -2063,9 +2121,13 @@ type TrustedAdvisorCheckSummary struct {
 
 	// Summary information that relates to the category of the check. Cost Optimizing
 	// is the only category that is currently supported.
+	//
+	// CategorySpecificSummary is a required field
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"`
 
 	// The unique identifier for the Trusted Advisor check.
+	//
+	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// Specifies whether the Trusted Advisor check has flagged resources.
@@ -2073,13 +2135,19 @@ type TrustedAdvisorCheckSummary struct {
 
 	// Details about AWS resources that were analyzed in a call to Trusted Advisor
 	// DescribeTrustedAdvisorCheckSummaries.
+	//
+	// ResourcesSummary is a required field
 	ResourcesSummary *TrustedAdvisorResourcesSummary `locationName:"resourcesSummary" type:"structure" required:"true"`
 
 	// The alert status of the check: "ok" (green), "warning" (yellow), "error"
 	// (red), or "not_available".
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
 
 	// The time of the last refresh of the check.
+	//
+	// Timestamp is a required field
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 }
 
@@ -2100,10 +2168,14 @@ type TrustedAdvisorCostOptimizingSummary struct {
 
 	// The estimated monthly savings that might be realized if the recommended actions
 	// are taken.
+	//
+	// EstimatedMonthlySavings is a required field
 	EstimatedMonthlySavings *float64 `locationName:"estimatedMonthlySavings" type:"double" required:"true"`
 
 	// The estimated percentage of savings that might be realized if the recommended
 	// actions are taken.
+	//
+	// EstimatedPercentMonthlySavings is a required field
 	EstimatedPercentMonthlySavings *float64 `locationName:"estimatedPercentMonthlySavings" type:"double" required:"true"`
 }
 
@@ -2130,15 +2202,21 @@ type TrustedAdvisorResourceDetail struct {
 	// object returned by the call to DescribeTrustedAdvisorChecks. Metadata contains
 	// all the data that is shown in the Excel download, even in those cases where
 	// the UI shows just summary data.
+	//
+	// Metadata is a required field
 	Metadata []*string `locationName:"metadata" type:"list" required:"true"`
 
 	// The AWS region in which the identified resource is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The unique identifier for the identified resource.
+	//
+	// ResourceId is a required field
 	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
 
 	// The status code for the resource identified in the Trusted Advisor check.
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
 }
 
@@ -2159,17 +2237,25 @@ type TrustedAdvisorResourcesSummary struct {
 
 	// The number of AWS resources that were flagged (listed) by the Trusted Advisor
 	// check.
+	//
+	// ResourcesFlagged is a required field
 	ResourcesFlagged *int64 `locationName:"resourcesFlagged" type:"long" required:"true"`
 
 	// The number of AWS resources ignored by Trusted Advisor because information
 	// was unavailable.
+	//
+	// ResourcesIgnored is a required field
 	ResourcesIgnored *int64 `locationName:"resourcesIgnored" type:"long" required:"true"`
 
 	// The number of AWS resources that were analyzed by the Trusted Advisor check.
+	//
+	// ResourcesProcessed is a required field
 	ResourcesProcessed *int64 `locationName:"resourcesProcessed" type:"long" required:"true"`
 
 	// The number of AWS resources ignored by Trusted Advisor because they were
 	// marked as suppressed by the user.
+	//
+	// ResourcesSuppressed is a required field
 	ResourcesSuppressed *int64 `locationName:"resourcesSuppressed" type:"long" required:"true"`
 }
 

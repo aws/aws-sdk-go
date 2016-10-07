@@ -849,6 +849,8 @@ type BatchCheckLayerAvailabilityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The digests of the image layers to check.
+	//
+	// LayerDigests is a required field
 	LayerDigests []*string `locationName:"layerDigests" min:"1" type:"list" required:"true"`
 
 	// The AWS account ID associated with the registry that contains the image layers
@@ -856,6 +858,8 @@ type BatchCheckLayerAvailabilityInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that is associated with the image layers to check.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -919,6 +923,8 @@ type BatchDeleteImageInput struct {
 
 	// A list of image ID references that correspond to images to delete. The format
 	// of the imageIds reference is imageTag=tag or imageDigest=digest.
+	//
+	// ImageIds is a required field
 	ImageIds []*ImageIdentifier `locationName:"imageIds" min:"1" type:"list" required:"true"`
 
 	// The AWS account ID associated with the registry that contains the image to
@@ -926,6 +932,8 @@ type BatchDeleteImageInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository that contains the image to delete.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -986,6 +994,8 @@ type BatchGetImageInput struct {
 
 	// A list of image ID references that correspond to images to describe. The
 	// format of the imageIds reference is imageTag=tag or imageDigest=digest.
+	//
+	// ImageIds is a required field
 	ImageIds []*ImageIdentifier `locationName:"imageIds" min:"1" type:"list" required:"true"`
 
 	// The AWS account ID associated with the registry that contains the images
@@ -993,6 +1003,8 @@ type BatchGetImageInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository that contains the images to describe.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1052,6 +1064,8 @@ type CompleteLayerUploadInput struct {
 	_ struct{} `type:"structure"`
 
 	// The sha256 digest of the image layer.
+	//
+	// LayerDigests is a required field
 	LayerDigests []*string `locationName:"layerDigests" min:"1" type:"list" required:"true"`
 
 	// The AWS account ID associated with the registry to which to upload layers.
@@ -1059,10 +1073,14 @@ type CompleteLayerUploadInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to associate with the image layer.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 
 	// The upload ID from a previous InitiateLayerUpload operation to associate
 	// with the image layer.
+	//
+	// UploadId is a required field
 	UploadId *string `locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -1133,6 +1151,8 @@ type CreateRepositoryInput struct {
 	// The name to use for the repository. The repository name may be specified
 	// on its own (such as nginx-web-app) or it can be prepended with a namespace
 	// to group the repository into a category (such as project-a/nginx-web-app).
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1190,6 +1210,8 @@ type DeleteRepositoryInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to delete.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1246,6 +1268,8 @@ type DeleteRepositoryPolicyInput struct {
 
 	// The name of the repository that is associated with the repository policy
 	// to delete.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1433,6 +1457,8 @@ type GetDownloadUrlForLayerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The digest of the image layer to download.
+	//
+	// LayerDigest is a required field
 	LayerDigest *string `locationName:"layerDigest" type:"string" required:"true"`
 
 	// The AWS account ID associated with the registry that contains the image layer
@@ -1440,6 +1466,8 @@ type GetDownloadUrlForLayerInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that is associated with the image layer to download.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1500,6 +1528,8 @@ type GetRepositoryPolicyInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository whose policy you want to retrieve.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1632,6 +1662,8 @@ type InitiateLayerUploadInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that you intend to upload layers to.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1781,6 +1813,8 @@ type ListImagesInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository whose image IDs are to be listed.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1840,6 +1874,8 @@ type PutImageInput struct {
 	_ struct{} `type:"structure"`
 
 	// The image manifest corresponding to the image to be uploaded.
+	//
+	// ImageManifest is a required field
 	ImageManifest *string `locationName:"imageManifest" type:"string" required:"true"`
 
 	// The AWS account ID associated with the registry that contains the repository
@@ -1848,6 +1884,8 @@ type PutImageInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository in which to put the image.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -1937,6 +1975,8 @@ type SetRepositoryPolicyInput struct {
 	Force *bool `locationName:"force" type:"boolean"`
 
 	// The JSON repository policy text to apply to the repository.
+	//
+	// PolicyText is a required field
 	PolicyText *string `locationName:"policyText" type:"string" required:"true"`
 
 	// The AWS account ID associated with the registry that contains the repository.
@@ -1944,6 +1984,8 @@ type SetRepositoryPolicyInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to receive the policy.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 }
 
@@ -2005,12 +2047,18 @@ type UploadLayerPartInput struct {
 	// The base64-encoded layer part payload.
 	//
 	// LayerPartBlob is automatically base64 encoded/decoded by the SDK.
+	//
+	// LayerPartBlob is a required field
 	LayerPartBlob []byte `locationName:"layerPartBlob" type:"blob" required:"true"`
 
 	// The integer value of the first byte of the layer part.
+	//
+	// PartFirstByte is a required field
 	PartFirstByte *int64 `locationName:"partFirstByte" type:"long" required:"true"`
 
 	// The integer value of the last byte of the layer part.
+	//
+	// PartLastByte is a required field
 	PartLastByte *int64 `locationName:"partLastByte" type:"long" required:"true"`
 
 	// The AWS account ID associated with the registry that you are uploading layer
@@ -2018,10 +2066,14 @@ type UploadLayerPartInput struct {
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that you are uploading layer parts to.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
 
 	// The upload ID from a previous InitiateLayerUpload operation to associate
 	// with the layer part upload.
+	//
+	// UploadId is a required field
 	UploadId *string `locationName:"uploadId" type:"string" required:"true"`
 }
 
@@ -2090,35 +2142,42 @@ func (s UploadLayerPartOutput) GoString() string {
 }
 
 const (
-	// @enum ImageFailureCode
+	// ImageFailureCodeInvalidImageDigest is a ImageFailureCode enum value
 	ImageFailureCodeInvalidImageDigest = "InvalidImageDigest"
-	// @enum ImageFailureCode
+
+	// ImageFailureCodeInvalidImageTag is a ImageFailureCode enum value
 	ImageFailureCodeInvalidImageTag = "InvalidImageTag"
-	// @enum ImageFailureCode
+
+	// ImageFailureCodeImageTagDoesNotMatchDigest is a ImageFailureCode enum value
 	ImageFailureCodeImageTagDoesNotMatchDigest = "ImageTagDoesNotMatchDigest"
-	// @enum ImageFailureCode
+
+	// ImageFailureCodeImageNotFound is a ImageFailureCode enum value
 	ImageFailureCodeImageNotFound = "ImageNotFound"
-	// @enum ImageFailureCode
+
+	// ImageFailureCodeMissingDigestAndTag is a ImageFailureCode enum value
 	ImageFailureCodeMissingDigestAndTag = "MissingDigestAndTag"
 )
 
 const (
-	// @enum LayerAvailability
+	// LayerAvailabilityAvailable is a LayerAvailability enum value
 	LayerAvailabilityAvailable = "AVAILABLE"
-	// @enum LayerAvailability
+
+	// LayerAvailabilityUnavailable is a LayerAvailability enum value
 	LayerAvailabilityUnavailable = "UNAVAILABLE"
 )
 
 const (
-	// @enum LayerFailureCode
+	// LayerFailureCodeInvalidLayerDigest is a LayerFailureCode enum value
 	LayerFailureCodeInvalidLayerDigest = "InvalidLayerDigest"
-	// @enum LayerFailureCode
+
+	// LayerFailureCodeMissingLayerDigest is a LayerFailureCode enum value
 	LayerFailureCodeMissingLayerDigest = "MissingLayerDigest"
 )
 
 const (
-	// @enum TagStatus
+	// TagStatusTagged is a TagStatus enum value
 	TagStatusTagged = "TAGGED"
-	// @enum TagStatus
+
+	// TagStatusUntagged is a TagStatus enum value
 	TagStatusUntagged = "UNTAGGED"
 )

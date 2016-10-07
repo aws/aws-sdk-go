@@ -3280,9 +3280,13 @@ type ActivateGatewayInput struct {
 	// also include other activation-related parameters, however, these are merely
 	// defaults -- the arguments you pass to the ActivateGateway API call determine
 	// the actual configuration of your gateway.
+	//
+	// ActivationKey is a required field
 	ActivationKey *string `min:"1" type:"string" required:"true"`
 
 	// The name you configured for your gateway.
+	//
+	// GatewayName is a required field
 	GatewayName *string `min:"2" type:"string" required:"true"`
 
 	// A value that indicates the region where you want to store the snapshot backups.
@@ -3293,11 +3297,15 @@ type ActivateGatewayInput struct {
 	//
 	//  Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
 	// "ap-northeast-1", "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
+	//
+	// GatewayRegion is a required field
 	GatewayRegion *string `min:"1" type:"string" required:"true"`
 
 	// A value that indicates the time zone you want to set for the gateway. The
 	// time zone is used, for example, for scheduling snapshots and your gateway's
 	// maintenance schedule.
+	//
+	// GatewayTimezone is a required field
 	GatewayTimezone *string `min:"3" type:"string" required:"true"`
 
 	// A value that defines the type of gateway to activate. The type specified
@@ -3400,10 +3408,13 @@ func (s ActivateGatewayOutput) GoString() string {
 type AddCacheInput struct {
 	_ struct{} `type:"structure"`
 
+	// DiskIds is a required field
 	DiskIds []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -3459,6 +3470,8 @@ type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"50" type:"string" required:"true"`
 
 	// The key-value pair that represents the tag you want to add to the resource.
@@ -3466,6 +3479,8 @@ type AddTagsToResourceInput struct {
 	//
 	//  Valid characters for key and value are letters, spaces, and numbers representable
 	// in UTF-8 format, and the following special characters: + - = . _ : / @.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -3529,10 +3544,13 @@ func (s AddTagsToResourceOutput) GoString() string {
 type AddUploadBufferInput struct {
 	_ struct{} `type:"structure"`
 
+	// DiskIds is a required field
 	DiskIds []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -3592,10 +3610,14 @@ type AddWorkingStorageInput struct {
 	// An array of strings that identify disks that are to be configured as working
 	// storage. Each string have a minimum length of 1 and maximum length of 300.
 	// You can get the disk IDs from the ListLocalDisks API.
+	//
+	// DiskIds is a required field
 	DiskIds []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -3685,10 +3707,14 @@ type CancelArchivalInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape you want to cancel archiving
 	// for.
+	//
+	// TapeARN is a required field
 	TapeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -3749,10 +3775,14 @@ type CancelRetrievalInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape you want to cancel retrieval
 	// for.
+	//
+	// TapeARN is a required field
 	TapeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -3843,18 +3873,24 @@ func (s ChapInfo) GoString() string {
 type CreateCachediSCSIVolumeInput struct {
 	_ struct{} `type:"structure"`
 
+	// ClientToken is a required field
 	ClientToken *string `min:"5" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `type:"string" required:"true"`
 
 	SnapshotId *string `type:"string"`
 
+	// TargetName is a required field
 	TargetName *string `min:"1" type:"string" required:"true"`
 
+	// VolumeSizeInBytes is a required field
 	VolumeSizeInBytes *int64 `type:"long" required:"true"`
 }
 
@@ -3923,8 +3959,10 @@ func (s CreateCachediSCSIVolumeOutput) GoString() string {
 type CreateSnapshotFromVolumeRecoveryPointInput struct {
 	_ struct{} `type:"structure"`
 
+	// SnapshotDescription is a required field
 	SnapshotDescription *string `min:"1" type:"string" required:"true"`
 
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -3991,10 +4029,14 @@ type CreateSnapshotInput struct {
 	// Textual description of the snapshot that appears in the Amazon EC2 console,
 	// Elastic Block Store snapshots panel in the Description field, and in the
 	// AWS Storage Gateway snapshot Details pane, Description field
+	//
+	// SnapshotDescription is a required field
 	SnapshotDescription *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
+	//
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4070,10 +4112,14 @@ type CreateStorediSCSIVolumeInput struct {
 	// The unique identifier for the gateway local disk that is configured as a
 	// stored volume. Use ListLocalDisks (http://docs.aws.amazon.com/storagegateway/latest/userguide/API_ListLocalDisks.html)
 	// to list disk IDs for a gateway.
+	//
+	// DiskId is a required field
 	DiskId *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The network interface of the gateway on which to expose the iSCSI target.
@@ -4081,12 +4127,16 @@ type CreateStorediSCSIVolumeInput struct {
 	// list of the network interfaces available on a gateway.
 	//
 	//  Valid Values: A valid IP address.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `type:"string" required:"true"`
 
 	// Specify this field as true if you want to preserve the data on the local
 	// disk. Otherwise, specifying this field as false creates an empty volume.
 	//
 	//  Valid Values: true, false
+	//
+	// PreserveExistingData is a required field
 	PreserveExistingData *bool `type:"boolean" required:"true"`
 
 	// The snapshot ID (e.g. "snap-1122aabb") of the snapshot to restore as the
@@ -4100,6 +4150,8 @@ type CreateStorediSCSIVolumeInput struct {
 	// and as a suffix for the target ARN. For example, specifying TargetName as
 	// myvolume results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume.
 	// The target name must be unique across all volumes of a gateway.
+	//
+	// TargetName is a required field
 	TargetName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4179,14 +4231,20 @@ type CreateTapeWithBarcodeInput struct {
 	// The unique Amazon Resource Name (ARN) that represents the gateway to associate
 	// the virtual tape with. Use the ListGateways operation to return a list of
 	// gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The barcode that you want to assign to the tape.
+	//
+	// TapeBarcode is a required field
 	TapeBarcode *string `min:"7" type:"string" required:"true"`
 
 	// The size, in bytes, of the virtual tape that you want to create.
 	//
 	// The size must be aligned by gigabyte (1024*1024*1024 byte).
+	//
+	// TapeSizeInBytes is a required field
 	TapeSizeInBytes *int64 `type:"long" required:"true"`
 }
 
@@ -4252,14 +4310,20 @@ type CreateTapesInput struct {
 	// use the same ClientToken you specified in the initial request.
 	//
 	// Using the same ClientToken prevents creating the tape multiple times.
+	//
+	// ClientToken is a required field
 	ClientToken *string `min:"5" type:"string" required:"true"`
 
 	// The unique Amazon Resource Name (ARN) that represents the gateway to associate
 	// the virtual tapes with. Use the ListGateways operation to return a list of
 	// gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The number of virtual tapes that you want to create.
+	//
+	// NumTapesToCreate is a required field
 	NumTapesToCreate *int64 `min:"1" type:"integer" required:"true"`
 
 	// A prefix that you append to the barcode of the virtual tape you are creating.
@@ -4267,11 +4331,15 @@ type CreateTapesInput struct {
 	//
 	// The prefix must be 1 to 4 characters in length and must be one of the uppercase
 	// letters from A to Z.
+	//
+	// TapeBarcodePrefix is a required field
 	TapeBarcodePrefix *string `min:"1" type:"string" required:"true"`
 
 	// The size, in bytes, of the virtual tapes that you want to create.
 	//
 	// The size must be aligned by gigabyte (1024*1024*1024 byte).
+	//
+	// TapeSizeInBytes is a required field
 	TapeSizeInBytes *int64 `type:"long" required:"true"`
 }
 
@@ -4344,10 +4412,13 @@ func (s CreateTapesOutput) GoString() string {
 type DeleteBandwidthRateLimitInput struct {
 	_ struct{} `type:"structure"`
 
+	// BandwidthType is a required field
 	BandwidthType *string `min:"3" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4412,10 +4483,14 @@ type DeleteChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The iSCSI initiator that connects to the target.
+	//
+	// InitiatorName is a required field
 	InitiatorName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
+	//
+	// TargetARN is a required field
 	TargetARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4478,6 +4553,8 @@ type DeleteGatewayInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4529,6 +4606,7 @@ func (s DeleteGatewayOutput) GoString() string {
 type DeleteSnapshotScheduleInput struct {
 	_ struct{} `type:"structure"`
 
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4580,6 +4658,8 @@ type DeleteTapeArchiveInput struct {
 
 	// The Amazon Resource Name (ARN) of the virtual tape to delete from the virtual
 	// tape shelf (VTS).
+	//
+	// TapeARN is a required field
 	TapeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4635,9 +4715,13 @@ type DeleteTapeInput struct {
 	// The unique Amazon Resource Name (ARN) of the gateway that the virtual tape
 	// to delete is associated with. Use the ListGateways operation to return a
 	// list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape to delete.
+	//
+	// TapeARN is a required field
 	TapeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4697,6 +4781,8 @@ type DeleteVolumeInput struct {
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
+	//
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4751,6 +4837,8 @@ type DescribeBandwidthRateLimitInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4812,6 +4900,8 @@ type DescribeCacheInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4874,6 +4964,7 @@ func (s DescribeCacheOutput) GoString() string {
 type DescribeCachediSCSIVolumesInput struct {
 	_ struct{} `type:"structure"`
 
+	// VolumeARNs is a required field
 	VolumeARNs []*string `type:"list" required:"true"`
 }
 
@@ -4926,6 +5017,8 @@ type DescribeChapCredentialsInput struct {
 
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
+	//
+	// TargetARN is a required field
 	TargetARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -4993,6 +5086,8 @@ type DescribeGatewayInformationInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5078,6 +5173,8 @@ type DescribeMaintenanceStartTimeInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5140,6 +5237,8 @@ type DescribeSnapshotScheduleInput struct {
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
+	//
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5200,6 +5299,8 @@ type DescribeStorediSCSIVolumesInput struct {
 	// An array of strings where each string represents the Amazon Resource Name
 	// (ARN) of a stored volume. All of the specified stored volumes must from the
 	// same gateway. Use ListVolumes to get volume ARNs for a gateway.
+	//
+	// VolumeARNs is a required field
 	VolumeARNs []*string `type:"list" required:"true"`
 }
 
@@ -5319,6 +5420,8 @@ type DescribeTapeRecoveryPointsInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the number of virtual tape recovery points that are described
@@ -5398,6 +5501,8 @@ type DescribeTapesInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the number of virtual tapes described be limited to the specified
@@ -5481,6 +5586,8 @@ type DescribeUploadBufferInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5540,6 +5647,8 @@ type DescribeVTLDevicesInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the number of VTL devices described be limited to the specified
@@ -5626,6 +5735,8 @@ type DescribeWorkingStorageInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5722,6 +5833,8 @@ type DisableGatewayInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5922,6 +6035,8 @@ type ListLocalDisksInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -5985,6 +6100,8 @@ type ListTagsForResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource for which you want to list
 	// tags.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6131,6 +6248,8 @@ type ListVolumeInitiatorsInput struct {
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes for the gateway.
+	//
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6184,6 +6303,8 @@ type ListVolumeRecoveryPointsInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6339,10 +6460,14 @@ type RemoveTagsFromResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource you want to remove the tags
 	// from.
+	//
+	// ResourceARN is a required field
 	ResourceARN *string `min:"50" type:"string" required:"true"`
 
 	// The keys of the tags you want to remove from the specified resource. A tag
 	// is composed of a key/value pair.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -6399,6 +6524,8 @@ type ResetCacheInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6456,10 +6583,14 @@ type RetrieveTapeArchiveInput struct {
 	//
 	// You retrieve archived virtual tapes to only one gateway and the gateway
 	// must be a gateway-VTL.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape you want to retrieve from
 	// the virtual tape shelf (VTS).
+	//
+	// TapeARN is a required field
 	TapeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6519,10 +6650,14 @@ type RetrieveTapeRecoveryPointInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape for which you want to
 	// retrieve the recovery point.
+	//
+	// TapeARN is a required field
 	TapeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6583,9 +6718,13 @@ type SetLocalConsolePasswordInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The password you want to set for your VM local console.
+	//
+	// LocalConsolePassword is a required field
 	LocalConsolePassword *string `min:"6" type:"string" required:"true"`
 }
 
@@ -6645,6 +6784,8 @@ type ShutdownGatewayInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6699,6 +6840,8 @@ type StartGatewayInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -6785,8 +6928,10 @@ func (s StorediSCSIVolume) GoString() string {
 type Tag struct {
 	_ struct{} `type:"structure"`
 
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -6972,6 +7117,8 @@ type UpdateBandwidthRateLimitInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -7040,12 +7187,16 @@ type UpdateChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The iSCSI initiator that connects to the target.
+	//
+	// InitiatorName is a required field
 	InitiatorName *string `min:"1" type:"string" required:"true"`
 
 	// The secret key that the initiator (for example, the Windows client) must
 	// provide to participate in mutual CHAP with the target.
 	//
 	// The secret key must be between 12 and 16 bytes when encoded in UTF-8.
+	//
+	// SecretToAuthenticateInitiator is a required field
 	SecretToAuthenticateInitiator *string `min:"1" type:"string" required:"true"`
 
 	// The secret key that the target must provide to participate in mutual CHAP
@@ -7058,6 +7209,8 @@ type UpdateChapCredentialsInput struct {
 
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
 	// operation to return the TargetARN for specified VolumeARN.
+	//
+	// TargetARN is a required field
 	TargetARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -7130,6 +7283,8 @@ type UpdateGatewayInformationInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The name you configured for your gateway.
@@ -7197,6 +7352,8 @@ type UpdateGatewaySoftwareNowInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -7256,20 +7413,28 @@ type UpdateMaintenanceStartTimeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maintenance start time day of the week.
+	//
+	// DayOfWeek is a required field
 	DayOfWeek *int64 `type:"integer" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
+	//
+	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The hour component of the maintenance start time represented as hh, where
 	// hh is the hour (00 to 23). The hour of the day is in the time zone of the
 	// gateway.
+	//
+	// HourOfDay is a required field
 	HourOfDay *int64 `type:"integer" required:"true"`
 
 	// The minute component of the maintenance start time represented as mm, where
 	// mm is the minute (00 to 59). The minute of the hour is in the time zone of
 	// the gateway.
+	//
+	// MinuteOfHour is a required field
 	MinuteOfHour *int64 `type:"integer" required:"true"`
 }
 
@@ -7344,15 +7509,21 @@ type UpdateSnapshotScheduleInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// Frequency of snapshots. Specify the number of hours between snapshots.
+	//
+	// RecurrenceInHours is a required field
 	RecurrenceInHours *int64 `min:"1" type:"integer" required:"true"`
 
 	// The hour of the day at which the snapshot schedule begins represented as
 	// hh, where hh is the hour (0 to 23). The hour of the day is in the time zone
 	// of the gateway.
+	//
+	// StartAt is a required field
 	StartAt *int64 `type:"integer" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
+	//
+	// VolumeARN is a required field
 	VolumeARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -7417,9 +7588,13 @@ type UpdateVTLDeviceTypeInput struct {
 	// The type of medium changer you want to select.
 	//
 	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	//
+	// DeviceType is a required field
 	DeviceType *string `min:"2" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the medium changer you want to select.
+	//
+	// VTLDeviceARN is a required field
 	VTLDeviceARN *string `min:"50" type:"string" required:"true"`
 }
 
@@ -7605,126 +7780,186 @@ func (s VolumeiSCSIAttributes) GoString() string {
 }
 
 const (
-	// @enum ErrorCode
+	// ErrorCodeActivationKeyExpired is a ErrorCode enum value
 	ErrorCodeActivationKeyExpired = "ActivationKeyExpired"
-	// @enum ErrorCode
+
+	// ErrorCodeActivationKeyInvalid is a ErrorCode enum value
 	ErrorCodeActivationKeyInvalid = "ActivationKeyInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeActivationKeyNotFound is a ErrorCode enum value
 	ErrorCodeActivationKeyNotFound = "ActivationKeyNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeGatewayInternalError is a ErrorCode enum value
 	ErrorCodeGatewayInternalError = "GatewayInternalError"
-	// @enum ErrorCode
+
+	// ErrorCodeGatewayNotConnected is a ErrorCode enum value
 	ErrorCodeGatewayNotConnected = "GatewayNotConnected"
-	// @enum ErrorCode
+
+	// ErrorCodeGatewayNotFound is a ErrorCode enum value
 	ErrorCodeGatewayNotFound = "GatewayNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeGatewayProxyNetworkConnectionBusy is a ErrorCode enum value
 	ErrorCodeGatewayProxyNetworkConnectionBusy = "GatewayProxyNetworkConnectionBusy"
-	// @enum ErrorCode
+
+	// ErrorCodeAuthenticationFailure is a ErrorCode enum value
 	ErrorCodeAuthenticationFailure = "AuthenticationFailure"
-	// @enum ErrorCode
+
+	// ErrorCodeBandwidthThrottleScheduleNotFound is a ErrorCode enum value
 	ErrorCodeBandwidthThrottleScheduleNotFound = "BandwidthThrottleScheduleNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeBlocked is a ErrorCode enum value
 	ErrorCodeBlocked = "Blocked"
-	// @enum ErrorCode
+
+	// ErrorCodeCannotExportSnapshot is a ErrorCode enum value
 	ErrorCodeCannotExportSnapshot = "CannotExportSnapshot"
-	// @enum ErrorCode
+
+	// ErrorCodeChapCredentialNotFound is a ErrorCode enum value
 	ErrorCodeChapCredentialNotFound = "ChapCredentialNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeDiskAlreadyAllocated is a ErrorCode enum value
 	ErrorCodeDiskAlreadyAllocated = "DiskAlreadyAllocated"
-	// @enum ErrorCode
+
+	// ErrorCodeDiskDoesNotExist is a ErrorCode enum value
 	ErrorCodeDiskDoesNotExist = "DiskDoesNotExist"
-	// @enum ErrorCode
+
+	// ErrorCodeDiskSizeGreaterThanVolumeMaxSize is a ErrorCode enum value
 	ErrorCodeDiskSizeGreaterThanVolumeMaxSize = "DiskSizeGreaterThanVolumeMaxSize"
-	// @enum ErrorCode
+
+	// ErrorCodeDiskSizeLessThanVolumeSize is a ErrorCode enum value
 	ErrorCodeDiskSizeLessThanVolumeSize = "DiskSizeLessThanVolumeSize"
-	// @enum ErrorCode
+
+	// ErrorCodeDiskSizeNotGigAligned is a ErrorCode enum value
 	ErrorCodeDiskSizeNotGigAligned = "DiskSizeNotGigAligned"
-	// @enum ErrorCode
+
+	// ErrorCodeDuplicateCertificateInfo is a ErrorCode enum value
 	ErrorCodeDuplicateCertificateInfo = "DuplicateCertificateInfo"
-	// @enum ErrorCode
+
+	// ErrorCodeDuplicateSchedule is a ErrorCode enum value
 	ErrorCodeDuplicateSchedule = "DuplicateSchedule"
-	// @enum ErrorCode
+
+	// ErrorCodeEndpointNotFound is a ErrorCode enum value
 	ErrorCodeEndpointNotFound = "EndpointNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeIamnotSupported is a ErrorCode enum value
 	ErrorCodeIamnotSupported = "IAMNotSupported"
-	// @enum ErrorCode
+
+	// ErrorCodeInitiatorInvalid is a ErrorCode enum value
 	ErrorCodeInitiatorInvalid = "InitiatorInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeInitiatorNotFound is a ErrorCode enum value
 	ErrorCodeInitiatorNotFound = "InitiatorNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeInternalError is a ErrorCode enum value
 	ErrorCodeInternalError = "InternalError"
-	// @enum ErrorCode
+
+	// ErrorCodeInvalidGateway is a ErrorCode enum value
 	ErrorCodeInvalidGateway = "InvalidGateway"
-	// @enum ErrorCode
+
+	// ErrorCodeInvalidEndpoint is a ErrorCode enum value
 	ErrorCodeInvalidEndpoint = "InvalidEndpoint"
-	// @enum ErrorCode
+
+	// ErrorCodeInvalidParameters is a ErrorCode enum value
 	ErrorCodeInvalidParameters = "InvalidParameters"
-	// @enum ErrorCode
+
+	// ErrorCodeInvalidSchedule is a ErrorCode enum value
 	ErrorCodeInvalidSchedule = "InvalidSchedule"
-	// @enum ErrorCode
+
+	// ErrorCodeLocalStorageLimitExceeded is a ErrorCode enum value
 	ErrorCodeLocalStorageLimitExceeded = "LocalStorageLimitExceeded"
-	// @enum ErrorCode
+
+	// ErrorCodeLunAlreadyAllocated is a ErrorCode enum value
 	ErrorCodeLunAlreadyAllocated = "LunAlreadyAllocated "
-	// @enum ErrorCode
+
+	// ErrorCodeLunInvalid is a ErrorCode enum value
 	ErrorCodeLunInvalid = "LunInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeMaximumContentLengthExceeded is a ErrorCode enum value
 	ErrorCodeMaximumContentLengthExceeded = "MaximumContentLengthExceeded"
-	// @enum ErrorCode
+
+	// ErrorCodeMaximumTapeCartridgeCountExceeded is a ErrorCode enum value
 	ErrorCodeMaximumTapeCartridgeCountExceeded = "MaximumTapeCartridgeCountExceeded"
-	// @enum ErrorCode
+
+	// ErrorCodeMaximumVolumeCountExceeded is a ErrorCode enum value
 	ErrorCodeMaximumVolumeCountExceeded = "MaximumVolumeCountExceeded"
-	// @enum ErrorCode
+
+	// ErrorCodeNetworkConfigurationChanged is a ErrorCode enum value
 	ErrorCodeNetworkConfigurationChanged = "NetworkConfigurationChanged"
-	// @enum ErrorCode
+
+	// ErrorCodeNoDisksAvailable is a ErrorCode enum value
 	ErrorCodeNoDisksAvailable = "NoDisksAvailable"
-	// @enum ErrorCode
+
+	// ErrorCodeNotImplemented is a ErrorCode enum value
 	ErrorCodeNotImplemented = "NotImplemented"
-	// @enum ErrorCode
+
+	// ErrorCodeNotSupported is a ErrorCode enum value
 	ErrorCodeNotSupported = "NotSupported"
-	// @enum ErrorCode
+
+	// ErrorCodeOperationAborted is a ErrorCode enum value
 	ErrorCodeOperationAborted = "OperationAborted"
-	// @enum ErrorCode
+
+	// ErrorCodeOutdatedGateway is a ErrorCode enum value
 	ErrorCodeOutdatedGateway = "OutdatedGateway"
-	// @enum ErrorCode
+
+	// ErrorCodeParametersNotImplemented is a ErrorCode enum value
 	ErrorCodeParametersNotImplemented = "ParametersNotImplemented"
-	// @enum ErrorCode
+
+	// ErrorCodeRegionInvalid is a ErrorCode enum value
 	ErrorCodeRegionInvalid = "RegionInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeRequestTimeout is a ErrorCode enum value
 	ErrorCodeRequestTimeout = "RequestTimeout"
-	// @enum ErrorCode
+
+	// ErrorCodeServiceUnavailable is a ErrorCode enum value
 	ErrorCodeServiceUnavailable = "ServiceUnavailable"
-	// @enum ErrorCode
+
+	// ErrorCodeSnapshotDeleted is a ErrorCode enum value
 	ErrorCodeSnapshotDeleted = "SnapshotDeleted"
-	// @enum ErrorCode
+
+	// ErrorCodeSnapshotIdInvalid is a ErrorCode enum value
 	ErrorCodeSnapshotIdInvalid = "SnapshotIdInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeSnapshotInProgress is a ErrorCode enum value
 	ErrorCodeSnapshotInProgress = "SnapshotInProgress"
-	// @enum ErrorCode
+
+	// ErrorCodeSnapshotNotFound is a ErrorCode enum value
 	ErrorCodeSnapshotNotFound = "SnapshotNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeSnapshotScheduleNotFound is a ErrorCode enum value
 	ErrorCodeSnapshotScheduleNotFound = "SnapshotScheduleNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeStagingAreaFull is a ErrorCode enum value
 	ErrorCodeStagingAreaFull = "StagingAreaFull"
-	// @enum ErrorCode
+
+	// ErrorCodeStorageFailure is a ErrorCode enum value
 	ErrorCodeStorageFailure = "StorageFailure"
-	// @enum ErrorCode
+
+	// ErrorCodeTapeCartridgeNotFound is a ErrorCode enum value
 	ErrorCodeTapeCartridgeNotFound = "TapeCartridgeNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeTargetAlreadyExists is a ErrorCode enum value
 	ErrorCodeTargetAlreadyExists = "TargetAlreadyExists"
-	// @enum ErrorCode
+
+	// ErrorCodeTargetInvalid is a ErrorCode enum value
 	ErrorCodeTargetInvalid = "TargetInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeTargetNotFound is a ErrorCode enum value
 	ErrorCodeTargetNotFound = "TargetNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeUnauthorizedOperation is a ErrorCode enum value
 	ErrorCodeUnauthorizedOperation = "UnauthorizedOperation"
-	// @enum ErrorCode
+
+	// ErrorCodeVolumeAlreadyExists is a ErrorCode enum value
 	ErrorCodeVolumeAlreadyExists = "VolumeAlreadyExists"
-	// @enum ErrorCode
+
+	// ErrorCodeVolumeIdInvalid is a ErrorCode enum value
 	ErrorCodeVolumeIdInvalid = "VolumeIdInvalid"
-	// @enum ErrorCode
+
+	// ErrorCodeVolumeInUse is a ErrorCode enum value
 	ErrorCodeVolumeInUse = "VolumeInUse"
-	// @enum ErrorCode
+
+	// ErrorCodeVolumeNotFound is a ErrorCode enum value
 	ErrorCodeVolumeNotFound = "VolumeNotFound"
-	// @enum ErrorCode
+
+	// ErrorCodeVolumeNotReady is a ErrorCode enum value
 	ErrorCodeVolumeNotReady = "VolumeNotReady"
 )

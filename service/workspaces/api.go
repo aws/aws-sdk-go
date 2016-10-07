@@ -861,9 +861,13 @@ type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The resource ID of the request.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The tags of the request.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -926,6 +930,8 @@ type CreateWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of structures that specify the WorkSpaces to create.
+	//
+	// Workspaces is a required field
 	Workspaces []*WorkspaceRequest `min:"1" type:"list" required:"true"`
 }
 
@@ -1028,9 +1034,13 @@ type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The resource ID of the request.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The tag keys of the request.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -1083,6 +1093,8 @@ type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The resource ID of the request.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1471,9 +1483,13 @@ type ModifyWorkspacePropertiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the WorkSpace.
+	//
+	// WorkspaceId is a required field
 	WorkspaceId *string `type:"string" required:"true"`
 
 	// The WorkSpace properties of the request.
+	//
+	// WorkspaceProperties is a required field
 	WorkspaceProperties *WorkspaceProperties `type:"structure" required:"true"`
 }
 
@@ -1523,6 +1539,8 @@ type RebootRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the WorkSpace to reboot.
+	//
+	// WorkspaceId is a required field
 	WorkspaceId *string `type:"string" required:"true"`
 }
 
@@ -1554,6 +1572,8 @@ type RebootWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of structures that specify the WorkSpaces to reboot.
+	//
+	// RebootWorkspaceRequests is a required field
 	RebootWorkspaceRequests []*RebootRequest `min:"1" type:"list" required:"true"`
 }
 
@@ -1617,6 +1637,8 @@ type RebuildRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the WorkSpace to rebuild.
+	//
+	// WorkspaceId is a required field
 	WorkspaceId *string `type:"string" required:"true"`
 }
 
@@ -1648,6 +1670,8 @@ type RebuildWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of structures that specify the WorkSpaces to rebuild.
+	//
+	// RebuildWorkspaceRequests is a required field
 	RebuildWorkspaceRequests []*RebuildRequest `min:"1" type:"list" required:"true"`
 }
 
@@ -1727,6 +1751,8 @@ type StartWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The requests.
+	//
+	// StartWorkspaceRequests is a required field
 	StartWorkspaceRequests []*StartRequest `min:"1" type:"list" required:"true"`
 }
 
@@ -1795,6 +1821,8 @@ type StopWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The requests.
+	//
+	// StopWorkspaceRequests is a required field
 	StopWorkspaceRequests []*StopRequest `min:"1" type:"list" required:"true"`
 }
 
@@ -1846,6 +1874,8 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The key of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
@@ -1884,6 +1914,8 @@ type TerminateRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the WorkSpace to terminate.
+	//
+	// WorkspaceId is a required field
 	WorkspaceId *string `type:"string" required:"true"`
 }
 
@@ -1915,6 +1947,8 @@ type TerminateWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of structures that specify the WorkSpaces to terminate.
+	//
+	// TerminateWorkspaceRequests is a required field
 	TerminateWorkspaceRequests []*TerminateRequest `min:"1" type:"list" required:"true"`
 }
 
@@ -2200,11 +2234,15 @@ type WorkspaceRequest struct {
 	// The identifier of the bundle to create the WorkSpace from. You can use the
 	// DescribeWorkspaceBundles operation to obtain a list of the bundles that are
 	// available.
+	//
+	// BundleId is a required field
 	BundleId *string `type:"string" required:"true"`
 
 	// The identifier of the AWS Directory Service directory to create the WorkSpace
 	// in. You can use the DescribeWorkspaceDirectories operation to obtain a list
 	// of the directories that are available.
+	//
+	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// Specifies whether the data stored on the root volume, or C: drive, is encrypted.
@@ -2215,6 +2253,8 @@ type WorkspaceRequest struct {
 
 	// The username that the WorkSpace is assigned to. This username must exist
 	// in the AWS Directory Service directory specified by the DirectoryId member.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the data stored on the user volume, or D: drive, is encrypted.
@@ -2270,77 +2310,100 @@ func (s *WorkspaceRequest) Validate() error {
 }
 
 const (
-	// @enum Compute
+	// ComputeValue is a Compute enum value
 	ComputeValue = "VALUE"
-	// @enum Compute
+
+	// ComputeStandard is a Compute enum value
 	ComputeStandard = "STANDARD"
-	// @enum Compute
+
+	// ComputePerformance is a Compute enum value
 	ComputePerformance = "PERFORMANCE"
 )
 
 const (
-	// @enum ConnectionState
+	// ConnectionStateConnected is a ConnectionState enum value
 	ConnectionStateConnected = "CONNECTED"
-	// @enum ConnectionState
+
+	// ConnectionStateDisconnected is a ConnectionState enum value
 	ConnectionStateDisconnected = "DISCONNECTED"
-	// @enum ConnectionState
+
+	// ConnectionStateUnknown is a ConnectionState enum value
 	ConnectionStateUnknown = "UNKNOWN"
 )
 
 const (
-	// @enum RunningMode
+	// RunningModeAutoStop is a RunningMode enum value
 	RunningModeAutoStop = "AUTO_STOP"
-	// @enum RunningMode
+
+	// RunningModeAlwaysOn is a RunningMode enum value
 	RunningModeAlwaysOn = "ALWAYS_ON"
 )
 
 const (
-	// @enum WorkspaceDirectoryState
+	// WorkspaceDirectoryStateRegistering is a WorkspaceDirectoryState enum value
 	WorkspaceDirectoryStateRegistering = "REGISTERING"
-	// @enum WorkspaceDirectoryState
+
+	// WorkspaceDirectoryStateRegistered is a WorkspaceDirectoryState enum value
 	WorkspaceDirectoryStateRegistered = "REGISTERED"
-	// @enum WorkspaceDirectoryState
+
+	// WorkspaceDirectoryStateDeregistering is a WorkspaceDirectoryState enum value
 	WorkspaceDirectoryStateDeregistering = "DEREGISTERING"
-	// @enum WorkspaceDirectoryState
+
+	// WorkspaceDirectoryStateDeregistered is a WorkspaceDirectoryState enum value
 	WorkspaceDirectoryStateDeregistered = "DEREGISTERED"
-	// @enum WorkspaceDirectoryState
+
+	// WorkspaceDirectoryStateError is a WorkspaceDirectoryState enum value
 	WorkspaceDirectoryStateError = "ERROR"
 )
 
 const (
-	// @enum WorkspaceDirectoryType
+	// WorkspaceDirectoryTypeSimpleAd is a WorkspaceDirectoryType enum value
 	WorkspaceDirectoryTypeSimpleAd = "SIMPLE_AD"
-	// @enum WorkspaceDirectoryType
+
+	// WorkspaceDirectoryTypeAdConnector is a WorkspaceDirectoryType enum value
 	WorkspaceDirectoryTypeAdConnector = "AD_CONNECTOR"
 )
 
 const (
-	// @enum WorkspaceState
+	// WorkspaceStatePending is a WorkspaceState enum value
 	WorkspaceStatePending = "PENDING"
-	// @enum WorkspaceState
+
+	// WorkspaceStateAvailable is a WorkspaceState enum value
 	WorkspaceStateAvailable = "AVAILABLE"
-	// @enum WorkspaceState
+
+	// WorkspaceStateImpaired is a WorkspaceState enum value
 	WorkspaceStateImpaired = "IMPAIRED"
-	// @enum WorkspaceState
+
+	// WorkspaceStateUnhealthy is a WorkspaceState enum value
 	WorkspaceStateUnhealthy = "UNHEALTHY"
-	// @enum WorkspaceState
+
+	// WorkspaceStateRebooting is a WorkspaceState enum value
 	WorkspaceStateRebooting = "REBOOTING"
-	// @enum WorkspaceState
+
+	// WorkspaceStateStarting is a WorkspaceState enum value
 	WorkspaceStateStarting = "STARTING"
-	// @enum WorkspaceState
+
+	// WorkspaceStateRebuilding is a WorkspaceState enum value
 	WorkspaceStateRebuilding = "REBUILDING"
-	// @enum WorkspaceState
+
+	// WorkspaceStateMaintenance is a WorkspaceState enum value
 	WorkspaceStateMaintenance = "MAINTENANCE"
-	// @enum WorkspaceState
+
+	// WorkspaceStateTerminating is a WorkspaceState enum value
 	WorkspaceStateTerminating = "TERMINATING"
-	// @enum WorkspaceState
+
+	// WorkspaceStateTerminated is a WorkspaceState enum value
 	WorkspaceStateTerminated = "TERMINATED"
-	// @enum WorkspaceState
+
+	// WorkspaceStateSuspended is a WorkspaceState enum value
 	WorkspaceStateSuspended = "SUSPENDED"
-	// @enum WorkspaceState
+
+	// WorkspaceStateStopping is a WorkspaceState enum value
 	WorkspaceStateStopping = "STOPPING"
-	// @enum WorkspaceState
+
+	// WorkspaceStateStopped is a WorkspaceState enum value
 	WorkspaceStateStopped = "STOPPED"
-	// @enum WorkspaceState
+
+	// WorkspaceStateError is a WorkspaceState enum value
 	WorkspaceStateError = "ERROR"
 )

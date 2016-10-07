@@ -140,6 +140,8 @@ type GenerateDataSetInput struct {
 	// a date with day-level granularity within the desired week (the day value
 	// will be ignored). For monthly data sets, provide a date with month-level
 	// granularity for the desired month (the day value will be ignored).
+	//
+	// DataSetPublicationDate is a required field
 	DataSetPublicationDate *time.Time `locationName:"dataSetPublicationDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The desired data set type.
@@ -167,9 +169,13 @@ type GenerateDataSetInput struct {
 	// - Available daily by 5:00 PM Pacific Time since 2015-10-01. customer_profile_by_revenue
 	// - Available daily by 5:00 PM Pacific Time since 2015-10-01. customer_profile_by_geography
 	// - Available daily by 5:00 PM Pacific Time since 2015-10-01.
+	//
+	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"DataSetType"`
 
 	// The name (friendly name, not ARN) of the destination S3 bucket.
+	//
+	// DestinationS3BucketName is a required field
 	DestinationS3BucketName *string `locationName:"destinationS3BucketName" min:"1" type:"string" required:"true"`
 
 	// (Optional) The desired S3 prefix for the published data set, similar to a
@@ -182,10 +188,14 @@ type GenerateDataSetInput struct {
 
 	// The Amazon Resource Name (ARN) of the Role with an attached permissions policy
 	// to interact with the provided AWS services.
+	//
+	// RoleNameArn is a required field
 	RoleNameArn *string `locationName:"roleNameArn" min:"1" type:"string" required:"true"`
 
 	// Amazon Resource Name (ARN) for the SNS Topic that will be notified when the
 	// data set has been published or if an error has occurred.
+	//
+	// SnsTopicArn is a required field
 	SnsTopicArn *string `locationName:"snsTopicArn" min:"1" type:"string" required:"true"`
 }
 
@@ -280,9 +290,13 @@ type StartSupportDataExportInput struct {
 	// support contact data from the date specified in the from_date parameter.
 	// test_customer_support_contacts_data An example data set containing static
 	// test data in the same format as customer_support_contacts_data
+	//
+	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"SupportDataSetType"`
 
 	// The name (friendly name, not ARN) of the destination S3 bucket.
+	//
+	// DestinationS3BucketName is a required field
 	DestinationS3BucketName *string `locationName:"destinationS3BucketName" min:"1" type:"string" required:"true"`
 
 	// (Optional) The desired S3 prefix for the published data set, similar to a
@@ -295,14 +309,20 @@ type StartSupportDataExportInput struct {
 
 	// The start date from which to retrieve the data set. This parameter only affects
 	// the customer_support_contacts_data data set type.
+	//
+	// FromDate is a required field
 	FromDate *time.Time `locationName:"fromDate" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Role with an attached permissions policy
 	// to interact with the provided AWS services.
+	//
+	// RoleNameArn is a required field
 	RoleNameArn *string `locationName:"roleNameArn" min:"1" type:"string" required:"true"`
 
 	// Amazon Resource Name (ARN) for the SNS Topic that will be notified when the
 	// data set has been published or if an error has occurred.
+	//
+	// SnsTopicArn is a required field
 	SnsTopicArn *string `locationName:"snsTopicArn" min:"1" type:"string" required:"true"`
 }
 
@@ -377,47 +397,65 @@ func (s StartSupportDataExportOutput) GoString() string {
 }
 
 const (
-	// @enum DataSetType
+	// DataSetTypeCustomerSubscriberHourlyMonthlySubscriptions is a DataSetType enum value
 	DataSetTypeCustomerSubscriberHourlyMonthlySubscriptions = "customer_subscriber_hourly_monthly_subscriptions"
-	// @enum DataSetType
+
+	// DataSetTypeCustomerSubscriberAnnualSubscriptions is a DataSetType enum value
 	DataSetTypeCustomerSubscriberAnnualSubscriptions = "customer_subscriber_annual_subscriptions"
-	// @enum DataSetType
+
+	// DataSetTypeDailyBusinessUsageByInstanceType is a DataSetType enum value
 	DataSetTypeDailyBusinessUsageByInstanceType = "daily_business_usage_by_instance_type"
-	// @enum DataSetType
+
+	// DataSetTypeDailyBusinessFees is a DataSetType enum value
 	DataSetTypeDailyBusinessFees = "daily_business_fees"
-	// @enum DataSetType
+
+	// DataSetTypeDailyBusinessFreeTrialConversions is a DataSetType enum value
 	DataSetTypeDailyBusinessFreeTrialConversions = "daily_business_free_trial_conversions"
-	// @enum DataSetType
+
+	// DataSetTypeDailyBusinessNewInstances is a DataSetType enum value
 	DataSetTypeDailyBusinessNewInstances = "daily_business_new_instances"
-	// @enum DataSetType
+
+	// DataSetTypeDailyBusinessNewProductSubscribers is a DataSetType enum value
 	DataSetTypeDailyBusinessNewProductSubscribers = "daily_business_new_product_subscribers"
-	// @enum DataSetType
+
+	// DataSetTypeDailyBusinessCanceledProductSubscribers is a DataSetType enum value
 	DataSetTypeDailyBusinessCanceledProductSubscribers = "daily_business_canceled_product_subscribers"
-	// @enum DataSetType
+
+	// DataSetTypeMonthlyRevenueBillingAndRevenueData is a DataSetType enum value
 	DataSetTypeMonthlyRevenueBillingAndRevenueData = "monthly_revenue_billing_and_revenue_data"
-	// @enum DataSetType
+
+	// DataSetTypeMonthlyRevenueAnnualSubscriptions is a DataSetType enum value
 	DataSetTypeMonthlyRevenueAnnualSubscriptions = "monthly_revenue_annual_subscriptions"
-	// @enum DataSetType
+
+	// DataSetTypeDisbursedAmountByProduct is a DataSetType enum value
 	DataSetTypeDisbursedAmountByProduct = "disbursed_amount_by_product"
-	// @enum DataSetType
+
+	// DataSetTypeDisbursedAmountByProductWithUncollectedFunds is a DataSetType enum value
 	DataSetTypeDisbursedAmountByProductWithUncollectedFunds = "disbursed_amount_by_product_with_uncollected_funds"
-	// @enum DataSetType
+
+	// DataSetTypeDisbursedAmountByCustomerGeo is a DataSetType enum value
 	DataSetTypeDisbursedAmountByCustomerGeo = "disbursed_amount_by_customer_geo"
-	// @enum DataSetType
+
+	// DataSetTypeDisbursedAmountByAgeOfUncollectedFunds is a DataSetType enum value
 	DataSetTypeDisbursedAmountByAgeOfUncollectedFunds = "disbursed_amount_by_age_of_uncollected_funds"
-	// @enum DataSetType
+
+	// DataSetTypeDisbursedAmountByAgeOfDisbursedFunds is a DataSetType enum value
 	DataSetTypeDisbursedAmountByAgeOfDisbursedFunds = "disbursed_amount_by_age_of_disbursed_funds"
-	// @enum DataSetType
+
+	// DataSetTypeCustomerProfileByIndustry is a DataSetType enum value
 	DataSetTypeCustomerProfileByIndustry = "customer_profile_by_industry"
-	// @enum DataSetType
+
+	// DataSetTypeCustomerProfileByRevenue is a DataSetType enum value
 	DataSetTypeCustomerProfileByRevenue = "customer_profile_by_revenue"
-	// @enum DataSetType
+
+	// DataSetTypeCustomerProfileByGeography is a DataSetType enum value
 	DataSetTypeCustomerProfileByGeography = "customer_profile_by_geography"
 )
 
 const (
-	// @enum SupportDataSetType
+	// SupportDataSetTypeCustomerSupportContactsData is a SupportDataSetType enum value
 	SupportDataSetTypeCustomerSupportContactsData = "customer_support_contacts_data"
-	// @enum SupportDataSetType
+
+	// SupportDataSetTypeTestCustomerSupportContactsData is a SupportDataSetType enum value
 	SupportDataSetTypeTestCustomerSupportContactsData = "test_customer_support_contacts_data"
 )

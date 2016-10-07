@@ -2093,6 +2093,8 @@ type ApplyEnvironmentManagedActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The action ID of the scheduled managed action to execute.
+	//
+	// ActionId is a required field
 	ActionId *string `type:"string" required:"true"`
 
 	// The environment ID of the target environment.
@@ -2220,6 +2222,8 @@ type CheckDNSAvailabilityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The prefix used when this CNAME is reserved.
+	//
+	// CNAMEPrefix is a required field
 	CNAMEPrefix *string `min:"4" type:"string" required:"true"`
 }
 
@@ -2500,6 +2504,8 @@ type CreateApplicationInput struct {
 	//
 	// Constraint: This name must be unique within your account. If the specified
 	// name already exists, the action returns an InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Describes the application.
@@ -2537,6 +2543,8 @@ type CreateApplicationVersionInput struct {
 
 	// The name of the application. If no application is found with this name, and
 	// AutoCreateApplication is false, returns an InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Determines how the system behaves if the specified application for this version
@@ -2576,6 +2584,8 @@ type CreateApplicationVersionInput struct {
 	// Constraint: Must be unique per application. If an application version already
 	// exists with this label for the specified application, AWS Elastic Beanstalk
 	// returns an InvalidParameterValue error.
+	//
+	// VersionLabel is a required field
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2618,6 +2628,8 @@ type CreateConfigurationTemplateInput struct {
 	// The name of the application to associate with this configuration template.
 	// If no application is found with this name, AWS Elastic Beanstalk returns
 	// an InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Describes this configuration.
@@ -2668,6 +2680,8 @@ type CreateConfigurationTemplateInput struct {
 	//
 	// Default: If a configuration template already exists with this name, AWS
 	// Elastic Beanstalk returns an InvalidParameterValue error.
+	//
+	// TemplateName is a required field
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2725,6 +2739,8 @@ type CreateEnvironmentInput struct {
 	//
 	//  If no application is found with this name, CreateEnvironment returns an
 	// InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// If specified, the environment attempts to use this value as the prefix for
@@ -2907,6 +2923,8 @@ type DeleteApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application to delete.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// When set to true, running environments will be terminated before deleting
@@ -2959,6 +2977,8 @@ type DeleteApplicationVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application to delete releases from.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// Indicates whether to delete the associated source bundle from Amazon S3:
@@ -2969,6 +2989,8 @@ type DeleteApplicationVersionInput struct {
 	DeleteSourceBundle *bool `type:"boolean"`
 
 	// The label of the version to delete.
+	//
+	// VersionLabel is a required field
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3023,9 +3045,13 @@ type DeleteConfigurationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application to delete the configuration template from.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the configuration template to delete.
+	//
+	// TemplateName is a required field
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3080,9 +3106,13 @@ type DeleteEnvironmentConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application the environment is associated with.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the environment to delete the draft configuration from.
+	//
+	// EnvironmentName is a required field
 	EnvironmentName *string `min:"4" type:"string" required:"true"`
 }
 
@@ -3345,6 +3375,8 @@ type DescribeConfigurationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The application for the environment or configuration template.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the environment to describe.
@@ -4638,6 +4670,8 @@ type RequestEnvironmentInfoInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// The type of information to request.
+	//
+	// InfoType is a required field
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 }
 
@@ -4759,6 +4793,8 @@ type RetrieveEnvironmentInfoInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// The type of information to retrieve.
+	//
+	// InfoType is a required field
 	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 }
 
@@ -5189,6 +5225,8 @@ type UpdateApplicationInput struct {
 
 	// The name of the application to update. If no such application is found, UpdateApplication
 	// returns an InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// A new description for the application.
@@ -5230,6 +5268,8 @@ type UpdateApplicationVersionInput struct {
 	//
 	//  If no application is found with this name, UpdateApplication returns an
 	// InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// A new description for this release.
@@ -5239,6 +5279,8 @@ type UpdateApplicationVersionInput struct {
 	//
 	//  If no application version is found with this label, UpdateApplication returns
 	// an InvalidParameterValue error.
+	//
+	// VersionLabel is a required field
 	VersionLabel *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5283,6 +5325,8 @@ type UpdateConfigurationTemplateInput struct {
 	//
 	//  If no application is found with this name, UpdateConfigurationTemplate
 	// returns an InvalidParameterValue error.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// A new description for the configuration.
@@ -5301,6 +5345,8 @@ type UpdateConfigurationTemplateInput struct {
 	//
 	//  If no configuration template is found with this name, UpdateConfigurationTemplate
 	// returns an InvalidParameterValue error.
+	//
+	// TemplateName is a required field
 	TemplateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5483,6 +5529,8 @@ type ValidateConfigurationSettingsInput struct {
 
 	// The name of the application that the configuration template or environment
 	// belongs to.
+	//
+	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the environment to validate the settings against.
@@ -5491,6 +5539,8 @@ type ValidateConfigurationSettingsInput struct {
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// A list of the options and desired values to evaluate.
+	//
+	// OptionSettings is a required field
 	OptionSettings []*ConfigurationOptionSetting `type:"list" required:"true"`
 
 	// The name of the configuration template to validate the settings against.
@@ -5592,190 +5642,247 @@ func (s ValidationMessage) GoString() string {
 }
 
 const (
-	// @enum ActionHistoryStatus
+	// ActionHistoryStatusCompleted is a ActionHistoryStatus enum value
 	ActionHistoryStatusCompleted = "Completed"
-	// @enum ActionHistoryStatus
+
+	// ActionHistoryStatusFailed is a ActionHistoryStatus enum value
 	ActionHistoryStatusFailed = "Failed"
-	// @enum ActionHistoryStatus
+
+	// ActionHistoryStatusUnknown is a ActionHistoryStatus enum value
 	ActionHistoryStatusUnknown = "Unknown"
 )
 
 const (
-	// @enum ActionStatus
+	// ActionStatusScheduled is a ActionStatus enum value
 	ActionStatusScheduled = "Scheduled"
-	// @enum ActionStatus
+
+	// ActionStatusPending is a ActionStatus enum value
 	ActionStatusPending = "Pending"
-	// @enum ActionStatus
+
+	// ActionStatusRunning is a ActionStatus enum value
 	ActionStatusRunning = "Running"
-	// @enum ActionStatus
+
+	// ActionStatusUnknown is a ActionStatus enum value
 	ActionStatusUnknown = "Unknown"
 )
 
 const (
-	// @enum ActionType
+	// ActionTypeInstanceRefresh is a ActionType enum value
 	ActionTypeInstanceRefresh = "InstanceRefresh"
-	// @enum ActionType
+
+	// ActionTypePlatformUpdate is a ActionType enum value
 	ActionTypePlatformUpdate = "PlatformUpdate"
-	// @enum ActionType
+
+	// ActionTypeUnknown is a ActionType enum value
 	ActionTypeUnknown = "Unknown"
 )
 
 const (
-	// @enum ApplicationVersionStatus
+	// ApplicationVersionStatusProcessed is a ApplicationVersionStatus enum value
 	ApplicationVersionStatusProcessed = "Processed"
-	// @enum ApplicationVersionStatus
+
+	// ApplicationVersionStatusUnprocessed is a ApplicationVersionStatus enum value
 	ApplicationVersionStatusUnprocessed = "Unprocessed"
-	// @enum ApplicationVersionStatus
+
+	// ApplicationVersionStatusFailed is a ApplicationVersionStatus enum value
 	ApplicationVersionStatusFailed = "Failed"
-	// @enum ApplicationVersionStatus
+
+	// ApplicationVersionStatusProcessing is a ApplicationVersionStatus enum value
 	ApplicationVersionStatusProcessing = "Processing"
 )
 
 const (
-	// @enum ConfigurationDeploymentStatus
+	// ConfigurationDeploymentStatusDeployed is a ConfigurationDeploymentStatus enum value
 	ConfigurationDeploymentStatusDeployed = "deployed"
-	// @enum ConfigurationDeploymentStatus
+
+	// ConfigurationDeploymentStatusPending is a ConfigurationDeploymentStatus enum value
 	ConfigurationDeploymentStatusPending = "pending"
-	// @enum ConfigurationDeploymentStatus
+
+	// ConfigurationDeploymentStatusFailed is a ConfigurationDeploymentStatus enum value
 	ConfigurationDeploymentStatusFailed = "failed"
 )
 
 const (
-	// @enum ConfigurationOptionValueType
+	// ConfigurationOptionValueTypeScalar is a ConfigurationOptionValueType enum value
 	ConfigurationOptionValueTypeScalar = "Scalar"
-	// @enum ConfigurationOptionValueType
+
+	// ConfigurationOptionValueTypeList is a ConfigurationOptionValueType enum value
 	ConfigurationOptionValueTypeList = "List"
 )
 
 const (
-	// @enum EnvironmentHealth
+	// EnvironmentHealthGreen is a EnvironmentHealth enum value
 	EnvironmentHealthGreen = "Green"
-	// @enum EnvironmentHealth
+
+	// EnvironmentHealthYellow is a EnvironmentHealth enum value
 	EnvironmentHealthYellow = "Yellow"
-	// @enum EnvironmentHealth
+
+	// EnvironmentHealthRed is a EnvironmentHealth enum value
 	EnvironmentHealthRed = "Red"
-	// @enum EnvironmentHealth
+
+	// EnvironmentHealthGrey is a EnvironmentHealth enum value
 	EnvironmentHealthGrey = "Grey"
 )
 
 const (
-	// @enum EnvironmentHealthAttribute
+	// EnvironmentHealthAttributeStatus is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeStatus = "Status"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeColor is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeColor = "Color"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeCauses is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeCauses = "Causes"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeApplicationMetrics is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeApplicationMetrics = "ApplicationMetrics"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeInstancesHealth is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeInstancesHealth = "InstancesHealth"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeAll is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeAll = "All"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeHealthStatus is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeHealthStatus = "HealthStatus"
-	// @enum EnvironmentHealthAttribute
+
+	// EnvironmentHealthAttributeRefreshedAt is a EnvironmentHealthAttribute enum value
 	EnvironmentHealthAttributeRefreshedAt = "RefreshedAt"
 )
 
 const (
-	// @enum EnvironmentHealthStatus
+	// EnvironmentHealthStatusNoData is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusNoData = "NoData"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusUnknown is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusUnknown = "Unknown"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusPending is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusPending = "Pending"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusOk is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusOk = "Ok"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusInfo is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusInfo = "Info"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusWarning is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusWarning = "Warning"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusDegraded is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusDegraded = "Degraded"
-	// @enum EnvironmentHealthStatus
+
+	// EnvironmentHealthStatusSevere is a EnvironmentHealthStatus enum value
 	EnvironmentHealthStatusSevere = "Severe"
 )
 
 const (
-	// @enum EnvironmentInfoType
+	// EnvironmentInfoTypeTail is a EnvironmentInfoType enum value
 	EnvironmentInfoTypeTail = "tail"
-	// @enum EnvironmentInfoType
+
+	// EnvironmentInfoTypeBundle is a EnvironmentInfoType enum value
 	EnvironmentInfoTypeBundle = "bundle"
 )
 
 const (
-	// @enum EnvironmentStatus
+	// EnvironmentStatusLaunching is a EnvironmentStatus enum value
 	EnvironmentStatusLaunching = "Launching"
-	// @enum EnvironmentStatus
+
+	// EnvironmentStatusUpdating is a EnvironmentStatus enum value
 	EnvironmentStatusUpdating = "Updating"
-	// @enum EnvironmentStatus
+
+	// EnvironmentStatusReady is a EnvironmentStatus enum value
 	EnvironmentStatusReady = "Ready"
-	// @enum EnvironmentStatus
+
+	// EnvironmentStatusTerminating is a EnvironmentStatus enum value
 	EnvironmentStatusTerminating = "Terminating"
-	// @enum EnvironmentStatus
+
+	// EnvironmentStatusTerminated is a EnvironmentStatus enum value
 	EnvironmentStatusTerminated = "Terminated"
 )
 
 const (
-	// @enum EventSeverity
+	// EventSeverityTrace is a EventSeverity enum value
 	EventSeverityTrace = "TRACE"
-	// @enum EventSeverity
+
+	// EventSeverityDebug is a EventSeverity enum value
 	EventSeverityDebug = "DEBUG"
-	// @enum EventSeverity
+
+	// EventSeverityInfo is a EventSeverity enum value
 	EventSeverityInfo = "INFO"
-	// @enum EventSeverity
+
+	// EventSeverityWarn is a EventSeverity enum value
 	EventSeverityWarn = "WARN"
-	// @enum EventSeverity
+
+	// EventSeverityError is a EventSeverity enum value
 	EventSeverityError = "ERROR"
-	// @enum EventSeverity
+
+	// EventSeverityFatal is a EventSeverity enum value
 	EventSeverityFatal = "FATAL"
 )
 
 const (
-	// @enum FailureType
+	// FailureTypeUpdateCancelled is a FailureType enum value
 	FailureTypeUpdateCancelled = "UpdateCancelled"
-	// @enum FailureType
+
+	// FailureTypeCancellationFailed is a FailureType enum value
 	FailureTypeCancellationFailed = "CancellationFailed"
-	// @enum FailureType
+
+	// FailureTypeRollbackFailed is a FailureType enum value
 	FailureTypeRollbackFailed = "RollbackFailed"
-	// @enum FailureType
+
+	// FailureTypeRollbackSuccessful is a FailureType enum value
 	FailureTypeRollbackSuccessful = "RollbackSuccessful"
-	// @enum FailureType
+
+	// FailureTypeInternalFailure is a FailureType enum value
 	FailureTypeInternalFailure = "InternalFailure"
-	// @enum FailureType
+
+	// FailureTypeInvalidEnvironmentState is a FailureType enum value
 	FailureTypeInvalidEnvironmentState = "InvalidEnvironmentState"
-	// @enum FailureType
+
+	// FailureTypePermissionsError is a FailureType enum value
 	FailureTypePermissionsError = "PermissionsError"
 )
 
 const (
-	// @enum InstancesHealthAttribute
+	// InstancesHealthAttributeHealthStatus is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeHealthStatus = "HealthStatus"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeColor is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeColor = "Color"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeCauses is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeCauses = "Causes"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeApplicationMetrics is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeApplicationMetrics = "ApplicationMetrics"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeRefreshedAt is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeRefreshedAt = "RefreshedAt"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeLaunchedAt is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeLaunchedAt = "LaunchedAt"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeSystem is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeSystem = "System"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeDeployment is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeDeployment = "Deployment"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeAvailabilityZone is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeAvailabilityZone = "AvailabilityZone"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeInstanceType is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeInstanceType = "InstanceType"
-	// @enum InstancesHealthAttribute
+
+	// InstancesHealthAttributeAll is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeAll = "All"
 )
 
 const (
-	// @enum ValidationSeverity
+	// ValidationSeverityError is a ValidationSeverity enum value
 	ValidationSeverityError = "error"
-	// @enum ValidationSeverity
+
+	// ValidationSeverityWarning is a ValidationSeverity enum value
 	ValidationSeverityWarning = "warning"
 )

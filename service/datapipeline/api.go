@@ -1113,6 +1113,8 @@ type ActivatePipelineInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The date and time to resume the pipeline. By default, the pipeline resumes
@@ -1176,9 +1178,13 @@ type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The tags to add, as key/value pairs.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
 }
 
@@ -1246,6 +1252,8 @@ type CreatePipelineInput struct {
 	// The name for the pipeline. You can use the same name for multiple pipelines
 	// associated with your AWS account, because AWS Data Pipeline assigns each
 	// pipeline a unique pipeline identifier.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// A list of tags to associate with the pipeline at creation. Tags let you control
@@ -1265,6 +1273,8 @@ type CreatePipelineInput struct {
 	// Instead, you'll receive the pipeline identifier from the previous attempt.
 	// The uniqueness of the name and unique identifier combination is scoped to
 	// the AWS account or IAM user credentials.
+	//
+	// UniqueId is a required field
 	UniqueId *string `locationName:"uniqueId" min:"1" type:"string" required:"true"`
 }
 
@@ -1316,6 +1326,8 @@ type CreatePipelineOutput struct {
 
 	// The ID that AWS Data Pipeline assigns the newly created pipeline. For example,
 	// df-06372391ZG65EXAMPLE.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 }
 
@@ -1339,6 +1351,8 @@ type DeactivatePipelineInput struct {
 	CancelActive *bool `locationName:"cancelActive" type:"boolean"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 }
 
@@ -1388,6 +1402,8 @@ type DeletePipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 }
 
@@ -1447,9 +1463,13 @@ type DescribeObjectsInput struct {
 
 	// The IDs of the pipeline objects that contain the definitions to be described.
 	// You can pass as many as 25 identifiers in a single call to DescribeObjects.
+	//
+	// ObjectIds is a required field
 	ObjectIds []*string `locationName:"objectIds" type:"list" required:"true"`
 
 	// The ID of the pipeline that contains the object definitions.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 }
 
@@ -1495,6 +1515,8 @@ type DescribeObjectsOutput struct {
 	Marker *string `locationName:"marker" type:"string"`
 
 	// An array of object definitions.
+	//
+	// PipelineObjects is a required field
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 }
 
@@ -1514,6 +1536,8 @@ type DescribePipelinesInput struct {
 
 	// The IDs of the pipelines to describe. You can pass as many as 25 identifiers
 	// in a single call. To obtain pipeline IDs, call ListPipelines.
+	//
+	// PipelineIds is a required field
 	PipelineIds []*string `locationName:"pipelineIds" type:"list" required:"true"`
 }
 
@@ -1545,6 +1569,8 @@ type DescribePipelinesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of descriptions for the specified pipelines.
+	//
+	// PipelineDescriptionList is a required field
 	PipelineDescriptionList []*PipelineDescription `locationName:"pipelineDescriptionList" type:"list" required:"true"`
 }
 
@@ -1563,12 +1589,18 @@ type EvaluateExpressionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The expression to evaluate.
+	//
+	// Expression is a required field
 	Expression *string `locationName:"expression" type:"string" required:"true"`
 
 	// The ID of the object.
+	//
+	// ObjectId is a required field
 	ObjectId *string `locationName:"objectId" min:"1" type:"string" required:"true"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 }
 
@@ -1612,6 +1644,8 @@ type EvaluateExpressionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The evaluated expression.
+	//
+	// EvaluatedExpression is a required field
 	EvaluatedExpression *string `locationName:"evaluatedExpression" type:"string" required:"true"`
 }
 
@@ -1632,6 +1666,8 @@ type Field struct {
 	_ struct{} `type:"structure"`
 
 	// The field identifier.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The field value, expressed as the identifier of another object.
@@ -1675,6 +1711,8 @@ type GetPipelineDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The version of the pipeline definition to retrieve. Set this parameter to
@@ -1798,6 +1836,8 @@ type ListPipelinesOutput struct {
 
 	// The pipeline identifiers. If you require additional information about the
 	// pipelines, you can use these identifiers to call DescribePipelines and GetPipelineDefinition.
+	//
+	// PipelineIdList is a required field
 	PipelineIdList []*PipelineIdName `locationName:"pipelineIdList" type:"list" required:"true"`
 }
 
@@ -1855,9 +1895,13 @@ type ParameterAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// The field identifier.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The field value, expressed as a String.
+	//
+	// StringValue is a required field
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 }
 
@@ -1895,9 +1939,13 @@ type ParameterObject struct {
 	_ struct{} `type:"structure"`
 
 	// The attributes of the parameter object.
+	//
+	// Attributes is a required field
 	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" required:"true"`
 
 	// The ID of the parameter object.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 }
 
@@ -1945,9 +1993,13 @@ type ParameterValue struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the parameter value.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The field value, expressed as a String.
+	//
+	// StringValue is a required field
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
 }
 
@@ -1989,13 +2041,19 @@ type PipelineDescription struct {
 
 	// A list of read-only fields that contain metadata about the pipeline: @userId,
 	// @accountId, and @pipelineState.
+	//
+	// Fields is a required field
 	Fields []*Field `locationName:"fields" type:"list" required:"true"`
 
 	// The name of the pipeline.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The pipeline identifier that was assigned by AWS Data Pipeline. This is a
 	// string of the form df-297EG78HU43EEXAMPLE.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// A list of tags to associated with a pipeline. Tags let you control access
@@ -2044,12 +2102,18 @@ type PipelineObject struct {
 	_ struct{} `type:"structure"`
 
 	// Key-value pairs that define the properties of the object.
+	//
+	// Fields is a required field
 	Fields []*Field `locationName:"fields" type:"list" required:"true"`
 
 	// The ID of the object.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The name of the object.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -2118,6 +2182,8 @@ type PollForTaskInput struct {
 	// You can only specify a single value for workerGroup in the call to PollForTask.
 	// There are no wildcard values permitted in workerGroup; the string must be
 	// an exact, case-sensitive, match.
+	//
+	// WorkerGroup is a required field
 	WorkerGroup *string `locationName:"workerGroup" type:"string" required:"true"`
 }
 
@@ -2179,10 +2245,14 @@ type PutPipelineDefinitionInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The objects that define the pipeline. These objects overwrite the existing
 	// pipeline definition.
+	//
+	// PipelineObjects is a required field
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 }
 
@@ -2252,6 +2322,8 @@ type PutPipelineDefinitionOutput struct {
 	// Indicates whether there were validation errors, and the pipeline definition
 	// is stored but cannot be activated until you correct the pipeline and call
 	// PutPipelineDefinition to commit the corrected pipeline.
+	//
+	// Errored is a required field
 	Errored *bool `locationName:"errored" type:"boolean" required:"true"`
 
 	// The validation errors that are associated with the objects defined in pipelineObjects.
@@ -2305,6 +2377,8 @@ type QueryObjectsInput struct {
 	Marker *string `locationName:"marker" type:"string"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The query that defines the objects to be returned. The Query object can contain
@@ -2315,6 +2389,8 @@ type QueryObjectsInput struct {
 
 	// Indicates whether the query applies to components or instances. The possible
 	// values are: COMPONENT, INSTANCE, and ATTEMPT.
+	//
+	// Sphere is a required field
 	Sphere *string `locationName:"sphere" type:"string" required:"true"`
 }
 
@@ -2379,9 +2455,13 @@ type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The keys of the tags to remove.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
 }
 
@@ -2439,6 +2519,8 @@ type ReportTaskProgressInput struct {
 
 	// The ID of the task assigned to the task runner. This value is provided in
 	// the response for PollForTask.
+	//
+	// TaskId is a required field
 	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
 }
 
@@ -2484,6 +2566,8 @@ type ReportTaskProgressOutput struct {
 
 	// If true, the calling task runner should cancel processing of the task. The
 	// task runner does not need to call SetTaskStatus for canceled tasks.
+	//
+	// Canceled is a required field
 	Canceled *bool `locationName:"canceled" type:"boolean" required:"true"`
 }
 
@@ -2509,6 +2593,8 @@ type ReportTaskRunnerHeartbeatInput struct {
 	// by AWS Data Pipeline, the web service provides a unique identifier when it
 	// launches the application. If you have written a custom task runner, you should
 	// assign a unique identifier for the task runner.
+	//
+	// TaskrunnerId is a required field
 	TaskrunnerId *string `locationName:"taskrunnerId" min:"1" type:"string" required:"true"`
 
 	// The type of task the task runner is configured to accept and process. The
@@ -2553,6 +2639,8 @@ type ReportTaskRunnerHeartbeatOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether the calling task runner should terminate.
+	//
+	// Terminate is a required field
 	Terminate *bool `locationName:"terminate" type:"boolean" required:"true"`
 }
 
@@ -2598,13 +2686,19 @@ type SetStatusInput struct {
 
 	// The IDs of the objects. The corresponding objects can be either physical
 	// or components, but not a mix of both types.
+	//
+	// ObjectIds is a required field
 	ObjectIds []*string `locationName:"objectIds" type:"list" required:"true"`
 
 	// The ID of the pipeline that contains the objects.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The status to be set on all the objects specified in objectIds. For components,
 	// use PAUSE or RESUME. For instances, use TRY_CANCEL, RERUN, or MARK_FINISHED.
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
 }
 
@@ -2678,10 +2772,14 @@ type SetTaskStatusInput struct {
 
 	// The ID of the task assigned to the task runner. This value is provided in
 	// the response for PollForTask.
+	//
+	// TaskId is a required field
 	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
 
 	// If FINISHED, the task successfully completed. If FAILED, the task ended unsuccessfully.
 	// Preconditions use false.
+	//
+	// TaskStatus is a required field
 	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true" enum:"TaskStatus"`
 }
 
@@ -2740,11 +2838,15 @@ type Tag struct {
 	// The key name of a tag defined by a user. For more information, see Controlling
 	// User Access to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
 	// in the AWS Data Pipeline Developer Guide.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The optional value portion of a tag defined by a user. For more information,
 	// see Controlling User Access to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
 	// in the AWS Data Pipeline Developer Guide.
+	//
+	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
@@ -2818,9 +2920,13 @@ type ValidatePipelineDefinitionInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
+	//
+	// PipelineId is a required field
 	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The objects that define the pipeline changes to validate against the pipeline.
+	//
+	// PipelineObjects is a required field
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
 }
 
@@ -2888,6 +2994,8 @@ type ValidatePipelineDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether there were validation errors.
+	//
+	// Errored is a required field
 	Errored *bool `locationName:"errored" type:"boolean" required:"true"`
 
 	// Any validation errors that were found.
@@ -2954,23 +3062,29 @@ func (s ValidationWarning) GoString() string {
 }
 
 const (
-	// @enum OperatorType
+	// OperatorTypeEq is a OperatorType enum value
 	OperatorTypeEq = "EQ"
-	// @enum OperatorType
+
+	// OperatorTypeRefEq is a OperatorType enum value
 	OperatorTypeRefEq = "REF_EQ"
-	// @enum OperatorType
+
+	// OperatorTypeLe is a OperatorType enum value
 	OperatorTypeLe = "LE"
-	// @enum OperatorType
+
+	// OperatorTypeGe is a OperatorType enum value
 	OperatorTypeGe = "GE"
-	// @enum OperatorType
+
+	// OperatorTypeBetween is a OperatorType enum value
 	OperatorTypeBetween = "BETWEEN"
 )
 
 const (
-	// @enum TaskStatus
+	// TaskStatusFinished is a TaskStatus enum value
 	TaskStatusFinished = "FINISHED"
-	// @enum TaskStatus
+
+	// TaskStatusFailed is a TaskStatus enum value
 	TaskStatusFailed = "FAILED"
-	// @enum TaskStatus
+
+	// TaskStatusFalse is a TaskStatus enum value
 	TaskStatusFalse = "FALSE"
 )

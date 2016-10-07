@@ -1444,6 +1444,8 @@ type CancelUpdateStackInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name or the unique stack ID that is associated with the stack.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -1576,6 +1578,8 @@ type ContinueUpdateRollbackInput struct {
 
 	// The name or the unique ID of the stack that you want to continue rolling
 	// back.
+	//
+	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1659,6 +1663,8 @@ type CreateChangeSetInput struct {
 	// A change set name can contain only alphanumeric, case sensitive characters
 	// and hyphens. It must start with an alphabetic character and cannot exceed
 	// 128 characters.
+	//
+	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for this CreateChangeSet request. Specify this token
@@ -1710,6 +1716,8 @@ type CreateChangeSetInput struct {
 	// set. AWS CloudFormation generates the change set by comparing this stack's
 	// information with the information that you submit, such as a modified template
 	// or different parameter input values.
+	//
+	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 
 	// Key-value pairs to associate with this stack. AWS CloudFormation also propagates
@@ -1890,6 +1898,8 @@ type CreateStackInput struct {
 	//  A stack name can contain only alphanumeric characters (case sensitive)
 	// and hyphens. It must start with an alphabetic character and cannot be longer
 	// than 128 characters.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing the stack policy body. For more information, go to
@@ -1998,6 +2008,8 @@ type DeleteChangeSetInput struct {
 
 	// The name or Amazon Resource Name (ARN) of the change set that you want to
 	// delete.
+	//
+	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
 
 	// If you specified the name of a change set to delete, specify the stack name
@@ -2071,6 +2083,8 @@ type DeleteStackInput struct {
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -2174,6 +2188,8 @@ type DescribeChangeSetInput struct {
 
 	// The name or Amazon Resource Name (ARN) of the change set that you want to
 	// describe.
+	//
+	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
 
 	// A string (provided by the DescribeChangeSet response output) that identifies
@@ -2362,6 +2378,8 @@ type DescribeStackResourceInput struct {
 	// The logical name of the resource as specified in the template.
 	//
 	// Default: There is no default value.
+	//
+	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The name or the unique stack ID that is associated with the stack, which
@@ -2373,6 +2391,8 @@ type DescribeStackResourceInput struct {
 	//   Deleted stacks: You must specify the unique stack ID.
 	//
 	//   Default: There is no default value.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -2628,6 +2648,8 @@ type ExecuteChangeSetInput struct {
 
 	// The name or ARN of the change set that you want use to update the specified
 	// stack.
+	//
+	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
 
 	// If you specified the name of a change set, specify the stack name or ID (ARN)
@@ -2685,6 +2707,8 @@ type GetStackPolicyInput struct {
 
 	// The name or unique stack ID that is associated with the stack whose policy
 	// you want to get.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -2744,6 +2768,8 @@ type GetTemplateInput struct {
 	//   Deleted stacks: You must specify the unique stack ID.
 	//
 	//   Default: There is no default value.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -2911,6 +2937,8 @@ type ListChangeSetsInput struct {
 
 	// The name or the Amazon Resource Name (ARN) of the stack for which you want
 	// to list change sets.
+	//
+	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2983,6 +3011,8 @@ type ListStackResourcesInput struct {
 	//   Deleted stacks: You must specify the unique stack ID.
 	//
 	//   Default: There is no default value.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 }
 
@@ -3356,6 +3386,8 @@ type SetStackPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name or unique stack ID that you want to associate a policy with.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing the stack policy body. For more information, go to
@@ -3420,20 +3452,28 @@ type SignalResourceInput struct {
 
 	// The logical ID of the resource that you want to signal. The logical ID is
 	// the name of the resource that given in the template.
+	//
+	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The stack name or unique stack ID that includes the resource that you want
 	// to signal.
+	//
+	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
 
 	// The status of the signal, which is either success or failure. A failure signal
 	// causes AWS CloudFormation to immediately fail the stack creation or update.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ResourceSignalStatus"`
 
 	// A unique ID of the signal. When you signal Amazon EC2 instances or Auto Scaling
 	// groups, specify the instance ID that you are signaling as the unique ID.
 	// If you send multiple signals to a single resource (such as signaling a wait
 	// condition), each signal requires a different unique ID.
+	//
+	// UniqueId is a required field
 	UniqueId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3497,6 +3537,8 @@ type Stack struct {
 	Capabilities []*string `type:"list"`
 
 	// The time at which the stack was created.
+	//
+	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// A user-defined description associated with the stack.
@@ -3531,9 +3573,13 @@ type Stack struct {
 	StackId *string `type:"string"`
 
 	// The name associated with the stack.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 
 	// Current status of the stack.
+	//
+	// StackStatus is a required field
 	StackStatus *string `type:"string" required:"true" enum:"StackStatus"`
 
 	// Success/failure message associated with the stack status.
@@ -3561,6 +3607,8 @@ type StackEvent struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID of this event.
+	//
+	// EventId is a required field
 	EventId *string `type:"string" required:"true"`
 
 	// The logical name of the resource specified in the template.
@@ -3585,12 +3633,18 @@ type StackEvent struct {
 	ResourceType *string `min:"1" type:"string"`
 
 	// The unique ID name of the instance of the stack.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 
 	// The name associated with a stack.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 
 	// Time the status was updated.
+	//
+	// Timestamp is a required field
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -3612,6 +3666,8 @@ type StackResource struct {
 	Description *string `min:"1" type:"string"`
 
 	// The logical name of the resource specified in the template.
+	//
+	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The name or unique identifier that corresponds to a physical instance ID
@@ -3619,6 +3675,8 @@ type StackResource struct {
 	PhysicalResourceId *string `type:"string"`
 
 	// Current status of the resource.
+	//
+	// ResourceStatus is a required field
 	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
@@ -3627,6 +3685,8 @@ type StackResource struct {
 	// Type of resource. (For more information, go to  AWS Resource Types Reference
 	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 	// in the AWS CloudFormation User Guide.)
+	//
+	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 
 	// Unique identifier of the stack.
@@ -3636,6 +3696,8 @@ type StackResource struct {
 	StackName *string `type:"string"`
 
 	// Time the status was updated.
+	//
+	// Timestamp is a required field
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -3657,9 +3719,13 @@ type StackResourceDetail struct {
 	Description *string `min:"1" type:"string"`
 
 	// Time the status was updated.
+	//
+	// LastUpdatedTimestamp is a required field
 	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The logical name of the resource specified in the template.
+	//
+	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The content of the Metadata attribute declared for the resource. For more
@@ -3672,6 +3738,8 @@ type StackResourceDetail struct {
 	PhysicalResourceId *string `type:"string"`
 
 	// Current status of the resource.
+	//
+	// ResourceStatus is a required field
 	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
@@ -3680,6 +3748,8 @@ type StackResourceDetail struct {
 	// Type of resource. ((For more information, go to  AWS Resource Types Reference
 	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 	// in the AWS CloudFormation User Guide.)
+	//
+	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 
 	// Unique identifier of the stack.
@@ -3704,9 +3774,13 @@ type StackResourceSummary struct {
 	_ struct{} `type:"structure"`
 
 	// Time the status was updated.
+	//
+	// LastUpdatedTimestamp is a required field
 	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The logical name of the resource specified in the template.
+	//
+	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The name or unique identifier that corresponds to a physical instance ID
@@ -3714,6 +3788,8 @@ type StackResourceSummary struct {
 	PhysicalResourceId *string `type:"string"`
 
 	// Current status of the resource.
+	//
+	// ResourceStatus is a required field
 	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
@@ -3722,6 +3798,8 @@ type StackResourceSummary struct {
 	// Type of resource. (For more information, go to  AWS Resource Types Reference
 	// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 	// in the AWS CloudFormation User Guide.)
+	//
+	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3740,6 +3818,8 @@ type StackSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The time the stack was created.
+	//
+	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The time the stack was deleted.
@@ -3753,9 +3833,13 @@ type StackSummary struct {
 	StackId *string `type:"string"`
 
 	// The name associated with the stack.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 
 	// The current status of the stack.
+	//
+	// StackStatus is a required field
 	StackStatus *string `type:"string" required:"true" enum:"StackStatus"`
 
 	// Success/Failure message associated with the stack status.
@@ -3893,6 +3977,8 @@ type UpdateStackInput struct {
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name or unique stack ID of the stack to update.
+	//
+	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
 
 	// Structure containing a new stack policy body. You can specify either the
@@ -4111,177 +4197,230 @@ func (s ValidateTemplateOutput) GoString() string {
 }
 
 const (
-	// @enum Capability
+	// CapabilityCapabilityIam is a Capability enum value
 	CapabilityCapabilityIam = "CAPABILITY_IAM"
-	// @enum Capability
+
+	// CapabilityCapabilityNamedIam is a Capability enum value
 	CapabilityCapabilityNamedIam = "CAPABILITY_NAMED_IAM"
 )
 
 const (
-	// @enum ChangeAction
+	// ChangeActionAdd is a ChangeAction enum value
 	ChangeActionAdd = "Add"
-	// @enum ChangeAction
+
+	// ChangeActionModify is a ChangeAction enum value
 	ChangeActionModify = "Modify"
-	// @enum ChangeAction
+
+	// ChangeActionRemove is a ChangeAction enum value
 	ChangeActionRemove = "Remove"
 )
 
 const (
-	// @enum ChangeSetStatus
+	// ChangeSetStatusCreatePending is a ChangeSetStatus enum value
 	ChangeSetStatusCreatePending = "CREATE_PENDING"
-	// @enum ChangeSetStatus
+
+	// ChangeSetStatusCreateInProgress is a ChangeSetStatus enum value
 	ChangeSetStatusCreateInProgress = "CREATE_IN_PROGRESS"
-	// @enum ChangeSetStatus
+
+	// ChangeSetStatusCreateComplete is a ChangeSetStatus enum value
 	ChangeSetStatusCreateComplete = "CREATE_COMPLETE"
-	// @enum ChangeSetStatus
+
+	// ChangeSetStatusDeleteComplete is a ChangeSetStatus enum value
 	ChangeSetStatusDeleteComplete = "DELETE_COMPLETE"
-	// @enum ChangeSetStatus
+
+	// ChangeSetStatusFailed is a ChangeSetStatus enum value
 	ChangeSetStatusFailed = "FAILED"
 )
 
 const (
-	// @enum ChangeSource
+	// ChangeSourceResourceReference is a ChangeSource enum value
 	ChangeSourceResourceReference = "ResourceReference"
-	// @enum ChangeSource
+
+	// ChangeSourceParameterReference is a ChangeSource enum value
 	ChangeSourceParameterReference = "ParameterReference"
-	// @enum ChangeSource
+
+	// ChangeSourceResourceAttribute is a ChangeSource enum value
 	ChangeSourceResourceAttribute = "ResourceAttribute"
-	// @enum ChangeSource
+
+	// ChangeSourceDirectModification is a ChangeSource enum value
 	ChangeSourceDirectModification = "DirectModification"
-	// @enum ChangeSource
+
+	// ChangeSourceAutomatic is a ChangeSource enum value
 	ChangeSourceAutomatic = "Automatic"
 )
 
 const (
-	// @enum ChangeType
+	// ChangeTypeResource is a ChangeType enum value
 	ChangeTypeResource = "Resource"
 )
 
 const (
-	// @enum EvaluationType
+	// EvaluationTypeStatic is a EvaluationType enum value
 	EvaluationTypeStatic = "Static"
-	// @enum EvaluationType
+
+	// EvaluationTypeDynamic is a EvaluationType enum value
 	EvaluationTypeDynamic = "Dynamic"
 )
 
 const (
-	// @enum ExecutionStatus
+	// ExecutionStatusUnavailable is a ExecutionStatus enum value
 	ExecutionStatusUnavailable = "UNAVAILABLE"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusAvailable is a ExecutionStatus enum value
 	ExecutionStatusAvailable = "AVAILABLE"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusExecuteInProgress is a ExecutionStatus enum value
 	ExecutionStatusExecuteInProgress = "EXECUTE_IN_PROGRESS"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusExecuteComplete is a ExecutionStatus enum value
 	ExecutionStatusExecuteComplete = "EXECUTE_COMPLETE"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusExecuteFailed is a ExecutionStatus enum value
 	ExecutionStatusExecuteFailed = "EXECUTE_FAILED"
-	// @enum ExecutionStatus
+
+	// ExecutionStatusObsolete is a ExecutionStatus enum value
 	ExecutionStatusObsolete = "OBSOLETE"
 )
 
 const (
-	// @enum OnFailure
+	// OnFailureDoNothing is a OnFailure enum value
 	OnFailureDoNothing = "DO_NOTHING"
-	// @enum OnFailure
+
+	// OnFailureRollback is a OnFailure enum value
 	OnFailureRollback = "ROLLBACK"
-	// @enum OnFailure
+
+	// OnFailureDelete is a OnFailure enum value
 	OnFailureDelete = "DELETE"
 )
 
 const (
-	// @enum Replacement
+	// ReplacementTrue is a Replacement enum value
 	ReplacementTrue = "True"
-	// @enum Replacement
+
+	// ReplacementFalse is a Replacement enum value
 	ReplacementFalse = "False"
-	// @enum Replacement
+
+	// ReplacementConditional is a Replacement enum value
 	ReplacementConditional = "Conditional"
 )
 
 const (
-	// @enum RequiresRecreation
+	// RequiresRecreationNever is a RequiresRecreation enum value
 	RequiresRecreationNever = "Never"
-	// @enum RequiresRecreation
+
+	// RequiresRecreationConditionally is a RequiresRecreation enum value
 	RequiresRecreationConditionally = "Conditionally"
-	// @enum RequiresRecreation
+
+	// RequiresRecreationAlways is a RequiresRecreation enum value
 	RequiresRecreationAlways = "Always"
 )
 
 const (
-	// @enum ResourceAttribute
+	// ResourceAttributeProperties is a ResourceAttribute enum value
 	ResourceAttributeProperties = "Properties"
-	// @enum ResourceAttribute
+
+	// ResourceAttributeMetadata is a ResourceAttribute enum value
 	ResourceAttributeMetadata = "Metadata"
-	// @enum ResourceAttribute
+
+	// ResourceAttributeCreationPolicy is a ResourceAttribute enum value
 	ResourceAttributeCreationPolicy = "CreationPolicy"
-	// @enum ResourceAttribute
+
+	// ResourceAttributeUpdatePolicy is a ResourceAttribute enum value
 	ResourceAttributeUpdatePolicy = "UpdatePolicy"
-	// @enum ResourceAttribute
+
+	// ResourceAttributeDeletionPolicy is a ResourceAttribute enum value
 	ResourceAttributeDeletionPolicy = "DeletionPolicy"
-	// @enum ResourceAttribute
+
+	// ResourceAttributeTags is a ResourceAttribute enum value
 	ResourceAttributeTags = "Tags"
 )
 
 const (
-	// @enum ResourceSignalStatus
+	// ResourceSignalStatusSuccess is a ResourceSignalStatus enum value
 	ResourceSignalStatusSuccess = "SUCCESS"
-	// @enum ResourceSignalStatus
+
+	// ResourceSignalStatusFailure is a ResourceSignalStatus enum value
 	ResourceSignalStatusFailure = "FAILURE"
 )
 
 const (
-	// @enum ResourceStatus
+	// ResourceStatusCreateInProgress is a ResourceStatus enum value
 	ResourceStatusCreateInProgress = "CREATE_IN_PROGRESS"
-	// @enum ResourceStatus
+
+	// ResourceStatusCreateFailed is a ResourceStatus enum value
 	ResourceStatusCreateFailed = "CREATE_FAILED"
-	// @enum ResourceStatus
+
+	// ResourceStatusCreateComplete is a ResourceStatus enum value
 	ResourceStatusCreateComplete = "CREATE_COMPLETE"
-	// @enum ResourceStatus
+
+	// ResourceStatusDeleteInProgress is a ResourceStatus enum value
 	ResourceStatusDeleteInProgress = "DELETE_IN_PROGRESS"
-	// @enum ResourceStatus
+
+	// ResourceStatusDeleteFailed is a ResourceStatus enum value
 	ResourceStatusDeleteFailed = "DELETE_FAILED"
-	// @enum ResourceStatus
+
+	// ResourceStatusDeleteComplete is a ResourceStatus enum value
 	ResourceStatusDeleteComplete = "DELETE_COMPLETE"
-	// @enum ResourceStatus
+
+	// ResourceStatusDeleteSkipped is a ResourceStatus enum value
 	ResourceStatusDeleteSkipped = "DELETE_SKIPPED"
-	// @enum ResourceStatus
+
+	// ResourceStatusUpdateInProgress is a ResourceStatus enum value
 	ResourceStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
-	// @enum ResourceStatus
+
+	// ResourceStatusUpdateFailed is a ResourceStatus enum value
 	ResourceStatusUpdateFailed = "UPDATE_FAILED"
-	// @enum ResourceStatus
+
+	// ResourceStatusUpdateComplete is a ResourceStatus enum value
 	ResourceStatusUpdateComplete = "UPDATE_COMPLETE"
 )
 
 const (
-	// @enum StackStatus
+	// StackStatusCreateInProgress is a StackStatus enum value
 	StackStatusCreateInProgress = "CREATE_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusCreateFailed is a StackStatus enum value
 	StackStatusCreateFailed = "CREATE_FAILED"
-	// @enum StackStatus
+
+	// StackStatusCreateComplete is a StackStatus enum value
 	StackStatusCreateComplete = "CREATE_COMPLETE"
-	// @enum StackStatus
+
+	// StackStatusRollbackInProgress is a StackStatus enum value
 	StackStatusRollbackInProgress = "ROLLBACK_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusRollbackFailed is a StackStatus enum value
 	StackStatusRollbackFailed = "ROLLBACK_FAILED"
-	// @enum StackStatus
+
+	// StackStatusRollbackComplete is a StackStatus enum value
 	StackStatusRollbackComplete = "ROLLBACK_COMPLETE"
-	// @enum StackStatus
+
+	// StackStatusDeleteInProgress is a StackStatus enum value
 	StackStatusDeleteInProgress = "DELETE_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusDeleteFailed is a StackStatus enum value
 	StackStatusDeleteFailed = "DELETE_FAILED"
-	// @enum StackStatus
+
+	// StackStatusDeleteComplete is a StackStatus enum value
 	StackStatusDeleteComplete = "DELETE_COMPLETE"
-	// @enum StackStatus
+
+	// StackStatusUpdateInProgress is a StackStatus enum value
 	StackStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusUpdateCompleteCleanupInProgress is a StackStatus enum value
 	StackStatusUpdateCompleteCleanupInProgress = "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusUpdateComplete is a StackStatus enum value
 	StackStatusUpdateComplete = "UPDATE_COMPLETE"
-	// @enum StackStatus
+
+	// StackStatusUpdateRollbackInProgress is a StackStatus enum value
 	StackStatusUpdateRollbackInProgress = "UPDATE_ROLLBACK_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusUpdateRollbackFailed is a StackStatus enum value
 	StackStatusUpdateRollbackFailed = "UPDATE_ROLLBACK_FAILED"
-	// @enum StackStatus
+
+	// StackStatusUpdateRollbackCompleteCleanupInProgress is a StackStatus enum value
 	StackStatusUpdateRollbackCompleteCleanupInProgress = "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS"
-	// @enum StackStatus
+
+	// StackStatusUpdateRollbackComplete is a StackStatus enum value
 	StackStatusUpdateRollbackComplete = "UPDATE_ROLLBACK_COMPLETE"
 )

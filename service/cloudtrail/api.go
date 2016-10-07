@@ -646,6 +646,8 @@ type AddTagsInput struct {
 	// format of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// Contains a list of CloudTrail tags, up to a limit of 10.
@@ -763,10 +765,14 @@ type CreateTrailInput struct {
 	// and my--namespace are invalid.
 	//
 	//   Not be in IP address format (for example, 192.168.5.4)
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// Specifies the name of the Amazon S3 bucket designated for publishing log
 	// files. See Amazon S3 Bucket Naming Requirements (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).
+	//
+	// S3BucketName is a required field
 	S3BucketName *string `type:"string" required:"true"`
 
 	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
@@ -881,6 +887,8 @@ type DeleteTrailInput struct {
 	// format of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1027,6 +1035,8 @@ type GetTrailStatusInput struct {
 	// another region), you must specify its ARN. The format of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1207,6 +1217,8 @@ type ListTagsInput struct {
 	// limit of 20 ARNs. The format of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// ResourceIdList is a required field
 	ResourceIdList []*string `type:"list" required:"true"`
 }
 
@@ -1260,9 +1272,13 @@ type LookupAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies an attribute on which to filter the events returned.
+	//
+	// AttributeKey is a required field
 	AttributeKey *string `type:"string" required:"true" enum:"LookupAttributeKey"`
 
 	// Specifies a value for the specified AttributeKey.
+	//
+	// AttributeValue is a required field
 	AttributeValue *string `type:"string" required:"true"`
 }
 
@@ -1419,6 +1435,8 @@ type RemoveTagsInput struct {
 	// of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// Specifies a list of tags to be removed.
@@ -1531,6 +1549,8 @@ type StartLoggingInput struct {
 	// logs AWS API calls. The format of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1582,6 +1602,8 @@ type StopLoggingInput struct {
 	// will stop logging AWS API calls. The format of a trail ARN is:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1630,6 +1652,8 @@ type Tag struct {
 
 	// The key in a key-value pair. The key must be must be no longer than 128 Unicode
 	// characters. The key must be unique for the resource to which it applies.
+	//
+	// Key is a required field
 	Key *string `type:"string" required:"true"`
 
 	// The value in a key-value pair of a tag. The value must be no longer than
@@ -1799,6 +1823,8 @@ type UpdateTrailInput struct {
 	//   If Name is a trail ARN, it must be in the format:
 	//
 	//  arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// Specifies the name of the Amazon S3 bucket designated for publishing log
@@ -1907,14 +1933,18 @@ func (s UpdateTrailOutput) GoString() string {
 }
 
 const (
-	// @enum LookupAttributeKey
+	// LookupAttributeKeyEventId is a LookupAttributeKey enum value
 	LookupAttributeKeyEventId = "EventId"
-	// @enum LookupAttributeKey
+
+	// LookupAttributeKeyEventName is a LookupAttributeKey enum value
 	LookupAttributeKeyEventName = "EventName"
-	// @enum LookupAttributeKey
+
+	// LookupAttributeKeyUsername is a LookupAttributeKey enum value
 	LookupAttributeKeyUsername = "Username"
-	// @enum LookupAttributeKey
+
+	// LookupAttributeKeyResourceType is a LookupAttributeKey enum value
 	LookupAttributeKeyResourceType = "ResourceType"
-	// @enum LookupAttributeKey
+
+	// LookupAttributeKeyResourceName is a LookupAttributeKey enum value
 	LookupAttributeKeyResourceName = "ResourceName"
 )

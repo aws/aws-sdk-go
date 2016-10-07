@@ -503,9 +503,13 @@ type Alarm struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the alarm.
+	//
+	// AlarmARN is a required field
 	AlarmARN *string `type:"string" required:"true"`
 
 	// The name of the alarm.
+	//
+	// AlarmName is a required field
 	AlarmName *string `type:"string" required:"true"`
 }
 
@@ -523,6 +527,8 @@ type DeleteScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the scaling policy to delete.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The resource type and unique identifier string for the resource associated
@@ -530,6 +536,8 @@ type DeleteScalingPolicyInput struct {
 	// and the identifier is the cluster name and service name; for example, service/default/sample-webapp.
 	// For Amazon EC2 Spot fleet requests, the resource type is spot-fleet-request,
 	// and the identifier is the Spot fleet request ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The scalable dimension associated with the scaling policy. The scalable dimension
@@ -537,11 +545,15 @@ type DeleteScalingPolicyInput struct {
 	// as ecs:service:DesiredCount for the desired task count of an Amazon ECS service,
 	// or ec2:spot-fleet-request:TargetCapacity for the target capacity of an Amazon
 	// EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The namespace for the AWS service that the scaling policy is associated with.
 	// For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -605,6 +617,8 @@ type DeregisterScalableTargetInput struct {
 	// and the identifier is the cluster name and service name; for example, service/default/sample-webapp.
 	// For Amazon EC2 Spot fleet requests, the resource type is spot-fleet-request,
 	// and the identifier is the Spot fleet request ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The scalable dimension associated with the scalable target. The scalable
@@ -612,11 +626,15 @@ type DeregisterScalableTargetInput struct {
 	// such as ecs:service:DesiredCount for the desired task count of an Amazon
 	// ECS service, or ec2:spot-fleet-request:TargetCapacity for the target capacity
 	// of an Amazon EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The namespace for the AWS service that the scalable target is associated
 	// with. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -704,6 +722,8 @@ type DescribeScalableTargetsInput struct {
 	// The namespace for the AWS service that the scalable target is associated
 	// with. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -792,6 +812,8 @@ type DescribeScalingActivitiesInput struct {
 	// The namespace for the AWS service that the scaling activity is associated
 	// with. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -886,6 +908,8 @@ type DescribeScalingPoliciesInput struct {
 	// The AWS service namespace of the scalable target that the scaling policy
 	// is associated with. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -942,6 +966,8 @@ type PutScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the scaling policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The policy type. If you are creating a new policy, this parameter is required.
@@ -953,6 +979,8 @@ type PutScalingPolicyInput struct {
 	// and the identifier is the cluster name and service name; for example, service/default/sample-webapp.
 	// For Amazon EC2 Spot fleet requests, the resource type is spot-fleet-request,
 	// and the identifier is the Spot fleet request ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The scalable dimension of the scalable target that this scaling policy applies
@@ -960,11 +988,15 @@ type PutScalingPolicyInput struct {
 	// and scaling property, such as ecs:service:DesiredCount for the desired task
 	// count of an Amazon ECS service, or ec2:spot-fleet-request:TargetCapacity
 	// for the target capacity of an Amazon EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The AWS service namespace of the scalable target that this scaling policy
 	// applies to. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 
 	// The configuration for the step scaling policy. If you are creating a new
@@ -1021,6 +1053,8 @@ type PutScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resulting scaling policy.
+	//
+	// PolicyARN is a required field
 	PolicyARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1052,6 +1086,8 @@ type RegisterScalableTargetInput struct {
 	// and the identifier is the cluster name and service name; for example, service/default/sample-webapp.
 	// For Amazon EC2 Spot fleet requests, the resource type is spot-fleet-request,
 	// and the identifier is the Spot fleet request ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The ARN of the IAM role that allows Application Auto Scaling to modify your
@@ -1065,12 +1101,16 @@ type RegisterScalableTargetInput struct {
 	// such as ecs:service:DesiredCount for the desired task count of an Amazon
 	// ECS service, or ec2:spot-fleet-request:TargetCapacity for the target capacity
 	// of an Amazon EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The namespace for the AWS service that the scalable target is associated
 	// with. For Amazon ECS services, the namespace value is ecs. For more information,
 	// see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -1128,14 +1168,20 @@ type ScalableTarget struct {
 	_ struct{} `type:"structure"`
 
 	// The Unix timestamp for when the scalable target was created.
+	//
+	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The maximum value for this scalable target to scale out to in response to
 	// scaling activities.
+	//
+	// MaxCapacity is a required field
 	MaxCapacity *int64 `type:"integer" required:"true"`
 
 	// The minimum value for this scalable target to scale in to in response to
 	// scaling activities.
+	//
+	// MinCapacity is a required field
 	MinCapacity *int64 `type:"integer" required:"true"`
 
 	// The resource type and unique identifier string for the resource associated
@@ -1143,10 +1189,14 @@ type ScalableTarget struct {
 	// and the identifier is the cluster name and service name; for example, service/default/sample-webapp.
 	// For Amazon EC2 Spot fleet requests, the resource type is spot-fleet-request,
 	// and the identifier is the Spot fleet request ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The ARN of the IAM role that allows Application Auto Scaling to modify your
 	// scalable target on your behalf.
+	//
+	// RoleARN is a required field
 	RoleARN *string `min:"1" type:"string" required:"true"`
 
 	// The scalable dimension associated with the scalable target. The scalable
@@ -1154,11 +1204,15 @@ type ScalableTarget struct {
 	// such as ecs:service:DesiredCount for the desired task count of an Amazon
 	// ECS service, or ec2:spot-fleet-request:TargetCapacity for the target capacity
 	// of an Amazon EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The namespace for the AWS service that the scalable target is associated
 	// with. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 }
 
@@ -1177,12 +1231,18 @@ type ScalingActivity struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier string for the scaling activity.
+	//
+	// ActivityId is a required field
 	ActivityId *string `type:"string" required:"true"`
 
 	// A simple description of what caused the scaling activity to happen.
+	//
+	// Cause is a required field
 	Cause *string `type:"string" required:"true"`
 
 	// A simple description of what action the scaling activity intends to accomplish.
+	//
+	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
 	// The details about the scaling activity.
@@ -1197,6 +1257,8 @@ type ScalingActivity struct {
 	// service/default/sample-webapp. For Amazon EC2 Spot fleet requests, the resource
 	// type is spot-fleet-request, and the identifier is the Spot fleet request
 	// ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The scalable dimension associated with the scaling activity. The scalable
@@ -1204,17 +1266,25 @@ type ScalingActivity struct {
 	// such as ecs:service:DesiredCount for the desired task count of an Amazon
 	// ECS service, or ec2:spot-fleet-request:TargetCapacity for the target capacity
 	// of an Amazon EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The namespace for the AWS service that the scaling activity is associated
 	// with. For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 
 	// The Unix timestamp for when the scaling activity began.
+	//
+	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// Indicates the status of the scaling activity.
+	//
+	// StatusCode is a required field
 	StatusCode *string `type:"string" required:"true" enum:"ScalingActivityStatusCode"`
 
 	// A simple message about the current status of the scaling activity.
@@ -1239,15 +1309,23 @@ type ScalingPolicy struct {
 	Alarms []*Alarm `type:"list"`
 
 	// The Unix timestamp for when the scaling policy was created.
+	//
+	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the scaling policy.
+	//
+	// PolicyARN is a required field
 	PolicyARN *string `min:"1" type:"string" required:"true"`
 
 	// The name of the scaling policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The scaling policy type.
+	//
+	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
 
 	// The resource type and unique identifier string for the resource associated
@@ -1255,6 +1333,8 @@ type ScalingPolicy struct {
 	// and the identifier is the cluster name and service name; for example, service/default/sample-webapp.
 	// For Amazon EC2 Spot fleet requests, the resource type is spot-fleet-request,
 	// and the identifier is the Spot fleet request ID; for example, spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//
+	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
 	// The scalable dimension associated with the scaling policy. The scalable dimension
@@ -1262,11 +1342,15 @@ type ScalingPolicy struct {
 	// as ecs:service:DesiredCount for the desired task count of an Amazon ECS service,
 	// or ec2:spot-fleet-request:TargetCapacity for the target capacity of an Amazon
 	// EC2 Spot fleet request.
+	//
+	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
 	// The namespace for the AWS service that the scaling policy is associated with.
 	// For more information, see AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)
 	// in the Amazon Web Services General Reference.
+	//
+	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 
 	// The configuration for the step scaling policy.
@@ -1335,6 +1419,8 @@ type StepAdjustment struct {
 	// The amount by which to scale, based on the specified adjustment type. A positive
 	// value adds to the current scalable dimension while a negative number removes
 	// from the current scalable dimension.
+	//
+	// ScalingAdjustment is a required field
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 }
 
@@ -1437,53 +1523,64 @@ func (s *StepScalingPolicyConfiguration) Validate() error {
 }
 
 const (
-	// @enum AdjustmentType
+	// AdjustmentTypeChangeInCapacity is a AdjustmentType enum value
 	AdjustmentTypeChangeInCapacity = "ChangeInCapacity"
-	// @enum AdjustmentType
+
+	// AdjustmentTypePercentChangeInCapacity is a AdjustmentType enum value
 	AdjustmentTypePercentChangeInCapacity = "PercentChangeInCapacity"
-	// @enum AdjustmentType
+
+	// AdjustmentTypeExactCapacity is a AdjustmentType enum value
 	AdjustmentTypeExactCapacity = "ExactCapacity"
 )
 
 const (
-	// @enum MetricAggregationType
+	// MetricAggregationTypeAverage is a MetricAggregationType enum value
 	MetricAggregationTypeAverage = "Average"
-	// @enum MetricAggregationType
+
+	// MetricAggregationTypeMinimum is a MetricAggregationType enum value
 	MetricAggregationTypeMinimum = "Minimum"
-	// @enum MetricAggregationType
+
+	// MetricAggregationTypeMaximum is a MetricAggregationType enum value
 	MetricAggregationTypeMaximum = "Maximum"
 )
 
 const (
-	// @enum PolicyType
+	// PolicyTypeStepScaling is a PolicyType enum value
 	PolicyTypeStepScaling = "StepScaling"
 )
 
 const (
-	// @enum ScalableDimension
+	// ScalableDimensionEcsServiceDesiredCount is a ScalableDimension enum value
 	ScalableDimensionEcsServiceDesiredCount = "ecs:service:DesiredCount"
-	// @enum ScalableDimension
+
+	// ScalableDimensionEc2SpotFleetRequestTargetCapacity is a ScalableDimension enum value
 	ScalableDimensionEc2SpotFleetRequestTargetCapacity = "ec2:spot-fleet-request:TargetCapacity"
 )
 
 const (
-	// @enum ScalingActivityStatusCode
+	// ScalingActivityStatusCodePending is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodePending = "Pending"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeInProgress is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeInProgress = "InProgress"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeSuccessful is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeSuccessful = "Successful"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeOverridden is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeOverridden = "Overridden"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeUnfulfilled is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeUnfulfilled = "Unfulfilled"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeFailed is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeFailed = "Failed"
 )
 
 const (
-	// @enum ServiceNamespace
+	// ServiceNamespaceEcs is a ServiceNamespace enum value
 	ServiceNamespaceEcs = "ecs"
-	// @enum ServiceNamespace
+
+	// ServiceNamespaceEc2 is a ServiceNamespace enum value
 	ServiceNamespaceEc2 = "ec2"
 )

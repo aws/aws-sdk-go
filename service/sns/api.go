@@ -1766,17 +1766,25 @@ type AddPermissionInput struct {
 	// The AWS account IDs of the users (principals) who will be given access to
 	// the specified actions. The users must have AWS accounts, but do not need
 	// to be signed up for this service.
+	//
+	// AWSAccountId is a required field
 	AWSAccountId []*string `type:"list" required:"true"`
 
 	// The action you want to allow for the specified principal(s).
 	//
 	// Valid values: any Amazon SNS action name.
+	//
+	// ActionName is a required field
 	ActionName []*string `type:"list" required:"true"`
 
 	// A unique identifier for the new policy statement.
+	//
+	// Label is a required field
 	Label *string `type:"string" required:"true"`
 
 	// The ARN of the topic whose access control policy you wish to modify.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -1831,6 +1839,8 @@ type CheckIfPhoneNumberIsOptedOutInput struct {
 	_ struct{} `type:"structure"`
 
 	// The phone number for which you want to check the opt out status.
+	//
+	// PhoneNumber is a required field
 	PhoneNumber *string `locationName:"phoneNumber" type:"string" required:"true"`
 }
 
@@ -1892,9 +1902,13 @@ type ConfirmSubscriptionInput struct {
 	AuthenticateOnUnsubscribe *string `type:"string"`
 
 	// Short-lived token sent to an endpoint during the Subscribe action.
+	//
+	// Token is a required field
 	Token *string `type:"string" required:"true"`
 
 	// The ARN of the topic for which you wish to confirm a subscription.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -1947,15 +1961,21 @@ type CreatePlatformApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// For a list of attributes, see SetPlatformApplicationAttributes (http://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html)
+	//
+	// Attributes is a required field
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// Application names must be made up of only uppercase and lowercase ASCII letters,
 	// numbers, underscores, hyphens, and periods, and must be between 1 and 256
 	// characters long.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The following platforms are supported: ADM (Amazon Device Messaging), APNS
 	// (Apple Push Notification Service), APNS_SANDBOX, and GCM (Google Cloud Messaging).
+	//
+	// Platform is a required field
 	Platform *string `type:"string" required:"true"`
 }
 
@@ -2019,6 +2039,8 @@ type CreatePlatformEndpointInput struct {
 
 	// PlatformApplicationArn returned from CreatePlatformApplication is used to
 	// create a an endpoint.
+	//
+	// PlatformApplicationArn is a required field
 	PlatformApplicationArn *string `type:"string" required:"true"`
 
 	// Unique identifier created by the notification service for an app on a device.
@@ -2026,6 +2048,8 @@ type CreatePlatformEndpointInput struct {
 	// is being used. For example, when using APNS as the notification service,
 	// you need the device token. Alternatively, when using GCM or ADM, the device
 	// token equivalent is called the registration ID.
+	//
+	// Token is a required field
 	Token *string `type:"string" required:"true"`
 }
 
@@ -2082,6 +2106,8 @@ type CreateTopicInput struct {
 	// Constraints: Topic names must be made up of only uppercase and lowercase
 	// ASCII letters, numbers, underscores, and hyphens, and must be between 1 and
 	// 256 characters long.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2131,6 +2157,8 @@ type DeleteEndpointInput struct {
 	_ struct{} `type:"structure"`
 
 	// EndpointArn of endpoint to delete.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 }
 
@@ -2176,6 +2204,8 @@ type DeletePlatformApplicationInput struct {
 	_ struct{} `type:"structure"`
 
 	// PlatformApplicationArn of platform application object to delete.
+	//
+	// PlatformApplicationArn is a required field
 	PlatformApplicationArn *string `type:"string" required:"true"`
 }
 
@@ -2220,6 +2250,8 @@ type DeleteTopicInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the topic you want to delete.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -2286,6 +2318,8 @@ type GetEndpointAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// EndpointArn for GetEndpointAttributes input.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 }
 
@@ -2348,6 +2382,8 @@ type GetPlatformApplicationAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
+	//
+	// PlatformApplicationArn is a required field
 	PlatformApplicationArn *string `type:"string" required:"true"`
 }
 
@@ -2451,6 +2487,8 @@ type GetSubscriptionAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the subscription whose properties you want to get.
+	//
+	// SubscriptionArn is a required field
 	SubscriptionArn *string `type:"string" required:"true"`
 }
 
@@ -2517,6 +2555,8 @@ type GetTopicAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the topic whose properties you want to get.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -2593,6 +2633,8 @@ type ListEndpointsByPlatformApplicationInput struct {
 	NextToken *string `type:"string"`
 
 	// PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.
+	//
+	// PlatformApplicationArn is a required field
 	PlatformApplicationArn *string `type:"string" required:"true"`
 }
 
@@ -2733,6 +2775,8 @@ type ListSubscriptionsByTopicInput struct {
 	NextToken *string `type:"string"`
 
 	// The ARN of the topic for which you wish to find subscriptions.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -2880,6 +2924,8 @@ type MessageAttributeValue struct {
 
 	// Amazon SNS supports the following logical data types: String, Number, and
 	// Binary. For more information, see Message Attribute Data Types (http://docs.aws.amazon.com/sns/latest/dg/SNSMessageAttributes.html#SNSMessageAttributes.DataTypes).
+	//
+	// DataType is a required field
 	DataType *string `type:"string" required:"true"`
 
 	// Strings are Unicode with UTF8 binary encoding. For a list of code values,
@@ -2915,6 +2961,8 @@ type OptInPhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
 	// The phone number to opt in.
+	//
+	// PhoneNumber is a required field
 	PhoneNumber *string `locationName:"phoneNumber" type:"string" required:"true"`
 }
 
@@ -3017,6 +3065,8 @@ type PublishInput struct {
 	//
 	//   Failure to parse or validate any key or value in the message will cause
 	// the Publish call to return an error (no partial delivery).
+	//
+	// Message is a required field
 	Message *string `type:"string" required:"true"`
 
 	// Message attributes for Publish action.
@@ -3129,9 +3179,13 @@ type RemovePermissionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique label of the statement you want to remove.
+	//
+	// Label is a required field
 	Label *string `type:"string" required:"true"`
 
 	// The ARN of the topic whose access control policy you wish to modify.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -3193,9 +3247,13 @@ type SetEndpointAttributesInput struct {
 	//    Token -- device token, also referred to as a registration id, for an
 	// app and mobile device. This is returned from the notification service when
 	// an app and mobile device are registered with the notification service.
+	//
+	// Attributes is a required field
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// EndpointArn used for SetEndpointAttributes action.
+	//
+	// EndpointArn is a required field
 	EndpointArn *string `type:"string" required:"true"`
 }
 
@@ -3275,9 +3333,13 @@ type SetPlatformApplicationAttributesInput struct {
 	//
 	//    SuccessFeedbackSampleRate -- Sample rate percentage (0-100) of successfully
 	// delivered messages.
+	//
+	// Attributes is a required field
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
+	//
+	// PlatformApplicationArn is a required field
 	PlatformApplicationArn *string `type:"string" required:"true"`
 }
 
@@ -3397,6 +3459,8 @@ type SetSMSAttributesInput struct {
 	// For an example bucket policy and usage report, see Monitoring SMS Activity
 	// (http://docs.aws.amazon.com/sns/latest/dg/sms_stats.html) in the Amazon SNS
 	// Developer Guide.
+	//
+	// Attributes is a required field
 	Attributes map[string]*string `locationName:"attributes" type:"map" required:"true"`
 }
 
@@ -3446,12 +3510,16 @@ type SetSubscriptionAttributesInput struct {
 	// attributes are mutable.
 	//
 	// Valid values: DeliveryPolicy | RawMessageDelivery
+	//
+	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
 
 	// The new value for the attribute in JSON format.
 	AttributeValue *string `type:"string"`
 
 	// The ARN of the subscription to modify.
+	//
+	// SubscriptionArn is a required field
 	SubscriptionArn *string `type:"string" required:"true"`
 }
 
@@ -3503,12 +3571,16 @@ type SetTopicAttributesInput struct {
 	// are mutable.
 	//
 	// Valid values: Policy | DisplayName | DeliveryPolicy
+	//
+	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
 
 	// The new value for the attribute.
 	AttributeValue *string `type:"string"`
 
 	// The ARN of the topic to modify.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -3595,9 +3667,13 @@ type SubscribeInput struct {
 	// a mobile app and device.
 	//
 	//    lambda -- delivery of JSON-encoded message to an AWS Lambda function.
+	//
+	// Protocol is a required field
 	Protocol *string `type:"string" required:"true"`
 
 	// The ARN of the topic you want to subscribe to.
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -3700,6 +3776,8 @@ type UnsubscribeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the subscription to be deleted.
+	//
+	// SubscriptionArn is a required field
 	SubscriptionArn *string `type:"string" required:"true"`
 }
 

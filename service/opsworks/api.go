@@ -4012,10 +4012,14 @@ type AssignInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The layer ID, which must correspond to a custom layer. You cannot assign
 	// a registered instance to a built-in layer.
+	//
+	// LayerIds is a required field
 	LayerIds []*string `type:"list" required:"true"`
 }
 
@@ -4066,6 +4070,8 @@ type AssignVolumeInput struct {
 	InstanceId *string `type:"string"`
 
 	// The volume ID.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -4110,6 +4116,8 @@ type AssociateElasticIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic IP address.
+	//
+	// ElasticIp is a required field
 	ElasticIp *string `type:"string" required:"true"`
 
 	// The instance ID.
@@ -4157,10 +4165,14 @@ type AttachElasticLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic Load Balancing instance's name.
+	//
+	// ElasticLoadBalancerName is a required field
 	ElasticLoadBalancerName *string `type:"string" required:"true"`
 
 	// The ID of the layer that the Elastic Load Balancing instance is to be attached
 	// to.
+	//
+	// LayerId is a required field
 	LayerId *string `type:"string" required:"true"`
 }
 
@@ -4494,9 +4506,13 @@ type CloneStackInput struct {
 	//  You must set this parameter to a valid service role ARN or the action will
 	// fail; there is no default value. You can specify the source stack's service
 	// role ARN, if you prefer, but you must do so explicitly.
+	//
+	// ServiceRoleArn is a required field
 	ServiceRoleArn *string `type:"string" required:"true"`
 
 	// The source stack ID.
+	//
+	// SourceStackId is a required field
 	SourceStackId *string `type:"string" required:"true"`
 
 	// Whether to use custom cookbooks.
@@ -4709,6 +4725,8 @@ type CreateAppInput struct {
 	Environment []*EnvironmentVariable `type:"list"`
 
 	// The app name.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The app's short name.
@@ -4718,6 +4736,8 @@ type CreateAppInput struct {
 	SslConfiguration *SslConfiguration `type:"structure"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 
 	// The app type. Each supported type is associated with a particular layer.
@@ -4725,6 +4745,8 @@ type CreateAppInput struct {
 	// deploys an application to those instances that are members of the corresponding
 	// layer. If your app isn't one of the standard types, or you prefer to implement
 	// your own Deploy recipes, specify other.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"AppType"`
 }
 
@@ -4799,6 +4821,8 @@ type CreateDeploymentInput struct {
 
 	// A DeploymentCommand object that specifies the deployment command and any
 	// associated arguments.
+	//
+	// Command is a required field
 	Command *DeploymentCommand `type:"structure" required:"true"`
 
 	// A user-defined comment.
@@ -4821,6 +4845,8 @@ type CreateDeploymentInput struct {
 	LayerIds []*string `type:"list"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -4939,9 +4965,13 @@ type CreateInstanceInput struct {
 	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 	// The parameter values that you use to specify the various types are in the
 	// API Name column of the Available Instance Types table.
+	//
+	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true"`
 
 	// An array that contains the instance's layer IDs.
+	//
+	// LayerIds is a required field
 	LayerIds []*string `type:"list" required:"true"`
 
 	// The instance's operating system, which must be set to one of the following.
@@ -4983,6 +5013,8 @@ type CreateInstanceInput struct {
 	SshKeyName *string `type:"string"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 
 	// The ID of the instance's subnet. If the stack is running in a VPC, you can
@@ -5106,6 +5138,8 @@ type CreateLayerInput struct {
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
 
 	// The layer name, which is used by the console.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// An array of Package objects that describes the layer packages.
@@ -5119,14 +5153,20 @@ type CreateLayerInput struct {
 	//
 	// The built-in layers' short names are defined by AWS OpsWorks. For more information,
 	// see the Layer Reference (http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html).
+	//
+	// Shortname is a required field
 	Shortname *string `type:"string" required:"true"`
 
 	// The layer stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 
 	// The layer type. A stack cannot have more than one built-in layer of the same
 	// type. It can have any number of custom layers. Built-in layers are not available
 	// in Chef 12 stacks.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"LayerType"`
 
 	// Whether to use Amazon EBS-optimized instances.
@@ -5257,6 +5297,8 @@ type CreateStackInput struct {
 	// The Amazon Resource Name (ARN) of an IAM profile that is the default profile
 	// for all of the stack's EC2 instances. For more information about IAM ARNs,
 	// see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	//
+	// DefaultInstanceProfileArn is a required field
 	DefaultInstanceProfileArn *string `type:"string" required:"true"`
 
 	// The stack's default operating system, which is installed on every instance
@@ -5340,16 +5382,22 @@ type CreateStackInput struct {
 	HostnameTheme *string `type:"string"`
 
 	// The stack name.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The stack's AWS region, such as "ap-south-1". For more information about
 	// Amazon regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
+	//
+	// Region is a required field
 	Region *string `type:"string" required:"true"`
 
 	// The stack's AWS Identity and Access Management (IAM) role, which allows AWS
 	// OpsWorks to work with AWS resources on your behalf. You must set this parameter
 	// to the Amazon Resource Name (ARN) for an existing IAM role. For more information
 	// about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	//
+	// ServiceRoleArn is a required field
 	ServiceRoleArn *string `type:"string" required:"true"`
 
 	// Whether the stack uses custom cookbooks.
@@ -5464,6 +5512,8 @@ type CreateUserProfileInput struct {
 	AllowSelfManagement *bool `type:"boolean"`
 
 	// The user's IAM ARN; this can also be a federated user's ARN.
+	//
+	// IamUserArn is a required field
 	IamUserArn *string `type:"string" required:"true"`
 
 	// The user's public SSH key.
@@ -5547,6 +5597,8 @@ type DeleteAppInput struct {
 	_ struct{} `type:"structure"`
 
 	// The app ID.
+	//
+	// AppId is a required field
 	AppId *string `type:"string" required:"true"`
 }
 
@@ -5597,6 +5649,8 @@ type DeleteInstanceInput struct {
 	DeleteVolumes *bool `type:"boolean"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -5641,6 +5695,8 @@ type DeleteLayerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The layer ID.
+	//
+	// LayerId is a required field
 	LayerId *string `type:"string" required:"true"`
 }
 
@@ -5685,6 +5741,8 @@ type DeleteStackInput struct {
 	_ struct{} `type:"structure"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -5729,6 +5787,8 @@ type DeleteUserProfileInput struct {
 	_ struct{} `type:"structure"`
 
 	// The user's IAM ARN. This can also be a federated user's ARN.
+	//
+	// IamUserArn is a required field
 	IamUserArn *string `type:"string" required:"true"`
 }
 
@@ -5894,6 +5954,8 @@ type DeploymentCommand struct {
 	//    restart: Restart the app's web or application server.
 	//
 	//    undeploy: Undeploy the app.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"DeploymentCommandName"`
 }
 
@@ -5924,6 +5986,8 @@ type DeregisterEcsClusterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster's ARN.
+	//
+	// EcsClusterArn is a required field
 	EcsClusterArn *string `type:"string" required:"true"`
 }
 
@@ -5968,6 +6032,8 @@ type DeregisterElasticIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic IP address.
+	//
+	// ElasticIp is a required field
 	ElasticIp *string `type:"string" required:"true"`
 }
 
@@ -6012,6 +6078,8 @@ type DeregisterInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -6056,6 +6124,8 @@ type DeregisterRdsDbInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon RDS instance's ARN.
+	//
+	// RdsDbInstanceArn is a required field
 	RdsDbInstanceArn *string `type:"string" required:"true"`
 }
 
@@ -6102,6 +6172,8 @@ type DeregisterVolumeInput struct {
 	// The AWS OpsWorks volume ID, which is the GUID that AWS OpsWorks assigned
 	// to the instance when you registered the volume with the stack, not the Amazon
 	// EC2 volume ID.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -6546,6 +6618,8 @@ type DescribeLoadBasedAutoScalingInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of layer IDs.
+	//
+	// LayerIds is a required field
 	LayerIds []*string `type:"list" required:"true"`
 }
 
@@ -6724,6 +6798,8 @@ type DescribeRdsDbInstancesInput struct {
 
 	// The stack ID that the instances are registered with. The operation returns
 	// descriptions of all registered Amazon RDS instances.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -6817,6 +6893,8 @@ type DescribeStackProvisioningParametersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The stack ID
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -6868,6 +6946,8 @@ type DescribeStackSummaryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -6952,6 +7032,8 @@ type DescribeTimeBasedAutoScalingInput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `type:"list" required:"true"`
 }
 
@@ -7084,10 +7166,14 @@ type DetachElasticLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic Load Balancing instance's name.
+	//
+	// ElasticLoadBalancerName is a required field
 	ElasticLoadBalancerName *string `type:"string" required:"true"`
 
 	// The ID of the layer that the Elastic Load Balancing instance is attached
 	// to.
+	//
+	// LayerId is a required field
 	LayerId *string `type:"string" required:"true"`
 }
 
@@ -7135,6 +7221,8 @@ type DisassociateElasticIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic IP address.
+	//
+	// ElasticIp is a required field
 	ElasticIp *string `type:"string" required:"true"`
 }
 
@@ -7317,6 +7405,8 @@ type EnvironmentVariable struct {
 	// characters and must be specified. The name can contain upper- and lowercase
 	// letters, numbers, and underscores (_), but it must start with a letter or
 	// underscore.
+	//
+	// Key is a required field
 	Key *string `type:"string" required:"true"`
 
 	// (Optional) Whether the variable's value will be returned by the DescribeApps
@@ -7328,6 +7418,8 @@ type EnvironmentVariable struct {
 	// (Optional) The environment variable's value, which can be left empty. If
 	// you specify a value, it can contain up to 256 characters, which must all
 	// be printable.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -7361,6 +7453,8 @@ type GetHostnameSuggestionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The layer ID.
+	//
+	// LayerId is a required field
 	LayerId *string `type:"string" required:"true"`
 }
 
@@ -7412,6 +7506,8 @@ type GrantAccessInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance's AWS OpsWorks ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The length of time (in minutes) that the grant is valid. When the grant expires
@@ -8038,6 +8134,8 @@ type RebootInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -8122,9 +8220,13 @@ type RegisterEcsClusterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster's ARN.
+	//
+	// EcsClusterArn is a required field
 	EcsClusterArn *string `type:"string" required:"true"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -8176,9 +8278,13 @@ type RegisterElasticIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Elastic IP address.
+	//
+	// ElasticIp is a required field
 	ElasticIp *string `type:"string" required:"true"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -8249,6 +8355,8 @@ type RegisterInstanceInput struct {
 	RsaPublicKeyFingerprint *string `type:"string"`
 
 	// The ID of the stack that the instance is to be registered with.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -8297,15 +8405,23 @@ type RegisterRdsDbInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The database password.
+	//
+	// DbPassword is a required field
 	DbPassword *string `type:"string" required:"true"`
 
 	// The database's master user name.
+	//
+	// DbUser is a required field
 	DbUser *string `type:"string" required:"true"`
 
 	// The Amazon RDS instance's ARN.
+	//
+	// RdsDbInstanceArn is a required field
 	RdsDbInstanceArn *string `type:"string" required:"true"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -8362,6 +8478,8 @@ type RegisterVolumeInput struct {
 	Ec2VolumeId *string `type:"string"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -8502,6 +8620,8 @@ type SetLoadBasedAutoScalingInput struct {
 	Enable *bool `type:"boolean"`
 
 	// The layer ID.
+	//
+	// LayerId is a required field
 	LayerId *string `type:"string" required:"true"`
 
 	// An AutoScalingThresholds object with the upscaling threshold configuration.
@@ -8567,6 +8687,8 @@ type SetPermissionInput struct {
 	AllowSudo *bool `type:"boolean"`
 
 	// The user's IAM ARN. This can also be a federated user's ARN.
+	//
+	// IamUserArn is a required field
 	IamUserArn *string `type:"string" required:"true"`
 
 	// The user's permission level, which must be set to one of the following strings.
@@ -8587,6 +8709,8 @@ type SetPermissionInput struct {
 	Level *string `type:"string"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -8637,6 +8761,8 @@ type SetTimeBasedAutoScalingInput struct {
 	AutoScalingSchedule *WeeklyAutoScalingSchedule `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -8763,6 +8889,8 @@ type SslConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The contents of the certificate's domain.crt file.
+	//
+	// Certificate is a required field
 	Certificate *string `type:"string" required:"true"`
 
 	// Optional. Can be used to specify an intermediate certificate authority key
@@ -8770,6 +8898,8 @@ type SslConfiguration struct {
 	Chain *string `type:"string"`
 
 	// The private key; the contents of the certificate's domain.kex file.
+	//
+	// PrivateKey is a required field
 	PrivateKey *string `type:"string" required:"true"`
 }
 
@@ -8960,6 +9090,8 @@ type StartInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -9004,6 +9136,8 @@ type StartStackInput struct {
 	_ struct{} `type:"structure"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -9048,6 +9182,8 @@ type StopInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -9092,6 +9228,8 @@ type StopStackInput struct {
 	_ struct{} `type:"structure"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 }
 
@@ -9188,6 +9326,8 @@ type UnassignInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -9232,6 +9372,8 @@ type UnassignVolumeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The volume ID.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -9276,6 +9418,8 @@ type UpdateAppInput struct {
 	_ struct{} `type:"structure"`
 
 	// The app ID.
+	//
+	// AppId is a required field
 	AppId *string `type:"string" required:"true"`
 
 	// A Source object that specifies the app repository.
@@ -9379,6 +9523,8 @@ type UpdateElasticIpInput struct {
 	_ struct{} `type:"structure"`
 
 	// The address.
+	//
+	// ElasticIp is a required field
 	ElasticIp *string `type:"string" required:"true"`
 
 	// The new name.
@@ -9471,6 +9617,8 @@ type UpdateInstanceInput struct {
 	InstallUpdatesOnBoot *bool `type:"boolean"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The instance type, such as t2.micro. For a list of supported instance types,
@@ -9601,6 +9749,8 @@ type UpdateLayerInput struct {
 	InstallUpdatesOnBoot *bool `type:"boolean"`
 
 	// The layer ID.
+	//
+	// LayerId is a required field
 	LayerId *string `type:"string" required:"true"`
 
 	LifecycleEventConfiguration *LifecycleEventConfiguration `type:"structure"`
@@ -9716,6 +9866,8 @@ type UpdateRdsDbInstanceInput struct {
 	DbUser *string `type:"string"`
 
 	// The Amazon RDS instance's ARN.
+	//
+	// RdsDbInstanceArn is a required field
 	RdsDbInstanceArn *string `type:"string" required:"true"`
 }
 
@@ -9903,6 +10055,8 @@ type UpdateStackInput struct {
 	ServiceRoleArn *string `type:"string"`
 
 	// The stack ID.
+	//
+	// StackId is a required field
 	StackId *string `type:"string" required:"true"`
 
 	// Whether the stack uses custom cookbooks.
@@ -9976,6 +10130,8 @@ type UpdateUserProfileInput struct {
 	AllowSelfManagement *bool `type:"boolean"`
 
 	// The user IAM ARN. This can also be a federated user's ARN.
+	//
+	// IamUserArn is a required field
 	IamUserArn *string `type:"string" required:"true"`
 
 	// The user's new SSH public key.
@@ -10036,6 +10192,8 @@ type UpdateVolumeInput struct {
 	Name *string `type:"string"`
 
 	// The volume ID.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -10171,15 +10329,21 @@ type VolumeConfiguration struct {
 	Iops *int64 `type:"integer"`
 
 	// The volume mount point. For example "/dev/sdh".
+	//
+	// MountPoint is a required field
 	MountPoint *string `type:"string" required:"true"`
 
 	// The number of disks in the volume.
+	//
+	// NumberOfDisks is a required field
 	NumberOfDisks *int64 `type:"integer" required:"true"`
 
 	// The volume RAID level (http://en.wikipedia.org/wiki/Standard_RAID_levels).
 	RaidLevel *int64 `type:"integer"`
 
 	// The volume size.
+	//
+	// Size is a required field
 	Size *int64 `type:"integer" required:"true"`
 
 	// The volume type:
@@ -10275,189 +10439,253 @@ func (s WeeklyAutoScalingSchedule) GoString() string {
 }
 
 const (
-	// @enum AppAttributesKeys
+	// AppAttributesKeysDocumentRoot is a AppAttributesKeys enum value
 	AppAttributesKeysDocumentRoot = "DocumentRoot"
-	// @enum AppAttributesKeys
+
+	// AppAttributesKeysRailsEnv is a AppAttributesKeys enum value
 	AppAttributesKeysRailsEnv = "RailsEnv"
-	// @enum AppAttributesKeys
+
+	// AppAttributesKeysAutoBundleOnDeploy is a AppAttributesKeys enum value
 	AppAttributesKeysAutoBundleOnDeploy = "AutoBundleOnDeploy"
-	// @enum AppAttributesKeys
+
+	// AppAttributesKeysAwsFlowRubySettings is a AppAttributesKeys enum value
 	AppAttributesKeysAwsFlowRubySettings = "AwsFlowRubySettings"
 )
 
 const (
-	// @enum AppType
+	// AppTypeAwsFlowRuby is a AppType enum value
 	AppTypeAwsFlowRuby = "aws-flow-ruby"
-	// @enum AppType
+
+	// AppTypeJava is a AppType enum value
 	AppTypeJava = "java"
-	// @enum AppType
+
+	// AppTypeRails is a AppType enum value
 	AppTypeRails = "rails"
-	// @enum AppType
+
+	// AppTypePhp is a AppType enum value
 	AppTypePhp = "php"
-	// @enum AppType
+
+	// AppTypeNodejs is a AppType enum value
 	AppTypeNodejs = "nodejs"
-	// @enum AppType
+
+	// AppTypeStatic is a AppType enum value
 	AppTypeStatic = "static"
-	// @enum AppType
+
+	// AppTypeOther is a AppType enum value
 	AppTypeOther = "other"
 )
 
 const (
-	// @enum Architecture
+	// ArchitectureX8664 is a Architecture enum value
 	ArchitectureX8664 = "x86_64"
-	// @enum Architecture
+
+	// ArchitectureI386 is a Architecture enum value
 	ArchitectureI386 = "i386"
 )
 
 const (
-	// @enum AutoScalingType
+	// AutoScalingTypeLoad is a AutoScalingType enum value
 	AutoScalingTypeLoad = "load"
-	// @enum AutoScalingType
+
+	// AutoScalingTypeTimer is a AutoScalingType enum value
 	AutoScalingTypeTimer = "timer"
 )
 
 const (
-	// @enum DeploymentCommandName
+	// DeploymentCommandNameInstallDependencies is a DeploymentCommandName enum value
 	DeploymentCommandNameInstallDependencies = "install_dependencies"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameUpdateDependencies is a DeploymentCommandName enum value
 	DeploymentCommandNameUpdateDependencies = "update_dependencies"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameUpdateCustomCookbooks is a DeploymentCommandName enum value
 	DeploymentCommandNameUpdateCustomCookbooks = "update_custom_cookbooks"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameExecuteRecipes is a DeploymentCommandName enum value
 	DeploymentCommandNameExecuteRecipes = "execute_recipes"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameConfigure is a DeploymentCommandName enum value
 	DeploymentCommandNameConfigure = "configure"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameSetup is a DeploymentCommandName enum value
 	DeploymentCommandNameSetup = "setup"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameDeploy is a DeploymentCommandName enum value
 	DeploymentCommandNameDeploy = "deploy"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameRollback is a DeploymentCommandName enum value
 	DeploymentCommandNameRollback = "rollback"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameStart is a DeploymentCommandName enum value
 	DeploymentCommandNameStart = "start"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameStop is a DeploymentCommandName enum value
 	DeploymentCommandNameStop = "stop"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameRestart is a DeploymentCommandName enum value
 	DeploymentCommandNameRestart = "restart"
-	// @enum DeploymentCommandName
+
+	// DeploymentCommandNameUndeploy is a DeploymentCommandName enum value
 	DeploymentCommandNameUndeploy = "undeploy"
 )
 
 const (
-	// @enum LayerAttributesKeys
+	// LayerAttributesKeysEcsClusterArn is a LayerAttributesKeys enum value
 	LayerAttributesKeysEcsClusterArn = "EcsClusterArn"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysEnableHaproxyStats is a LayerAttributesKeys enum value
 	LayerAttributesKeysEnableHaproxyStats = "EnableHaproxyStats"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysHaproxyStatsUrl is a LayerAttributesKeys enum value
 	LayerAttributesKeysHaproxyStatsUrl = "HaproxyStatsUrl"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysHaproxyStatsUser is a LayerAttributesKeys enum value
 	LayerAttributesKeysHaproxyStatsUser = "HaproxyStatsUser"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysHaproxyStatsPassword is a LayerAttributesKeys enum value
 	LayerAttributesKeysHaproxyStatsPassword = "HaproxyStatsPassword"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysHaproxyHealthCheckUrl is a LayerAttributesKeys enum value
 	LayerAttributesKeysHaproxyHealthCheckUrl = "HaproxyHealthCheckUrl"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysHaproxyHealthCheckMethod is a LayerAttributesKeys enum value
 	LayerAttributesKeysHaproxyHealthCheckMethod = "HaproxyHealthCheckMethod"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysMysqlRootPassword is a LayerAttributesKeys enum value
 	LayerAttributesKeysMysqlRootPassword = "MysqlRootPassword"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysMysqlRootPasswordUbiquitous is a LayerAttributesKeys enum value
 	LayerAttributesKeysMysqlRootPasswordUbiquitous = "MysqlRootPasswordUbiquitous"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysGangliaUrl is a LayerAttributesKeys enum value
 	LayerAttributesKeysGangliaUrl = "GangliaUrl"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysGangliaUser is a LayerAttributesKeys enum value
 	LayerAttributesKeysGangliaUser = "GangliaUser"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysGangliaPassword is a LayerAttributesKeys enum value
 	LayerAttributesKeysGangliaPassword = "GangliaPassword"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysMemcachedMemory is a LayerAttributesKeys enum value
 	LayerAttributesKeysMemcachedMemory = "MemcachedMemory"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysNodejsVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysNodejsVersion = "NodejsVersion"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysRubyVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysRubyVersion = "RubyVersion"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysRubygemsVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysRubygemsVersion = "RubygemsVersion"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysManageBundler is a LayerAttributesKeys enum value
 	LayerAttributesKeysManageBundler = "ManageBundler"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysBundlerVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysBundlerVersion = "BundlerVersion"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysRailsStack is a LayerAttributesKeys enum value
 	LayerAttributesKeysRailsStack = "RailsStack"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysPassengerVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysPassengerVersion = "PassengerVersion"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysJvm is a LayerAttributesKeys enum value
 	LayerAttributesKeysJvm = "Jvm"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysJvmVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysJvmVersion = "JvmVersion"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysJvmOptions is a LayerAttributesKeys enum value
 	LayerAttributesKeysJvmOptions = "JvmOptions"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysJavaAppServer is a LayerAttributesKeys enum value
 	LayerAttributesKeysJavaAppServer = "JavaAppServer"
-	// @enum LayerAttributesKeys
+
+	// LayerAttributesKeysJavaAppServerVersion is a LayerAttributesKeys enum value
 	LayerAttributesKeysJavaAppServerVersion = "JavaAppServerVersion"
 )
 
 const (
-	// @enum LayerType
+	// LayerTypeAwsFlowRuby is a LayerType enum value
 	LayerTypeAwsFlowRuby = "aws-flow-ruby"
-	// @enum LayerType
+
+	// LayerTypeEcsCluster is a LayerType enum value
 	LayerTypeEcsCluster = "ecs-cluster"
-	// @enum LayerType
+
+	// LayerTypeJavaApp is a LayerType enum value
 	LayerTypeJavaApp = "java-app"
-	// @enum LayerType
+
+	// LayerTypeLb is a LayerType enum value
 	LayerTypeLb = "lb"
-	// @enum LayerType
+
+	// LayerTypeWeb is a LayerType enum value
 	LayerTypeWeb = "web"
-	// @enum LayerType
+
+	// LayerTypePhpApp is a LayerType enum value
 	LayerTypePhpApp = "php-app"
-	// @enum LayerType
+
+	// LayerTypeRailsApp is a LayerType enum value
 	LayerTypeRailsApp = "rails-app"
-	// @enum LayerType
+
+	// LayerTypeNodejsApp is a LayerType enum value
 	LayerTypeNodejsApp = "nodejs-app"
-	// @enum LayerType
+
+	// LayerTypeMemcached is a LayerType enum value
 	LayerTypeMemcached = "memcached"
-	// @enum LayerType
+
+	// LayerTypeDbMaster is a LayerType enum value
 	LayerTypeDbMaster = "db-master"
-	// @enum LayerType
+
+	// LayerTypeMonitoringMaster is a LayerType enum value
 	LayerTypeMonitoringMaster = "monitoring-master"
-	// @enum LayerType
+
+	// LayerTypeCustom is a LayerType enum value
 	LayerTypeCustom = "custom"
 )
 
 const (
-	// @enum RootDeviceType
+	// RootDeviceTypeEbs is a RootDeviceType enum value
 	RootDeviceTypeEbs = "ebs"
-	// @enum RootDeviceType
+
+	// RootDeviceTypeInstanceStore is a RootDeviceType enum value
 	RootDeviceTypeInstanceStore = "instance-store"
 )
 
 const (
-	// @enum SourceType
+	// SourceTypeGit is a SourceType enum value
 	SourceTypeGit = "git"
-	// @enum SourceType
+
+	// SourceTypeSvn is a SourceType enum value
 	SourceTypeSvn = "svn"
-	// @enum SourceType
+
+	// SourceTypeArchive is a SourceType enum value
 	SourceTypeArchive = "archive"
-	// @enum SourceType
+
+	// SourceTypeS3 is a SourceType enum value
 	SourceTypeS3 = "s3"
 )
 
 const (
-	// @enum StackAttributesKeys
+	// StackAttributesKeysColor is a StackAttributesKeys enum value
 	StackAttributesKeysColor = "Color"
 )
 
 const (
-	// @enum VirtualizationType
+	// VirtualizationTypeParavirtual is a VirtualizationType enum value
 	VirtualizationTypeParavirtual = "paravirtual"
-	// @enum VirtualizationType
+
+	// VirtualizationTypeHvm is a VirtualizationType enum value
 	VirtualizationTypeHvm = "hvm"
 )
 
 const (
-	// @enum VolumeType
+	// VolumeTypeGp2 is a VolumeType enum value
 	VolumeTypeGp2 = "gp2"
-	// @enum VolumeType
+
+	// VolumeTypeIo1 is a VolumeType enum value
 	VolumeTypeIo1 = "io1"
-	// @enum VolumeType
+
+	// VolumeTypeStandard is a VolumeType enum value
 	VolumeTypeStandard = "standard"
 )

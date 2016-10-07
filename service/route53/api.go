@@ -3089,6 +3089,8 @@ type AlarmIdentifier struct {
 
 	// The name of the CloudWatch alarm that you want Amazon Route 53 health checkers
 	// to use to determine whether this health check is healthy.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that identifies the CloudWatch alarm that you want Amazon
@@ -3097,6 +3099,8 @@ type AlarmIdentifier struct {
 	//
 	// For the current list of CloudWatch regions, see Amazon CloudWatch (http://docs.aws.amazon.com/general/latest/gr/rande.html#cw_region)
 	// in AWS Regions and Endpoints in the Amazon Web Services General Reference.
+	//
+	// Region is a required field
 	Region *string `min:"1" type:"string" required:"true" enum:"CloudWatchRegion"`
 }
 
@@ -3211,6 +3215,8 @@ type AliasTarget struct {
 	//
 	//    Another Amazon Route 53 resource record set: Specify the value of the
 	// Name element for a resource record set in the current hosted zone.
+	//
+	// DNSName is a required field
 	DNSName *string `type:"string" required:"true"`
 
 	// Applies only to alias, weighted alias, latency alias, and failover alias
@@ -3290,6 +3296,8 @@ type AliasTarget struct {
 	//   For more information and examples, see Amazon Route 53 Health Checks and
 	// DNS Failover (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html)
 	// in the Amazon Route 53 Developer Guide.
+	//
+	// EvaluateTargetHealth is a required field
 	EvaluateTargetHealth *bool `type:"boolean" required:"true"`
 
 	// Alias resource records sets only: The value used depends on where the queries
@@ -3331,6 +3339,8 @@ type AliasTarget struct {
 	//  Another Amazon Route 53 resource record set in your hosted zone  Specify
 	// the hosted zone ID of your hosted zone. (An alias resource record set cannot
 	// reference a resource record set in a different hosted zone.)
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `type:"string" required:"true"`
 }
 
@@ -3375,10 +3385,14 @@ type AssociateVPCWithHostedZoneInput struct {
 	//
 	// Note that you cannot associate a VPC with a hosted zone that doesn't have
 	// an existing VPC association.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// A complex type containing information about the Amazon VPC that you're associating
 	// with the specified hosted zone.
+	//
+	// VPC is a required field
 	VPC *VPC `type:"structure" required:"true"`
 }
 
@@ -3418,6 +3432,8 @@ type AssociateVPCWithHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that describes the changes made to your hosted zone.
+	//
+	// ChangeInfo is a required field
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 }
 
@@ -3458,9 +3474,13 @@ type Change struct {
 	// resource record set only when all of the following values match: Name, Type,
 	// and SetIdentifier (for weighted, latency, geolocation, and failover resource
 	// record sets).
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Information about the resource record set to create or delete.
+	//
+	// ResourceRecordSet is a required field
 	ResourceRecordSet *ResourceRecordSet `type:"structure" required:"true"`
 }
 
@@ -3500,6 +3520,8 @@ type ChangeBatch struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the changes to make to the record sets.
+	//
+	// Changes is a required field
 	Changes []*Change `locationNameList:"Change" min:"1" type:"list" required:"true"`
 
 	// Optional: Any comments you want to include about a change batch request.
@@ -3558,12 +3580,16 @@ type ChangeBatchRecord struct {
 
 	// The ID of the request. Use this ID to track when the change has completed
 	// across all Amazon Route 53 DNS servers.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// The current state of the request. PENDING indicates that this request has
 	// not yet been applied to all Amazon Route 53 DNS servers.
 	//
 	// Valid Values: PENDING | INSYNC
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ChangeStatus"`
 
 	// The date and time the change was submitted, in the format YYYY-MM-DDThh:mm:ssZ,
@@ -3599,15 +3625,21 @@ type ChangeInfo struct {
 	Comment *string `type:"string"`
 
 	// The ID of the request.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// The current state of the request. PENDING indicates that this request has
 	// not yet been applied to all Amazon Route 53 DNS servers.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ChangeStatus"`
 
 	// The date and time the change request was submitted, in Coordinated Universal
 	// Time (UTC) format: YYYY-MM-DDThh:mm:ssZ. For more information, see the Wikipedia
 	// entry ISO 8601 (https://en.wikipedia.org/wiki/ISO_8601).
+	//
+	// SubmittedAt is a required field
 	SubmittedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -3626,10 +3658,14 @@ type ChangeResourceRecordSetsInput struct {
 	_ struct{} `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 
 	// A complex type that contains an optional comment and the Changes element.
+	//
+	// ChangeBatch is a required field
 	ChangeBatch *ChangeBatch `type:"structure" required:"true"`
 
 	// The ID of the hosted zone that contains the resource record sets that you
 	// want to change.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -3673,6 +3709,8 @@ type ChangeResourceRecordSetsOutput struct {
 	//
 	// This element contains an ID that you use when performing a GetChange action
 	// to get detailed information about the change.
+	//
+	// ChangeInfo is a required field
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 }
 
@@ -3703,6 +3741,8 @@ type ChangeTagsForResourceInput struct {
 	RemoveTagKeys []*string `locationNameList:"Key" min:"1" type:"list"`
 
 	// The ID of the resource for which you want to add, change, or delete tags.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 
 	// The type of the resource.
@@ -3710,6 +3750,8 @@ type ChangeTagsForResourceInput struct {
 	//   The resource type for health checks is healthcheck.
 	//
 	//   The resource type for hosted zones is hostedzone.
+	//
+	// ResourceType is a required field
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 }
 
@@ -3767,6 +3809,8 @@ type CloudWatchAlarmConfiguration struct {
 
 	// For the metric that the CloudWatch alarm is associated with, the arithmetic
 	// operation that is used for the comparison.
+	//
+	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
 	// For the metric that the CloudWatch alarm is associated with, a complex type
@@ -3777,26 +3821,38 @@ type CloudWatchAlarmConfiguration struct {
 
 	// For the metric that the CloudWatch alarm is associated with, the number of
 	// periods that the metric is compared to the threshold.
+	//
+	// EvaluationPeriods is a required field
 	EvaluationPeriods *int64 `min:"1" type:"integer" required:"true"`
 
 	// The name of the CloudWatch metric that the alarm is associated with.
+	//
+	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace of the metric that the alarm is associated with. For more information,
 	// see Amazon CloudWatch Namespaces, Dimensions, and Metrics Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
 	// in the Amazon CloudWatch Developer Guide.
+	//
+	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// For the metric that the CloudWatch alarm is associated with, the duration
 	// of one evaluation period in seconds.
+	//
+	// Period is a required field
 	Period *int64 `min:"60" type:"integer" required:"true"`
 
 	// For the metric that the CloudWatch alarm is associated with, the statistic
 	// that is applied to the metric.
+	//
+	// Statistic is a required field
 	Statistic *string `type:"string" required:"true" enum:"Statistic"`
 
 	// For the metric that the CloudWatch alarm is associated with, the value the
 	// metric is compared with.
+	//
+	// Threshold is a required field
 	Threshold *float64 `type:"double" required:"true"`
 }
 
@@ -3818,9 +3874,13 @@ type CreateHealthCheckInput struct {
 	// requests to be retried without the risk of executing the operation twice.
 	// You must use a unique CallerReference string every time you create a health
 	// check.
+	//
+	// CallerReference is a required field
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that contains the response to a CreateHealthCheck request.
+	//
+	// HealthCheckConfig is a required field
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
 }
 
@@ -3863,9 +3923,13 @@ type CreateHealthCheckOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains identifying information about the health check.
+	//
+	// HealthCheck is a required field
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 
 	// The unique URL representing the new health check.
+	//
+	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 }
 
@@ -3888,6 +3952,8 @@ type CreateHostedZoneInput struct {
 	// You must use a unique CallerReference string every time you create a hosted
 	// zone. CallerReference can be any unique string, for example, a date/time
 	// stamp.
+	//
+	// CallerReference is a required field
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// If you want to associate a reusable delegation set with this hosted zone,
@@ -3917,6 +3983,8 @@ type CreateHostedZoneInput struct {
 	// with your DNS registrar. If your domain name is registered with a registrar
 	// other than Amazon Route 53, change the name servers for your domain to the
 	// set of NameServers that CreateHostedZone returns in the DelegationSet element.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The VPC that you want your hosted zone to be associated with. By providing
@@ -3964,15 +4032,23 @@ type CreateHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that describes the changes made to your hosted zone.
+	//
+	// ChangeInfo is a required field
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 
 	// A complex type that describes the name servers for this hosted zone.
+	//
+	// DelegationSet is a required field
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 
 	// A complex type that contains general information about the hosted zone.
+	//
+	// HostedZone is a required field
 	HostedZone *HostedZone `type:"structure" required:"true"`
 
 	// The unique URL representing the new hosted zone.
+	//
+	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	VPC *VPC `type:"structure"`
@@ -3996,6 +4072,8 @@ type CreateReusableDelegationSetInput struct {
 	// the operation twice. You must use a unique CallerReference string every time
 	// you submit a CreateReusableDelegationSet request. CallerReference can be
 	// any unique string, for example a date/time stamp.
+	//
+	// CallerReference is a required field
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// If you want to mark the delegation set for an existing hosted zone as reusable,
@@ -4033,9 +4111,13 @@ type CreateReusableDelegationSetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains name server information.
+	//
+	// DelegationSet is a required field
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 
 	// The unique URL representing the new reusbale delegation set.
+	//
+	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 }
 
@@ -4060,9 +4142,13 @@ type CreateTrafficPolicyInput struct {
 	// The definition of this traffic policy in JSON format. For more information,
 	// see Traffic Policy Document Format (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/api-policies-traffic-policy-document-format.html)
 	// in the Amazon Route 53 API Reference.
+	//
+	// Document is a required field
 	Document *string `type:"string" required:"true"`
 
 	// The name of the traffic policy.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -4099,23 +4185,33 @@ type CreateTrafficPolicyInstanceInput struct {
 
 	// The ID of the hosted zone in which you want Amazon Route 53 to create resource
 	// record sets by using the configuration in a traffic policy.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `type:"string" required:"true"`
 
 	// The domain name (such as example.com) or subdomain name (such as www.example.com)
 	// for which Amazon Route 53 responds to DNS queries by using the resource record
 	// sets that Amazon Route 53 creates for this traffic policy instance.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// (Optional) The TTL that you want Amazon Route 53 to assign to all of the
 	// resource record sets that it creates in the specified hosted zone.
+	//
+	// TTL is a required field
 	TTL *int64 `type:"long" required:"true"`
 
 	// The ID of the traffic policy that you want to use to create resource record
 	// sets in the specified hosted zone.
+	//
+	// TrafficPolicyId is a required field
 	TrafficPolicyId *string `type:"string" required:"true"`
 
 	// The version of the traffic policy that you want to use to create resource
 	// record sets in the specified hosted zone.
+	//
+	// TrafficPolicyVersion is a required field
 	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -4163,9 +4259,13 @@ type CreateTrafficPolicyInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique URL that represents a new traffic policy instance.
+	//
+	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	// A complex type that contains settings for the new traffic policy instance.
+	//
+	// TrafficPolicyInstance is a required field
 	TrafficPolicyInstance *TrafficPolicyInstance `type:"structure" required:"true"`
 }
 
@@ -4184,9 +4284,12 @@ func (s CreateTrafficPolicyInstanceOutput) GoString() string {
 type CreateTrafficPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	// A complex type that contains settings for the new traffic policy.
+	//
+	// TrafficPolicy is a required field
 	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
 }
 
@@ -4212,9 +4315,13 @@ type CreateTrafficPolicyVersionInput struct {
 	// The definition of this version of the traffic policy, in JSON format. You
 	// specified the JSON in the CreateTrafficPolicyVersion request. For more information
 	// about the JSON format, see CreateTrafficPolicy.
+	//
+	// Document is a required field
 	Document *string `type:"string" required:"true"`
 
 	// The ID of the traffic policy for which you want to create a new version.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4249,10 +4356,13 @@ func (s *CreateTrafficPolicyVersionInput) Validate() error {
 type CreateTrafficPolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
 	// A complex type that contains settings for the new version of the traffic
 	// policy.
+	//
+	// TrafficPolicy is a required field
 	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
 }
 
@@ -4276,6 +4386,8 @@ type DelegationSet struct {
 
 	// A complex type that contains a list of the authoritative name servers for
 	// the hosted zone.
+	//
+	// NameServers is a required field
 	NameServers []*string `locationNameList:"NameServer" min:"1" type:"list" required:"true"`
 }
 
@@ -4294,6 +4406,7 @@ func (s DelegationSet) GoString() string {
 type DeleteHealthCheckInput struct {
 	_ struct{} `type:"structure"`
 
+	// HealthCheckId is a required field
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 }
 
@@ -4341,6 +4454,8 @@ type DeleteHostedZoneInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the hosted zone you want to delete.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4373,6 +4488,8 @@ type DeleteHostedZoneOutput struct {
 
 	// A complex type that contains the ID, the status, and the date and time of
 	// your delete request.
+	//
+	// ChangeInfo is a required field
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 }
 
@@ -4391,6 +4508,8 @@ type DeleteReusableDelegationSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the reusable delegation set you want to delete.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4437,9 +4556,13 @@ type DeleteTrafficPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the traffic policy that you want to delete.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version number of the traffic policy that you want to delete.
+	//
+	// Version is a required field
 	Version *int64 `location:"uri" locationName:"Version" min:"1" type:"integer" required:"true"`
 }
 
@@ -4482,6 +4605,8 @@ type DeleteTrafficPolicyInstanceInput struct {
 	//  When you delete a traffic policy instance, Amazon Route 53 also deletes
 	// all of the resource record sets that were created when you created the traffic
 	// policy instance.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4545,10 +4670,14 @@ type Dimension struct {
 
 	// For the metric that the CloudWatch alarm is associated with, the name of
 	// one dimension.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// For the metric that the CloudWatch alarm is associated with, the value of
 	// one dimension.
+	//
+	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4572,10 +4701,14 @@ type DisassociateVPCFromHostedZoneInput struct {
 
 	// The ID of the VPC that you want to disassociate from an Amazon Route 53 hosted
 	// zone.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// A complex type containing information about the Amazon VPC that you're disassociating
 	// from the specified hosted zone.
+	//
+	// VPC is a required field
 	VPC *VPC `type:"structure" required:"true"`
 }
 
@@ -4616,6 +4749,8 @@ type DisassociateVPCFromHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that describes the changes made to your hosted zone.
+	//
+	// ChangeInfo is a required field
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 }
 
@@ -4720,6 +4855,8 @@ type GetChangeDetailsInput struct {
 
 	// The ID of the change batch. This is the value that you specified in the change
 	// ID parameter when you submitted the request.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4753,6 +4890,8 @@ type GetChangeDetailsOutput struct {
 	// A complex type that contains information about the specified change batch,
 	// including the change batch ID, the status of the change, and the contained
 	// changes.
+	//
+	// ChangeBatchRecord is a required field
 	ChangeBatchRecord *ChangeBatchRecord `deprecated:"true" type:"structure" required:"true"`
 }
 
@@ -4773,6 +4912,8 @@ type GetChangeInput struct {
 	// The ID of the change batch request. The value that you specify here is the
 	// value that ChangeResourceRecordSets returned in the Id element when you submitted
 	// the request.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -4804,6 +4945,8 @@ type GetChangeOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains information about the specified change batch.
+	//
+	// ChangeInfo is a required field
 	ChangeInfo *ChangeInfo `type:"structure" required:"true"`
 }
 
@@ -4838,6 +4981,8 @@ type GetCheckerIpRangesOutput struct {
 
 	// A complex type that contains sorted list of IP ranges in CIDR format for
 	// Amazon Route 53 health checkers.
+	//
+	// CheckerIpRanges is a required field
 	CheckerIpRanges []*string `type:"list" required:"true"`
 }
 
@@ -4919,6 +5064,8 @@ type GetGeoLocationOutput struct {
 
 	// A complex type that contains the codes and full continent, country, and subdivision
 	// names for the specified geolocation code.
+	//
+	// GeoLocationDetails is a required field
 	GeoLocationDetails *GeoLocationDetails `type:"structure" required:"true"`
 }
 
@@ -4953,6 +5100,8 @@ type GetHealthCheckCountOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of health checks associated with the current AWS account.
+	//
+	// HealthCheckCount is a required field
 	HealthCheckCount *int64 `type:"long" required:"true"`
 }
 
@@ -4982,6 +5131,8 @@ type GetHealthCheckInput struct {
 	// created it. When you add or update a resource record set, you use this value
 	// to specify which health check to use. The value can be up to 64 characters
 	// long.
+	//
+	// HealthCheckId is a required field
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 }
 
@@ -5023,6 +5174,8 @@ type GetHealthCheckLastFailureReasonInput struct {
 	// The ID for the health check for which you want the last failure reason. When
 	// you created the health check, CreateHealthCheck returned the ID in the response,
 	// in the HealthCheckId element.
+	//
+	// HealthCheckId is a required field
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 }
 
@@ -5056,6 +5209,8 @@ type GetHealthCheckLastFailureReasonOutput struct {
 
 	// A list that contains one Observation element for each Amazon Route 53 health
 	// checker that is reporting a last failure reason.
+	//
+	// HealthCheckObservations is a required field
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 }
 
@@ -5075,6 +5230,8 @@ type GetHealthCheckOutput struct {
 
 	// A complex type that contains information about one health check that is associated
 	// with the current AWS account.
+	//
+	// HealthCheck is a required field
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 }
 
@@ -5149,6 +5306,8 @@ type GetHealthCheckStatusInput struct {
 	// of FullyQualifiedDomainName matches the name of the resource record sets
 	// and then associate the health check with those resource record sets, health
 	// check results will be unpredictable.
+	//
+	// HealthCheckId is a required field
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 }
 
@@ -5181,6 +5340,8 @@ type GetHealthCheckStatusOutput struct {
 
 	// A list that contains one HealthCheckObservation element for each Amazon Route
 	// 53 health checker that is reporting a status about the health check endpoint.
+	//
+	// HealthCheckObservations is a required field
 	HealthCheckObservations []*HealthCheckObservation `locationNameList:"HealthCheckObservation" type:"list" required:"true"`
 }
 
@@ -5216,6 +5377,8 @@ type GetHostedZoneCountOutput struct {
 
 	// The total number of public and private hosted zones associated with the current
 	// AWS account.
+	//
+	// HostedZoneCount is a required field
 	HostedZoneCount *int64 `type:"long" required:"true"`
 }
 
@@ -5235,6 +5398,8 @@ type GetHostedZoneInput struct {
 
 	// The ID of the hosted zone for which you want to get a list of the name servers
 	// in the delegation set.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -5269,6 +5434,8 @@ type GetHostedZoneOutput struct {
 	DelegationSet *DelegationSet `type:"structure"`
 
 	// A complex type that contains general information about the hosted zone.
+	//
+	// HostedZone is a required field
 	HostedZone *HostedZone `type:"structure" required:"true"`
 
 	// A complex type that contains information about VPCs associated with the specified
@@ -5292,6 +5459,8 @@ type GetReusableDelegationSetInput struct {
 
 	// The ID of the reusable delegation set for which you want to get a list of
 	// the name server.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -5324,6 +5493,8 @@ type GetReusableDelegationSetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains information about the reusable delegation set.
+	//
+	// DelegationSet is a required field
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 }
 
@@ -5344,10 +5515,14 @@ type GetTrafficPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the traffic policy that you want to get information about.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The version number of the traffic policy that you want to get information
 	// about.
+	//
+	// Version is a required field
 	Version *int64 `location:"uri" locationName:"Version" min:"1" type:"integer" required:"true"`
 }
 
@@ -5403,6 +5578,8 @@ type GetTrafficPolicyInstanceCountOutput struct {
 
 	// The number of traffic policy instances that are associated with the current
 	// AWS account.
+	//
+	// TrafficPolicyInstanceCount is a required field
 	TrafficPolicyInstanceCount *int64 `type:"integer" required:"true"`
 }
 
@@ -5424,6 +5601,8 @@ type GetTrafficPolicyInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the traffic policy instance that you want to get information about.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -5456,6 +5635,8 @@ type GetTrafficPolicyInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains settings for the traffic policy instance.
+	//
+	// TrafficPolicyInstance is a required field
 	TrafficPolicyInstance *TrafficPolicyInstance `type:"structure" required:"true"`
 }
 
@@ -5474,6 +5655,8 @@ type GetTrafficPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains settings for the specified traffic policy.
+	//
+	// TrafficPolicy is a required field
 	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
 }
 
@@ -5493,6 +5676,8 @@ type HealthCheck struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string that you specified when you created the health check.
+	//
+	// CallerReference is a required field
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that contains information about the CloudWatch alarm that
@@ -5500,17 +5685,23 @@ type HealthCheck struct {
 	CloudWatchAlarmConfiguration *CloudWatchAlarmConfiguration `type:"structure"`
 
 	// A complex type that contains detailed information about one health check.
+	//
+	// HealthCheckConfig is a required field
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
 
 	// The version of the health check. You can optionally pass this value in a
 	// call to UpdateHealthCheck to prevent overwriting another change to the health
 	// check.
+	//
+	// HealthCheckVersion is a required field
 	HealthCheckVersion *int64 `min:"1" type:"long" required:"true"`
 
 	// The identifier that Amazon Route 53assigned to the health check when you
 	// created it. When you add or update a resource record set, you use this value
 	// to specify which health check to use. The value can be up to 64 characters
 	// long.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 }
 
@@ -5757,6 +5948,8 @@ type HealthCheckConfig struct {
 	//
 	//   For more information about how Amazon Route 53 determines whether an endpoint
 	// is healthy, see the introduction to this topic.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"HealthCheckType"`
 }
 
@@ -5834,6 +6027,8 @@ type HostedZone struct {
 
 	// The value that you specified for CallerReference when you created the hosted
 	// zone.
+	//
+	// CallerReference is a required field
 	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that includes the Comment and PrivateZone elements. If you
@@ -5843,6 +6038,8 @@ type HostedZone struct {
 
 	// The ID that Amazon Route 53 assigned to the hosted zone when you created
 	// it.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// The name of the domain. For public hosted zones, this is the name that you
@@ -5850,6 +6047,8 @@ type HostedZone struct {
 	//
 	// For information about how to specify characters other than a-z, 0-9, and
 	// - (hyphen) and how to specify internationalized domain names, see CreateHostedZone.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The number of resource record sets in the hosted zone.
@@ -5894,9 +6093,13 @@ type ListChangeBatchesByHostedZoneInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The end of the time period you want to see changes for.
+	//
+	// EndDate is a required field
 	EndDate *string `location:"querystring" locationName:"endDate" deprecated:"true" type:"string" required:"true"`
 
 	// The ID of the hosted zone that you want to see changes for.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The page marker.
@@ -5906,6 +6109,8 @@ type ListChangeBatchesByHostedZoneInput struct {
 	MaxItems *string `location:"querystring" locationName:"maxItems" type:"string"`
 
 	// The start of the time period you want to see changes for.
+	//
+	// StartDate is a required field
 	StartDate *string `location:"querystring" locationName:"startDate" deprecated:"true" type:"string" required:"true"`
 }
 
@@ -5943,6 +6148,8 @@ type ListChangeBatchesByHostedZoneOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The change batches within the given hosted zone and time period.
+	//
+	// ChangeBatchRecords is a required field
 	ChangeBatchRecords []*ChangeBatchRecord `locationNameList:"ChangeBatchRecord" min:"1" deprecated:"true" type:"list" required:"true"`
 
 	// A flag that indicates if there are more change batches to list.
@@ -5951,10 +6158,14 @@ type ListChangeBatchesByHostedZoneOutput struct {
 	// For the second and subsequent calls to ListHostedZones, Marker is the value
 	// that you specified for the marker parameter in the request that produced
 	// the current response.
+	//
+	// Marker is a required field
 	Marker *string `type:"string" required:"true"`
 
 	// The value that you specified for the maxitems parameter in the call to ListHostedZones
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// The next page marker.
@@ -5976,9 +6187,13 @@ type ListChangeBatchesByRRSetInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The end of the time period you want to see changes for.
+	//
+	// EndDate is a required field
 	EndDate *string `location:"querystring" locationName:"endDate" deprecated:"true" type:"string" required:"true"`
 
 	// The ID of the hosted zone that you want to see changes for.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The page marker.
@@ -5988,15 +6203,21 @@ type ListChangeBatchesByRRSetInput struct {
 	MaxItems *string `location:"querystring" locationName:"maxItems" type:"string"`
 
 	// The name of the RRSet that you want to see changes for.
+	//
+	// Name is a required field
 	Name *string `location:"querystring" locationName:"rrSet_name" type:"string" required:"true"`
 
 	// The identifier of the RRSet that you want to see changes for.
 	SetIdentifier *string `location:"querystring" locationName:"identifier" min:"1" type:"string"`
 
 	// The start of the time period you want to see changes for.
+	//
+	// StartDate is a required field
 	StartDate *string `location:"querystring" locationName:"startDate" deprecated:"true" type:"string" required:"true"`
 
 	// The type of the RRSet that you want to see changes for.
+	//
+	// Type is a required field
 	Type *string `location:"querystring" locationName:"type" type:"string" required:"true" enum:"RRType"`
 }
 
@@ -6043,15 +6264,21 @@ type ListChangeBatchesByRRSetOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The change batches within the given hosted zone and time period.
+	//
+	// ChangeBatchRecords is a required field
 	ChangeBatchRecords []*ChangeBatchRecord `locationNameList:"ChangeBatchRecord" min:"1" deprecated:"true" type:"list" required:"true"`
 
 	// A flag that indicates if there are more change batches to list.
 	IsTruncated *bool `type:"boolean"`
 
 	// The page marker.
+	//
+	// Marker is a required field
 	Marker *string `type:"string" required:"true"`
 
 	// The maximum number of items on a page.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// The next page marker.
@@ -6152,6 +6379,8 @@ type ListGeoLocationsOutput struct {
 
 	// A complex type that contains one GeoLocationDetails element for each location
 	// that Amazon Route 53 supports for geolocation.
+	//
+	// GeoLocationDetailsList is a required field
 	GeoLocationDetailsList []*GeoLocationDetails `locationNameList:"GeoLocationDetails" type:"list" required:"true"`
 
 	// A value that indicates whether more locations remain to be listed after the
@@ -6159,9 +6388,13 @@ type ListGeoLocationsOutput struct {
 	// To get more values, submit another request and include the values of NextContinentCode,
 	// NextCountryCode, and NextSubdivisionCode in the StartContinentCode, StartCountryCode,
 	// and StartSubdivisionCode, as applicable.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for MaxItems in the request.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, you can make a follow-up request to display more
@@ -6243,6 +6476,8 @@ type ListHealthChecksOutput struct {
 
 	// A complex type that contains one HealthCheck element for each health check
 	// that is associated with the current AWS account.
+	//
+	// HealthChecks is a required field
 	HealthChecks []*HealthCheck `locationNameList:"HealthCheck" type:"list" required:"true"`
 
 	// A flag that indicates whether there are more health checks to be listed.
@@ -6251,14 +6486,20 @@ type ListHealthChecksOutput struct {
 	// NextMarker element in the marker parameter.
 	//
 	// Valid Values: true | false
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// For the second and subsequent calls to ListHealthChecks, Marker is the value
 	// that you specified for the marker parameter in the previous request.
+	//
+	// Marker is a required field
 	Marker *string `type:"string" required:"true"`
 
 	// The value that you specified for the maxitems parameter in the call to ListHealthChecks
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, the value of NextMarker identifies the first health
@@ -6376,6 +6617,8 @@ type ListHostedZonesByNameOutput struct {
 	HostedZoneId *string `type:"string"`
 
 	// A complex type that contains general information about the hosted zone.
+	//
+	// HostedZones is a required field
 	HostedZones []*HostedZone `locationNameList:"HostedZone" type:"list" required:"true"`
 
 	// A flag that indicates whether there are more hosted zones to be listed. If
@@ -6383,10 +6626,14 @@ type ListHostedZonesByNameOutput struct {
 	// zones by calling ListHostedZonesByName again and specifying the values of
 	// NextDNSName and NextHostedZoneId elements in the dnsname and hostedzoneid
 	// parameters.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for the maxitems parameter in the call to ListHostedZonesByName
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, the value of NextDNSName is the name of the first
@@ -6481,21 +6728,29 @@ type ListHostedZonesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains general information about the hosted zone.
+	//
+	// HostedZones is a required field
 	HostedZones []*HostedZone `locationNameList:"HostedZone" type:"list" required:"true"`
 
 	// A flag indicating whether there are more hosted zones to be listed. If the
 	// response was truncated, you can get the next group of maxitems hosted zones
 	// by calling ListHostedZones again and specifying the value of the NextMarker
 	// element in the marker parameter.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// For the second and subsequent calls to ListHostedZones, Marker is the value
 	// that you specified for the marker parameter in the request that produced
 	// the current response.
+	//
+	// Marker is a required field
 	Marker *string `type:"string" required:"true"`
 
 	// The value that you specified for the maxitems parameter in the call to ListHostedZones
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, the value of NextMarker identifies the first hosted
@@ -6522,6 +6777,8 @@ type ListResourceRecordSetsInput struct {
 
 	// The ID of the hosted zone that contains the resource record sets that you
 	// want to get.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// (Optional) The maximum number of resource records sets to include in the
@@ -6598,9 +6855,13 @@ type ListResourceRecordSetsOutput struct {
 	// A flag that indicates whether more resource record sets remain to be listed.
 	// If your results were truncated, you can make a follow-up pagination request
 	// by using the NextRecordName element.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The maximum number of records you requested.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// Weighted, latency, geolocation, and failover resource record sets only: If
@@ -6619,6 +6880,8 @@ type ListResourceRecordSetsOutput struct {
 	NextRecordType *string `type:"string" enum:"RRType"`
 
 	// Information about multiple resource record sets.
+	//
+	// ResourceRecordSets is a required field
 	ResourceRecordSets []*ResourceRecordSet `locationNameList:"ResourceRecordSet" type:"list" required:"true"`
 }
 
@@ -6672,21 +6935,29 @@ type ListReusableDelegationSetsOutput struct {
 
 	// A complex type that contains one DelegationSet element for each reusable
 	// delegation set that was created by the current AWS account.
+	//
+	// DelegationSets is a required field
 	DelegationSets []*DelegationSet `locationNameList:"DelegationSet" type:"list" required:"true"`
 
 	// A flag that indicates whether there are more reusable delegation sets to
 	// be listed. If the response is truncated, you can get the next group of maxitems
 	// reusable delegation sets by calling ListReusableDelegationSets again and
 	// specifying the value of the NextMarker element in the marker parameter.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// For the second and subsequent calls to ListReusableDelegationSets, Marker
 	// is the value that you specified for the marker parameter in the request that
 	// produced the current response.
+	//
+	// Marker is a required field
 	Marker *string `type:"string" required:"true"`
 
 	// The value that you specified for the maxitems parameter in the call to ListReusableDelegationSets
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, the value of NextMarker identifies the first reusable
@@ -6712,6 +6983,8 @@ type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the resource for which you want to retrieve tags.
+	//
+	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 
 	// The type of the resource.
@@ -6719,6 +6992,8 @@ type ListTagsForResourceInput struct {
 	//   The resource type for health checks is healthcheck.
 	//
 	//   The resource type for hosted zones is hostedzone.
+	//
+	// ResourceType is a required field
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 }
 
@@ -6754,6 +7029,8 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A ResourceTagSet containing tags associated with the specified resource.
+	//
+	// ResourceTagSet is a required field
 	ResourceTagSet *ResourceTagSet `type:"structure" required:"true"`
 }
 
@@ -6774,6 +7051,8 @@ type ListTagsForResourcesInput struct {
 
 	// A complex type that contains the ResourceId element for each resource for
 	// which you want to get a list of tags.
+	//
+	// ResourceIds is a required field
 	ResourceIds []*string `locationNameList:"ResourceId" min:"1" type:"list" required:"true"`
 
 	// The type of the resources.
@@ -6781,6 +7060,8 @@ type ListTagsForResourcesInput struct {
 	//   The resource type for health checks is healthcheck.
 	//
 	//   The resource type for hosted zones is hostedzone.
+	//
+	// ResourceType is a required field
 	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 }
 
@@ -6818,6 +7099,8 @@ type ListTagsForResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of ResourceTagSets containing tags associated with the specified resources.
+	//
+	// ResourceTagSets is a required field
 	ResourceTagSets []*ResourceTagSet `locationNameList:"ResourceTagSet" type:"list" required:"true"`
 }
 
@@ -6876,18 +7159,26 @@ type ListTrafficPoliciesOutput struct {
 	// the TrafficPolicyIdMarker element in the TrafficPolicyIdMarker request parameter.
 	//
 	// Valid Values: true | false
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicies
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If the value of IsTruncated is true, TrafficPolicyIdMarker is the ID of the
 	// first traffic policy in the next group of MaxItems traffic policies.
+	//
+	// TrafficPolicyIdMarker is a required field
 	TrafficPolicyIdMarker *string `type:"string" required:"true"`
 
 	// A list that contains one TrafficPolicySummary element for each traffic policy
 	// that was created by the current AWS account.
+	//
+	// TrafficPolicySummaries is a required field
 	TrafficPolicySummaries []*TrafficPolicySummary `locationNameList:"TrafficPolicySummary" type:"list" required:"true"`
 }
 
@@ -6907,6 +7198,8 @@ type ListTrafficPolicyInstancesByHostedZoneInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the hosted zone for which you want to list traffic policy instances.
+	//
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"querystring" locationName:"id" type:"string" required:"true"`
 
 	// The maximum number of traffic policy instances to be included in the response
@@ -6976,10 +7269,14 @@ type ListTrafficPolicyInstancesByHostedZoneOutput struct {
 	// again and specifying the values of the HostedZoneIdMarker, TrafficPolicyInstanceNameMarker,
 	// and TrafficPolicyInstanceTypeMarker elements in the corresponding request
 	// parameters.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicyInstancesByHostedZone
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, TrafficPolicyInstanceNameMarker is the name of the
@@ -6994,6 +7291,8 @@ type ListTrafficPolicyInstancesByHostedZoneOutput struct {
 
 	// A list that contains one TrafficPolicyInstance element for each traffic policy
 	// instance that matches the elements in the request.
+	//
+	// TrafficPolicyInstances is a required field
 	TrafficPolicyInstances []*TrafficPolicyInstance `locationNameList:"TrafficPolicyInstance" type:"list" required:"true"`
 }
 
@@ -7034,6 +7333,8 @@ type ListTrafficPolicyInstancesByPolicyInput struct {
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
 
 	// The ID of the traffic policy for which you want to list traffic policy instances.
+	//
+	// TrafficPolicyId is a required field
 	TrafficPolicyId *string `location:"querystring" locationName:"id" type:"string" required:"true"`
 
 	// For the first request to ListTrafficPolicyInstancesByPolicy, omit this value.
@@ -7062,6 +7363,8 @@ type ListTrafficPolicyInstancesByPolicyInput struct {
 	// The version of the traffic policy for which you want to list traffic policy
 	// instances. The version must be associated with the traffic policy that is
 	// specified by TrafficPolicyId.
+	//
+	// TrafficPolicyVersion is a required field
 	TrafficPolicyVersion *int64 `location:"querystring" locationName:"version" min:"1" type:"integer" required:"true"`
 }
 
@@ -7109,10 +7412,14 @@ type ListTrafficPolicyInstancesByPolicyOutput struct {
 	// and specifying the values of the HostedZoneIdMarker, TrafficPolicyInstanceNameMarker,
 	// and TrafficPolicyInstanceTypeMarker elements in the corresponding request
 	// parameters.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicyInstancesByPolicy
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, TrafficPolicyInstanceNameMarker is the name of the
@@ -7127,6 +7434,8 @@ type ListTrafficPolicyInstancesByPolicyOutput struct {
 
 	// A list that contains one TrafficPolicyInstance element for each traffic policy
 	// instance that matches the elements in the request.
+	//
+	// TrafficPolicyInstances is a required field
 	TrafficPolicyInstances []*TrafficPolicyInstance `locationNameList:"TrafficPolicyInstance" type:"list" required:"true"`
 }
 
@@ -7212,10 +7521,14 @@ type ListTrafficPolicyInstancesOutput struct {
 	// specifying the values of the HostedZoneIdMarker, TrafficPolicyInstanceNameMarker,
 	// and TrafficPolicyInstanceTypeMarker elements in the corresponding request
 	// parameters.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for the MaxItems parameter in the call to ListTrafficPolicyInstances
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// If IsTruncated is true, TrafficPolicyInstanceNameMarker is the name of the
@@ -7230,6 +7543,8 @@ type ListTrafficPolicyInstancesOutput struct {
 
 	// A list that contains one TrafficPolicyInstance element for each traffic policy
 	// instance that matches the elements in the request.
+	//
+	// TrafficPolicyInstances is a required field
 	TrafficPolicyInstances []*TrafficPolicyInstance `locationNameList:"TrafficPolicyInstance" type:"list" required:"true"`
 }
 
@@ -7250,6 +7565,8 @@ type ListTrafficPolicyVersionsInput struct {
 
 	// Specify the value of Id of the traffic policy for which you want to list
 	// all versions.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The maximum number of traffic policy versions that you want Amazon Route
@@ -7304,14 +7621,20 @@ type ListTrafficPolicyVersionsOutput struct {
 	// If the response was truncated, you can get the next group of maxitems traffic
 	// policies by calling ListTrafficPolicyVersions again and specifying the value
 	// of the NextMarker element in the marker parameter.
+	//
+	// IsTruncated is a required field
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// The value that you specified for the maxitems parameter in the call to ListTrafficPolicyVersions
 	// that produced the current response.
+	//
+	// MaxItems is a required field
 	MaxItems *string `type:"string" required:"true"`
 
 	// A list that contains one TrafficPolicy element for each traffic policy version
 	// that is associated with the specified traffic policy.
+	//
+	// TrafficPolicies is a required field
 	TrafficPolicies []*TrafficPolicy `locationNameList:"TrafficPolicy" type:"list" required:"true"`
 
 	// If IsTruncated is true, the value of TrafficPolicyVersionMarker identifies
@@ -7320,6 +7643,8 @@ type ListTrafficPolicyVersionsOutput struct {
 	// in the TrafficPolicyVersionMarker request parameter.
 	//
 	// This element is present only if IsTruncated is true.
+	//
+	// TrafficPolicyVersionMarker is a required field
 	TrafficPolicyVersionMarker *string `type:"string" required:"true"`
 }
 
@@ -7349,6 +7674,8 @@ type ResourceRecord struct {
 	// SOA.
 	//
 	//  If you are creating an alias resource record set, omit Value.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -7580,6 +7907,8 @@ type ResourceRecordSet struct {
 	// example, *.example.com. You cannot use an * for one of the middle labels,
 	// for example, marketing.*.example.com. In addition, the * must replace the
 	// entire label; for example, you can't specify prod*.example.com.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// Latency-based resource record sets only: The Amazon EC2 region where the
@@ -7680,6 +8009,8 @@ type ResourceRecordSet struct {
 	//    Another resource record set in this hosted zone: Specify the type of
 	// the resource record set for which you're creating the alias. Specify any
 	// value except NS or SOA.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"RRType"`
 
 	// Weighted resource record sets only: Among resource record sets that have
@@ -7900,10 +8231,13 @@ type TestDNSAnswerInput struct {
 
 	EDNS0ClientSubnetMask *string `location:"querystring" locationName:"edns0clientsubnetmask" type:"string"`
 
+	// HostedZoneId is a required field
 	HostedZoneId *string `location:"querystring" locationName:"hostedzoneid" type:"string" required:"true"`
 
+	// RecordName is a required field
 	RecordName *string `location:"querystring" locationName:"recordname" type:"string" required:"true"`
 
+	// RecordType is a required field
 	RecordType *string `location:"querystring" locationName:"recordtype" type:"string" required:"true" enum:"RRType"`
 
 	ResolverIP *string `location:"querystring" locationName:"resolverip" type:"string"`
@@ -7943,20 +8277,30 @@ type TestDNSAnswerOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Route 53 name server used to respond to the request.
+	//
+	// Nameserver is a required field
 	Nameserver *string `type:"string" required:"true"`
 
 	// The protocol that Amazon Route 53 used to respond to the request, either
 	// UDP or TCP.
+	//
+	// Protocol is a required field
 	Protocol *string `type:"string" required:"true"`
 
 	// A list that contains values that Amazon Route 53 returned for this resource
 	// record set.
+	//
+	// RecordData is a required field
 	RecordData []*string `locationNameList:"RecordDataEntry" type:"list" required:"true"`
 
 	// The name of the resource record set that you submitted a request for.
+	//
+	// RecordName is a required field
 	RecordName *string `type:"string" required:"true"`
 
 	// The type of the resource record set that you submitted a request for.
+	//
+	// RecordType is a required field
 	RecordType *string `type:"string" required:"true" enum:"RRType"`
 
 	// A code that indicates whether the request is valid or not. The most common
@@ -7964,6 +8308,8 @@ type TestDNSAnswerOutput struct {
 	// is not valid, Amazon Route 53 returns a response code that describes the
 	// error. For a list of possible response codes, see DNS RCODES (http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6)
 	// on the IANA website.
+	//
+	// ResponseCode is a required field
 	ResponseCode *string `type:"string" required:"true"`
 }
 
@@ -7982,14 +8328,19 @@ type TrafficPolicy struct {
 
 	Comment *string `type:"string"`
 
+	// Document is a required field
 	Document *string `type:"string" required:"true"`
 
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"RRType"`
 
+	// Version is a required field
 	Version *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -8006,22 +8357,31 @@ func (s TrafficPolicy) GoString() string {
 type TrafficPolicyInstance struct {
 	_ struct{} `type:"structure"`
 
+	// HostedZoneId is a required field
 	HostedZoneId *string `type:"string" required:"true"`
 
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// Message is a required field
 	Message *string `type:"string" required:"true"`
 
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// State is a required field
 	State *string `type:"string" required:"true"`
 
+	// TTL is a required field
 	TTL *int64 `type:"long" required:"true"`
 
+	// TrafficPolicyId is a required field
 	TrafficPolicyId *string `type:"string" required:"true"`
 
+	// TrafficPolicyType is a required field
 	TrafficPolicyType *string `type:"string" required:"true" enum:"RRType"`
 
+	// TrafficPolicyVersion is a required field
 	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -8038,14 +8398,19 @@ func (s TrafficPolicyInstance) GoString() string {
 type TrafficPolicySummary struct {
 	_ struct{} `type:"structure"`
 
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// LatestVersion is a required field
 	LatestVersion *int64 `min:"1" type:"integer" required:"true"`
 
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// TrafficPolicyCount is a required field
 	TrafficPolicyCount *int64 `min:"1" type:"integer" required:"true"`
 
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"RRType"`
 }
 
@@ -8159,6 +8524,8 @@ type UpdateHealthCheckInput struct {
 	// The ID for the health check for which you want detailed information. When
 	// you created the health check, CreateHealthCheck returned the ID in the response,
 	// in the HealthCheckId element.
+	//
+	// HealthCheckId is a required field
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	// A sequential counter that Amazon Route 53 sets to 1 when you create a health
@@ -8291,6 +8658,8 @@ type UpdateHealthCheckOutput struct {
 
 	// A complex type that contains information about one health check that is associated
 	// with the current AWS account.
+	//
+	// HealthCheck is a required field
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
 }
 
@@ -8313,6 +8682,8 @@ type UpdateHostedZoneCommentInput struct {
 	Comment *string `type:"string"`
 
 	// The ID for the hosted zone for which you want to update the comment.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 }
 
@@ -8344,6 +8715,8 @@ type UpdateHostedZoneCommentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains general information about the hosted zone.
+	//
+	// HostedZone is a required field
 	HostedZone *HostedZone `type:"structure" required:"true"`
 }
 
@@ -8363,13 +8736,19 @@ type UpdateTrafficPolicyCommentInput struct {
 	_ struct{} `locationName:"UpdateTrafficPolicyCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 
 	// The new comment for the specified traffic policy and version.
+	//
+	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
 
 	// The value of Id for the traffic policy for which you want to update the comment.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of Version for the traffic policy for which you want to update
 	// the comment.
+	//
+	// Version is a required field
 	Version *int64 `location:"uri" locationName:"Version" min:"1" type:"integer" required:"true"`
 }
 
@@ -8410,6 +8789,8 @@ type UpdateTrafficPolicyCommentOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains settings for the specified traffic policy.
+	//
+	// TrafficPolicy is a required field
 	TrafficPolicy *TrafficPolicy `type:"structure" required:"true"`
 }
 
@@ -8429,18 +8810,26 @@ type UpdateTrafficPolicyInstanceInput struct {
 	_ struct{} `locationName:"UpdateTrafficPolicyInstanceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 
 	// The ID of the traffic policy instance that you want to update.
+	//
+	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The TTL that you want Amazon Route 53 to assign to all of the updated resource
 	// record sets.
+	//
+	// TTL is a required field
 	TTL *int64 `type:"long" required:"true"`
 
 	// The ID of the traffic policy that you want Amazon Route 53 to use to update
 	// resource record sets for the specified traffic policy instance.
+	//
+	// TrafficPolicyId is a required field
 	TrafficPolicyId *string `type:"string" required:"true"`
 
 	// The version of the traffic policy that you want Amazon Route 53 to use to
 	// update resource record sets for the specified traffic policy instance.
+	//
+	// TrafficPolicyVersion is a required field
 	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -8485,6 +8874,8 @@ type UpdateTrafficPolicyInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that contains settings for the updated traffic policy instance.
+	//
+	// TrafficPolicyInstance is a required field
 	TrafficPolicyInstance *TrafficPolicyInstance `type:"structure" required:"true"`
 }
 
@@ -8531,206 +8922,275 @@ func (s *VPC) Validate() error {
 }
 
 const (
-	// @enum ChangeAction
+	// ChangeActionCreate is a ChangeAction enum value
 	ChangeActionCreate = "CREATE"
-	// @enum ChangeAction
+
+	// ChangeActionDelete is a ChangeAction enum value
 	ChangeActionDelete = "DELETE"
-	// @enum ChangeAction
+
+	// ChangeActionUpsert is a ChangeAction enum value
 	ChangeActionUpsert = "UPSERT"
 )
 
 const (
-	// @enum ChangeStatus
+	// ChangeStatusPending is a ChangeStatus enum value
 	ChangeStatusPending = "PENDING"
-	// @enum ChangeStatus
+
+	// ChangeStatusInsync is a ChangeStatus enum value
 	ChangeStatusInsync = "INSYNC"
 )
 
 const (
-	// @enum CloudWatchRegion
+	// CloudWatchRegionUsEast1 is a CloudWatchRegion enum value
 	CloudWatchRegionUsEast1 = "us-east-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionUsWest1 is a CloudWatchRegion enum value
 	CloudWatchRegionUsWest1 = "us-west-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionUsWest2 is a CloudWatchRegion enum value
 	CloudWatchRegionUsWest2 = "us-west-2"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionEuCentral1 is a CloudWatchRegion enum value
 	CloudWatchRegionEuCentral1 = "eu-central-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionEuWest1 is a CloudWatchRegion enum value
 	CloudWatchRegionEuWest1 = "eu-west-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionApSouth1 is a CloudWatchRegion enum value
 	CloudWatchRegionApSouth1 = "ap-south-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionApSoutheast1 is a CloudWatchRegion enum value
 	CloudWatchRegionApSoutheast1 = "ap-southeast-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionApSoutheast2 is a CloudWatchRegion enum value
 	CloudWatchRegionApSoutheast2 = "ap-southeast-2"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionApNortheast1 is a CloudWatchRegion enum value
 	CloudWatchRegionApNortheast1 = "ap-northeast-1"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionApNortheast2 is a CloudWatchRegion enum value
 	CloudWatchRegionApNortheast2 = "ap-northeast-2"
-	// @enum CloudWatchRegion
+
+	// CloudWatchRegionSaEast1 is a CloudWatchRegion enum value
 	CloudWatchRegionSaEast1 = "sa-east-1"
 )
 
 const (
-	// @enum ComparisonOperator
+	// ComparisonOperatorGreaterThanOrEqualToThreshold is a ComparisonOperator enum value
 	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorGreaterThanThreshold is a ComparisonOperator enum value
 	ComparisonOperatorGreaterThanThreshold = "GreaterThanThreshold"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLessThanThreshold is a ComparisonOperator enum value
 	ComparisonOperatorLessThanThreshold = "LessThanThreshold"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLessThanOrEqualToThreshold is a ComparisonOperator enum value
 	ComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
 )
 
 // An Amazon EC2 region that you want Amazon Route 53 to use to perform health
 // checks.
 const (
-	// @enum HealthCheckRegion
+	// HealthCheckRegionUsEast1 is a HealthCheckRegion enum value
 	HealthCheckRegionUsEast1 = "us-east-1"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionUsWest1 is a HealthCheckRegion enum value
 	HealthCheckRegionUsWest1 = "us-west-1"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionUsWest2 is a HealthCheckRegion enum value
 	HealthCheckRegionUsWest2 = "us-west-2"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionEuWest1 is a HealthCheckRegion enum value
 	HealthCheckRegionEuWest1 = "eu-west-1"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionApSoutheast1 is a HealthCheckRegion enum value
 	HealthCheckRegionApSoutheast1 = "ap-southeast-1"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionApSoutheast2 is a HealthCheckRegion enum value
 	HealthCheckRegionApSoutheast2 = "ap-southeast-2"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionApNortheast1 is a HealthCheckRegion enum value
 	HealthCheckRegionApNortheast1 = "ap-northeast-1"
-	// @enum HealthCheckRegion
+
+	// HealthCheckRegionSaEast1 is a HealthCheckRegion enum value
 	HealthCheckRegionSaEast1 = "sa-east-1"
 )
 
 const (
-	// @enum HealthCheckType
+	// HealthCheckTypeHttp is a HealthCheckType enum value
 	HealthCheckTypeHttp = "HTTP"
-	// @enum HealthCheckType
+
+	// HealthCheckTypeHttps is a HealthCheckType enum value
 	HealthCheckTypeHttps = "HTTPS"
-	// @enum HealthCheckType
+
+	// HealthCheckTypeHttpStrMatch is a HealthCheckType enum value
 	HealthCheckTypeHttpStrMatch = "HTTP_STR_MATCH"
-	// @enum HealthCheckType
+
+	// HealthCheckTypeHttpsStrMatch is a HealthCheckType enum value
 	HealthCheckTypeHttpsStrMatch = "HTTPS_STR_MATCH"
-	// @enum HealthCheckType
+
+	// HealthCheckTypeTcp is a HealthCheckType enum value
 	HealthCheckTypeTcp = "TCP"
-	// @enum HealthCheckType
+
+	// HealthCheckTypeCalculated is a HealthCheckType enum value
 	HealthCheckTypeCalculated = "CALCULATED"
-	// @enum HealthCheckType
+
+	// HealthCheckTypeCloudwatchMetric is a HealthCheckType enum value
 	HealthCheckTypeCloudwatchMetric = "CLOUDWATCH_METRIC"
 )
 
 const (
-	// @enum InsufficientDataHealthStatus
+	// InsufficientDataHealthStatusHealthy is a InsufficientDataHealthStatus enum value
 	InsufficientDataHealthStatusHealthy = "Healthy"
-	// @enum InsufficientDataHealthStatus
+
+	// InsufficientDataHealthStatusUnhealthy is a InsufficientDataHealthStatus enum value
 	InsufficientDataHealthStatusUnhealthy = "Unhealthy"
-	// @enum InsufficientDataHealthStatus
+
+	// InsufficientDataHealthStatusLastKnownStatus is a InsufficientDataHealthStatus enum value
 	InsufficientDataHealthStatusLastKnownStatus = "LastKnownStatus"
 )
 
 const (
-	// @enum RRType
+	// RRTypeSoa is a RRType enum value
 	RRTypeSoa = "SOA"
-	// @enum RRType
+
+	// RRTypeA is a RRType enum value
 	RRTypeA = "A"
-	// @enum RRType
+
+	// RRTypeTxt is a RRType enum value
 	RRTypeTxt = "TXT"
-	// @enum RRType
+
+	// RRTypeNs is a RRType enum value
 	RRTypeNs = "NS"
-	// @enum RRType
+
+	// RRTypeCname is a RRType enum value
 	RRTypeCname = "CNAME"
-	// @enum RRType
+
+	// RRTypeMx is a RRType enum value
 	RRTypeMx = "MX"
-	// @enum RRType
+
+	// RRTypeNaptr is a RRType enum value
 	RRTypeNaptr = "NAPTR"
-	// @enum RRType
+
+	// RRTypePtr is a RRType enum value
 	RRTypePtr = "PTR"
-	// @enum RRType
+
+	// RRTypeSrv is a RRType enum value
 	RRTypeSrv = "SRV"
-	// @enum RRType
+
+	// RRTypeSpf is a RRType enum value
 	RRTypeSpf = "SPF"
-	// @enum RRType
+
+	// RRTypeAaaa is a RRType enum value
 	RRTypeAaaa = "AAAA"
 )
 
 const (
-	// @enum ResourceRecordSetFailover
+	// ResourceRecordSetFailoverPrimary is a ResourceRecordSetFailover enum value
 	ResourceRecordSetFailoverPrimary = "PRIMARY"
-	// @enum ResourceRecordSetFailover
+
+	// ResourceRecordSetFailoverSecondary is a ResourceRecordSetFailover enum value
 	ResourceRecordSetFailoverSecondary = "SECONDARY"
 )
 
 const (
-	// @enum ResourceRecordSetRegion
+	// ResourceRecordSetRegionUsEast1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionUsEast1 = "us-east-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionUsWest1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionUsWest1 = "us-west-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionUsWest2 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionUsWest2 = "us-west-2"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionEuWest1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionEuWest1 = "eu-west-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionEuCentral1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionEuCentral1 = "eu-central-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionApSoutheast1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionApSoutheast1 = "ap-southeast-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionApSoutheast2 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionApSoutheast2 = "ap-southeast-2"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionApNortheast1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionApNortheast1 = "ap-northeast-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionApNortheast2 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionApNortheast2 = "ap-northeast-2"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionSaEast1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionSaEast1 = "sa-east-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionCnNorth1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionCnNorth1 = "cn-north-1"
-	// @enum ResourceRecordSetRegion
+
+	// ResourceRecordSetRegionApSouth1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionApSouth1 = "ap-south-1"
 )
 
 const (
-	// @enum Statistic
+	// StatisticAverage is a Statistic enum value
 	StatisticAverage = "Average"
-	// @enum Statistic
+
+	// StatisticSum is a Statistic enum value
 	StatisticSum = "Sum"
-	// @enum Statistic
+
+	// StatisticSampleCount is a Statistic enum value
 	StatisticSampleCount = "SampleCount"
-	// @enum Statistic
+
+	// StatisticMaximum is a Statistic enum value
 	StatisticMaximum = "Maximum"
-	// @enum Statistic
+
+	// StatisticMinimum is a Statistic enum value
 	StatisticMinimum = "Minimum"
 )
 
 const (
-	// @enum TagResourceType
+	// TagResourceTypeHealthcheck is a TagResourceType enum value
 	TagResourceTypeHealthcheck = "healthcheck"
-	// @enum TagResourceType
+
+	// TagResourceTypeHostedzone is a TagResourceType enum value
 	TagResourceTypeHostedzone = "hostedzone"
 )
 
 const (
-	// @enum VPCRegion
+	// VPCRegionUsEast1 is a VPCRegion enum value
 	VPCRegionUsEast1 = "us-east-1"
-	// @enum VPCRegion
+
+	// VPCRegionUsWest1 is a VPCRegion enum value
 	VPCRegionUsWest1 = "us-west-1"
-	// @enum VPCRegion
+
+	// VPCRegionUsWest2 is a VPCRegion enum value
 	VPCRegionUsWest2 = "us-west-2"
-	// @enum VPCRegion
+
+	// VPCRegionEuWest1 is a VPCRegion enum value
 	VPCRegionEuWest1 = "eu-west-1"
-	// @enum VPCRegion
+
+	// VPCRegionEuCentral1 is a VPCRegion enum value
 	VPCRegionEuCentral1 = "eu-central-1"
-	// @enum VPCRegion
+
+	// VPCRegionApSoutheast1 is a VPCRegion enum value
 	VPCRegionApSoutheast1 = "ap-southeast-1"
-	// @enum VPCRegion
+
+	// VPCRegionApSoutheast2 is a VPCRegion enum value
 	VPCRegionApSoutheast2 = "ap-southeast-2"
-	// @enum VPCRegion
+
+	// VPCRegionApSouth1 is a VPCRegion enum value
 	VPCRegionApSouth1 = "ap-south-1"
-	// @enum VPCRegion
+
+	// VPCRegionApNortheast1 is a VPCRegion enum value
 	VPCRegionApNortheast1 = "ap-northeast-1"
-	// @enum VPCRegion
+
+	// VPCRegionApNortheast2 is a VPCRegion enum value
 	VPCRegionApNortheast2 = "ap-northeast-2"
-	// @enum VPCRegion
+
+	// VPCRegionSaEast1 is a VPCRegion enum value
 	VPCRegionSaEast1 = "sa-east-1"
-	// @enum VPCRegion
+
+	// VPCRegionCnNorth1 is a VPCRegion enum value
 	VPCRegionCnNorth1 = "cn-north-1"
 )

@@ -1293,9 +1293,13 @@ type AddTagsToStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the stream.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// The set of key-value pairs to use to create the tags.
+	//
+	// Tags is a required field
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
 }
 
@@ -1354,6 +1358,8 @@ type CreateStreamInput struct {
 	// provisioned throughput.
 	//
 	// DefaultShardLimit;
+	//
+	// ShardCount is a required field
 	ShardCount *int64 `min:"1" type:"integer" required:"true"`
 
 	// A name to identify the stream. The stream name is scoped to the AWS account
@@ -1361,6 +1367,8 @@ type CreateStreamInput struct {
 	// That is, two streams in two different AWS accounts can have the same name,
 	// and two streams in the same AWS account but in two different regions can
 	// have the same name.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1416,9 +1424,13 @@ type DecreaseStreamRetentionPeriodInput struct {
 
 	// The new retention period of the stream, in hours. Must be less than the current
 	// retention period.
+	//
+	// RetentionPeriodHours is a required field
 	RetentionPeriodHours *int64 `min:"24" type:"integer" required:"true"`
 
 	// The name of the stream to modify.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1473,6 +1485,8 @@ type DeleteStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the stream to delete.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1527,6 +1541,8 @@ type DescribeStreamInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// The name of the stream to describe.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1568,6 +1584,8 @@ type DescribeStreamOutput struct {
 
 	// The current status of the stream, the stream ARN, an array of shard objects
 	// that comprise the stream, and states whether there are more shards available.
+	//
+	// StreamDescription is a required field
 	StreamDescription *StreamDescription `type:"structure" required:"true"`
 }
 
@@ -1595,9 +1613,13 @@ type DisableEnhancedMonitoringInput struct {
 	// more information, see Monitoring the Amazon Kinesis Streams Service with
 	// Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html)
 	// in the Amazon Kinesis Streams Developer Guide.
+	//
+	// ShardLevelMetrics is a required field
 	ShardLevelMetrics []*string `min:"1" type:"list" required:"true"`
 
 	// The name of the Amazon Kinesis stream for which to disable enhanced monitoring.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1647,9 +1669,13 @@ type EnableEnhancedMonitoringInput struct {
 	// more information, see Monitoring the Amazon Kinesis Streams Service with
 	// Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html)
 	// in the Amazon Kinesis Streams Developer Guide.
+	//
+	// ShardLevelMetrics is a required field
 	ShardLevelMetrics []*string `min:"1" type:"list" required:"true"`
 
 	// The name of the stream for which to enable enhanced monitoring.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1749,6 +1775,8 @@ type GetRecordsInput struct {
 	// The position in the shard from which you want to start sequentially reading
 	// data records. A shard iterator specifies this position using the sequence
 	// number of a data record in the shard.
+	//
+	// ShardIterator is a required field
 	ShardIterator *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1797,6 +1825,8 @@ type GetRecordsOutput struct {
 	NextShardIterator *string `min:"1" type:"string"`
 
 	// The data records retrieved from the shard.
+	//
+	// Records is a required field
 	Records []*Record `type:"list" required:"true"`
 }
 
@@ -1815,6 +1845,8 @@ type GetShardIteratorInput struct {
 	_ struct{} `type:"structure"`
 
 	// The shard ID of the Amazon Kinesis shard to get the iterator for.
+	//
+	// ShardId is a required field
 	ShardId *string `min:"1" type:"string" required:"true"`
 
 	// Determines how the shard iterator is used to start reading data records from
@@ -1831,6 +1863,8 @@ type GetShardIteratorInput struct {
 	// shard in the system, which is the oldest data record in the shard. LATEST
 	// - Start reading just after the most recent record in the shard, so that you
 	// always read the most recent data in the shard.
+	//
+	// ShardIteratorType is a required field
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
 
 	// The sequence number of the data record in the shard from which to start reading.
@@ -1838,6 +1872,8 @@ type GetShardIteratorInput struct {
 	StartingSequenceNumber *string `type:"string"`
 
 	// The name of the Amazon Kinesis stream.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// The timestamp of the data record from which to start reading. Used with shard
@@ -1911,9 +1947,13 @@ type HashKeyRange struct {
 	_ struct{} `type:"structure"`
 
 	// The ending hash key of the hash key range.
+	//
+	// EndingHashKey is a required field
 	EndingHashKey *string `type:"string" required:"true"`
 
 	// The starting hash key of the hash key range.
+	//
+	// StartingHashKey is a required field
 	StartingHashKey *string `type:"string" required:"true"`
 }
 
@@ -1933,9 +1973,13 @@ type IncreaseStreamRetentionPeriodInput struct {
 
 	// The new retention period of the stream, in hours. Must be more than the current
 	// retention period.
+	//
+	// RetentionPeriodHours is a required field
 	RetentionPeriodHours *int64 `min:"24" type:"integer" required:"true"`
 
 	// The name of the stream to modify.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2027,10 +2071,14 @@ type ListStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If set to true, there are more streams available to list.
+	//
+	// HasMoreStreams is a required field
 	HasMoreStreams *bool `type:"boolean" required:"true"`
 
 	// The names of the streams that are associated with the AWS account making
 	// the ListStreams request.
+	//
+	// StreamNames is a required field
 	StreamNames []*string `type:"list" required:"true"`
 }
 
@@ -2058,6 +2106,8 @@ type ListTagsForStreamInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// The name of the stream.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2099,10 +2149,14 @@ type ListTagsForStreamOutput struct {
 
 	// If set to true, more tags are available. To request additional tags, set
 	// ExclusiveStartTagKey to the key of the last tag returned.
+	//
+	// HasMoreTags is a required field
 	HasMoreTags *bool `type:"boolean" required:"true"`
 
 	// A list of tags associated with StreamName, starting with the first tag after
 	// ExclusiveStartTagKey and up to the specified Limit.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -2121,12 +2175,18 @@ type MergeShardsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The shard ID of the adjacent shard for the merge.
+	//
+	// AdjacentShardToMerge is a required field
 	AdjacentShardToMerge *string `min:"1" type:"string" required:"true"`
 
 	// The shard ID of the shard to combine with the adjacent shard for the merge.
+	//
+	// ShardToMerge is a required field
 	ShardToMerge *string `min:"1" type:"string" required:"true"`
 
 	// The name of the stream for the merge.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2192,6 +2252,8 @@ type PutRecordInput struct {
 	// record size (1 MB).
 	//
 	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 
 	// The hash value used to explicitly determine the shard the data record is
@@ -2206,6 +2268,8 @@ type PutRecordInput struct {
 	// and to map associated data records to shards. As a result of this hashing
 	// mechanism, all data records with the same partition key map to the same shard
 	// within the stream.
+	//
+	// PartitionKey is a required field
 	PartitionKey *string `min:"1" type:"string" required:"true"`
 
 	// Guarantees strictly increasing sequence numbers, for puts from the same client
@@ -2216,6 +2280,8 @@ type PutRecordInput struct {
 	SequenceNumberForOrdering *string `type:"string"`
 
 	// The name of the stream to put the data record into.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2262,9 +2328,13 @@ type PutRecordOutput struct {
 	// The sequence number for the record is unique across all records in the stream.
 	// A sequence number is the identifier associated with every record put into
 	// the stream.
+	//
+	// SequenceNumber is a required field
 	SequenceNumber *string `type:"string" required:"true"`
 
 	// The shard ID of the shard where the data record was placed.
+	//
+	// ShardId is a required field
 	ShardId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2283,9 +2353,13 @@ type PutRecordsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The records associated with the request.
+	//
+	// Records is a required field
 	Records []*PutRecordsRequestEntry `min:"1" type:"list" required:"true"`
 
 	// The stream name associated with the request.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2343,6 +2417,8 @@ type PutRecordsOutput struct {
 	// to a stream includes SequenceNumber and ShardId in the result. A record that
 	// fails to be added to a stream includes ErrorCode and ErrorMessage in the
 	// result.
+	//
+	// Records is a required field
 	Records []*PutRecordsResultEntry `min:"1" type:"list" required:"true"`
 }
 
@@ -2366,6 +2442,8 @@ type PutRecordsRequestEntry struct {
 	// record size (1 MB).
 	//
 	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 
 	// The hash value used to determine explicitly the shard that the data record
@@ -2380,6 +2458,8 @@ type PutRecordsRequestEntry struct {
 	// and to map associated data records to shards. As a result of this hashing
 	// mechanism, all data records with the same partition key map to the same shard
 	// within the stream.
+	//
+	// PartitionKey is a required field
 	PartitionKey *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2461,12 +2541,18 @@ type Record struct {
 	// record size (1 MB).
 	//
 	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 
 	// Identifies which shard in the stream the data record is assigned to.
+	//
+	// PartitionKey is a required field
 	PartitionKey *string `min:"1" type:"string" required:"true"`
 
 	// The unique identifier of the record in the stream.
+	//
+	// SequenceNumber is a required field
 	SequenceNumber *string `type:"string" required:"true"`
 }
 
@@ -2485,9 +2571,13 @@ type RemoveTagsFromStreamInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the stream.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// A list of tag keys. Each corresponding tag is removed from the stream.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `min:"1" type:"list" required:"true"`
 }
 
@@ -2546,6 +2636,8 @@ type SequenceNumberRange struct {
 	EndingSequenceNumber *string `type:"string"`
 
 	// The starting sequence number for the range.
+	//
+	// StartingSequenceNumber is a required field
 	StartingSequenceNumber *string `type:"string" required:"true"`
 }
 
@@ -2568,15 +2660,21 @@ type Shard struct {
 
 	// The range of possible hash key values for the shard, which is a set of ordered
 	// contiguous positive integers.
+	//
+	// HashKeyRange is a required field
 	HashKeyRange *HashKeyRange `type:"structure" required:"true"`
 
 	// The shard ID of the shard's parent.
 	ParentShardId *string `min:"1" type:"string"`
 
 	// The range of possible sequence numbers for the shard.
+	//
+	// SequenceNumberRange is a required field
 	SequenceNumberRange *SequenceNumberRange `type:"structure" required:"true"`
 
 	// The unique identifier of the shard within the stream.
+	//
+	// ShardId is a required field
 	ShardId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2601,12 +2699,18 @@ type SplitShardInput struct {
 	// hash key value and all higher hash key values in hash key range are distributed
 	// to one of the child shards. All the lower hash key values in the range are
 	// distributed to the other child shard.
+	//
+	// NewStartingHashKey is a required field
 	NewStartingHashKey *string `type:"string" required:"true"`
 
 	// The shard ID of the shard to split.
+	//
+	// ShardToSplit is a required field
 	ShardToSplit *string `min:"1" type:"string" required:"true"`
 
 	// The name of the stream for the shard split.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2664,21 +2768,33 @@ type StreamDescription struct {
 	_ struct{} `type:"structure"`
 
 	// Represents the current enhanced monitoring settings of the stream.
+	//
+	// EnhancedMonitoring is a required field
 	EnhancedMonitoring []*EnhancedMetrics `type:"list" required:"true"`
 
 	// If set to true, more shards in the stream are available to describe.
+	//
+	// HasMoreShards is a required field
 	HasMoreShards *bool `type:"boolean" required:"true"`
 
 	// The current retention period, in hours.
+	//
+	// RetentionPeriodHours is a required field
 	RetentionPeriodHours *int64 `min:"24" type:"integer" required:"true"`
 
 	// The shards that comprise the stream.
+	//
+	// Shards is a required field
 	Shards []*Shard `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) for the stream being described.
+	//
+	// StreamARN is a required field
 	StreamARN *string `type:"string" required:"true"`
 
 	// The name of the stream being described.
+	//
+	// StreamName is a required field
 	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// The current status of the stream being described. The stream status is one
@@ -2692,6 +2808,8 @@ type StreamDescription struct {
 	// on an ACTIVE stream. UPDATING - Shards in the stream are being merged or
 	// split. Read and write operations continue to work while the stream is in
 	// the UPDATING state.
+	//
+	// StreamStatus is a required field
 	StreamStatus *string `type:"string" required:"true" enum:"StreamStatus"`
 }
 
@@ -2711,6 +2829,8 @@ type Tag struct {
 
 	// A unique identifier for the tag. Maximum length: 128 characters. Valid characters:
 	// Unicode letters, digits, white space, _ . / = + - % @
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// An optional string, typically used to describe or define the tag. Maximum
@@ -2730,44 +2850,58 @@ func (s Tag) GoString() string {
 }
 
 const (
-	// @enum MetricsName
+	// MetricsNameIncomingBytes is a MetricsName enum value
 	MetricsNameIncomingBytes = "IncomingBytes"
-	// @enum MetricsName
+
+	// MetricsNameIncomingRecords is a MetricsName enum value
 	MetricsNameIncomingRecords = "IncomingRecords"
-	// @enum MetricsName
+
+	// MetricsNameOutgoingBytes is a MetricsName enum value
 	MetricsNameOutgoingBytes = "OutgoingBytes"
-	// @enum MetricsName
+
+	// MetricsNameOutgoingRecords is a MetricsName enum value
 	MetricsNameOutgoingRecords = "OutgoingRecords"
-	// @enum MetricsName
+
+	// MetricsNameWriteProvisionedThroughputExceeded is a MetricsName enum value
 	MetricsNameWriteProvisionedThroughputExceeded = "WriteProvisionedThroughputExceeded"
-	// @enum MetricsName
+
+	// MetricsNameReadProvisionedThroughputExceeded is a MetricsName enum value
 	MetricsNameReadProvisionedThroughputExceeded = "ReadProvisionedThroughputExceeded"
-	// @enum MetricsName
+
+	// MetricsNameIteratorAgeMilliseconds is a MetricsName enum value
 	MetricsNameIteratorAgeMilliseconds = "IteratorAgeMilliseconds"
-	// @enum MetricsName
+
+	// MetricsNameAll is a MetricsName enum value
 	MetricsNameAll = "ALL"
 )
 
 const (
-	// @enum ShardIteratorType
+	// ShardIteratorTypeAtSequenceNumber is a ShardIteratorType enum value
 	ShardIteratorTypeAtSequenceNumber = "AT_SEQUENCE_NUMBER"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeAfterSequenceNumber is a ShardIteratorType enum value
 	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeTrimHorizon is a ShardIteratorType enum value
 	ShardIteratorTypeTrimHorizon = "TRIM_HORIZON"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeLatest is a ShardIteratorType enum value
 	ShardIteratorTypeLatest = "LATEST"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeAtTimestamp is a ShardIteratorType enum value
 	ShardIteratorTypeAtTimestamp = "AT_TIMESTAMP"
 )
 
 const (
-	// @enum StreamStatus
+	// StreamStatusCreating is a StreamStatus enum value
 	StreamStatusCreating = "CREATING"
-	// @enum StreamStatus
+
+	// StreamStatusDeleting is a StreamStatus enum value
 	StreamStatusDeleting = "DELETING"
-	// @enum StreamStatus
+
+	// StreamStatusActive is a StreamStatus enum value
 	StreamStatusActive = "ACTIVE"
-	// @enum StreamStatus
+
+	// StreamStatusUpdating is a StreamStatus enum value
 	StreamStatusUpdating = "UPDATING"
 )

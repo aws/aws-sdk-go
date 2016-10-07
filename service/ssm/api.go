@@ -1566,14 +1566,20 @@ type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The resource ID you want to tag.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// Specifies the type of resource you are tagging.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
 
 	// One or more tags. The value parameter is required, but if you don't want
 	// the tag to have a value, specify the parameter with no value, and we set
 	// the value to an empty string.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -1686,9 +1692,13 @@ type AssociationFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"AssociationFilterKey"`
 
 	// The filter value.
+	//
+	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
@@ -1729,12 +1739,18 @@ type AssociationStatus struct {
 	AdditionalInfo *string `type:"string"`
 
 	// The date when the status changed.
+	//
+	// Date is a required field
 	Date *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The reason for the status.
+	//
+	// Message is a required field
 	Message *string `type:"string" required:"true"`
 
 	// The status.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"AssociationStatusName"`
 }
 
@@ -1771,6 +1787,8 @@ type CancelCommandInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the command you want to cancel.
+	//
+	// CommandId is a required field
 	CommandId *string `min:"36" type:"string" required:"true"`
 
 	// (Optional) A list of instance IDs on which you want to cancel the command.
@@ -1887,9 +1905,13 @@ type CommandFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter. For example, requested date and time.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"CommandFilterKey"`
 
 	// The filter value. For example: June 30, 2015.
+	//
+	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
@@ -2034,6 +2056,8 @@ type CreateActivationInput struct {
 
 	// The Amazon Identity and Access Management (IAM) role that you want to assign
 	// to the managed instance.
+	//
+	// IamRole is a required field
 	IamRole *string `type:"string" required:"true"`
 
 	// Specify the maximum number of managed instances you want to register. The
@@ -2093,6 +2117,8 @@ type CreateAssociationBatchInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more associations.
+	//
+	// Entries is a required field
 	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
 }
 
@@ -2167,9 +2193,13 @@ type CreateAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The parameters for the documents runtime configuration.
@@ -2223,9 +2253,13 @@ type CreateDocumentInput struct {
 	_ struct{} `type:"structure"`
 
 	// A valid JSON string.
+	//
+	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
 	// A name for the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2279,6 +2313,8 @@ type DeleteActivationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the activation that you want to delete.
+	//
+	// ActivationId is a required field
 	ActivationId *string `type:"string" required:"true"`
 }
 
@@ -2323,9 +2359,13 @@ type DeleteAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2373,6 +2413,8 @@ type DeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2418,6 +2460,8 @@ type DeregisterManagedInstanceInput struct {
 
 	// The ID assigned to the managed instance when you registered it using the
 	// activation process.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -2542,9 +2586,13 @@ type DescribeAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instance ID.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2595,6 +2643,8 @@ type DescribeDocumentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2642,9 +2692,13 @@ type DescribeDocumentPermissionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the document for which you are the owner.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The permission type for the document. The permission type can be Share.
+	//
+	// PermissionType is a required field
 	PermissionType *string `type:"string" required:"true" enum:"DocumentPermissionType"`
 }
 
@@ -2819,9 +2873,13 @@ type DocumentFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"DocumentFilterKey"`
 
 	// The value of the filter.
+	//
+	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 }
 
@@ -2936,6 +2994,8 @@ type GetDocumentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -3048,9 +3108,13 @@ type InstanceInformationFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"InstanceInformationFilterKey"`
 
 	// The filter values.
+	//
+	// ValueSet is a required field
 	ValueSet []*string `locationName:"valueSet" locationNameList:"InstanceInformationFilterValue" min:"1" type:"list" required:"true"`
 }
 
@@ -3087,6 +3151,8 @@ type ListAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more filters. Use a filter to return a more specific list of results.
+	//
+	// AssociationFilterList is a required field
 	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" min:"1" type:"list" required:"true"`
 
 	// The maximum number of items to return for this call. The call also returns
@@ -3406,9 +3472,13 @@ type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The resource ID for which you want to see a list of tags.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// Returns a list of tags for a specific resource type.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
 }
 
@@ -3469,9 +3539,13 @@ type ModifyDocumentPermissionInput struct {
 	AccountIdsToRemove []*string `locationNameList:"AccountId" type:"list"`
 
 	// The name of the document that you want to share.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The permission type for the document. The permission type can be Share.
+	//
+	// PermissionType is a required field
 	PermissionType *string `type:"string" required:"true" enum:"DocumentPermissionType"`
 }
 
@@ -3549,12 +3623,18 @@ type RemoveTagsFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The resource ID for which you want to remove tags.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// The type of resource of which you want to remove a tag.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceTypeForTagging"`
 
 	// Tag keys that you want to remove from the specified resource.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -3620,10 +3700,14 @@ type SendCommandInput struct {
 
 	// Required. The name of the SSM document to execute. This can be an SSM public
 	// document or a custom document.
+	//
+	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
 
 	// Required. The instance IDs where the command should execute. You can specify
 	// a maximum of 50 IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `min:"1" type:"list" required:"true"`
 
 	// Configurations for sending notifications.
@@ -3708,9 +3792,13 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the tag.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
+	//
+	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3750,12 +3838,18 @@ type UpdateAssociationStatusInput struct {
 	_ struct{} `type:"structure"`
 
 	// The association status.
+	//
+	// AssociationStatus is a required field
 	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the SSM document.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -3814,9 +3908,13 @@ type UpdateManagedInstanceRoleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IAM role you want to assign or change.
+	//
+	// IamRole is a required field
 	IamRole *string `type:"string" required:"true"`
 
 	// The ID of the managed instance where you want to update the role.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -3861,199 +3959,248 @@ func (s UpdateManagedInstanceRoleOutput) GoString() string {
 }
 
 const (
-	// @enum AssociationFilterKey
+	// AssociationFilterKeyInstanceId is a AssociationFilterKey enum value
 	AssociationFilterKeyInstanceId = "InstanceId"
-	// @enum AssociationFilterKey
+
+	// AssociationFilterKeyName is a AssociationFilterKey enum value
 	AssociationFilterKeyName = "Name"
 )
 
 const (
-	// @enum AssociationStatusName
+	// AssociationStatusNamePending is a AssociationStatusName enum value
 	AssociationStatusNamePending = "Pending"
-	// @enum AssociationStatusName
+
+	// AssociationStatusNameSuccess is a AssociationStatusName enum value
 	AssociationStatusNameSuccess = "Success"
-	// @enum AssociationStatusName
+
+	// AssociationStatusNameFailed is a AssociationStatusName enum value
 	AssociationStatusNameFailed = "Failed"
 )
 
 const (
-	// @enum CommandFilterKey
+	// CommandFilterKeyInvokedAfter is a CommandFilterKey enum value
 	CommandFilterKeyInvokedAfter = "InvokedAfter"
-	// @enum CommandFilterKey
+
+	// CommandFilterKeyInvokedBefore is a CommandFilterKey enum value
 	CommandFilterKeyInvokedBefore = "InvokedBefore"
-	// @enum CommandFilterKey
+
+	// CommandFilterKeyStatus is a CommandFilterKey enum value
 	CommandFilterKeyStatus = "Status"
 )
 
 const (
-	// @enum CommandInvocationStatus
+	// CommandInvocationStatusPending is a CommandInvocationStatus enum value
 	CommandInvocationStatusPending = "Pending"
-	// @enum CommandInvocationStatus
+
+	// CommandInvocationStatusInProgress is a CommandInvocationStatus enum value
 	CommandInvocationStatusInProgress = "InProgress"
-	// @enum CommandInvocationStatus
+
+	// CommandInvocationStatusCancelling is a CommandInvocationStatus enum value
 	CommandInvocationStatusCancelling = "Cancelling"
-	// @enum CommandInvocationStatus
+
+	// CommandInvocationStatusSuccess is a CommandInvocationStatus enum value
 	CommandInvocationStatusSuccess = "Success"
-	// @enum CommandInvocationStatus
+
+	// CommandInvocationStatusTimedOut is a CommandInvocationStatus enum value
 	CommandInvocationStatusTimedOut = "TimedOut"
-	// @enum CommandInvocationStatus
+
+	// CommandInvocationStatusCancelled is a CommandInvocationStatus enum value
 	CommandInvocationStatusCancelled = "Cancelled"
-	// @enum CommandInvocationStatus
+
+	// CommandInvocationStatusFailed is a CommandInvocationStatus enum value
 	CommandInvocationStatusFailed = "Failed"
 )
 
 const (
-	// @enum CommandPluginStatus
+	// CommandPluginStatusPending is a CommandPluginStatus enum value
 	CommandPluginStatusPending = "Pending"
-	// @enum CommandPluginStatus
+
+	// CommandPluginStatusInProgress is a CommandPluginStatus enum value
 	CommandPluginStatusInProgress = "InProgress"
-	// @enum CommandPluginStatus
+
+	// CommandPluginStatusSuccess is a CommandPluginStatus enum value
 	CommandPluginStatusSuccess = "Success"
-	// @enum CommandPluginStatus
+
+	// CommandPluginStatusTimedOut is a CommandPluginStatus enum value
 	CommandPluginStatusTimedOut = "TimedOut"
-	// @enum CommandPluginStatus
+
+	// CommandPluginStatusCancelled is a CommandPluginStatus enum value
 	CommandPluginStatusCancelled = "Cancelled"
-	// @enum CommandPluginStatus
+
+	// CommandPluginStatusFailed is a CommandPluginStatus enum value
 	CommandPluginStatusFailed = "Failed"
 )
 
 const (
-	// @enum CommandStatus
+	// CommandStatusPending is a CommandStatus enum value
 	CommandStatusPending = "Pending"
-	// @enum CommandStatus
+
+	// CommandStatusInProgress is a CommandStatus enum value
 	CommandStatusInProgress = "InProgress"
-	// @enum CommandStatus
+
+	// CommandStatusCancelling is a CommandStatus enum value
 	CommandStatusCancelling = "Cancelling"
-	// @enum CommandStatus
+
+	// CommandStatusSuccess is a CommandStatus enum value
 	CommandStatusSuccess = "Success"
-	// @enum CommandStatus
+
+	// CommandStatusTimedOut is a CommandStatus enum value
 	CommandStatusTimedOut = "TimedOut"
-	// @enum CommandStatus
+
+	// CommandStatusCancelled is a CommandStatus enum value
 	CommandStatusCancelled = "Cancelled"
-	// @enum CommandStatus
+
+	// CommandStatusFailed is a CommandStatus enum value
 	CommandStatusFailed = "Failed"
 )
 
 const (
-	// @enum DescribeActivationsFilterKeys
+	// DescribeActivationsFilterKeysActivationIds is a DescribeActivationsFilterKeys enum value
 	DescribeActivationsFilterKeysActivationIds = "ActivationIds"
-	// @enum DescribeActivationsFilterKeys
+
+	// DescribeActivationsFilterKeysDefaultInstanceName is a DescribeActivationsFilterKeys enum value
 	DescribeActivationsFilterKeysDefaultInstanceName = "DefaultInstanceName"
-	// @enum DescribeActivationsFilterKeys
+
+	// DescribeActivationsFilterKeysIamRole is a DescribeActivationsFilterKeys enum value
 	DescribeActivationsFilterKeysIamRole = "IamRole"
 )
 
 const (
-	// @enum DocumentFilterKey
+	// DocumentFilterKeyName is a DocumentFilterKey enum value
 	DocumentFilterKeyName = "Name"
-	// @enum DocumentFilterKey
+
+	// DocumentFilterKeyOwner is a DocumentFilterKey enum value
 	DocumentFilterKeyOwner = "Owner"
-	// @enum DocumentFilterKey
+
+	// DocumentFilterKeyPlatformTypes is a DocumentFilterKey enum value
 	DocumentFilterKeyPlatformTypes = "PlatformTypes"
 )
 
 const (
-	// @enum DocumentHashType
+	// DocumentHashTypeSha256 is a DocumentHashType enum value
 	DocumentHashTypeSha256 = "Sha256"
-	// @enum DocumentHashType
+
+	// DocumentHashTypeSha1 is a DocumentHashType enum value
 	DocumentHashTypeSha1 = "Sha1"
 )
 
 const (
-	// @enum DocumentParameterType
+	// DocumentParameterTypeString is a DocumentParameterType enum value
 	DocumentParameterTypeString = "String"
-	// @enum DocumentParameterType
+
+	// DocumentParameterTypeStringList is a DocumentParameterType enum value
 	DocumentParameterTypeStringList = "StringList"
 )
 
 const (
-	// @enum DocumentPermissionType
+	// DocumentPermissionTypeShare is a DocumentPermissionType enum value
 	DocumentPermissionTypeShare = "Share"
 )
 
 const (
-	// @enum DocumentStatus
+	// DocumentStatusCreating is a DocumentStatus enum value
 	DocumentStatusCreating = "Creating"
-	// @enum DocumentStatus
+
+	// DocumentStatusActive is a DocumentStatus enum value
 	DocumentStatusActive = "Active"
-	// @enum DocumentStatus
+
+	// DocumentStatusDeleting is a DocumentStatus enum value
 	DocumentStatusDeleting = "Deleting"
 )
 
 const (
-	// @enum Fault
+	// FaultClient is a Fault enum value
 	FaultClient = "Client"
-	// @enum Fault
+
+	// FaultServer is a Fault enum value
 	FaultServer = "Server"
-	// @enum Fault
+
+	// FaultUnknown is a Fault enum value
 	FaultUnknown = "Unknown"
 )
 
 const (
-	// @enum InstanceInformationFilterKey
+	// InstanceInformationFilterKeyInstanceIds is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyInstanceIds = "InstanceIds"
-	// @enum InstanceInformationFilterKey
+
+	// InstanceInformationFilterKeyAgentVersion is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyAgentVersion = "AgentVersion"
-	// @enum InstanceInformationFilterKey
+
+	// InstanceInformationFilterKeyPingStatus is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyPingStatus = "PingStatus"
-	// @enum InstanceInformationFilterKey
+
+	// InstanceInformationFilterKeyPlatformTypes is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyPlatformTypes = "PlatformTypes"
-	// @enum InstanceInformationFilterKey
+
+	// InstanceInformationFilterKeyActivationIds is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyActivationIds = "ActivationIds"
-	// @enum InstanceInformationFilterKey
+
+	// InstanceInformationFilterKeyIamRole is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyIamRole = "IamRole"
-	// @enum InstanceInformationFilterKey
+
+	// InstanceInformationFilterKeyResourceType is a InstanceInformationFilterKey enum value
 	InstanceInformationFilterKeyResourceType = "ResourceType"
 )
 
 const (
-	// @enum NotificationEvent
+	// NotificationEventAll is a NotificationEvent enum value
 	NotificationEventAll = "All"
-	// @enum NotificationEvent
+
+	// NotificationEventInProgress is a NotificationEvent enum value
 	NotificationEventInProgress = "InProgress"
-	// @enum NotificationEvent
+
+	// NotificationEventSuccess is a NotificationEvent enum value
 	NotificationEventSuccess = "Success"
-	// @enum NotificationEvent
+
+	// NotificationEventTimedOut is a NotificationEvent enum value
 	NotificationEventTimedOut = "TimedOut"
-	// @enum NotificationEvent
+
+	// NotificationEventCancelled is a NotificationEvent enum value
 	NotificationEventCancelled = "Cancelled"
-	// @enum NotificationEvent
+
+	// NotificationEventFailed is a NotificationEvent enum value
 	NotificationEventFailed = "Failed"
 )
 
 const (
-	// @enum NotificationType
+	// NotificationTypeCommand is a NotificationType enum value
 	NotificationTypeCommand = "Command"
-	// @enum NotificationType
+
+	// NotificationTypeInvocation is a NotificationType enum value
 	NotificationTypeInvocation = "Invocation"
 )
 
 const (
-	// @enum PingStatus
+	// PingStatusOnline is a PingStatus enum value
 	PingStatusOnline = "Online"
-	// @enum PingStatus
+
+	// PingStatusConnectionLost is a PingStatus enum value
 	PingStatusConnectionLost = "ConnectionLost"
-	// @enum PingStatus
+
+	// PingStatusInactive is a PingStatus enum value
 	PingStatusInactive = "Inactive"
 )
 
 const (
-	// @enum PlatformType
+	// PlatformTypeWindows is a PlatformType enum value
 	PlatformTypeWindows = "Windows"
-	// @enum PlatformType
+
+	// PlatformTypeLinux is a PlatformType enum value
 	PlatformTypeLinux = "Linux"
 )
 
 const (
-	// @enum ResourceType
+	// ResourceTypeManagedInstance is a ResourceType enum value
 	ResourceTypeManagedInstance = "ManagedInstance"
-	// @enum ResourceType
+
+	// ResourceTypeDocument is a ResourceType enum value
 	ResourceTypeDocument = "Document"
-	// @enum ResourceType
+
+	// ResourceTypeEc2instance is a ResourceType enum value
 	ResourceTypeEc2instance = "EC2Instance"
 )
 
 const (
-	// @enum ResourceTypeForTagging
+	// ResourceTypeForTaggingManagedInstance is a ResourceTypeForTagging enum value
 	ResourceTypeForTaggingManagedInstance = "ManagedInstance"
 )

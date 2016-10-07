@@ -925,6 +925,8 @@ type BulkPublishInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1068,14 +1070,20 @@ type DeleteDatasetInput struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
+	//
+	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1146,14 +1154,20 @@ type DescribeDatasetInput struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
+	//
+	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1223,6 +1237,8 @@ type DescribeIdentityPoolUsageInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1276,10 +1292,14 @@ type DescribeIdentityUsageInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1339,6 +1359,8 @@ type GetBulkPublishDetailsInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1415,6 +1437,8 @@ type GetCognitoEventsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Cognito Identity Pool ID for the request
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1469,6 +1493,8 @@ type GetIdentityPoolConfigurationInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool for which to return
 	// a configuration.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -1589,10 +1615,14 @@ type ListDatasetsInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to be returned.
@@ -1712,14 +1742,20 @@ type ListRecordsInput struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
+	//
+	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The last server sync count for this record.
@@ -1890,12 +1926,18 @@ type RecordPatch struct {
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The key associated with the record patch.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// An operation, either replace or remove.
+	//
+	// Op is a required field
 	Op *string `type:"string" required:"true" enum:"Operation"`
 
 	// Last known server sync count for this record. Set to 0 if unknown.
+	//
+	// SyncCount is a required field
 	SyncCount *int64 `type:"long" required:"true"`
 
 	// The value associated with the record patch.
@@ -1939,17 +1981,25 @@ type RegisterDeviceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique ID for this identity.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. Here, the ID of the pool that the identity belongs
 	// to.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The SNS platform type (e.g. GCM, SDM, APNS, APNS_SANDBOX).
+	//
+	// Platform is a required field
 	Platform *string `type:"string" required:"true" enum:"Platform"`
 
 	// The push token.
+	//
+	// Token is a required field
 	Token *string `type:"string" required:"true"`
 }
 
@@ -2016,9 +2066,13 @@ type SetCognitoEventsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The events to configure
+	//
+	// Events is a required field
 	Events map[string]*string `type:"map" required:"true"`
 
 	// The Cognito Identity Pool to use when configuring Cognito Events
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -2074,6 +2128,8 @@ type SetIdentityPoolConfigurationInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool to modify.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// Options to apply to this identity pool for push synchronization.
@@ -2146,16 +2202,24 @@ type SubscribeToDatasetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the dataset to subcribe to.
+	//
+	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
+	//
+	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Unique ID for this identity.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which the identity belongs.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -2223,16 +2287,24 @@ type UnsubscribeFromDatasetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the dataset from which to unsubcribe.
+	//
+	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
+	//
+	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Unique ID for this identity.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which this identity belongs.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 }
 
@@ -2306,6 +2378,8 @@ type UpdateRecordsInput struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
+	//
+	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
@@ -2313,10 +2387,14 @@ type UpdateRecordsInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityId is a required field
 	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
+	//
+	// IdentityPoolId is a required field
 	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// A list of patch operations.
@@ -2324,6 +2402,8 @@ type UpdateRecordsInput struct {
 
 	// The SyncSessionToken returned by a previous call to ListRecords for this
 	// dataset and identity.
+	//
+	// SyncSessionToken is a required field
 	SyncSessionToken *string `type:"string" required:"true"`
 }
 
@@ -2400,37 +2480,45 @@ func (s UpdateRecordsOutput) GoString() string {
 }
 
 const (
-	// @enum BulkPublishStatus
+	// BulkPublishStatusNotStarted is a BulkPublishStatus enum value
 	BulkPublishStatusNotStarted = "NOT_STARTED"
-	// @enum BulkPublishStatus
+
+	// BulkPublishStatusInProgress is a BulkPublishStatus enum value
 	BulkPublishStatusInProgress = "IN_PROGRESS"
-	// @enum BulkPublishStatus
+
+	// BulkPublishStatusFailed is a BulkPublishStatus enum value
 	BulkPublishStatusFailed = "FAILED"
-	// @enum BulkPublishStatus
+
+	// BulkPublishStatusSucceeded is a BulkPublishStatus enum value
 	BulkPublishStatusSucceeded = "SUCCEEDED"
 )
 
 const (
-	// @enum Operation
+	// OperationReplace is a Operation enum value
 	OperationReplace = "replace"
-	// @enum Operation
+
+	// OperationRemove is a Operation enum value
 	OperationRemove = "remove"
 )
 
 const (
-	// @enum Platform
+	// PlatformApns is a Platform enum value
 	PlatformApns = "APNS"
-	// @enum Platform
+
+	// PlatformApnsSandbox is a Platform enum value
 	PlatformApnsSandbox = "APNS_SANDBOX"
-	// @enum Platform
+
+	// PlatformGcm is a Platform enum value
 	PlatformGcm = "GCM"
-	// @enum Platform
+
+	// PlatformAdm is a Platform enum value
 	PlatformAdm = "ADM"
 )
 
 const (
-	// @enum StreamingStatus
+	// StreamingStatusEnabled is a StreamingStatus enum value
 	StreamingStatusEnabled = "ENABLED"
-	// @enum StreamingStatus
+
+	// StreamingStatusDisabled is a StreamingStatus enum value
 	StreamingStatusDisabled = "DISABLED"
 )

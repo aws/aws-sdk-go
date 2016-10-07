@@ -7238,19 +7238,27 @@ type AccessKey struct {
 	_ struct{} `type:"structure"`
 
 	// The ID for this access key.
+	//
+	// AccessKeyId is a required field
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The secret key used to sign requests.
+	//
+	// SecretAccessKey is a required field
 	SecretAccessKey *string `type:"string" required:"true"`
 
 	// The status of the access key. Active means the key is valid for API calls,
 	// while Inactive means it is not.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user that the access key is associated with.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7280,6 +7288,8 @@ type AccessKeyLastUsed struct {
 	// tracking this information on April 22nd, 2015.
 	//
 	//   There is no sign-in data associated with the user
+	//
+	// LastUsedDate is a required field
 	LastUsedDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The AWS region where this access key was most recently used. This field is
@@ -7294,6 +7304,8 @@ type AccessKeyLastUsed struct {
 	//
 	//   For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
 	// in the Amazon Web Services General Reference.
+	//
+	// Region is a required field
 	Region *string `type:"string" required:"true"`
 
 	// The name of the AWS service with which this access key was most recently
@@ -7305,6 +7317,8 @@ type AccessKeyLastUsed struct {
 	// tracking this information on April 22nd, 2015.
 	//
 	//   There is no sign-in data associated with the user
+	//
+	// ServiceName is a required field
 	ServiceName *string `type:"string" required:"true"`
 }
 
@@ -7353,11 +7367,15 @@ type AddClientIDToOpenIDConnectProviderInput struct {
 
 	// The client ID (also known as audience) to add to the IAM OpenID Connect provider
 	// resource.
+	//
+	// ClientID is a required field
 	ClientID *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// resource to add the client ID to. You can get a list of OIDC provider ARNs
 	// by using the ListOpenIDConnectProviders action.
+	//
+	// OpenIDConnectProviderArn is a required field
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -7415,6 +7433,8 @@ type AddRoleToInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// InstanceProfileName is a required field
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to add.
@@ -7422,6 +7442,8 @@ type AddRoleToInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7479,6 +7501,8 @@ type AddUserToGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user to add.
@@ -7486,6 +7510,8 @@ type AddUserToGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7543,6 +7569,8 @@ type AttachGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM policy you want to attach.
@@ -7550,6 +7578,8 @@ type AttachGroupPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -7607,6 +7637,8 @@ type AttachRolePolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the role to attach the policy to.
@@ -7614,6 +7646,8 @@ type AttachRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7671,6 +7705,8 @@ type AttachUserPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the IAM user to attach the policy to.
@@ -7678,6 +7714,8 @@ type AttachUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7775,9 +7813,13 @@ type ChangePasswordInput struct {
 	// note that many tools, such as the AWS Management Console, might restrict
 	// the ability to enter certain characters because they have special meaning
 	// within that tool.
+	//
+	// NewPassword is a required field
 	NewPassword *string `min:"1" type:"string" required:"true"`
 
 	// The IAM user's current password.
+	//
+	// OldPassword is a required field
 	OldPassword *string `min:"1" type:"string" required:"true"`
 }
 
@@ -7913,6 +7955,8 @@ type CreateAccessKeyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure with details about the access key.
+	//
+	// AccessKey is a required field
 	AccessKey *AccessKey `type:"structure" required:"true"`
 }
 
@@ -7935,6 +7979,8 @@ type CreateAccountAliasInput struct {
 	// a string of characters consisting of lowercase letters, digits, and dashes.
 	// You cannot start or finish with a dash, nor can you have two dashes in a
 	// row.
+	//
+	// AccountAlias is a required field
 	AccountAlias *string `min:"3" type:"string" required:"true"`
 }
 
@@ -7988,6 +8034,8 @@ type CreateGroupInput struct {
 	// with no spaces. You can also include any of the following characters: =,.@-.
 	// The group name must be unique within the account. Group names are not distinguished
 	// by case. For example, you cannot create groups named both "ADMINS" and "admins".
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the group. For more information about paths, see IAM Identifiers
@@ -8039,6 +8087,8 @@ type CreateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the new group.
+	//
+	// Group is a required field
 	Group *Group `type:"structure" required:"true"`
 }
 
@@ -8060,6 +8110,8 @@ type CreateInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// InstanceProfileName is a required field
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the instance profile. For more information about paths, see IAM
@@ -8111,6 +8163,8 @@ type CreateInstanceProfileOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the new instance profile.
+	//
+	// InstanceProfile is a required field
 	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 }
 
@@ -8137,6 +8191,8 @@ type CreateLoginProfileInput struct {
 	// note that many tools, such as the AWS Management Console, might restrict
 	// the ability to enter certain characters because they have special meaning
 	// within that tool.
+	//
+	// Password is a required field
 	Password *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the user is required to set a new password on next sign-in.
@@ -8148,6 +8204,8 @@ type CreateLoginProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8188,6 +8246,8 @@ type CreateLoginProfileOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing the user name and password create date.
+	//
+	// LoginProfile is a required field
 	LoginProfile *LoginProfile `type:"structure" required:"true"`
 }
 
@@ -8236,6 +8296,8 @@ type CreateOpenIDConnectProviderInput struct {
 	// For more information about obtaining the OIDC provider's thumbprint, see
 	// Obtaining the Thumbprint for an OpenID Connect Provider (http://docs.aws.amazon.com/IAM/latest/UserGuide/identity-providers-oidc-obtain-thumbprint.html)
 	// in the IAM User Guide.
+	//
+	// ThumbprintList is a required field
 	ThumbprintList []*string `type:"list" required:"true"`
 
 	// The URL of the identity provider. The URL must begin with "https://" and
@@ -8247,6 +8309,8 @@ type CreateOpenIDConnectProviderInput struct {
 	// You cannot register the same provider multiple times in a single AWS account.
 	// If you try to submit a URL that has already been used for an OpenID Connect
 	// provider in the AWS account, you will get an error.
+	//
+	// Url is a required field
 	Url *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8333,6 +8397,8 @@ type CreatePolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The friendly name of the policy.
@@ -8340,6 +8406,8 @@ type CreatePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8402,6 +8470,8 @@ type CreatePolicyVersionInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The JSON policy document that you want to use as the content for this new
@@ -8412,6 +8482,8 @@ type CreatePolicyVersionInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether to set this version as the policy's default version.
@@ -8487,6 +8559,8 @@ type CreateRoleInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// AssumeRolePolicyDocument is a required field
 	AssumeRolePolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The path to the role. For more information about paths, see IAM Identifiers
@@ -8510,6 +8584,8 @@ type CreateRoleInput struct {
 	// with no spaces. You can also include any of the following characters: =,.@-.
 	// Role names are not distinguished by case. For example, you cannot create
 	// roles named both "PRODROLE" and "prodrole".
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8553,6 +8629,8 @@ type CreateRoleOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the new role.
+	//
+	// Role is a required field
 	Role *Role `type:"structure" required:"true"`
 }
 
@@ -8574,6 +8652,8 @@ type CreateSAMLProviderInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// An XML document generated by an identity provider (IdP) that supports SAML
@@ -8584,6 +8664,8 @@ type CreateSAMLProviderInput struct {
 	//
 	// For more information, see About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 	// in the IAM User Guide
+	//
+	// SAMLMetadataDocument is a required field
 	SAMLMetadataDocument *string `min:"1000" type:"string" required:"true"`
 }
 
@@ -8661,6 +8743,8 @@ type CreateUserInput struct {
 	// with no spaces. You can also include any of the following characters: =,.@-.
 	// User names are not distinguished by case. For example, you cannot create
 	// users named both "TESTUSER" and "testuser".
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8734,6 +8818,8 @@ type CreateVirtualMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// VirtualMFADeviceName is a required field
 	VirtualMFADeviceName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8771,6 +8857,8 @@ type CreateVirtualMFADeviceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the new virtual MFA device.
+	//
+	// VirtualMFADevice is a required field
 	VirtualMFADevice *VirtualMFADevice `type:"structure" required:"true"`
 }
 
@@ -8793,6 +8881,8 @@ type DeactivateMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =/:,.@-
+	//
+	// SerialNumber is a required field
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The name of the user whose MFA device you want to deactivate.
@@ -8800,6 +8890,8 @@ type DeactivateMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -8858,6 +8950,8 @@ type DeleteAccessKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// AccessKeyId is a required field
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The name of the user whose access key pair you want to delete.
@@ -8920,6 +9014,8 @@ type DeleteAccountAliasInput struct {
 	// a string of characters consisting of lowercase letters, digits, and dashes.
 	// You cannot start or finish with a dash, nor can you have two dashes in a
 	// row.
+	//
+	// AccountAlias is a required field
 	AccountAlias *string `min:"3" type:"string" required:"true"`
 }
 
@@ -8999,6 +9095,8 @@ type DeleteGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9051,6 +9149,8 @@ type DeleteGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name identifying the policy document to delete.
@@ -9058,6 +9158,8 @@ type DeleteGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9115,6 +9217,8 @@ type DeleteInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// InstanceProfileName is a required field
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9166,6 +9270,8 @@ type DeleteLoginProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9215,6 +9321,8 @@ type DeleteOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect provider resource
 	// object to delete. You can get a list of OpenID Connect provider resource
 	// ARNs by using the ListOpenIDConnectProviders action.
+	//
+	// OpenIDConnectProviderArn is a required field
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -9266,6 +9374,8 @@ type DeletePolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -9318,6 +9428,8 @@ type DeletePolicyVersionInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The policy version to delete.
@@ -9330,6 +9442,8 @@ type DeletePolicyVersionInput struct {
 	// For more information about managed policy versions, see Versioning for Managed
 	// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 	// in the IAM User Guide.
+	//
+	// VersionId is a required field
 	VersionId *string `type:"string" required:"true"`
 }
 
@@ -9384,6 +9498,8 @@ type DeleteRoleInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9435,6 +9551,8 @@ type DeleteRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) identifying the role that the policy is
@@ -9443,6 +9561,8 @@ type DeleteRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9496,6 +9616,8 @@ type DeleteSAMLProviderInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider to delete.
+	//
+	// SAMLProviderArn is a required field
 	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -9547,6 +9669,8 @@ type DeleteSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// SSHPublicKeyId is a required field
 	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
@@ -9554,6 +9678,8 @@ type DeleteSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9611,6 +9737,8 @@ type DeleteServerCertificateInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9662,6 +9790,8 @@ type DeleteSigningCertificateInput struct {
 	// The format of this parameter, as described by its regex (http://wikipedia.org/wiki/regex)
 	// pattern, is a string of characters that can be upper- or lower-cased letters
 	// or digits.
+	//
+	// CertificateId is a required field
 	CertificateId *string `min:"24" type:"string" required:"true"`
 
 	// The name of the user the signing certificate belongs to.
@@ -9723,6 +9853,8 @@ type DeleteUserInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9774,6 +9906,8 @@ type DeleteUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) identifying the user that the policy is
@@ -9782,6 +9916,8 @@ type DeleteUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -9840,6 +9976,8 @@ type DeleteVirtualMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =/:,.@-
+	//
+	// SerialNumber is a required field
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 }
 
@@ -9891,6 +10029,8 @@ type DetachGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM policy you want to detach.
@@ -9898,6 +10038,8 @@ type DetachGroupPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -9955,6 +10097,8 @@ type DetachRolePolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the IAM role to detach the policy from.
@@ -9962,6 +10106,8 @@ type DetachRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10019,6 +10165,8 @@ type DetachUserPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the IAM user to detach the policy from.
@@ -10026,6 +10174,8 @@ type DetachUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10081,11 +10231,15 @@ type EnableMFADeviceInput struct {
 	// An authentication code emitted by the device.
 	//
 	// The format for this parameter is a string of 6 digits.
+	//
+	// AuthenticationCode1 is a required field
 	AuthenticationCode1 *string `min:"6" type:"string" required:"true"`
 
 	// A subsequent authentication code emitted by the device.
 	//
 	// The format for this parameter is a string of 6 digits.
+	//
+	// AuthenticationCode2 is a required field
 	AuthenticationCode2 *string `min:"6" type:"string" required:"true"`
 
 	// The serial number that uniquely identifies the MFA device. For virtual MFA
@@ -10094,6 +10248,8 @@ type EnableMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =/:,.@-
+	//
+	// SerialNumber is a required field
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The name of the IAM user for whom you want to enable the MFA device.
@@ -10101,6 +10257,8 @@ type EnableMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10170,9 +10328,13 @@ type EvaluationResult struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the API action tested on the indicated resource.
+	//
+	// EvalActionName is a required field
 	EvalActionName *string `min:"3" type:"string" required:"true"`
 
 	// The result of the simulation.
+	//
+	// EvalDecision is a required field
 	EvalDecision *string `type:"string" required:"true" enum:"PolicyEvaluationDecisionType"`
 
 	// Additional details about the results of the evaluation decision. When there
@@ -10260,6 +10422,8 @@ type GetAccessKeyLastUsedInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// AccessKeyId is a required field
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 }
 
@@ -10429,6 +10593,8 @@ type GetAccountPasswordPolicyOutput struct {
 	//
 	//  This data type is used as a response element in the GetAccountPasswordPolicy
 	// action.
+	//
+	// PasswordPolicy is a required field
 	PasswordPolicy *PasswordPolicy `type:"structure" required:"true"`
 }
 
@@ -10487,6 +10653,8 @@ type GetContextKeysForCustomPolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyInputList is a required field
 	PolicyInputList []*string `type:"list" required:"true"`
 }
 
@@ -10556,6 +10724,8 @@ type GetContextKeysForPrincipalPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicySourceArn is a required field
 	PolicySourceArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -10634,6 +10804,8 @@ type GetGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
@@ -10691,6 +10863,8 @@ type GetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure that contains details about the group.
+	//
+	// Group is a required field
 	Group *Group `type:"structure" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -10706,6 +10880,8 @@ type GetGroupOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of users in the group.
+	//
+	// Users is a required field
 	Users []*User `type:"list" required:"true"`
 }
 
@@ -10727,6 +10903,8 @@ type GetGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document to get.
@@ -10734,6 +10912,8 @@ type GetGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10774,12 +10954,18 @@ type GetGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The group the policy is associated with.
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The policy document.
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10801,6 +10987,8 @@ type GetInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// InstanceProfileName is a required field
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10835,6 +11023,8 @@ type GetInstanceProfileOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the instance profile.
+	//
+	// InstanceProfile is a required field
 	InstanceProfile *InstanceProfile `type:"structure" required:"true"`
 }
 
@@ -10856,6 +11046,8 @@ type GetLoginProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -10890,6 +11082,8 @@ type GetLoginProfileOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing the user name and password create date for the user.
+	//
+	// LoginProfile is a required field
 	LoginProfile *LoginProfile `type:"structure" required:"true"`
 }
 
@@ -10913,6 +11107,8 @@ type GetOpenIDConnectProviderInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// OpenIDConnectProviderArn is a required field
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -10982,6 +11178,8 @@ type GetPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -11038,6 +11236,8 @@ type GetPolicyVersionInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// Identifies the policy version to retrieve.
@@ -11046,6 +11246,8 @@ type GetPolicyVersionInput struct {
 	// a string of characters that consists of the lowercase letter 'v' followed
 	// by one or two digits, and optionally followed by a period '.' and a string
 	// of letters and digits.
+	//
+	// VersionId is a required field
 	VersionId *string `type:"string" required:"true"`
 }
 
@@ -11104,6 +11306,8 @@ type GetRoleInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11138,6 +11342,8 @@ type GetRoleOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the IAM role.
+	//
+	// Role is a required field
 	Role *Role `type:"structure" required:"true"`
 }
 
@@ -11159,6 +11365,8 @@ type GetRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role associated with the policy.
@@ -11166,6 +11374,8 @@ type GetRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11206,12 +11416,18 @@ type GetRolePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The policy document.
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The role the policy is associated with.
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11234,6 +11450,8 @@ type GetSAMLProviderInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// SAMLProviderArn is a required field
 	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -11293,6 +11511,8 @@ type GetSSHPublicKeyInput struct {
 	// Specifies the public key encoding format to use in the response. To retrieve
 	// the public key in ssh-rsa format, use SSH. To retrieve the public key in
 	// PEM format, use PEM.
+	//
+	// Encoding is a required field
 	Encoding *string `type:"string" required:"true" enum:"encodingType"`
 
 	// The unique identifier for the SSH public key.
@@ -11300,6 +11520,8 @@ type GetSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// SSHPublicKeyId is a required field
 	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
@@ -11307,6 +11529,8 @@ type GetSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11371,6 +11595,8 @@ type GetServerCertificateInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11405,6 +11631,8 @@ type GetServerCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the server certificate.
+	//
+	// ServerCertificate is a required field
 	ServerCertificate *ServerCertificate `type:"structure" required:"true"`
 }
 
@@ -11459,6 +11687,8 @@ type GetUserOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A structure containing details about the IAM user.
+	//
+	// User is a required field
 	User *User `type:"structure" required:"true"`
 }
 
@@ -11480,6 +11710,8 @@ type GetUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user who the policy is associated with.
@@ -11487,6 +11719,8 @@ type GetUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11527,12 +11761,18 @@ type GetUserPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The policy document.
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The user the policy is associated with.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11561,23 +11801,33 @@ type Group struct {
 	// The Amazon Resource Name (ARN) specifying the group. For more information
 	// about ARNs and how to use them in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the group was created.
+	//
+	// CreateDate is a required field
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The stable and unique string identifying the group. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// GroupId is a required field
 	GroupId *string `min:"16" type:"string" required:"true"`
 
 	// The friendly name that identifies the group.
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the group. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Path is a required field
 	Path *string `min:"1" type:"string" required:"true"`
 }
 
@@ -11657,25 +11907,37 @@ type InstanceProfile struct {
 	// information about ARNs and how to use them in policies, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date when the instance profile was created.
+	//
+	// CreateDate is a required field
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The stable and unique string identifying the instance profile. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// InstanceProfileId is a required field
 	InstanceProfileId *string `min:"16" type:"string" required:"true"`
 
 	// The name identifying the instance profile.
+	//
+	// InstanceProfileName is a required field
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the instance profile. For more information about paths, see IAM
 	// Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Path is a required field
 	Path *string `min:"1" type:"string" required:"true"`
 
 	// The role associated with the instance profile.
+	//
+	// Roles is a required field
 	Roles []*Role `type:"list" required:"true"`
 }
 
@@ -11751,6 +12013,8 @@ type ListAccessKeysOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of objects containing metadata about the access keys.
+	//
+	// AccessKeyMetadata is a required field
 	AccessKeyMetadata []*AccessKeyMetadata `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -11829,6 +12093,8 @@ type ListAccountAliasesOutput struct {
 
 	// A list of aliases associated with the account. AWS supports only one alias
 	// per account.
+	//
+	// AccountAliases is a required field
 	AccountAliases []*string `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -11863,6 +12129,8 @@ type ListAttachedGroupPoliciesInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
@@ -11990,6 +12258,8 @@ type ListAttachedRolePoliciesInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -12090,6 +12360,8 @@ type ListAttachedUserPoliciesInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -12198,6 +12470,8 @@ type ListEntitiesForPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -12280,6 +12554,8 @@ type ListGroupPoliciesInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
@@ -12349,6 +12625,8 @@ type ListGroupPoliciesOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of policy names.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -12387,6 +12665,8 @@ type ListGroupsForUserInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -12427,6 +12707,8 @@ type ListGroupsForUserOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of groups.
+	//
+	// Groups is a required field
 	Groups []*Group `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -12519,6 +12801,8 @@ type ListGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of groups.
+	//
+	// Groups is a required field
 	Groups []*Group `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -12569,6 +12853,8 @@ type ListInstanceProfilesForRoleInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -12609,6 +12895,8 @@ type ListInstanceProfilesForRoleOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of instance profiles.
+	//
+	// InstanceProfiles is a required field
 	InstanceProfiles []*InstanceProfile `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -12701,6 +12989,8 @@ type ListInstanceProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of instance profiles.
+	//
+	// InstanceProfiles is a required field
 	InstanceProfiles []*InstanceProfile `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -12796,6 +13086,8 @@ type ListMFADevicesOutput struct {
 	IsTruncated *bool `type:"boolean"`
 
 	// A list of MFA devices.
+	//
+	// MFADevices is a required field
 	MFADevices []*MFADevice `type:"list" required:"true"`
 
 	// When IsTruncated is true, this element is present and contains the value
@@ -12972,6 +13264,8 @@ type ListPolicyVersionsInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -13066,6 +13360,8 @@ type ListRolePoliciesInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -13118,6 +13414,8 @@ type ListRolePoliciesOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of policy names.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -13210,6 +13508,8 @@ type ListRolesOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of roles.
+	//
+	// Roles is a required field
 	Roles []*Role `type:"list" required:"true"`
 }
 
@@ -13423,6 +13723,8 @@ type ListServerCertificatesOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of server certificates.
+	//
+	// ServerCertificateMetadataList is a required field
 	ServerCertificateMetadataList []*ServerCertificateMetadata `type:"list" required:"true"`
 }
 
@@ -13498,6 +13800,8 @@ type ListSigningCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of the user's signing certificate information.
+	//
+	// Certificates is a required field
 	Certificates []*SigningCertificate `type:"list" required:"true"`
 
 	// A flag that indicates whether there are more items to return. If your results
@@ -13548,6 +13852,8 @@ type ListUserPoliciesInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -13600,6 +13906,8 @@ type ListUserPoliciesOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of policy names.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -13692,6 +14000,8 @@ type ListUsersOutput struct {
 	Marker *string `min:"1" type:"string"`
 
 	// A list of users.
+	//
+	// Users is a required field
 	Users []*User `type:"list" required:"true"`
 }
 
@@ -13775,6 +14085,8 @@ type ListVirtualMFADevicesOutput struct {
 
 	// The list of virtual MFA devices in the current account that match the AssignmentStatus
 	// value that was passed in the request.
+	//
+	// VirtualMFADevices is a required field
 	VirtualMFADevices []*VirtualMFADevice `type:"list" required:"true"`
 }
 
@@ -13796,6 +14108,8 @@ type LoginProfile struct {
 	_ struct{} `type:"structure"`
 
 	// The date when the password for the user was created.
+	//
+	// CreateDate is a required field
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Specifies whether the user is required to set a new password on next sign-in.
@@ -13803,6 +14117,8 @@ type LoginProfile struct {
 
 	// The name of the user, which can be used for signing in to the AWS Management
 	// Console.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -13823,13 +14139,19 @@ type MFADevice struct {
 	_ struct{} `type:"structure"`
 
 	// The date when the MFA device was enabled for the user.
+	//
+	// EnableDate is a required field
 	EnableDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The serial number that uniquely identifies the MFA device. For virtual MFA
 	// devices, the serial number is the device ARN.
+	//
+	// SerialNumber is a required field
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The user with whom the MFA device is associated.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14259,6 +14581,8 @@ type PutGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The policy document.
@@ -14268,6 +14592,8 @@ type PutGroupPolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
@@ -14275,6 +14601,8 @@ type PutGroupPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14340,6 +14668,8 @@ type PutRolePolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
@@ -14347,6 +14677,8 @@ type PutRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to associate the policy with.
@@ -14354,6 +14686,8 @@ type PutRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14419,6 +14753,8 @@ type PutUserPolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
@@ -14426,6 +14762,8 @@ type PutUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user to associate the policy with.
@@ -14433,6 +14771,8 @@ type PutUserPolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14493,6 +14833,8 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 
 	// The client ID (also known as audience) to remove from the IAM OIDC provider
 	// resource. For more information about client IDs, see CreateOpenIDConnectProvider.
+	//
+	// ClientID is a required field
 	ClientID *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM OIDC provider resource to remove
@@ -14502,6 +14844,8 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// OpenIDConnectProviderArn is a required field
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -14559,6 +14903,8 @@ type RemoveRoleFromInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// InstanceProfileName is a required field
 	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to remove.
@@ -14566,6 +14912,8 @@ type RemoveRoleFromInstanceProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14623,6 +14971,8 @@ type RemoveUserFromGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user to remove.
@@ -14630,6 +14980,8 @@ type RemoveUserFromGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14695,9 +15047,13 @@ type ResourceSpecificResult struct {
 
 	// The result of the simulation of the simulated API action on the resource
 	// specified in EvalResourceName.
+	//
+	// EvalResourceDecision is a required field
 	EvalResourceDecision *string `type:"string" required:"true" enum:"PolicyEvaluationDecisionType"`
 
 	// The name of the simulated resource, in Amazon Resource Name (ARN) format.
+	//
+	// EvalResourceName is a required field
 	EvalResourceName *string `min:"1" type:"string" required:"true"`
 
 	// A list of the statements in the input policies that determine the result
@@ -14734,11 +15090,15 @@ type ResyncMFADeviceInput struct {
 	// An authentication code emitted by the device.
 	//
 	// The format for this parameter is a sequence of six digits.
+	//
+	// AuthenticationCode1 is a required field
 	AuthenticationCode1 *string `min:"6" type:"string" required:"true"`
 
 	// A subsequent authentication code emitted by the device.
 	//
 	// The format for this parameter is a sequence of six digits.
+	//
+	// AuthenticationCode2 is a required field
 	AuthenticationCode2 *string `min:"6" type:"string" required:"true"`
 
 	// Serial number that uniquely identifies the MFA device.
@@ -14746,6 +15106,8 @@ type ResyncMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// SerialNumber is a required field
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The name of the user whose MFA device you want to resynchronize.
@@ -14753,6 +15115,8 @@ type ResyncMFADeviceInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14829,6 +15193,8 @@ type Role struct {
 	// The Amazon Resource Name (ARN) specifying the role. For more information
 	// about ARNs and how to use them in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The policy that grants an entity permission to assume the role.
@@ -14836,19 +15202,27 @@ type Role struct {
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the role was created.
+	//
+	// CreateDate is a required field
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The path to the role. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Path is a required field
 	Path *string `min:"1" type:"string" required:"true"`
 
 	// The stable and unique string identifying the role. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// RoleId is a required field
 	RoleId *string `min:"16" type:"string" required:"true"`
 
 	// The friendly name that identifies the role.
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14950,16 +15324,24 @@ type SSHPublicKey struct {
 	_ struct{} `type:"structure"`
 
 	// The MD5 message digest of the SSH public key.
+	//
+	// Fingerprint is a required field
 	Fingerprint *string `min:"48" type:"string" required:"true"`
 
 	// The SSH public key.
+	//
+	// SSHPublicKeyBody is a required field
 	SSHPublicKeyBody *string `min:"1" type:"string" required:"true"`
 
 	// The unique identifier for the SSH public key.
+	//
+	// SSHPublicKeyId is a required field
 	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
@@ -14967,6 +15349,8 @@ type SSHPublicKey struct {
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the IAM user associated with the SSH public key.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -14987,17 +15371,25 @@ type SSHPublicKeyMetadata struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier for the SSH public key.
+	//
+	// SSHPublicKeyId is a required field
 	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the SSH public key was uploaded.
+	//
+	// UploadDate is a required field
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -15019,6 +15411,8 @@ type ServerCertificate struct {
 	_ struct{} `type:"structure"`
 
 	// The contents of the public key certificate.
+	//
+	// CertificateBody is a required field
 	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The contents of the public key certificate chain.
@@ -15026,6 +15420,8 @@ type ServerCertificate struct {
 
 	// The meta information of the server certificate, such as its name, path, ID,
 	// and ARN.
+	//
+	// ServerCertificateMetadata is a required field
 	ServerCertificateMetadata *ServerCertificateMetadata `type:"structure" required:"true"`
 }
 
@@ -15051,6 +15447,8 @@ type ServerCertificateMetadata struct {
 	// information about ARNs and how to use them in policies, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date on which the certificate is set to expire.
@@ -15059,14 +15457,20 @@ type ServerCertificateMetadata struct {
 	// The path to the server certificate. For more information about paths, see
 	// IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Path is a required field
 	Path *string `min:"1" type:"string" required:"true"`
 
 	// The stable and unique string identifying the server certificate. For more
 	// information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// ServerCertificateId is a required field
 	ServerCertificateId *string `min:"16" type:"string" required:"true"`
 
 	// The name that identifies the server certificate.
+	//
+	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
 	// The date when the server certificate was uploaded.
@@ -15092,6 +15496,8 @@ type SetDefaultPolicyVersionInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicyArn is a required field
 	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The version of the policy to set as the default (operative) version.
@@ -15099,6 +15505,8 @@ type SetDefaultPolicyVersionInput struct {
 	// For more information about managed policy versions, see Versioning for Managed
 	// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 	// in the IAM User Guide.
+	//
+	// VersionId is a required field
 	VersionId *string `type:"string" required:"true"`
 }
 
@@ -15153,19 +15561,27 @@ type SigningCertificate struct {
 	_ struct{} `type:"structure"`
 
 	// The contents of the signing certificate.
+	//
+	// CertificateBody is a required field
 	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The ID for the signing certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `min:"24" type:"string" required:"true"`
 
 	// The status of the signing certificate. Active means the key is valid for
 	// API calls, while Inactive means it is not.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The date when the signing certificate was uploaded.
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the user the signing certificate is associated with.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -15185,6 +15601,8 @@ type SimulateCustomPolicyInput struct {
 	// A list of names of API actions to evaluate in the simulation. Each action
 	// is evaluated against each resource. Each action must include the service
 	// identifier, such as iam:CreateUser.
+	//
+	// ActionNames is a required field
 	ActionNames []*string `type:"list" required:"true"`
 
 	// The ARN of the IAM user that you want to use as the simulated caller of the
@@ -15231,6 +15649,8 @@ type SimulateCustomPolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyInputList is a required field
 	PolicyInputList []*string `type:"list" required:"true"`
 
 	// A list of ARNs of AWS resources to include in the simulation. If this parameter
@@ -15406,6 +15826,8 @@ type SimulatePrincipalPolicyInput struct {
 	// A list of names of API actions to evaluate in the simulation. Each action
 	// is evaluated for each resource. Each action must include the service identifier,
 	// such as iam:CreateUser.
+	//
+	// ActionNames is a required field
 	ActionNames []*string `type:"list" required:"true"`
 
 	// The ARN of the IAM user that you want to specify as the simulated caller
@@ -15469,6 +15891,8 @@ type SimulatePrincipalPolicyInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// PolicySourceArn is a required field
 	PolicySourceArn *string `min:"20" type:"string" required:"true"`
 
 	// A list of ARNs of AWS resources to include in the simulation. If this parameter
@@ -15646,11 +16070,15 @@ type UpdateAccessKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// AccessKeyId is a required field
 	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The status you want to assign to the secret access key. Active means the
 	// key can be used for API calls to AWS, while Inactive means the key cannot
 	// be used.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the user whose key you want to update.
@@ -15821,6 +16249,8 @@ type UpdateAssumeRolePolicyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to update with the new policy.
@@ -15828,6 +16258,8 @@ type UpdateAssumeRolePolicyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// RoleName is a required field
 	RoleName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -15886,6 +16318,8 @@ type UpdateGroupInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// New name for the IAM group. Only include this if changing the group's name.
@@ -15974,6 +16408,8 @@ type UpdateLoginProfileInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16030,10 +16466,14 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// OpenIDConnectProviderArn is a required field
 	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
 	// A list of certificate thumbprints that are associated with the specified
 	// IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.
+	//
+	// ThumbprintList is a required field
 	ThumbprintList []*string `type:"list" required:"true"`
 }
 
@@ -16088,6 +16528,8 @@ type UpdateSAMLProviderInput struct {
 	// keys that can be used to validate the SAML authentication response (assertions)
 	// that are received from the IdP. You must generate the metadata document using
 	// the identity management software that is used as your organization's IdP.
+	//
+	// SAMLMetadataDocument is a required field
 	SAMLMetadataDocument *string `min:"1000" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider to update.
@@ -16095,6 +16537,8 @@ type UpdateSAMLProviderInput struct {
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
+	//
+	// SAMLProviderArn is a required field
 	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 }
 
@@ -16156,11 +16600,15 @@ type UpdateSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// SSHPublicKeyId is a required field
 	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The status to assign to the SSH public key. Active means the key can be used
 	// for authentication with an AWS CodeCommit repository. Inactive means the
 	// key cannot be used.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user associated with the SSH public key.
@@ -16168,6 +16616,8 @@ type UpdateSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16247,6 +16697,8 @@ type UpdateServerCertificateInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16304,11 +16756,15 @@ type UpdateSigningCertificateInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters that can consist of any upper or lowercased letter
 	// or digit.
+	//
+	// CertificateId is a required field
 	CertificateId *string `min:"24" type:"string" required:"true"`
 
 	// The status you want to assign to the certificate. Active means the certificate
 	// can be used for API calls to AWS, while Inactive means the certificate cannot
 	// be used.
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user the signing certificate belongs to.
@@ -16392,6 +16848,8 @@ type UpdateUserInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16452,6 +16910,8 @@ type UploadSSHPublicKeyInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// SSHPublicKeyBody is a required field
 	SSHPublicKeyBody *string `min:"1" type:"string" required:"true"`
 
 	// The name of the IAM user to associate the SSH public key with.
@@ -16459,6 +16919,8 @@ type UploadSSHPublicKeyInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16522,6 +16984,8 @@ type UploadServerCertificateInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// CertificateBody is a required field
 	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The contents of the certificate chain. This is typically a concatenation
@@ -16558,6 +17022,8 @@ type UploadServerCertificateInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// PrivateKey is a required field
 	PrivateKey *string `min:"1" type:"string" required:"true"`
 
 	// The name for the server certificate. Do not include the path in this value.
@@ -16566,6 +17032,8 @@ type UploadServerCertificateInput struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for this parameter is
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
+	//
+	// ServerCertificateName is a required field
 	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16642,6 +17110,8 @@ type UploadSigningCertificateInput struct {
 	// from the space character (\u0020) through end of the ASCII character range
 	// (\u00FF). It also includes the special characters tab (\u0009), line feed
 	// (\u000A), and carriage return (\u000D).
+	//
+	// CertificateBody is a required field
 	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user the signing certificate is for.
@@ -16686,6 +17156,8 @@ type UploadSigningCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the certificate.
+	//
+	// Certificate is a required field
 	Certificate *SigningCertificate `type:"structure" required:"true"`
 }
 
@@ -16714,10 +17186,14 @@ type User struct {
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
 	// about ARNs and how to use ARNs in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the user was created.
+	//
+	// CreateDate is a required field
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
@@ -16741,14 +17217,20 @@ type User struct {
 	// The path to the user. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// Path is a required field
 	Path *string `min:"1" type:"string" required:"true"`
 
 	// The stable and unique string identifying the user. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
+	//
+	// UserId is a required field
 	UserId *string `min:"16" type:"string" required:"true"`
 
 	// The friendly name identifying the user.
+	//
+	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -16836,6 +17318,8 @@ type VirtualMFADevice struct {
 	QRCodePNG []byte `type:"blob"`
 
 	// The serial number associated with VirtualMFADevice.
+	//
+	// SerialNumber is a required field
 	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// Contains information about an IAM user entity.
@@ -16861,166 +17345,221 @@ func (s VirtualMFADevice) GoString() string {
 }
 
 const (
-	// @enum ContextKeyTypeEnum
+	// ContextKeyTypeEnumString is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumString = "string"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumStringList is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumStringList = "stringList"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumNumeric is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumNumeric = "numeric"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumNumericList is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumNumericList = "numericList"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumBoolean is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumBoolean = "boolean"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumBooleanList is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumBooleanList = "booleanList"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumIp is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumIp = "ip"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumIpList is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumIpList = "ipList"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumBinary is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumBinary = "binary"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumBinaryList is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumBinaryList = "binaryList"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumDate is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumDate = "date"
-	// @enum ContextKeyTypeEnum
+
+	// ContextKeyTypeEnumDateList is a ContextKeyTypeEnum enum value
 	ContextKeyTypeEnumDateList = "dateList"
 )
 
 const (
-	// @enum EntityType
+	// EntityTypeUser is a EntityType enum value
 	EntityTypeUser = "User"
-	// @enum EntityType
+
+	// EntityTypeRole is a EntityType enum value
 	EntityTypeRole = "Role"
-	// @enum EntityType
+
+	// EntityTypeGroup is a EntityType enum value
 	EntityTypeGroup = "Group"
-	// @enum EntityType
+
+	// EntityTypeLocalManagedPolicy is a EntityType enum value
 	EntityTypeLocalManagedPolicy = "LocalManagedPolicy"
-	// @enum EntityType
+
+	// EntityTypeAwsmanagedPolicy is a EntityType enum value
 	EntityTypeAwsmanagedPolicy = "AWSManagedPolicy"
 )
 
 const (
-	// @enum PolicyEvaluationDecisionType
+	// PolicyEvaluationDecisionTypeAllowed is a PolicyEvaluationDecisionType enum value
 	PolicyEvaluationDecisionTypeAllowed = "allowed"
-	// @enum PolicyEvaluationDecisionType
+
+	// PolicyEvaluationDecisionTypeExplicitDeny is a PolicyEvaluationDecisionType enum value
 	PolicyEvaluationDecisionTypeExplicitDeny = "explicitDeny"
-	// @enum PolicyEvaluationDecisionType
+
+	// PolicyEvaluationDecisionTypeImplicitDeny is a PolicyEvaluationDecisionType enum value
 	PolicyEvaluationDecisionTypeImplicitDeny = "implicitDeny"
 )
 
 const (
-	// @enum PolicySourceType
+	// PolicySourceTypeUser is a PolicySourceType enum value
 	PolicySourceTypeUser = "user"
-	// @enum PolicySourceType
+
+	// PolicySourceTypeGroup is a PolicySourceType enum value
 	PolicySourceTypeGroup = "group"
-	// @enum PolicySourceType
+
+	// PolicySourceTypeRole is a PolicySourceType enum value
 	PolicySourceTypeRole = "role"
-	// @enum PolicySourceType
+
+	// PolicySourceTypeAwsManaged is a PolicySourceType enum value
 	PolicySourceTypeAwsManaged = "aws-managed"
-	// @enum PolicySourceType
+
+	// PolicySourceTypeUserManaged is a PolicySourceType enum value
 	PolicySourceTypeUserManaged = "user-managed"
-	// @enum PolicySourceType
+
+	// PolicySourceTypeResource is a PolicySourceType enum value
 	PolicySourceTypeResource = "resource"
-	// @enum PolicySourceType
+
+	// PolicySourceTypeNone is a PolicySourceType enum value
 	PolicySourceTypeNone = "none"
 )
 
 const (
-	// @enum ReportFormatType
+	// ReportFormatTypeTextCsv is a ReportFormatType enum value
 	ReportFormatTypeTextCsv = "text/csv"
 )
 
 const (
-	// @enum ReportStateType
+	// ReportStateTypeStarted is a ReportStateType enum value
 	ReportStateTypeStarted = "STARTED"
-	// @enum ReportStateType
+
+	// ReportStateTypeInprogress is a ReportStateType enum value
 	ReportStateTypeInprogress = "INPROGRESS"
-	// @enum ReportStateType
+
+	// ReportStateTypeComplete is a ReportStateType enum value
 	ReportStateTypeComplete = "COMPLETE"
 )
 
 const (
-	// @enum assignmentStatusType
+	// AssignmentStatusTypeAssigned is a assignmentStatusType enum value
 	AssignmentStatusTypeAssigned = "Assigned"
-	// @enum assignmentStatusType
+
+	// AssignmentStatusTypeUnassigned is a assignmentStatusType enum value
 	AssignmentStatusTypeUnassigned = "Unassigned"
-	// @enum assignmentStatusType
+
+	// AssignmentStatusTypeAny is a assignmentStatusType enum value
 	AssignmentStatusTypeAny = "Any"
 )
 
 const (
-	// @enum encodingType
+	// EncodingTypeSsh is a encodingType enum value
 	EncodingTypeSsh = "SSH"
-	// @enum encodingType
+
+	// EncodingTypePem is a encodingType enum value
 	EncodingTypePem = "PEM"
 )
 
 const (
-	// @enum policyScopeType
+	// PolicyScopeTypeAll is a policyScopeType enum value
 	PolicyScopeTypeAll = "All"
-	// @enum policyScopeType
+
+	// PolicyScopeTypeAws is a policyScopeType enum value
 	PolicyScopeTypeAws = "AWS"
-	// @enum policyScopeType
+
+	// PolicyScopeTypeLocal is a policyScopeType enum value
 	PolicyScopeTypeLocal = "Local"
 )
 
 const (
-	// @enum statusType
+	// StatusTypeActive is a statusType enum value
 	StatusTypeActive = "Active"
-	// @enum statusType
+
+	// StatusTypeInactive is a statusType enum value
 	StatusTypeInactive = "Inactive"
 )
 
 const (
-	// @enum summaryKeyType
+	// SummaryKeyTypeUsers is a summaryKeyType enum value
 	SummaryKeyTypeUsers = "Users"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeUsersQuota is a summaryKeyType enum value
 	SummaryKeyTypeUsersQuota = "UsersQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeGroups is a summaryKeyType enum value
 	SummaryKeyTypeGroups = "Groups"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeGroupsQuota is a summaryKeyType enum value
 	SummaryKeyTypeGroupsQuota = "GroupsQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeServerCertificates is a summaryKeyType enum value
 	SummaryKeyTypeServerCertificates = "ServerCertificates"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeServerCertificatesQuota is a summaryKeyType enum value
 	SummaryKeyTypeServerCertificatesQuota = "ServerCertificatesQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeUserPolicySizeQuota is a summaryKeyType enum value
 	SummaryKeyTypeUserPolicySizeQuota = "UserPolicySizeQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeGroupPolicySizeQuota is a summaryKeyType enum value
 	SummaryKeyTypeGroupPolicySizeQuota = "GroupPolicySizeQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeGroupsPerUserQuota is a summaryKeyType enum value
 	SummaryKeyTypeGroupsPerUserQuota = "GroupsPerUserQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeSigningCertificatesPerUserQuota is a summaryKeyType enum value
 	SummaryKeyTypeSigningCertificatesPerUserQuota = "SigningCertificatesPerUserQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAccessKeysPerUserQuota is a summaryKeyType enum value
 	SummaryKeyTypeAccessKeysPerUserQuota = "AccessKeysPerUserQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeMfadevices is a summaryKeyType enum value
 	SummaryKeyTypeMfadevices = "MFADevices"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeMfadevicesInUse is a summaryKeyType enum value
 	SummaryKeyTypeMfadevicesInUse = "MFADevicesInUse"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAccountMfaenabled is a summaryKeyType enum value
 	SummaryKeyTypeAccountMfaenabled = "AccountMFAEnabled"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAccountAccessKeysPresent is a summaryKeyType enum value
 	SummaryKeyTypeAccountAccessKeysPresent = "AccountAccessKeysPresent"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAccountSigningCertificatesPresent is a summaryKeyType enum value
 	SummaryKeyTypeAccountSigningCertificatesPresent = "AccountSigningCertificatesPresent"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAttachedPoliciesPerGroupQuota is a summaryKeyType enum value
 	SummaryKeyTypeAttachedPoliciesPerGroupQuota = "AttachedPoliciesPerGroupQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAttachedPoliciesPerRoleQuota is a summaryKeyType enum value
 	SummaryKeyTypeAttachedPoliciesPerRoleQuota = "AttachedPoliciesPerRoleQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeAttachedPoliciesPerUserQuota is a summaryKeyType enum value
 	SummaryKeyTypeAttachedPoliciesPerUserQuota = "AttachedPoliciesPerUserQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypePolicies is a summaryKeyType enum value
 	SummaryKeyTypePolicies = "Policies"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypePoliciesQuota is a summaryKeyType enum value
 	SummaryKeyTypePoliciesQuota = "PoliciesQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypePolicySizeQuota is a summaryKeyType enum value
 	SummaryKeyTypePolicySizeQuota = "PolicySizeQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypePolicyVersionsInUse is a summaryKeyType enum value
 	SummaryKeyTypePolicyVersionsInUse = "PolicyVersionsInUse"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypePolicyVersionsInUseQuota is a summaryKeyType enum value
 	SummaryKeyTypePolicyVersionsInUseQuota = "PolicyVersionsInUseQuota"
-	// @enum summaryKeyType
+
+	// SummaryKeyTypeVersionsPerPolicyQuota is a summaryKeyType enum value
 	SummaryKeyTypeVersionsPerPolicyQuota = "VersionsPerPolicyQuota"
 )

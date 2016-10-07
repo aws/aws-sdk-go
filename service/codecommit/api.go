@@ -848,6 +848,8 @@ type BatchGetRepositoriesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the repositories to get information about.
+	//
+	// RepositoryNames is a required field
 	RepositoryNames []*string `locationName:"repositoryNames" type:"list" required:"true"`
 }
 
@@ -957,12 +959,18 @@ type CreateBranchInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the new branch to create.
+	//
+	// BranchName is a required field
 	BranchName *string `locationName:"branchName" min:"1" type:"string" required:"true"`
 
 	// The ID of the commit to point the new branch to.
+	//
+	// CommitId is a required field
 	CommitId *string `locationName:"commitId" type:"string" required:"true"`
 
 	// The name of the repository in which you want to create the new branch.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1035,6 +1043,8 @@ type CreateRepositoryInput struct {
 	// and cannot include certain characters. For a full description of the limits
 	// on repository names, see Limits (http://docs.aws.amazon.com/codecommit/latest/userguide/limits.html)
 	// in the AWS CodeCommit User Guide. The suffix ".git" is prohibited.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1087,6 +1097,8 @@ type DeleteRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the repository to delete.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1195,9 +1207,13 @@ type GetCommitInput struct {
 	_ struct{} `type:"structure"`
 
 	// The commit ID.
+	//
+	// CommitId is a required field
 	CommitId *string `locationName:"commitId" type:"string" required:"true"`
 
 	// The name of the repository to which the commit was made.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1235,6 +1251,8 @@ type GetCommitOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the specified commit.
+	//
+	// Commit is a required field
 	Commit *Commit `locationName:"commit" type:"structure" required:"true"`
 }
 
@@ -1253,6 +1271,8 @@ type GetRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the repository to get information about.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1360,6 +1380,8 @@ type ListBranchesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the repository that contains the branches.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1698,9 +1720,13 @@ type UpdateDefaultBranchInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the branch to set as the default.
+	//
+	// DefaultBranchName is a required field
 	DefaultBranchName *string `locationName:"defaultBranchName" min:"1" type:"string" required:"true"`
 
 	// The name of the repository to set or change the default branch for.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1759,6 +1785,8 @@ type UpdateRepositoryDescriptionInput struct {
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
 	// The name of the repository to set or change the comment or description for.
+	//
+	// RepositoryName is a required field
 	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 }
 
@@ -1807,9 +1835,13 @@ type UpdateRepositoryNameInput struct {
 	_ struct{} `type:"structure"`
 
 	// The new name for the repository.
+	//
+	// NewName is a required field
 	NewName *string `locationName:"newName" min:"1" type:"string" required:"true"`
 
 	// The existing name of the repository.
+	//
+	// OldName is a required field
 	OldName *string `locationName:"oldName" min:"1" type:"string" required:"true"`
 }
 
@@ -1884,26 +1916,31 @@ func (s UserInfo) GoString() string {
 }
 
 const (
-	// @enum OrderEnum
+	// OrderEnumAscending is a OrderEnum enum value
 	OrderEnumAscending = "ascending"
-	// @enum OrderEnum
+
+	// OrderEnumDescending is a OrderEnum enum value
 	OrderEnumDescending = "descending"
 )
 
 const (
-	// @enum RepositoryTriggerEventEnum
+	// RepositoryTriggerEventEnumAll is a RepositoryTriggerEventEnum enum value
 	RepositoryTriggerEventEnumAll = "all"
-	// @enum RepositoryTriggerEventEnum
+
+	// RepositoryTriggerEventEnumUpdateReference is a RepositoryTriggerEventEnum enum value
 	RepositoryTriggerEventEnumUpdateReference = "updateReference"
-	// @enum RepositoryTriggerEventEnum
+
+	// RepositoryTriggerEventEnumCreateReference is a RepositoryTriggerEventEnum enum value
 	RepositoryTriggerEventEnumCreateReference = "createReference"
-	// @enum RepositoryTriggerEventEnum
+
+	// RepositoryTriggerEventEnumDeleteReference is a RepositoryTriggerEventEnum enum value
 	RepositoryTriggerEventEnumDeleteReference = "deleteReference"
 )
 
 const (
-	// @enum SortByEnum
+	// SortByEnumRepositoryName is a SortByEnum enum value
 	SortByEnumRepositoryName = "repositoryName"
-	// @enum SortByEnum
+
+	// SortByEnumLastModifiedDate is a SortByEnum enum value
 	SortByEnumLastModifiedDate = "lastModifiedDate"
 )

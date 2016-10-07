@@ -1260,9 +1260,13 @@ type AccessPoliciesStatus struct {
 	// information, see Configuring Access for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide. The maximum size
 	// of a policy document is 100 KB.
+	//
+	// Options is a required field
 	Options *string `type:"string" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -1341,10 +1345,14 @@ type AnalysisScheme struct {
 
 	// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
 	// code or mul for multiple languages.
+	//
+	// AnalysisSchemeLanguage is a required field
 	AnalysisSchemeLanguage *string `type:"string" required:"true" enum:"AnalysisSchemeLanguage"`
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
+	//
+	// AnalysisSchemeName is a required field
 	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1385,9 +1393,13 @@ type AnalysisSchemeStatus struct {
 	// a unique name and specifies the language of the text to be processed. The
 	// following options can be configured for an analysis scheme: Synonyms, Stopwords,
 	// StemmingDictionary, JapaneseTokenizationDictionary and AlgorithmicStemming.
+	//
+	// Options is a required field
 	Options *AnalysisScheme `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -1406,9 +1418,13 @@ type AvailabilityOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The availability options configured for the domain.
+	//
+	// Options is a required field
 	Options *bool `type:"boolean" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -1431,6 +1447,8 @@ type BuildSuggestersInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -1487,6 +1505,8 @@ type CreateDomainInput struct {
 	// A name for the domain you are creating. Allowed characters are a-z (lower-case
 	// letters), 0-9, and hyphen (-). Domain names must start with a letter or number
 	// and be at least 3 and no more than 28 characters long.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -1637,12 +1657,16 @@ type DefineAnalysisSchemeInput struct {
 	// a unique name and specifies the language of the text to be processed. The
 	// following options can be configured for an analysis scheme: Synonyms, Stopwords,
 	// StemmingDictionary, JapaneseTokenizationDictionary and AlgorithmicStemming.
+	//
+	// AnalysisScheme is a required field
 	AnalysisScheme *AnalysisScheme `type:"structure" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -1686,6 +1710,8 @@ type DefineAnalysisSchemeOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status and configuration of an AnalysisScheme.
+	//
+	// AnalysisScheme is a required field
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 }
 
@@ -1709,11 +1735,15 @@ type DefineExpressionInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// A named expression that can be evaluated at search time. Can be used to sort
 	// the search results, define other expressions, or return computed information
 	// in the search results.
+	//
+	// Expression is a required field
 	Expression *Expression `type:"structure" required:"true"`
 }
 
@@ -1757,6 +1787,8 @@ type DefineExpressionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The value of an Expression and its current status.
+	//
+	// Expression is a required field
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 }
 
@@ -1779,9 +1811,13 @@ type DefineIndexFieldInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The index field and field options you want to configure.
+	//
+	// IndexField is a required field
 	IndexField *IndexField `type:"structure" required:"true"`
 }
 
@@ -1825,6 +1861,8 @@ type DefineIndexFieldOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The value of an IndexField and its current status.
+	//
+	// IndexField is a required field
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 }
 
@@ -1847,11 +1885,15 @@ type DefineSuggesterInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// Configuration information for a search suggester. Each suggester has a unique
 	// name and specifies the text field you want to use for suggestions. The following
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
+	//
+	// Suggester is a required field
 	Suggester *Suggester `type:"structure" required:"true"`
 }
 
@@ -1895,6 +1937,8 @@ type DefineSuggesterOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The value of a Suggester and its current status.
+	//
+	// Suggester is a required field
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 }
 
@@ -1915,12 +1959,16 @@ type DeleteAnalysisSchemeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the analysis scheme you want to delete.
+	//
+	// AnalysisSchemeName is a required field
 	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -1962,6 +2010,8 @@ type DeleteAnalysisSchemeOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the analysis scheme being deleted.
+	//
+	// AnalysisScheme is a required field
 	AnalysisScheme *AnalysisSchemeStatus `type:"structure" required:"true"`
 }
 
@@ -1981,6 +2031,8 @@ type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the domain you want to permanently delete.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2039,9 +2091,13 @@ type DeleteExpressionInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The name of the Expression to delete.
+	//
+	// ExpressionName is a required field
 	ExpressionName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2083,6 +2139,8 @@ type DeleteExpressionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the expression being deleted.
+	//
+	// Expression is a required field
 	Expression *ExpressionStatus `type:"structure" required:"true"`
 }
 
@@ -2106,10 +2164,14 @@ type DeleteIndexFieldInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The name of the index field your want to remove from the domain's indexing
 	// options.
+	//
+	// IndexFieldName is a required field
 	IndexFieldName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2150,6 +2212,8 @@ type DeleteIndexFieldOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the index field being deleted.
+	//
+	// IndexField is a required field
 	IndexField *IndexFieldStatus `type:"structure" required:"true"`
 }
 
@@ -2173,9 +2237,13 @@ type DeleteSuggesterInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// Specifies the name of the suggester you want to delete.
+	//
+	// SuggesterName is a required field
 	SuggesterName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2217,6 +2285,8 @@ type DeleteSuggesterOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the suggester being deleted.
+	//
+	// Suggester is a required field
 	Suggester *SuggesterStatus `type:"structure" required:"true"`
 }
 
@@ -2246,6 +2316,8 @@ type DescribeAnalysisSchemesInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2281,6 +2353,8 @@ type DescribeAnalysisSchemesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The analysis scheme descriptions.
+	//
+	// AnalysisSchemes is a required field
 	AnalysisSchemes []*AnalysisSchemeStatus `type:"list" required:"true"`
 }
 
@@ -2306,6 +2380,8 @@ type DescribeAvailabilityOptionsInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2381,6 +2457,8 @@ type DescribeDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list that contains the status of each requested domain.
+	//
+	// DomainStatusList is a required field
 	DomainStatusList []*DomainStatus `type:"list" required:"true"`
 }
 
@@ -2407,6 +2485,8 @@ type DescribeExpressionsInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// Limits the DescribeExpressions response to the specified expressions. If
@@ -2446,6 +2526,8 @@ type DescribeExpressionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The expressions configured for the domain.
+	//
+	// Expressions is a required field
 	Expressions []*ExpressionStatus `type:"list" required:"true"`
 }
 
@@ -2472,6 +2554,8 @@ type DescribeIndexFieldsInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// A list of the index fields you want to describe. If not specified, information
@@ -2511,6 +2595,8 @@ type DescribeIndexFieldsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The index fields configured for the domain.
+	//
+	// IndexFields is a required field
 	IndexFields []*IndexFieldStatus `type:"list" required:"true"`
 }
 
@@ -2533,6 +2619,8 @@ type DescribeScalingParametersInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2568,6 +2656,8 @@ type DescribeScalingParametersOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status and configuration of a search domain's scaling parameters.
+	//
+	// ScalingParameters is a required field
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 }
 
@@ -2593,6 +2683,8 @@ type DescribeServiceAccessPoliciesInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -2627,6 +2719,8 @@ type DescribeServiceAccessPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The access rules configured for the domain specified in the request.
+	//
+	// AccessPolicies is a required field
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 }
 
@@ -2653,6 +2747,8 @@ type DescribeSuggestersInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The suggesters you want to describe.
@@ -2690,6 +2786,8 @@ type DescribeSuggestersOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The suggesters configured for the domain specified in the request.
+	//
+	// Suggesters is a required field
 	Suggesters []*SuggesterStatus `type:"list" required:"true"`
 }
 
@@ -2724,6 +2822,8 @@ type DocumentSuggesterOptions struct {
 	SortExpression *string `type:"string"`
 
 	// The name of the index field you want to use for suggestions.
+	//
+	// SourceField is a required field
 	SourceField *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2778,12 +2878,16 @@ type DomainStatus struct {
 	DocService *ServiceEndpoint `type:"structure"`
 
 	// An internally generated unique identifier for a domain.
+	//
+	// DomainId is a required field
 	DomainId *string `min:"1" type:"string" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	Limits *Limits `type:"structure"`
@@ -2793,6 +2897,8 @@ type DomainStatus struct {
 
 	// True if IndexDocuments needs to be called to activate the current domain
 	// configuration.
+	//
+	// RequiresIndexDocuments is a required field
 	RequiresIndexDocuments *bool `type:"boolean" required:"true"`
 
 	// The number of search instances that are available to process search requests.
@@ -2907,12 +3013,16 @@ type Expression struct {
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
+	//
+	// ExpressionName is a required field
 	ExpressionName *string `min:"1" type:"string" required:"true"`
 
 	// The expression to evaluate for sorting while processing a search request.
 	// The Expression syntax is based on JavaScript expressions. For more information,
 	// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
+	//
+	// ExpressionValue is a required field
 	ExpressionValue *string `min:"1" type:"string" required:"true"`
 }
 
@@ -2953,9 +3063,13 @@ type ExpressionStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The expression that is evaluated for sorting while processing a search request.
+	//
+	// Options is a required field
 	Options *Expression `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -2978,6 +3092,8 @@ type IndexDocumentsInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -3064,12 +3180,16 @@ type IndexField struct {
 	//
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
+	//
+	// IndexFieldName is a required field
 	IndexFieldName *string `min:"1" type:"string" required:"true"`
 
 	// The type of field. The valid options for a field depend on the field type.
 	// For more information about the supported field types, see Configuring Index
 	// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
+	//
+	// IndexFieldType is a required field
 	IndexFieldType *string `type:"string" required:"true" enum:"IndexFieldType"`
 
 	// Options for a field that contains an array of 64-bit signed integers. Present
@@ -3171,9 +3291,13 @@ type IndexFieldStatus struct {
 
 	// Configuration information for a field in the index, including its name, type,
 	// and options. The supported options depend on the IndexFieldType.
+	//
+	// Options is a required field
 	Options *IndexField `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -3332,8 +3456,10 @@ func (s *LatLonOptions) Validate() error {
 type Limits struct {
 	_ struct{} `type:"structure"`
 
+	// MaximumPartitionCount is a required field
 	MaximumPartitionCount *int64 `min:"1" type:"integer" required:"true"`
 
+	// MaximumReplicationCount is a required field
 	MaximumReplicationCount *int64 `min:"1" type:"integer" required:"true"`
 }
 
@@ -3477,6 +3603,8 @@ type OptionStatus struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp for when this option was created.
+	//
+	// CreationDate is a required field
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Indicates that the option will be deleted once processing is complete.
@@ -3491,9 +3619,13 @@ type OptionStatus struct {
 	// option value is not compatible with the domain's data and cannot be used
 	// to index the data. You must either modify the option value or update or remove
 	// the incompatible documents.
+	//
+	// State is a required field
 	State *string `type:"string" required:"true" enum:"OptionState"`
 
 	// A timestamp for when this option was last updated.
+	//
+	// UpdateDate is a required field
 	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// A unique integer that indicates when this option was last updated.
@@ -3541,9 +3673,13 @@ type ScalingParametersStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The desired instance type and desired number of replicas of each index partition.
+	//
+	// Options is a required field
 	Options *ScalingParameters `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -3583,10 +3719,14 @@ type Suggester struct {
 	_ struct{} `type:"structure"`
 
 	// Options for a search suggester.
+	//
+	// DocumentSuggesterOptions is a required field
 	DocumentSuggesterOptions *DocumentSuggesterOptions `type:"structure" required:"true"`
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
+	//
+	// SuggesterName is a required field
 	SuggesterName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3631,9 +3771,13 @@ type SuggesterStatus struct {
 	// Configuration information for a search suggester. Each suggester has a unique
 	// name and specifies the text field you want to use for suggestions. The following
 	// options can be configured for a suggester: FuzzyMatching, SortExpression.
+	//
+	// Options is a required field
 	Options *Suggester `type:"structure" required:"true"`
 
 	// The status of domain configuration option.
+	//
+	// Status is a required field
 	Status *OptionStatus `type:"structure" required:"true"`
 }
 
@@ -3750,12 +3894,16 @@ type UpdateAvailabilityOptionsInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// You expand an existing search domain to a second Availability Zone by setting
 	// the Multi-AZ option to true. Similarly, you can turn off the Multi-AZ option
 	// to downgrade the domain to a single Availability Zone by setting the Multi-AZ
 	// option to false.
+	//
+	// MultiAZ is a required field
 	MultiAZ *bool `type:"boolean" required:"true"`
 }
 
@@ -3818,9 +3966,13 @@ type UpdateScalingParametersInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The desired instance type and desired number of replicas of each index partition.
+	//
+	// ScalingParameters is a required field
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
 }
 
@@ -3859,6 +4011,8 @@ type UpdateScalingParametersOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status and configuration of a search domain's scaling parameters.
+	//
+	// ScalingParameters is a required field
 	ScalingParameters *ScalingParametersStatus `type:"structure" required:"true"`
 }
 
@@ -3880,12 +4034,16 @@ type UpdateServiceAccessPoliciesInput struct {
 
 	// The access rules you want to configure. These rules replace any existing
 	// rules.
+	//
+	// AccessPolicies is a required field
 	AccessPolicies *string `type:"string" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
+	//
+	// DomainName is a required field
 	DomainName *string `min:"3" type:"string" required:"true"`
 }
 
@@ -3924,6 +4082,8 @@ type UpdateServiceAccessPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The access rules configured for the domain.
+	//
+	// AccessPolicies is a required field
 	AccessPolicies *AccessPoliciesStatus `type:"structure" required:"true"`
 }
 
@@ -3938,88 +4098,125 @@ func (s UpdateServiceAccessPoliciesOutput) GoString() string {
 }
 
 const (
-	// @enum AlgorithmicStemming
+	// AlgorithmicStemmingNone is a AlgorithmicStemming enum value
 	AlgorithmicStemmingNone = "none"
-	// @enum AlgorithmicStemming
+
+	// AlgorithmicStemmingMinimal is a AlgorithmicStemming enum value
 	AlgorithmicStemmingMinimal = "minimal"
-	// @enum AlgorithmicStemming
+
+	// AlgorithmicStemmingLight is a AlgorithmicStemming enum value
 	AlgorithmicStemmingLight = "light"
-	// @enum AlgorithmicStemming
+
+	// AlgorithmicStemmingFull is a AlgorithmicStemming enum value
 	AlgorithmicStemmingFull = "full"
 )
 
 // An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
 // code or mul for multiple languages.
 const (
-	// @enum AnalysisSchemeLanguage
+	// AnalysisSchemeLanguageAr is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageAr = "ar"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageBg is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageBg = "bg"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageCa is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageCa = "ca"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageCs is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageCs = "cs"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageDa is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageDa = "da"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageDe is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageDe = "de"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageEl is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageEl = "el"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageEn is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageEn = "en"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageEs is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageEs = "es"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageEu is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageEu = "eu"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageFa is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageFa = "fa"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageFi is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageFi = "fi"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageFr is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageFr = "fr"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageGa is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageGa = "ga"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageGl is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageGl = "gl"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageHe is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageHe = "he"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageHi is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageHi = "hi"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageHu is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageHu = "hu"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageHy is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageHy = "hy"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageId is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageId = "id"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageIt is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageIt = "it"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageJa is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageJa = "ja"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageKo is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageKo = "ko"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageLv is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageLv = "lv"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageMul is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageMul = "mul"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageNl is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageNl = "nl"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageNo is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageNo = "no"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguagePt is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguagePt = "pt"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageRo is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageRo = "ro"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageRu is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageRu = "ru"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageSv is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageSv = "sv"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageTh is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageTh = "th"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageTr is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageTr = "tr"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageZhHans is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageZhHans = "zh-Hans"
-	// @enum AnalysisSchemeLanguage
+
+	// AnalysisSchemeLanguageZhHant is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageZhHant = "zh-Hant"
 )
 
@@ -4028,27 +4225,37 @@ const (
 // Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
 const (
-	// @enum IndexFieldType
+	// IndexFieldTypeInt is a IndexFieldType enum value
 	IndexFieldTypeInt = "int"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeDouble is a IndexFieldType enum value
 	IndexFieldTypeDouble = "double"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeLiteral is a IndexFieldType enum value
 	IndexFieldTypeLiteral = "literal"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeText is a IndexFieldType enum value
 	IndexFieldTypeText = "text"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeDate is a IndexFieldType enum value
 	IndexFieldTypeDate = "date"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeLatlon is a IndexFieldType enum value
 	IndexFieldTypeLatlon = "latlon"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeIntArray is a IndexFieldType enum value
 	IndexFieldTypeIntArray = "int-array"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeDoubleArray is a IndexFieldType enum value
 	IndexFieldTypeDoubleArray = "double-array"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeLiteralArray is a IndexFieldType enum value
 	IndexFieldTypeLiteralArray = "literal-array"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeTextArray is a IndexFieldType enum value
 	IndexFieldTypeTextArray = "text-array"
-	// @enum IndexFieldType
+
+	// IndexFieldTypeDateArray is a IndexFieldType enum value
 	IndexFieldTypeDateArray = "date-array"
 )
 
@@ -4062,42 +4269,54 @@ const (
 // data. You must either modify the option value or update or remove the incompatible
 // documents.
 const (
-	// @enum OptionState
+	// OptionStateRequiresIndexDocuments is a OptionState enum value
 	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
-	// @enum OptionState
+
+	// OptionStateProcessing is a OptionState enum value
 	OptionStateProcessing = "Processing"
-	// @enum OptionState
+
+	// OptionStateActive is a OptionState enum value
 	OptionStateActive = "Active"
-	// @enum OptionState
+
+	// OptionStateFailedToValidate is a OptionState enum value
 	OptionStateFailedToValidate = "FailedToValidate"
 )
 
 // The instance type (such as search.m1.small) on which an index partition is
 // hosted.
 const (
-	// @enum PartitionInstanceType
+	// PartitionInstanceTypeSearchM1Small is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM1Small = "search.m1.small"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM1Large is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM1Large = "search.m1.large"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM2Xlarge is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM2Xlarge = "search.m2.xlarge"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM22xlarge is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM22xlarge = "search.m2.2xlarge"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM3Medium is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM3Medium = "search.m3.medium"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM3Large is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM3Large = "search.m3.large"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM3Xlarge is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM3Xlarge = "search.m3.xlarge"
-	// @enum PartitionInstanceType
+
+	// PartitionInstanceTypeSearchM32xlarge is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM32xlarge = "search.m3.2xlarge"
 )
 
 const (
-	// @enum SuggesterFuzzyMatching
+	// SuggesterFuzzyMatchingNone is a SuggesterFuzzyMatching enum value
 	SuggesterFuzzyMatchingNone = "none"
-	// @enum SuggesterFuzzyMatching
+
+	// SuggesterFuzzyMatchingLow is a SuggesterFuzzyMatching enum value
 	SuggesterFuzzyMatchingLow = "low"
-	// @enum SuggesterFuzzyMatching
+
+	// SuggesterFuzzyMatchingHigh is a SuggesterFuzzyMatching enum value
 	SuggesterFuzzyMatchingHigh = "high"
 )

@@ -2439,10 +2439,14 @@ type AddHeaderAction struct {
 
 	// The name of the header to add. Must be between 1 and 50 characters, inclusive,
 	// and consist of alphanumeric (a-z, A-Z, 0-9) characters and dashes only.
+	//
+	// HeaderName is a required field
 	HeaderName *string `type:"string" required:"true"`
 
 	// Must be less than 2048 characters, and must not contain newline characters
 	// ("\r" or "\n").
+	//
+	// HeaderValue is a required field
 	HeaderValue *string `type:"string" required:"true"`
 }
 
@@ -2528,13 +2532,19 @@ type BounceAction struct {
 	_ struct{} `type:"structure"`
 
 	// Human-readable text to include in the bounce message.
+	//
+	// Message is a required field
 	Message *string `type:"string" required:"true"`
 
 	// The email address of the sender of the bounced email. This is the address
 	// from which the bounce message will be sent.
+	//
+	// Sender is a required field
 	Sender *string `type:"string" required:"true"`
 
 	// The SMTP reply code, as defined by RFC 5321 (https://tools.ietf.org/html/rfc5321).
+	//
+	// SmtpReplyCode is a required field
 	SmtpReplyCode *string `type:"string" required:"true"`
 
 	// The SMTP enhanced status code, as defined by RFC 3463 (https://tools.ietf.org/html/rfc3463).
@@ -2588,6 +2598,8 @@ type BouncedRecipientInfo struct {
 	BounceType *string `type:"string" enum:"BounceType"`
 
 	// The email address of the recipient of the bounced email.
+	//
+	// Recipient is a required field
 	Recipient *string `type:"string" required:"true"`
 
 	// This parameter is used only for sending authorization. It is the ARN of the
@@ -2637,6 +2649,8 @@ type CloneReceiptRuleSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule set to clone.
+	//
+	// OriginalRuleSetName is a required field
 	OriginalRuleSetName *string `type:"string" required:"true"`
 
 	// The name of the rule set to create. The name must:
@@ -2647,6 +2661,8 @@ type CloneReceiptRuleSetInput struct {
 	//   Start and end with a letter or number.
 	//
 	//   Contain less than 64 characters.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -2703,6 +2719,8 @@ type Content struct {
 	Charset *string `type:"string"`
 
 	// The textual data of the content.
+	//
+	// Data is a required field
 	Data *string `type:"string" required:"true"`
 }
 
@@ -2737,6 +2755,8 @@ type CreateReceiptFilterInput struct {
 
 	// A data structure that describes the IP address filter to create, which consists
 	// of a name, an IP address range, and whether to allow or block mail from it.
+	//
+	// Filter is a required field
 	Filter *ReceiptFilter `type:"structure" required:"true"`
 }
 
@@ -2796,9 +2816,13 @@ type CreateReceiptRuleInput struct {
 
 	// A data structure that contains the specified rule's name, actions, recipients,
 	// domains, enabled status, scan status, and TLS policy.
+	//
+	// Rule is a required field
 	Rule *ReceiptRule `type:"structure" required:"true"`
 
 	// The name of the rule set to which to add the rule.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -2862,6 +2886,8 @@ type CreateReceiptRuleSetInput struct {
 	//   Start and end with a letter or number.
 	//
 	//   Contain less than 64 characters.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -2909,6 +2935,8 @@ type DeleteIdentityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identity to be removed from the list of identities for the AWS Account.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 }
 
@@ -2962,9 +2990,13 @@ type DeleteIdentityPolicyInput struct {
 	// Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	//
 	// To successfully call this API, you must own the identity.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
 	// The name of the policy to be deleted.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3019,6 +3051,8 @@ type DeleteReceiptFilterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the IP address filter to delete.
+	//
+	// FilterName is a required field
 	FilterName *string `type:"string" required:"true"`
 }
 
@@ -3067,9 +3101,13 @@ type DeleteReceiptRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the receipt rule to delete.
+	//
+	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
 	// The name of the receipt rule set that contains the receipt rule to delete.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -3121,6 +3159,8 @@ type DeleteReceiptRuleSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the receipt rule set to delete.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -3168,6 +3208,8 @@ type DeleteVerifiedEmailAddressInput struct {
 	_ struct{} `type:"structure"`
 
 	// An email address to be removed from the list of verified addresses.
+	//
+	// EmailAddress is a required field
 	EmailAddress *string `type:"string" required:"true"`
 }
 
@@ -3256,9 +3298,13 @@ type DescribeReceiptRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the receipt rule.
+	//
+	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
 	// The name of the receipt rule set to which the receipt rule belongs.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -3315,6 +3361,8 @@ type DescribeReceiptRuleSetInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the receipt rule set to describe.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -3403,10 +3451,14 @@ type ExtensionField struct {
 
 	// The name of the header to add. Must be between 1 and 50 characters, inclusive,
 	// and consist of alphanumeric (a-z, A-Z, 0-9) characters and dashes only.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The value of the header to add. Must be less than 2048 characters, and must
 	// not contain newline characters ("\r" or "\n").
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -3446,6 +3498,8 @@ type GetIdentityDkimAttributesInput struct {
 
 	// A list of one or more verified identities - email addresses, domains, or
 	// both.
+	//
+	// Identities is a required field
 	Identities []*string `type:"list" required:"true"`
 }
 
@@ -3480,6 +3534,8 @@ type GetIdentityDkimAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The DKIM attributes for an email address or a domain.
+	//
+	// DkimAttributes is a required field
 	DkimAttributes map[string]*IdentityDkimAttributes `type:"map" required:"true"`
 }
 
@@ -3500,6 +3556,8 @@ type GetIdentityMailFromDomainAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of one or more identities.
+	//
+	// Identities is a required field
 	Identities []*string `type:"list" required:"true"`
 }
 
@@ -3531,6 +3589,8 @@ type GetIdentityMailFromDomainAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A map of identities to custom MAIL FROM attributes.
+	//
+	// MailFromDomainAttributes is a required field
 	MailFromDomainAttributes map[string]*IdentityMailFromDomainAttributes `type:"map" required:"true"`
 }
 
@@ -3553,6 +3613,8 @@ type GetIdentityNotificationAttributesInput struct {
 	// A list of one or more identities. You can specify an identity by using its
 	// name or by using its Amazon Resource Name (ARN). Examples: user@example.com,
 	// example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	//
+	// Identities is a required field
 	Identities []*string `type:"list" required:"true"`
 }
 
@@ -3584,6 +3646,8 @@ type GetIdentityNotificationAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A map of Identity to IdentityNotificationAttributes.
+	//
+	// NotificationAttributes is a required field
 	NotificationAttributes map[string]*IdentityNotificationAttributes `type:"map" required:"true"`
 }
 
@@ -3609,11 +3673,15 @@ type GetIdentityPoliciesInput struct {
 	// user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	//
 	// To successfully call this API, you must own the identity.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
 	// A list of the names of policies to be retrieved. You can retrieve a maximum
 	// of 20 policies at a time. If you do not know the names of the policies that
 	// are attached to the identity, you can use ListIdentityPolicies.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -3648,6 +3716,8 @@ type GetIdentityPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A map of policy names to policies.
+	//
+	// Policies is a required field
 	Policies map[string]*string `type:"map" required:"true"`
 }
 
@@ -3669,6 +3739,8 @@ type GetIdentityVerificationAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of identities.
+	//
+	// Identities is a required field
 	Identities []*string `type:"list" required:"true"`
 }
 
@@ -3701,6 +3773,8 @@ type GetIdentityVerificationAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A map of Identities to IdentityVerificationAttributes objects.
+	//
+	// VerificationAttributes is a required field
 	VerificationAttributes map[string]*IdentityVerificationAttributes `type:"map" required:"true"`
 }
 
@@ -3796,6 +3870,8 @@ type IdentityDkimAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// True if DKIM signing is enabled for email sent from the identity; false otherwise.
+	//
+	// DkimEnabled is a required field
 	DkimEnabled *bool `type:"boolean" required:"true"`
 
 	// A set of character strings that represent the domain's identity. Using these
@@ -3813,6 +3889,8 @@ type IdentityDkimAttributes struct {
 	// Describes whether Amazon SES has successfully verified the DKIM DNS records
 	// (tokens) published in the domain name's DNS. (This only applies to domain
 	// identities, not email address identities.)
+	//
+	// DkimVerificationStatus is a required field
 	DkimVerificationStatus *string `type:"string" required:"true" enum:"VerificationStatus"`
 }
 
@@ -3840,9 +3918,13 @@ type IdentityMailFromDomainAttributes struct {
 	//
 	// The custom MAIL FROM setup states that result in this behavior are Pending,
 	// Failed, and TemporaryFailure.
+	//
+	// BehaviorOnMXFailure is a required field
 	BehaviorOnMXFailure *string `type:"string" required:"true" enum:"BehaviorOnMXFailure"`
 
 	// The custom MAIL FROM domain that the identity is configured to use.
+	//
+	// MailFromDomain is a required field
 	MailFromDomain *string `type:"string" required:"true"`
 
 	// The state that indicates whether Amazon SES has successfully read the MX
@@ -3850,6 +3932,8 @@ type IdentityMailFromDomainAttributes struct {
 	// Amazon SES uses the specified custom MAIL FROM domain when the verified identity
 	// sends an email. All other states indicate that Amazon SES takes the action
 	// described by BehaviorOnMXFailure.
+	//
+	// MailFromDomainStatus is a required field
 	MailFromDomainStatus *string `type:"string" required:"true" enum:"CustomMailFromStatus"`
 }
 
@@ -3872,20 +3956,28 @@ type IdentityNotificationAttributes struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES will
 	// publish bounce notifications.
+	//
+	// BounceTopic is a required field
 	BounceTopic *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES will
 	// publish complaint notifications.
+	//
+	// ComplaintTopic is a required field
 	ComplaintTopic *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES will
 	// publish delivery notifications.
+	//
+	// DeliveryTopic is a required field
 	DeliveryTopic *string `type:"string" required:"true"`
 
 	// Describes whether Amazon SES will forward bounce and complaint notifications
 	// as email. true indicates that Amazon SES will forward bounce and complaint
 	// notifications as email, while false indicates that bounce and complaint notifications
 	// will be published only to the specified bounce and complaint Amazon SNS topics.
+	//
+	// ForwardingEnabled is a required field
 	ForwardingEnabled *bool `type:"boolean" required:"true"`
 
 	// Describes whether Amazon SES includes the original email headers in Amazon
@@ -3923,6 +4015,8 @@ type IdentityVerificationAttributes struct {
 
 	// The verification status of the identity: "Pending", "Success", "Failed",
 	// or "TemporaryFailure".
+	//
+	// VerificationStatus is a required field
 	VerificationStatus *string `type:"string" required:"true" enum:"VerificationStatus"`
 
 	// The verification token for a domain identity. Null for email address identities.
@@ -3957,6 +4051,8 @@ type LambdaAction struct {
 	// an AWS Lambda function ARN is arn:aws:lambda:us-west-2:account-id:function:MyFunction.
 	// For more information about AWS Lambda, see the AWS Lambda Developer Guide
 	// (http://docs.aws.amazon.com/lambda/latest/dg/welcome.html).
+	//
+	// FunctionArn is a required field
 	FunctionArn *string `type:"string" required:"true"`
 
 	// The invocation type of the AWS Lambda function. An invocation type of RequestResponse
@@ -4034,6 +4130,8 @@ type ListIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of identities.
+	//
+	// Identities is a required field
 	Identities []*string `type:"list" required:"true"`
 
 	// The token used for pagination.
@@ -4062,6 +4160,8 @@ type ListIdentityPoliciesInput struct {
 	// Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	//
 	// To successfully call this API, you must own the identity.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 }
 
@@ -4093,6 +4193,8 @@ type ListIdentityPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of names of policies that apply to the specified identity.
+	//
+	// PolicyNames is a required field
 	PolicyNames []*string `type:"list" required:"true"`
 }
 
@@ -4225,10 +4327,14 @@ type Message struct {
 	_ struct{} `type:"structure"`
 
 	// The message body.
+	//
+	// Body is a required field
 	Body *Body `type:"structure" required:"true"`
 
 	// The subject of the message: A short summary of the content, which will appear
 	// in the recipient's inbox.
+	//
+	// Subject is a required field
 	Subject *Content `type:"structure" required:"true"`
 }
 
@@ -4286,6 +4392,8 @@ type MessageDsn struct {
 	// The reporting MTA that attempted to deliver the message, formatted as specified
 	// in RFC 3464 (https://tools.ietf.org/html/rfc3464) (mta-name-type; mta-name).
 	// The default value is dns; inbound-smtp.[region].amazonaws.com.
+	//
+	// ReportingMta is a required field
 	ReportingMta *string `type:"string" required:"true"`
 }
 
@@ -4334,18 +4442,24 @@ type PutIdentityPolicyInput struct {
 	// example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	//
 	// To successfully call this API, you must own the identity.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
 	// The text of the policy in JSON format. The policy cannot exceed 4 KB.
 	//
 	// For information about the syntax of sending authorization policies, see
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html).
+	//
+	// Policy is a required field
 	Policy *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
 	//
 	// The policy name cannot exceed 64 characters and can only include alphanumeric
 	// characters, dashes, and underscores.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4419,6 +4533,8 @@ type RawMessage struct {
 	//  For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
 	//
 	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
 	Data []byte `type:"blob" required:"true"`
 }
 
@@ -4547,6 +4663,8 @@ type ReceiptFilter struct {
 
 	// A structure that provides the IP addresses to block or allow, and whether
 	// to block or allow incoming mail from them.
+	//
+	// IpFilter is a required field
 	IpFilter *ReceiptIpFilter `type:"structure" required:"true"`
 
 	// The name of the IP address filter. The name must:
@@ -4557,6 +4675,8 @@ type ReceiptFilter struct {
 	//   Start and end with a letter or number.
 	//
 	//   Contain less than 64 characters.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -4603,9 +4723,13 @@ type ReceiptIpFilter struct {
 	// allow, specified in Classless Inter-Domain Routing (CIDR) notation. An example
 	// of a single email address is 10.0.0.1. An example of a range of IP addresses
 	// is 10.0.0.1/24. For more information about CIDR notation, see RFC 2317 (https://tools.ietf.org/html/rfc2317).
+	//
+	// Cidr is a required field
 	Cidr *string `type:"string" required:"true"`
 
 	// Indicates whether to block or allow incoming mail from the specified IP addresses.
+	//
+	// Policy is a required field
 	Policy *string `type:"string" required:"true" enum:"ReceiptFilterPolicy"`
 }
 
@@ -4664,6 +4788,8 @@ type ReceiptRule struct {
 	//   Start and end with a letter or number.
 	//
 	//   Contain less than 64 characters.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The recipient domains and email addresses to which the receipt rule applies.
@@ -4760,6 +4886,8 @@ type RecipientDsnFields struct {
 	// The action performed by the reporting mail transfer agent (MTA) as a result
 	// of its attempt to deliver the message to the recipient address. This is required
 	// by RFC 3464 (https://tools.ietf.org/html/rfc3464).
+	//
+	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"DsnAction"`
 
 	// An extended explanation of what went wrong; this is usually an SMTP response.
@@ -4792,6 +4920,8 @@ type RecipientDsnFields struct {
 
 	// The status code that indicates what went wrong. This is required by RFC 3464
 	// (https://tools.ietf.org/html/rfc3464).
+	//
+	// Status is a required field
 	Status *string `type:"string" required:"true"`
 }
 
@@ -4839,9 +4969,13 @@ type ReorderReceiptRuleSetInput struct {
 
 	// A list of the specified receipt rule set's receipt rules in the order that
 	// you want to put them.
+	//
+	// RuleNames is a required field
 	RuleNames []*string `type:"list" required:"true"`
 
 	// The name of the receipt rule set to reorder.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -4904,6 +5038,8 @@ type S3Action struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Amazon S3 bucket to which to save the received email.
+	//
+	// BucketName is a required field
 	BucketName *string `type:"string" required:"true"`
 
 	// The customer master key that Amazon SES should use to encrypt your emails
@@ -5003,6 +5139,8 @@ type SNSAction struct {
 	// of an Amazon SNS topic ARN is arn:aws:sns:us-west-2:123456789012:MyTopic.
 	// For more information about Amazon SNS topics, see the Amazon SNS Developer
 	// Guide (http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
+	//
+	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
 }
 
@@ -5036,6 +5174,8 @@ type SendBounceInput struct {
 
 	// The address to use in the "From" header of the bounce message. This must
 	// be an identity that you have verified with Amazon SES.
+	//
+	// BounceSender is a required field
 	BounceSender *string `type:"string" required:"true"`
 
 	// This parameter is used only for sending authorization. It is the ARN of the
@@ -5047,6 +5187,8 @@ type SendBounceInput struct {
 	// A list of recipients of the bounced message, including the information required
 	// to create the Delivery Status Notifications (DSNs) for the recipients. You
 	// must specify at least one BouncedRecipientInfo in the list.
+	//
+	// BouncedRecipientInfoList is a required field
 	BouncedRecipientInfoList []*BouncedRecipientInfo `type:"list" required:"true"`
 
 	// Human-readable text for the bounce message to explain the failure. If not
@@ -5059,6 +5201,8 @@ type SendBounceInput struct {
 	MessageDsn *MessageDsn `type:"structure"`
 
 	// The message ID of the message to be bounced.
+	//
+	// OriginalMessageId is a required field
 	OriginalMessageId *string `type:"string" required:"true"`
 }
 
@@ -5161,9 +5305,13 @@ type SendEmailInput struct {
 	_ struct{} `type:"structure"`
 
 	// The destination for this email, composed of To:, CC:, and BCC: fields.
+	//
+	// Destination is a required field
 	Destination *Destination `type:"structure" required:"true"`
 
 	// The message to be sent.
+	//
+	// Message is a required field
 	Message *Message `type:"structure" required:"true"`
 
 	// The reply-to email address(es) for the message. If the recipient replies
@@ -5207,6 +5355,8 @@ type SendEmailInput struct {
 	// instead of a literal string. MIME encoded-word syntax uses the following
 	// form: =?charset?encoding?encoded-text?=. For more information, see RFC 2047
 	// (http://tools.ietf.org/html/rfc2047).
+	//
+	// Source is a required field
 	Source *string `type:"string" required:"true"`
 
 	// This parameter is used only for sending authorization. It is the ARN of the
@@ -5262,6 +5412,8 @@ type SendEmailOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique message identifier returned from the SendEmail action.
+	//
+	// MessageId is a required field
 	MessageId *string `type:"string" required:"true"`
 }
 
@@ -5308,6 +5460,8 @@ type SendRawEmailInput struct {
 	// information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html).
 	//
 	//   Must be base64-encoded.
+	//
+	// RawMessage is a required field
 	RawMessage *RawMessage `type:"structure" required:"true"`
 
 	// This parameter is used only for sending authorization. It is the ARN of the
@@ -5395,6 +5549,8 @@ type SendRawEmailOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique message identifier returned from the SendRawEmail action.
+	//
+	// MessageId is a required field
 	MessageId *string `type:"string" required:"true"`
 }
 
@@ -5452,9 +5608,13 @@ type SetIdentityDkimEnabledInput struct {
 
 	// Sets whether DKIM signing is enabled for an identity. Set to true to enable
 	// DKIM signing for this identity; false to disable it.
+	//
+	// DkimEnabled is a required field
 	DkimEnabled *bool `type:"boolean" required:"true"`
 
 	// The identity for which DKIM signing should be enabled or disabled.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 }
 
@@ -5511,10 +5671,14 @@ type SetIdentityFeedbackForwardingEnabledInput struct {
 	// false specifies that Amazon SES will publish bounce and complaint notifications
 	// only through Amazon SNS. This value can only be set to false when Amazon
 	// SNS topics are set for both Bounce and Complaint notification types.
+	//
+	// ForwardingEnabled is a required field
 	ForwardingEnabled *bool `type:"boolean" required:"true"`
 
 	// The identity for which to set bounce and complaint notification forwarding.
 	// Examples: user@example.com, example.com.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 }
 
@@ -5572,13 +5736,19 @@ type SetIdentityHeadersInNotificationsEnabledInput struct {
 	//
 	// This value can only be set when NotificationType is already set to use a
 	// particular Amazon SNS topic.
+	//
+	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
 	// The identity for which to enable or disable headers in notifications. Examples:
 	// user@example.com, example.com.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
 	// The notification type for which to enable or disable headers in notifications.
+	//
+	// NotificationType is a required field
 	NotificationType *string `type:"string" required:"true" enum:"NotificationType"`
 }
 
@@ -5644,6 +5814,8 @@ type SetIdentityMailFromDomainInput struct {
 
 	// The verified identity for which you want to enable or disable the specified
 	// custom MAIL FROM domain.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
 	// The custom MAIL FROM domain that you want the verified identity to use. The
@@ -5704,10 +5876,14 @@ type SetIdentityNotificationTopicInput struct {
 	// The identity for which the Amazon SNS topic will be set. You can specify
 	// an identity by using its name or by using its Amazon Resource Name (ARN).
 	// Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	//
+	// Identity is a required field
 	Identity *string `type:"string" required:"true"`
 
 	// The type of notifications that will be published to the specified Amazon
 	// SNS topic.
+	//
+	// NotificationType is a required field
 	NotificationType *string `type:"string" required:"true" enum:"NotificationType"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic. If the parameter
@@ -5767,9 +5943,13 @@ type SetReceiptRulePositionInput struct {
 	After *string `type:"string"`
 
 	// The name of the receipt rule to reposition.
+	//
+	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
 	// The name of the receipt rule set that contains the receipt rule to reposition.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -5824,6 +6004,8 @@ type StopAction struct {
 	_ struct{} `type:"structure"`
 
 	// The scope to which the Stop action applies. That is, what is being stopped.
+	//
+	// Scope is a required field
 	Scope *string `type:"string" required:"true" enum:"StopScope"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
@@ -5863,9 +6045,13 @@ type UpdateReceiptRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// A data structure that contains the updated receipt rule information.
+	//
+	// Rule is a required field
 	Rule *ReceiptRule `type:"structure" required:"true"`
 
 	// The name of the receipt rule set to which the receipt rule belongs.
+	//
+	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
 }
 
@@ -5922,6 +6108,8 @@ type VerifyDomainDkimInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the domain to be verified for Easy DKIM signing.
+	//
+	// Domain is a required field
 	Domain *string `type:"string" required:"true"`
 }
 
@@ -5964,6 +6152,8 @@ type VerifyDomainDkimOutput struct {
 	//
 	// For more information about creating DNS records using DKIM tokens, go to
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
+	//
+	// DkimTokens is a required field
 	DkimTokens []*string `type:"list" required:"true"`
 }
 
@@ -5985,6 +6175,8 @@ type VerifyDomainIdentityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The domain to be verified.
+	//
+	// Domain is a required field
 	Domain *string `type:"string" required:"true"`
 }
 
@@ -6018,6 +6210,8 @@ type VerifyDomainIdentityOutput struct {
 
 	// A TXT record that must be placed in the DNS settings for the domain, in order
 	// to complete domain verification.
+	//
+	// VerificationToken is a required field
 	VerificationToken *string `type:"string" required:"true"`
 }
 
@@ -6038,6 +6232,8 @@ type VerifyEmailAddressInput struct {
 	_ struct{} `type:"structure"`
 
 	// The email address to be verified.
+	//
+	// EmailAddress is a required field
 	EmailAddress *string `type:"string" required:"true"`
 }
 
@@ -6085,6 +6281,8 @@ type VerifyEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The email address to be verified.
+	//
+	// EmailAddress is a required field
 	EmailAddress *string `type:"string" required:"true"`
 }
 
@@ -6140,6 +6338,8 @@ type WorkmailAction struct {
 	// organization ARN is arn:aws:workmail:us-west-2:123456789012:organization/m-68755160c4cb4e29a2b2f8fb58f359d7.
 	// For information about Amazon WorkMail organizations, see the Amazon WorkMail
 	// Administrator Guide (http://docs.aws.amazon.com/workmail/latest/adminguide/organizations_overview.html).
+	//
+	// OrganizationArn is a required field
 	OrganizationArn *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
@@ -6173,109 +6373,133 @@ func (s *WorkmailAction) Validate() error {
 }
 
 const (
-	// @enum BehaviorOnMXFailure
+	// BehaviorOnMXFailureUseDefaultValue is a BehaviorOnMXFailure enum value
 	BehaviorOnMXFailureUseDefaultValue = "UseDefaultValue"
-	// @enum BehaviorOnMXFailure
+
+	// BehaviorOnMXFailureRejectMessage is a BehaviorOnMXFailure enum value
 	BehaviorOnMXFailureRejectMessage = "RejectMessage"
 )
 
 const (
-	// @enum BounceType
+	// BounceTypeDoesNotExist is a BounceType enum value
 	BounceTypeDoesNotExist = "DoesNotExist"
-	// @enum BounceType
+
+	// BounceTypeMessageTooLarge is a BounceType enum value
 	BounceTypeMessageTooLarge = "MessageTooLarge"
-	// @enum BounceType
+
+	// BounceTypeExceededQuota is a BounceType enum value
 	BounceTypeExceededQuota = "ExceededQuota"
-	// @enum BounceType
+
+	// BounceTypeContentRejected is a BounceType enum value
 	BounceTypeContentRejected = "ContentRejected"
-	// @enum BounceType
+
+	// BounceTypeUndefined is a BounceType enum value
 	BounceTypeUndefined = "Undefined"
-	// @enum BounceType
+
+	// BounceTypeTemporaryFailure is a BounceType enum value
 	BounceTypeTemporaryFailure = "TemporaryFailure"
 )
 
 const (
-	// @enum CustomMailFromStatus
+	// CustomMailFromStatusPending is a CustomMailFromStatus enum value
 	CustomMailFromStatusPending = "Pending"
-	// @enum CustomMailFromStatus
+
+	// CustomMailFromStatusSuccess is a CustomMailFromStatus enum value
 	CustomMailFromStatusSuccess = "Success"
-	// @enum CustomMailFromStatus
+
+	// CustomMailFromStatusFailed is a CustomMailFromStatus enum value
 	CustomMailFromStatusFailed = "Failed"
-	// @enum CustomMailFromStatus
+
+	// CustomMailFromStatusTemporaryFailure is a CustomMailFromStatus enum value
 	CustomMailFromStatusTemporaryFailure = "TemporaryFailure"
 )
 
 const (
-	// @enum DsnAction
+	// DsnActionFailed is a DsnAction enum value
 	DsnActionFailed = "failed"
-	// @enum DsnAction
+
+	// DsnActionDelayed is a DsnAction enum value
 	DsnActionDelayed = "delayed"
-	// @enum DsnAction
+
+	// DsnActionDelivered is a DsnAction enum value
 	DsnActionDelivered = "delivered"
-	// @enum DsnAction
+
+	// DsnActionRelayed is a DsnAction enum value
 	DsnActionRelayed = "relayed"
-	// @enum DsnAction
+
+	// DsnActionExpanded is a DsnAction enum value
 	DsnActionExpanded = "expanded"
 )
 
 const (
-	// @enum IdentityType
+	// IdentityTypeEmailAddress is a IdentityType enum value
 	IdentityTypeEmailAddress = "EmailAddress"
-	// @enum IdentityType
+
+	// IdentityTypeDomain is a IdentityType enum value
 	IdentityTypeDomain = "Domain"
 )
 
 const (
-	// @enum InvocationType
+	// InvocationTypeEvent is a InvocationType enum value
 	InvocationTypeEvent = "Event"
-	// @enum InvocationType
+
+	// InvocationTypeRequestResponse is a InvocationType enum value
 	InvocationTypeRequestResponse = "RequestResponse"
 )
 
 const (
-	// @enum NotificationType
+	// NotificationTypeBounce is a NotificationType enum value
 	NotificationTypeBounce = "Bounce"
-	// @enum NotificationType
+
+	// NotificationTypeComplaint is a NotificationType enum value
 	NotificationTypeComplaint = "Complaint"
-	// @enum NotificationType
+
+	// NotificationTypeDelivery is a NotificationType enum value
 	NotificationTypeDelivery = "Delivery"
 )
 
 const (
-	// @enum ReceiptFilterPolicy
+	// ReceiptFilterPolicyBlock is a ReceiptFilterPolicy enum value
 	ReceiptFilterPolicyBlock = "Block"
-	// @enum ReceiptFilterPolicy
+
+	// ReceiptFilterPolicyAllow is a ReceiptFilterPolicy enum value
 	ReceiptFilterPolicyAllow = "Allow"
 )
 
 const (
-	// @enum SNSActionEncoding
+	// SNSActionEncodingUtf8 is a SNSActionEncoding enum value
 	SNSActionEncodingUtf8 = "UTF-8"
-	// @enum SNSActionEncoding
+
+	// SNSActionEncodingBase64 is a SNSActionEncoding enum value
 	SNSActionEncodingBase64 = "Base64"
 )
 
 const (
-	// @enum StopScope
+	// StopScopeRuleSet is a StopScope enum value
 	StopScopeRuleSet = "RuleSet"
 )
 
 const (
-	// @enum TlsPolicy
+	// TlsPolicyRequire is a TlsPolicy enum value
 	TlsPolicyRequire = "Require"
-	// @enum TlsPolicy
+
+	// TlsPolicyOptional is a TlsPolicy enum value
 	TlsPolicyOptional = "Optional"
 )
 
 const (
-	// @enum VerificationStatus
+	// VerificationStatusPending is a VerificationStatus enum value
 	VerificationStatusPending = "Pending"
-	// @enum VerificationStatus
+
+	// VerificationStatusSuccess is a VerificationStatus enum value
 	VerificationStatusSuccess = "Success"
-	// @enum VerificationStatus
+
+	// VerificationStatusFailed is a VerificationStatus enum value
 	VerificationStatusFailed = "Failed"
-	// @enum VerificationStatus
+
+	// VerificationStatusTemporaryFailure is a VerificationStatus enum value
 	VerificationStatusTemporaryFailure = "TemporaryFailure"
-	// @enum VerificationStatus
+
+	// VerificationStatusNotStarted is a VerificationStatus enum value
 	VerificationStatusNotStarted = "NotStarted"
 )

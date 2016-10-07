@@ -1311,9 +1311,13 @@ type AddInstanceGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Instance Groups to add.
+	//
+	// InstanceGroups is a required field
 	InstanceGroups []*InstanceGroupConfig `type:"list" required:"true"`
 
 	// Job flow in which to add the instance groups.
+	//
+	// JobFlowId is a required field
 	JobFlowId *string `type:"string" required:"true"`
 }
 
@@ -1380,9 +1384,13 @@ type AddJobFlowStepsInput struct {
 
 	// A string that uniquely identifies the job flow. This identifier is returned
 	// by RunJobFlow and can also be obtained from ListClusters.
+	//
+	// JobFlowId is a required field
 	JobFlowId *string `type:"string" required:"true"`
 
 	// A list of StepConfig to be executed by the job flow.
+	//
+	// Steps is a required field
 	Steps []*StepConfig `type:"list" required:"true"`
 }
 
@@ -1446,12 +1454,16 @@ type AddTagsInput struct {
 
 	// The Amazon EMR resource identifier to which tags will be added. This value
 	// must be a cluster identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
 	// Tags are user-defined key/value pairs that consist of a required key string
 	// with a maximum of 128 characters, and an optional value string with a maximum
 	// of 256 characters.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -1544,8 +1556,10 @@ func (s Application) GoString() string {
 type BootstrapActionConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// ScriptBootstrapAction is a required field
 	ScriptBootstrapAction *ScriptBootstrapActionConfig `type:"structure" required:"true"`
 }
 
@@ -1845,9 +1859,13 @@ type CreateSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the security configuration.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The security configuration details in JSON format.
+	//
+	// SecurityConfiguration is a required field
 	SecurityConfiguration *string `type:"string" required:"true"`
 }
 
@@ -1881,9 +1899,13 @@ type CreateSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time the security configuration was created.
+	//
+	// CreationDateTime is a required field
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The name of the security configuration.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1901,6 +1923,8 @@ type DeleteSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the security configuration.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -1946,6 +1970,8 @@ type DescribeClusterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the cluster to describe.
+	//
+	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 }
 
@@ -2039,6 +2065,8 @@ type DescribeSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the security configuration.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -2093,9 +2121,13 @@ type DescribeStepInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the cluster with steps to describe.
+	//
+	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
 	// The identifier of the step to describe.
+	//
+	// StepId is a required field
 	StepId *string `type:"string" required:"true"`
 }
 
@@ -2173,6 +2205,8 @@ type EbsBlockDeviceConfig struct {
 
 	// EBS volume specifications such as volume type, IOPS, and size(GiB) that will
 	// be requested for the EBS volume attached to an EC2 instance in the cluster.
+	//
+	// VolumeSpecification is a required field
 	VolumeSpecification *VolumeSpecification `type:"structure" required:"true"`
 
 	// Number of EBS volumes with specific volume configuration, that will be associated
@@ -2361,6 +2395,8 @@ type HadoopJarStepConfig struct {
 	Args []*string `type:"list"`
 
 	// A path to a JAR file run during the step.
+	//
+	// Jar is a required field
 	Jar *string `type:"string" required:"true"`
 
 	// The name of the main class in the specified Java file. If not specified,
@@ -2552,12 +2588,18 @@ type InstanceGroupConfig struct {
 	EbsConfiguration *EbsConfiguration `type:"structure"`
 
 	// Target number of instances for the instance group.
+	//
+	// InstanceCount is a required field
 	InstanceCount *int64 `type:"integer" required:"true"`
 
 	// The role of the instance group in the cluster.
+	//
+	// InstanceRole is a required field
 	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// The Amazon EC2 instance type for all instances in the instance group.
+	//
+	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
@@ -2613,6 +2655,8 @@ type InstanceGroupDetail struct {
 	BidPrice *string `type:"string"`
 
 	// The date/time the instance group was created.
+	//
+	// CreationDateTime is a required field
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The date/time the instance group was terminated.
@@ -2622,21 +2666,31 @@ type InstanceGroupDetail struct {
 	InstanceGroupId *string `type:"string"`
 
 	// Target number of instances to run in the instance group.
+	//
+	// InstanceRequestCount is a required field
 	InstanceRequestCount *int64 `type:"integer" required:"true"`
 
 	// Instance group role in the cluster
+	//
+	// InstanceRole is a required field
 	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// Actual count of running instances.
+	//
+	// InstanceRunningCount is a required field
 	InstanceRunningCount *int64 `type:"integer" required:"true"`
 
 	// Amazon EC2 Instance type.
+	//
+	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Details regarding the state of the instance group.
 	LastStateChangeReason *string `type:"string"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
+	//
+	// Market is a required field
 	Market *string `type:"string" required:"true" enum:"MarketType"`
 
 	// Friendly name for the instance group.
@@ -2650,6 +2704,8 @@ type InstanceGroupDetail struct {
 
 	// State of instance group. The following values are deprecated: STARTING, TERMINATED,
 	// and FAILED.
+	//
+	// State is a required field
 	State *string `type:"string" required:"true" enum:"InstanceGroupState"`
 }
 
@@ -2675,6 +2731,8 @@ type InstanceGroupModifyConfig struct {
 	InstanceCount *int64 `type:"integer"`
 
 	// Unique ID of the instance group to expand or shrink.
+	//
+	// InstanceGroupId is a required field
 	InstanceGroupId *string `type:"string" required:"true"`
 
 	// Policy for customizing shrink operations.
@@ -2882,12 +2940,18 @@ type JobFlowDetail struct {
 	BootstrapActions []*BootstrapActionDetail `type:"list"`
 
 	// Describes the execution status of the job flow.
+	//
+	// ExecutionStatusDetail is a required field
 	ExecutionStatusDetail *JobFlowExecutionStatusDetail `type:"structure" required:"true"`
 
 	// Describes the Amazon EC2 instances of the job flow.
+	//
+	// Instances is a required field
 	Instances *JobFlowInstancesDetail `type:"structure" required:"true"`
 
 	// The job flow identifier.
+	//
+	// JobFlowId is a required field
 	JobFlowId *string `type:"string" required:"true"`
 
 	// The IAM role that was specified when the job flow was launched. The EC2 instances
@@ -2898,6 +2962,8 @@ type JobFlowDetail struct {
 	LogUri *string `type:"string"`
 
 	// The name of the job flow.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The IAM role that will be assumed by the Amazon EMR service to access AWS
@@ -2936,6 +3002,8 @@ type JobFlowExecutionStatusDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The creation date and time of the job flow.
+	//
+	// CreationDateTime is a required field
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The completion date and time of the job flow.
@@ -2952,6 +3020,8 @@ type JobFlowExecutionStatusDetail struct {
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the job flow.
+	//
+	// State is a required field
 	State *string `type:"string" required:"true" enum:"JobFlowExecutionState"`
 }
 
@@ -3093,6 +3163,8 @@ type JobFlowInstancesDetail struct {
 	// The number of Amazon EC2 instances in the cluster. If the value is 1, the
 	// same instance serves as both the master and slave node. If the value is greater
 	// than 1, one instance is the master node and all others are slave nodes.
+	//
+	// InstanceCount is a required field
 	InstanceCount *int64 `type:"integer" required:"true"`
 
 	// Details about the job flow's instance groups.
@@ -3105,6 +3177,8 @@ type JobFlowInstancesDetail struct {
 	MasterInstanceId *string `type:"string"`
 
 	// The Amazon EC2 master node instance type.
+	//
+	// MasterInstanceType is a required field
 	MasterInstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The DNS name of the master node.
@@ -3122,6 +3196,8 @@ type JobFlowInstancesDetail struct {
 	Placement *PlacementType `type:"structure"`
 
 	// The Amazon EC2 slave node instance type.
+	//
+	// SlaveInstanceType is a required field
 	SlaveInstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the Amazon EC2 instances in the cluster are protected from
@@ -3166,6 +3242,8 @@ type ListBootstrapActionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier for the bootstrap actions to list .
+	//
+	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
@@ -3271,6 +3349,8 @@ type ListInstanceGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the cluster for which to list the instance groups.
+	//
+	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
@@ -3326,6 +3406,8 @@ type ListInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the cluster for which to list the instances.
+	//
+	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
 	// The identifier of the instance group for which to list the instances.
@@ -3430,6 +3512,8 @@ type ListStepsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the cluster for which to list the steps.
+	//
+	// ClusterId is a required field
 	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
@@ -3544,6 +3628,8 @@ type PlacementType struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon EC2 Availability Zone for the job flow.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `type:"string" required:"true"`
 }
 
@@ -3576,9 +3662,13 @@ type RemoveTagsInput struct {
 
 	// The Amazon EMR resource identifier from which tags will be removed. This
 	// value must be a cluster identifier.
+	//
+	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
 	// A list of tag keys to remove from a resource.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -3665,6 +3755,8 @@ type RunJobFlowInput struct {
 
 	// A specification of the number and type of Amazon EC2 instances on which to
 	// run the job flow.
+	//
+	// Instances is a required field
 	Instances *JobFlowInstancesConfig `type:"structure" required:"true"`
 
 	// Also called instance profile and EC2 role. An IAM role for an EMR cluster.
@@ -3678,6 +3770,8 @@ type RunJobFlowInput struct {
 	LogUri *string `type:"string"`
 
 	// The name of the job flow.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
@@ -3822,6 +3916,7 @@ type ScriptBootstrapActionConfig struct {
 
 	Args []*string `type:"list"`
 
+	// Path is a required field
 	Path *string `type:"string" required:"true"`
 }
 
@@ -3876,11 +3971,15 @@ type SetTerminationProtectionInput struct {
 	// A list of strings that uniquely identify the job flows to protect. This identifier
 	// is returned by RunJobFlow and can also be obtained from DescribeJobFlows
 	// .
+	//
+	// JobFlowIds is a required field
 	JobFlowIds []*string `type:"list" required:"true"`
 
 	// A Boolean that indicates whether to protect the job flow and prevent the
 	// Amazon EC2 instances in the cluster from shutting down due to API calls,
 	// user intervention, or job-flow error.
+	//
+	// TerminationProtected is a required field
 	TerminationProtected *bool `type:"boolean" required:"true"`
 }
 
@@ -3929,6 +4028,8 @@ type SetVisibleToAllUsersInput struct {
 	_ struct{} `type:"structure"`
 
 	// Identifiers of the job flows to receive the new visibility setting.
+	//
+	// JobFlowIds is a required field
 	JobFlowIds []*string `type:"list" required:"true"`
 
 	// Whether the specified job flows are visible to all IAM users of the AWS account
@@ -3936,6 +4037,8 @@ type SetVisibleToAllUsersInput struct {
 	// of that AWS account can view and, if they have the proper IAM policy permissions
 	// set, manage the job flows. If it is set to False, only the IAM user that
 	// created a job flow can view and manage it.
+	//
+	// VisibleToAllUsers is a required field
 	VisibleToAllUsers *bool `type:"boolean" required:"true"`
 }
 
@@ -4042,9 +4145,13 @@ type StepConfig struct {
 	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The JAR file used for the job flow step.
+	//
+	// HadoopJarStep is a required field
 	HadoopJarStep *HadoopJarStepConfig `type:"structure" required:"true"`
 
 	// The name of the job flow step.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
 
@@ -4084,9 +4191,13 @@ type StepDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the step status.
+	//
+	// ExecutionStatusDetail is a required field
 	ExecutionStatusDetail *StepExecutionStatusDetail `type:"structure" required:"true"`
 
 	// The step configuration.
+	//
+	// StepConfig is a required field
 	StepConfig *StepConfig `type:"structure" required:"true"`
 }
 
@@ -4105,6 +4216,8 @@ type StepExecutionStatusDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The creation date and time of the step.
+	//
+	// CreationDateTime is a required field
 	CreationDateTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The completion date and time of the step.
@@ -4117,6 +4230,8 @@ type StepExecutionStatusDetail struct {
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the job flow step.
+	//
+	// State is a required field
 	State *string `type:"string" required:"true" enum:"StepExecutionState"`
 }
 
@@ -4290,6 +4405,8 @@ type TerminateJobFlowsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of job flows to be shutdown.
+	//
+	// JobFlowIds is a required field
 	JobFlowIds []*string `type:"list" required:"true"`
 }
 
@@ -4340,9 +4457,13 @@ type VolumeSpecification struct {
 
 	// The volume size, in gibibytes (GiB). This can be a number from 1 - 1024.
 	// If the volume type is EBS-optimized, the minimum value is 10.
+	//
+	// SizeInGB is a required field
 	SizeInGB *int64 `type:"integer" required:"true"`
 
 	// The volume type. Volume types supported are gp2, io1, standard.
+	//
+	// VolumeType is a required field
 	VolumeType *string `type:"string" required:"true"`
 }
 
@@ -4373,188 +4494,246 @@ func (s *VolumeSpecification) Validate() error {
 }
 
 const (
-	// @enum ActionOnFailure
+	// ActionOnFailureTerminateJobFlow is a ActionOnFailure enum value
 	ActionOnFailureTerminateJobFlow = "TERMINATE_JOB_FLOW"
-	// @enum ActionOnFailure
+
+	// ActionOnFailureTerminateCluster is a ActionOnFailure enum value
 	ActionOnFailureTerminateCluster = "TERMINATE_CLUSTER"
-	// @enum ActionOnFailure
+
+	// ActionOnFailureCancelAndWait is a ActionOnFailure enum value
 	ActionOnFailureCancelAndWait = "CANCEL_AND_WAIT"
-	// @enum ActionOnFailure
+
+	// ActionOnFailureContinue is a ActionOnFailure enum value
 	ActionOnFailureContinue = "CONTINUE"
 )
 
 const (
-	// @enum ClusterState
+	// ClusterStateStarting is a ClusterState enum value
 	ClusterStateStarting = "STARTING"
-	// @enum ClusterState
+
+	// ClusterStateBootstrapping is a ClusterState enum value
 	ClusterStateBootstrapping = "BOOTSTRAPPING"
-	// @enum ClusterState
+
+	// ClusterStateRunning is a ClusterState enum value
 	ClusterStateRunning = "RUNNING"
-	// @enum ClusterState
+
+	// ClusterStateWaiting is a ClusterState enum value
 	ClusterStateWaiting = "WAITING"
-	// @enum ClusterState
+
+	// ClusterStateTerminating is a ClusterState enum value
 	ClusterStateTerminating = "TERMINATING"
-	// @enum ClusterState
+
+	// ClusterStateTerminated is a ClusterState enum value
 	ClusterStateTerminated = "TERMINATED"
-	// @enum ClusterState
+
+	// ClusterStateTerminatedWithErrors is a ClusterState enum value
 	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
 )
 
 const (
-	// @enum ClusterStateChangeReasonCode
+	// ClusterStateChangeReasonCodeInternalError is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
-	// @enum ClusterStateChangeReasonCode
+
+	// ClusterStateChangeReasonCodeValidationError is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
-	// @enum ClusterStateChangeReasonCode
+
+	// ClusterStateChangeReasonCodeInstanceFailure is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
-	// @enum ClusterStateChangeReasonCode
+
+	// ClusterStateChangeReasonCodeBootstrapFailure is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeBootstrapFailure = "BOOTSTRAP_FAILURE"
-	// @enum ClusterStateChangeReasonCode
+
+	// ClusterStateChangeReasonCodeUserRequest is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeUserRequest = "USER_REQUEST"
-	// @enum ClusterStateChangeReasonCode
+
+	// ClusterStateChangeReasonCodeStepFailure is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeStepFailure = "STEP_FAILURE"
-	// @enum ClusterStateChangeReasonCode
+
+	// ClusterStateChangeReasonCodeAllStepsCompleted is a ClusterStateChangeReasonCode enum value
 	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
 )
 
 const (
-	// @enum InstanceGroupState
+	// InstanceGroupStateProvisioning is a InstanceGroupState enum value
 	InstanceGroupStateProvisioning = "PROVISIONING"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateBootstrapping is a InstanceGroupState enum value
 	InstanceGroupStateBootstrapping = "BOOTSTRAPPING"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateRunning is a InstanceGroupState enum value
 	InstanceGroupStateRunning = "RUNNING"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateResizing is a InstanceGroupState enum value
 	InstanceGroupStateResizing = "RESIZING"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateSuspended is a InstanceGroupState enum value
 	InstanceGroupStateSuspended = "SUSPENDED"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateTerminating is a InstanceGroupState enum value
 	InstanceGroupStateTerminating = "TERMINATING"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateTerminated is a InstanceGroupState enum value
 	InstanceGroupStateTerminated = "TERMINATED"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateArrested is a InstanceGroupState enum value
 	InstanceGroupStateArrested = "ARRESTED"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateShuttingDown is a InstanceGroupState enum value
 	InstanceGroupStateShuttingDown = "SHUTTING_DOWN"
-	// @enum InstanceGroupState
+
+	// InstanceGroupStateEnded is a InstanceGroupState enum value
 	InstanceGroupStateEnded = "ENDED"
 )
 
 const (
-	// @enum InstanceGroupStateChangeReasonCode
+	// InstanceGroupStateChangeReasonCodeInternalError is a InstanceGroupStateChangeReasonCode enum value
 	InstanceGroupStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
-	// @enum InstanceGroupStateChangeReasonCode
+
+	// InstanceGroupStateChangeReasonCodeValidationError is a InstanceGroupStateChangeReasonCode enum value
 	InstanceGroupStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
-	// @enum InstanceGroupStateChangeReasonCode
+
+	// InstanceGroupStateChangeReasonCodeInstanceFailure is a InstanceGroupStateChangeReasonCode enum value
 	InstanceGroupStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
-	// @enum InstanceGroupStateChangeReasonCode
+
+	// InstanceGroupStateChangeReasonCodeClusterTerminated is a InstanceGroupStateChangeReasonCode enum value
 	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
 
 const (
-	// @enum InstanceGroupType
+	// InstanceGroupTypeMaster is a InstanceGroupType enum value
 	InstanceGroupTypeMaster = "MASTER"
-	// @enum InstanceGroupType
+
+	// InstanceGroupTypeCore is a InstanceGroupType enum value
 	InstanceGroupTypeCore = "CORE"
-	// @enum InstanceGroupType
+
+	// InstanceGroupTypeTask is a InstanceGroupType enum value
 	InstanceGroupTypeTask = "TASK"
 )
 
 const (
-	// @enum InstanceRoleType
+	// InstanceRoleTypeMaster is a InstanceRoleType enum value
 	InstanceRoleTypeMaster = "MASTER"
-	// @enum InstanceRoleType
+
+	// InstanceRoleTypeCore is a InstanceRoleType enum value
 	InstanceRoleTypeCore = "CORE"
-	// @enum InstanceRoleType
+
+	// InstanceRoleTypeTask is a InstanceRoleType enum value
 	InstanceRoleTypeTask = "TASK"
 )
 
 const (
-	// @enum InstanceState
+	// InstanceStateAwaitingFulfillment is a InstanceState enum value
 	InstanceStateAwaitingFulfillment = "AWAITING_FULFILLMENT"
-	// @enum InstanceState
+
+	// InstanceStateProvisioning is a InstanceState enum value
 	InstanceStateProvisioning = "PROVISIONING"
-	// @enum InstanceState
+
+	// InstanceStateBootstrapping is a InstanceState enum value
 	InstanceStateBootstrapping = "BOOTSTRAPPING"
-	// @enum InstanceState
+
+	// InstanceStateRunning is a InstanceState enum value
 	InstanceStateRunning = "RUNNING"
-	// @enum InstanceState
+
+	// InstanceStateTerminated is a InstanceState enum value
 	InstanceStateTerminated = "TERMINATED"
 )
 
 const (
-	// @enum InstanceStateChangeReasonCode
+	// InstanceStateChangeReasonCodeInternalError is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
-	// @enum InstanceStateChangeReasonCode
+
+	// InstanceStateChangeReasonCodeValidationError is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
-	// @enum InstanceStateChangeReasonCode
+
+	// InstanceStateChangeReasonCodeInstanceFailure is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
-	// @enum InstanceStateChangeReasonCode
+
+	// InstanceStateChangeReasonCodeBootstrapFailure is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeBootstrapFailure = "BOOTSTRAP_FAILURE"
-	// @enum InstanceStateChangeReasonCode
+
+	// InstanceStateChangeReasonCodeClusterTerminated is a InstanceStateChangeReasonCode enum value
 	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
 )
 
 // The type of instance.
 const (
-	// @enum JobFlowExecutionState
+	// JobFlowExecutionStateStarting is a JobFlowExecutionState enum value
 	JobFlowExecutionStateStarting = "STARTING"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateBootstrapping is a JobFlowExecutionState enum value
 	JobFlowExecutionStateBootstrapping = "BOOTSTRAPPING"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateRunning is a JobFlowExecutionState enum value
 	JobFlowExecutionStateRunning = "RUNNING"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateWaiting is a JobFlowExecutionState enum value
 	JobFlowExecutionStateWaiting = "WAITING"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateShuttingDown is a JobFlowExecutionState enum value
 	JobFlowExecutionStateShuttingDown = "SHUTTING_DOWN"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateTerminated is a JobFlowExecutionState enum value
 	JobFlowExecutionStateTerminated = "TERMINATED"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateCompleted is a JobFlowExecutionState enum value
 	JobFlowExecutionStateCompleted = "COMPLETED"
-	// @enum JobFlowExecutionState
+
+	// JobFlowExecutionStateFailed is a JobFlowExecutionState enum value
 	JobFlowExecutionStateFailed = "FAILED"
 )
 
 const (
-	// @enum MarketType
+	// MarketTypeOnDemand is a MarketType enum value
 	MarketTypeOnDemand = "ON_DEMAND"
-	// @enum MarketType
+
+	// MarketTypeSpot is a MarketType enum value
 	MarketTypeSpot = "SPOT"
 )
 
 const (
-	// @enum StepExecutionState
+	// StepExecutionStatePending is a StepExecutionState enum value
 	StepExecutionStatePending = "PENDING"
-	// @enum StepExecutionState
+
+	// StepExecutionStateRunning is a StepExecutionState enum value
 	StepExecutionStateRunning = "RUNNING"
-	// @enum StepExecutionState
+
+	// StepExecutionStateContinue is a StepExecutionState enum value
 	StepExecutionStateContinue = "CONTINUE"
-	// @enum StepExecutionState
+
+	// StepExecutionStateCompleted is a StepExecutionState enum value
 	StepExecutionStateCompleted = "COMPLETED"
-	// @enum StepExecutionState
+
+	// StepExecutionStateCancelled is a StepExecutionState enum value
 	StepExecutionStateCancelled = "CANCELLED"
-	// @enum StepExecutionState
+
+	// StepExecutionStateFailed is a StepExecutionState enum value
 	StepExecutionStateFailed = "FAILED"
-	// @enum StepExecutionState
+
+	// StepExecutionStateInterrupted is a StepExecutionState enum value
 	StepExecutionStateInterrupted = "INTERRUPTED"
 )
 
 const (
-	// @enum StepState
+	// StepStatePending is a StepState enum value
 	StepStatePending = "PENDING"
-	// @enum StepState
+
+	// StepStateRunning is a StepState enum value
 	StepStateRunning = "RUNNING"
-	// @enum StepState
+
+	// StepStateCompleted is a StepState enum value
 	StepStateCompleted = "COMPLETED"
-	// @enum StepState
+
+	// StepStateCancelled is a StepState enum value
 	StepStateCancelled = "CANCELLED"
-	// @enum StepState
+
+	// StepStateFailed is a StepState enum value
 	StepStateFailed = "FAILED"
-	// @enum StepState
+
+	// StepStateInterrupted is a StepState enum value
 	StepStateInterrupted = "INTERRUPTED"
 )
 
 const (
-	// @enum StepStateChangeReasonCode
+	// StepStateChangeReasonCodeNone is a StepStateChangeReasonCode enum value
 	StepStateChangeReasonCodeNone = "NONE"
 )

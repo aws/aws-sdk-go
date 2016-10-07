@@ -420,10 +420,19 @@ type {{ .ShapeName }} struct {
 
 	{{ $context := . -}}
 	{{ range $_, $name := $context.MemberNames -}}
-		{{ $elem := index $context.MemberRefs $name }}
-		{{ $isRequired := $context.IsRequired $name }}
-		{{ $elem.Docstring }}
+		{{ $elem := index $context.MemberRefs $name -}}
+		{{ $isRequired := $context.IsRequired $name -}}
+		{{ $doc := $elem.Docstring -}}
+
+		{{ $doc }}
+		{{ if $isRequired -}}
+			{{ if $doc -}}
+				//
+			{{ end -}}
+			// {{ $name }} is a required field
+		{{ end -}}
 		{{ $name }} {{ $context.GoStructType $name $elem }} {{ $elem.GoTags false $isRequired }}
+
 	{{ end }}
 }
 {{ if not .API.NoStringerMethods }}
@@ -441,8 +450,10 @@ var enumShapeTmpl = template.Must(template.New("EnumShape").Parse(`
 const (
 	{{ $context := . -}}
 	{{ range $index, $elem := .Enum -}}
-		// @enum {{ $context.ShapeName }}
-		{{ index $context.EnumConsts $index }} = "{{ $elem }}"
+		{{ $name := index $context.EnumConsts $index -}}
+		// {{ $name }} is a {{ $context.ShapeName }} enum value
+		{{ $name }} = "{{ $elem }}"
+
 	{{ end }}
 )
 `))

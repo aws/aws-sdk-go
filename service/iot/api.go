@@ -2929,6 +2929,8 @@ type AcceptCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
 	// Specifies whether the certificate is active.
@@ -3093,10 +3095,14 @@ type AttachPrincipalPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The policy name.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// The principal, which can be a certificate ARN (as returned from the CreateCertificate
 	// operation) or an Amazon Cognito ID.
+	//
+	// Principal is a required field
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 }
 
@@ -3148,9 +3154,13 @@ type AttachThingPrincipalInput struct {
 	_ struct{} `type:"structure"`
 
 	// The principal, such as a certificate or other credential.
+	//
+	// Principal is a required field
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -3298,6 +3308,8 @@ type CancelCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 }
 
@@ -3420,15 +3432,23 @@ type CloudwatchAlarmAction struct {
 	_ struct{} `type:"structure"`
 
 	// The CloudWatch alarm name.
+	//
+	// AlarmName is a required field
 	AlarmName *string `locationName:"alarmName" type:"string" required:"true"`
 
 	// The IAM role that allows access to the CloudWatch alarm.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The reason for the alarm change.
+	//
+	// StateReason is a required field
 	StateReason *string `locationName:"stateReason" type:"string" required:"true"`
 
 	// The value of the alarm state. Acceptable values are: OK, ALARM, INSUFFICIENT_DATA.
+	//
+	// StateValue is a required field
 	StateValue *string `locationName:"stateValue" type:"string" required:"true"`
 }
 
@@ -3469,9 +3489,13 @@ type CloudwatchMetricAction struct {
 	_ struct{} `type:"structure"`
 
 	// The CloudWatch metric name.
+	//
+	// MetricName is a required field
 	MetricName *string `locationName:"metricName" type:"string" required:"true"`
 
 	// The CloudWatch metric namespace name.
+	//
+	// MetricNamespace is a required field
 	MetricNamespace *string `locationName:"metricNamespace" type:"string" required:"true"`
 
 	// An optional Unix timestamp (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#about_timestamp).
@@ -3479,12 +3503,18 @@ type CloudwatchMetricAction struct {
 
 	// The metric unit (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Unit)
 	// supported by CloudWatch.
+	//
+	// MetricUnit is a required field
 	MetricUnit *string `locationName:"metricUnit" type:"string" required:"true"`
 
 	// The CloudWatch metric value.
+	//
+	// MetricValue is a required field
 	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
 
 	// The IAM role that allows access to the CloudWatch metric.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 }
 
@@ -3528,6 +3558,8 @@ type CreateCertificateFromCsrInput struct {
 	_ struct{} `type:"structure"`
 
 	// The certificate signing request (CSR).
+	//
+	// CertificateSigningRequest is a required field
 	CertificateSigningRequest *string `locationName:"certificateSigningRequest" min:"1" type:"string" required:"true"`
 
 	// Specifies whether the certificate is active.
@@ -3638,9 +3670,13 @@ type CreatePolicyInput struct {
 
 	// The JSON document that describes the policy. policyDocument must have a minimum
 	// length of 1, with a maximum length of 2048, excluding whitespace.
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true"`
 
 	// The policy name.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 }
 
@@ -3706,9 +3742,13 @@ type CreatePolicyVersionInput struct {
 
 	// The JSON document that describes the policy. Minimum length of 1. Maximum
 	// length of 2048, excluding whitespaces
+	//
+	// PolicyDocument is a required field
 	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true"`
 
 	// The policy name.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// Specifies whether the policy version is set as the default. When this parameter
@@ -3784,6 +3824,8 @@ type CreateThingInput struct {
 	AttributePayload *AttributePayload `locationName:"attributePayload" type:"structure"`
 
 	// The name of the thing to create.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
 	// The name of the thing type associated with the new thing.
@@ -3845,6 +3887,8 @@ type CreateThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing type.
+	//
+	// ThingTypeName is a required field
 	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
 
 	// The ThingTypeProperties for the thing type to create. It contains information
@@ -3905,9 +3949,13 @@ type CreateTopicRuleInput struct {
 	_ struct{} `type:"structure" payload:"TopicRulePayload"`
 
 	// The name of the rule.
+	//
+	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 
 	// The rule payload.
+	//
+	// TopicRulePayload is a required field
 	TopicRulePayload *TopicRulePayload `locationName:"topicRulePayload" type:"structure" required:"true"`
 }
 
@@ -3964,6 +4012,8 @@ type DeleteCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate to delete.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 }
 
@@ -4013,6 +4063,8 @@ type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 }
 
@@ -4061,6 +4113,8 @@ type DeletePolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the policy to delete.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 }
 
@@ -4109,9 +4163,13 @@ type DeletePolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// The policy version ID.
+	//
+	// PolicyVersionId is a required field
 	PolicyVersionId *string `location:"uri" locationName:"policyVersionId" type:"string" required:"true"`
 }
 
@@ -4198,6 +4256,8 @@ type DeleteThingInput struct {
 	ExpectedVersion *int64 `location:"querystring" locationName:"expectedVersion" type:"long"`
 
 	// The name of the thing to delete.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -4247,6 +4307,8 @@ type DeleteThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing type.
+	//
+	// ThingTypeName is a required field
 	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
 }
 
@@ -4296,6 +4358,8 @@ type DeleteTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule.
+	//
+	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 }
 
@@ -4344,6 +4408,8 @@ type DeprecateThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing type to deprecate.
+	//
+	// ThingTypeName is a required field
 	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
 
 	// Whether to undeprecate a deprecated thing type. If true, the thing type will
@@ -4397,6 +4463,8 @@ type DescribeCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The CA certificate identifier.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 }
 
@@ -4449,6 +4517,8 @@ type DescribeCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 }
 
@@ -4534,6 +4604,8 @@ type DescribeThingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -4602,6 +4674,8 @@ type DescribeThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing type.
+	//
+	// ThingTypeName is a required field
 	ThingTypeName *string `location:"uri" locationName:"thingTypeName" min:"1" type:"string" required:"true"`
 }
 
@@ -4663,12 +4737,16 @@ type DetachPrincipalPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the policy to detach.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// The principal.
 	//
 	// If the principal is a certificate, specify the certificate ARN. If the principal
 	// is an Amazon Cognito identity, specify the identity ID.
+	//
+	// Principal is a required field
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 }
 
@@ -4722,9 +4800,13 @@ type DetachThingPrincipalInput struct {
 	// If the principal is a certificate, this value must be ARN of the certificate.
 	// If the principal is an Amazon Cognito identity, this value must be the ID
 	// of the Amazon Cognito identity.
+	//
+	// Principal is a required field
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -4777,6 +4859,8 @@ type DisableTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule to disable.
+	//
+	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 }
 
@@ -4841,12 +4925,16 @@ type DynamoDBAction struct {
 	_ struct{} `type:"structure"`
 
 	// The hash key name.
+	//
+	// HashKeyField is a required field
 	HashKeyField *string `locationName:"hashKeyField" type:"string" required:"true"`
 
 	// The hash key type. Valid values are "STRING" or "NUMBER"
 	HashKeyType *string `locationName:"hashKeyType" type:"string" enum:"DynamoKeyType"`
 
 	// The hash key value.
+	//
+	// HashKeyValue is a required field
 	HashKeyValue *string `locationName:"hashKeyValue" type:"string" required:"true"`
 
 	// The type of operation to be performed. This follows the substitution template,
@@ -4867,9 +4955,13 @@ type DynamoDBAction struct {
 	RangeKeyValue *string `locationName:"rangeKeyValue" type:"string"`
 
 	// The ARN of the IAM role that grants access to the DynamoDB table.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The name of the DynamoDB table.
+	//
+	// TableName is a required field
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
 }
 
@@ -4910,18 +5002,28 @@ type ElasticsearchAction struct {
 	_ struct{} `type:"structure"`
 
 	// The endpoint of your Elasticsearch domain.
+	//
+	// Endpoint is a required field
 	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
 
 	// The unique identifier for the document you are storing.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The Elasticsearch index where you want to store your data.
+	//
+	// Index is a required field
 	Index *string `locationName:"index" type:"string" required:"true"`
 
 	// The IAM role ARN that has access to Elasticsearch.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The type of document you are storing.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true"`
 }
 
@@ -4965,6 +5067,8 @@ type EnableTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the topic rule to enable.
+	//
+	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 }
 
@@ -5013,9 +5117,13 @@ type FirehoseAction struct {
 	_ struct{} `type:"structure"`
 
 	// The delivery stream name.
+	//
+	// DeliveryStreamName is a required field
 	DeliveryStreamName *string `locationName:"deliveryStreamName" type:"string" required:"true"`
 
 	// The IAM role that grants access to the Amazon Kinesis Firehost stream.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// A character separator that will be used to separate records written to the
@@ -5091,6 +5199,8 @@ type GetPolicyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 }
 
@@ -5152,9 +5262,13 @@ type GetPolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// The policy version ID.
+	//
+	// PolicyVersionId is a required field
 	PolicyVersionId *string `location:"uri" locationName:"policyVersionId" type:"string" required:"true"`
 }
 
@@ -5255,6 +5369,8 @@ type GetTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the rule.
+	//
+	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 }
 
@@ -5334,9 +5450,13 @@ type KinesisAction struct {
 	PartitionKey *string `locationName:"partitionKey" type:"string"`
 
 	// The ARN of the IAM role that grants access to the Amazon Kinesis stream.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The name of the Amazon Kinesis stream.
+	//
+	// StreamName is a required field
 	StreamName *string `locationName:"streamName" type:"string" required:"true"`
 }
 
@@ -5371,6 +5491,8 @@ type LambdaAction struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the Lambda function.
+	//
+	// FunctionArn is a required field
 	FunctionArn *string `locationName:"functionArn" type:"string" required:"true"`
 }
 
@@ -5465,6 +5587,8 @@ type ListCertificatesByCAInput struct {
 
 	// The ID of the CA certificate. This operation will list all registered device
 	// certificate that were signed by this CA certificate.
+	//
+	// CaCertificateId is a required field
 	CaCertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 
 	// The marker for the next set of results.
@@ -5719,6 +5843,8 @@ type ListPolicyPrincipalsInput struct {
 	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
 
 	// The policy name.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"header" locationName:"x-amzn-iot-policy" min:"1" type:"string" required:"true"`
 }
 
@@ -5778,6 +5904,8 @@ type ListPolicyVersionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The policy name.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 }
 
@@ -5840,6 +5968,8 @@ type ListPrincipalPoliciesInput struct {
 	PageSize *int64 `location:"querystring" locationName:"pageSize" min:"1" type:"integer"`
 
 	// The principal.
+	//
+	// Principal is a required field
 	Principal *string `location:"header" locationName:"x-amzn-iot-principal" type:"string" required:"true"`
 }
 
@@ -5903,6 +6033,8 @@ type ListPrincipalThingsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The principal.
+	//
+	// Principal is a required field
 	Principal *string `location:"header" locationName:"x-amzn-principal" type:"string" required:"true"`
 }
 
@@ -5959,6 +6091,8 @@ type ListThingPrincipalsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the thing.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 }
 
@@ -6207,6 +6341,8 @@ type LoggingOptionsPayload struct {
 	LogLevel *string `locationName:"logLevel" type:"string" enum:"LogLevel"`
 
 	// The ARN of the IAM role that grants access.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 }
 
@@ -6319,12 +6455,16 @@ type RegisterCACertificateInput struct {
 	AllowAutoRegistration *bool `location:"querystring" locationName:"allowAutoRegistration" type:"boolean"`
 
 	// The CA certificate.
+	//
+	// CaCertificate is a required field
 	CaCertificate *string `locationName:"caCertificate" min:"1" type:"string" required:"true"`
 
 	// A boolean value that specifies if the CA certificate is set to active.
 	SetAsActive *bool `location:"querystring" locationName:"setAsActive" type:"boolean"`
 
 	// The private key verification certificate.
+	//
+	// VerificationCertificate is a required field
 	VerificationCertificate *string `locationName:"verificationCertificate" min:"1" type:"string" required:"true"`
 }
 
@@ -6389,6 +6529,8 @@ type RegisterCertificateInput struct {
 	CaCertificatePem *string `locationName:"caCertificatePem" min:"1" type:"string"`
 
 	// The certificate data, in PEM format.
+	//
+	// CertificatePem is a required field
 	CertificatePem *string `locationName:"certificatePem" min:"1" type:"string" required:"true"`
 
 	// A boolean value that specifies if the CA certificate is set to active.
@@ -6452,6 +6594,8 @@ type RejectCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
 	// The reason the certificate transfer was rejected.
@@ -6503,9 +6647,13 @@ type ReplaceTopicRuleInput struct {
 	_ struct{} `type:"structure" payload:"TopicRulePayload"`
 
 	// The name of the rule.
+	//
+	// RuleName is a required field
 	RuleName *string `location:"uri" locationName:"ruleName" min:"1" type:"string" required:"true"`
 
 	// The rule payload.
+	//
+	// TopicRulePayload is a required field
 	TopicRulePayload *TopicRulePayload `locationName:"topicRulePayload" type:"structure" required:"true"`
 }
 
@@ -6562,9 +6710,13 @@ type RepublishAction struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the IAM role that grants access.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The name of the MQTT topic.
+	//
+	// Topic is a required field
 	Topic *string `locationName:"topic" type:"string" required:"true"`
 }
 
@@ -6599,6 +6751,8 @@ type S3Action struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon S3 bucket.
+	//
+	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
 	// The Amazon S3 canned ACL that controls access to the object identified by
@@ -6606,9 +6760,13 @@ type S3Action struct {
 	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"CannedAccessControlList"`
 
 	// The object key.
+	//
+	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true"`
 
 	// The ARN of the IAM role that grants access.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 }
 
@@ -6646,9 +6804,13 @@ type SetDefaultPolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The policy name.
+	//
+	// PolicyName is a required field
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// The policy version ID.
+	//
+	// PolicyVersionId is a required field
 	PolicyVersionId *string `location:"uri" locationName:"policyVersionId" type:"string" required:"true"`
 }
 
@@ -6700,6 +6862,8 @@ type SetLoggingOptionsInput struct {
 	_ struct{} `type:"structure" payload:"LoggingOptionsPayload"`
 
 	// The logging options payload.
+	//
+	// LoggingOptionsPayload is a required field
 	LoggingOptionsPayload *LoggingOptionsPayload `locationName:"loggingOptionsPayload" type:"structure" required:"true"`
 }
 
@@ -6757,9 +6921,13 @@ type SnsAction struct {
 	MessageFormat *string `locationName:"messageFormat" type:"string" enum:"MessageFormat"`
 
 	// The ARN of the IAM role that grants access.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The ARN of the SNS topic.
+	//
+	// TargetArn is a required field
 	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
 }
 
@@ -6794,9 +6962,13 @@ type SqsAction struct {
 	_ struct{} `type:"structure"`
 
 	// The URL of the Amazon SQS queue.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `locationName:"queueUrl" type:"string" required:"true"`
 
 	// The ARN of the IAM role that grants access.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// Specifies whether to use Base64 encoding.
@@ -7004,6 +7176,8 @@ type TopicRulePayload struct {
 	_ struct{} `type:"structure"`
 
 	// The actions associated with the rule.
+	//
+	// Actions is a required field
 	Actions []*Action `locationName:"actions" type:"list" required:"true"`
 
 	// The version of the SQL rules engine to use when evaluating the rule.
@@ -7018,6 +7192,8 @@ type TopicRulePayload struct {
 	// The SQL statement used to query the topic. For more information, see AWS
 	// IoT SQL Reference (http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference)
 	// in the AWS IoT Developer Guide.
+	//
+	// Sql is a required field
 	Sql *string `locationName:"sql" type:"string" required:"true"`
 }
 
@@ -7062,9 +7238,13 @@ type TransferCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
 	// The AWS account.
+	//
+	// TargetAwsAccount is a required field
 	TargetAwsAccount *string `location:"querystring" locationName:"targetAwsAccount" type:"string" required:"true"`
 
 	// The transfer message.
@@ -7153,6 +7333,8 @@ type UpdateCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The CA certificate identifier.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"caCertificateId" min:"64" type:"string" required:"true"`
 
 	// The new value for the auto registration status. Valid values are: "ENABLE"
@@ -7211,6 +7393,8 @@ type UpdateCertificateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the certificate.
+	//
+	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
 	// The new status.
@@ -7221,6 +7405,8 @@ type UpdateCertificateInput struct {
 	//
 	// Note: The status value REGISTER_INACTIVE is deprecated and should not be
 	// used.
+	//
+	// NewStatus is a required field
 	NewStatus *string `location:"querystring" locationName:"newStatus" type:"string" required:"true" enum:"CertificateStatus"`
 }
 
@@ -7288,6 +7474,8 @@ type UpdateThingInput struct {
 	RemoveThingType *bool `locationName:"removeThingType" type:"boolean"`
 
 	// The name of the thing to update.
+	//
+	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"thingName" min:"1" type:"string" required:"true"`
 
 	// The name of the thing type.
@@ -7339,76 +7527,96 @@ func (s UpdateThingOutput) GoString() string {
 }
 
 const (
-	// @enum AutoRegistrationStatus
+	// AutoRegistrationStatusEnable is a AutoRegistrationStatus enum value
 	AutoRegistrationStatusEnable = "ENABLE"
-	// @enum AutoRegistrationStatus
+
+	// AutoRegistrationStatusDisable is a AutoRegistrationStatus enum value
 	AutoRegistrationStatusDisable = "DISABLE"
 )
 
 const (
-	// @enum CACertificateStatus
+	// CACertificateStatusActive is a CACertificateStatus enum value
 	CACertificateStatusActive = "ACTIVE"
-	// @enum CACertificateStatus
+
+	// CACertificateStatusInactive is a CACertificateStatus enum value
 	CACertificateStatusInactive = "INACTIVE"
 )
 
 const (
-	// @enum CannedAccessControlList
+	// CannedAccessControlListPrivate is a CannedAccessControlList enum value
 	CannedAccessControlListPrivate = "private"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListPublicRead is a CannedAccessControlList enum value
 	CannedAccessControlListPublicRead = "public-read"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListPublicReadWrite is a CannedAccessControlList enum value
 	CannedAccessControlListPublicReadWrite = "public-read-write"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListAwsExecRead is a CannedAccessControlList enum value
 	CannedAccessControlListAwsExecRead = "aws-exec-read"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListAuthenticatedRead is a CannedAccessControlList enum value
 	CannedAccessControlListAuthenticatedRead = "authenticated-read"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListBucketOwnerRead is a CannedAccessControlList enum value
 	CannedAccessControlListBucketOwnerRead = "bucket-owner-read"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListBucketOwnerFullControl is a CannedAccessControlList enum value
 	CannedAccessControlListBucketOwnerFullControl = "bucket-owner-full-control"
-	// @enum CannedAccessControlList
+
+	// CannedAccessControlListLogDeliveryWrite is a CannedAccessControlList enum value
 	CannedAccessControlListLogDeliveryWrite = "log-delivery-write"
 )
 
 const (
-	// @enum CertificateStatus
+	// CertificateStatusActive is a CertificateStatus enum value
 	CertificateStatusActive = "ACTIVE"
-	// @enum CertificateStatus
+
+	// CertificateStatusInactive is a CertificateStatus enum value
 	CertificateStatusInactive = "INACTIVE"
-	// @enum CertificateStatus
+
+	// CertificateStatusRevoked is a CertificateStatus enum value
 	CertificateStatusRevoked = "REVOKED"
-	// @enum CertificateStatus
+
+	// CertificateStatusPendingTransfer is a CertificateStatus enum value
 	CertificateStatusPendingTransfer = "PENDING_TRANSFER"
-	// @enum CertificateStatus
+
+	// CertificateStatusRegisterInactive is a CertificateStatus enum value
 	CertificateStatusRegisterInactive = "REGISTER_INACTIVE"
-	// @enum CertificateStatus
+
+	// CertificateStatusPendingActivation is a CertificateStatus enum value
 	CertificateStatusPendingActivation = "PENDING_ACTIVATION"
 )
 
 const (
-	// @enum DynamoKeyType
+	// DynamoKeyTypeString is a DynamoKeyType enum value
 	DynamoKeyTypeString = "STRING"
-	// @enum DynamoKeyType
+
+	// DynamoKeyTypeNumber is a DynamoKeyType enum value
 	DynamoKeyTypeNumber = "NUMBER"
 )
 
 const (
-	// @enum LogLevel
+	// LogLevelDebug is a LogLevel enum value
 	LogLevelDebug = "DEBUG"
-	// @enum LogLevel
+
+	// LogLevelInfo is a LogLevel enum value
 	LogLevelInfo = "INFO"
-	// @enum LogLevel
+
+	// LogLevelError is a LogLevel enum value
 	LogLevelError = "ERROR"
-	// @enum LogLevel
+
+	// LogLevelWarn is a LogLevel enum value
 	LogLevelWarn = "WARN"
-	// @enum LogLevel
+
+	// LogLevelDisabled is a LogLevel enum value
 	LogLevelDisabled = "DISABLED"
 )
 
 const (
-	// @enum MessageFormat
+	// MessageFormatRaw is a MessageFormat enum value
 	MessageFormatRaw = "RAW"
-	// @enum MessageFormat
+
+	// MessageFormatJson is a MessageFormat enum value
 	MessageFormatJson = "JSON"
 )

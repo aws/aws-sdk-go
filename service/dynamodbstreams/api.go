@@ -243,6 +243,8 @@ type DescribeStreamInput struct {
 	Limit *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the stream.
+	//
+	// StreamArn is a required field
 	StreamArn *string `min:"37" type:"string" required:"true"`
 }
 
@@ -309,6 +311,8 @@ type GetRecordsInput struct {
 
 	// A shard iterator that was retrieved from a previous GetShardIterator operation.
 	// This iterator can be used to access the stream records in this shard.
+	//
+	// ShardIterator is a required field
 	ShardIterator *string `min:"1" type:"string" required:"true"`
 }
 
@@ -373,6 +377,8 @@ type GetShardIteratorInput struct {
 
 	// The identifier of the shard. The iterator will be returned for this shard
 	// ID.
+	//
+	// ShardId is a required field
 	ShardId *string `min:"28" type:"string" required:"true"`
 
 	// Determines how the shard iterator is used to start reading stream records
@@ -391,9 +397,13 @@ type GetShardIteratorInput struct {
 	//
 	//    LATEST - Start reading just after the most recent stream record in the
 	// shard, so that you always read the most recent data in the shard.
+	//
+	// ShardIteratorType is a required field
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
 
 	// The Amazon Resource Name (ARN) for the stream.
+	//
+	// StreamArn is a required field
 	StreamArn *string `min:"37" type:"string" required:"true"`
 }
 
@@ -789,50 +799,62 @@ func (s StreamRecord) GoString() string {
 }
 
 const (
-	// @enum KeyType
+	// KeyTypeHash is a KeyType enum value
 	KeyTypeHash = "HASH"
-	// @enum KeyType
+
+	// KeyTypeRange is a KeyType enum value
 	KeyTypeRange = "RANGE"
 )
 
 const (
-	// @enum OperationType
+	// OperationTypeInsert is a OperationType enum value
 	OperationTypeInsert = "INSERT"
-	// @enum OperationType
+
+	// OperationTypeModify is a OperationType enum value
 	OperationTypeModify = "MODIFY"
-	// @enum OperationType
+
+	// OperationTypeRemove is a OperationType enum value
 	OperationTypeRemove = "REMOVE"
 )
 
 const (
-	// @enum ShardIteratorType
+	// ShardIteratorTypeTrimHorizon is a ShardIteratorType enum value
 	ShardIteratorTypeTrimHorizon = "TRIM_HORIZON"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeLatest is a ShardIteratorType enum value
 	ShardIteratorTypeLatest = "LATEST"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeAtSequenceNumber is a ShardIteratorType enum value
 	ShardIteratorTypeAtSequenceNumber = "AT_SEQUENCE_NUMBER"
-	// @enum ShardIteratorType
+
+	// ShardIteratorTypeAfterSequenceNumber is a ShardIteratorType enum value
 	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
 )
 
 const (
-	// @enum StreamStatus
+	// StreamStatusEnabling is a StreamStatus enum value
 	StreamStatusEnabling = "ENABLING"
-	// @enum StreamStatus
+
+	// StreamStatusEnabled is a StreamStatus enum value
 	StreamStatusEnabled = "ENABLED"
-	// @enum StreamStatus
+
+	// StreamStatusDisabling is a StreamStatus enum value
 	StreamStatusDisabling = "DISABLING"
-	// @enum StreamStatus
+
+	// StreamStatusDisabled is a StreamStatus enum value
 	StreamStatusDisabled = "DISABLED"
 )
 
 const (
-	// @enum StreamViewType
+	// StreamViewTypeNewImage is a StreamViewType enum value
 	StreamViewTypeNewImage = "NEW_IMAGE"
-	// @enum StreamViewType
+
+	// StreamViewTypeOldImage is a StreamViewType enum value
 	StreamViewTypeOldImage = "OLD_IMAGE"
-	// @enum StreamViewType
+
+	// StreamViewTypeNewAndOldImages is a StreamViewType enum value
 	StreamViewTypeNewAndOldImages = "NEW_AND_OLD_IMAGES"
-	// @enum StreamViewType
+
+	// StreamViewTypeKeysOnly is a StreamViewType enum value
 	StreamViewTypeKeysOnly = "KEYS_ONLY"
 )

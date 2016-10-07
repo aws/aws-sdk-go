@@ -810,6 +810,8 @@ type CreateFileSystemInput struct {
 
 	// String of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent
 	// creation.
+	//
+	// CreationToken is a required field
 	CreationToken *string `min:"1" type:"string" required:"true"`
 
 	// The PerformanceMode of the file system. We recommend generalPurpose performance
@@ -850,6 +852,8 @@ type CreateMountTargetInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the file system for which to create the mount target.
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
 	// Valid IPv4 address within the address range of the specified subnet.
@@ -860,6 +864,8 @@ type CreateMountTargetInput struct {
 	SecurityGroups []*string `type:"list"`
 
 	// ID of the subnet to add the mount target in.
+	//
+	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
 }
 
@@ -894,9 +900,13 @@ type CreateTagsInput struct {
 
 	// ID of the file system whose tags you want to modify (String). This operation
 	// modifies the tags only, not the file system.
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// Array of Tag objects to add. Each Tag object is a key-value pair.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -954,6 +964,8 @@ type DeleteFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the file system you want to delete.
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 }
 
@@ -998,6 +1010,8 @@ type DeleteMountTargetInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the mount target to delete (String).
+	//
+	// MountTargetId is a required field
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 }
 
@@ -1042,9 +1056,13 @@ type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the file system whose tags you want to delete (String).
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// List of tag keys to delete.
+	//
+	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
 }
 
@@ -1166,6 +1184,8 @@ type DescribeMountTargetSecurityGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the mount target whose security groups you want to retrieve.
+	//
+	// MountTargetId is a required field
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 }
 
@@ -1196,6 +1216,8 @@ type DescribeMountTargetSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Array of security groups.
+	//
+	// SecurityGroups is a required field
 	SecurityGroups []*string `type:"list" required:"true"`
 }
 
@@ -1284,6 +1306,8 @@ type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the file system whose tag set you want to retrieve.
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// (Optional) Opaque pagination token returned from a previous DescribeTags
@@ -1335,6 +1359,8 @@ type DescribeTagsOutput struct {
 	NextMarker *string `type:"string"`
 
 	// Returns tags associated with the file system as an array of Tag objects.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -1353,15 +1379,23 @@ type FileSystemDescription struct {
 	_ struct{} `type:"structure"`
 
 	// Time that the file system was created, in seconds (since 1970-01-01T00:00:00Z).
+	//
+	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// Opaque string specified in the request.
+	//
+	// CreationToken is a required field
 	CreationToken *string `min:"1" type:"string" required:"true"`
 
 	// ID of the file system, assigned by Amazon EFS.
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
 	// Lifecycle phase of the file system.
+	//
+	// LifeCycleState is a required field
 	LifeCycleState *string `type:"string" required:"true" enum:"LifeCycleState"`
 
 	// You can add tags to a file system, including a Name tag. For more information,
@@ -1371,13 +1405,19 @@ type FileSystemDescription struct {
 
 	// Current number of mount targets that the file system has. For more information,
 	// see CreateMountTarget.
+	//
+	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
 	// AWS account that created the file system. If the file system was created
 	// by an IAM user, the parent account to which the user belongs is the owner.
+	//
+	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
 
 	// The PerformanceMode of the file system.
+	//
+	// PerformanceMode is a required field
 	PerformanceMode *string `type:"string" required:"true" enum:"PerformanceMode"`
 
 	// Latest known metered size (in bytes) of data stored in the file system, in
@@ -1389,6 +1429,8 @@ type FileSystemDescription struct {
 	// actual size only if the file system is not modified for a period longer than
 	// a couple of hours. Otherwise, the value is not the exact size the file system
 	// was at any instant in time.
+	//
+	// SizeInBytes is a required field
 	SizeInBytes *FileSystemSize `type:"structure" required:"true"`
 }
 
@@ -1418,6 +1460,8 @@ type FileSystemSize struct {
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Latest known metered size (in bytes) of data stored in the file system.
+	//
+	// Value is a required field
 	Value *int64 `type:"long" required:"true"`
 }
 
@@ -1435,6 +1479,8 @@ type ModifyMountTargetSecurityGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the mount target whose security groups you want to modify.
+	//
+	// MountTargetId is a required field
 	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 
 	// Array of up to five VPC security group IDs.
@@ -1483,15 +1529,21 @@ type MountTargetDescription struct {
 	_ struct{} `type:"structure"`
 
 	// ID of the file system for which the mount target is intended.
+	//
+	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
 	// Address at which the file system may be mounted via the mount target.
 	IpAddress *string `type:"string"`
 
 	// Lifecycle state of the mount target.
+	//
+	// LifeCycleState is a required field
 	LifeCycleState *string `type:"string" required:"true" enum:"LifeCycleState"`
 
 	// System-assigned mount target ID.
+	//
+	// MountTargetId is a required field
 	MountTargetId *string `type:"string" required:"true"`
 
 	// ID of the network interface that Amazon EFS created when it created the mount
@@ -1502,6 +1554,8 @@ type MountTargetDescription struct {
 	OwnerId *string `type:"string"`
 
 	// ID of the mount target's subnet.
+	//
+	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
 }
 
@@ -1521,9 +1575,13 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// Tag key (String). The key can't start with aws:.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// Value of the tag key.
+	//
+	// Value is a required field
 	Value *string `type:"string" required:"true"`
 }
 
@@ -1557,19 +1615,23 @@ func (s *Tag) Validate() error {
 }
 
 const (
-	// @enum LifeCycleState
+	// LifeCycleStateCreating is a LifeCycleState enum value
 	LifeCycleStateCreating = "creating"
-	// @enum LifeCycleState
+
+	// LifeCycleStateAvailable is a LifeCycleState enum value
 	LifeCycleStateAvailable = "available"
-	// @enum LifeCycleState
+
+	// LifeCycleStateDeleting is a LifeCycleState enum value
 	LifeCycleStateDeleting = "deleting"
-	// @enum LifeCycleState
+
+	// LifeCycleStateDeleted is a LifeCycleState enum value
 	LifeCycleStateDeleted = "deleted"
 )
 
 const (
-	// @enum PerformanceMode
+	// PerformanceModeGeneralPurpose is a PerformanceMode enum value
 	PerformanceModeGeneralPurpose = "generalPurpose"
-	// @enum PerformanceMode
+
+	// PerformanceModeMaxIo is a PerformanceMode enum value
 	PerformanceModeMaxIo = "maxIO"
 )

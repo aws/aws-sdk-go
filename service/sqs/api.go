@@ -1086,6 +1086,8 @@ type AddPermissionInput struct {
 	// does not need to be signed up for Amazon SQS. For information about locating
 	// the AWS account identification, see Your AWS Identifiers (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AWSCredentials.html)
 	// in the Amazon SQS Developer Guide.
+	//
+	// AWSAccountIds is a required field
 	AWSAccountIds []*string `locationNameList:"AWSAccountId" type:"list" flattened:"true" required:"true"`
 
 	// The action the client wants to allow for the specified principal. The following
@@ -1097,16 +1099,22 @@ type AddPermissionInput struct {
 	// Specifying SendMessage, DeleteMessage, or ChangeMessageVisibility for the
 	// ActionName.n also grants permissions for the corresponding batch versions
 	// of those actions: SendMessageBatch, DeleteMessageBatch, and ChangeMessageVisibilityBatch.
+	//
+	// Actions is a required field
 	Actions []*string `locationNameList:"ActionName" type:"list" flattened:"true" required:"true"`
 
 	// The unique identification of the permission you're setting (e.g., AliceSendMessage).
 	// Constraints: Maximum 80 characters; alphanumeric characters, hyphens (-),
 	// and underscores (_) are allowed.
+	//
+	// Label is a required field
 	Label *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1162,15 +1170,21 @@ type BatchResultErrorEntry struct {
 	_ struct{} `type:"structure"`
 
 	// An error code representing why the action failed on this entry.
+	//
+	// Code is a required field
 	Code *string `type:"string" required:"true"`
 
 	// The id of an entry in a batch request.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// A message explaining why the action failed on this entry.
 	Message *string `type:"string"`
 
 	// Whether the error happened due to the sender's fault.
+	//
+	// SenderFault is a required field
 	SenderFault *bool `type:"boolean" required:"true"`
 }
 
@@ -1189,11 +1203,15 @@ type ChangeMessageVisibilityBatchInput struct {
 
 	// A list of receipt handles of the messages for which the visibility timeout
 	// must be changed.
+	//
+	// Entries is a required field
 	Entries []*ChangeMessageVisibilityBatchRequestEntry `locationNameList:"ChangeMessageVisibilityBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1240,9 +1258,13 @@ type ChangeMessageVisibilityBatchOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of BatchResultErrorEntry items.
+	//
+	// Failed is a required field
 	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
 
 	// A list of ChangeMessageVisibilityBatchResultEntry items.
+	//
+	// Successful is a required field
 	Successful []*ChangeMessageVisibilityBatchResultEntry `locationNameList:"ChangeMessageVisibilityBatchResultEntry" type:"list" flattened:"true" required:"true"`
 }
 
@@ -1272,9 +1294,13 @@ type ChangeMessageVisibilityBatchRequestEntry struct {
 	// An identifier for this particular receipt handle. This is used to communicate
 	// the result. Note that the Ids of a batch request need to be unique within
 	// the request.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// A receipt handle.
+	//
+	// ReceiptHandle is a required field
 	ReceiptHandle *string `type:"string" required:"true"`
 
 	// The new value (in seconds) for the message's visibility timeout.
@@ -1312,6 +1338,8 @@ type ChangeMessageVisibilityBatchResultEntry struct {
 	_ struct{} `type:"structure"`
 
 	// Represents a message whose visibility timeout has been changed successfully.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 }
 
@@ -1331,14 +1359,20 @@ type ChangeMessageVisibilityInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The receipt handle associated with the message whose visibility timeout should
 	// be changed. This parameter is returned by the ReceiveMessage action.
+	//
+	// ReceiptHandle is a required field
 	ReceiptHandle *string `type:"string" required:"true"`
 
 	// The new value (in seconds - from 0 to 43200 - maximum 12 hours) for the message's
 	// visibility timeout.
+	//
+	// VisibilityTimeout is a required field
 	VisibilityTimeout *int64 `type:"integer" required:"true"`
 }
 
@@ -1431,6 +1465,8 @@ type CreateQueueInput struct {
 	// The name for the queue to be created.
 	//
 	// Queue names are case-sensitive.
+	//
+	// QueueName is a required field
 	QueueName *string `type:"string" required:"true"`
 }
 
@@ -1479,11 +1515,15 @@ type DeleteMessageBatchInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of receipt handles for the messages to be deleted.
+	//
+	// Entries is a required field
 	Entries []*DeleteMessageBatchRequestEntry `locationNameList:"DeleteMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1530,9 +1570,13 @@ type DeleteMessageBatchOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of BatchResultErrorEntry items.
+	//
+	// Failed is a required field
 	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
 
 	// A list of DeleteMessageBatchResultEntry items.
+	//
+	// Successful is a required field
 	Successful []*DeleteMessageBatchResultEntry `locationNameList:"DeleteMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 }
 
@@ -1553,9 +1597,13 @@ type DeleteMessageBatchRequestEntry struct {
 	// An identifier for this particular receipt handle. This is used to communicate
 	// the result. Note that the Ids of a batch request need to be unique within
 	// the request.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// A receipt handle.
+	//
+	// ReceiptHandle is a required field
 	ReceiptHandle *string `type:"string" required:"true"`
 }
 
@@ -1590,6 +1638,8 @@ type DeleteMessageBatchResultEntry struct {
 	_ struct{} `type:"structure"`
 
 	// Represents a successfully deleted message.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 }
 
@@ -1609,9 +1659,13 @@ type DeleteMessageInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The receipt handle associated with the message to delete.
+	//
+	// ReceiptHandle is a required field
 	ReceiptHandle *string `type:"string" required:"true"`
 }
 
@@ -1661,6 +1715,8 @@ type DeleteQueueInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1760,6 +1816,8 @@ type GetQueueAttributesInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1811,6 +1869,8 @@ type GetQueueUrlInput struct {
 	// characters, hyphens (-), and underscores (_) are allowed.
 	//
 	// Queue names are case-sensitive.
+	//
+	// QueueName is a required field
 	QueueName *string `type:"string" required:"true"`
 
 	// The AWS account ID of the account that created the queue.
@@ -1865,6 +1925,8 @@ type ListDeadLetterSourceQueuesInput struct {
 	// The queue URL of a dead letter queue.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -1897,6 +1959,8 @@ type ListDeadLetterSourceQueuesOutput struct {
 
 	// A list of source queue URLs that have the RedrivePolicy queue attribute configured
 	// with a dead letter queue.
+	//
+	// QueueUrls is a required field
 	QueueUrls []*string `locationName:"queueUrls" locationNameList:"QueueUrl" type:"list" flattened:"true" required:"true"`
 }
 
@@ -2019,6 +2083,8 @@ type MessageAttributeValue struct {
 	//
 	// You can also append custom labels. For more information, see Message Attribute
 	// Data Types (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes).
+	//
+	// DataType is a required field
 	DataType *string `type:"string" required:"true"`
 
 	// Not implemented. Reserved for future use.
@@ -2059,6 +2125,8 @@ type PurgeQueueInput struct {
 	// API.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -2151,6 +2219,8 @@ type ReceiveMessageInput struct {
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 
 	// The duration (in seconds) that the received messages are hidden from subsequent
@@ -2209,11 +2279,15 @@ type RemovePermissionInput struct {
 
 	// The identification of the permission to remove. This is the label added with
 	// the AddPermission action.
+	//
+	// Label is a required field
 	Label *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -2261,11 +2335,15 @@ type SendMessageBatchInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of SendMessageBatchRequestEntry items.
+	//
+	// Entries is a required field
 	Entries []*SendMessageBatchRequestEntry `locationNameList:"SendMessageBatchRequestEntry" type:"list" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -2313,9 +2391,13 @@ type SendMessageBatchOutput struct {
 
 	// A list of BatchResultErrorEntry items with the error detail about each message
 	// that could not be enqueued.
+	//
+	// Failed is a required field
 	Failed []*BatchResultErrorEntry `locationNameList:"BatchResultErrorEntry" type:"list" flattened:"true" required:"true"`
 
 	// A list of SendMessageBatchResultEntry items.
+	//
+	// Successful is a required field
 	Successful []*SendMessageBatchResultEntry `locationNameList:"SendMessageBatchResultEntry" type:"list" flattened:"true" required:"true"`
 }
 
@@ -2339,6 +2421,8 @@ type SendMessageBatchRequestEntry struct {
 	// An identifier for the message in this batch. This is used to communicate
 	// the result. Note that the Ids of a batch request need to be unique within
 	// the request.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// Each message attribute consists of a Name, Type, and Value. For more information,
@@ -2346,6 +2430,8 @@ type SendMessageBatchRequestEntry struct {
 	MessageAttributes map[string]*MessageAttributeValue `locationName:"MessageAttribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
 	// Body of the message.
+	//
+	// MessageBody is a required field
 	MessageBody *string `type:"string" required:"true"`
 }
 
@@ -2390,6 +2476,8 @@ type SendMessageBatchResultEntry struct {
 	_ struct{} `type:"structure"`
 
 	// An identifier for the message in this batch.
+	//
+	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// An MD5 digest of the non-URL-encoded message attribute string. This can be
@@ -2402,9 +2490,13 @@ type SendMessageBatchResultEntry struct {
 	// to verify that Amazon SQS received the message correctly. Amazon SQS first
 	// URL decodes the message before creating the MD5 digest. For information about
 	// MD5, go to http://www.faqs.org/rfcs/rfc1321.html (http://www.faqs.org/rfcs/rfc1321.html).
+	//
+	// MD5OfMessageBody is a required field
 	MD5OfMessageBody *string `type:"string" required:"true"`
 
 	// An identifier for the message.
+	//
+	// MessageId is a required field
 	MessageId *string `type:"string" required:"true"`
 }
 
@@ -2433,11 +2525,15 @@ type SendMessageInput struct {
 
 	// The message to send. String maximum 256 KB in size. For a list of allowed
 	// characters, see the preceding important note.
+	//
+	// MessageBody is a required field
 	MessageBody *string `type:"string" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -2549,11 +2645,15 @@ type SetQueueAttributesInput struct {
 	//  Any other valid special request parameters that are specified (such as
 	// ApproximateNumberOfMessages, ApproximateNumberOfMessagesDelayed, ApproximateNumberOfMessagesNotVisible,
 	// CreatedTimestamp, LastModifiedTimestamp, and QueueArn) will be ignored.
+	//
+	// Attributes is a required field
 	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true" required:"true"`
 
 	// The URL of the Amazon SQS queue to take action on.
 	//
 	// Queue URLs are case-sensitive.
+	//
+	// QueueUrl is a required field
 	QueueUrl *string `type:"string" required:"true"`
 }
 
@@ -2598,30 +2698,42 @@ func (s SetQueueAttributesOutput) GoString() string {
 }
 
 const (
-	// @enum QueueAttributeName
+	// QueueAttributeNamePolicy is a QueueAttributeName enum value
 	QueueAttributeNamePolicy = "Policy"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameVisibilityTimeout is a QueueAttributeName enum value
 	QueueAttributeNameVisibilityTimeout = "VisibilityTimeout"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameMaximumMessageSize is a QueueAttributeName enum value
 	QueueAttributeNameMaximumMessageSize = "MaximumMessageSize"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameMessageRetentionPeriod is a QueueAttributeName enum value
 	QueueAttributeNameMessageRetentionPeriod = "MessageRetentionPeriod"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameApproximateNumberOfMessages is a QueueAttributeName enum value
 	QueueAttributeNameApproximateNumberOfMessages = "ApproximateNumberOfMessages"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameApproximateNumberOfMessagesNotVisible is a QueueAttributeName enum value
 	QueueAttributeNameApproximateNumberOfMessagesNotVisible = "ApproximateNumberOfMessagesNotVisible"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameCreatedTimestamp is a QueueAttributeName enum value
 	QueueAttributeNameCreatedTimestamp = "CreatedTimestamp"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameLastModifiedTimestamp is a QueueAttributeName enum value
 	QueueAttributeNameLastModifiedTimestamp = "LastModifiedTimestamp"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameQueueArn is a QueueAttributeName enum value
 	QueueAttributeNameQueueArn = "QueueArn"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameApproximateNumberOfMessagesDelayed is a QueueAttributeName enum value
 	QueueAttributeNameApproximateNumberOfMessagesDelayed = "ApproximateNumberOfMessagesDelayed"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameDelaySeconds is a QueueAttributeName enum value
 	QueueAttributeNameDelaySeconds = "DelaySeconds"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameReceiveMessageWaitTimeSeconds is a QueueAttributeName enum value
 	QueueAttributeNameReceiveMessageWaitTimeSeconds = "ReceiveMessageWaitTimeSeconds"
-	// @enum QueueAttributeName
+
+	// QueueAttributeNameRedrivePolicy is a QueueAttributeName enum value
 	QueueAttributeNameRedrivePolicy = "RedrivePolicy"
 )

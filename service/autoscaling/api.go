@@ -3084,12 +3084,18 @@ type Activity struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the activity.
+	//
+	// ActivityId is a required field
 	ActivityId *string `type:"string" required:"true"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The reason the activity began.
+	//
+	// Cause is a required field
 	Cause *string `min:"1" type:"string" required:"true"`
 
 	// A friendly, more verbose description of the activity.
@@ -3105,9 +3111,13 @@ type Activity struct {
 	Progress *int64 `type:"integer"`
 
 	// The start time of the activity.
+	//
+	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The current status of the activity.
+	//
+	// StatusCode is a required field
 	StatusCode *string `type:"string" required:"true" enum:"ScalingActivityStatusCode"`
 
 	// A friendly, more verbose description of the activity status.
@@ -3172,6 +3182,8 @@ type AttachInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instance IDs.
@@ -3223,9 +3235,13 @@ type AttachLoadBalancerTargetGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Names (ARN) of the target groups.
+	//
+	// TargetGroupARNs is a required field
 	TargetGroupARNs []*string `type:"list" required:"true"`
 }
 
@@ -3277,9 +3293,13 @@ type AttachLoadBalancersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more load balancer names.
+	//
+	// LoadBalancerNames is a required field
 	LoadBalancerNames []*string `type:"list" required:"true"`
 }
 
@@ -3332,6 +3352,8 @@ type BlockDeviceMapping struct {
 	_ struct{} `type:"structure"`
 
 	// The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh).
+	//
+	// DeviceName is a required field
 	DeviceName *string `min:"1" type:"string" required:"true"`
 
 	// The information about the Amazon EBS volume.
@@ -3387,6 +3409,8 @@ type CompleteLifecycleActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group for the lifecycle hook.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
@@ -3394,6 +3418,8 @@ type CompleteLifecycleActionInput struct {
 
 	// The action for the group to take. This parameter can be either CONTINUE or
 	// ABANDON.
+	//
+	// LifecycleActionResult is a required field
 	LifecycleActionResult *string `type:"string" required:"true"`
 
 	// A universally unique identifier (UUID) that identifies a specific lifecycle
@@ -3402,6 +3428,8 @@ type CompleteLifecycleActionInput struct {
 	LifecycleActionToken *string `min:"36" type:"string"`
 
 	// The name of the lifecycle hook.
+	//
+	// LifecycleHookName is a required field
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -3467,6 +3495,8 @@ type CreateAutoScalingGroupInput struct {
 
 	// The name of the group. This name must be unique within the scope of your
 	// AWS account.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group. This parameter is optional
@@ -3529,9 +3559,13 @@ type CreateAutoScalingGroupInput struct {
 	LoadBalancerNames []*string `type:"list"`
 
 	// The maximum size of the group.
+	//
+	// MaxSize is a required field
 	MaxSize *int64 `type:"integer" required:"true"`
 
 	// The minimum size of the group.
+	//
+	// MinSize is a required field
 	MinSize *int64 `type:"integer" required:"true"`
 
 	// Indicates whether newly launched instances are protected from termination
@@ -3737,6 +3771,8 @@ type CreateLaunchConfigurationInput struct {
 
 	// The name of the launch configuration. This name must be unique within the
 	// scope of your AWS account.
+	//
+	// LaunchConfigurationName is a required field
 	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// The tenancy of the instance. An instance with a tenancy of dedicated runs
@@ -3868,6 +3904,8 @@ type CreateOrUpdateTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more tags.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -3923,6 +3961,8 @@ type DeleteAutoScalingGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group to delete.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// Specifies that the group will be deleted along with all instances associated
@@ -3976,6 +4016,8 @@ type DeleteLaunchConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the launch configuration.
+	//
+	// LaunchConfigurationName is a required field
 	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4024,9 +4066,13 @@ type DeleteLifecycleHookInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group for the lifecycle hook.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the lifecycle hook.
+	//
+	// LifecycleHookName is a required field
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4082,10 +4128,14 @@ type DeleteNotificationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic.
+	//
+	// TopicARN is a required field
 	TopicARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4143,6 +4193,8 @@ type DeletePolicyInput struct {
 	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The name or Amazon Resource Name (ARN) of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4194,9 +4246,13 @@ type DeleteScheduledActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the action to delete.
+	//
+	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -4251,6 +4307,8 @@ type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more tags.
+	//
+	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
 
@@ -4407,6 +4465,8 @@ type DescribeAutoScalingGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The groups.
+	//
+	// AutoScalingGroups is a required field
 	AutoScalingGroups []*Group `type:"list" required:"true"`
 
 	// The token to use when requesting the next set of items. If there are no additional
@@ -4536,6 +4596,8 @@ type DescribeLaunchConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The launch configurations.
+	//
+	// LaunchConfigurations is a required field
 	LaunchConfigurations []*LaunchConfiguration `type:"list" required:"true"`
 
 	// The token to use when requesting the next set of items. If there are no additional
@@ -4590,6 +4652,8 @@ type DescribeLifecycleHooksInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The names of one or more lifecycle hooks. If you omit this parameter, all
@@ -4646,6 +4710,8 @@ type DescribeLoadBalancerTargetGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of items to return with this call.
@@ -4709,6 +4775,8 @@ type DescribeLoadBalancersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of items to return with this call.
@@ -4836,6 +4904,8 @@ type DescribeNotificationConfigurationsOutput struct {
 	NextToken *string `type:"string"`
 
 	// The notification configurations.
+	//
+	// NotificationConfigurations is a required field
 	NotificationConfigurations []*NotificationConfiguration `type:"list" required:"true"`
 }
 
@@ -4969,6 +5039,8 @@ type DescribeScalingActivitiesOutput struct {
 
 	// The scaling activities. Activities are sorted by start time. Activities still
 	// in progress are described first.
+	//
+	// Activities is a required field
 	Activities []*Activity `type:"list" required:"true"`
 
 	// The token to use when requesting the next set of items. If there are no additional
@@ -5180,6 +5252,8 @@ type DetachInstancesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instance IDs.
@@ -5187,6 +5261,8 @@ type DetachInstancesInput struct {
 
 	// If True, the Auto Scaling group decrements the desired capacity value by
 	// the number of instances detached.
+	//
+	// ShouldDecrementDesiredCapacity is a required field
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 }
 
@@ -5241,9 +5317,13 @@ type DetachLoadBalancerTargetGroupsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Names (ARN) of the target groups.
+	//
+	// TargetGroupARNs is a required field
 	TargetGroupARNs []*string `type:"list" required:"true"`
 }
 
@@ -5295,9 +5375,13 @@ type DetachLoadBalancersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more load balancer names.
+	//
+	// LoadBalancerNames is a required field
 	LoadBalancerNames []*string `type:"list" required:"true"`
 }
 
@@ -5350,6 +5434,8 @@ type DisableMetricsCollectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name or Amazon Resource Name (ARN) of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more of the following metrics. If you omit this parameter, all metrics
@@ -5494,10 +5580,14 @@ type EnableMetricsCollectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name or ARN of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The granularity to associate with the metrics to collect. The only valid
 	// value is 1Minute.
+	//
+	// Granularity is a required field
 	Granularity *string `min:"1" type:"string" required:"true"`
 
 	// One or more of the following metrics. If you omit this parameter, all metrics
@@ -5609,6 +5699,8 @@ type EnterStandbyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instances to move into Standby mode. You must specify at least
@@ -5619,6 +5711,8 @@ type EnterStandbyInput struct {
 	// Auto Scaling group's desired capacity. If set, the desired capacity for the
 	// Auto Scaling group decrements by the number of instances moved to Standby
 	// mode.
+	//
+	// ShouldDecrementDesiredCapacity is a required field
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 }
 
@@ -5706,6 +5800,8 @@ type ExecutePolicyInput struct {
 	MetricValue *float64 `type:"double"`
 
 	// The name or ARN of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -5757,6 +5853,8 @@ type ExitStandbyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instance IDs. You must specify at least one instance ID.
@@ -5837,19 +5935,29 @@ type Group struct {
 	AutoScalingGroupARN *string `min:"1" type:"string"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group.
+	//
+	// AvailabilityZones is a required field
 	AvailabilityZones []*string `min:"1" type:"list" required:"true"`
 
 	// The date and time the group was created.
+	//
+	// CreatedTime is a required field
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The amount of time, in seconds, after a scaling activity completes before
 	// another scaling activity can start.
+	//
+	// DefaultCooldown is a required field
 	DefaultCooldown *int64 `type:"integer" required:"true"`
 
 	// The desired size of the group.
+	//
+	// DesiredCapacity is a required field
 	DesiredCapacity *int64 `type:"integer" required:"true"`
 
 	// The metrics enabled for the group.
@@ -5860,6 +5968,8 @@ type Group struct {
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
 	// The service to use for the health checks. The valid values are EC2 and ELB.
+	//
+	// HealthCheckType is a required field
 	HealthCheckType *string `min:"1" type:"string" required:"true"`
 
 	// The EC2 instances associated with the group.
@@ -5872,9 +5982,13 @@ type Group struct {
 	LoadBalancerNames []*string `type:"list"`
 
 	// The maximum size of the group.
+	//
+	// MaxSize is a required field
 	MaxSize *int64 `type:"integer" required:"true"`
 
 	// The minimum size of the group.
+	//
+	// MinSize is a required field
 	MinSize *int64 `type:"integer" required:"true"`
 
 	// Indicates whether newly launched instances are protected from termination
@@ -5923,25 +6037,37 @@ type Instance struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone in which the instance is running.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `min:"1" type:"string" required:"true"`
 
 	// The last reported health status of the instance. "Healthy" means that the
 	// instance is healthy and should remain in service. "Unhealthy" means that
 	// the instance is unhealthy and Auto Scaling should terminate and replace it.
+	//
+	// HealthStatus is a required field
 	HealthStatus *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// The launch configuration associated with the instance.
+	//
+	// LaunchConfigurationName is a required field
 	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// A description of the current lifecycle state. Note that the Quarantined state
 	// is not used.
+	//
+	// LifecycleState is a required field
 	LifecycleState *string `type:"string" required:"true" enum:"LifecycleState"`
 
 	// Indicates whether the instance is protected from termination by Auto Scaling
 	// when scaling in.
+	//
+	// ProtectedFromScaleIn is a required field
 	ProtectedFromScaleIn *bool `type:"boolean" required:"true"`
 }
 
@@ -5960,29 +6086,43 @@ type InstanceDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group associated with the instance.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Availability Zone for the instance.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `min:"1" type:"string" required:"true"`
 
 	// The last reported health status of this instance. "Healthy" means that the
 	// instance is healthy and should remain in service. "Unhealthy" means that
 	// the instance is unhealthy and Auto Scaling should terminate and replace it.
+	//
+	// HealthStatus is a required field
 	HealthStatus *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// The launch configuration associated with the instance.
+	//
+	// LaunchConfigurationName is a required field
 	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// The lifecycle state for the instance. For more information, see Auto Scaling
 	// Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
 	// in the Auto Scaling User Guide.
+	//
+	// LifecycleState is a required field
 	LifecycleState *string `min:"1" type:"string" required:"true"`
 
 	// Indicates whether the instance is protected from termination by Auto Scaling
 	// when scaling in.
+	//
+	// ProtectedFromScaleIn is a required field
 	ProtectedFromScaleIn *bool `type:"boolean" required:"true"`
 }
 
@@ -6037,6 +6177,8 @@ type LaunchConfiguration struct {
 	ClassicLinkVPCSecurityGroups []*string `type:"list"`
 
 	// The creation date and time for the launch configuration.
+	//
+	// CreatedTime is a required field
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Controls whether the instance is optimized for EBS I/O (true) or not (false).
@@ -6047,6 +6189,8 @@ type LaunchConfiguration struct {
 	IamInstanceProfile *string `min:"1" type:"string"`
 
 	// The ID of the Amazon Machine Image (AMI).
+	//
+	// ImageId is a required field
 	ImageId *string `min:"1" type:"string" required:"true"`
 
 	// Controls whether instances in this group are launched with detailed (true)
@@ -6054,6 +6198,8 @@ type LaunchConfiguration struct {
 	InstanceMonitoring *InstanceMonitoring `type:"structure"`
 
 	// The instance type for the instances.
+	//
+	// InstanceType is a required field
 	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the kernel associated with the AMI.
@@ -6066,6 +6212,8 @@ type LaunchConfiguration struct {
 	LaunchConfigurationARN *string `min:"1" type:"string"`
 
 	// The name of the launch configuration.
+	//
+	// LaunchConfigurationName is a required field
 	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// The tenancy of the instance, either default or dedicated. An instance with
@@ -6370,6 +6518,8 @@ type ProcessType struct {
 	//    ReplaceUnhealthy
 	//
 	//    ScheduledActions
+	//
+	// ProcessName is a required field
 	ProcessName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6389,6 +6539,8 @@ type PutLifecycleHookInput struct {
 
 	// The name of the Auto Scaling group to which you want to assign the lifecycle
 	// hook.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// Defines the action the Auto Scaling group should take when the lifecycle
@@ -6403,6 +6555,8 @@ type PutLifecycleHookInput struct {
 	HeartbeatTimeout *int64 `type:"integer"`
 
 	// The name of the lifecycle hook.
+	//
+	// LifecycleHookName is a required field
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
 	// The instance state to which you want to attach the lifecycle hook. For a
@@ -6512,14 +6666,20 @@ type PutNotificationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The type of event that will cause the notification to be sent. For details
 	// about notification types supported by Auto Scaling, see DescribeAutoScalingNotificationTypes.
+	//
+	// NotificationTypes is a required field
 	NotificationTypes []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic.
+	//
+	// TopicARN is a required field
 	TopicARN *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6581,9 +6741,13 @@ type PutScalingPolicyInput struct {
 	//
 	// For more information, see Dynamic Scaling (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html)
 	// in the Auto Scaling User Guide.
+	//
+	// AdjustmentType is a required field
 	AdjustmentType *string `min:"1" type:"string" required:"true"`
 
 	// The name or ARN of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The amount of time, in seconds, after a scaling activity completes and before
@@ -6620,6 +6784,8 @@ type PutScalingPolicyInput struct {
 	MinAdjustmentStep *int64 `deprecated:"true" type:"integer"`
 
 	// The name of the policy.
+	//
+	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The policy type. Valid values are SimpleScaling and StepScaling. If the policy
@@ -6719,6 +6885,8 @@ type PutScheduledUpdateGroupActionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The number of EC2 instances that should be running in the group.
@@ -6742,6 +6910,8 @@ type PutScheduledUpdateGroupActionInput struct {
 	Recurrence *string `min:"1" type:"string"`
 
 	// The name of this scaling action.
+	//
+	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
 	// The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in UTC/GMT
@@ -6812,6 +6982,8 @@ type RecordLifecycleActionHeartbeatInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group for the hook.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
@@ -6823,6 +6995,8 @@ type RecordLifecycleActionHeartbeatInput struct {
 	LifecycleActionToken *string `min:"36" type:"string"`
 
 	// The name of the lifecycle hook.
+	//
+	// LifecycleHookName is a required field
 	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 }
 
@@ -6962,6 +7136,8 @@ type ScalingProcessQuery struct {
 	_ struct{} `type:"structure"`
 
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more of the following processes. If you omit this parameter, all processes
@@ -7066,9 +7242,13 @@ type SetDesiredCapacityInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The number of EC2 instances that should be running in the Auto Scaling group.
+	//
+	// DesiredCapacity is a required field
 	DesiredCapacity *int64 `type:"integer" required:"true"`
 
 	// By default, SetDesiredCapacity overrides any cooldown period associated with
@@ -7128,9 +7308,13 @@ type SetInstanceHealthInput struct {
 	// The health status of the instance. Set to Healthy if you want the instance
 	// to remain in service. Set to Unhealthy if you want the instance to be out
 	// of service. Auto Scaling will terminate and replace the unhealthy instance.
+	//
+	// HealthStatus is a required field
 	HealthStatus *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// If the Auto Scaling group of the specified instance has a HealthCheckGracePeriod
@@ -7194,13 +7378,19 @@ type SetInstanceProtectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `type:"list" required:"true"`
 
 	// Indicates whether the instance is protected from termination by Auto Scaling
 	// when scaling in.
+	//
+	// ProtectedFromScaleIn is a required field
 	ProtectedFromScaleIn *bool `type:"boolean" required:"true"`
 }
 
@@ -7302,6 +7492,8 @@ type StepAdjustment struct {
 	// The amount by which to scale, based on the specified adjustment type. A positive
 	// value adds to the current capacity while a negative number removes from the
 	// current capacity.
+	//
+	// ScalingAdjustment is a required field
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
 }
 
@@ -7369,6 +7561,8 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The tag key.
+	//
+	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
 	// Determines whether the tag is added to new instances as they are launched
@@ -7447,10 +7641,14 @@ type TerminateInstanceInAutoScalingGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// If true, terminating the instance also decrements the size of the Auto Scaling
 	// group.
+	//
+	// ShouldDecrementDesiredCapacity is a required field
 	ShouldDecrementDesiredCapacity *bool `type:"boolean" required:"true"`
 }
 
@@ -7506,6 +7704,8 @@ type UpdateAutoScalingGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Auto Scaling group.
+	//
+	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group.
@@ -7628,57 +7828,80 @@ func (s UpdateAutoScalingGroupOutput) GoString() string {
 }
 
 const (
-	// @enum LifecycleState
+	// LifecycleStatePending is a LifecycleState enum value
 	LifecycleStatePending = "Pending"
-	// @enum LifecycleState
+
+	// LifecycleStatePendingWait is a LifecycleState enum value
 	LifecycleStatePendingWait = "Pending:Wait"
-	// @enum LifecycleState
+
+	// LifecycleStatePendingProceed is a LifecycleState enum value
 	LifecycleStatePendingProceed = "Pending:Proceed"
-	// @enum LifecycleState
+
+	// LifecycleStateQuarantined is a LifecycleState enum value
 	LifecycleStateQuarantined = "Quarantined"
-	// @enum LifecycleState
+
+	// LifecycleStateInService is a LifecycleState enum value
 	LifecycleStateInService = "InService"
-	// @enum LifecycleState
+
+	// LifecycleStateTerminating is a LifecycleState enum value
 	LifecycleStateTerminating = "Terminating"
-	// @enum LifecycleState
+
+	// LifecycleStateTerminatingWait is a LifecycleState enum value
 	LifecycleStateTerminatingWait = "Terminating:Wait"
-	// @enum LifecycleState
+
+	// LifecycleStateTerminatingProceed is a LifecycleState enum value
 	LifecycleStateTerminatingProceed = "Terminating:Proceed"
-	// @enum LifecycleState
+
+	// LifecycleStateTerminated is a LifecycleState enum value
 	LifecycleStateTerminated = "Terminated"
-	// @enum LifecycleState
+
+	// LifecycleStateDetaching is a LifecycleState enum value
 	LifecycleStateDetaching = "Detaching"
-	// @enum LifecycleState
+
+	// LifecycleStateDetached is a LifecycleState enum value
 	LifecycleStateDetached = "Detached"
-	// @enum LifecycleState
+
+	// LifecycleStateEnteringStandby is a LifecycleState enum value
 	LifecycleStateEnteringStandby = "EnteringStandby"
-	// @enum LifecycleState
+
+	// LifecycleStateStandby is a LifecycleState enum value
 	LifecycleStateStandby = "Standby"
 )
 
 const (
-	// @enum ScalingActivityStatusCode
+	// ScalingActivityStatusCodePendingSpotBidPlacement is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodePendingSpotBidPlacement = "PendingSpotBidPlacement"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeWaitingForSpotInstanceRequestId is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeWaitingForSpotInstanceRequestId = "WaitingForSpotInstanceRequestId"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeWaitingForSpotInstanceId is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeWaitingForSpotInstanceId = "WaitingForSpotInstanceId"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeWaitingForInstanceId is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeWaitingForInstanceId = "WaitingForInstanceId"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodePreInService is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodePreInService = "PreInService"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeInProgress is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeInProgress = "InProgress"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeWaitingForElbconnectionDraining is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeWaitingForElbconnectionDraining = "WaitingForELBConnectionDraining"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeMidLifecycleAction is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeMidLifecycleAction = "MidLifecycleAction"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeWaitingForInstanceWarmup is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeWaitingForInstanceWarmup = "WaitingForInstanceWarmup"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeSuccessful is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeSuccessful = "Successful"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeFailed is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeFailed = "Failed"
-	// @enum ScalingActivityStatusCode
+
+	// ScalingActivityStatusCodeCancelled is a ScalingActivityStatusCode enum value
 	ScalingActivityStatusCodeCancelled = "Cancelled"
 )

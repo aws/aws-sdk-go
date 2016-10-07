@@ -1329,12 +1329,18 @@ type AWSSessionCredentials struct {
 	_ struct{} `type:"structure"`
 
 	// The access key for the session.
+	//
+	// AccessKeyId is a required field
 	AccessKeyId *string `locationName:"accessKeyId" type:"string" required:"true"`
 
 	// The secret access key for the session.
+	//
+	// SecretAccessKey is a required field
 	SecretAccessKey *string `locationName:"secretAccessKey" type:"string" required:"true"`
 
 	// The token for the session.
+	//
+	// SessionToken is a required field
 	SessionToken *string `locationName:"sessionToken" type:"string" required:"true"`
 }
 
@@ -1353,11 +1359,15 @@ type AcknowledgeJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique system-generated ID of the job for which you want to confirm receipt.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
 	// in the response.
+	//
+	// Nonce is a required field
 	Nonce *string `locationName:"nonce" type:"string" required:"true"`
 }
 
@@ -1411,14 +1421,20 @@ type AcknowledgeThirdPartyJobInput struct {
 
 	// The clientToken portion of the clientId and clientToken pair used to verify
 	// that the calling entity is allowed access to the job and its details.
+	//
+	// ClientToken is a required field
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The unique system-generated ID of the job.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
 	// in the response.
+	//
+	// Nonce is a required field
 	Nonce *string `locationName:"nonce" type:"string" required:"true"`
 }
 
@@ -1499,9 +1515,13 @@ type ActionConfigurationProperty struct {
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// Whether the configuration property is a key.
+	//
+	// Key is a required field
 	Key *bool `locationName:"key" type:"boolean" required:"true"`
 
 	// The name of the action configuration property.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Indicates that the proprety will be used in conjunction with PollForJobs.
@@ -1516,6 +1536,8 @@ type ActionConfigurationProperty struct {
 	Queryable *bool `locationName:"queryable" type:"boolean"`
 
 	// Whether the configuration property is a required value.
+	//
+	// Required is a required field
 	Required *bool `locationName:"required" type:"boolean" required:"true"`
 
 	// Whether the configuration property is secret. Secrets are hidden from all
@@ -1524,6 +1546,8 @@ type ActionConfigurationProperty struct {
 	//
 	// When updating a pipeline, passing * * * * * without changing any other values
 	// of the action will preserve the prior value of the secret.
+	//
+	// Secret is a required field
 	Secret *bool `locationName:"secret" type:"boolean" required:"true"`
 
 	// The type of the configuration property.
@@ -1592,6 +1616,8 @@ type ActionDeclaration struct {
 	_ struct{} `type:"structure"`
 
 	// The configuration information for the action type.
+	//
+	// ActionTypeId is a required field
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The action declaration's configuration.
@@ -1602,6 +1628,8 @@ type ActionDeclaration struct {
 	InputArtifacts []*InputArtifact `locationName:"inputArtifacts" type:"list"`
 
 	// The action declaration's name.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The name or ID of the result of the action declaration, such as a test or
@@ -1726,14 +1754,20 @@ type ActionRevision struct {
 
 	// The date and time when the most recent version of the action was created,
 	// in timestamp format.
+	//
+	// Created is a required field
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The unique identifier of the change that set the state to this revision,
 	// for example a deployment ID or timestamp.
+	//
+	// RevisionChangeId is a required field
 	RevisionChangeId *string `locationName:"revisionChangeId" min:"1" type:"string" required:"true"`
 
 	// The system-generated unique ID that identifies the revision number of the
 	// action.
+	//
+	// RevisionId is a required field
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string" required:"true"`
 }
 
@@ -1812,12 +1846,18 @@ type ActionType struct {
 	ActionConfigurationProperties []*ActionConfigurationProperty `locationName:"actionConfigurationProperties" type:"list"`
 
 	// Represents information about an action type.
+	//
+	// Id is a required field
 	Id *ActionTypeId `locationName:"id" type:"structure" required:"true"`
 
 	// The details of the input artifact for the action, such as its commit ID.
+	//
+	// InputArtifactDetails is a required field
 	InputArtifactDetails *ArtifactDetails `locationName:"inputArtifactDetails" type:"structure" required:"true"`
 
 	// The details of the output artifact of the action, such as its commit ID.
+	//
+	// OutputArtifactDetails is a required field
 	OutputArtifactDetails *ArtifactDetails `locationName:"outputArtifactDetails" type:"structure" required:"true"`
 
 	// The settings for the action type.
@@ -1841,18 +1881,26 @@ type ActionTypeId struct {
 	// A category defines what kind of action can be taken in the stage, and constrains
 	// the provider type for the action. Valid categories are limited to one of
 	// the values below.
+	//
+	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The creator of the action being called.
+	//
+	// Owner is a required field
 	Owner *string `locationName:"owner" type:"string" required:"true" enum:"ActionOwner"`
 
 	// The provider of the service being called by the action. Valid providers are
 	// determined by the action category. For example, an action in the Deploy category
 	// type might have a provider of AWS CodeDeploy, which would be specified as
 	// CodeDeploy.
+	//
+	// Provider is a required field
 	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
 
 	// A string that identifies the action type.
+	//
+	// Version is a required field
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
@@ -1958,9 +2006,13 @@ type ApprovalResult struct {
 	_ struct{} `type:"structure"`
 
 	// The response submitted by a reviewer assigned to an approval action request.
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ApprovalStatus"`
 
 	// The summary of the current status of the approval request.
+	//
+	// Summary is a required field
 	Summary *string `locationName:"summary" type:"string" required:"true"`
 }
 
@@ -2021,9 +2073,13 @@ type ArtifactDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of artifacts allowed for the action type.
+	//
+	// MaximumCount is a required field
 	MaximumCount *int64 `locationName:"maximumCount" type:"integer" required:"true"`
 
 	// The minimum number of artifacts allowed for the action type.
+	//
+	// MinimumCount is a required field
 	MinimumCount *int64 `locationName:"minimumCount" type:"integer" required:"true"`
 }
 
@@ -2128,9 +2184,13 @@ type ArtifactStore struct {
 
 	// The location for storing the artifacts for a pipeline, such as an S3 bucket
 	// or folder.
+	//
+	// Location is a required field
 	Location *string `locationName:"location" min:"3" type:"string" required:"true"`
 
 	// The type of the artifact store, such as S3.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactStoreType"`
 }
 
@@ -2173,9 +2233,13 @@ type BlockerDeclaration struct {
 	_ struct{} `type:"structure"`
 
 	// Reserved for future use.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Reserved for future use.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"BlockerType"`
 }
 
@@ -2216,6 +2280,8 @@ type CreateCustomActionTypeInput struct {
 	//
 	//  Although Source and Approval are listed as valid values, they are not currently
 	// functional. These values are reserved for future use.
+	//
+	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The configuration properties for the custom action.
@@ -2227,18 +2293,26 @@ type CreateCustomActionTypeInput struct {
 	ConfigurationProperties []*ActionConfigurationProperty `locationName:"configurationProperties" type:"list"`
 
 	// Returns information about the details of an artifact.
+	//
+	// InputArtifactDetails is a required field
 	InputArtifactDetails *ArtifactDetails `locationName:"inputArtifactDetails" type:"structure" required:"true"`
 
 	// Returns information about the details of an artifact.
+	//
+	// OutputArtifactDetails is a required field
 	OutputArtifactDetails *ArtifactDetails `locationName:"outputArtifactDetails" type:"structure" required:"true"`
 
 	// The provider of the service used in the custom action, such as AWS CodeDeploy.
+	//
+	// Provider is a required field
 	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
 
 	// Returns information about the settings for an action type.
 	Settings *ActionTypeSettings `locationName:"settings" type:"structure"`
 
 	// The version identifier of the custom action.
+	//
+	// Version is a required field
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
@@ -2313,6 +2387,8 @@ type CreateCustomActionTypeOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Returns information about the details of an action type.
+	//
+	// ActionType is a required field
 	ActionType *ActionType `locationName:"actionType" type:"structure" required:"true"`
 }
 
@@ -2331,6 +2407,8 @@ type CreatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// Represents the structure of actions and stages to be performed in the pipeline.
+	//
+	// Pipeline is a required field
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure" required:"true"`
 }
 
@@ -2385,6 +2463,8 @@ type CurrentRevision struct {
 	_ struct{} `type:"structure"`
 
 	// The change identifier for the current revision.
+	//
+	// ChangeIdentifier is a required field
 	ChangeIdentifier *string `locationName:"changeIdentifier" min:"1" type:"string" required:"true"`
 
 	// The date and time when the most recent revision of the artifact was created,
@@ -2392,6 +2472,8 @@ type CurrentRevision struct {
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
 
 	// The revision ID of the current version of an artifact.
+	//
+	// Revision is a required field
 	Revision *string `locationName:"revision" min:"1" type:"string" required:"true"`
 
 	// The summary of the most recent revision of the artifact.
@@ -2440,12 +2522,18 @@ type DeleteCustomActionTypeInput struct {
 
 	// The category of the custom action that you want to delete, such as source
 	// or deploy.
+	//
+	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The provider of the service used in the custom action, such as AWS CodeDeploy.
+	//
+	// Provider is a required field
 	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
 
 	// The version of the custom action to delete.
+	//
+	// Version is a required field
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 }
 
@@ -2503,6 +2591,8 @@ type DeletePipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the pipeline to be deleted.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -2552,21 +2642,29 @@ type DisableStageTransitionInput struct {
 
 	// The name of the pipeline in which you want to disable the flow of artifacts
 	// from one stage to another.
+	//
+	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The reason given to the user why a stage is disabled, such as waiting for
 	// manual approval or manual tests. This message is displayed in the pipeline
 	// console UI.
+	//
+	// Reason is a required field
 	Reason *string `locationName:"reason" min:"1" type:"string" required:"true"`
 
 	// The name of the stage where you want to disable the inbound or outbound transition
 	// of artifacts.
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
 	// Specifies whether artifacts will be prevented from transitioning into the
 	// stage and being processed by the actions in that stage (inbound), or prevented
 	// from transitioning from the stage after they have been processed by the actions
 	// in that stage (outbound).
+	//
+	// TransitionType is a required field
 	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 }
 
@@ -2631,15 +2729,21 @@ type EnableStageTransitionInput struct {
 
 	// The name of the pipeline in which you want to enable the flow of artifacts
 	// from one stage to another.
+	//
+	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The name of the stage where you want to enable the transition of artifacts,
 	// either into the stage (inbound) or from that stage to the next stage (outbound).
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
 	// Specifies whether artifacts will be allowed to enter the stage and be processed
 	// by the actions in that stage (inbound) or whether already-processed artifacts
 	// will be allowed to transition to the next stage (outbound).
+	//
+	// TransitionType is a required field
 	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 }
 
@@ -2699,10 +2803,14 @@ type EncryptionKey struct {
 
 	// The ID used to identify the key. For an AWS KMS key, this is the key ID or
 	// key ARN.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The type of encryption key, such as an AWS Key Management Service (AWS KMS)
 	// key. When creating or updating a pipeline, the value must be set to 'KMS'.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EncryptionKeyType"`
 }
 
@@ -2804,9 +2912,13 @@ type FailureDetails struct {
 	ExternalExecutionId *string `locationName:"externalExecutionId" min:"1" type:"string"`
 
 	// The message about the failure.
+	//
+	// Message is a required field
 	Message *string `locationName:"message" type:"string" required:"true"`
 
 	// The type of the failure.
+	//
+	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"FailureType"`
 }
 
@@ -2844,6 +2956,8 @@ type GetJobDetailsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique system-generated ID for the job.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 }
 
@@ -2896,9 +3010,13 @@ type GetPipelineExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the pipeline execution about which you want to get execution details.
+	//
+	// PipelineExecutionId is a required field
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
 
 	// The name of the pipeline about which you want to get execution details.
+	//
+	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 }
 
@@ -2955,6 +3073,8 @@ type GetPipelineInput struct {
 
 	// The name of the pipeline for which you want to get information. Pipeline
 	// names must be unique under an Amazon Web Services (AWS) user account.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The version number of the pipeline. If you do not specify a version, defaults
@@ -3014,6 +3134,8 @@ type GetPipelineStateInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the pipeline about which you want to get information.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -3082,9 +3204,13 @@ type GetThirdPartyJobDetailsInput struct {
 
 	// The clientToken portion of the clientId and clientToken pair used to verify
 	// that the calling entity is allowed access to the job and its details.
+	//
+	// ClientToken is a required field
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The unique system-generated ID used for identifying the job.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 }
 
@@ -3147,6 +3273,8 @@ type InputArtifact struct {
 	// action in strict sequence from the action that provided the output artifact.
 	// Actions in parallel can declare different output artifacts, which are in
 	// turn consumed by different following actions.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -3302,6 +3430,8 @@ type ListActionTypesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Provides details of the action types.
+	//
+	// ActionTypes is a required field
 	ActionTypes []*ActionType `locationName:"actionTypes" type:"list" required:"true"`
 
 	// If the amount of returned information is significantly large, an identifier
@@ -3375,6 +3505,8 @@ type OutputArtifact struct {
 	// turn consumed by different following actions.
 	//
 	// Output artifact names must be unique within a pipeline.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -3437,17 +3569,25 @@ type PipelineDeclaration struct {
 	// The Amazon S3 location where artifacts are stored for the pipeline. If this
 	// Amazon S3 bucket is created manually, it must meet the requirements for AWS
 	// CodePipeline. For more information, see the Concepts (http://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html#CPS3Bucket).
+	//
+	// ArtifactStore is a required field
 	ArtifactStore *ArtifactStore `locationName:"artifactStore" type:"structure" required:"true"`
 
 	// The name of the action to be performed.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) for AWS CodePipeline to use to either perform
 	// actions with no actionRoleArn, or to use to assume roles for actions with
 	// an actionRoleArn.
+	//
+	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The stage in which to perform the action.
+	//
+	// Stages is a required field
 	Stages []*StageDeclaration `locationName:"stages" type:"list" required:"true"`
 
 	// The version number of the pipeline. A new pipeline always has a version number
@@ -3580,6 +3720,8 @@ type PollForJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Represents information about an action type.
+	//
+	// ActionTypeId is a required field
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The maximum number of jobs to return in a poll for jobs call.
@@ -3646,6 +3788,8 @@ type PollForThirdPartyJobsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Represents information about an action type.
+	//
+	// ActionTypeId is a required field
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The maximum number of jobs to return in a poll for jobs call.
@@ -3706,15 +3850,23 @@ type PutActionRevisionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the action that will process the revision.
+	//
+	// ActionName is a required field
 	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
 
 	// Represents information about the version (or revision) of an action.
+	//
+	// ActionRevision is a required field
 	ActionRevision *ActionRevision `locationName:"actionRevision" type:"structure" required:"true"`
 
 	// The name of the pipeline that will start processing the revision to the source.
+	//
+	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The name of the stage that contains the action that will act upon the revision.
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 }
 
@@ -3791,21 +3943,31 @@ type PutApprovalResultInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the action for which approval is requested.
+	//
+	// ActionName is a required field
 	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
 
 	// The name of the pipeline that contains the action.
+	//
+	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// Represents information about the result of the approval request.
+	//
+	// Result is a required field
 	Result *ApprovalResult `locationName:"result" type:"structure" required:"true"`
 
 	// The name of the stage that contains the action.
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
 	// The system-generated token used to identify a unique approval request. The
 	// token for each open approval request can be obtained using the GetPipelineState
 	// action and is used to validate that the approval request corresponding to
 	// this token is still valid.
+	//
+	// Token is a required field
 	Token *string `locationName:"token" type:"string" required:"true"`
 }
 
@@ -3881,10 +4043,14 @@ type PutJobFailureResultInput struct {
 	_ struct{} `type:"structure"`
 
 	// The details about the failure of a job.
+	//
+	// FailureDetails is a required field
 	FailureDetails *FailureDetails `locationName:"failureDetails" type:"structure" required:"true"`
 
 	// The unique system-generated ID of the job that failed. This is the same ID
 	// returned from PollForJobs.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 }
 
@@ -3955,6 +4121,8 @@ type PutJobSuccessResultInput struct {
 
 	// The unique system-generated ID of the job that succeeded. This is the same
 	// ID returned from PollForJobs.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 }
 
@@ -4011,12 +4179,18 @@ type PutThirdPartyJobFailureResultInput struct {
 
 	// The clientToken portion of the clientId and clientToken pair used to verify
 	// that the calling entity is allowed access to the job and its details.
+	//
+	// ClientToken is a required field
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// Represents information about failure details.
+	//
+	// FailureDetails is a required field
 	FailureDetails *FailureDetails `locationName:"failureDetails" type:"structure" required:"true"`
 
 	// The ID of the job that failed. This is the same ID returned from PollForThirdPartyJobs.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 }
 
@@ -4077,6 +4251,8 @@ type PutThirdPartyJobSuccessResultInput struct {
 
 	// The clientToken portion of the clientId and clientToken pair used to verify
 	// that the calling entity is allowed access to the job and its details.
+	//
+	// ClientToken is a required field
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// A token generated by a job worker, such as an AWS CodeDeploy deployment ID,
@@ -4096,6 +4272,8 @@ type PutThirdPartyJobSuccessResultInput struct {
 
 	// The ID of the job that successfully completed. This is the same ID returned
 	// from PollForThirdPartyJobs.
+	//
+	// JobId is a required field
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 }
 
@@ -4159,15 +4337,23 @@ type RetryStageExecutionInput struct {
 	// The ID of the pipeline execution in the failed stage to be retried. Use the
 	// GetPipelineState action to retrieve the current pipelineExecutionId of the
 	// failed stage
+	//
+	// PipelineExecutionId is a required field
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
 
 	// The name of the pipeline that contains the failed stage.
+	//
+	// PipelineName is a required field
 	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS.
+	//
+	// RetryMode is a required field
 	RetryMode *string `locationName:"retryMode" type:"string" required:"true" enum:"StageRetryMode"`
 
 	// The name of the failed stage to be retried.
+	//
+	// StageName is a required field
 	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 }
 
@@ -4232,10 +4418,14 @@ type S3ArtifactLocation struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Amazon S3 bucket.
+	//
+	// BucketName is a required field
 	BucketName *string `locationName:"bucketName" type:"string" required:"true"`
 
 	// The key of the object in the Amazon S3 bucket, which uniquely identifies
 	// the object in the bucket.
+	//
+	// ObjectKey is a required field
 	ObjectKey *string `locationName:"objectKey" type:"string" required:"true"`
 }
 
@@ -4272,12 +4462,16 @@ type StageDeclaration struct {
 	_ struct{} `type:"structure"`
 
 	// The actions included in a stage.
+	//
+	// Actions is a required field
 	Actions []*ActionDeclaration `locationName:"actions" type:"list" required:"true"`
 
 	// Reserved for future use.
 	Blockers []*BlockerDeclaration `locationName:"blockers" type:"list"`
 
 	// The name of the stage.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -4335,10 +4529,14 @@ type StageExecution struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the pipeline execution associated with the stage.
+	//
+	// PipelineExecutionId is a required field
 	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string" required:"true"`
 
 	// The status of the stage, or for a completed stage, the last status of the
 	// stage.
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"StageExecutionStatus"`
 }
 
@@ -4385,6 +4583,8 @@ type StartPipelineExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the pipeline to start.
+	//
+	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
@@ -4566,6 +4766,8 @@ type UpdatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the pipeline to be updated.
+	//
+	// Pipeline is a required field
 	Pipeline *PipelineDeclaration `locationName:"pipeline" type:"structure" required:"true"`
 }
 
@@ -4616,134 +4818,163 @@ func (s UpdatePipelineOutput) GoString() string {
 }
 
 const (
-	// @enum ActionCategory
+	// ActionCategorySource is a ActionCategory enum value
 	ActionCategorySource = "Source"
-	// @enum ActionCategory
+
+	// ActionCategoryBuild is a ActionCategory enum value
 	ActionCategoryBuild = "Build"
-	// @enum ActionCategory
+
+	// ActionCategoryDeploy is a ActionCategory enum value
 	ActionCategoryDeploy = "Deploy"
-	// @enum ActionCategory
+
+	// ActionCategoryTest is a ActionCategory enum value
 	ActionCategoryTest = "Test"
-	// @enum ActionCategory
+
+	// ActionCategoryInvoke is a ActionCategory enum value
 	ActionCategoryInvoke = "Invoke"
-	// @enum ActionCategory
+
+	// ActionCategoryApproval is a ActionCategory enum value
 	ActionCategoryApproval = "Approval"
 )
 
 const (
-	// @enum ActionConfigurationPropertyType
+	// ActionConfigurationPropertyTypeString is a ActionConfigurationPropertyType enum value
 	ActionConfigurationPropertyTypeString = "String"
-	// @enum ActionConfigurationPropertyType
+
+	// ActionConfigurationPropertyTypeNumber is a ActionConfigurationPropertyType enum value
 	ActionConfigurationPropertyTypeNumber = "Number"
-	// @enum ActionConfigurationPropertyType
+
+	// ActionConfigurationPropertyTypeBoolean is a ActionConfigurationPropertyType enum value
 	ActionConfigurationPropertyTypeBoolean = "Boolean"
 )
 
 const (
-	// @enum ActionExecutionStatus
+	// ActionExecutionStatusInProgress is a ActionExecutionStatus enum value
 	ActionExecutionStatusInProgress = "InProgress"
-	// @enum ActionExecutionStatus
+
+	// ActionExecutionStatusSucceeded is a ActionExecutionStatus enum value
 	ActionExecutionStatusSucceeded = "Succeeded"
-	// @enum ActionExecutionStatus
+
+	// ActionExecutionStatusFailed is a ActionExecutionStatus enum value
 	ActionExecutionStatusFailed = "Failed"
 )
 
 const (
-	// @enum ActionOwner
+	// ActionOwnerAws is a ActionOwner enum value
 	ActionOwnerAws = "AWS"
-	// @enum ActionOwner
+
+	// ActionOwnerThirdParty is a ActionOwner enum value
 	ActionOwnerThirdParty = "ThirdParty"
-	// @enum ActionOwner
+
+	// ActionOwnerCustom is a ActionOwner enum value
 	ActionOwnerCustom = "Custom"
 )
 
 const (
-	// @enum ApprovalStatus
+	// ApprovalStatusApproved is a ApprovalStatus enum value
 	ApprovalStatusApproved = "Approved"
-	// @enum ApprovalStatus
+
+	// ApprovalStatusRejected is a ApprovalStatus enum value
 	ApprovalStatusRejected = "Rejected"
 )
 
 const (
-	// @enum ArtifactLocationType
+	// ArtifactLocationTypeS3 is a ArtifactLocationType enum value
 	ArtifactLocationTypeS3 = "S3"
 )
 
 const (
-	// @enum ArtifactStoreType
+	// ArtifactStoreTypeS3 is a ArtifactStoreType enum value
 	ArtifactStoreTypeS3 = "S3"
 )
 
 const (
-	// @enum BlockerType
+	// BlockerTypeSchedule is a BlockerType enum value
 	BlockerTypeSchedule = "Schedule"
 )
 
 const (
-	// @enum EncryptionKeyType
+	// EncryptionKeyTypeKms is a EncryptionKeyType enum value
 	EncryptionKeyTypeKms = "KMS"
 )
 
 const (
-	// @enum FailureType
+	// FailureTypeJobFailed is a FailureType enum value
 	FailureTypeJobFailed = "JobFailed"
-	// @enum FailureType
+
+	// FailureTypeConfigurationError is a FailureType enum value
 	FailureTypeConfigurationError = "ConfigurationError"
-	// @enum FailureType
+
+	// FailureTypePermissionError is a FailureType enum value
 	FailureTypePermissionError = "PermissionError"
-	// @enum FailureType
+
+	// FailureTypeRevisionOutOfSync is a FailureType enum value
 	FailureTypeRevisionOutOfSync = "RevisionOutOfSync"
-	// @enum FailureType
+
+	// FailureTypeRevisionUnavailable is a FailureType enum value
 	FailureTypeRevisionUnavailable = "RevisionUnavailable"
-	// @enum FailureType
+
+	// FailureTypeSystemUnavailable is a FailureType enum value
 	FailureTypeSystemUnavailable = "SystemUnavailable"
 )
 
 const (
-	// @enum JobStatus
+	// JobStatusCreated is a JobStatus enum value
 	JobStatusCreated = "Created"
-	// @enum JobStatus
+
+	// JobStatusQueued is a JobStatus enum value
 	JobStatusQueued = "Queued"
-	// @enum JobStatus
+
+	// JobStatusDispatched is a JobStatus enum value
 	JobStatusDispatched = "Dispatched"
-	// @enum JobStatus
+
+	// JobStatusInProgress is a JobStatus enum value
 	JobStatusInProgress = "InProgress"
-	// @enum JobStatus
+
+	// JobStatusTimedOut is a JobStatus enum value
 	JobStatusTimedOut = "TimedOut"
-	// @enum JobStatus
+
+	// JobStatusSucceeded is a JobStatus enum value
 	JobStatusSucceeded = "Succeeded"
-	// @enum JobStatus
+
+	// JobStatusFailed is a JobStatus enum value
 	JobStatusFailed = "Failed"
 )
 
 const (
-	// @enum PipelineExecutionStatus
+	// PipelineExecutionStatusInProgress is a PipelineExecutionStatus enum value
 	PipelineExecutionStatusInProgress = "InProgress"
-	// @enum PipelineExecutionStatus
+
+	// PipelineExecutionStatusSucceeded is a PipelineExecutionStatus enum value
 	PipelineExecutionStatusSucceeded = "Succeeded"
-	// @enum PipelineExecutionStatus
+
+	// PipelineExecutionStatusSuperseded is a PipelineExecutionStatus enum value
 	PipelineExecutionStatusSuperseded = "Superseded"
-	// @enum PipelineExecutionStatus
+
+	// PipelineExecutionStatusFailed is a PipelineExecutionStatus enum value
 	PipelineExecutionStatusFailed = "Failed"
 )
 
 const (
-	// @enum StageExecutionStatus
+	// StageExecutionStatusInProgress is a StageExecutionStatus enum value
 	StageExecutionStatusInProgress = "InProgress"
-	// @enum StageExecutionStatus
+
+	// StageExecutionStatusFailed is a StageExecutionStatus enum value
 	StageExecutionStatusFailed = "Failed"
-	// @enum StageExecutionStatus
+
+	// StageExecutionStatusSucceeded is a StageExecutionStatus enum value
 	StageExecutionStatusSucceeded = "Succeeded"
 )
 
 const (
-	// @enum StageRetryMode
+	// StageRetryModeFailedActions is a StageRetryMode enum value
 	StageRetryModeFailedActions = "FAILED_ACTIONS"
 )
 
 const (
-	// @enum StageTransitionType
+	// StageTransitionTypeInbound is a StageTransitionType enum value
 	StageTransitionTypeInbound = "Inbound"
-	// @enum StageTransitionType
+
+	// StageTransitionTypeOutbound is a StageTransitionType enum value
 	StageTransitionTypeOutbound = "Outbound"
 )

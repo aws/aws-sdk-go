@@ -1206,6 +1206,7 @@ type InputService10TestShapeInputService10TestCaseOperation1Input struct {
 
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
 
+	// VaultName is a required field
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
 }
 
@@ -1335,6 +1336,7 @@ type InputService11TestShapeInputService11TestCaseOperation1Input struct {
 	// Bar is automatically base64 encoded/decoded by the SDK.
 	Bar []byte `type:"blob"`
 
+	// Foo is a required field
 	Foo *string `location:"uri" locationName:"Foo" type:"string" required:"true"`
 }
 

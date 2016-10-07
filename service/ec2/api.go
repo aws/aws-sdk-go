@@ -12184,6 +12184,8 @@ type AcceptReservedInstancesExchangeQuoteInput struct {
 
 	// The IDs of the Convertible Reserved Instances that you want to exchange for
 	// other Convertible Reserved Instances of the same or higher value.
+	//
+	// ReservedInstanceIds is a required field
 	ReservedInstanceIds []*string `locationName:"ReservedInstanceId" locationNameList:"ReservedInstanceId" type:"list" required:"true"`
 
 	// The configurations of the Convertible Reserved Instance offerings you are
@@ -12452,6 +12454,8 @@ type AllocateHostsInput struct {
 	AutoPlacement *string `locationName:"autoPlacement" type:"string" enum:"AutoPlacement"`
 
 	// The Availability Zone for the Dedicated Hosts.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
 	// Unique, case-sensitive identifier you provide to ensure idempotency of the
@@ -12462,10 +12466,14 @@ type AllocateHostsInput struct {
 	// Specify the instance type that you want your Dedicated Hosts to be configured
 	// for. When you specify the instance type, that is the only instance type that
 	// you can launch onto that host.
+	//
+	// InstanceType is a required field
 	InstanceType *string `locationName:"instanceType" type:"string" required:"true"`
 
 	// The number of Dedicated Hosts you want to allocate to your account with these
 	// parameters.
+	//
+	// Quantity is a required field
 	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
 }
 
@@ -12526,6 +12534,8 @@ type AssignPrivateIpAddressesInput struct {
 	AllowReassignment *bool `locationName:"allowReassignment" type:"boolean"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	// One or more IP addresses to be assigned as a secondary private IP address
@@ -12653,6 +12663,8 @@ type AssociateDhcpOptionsInput struct {
 
 	// The ID of the DHCP options set, or default to associate no DHCP options with
 	// the VPC.
+	//
+	// DhcpOptionsId is a required field
 	DhcpOptionsId *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -12662,6 +12674,8 @@ type AssociateDhcpOptionsInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -12716,9 +12730,13 @@ type AssociateRouteTableInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the route table.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	// The ID of the subnet.
+	//
+	// SubnetId is a required field
 	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
 }
 
@@ -12778,12 +12796,18 @@ type AttachClassicLinkVpcInput struct {
 
 	// The ID of one or more of the VPC's security groups. You cannot specify security
 	// groups from a different VPC.
+	//
+	// Groups is a required field
 	Groups []*string `locationName:"SecurityGroupId" locationNameList:"groupId" type:"list" required:"true"`
 
 	// The ID of an EC2-Classic instance to link to the ClassicLink-enabled VPC.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// The ID of a ClassicLink-enabled VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -12845,9 +12869,13 @@ type AttachInternetGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the Internet gateway.
+	//
+	// InternetGatewayId is a required field
 	InternetGatewayId *string `locationName:"internetGatewayId" type:"string" required:"true"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -12896,6 +12924,8 @@ type AttachNetworkInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The index of the device for the network interface attachment.
+	//
+	// DeviceIndex is a required field
 	DeviceIndex *int64 `locationName:"deviceIndex" type:"integer" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -12905,9 +12935,13 @@ type AttachNetworkInterfaceInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 }
 
@@ -12963,6 +12997,8 @@ type AttachVolumeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The device name to expose to the instance (for example, /dev/sdh or xvdh).
+	//
+	// Device is a required field
 	Device *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -12972,10 +13008,14 @@ type AttachVolumeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The ID of the EBS volume. The volume and instance must be within the same
 	// Availability Zone.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -13019,9 +13059,13 @@ type AttachVpnGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 
 	// The ID of the virtual private gateway.
+	//
+	// VpnGatewayId is a required field
 	VpnGatewayId *string `type:"string" required:"true"`
 }
 
@@ -13124,6 +13168,8 @@ type AuthorizeSecurityGroupEgressInput struct {
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The ID of the security group.
+	//
+	// GroupId is a required field
 	GroupId *string `locationName:"groupId" type:"string" required:"true"`
 
 	// A set of IP permissions. You can't specify a destination security group and
@@ -13403,11 +13449,15 @@ type BundleInstanceInput struct {
 	// Default: None
 	//
 	// Required: Yes
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The bucket in which to store the AMI. You can specify a bucket that you already
 	// own or a new bucket that Amazon EC2 creates on your behalf. If you specify
 	// a bucket that belongs to someone else, Amazon EC2 returns an error.
+	//
+	// Storage is a required field
 	Storage *Storage `type:"structure" required:"true"`
 }
 
@@ -13520,6 +13570,8 @@ type CancelBundleTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the bundle task.
+	//
+	// BundleId is a required field
 	BundleId *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -13575,6 +13627,8 @@ type CancelConversionTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the conversion task.
+	//
+	// ConversionTaskId is a required field
 	ConversionTaskId *string `locationName:"conversionTaskId" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -13629,6 +13683,8 @@ type CancelExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the export task. This is the ID returned by CreateInstanceExportTask.
+	//
+	// ExportTaskId is a required field
 	ExportTaskId *string `locationName:"exportTaskId" type:"string" required:"true"`
 }
 
@@ -13725,6 +13781,8 @@ type CancelReservedInstancesListingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the Reserved Instance listing.
+	//
+	// ReservedInstancesListingId is a required field
 	ReservedInstancesListingId *string `locationName:"reservedInstancesListingId" type:"string" required:"true"`
 }
 
@@ -13774,9 +13832,13 @@ type CancelSpotFleetRequestsError struct {
 	_ struct{} `type:"structure"`
 
 	// The error code.
+	//
+	// Code is a required field
 	Code *string `locationName:"code" type:"string" required:"true" enum:"CancelBatchErrorCode"`
 
 	// The description for the error code.
+	//
+	// Message is a required field
 	Message *string `locationName:"message" type:"string" required:"true"`
 }
 
@@ -13795,9 +13857,13 @@ type CancelSpotFleetRequestsErrorItem struct {
 	_ struct{} `type:"structure"`
 
 	// The error.
+	//
+	// Error is a required field
 	Error *CancelSpotFleetRequestsError `locationName:"error" type:"structure" required:"true"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 }
 
@@ -13822,10 +13888,14 @@ type CancelSpotFleetRequestsInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The IDs of the Spot fleet requests.
+	//
+	// SpotFleetRequestIds is a required field
 	SpotFleetRequestIds []*string `locationName:"spotFleetRequestId" locationNameList:"item" type:"list" required:"true"`
 
 	// Indicates whether to terminate instances for a Spot fleet request if it is
 	// canceled successfully.
+	//
+	// TerminateInstances is a required field
 	TerminateInstances *bool `locationName:"terminateInstances" type:"boolean" required:"true"`
 }
 
@@ -13881,12 +13951,18 @@ type CancelSpotFleetRequestsSuccessItem struct {
 	_ struct{} `type:"structure"`
 
 	// The current state of the Spot fleet request.
+	//
+	// CurrentSpotFleetRequestState is a required field
 	CurrentSpotFleetRequestState *string `locationName:"currentSpotFleetRequestState" type:"string" required:"true" enum:"BatchState"`
 
 	// The previous state of the Spot fleet request.
+	//
+	// PreviousSpotFleetRequestState is a required field
 	PreviousSpotFleetRequestState *string `locationName:"previousSpotFleetRequestState" type:"string" required:"true" enum:"BatchState"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 }
 
@@ -13911,6 +13987,8 @@ type CancelSpotInstanceRequestsInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// One or more Spot instance request IDs.
+	//
+	// SpotInstanceRequestIds is a required field
 	SpotInstanceRequestIds []*string `locationName:"SpotInstanceRequestId" locationNameList:"SpotInstanceRequestId" type:"list" required:"true"`
 }
 
@@ -14062,9 +14140,13 @@ type ConfirmProductInstanceInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// The product code. This must be a product code that you own.
+	//
+	// ProductCode is a required field
 	ProductCode *string `type:"string" required:"true"`
 }
 
@@ -14122,6 +14204,8 @@ type ConversionTask struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the conversion task.
+	//
+	// ConversionTaskId is a required field
 	ConversionTaskId *string `locationName:"conversionTaskId" type:"string" required:"true"`
 
 	// The time when the task expires. If the upload isn't complete before the expiration
@@ -14137,6 +14221,8 @@ type ConversionTask struct {
 	ImportVolume *ImportVolumeTaskDetails `locationName:"importVolume" type:"structure"`
 
 	// The state of the conversion task.
+	//
+	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"ConversionTaskState"`
 
 	// The status message related to the conversion task.
@@ -14192,12 +14278,18 @@ type CopyImageInput struct {
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The name of the new AMI in the destination region.
+	//
+	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
 	// The ID of the AMI to copy.
+	//
+	// SourceImageId is a required field
 	SourceImageId *string `type:"string" required:"true"`
 
 	// The name of the region that contains the AMI to copy.
+	//
+	// SourceRegion is a required field
 	SourceRegion *string `type:"string" required:"true"`
 }
 
@@ -14305,9 +14397,13 @@ type CopySnapshotInput struct {
 	PresignedUrl *string `locationName:"presignedUrl" type:"string"`
 
 	// The ID of the region that contains the snapshot to be copied.
+	//
+	// SourceRegion is a required field
 	SourceRegion *string `type:"string" required:"true"`
 
 	// The ID of the EBS snapshot to copy.
+	//
+	// SourceSnapshotId is a required field
 	SourceSnapshotId *string `type:"string" required:"true"`
 }
 
@@ -14362,6 +14458,8 @@ type CreateCustomerGatewayInput struct {
 	// For devices that support BGP, the customer gateway's BGP ASN.
 	//
 	// Default: 65000
+	//
+	// BgpAsn is a required field
 	BgpAsn *int64 `type:"integer" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -14372,9 +14470,13 @@ type CreateCustomerGatewayInput struct {
 
 	// The Internet-routable IP address for the customer gateway's outside interface.
 	// The address must be static.
+	//
+	// PublicIp is a required field
 	PublicIp *string `locationName:"IpAddress" type:"string" required:"true"`
 
 	// The type of VPN connection that this customer gateway supports (ipsec.1).
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"GatewayType"`
 }
 
@@ -14430,6 +14532,8 @@ type CreateDhcpOptionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A DHCP configuration option.
+	//
+	// DhcpConfigurations is a required field
 	DhcpConfigurations []*NewDhcpConfiguration `locationName:"dhcpConfiguration" locationNameList:"item" type:"list" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -14490,20 +14594,30 @@ type CreateFlowLogsInput struct {
 
 	// The ARN for the IAM role that's used to post flow logs to a CloudWatch Logs
 	// log group.
+	//
+	// DeliverLogsPermissionArn is a required field
 	DeliverLogsPermissionArn *string `type:"string" required:"true"`
 
 	// The name of the CloudWatch log group.
+	//
+	// LogGroupName is a required field
 	LogGroupName *string `type:"string" required:"true"`
 
 	// One or more subnet, network interface, or VPC IDs.
 	//
 	// Constraints: Maximum of 1000 resources
+	//
+	// ResourceIds is a required field
 	ResourceIds []*string `locationName:"ResourceId" locationNameList:"item" type:"list" required:"true"`
 
 	// The type of resource on which to create the flow log.
+	//
+	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"FlowLogsResourceType"`
 
 	// The type of traffic to log.
+	//
+	// TrafficType is a required field
 	TrafficType *string `type:"string" required:"true" enum:"TrafficType"`
 }
 
@@ -14584,6 +14698,8 @@ type CreateImageInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// A name for the new image.
@@ -14591,6 +14707,8 @@ type CreateImageInput struct {
 	// Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets
 	// ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('),
 	// at-signs (@), or underscores(_)
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// By default, Amazon EC2 attempts to shut down and reboot the instance before
@@ -14656,6 +14774,8 @@ type CreateInstanceExportTaskInput struct {
 	ExportToS3Task *ExportToS3TaskSpecification `locationName:"exportToS3" type:"structure"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// The target virtualization environment.
@@ -14755,6 +14875,8 @@ type CreateKeyPairInput struct {
 	// A unique name for the key pair.
 	//
 	// Constraints: Up to 255 ASCII characters
+	//
+	// KeyName is a required field
 	KeyName *string `type:"string" required:"true"`
 }
 
@@ -14812,6 +14934,8 @@ type CreateNatGatewayInput struct {
 	// The allocation ID of an Elastic IP address to associate with the NAT gateway.
 	// If the Elastic IP address is associated with another resource, you must first
 	// disassociate it.
+	//
+	// AllocationId is a required field
 	AllocationId *string `type:"string" required:"true"`
 
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
@@ -14821,6 +14945,8 @@ type CreateNatGatewayInput struct {
 	ClientToken *string `type:"string"`
 
 	// The subnet in which to create the NAT gateway.
+	//
+	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
 }
 
@@ -14877,6 +15003,8 @@ type CreateNetworkAclEntryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The network range to allow or deny, in CIDR notation (for example 172.16.0.0/24).
+	//
+	// CidrBlock is a required field
 	CidrBlock *string `locationName:"cidrBlock" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -14887,6 +15015,8 @@ type CreateNetworkAclEntryInput struct {
 
 	// Indicates whether this is an egress rule (rule is applied to traffic leaving
 	// the subnet).
+	//
+	// Egress is a required field
 	Egress *bool `locationName:"egress" type:"boolean" required:"true"`
 
 	// ICMP protocol: The ICMP type and code. Required if specifying ICMP for the
@@ -14894,15 +15024,21 @@ type CreateNetworkAclEntryInput struct {
 	IcmpTypeCode *IcmpTypeCode `locationName:"Icmp" type:"structure"`
 
 	// The ID of the network ACL.
+	//
+	// NetworkAclId is a required field
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	// TCP or UDP protocols: The range of ports the rule applies to.
 	PortRange *PortRange `locationName:"portRange" type:"structure"`
 
 	// The protocol. A value of -1 means all protocols.
+	//
+	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true"`
 
 	// Indicates whether to allow or deny the traffic that matches the rule.
+	//
+	// RuleAction is a required field
 	RuleAction *string `locationName:"ruleAction" type:"string" required:"true" enum:"RuleAction"`
 
 	// The rule number for the entry (for example, 100). ACL entries are processed
@@ -14910,6 +15046,8 @@ type CreateNetworkAclEntryInput struct {
 	//
 	// Constraints: Positive integer from 1 to 32766. The range 32767 to 65535
 	// is reserved for internal use.
+	//
+	// RuleNumber is a required field
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 }
 
@@ -14976,6 +15114,8 @@ type CreateNetworkAclInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -15057,6 +15197,8 @@ type CreateNetworkInterfaceInput struct {
 	SecondaryPrivateIpAddressCount *int64 `locationName:"secondaryPrivateIpAddressCount" type:"integer"`
 
 	// The ID of the subnet to associate with the network interface.
+	//
+	// SubnetId is a required field
 	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
 }
 
@@ -15124,9 +15266,13 @@ type CreatePlacementGroupInput struct {
 	// A name for the placement group.
 	//
 	// Constraints: Up to 255 ASCII characters
+	//
+	// GroupName is a required field
 	GroupName *string `locationName:"groupName" type:"string" required:"true"`
 
 	// The placement strategy.
+	//
+	// Strategy is a required field
 	Strategy *string `locationName:"strategy" type:"string" required:"true" enum:"PlacementStrategy"`
 }
 
@@ -15177,19 +15323,27 @@ type CreateReservedInstancesListingInput struct {
 	// Unique, case-sensitive identifier you provide to ensure idempotency of your
 	// listings. This helps avoid duplicate listings. For more information, see
 	// Ensuring Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
+	//
+	// ClientToken is a required field
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The number of instances that are a part of a Reserved Instance account to
 	// be listed in the Reserved Instance Marketplace. This number should be less
 	// than or equal to the instance count associated with the Reserved Instance
 	// ID specified in this call.
+	//
+	// InstanceCount is a required field
 	InstanceCount *int64 `locationName:"instanceCount" type:"integer" required:"true"`
 
 	// A list specifying the price of the Standard Reserved Instance for each month
 	// remaining in the Reserved Instance term.
+	//
+	// PriceSchedules is a required field
 	PriceSchedules []*PriceScheduleSpecification `locationName:"priceSchedules" locationNameList:"item" type:"list" required:"true"`
 
 	// The ID of the active Standard Reserved Instance.
+	//
+	// ReservedInstancesId is a required field
 	ReservedInstancesId *string `locationName:"reservedInstancesId" type:"string" required:"true"`
 }
 
@@ -15249,6 +15403,8 @@ type CreateRouteInput struct {
 
 	// The CIDR address block used for the destination match. Routing decisions
 	// are based on the most specific match.
+	//
+	// DestinationCidrBlock is a required field
 	DestinationCidrBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -15272,6 +15428,8 @@ type CreateRouteInput struct {
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
 
 	// The ID of the route table for the route.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	// The ID of a VPC peering connection.
@@ -15333,6 +15491,8 @@ type CreateRouteTableInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -15388,6 +15548,8 @@ type CreateSecurityGroupInput struct {
 	// Constraints for EC2-Classic: ASCII characters
 	//
 	// Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
+	//
+	// Description is a required field
 	Description *string `locationName:"GroupDescription" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -15403,6 +15565,8 @@ type CreateSecurityGroupInput struct {
 	// Constraints for EC2-Classic: ASCII characters
 	//
 	// Constraints for EC2-VPC: a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&;{}!$*
+	//
+	// GroupName is a required field
 	GroupName *string `type:"string" required:"true"`
 
 	// [EC2-VPC] The ID of the VPC. Required for EC2-VPC.
@@ -15467,6 +15631,8 @@ type CreateSnapshotInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the EBS volume.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -15498,6 +15664,8 @@ type CreateSpotDatafeedSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon S3 bucket in which to store the Spot instance data feed.
+	//
+	// Bucket is a required field
 	Bucket *string `locationName:"bucket" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -15562,6 +15730,8 @@ type CreateSubnetInput struct {
 	AvailabilityZone *string `type:"string"`
 
 	// The network range for the subnet, in CIDR notation. For example, 10.0.0.0/24.
+	//
+	// CidrBlock is a required field
 	CidrBlock *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -15571,6 +15741,8 @@ type CreateSubnetInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -15629,11 +15801,15 @@ type CreateTagsInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The IDs of one or more resources to tag. For example, ami-1a2b3c4d.
+	//
+	// Resources is a required field
 	Resources []*string `locationName:"ResourceId" type:"list" required:"true"`
 
 	// One or more tags. The value parameter is required, but if you don't want
 	// the tag to have a value, specify the parameter with no value, and we set
 	// the value to an empty string.
+	//
+	// Tags is a required field
 	Tags []*Tag `locationName:"Tag" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -15683,6 +15859,8 @@ type CreateVolumeInput struct {
 
 	// The Availability Zone in which to create the volume. Use DescribeAvailabilityZones
 	// to list the Availability Zones that are currently available to you.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -15831,9 +16009,13 @@ type CreateVpcEndpointInput struct {
 
 	// The AWS service name, in the form com.amazonaws.region.service . To get a
 	// list of available services, use the DescribeVpcEndpointServices request.
+	//
+	// ServiceName is a required field
 	ServiceName *string `type:"string" required:"true"`
 
 	// The ID of the VPC in which the endpoint will be used.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -15890,6 +16072,8 @@ type CreateVpcInput struct {
 	_ struct{} `type:"structure"`
 
 	// The network range for the VPC, in CIDR notation. For example, 10.0.0.0/16.
+	//
+	// CidrBlock is a required field
 	CidrBlock *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -16007,6 +16191,8 @@ type CreateVpnConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the customer gateway.
+	//
+	// CustomerGatewayId is a required field
 	CustomerGatewayId *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -16023,9 +16209,13 @@ type CreateVpnConnectionInput struct {
 	Options *VpnConnectionOptionsSpecification `locationName:"options" type:"structure"`
 
 	// The type of VPN connection (ipsec.1).
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true"`
 
 	// The ID of the virtual private gateway.
+	//
+	// VpnGatewayId is a required field
 	VpnGatewayId *string `type:"string" required:"true"`
 }
 
@@ -16081,9 +16271,13 @@ type CreateVpnConnectionRouteInput struct {
 	_ struct{} `type:"structure"`
 
 	// The CIDR block associated with the local subnet of the customer network.
+	//
+	// DestinationCidrBlock is a required field
 	DestinationCidrBlock *string `type:"string" required:"true"`
 
 	// The ID of the VPN connection.
+	//
+	// VpnConnectionId is a required field
 	VpnConnectionId *string `type:"string" required:"true"`
 }
 
@@ -16141,6 +16335,8 @@ type CreateVpnGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The type of VPN connection this virtual private gateway supports.
+	//
+	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"GatewayType"`
 }
 
@@ -16225,6 +16421,8 @@ type DeleteCustomerGatewayInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the customer gateway.
+	//
+	// CustomerGatewayId is a required field
 	CustomerGatewayId *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -16276,6 +16474,8 @@ type DeleteDhcpOptionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the DHCP options set.
+	//
+	// DhcpOptionsId is a required field
 	DhcpOptionsId *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -16327,6 +16527,8 @@ type DeleteFlowLogsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more flow log IDs.
+	//
+	// FlowLogIds is a required field
 	FlowLogIds []*string `locationName:"FlowLogId" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -16382,6 +16584,8 @@ type DeleteInternetGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the Internet gateway.
+	//
+	// InternetGatewayId is a required field
 	InternetGatewayId *string `locationName:"internetGatewayId" type:"string" required:"true"`
 }
 
@@ -16433,6 +16637,8 @@ type DeleteKeyPairInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The name of the key pair.
+	//
+	// KeyName is a required field
 	KeyName *string `type:"string" required:"true"`
 }
 
@@ -16478,6 +16684,8 @@ type DeleteNatGatewayInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the NAT gateway.
+	//
+	// NatGatewayId is a required field
 	NatGatewayId *string `type:"string" required:"true"`
 }
 
@@ -16533,12 +16741,18 @@ type DeleteNetworkAclEntryInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// Indicates whether the rule is an egress rule.
+	//
+	// Egress is a required field
 	Egress *bool `locationName:"egress" type:"boolean" required:"true"`
 
 	// The ID of the network ACL.
+	//
+	// NetworkAclId is a required field
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	// The rule number of the entry to delete.
+	//
+	// RuleNumber is a required field
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 }
 
@@ -16596,6 +16810,8 @@ type DeleteNetworkAclInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the network ACL.
+	//
+	// NetworkAclId is a required field
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 }
 
@@ -16647,6 +16863,8 @@ type DeleteNetworkInterfaceInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 }
 
@@ -16698,6 +16916,8 @@ type DeletePlacementGroupInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The name of the placement group.
+	//
+	// GroupName is a required field
 	GroupName *string `locationName:"groupName" type:"string" required:"true"`
 }
 
@@ -16744,6 +16964,8 @@ type DeleteRouteInput struct {
 
 	// The CIDR range for the route. The value you specify must match the CIDR for
 	// the route exactly.
+	//
+	// DestinationCidrBlock is a required field
 	DestinationCidrBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -16753,6 +16975,8 @@ type DeleteRouteInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the route table.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 }
 
@@ -16807,6 +17031,8 @@ type DeleteRouteTableInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the route table.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 }
 
@@ -16900,6 +17126,8 @@ type DeleteSnapshotInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the EBS snapshot.
+	//
+	// SnapshotId is a required field
 	SnapshotId *string `type:"string" required:"true"`
 }
 
@@ -16986,6 +17214,8 @@ type DeleteSubnetInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the subnet.
+	//
+	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
 }
 
@@ -17038,6 +17268,8 @@ type DeleteTagsInput struct {
 
 	// The ID of the resource. For example, ami-1a2b3c4d. You can specify more than
 	// one resource ID.
+	//
+	// Resources is a required field
 	Resources []*string `locationName:"resourceId" type:"list" required:"true"`
 
 	// One or more tags to delete. If you omit the value parameter, we delete the
@@ -17094,6 +17326,8 @@ type DeleteVolumeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the volume.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -17145,6 +17379,8 @@ type DeleteVpcEndpointsInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more endpoint IDs.
+	//
+	// VpcEndpointIds is a required field
 	VpcEndpointIds []*string `locationName:"VpcEndpointId" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -17200,6 +17436,8 @@ type DeleteVpcInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -17251,6 +17489,8 @@ type DeleteVpcPeeringConnectionInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC peering connection.
+	//
+	// VpcPeeringConnectionId is a required field
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 }
 
@@ -17306,6 +17546,8 @@ type DeleteVpnConnectionInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPN connection.
+	//
+	// VpnConnectionId is a required field
 	VpnConnectionId *string `type:"string" required:"true"`
 }
 
@@ -17351,9 +17593,13 @@ type DeleteVpnConnectionRouteInput struct {
 	_ struct{} `type:"structure"`
 
 	// The CIDR block associated with the local subnet of the customer network.
+	//
+	// DestinationCidrBlock is a required field
 	DestinationCidrBlock *string `type:"string" required:"true"`
 
 	// The ID of the VPN connection.
+	//
+	// VpnConnectionId is a required field
 	VpnConnectionId *string `type:"string" required:"true"`
 }
 
@@ -17408,6 +17654,8 @@ type DeleteVpnGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the virtual private gateway.
+	//
+	// VpnGatewayId is a required field
 	VpnGatewayId *string `type:"string" required:"true"`
 }
 
@@ -17459,6 +17707,8 @@ type DeregisterImageInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the AMI.
+	//
+	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 }
 
@@ -18335,6 +18585,8 @@ type DescribeIdentityIdFormatInput struct {
 
 	// The ARN of the principal, which can be an IAM role, IAM user, or the root
 	// user.
+	//
+	// PrincipalArn is a required field
 	PrincipalArn *string `locationName:"principalArn" type:"string" required:"true"`
 
 	// The type of resource: instance | reservation | snapshot | volume
@@ -18391,6 +18643,8 @@ type DescribeImageAttributeInput struct {
 	//  Note: Depending on your account privileges, the blockDeviceMapping attribute
 	// may return a Client.AuthFailure error. If this happens, use DescribeImages
 	// to get information about the block device mapping for the AMI.
+	//
+	// Attribute is a required field
 	Attribute *string `type:"string" required:"true" enum:"ImageAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -18400,6 +18654,8 @@ type DescribeImageAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the AMI.
+	//
+	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 }
 
@@ -18719,6 +18975,8 @@ type DescribeInstanceAttributeInput struct {
 	// The instance attribute.
 	//
 	// Note: The enaSupport attribute is not supported at this time.
+	//
+	// Attribute is a required field
 	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"InstanceAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -18728,6 +18986,8 @@ type DescribeInstanceAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 }
 
@@ -19564,6 +19824,8 @@ type DescribeNetworkInterfaceAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 }
 
@@ -20429,6 +20691,8 @@ type DescribeScheduledInstanceAvailabilityInput struct {
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The time period for the first schedule to start.
+	//
+	// FirstSlotStartTimeRange is a required field
 	FirstSlotStartTimeRange *SlotDateTimeRangeRequest `type:"structure" required:"true"`
 
 	// The maximum number of results to return in a single call. This value can
@@ -20450,6 +20714,8 @@ type DescribeScheduledInstanceAvailabilityInput struct {
 	NextToken *string `type:"string"`
 
 	// The schedule recurrence.
+	//
+	// Recurrence is a required field
 	Recurrence *ScheduledInstanceRecurrenceRequest `type:"structure" required:"true"`
 }
 
@@ -20584,6 +20850,8 @@ type DescribeSecurityGroupReferencesInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more security group IDs in your account.
+	//
+	// GroupId is a required field
 	GroupId []*string `locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -20727,6 +20995,8 @@ type DescribeSnapshotAttributeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The snapshot attribute you would like to view.
+	//
+	// Attribute is a required field
 	Attribute *string `type:"string" required:"true" enum:"SnapshotAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -20736,6 +21006,8 @@ type DescribeSnapshotAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the EBS snapshot.
+	//
+	// SnapshotId is a required field
 	SnapshotId *string `type:"string" required:"true"`
 }
 
@@ -20958,6 +21230,8 @@ type DescribeSpotFleetInstancesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 }
 
@@ -20990,6 +21264,8 @@ type DescribeSpotFleetInstancesOutput struct {
 
 	// The running instances. Note that this list is refreshed periodically and
 	// might be out of date.
+	//
+	// ActiveInstances is a required field
 	ActiveInstances []*ActiveInstance `locationName:"activeInstanceSet" locationNameList:"item" type:"list" required:"true"`
 
 	// The token required to retrieve the next set of results. This value is null
@@ -20997,6 +21273,8 @@ type DescribeSpotFleetInstancesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 }
 
@@ -21032,9 +21310,13 @@ type DescribeSpotFleetRequestHistoryInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
 	// The starting date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
+	//
+	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -21069,12 +21351,16 @@ type DescribeSpotFleetRequestHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the events in the history of the Spot fleet request.
+	//
+	// HistoryRecords is a required field
 	HistoryRecords []*HistoryRecord `locationName:"historyRecordSet" locationNameList:"item" type:"list" required:"true"`
 
 	// The last date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
 	// All records up to this time were retrieved.
 	//
 	// If nextToken indicates that there are more results, this value is not present.
+	//
+	// LastEvaluatedTime is a required field
 	LastEvaluatedTime *time.Time `locationName:"lastEvaluatedTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The token required to retrieve the next set of results. This value is null
@@ -21082,9 +21368,13 @@ type DescribeSpotFleetRequestHistoryOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
 	// The starting date and time for the events, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
+	//
+	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -21139,6 +21429,8 @@ type DescribeSpotFleetRequestsOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Information about the configuration of your Spot fleet.
+	//
+	// SpotFleetRequestConfigs is a required field
 	SpotFleetRequestConfigs []*SpotFleetRequestConfig `locationName:"spotFleetRequestConfigSet" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -21411,6 +21703,8 @@ type DescribeStaleSecurityGroupsInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -21621,6 +21915,8 @@ type DescribeVolumeAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the volume.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -21886,6 +22182,8 @@ type DescribeVpcAttributeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The VPC attribute.
+	//
+	// Attribute is a required field
 	Attribute *string `type:"string" required:"true" enum:"VpcAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -21895,6 +22193,8 @@ type DescribeVpcAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 }
 
@@ -22525,9 +22825,13 @@ type DetachClassicLinkVpcInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance to unlink from the VPC.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// The ID of the VPC to which the instance is linked.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -22586,9 +22890,13 @@ type DetachInternetGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the Internet gateway.
+	//
+	// InternetGatewayId is a required field
 	InternetGatewayId *string `locationName:"internetGatewayId" type:"string" required:"true"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -22637,6 +22945,8 @@ type DetachNetworkInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the attachment.
+	//
+	// AttachmentId is a required field
 	AttachmentId *string `locationName:"attachmentId" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -22712,6 +23022,8 @@ type DetachVolumeInput struct {
 	InstanceId *string `type:"string"`
 
 	// The ID of the volume.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -22749,9 +23061,13 @@ type DetachVpnGatewayInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
 
 	// The ID of the virtual private gateway.
+	//
+	// VpnGatewayId is a required field
 	VpnGatewayId *string `type:"string" required:"true"`
 }
 
@@ -22845,9 +23161,13 @@ type DisableVgwRoutePropagationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the virtual private gateway.
+	//
+	// GatewayId is a required field
 	GatewayId *string `type:"string" required:"true"`
 
 	// The ID of the route table.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `type:"string" required:"true"`
 }
 
@@ -22938,6 +23258,8 @@ type DisableVpcClassicLinkInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -23029,6 +23351,8 @@ type DisassociateRouteTableInput struct {
 
 	// The association ID representing the current association between the route
 	// table and subnet.
+	//
+	// AssociationId is a required field
 	AssociationId *string `locationName:"associationId" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -23127,6 +23451,8 @@ type DiskImageDescription struct {
 	Checksum *string `locationName:"checksum" type:"string"`
 
 	// The disk image format.
+	//
+	// Format is a required field
 	Format *string `locationName:"format" type:"string" required:"true" enum:"DiskImageFormat"`
 
 	// A presigned URL for the import manifest stored in Amazon S3. For information
@@ -23137,9 +23463,13 @@ type DiskImageDescription struct {
 	//
 	// For information about the import manifest referenced by this API action,
 	// see VM Import Manifest (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html).
+	//
+	// ImportManifestUrl is a required field
 	ImportManifestUrl *string `locationName:"importManifestUrl" type:"string" required:"true"`
 
 	// The size of the disk image, in GiB.
+	//
+	// Size is a required field
 	Size *int64 `locationName:"size" type:"long" required:"true"`
 }
 
@@ -23158,9 +23488,13 @@ type DiskImageDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The size of the disk image, in GiB.
+	//
+	// Bytes is a required field
 	Bytes *int64 `locationName:"bytes" type:"long" required:"true"`
 
 	// The disk image format.
+	//
+	// Format is a required field
 	Format *string `locationName:"format" type:"string" required:"true" enum:"DiskImageFormat"`
 
 	// A presigned URL for the import manifest stored in Amazon S3 and presented
@@ -23171,6 +23505,8 @@ type DiskImageDetail struct {
 	//
 	// For information about the import manifest referenced by this API action,
 	// see VM Import Manifest (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html).
+	//
+	// ImportManifestUrl is a required field
 	ImportManifestUrl *string `locationName:"importManifestUrl" type:"string" required:"true"`
 }
 
@@ -23208,6 +23544,8 @@ type DiskImageVolumeDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The volume identifier.
+	//
+	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The size of the volume, in GiB.
@@ -23335,9 +23673,13 @@ type EnableVgwRoutePropagationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the virtual private gateway.
+	//
+	// GatewayId is a required field
 	GatewayId *string `type:"string" required:"true"`
 
 	// The ID of the route table.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `type:"string" required:"true"`
 }
 
@@ -23392,6 +23734,8 @@ type EnableVolumeIOInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the volume.
+	//
+	// VolumeId is a required field
 	VolumeId *string `locationName:"volumeId" type:"string" required:"true"`
 }
 
@@ -23479,6 +23823,8 @@ type EnableVpcClassicLinkInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -23772,6 +24118,8 @@ type GetConsoleOutputInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -23834,6 +24182,8 @@ type GetConsoleScreenshotInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
 	// When set to true, acts as keystroke input and wakes up an instance that's
@@ -23890,9 +24240,13 @@ type GetHostReservationPurchasePreviewInput struct {
 
 	// The ID/s of the Dedicated Host/s that the reservation will be associated
 	// with.
+	//
+	// HostIdSet is a required field
 	HostIdSet []*string `locationNameList:"item" type:"list" required:"true"`
 
 	// The offering ID of the reservation.
+	//
+	// OfferingId is a required field
 	OfferingId *string `type:"string" required:"true"`
 }
 
@@ -23961,6 +24315,8 @@ type GetPasswordDataInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the Windows instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 }
 
@@ -24022,6 +24378,8 @@ type GetReservedInstancesExchangeQuoteInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// The ID/s of the Convertible Reserved Instances you want to exchange.
+	//
+	// ReservedInstanceIds is a required field
 	ReservedInstanceIds []*string `locationName:"ReservedInstanceId" locationNameList:"ReservedInstanceId" type:"list" required:"true"`
 
 	// The configuration requirements of the Convertible Reserved Instances you
@@ -24130,6 +24488,8 @@ type HistoryRecord struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the event.
+	//
+	// EventInformation is a required field
 	EventInformation *EventInformation `locationName:"eventInformation" type:"structure" required:"true"`
 
 	// The event type.
@@ -24140,9 +24500,13 @@ type HistoryRecord struct {
 	// of the Spot fleet request.
 	//
 	//    instanceChange - Indicates that an instance was launched or terminated.
+	//
+	// EventType is a required field
 	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"EventType"`
 
 	// The date and time of the event, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
+	//
+	// Timestamp is a required field
 	Timestamp *time.Time `locationName:"timestamp" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -24745,6 +25109,8 @@ type ImportInstanceInput struct {
 	LaunchSpecification *ImportInstanceLaunchSpecification `locationName:"launchSpecification" type:"structure"`
 
 	// The instance operating system.
+	//
+	// Platform is a required field
 	Platform *string `locationName:"platform" type:"string" required:"true" enum:"PlatformValues"`
 }
 
@@ -24866,6 +25232,8 @@ type ImportInstanceTaskDetails struct {
 	Platform *string `locationName:"platform" type:"string" enum:"PlatformValues"`
 
 	// One or more volumes.
+	//
+	// Volumes is a required field
 	Volumes []*ImportInstanceVolumeDetailItem `locationName:"volumes" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -24884,24 +25252,34 @@ type ImportInstanceVolumeDetailItem struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone where the resulting instance will reside.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
 	// The number of bytes converted so far.
+	//
+	// BytesConverted is a required field
 	BytesConverted *int64 `locationName:"bytesConverted" type:"long" required:"true"`
 
 	// A description of the task.
 	Description *string `locationName:"description" type:"string"`
 
 	// The image.
+	//
+	// Image is a required field
 	Image *DiskImageDescription `locationName:"image" type:"structure" required:"true"`
 
 	// The status of the import of this particular disk image.
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
 
 	// The status information or errors related to the disk image.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	// The volume.
+	//
+	// Volume is a required field
 	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 }
 
@@ -24926,12 +25304,16 @@ type ImportKeyPairInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// A unique name for the key pair.
+	//
+	// KeyName is a required field
 	KeyName *string `locationName:"keyName" type:"string" required:"true"`
 
 	// The public key. For API calls, the text must be base64-encoded. For command
 	// line tools, base64 encoding is performed for you.
 	//
 	// PublicKeyMaterial is automatically base64 encoded/decoded by the SDK.
+	//
+	// PublicKeyMaterial is a required field
 	PublicKeyMaterial []byte `locationName:"publicKeyMaterial" type:"blob" required:"true"`
 }
 
@@ -25071,6 +25453,8 @@ type ImportVolumeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone for the resulting EBS volume.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
 	// A description of the volume.
@@ -25083,9 +25467,13 @@ type ImportVolumeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The disk image.
+	//
+	// Image is a required field
 	Image *DiskImageDetail `locationName:"image" type:"structure" required:"true"`
 
 	// The volume size.
+	//
+	// Volume is a required field
 	Volume *VolumeDetail `locationName:"volume" type:"structure" required:"true"`
 }
 
@@ -25151,18 +25539,26 @@ type ImportVolumeTaskDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone where the resulting volume will reside.
+	//
+	// AvailabilityZone is a required field
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string" required:"true"`
 
 	// The number of bytes converted so far.
+	//
+	// BytesConverted is a required field
 	BytesConverted *int64 `locationName:"bytesConverted" type:"long" required:"true"`
 
 	// The description you provided when starting the import volume task.
 	Description *string `locationName:"description" type:"string"`
 
 	// The image.
+	//
+	// Image is a required field
 	Image *DiskImageDescription `locationName:"image" type:"structure" required:"true"`
 
 	// The volume.
+	//
+	// Volume is a required field
 	Volume *DiskImageVolumeDescription `locationName:"volume" type:"structure" required:"true"`
 }
 
@@ -26106,9 +26502,13 @@ type ModifyHostsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specify whether to enable or disable auto-placement.
+	//
+	// AutoPlacement is a required field
 	AutoPlacement *string `locationName:"autoPlacement" type:"string" required:"true" enum:"AutoPlacement"`
 
 	// The host IDs of the Dedicated Hosts you want to modify.
+	//
+	// HostIds is a required field
 	HostIds []*string `locationName:"hostId" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -26165,9 +26565,13 @@ type ModifyIdFormatInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of resource: instance | reservation | snapshot | volume
+	//
+	// Resource is a required field
 	Resource *string `type:"string" required:"true"`
 
 	// Indicate whether the resource should use longer IDs (17-character IDs).
+	//
+	// UseLongIds is a required field
 	UseLongIds *bool `type:"boolean" required:"true"`
 }
 
@@ -26218,12 +26622,18 @@ type ModifyIdentityIdFormatInput struct {
 	// The ARN of the principal, which can be an IAM user, IAM role, or the root
 	// user. Specify all to modify the ID format for all IAM users, IAM roles, and
 	// the root user of the account.
+	//
+	// PrincipalArn is a required field
 	PrincipalArn *string `locationName:"principalArn" type:"string" required:"true"`
 
 	// The type of resource: instance | reservation | snapshot | volume
+	//
+	// Resource is a required field
 	Resource *string `locationName:"resource" type:"string" required:"true"`
 
 	// Indicates whether the resource should use longer IDs (17-character IDs)
+	//
+	// UseLongIds is a required field
 	UseLongIds *bool `locationName:"useLongIds" type:"boolean" required:"true"`
 }
 
@@ -26287,6 +26697,8 @@ type ModifyImageAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the AMI.
+	//
+	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 
 	// A launch permission modification.
@@ -26397,6 +26809,8 @@ type ModifyInstanceAttributeInput struct {
 	Groups []*string `locationName:"GroupId" locationNameList:"groupId" type:"list"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// Specifies whether an instance stops or terminates when you initiate shutdown
@@ -26492,6 +26906,8 @@ type ModifyInstancePlacementInput struct {
 	HostId *string `locationName:"hostId" type:"string"`
 
 	// The ID of the instance that you are modifying.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	// The tenancy of the instance that you are modifying.
@@ -26563,6 +26979,8 @@ type ModifyNetworkInterfaceAttributeInput struct {
 	Groups []*string `locationName:"SecurityGroupId" locationNameList:"SecurityGroupId" type:"list"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	// Indicates whether source/destination checking is enabled. A value of true
@@ -26619,9 +27037,13 @@ type ModifyReservedInstancesInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The IDs of the Reserved Instances to modify.
+	//
+	// ReservedInstancesIds is a required field
 	ReservedInstancesIds []*string `locationName:"ReservedInstancesId" locationNameList:"ReservedInstancesId" type:"list" required:"true"`
 
 	// The configuration settings for the Reserved Instances to modify.
+	//
+	// TargetConfigurations is a required field
 	TargetConfigurations []*ReservedInstancesConfiguration `locationName:"ReservedInstancesConfigurationSetItemType" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -26694,6 +27116,8 @@ type ModifySnapshotAttributeInput struct {
 	OperationType *string `type:"string" enum:"OperationType"`
 
 	// The ID of the snapshot.
+	//
+	// SnapshotId is a required field
 	SnapshotId *string `type:"string" required:"true"`
 
 	// The account ID to modify for the snapshot.
@@ -26747,6 +27171,8 @@ type ModifySpotFleetRequestInput struct {
 	ExcessCapacityTerminationPolicy *string `locationName:"excessCapacityTerminationPolicy" type:"string" enum:"ExcessCapacityTerminationPolicy"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
 	// The size of the fleet.
@@ -26803,6 +27229,8 @@ type ModifySubnetAttributeInput struct {
 	MapPublicIpOnLaunch *AttributeBooleanValue `type:"structure"`
 
 	// The ID of the subnet.
+	//
+	// SubnetId is a required field
 	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
 }
 
@@ -26857,6 +27285,8 @@ type ModifyVolumeAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the volume.
+	//
+	// VolumeId is a required field
 	VolumeId *string `type:"string" required:"true"`
 }
 
@@ -26920,6 +27350,8 @@ type ModifyVpcAttributeInput struct {
 	EnableDnsSupport *AttributeBooleanValue `type:"structure"`
 
 	// The ID of the VPC.
+	//
+	// VpcId is a required field
 	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
 }
 
@@ -26985,6 +27417,8 @@ type ModifyVpcEndpointInput struct {
 	ResetPolicy *bool `type:"boolean"`
 
 	// The ID of the endpoint.
+	//
+	// VpcEndpointId is a required field
 	VpcEndpointId *string `type:"string" required:"true"`
 }
 
@@ -27045,6 +27479,8 @@ type ModifyVpcPeeringConnectionOptionsInput struct {
 	RequesterPeeringConnectionOptions *PeeringConnectionOptionsRequest `type:"structure"`
 
 	// The ID of the VPC peering connection.
+	//
+	// VpcPeeringConnectionId is a required field
 	VpcPeeringConnectionId *string `type:"string" required:"true"`
 }
 
@@ -27102,6 +27538,8 @@ type MonitorInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// One or more instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 }
 
@@ -27175,6 +27613,8 @@ type MoveAddressToVpcInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The Elastic IP address.
+	//
+	// PublicIp is a required field
 	PublicIp *string `locationName:"publicIp" type:"string" required:"true"`
 }
 
@@ -27929,6 +28369,8 @@ type PrivateIpAddressSpecification struct {
 	Primary *bool `locationName:"primary" type:"boolean"`
 
 	// The private IP addresses.
+	//
+	// PrivateIpAddress is a required field
 	PrivateIpAddress *string `locationName:"privateIpAddress" type:"string" required:"true"`
 }
 
@@ -28091,6 +28533,8 @@ type PurchaseHostReservationInput struct {
 
 	// The ID/s of the Dedicated Host/s that the reservation will be associated
 	// with.
+	//
+	// HostIdSet is a required field
 	HostIdSet []*string `locationNameList:"item" type:"list" required:"true"`
 
 	// The specified limit is checked against the total upfront cost of the reservation
@@ -28103,6 +28547,8 @@ type PurchaseHostReservationInput struct {
 	LimitPrice *string `type:"string"`
 
 	// The ID of the offering.
+	//
+	// OfferingId is a required field
 	OfferingId *string `type:"string" required:"true"`
 }
 
@@ -28170,9 +28616,13 @@ type PurchaseRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The number of instances.
+	//
+	// InstanceCount is a required field
 	InstanceCount *int64 `type:"integer" required:"true"`
 
 	// The purchase token.
+	//
+	// PurchaseToken is a required field
 	PurchaseToken *string `type:"string" required:"true"`
 }
 
@@ -28213,6 +28663,8 @@ type PurchaseReservedInstancesOfferingInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The number of Reserved Instances to purchase.
+	//
+	// InstanceCount is a required field
 	InstanceCount *int64 `type:"integer" required:"true"`
 
 	// Specified for Reserved Instance Marketplace offerings to limit the total
@@ -28221,6 +28673,8 @@ type PurchaseReservedInstancesOfferingInput struct {
 	LimitPrice *ReservedInstanceLimitPrice `locationName:"limitPrice" type:"structure"`
 
 	// The ID of the Reserved Instance offering to purchase.
+	//
+	// ReservedInstancesOfferingId is a required field
 	ReservedInstancesOfferingId *string `type:"string" required:"true"`
 }
 
@@ -28283,6 +28737,8 @@ type PurchaseScheduledInstancesInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more purchase requests.
+	//
+	// PurchaseRequests is a required field
 	PurchaseRequests []*PurchaseRequest `locationName:"PurchaseRequest" locationNameList:"PurchaseRequest" min:"1" type:"list" required:"true"`
 }
 
@@ -28351,6 +28807,8 @@ type RebootInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// One or more instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 }
 
@@ -28473,6 +28931,8 @@ type RegisterImageInput struct {
 	// Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets
 	// ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('),
 	// at-signs (@), or underscores(_)
+	//
+	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The ID of the RAM disk.
@@ -28549,6 +29009,8 @@ type RejectVpcPeeringConnectionInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the VPC peering connection.
+	//
+	// VpcPeeringConnectionId is a required field
 	VpcPeeringConnectionId *string `locationName:"vpcPeeringConnectionId" type:"string" required:"true"`
 }
 
@@ -28639,6 +29101,8 @@ type ReleaseHostsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IDs of the Dedicated Hosts you want to release.
+	//
+	// HostIds is a required field
 	HostIds []*string `locationName:"hostId" locationNameList:"item" type:"list" required:"true"`
 }
 
@@ -28693,6 +29157,8 @@ type ReplaceNetworkAclAssociationInput struct {
 
 	// The ID of the current association between the original network ACL and the
 	// subnet.
+	//
+	// AssociationId is a required field
 	AssociationId *string `locationName:"associationId" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -28702,6 +29168,8 @@ type ReplaceNetworkAclAssociationInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the new network ACL to associate with the subnet.
+	//
+	// NetworkAclId is a required field
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 }
 
@@ -28754,6 +29222,8 @@ type ReplaceNetworkAclEntryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The network range to allow or deny, in CIDR notation.
+	//
+	// CidrBlock is a required field
 	CidrBlock *string `locationName:"cidrBlock" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -28765,6 +29235,8 @@ type ReplaceNetworkAclEntryInput struct {
 	// Indicates whether to replace the egress rule.
 	//
 	// Default: If no value is specified, we replace the ingress rule.
+	//
+	// Egress is a required field
 	Egress *bool `locationName:"egress" type:"boolean" required:"true"`
 
 	// ICMP protocol: The ICMP type and code. Required if specifying 1 (ICMP) for
@@ -28772,6 +29244,8 @@ type ReplaceNetworkAclEntryInput struct {
 	IcmpTypeCode *IcmpTypeCode `locationName:"Icmp" type:"structure"`
 
 	// The ID of the ACL.
+	//
+	// NetworkAclId is a required field
 	NetworkAclId *string `locationName:"networkAclId" type:"string" required:"true"`
 
 	// TCP or UDP protocols: The range of ports the rule applies to. Required if
@@ -28779,12 +29253,18 @@ type ReplaceNetworkAclEntryInput struct {
 	PortRange *PortRange `locationName:"portRange" type:"structure"`
 
 	// The IP protocol. You can specify all or -1 to mean all protocols.
+	//
+	// Protocol is a required field
 	Protocol *string `locationName:"protocol" type:"string" required:"true"`
 
 	// Indicates whether to allow or deny the traffic that matches the rule.
+	//
+	// RuleAction is a required field
 	RuleAction *string `locationName:"ruleAction" type:"string" required:"true" enum:"RuleAction"`
 
 	// The rule number of the entry to replace.
+	//
+	// RuleNumber is a required field
 	RuleNumber *int64 `locationName:"ruleNumber" type:"integer" required:"true"`
 }
 
@@ -28846,6 +29326,8 @@ type ReplaceRouteInput struct {
 
 	// The CIDR address block used for the destination match. The value you provide
 	// must match the CIDR of an existing route in the table.
+	//
+	// DestinationCidrBlock is a required field
 	DestinationCidrBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -28867,6 +29349,8 @@ type ReplaceRouteInput struct {
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
 
 	// The ID of the route table.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 
 	// The ID of a VPC peering connection.
@@ -28918,6 +29402,8 @@ type ReplaceRouteTableAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The association ID.
+	//
+	// AssociationId is a required field
 	AssociationId *string `locationName:"associationId" type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -28927,6 +29413,8 @@ type ReplaceRouteTableAssociationInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the new route table to associate with the subnet.
+	//
+	// RouteTableId is a required field
 	RouteTableId *string `locationName:"routeTableId" type:"string" required:"true"`
 }
 
@@ -28991,6 +29479,8 @@ type ReportInstanceStatusInput struct {
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// One or more instances.
+	//
+	// Instances is a required field
 	Instances []*string `locationName:"instanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 
 	// One or more reason codes that describes the health state of your instance.
@@ -29015,12 +29505,16 @@ type ReportInstanceStatusInput struct {
 	//    performance-other: My instance is experiencing performance problems.
 	//
 	//    other: [explain using the description parameter]
+	//
+	// ReasonCodes is a required field
 	ReasonCodes []*string `locationName:"reasonCode" locationNameList:"item" type:"list" required:"true"`
 
 	// The time at which the reported instance health state began.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The status of all instances listed.
+	//
+	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ReportStatusType"`
 }
 
@@ -29078,6 +29572,8 @@ type RequestSpotFleetInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The configuration for the Spot fleet request.
+	//
+	// SpotFleetRequestConfig is a required field
 	SpotFleetRequestConfig *SpotFleetRequestConfigData `locationName:"spotFleetRequestConfig" type:"structure" required:"true"`
 }
 
@@ -29114,6 +29610,8 @@ type RequestSpotFleetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 }
 
@@ -29192,6 +29690,8 @@ type RequestSpotInstancesInput struct {
 
 	// The maximum hourly price (bid) for any Spot instance launched to fulfill
 	// the request.
+	//
+	// SpotPrice is a required field
 	SpotPrice *string `locationName:"spotPrice" type:"string" required:"true"`
 
 	// The Spot instance request type.
@@ -29767,6 +30267,8 @@ type ResetImageAttributeInput struct {
 
 	// The attribute to reset (currently you can only reset the launch permission
 	// attribute).
+	//
+	// Attribute is a required field
 	Attribute *string `type:"string" required:"true" enum:"ResetImageAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -29776,6 +30278,8 @@ type ResetImageAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the AMI.
+	//
+	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 }
 
@@ -29827,6 +30331,8 @@ type ResetInstanceAttributeInput struct {
 	//
 	//  You can only reset the following attributes: kernel | ramdisk | sourceDestCheck.
 	// To change an instance attribute, use ModifyInstanceAttribute.
+	//
+	// Attribute is a required field
 	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"InstanceAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -29836,6 +30342,8 @@ type ResetInstanceAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the instance.
+	//
+	// InstanceId is a required field
 	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 }
 
@@ -29890,6 +30398,8 @@ type ResetNetworkInterfaceAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	// The source/destination checking attribute. Resets the value to true.
@@ -29939,6 +30449,8 @@ type ResetSnapshotAttributeInput struct {
 
 	// The attribute to reset. Currently, only the attribute for permission to create
 	// volumes can be reset.
+	//
+	// Attribute is a required field
 	Attribute *string `type:"string" required:"true" enum:"SnapshotAttributeName"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -29948,6 +30460,8 @@ type ResetSnapshotAttributeInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The ID of the snapshot.
+	//
+	// SnapshotId is a required field
 	SnapshotId *string `type:"string" required:"true"`
 }
 
@@ -30002,6 +30516,8 @@ type RestoreAddressToClassicInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// The Elastic IP address.
+	//
+	// PublicIp is a required field
 	PublicIp *string `locationName:"publicIp" type:"string" required:"true"`
 }
 
@@ -30068,6 +30584,8 @@ type RevokeSecurityGroupEgressInput struct {
 	FromPort *int64 `locationName:"fromPort" type:"integer"`
 
 	// The ID of the security group.
+	//
+	// GroupId is a required field
 	GroupId *string `locationName:"groupId" type:"string" required:"true"`
 
 	// A set of IP permissions. You can't specify a destination security group and
@@ -30374,6 +30892,8 @@ type RunInstancesInput struct {
 	IamInstanceProfile *IamInstanceProfileSpecification `locationName:"iamInstanceProfile" type:"structure"`
 
 	// The ID of the AMI, which you can get by calling DescribeImages.
+	//
+	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 
 	// Indicates whether an instance stops or terminates when you initiate shutdown
@@ -30410,6 +30930,8 @@ type RunInstancesInput struct {
 	// instance type. For more information about the default limits, and how to
 	// request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
 	// in the Amazon EC2 FAQ.
+	//
+	// MaxCount is a required field
 	MaxCount *int64 `type:"integer" required:"true"`
 
 	// The minimum number of instances to launch. If you specify a minimum that
@@ -30420,6 +30942,8 @@ type RunInstancesInput struct {
 	// instance type. For more information about the default limits, and how to
 	// request an increase, see How many instances can I run in Amazon EC2 (http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2)
 	// in the Amazon EC2 General FAQ.
+	//
+	// MinCount is a required field
 	MinCount *int64 `type:"integer" required:"true"`
 
 	// The monitoring for the instance.
@@ -30523,6 +31047,8 @@ type RunInstancesMonitoringEnabled struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether monitoring is enabled for the instance.
+	//
+	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 }
 
@@ -30570,9 +31096,13 @@ type RunScheduledInstancesInput struct {
 
 	// The launch specification. You must match the instance type, Availability
 	// Zone, network, and platform of the schedule that you purchased.
+	//
+	// LaunchSpecification is a required field
 	LaunchSpecification *ScheduledInstancesLaunchSpecification `type:"structure" required:"true"`
 
 	// The Scheduled Instance ID.
+	//
+	// ScheduledInstanceId is a required field
 	ScheduledInstanceId *string `type:"string" required:"true"`
 }
 
@@ -30984,6 +31514,8 @@ type ScheduledInstancesLaunchSpecification struct {
 	IamInstanceProfile *ScheduledInstancesIamInstanceProfile `type:"structure"`
 
 	// The ID of the Amazon Machine Image (AMI).
+	//
+	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 
 	// The instance type.
@@ -31194,9 +31726,13 @@ type SecurityGroupReference struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of your security group.
+	//
+	// GroupId is a required field
 	GroupId *string `locationName:"groupId" type:"string" required:"true"`
 
 	// The ID of the VPC with the referencing security group.
+	//
+	// ReferencingVpcId is a required field
 	ReferencingVpcId *string `locationName:"referencingVpcId" type:"string" required:"true"`
 
 	// The ID of the VPC peering connection.
@@ -31219,11 +31755,15 @@ type SlotDateTimeRangeRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The earliest date and time, in UTC, for the Scheduled Instance to start.
+	//
+	// EarliestTime is a required field
 	EarliestTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The latest date and time, in UTC, for the Scheduled Instance to start. This
 	// value must be later than or equal to the earliest date and at most three
 	// months in the future.
+	//
+	// LatestTime is a required field
 	LatestTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 }
 
@@ -31632,15 +32172,23 @@ type SpotFleetRequestConfig struct {
 	ActivityStatus *string `locationName:"activityStatus" type:"string" enum:"ActivityStatus"`
 
 	// The creation date and time of the request.
+	//
+	// CreateTime is a required field
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Information about the configuration of the Spot fleet request.
+	//
+	// SpotFleetRequestConfig is a required field
 	SpotFleetRequestConfig *SpotFleetRequestConfigData `locationName:"spotFleetRequestConfig" type:"structure" required:"true"`
 
 	// The ID of the Spot fleet request.
+	//
+	// SpotFleetRequestId is a required field
 	SpotFleetRequestId *string `locationName:"spotFleetRequestId" type:"string" required:"true"`
 
 	// The state of the Spot fleet request.
+	//
+	// SpotFleetRequestState is a required field
 	SpotFleetRequestState *string `locationName:"spotFleetRequestState" type:"string" required:"true" enum:"BatchState"`
 }
 
@@ -31679,17 +32227,25 @@ type SpotFleetRequestConfigData struct {
 	// Grants the Spot fleet permission to terminate Spot instances on your behalf
 	// when you cancel its Spot fleet request using CancelSpotFleetRequests or when
 	// the Spot fleet request expires, if you set terminateInstancesWithExpiration.
+	//
+	// IamFleetRole is a required field
 	IamFleetRole *string `locationName:"iamFleetRole" type:"string" required:"true"`
 
 	// Information about the launch specifications for the Spot fleet request.
+	//
+	// LaunchSpecifications is a required field
 	LaunchSpecifications []*SpotFleetLaunchSpecification `locationName:"launchSpecifications" locationNameList:"item" min:"1" type:"list" required:"true"`
 
 	// The bid price per unit hour.
+	//
+	// SpotPrice is a required field
 	SpotPrice *string `locationName:"spotPrice" type:"string" required:"true"`
 
 	// The number of units to request. You can choose to set the target capacity
 	// in terms of instances or a performance characteristic that is important to
 	// your application workload, such as vCPUs, memory, or I/O.
+	//
+	// TargetCapacity is a required field
 	TargetCapacity *int64 `locationName:"targetCapacity" type:"integer" required:"true"`
 
 	// Indicates whether running Spot instances should be terminated when the Spot
@@ -31992,6 +32548,8 @@ type StaleSecurityGroup struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The ID of the security group.
+	//
+	// GroupId is a required field
 	GroupId *string `locationName:"groupId" type:"string" required:"true"`
 
 	// The name of the security group.
@@ -32031,6 +32589,8 @@ type StartInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// One or more instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 }
 
@@ -32139,6 +32699,8 @@ type StopInstancesInput struct {
 	Force *bool `locationName:"force" type:"boolean"`
 
 	// One or more instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 }
 
@@ -32331,6 +32893,8 @@ type TargetConfigurationRequest struct {
 	// The Convertible Reserved Instance offering ID. If this isn't included in
 	// the request, the response lists your current Convertible Reserved Instance/s
 	// and their value/s.
+	//
+	// OfferingId is a required field
 	OfferingId *string `type:"string" required:"true"`
 }
 
@@ -32395,6 +32959,8 @@ type TerminateInstancesInput struct {
 	//
 	// Constraints: Up to 1000 instance IDs. We recommend breaking up this request
 	// into smaller batches.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 }
 
@@ -32444,10 +33010,14 @@ type UnassignPrivateIpAddressesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the network interface.
+	//
+	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string" required:"true"`
 
 	// The secondary private IP addresses to unassign from the network interface.
 	// You can specify this option multiple times to unassign more than one IP address.
+	//
+	// PrivateIpAddresses is a required field
 	PrivateIpAddresses []*string `locationName:"privateIpAddress" locationNameList:"PrivateIpAddress" type:"list" required:"true"`
 }
 
@@ -32502,6 +33072,8 @@ type UnmonitorInstancesInput struct {
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
 
 	// One or more instance IDs.
+	//
+	// InstanceIds is a required field
 	InstanceIds []*string `locationName:"InstanceId" locationNameList:"InstanceId" type:"list" required:"true"`
 }
 
@@ -32551,6 +33123,8 @@ type UnsuccessfulItem struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the error.
+	//
+	// Error is a required field
 	Error *UnsuccessfulItemError `locationName:"error" type:"structure" required:"true"`
 
 	// The ID of the resource.
@@ -32573,9 +33147,13 @@ type UnsuccessfulItemError struct {
 	_ struct{} `type:"structure"`
 
 	// The error code.
+	//
+	// Code is a required field
 	Code *string `locationName:"code" type:"string" required:"true"`
 
 	// The error message accompanying the error code.
+	//
+	// Message is a required field
 	Message *string `locationName:"message" type:"string" required:"true"`
 }
 
@@ -32825,6 +33403,8 @@ type VolumeDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The size of the volume, in GiB.
+	//
+	// Size is a required field
 	Size *int64 `locationName:"size" type:"long" required:"true"`
 }
 
@@ -33354,1031 +33934,1316 @@ func (s VpnStaticRoute) GoString() string {
 }
 
 const (
-	// @enum AccountAttributeName
+	// AccountAttributeNameSupportedPlatforms is a AccountAttributeName enum value
 	AccountAttributeNameSupportedPlatforms = "supported-platforms"
-	// @enum AccountAttributeName
+
+	// AccountAttributeNameDefaultVpc is a AccountAttributeName enum value
 	AccountAttributeNameDefaultVpc = "default-vpc"
 )
 
 const (
-	// @enum ActivityStatus
+	// ActivityStatusError is a ActivityStatus enum value
 	ActivityStatusError = "error"
-	// @enum ActivityStatus
+
+	// ActivityStatusPendingFulfillment is a ActivityStatus enum value
 	ActivityStatusPendingFulfillment = "pending_fulfillment"
-	// @enum ActivityStatus
+
+	// ActivityStatusPendingTermination is a ActivityStatus enum value
 	ActivityStatusPendingTermination = "pending_termination"
-	// @enum ActivityStatus
+
+	// ActivityStatusFulfilled is a ActivityStatus enum value
 	ActivityStatusFulfilled = "fulfilled"
 )
 
 const (
-	// @enum Affinity
+	// AffinityDefault is a Affinity enum value
 	AffinityDefault = "default"
-	// @enum Affinity
+
+	// AffinityHost is a Affinity enum value
 	AffinityHost = "host"
 )
 
 const (
-	// @enum AllocationState
+	// AllocationStateAvailable is a AllocationState enum value
 	AllocationStateAvailable = "available"
-	// @enum AllocationState
+
+	// AllocationStateUnderAssessment is a AllocationState enum value
 	AllocationStateUnderAssessment = "under-assessment"
-	// @enum AllocationState
+
+	// AllocationStatePermanentFailure is a AllocationState enum value
 	AllocationStatePermanentFailure = "permanent-failure"
-	// @enum AllocationState
+
+	// AllocationStateReleased is a AllocationState enum value
 	AllocationStateReleased = "released"
-	// @enum AllocationState
+
+	// AllocationStateReleasedPermanentFailure is a AllocationState enum value
 	AllocationStateReleasedPermanentFailure = "released-permanent-failure"
 )
 
 const (
-	// @enum AllocationStrategy
+	// AllocationStrategyLowestPrice is a AllocationStrategy enum value
 	AllocationStrategyLowestPrice = "lowestPrice"
-	// @enum AllocationStrategy
+
+	// AllocationStrategyDiversified is a AllocationStrategy enum value
 	AllocationStrategyDiversified = "diversified"
 )
 
 const (
-	// @enum ArchitectureValues
+	// ArchitectureValuesI386 is a ArchitectureValues enum value
 	ArchitectureValuesI386 = "i386"
-	// @enum ArchitectureValues
+
+	// ArchitectureValuesX8664 is a ArchitectureValues enum value
 	ArchitectureValuesX8664 = "x86_64"
 )
 
 const (
-	// @enum AttachmentStatus
+	// AttachmentStatusAttaching is a AttachmentStatus enum value
 	AttachmentStatusAttaching = "attaching"
-	// @enum AttachmentStatus
+
+	// AttachmentStatusAttached is a AttachmentStatus enum value
 	AttachmentStatusAttached = "attached"
-	// @enum AttachmentStatus
+
+	// AttachmentStatusDetaching is a AttachmentStatus enum value
 	AttachmentStatusDetaching = "detaching"
-	// @enum AttachmentStatus
+
+	// AttachmentStatusDetached is a AttachmentStatus enum value
 	AttachmentStatusDetached = "detached"
 )
 
 const (
-	// @enum AutoPlacement
+	// AutoPlacementOn is a AutoPlacement enum value
 	AutoPlacementOn = "on"
-	// @enum AutoPlacement
+
+	// AutoPlacementOff is a AutoPlacement enum value
 	AutoPlacementOff = "off"
 )
 
 const (
-	// @enum AvailabilityZoneState
+	// AvailabilityZoneStateAvailable is a AvailabilityZoneState enum value
 	AvailabilityZoneStateAvailable = "available"
-	// @enum AvailabilityZoneState
+
+	// AvailabilityZoneStateInformation is a AvailabilityZoneState enum value
 	AvailabilityZoneStateInformation = "information"
-	// @enum AvailabilityZoneState
+
+	// AvailabilityZoneStateImpaired is a AvailabilityZoneState enum value
 	AvailabilityZoneStateImpaired = "impaired"
-	// @enum AvailabilityZoneState
+
+	// AvailabilityZoneStateUnavailable is a AvailabilityZoneState enum value
 	AvailabilityZoneStateUnavailable = "unavailable"
 )
 
 const (
-	// @enum BatchState
+	// BatchStateSubmitted is a BatchState enum value
 	BatchStateSubmitted = "submitted"
-	// @enum BatchState
+
+	// BatchStateActive is a BatchState enum value
 	BatchStateActive = "active"
-	// @enum BatchState
+
+	// BatchStateCancelled is a BatchState enum value
 	BatchStateCancelled = "cancelled"
-	// @enum BatchState
+
+	// BatchStateFailed is a BatchState enum value
 	BatchStateFailed = "failed"
-	// @enum BatchState
+
+	// BatchStateCancelledRunning is a BatchState enum value
 	BatchStateCancelledRunning = "cancelled_running"
-	// @enum BatchState
+
+	// BatchStateCancelledTerminating is a BatchState enum value
 	BatchStateCancelledTerminating = "cancelled_terminating"
-	// @enum BatchState
+
+	// BatchStateModifying is a BatchState enum value
 	BatchStateModifying = "modifying"
 )
 
 const (
-	// @enum BundleTaskState
+	// BundleTaskStatePending is a BundleTaskState enum value
 	BundleTaskStatePending = "pending"
-	// @enum BundleTaskState
+
+	// BundleTaskStateWaitingForShutdown is a BundleTaskState enum value
 	BundleTaskStateWaitingForShutdown = "waiting-for-shutdown"
-	// @enum BundleTaskState
+
+	// BundleTaskStateBundling is a BundleTaskState enum value
 	BundleTaskStateBundling = "bundling"
-	// @enum BundleTaskState
+
+	// BundleTaskStateStoring is a BundleTaskState enum value
 	BundleTaskStateStoring = "storing"
-	// @enum BundleTaskState
+
+	// BundleTaskStateCancelling is a BundleTaskState enum value
 	BundleTaskStateCancelling = "cancelling"
-	// @enum BundleTaskState
+
+	// BundleTaskStateComplete is a BundleTaskState enum value
 	BundleTaskStateComplete = "complete"
-	// @enum BundleTaskState
+
+	// BundleTaskStateFailed is a BundleTaskState enum value
 	BundleTaskStateFailed = "failed"
 )
 
 const (
-	// @enum CancelBatchErrorCode
+	// CancelBatchErrorCodeFleetRequestIdDoesNotExist is a CancelBatchErrorCode enum value
 	CancelBatchErrorCodeFleetRequestIdDoesNotExist = "fleetRequestIdDoesNotExist"
-	// @enum CancelBatchErrorCode
+
+	// CancelBatchErrorCodeFleetRequestIdMalformed is a CancelBatchErrorCode enum value
 	CancelBatchErrorCodeFleetRequestIdMalformed = "fleetRequestIdMalformed"
-	// @enum CancelBatchErrorCode
+
+	// CancelBatchErrorCodeFleetRequestNotInCancellableState is a CancelBatchErrorCode enum value
 	CancelBatchErrorCodeFleetRequestNotInCancellableState = "fleetRequestNotInCancellableState"
-	// @enum CancelBatchErrorCode
+
+	// CancelBatchErrorCodeUnexpectedError is a CancelBatchErrorCode enum value
 	CancelBatchErrorCodeUnexpectedError = "unexpectedError"
 )
 
 const (
-	// @enum CancelSpotInstanceRequestState
+	// CancelSpotInstanceRequestStateActive is a CancelSpotInstanceRequestState enum value
 	CancelSpotInstanceRequestStateActive = "active"
-	// @enum CancelSpotInstanceRequestState
+
+	// CancelSpotInstanceRequestStateOpen is a CancelSpotInstanceRequestState enum value
 	CancelSpotInstanceRequestStateOpen = "open"
-	// @enum CancelSpotInstanceRequestState
+
+	// CancelSpotInstanceRequestStateClosed is a CancelSpotInstanceRequestState enum value
 	CancelSpotInstanceRequestStateClosed = "closed"
-	// @enum CancelSpotInstanceRequestState
+
+	// CancelSpotInstanceRequestStateCancelled is a CancelSpotInstanceRequestState enum value
 	CancelSpotInstanceRequestStateCancelled = "cancelled"
-	// @enum CancelSpotInstanceRequestState
+
+	// CancelSpotInstanceRequestStateCompleted is a CancelSpotInstanceRequestState enum value
 	CancelSpotInstanceRequestStateCompleted = "completed"
 )
 
 const (
-	// @enum ContainerFormat
+	// ContainerFormatOva is a ContainerFormat enum value
 	ContainerFormatOva = "ova"
 )
 
 const (
-	// @enum ConversionTaskState
+	// ConversionTaskStateActive is a ConversionTaskState enum value
 	ConversionTaskStateActive = "active"
-	// @enum ConversionTaskState
+
+	// ConversionTaskStateCancelling is a ConversionTaskState enum value
 	ConversionTaskStateCancelling = "cancelling"
-	// @enum ConversionTaskState
+
+	// ConversionTaskStateCancelled is a ConversionTaskState enum value
 	ConversionTaskStateCancelled = "cancelled"
-	// @enum ConversionTaskState
+
+	// ConversionTaskStateCompleted is a ConversionTaskState enum value
 	ConversionTaskStateCompleted = "completed"
 )
 
 const (
-	// @enum CurrencyCodeValues
+	// CurrencyCodeValuesUsd is a CurrencyCodeValues enum value
 	CurrencyCodeValuesUsd = "USD"
 )
 
 const (
-	// @enum DatafeedSubscriptionState
+	// DatafeedSubscriptionStateActive is a DatafeedSubscriptionState enum value
 	DatafeedSubscriptionStateActive = "Active"
-	// @enum DatafeedSubscriptionState
+
+	// DatafeedSubscriptionStateInactive is a DatafeedSubscriptionState enum value
 	DatafeedSubscriptionStateInactive = "Inactive"
 )
 
 const (
-	// @enum DeviceType
+	// DeviceTypeEbs is a DeviceType enum value
 	DeviceTypeEbs = "ebs"
-	// @enum DeviceType
+
+	// DeviceTypeInstanceStore is a DeviceType enum value
 	DeviceTypeInstanceStore = "instance-store"
 )
 
 const (
-	// @enum DiskImageFormat
+	// DiskImageFormatVmdk is a DiskImageFormat enum value
 	DiskImageFormatVmdk = "VMDK"
-	// @enum DiskImageFormat
+
+	// DiskImageFormatRaw is a DiskImageFormat enum value
 	DiskImageFormatRaw = "RAW"
-	// @enum DiskImageFormat
+
+	// DiskImageFormatVhd is a DiskImageFormat enum value
 	DiskImageFormatVhd = "VHD"
 )
 
 const (
-	// @enum DomainType
+	// DomainTypeVpc is a DomainType enum value
 	DomainTypeVpc = "vpc"
-	// @enum DomainType
+
+	// DomainTypeStandard is a DomainType enum value
 	DomainTypeStandard = "standard"
 )
 
 const (
-	// @enum EventCode
+	// EventCodeInstanceReboot is a EventCode enum value
 	EventCodeInstanceReboot = "instance-reboot"
-	// @enum EventCode
+
+	// EventCodeSystemReboot is a EventCode enum value
 	EventCodeSystemReboot = "system-reboot"
-	// @enum EventCode
+
+	// EventCodeSystemMaintenance is a EventCode enum value
 	EventCodeSystemMaintenance = "system-maintenance"
-	// @enum EventCode
+
+	// EventCodeInstanceRetirement is a EventCode enum value
 	EventCodeInstanceRetirement = "instance-retirement"
-	// @enum EventCode
+
+	// EventCodeInstanceStop is a EventCode enum value
 	EventCodeInstanceStop = "instance-stop"
 )
 
 const (
-	// @enum EventType
+	// EventTypeInstanceChange is a EventType enum value
 	EventTypeInstanceChange = "instanceChange"
-	// @enum EventType
+
+	// EventTypeFleetRequestChange is a EventType enum value
 	EventTypeFleetRequestChange = "fleetRequestChange"
-	// @enum EventType
+
+	// EventTypeError is a EventType enum value
 	EventTypeError = "error"
 )
 
 const (
-	// @enum ExcessCapacityTerminationPolicy
+	// ExcessCapacityTerminationPolicyNoTermination is a ExcessCapacityTerminationPolicy enum value
 	ExcessCapacityTerminationPolicyNoTermination = "noTermination"
-	// @enum ExcessCapacityTerminationPolicy
+
+	// ExcessCapacityTerminationPolicyDefault is a ExcessCapacityTerminationPolicy enum value
 	ExcessCapacityTerminationPolicyDefault = "default"
 )
 
 const (
-	// @enum ExportEnvironment
+	// ExportEnvironmentCitrix is a ExportEnvironment enum value
 	ExportEnvironmentCitrix = "citrix"
-	// @enum ExportEnvironment
+
+	// ExportEnvironmentVmware is a ExportEnvironment enum value
 	ExportEnvironmentVmware = "vmware"
-	// @enum ExportEnvironment
+
+	// ExportEnvironmentMicrosoft is a ExportEnvironment enum value
 	ExportEnvironmentMicrosoft = "microsoft"
 )
 
 const (
-	// @enum ExportTaskState
+	// ExportTaskStateActive is a ExportTaskState enum value
 	ExportTaskStateActive = "active"
-	// @enum ExportTaskState
+
+	// ExportTaskStateCancelling is a ExportTaskState enum value
 	ExportTaskStateCancelling = "cancelling"
-	// @enum ExportTaskState
+
+	// ExportTaskStateCancelled is a ExportTaskState enum value
 	ExportTaskStateCancelled = "cancelled"
-	// @enum ExportTaskState
+
+	// ExportTaskStateCompleted is a ExportTaskState enum value
 	ExportTaskStateCompleted = "completed"
 )
 
 const (
-	// @enum FleetType
+	// FleetTypeRequest is a FleetType enum value
 	FleetTypeRequest = "request"
-	// @enum FleetType
+
+	// FleetTypeMaintain is a FleetType enum value
 	FleetTypeMaintain = "maintain"
 )
 
 const (
-	// @enum FlowLogsResourceType
+	// FlowLogsResourceTypeVpc is a FlowLogsResourceType enum value
 	FlowLogsResourceTypeVpc = "VPC"
-	// @enum FlowLogsResourceType
+
+	// FlowLogsResourceTypeSubnet is a FlowLogsResourceType enum value
 	FlowLogsResourceTypeSubnet = "Subnet"
-	// @enum FlowLogsResourceType
+
+	// FlowLogsResourceTypeNetworkInterface is a FlowLogsResourceType enum value
 	FlowLogsResourceTypeNetworkInterface = "NetworkInterface"
 )
 
 const (
-	// @enum GatewayType
+	// GatewayTypeIpsec1 is a GatewayType enum value
 	GatewayTypeIpsec1 = "ipsec.1"
 )
 
 const (
-	// @enum HostTenancy
+	// HostTenancyDedicated is a HostTenancy enum value
 	HostTenancyDedicated = "dedicated"
-	// @enum HostTenancy
+
+	// HostTenancyHost is a HostTenancy enum value
 	HostTenancyHost = "host"
 )
 
 const (
-	// @enum HypervisorType
+	// HypervisorTypeOvm is a HypervisorType enum value
 	HypervisorTypeOvm = "ovm"
-	// @enum HypervisorType
+
+	// HypervisorTypeXen is a HypervisorType enum value
 	HypervisorTypeXen = "xen"
 )
 
 const (
-	// @enum ImageAttributeName
+	// ImageAttributeNameDescription is a ImageAttributeName enum value
 	ImageAttributeNameDescription = "description"
-	// @enum ImageAttributeName
+
+	// ImageAttributeNameKernel is a ImageAttributeName enum value
 	ImageAttributeNameKernel = "kernel"
-	// @enum ImageAttributeName
+
+	// ImageAttributeNameRamdisk is a ImageAttributeName enum value
 	ImageAttributeNameRamdisk = "ramdisk"
-	// @enum ImageAttributeName
+
+	// ImageAttributeNameLaunchPermission is a ImageAttributeName enum value
 	ImageAttributeNameLaunchPermission = "launchPermission"
-	// @enum ImageAttributeName
+
+	// ImageAttributeNameProductCodes is a ImageAttributeName enum value
 	ImageAttributeNameProductCodes = "productCodes"
-	// @enum ImageAttributeName
+
+	// ImageAttributeNameBlockDeviceMapping is a ImageAttributeName enum value
 	ImageAttributeNameBlockDeviceMapping = "blockDeviceMapping"
-	// @enum ImageAttributeName
+
+	// ImageAttributeNameSriovNetSupport is a ImageAttributeName enum value
 	ImageAttributeNameSriovNetSupport = "sriovNetSupport"
 )
 
 const (
-	// @enum ImageState
+	// ImageStatePending is a ImageState enum value
 	ImageStatePending = "pending"
-	// @enum ImageState
+
+	// ImageStateAvailable is a ImageState enum value
 	ImageStateAvailable = "available"
-	// @enum ImageState
+
+	// ImageStateInvalid is a ImageState enum value
 	ImageStateInvalid = "invalid"
-	// @enum ImageState
+
+	// ImageStateDeregistered is a ImageState enum value
 	ImageStateDeregistered = "deregistered"
-	// @enum ImageState
+
+	// ImageStateTransient is a ImageState enum value
 	ImageStateTransient = "transient"
-	// @enum ImageState
+
+	// ImageStateFailed is a ImageState enum value
 	ImageStateFailed = "failed"
-	// @enum ImageState
+
+	// ImageStateError is a ImageState enum value
 	ImageStateError = "error"
 )
 
 const (
-	// @enum ImageTypeValues
+	// ImageTypeValuesMachine is a ImageTypeValues enum value
 	ImageTypeValuesMachine = "machine"
-	// @enum ImageTypeValues
+
+	// ImageTypeValuesKernel is a ImageTypeValues enum value
 	ImageTypeValuesKernel = "kernel"
-	// @enum ImageTypeValues
+
+	// ImageTypeValuesRamdisk is a ImageTypeValues enum value
 	ImageTypeValuesRamdisk = "ramdisk"
 )
 
 const (
-	// @enum InstanceAttributeName
+	// InstanceAttributeNameInstanceType is a InstanceAttributeName enum value
 	InstanceAttributeNameInstanceType = "instanceType"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameKernel is a InstanceAttributeName enum value
 	InstanceAttributeNameKernel = "kernel"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameRamdisk is a InstanceAttributeName enum value
 	InstanceAttributeNameRamdisk = "ramdisk"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameUserData is a InstanceAttributeName enum value
 	InstanceAttributeNameUserData = "userData"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameDisableApiTermination is a InstanceAttributeName enum value
 	InstanceAttributeNameDisableApiTermination = "disableApiTermination"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameInstanceInitiatedShutdownBehavior is a InstanceAttributeName enum value
 	InstanceAttributeNameInstanceInitiatedShutdownBehavior = "instanceInitiatedShutdownBehavior"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameRootDeviceName is a InstanceAttributeName enum value
 	InstanceAttributeNameRootDeviceName = "rootDeviceName"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameBlockDeviceMapping is a InstanceAttributeName enum value
 	InstanceAttributeNameBlockDeviceMapping = "blockDeviceMapping"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameProductCodes is a InstanceAttributeName enum value
 	InstanceAttributeNameProductCodes = "productCodes"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameSourceDestCheck is a InstanceAttributeName enum value
 	InstanceAttributeNameSourceDestCheck = "sourceDestCheck"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameGroupSet is a InstanceAttributeName enum value
 	InstanceAttributeNameGroupSet = "groupSet"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameEbsOptimized is a InstanceAttributeName enum value
 	InstanceAttributeNameEbsOptimized = "ebsOptimized"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameSriovNetSupport is a InstanceAttributeName enum value
 	InstanceAttributeNameSriovNetSupport = "sriovNetSupport"
-	// @enum InstanceAttributeName
+
+	// InstanceAttributeNameEnaSupport is a InstanceAttributeName enum value
 	InstanceAttributeNameEnaSupport = "enaSupport"
 )
 
 const (
-	// @enum InstanceLifecycleType
+	// InstanceLifecycleTypeSpot is a InstanceLifecycleType enum value
 	InstanceLifecycleTypeSpot = "spot"
-	// @enum InstanceLifecycleType
+
+	// InstanceLifecycleTypeScheduled is a InstanceLifecycleType enum value
 	InstanceLifecycleTypeScheduled = "scheduled"
 )
 
 const (
-	// @enum InstanceStateName
+	// InstanceStateNamePending is a InstanceStateName enum value
 	InstanceStateNamePending = "pending"
-	// @enum InstanceStateName
+
+	// InstanceStateNameRunning is a InstanceStateName enum value
 	InstanceStateNameRunning = "running"
-	// @enum InstanceStateName
+
+	// InstanceStateNameShuttingDown is a InstanceStateName enum value
 	InstanceStateNameShuttingDown = "shutting-down"
-	// @enum InstanceStateName
+
+	// InstanceStateNameTerminated is a InstanceStateName enum value
 	InstanceStateNameTerminated = "terminated"
-	// @enum InstanceStateName
+
+	// InstanceStateNameStopping is a InstanceStateName enum value
 	InstanceStateNameStopping = "stopping"
-	// @enum InstanceStateName
+
+	// InstanceStateNameStopped is a InstanceStateName enum value
 	InstanceStateNameStopped = "stopped"
 )
 
 const (
-	// @enum InstanceType
+	// InstanceTypeT1Micro is a InstanceType enum value
 	InstanceTypeT1Micro = "t1.micro"
-	// @enum InstanceType
+
+	// InstanceTypeT2Nano is a InstanceType enum value
 	InstanceTypeT2Nano = "t2.nano"
-	// @enum InstanceType
+
+	// InstanceTypeT2Micro is a InstanceType enum value
 	InstanceTypeT2Micro = "t2.micro"
-	// @enum InstanceType
+
+	// InstanceTypeT2Small is a InstanceType enum value
 	InstanceTypeT2Small = "t2.small"
-	// @enum InstanceType
+
+	// InstanceTypeT2Medium is a InstanceType enum value
 	InstanceTypeT2Medium = "t2.medium"
-	// @enum InstanceType
+
+	// InstanceTypeT2Large is a InstanceType enum value
 	InstanceTypeT2Large = "t2.large"
-	// @enum InstanceType
+
+	// InstanceTypeM1Small is a InstanceType enum value
 	InstanceTypeM1Small = "m1.small"
-	// @enum InstanceType
+
+	// InstanceTypeM1Medium is a InstanceType enum value
 	InstanceTypeM1Medium = "m1.medium"
-	// @enum InstanceType
+
+	// InstanceTypeM1Large is a InstanceType enum value
 	InstanceTypeM1Large = "m1.large"
-	// @enum InstanceType
+
+	// InstanceTypeM1Xlarge is a InstanceType enum value
 	InstanceTypeM1Xlarge = "m1.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM3Medium is a InstanceType enum value
 	InstanceTypeM3Medium = "m3.medium"
-	// @enum InstanceType
+
+	// InstanceTypeM3Large is a InstanceType enum value
 	InstanceTypeM3Large = "m3.large"
-	// @enum InstanceType
+
+	// InstanceTypeM3Xlarge is a InstanceType enum value
 	InstanceTypeM3Xlarge = "m3.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM32xlarge is a InstanceType enum value
 	InstanceTypeM32xlarge = "m3.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM4Large is a InstanceType enum value
 	InstanceTypeM4Large = "m4.large"
-	// @enum InstanceType
+
+	// InstanceTypeM4Xlarge is a InstanceType enum value
 	InstanceTypeM4Xlarge = "m4.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM42xlarge is a InstanceType enum value
 	InstanceTypeM42xlarge = "m4.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM44xlarge is a InstanceType enum value
 	InstanceTypeM44xlarge = "m4.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM410xlarge is a InstanceType enum value
 	InstanceTypeM410xlarge = "m4.10xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM416xlarge is a InstanceType enum value
 	InstanceTypeM416xlarge = "m4.16xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM2Xlarge is a InstanceType enum value
 	InstanceTypeM2Xlarge = "m2.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM22xlarge is a InstanceType enum value
 	InstanceTypeM22xlarge = "m2.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeM24xlarge is a InstanceType enum value
 	InstanceTypeM24xlarge = "m2.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeCr18xlarge is a InstanceType enum value
 	InstanceTypeCr18xlarge = "cr1.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeR3Large is a InstanceType enum value
 	InstanceTypeR3Large = "r3.large"
-	// @enum InstanceType
+
+	// InstanceTypeR3Xlarge is a InstanceType enum value
 	InstanceTypeR3Xlarge = "r3.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeR32xlarge is a InstanceType enum value
 	InstanceTypeR32xlarge = "r3.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeR34xlarge is a InstanceType enum value
 	InstanceTypeR34xlarge = "r3.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeR38xlarge is a InstanceType enum value
 	InstanceTypeR38xlarge = "r3.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeX116xlarge is a InstanceType enum value
 	InstanceTypeX116xlarge = "x1.16xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeX132xlarge is a InstanceType enum value
 	InstanceTypeX132xlarge = "x1.32xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeI2Xlarge is a InstanceType enum value
 	InstanceTypeI2Xlarge = "i2.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeI22xlarge is a InstanceType enum value
 	InstanceTypeI22xlarge = "i2.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeI24xlarge is a InstanceType enum value
 	InstanceTypeI24xlarge = "i2.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeI28xlarge is a InstanceType enum value
 	InstanceTypeI28xlarge = "i2.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeHi14xlarge is a InstanceType enum value
 	InstanceTypeHi14xlarge = "hi1.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeHs18xlarge is a InstanceType enum value
 	InstanceTypeHs18xlarge = "hs1.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC1Medium is a InstanceType enum value
 	InstanceTypeC1Medium = "c1.medium"
-	// @enum InstanceType
+
+	// InstanceTypeC1Xlarge is a InstanceType enum value
 	InstanceTypeC1Xlarge = "c1.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC3Large is a InstanceType enum value
 	InstanceTypeC3Large = "c3.large"
-	// @enum InstanceType
+
+	// InstanceTypeC3Xlarge is a InstanceType enum value
 	InstanceTypeC3Xlarge = "c3.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC32xlarge is a InstanceType enum value
 	InstanceTypeC32xlarge = "c3.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC34xlarge is a InstanceType enum value
 	InstanceTypeC34xlarge = "c3.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC38xlarge is a InstanceType enum value
 	InstanceTypeC38xlarge = "c3.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC4Large is a InstanceType enum value
 	InstanceTypeC4Large = "c4.large"
-	// @enum InstanceType
+
+	// InstanceTypeC4Xlarge is a InstanceType enum value
 	InstanceTypeC4Xlarge = "c4.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC42xlarge is a InstanceType enum value
 	InstanceTypeC42xlarge = "c4.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC44xlarge is a InstanceType enum value
 	InstanceTypeC44xlarge = "c4.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeC48xlarge is a InstanceType enum value
 	InstanceTypeC48xlarge = "c4.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeCc14xlarge is a InstanceType enum value
 	InstanceTypeCc14xlarge = "cc1.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeCc28xlarge is a InstanceType enum value
 	InstanceTypeCc28xlarge = "cc2.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeG22xlarge is a InstanceType enum value
 	InstanceTypeG22xlarge = "g2.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeG28xlarge is a InstanceType enum value
 	InstanceTypeG28xlarge = "g2.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeCg14xlarge is a InstanceType enum value
 	InstanceTypeCg14xlarge = "cg1.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeP2Xlarge is a InstanceType enum value
 	InstanceTypeP2Xlarge = "p2.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeP28xlarge is a InstanceType enum value
 	InstanceTypeP28xlarge = "p2.8xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeP216xlarge is a InstanceType enum value
 	InstanceTypeP216xlarge = "p2.16xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeD2Xlarge is a InstanceType enum value
 	InstanceTypeD2Xlarge = "d2.xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeD22xlarge is a InstanceType enum value
 	InstanceTypeD22xlarge = "d2.2xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeD24xlarge is a InstanceType enum value
 	InstanceTypeD24xlarge = "d2.4xlarge"
-	// @enum InstanceType
+
+	// InstanceTypeD28xlarge is a InstanceType enum value
 	InstanceTypeD28xlarge = "d2.8xlarge"
 )
 
 const (
-	// @enum ListingState
+	// ListingStateAvailable is a ListingState enum value
 	ListingStateAvailable = "available"
-	// @enum ListingState
+
+	// ListingStateSold is a ListingState enum value
 	ListingStateSold = "sold"
-	// @enum ListingState
+
+	// ListingStateCancelled is a ListingState enum value
 	ListingStateCancelled = "cancelled"
-	// @enum ListingState
+
+	// ListingStatePending is a ListingState enum value
 	ListingStatePending = "pending"
 )
 
 const (
-	// @enum ListingStatus
+	// ListingStatusActive is a ListingStatus enum value
 	ListingStatusActive = "active"
-	// @enum ListingStatus
+
+	// ListingStatusPending is a ListingStatus enum value
 	ListingStatusPending = "pending"
-	// @enum ListingStatus
+
+	// ListingStatusCancelled is a ListingStatus enum value
 	ListingStatusCancelled = "cancelled"
-	// @enum ListingStatus
+
+	// ListingStatusClosed is a ListingStatus enum value
 	ListingStatusClosed = "closed"
 )
 
 const (
-	// @enum MonitoringState
+	// MonitoringStateDisabled is a MonitoringState enum value
 	MonitoringStateDisabled = "disabled"
-	// @enum MonitoringState
+
+	// MonitoringStateDisabling is a MonitoringState enum value
 	MonitoringStateDisabling = "disabling"
-	// @enum MonitoringState
+
+	// MonitoringStateEnabled is a MonitoringState enum value
 	MonitoringStateEnabled = "enabled"
-	// @enum MonitoringState
+
+	// MonitoringStatePending is a MonitoringState enum value
 	MonitoringStatePending = "pending"
 )
 
 const (
-	// @enum MoveStatus
+	// MoveStatusMovingToVpc is a MoveStatus enum value
 	MoveStatusMovingToVpc = "movingToVpc"
-	// @enum MoveStatus
+
+	// MoveStatusRestoringToClassic is a MoveStatus enum value
 	MoveStatusRestoringToClassic = "restoringToClassic"
 )
 
 const (
-	// @enum NatGatewayState
+	// NatGatewayStatePending is a NatGatewayState enum value
 	NatGatewayStatePending = "pending"
-	// @enum NatGatewayState
+
+	// NatGatewayStateFailed is a NatGatewayState enum value
 	NatGatewayStateFailed = "failed"
-	// @enum NatGatewayState
+
+	// NatGatewayStateAvailable is a NatGatewayState enum value
 	NatGatewayStateAvailable = "available"
-	// @enum NatGatewayState
+
+	// NatGatewayStateDeleting is a NatGatewayState enum value
 	NatGatewayStateDeleting = "deleting"
-	// @enum NatGatewayState
+
+	// NatGatewayStateDeleted is a NatGatewayState enum value
 	NatGatewayStateDeleted = "deleted"
 )
 
 const (
-	// @enum NetworkInterfaceAttribute
+	// NetworkInterfaceAttributeDescription is a NetworkInterfaceAttribute enum value
 	NetworkInterfaceAttributeDescription = "description"
-	// @enum NetworkInterfaceAttribute
+
+	// NetworkInterfaceAttributeGroupSet is a NetworkInterfaceAttribute enum value
 	NetworkInterfaceAttributeGroupSet = "groupSet"
-	// @enum NetworkInterfaceAttribute
+
+	// NetworkInterfaceAttributeSourceDestCheck is a NetworkInterfaceAttribute enum value
 	NetworkInterfaceAttributeSourceDestCheck = "sourceDestCheck"
-	// @enum NetworkInterfaceAttribute
+
+	// NetworkInterfaceAttributeAttachment is a NetworkInterfaceAttribute enum value
 	NetworkInterfaceAttributeAttachment = "attachment"
 )
 
 const (
-	// @enum NetworkInterfaceStatus
+	// NetworkInterfaceStatusAvailable is a NetworkInterfaceStatus enum value
 	NetworkInterfaceStatusAvailable = "available"
-	// @enum NetworkInterfaceStatus
+
+	// NetworkInterfaceStatusAttaching is a NetworkInterfaceStatus enum value
 	NetworkInterfaceStatusAttaching = "attaching"
-	// @enum NetworkInterfaceStatus
+
+	// NetworkInterfaceStatusInUse is a NetworkInterfaceStatus enum value
 	NetworkInterfaceStatusInUse = "in-use"
-	// @enum NetworkInterfaceStatus
+
+	// NetworkInterfaceStatusDetaching is a NetworkInterfaceStatus enum value
 	NetworkInterfaceStatusDetaching = "detaching"
 )
 
 const (
-	// @enum NetworkInterfaceType
+	// NetworkInterfaceTypeInterface is a NetworkInterfaceType enum value
 	NetworkInterfaceTypeInterface = "interface"
-	// @enum NetworkInterfaceType
+
+	// NetworkInterfaceTypeNatGateway is a NetworkInterfaceType enum value
 	NetworkInterfaceTypeNatGateway = "natGateway"
 )
 
 const (
-	// @enum OfferingClassType
+	// OfferingClassTypeStandard is a OfferingClassType enum value
 	OfferingClassTypeStandard = "standard"
-	// @enum OfferingClassType
+
+	// OfferingClassTypeConvertible is a OfferingClassType enum value
 	OfferingClassTypeConvertible = "convertible"
 )
 
 const (
-	// @enum OfferingTypeValues
+	// OfferingTypeValuesHeavyUtilization is a OfferingTypeValues enum value
 	OfferingTypeValuesHeavyUtilization = "Heavy Utilization"
-	// @enum OfferingTypeValues
+
+	// OfferingTypeValuesMediumUtilization is a OfferingTypeValues enum value
 	OfferingTypeValuesMediumUtilization = "Medium Utilization"
-	// @enum OfferingTypeValues
+
+	// OfferingTypeValuesLightUtilization is a OfferingTypeValues enum value
 	OfferingTypeValuesLightUtilization = "Light Utilization"
-	// @enum OfferingTypeValues
+
+	// OfferingTypeValuesNoUpfront is a OfferingTypeValues enum value
 	OfferingTypeValuesNoUpfront = "No Upfront"
-	// @enum OfferingTypeValues
+
+	// OfferingTypeValuesPartialUpfront is a OfferingTypeValues enum value
 	OfferingTypeValuesPartialUpfront = "Partial Upfront"
-	// @enum OfferingTypeValues
+
+	// OfferingTypeValuesAllUpfront is a OfferingTypeValues enum value
 	OfferingTypeValuesAllUpfront = "All Upfront"
 )
 
 const (
-	// @enum OperationType
+	// OperationTypeAdd is a OperationType enum value
 	OperationTypeAdd = "add"
-	// @enum OperationType
+
+	// OperationTypeRemove is a OperationType enum value
 	OperationTypeRemove = "remove"
 )
 
 const (
-	// @enum PaymentOption
+	// PaymentOptionAllUpfront is a PaymentOption enum value
 	PaymentOptionAllUpfront = "AllUpfront"
-	// @enum PaymentOption
+
+	// PaymentOptionPartialUpfront is a PaymentOption enum value
 	PaymentOptionPartialUpfront = "PartialUpfront"
-	// @enum PaymentOption
+
+	// PaymentOptionNoUpfront is a PaymentOption enum value
 	PaymentOptionNoUpfront = "NoUpfront"
 )
 
 const (
-	// @enum PermissionGroup
+	// PermissionGroupAll is a PermissionGroup enum value
 	PermissionGroupAll = "all"
 )
 
 const (
-	// @enum PlacementGroupState
+	// PlacementGroupStatePending is a PlacementGroupState enum value
 	PlacementGroupStatePending = "pending"
-	// @enum PlacementGroupState
+
+	// PlacementGroupStateAvailable is a PlacementGroupState enum value
 	PlacementGroupStateAvailable = "available"
-	// @enum PlacementGroupState
+
+	// PlacementGroupStateDeleting is a PlacementGroupState enum value
 	PlacementGroupStateDeleting = "deleting"
-	// @enum PlacementGroupState
+
+	// PlacementGroupStateDeleted is a PlacementGroupState enum value
 	PlacementGroupStateDeleted = "deleted"
 )
 
 const (
-	// @enum PlacementStrategy
+	// PlacementStrategyCluster is a PlacementStrategy enum value
 	PlacementStrategyCluster = "cluster"
 )
 
 const (
-	// @enum PlatformValues
+	// PlatformValuesWindows is a PlatformValues enum value
 	PlatformValuesWindows = "Windows"
 )
 
 const (
-	// @enum ProductCodeValues
+	// ProductCodeValuesDevpay is a ProductCodeValues enum value
 	ProductCodeValuesDevpay = "devpay"
-	// @enum ProductCodeValues
+
+	// ProductCodeValuesMarketplace is a ProductCodeValues enum value
 	ProductCodeValuesMarketplace = "marketplace"
 )
 
 const (
-	// @enum RIProductDescription
+	// RIProductDescriptionLinuxUnix is a RIProductDescription enum value
 	RIProductDescriptionLinuxUnix = "Linux/UNIX"
-	// @enum RIProductDescription
+
+	// RIProductDescriptionLinuxUnixamazonVpc is a RIProductDescription enum value
 	RIProductDescriptionLinuxUnixamazonVpc = "Linux/UNIX (Amazon VPC)"
-	// @enum RIProductDescription
+
+	// RIProductDescriptionWindows is a RIProductDescription enum value
 	RIProductDescriptionWindows = "Windows"
-	// @enum RIProductDescription
+
+	// RIProductDescriptionWindowsAmazonVpc is a RIProductDescription enum value
 	RIProductDescriptionWindowsAmazonVpc = "Windows (Amazon VPC)"
 )
 
 const (
-	// @enum RecurringChargeFrequency
+	// RecurringChargeFrequencyHourly is a RecurringChargeFrequency enum value
 	RecurringChargeFrequencyHourly = "Hourly"
 )
 
 const (
-	// @enum ReportInstanceReasonCodes
+	// ReportInstanceReasonCodesInstanceStuckInState is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesInstanceStuckInState = "instance-stuck-in-state"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesUnresponsive is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesUnresponsive = "unresponsive"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesNotAcceptingCredentials is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesNotAcceptingCredentials = "not-accepting-credentials"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesPasswordNotAvailable is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesPasswordNotAvailable = "password-not-available"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesPerformanceNetwork is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesPerformanceNetwork = "performance-network"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesPerformanceInstanceStore is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesPerformanceInstanceStore = "performance-instance-store"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesPerformanceEbsVolume is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesPerformanceEbsVolume = "performance-ebs-volume"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesPerformanceOther is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesPerformanceOther = "performance-other"
-	// @enum ReportInstanceReasonCodes
+
+	// ReportInstanceReasonCodesOther is a ReportInstanceReasonCodes enum value
 	ReportInstanceReasonCodesOther = "other"
 )
 
 const (
-	// @enum ReportStatusType
+	// ReportStatusTypeOk is a ReportStatusType enum value
 	ReportStatusTypeOk = "ok"
-	// @enum ReportStatusType
+
+	// ReportStatusTypeImpaired is a ReportStatusType enum value
 	ReportStatusTypeImpaired = "impaired"
 )
 
 const (
-	// @enum ReservationState
+	// ReservationStatePaymentPending is a ReservationState enum value
 	ReservationStatePaymentPending = "payment-pending"
-	// @enum ReservationState
+
+	// ReservationStatePaymentFailed is a ReservationState enum value
 	ReservationStatePaymentFailed = "payment-failed"
-	// @enum ReservationState
+
+	// ReservationStateActive is a ReservationState enum value
 	ReservationStateActive = "active"
-	// @enum ReservationState
+
+	// ReservationStateRetired is a ReservationState enum value
 	ReservationStateRetired = "retired"
 )
 
 const (
-	// @enum ReservedInstanceState
+	// ReservedInstanceStatePaymentPending is a ReservedInstanceState enum value
 	ReservedInstanceStatePaymentPending = "payment-pending"
-	// @enum ReservedInstanceState
+
+	// ReservedInstanceStateActive is a ReservedInstanceState enum value
 	ReservedInstanceStateActive = "active"
-	// @enum ReservedInstanceState
+
+	// ReservedInstanceStatePaymentFailed is a ReservedInstanceState enum value
 	ReservedInstanceStatePaymentFailed = "payment-failed"
-	// @enum ReservedInstanceState
+
+	// ReservedInstanceStateRetired is a ReservedInstanceState enum value
 	ReservedInstanceStateRetired = "retired"
 )
 
 const (
-	// @enum ResetImageAttributeName
+	// ResetImageAttributeNameLaunchPermission is a ResetImageAttributeName enum value
 	ResetImageAttributeNameLaunchPermission = "launchPermission"
 )
 
 const (
-	// @enum ResourceType
+	// ResourceTypeCustomerGateway is a ResourceType enum value
 	ResourceTypeCustomerGateway = "customer-gateway"
-	// @enum ResourceType
+
+	// ResourceTypeDhcpOptions is a ResourceType enum value
 	ResourceTypeDhcpOptions = "dhcp-options"
-	// @enum ResourceType
+
+	// ResourceTypeImage is a ResourceType enum value
 	ResourceTypeImage = "image"
-	// @enum ResourceType
+
+	// ResourceTypeInstance is a ResourceType enum value
 	ResourceTypeInstance = "instance"
-	// @enum ResourceType
+
+	// ResourceTypeInternetGateway is a ResourceType enum value
 	ResourceTypeInternetGateway = "internet-gateway"
-	// @enum ResourceType
+
+	// ResourceTypeNetworkAcl is a ResourceType enum value
 	ResourceTypeNetworkAcl = "network-acl"
-	// @enum ResourceType
+
+	// ResourceTypeNetworkInterface is a ResourceType enum value
 	ResourceTypeNetworkInterface = "network-interface"
-	// @enum ResourceType
+
+	// ResourceTypeReservedInstances is a ResourceType enum value
 	ResourceTypeReservedInstances = "reserved-instances"
-	// @enum ResourceType
+
+	// ResourceTypeRouteTable is a ResourceType enum value
 	ResourceTypeRouteTable = "route-table"
-	// @enum ResourceType
+
+	// ResourceTypeSnapshot is a ResourceType enum value
 	ResourceTypeSnapshot = "snapshot"
-	// @enum ResourceType
+
+	// ResourceTypeSpotInstancesRequest is a ResourceType enum value
 	ResourceTypeSpotInstancesRequest = "spot-instances-request"
-	// @enum ResourceType
+
+	// ResourceTypeSubnet is a ResourceType enum value
 	ResourceTypeSubnet = "subnet"
-	// @enum ResourceType
+
+	// ResourceTypeSecurityGroup is a ResourceType enum value
 	ResourceTypeSecurityGroup = "security-group"
-	// @enum ResourceType
+
+	// ResourceTypeVolume is a ResourceType enum value
 	ResourceTypeVolume = "volume"
-	// @enum ResourceType
+
+	// ResourceTypeVpc is a ResourceType enum value
 	ResourceTypeVpc = "vpc"
-	// @enum ResourceType
+
+	// ResourceTypeVpnConnection is a ResourceType enum value
 	ResourceTypeVpnConnection = "vpn-connection"
-	// @enum ResourceType
+
+	// ResourceTypeVpnGateway is a ResourceType enum value
 	ResourceTypeVpnGateway = "vpn-gateway"
 )
 
 const (
-	// @enum RouteOrigin
+	// RouteOriginCreateRouteTable is a RouteOrigin enum value
 	RouteOriginCreateRouteTable = "CreateRouteTable"
-	// @enum RouteOrigin
+
+	// RouteOriginCreateRoute is a RouteOrigin enum value
 	RouteOriginCreateRoute = "CreateRoute"
-	// @enum RouteOrigin
+
+	// RouteOriginEnableVgwRoutePropagation is a RouteOrigin enum value
 	RouteOriginEnableVgwRoutePropagation = "EnableVgwRoutePropagation"
 )
 
 const (
-	// @enum RouteState
+	// RouteStateActive is a RouteState enum value
 	RouteStateActive = "active"
-	// @enum RouteState
+
+	// RouteStateBlackhole is a RouteState enum value
 	RouteStateBlackhole = "blackhole"
 )
 
 const (
-	// @enum RuleAction
+	// RuleActionAllow is a RuleAction enum value
 	RuleActionAllow = "allow"
-	// @enum RuleAction
+
+	// RuleActionDeny is a RuleAction enum value
 	RuleActionDeny = "deny"
 )
 
 const (
-	// @enum ShutdownBehavior
+	// ShutdownBehaviorStop is a ShutdownBehavior enum value
 	ShutdownBehaviorStop = "stop"
-	// @enum ShutdownBehavior
+
+	// ShutdownBehaviorTerminate is a ShutdownBehavior enum value
 	ShutdownBehaviorTerminate = "terminate"
 )
 
 const (
-	// @enum SnapshotAttributeName
+	// SnapshotAttributeNameProductCodes is a SnapshotAttributeName enum value
 	SnapshotAttributeNameProductCodes = "productCodes"
-	// @enum SnapshotAttributeName
+
+	// SnapshotAttributeNameCreateVolumePermission is a SnapshotAttributeName enum value
 	SnapshotAttributeNameCreateVolumePermission = "createVolumePermission"
 )
 
 const (
-	// @enum SnapshotState
+	// SnapshotStatePending is a SnapshotState enum value
 	SnapshotStatePending = "pending"
-	// @enum SnapshotState
+
+	// SnapshotStateCompleted is a SnapshotState enum value
 	SnapshotStateCompleted = "completed"
-	// @enum SnapshotState
+
+	// SnapshotStateError is a SnapshotState enum value
 	SnapshotStateError = "error"
 )
 
 const (
-	// @enum SpotInstanceState
+	// SpotInstanceStateOpen is a SpotInstanceState enum value
 	SpotInstanceStateOpen = "open"
-	// @enum SpotInstanceState
+
+	// SpotInstanceStateActive is a SpotInstanceState enum value
 	SpotInstanceStateActive = "active"
-	// @enum SpotInstanceState
+
+	// SpotInstanceStateClosed is a SpotInstanceState enum value
 	SpotInstanceStateClosed = "closed"
-	// @enum SpotInstanceState
+
+	// SpotInstanceStateCancelled is a SpotInstanceState enum value
 	SpotInstanceStateCancelled = "cancelled"
-	// @enum SpotInstanceState
+
+	// SpotInstanceStateFailed is a SpotInstanceState enum value
 	SpotInstanceStateFailed = "failed"
 )
 
 const (
-	// @enum SpotInstanceType
+	// SpotInstanceTypeOneTime is a SpotInstanceType enum value
 	SpotInstanceTypeOneTime = "one-time"
-	// @enum SpotInstanceType
+
+	// SpotInstanceTypePersistent is a SpotInstanceType enum value
 	SpotInstanceTypePersistent = "persistent"
 )
 
 const (
-	// @enum State
+	// StatePending is a State enum value
 	StatePending = "Pending"
-	// @enum State
+
+	// StateAvailable is a State enum value
 	StateAvailable = "Available"
-	// @enum State
+
+	// StateDeleting is a State enum value
 	StateDeleting = "Deleting"
-	// @enum State
+
+	// StateDeleted is a State enum value
 	StateDeleted = "Deleted"
 )
 
 const (
-	// @enum Status
+	// StatusMoveInProgress is a Status enum value
 	StatusMoveInProgress = "MoveInProgress"
-	// @enum Status
+
+	// StatusInVpc is a Status enum value
 	StatusInVpc = "InVpc"
-	// @enum Status
+
+	// StatusInClassic is a Status enum value
 	StatusInClassic = "InClassic"
 )
 
 const (
-	// @enum StatusName
+	// StatusNameReachability is a StatusName enum value
 	StatusNameReachability = "reachability"
 )
 
 const (
-	// @enum StatusType
+	// StatusTypePassed is a StatusType enum value
 	StatusTypePassed = "passed"
-	// @enum StatusType
+
+	// StatusTypeFailed is a StatusType enum value
 	StatusTypeFailed = "failed"
-	// @enum StatusType
+
+	// StatusTypeInsufficientData is a StatusType enum value
 	StatusTypeInsufficientData = "insufficient-data"
-	// @enum StatusType
+
+	// StatusTypeInitializing is a StatusType enum value
 	StatusTypeInitializing = "initializing"
 )
 
 const (
-	// @enum SubnetState
+	// SubnetStatePending is a SubnetState enum value
 	SubnetStatePending = "pending"
-	// @enum SubnetState
+
+	// SubnetStateAvailable is a SubnetState enum value
 	SubnetStateAvailable = "available"
 )
 
 const (
-	// @enum SummaryStatus
+	// SummaryStatusOk is a SummaryStatus enum value
 	SummaryStatusOk = "ok"
-	// @enum SummaryStatus
+
+	// SummaryStatusImpaired is a SummaryStatus enum value
 	SummaryStatusImpaired = "impaired"
-	// @enum SummaryStatus
+
+	// SummaryStatusInsufficientData is a SummaryStatus enum value
 	SummaryStatusInsufficientData = "insufficient-data"
-	// @enum SummaryStatus
+
+	// SummaryStatusNotApplicable is a SummaryStatus enum value
 	SummaryStatusNotApplicable = "not-applicable"
-	// @enum SummaryStatus
+
+	// SummaryStatusInitializing is a SummaryStatus enum value
 	SummaryStatusInitializing = "initializing"
 )
 
 const (
-	// @enum TelemetryStatus
+	// TelemetryStatusUp is a TelemetryStatus enum value
 	TelemetryStatusUp = "UP"
-	// @enum TelemetryStatus
+
+	// TelemetryStatusDown is a TelemetryStatus enum value
 	TelemetryStatusDown = "DOWN"
 )
 
 const (
-	// @enum Tenancy
+	// TenancyDefault is a Tenancy enum value
 	TenancyDefault = "default"
-	// @enum Tenancy
+
+	// TenancyDedicated is a Tenancy enum value
 	TenancyDedicated = "dedicated"
-	// @enum Tenancy
+
+	// TenancyHost is a Tenancy enum value
 	TenancyHost = "host"
 )
 
 const (
-	// @enum TrafficType
+	// TrafficTypeAccept is a TrafficType enum value
 	TrafficTypeAccept = "ACCEPT"
-	// @enum TrafficType
+
+	// TrafficTypeReject is a TrafficType enum value
 	TrafficTypeReject = "REJECT"
-	// @enum TrafficType
+
+	// TrafficTypeAll is a TrafficType enum value
 	TrafficTypeAll = "ALL"
 )
 
 const (
-	// @enum VirtualizationType
+	// VirtualizationTypeHvm is a VirtualizationType enum value
 	VirtualizationTypeHvm = "hvm"
-	// @enum VirtualizationType
+
+	// VirtualizationTypeParavirtual is a VirtualizationType enum value
 	VirtualizationTypeParavirtual = "paravirtual"
 )
 
 const (
-	// @enum VolumeAttachmentState
+	// VolumeAttachmentStateAttaching is a VolumeAttachmentState enum value
 	VolumeAttachmentStateAttaching = "attaching"
-	// @enum VolumeAttachmentState
+
+	// VolumeAttachmentStateAttached is a VolumeAttachmentState enum value
 	VolumeAttachmentStateAttached = "attached"
-	// @enum VolumeAttachmentState
+
+	// VolumeAttachmentStateDetaching is a VolumeAttachmentState enum value
 	VolumeAttachmentStateDetaching = "detaching"
-	// @enum VolumeAttachmentState
+
+	// VolumeAttachmentStateDetached is a VolumeAttachmentState enum value
 	VolumeAttachmentStateDetached = "detached"
 )
 
 const (
-	// @enum VolumeAttributeName
+	// VolumeAttributeNameAutoEnableIo is a VolumeAttributeName enum value
 	VolumeAttributeNameAutoEnableIo = "autoEnableIO"
-	// @enum VolumeAttributeName
+
+	// VolumeAttributeNameProductCodes is a VolumeAttributeName enum value
 	VolumeAttributeNameProductCodes = "productCodes"
 )
 
 const (
-	// @enum VolumeState
+	// VolumeStateCreating is a VolumeState enum value
 	VolumeStateCreating = "creating"
-	// @enum VolumeState
+
+	// VolumeStateAvailable is a VolumeState enum value
 	VolumeStateAvailable = "available"
-	// @enum VolumeState
+
+	// VolumeStateInUse is a VolumeState enum value
 	VolumeStateInUse = "in-use"
-	// @enum VolumeState
+
+	// VolumeStateDeleting is a VolumeState enum value
 	VolumeStateDeleting = "deleting"
-	// @enum VolumeState
+
+	// VolumeStateDeleted is a VolumeState enum value
 	VolumeStateDeleted = "deleted"
-	// @enum VolumeState
+
+	// VolumeStateError is a VolumeState enum value
 	VolumeStateError = "error"
 )
 
 const (
-	// @enum VolumeStatusInfoStatus
+	// VolumeStatusInfoStatusOk is a VolumeStatusInfoStatus enum value
 	VolumeStatusInfoStatusOk = "ok"
-	// @enum VolumeStatusInfoStatus
+
+	// VolumeStatusInfoStatusImpaired is a VolumeStatusInfoStatus enum value
 	VolumeStatusInfoStatusImpaired = "impaired"
-	// @enum VolumeStatusInfoStatus
+
+	// VolumeStatusInfoStatusInsufficientData is a VolumeStatusInfoStatus enum value
 	VolumeStatusInfoStatusInsufficientData = "insufficient-data"
 )
 
 const (
-	// @enum VolumeStatusName
+	// VolumeStatusNameIoEnabled is a VolumeStatusName enum value
 	VolumeStatusNameIoEnabled = "io-enabled"
-	// @enum VolumeStatusName
+
+	// VolumeStatusNameIoPerformance is a VolumeStatusName enum value
 	VolumeStatusNameIoPerformance = "io-performance"
 )
 
 const (
-	// @enum VolumeType
+	// VolumeTypeStandard is a VolumeType enum value
 	VolumeTypeStandard = "standard"
-	// @enum VolumeType
+
+	// VolumeTypeIo1 is a VolumeType enum value
 	VolumeTypeIo1 = "io1"
-	// @enum VolumeType
+
+	// VolumeTypeGp2 is a VolumeType enum value
 	VolumeTypeGp2 = "gp2"
-	// @enum VolumeType
+
+	// VolumeTypeSc1 is a VolumeType enum value
 	VolumeTypeSc1 = "sc1"
-	// @enum VolumeType
+
+	// VolumeTypeSt1 is a VolumeType enum value
 	VolumeTypeSt1 = "st1"
 )
 
 const (
-	// @enum VpcAttributeName
+	// VpcAttributeNameEnableDnsSupport is a VpcAttributeName enum value
 	VpcAttributeNameEnableDnsSupport = "enableDnsSupport"
-	// @enum VpcAttributeName
+
+	// VpcAttributeNameEnableDnsHostnames is a VpcAttributeName enum value
 	VpcAttributeNameEnableDnsHostnames = "enableDnsHostnames"
 )
 
 const (
-	// @enum VpcPeeringConnectionStateReasonCode
+	// VpcPeeringConnectionStateReasonCodeInitiatingRequest is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeInitiatingRequest = "initiating-request"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodePendingAcceptance is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodePendingAcceptance = "pending-acceptance"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeActive is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeActive = "active"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeDeleted is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeDeleted = "deleted"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeRejected is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeRejected = "rejected"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeFailed is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeFailed = "failed"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeExpired is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeExpired = "expired"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeProvisioning is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeProvisioning = "provisioning"
-	// @enum VpcPeeringConnectionStateReasonCode
+
+	// VpcPeeringConnectionStateReasonCodeDeleting is a VpcPeeringConnectionStateReasonCode enum value
 	VpcPeeringConnectionStateReasonCodeDeleting = "deleting"
 )
 
 const (
-	// @enum VpcState
+	// VpcStatePending is a VpcState enum value
 	VpcStatePending = "pending"
-	// @enum VpcState
+
+	// VpcStateAvailable is a VpcState enum value
 	VpcStateAvailable = "available"
 )
 
 const (
-	// @enum VpnState
+	// VpnStatePending is a VpnState enum value
 	VpnStatePending = "pending"
-	// @enum VpnState
+
+	// VpnStateAvailable is a VpnState enum value
 	VpnStateAvailable = "available"
-	// @enum VpnState
+
+	// VpnStateDeleting is a VpnState enum value
 	VpnStateDeleting = "deleting"
-	// @enum VpnState
+
+	// VpnStateDeleted is a VpnState enum value
 	VpnStateDeleted = "deleted"
 )
 
 const (
-	// @enum VpnStaticRouteSource
+	// VpnStaticRouteSourceStatic is a VpnStaticRouteSource enum value
 	VpnStaticRouteSourceStatic = "Static"
 )
 
 const (
-	// @enum scope
+	// ScopeAvailabilityZone is a scope enum value
 	ScopeAvailabilityZone = "Availability Zone"
-	// @enum scope
+
+	// ScopeRegion is a scope enum value
 	ScopeRegion = "Region"
 )

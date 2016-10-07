@@ -832,6 +832,8 @@ type DeleteAlarmsInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of alarms to be deleted.
+	//
+	// AlarmNames is a required field
 	AlarmNames []*string `type:"list" required:"true"`
 }
 
@@ -953,9 +955,13 @@ type DescribeAlarmsForMetricInput struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The name of the metric.
+	//
+	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace of the metric.
+	//
+	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// The period in seconds over which the statistic is applied.
@@ -1114,9 +1120,13 @@ type Dimension struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the dimension.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The value representing the dimension measurement
+	//
+	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1157,6 +1167,8 @@ type DimensionFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The dimension name to be matched.
+	//
+	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The value of the dimension to be matched.
@@ -1199,6 +1211,8 @@ type DisableAlarmActionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the alarms to disable actions for.
+	//
+	// AlarmNames is a required field
 	AlarmNames []*string `type:"list" required:"true"`
 }
 
@@ -1244,6 +1258,8 @@ type EnableAlarmActionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names of the alarms to enable actions for.
+	//
+	// AlarmNames is a required field
 	AlarmNames []*string `type:"list" required:"true"`
 }
 
@@ -1294,17 +1310,25 @@ type GetMetricStatisticsInput struct {
 	// The time stamp to use for determining the last datapoint to return. The value
 	// specified is exclusive; results will include datapoints up to the time stamp
 	// specified. The time stamp must be in ISO 8601 UTC format (e.g., 2014-09-03T23:00:00Z).
+	//
+	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The name of the metric, with or without spaces.
+	//
+	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace of the metric, with or without spaces.
+	//
+	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// The granularity, in seconds, of the returned datapoints. A Period can be
 	// as short as one minute (60 seconds) or as long as one day (86,400 seconds),
 	// and must be a multiple of 60. The default value is 60.
+	//
+	// Period is a required field
 	Period *int64 `min:"60" type:"integer" required:"true"`
 
 	// The time stamp to use for determining the first datapoint to return. The
@@ -1318,11 +1342,15 @@ type GetMetricStatisticsInput struct {
 	//
 	// Data that is timestamped 24 hours or more in the past may take in excess
 	// of 48 hours to become available from submission time using GetMetricStatistics.
+	//
+	// StartTime is a required field
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The metric statistics to return. For information about specific statistics
 	// returned by GetMetricStatistics, see Statistics (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/cloudwatch_concepts.html#Statistic)
 	// in the Amazon CloudWatch Developer Guide.
+	//
+	// Statistics is a required field
 	Statistics []*string `min:"1" type:"list" required:"true"`
 
 	// The specific unit for a given metric. Metrics may be reported in multiple
@@ -1617,6 +1645,8 @@ type MetricDatum struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The name of the metric.
+	//
+	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// A set of statistical values describing the metric.
@@ -1711,16 +1741,22 @@ type PutMetricAlarmInput struct {
 
 	// The descriptive name for the alarm. This name must be unique within the user's
 	// AWS account
+	//
+	// AlarmName is a required field
 	AlarmName *string `min:"1" type:"string" required:"true"`
 
 	// The arithmetic operation to use when comparing the specified Statistic and
 	// Threshold. The specified Statistic value is used as the first operand.
+	//
+	// ComparisonOperator is a required field
 	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
 	// The dimensions for the alarm's associated metric.
 	Dimensions []*Dimension `type:"list"`
 
 	// The number of periods over which data is compared to the specified threshold.
+	//
+	// EvaluationPeriods is a required field
 	EvaluationPeriods *int64 `min:"1" type:"integer" required:"true"`
 
 	// The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA
@@ -1741,9 +1777,13 @@ type PutMetricAlarmInput struct {
 	InsufficientDataActions []*string `type:"list"`
 
 	// The name for the alarm's associated metric.
+	//
+	// MetricName is a required field
 	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace for the alarm's associated metric.
+	//
+	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// The list of actions to execute when this alarm transitions into an OK state
@@ -1764,12 +1804,18 @@ type PutMetricAlarmInput struct {
 	OKActions []*string `type:"list"`
 
 	// The period in seconds over which the specified statistic is applied.
+	//
+	// Period is a required field
 	Period *int64 `min:"60" type:"integer" required:"true"`
 
 	// The statistic to apply to the alarm's associated metric.
+	//
+	// Statistic is a required field
 	Statistic *string `type:"string" required:"true" enum:"Statistic"`
 
 	// The value against which the specified statistic is compared.
+	//
+	// Threshold is a required field
 	Threshold *float64 `type:"double" required:"true"`
 
 	// The statistic's unit of measure. For example, the units for the Amazon EC2
@@ -1873,6 +1919,8 @@ type PutMetricDataInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of data describing the metric.
+	//
+	// MetricData is a required field
 	MetricData []*MetricDatum `type:"list" required:"true"`
 
 	// The namespace for the metric data.
@@ -1880,6 +1928,8 @@ type PutMetricDataInput struct {
 	//  You cannot specify a namespace that begins with "AWS/". Namespaces that
 	// begin with "AWS/" are reserved for other Amazon Web Services products that
 	// send metrics to Amazon CloudWatch.
+	//
+	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1942,10 +1992,14 @@ type SetAlarmStateInput struct {
 
 	// The descriptive name for the alarm. This name must be unique within the user's
 	// AWS account. The maximum length is 255 characters.
+	//
+	// AlarmName is a required field
 	AlarmName *string `min:"1" type:"string" required:"true"`
 
 	// The reason that this alarm is set to this specific state (in human-readable
 	// text format)
+	//
+	// StateReason is a required field
 	StateReason *string `type:"string" required:"true"`
 
 	// The reason that this alarm is set to this specific state (in machine-readable
@@ -1953,6 +2007,8 @@ type SetAlarmStateInput struct {
 	StateReasonData *string `type:"string"`
 
 	// The value of the state.
+	//
+	// StateValue is a required field
 	StateValue *string `type:"string" required:"true" enum:"StateValue"`
 }
 
@@ -2008,15 +2064,23 @@ type StatisticSet struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum value of the sample set.
+	//
+	// Maximum is a required field
 	Maximum *float64 `type:"double" required:"true"`
 
 	// The minimum value of the sample set.
+	//
+	// Minimum is a required field
 	Minimum *float64 `type:"double" required:"true"`
 
 	// The number of samples used for the statistic set.
+	//
+	// SampleCount is a required field
 	SampleCount *float64 `type:"double" required:"true"`
 
 	// The sum of values for the sample set.
+	//
+	// Sum is a required field
 	Sum *float64 `type:"double" required:"true"`
 }
 
@@ -2053,100 +2117,137 @@ func (s *StatisticSet) Validate() error {
 }
 
 const (
-	// @enum ComparisonOperator
+	// ComparisonOperatorGreaterThanOrEqualToThreshold is a ComparisonOperator enum value
 	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorGreaterThanThreshold is a ComparisonOperator enum value
 	ComparisonOperatorGreaterThanThreshold = "GreaterThanThreshold"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLessThanThreshold is a ComparisonOperator enum value
 	ComparisonOperatorLessThanThreshold = "LessThanThreshold"
-	// @enum ComparisonOperator
+
+	// ComparisonOperatorLessThanOrEqualToThreshold is a ComparisonOperator enum value
 	ComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
 )
 
 const (
-	// @enum HistoryItemType
+	// HistoryItemTypeConfigurationUpdate is a HistoryItemType enum value
 	HistoryItemTypeConfigurationUpdate = "ConfigurationUpdate"
-	// @enum HistoryItemType
+
+	// HistoryItemTypeStateUpdate is a HistoryItemType enum value
 	HistoryItemTypeStateUpdate = "StateUpdate"
-	// @enum HistoryItemType
+
+	// HistoryItemTypeAction is a HistoryItemType enum value
 	HistoryItemTypeAction = "Action"
 )
 
 const (
-	// @enum StandardUnit
+	// StandardUnitSeconds is a StandardUnit enum value
 	StandardUnitSeconds = "Seconds"
-	// @enum StandardUnit
+
+	// StandardUnitMicroseconds is a StandardUnit enum value
 	StandardUnitMicroseconds = "Microseconds"
-	// @enum StandardUnit
+
+	// StandardUnitMilliseconds is a StandardUnit enum value
 	StandardUnitMilliseconds = "Milliseconds"
-	// @enum StandardUnit
+
+	// StandardUnitBytes is a StandardUnit enum value
 	StandardUnitBytes = "Bytes"
-	// @enum StandardUnit
+
+	// StandardUnitKilobytes is a StandardUnit enum value
 	StandardUnitKilobytes = "Kilobytes"
-	// @enum StandardUnit
+
+	// StandardUnitMegabytes is a StandardUnit enum value
 	StandardUnitMegabytes = "Megabytes"
-	// @enum StandardUnit
+
+	// StandardUnitGigabytes is a StandardUnit enum value
 	StandardUnitGigabytes = "Gigabytes"
-	// @enum StandardUnit
+
+	// StandardUnitTerabytes is a StandardUnit enum value
 	StandardUnitTerabytes = "Terabytes"
-	// @enum StandardUnit
+
+	// StandardUnitBits is a StandardUnit enum value
 	StandardUnitBits = "Bits"
-	// @enum StandardUnit
+
+	// StandardUnitKilobits is a StandardUnit enum value
 	StandardUnitKilobits = "Kilobits"
-	// @enum StandardUnit
+
+	// StandardUnitMegabits is a StandardUnit enum value
 	StandardUnitMegabits = "Megabits"
-	// @enum StandardUnit
+
+	// StandardUnitGigabits is a StandardUnit enum value
 	StandardUnitGigabits = "Gigabits"
-	// @enum StandardUnit
+
+	// StandardUnitTerabits is a StandardUnit enum value
 	StandardUnitTerabits = "Terabits"
-	// @enum StandardUnit
+
+	// StandardUnitPercent is a StandardUnit enum value
 	StandardUnitPercent = "Percent"
-	// @enum StandardUnit
+
+	// StandardUnitCount is a StandardUnit enum value
 	StandardUnitCount = "Count"
-	// @enum StandardUnit
+
+	// StandardUnitBytesSecond is a StandardUnit enum value
 	StandardUnitBytesSecond = "Bytes/Second"
-	// @enum StandardUnit
+
+	// StandardUnitKilobytesSecond is a StandardUnit enum value
 	StandardUnitKilobytesSecond = "Kilobytes/Second"
-	// @enum StandardUnit
+
+	// StandardUnitMegabytesSecond is a StandardUnit enum value
 	StandardUnitMegabytesSecond = "Megabytes/Second"
-	// @enum StandardUnit
+
+	// StandardUnitGigabytesSecond is a StandardUnit enum value
 	StandardUnitGigabytesSecond = "Gigabytes/Second"
-	// @enum StandardUnit
+
+	// StandardUnitTerabytesSecond is a StandardUnit enum value
 	StandardUnitTerabytesSecond = "Terabytes/Second"
-	// @enum StandardUnit
+
+	// StandardUnitBitsSecond is a StandardUnit enum value
 	StandardUnitBitsSecond = "Bits/Second"
-	// @enum StandardUnit
+
+	// StandardUnitKilobitsSecond is a StandardUnit enum value
 	StandardUnitKilobitsSecond = "Kilobits/Second"
-	// @enum StandardUnit
+
+	// StandardUnitMegabitsSecond is a StandardUnit enum value
 	StandardUnitMegabitsSecond = "Megabits/Second"
-	// @enum StandardUnit
+
+	// StandardUnitGigabitsSecond is a StandardUnit enum value
 	StandardUnitGigabitsSecond = "Gigabits/Second"
-	// @enum StandardUnit
+
+	// StandardUnitTerabitsSecond is a StandardUnit enum value
 	StandardUnitTerabitsSecond = "Terabits/Second"
-	// @enum StandardUnit
+
+	// StandardUnitCountSecond is a StandardUnit enum value
 	StandardUnitCountSecond = "Count/Second"
-	// @enum StandardUnit
+
+	// StandardUnitNone is a StandardUnit enum value
 	StandardUnitNone = "None"
 )
 
 const (
-	// @enum StateValue
+	// StateValueOk is a StateValue enum value
 	StateValueOk = "OK"
-	// @enum StateValue
+
+	// StateValueAlarm is a StateValue enum value
 	StateValueAlarm = "ALARM"
-	// @enum StateValue
+
+	// StateValueInsufficientData is a StateValue enum value
 	StateValueInsufficientData = "INSUFFICIENT_DATA"
 )
 
 const (
-	// @enum Statistic
+	// StatisticSampleCount is a Statistic enum value
 	StatisticSampleCount = "SampleCount"
-	// @enum Statistic
+
+	// StatisticAverage is a Statistic enum value
 	StatisticAverage = "Average"
-	// @enum Statistic
+
+	// StatisticSum is a Statistic enum value
 	StatisticSum = "Sum"
-	// @enum Statistic
+
+	// StatisticMinimum is a Statistic enum value
 	StatisticMinimum = "Minimum"
-	// @enum Statistic
+
+	// StatisticMaximum is a Statistic enum value
 	StatisticMaximum = "Maximum"
 )

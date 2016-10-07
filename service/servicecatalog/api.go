@@ -641,6 +641,8 @@ type DescribeProductInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The ProductId of the product to describe.
+	//
+	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
@@ -707,6 +709,8 @@ type DescribeProductViewInput struct {
 	AcceptLanguage *string `type:"string"`
 
 	// The ProductViewId of the product to describe.
+	//
+	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 }
 
@@ -778,9 +782,13 @@ type DescribeProvisioningParametersInput struct {
 	PathId *string `min:"1" type:"string"`
 
 	// The identifier of the product.
+	//
+	// ProductId is a required field
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// The provisioning artifact identifier for this product.
+	//
+	// ProvisioningArtifactId is a required field
 	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -862,6 +870,8 @@ type DescribeRecordInput struct {
 	// The record identifier of the ProvisionedProduct object for which to retrieve
 	// output information. This is the RecordDetail.RecordId obtained from the request
 	// operation's response.
+	//
+	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of items to return in the results. If more results exist
@@ -979,6 +989,8 @@ type ListLaunchPathsInput struct {
 	PageToken *string `type:"string"`
 
 	// Identifies the product for which to retrieve LaunchPathSummaries information.
+	//
+	// ProductId is a required field
 	ProductId *string `min:"1" type:"string" required:"true"`
 }
 
@@ -1233,17 +1245,25 @@ type ProvisionProductInput struct {
 	PathId *string `min:"1" type:"string"`
 
 	// The identifier of the product.
+	//
+	// ProductId is a required field
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// An idempotency token that uniquely identifies the provisioning request.
+	//
+	// ProvisionToken is a required field
 	ProvisionToken *string `min:"1" type:"string" required:"true" idempotencyToken:"true"`
 
 	// A user-friendly name to identify the ProvisionedProduct object. This value
 	// must be unique for the AWS account and cannot be updated after the product
 	// is provisioned.
+	//
+	// ProvisionedProductName is a required field
 	ProvisionedProductName *string `type:"string" required:"true"`
 
 	// The provisioning artifact identifier for this product.
+	//
+	// ProvisioningArtifactId is a required field
 	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
 
 	// Parameters specified by the administrator that are required for provisioning
@@ -1777,6 +1797,8 @@ type TerminateProvisionedProductInput struct {
 	// token is only valid during the termination process. After the ProvisionedProduct
 	// object is terminated, further requests to terminate the same ProvisionedProduct
 	// object always return ResourceNotFound regardless of the value of TerminateToken.
+	//
+	// TerminateToken is a required field
 	TerminateToken *string `min:"1" type:"string" required:"true" idempotencyToken:"true"`
 }
 
@@ -1871,6 +1893,8 @@ type UpdateProvisionedProductInput struct {
 	ProvisioningParameters []*UpdateProvisioningParameter `type:"list"`
 
 	// The idempotency token that uniquely identifies the provisioning update request.
+	//
+	// UpdateToken is a required field
 	UpdateToken *string `min:"1" type:"string" required:"true" idempotencyToken:"true"`
 }
 
@@ -1985,44 +2009,53 @@ func (s UsageInstruction) GoString() string {
 }
 
 const (
-	// @enum AccessLevelFilterKey
+	// AccessLevelFilterKeyAccount is a AccessLevelFilterKey enum value
 	AccessLevelFilterKeyAccount = "Account"
-	// @enum AccessLevelFilterKey
+
+	// AccessLevelFilterKeyRole is a AccessLevelFilterKey enum value
 	AccessLevelFilterKeyRole = "Role"
-	// @enum AccessLevelFilterKey
+
+	// AccessLevelFilterKeyUser is a AccessLevelFilterKey enum value
 	AccessLevelFilterKeyUser = "User"
 )
 
 const (
-	// @enum ProductViewFilterBy
+	// ProductViewFilterByFullTextSearch is a ProductViewFilterBy enum value
 	ProductViewFilterByFullTextSearch = "FullTextSearch"
-	// @enum ProductViewFilterBy
+
+	// ProductViewFilterByOwner is a ProductViewFilterBy enum value
 	ProductViewFilterByOwner = "Owner"
-	// @enum ProductViewFilterBy
+
+	// ProductViewFilterByProductType is a ProductViewFilterBy enum value
 	ProductViewFilterByProductType = "ProductType"
 )
 
 const (
-	// @enum ProductViewSortBy
+	// ProductViewSortByTitle is a ProductViewSortBy enum value
 	ProductViewSortByTitle = "Title"
-	// @enum ProductViewSortBy
+
+	// ProductViewSortByVersionCount is a ProductViewSortBy enum value
 	ProductViewSortByVersionCount = "VersionCount"
-	// @enum ProductViewSortBy
+
+	// ProductViewSortByCreationDate is a ProductViewSortBy enum value
 	ProductViewSortByCreationDate = "CreationDate"
 )
 
 const (
-	// @enum RecordStatus
+	// RecordStatusInProgress is a RecordStatus enum value
 	RecordStatusInProgress = "IN_PROGRESS"
-	// @enum RecordStatus
+
+	// RecordStatusSucceeded is a RecordStatus enum value
 	RecordStatusSucceeded = "SUCCEEDED"
-	// @enum RecordStatus
+
+	// RecordStatusError is a RecordStatus enum value
 	RecordStatusError = "ERROR"
 )
 
 const (
-	// @enum SortOrder
+	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "ASCENDING"
-	// @enum SortOrder
+
+	// SortOrderDescending is a SortOrder enum value
 	SortOrderDescending = "DESCENDING"
 )
