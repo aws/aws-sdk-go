@@ -11,12 +11,12 @@ Service Model Updates
 
 SDK Bug Fixes
 ---
-* `aws/request`: Fix HTTP Request Body race condition #874
+* `aws/request`: Fix HTTP Request Body race condition [#874](https://github.com/aws/aws-sdk-go/issues/874)
 
 SDK Feature Updates
 ---
-* `aws/ec2metadata`: Add support for EC2 User Data #872 
-* `aws/signer/v4`: Remove logic determining if request needs to be resigned #876
+* `aws/ec2metadata`: Add support for EC2 User Data [#872](https://github.com/aws/aws-sdk-go/issues/872)
+* `aws/signer/v4`: Remove logic determining if request needs to be resigned [#876](https://github.com/aws/aws-sdk-go/issues/876)
 
 Release v1.4.14 (2016-09-29)
 ===
