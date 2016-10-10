@@ -7,7 +7,7 @@
 //
 // Generally using the signer outside of the SDK should not require any additional
 // logic when using Go v1.5 or higher. The signer does this by taking advantage
-// of the URL.EscapedURL method. If your request URI requires additional escaping
+// of the URL.EscapedPath method. If your request URI requires additional escaping
 // you many need to use the URL.Opaque to define what the raw URI should be sent
 // to the service as.
 //
@@ -162,41 +162,19 @@ type Signer struct {
 	// request's query string.
 	DisableHeaderHoisting bool
 
-	// The func to use for escaping URI paths. Default for AWS signed request
-	// is to escape all but [a-zA-Z0-9-_.~]. The escaping of '+' is not a part
-	// of this func and is done for all requests. If not set, DefaultURIPathEscape
-	// will be used.
+	// Disables the automatic escaping of the URI path of the request for the
+	// siganture's canonical string's path. For services that do not need additional
+	// escaping then use this to disable the signer escaping the path.
 	//
-	// Generally the escaping function does not need to be set. The only time
-	// this may be useful to set is if custom escaping logic is needed for the
-	// request's URI path escaping.
+	// S3 is an example of a service that does not need additional escaping.
 	//
 	// http://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html
-	URIPathEscapeFn URIPathEscapeFunc
+	DisableURIPathEscaping bool
 
 	// currentTimeFn returns the time value which represents the current time.
 	// This value should only be used for testing. If it is nil the default
 	// time.Now will be used.
 	currentTimeFn func() time.Time
-}
-
-// URIPathEscapeFunc is the type for strategies that can be used by the signer
-// for escaping URI path. This is not needed when signing requests generated with
-// the SDK's API operations.
-type URIPathEscapeFunc func(u string) string
-
-// DefaultURIPathEscape is the default escape URI path func the AWS signer
-// will use. Performs escaping based on the AWS Signature V4 rules.
-//
-// http://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html
-func DefaultURIPathEscape(u string) string {
-	return rest.EscapePath(u, false)
-}
-
-// noURIPathEscape performs no escaping. Used for services like S3 that do not
-// need double escaping for the signature validation to function properly.
-func noURIPathEscape(u string) string {
-	return u
 }
 
 // NewSigner returns a Signer pointer configured with the credentials and optional
@@ -224,7 +202,7 @@ type signingCtx struct {
 	ExpireTime       time.Duration
 	SignedHeaderVals http.Header
 
-	URIPathEscapeFn URIPathEscapeFunc
+	DisableURIPathEscaping bool
 
 	credValues         credentials.Value
 	isPresign          bool
@@ -311,15 +289,15 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 	}
 
 	ctx := &signingCtx{
-		Request:         r,
-		Body:            body,
-		Query:           r.URL.Query(),
-		Time:            signTime,
-		ExpireTime:      exp,
-		isPresign:       exp != 0,
-		ServiceName:     service,
-		Region:          region,
-		URIPathEscapeFn: v4.URIPathEscapeFn,
+		Request:                r,
+		Body:                   body,
+		Query:                  r.URL.Query(),
+		Time:                   signTime,
+		ExpireTime:             exp,
+		isPresign:              exp != 0,
+		ServiceName:            service,
+		Region:                 region,
+		DisableURIPathEscaping: v4.DisableURIPathEscaping,
 	}
 
 	if ctx.isRequestSigned() {
@@ -331,10 +309,6 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 	ctx.credValues, err = v4.Credentials.Get()
 	if err != nil {
 		return http.Header{}, err
-	}
-
-	if ctx.URIPathEscapeFn == nil {
-		ctx.URIPathEscapeFn = DefaultURIPathEscape
 	}
 
 	ctx.assignAmzQueryValues()
@@ -435,8 +409,8 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		v4.DisableHeaderHoisting = req.NotHoist
 		v4.currentTimeFn = curTimeFn
 		if name == "s3" {
-			// S3 service should not have any escapting applied
-			v4.URIPathEscapeFn = noURIPathEscape
+			// S3 service should not have any escaping applied
+			v4.DisableURIPathEscaping = true
 		}
 	})
 
@@ -597,7 +571,9 @@ func (ctx *signingCtx) buildCanonicalString() {
 
 	uri := getURIPath(ctx.Request.URL)
 
-	uri = ctx.URIPathEscapeFn(uri)
+	if !ctx.DisableURIPathEscaping {
+		uri = rest.EscapePath(uri, false)
+	}
 
 	ctx.canonicalString = strings.Join([]string{
 		ctx.Request.Method,

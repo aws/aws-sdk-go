@@ -94,15 +94,11 @@ func TestPresignRequest(t *testing.T) {
 }
 
 func TestStandaloneSign_CustomURIEscape(t *testing.T) {
-	var expectSig = `AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=0c2bebb26be55ecfb2c51068a753da9242910b551d01738f20232b116bff9c24`
-	var customEscapeCalled bool
+	var expectSig = `AWS4-HMAC-SHA256 Credential=AKID/19700101/us-east-1/es/aws4_request, SignedHeaders=host;x-amz-date;x-amz-security-token, Signature=6601e883cc6d23871fd6c2a394c5677ea2b8c82b04a6446786d64cd74f520967`
 
 	creds := unit.Session.Config.Credentials
 	signer := v4.NewSigner(creds, func(s *v4.Signer) {
-		s.URIPathEscapeFn = func(in string) string {
-			customEscapeCalled = true
-			return `/log-%252A/_search`
-		}
+		s.DisableURIPathEscaping = true
 	})
 
 	host := "https://subdomain.us-east-1.es.amazonaws.com"
@@ -110,11 +106,11 @@ func TestStandaloneSign_CustomURIEscape(t *testing.T) {
 	assert.NoError(t, err)
 
 	req.URL.Path = `/log-*/_search`
+	req.URL.Opaque = "//subdomain.us-east-1.es.amazonaws.com/log-%2A/_search"
 
 	_, err = signer.Sign(req, nil, "es", "us-east-1", time.Unix(0, 0))
 	assert.NoError(t, err)
 
 	actual := req.Header.Get("Authorization")
 	assert.Equal(t, expectSig, actual)
-	assert.True(t, customEscapeCalled)
 }
