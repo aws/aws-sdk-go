@@ -22,9 +22,10 @@
 // The leading "//" and hostname are required or the URL.Opaque escaping will
 // not work correctly.
 //
-// If URL.Opaque is not set the signer will vallback to the URL.EscapedPath()
+// If URL.Opaque is not set the signer will fallback to the URL.EscapedPath()
 // method and using the returned value. If you're using Go v1.4 you must set
-// URL.Opaque if the URI path needs escaping.
+// URL.Opaque if the URI path needs escaping. If URL.Opaque is not set with
+// Go v1.5 the signer will fallback to URL.Path.
 //
 // AWS v4 signature validation requires that the canonical string's URI path
 // element must be the URI escaped form of the HTTP request's path.
