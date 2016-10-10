@@ -1,3 +1,5 @@
+// +build example
+
 package main
 
 import (
@@ -14,7 +16,7 @@ import (
 // the contents of the object to stdout.
 //
 // Usage example:
-// go run signCookies.go -file <privkey file>  -id <keyId> -r <resource pattern> -g <object to get>
+// signCookies -file <privkey file>  -id <keyId> -r <resource pattern> -g <object to get>
 func main() {
 	var keyFile string  // Private key PEM file
 	var keyID string    // Key pair ID of CloudFront key pair

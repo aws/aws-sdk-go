@@ -1,3 +1,5 @@
+// +build example
+
 package main
 
 import (
@@ -14,7 +16,7 @@ import (
 // This example will list instances with a filter
 //
 // Usage:
-// go run filter_ec2_by_tag.go <name_filter>
+// filter_ec2_by_tag <name_filter>
 func main() {
 	sess, err := session.NewSession()
 	if err != nil {

@@ -1,3 +1,5 @@
+// +build example
+
 package main
 
 import (
@@ -21,7 +23,7 @@ func exit(msg ...interface{}) {
 // contains a list of profiles to use.
 //
 // Usage:
-// go run listObjectsConcurrently.go
+// listObjectsConcurrentlv
 func main() {
 	accounts := []string{"default", "default2", "otherprofile"}
 
