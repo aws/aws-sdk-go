@@ -28,6 +28,7 @@ type ShapeRef struct {
 	Deprecated       bool `json:"deprecated"`
 }
 
+// ErrorInfo represents the error block of a shape's structure
 type ErrorInfo struct {
 	Code           string
 	HTTPStatusCode int
@@ -78,6 +79,8 @@ type Shape struct {
 	ErrorInfo ErrorInfo `json:"error"`
 }
 
+// ErrorName will return the shape's name or error code if available based
+// on the API's protocol.
 func (s *Shape) ErrorName() string {
 	name := s.ShapeName
 	switch s.API.Metadata.Protocol {
@@ -368,8 +371,9 @@ func (s *Shape) Docstring() string {
 	return strings.Trim(s.Documentation, "\n ")
 }
 
-func (s *ShapeRef) IndentedDocstring() string {
-	doc := s.Docstring()
+// IndentedDocstring is the indented form of the doc string.
+func (ref *ShapeRef) IndentedDocstring() string {
+	doc := ref.Docstring()
 	return strings.Replace(doc, "// ", "//   ", -1)
 }
 
