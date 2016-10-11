@@ -20,6 +20,8 @@ const opDeleteAlarms = "DeleteAlarms"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DeleteAlarms for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -56,7 +58,21 @@ func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *request
 	return
 }
 
+// DeleteAlarms API operation for Amazon CloudWatch.
+//
 // Deletes all specified alarms. In the event of an error, no alarms are deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation DeleteAlarms for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFound
+//   The named resource does not exist.
+//
 func (c *CloudWatch) DeleteAlarms(input *DeleteAlarmsInput) (*DeleteAlarmsOutput, error) {
 	req, out := c.DeleteAlarmsRequest(input)
 	err := req.Send()
@@ -69,6 +85,8 @@ const opDescribeAlarmHistory = "DescribeAlarmHistory"
 // client's request for the DescribeAlarmHistory operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAlarmHistory for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -110,12 +128,26 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 	return
 }
 
+// DescribeAlarmHistory API operation for Amazon CloudWatch.
+//
 // Retrieves history for the specified alarm. Filter alarms by date range or
 // item type. If an alarm name is not specified, Amazon CloudWatch returns histories
 // for all of the owner's alarms.
 //
 //  Amazon CloudWatch retains the history of an alarm for two weeks, whether
 // or not you delete the alarm.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation DescribeAlarmHistory for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidNextToken
+//   The next token specified is invalid.
+//
 func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*DescribeAlarmHistoryOutput, error) {
 	req, out := c.DescribeAlarmHistoryRequest(input)
 	err := req.Send()
@@ -153,6 +185,8 @@ const opDescribeAlarms = "DescribeAlarms"
 // client's request for the DescribeAlarms operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAlarms for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -194,9 +228,23 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *req
 	return
 }
 
+// DescribeAlarms API operation for Amazon CloudWatch.
+//
 // Retrieves alarms with the specified names. If no name is specified, all alarms
 // for the user are returned. Alarms can be retrieved by using only a prefix
 // for the alarm name, the alarm state, or a prefix for any action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation DescribeAlarms for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidNextToken
+//   The next token specified is invalid.
+//
 func (c *CloudWatch) DescribeAlarms(input *DescribeAlarmsInput) (*DescribeAlarmsOutput, error) {
 	req, out := c.DescribeAlarmsRequest(input)
 	err := req.Send()
@@ -235,6 +283,8 @@ const opDescribeAlarmsForMetric = "DescribeAlarmsForMetric"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeAlarmsForMetric for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -269,8 +319,17 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 	return
 }
 
+// DescribeAlarmsForMetric API operation for Amazon CloudWatch.
+//
 // Retrieves all alarms for a single metric. Specify a statistic, period, or
 // unit to filter the set of alarms further.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation DescribeAlarmsForMetric for usage and error information.
 func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput) (*DescribeAlarmsForMetricOutput, error) {
 	req, out := c.DescribeAlarmsForMetricRequest(input)
 	err := req.Send()
@@ -283,6 +342,8 @@ const opDisableAlarmActions = "DisableAlarmActions"
 // client's request for the DisableAlarmActions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableAlarmActions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -320,8 +381,17 @@ func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput)
 	return
 }
 
+// DisableAlarmActions API operation for Amazon CloudWatch.
+//
 // Disables actions for the specified alarms. When an alarm's actions are disabled
 // the alarm's state may change, but none of the alarm's actions will execute.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation DisableAlarmActions for usage and error information.
 func (c *CloudWatch) DisableAlarmActions(input *DisableAlarmActionsInput) (*DisableAlarmActionsOutput, error) {
 	req, out := c.DisableAlarmActionsRequest(input)
 	err := req.Send()
@@ -334,6 +404,8 @@ const opEnableAlarmActions = "EnableAlarmActions"
 // client's request for the EnableAlarmActions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EnableAlarmActions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -371,7 +443,16 @@ func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (
 	return
 }
 
+// EnableAlarmActions API operation for Amazon CloudWatch.
+//
 // Enables actions for the specified alarms.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation EnableAlarmActions for usage and error information.
 func (c *CloudWatch) EnableAlarmActions(input *EnableAlarmActionsInput) (*EnableAlarmActionsOutput, error) {
 	req, out := c.EnableAlarmActionsRequest(input)
 	err := req.Send()
@@ -384,6 +465,8 @@ const opGetMetricStatistics = "GetMetricStatistics"
 // client's request for the GetMetricStatistics operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetMetricStatistics for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -419,6 +502,8 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 	return
 }
 
+// GetMetricStatistics API operation for Amazon CloudWatch.
+//
 // Gets statistics for the specified metric.
 //
 //  The maximum number of data points that can be queried is 50,850, whereas
@@ -451,6 +536,28 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // other Amazon Web Services products use to send metrics to CloudWatch, go
 // to Amazon CloudWatch Metrics, Namespaces, and Dimensions Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation GetMetricStatistics for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   Bad or out-of-range value was supplied for the input parameter.
+//
+//   * MissingParameter
+//   An input parameter that is mandatory for processing the request is not supplied.
+//
+//   * InvalidParameterCombination
+//   Parameters that must not be used together were used together.
+//
+//   * InternalServiceError
+//   Indicates that the request processing has failed due to some unknown error,
+//   exception, or failure.
+//
 func (c *CloudWatch) GetMetricStatistics(input *GetMetricStatisticsInput) (*GetMetricStatisticsOutput, error) {
 	req, out := c.GetMetricStatisticsRequest(input)
 	err := req.Send()
@@ -463,6 +570,8 @@ const opListMetrics = "ListMetrics"
 // client's request for the ListMetrics operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListMetrics for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -504,6 +613,8 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *request.R
 	return
 }
 
+// ListMetrics API operation for Amazon CloudWatch.
+//
 // Returns a list of valid metrics stored for the AWS account owner. Returned
 // metrics can be used with GetMetricStatistics to obtain statistical data for
 // a given metric.
@@ -514,6 +625,22 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *request.R
 //    If you create a metric with PutMetricData, allow up to fifteen minutes
 // for the metric to appear in calls to ListMetrics. Statistics about the metric,
 // however, are available sooner using GetMetricStatistics.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation ListMetrics for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   Indicates that the request processing has failed due to some unknown error,
+//   exception, or failure.
+//
+//   * InvalidParameterValue
+//   Bad or out-of-range value was supplied for the input parameter.
+//
 func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, error) {
 	req, out := c.ListMetricsRequest(input)
 	err := req.Send()
@@ -552,6 +679,8 @@ const opPutMetricAlarm = "PutMetricAlarm"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PutMetricAlarm for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -588,6 +717,8 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 	return
 }
 
+// PutMetricAlarm API operation for Amazon CloudWatch.
+//
 // Creates or updates an alarm and associates it with the specified Amazon CloudWatch
 // metric. Optionally, this operation can associate one or more Amazon SNS resources
 // with the alarm.
@@ -628,6 +759,18 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 // If you are using temporary security credentials granted using the AWS Security
 // Token Service (AWS STS), you cannot stop or terminate an Amazon EC2 instance
 // using alarm actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation PutMetricAlarm for usage and error information.
+//
+// Returned Error Codes:
+//   * LimitExceeded
+//   The quota for alarms for this customer has already been reached.
+//
 func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (*PutMetricAlarmOutput, error) {
 	req, out := c.PutMetricAlarmRequest(input)
 	err := req.Send()
@@ -640,6 +783,8 @@ const opPutMetricData = "PutMetricData"
 // client's request for the PutMetricData operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutMetricData for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -677,6 +822,8 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 	return
 }
 
+// PutMetricData API operation for Amazon CloudWatch.
+//
 // Publishes metric data points to Amazon CloudWatch. Amazon CloudWatch associates
 // the data points with the specified metric. If the specified metric does not
 // exist, Amazon CloudWatch creates the metric. When Amazon CloudWatch creates
@@ -694,6 +841,28 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 //
 //  Data that is timestamped 24 hours or more in the past may take in excess
 // of 48 hours to become available from submission time using GetMetricStatistics.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation PutMetricData for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   Bad or out-of-range value was supplied for the input parameter.
+//
+//   * MissingParameter
+//   An input parameter that is mandatory for processing the request is not supplied.
+//
+//   * InvalidParameterCombination
+//   Parameters that must not be used together were used together.
+//
+//   * InternalServiceError
+//   Indicates that the request processing has failed due to some unknown error,
+//   exception, or failure.
+//
 func (c *CloudWatch) PutMetricData(input *PutMetricDataInput) (*PutMetricDataOutput, error) {
 	req, out := c.PutMetricDataRequest(input)
 	err := req.Send()
@@ -706,6 +875,8 @@ const opSetAlarmState = "SetAlarmState"
 // client's request for the SetAlarmState operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetAlarmState for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -743,6 +914,8 @@ func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *reque
 	return
 }
 
+// SetAlarmState API operation for Amazon CloudWatch.
+//
 // Temporarily sets the state of an alarm for testing purposes. When the updated
 // StateValue differs from the previous value, the action configured for the
 // appropriate state is invoked. For example, if your alarm is configured to
@@ -751,6 +924,21 @@ func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *reque
 // to its actual state (often within seconds). Because the alarm state change
 // happens very quickly, it is typically only visible in the alarm's History
 // tab in the Amazon CloudWatch console or through DescribeAlarmHistory.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation SetAlarmState for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFound
+//   The named resource does not exist.
+//
+//   * InvalidFormat
+//   Data was not syntactically valid JSON.
+//
 func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (*SetAlarmStateOutput, error) {
 	req, out := c.SetAlarmStateRequest(input)
 	err := req.Send()

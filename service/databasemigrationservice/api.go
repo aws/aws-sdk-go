@@ -18,6 +18,8 @@ const opAddTagsToResource = "AddTagsToResource"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTagsToResource for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,10 +54,24 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 	return
 }
 
+// AddTagsToResource API operation for AWS Database Migration Service.
+//
 // Adds metadata tags to a DMS resource, including replication instance, endpoint,
 // security group, and migration task. These tags can also be used with cost
 // allocation reporting to track cost associated with DMS resources, or used
 // in a Condition statement in an IAM policy for DMS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation AddTagsToResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -68,6 +84,8 @@ const opCreateEndpoint = "CreateEndpoint"
 // client's request for the CreateEndpoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateEndpoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,7 +121,34 @@ func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointIn
 	return
 }
 
+// CreateEndpoint API operation for AWS Database Migration Service.
+//
 // Creates an endpoint using the provided settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
 	req, out := c.CreateEndpointRequest(input)
 	err := req.Send()
@@ -116,6 +161,8 @@ const opCreateReplicationInstance = "CreateReplicationInstance"
 // client's request for the CreateReplicationInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReplicationInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -151,7 +198,50 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 	return
 }
 
+// CreateReplicationInstance API operation for AWS Database Migration Service.
+//
 // Creates the replication instance using the specified parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateReplicationInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDeniedFault
+//   AWS DMS was denied access to the endpoint.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * InsufficientResourceCapacityFault
+//   There are not enough resources allocated to the database migration.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
+//   * StorageQuotaExceededFault
+//   The storage quota has been exceeded.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//   The replication subnet group does not cover enough Availability Zones (AZs).
+//   Edit the replication subnet group and add more AZs.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * InvalidSubnet
+//   The subnet provided is invalid.
+//
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
 func (c *DatabaseMigrationService) CreateReplicationInstance(input *CreateReplicationInstanceInput) (*CreateReplicationInstanceOutput, error) {
 	req, out := c.CreateReplicationInstanceRequest(input)
 	err := req.Send()
@@ -164,6 +254,8 @@ const opCreateReplicationSubnetGroup = "CreateReplicationSubnetGroup"
 // client's request for the CreateReplicationSubnetGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReplicationSubnetGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -199,7 +291,37 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 	return
 }
 
+// CreateReplicationSubnetGroup API operation for AWS Database Migration Service.
+//
 // Creates a replication subnet group given a list of the subnet IDs in a VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateReplicationSubnetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDeniedFault
+//   AWS DMS was denied access to the endpoint.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
+//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//   The replication subnet group does not cover enough Availability Zones (AZs).
+//   Edit the replication subnet group and add more AZs.
+//
+//   * InvalidSubnet
+//   The subnet provided is invalid.
+//
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroup(input *CreateReplicationSubnetGroupInput) (*CreateReplicationSubnetGroupOutput, error) {
 	req, out := c.CreateReplicationSubnetGroupRequest(input)
 	err := req.Send()
@@ -212,6 +334,8 @@ const opCreateReplicationTask = "CreateReplicationTask"
 // client's request for the CreateReplicationTask operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReplicationTask for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -247,7 +371,34 @@ func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateRep
 	return
 }
 
+// CreateReplicationTask API operation for AWS Database Migration Service.
+//
 // Creates a replication task using the specified parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation CreateReplicationTask for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
 func (c *DatabaseMigrationService) CreateReplicationTask(input *CreateReplicationTaskInput) (*CreateReplicationTaskOutput, error) {
 	req, out := c.CreateReplicationTaskRequest(input)
 	err := req.Send()
@@ -260,6 +411,8 @@ const opDeleteCertificate = "DeleteCertificate"
 // client's request for the DeleteCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -295,7 +448,25 @@ func (c *DatabaseMigrationService) DeleteCertificateRequest(input *DeleteCertifi
 	return
 }
 
+// DeleteCertificate API operation for AWS Database Migration Service.
+//
 // Deletes the specified certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
 func (c *DatabaseMigrationService) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -308,6 +479,8 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // client's request for the DeleteEndpoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteEndpoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -343,10 +516,28 @@ func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointIn
 	return
 }
 
+// DeleteEndpoint API operation for AWS Database Migration Service.
+//
 // Deletes the specified endpoint.
 //
 //  All tasks associated with the endpoint must be deleted before you can delete
 // the endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
 func (c *DatabaseMigrationService) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
 	req, out := c.DeleteEndpointRequest(input)
 	err := req.Send()
@@ -359,6 +550,8 @@ const opDeleteReplicationInstance = "DeleteReplicationInstance"
 // client's request for the DeleteReplicationInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReplicationInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -394,10 +587,28 @@ func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *Delet
 	return
 }
 
+// DeleteReplicationInstance API operation for AWS Database Migration Service.
+//
 // Deletes the specified replication instance.
 //
 //  You must delete any migration tasks that are associated with the replication
 // instance before you can delete it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteReplicationInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DeleteReplicationInstance(input *DeleteReplicationInstanceInput) (*DeleteReplicationInstanceOutput, error) {
 	req, out := c.DeleteReplicationInstanceRequest(input)
 	err := req.Send()
@@ -410,6 +621,8 @@ const opDeleteReplicationSubnetGroup = "DeleteReplicationSubnetGroup"
 // client's request for the DeleteReplicationSubnetGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReplicationSubnetGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -445,7 +658,25 @@ func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *De
 	return
 }
 
+// DeleteReplicationSubnetGroup API operation for AWS Database Migration Service.
+//
 // Deletes a subnet group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteReplicationSubnetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroup(input *DeleteReplicationSubnetGroupInput) (*DeleteReplicationSubnetGroupOutput, error) {
 	req, out := c.DeleteReplicationSubnetGroupRequest(input)
 	err := req.Send()
@@ -458,6 +689,8 @@ const opDeleteReplicationTask = "DeleteReplicationTask"
 // client's request for the DeleteReplicationTask operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReplicationTask for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -493,7 +726,25 @@ func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteRep
 	return
 }
 
+// DeleteReplicationTask API operation for AWS Database Migration Service.
+//
 // Deletes the specified replication task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DeleteReplicationTask for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
 func (c *DatabaseMigrationService) DeleteReplicationTask(input *DeleteReplicationTaskInput) (*DeleteReplicationTaskOutput, error) {
 	req, out := c.DeleteReplicationTaskRequest(input)
 	err := req.Send()
@@ -506,6 +757,8 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // client's request for the DescribeAccountAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAccountAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -541,12 +794,21 @@ func (c *DatabaseMigrationService) DescribeAccountAttributesRequest(input *Descr
 	return
 }
 
+// DescribeAccountAttributes API operation for AWS Database Migration Service.
+//
 // Lists all of the AWS DMS attributes for a customer account. The attributes
 // include AWS DMS quotas for the account, such as the number of replication
 // instances allowed. The description for a quota includes the quota name, current
 // usage toward that quota, and the quota's maximum value.
 //
 // This command does not take any parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeAccountAttributes for usage and error information.
 func (c *DatabaseMigrationService) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
 	req, out := c.DescribeAccountAttributesRequest(input)
 	err := req.Send()
@@ -559,6 +821,8 @@ const opDescribeCertificates = "DescribeCertificates"
 // client's request for the DescribeCertificates operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCertificates for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -594,7 +858,21 @@ func (c *DatabaseMigrationService) DescribeCertificatesRequest(input *DescribeCe
 	return
 }
 
+// DescribeCertificates API operation for AWS Database Migration Service.
+//
 // Provides a description of the certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeCertificates for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeCertificatesOutput, error) {
 	req, out := c.DescribeCertificatesRequest(input)
 	err := req.Send()
@@ -607,6 +885,8 @@ const opDescribeConnections = "DescribeConnections"
 // client's request for the DescribeConnections operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConnections for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -642,8 +922,22 @@ func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeCon
 	return
 }
 
+// DescribeConnections API operation for AWS Database Migration Service.
+//
 // Describes the status of the connections that have been made between the replication
 // instance and an endpoint. Connections are created when you test an endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeConnections for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeConnections(input *DescribeConnectionsInput) (*DescribeConnectionsOutput, error) {
 	req, out := c.DescribeConnectionsRequest(input)
 	err := req.Send()
@@ -656,6 +950,8 @@ const opDescribeEndpointTypes = "DescribeEndpointTypes"
 // client's request for the DescribeEndpointTypes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEndpointTypes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -691,7 +987,16 @@ func (c *DatabaseMigrationService) DescribeEndpointTypesRequest(input *DescribeE
 	return
 }
 
+// DescribeEndpointTypes API operation for AWS Database Migration Service.
+//
 // Returns information about the type of endpoints available.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeEndpointTypes for usage and error information.
 func (c *DatabaseMigrationService) DescribeEndpointTypes(input *DescribeEndpointTypesInput) (*DescribeEndpointTypesOutput, error) {
 	req, out := c.DescribeEndpointTypesRequest(input)
 	err := req.Send()
@@ -704,6 +1009,8 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // client's request for the DescribeEndpoints operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEndpoints for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -739,7 +1046,21 @@ func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpo
 	return
 }
 
+// DescribeEndpoints API operation for AWS Database Migration Service.
+//
 // Returns information about the endpoints for your account in the current region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeEndpoints for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeEndpoints(input *DescribeEndpointsInput) (*DescribeEndpointsOutput, error) {
 	req, out := c.DescribeEndpointsRequest(input)
 	err := req.Send()
@@ -752,6 +1073,8 @@ const opDescribeOrderableReplicationInstances = "DescribeOrderableReplicationIns
 // client's request for the DescribeOrderableReplicationInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeOrderableReplicationInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -787,8 +1110,17 @@ func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesRequest(
 	return
 }
 
+// DescribeOrderableReplicationInstances API operation for AWS Database Migration Service.
+//
 // Returns information about the replication instance types that can be created
 // in the specified region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeOrderableReplicationInstances for usage and error information.
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstances(input *DescribeOrderableReplicationInstancesInput) (*DescribeOrderableReplicationInstancesOutput, error) {
 	req, out := c.DescribeOrderableReplicationInstancesRequest(input)
 	err := req.Send()
@@ -801,6 +1133,8 @@ const opDescribeRefreshSchemasStatus = "DescribeRefreshSchemasStatus"
 // client's request for the DescribeRefreshSchemasStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeRefreshSchemasStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -836,7 +1170,25 @@ func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *De
 	return
 }
 
+// DescribeRefreshSchemasStatus API operation for AWS Database Migration Service.
+//
 // Returns the status of the RefreshSchemas operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeRefreshSchemasStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatus(input *DescribeRefreshSchemasStatusInput) (*DescribeRefreshSchemasStatusOutput, error) {
 	req, out := c.DescribeRefreshSchemasStatusRequest(input)
 	err := req.Send()
@@ -849,6 +1201,8 @@ const opDescribeReplicationInstances = "DescribeReplicationInstances"
 // client's request for the DescribeReplicationInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReplicationInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -884,8 +1238,22 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *De
 	return
 }
 
+// DescribeReplicationInstances API operation for AWS Database Migration Service.
+//
 // Returns information about replication instances for your account in the current
 // region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeReplicationInstances(input *DescribeReplicationInstancesInput) (*DescribeReplicationInstancesOutput, error) {
 	req, out := c.DescribeReplicationInstancesRequest(input)
 	err := req.Send()
@@ -898,6 +1266,8 @@ const opDescribeReplicationSubnetGroups = "DescribeReplicationSubnetGroups"
 // client's request for the DescribeReplicationSubnetGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReplicationSubnetGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -933,7 +1303,21 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input 
 	return
 }
 
+// DescribeReplicationSubnetGroups API operation for AWS Database Migration Service.
+//
 // Returns information about the replication subnet groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationSubnetGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroups(input *DescribeReplicationSubnetGroupsInput) (*DescribeReplicationSubnetGroupsOutput, error) {
 	req, out := c.DescribeReplicationSubnetGroupsRequest(input)
 	err := req.Send()
@@ -946,6 +1330,8 @@ const opDescribeReplicationTasks = "DescribeReplicationTasks"
 // client's request for the DescribeReplicationTasks operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReplicationTasks for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -981,8 +1367,22 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *Descri
 	return
 }
 
+// DescribeReplicationTasks API operation for AWS Database Migration Service.
+//
 // Returns information about replication tasks for your account in the current
 // region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeReplicationTasks for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeReplicationTasks(input *DescribeReplicationTasksInput) (*DescribeReplicationTasksOutput, error) {
 	req, out := c.DescribeReplicationTasksRequest(input)
 	err := req.Send()
@@ -995,6 +1395,8 @@ const opDescribeSchemas = "DescribeSchemas"
 // client's request for the DescribeSchemas operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeSchemas for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1030,7 +1432,25 @@ func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemas
 	return
 }
 
+// DescribeSchemas API operation for AWS Database Migration Service.
+//
 // Returns information about the schema for the specified endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeSchemas for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) DescribeSchemas(input *DescribeSchemasInput) (*DescribeSchemasOutput, error) {
 	req, out := c.DescribeSchemasRequest(input)
 	err := req.Send()
@@ -1043,6 +1463,8 @@ const opDescribeTableStatistics = "DescribeTableStatistics"
 // client's request for the DescribeTableStatistics operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeTableStatistics for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1078,8 +1500,26 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *Describ
 	return
 }
 
+// DescribeTableStatistics API operation for AWS Database Migration Service.
+//
 // Returns table statistics on the database migration task, including table
 // name, rows inserted, rows updated, and rows deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeTableStatistics for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
 func (c *DatabaseMigrationService) DescribeTableStatistics(input *DescribeTableStatisticsInput) (*DescribeTableStatisticsOutput, error) {
 	req, out := c.DescribeTableStatisticsRequest(input)
 	err := req.Send()
@@ -1092,6 +1532,8 @@ const opImportCertificate = "ImportCertificate"
 // client's request for the ImportCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ImportCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1127,7 +1569,24 @@ func (c *DatabaseMigrationService) ImportCertificateRequest(input *ImportCertifi
 	return
 }
 
+// ImportCertificate API operation for AWS Database Migration Service.
+//
 // Uploads the specified certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ImportCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * InvalidCertificateFault
+//   The certificate was not valid.
+//
 func (c *DatabaseMigrationService) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
 	req, out := c.ImportCertificateRequest(input)
 	err := req.Send()
@@ -1140,6 +1599,8 @@ const opListTagsForResource = "ListTagsForResource"
 // client's request for the ListTagsForResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTagsForResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1175,7 +1636,21 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 	return
 }
 
+// ListTagsForResource API operation for AWS Database Migration Service.
+//
 // Lists all tags for an AWS DMS resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -1188,6 +1663,8 @@ const opModifyEndpoint = "ModifyEndpoint"
 // client's request for the ModifyEndpoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyEndpoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1223,7 +1700,31 @@ func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointIn
 	return
 }
 
+// ModifyEndpoint API operation for AWS Database Migration Service.
+//
 // Modifies the specified endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ModifyEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
 func (c *DatabaseMigrationService) ModifyEndpoint(input *ModifyEndpointInput) (*ModifyEndpointOutput, error) {
 	req, out := c.ModifyEndpointRequest(input)
 	err := req.Send()
@@ -1236,6 +1737,8 @@ const opModifyReplicationInstance = "ModifyReplicationInstance"
 // client's request for the ModifyReplicationInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyReplicationInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1271,11 +1774,41 @@ func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *Modif
 	return
 }
 
+// ModifyReplicationInstance API operation for AWS Database Migration Service.
+//
 // Modifies the replication instance to apply new settings. You can change one
 // or more parameters by specifying these parameters and the new values in the
 // request.
 //
 // Some settings are applied during the maintenance window.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ModifyReplicationInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InsufficientResourceCapacityFault
+//   There are not enough resources allocated to the database migration.
+//
+//   * StorageQuotaExceededFault
+//   The storage quota has been exceeded.
+//
+//   * UpgradeDependencyFailureFault
+//   An upgrade dependency is preventing the database migration.
+//
 func (c *DatabaseMigrationService) ModifyReplicationInstance(input *ModifyReplicationInstanceInput) (*ModifyReplicationInstanceOutput, error) {
 	req, out := c.ModifyReplicationInstanceRequest(input)
 	err := req.Send()
@@ -1288,6 +1821,8 @@ const opModifyReplicationSubnetGroup = "ModifyReplicationSubnetGroup"
 // client's request for the ModifyReplicationSubnetGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyReplicationSubnetGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1323,7 +1858,37 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *Mo
 	return
 }
 
+// ModifyReplicationSubnetGroup API operation for AWS Database Migration Service.
+//
 // Modifies the settings for the specified replication subnet group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ModifyReplicationSubnetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDeniedFault
+//   AWS DMS was denied access to the endpoint.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
+//   * SubnetAlreadyInUse
+//   The specified subnet is already in use.
+//
+//   * ReplicationSubnetGroupDoesNotCoverEnoughAZs
+//   The replication subnet group does not cover enough Availability Zones (AZs).
+//   Edit the replication subnet group and add more AZs.
+//
+//   * InvalidSubnet
+//   The subnet provided is invalid.
+//
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyReplicationSubnetGroupInput) (*ModifyReplicationSubnetGroupOutput, error) {
 	req, out := c.ModifyReplicationSubnetGroupRequest(input)
 	err := req.Send()
@@ -1336,6 +1901,8 @@ const opRefreshSchemas = "RefreshSchemas"
 // client's request for the RefreshSchemas operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RefreshSchemas for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1371,9 +1938,33 @@ func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasIn
 	return
 }
 
+// RefreshSchemas API operation for AWS Database Migration Service.
+//
 // Populates the schema for the specified endpoint. This is an asynchronous
 // operation and can take several minutes. You can check the status of this
 // operation by calling the DescribeRefreshSchemasStatus operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation RefreshSchemas for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
 func (c *DatabaseMigrationService) RefreshSchemas(input *RefreshSchemasInput) (*RefreshSchemasOutput, error) {
 	req, out := c.RefreshSchemasRequest(input)
 	err := req.Send()
@@ -1386,6 +1977,8 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // client's request for the RemoveTagsFromResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTagsFromResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1421,7 +2014,21 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 	return
 }
 
+// RemoveTagsFromResource API operation for AWS Database Migration Service.
+//
 // Removes metadata tags from a DMS resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation RemoveTagsFromResource for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
 func (c *DatabaseMigrationService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -1434,6 +2041,8 @@ const opStartReplicationTask = "StartReplicationTask"
 // client's request for the StartReplicationTask operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartReplicationTask for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1469,7 +2078,25 @@ func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartRepli
 	return
 }
 
+// StartReplicationTask API operation for AWS Database Migration Service.
+//
 // Starts the replication task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation StartReplicationTask for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
 func (c *DatabaseMigrationService) StartReplicationTask(input *StartReplicationTaskInput) (*StartReplicationTaskOutput, error) {
 	req, out := c.StartReplicationTaskRequest(input)
 	err := req.Send()
@@ -1482,6 +2109,8 @@ const opStopReplicationTask = "StopReplicationTask"
 // client's request for the StopReplicationTask operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopReplicationTask for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1517,7 +2146,25 @@ func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplica
 	return
 }
 
+// StopReplicationTask API operation for AWS Database Migration Service.
+//
 // Stops the replication task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation StopReplicationTask for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
 func (c *DatabaseMigrationService) StopReplicationTask(input *StopReplicationTaskInput) (*StopReplicationTaskOutput, error) {
 	req, out := c.StopReplicationTaskRequest(input)
 	err := req.Send()
@@ -1530,6 +2177,8 @@ const opTestConnection = "TestConnection"
 // client's request for the TestConnection operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TestConnection for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1565,7 +2214,31 @@ func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionIn
 	return
 }
 
+// TestConnection API operation for AWS Database Migration Service.
+//
 // Tests the connection between the replication instance and the endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation TestConnection for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
 func (c *DatabaseMigrationService) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
 	req, out := c.TestConnectionRequest(input)
 	err := req.Send()

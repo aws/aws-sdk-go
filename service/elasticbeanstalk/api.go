@@ -20,6 +20,8 @@ const opAbortEnvironmentUpdate = "AbortEnvironmentUpdate"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AbortEnvironmentUpdate for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -56,8 +58,23 @@ func (c *ElasticBeanstalk) AbortEnvironmentUpdateRequest(input *AbortEnvironment
 	return
 }
 
+// AbortEnvironmentUpdate API operation for AWS Elastic Beanstalk.
+//
 // Cancels in-progress environment configuration update or application version
 // deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation AbortEnvironmentUpdate for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) AbortEnvironmentUpdate(input *AbortEnvironmentUpdateInput) (*AbortEnvironmentUpdateOutput, error) {
 	req, out := c.AbortEnvironmentUpdateRequest(input)
 	err := req.Send()
@@ -70,6 +87,8 @@ const opApplyEnvironmentManagedAction = "ApplyEnvironmentManagedAction"
 // client's request for the ApplyEnvironmentManagedAction operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ApplyEnvironmentManagedAction for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -105,9 +124,26 @@ func (c *ElasticBeanstalk) ApplyEnvironmentManagedActionRequest(input *ApplyEnvi
 	return
 }
 
+// ApplyEnvironmentManagedAction API operation for AWS Elastic Beanstalk.
+//
 // Applies a scheduled managed action immediately. A managed action can be applied
 // only if its status is Scheduled. Get the status and action ID of a managed
 // action with DescribeEnvironmentManagedActions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation ApplyEnvironmentManagedAction for usage and error information.
+//
+// Returned Error Codes:
+//   * ServiceException
+//   A generic service exception has occurred.
+//
+//   * ManagedActionInvalidStateException
+//   Cannot modify the managed action in its current state.
+//
 func (c *ElasticBeanstalk) ApplyEnvironmentManagedAction(input *ApplyEnvironmentManagedActionInput) (*ApplyEnvironmentManagedActionOutput, error) {
 	req, out := c.ApplyEnvironmentManagedActionRequest(input)
 	err := req.Send()
@@ -120,6 +156,8 @@ const opCheckDNSAvailability = "CheckDNSAvailability"
 // client's request for the CheckDNSAvailability operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CheckDNSAvailability for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -155,7 +193,16 @@ func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabili
 	return
 }
 
+// CheckDNSAvailability API operation for AWS Elastic Beanstalk.
+//
 // Checks if the specified CNAME is available.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation CheckDNSAvailability for usage and error information.
 func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput) (*CheckDNSAvailabilityOutput, error) {
 	req, out := c.CheckDNSAvailabilityRequest(input)
 	err := req.Send()
@@ -168,6 +215,8 @@ const opComposeEnvironments = "ComposeEnvironments"
 // client's request for the ComposeEnvironments operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ComposeEnvironments for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -203,6 +252,8 @@ func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironments
 	return
 }
 
+// ComposeEnvironments API operation for AWS Elastic Beanstalk.
+//
 // Create or update a group of environments that each run a separate component
 // of a single application. Takes a list of version labels that specify application
 // source bundles for each of the environments to create or update. The name
@@ -210,6 +261,22 @@ func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironments
 // source bundles in an environment manifest named env.yaml. See Compose Environments
 // (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html)
 // for details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation ComposeEnvironments for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyEnvironmentsException
+//   The specified account has reached its limit of environments.
+//
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) ComposeEnvironments(input *ComposeEnvironmentsInput) (*EnvironmentDescriptionsMessage, error) {
 	req, out := c.ComposeEnvironmentsRequest(input)
 	err := req.Send()
@@ -222,6 +289,8 @@ const opCreateApplication = "CreateApplication"
 // client's request for the CreateApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -257,8 +326,22 @@ func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInpu
 	return
 }
 
+// CreateApplication API operation for AWS Elastic Beanstalk.
+//
 // Creates an application that has one configuration template named default
 // and no application versions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation CreateApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyApplicationsException
+//   The specified account has reached its limit of applications.
+//
 func (c *ElasticBeanstalk) CreateApplication(input *CreateApplicationInput) (*ApplicationDescriptionMessage, error) {
 	req, out := c.CreateApplicationRequest(input)
 	err := req.Send()
@@ -271,6 +354,8 @@ const opCreateApplicationVersion = "CreateApplicationVersion"
 // client's request for the CreateApplicationVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateApplicationVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -306,12 +391,37 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 	return
 }
 
+// CreateApplicationVersion API operation for AWS Elastic Beanstalk.
+//
 // Creates an application version for the specified application.
 //
 // Once you create an application version with a specified Amazon S3 bucket
 // and key location, you cannot change that Amazon S3 location. If you change
 // the Amazon S3 location, you receive an exception when you attempt to launch
 // an environment from the application version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation CreateApplicationVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyApplicationsException
+//   The specified account has reached its limit of applications.
+//
+//   * TooManyApplicationVersionsException
+//   The specified account has reached its limit of application versions.
+//
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+//   * S3LocationNotInServiceRegionException
+//   The specified S3 bucket does not belong to the S3 region in which the service
+//   is running.
+//
 func (c *ElasticBeanstalk) CreateApplicationVersion(input *CreateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
 	req, out := c.CreateApplicationVersionRequest(input)
 	err := req.Send()
@@ -324,6 +434,8 @@ const opCreateConfigurationTemplate = "CreateConfigurationTemplate"
 // client's request for the CreateConfigurationTemplate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateConfigurationTemplate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -359,6 +471,8 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 	return
 }
 
+// CreateConfigurationTemplate API operation for AWS Elastic Beanstalk.
+//
 // Creates a configuration template. Templates are associated with a specific
 // application and are used to deploy different versions of the application
 // with the same configuration settings.
@@ -366,6 +480,25 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 // Related Topics
 //
 //   DescribeConfigurationOptions   DescribeConfigurationSettings   ListAvailableSolutionStacks
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation CreateConfigurationTemplate for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
+//   * TooManyConfigurationTemplatesException
+//   The specified account has reached its limit of configuration templates.
+//
 func (c *ElasticBeanstalk) CreateConfigurationTemplate(input *CreateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
 	req, out := c.CreateConfigurationTemplateRequest(input)
 	err := req.Send()
@@ -378,6 +511,8 @@ const opCreateEnvironment = "CreateEnvironment"
 // client's request for the CreateEnvironment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateEnvironment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -413,8 +548,26 @@ func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInpu
 	return
 }
 
+// CreateEnvironment API operation for AWS Elastic Beanstalk.
+//
 // Launches an environment for the specified application using the specified
 // configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation CreateEnvironment for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyEnvironmentsException
+//   The specified account has reached its limit of environments.
+//
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) CreateEnvironment(input *CreateEnvironmentInput) (*EnvironmentDescription, error) {
 	req, out := c.CreateEnvironmentRequest(input)
 	err := req.Send()
@@ -427,6 +580,8 @@ const opCreateStorageLocation = "CreateStorageLocation"
 // client's request for the CreateStorageLocation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateStorageLocation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -462,9 +617,30 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 	return
 }
 
+// CreateStorageLocation API operation for AWS Elastic Beanstalk.
+//
 // Creates the Amazon S3 storage location for the account.
 //
 //  This location is used to store user log files.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation CreateStorageLocation for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
+//   * S3SubscriptionRequiredException
+//   The specified account does not have a subscription to Amazon S3.
+//
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) CreateStorageLocation(input *CreateStorageLocationInput) (*CreateStorageLocationOutput, error) {
 	req, out := c.CreateStorageLocationRequest(input)
 	err := req.Send()
@@ -477,6 +653,8 @@ const opDeleteApplication = "DeleteApplication"
 // client's request for the DeleteApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -514,11 +692,26 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 	return
 }
 
+// DeleteApplication API operation for AWS Elastic Beanstalk.
+//
 // Deletes the specified application along with all associated versions and
 // configurations. The application versions will not be deleted from your Amazon
 // S3 bucket.
 //
 // You cannot delete an application that has a running environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DeleteApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * OperationInProgressFailure
+//   Unable to perform the specified operation because another operation that
+//   effects an element in this activity is already in progress.
+//
 func (c *ElasticBeanstalk) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
 	err := req.Send()
@@ -531,6 +724,8 @@ const opDeleteApplicationVersion = "DeleteApplicationVersion"
 // client's request for the DeleteApplicationVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteApplicationVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -568,10 +763,37 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 	return
 }
 
+// DeleteApplicationVersion API operation for AWS Elastic Beanstalk.
+//
 // Deletes the specified version from the specified application.
 //
 // You cannot delete an application version that is associated with a running
 // environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DeleteApplicationVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * SourceBundleDeletionFailure
+//   Unable to delete the Amazon S3 source bundle associated with the application
+//   version. The application version was deleted successfully.
+//
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+//   * OperationInProgressFailure
+//   Unable to perform the specified operation because another operation that
+//   effects an element in this activity is already in progress.
+//
+//   * S3LocationNotInServiceRegionException
+//   The specified S3 bucket does not belong to the S3 region in which the service
+//   is running.
+//
 func (c *ElasticBeanstalk) DeleteApplicationVersion(input *DeleteApplicationVersionInput) (*DeleteApplicationVersionOutput, error) {
 	req, out := c.DeleteApplicationVersionRequest(input)
 	err := req.Send()
@@ -584,6 +806,8 @@ const opDeleteConfigurationTemplate = "DeleteConfigurationTemplate"
 // client's request for the DeleteConfigurationTemplate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteConfigurationTemplate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -621,11 +845,26 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 	return
 }
 
+// DeleteConfigurationTemplate API operation for AWS Elastic Beanstalk.
+//
 // Deletes the specified configuration template.
 //
 // When you launch an environment using a configuration template, the environment
 // gets a copy of the template. You can delete or modify the environment's copy
 // of the template without affecting the running environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DeleteConfigurationTemplate for usage and error information.
+//
+// Returned Error Codes:
+//   * OperationInProgressFailure
+//   Unable to perform the specified operation because another operation that
+//   effects an element in this activity is already in progress.
+//
 func (c *ElasticBeanstalk) DeleteConfigurationTemplate(input *DeleteConfigurationTemplateInput) (*DeleteConfigurationTemplateOutput, error) {
 	req, out := c.DeleteConfigurationTemplateRequest(input)
 	err := req.Send()
@@ -638,6 +877,8 @@ const opDeleteEnvironmentConfiguration = "DeleteEnvironmentConfiguration"
 // client's request for the DeleteEnvironmentConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteEnvironmentConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -675,6 +916,8 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 	return
 }
 
+// DeleteEnvironmentConfiguration API operation for AWS Elastic Beanstalk.
+//
 // Deletes the draft configuration associated with the running environment.
 //
 // Updating a running environment with any configuration changes creates a
@@ -683,6 +926,13 @@ func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEn
 // for the draft configuration indicates whether the deployment is in process
 // or has failed. The draft configuration remains in existence until it is deleted
 // with this action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DeleteEnvironmentConfiguration for usage and error information.
 func (c *ElasticBeanstalk) DeleteEnvironmentConfiguration(input *DeleteEnvironmentConfigurationInput) (*DeleteEnvironmentConfigurationOutput, error) {
 	req, out := c.DeleteEnvironmentConfigurationRequest(input)
 	err := req.Send()
@@ -695,6 +945,8 @@ const opDescribeApplicationVersions = "DescribeApplicationVersions"
 // client's request for the DescribeApplicationVersions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeApplicationVersions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -730,8 +982,17 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 	return
 }
 
+// DescribeApplicationVersions API operation for AWS Elastic Beanstalk.
+//
 // Retrieve a list of application versions stored in your AWS Elastic Beanstalk
 // storage bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeApplicationVersions for usage and error information.
 func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (*DescribeApplicationVersionsOutput, error) {
 	req, out := c.DescribeApplicationVersionsRequest(input)
 	err := req.Send()
@@ -744,6 +1005,8 @@ const opDescribeApplications = "DescribeApplications"
 // client's request for the DescribeApplications operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeApplications for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -779,7 +1042,16 @@ func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicatio
 	return
 }
 
+// DescribeApplications API operation for AWS Elastic Beanstalk.
+//
 // Returns the descriptions of existing applications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeApplications for usage and error information.
 func (c *ElasticBeanstalk) DescribeApplications(input *DescribeApplicationsInput) (*DescribeApplicationsOutput, error) {
 	req, out := c.DescribeApplicationsRequest(input)
 	err := req.Send()
@@ -792,6 +1064,8 @@ const opDescribeConfigurationOptions = "DescribeConfigurationOptions"
 // client's request for the DescribeConfigurationOptions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigurationOptions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -827,11 +1101,25 @@ func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeCo
 	return
 }
 
+// DescribeConfigurationOptions API operation for AWS Elastic Beanstalk.
+//
 // Describes the configuration options that are used in a particular configuration
 // template or environment, or that a specified solution stack defines. The
 // description includes the values the options, their default values, and an
 // indication of the required action on a running environment if an option value
 // is changed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeConfigurationOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
 func (c *ElasticBeanstalk) DescribeConfigurationOptions(input *DescribeConfigurationOptionsInput) (*DescribeConfigurationOptionsOutput, error) {
 	req, out := c.DescribeConfigurationOptionsRequest(input)
 	err := req.Send()
@@ -844,6 +1132,8 @@ const opDescribeConfigurationSettings = "DescribeConfigurationSettings"
 // client's request for the DescribeConfigurationSettings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigurationSettings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -879,6 +1169,8 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 	return
 }
 
+// DescribeConfigurationSettings API operation for AWS Elastic Beanstalk.
+//
 // Returns a description of the settings for the specified configuration set,
 // that is, either a configuration template or the configuration set associated
 // with a running environment.
@@ -892,6 +1184,18 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 // Related Topics
 //
 //   DeleteEnvironmentConfiguration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeConfigurationSettings for usage and error information.
+//
+// Returned Error Codes:
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
 func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigurationSettingsInput) (*DescribeConfigurationSettingsOutput, error) {
 	req, out := c.DescribeConfigurationSettingsRequest(input)
 	err := req.Send()
@@ -904,6 +1208,8 @@ const opDescribeEnvironmentHealth = "DescribeEnvironmentHealth"
 // client's request for the DescribeEnvironmentHealth operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEnvironmentHealth for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -939,9 +1245,27 @@ func (c *ElasticBeanstalk) DescribeEnvironmentHealthRequest(input *DescribeEnvir
 	return
 }
 
+// DescribeEnvironmentHealth API operation for AWS Elastic Beanstalk.
+//
 // Returns information about the overall health of the specified environment.
 // The DescribeEnvironmentHealth operation is only available with AWS Elastic
 // Beanstalk Enhanced Health.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeEnvironmentHealth for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   One or more input parameters is not valid. Please correct the input parameters
+//   and try the operation again.
+//
+//   * ServiceException
+//   A generic service exception has occurred.
+//
 func (c *ElasticBeanstalk) DescribeEnvironmentHealth(input *DescribeEnvironmentHealthInput) (*DescribeEnvironmentHealthOutput, error) {
 	req, out := c.DescribeEnvironmentHealthRequest(input)
 	err := req.Send()
@@ -954,6 +1278,8 @@ const opDescribeEnvironmentManagedActionHistory = "DescribeEnvironmentManagedAct
 // client's request for the DescribeEnvironmentManagedActionHistory operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEnvironmentManagedActionHistory for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -989,7 +1315,21 @@ func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryRequest(input 
 	return
 }
 
+// DescribeEnvironmentManagedActionHistory API operation for AWS Elastic Beanstalk.
+//
 // Lists an environment's completed and failed managed actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeEnvironmentManagedActionHistory for usage and error information.
+//
+// Returned Error Codes:
+//   * ServiceException
+//   A generic service exception has occurred.
+//
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistory(input *DescribeEnvironmentManagedActionHistoryInput) (*DescribeEnvironmentManagedActionHistoryOutput, error) {
 	req, out := c.DescribeEnvironmentManagedActionHistoryRequest(input)
 	err := req.Send()
@@ -1002,6 +1342,8 @@ const opDescribeEnvironmentManagedActions = "DescribeEnvironmentManagedActions"
 // client's request for the DescribeEnvironmentManagedActions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEnvironmentManagedActions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1037,7 +1379,21 @@ func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionsRequest(input *Descr
 	return
 }
 
+// DescribeEnvironmentManagedActions API operation for AWS Elastic Beanstalk.
+//
 // Lists an environment's upcoming and in-progress managed actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeEnvironmentManagedActions for usage and error information.
+//
+// Returned Error Codes:
+//   * ServiceException
+//   A generic service exception has occurred.
+//
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActions(input *DescribeEnvironmentManagedActionsInput) (*DescribeEnvironmentManagedActionsOutput, error) {
 	req, out := c.DescribeEnvironmentManagedActionsRequest(input)
 	err := req.Send()
@@ -1050,6 +1406,8 @@ const opDescribeEnvironmentResources = "DescribeEnvironmentResources"
 // client's request for the DescribeEnvironmentResources operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEnvironmentResources for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1085,7 +1443,22 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEn
 	return
 }
 
+// DescribeEnvironmentResources API operation for AWS Elastic Beanstalk.
+//
 // Returns AWS resources for this environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeEnvironmentResources for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironmentResourcesInput) (*DescribeEnvironmentResourcesOutput, error) {
 	req, out := c.DescribeEnvironmentResourcesRequest(input)
 	err := req.Send()
@@ -1098,6 +1471,8 @@ const opDescribeEnvironments = "DescribeEnvironments"
 // client's request for the DescribeEnvironments operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEnvironments for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1133,7 +1508,16 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 	return
 }
 
+// DescribeEnvironments API operation for AWS Elastic Beanstalk.
+//
 // Returns descriptions for existing environments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeEnvironments for usage and error information.
 func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (*EnvironmentDescriptionsMessage, error) {
 	req, out := c.DescribeEnvironmentsRequest(input)
 	err := req.Send()
@@ -1146,6 +1530,8 @@ const opDescribeEvents = "DescribeEvents"
 // client's request for the DescribeEvents operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEvents for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1187,9 +1573,18 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 	return
 }
 
+// DescribeEvents API operation for AWS Elastic Beanstalk.
+//
 // Returns list of event descriptions matching criteria up to the last 6 weeks.
 //
 // This action returns the most recent 1,000 events from the specified NextToken.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeEvents for usage and error information.
 func (c *ElasticBeanstalk) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -1228,6 +1623,8 @@ const opDescribeInstancesHealth = "DescribeInstancesHealth"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeInstancesHealth for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1262,9 +1659,27 @@ func (c *ElasticBeanstalk) DescribeInstancesHealthRequest(input *DescribeInstanc
 	return
 }
 
+// DescribeInstancesHealth API operation for AWS Elastic Beanstalk.
+//
 // Returns more detailed information about the health of the specified instances
 // (for example, CPU utilization, load average, and causes). The DescribeInstancesHealth
 // operation is only available with AWS Elastic Beanstalk Enhanced Health.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation DescribeInstancesHealth for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   One or more input parameters is not valid. Please correct the input parameters
+//   and try the operation again.
+//
+//   * ServiceException
+//   A generic service exception has occurred.
+//
 func (c *ElasticBeanstalk) DescribeInstancesHealth(input *DescribeInstancesHealthInput) (*DescribeInstancesHealthOutput, error) {
 	req, out := c.DescribeInstancesHealthRequest(input)
 	err := req.Send()
@@ -1277,6 +1692,8 @@ const opListAvailableSolutionStacks = "ListAvailableSolutionStacks"
 // client's request for the ListAvailableSolutionStacks operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListAvailableSolutionStacks for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1312,7 +1729,16 @@ func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailab
 	return
 }
 
+// ListAvailableSolutionStacks API operation for AWS Elastic Beanstalk.
+//
 // Returns a list of the available solution stack names.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation ListAvailableSolutionStacks for usage and error information.
 func (c *ElasticBeanstalk) ListAvailableSolutionStacks(input *ListAvailableSolutionStacksInput) (*ListAvailableSolutionStacksOutput, error) {
 	req, out := c.ListAvailableSolutionStacksRequest(input)
 	err := req.Send()
@@ -1325,6 +1751,8 @@ const opRebuildEnvironment = "RebuildEnvironment"
 // client's request for the RebuildEnvironment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RebuildEnvironment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1362,8 +1790,23 @@ func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentIn
 	return
 }
 
+// RebuildEnvironment API operation for AWS Elastic Beanstalk.
+//
 // Deletes and recreates all of the AWS resources (for example: the Auto Scaling
 // group, load balancer, etc.) for a specified environment and forces a restart.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation RebuildEnvironment for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) RebuildEnvironment(input *RebuildEnvironmentInput) (*RebuildEnvironmentOutput, error) {
 	req, out := c.RebuildEnvironmentRequest(input)
 	err := req.Send()
@@ -1376,6 +1819,8 @@ const opRequestEnvironmentInfo = "RequestEnvironmentInfo"
 // client's request for the RequestEnvironmentInfo operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RequestEnvironmentInfo for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1413,6 +1858,8 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 	return
 }
 
+// RequestEnvironmentInfo API operation for AWS Elastic Beanstalk.
+//
 // Initiates a request to compile the specified type of information of the deployed
 // environment.
 //
@@ -1428,6 +1875,13 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 // Related Topics
 //
 //   RetrieveEnvironmentInfo
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation RequestEnvironmentInfo for usage and error information.
 func (c *ElasticBeanstalk) RequestEnvironmentInfo(input *RequestEnvironmentInfoInput) (*RequestEnvironmentInfoOutput, error) {
 	req, out := c.RequestEnvironmentInfoRequest(input)
 	err := req.Send()
@@ -1440,6 +1894,8 @@ const opRestartAppServer = "RestartAppServer"
 // client's request for the RestartAppServer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RestartAppServer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1477,8 +1933,17 @@ func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput)
 	return
 }
 
+// RestartAppServer API operation for AWS Elastic Beanstalk.
+//
 // Causes the environment to restart the application container server running
 // on each Amazon EC2 instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation RestartAppServer for usage and error information.
 func (c *ElasticBeanstalk) RestartAppServer(input *RestartAppServerInput) (*RestartAppServerOutput, error) {
 	req, out := c.RestartAppServerRequest(input)
 	err := req.Send()
@@ -1491,6 +1956,8 @@ const opRetrieveEnvironmentInfo = "RetrieveEnvironmentInfo"
 // client's request for the RetrieveEnvironmentInfo operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RetrieveEnvironmentInfo for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1526,11 +1993,20 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 	return
 }
 
+// RetrieveEnvironmentInfo API operation for AWS Elastic Beanstalk.
+//
 // Retrieves the compiled information from a RequestEnvironmentInfo request.
 //
 // Related Topics
 //
 //   RequestEnvironmentInfo
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation RetrieveEnvironmentInfo for usage and error information.
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfo(input *RetrieveEnvironmentInfoInput) (*RetrieveEnvironmentInfoOutput, error) {
 	req, out := c.RetrieveEnvironmentInfoRequest(input)
 	err := req.Send()
@@ -1543,6 +2019,8 @@ const opSwapEnvironmentCNAMEs = "SwapEnvironmentCNAMEs"
 // client's request for the SwapEnvironmentCNAMEs operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SwapEnvironmentCNAMEs for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1580,7 +2058,16 @@ func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCN
 	return
 }
 
+// SwapEnvironmentCNAMEs API operation for AWS Elastic Beanstalk.
+//
 // Swaps the CNAMEs of two environments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation SwapEnvironmentCNAMEs for usage and error information.
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEs(input *SwapEnvironmentCNAMEsInput) (*SwapEnvironmentCNAMEsOutput, error) {
 	req, out := c.SwapEnvironmentCNAMEsRequest(input)
 	err := req.Send()
@@ -1593,6 +2080,8 @@ const opTerminateEnvironment = "TerminateEnvironment"
 // client's request for the TerminateEnvironment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TerminateEnvironment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1628,7 +2117,22 @@ func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironme
 	return
 }
 
+// TerminateEnvironment API operation for AWS Elastic Beanstalk.
+//
 // Terminates the specified environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation TerminateEnvironment for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
 func (c *ElasticBeanstalk) TerminateEnvironment(input *TerminateEnvironmentInput) (*EnvironmentDescription, error) {
 	req, out := c.TerminateEnvironmentRequest(input)
 	err := req.Send()
@@ -1641,6 +2145,8 @@ const opUpdateApplication = "UpdateApplication"
 // client's request for the UpdateApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1676,10 +2182,19 @@ func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInpu
 	return
 }
 
+// UpdateApplication API operation for AWS Elastic Beanstalk.
+//
 // Updates the specified application to have the specified properties.
 //
 //  If a property (for example, description) is not provided, the value remains
 // unchanged. To clear these properties, specify an empty string.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation UpdateApplication for usage and error information.
 func (c *ElasticBeanstalk) UpdateApplication(input *UpdateApplicationInput) (*ApplicationDescriptionMessage, error) {
 	req, out := c.UpdateApplicationRequest(input)
 	err := req.Send()
@@ -1692,6 +2207,8 @@ const opUpdateApplicationVersion = "UpdateApplicationVersion"
 // client's request for the UpdateApplicationVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateApplicationVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1727,10 +2244,19 @@ func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicat
 	return
 }
 
+// UpdateApplicationVersion API operation for AWS Elastic Beanstalk.
+//
 // Updates the specified application version to have the specified properties.
 //
 //  If a property (for example, description) is not provided, the value remains
 // unchanged. To clear properties, specify an empty string.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation UpdateApplicationVersion for usage and error information.
 func (c *ElasticBeanstalk) UpdateApplicationVersion(input *UpdateApplicationVersionInput) (*ApplicationVersionDescriptionMessage, error) {
 	req, out := c.UpdateApplicationVersionRequest(input)
 	err := req.Send()
@@ -1743,6 +2269,8 @@ const opUpdateConfigurationTemplate = "UpdateConfigurationTemplate"
 // client's request for the UpdateConfigurationTemplate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateConfigurationTemplate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1778,6 +2306,8 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 	return
 }
 
+// UpdateConfigurationTemplate API operation for AWS Elastic Beanstalk.
+//
 // Updates the specified configuration template to have the specified properties
 // or configuration option values.
 //
@@ -1786,6 +2316,22 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // Topics
 //
 //   DescribeConfigurationOptions
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation UpdateConfigurationTemplate for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
 func (c *ElasticBeanstalk) UpdateConfigurationTemplate(input *UpdateConfigurationTemplateInput) (*ConfigurationSettingsDescription, error) {
 	req, out := c.UpdateConfigurationTemplateRequest(input)
 	err := req.Send()
@@ -1798,6 +2344,8 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // client's request for the UpdateEnvironment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateEnvironment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1833,6 +2381,8 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 	return
 }
 
+// UpdateEnvironment API operation for AWS Elastic Beanstalk.
+//
 // Updates the environment description, deploys a new application version, updates
 // the configuration settings to an entirely new configuration template, or
 // updates select configuration option values in the running environment.
@@ -1844,6 +2394,22 @@ func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInpu
 // settings, a draft configuration is created and DescribeConfigurationSettings
 // for this environment returns two setting descriptions with different DeploymentStatus
 // values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation UpdateEnvironment for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
 func (c *ElasticBeanstalk) UpdateEnvironment(input *UpdateEnvironmentInput) (*EnvironmentDescription, error) {
 	req, out := c.UpdateEnvironmentRequest(input)
 	err := req.Send()
@@ -1856,6 +2422,8 @@ const opValidateConfigurationSettings = "ValidateConfigurationSettings"
 // client's request for the ValidateConfigurationSettings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ValidateConfigurationSettings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1891,11 +2459,29 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 	return
 }
 
+// ValidateConfigurationSettings API operation for AWS Elastic Beanstalk.
+//
 // Takes a set of configuration settings and either a configuration template
 // or environment, and determines whether those values are valid.
 //
 //  This action returns a list of messages indicating any errors or warnings
 // associated with the selection of option values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elastic Beanstalk's
+// API operation ValidateConfigurationSettings for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientPrivilegesException
+//   The specified account does not have sufficient privileges for one of more
+//   AWS services.
+//
+//   * TooManyBucketsException
+//   The specified account has reached its limit of Amazon S3 buckets.
+//
 func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigurationSettingsInput) (*ValidateConfigurationSettingsOutput, error) {
 	req, out := c.ValidateConfigurationSettingsRequest(input)
 	err := req.Send()

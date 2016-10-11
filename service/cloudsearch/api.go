@@ -17,6 +17,8 @@ const opBuildSuggesters = "BuildSuggesters"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See BuildSuggesters for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,9 +53,32 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 	return
 }
 
+// BuildSuggesters API operation for Amazon CloudSearch.
+//
 // Indexes the search suggestions. For more information, see Configuring Suggesters
 // (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html#configuring-suggesters)
 // in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation BuildSuggesters for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (*BuildSuggestersOutput, error) {
 	req, out := c.BuildSuggestersRequest(input)
 	err := req.Send()
@@ -66,6 +91,8 @@ const opCreateDomain = "CreateDomain"
 // client's request for the CreateDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -101,9 +128,31 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *reques
 	return
 }
 
+// CreateDomain API operation for Amazon CloudSearch.
+//
 // Creates a new search domain. For more information, see Creating a Search
 // Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/creating-domains.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation CreateDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
 func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
 	err := req.Send()
@@ -116,6 +165,8 @@ const opDefineAnalysisScheme = "DefineAnalysisScheme"
 // client's request for the DefineAnalysisScheme operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DefineAnalysisScheme for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -151,10 +202,39 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 	return
 }
 
+// DefineAnalysisScheme API operation for Amazon CloudSearch.
+//
 // Configures an analysis scheme that can be applied to a text or text-array
 // field to define language-specific text processing options. For more information,
 // see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DefineAnalysisScheme for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (*DefineAnalysisSchemeOutput, error) {
 	req, out := c.DefineAnalysisSchemeRequest(input)
 	err := req.Send()
@@ -167,6 +247,8 @@ const opDefineExpression = "DefineExpression"
 // client's request for the DefineExpression operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DefineExpression for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -202,10 +284,39 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 	return
 }
 
+// DefineExpression API operation for Amazon CloudSearch.
+//
 // Configures an Expression for the search domain. Used to create new expressions
 // and modify existing ones. If the expression exists, the new configuration
 // replaces the old one. For more information, see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DefineExpression for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (*DefineExpressionOutput, error) {
 	req, out := c.DefineExpressionRequest(input)
 	err := req.Send()
@@ -218,6 +329,8 @@ const opDefineIndexField = "DefineIndexField"
 // client's request for the DefineIndexField operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DefineIndexField for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -253,6 +366,8 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 	return
 }
 
+// DefineIndexField API operation for Amazon CloudSearch.
+//
 // Configures an IndexField for the search domain. Used to create new fields
 // and modify existing ones. You must specify the name of the domain you are
 // configuring and an index field configuration. The index field configuration
@@ -261,6 +376,33 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 // If the field exists, the new configuration replaces the old one. For more
 // information, see Configuring Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DefineIndexField for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (*DefineIndexFieldOutput, error) {
 	req, out := c.DefineIndexFieldRequest(input)
 	err := req.Send()
@@ -273,6 +415,8 @@ const opDefineSuggester = "DefineSuggester"
 // client's request for the DefineSuggester operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DefineSuggester for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -308,12 +452,41 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 	return
 }
 
+// DefineSuggester API operation for Amazon CloudSearch.
+//
 // Configures a suggester for a domain. A suggester enables you to display possible
 // matches before users finish typing their queries. When you configure a suggester,
 // you must specify the name of the text field you want to search for possible
 // matches and a unique name for the suggester. For more information, see Getting
 // Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DefineSuggester for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (*DefineSuggesterOutput, error) {
 	req, out := c.DefineSuggesterRequest(input)
 	err := req.Send()
@@ -326,6 +499,8 @@ const opDeleteAnalysisScheme = "DeleteAnalysisScheme"
 // client's request for the DeleteAnalysisScheme operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteAnalysisScheme for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -361,9 +536,35 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 	return
 }
 
+// DeleteAnalysisScheme API operation for Amazon CloudSearch.
+//
 // Deletes an analysis scheme. For more information, see Configuring Analysis
 // Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DeleteAnalysisScheme for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (*DeleteAnalysisSchemeOutput, error) {
 	req, out := c.DeleteAnalysisSchemeRequest(input)
 	err := req.Send()
@@ -376,6 +577,8 @@ const opDeleteDomain = "DeleteDomain"
 // client's request for the DeleteDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -411,10 +614,29 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *reques
 	return
 }
 
+// DeleteDomain API operation for Amazon CloudSearch.
+//
 // Permanently deletes a search domain and all of its data. Once a domain has
 // been deleted, it cannot be recovered. For more information, see Deleting
 // a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DeleteDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
 func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
 	err := req.Send()
@@ -427,6 +649,8 @@ const opDeleteExpression = "DeleteExpression"
 // client's request for the DeleteExpression operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteExpression for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -462,9 +686,35 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 	return
 }
 
+// DeleteExpression API operation for Amazon CloudSearch.
+//
 // Removes an Expression from the search domain. For more information, see Configuring
 // Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DeleteExpression for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (*DeleteExpressionOutput, error) {
 	req, out := c.DeleteExpressionRequest(input)
 	err := req.Send()
@@ -477,6 +727,8 @@ const opDeleteIndexField = "DeleteIndexField"
 // client's request for the DeleteIndexField operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteIndexField for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -512,9 +764,35 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 	return
 }
 
+// DeleteIndexField API operation for Amazon CloudSearch.
+//
 // Removes an IndexField from the search domain. For more information, see Configuring
 // Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DeleteIndexField for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (*DeleteIndexFieldOutput, error) {
 	req, out := c.DeleteIndexFieldRequest(input)
 	err := req.Send()
@@ -527,6 +805,8 @@ const opDeleteSuggester = "DeleteSuggester"
 // client's request for the DeleteSuggester operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteSuggester for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -562,9 +842,35 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 	return
 }
 
+// DeleteSuggester API operation for Amazon CloudSearch.
+//
 // Deletes a suggester. For more information, see Getting Search Suggestions
 // (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DeleteSuggester for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (*DeleteSuggesterOutput, error) {
 	req, out := c.DeleteSuggesterRequest(input)
 	err := req.Send()
@@ -577,6 +883,8 @@ const opDescribeAnalysisSchemes = "DescribeAnalysisSchemes"
 // client's request for the DescribeAnalysisSchemes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAnalysisSchemes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -612,6 +920,8 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 	return
 }
 
+// DescribeAnalysisSchemes API operation for Amazon CloudSearch.
+//
 // Gets the analysis schemes configured for a domain. An analysis scheme defines
 // language-specific text processing options for a text field. Can be limited
 // to specific analysis schemes by name. By default, shows all analysis schemes
@@ -619,6 +929,27 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 // to true to show the active configuration and exclude pending changes. For
 // more information, see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeAnalysisSchemes for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DescribeAnalysisSchemes(input *DescribeAnalysisSchemesInput) (*DescribeAnalysisSchemesOutput, error) {
 	req, out := c.DescribeAnalysisSchemesRequest(input)
 	err := req.Send()
@@ -631,6 +962,8 @@ const opDescribeAvailabilityOptions = "DescribeAvailabilityOptions"
 // client's request for the DescribeAvailabilityOptions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAvailabilityOptions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -666,11 +999,43 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 	return
 }
 
+// DescribeAvailabilityOptions API operation for Amazon CloudSearch.
+//
 // Gets the availability options configured for a domain. By default, shows
 // the configuration with any pending changes. Set the Deployed option to true
 // to show the active configuration and exclude pending changes. For more information,
 // see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeAvailabilityOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
+//   * DisabledAction
+//   The request was rejected because it attempted an operation which is not enabled.
+//
 func (c *CloudSearch) DescribeAvailabilityOptions(input *DescribeAvailabilityOptionsInput) (*DescribeAvailabilityOptionsOutput, error) {
 	req, out := c.DescribeAvailabilityOptionsRequest(input)
 	err := req.Send()
@@ -683,6 +1048,8 @@ const opDescribeDomains = "DescribeDomains"
 // client's request for the DescribeDomains operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeDomains for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -718,12 +1085,31 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 	return
 }
 
+// DescribeDomains API operation for Amazon CloudSearch.
+//
 // Gets information about the search domains owned by this account. Can be limited
 // to specific domains. Shows all domains by default. To get the number of searchable
 // documents in a domain, use the console or submit a matchall request to your
 // domain's search endpoint: q=matchall&amp;q.parser=structured&amp;size=0.
 // For more information, see Getting Information about a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeDomains for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
 func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (*DescribeDomainsOutput, error) {
 	req, out := c.DescribeDomainsRequest(input)
 	err := req.Send()
@@ -736,6 +1122,8 @@ const opDescribeExpressions = "DescribeExpressions"
 // client's request for the DescribeExpressions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeExpressions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -771,12 +1159,35 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 	return
 }
 
+// DescribeExpressions API operation for Amazon CloudSearch.
+//
 // Gets the expressions configured for the search domain. Can be limited to
 // specific expressions by name. By default, shows all expressions and includes
 // any pending changes to the configuration. Set the Deployed option to true
 // to show the active configuration and exclude pending changes. For more information,
 // see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeExpressions for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DescribeExpressions(input *DescribeExpressionsInput) (*DescribeExpressionsOutput, error) {
 	req, out := c.DescribeExpressionsRequest(input)
 	err := req.Send()
@@ -789,6 +1200,8 @@ const opDescribeIndexFields = "DescribeIndexFields"
 // client's request for the DescribeIndexFields operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeIndexFields for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -824,12 +1237,35 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 	return
 }
 
+// DescribeIndexFields API operation for Amazon CloudSearch.
+//
 // Gets information about the index fields configured for the search domain.
 // Can be limited to specific fields by name. By default, shows all fields and
 // includes any pending changes to the configuration. Set the Deployed option
 // to true to show the active configuration and exclude pending changes. For
 // more information, see Getting Domain Information (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeIndexFields for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DescribeIndexFields(input *DescribeIndexFieldsInput) (*DescribeIndexFieldsOutput, error) {
 	req, out := c.DescribeIndexFieldsRequest(input)
 	err := req.Send()
@@ -842,6 +1278,8 @@ const opDescribeScalingParameters = "DescribeScalingParameters"
 // client's request for the DescribeScalingParameters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeScalingParameters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -877,10 +1315,33 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 	return
 }
 
+// DescribeScalingParameters API operation for Amazon CloudSearch.
+//
 // Gets the scaling parameters configured for a domain. A domain's scaling parameters
 // specify the desired search instance type and replication count. For more
 // information, see Configuring Scaling Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeScalingParameters for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DescribeScalingParameters(input *DescribeScalingParametersInput) (*DescribeScalingParametersOutput, error) {
 	req, out := c.DescribeScalingParametersRequest(input)
 	err := req.Send()
@@ -893,6 +1354,8 @@ const opDescribeServiceAccessPolicies = "DescribeServiceAccessPolicies"
 // client's request for the DescribeServiceAccessPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeServiceAccessPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -928,12 +1391,35 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 	return
 }
 
+// DescribeServiceAccessPolicies API operation for Amazon CloudSearch.
+//
 // Gets information about the access policies that control access to the domain's
 // document and search endpoints. By default, shows the configuration with any
 // pending changes. Set the Deployed option to true to show the active configuration
 // and exclude pending changes. For more information, see Configuring Access
 // for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeServiceAccessPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DescribeServiceAccessPolicies(input *DescribeServiceAccessPoliciesInput) (*DescribeServiceAccessPoliciesOutput, error) {
 	req, out := c.DescribeServiceAccessPoliciesRequest(input)
 	err := req.Send()
@@ -946,6 +1432,8 @@ const opDescribeSuggesters = "DescribeSuggesters"
 // client's request for the DescribeSuggesters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeSuggesters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -981,6 +1469,8 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 	return
 }
 
+// DescribeSuggesters API operation for Amazon CloudSearch.
+//
 // Gets the suggesters configured for a domain. A suggester enables you to display
 // possible matches before users finish typing their queries. Can be limited
 // to specific suggesters by name. By default, shows all suggesters and includes
@@ -988,6 +1478,27 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 // to show the active configuration and exclude pending changes. For more information,
 // see Getting Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation DescribeSuggesters for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) DescribeSuggesters(input *DescribeSuggestersInput) (*DescribeSuggestersOutput, error) {
 	req, out := c.DescribeSuggestersRequest(input)
 	err := req.Send()
@@ -1000,6 +1511,8 @@ const opIndexDocuments = "IndexDocuments"
 // client's request for the IndexDocuments operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See IndexDocuments for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1035,9 +1548,32 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *re
 	return
 }
 
+// IndexDocuments API operation for Amazon CloudSearch.
+//
 // Tells the search domain to start indexing its documents using the latest
 // indexing options. This operation must be invoked to activate options whose
 // OptionStatus is RequiresIndexDocuments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation IndexDocuments for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
 func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (*IndexDocumentsOutput, error) {
 	req, out := c.IndexDocumentsRequest(input)
 	err := req.Send()
@@ -1050,6 +1586,8 @@ const opListDomainNames = "ListDomainNames"
 // client's request for the ListDomainNames operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDomainNames for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1085,7 +1623,21 @@ func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *
 	return
 }
 
+// ListDomainNames API operation for Amazon CloudSearch.
+//
 // Lists all search domains owned by an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation ListDomainNames for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
 func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (*ListDomainNamesOutput, error) {
 	req, out := c.ListDomainNamesRequest(input)
 	err := req.Send()
@@ -1098,6 +1650,8 @@ const opUpdateAvailabilityOptions = "UpdateAvailabilityOptions"
 // client's request for the UpdateAvailabilityOptions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateAvailabilityOptions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1133,12 +1687,44 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 	return
 }
 
+// UpdateAvailabilityOptions API operation for Amazon CloudSearch.
+//
 // Configures the availability options for a domain. Enabling the Multi-AZ option
 // expands an Amazon CloudSearch domain to an additional Availability Zone in
 // the same Region to increase fault tolerance in the event of a service disruption.
 // Changes to the Multi-AZ option can take about half an hour to become active.
 // For more information, see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation UpdateAvailabilityOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
+//   * DisabledAction
+//   The request was rejected because it attempted an operation which is not enabled.
+//
 func (c *CloudSearch) UpdateAvailabilityOptions(input *UpdateAvailabilityOptionsInput) (*UpdateAvailabilityOptionsOutput, error) {
 	req, out := c.UpdateAvailabilityOptionsRequest(input)
 	err := req.Send()
@@ -1151,6 +1737,8 @@ const opUpdateScalingParameters = "UpdateScalingParameters"
 // client's request for the UpdateScalingParameters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateScalingParameters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1186,6 +1774,8 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 	return
 }
 
+// UpdateScalingParameters API operation for Amazon CloudSearch.
+//
 // Configures scaling parameters for a domain. A domain's scaling parameters
 // specify the desired search instance type and replication count. Amazon CloudSearch
 // will still automatically scale your domain based on the volume of data and
@@ -1194,6 +1784,33 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 // Availability Zone. For more information, see Configuring Scaling Options
 // (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
 // target="_blank) in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation UpdateScalingParameters for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
 func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInput) (*UpdateScalingParametersOutput, error) {
 	req, out := c.UpdateScalingParametersRequest(input)
 	err := req.Send()
@@ -1206,6 +1823,8 @@ const opUpdateServiceAccessPolicies = "UpdateServiceAccessPolicies"
 // client's request for the UpdateServiceAccessPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateServiceAccessPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1241,10 +1860,39 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 	return
 }
 
+// UpdateServiceAccessPolicies API operation for Amazon CloudSearch.
+//
 // Configures the access rules that control access to the domain's document
 // and search endpoints. For more information, see  Configuring Access for an
 // Amazon CloudSearch Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
 // target="_blank).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch's
+// API operation UpdateServiceAccessPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   An internal error occurred while processing the request. If this problem
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
+//   target="_blank).
+//
+//   * LimitExceeded
+//   The request was rejected because a resource limit has already been met.
+//
+//   * ResourceNotFound
+//   The request was rejected because it attempted to reference a resource that
+//   does not exist.
+//
+//   * InvalidType
+//   The request was rejected because it specified an invalid type definition.
+//
 func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoliciesInput) (*UpdateServiceAccessPoliciesOutput, error) {
 	req, out := c.UpdateServiceAccessPoliciesRequest(input)
 	err := req.Send()

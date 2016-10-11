@@ -20,6 +20,8 @@ const opDeleteConfigRule = "DeleteConfigRule"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DeleteConfigRule for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -56,6 +58,8 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 	return
 }
 
+// DeleteConfigRule API operation for AWS Config.
+//
 // Deletes the specified AWS Config rule and all of its evaluation results.
 //
 // AWS Config sets the state of a rule to DELETING until the deletion is complete.
@@ -63,6 +67,23 @@ func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (r
 // or DeleteConfigRule request for the rule, you will receive a ResourceInUseException.
 //
 // You can check the state of a rule by using the DescribeConfigRules request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeleteConfigRule for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
+//   * ResourceInUseException
+//   The rule is currently being deleted or the rule is deleting your evaluation
+//   results. Try your request again later.
+//
 func (c *ConfigService) DeleteConfigRule(input *DeleteConfigRuleInput) (*DeleteConfigRuleOutput, error) {
 	req, out := c.DeleteConfigRuleRequest(input)
 	err := req.Send()
@@ -75,6 +96,8 @@ const opDeleteConfigurationRecorder = "DeleteConfigurationRecorder"
 // client's request for the DeleteConfigurationRecorder operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteConfigurationRecorder for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -112,6 +135,8 @@ func (c *ConfigService) DeleteConfigurationRecorderRequest(input *DeleteConfigur
 	return
 }
 
+// DeleteConfigurationRecorder API operation for AWS Config.
+//
 // Deletes the configuration recorder.
 //
 // After the configuration recorder is deleted, AWS Config will not record
@@ -122,6 +147,18 @@ func (c *ConfigService) DeleteConfigurationRecorderRequest(input *DeleteConfigur
 // by using the GetResourceConfigHistory action, but you will not be able to
 // access this information in the AWS Config console until you create a new
 // configuration recorder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeleteConfigurationRecorder for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigurationRecorderException
+//   You have specified a configuration recorder that does not exist.
+//
 func (c *ConfigService) DeleteConfigurationRecorder(input *DeleteConfigurationRecorderInput) (*DeleteConfigurationRecorderOutput, error) {
 	req, out := c.DeleteConfigurationRecorderRequest(input)
 	err := req.Send()
@@ -134,6 +171,8 @@ const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 // client's request for the DeleteDeliveryChannel operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDeliveryChannel for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -171,10 +210,28 @@ func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChanne
 	return
 }
 
+// DeleteDeliveryChannel API operation for AWS Config.
+//
 // Deletes the delivery channel.
 //
 // Before you can delete the delivery channel, you must stop the configuration
 // recorder by using the StopConfigurationRecorder action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeleteDeliveryChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchDeliveryChannelException
+//   You have specified a delivery channel that does not exist.
+//
+//   * LastDeliveryChannelDeleteFailedException
+//   You cannot delete the delivery channel you specified because the configuration
+//   recorder is running.
+//
 func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput) (*DeleteDeliveryChannelOutput, error) {
 	req, out := c.DeleteDeliveryChannelRequest(input)
 	err := req.Send()
@@ -187,6 +244,8 @@ const opDeleteEvaluationResults = "DeleteEvaluationResults"
 // client's request for the DeleteEvaluationResults operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteEvaluationResults for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -222,10 +281,29 @@ func (c *ConfigService) DeleteEvaluationResultsRequest(input *DeleteEvaluationRe
 	return
 }
 
+// DeleteEvaluationResults API operation for AWS Config.
+//
 // Deletes the evaluation results for the specified Config rule. You can specify
 // one Config rule per request. After you delete the evaluation results, you
 // can call the StartConfigRulesEvaluation API to start evaluating your AWS
 // resources against the rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeleteEvaluationResults for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
+//   * ResourceInUseException
+//   The rule is currently being deleted or the rule is deleting your evaluation
+//   results. Try your request again later.
+//
 func (c *ConfigService) DeleteEvaluationResults(input *DeleteEvaluationResultsInput) (*DeleteEvaluationResultsOutput, error) {
 	req, out := c.DeleteEvaluationResultsRequest(input)
 	err := req.Send()
@@ -238,6 +316,8 @@ const opDeliverConfigSnapshot = "DeliverConfigSnapshot"
 // client's request for the DeliverConfigSnapshot operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeliverConfigSnapshot for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -273,6 +353,8 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 	return
 }
 
+// DeliverConfigSnapshot API operation for AWS Config.
+//
 // Schedules delivery of a configuration snapshot to the Amazon S3 bucket in
 // the specified delivery channel. After the delivery has started, AWS Config
 // sends following notifications using an Amazon SNS topic that you have specified.
@@ -280,6 +362,25 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 //  Notification of starting the delivery. Notification of delivery completed,
 // if the delivery was successfully completed. Notification of delivery failure,
 // if the delivery failed to complete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeliverConfigSnapshot for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchDeliveryChannelException
+//   You have specified a delivery channel that does not exist.
+//
+//   * NoAvailableConfigurationRecorderException
+//   There are no configuration recorders available to provide the role needed
+//   to describe your resources. Create a configuration recorder.
+//
+//   * NoRunningConfigurationRecorderException
+//   There is no configuration recorder running.
+//
 func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput) (*DeliverConfigSnapshotOutput, error) {
 	req, out := c.DeliverConfigSnapshotRequest(input)
 	err := req.Send()
@@ -292,6 +393,8 @@ const opDescribeComplianceByConfigRule = "DescribeComplianceByConfigRule"
 // client's request for the DescribeComplianceByConfigRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeComplianceByConfigRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -327,6 +430,8 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 	return
 }
 
+// DescribeComplianceByConfigRule API operation for AWS Config.
+//
 // Indicates whether the specified AWS Config rules are compliant. If a rule
 // is noncompliant, this action returns the number of AWS resources that do
 // not comply with the rule.
@@ -346,6 +451,23 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 // the config:PutEvaluations permission. The rule's AWS Lambda function has
 // returned NOT_APPLICABLE for all evaluation results. This can occur if the
 // resources were deleted or removed from the rule's scope.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeComplianceByConfigRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
 func (c *ConfigService) DescribeComplianceByConfigRule(input *DescribeComplianceByConfigRuleInput) (*DescribeComplianceByConfigRuleOutput, error) {
 	req, out := c.DescribeComplianceByConfigRuleRequest(input)
 	err := req.Send()
@@ -358,6 +480,8 @@ const opDescribeComplianceByResource = "DescribeComplianceByResource"
 // client's request for the DescribeComplianceByResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeComplianceByResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -393,6 +517,8 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 	return
 }
 
+// DescribeComplianceByResource API operation for AWS Config.
+//
 // Indicates whether the specified AWS resources are compliant. If a resource
 // is noncompliant, this action returns the number of AWS Config rules that
 // the resource does not comply with.
@@ -414,6 +540,23 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 // the config:PutEvaluations permission. The rule's AWS Lambda function has
 // returned NOT_APPLICABLE for all evaluation results. This can occur if the
 // resources were deleted or removed from the rule's scope.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeComplianceByResource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
 func (c *ConfigService) DescribeComplianceByResource(input *DescribeComplianceByResourceInput) (*DescribeComplianceByResourceOutput, error) {
 	req, out := c.DescribeComplianceByResourceRequest(input)
 	err := req.Send()
@@ -426,6 +569,8 @@ const opDescribeConfigRuleEvaluationStatus = "DescribeConfigRuleEvaluationStatus
 // client's request for the DescribeConfigRuleEvaluationStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigRuleEvaluationStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -461,10 +606,25 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 	return
 }
 
+// DescribeConfigRuleEvaluationStatus API operation for AWS Config.
+//
 // Returns status information for each of your AWS managed Config rules. The
 // status includes information such as the last time AWS Config invoked the
 // rule, the last time AWS Config failed to invoke the rule, and the related
 // error for the last failure.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeConfigRuleEvaluationStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
 func (c *ConfigService) DescribeConfigRuleEvaluationStatus(input *DescribeConfigRuleEvaluationStatusInput) (*DescribeConfigRuleEvaluationStatusOutput, error) {
 	req, out := c.DescribeConfigRuleEvaluationStatusRequest(input)
 	err := req.Send()
@@ -477,6 +637,8 @@ const opDescribeConfigRules = "DescribeConfigRules"
 // client's request for the DescribeConfigRules operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigRules for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -512,7 +674,22 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 	return
 }
 
+// DescribeConfigRules API operation for AWS Config.
+//
 // Returns details about your AWS Config rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeConfigRules for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
 func (c *ConfigService) DescribeConfigRules(input *DescribeConfigRulesInput) (*DescribeConfigRulesOutput, error) {
 	req, out := c.DescribeConfigRulesRequest(input)
 	err := req.Send()
@@ -525,6 +702,8 @@ const opDescribeConfigurationRecorderStatus = "DescribeConfigurationRecorderStat
 // client's request for the DescribeConfigurationRecorderStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigurationRecorderStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -560,11 +739,25 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 	return
 }
 
+// DescribeConfigurationRecorderStatus API operation for AWS Config.
+//
 // Returns the current status of the specified configuration recorder. If a
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
 //
 //  Currently, you can specify only one configuration recorder per account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeConfigurationRecorderStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigurationRecorderException
+//   You have specified a configuration recorder that does not exist.
+//
 func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfigurationRecorderStatusInput) (*DescribeConfigurationRecorderStatusOutput, error) {
 	req, out := c.DescribeConfigurationRecorderStatusRequest(input)
 	err := req.Send()
@@ -577,6 +770,8 @@ const opDescribeConfigurationRecorders = "DescribeConfigurationRecorders"
 // client's request for the DescribeConfigurationRecorders operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigurationRecorders for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -612,11 +807,25 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 	return
 }
 
+// DescribeConfigurationRecorders API operation for AWS Config.
+//
 // Returns the name of one or more specified configuration recorders. If the
 // recorder name is not specified, this action returns the names of all the
 // configuration recorders associated with the account.
 //
 //  Currently, you can specify only one configuration recorder per account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeConfigurationRecorders for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigurationRecorderException
+//   You have specified a configuration recorder that does not exist.
+//
 func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurationRecordersInput) (*DescribeConfigurationRecordersOutput, error) {
 	req, out := c.DescribeConfigurationRecordersRequest(input)
 	err := req.Send()
@@ -629,6 +838,8 @@ const opDescribeDeliveryChannelStatus = "DescribeDeliveryChannelStatus"
 // client's request for the DescribeDeliveryChannelStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeDeliveryChannelStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -664,11 +875,25 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 	return
 }
 
+// DescribeDeliveryChannelStatus API operation for AWS Config.
+//
 // Returns the current status of the specified delivery channel. If a delivery
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
 //
 //  Currently, you can specify only one delivery channel per account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeDeliveryChannelStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchDeliveryChannelException
+//   You have specified a delivery channel that does not exist.
+//
 func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryChannelStatusInput) (*DescribeDeliveryChannelStatusOutput, error) {
 	req, out := c.DescribeDeliveryChannelStatusRequest(input)
 	err := req.Send()
@@ -681,6 +906,8 @@ const opDescribeDeliveryChannels = "DescribeDeliveryChannels"
 // client's request for the DescribeDeliveryChannels operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeDeliveryChannels for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -716,11 +943,25 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 	return
 }
 
+// DescribeDeliveryChannels API operation for AWS Config.
+//
 // Returns details about the specified delivery channel. If a delivery channel
 // is not specified, this action returns the details of all delivery channels
 // associated with the account.
 //
 //  Currently, you can specify only one delivery channel per account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeDeliveryChannels for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchDeliveryChannelException
+//   You have specified a delivery channel that does not exist.
+//
 func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannelsInput) (*DescribeDeliveryChannelsOutput, error) {
 	req, out := c.DescribeDeliveryChannelsRequest(input)
 	err := req.Send()
@@ -733,6 +974,8 @@ const opGetComplianceDetailsByConfigRule = "GetComplianceDetailsByConfigRule"
 // client's request for the GetComplianceDetailsByConfigRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetComplianceDetailsByConfigRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -768,9 +1011,32 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 	return
 }
 
+// GetComplianceDetailsByConfigRule API operation for AWS Config.
+//
 // Returns the evaluation results for the specified AWS Config rule. The results
 // indicate which AWS resources were evaluated by the rule, when each resource
 // was last evaluated, and whether each resource complies with the rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetComplianceDetailsByConfigRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
 func (c *ConfigService) GetComplianceDetailsByConfigRule(input *GetComplianceDetailsByConfigRuleInput) (*GetComplianceDetailsByConfigRuleOutput, error) {
 	req, out := c.GetComplianceDetailsByConfigRuleRequest(input)
 	err := req.Send()
@@ -783,6 +1049,8 @@ const opGetComplianceDetailsByResource = "GetComplianceDetailsByResource"
 // client's request for the GetComplianceDetailsByResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetComplianceDetailsByResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -818,9 +1086,24 @@ func (c *ConfigService) GetComplianceDetailsByResourceRequest(input *GetComplian
 	return
 }
 
+// GetComplianceDetailsByResource API operation for AWS Config.
+//
 // Returns the evaluation results for the specified AWS resource. The results
 // indicate which AWS Config rules were used to evaluate the resource, when
 // each rule was last used, and whether the resource complies with each rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetComplianceDetailsByResource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
 func (c *ConfigService) GetComplianceDetailsByResource(input *GetComplianceDetailsByResourceInput) (*GetComplianceDetailsByResourceOutput, error) {
 	req, out := c.GetComplianceDetailsByResourceRequest(input)
 	err := req.Send()
@@ -833,6 +1116,8 @@ const opGetComplianceSummaryByConfigRule = "GetComplianceSummaryByConfigRule"
 // client's request for the GetComplianceSummaryByConfigRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetComplianceSummaryByConfigRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -868,8 +1153,17 @@ func (c *ConfigService) GetComplianceSummaryByConfigRuleRequest(input *GetCompli
 	return
 }
 
+// GetComplianceSummaryByConfigRule API operation for AWS Config.
+//
 // Returns the number of AWS Config rules that are compliant and noncompliant,
 // up to a maximum of 25 for each.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetComplianceSummaryByConfigRule for usage and error information.
 func (c *ConfigService) GetComplianceSummaryByConfigRule(input *GetComplianceSummaryByConfigRuleInput) (*GetComplianceSummaryByConfigRuleOutput, error) {
 	req, out := c.GetComplianceSummaryByConfigRuleRequest(input)
 	err := req.Send()
@@ -882,6 +1176,8 @@ const opGetComplianceSummaryByResourceType = "GetComplianceSummaryByResourceType
 // client's request for the GetComplianceSummaryByResourceType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetComplianceSummaryByResourceType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -917,9 +1213,24 @@ func (c *ConfigService) GetComplianceSummaryByResourceTypeRequest(input *GetComp
 	return
 }
 
+// GetComplianceSummaryByResourceType API operation for AWS Config.
+//
 // Returns the number of resources that are compliant and the number that are
 // noncompliant. You can specify one or more resource types to get these numbers
 // for each resource type. The maximum number returned is 100.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetComplianceSummaryByResourceType for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
 func (c *ConfigService) GetComplianceSummaryByResourceType(input *GetComplianceSummaryByResourceTypeInput) (*GetComplianceSummaryByResourceTypeOutput, error) {
 	req, out := c.GetComplianceSummaryByResourceTypeRequest(input)
 	err := req.Send()
@@ -932,6 +1243,8 @@ const opGetResourceConfigHistory = "GetResourceConfigHistory"
 // client's request for the GetResourceConfigHistory operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetResourceConfigHistory for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -973,6 +1286,8 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 	return
 }
 
+// GetResourceConfigHistory API operation for AWS Config.
+//
 // Returns a list of configuration items for the specified resource. The list
 // contains details about each state of the resource during the specified time
 // interval.
@@ -986,6 +1301,36 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 //  Each call to the API is limited to span a duration of seven days. It is
 // likely that the number of records returned is smaller than the specified
 // limit. In such cases, you can make another call, using the nextToken.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetResourceConfigHistory for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   * InvalidTimeRangeException
+//   The specified time range is not valid. The earlier time is not chronologically
+//   before the later time.
+//
+//   * InvalidLimitException
+//   The specified limit is outside the allowable range.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+//   * NoAvailableConfigurationRecorderException
+//   There are no configuration recorders available to provide the role needed
+//   to describe your resources. Create a configuration recorder.
+//
+//   * ResourceNotDiscoveredException
+//   You have specified a resource that is either unknown or has not been discovered.
+//
 func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistoryInput) (*GetResourceConfigHistoryOutput, error) {
 	req, out := c.GetResourceConfigHistoryRequest(input)
 	err := req.Send()
@@ -1024,6 +1369,8 @@ const opListDiscoveredResources = "ListDiscoveredResources"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListDiscoveredResources for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1058,6 +1405,8 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 	return
 }
 
+// ListDiscoveredResources API operation for AWS Config.
+//
 // Accepts a resource type and returns a list of resource identifiers for the
 // resources of that type. A resource identifier includes the resource type,
 // ID, and (if available) the custom resource name. The results consist of resources
@@ -1072,6 +1421,29 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // identifiers on each page. You can customize this number with the limit parameter.
 // The response includes a nextToken string, and to get the next page of results,
 // run the request again and enter this string for the nextToken parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation ListDiscoveredResources for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   * InvalidLimitException
+//   The specified limit is outside the allowable range.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+//   * NoAvailableConfigurationRecorderException
+//   There are no configuration recorders available to provide the role needed
+//   to describe your resources. Create a configuration recorder.
+//
 func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
 	req, out := c.ListDiscoveredResourcesRequest(input)
 	err := req.Send()
@@ -1084,6 +1456,8 @@ const opPutConfigRule = "PutConfigRule"
 // client's request for the PutConfigRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutConfigRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1121,6 +1495,8 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 	return
 }
 
+// PutConfigRule API operation for AWS Config.
+//
 // Adds or updates an AWS Config rule for evaluating whether your AWS resources
 // comply with your desired configurations.
 //
@@ -1152,6 +1528,39 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // For more information about developing and using AWS Config rules, see Evaluating
 // AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the AWS Config Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutConfigRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+//   * MaxNumberOfConfigRulesExceededException
+//   Failed to add the AWS Config rule because the account already contains the
+//   maximum number of 25 rules. Consider deleting any deactivated rules before
+//   adding new rules.
+//
+//   * ResourceInUseException
+//   The rule is currently being deleted or the rule is deleting your evaluation
+//   results. Try your request again later.
+//
+//   * InsufficientPermissionsException
+//   Indicates one of the following errors:
+//
+//    The rule cannot be created because the IAM role assigned to AWS Config
+//   lacks permissions to perform the config:Put* action. The AWS Lambda function
+//   cannot be invoked. Check the function ARN, and check the function's permissions.
+//
+//   * NoAvailableConfigurationRecorderException
+//   There are no configuration recorders available to provide the role needed
+//   to describe your resources. Create a configuration recorder.
+//
 func (c *ConfigService) PutConfigRule(input *PutConfigRuleInput) (*PutConfigRuleOutput, error) {
 	req, out := c.PutConfigRuleRequest(input)
 	err := req.Send()
@@ -1164,6 +1573,8 @@ const opPutConfigurationRecorder = "PutConfigurationRecorder"
 // client's request for the PutConfigurationRecorder operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutConfigurationRecorder for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1201,6 +1612,8 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 	return
 }
 
+// PutConfigurationRecorder API operation for AWS Config.
+//
 // Creates a new configuration recorder to record the selected resource configurations.
 //
 // You can use this action to change the role roleARN and/or the recordingGroup
@@ -1211,6 +1624,28 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 //
 // If ConfigurationRecorder does not have the recordingGroup parameter specified,
 // the default is to record all supported resource types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutConfigurationRecorder for usage and error information.
+//
+// Returned Error Codes:
+//   * MaxNumberOfConfigurationRecordersExceededException
+//   You have reached the limit on the number of recorders you can create.
+//
+//   * InvalidConfigurationRecorderNameException
+//   You have provided a configuration recorder name that is not valid.
+//
+//   * InvalidRoleException
+//   You have provided a null or empty role ARN.
+//
+//   * InvalidRecordingGroupException
+//   AWS Config throws an exception if the recording group does not contain a
+//   valid list of resource types. Invalid values could also be incorrectly formatted.
+//
 func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (*PutConfigurationRecorderOutput, error) {
 	req, out := c.PutConfigurationRecorderRequest(input)
 	err := req.Send()
@@ -1223,6 +1658,8 @@ const opPutDeliveryChannel = "PutDeliveryChannel"
 // client's request for the PutDeliveryChannel operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutDeliveryChannel for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1260,6 +1697,8 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 	return
 }
 
+// PutDeliveryChannel API operation for AWS Config.
+//
 // Creates a delivery channel object to deliver configuration information to
 // an Amazon S3 bucket and Amazon SNS topic.
 //
@@ -1274,6 +1713,37 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // for the parameter that is not changed.
 //
 //  You can have only one delivery channel per AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutDeliveryChannel for usage and error information.
+//
+// Returned Error Codes:
+//   * MaxNumberOfDeliveryChannelsExceededException
+//   You have reached the limit on the number of delivery channels you can create.
+//
+//   * NoAvailableConfigurationRecorderException
+//   There are no configuration recorders available to provide the role needed
+//   to describe your resources. Create a configuration recorder.
+//
+//   * InvalidDeliveryChannelNameException
+//   The specified delivery channel name is not valid.
+//
+//   * NoSuchBucketException
+//   The specified Amazon S3 bucket does not exist.
+//
+//   * InvalidS3KeyPrefixException
+//   The specified Amazon S3 key prefix is not valid.
+//
+//   * InvalidSNSTopicARNException
+//   The specified Amazon SNS topic does not exist.
+//
+//   * InsufficientDeliveryPolicyException
+//   Your Amazon S3 bucket policy does not permit AWS Config to write to it.
+//
 func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*PutDeliveryChannelOutput, error) {
 	req, out := c.PutDeliveryChannelRequest(input)
 	err := req.Send()
@@ -1286,6 +1756,8 @@ const opPutEvaluations = "PutEvaluations"
 // client's request for the PutEvaluations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutEvaluations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1321,9 +1793,31 @@ func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *
 	return
 }
 
+// PutEvaluations API operation for AWS Config.
+//
 // Used by an AWS Lambda function to deliver evaluation results to AWS Config.
 // This action is required in every AWS Lambda function that is invoked by an
 // AWS Config rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutEvaluations for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+//   * InvalidResultTokenException
+//   The result token is invalid.
+//
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
 func (c *ConfigService) PutEvaluations(input *PutEvaluationsInput) (*PutEvaluationsOutput, error) {
 	req, out := c.PutEvaluationsRequest(input)
 	err := req.Send()
@@ -1336,6 +1830,8 @@ const opStartConfigRulesEvaluation = "StartConfigRulesEvaluation"
 // client's request for the StartConfigRulesEvaluation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartConfigRulesEvaluation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1371,6 +1867,8 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 	return
 }
 
+// StartConfigRulesEvaluation API operation for AWS Config.
+//
 // Evaluates your resources against the specified Config rules. You can specify
 // up to 25 Config rules per request.
 //
@@ -1396,6 +1894,31 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 // AWS Config invokes your Lambda function and evaluates your IAM resources.
 //
 // Your custom rule will still run periodic evaluations every 24 hours.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation StartConfigRulesEvaluation for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
+//   * LimitExceededException
+//   This exception is thrown if an evaluation is in progress or if you call the
+//   StartConfigRulesEvaluation API more than once per minute.
+//
+//   * ResourceInUseException
+//   The rule is currently being deleted or the rule is deleting your evaluation
+//   results. Try your request again later.
+//
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
 func (c *ConfigService) StartConfigRulesEvaluation(input *StartConfigRulesEvaluationInput) (*StartConfigRulesEvaluationOutput, error) {
 	req, out := c.StartConfigRulesEvaluationRequest(input)
 	err := req.Send()
@@ -1408,6 +1931,8 @@ const opStartConfigurationRecorder = "StartConfigurationRecorder"
 // client's request for the StartConfigurationRecorder operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartConfigurationRecorder for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1445,11 +1970,28 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 	return
 }
 
+// StartConfigurationRecorder API operation for AWS Config.
+//
 // Starts recording configurations of the AWS resources you have selected to
 // record in your AWS account.
 //
 // You must have created at least one delivery channel to successfully start
 // the configuration recorder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation StartConfigurationRecorder for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigurationRecorderException
+//   You have specified a configuration recorder that does not exist.
+//
+//   * NoAvailableDeliveryChannelException
+//   There is no delivery channel available to record configurations.
+//
 func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationRecorderInput) (*StartConfigurationRecorderOutput, error) {
 	req, out := c.StartConfigurationRecorderRequest(input)
 	err := req.Send()
@@ -1462,6 +2004,8 @@ const opStopConfigurationRecorder = "StopConfigurationRecorder"
 // client's request for the StopConfigurationRecorder operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopConfigurationRecorder for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1499,8 +2043,22 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 	return
 }
 
+// StopConfigurationRecorder API operation for AWS Config.
+//
 // Stops recording configurations of the AWS resources you have selected to
 // record in your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation StopConfigurationRecorder for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchConfigurationRecorderException
+//   You have specified a configuration recorder that does not exist.
+//
 func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecorderInput) (*StopConfigurationRecorderOutput, error) {
 	req, out := c.StopConfigurationRecorderRequest(input)
 	err := req.Send()

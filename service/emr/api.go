@@ -20,6 +20,8 @@ const opAddInstanceGroups = "AddInstanceGroups"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddInstanceGroups for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -54,7 +56,22 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *requ
 	return
 }
 
+// AddInstanceGroups API operation for Amazon Elastic MapReduce.
+//
 // AddInstanceGroups adds an instance group to a running cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation AddInstanceGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGroupsOutput, error) {
 	req, out := c.AddInstanceGroupsRequest(input)
 	err := req.Send()
@@ -67,6 +84,8 @@ const opAddJobFlowSteps = "AddJobFlowSteps"
 // client's request for the AddJobFlowSteps operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddJobFlowSteps for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -102,6 +121,8 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 	return
 }
 
+// AddJobFlowSteps API operation for Amazon Elastic MapReduce.
+//
 // AddJobFlowSteps adds new steps to a running job flow. A maximum of 256 steps
 // are allowed in each job flow.
 //
@@ -126,6 +147,19 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 //
 // You can only add steps to a job flow that is in one of the following states:
 // STARTING, BOOTSTRAPPING, RUNNING, or WAITING.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation AddJobFlowSteps for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutput, error) {
 	req, out := c.AddJobFlowStepsRequest(input)
 	err := req.Send()
@@ -138,6 +172,8 @@ const opAddTags = "AddTags"
 // client's request for the AddTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -173,10 +209,27 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 	return
 }
 
+// AddTags API operation for Amazon Elastic MapReduce.
+//
 // Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters
 // in various ways, such as grouping clusters to track your Amazon EMR resource
 // allocation costs. For more information, see Tagging Amazon EMR Resources
 // (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation AddTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -189,6 +242,8 @@ const opCreateSecurityConfiguration = "CreateSecurityConfiguration"
 // client's request for the CreateSecurityConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateSecurityConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -224,9 +279,26 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 	return
 }
 
+// CreateSecurityConfiguration API operation for Amazon Elastic MapReduce.
+//
 // Creates a security configuration using EMR Security Configurations, which
 // are stored in the service. Security Configurations enable you to more easily
 // create a configuration, reuse it, and apply it whenever a cluster is created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation CreateSecurityConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) CreateSecurityConfiguration(input *CreateSecurityConfigurationInput) (*CreateSecurityConfigurationOutput, error) {
 	req, out := c.CreateSecurityConfigurationRequest(input)
 	err := req.Send()
@@ -239,6 +311,8 @@ const opDeleteSecurityConfiguration = "DeleteSecurityConfiguration"
 // client's request for the DeleteSecurityConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteSecurityConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -274,7 +348,24 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 	return
 }
 
+// DeleteSecurityConfiguration API operation for Amazon Elastic MapReduce.
+//
 // Deletes a security configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation DeleteSecurityConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) DeleteSecurityConfiguration(input *DeleteSecurityConfigurationInput) (*DeleteSecurityConfigurationOutput, error) {
 	req, out := c.DeleteSecurityConfigurationRequest(input)
 	err := req.Send()
@@ -287,6 +378,8 @@ const opDescribeCluster = "DescribeCluster"
 // client's request for the DescribeCluster operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCluster for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -322,8 +415,25 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 	return
 }
 
+// DescribeCluster API operation for Amazon Elastic MapReduce.
+//
 // Provides cluster-level details including status, hardware and software configuration,
 // VPC settings, and so on. For information about the cluster steps, see ListSteps.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation DescribeCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutput, error) {
 	req, out := c.DescribeClusterRequest(input)
 	err := req.Send()
@@ -336,6 +446,8 @@ const opDescribeJobFlows = "DescribeJobFlows"
 // client's request for the DescribeJobFlows operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeJobFlows for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -374,6 +486,8 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 	return
 }
 
+// DescribeJobFlows API operation for Amazon Elastic MapReduce.
+//
 // This API is deprecated and will eventually be removed. We recommend you use
 // ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and ListBootstrapActions
 // instead.
@@ -394,6 +508,19 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 // states: RUNNING, WAITING, SHUTTING_DOWN, STARTING
 //
 //   Amazon Elastic MapReduce can return a maximum of 512 job flow descriptions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation DescribeJobFlows for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsOutput, error) {
 	req, out := c.DescribeJobFlowsRequest(input)
 	err := req.Send()
@@ -406,6 +533,8 @@ const opDescribeSecurityConfiguration = "DescribeSecurityConfiguration"
 // client's request for the DescribeSecurityConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeSecurityConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -441,8 +570,25 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 	return
 }
 
+// DescribeSecurityConfiguration API operation for Amazon Elastic MapReduce.
+//
 // Provides the details of a security configuration by returning the configuration
 // JSON.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation DescribeSecurityConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) DescribeSecurityConfiguration(input *DescribeSecurityConfigurationInput) (*DescribeSecurityConfigurationOutput, error) {
 	req, out := c.DescribeSecurityConfigurationRequest(input)
 	err := req.Send()
@@ -455,6 +601,8 @@ const opDescribeStep = "DescribeStep"
 // client's request for the DescribeStep operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeStep for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -490,7 +638,24 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 	return
 }
 
+// DescribeStep API operation for Amazon Elastic MapReduce.
+//
 // Provides more detail about the cluster step.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation DescribeStep for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error) {
 	req, out := c.DescribeStepRequest(input)
 	err := req.Send()
@@ -503,6 +668,8 @@ const opListBootstrapActions = "ListBootstrapActions"
 // client's request for the ListBootstrapActions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListBootstrapActions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -544,7 +711,24 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 	return
 }
 
+// ListBootstrapActions API operation for Amazon Elastic MapReduce.
+//
 // Provides information about the bootstrap actions associated with a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ListBootstrapActions for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBootstrapActionsOutput, error) {
 	req, out := c.ListBootstrapActionsRequest(input)
 	err := req.Send()
@@ -582,6 +766,8 @@ const opListClusters = "ListClusters"
 // client's request for the ListClusters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListClusters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -623,11 +809,28 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 	return
 }
 
+// ListClusters API operation for Amazon Elastic MapReduce.
+//
 // Provides the status of all clusters visible to this AWS account. Allows you
 // to filter the list of clusters based on certain criteria; for example, filtering
 // by cluster creation date and time or by status. This call returns a maximum
 // of 50 clusters per call, but returns a marker to track the paging of the
 // cluster list across multiple ListClusters calls.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ListClusters for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error) {
 	req, out := c.ListClustersRequest(input)
 	err := req.Send()
@@ -665,6 +868,8 @@ const opListInstanceGroups = "ListInstanceGroups"
 // client's request for the ListInstanceGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListInstanceGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -706,7 +911,24 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 	return
 }
 
+// ListInstanceGroups API operation for Amazon Elastic MapReduce.
+//
 // Provides all available details about the instance groups in a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ListInstanceGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceGroupsOutput, error) {
 	req, out := c.ListInstanceGroupsRequest(input)
 	err := req.Send()
@@ -744,6 +966,8 @@ const opListInstances = "ListInstances"
 // client's request for the ListInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -785,11 +1009,28 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 	return
 }
 
+// ListInstances API operation for Amazon Elastic MapReduce.
+//
 // Provides information about the cluster instances that Amazon EMR provisions
 // on behalf of a user when it creates the cluster. For example, this operation
 // indicates when the EC2 instances reach the Ready state, when instances become
 // available to Amazon EMR to use for jobs, and the IP addresses for cluster
 // instances, etc.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ListInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
 	req, out := c.ListInstancesRequest(input)
 	err := req.Send()
@@ -828,6 +1069,8 @@ const opListSecurityConfigurations = "ListSecurityConfigurations"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListSecurityConfigurations for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -862,10 +1105,27 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 	return
 }
 
+// ListSecurityConfigurations API operation for Amazon Elastic MapReduce.
+//
 // Lists all the security configurations visible to this account, providing
 // their creation dates and times, and their names. This call returns a maximum
 // of 50 clusters per call, but returns a marker to track the paging of the
 // cluster list across multiple ListSecurityConfigurations calls.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ListSecurityConfigurations for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) ListSecurityConfigurations(input *ListSecurityConfigurationsInput) (*ListSecurityConfigurationsOutput, error) {
 	req, out := c.ListSecurityConfigurationsRequest(input)
 	err := req.Send()
@@ -878,6 +1138,8 @@ const opListSteps = "ListSteps"
 // client's request for the ListSteps operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListSteps for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -919,7 +1181,24 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 	return
 }
 
+// ListSteps API operation for Amazon Elastic MapReduce.
+//
 // Provides a list of steps for the cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ListSteps for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 	req, out := c.ListStepsRequest(input)
 	err := req.Send()
@@ -958,6 +1237,8 @@ const opModifyInstanceGroups = "ModifyInstanceGroups"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ModifyInstanceGroups for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -994,10 +1275,25 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 	return
 }
 
+// ModifyInstanceGroups API operation for Amazon Elastic MapReduce.
+//
 // ModifyInstanceGroups modifies the number of nodes and configuration settings
 // of an instance group. The input parameters include the new target instance
 // count for the group and the instance group ID. The call will either succeed
 // or fail atomically.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation ModifyInstanceGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyInstanceGroupsOutput, error) {
 	req, out := c.ModifyInstanceGroupsRequest(input)
 	err := req.Send()
@@ -1010,6 +1306,8 @@ const opRemoveTags = "RemoveTags"
 // client's request for the RemoveTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1045,12 +1343,29 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 	return
 }
 
+// RemoveTags API operation for Amazon Elastic MapReduce.
+//
 // Removes tags from an Amazon EMR resource. Tags make it easier to associate
 // clusters in various ways, such as grouping clusters to track your Amazon
 // EMR resource allocation costs. For more information, see Tagging Amazon EMR
 // Resources (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
 //
 // The following example removes the stack tag with value Prod from a cluster:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation RemoveTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the EMR service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
 func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -1063,6 +1378,8 @@ const opRunJobFlow = "RunJobFlow"
 // client's request for the RunJobFlow operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RunJobFlow for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1098,6 +1415,8 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 	return
 }
 
+// RunJobFlow API operation for Amazon Elastic MapReduce.
+//
 // RunJobFlow creates and starts running a new job flow. The job flow will run
 // the steps specified. Once the job flow completes, the cluster is stopped
 // and the HDFS partition is lost. To prevent loss of data, configure the last
@@ -1121,6 +1440,19 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 //
 // For long running job flows, we recommend that you periodically store your
 // results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation RunJobFlow for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
 	req, out := c.RunJobFlowRequest(input)
 	err := req.Send()
@@ -1133,6 +1465,8 @@ const opSetTerminationProtection = "SetTerminationProtection"
 // client's request for the SetTerminationProtection operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetTerminationProtection for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1170,6 +1504,8 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 	return
 }
 
+// SetTerminationProtection API operation for Amazon Elastic MapReduce.
+//
 // SetTerminationProtection locks a job flow so the Amazon EC2 instances in
 // the cluster cannot be terminated by user intervention, an API call, or in
 // the event of a job-flow error. The cluster still terminates upon successful
@@ -1187,6 +1523,19 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 //
 //  For more information, go to Protecting a Job Flow from Termination (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/UsingEMR_TerminationProtection.html)
 // in the Amazon Elastic MapReduce Developer's Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation SetTerminationProtection for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*SetTerminationProtectionOutput, error) {
 	req, out := c.SetTerminationProtectionRequest(input)
 	err := req.Send()
@@ -1199,6 +1548,8 @@ const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 // client's request for the SetVisibleToAllUsers operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetVisibleToAllUsers for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1236,12 +1587,27 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 	return
 }
 
+// SetVisibleToAllUsers API operation for Amazon Elastic MapReduce.
+//
 // Sets whether all AWS Identity and Access Management (IAM) users under your
 // account can access the specified job flows. This action works on running
 // job flows. You can also set the visibility of a job flow when you launch
 // it using the VisibleToAllUsers parameter of RunJobFlow. The SetVisibleToAllUsers
 // action can be called only by an IAM user who created the job flow or the
 // AWS account that owns the job flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation SetVisibleToAllUsers for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibleToAllUsersOutput, error) {
 	req, out := c.SetVisibleToAllUsersRequest(input)
 	err := req.Send()
@@ -1254,6 +1620,8 @@ const opTerminateJobFlows = "TerminateJobFlows"
 // client's request for the TerminateJobFlows operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TerminateJobFlows for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1291,6 +1659,8 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 	return
 }
 
+// TerminateJobFlows API operation for Amazon Elastic MapReduce.
+//
 // TerminateJobFlows shuts a list of job flows down. When a job flow is shut
 // down, any step not yet completed is canceled and the EC2 instances on which
 // the job flow is running are stopped. Any log files not already saved are
@@ -1300,6 +1670,19 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 // is asynchronous. Depending on the configuration of the job flow, it may take
 // up to 5-20 minutes for the job flow to completely terminate and release allocated
 // resources, such as Amazon EC2 instances.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation TerminateJobFlows for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   Indicates that an error occurred while processing the request and that the
+//   request was not completed.
+//
 func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (*TerminateJobFlowsOutput, error) {
 	req, out := c.TerminateJobFlowsRequest(input)
 	err := req.Send()

@@ -17,6 +17,8 @@ const opBatchCheckLayerAvailability = "BatchCheckLayerAvailability"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See BatchCheckLayerAvailability for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,11 +53,33 @@ func (c *ECR) BatchCheckLayerAvailabilityRequest(input *BatchCheckLayerAvailabil
 	return
 }
 
+// BatchCheckLayerAvailability API operation for Amazon EC2 Container Registry.
+//
 // Check the availability of multiple image layers in a specified registry and
 // repository.
 //
 //  This operation is used by the Amazon ECR proxy, and it is not intended
 // for general use by customers. Use the docker CLI to pull, tag, and push images.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation BatchCheckLayerAvailability for usage and error information.
+//
+// Returned Error Codes:
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
 func (c *ECR) BatchCheckLayerAvailability(input *BatchCheckLayerAvailabilityInput) (*BatchCheckLayerAvailabilityOutput, error) {
 	req, out := c.BatchCheckLayerAvailabilityRequest(input)
 	err := req.Send()
@@ -68,6 +92,8 @@ const opBatchDeleteImage = "BatchDeleteImage"
 // client's request for the BatchDeleteImage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchDeleteImage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,8 +129,30 @@ func (c *ECR) BatchDeleteImageRequest(input *BatchDeleteImageInput) (req *reques
 	return
 }
 
+// BatchDeleteImage API operation for Amazon EC2 Container Registry.
+//
 // Deletes a list of specified images within a specified repository. Images
 // are specified with either imageTag or imageDigest.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation BatchDeleteImage for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) BatchDeleteImage(input *BatchDeleteImageInput) (*BatchDeleteImageOutput, error) {
 	req, out := c.BatchDeleteImageRequest(input)
 	err := req.Send()
@@ -117,6 +165,8 @@ const opBatchGetImage = "BatchGetImage"
 // client's request for the BatchGetImage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetImage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -152,8 +202,30 @@ func (c *ECR) BatchGetImageRequest(input *BatchGetImageInput) (req *request.Requ
 	return
 }
 
+// BatchGetImage API operation for Amazon EC2 Container Registry.
+//
 // Gets detailed information for specified images within a specified repository.
 // Images are specified with either imageTag or imageDigest.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation BatchGetImage for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) BatchGetImage(input *BatchGetImageInput) (*BatchGetImageOutput, error) {
 	req, out := c.BatchGetImageRequest(input)
 	err := req.Send()
@@ -166,6 +238,8 @@ const opCompleteLayerUpload = "CompleteLayerUpload"
 // client's request for the CompleteLayerUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CompleteLayerUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -201,12 +275,51 @@ func (c *ECR) CompleteLayerUploadRequest(input *CompleteLayerUploadInput) (req *
 	return
 }
 
+// CompleteLayerUpload API operation for Amazon EC2 Container Registry.
+//
 // Inform Amazon ECR that the image layer upload for a specified registry, repository
 // name, and upload ID, has completed. You can optionally provide a sha256 digest
 // of the image layer for data validation purposes.
 //
 //  This operation is used by the Amazon ECR proxy, and it is not intended
 // for general use by customers. Use the docker CLI to pull, tag, and push images.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation CompleteLayerUpload for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * UploadNotFoundException
+//   The upload could not be found, or the specified upload id is not valid for
+//   this repository.
+//
+//   * InvalidLayerException
+//   The layer digest calculation performed by Amazon ECR upon receipt of the
+//   image layer does not match the digest specified.
+//
+//   * LayerPartTooSmallException
+//   Layer parts must be at least 5 MiB in size.
+//
+//   * LayerAlreadyExistsException
+//   The image layer already exists in the associated repository.
+//
+//   * EmptyUploadException
+//   The specified layer upload does not contain any layer parts.
+//
 func (c *ECR) CompleteLayerUpload(input *CompleteLayerUploadInput) (*CompleteLayerUploadOutput, error) {
 	req, out := c.CompleteLayerUploadRequest(input)
 	err := req.Send()
@@ -219,6 +332,8 @@ const opCreateRepository = "CreateRepository"
 // client's request for the CreateRepository operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateRepository for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -254,7 +369,34 @@ func (c *ECR) CreateRepositoryRequest(input *CreateRepositoryInput) (req *reques
 	return
 }
 
+// CreateRepository API operation for Amazon EC2 Container Registry.
+//
 // Creates an image repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation CreateRepository for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryAlreadyExistsException
+//   The specified repository already exists in the specified registry.
+//
+//   * LimitExceededException
+//   The operation did not succeed because it would have exceeded a service limit
+//   for your account. For more information, see Amazon ECR Default Service Limits
+//   (http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   in the Amazon EC2 Container Registry User Guide.
+//
 func (c *ECR) CreateRepository(input *CreateRepositoryInput) (*CreateRepositoryOutput, error) {
 	req, out := c.CreateRepositoryRequest(input)
 	err := req.Send()
@@ -267,6 +409,8 @@ const opDeleteRepository = "DeleteRepository"
 // client's request for the DeleteRepository operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteRepository for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -302,8 +446,34 @@ func (c *ECR) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *reques
 	return
 }
 
+// DeleteRepository API operation for Amazon EC2 Container Registry.
+//
 // Deletes an existing image repository. If a repository contains images, you
 // must use the force option to delete it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation DeleteRepository for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * RepositoryNotEmptyException
+//   The specified repository contains images. To delete a repository that contains
+//   images, you must force the deletion with the force parameter.
+//
 func (c *ECR) DeleteRepository(input *DeleteRepositoryInput) (*DeleteRepositoryOutput, error) {
 	req, out := c.DeleteRepositoryRequest(input)
 	err := req.Send()
@@ -316,6 +486,8 @@ const opDeleteRepositoryPolicy = "DeleteRepositoryPolicy"
 // client's request for the DeleteRepositoryPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteRepositoryPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -351,7 +523,33 @@ func (c *ECR) DeleteRepositoryPolicyRequest(input *DeleteRepositoryPolicyInput) 
 	return
 }
 
+// DeleteRepositoryPolicy API operation for Amazon EC2 Container Registry.
+//
 // Deletes the repository policy from a specified repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation DeleteRepositoryPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * RepositoryPolicyNotFoundException
+//   The specified repository and registry combination does not have an associated
+//   repository policy.
+//
 func (c *ECR) DeleteRepositoryPolicy(input *DeleteRepositoryPolicyInput) (*DeleteRepositoryPolicyOutput, error) {
 	req, out := c.DeleteRepositoryPolicyRequest(input)
 	err := req.Send()
@@ -364,6 +562,8 @@ const opDescribeRepositories = "DescribeRepositories"
 // client's request for the DescribeRepositories operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeRepositories for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -399,7 +599,29 @@ func (c *ECR) DescribeRepositoriesRequest(input *DescribeRepositoriesInput) (req
 	return
 }
 
+// DescribeRepositories API operation for Amazon EC2 Container Registry.
+//
 // Describes image repositories in a registry.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation DescribeRepositories for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) DescribeRepositories(input *DescribeRepositoriesInput) (*DescribeRepositoriesOutput, error) {
 	req, out := c.DescribeRepositoriesRequest(input)
 	err := req.Send()
@@ -412,6 +634,8 @@ const opGetAuthorizationToken = "GetAuthorizationToken"
 // client's request for the GetAuthorizationToken operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetAuthorizationToken for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -447,6 +671,8 @@ func (c *ECR) GetAuthorizationTokenRequest(input *GetAuthorizationTokenInput) (r
 	return
 }
 
+// GetAuthorizationToken API operation for Amazon EC2 Container Registry.
+//
 // Retrieves a token that is valid for a specified registry for 12 hours. This
 // command allows you to use the docker CLI to push and pull images with Amazon
 // ECR. If you do not specify a registry, the default registry is assumed.
@@ -455,6 +681,22 @@ func (c *ECR) GetAuthorizationTokenRequest(input *GetAuthorizationTokenInput) (r
 // encoded string that can be decoded and used in a docker login command to
 // authenticate to a registry. The AWS CLI offers an aws ecr get-login command
 // that simplifies the login process.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation GetAuthorizationToken for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
 func (c *ECR) GetAuthorizationToken(input *GetAuthorizationTokenInput) (*GetAuthorizationTokenOutput, error) {
 	req, out := c.GetAuthorizationTokenRequest(input)
 	err := req.Send()
@@ -467,6 +709,8 @@ const opGetDownloadUrlForLayer = "GetDownloadUrlForLayer"
 // client's request for the GetDownloadUrlForLayer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDownloadUrlForLayer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -502,11 +746,41 @@ func (c *ECR) GetDownloadUrlForLayerRequest(input *GetDownloadUrlForLayerInput) 
 	return
 }
 
+// GetDownloadUrlForLayer API operation for Amazon EC2 Container Registry.
+//
 // Retrieves the pre-signed Amazon S3 download URL corresponding to an image
 // layer. You can only get URLs for image layers that are referenced in an image.
 //
 //  This operation is used by the Amazon ECR proxy, and it is not intended
 // for general use by customers. Use the docker CLI to pull, tag, and push images.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation GetDownloadUrlForLayer for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * LayersNotFoundException
+//   The specified layers could not be found, or the specified layer is not valid
+//   for this repository.
+//
+//   * LayerInaccessibleException
+//   The specified layer is not available because it is not associated with an
+//   image. Unassociated image layers may be cleaned up at any time.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) GetDownloadUrlForLayer(input *GetDownloadUrlForLayerInput) (*GetDownloadUrlForLayerOutput, error) {
 	req, out := c.GetDownloadUrlForLayerRequest(input)
 	err := req.Send()
@@ -519,6 +793,8 @@ const opGetRepositoryPolicy = "GetRepositoryPolicy"
 // client's request for the GetRepositoryPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetRepositoryPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -554,7 +830,33 @@ func (c *ECR) GetRepositoryPolicyRequest(input *GetRepositoryPolicyInput) (req *
 	return
 }
 
+// GetRepositoryPolicy API operation for Amazon EC2 Container Registry.
+//
 // Retrieves the repository policy for a specified repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation GetRepositoryPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * RepositoryPolicyNotFoundException
+//   The specified repository and registry combination does not have an associated
+//   repository policy.
+//
 func (c *ECR) GetRepositoryPolicy(input *GetRepositoryPolicyInput) (*GetRepositoryPolicyOutput, error) {
 	req, out := c.GetRepositoryPolicyRequest(input)
 	err := req.Send()
@@ -567,6 +869,8 @@ const opInitiateLayerUpload = "InitiateLayerUpload"
 // client's request for the InitiateLayerUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See InitiateLayerUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -602,10 +906,32 @@ func (c *ECR) InitiateLayerUploadRequest(input *InitiateLayerUploadInput) (req *
 	return
 }
 
+// InitiateLayerUpload API operation for Amazon EC2 Container Registry.
+//
 // Notify Amazon ECR that you intend to upload an image layer.
 //
 //  This operation is used by the Amazon ECR proxy, and it is not intended
 // for general use by customers. Use the docker CLI to pull, tag, and push images.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation InitiateLayerUpload for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) InitiateLayerUpload(input *InitiateLayerUploadInput) (*InitiateLayerUploadOutput, error) {
 	req, out := c.InitiateLayerUploadRequest(input)
 	err := req.Send()
@@ -618,6 +944,8 @@ const opListImages = "ListImages"
 // client's request for the ListImages operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListImages for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -653,6 +981,8 @@ func (c *ECR) ListImagesRequest(input *ListImagesInput) (req *request.Request, o
 	return
 }
 
+// ListImages API operation for Amazon EC2 Container Registry.
+//
 // Lists all the image IDs for a given repository.
 //
 // You can filter images based on whether or not they are tagged by setting
@@ -660,6 +990,26 @@ func (c *ECR) ListImagesRequest(input *ListImagesInput) (req *request.Request, o
 // your results to return only UNTAGGED images and then pipe that result to
 // a BatchDeleteImage operation to delete them. Or, you can filter your results
 // to return only TAGGED images to list all of the tags in your repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation ListImages for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) ListImages(input *ListImagesInput) (*ListImagesOutput, error) {
 	req, out := c.ListImagesRequest(input)
 	err := req.Send()
@@ -672,6 +1022,8 @@ const opPutImage = "PutImage"
 // client's request for the PutImage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutImage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -707,10 +1059,46 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 	return
 }
 
+// PutImage API operation for Amazon EC2 Container Registry.
+//
 // Creates or updates the image manifest associated with an image.
 //
 //  This operation is used by the Amazon ECR proxy, and it is not intended
 // for general use by customers. Use the docker CLI to pull, tag, and push images.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation PutImage for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * ImageAlreadyExistsException
+//   The specified image has already been pushed, and there are no changes to
+//   the manifest or image tag since the last push.
+//
+//   * LayersNotFoundException
+//   The specified layers could not be found, or the specified layer is not valid
+//   for this repository.
+//
+//   * LimitExceededException
+//   The operation did not succeed because it would have exceeded a service limit
+//   for your account. For more information, see Amazon ECR Default Service Limits
+//   (http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   in the Amazon EC2 Container Registry User Guide.
+//
 func (c *ECR) PutImage(input *PutImageInput) (*PutImageOutput, error) {
 	req, out := c.PutImageRequest(input)
 	err := req.Send()
@@ -723,6 +1111,8 @@ const opSetRepositoryPolicy = "SetRepositoryPolicy"
 // client's request for the SetRepositoryPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetRepositoryPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -758,7 +1148,29 @@ func (c *ECR) SetRepositoryPolicyRequest(input *SetRepositoryPolicyInput) (req *
 	return
 }
 
+// SetRepositoryPolicy API operation for Amazon EC2 Container Registry.
+//
 // Applies a repository policy on a specified repository to control access permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation SetRepositoryPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
 func (c *ECR) SetRepositoryPolicy(input *SetRepositoryPolicyInput) (*SetRepositoryPolicyOutput, error) {
 	req, out := c.SetRepositoryPolicyRequest(input)
 	err := req.Send()
@@ -771,6 +1183,8 @@ const opUploadLayerPart = "UploadLayerPart"
 // client's request for the UploadLayerPart operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UploadLayerPart for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -806,10 +1220,46 @@ func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.
 	return
 }
 
+// UploadLayerPart API operation for Amazon EC2 Container Registry.
+//
 // Uploads an image layer part to Amazon ECR.
 //
 //  This operation is used by the Amazon ECR proxy, and it is not intended
 // for general use by customers. Use the docker CLI to pull, tag, and push images.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation UploadLayerPart for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * InvalidLayerPartException
+//   The layer part size is not valid, or the first byte specified is not consecutive
+//   to the last byte of a previous layer part upload.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * UploadNotFoundException
+//   The upload could not be found, or the specified upload id is not valid for
+//   this repository.
+//
+//   * LimitExceededException
+//   The operation did not succeed because it would have exceeded a service limit
+//   for your account. For more information, see Amazon ECR Default Service Limits
+//   (http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
+//   in the Amazon EC2 Container Registry User Guide.
+//
 func (c *ECR) UploadLayerPart(input *UploadLayerPartInput) (*UploadLayerPartOutput, error) {
 	req, out := c.UploadLayerPartRequest(input)
 	err := req.Send()

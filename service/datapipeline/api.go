@@ -20,6 +20,8 @@ const opActivatePipeline = "ActivatePipeline"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ActivatePipeline for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -54,6 +56,8 @@ func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (re
 	return
 }
 
+// ActivatePipeline API operation for AWS Data Pipeline.
+//
 // Validates the specified pipeline and starts processing pipeline tasks. If
 // the pipeline does not pass validation, activation fails.
 //
@@ -62,6 +66,30 @@ func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (re
 //
 // To activate a finished pipeline, modify the end date for the pipeline and
 // then activate it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation ActivatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (*ActivatePipelineOutput, error) {
 	req, out := c.ActivatePipelineRequest(input)
 	err := req.Send()
@@ -74,6 +102,8 @@ const opAddTags = "AddTags"
 // client's request for the AddTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -109,7 +139,33 @@ func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *request.Request
 	return
 }
 
+// AddTags API operation for AWS Data Pipeline.
+//
 // Adds or modifies tags for the specified pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation AddTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -122,6 +178,8 @@ const opCreatePipeline = "CreatePipeline"
 // client's request for the CreatePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -157,8 +215,27 @@ func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *r
 	return
 }
 
+// CreatePipeline API operation for AWS Data Pipeline.
+//
 // Creates a new, empty pipeline. Use PutPipelineDefinition to populate the
 // pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation CreatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
 	err := req.Send()
@@ -171,6 +248,8 @@ const opDeactivatePipeline = "DeactivatePipeline"
 // client's request for the DeactivatePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeactivatePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -206,12 +285,38 @@ func (c *DataPipeline) DeactivatePipelineRequest(input *DeactivatePipelineInput)
 	return
 }
 
+// DeactivatePipeline API operation for AWS Data Pipeline.
+//
 // Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING
 // state until the deactivation process completes.
 //
 // To resume a deactivated pipeline, use ActivatePipeline. By default, the
 // pipeline resumes from the last completed execution. Optionally, you can specify
 // the date and time to resume the pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation DeactivatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) DeactivatePipeline(input *DeactivatePipelineInput) (*DeactivatePipelineOutput, error) {
 	req, out := c.DeactivatePipelineRequest(input)
 	err := req.Send()
@@ -224,6 +329,8 @@ const opDeletePipeline = "DeletePipeline"
 // client's request for the DeletePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeletePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -261,6 +368,8 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *r
 	return
 }
 
+// DeletePipeline API operation for AWS Data Pipeline.
+//
 // Deletes a pipeline, its pipeline definition, and its run history. AWS Data
 // Pipeline attempts to cancel instances associated with the pipeline that are
 // currently being processed by task runners.
@@ -269,6 +378,27 @@ func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *r
 // pipeline. To temporarily pause a pipeline instead of deleting it, call SetStatus
 // with the status set to PAUSE on individual components. Components that are
 // paused by SetStatus can be resumed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation DeletePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
 	err := req.Send()
@@ -281,6 +411,8 @@ const opDescribeObjects = "DescribeObjects"
 // client's request for the DescribeObjects operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeObjects for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -322,9 +454,35 @@ func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req 
 	return
 }
 
+// DescribeObjects API operation for AWS Data Pipeline.
+//
 // Gets the object definitions for a set of objects associated with the pipeline.
 // Object definitions are composed of a set of fields that define the properties
 // of the object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation DescribeObjects for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeObjectsOutput, error) {
 	req, out := c.DescribeObjectsRequest(input)
 	err := req.Send()
@@ -363,6 +521,8 @@ const opDescribePipelines = "DescribePipelines"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribePipelines for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -397,6 +557,8 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 	return
 }
 
+// DescribePipelines API operation for AWS Data Pipeline.
+//
 // Retrieves metadata about one or more pipelines. The information retrieved
 // includes the name of the pipeline, the pipeline identifier, its current state,
 // and the user account that owns the pipeline. Using account credentials, you
@@ -406,6 +568,30 @@ func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (
 //
 // To retrieve the full pipeline definition instead of metadata about the pipeline,
 // call GetPipelineDefinition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation DescribePipelines for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*DescribePipelinesOutput, error) {
 	req, out := c.DescribePipelinesRequest(input)
 	err := req.Send()
@@ -418,6 +604,8 @@ const opEvaluateExpression = "EvaluateExpression"
 // client's request for the EvaluateExpression operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EvaluateExpression for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -453,9 +641,38 @@ func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput)
 	return
 }
 
+// EvaluateExpression API operation for AWS Data Pipeline.
+//
 // Task runners call EvaluateExpression to evaluate a string in the context
 // of the specified object. For example, a task runner can evaluate SQL queries
 // stored in Amazon S3.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation EvaluateExpression for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * TaskNotFoundException
+//   The specified task was not found.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) EvaluateExpression(input *EvaluateExpressionInput) (*EvaluateExpressionOutput, error) {
 	req, out := c.EvaluateExpressionRequest(input)
 	err := req.Send()
@@ -468,6 +685,8 @@ const opGetPipelineDefinition = "GetPipelineDefinition"
 // client's request for the GetPipelineDefinition operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetPipelineDefinition for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -503,8 +722,34 @@ func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinition
 	return
 }
 
+// GetPipelineDefinition API operation for AWS Data Pipeline.
+//
 // Gets the definition of the specified pipeline. You can call GetPipelineDefinition
 // to retrieve the pipeline definition that you provided using PutPipelineDefinition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation GetPipelineDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) GetPipelineDefinition(input *GetPipelineDefinitionInput) (*GetPipelineDefinitionOutput, error) {
 	req, out := c.GetPipelineDefinitionRequest(input)
 	err := req.Send()
@@ -517,6 +762,8 @@ const opListPipelines = "ListPipelines"
 // client's request for the ListPipelines operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPipelines for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -558,8 +805,27 @@ func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *req
 	return
 }
 
+// ListPipelines API operation for AWS Data Pipeline.
+//
 // Lists the pipeline identifiers for all active pipelines that you have permission
 // to access.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation ListPipelines for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
@@ -598,6 +864,8 @@ const opPollForTask = "PollForTask"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PollForTask for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -632,6 +900,8 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *request
 	return
 }
 
+// PollForTask API operation for AWS Data Pipeline.
+//
 // Task runners call PollForTask to receive a task to perform from AWS Data
 // Pipeline. The task runner specifies which tasks it can perform by setting
 // a value for the workerGroup parameter. The task returned can come from any
@@ -646,6 +916,26 @@ func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *request
 // set the socket timeout in your task runner to 90 seconds. The task runner
 // should not call PollForTask again on the same workerGroup until it receives
 // a response, and this can take up to 90 seconds.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation PollForTask for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * TaskNotFoundException
+//   The specified task was not found.
+//
 func (c *DataPipeline) PollForTask(input *PollForTaskInput) (*PollForTaskOutput, error) {
 	req, out := c.PollForTaskRequest(input)
 	err := req.Send()
@@ -658,6 +948,8 @@ const opPutPipelineDefinition = "PutPipelineDefinition"
 // client's request for the PutPipelineDefinition operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutPipelineDefinition for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -693,6 +985,8 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 	return
 }
 
+// PutPipelineDefinition API operation for AWS Data Pipeline.
+//
 // Adds tasks, schedules, and preconditions to the specified pipeline. You can
 // use PutPipelineDefinition to populate a new pipeline.
 //
@@ -705,6 +999,30 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 // allowed objects. The pipeline is in a FINISHED state.   Pipeline object definitions
 // are passed to the PutPipelineDefinition action and returned by the GetPipelineDefinition
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation PutPipelineDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) (*PutPipelineDefinitionOutput, error) {
 	req, out := c.PutPipelineDefinitionRequest(input)
 	err := req.Send()
@@ -717,6 +1035,8 @@ const opQueryObjects = "QueryObjects"
 // client's request for the QueryObjects operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See QueryObjects for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -758,8 +1078,34 @@ func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *reque
 	return
 }
 
+// QueryObjects API operation for AWS Data Pipeline.
+//
 // Queries the specified pipeline for the names of objects that match the specified
 // set of conditions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation QueryObjects for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutput, error) {
 	req, out := c.QueryObjectsRequest(input)
 	err := req.Send()
@@ -798,6 +1144,8 @@ const opRemoveTags = "RemoveTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See RemoveTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -832,7 +1180,33 @@ func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *request.R
 	return
 }
 
+// RemoveTags API operation for AWS Data Pipeline.
+//
 // Removes existing tags from the specified pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation RemoveTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -845,6 +1219,8 @@ const opReportTaskProgress = "ReportTaskProgress"
 // client's request for the ReportTaskProgress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReportTaskProgress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -880,6 +1256,8 @@ func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput)
 	return
 }
 
+// ReportTaskProgress API operation for AWS Data Pipeline.
+//
 // Task runners call ReportTaskProgress when assigned a task to acknowledge
 // that it has the task. If the web service does not receive this acknowledgement
 // within 2 minutes, it assigns the task in a subsequent PollForTask call. After
@@ -892,6 +1270,33 @@ func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput)
 // assumes that the task runner is unable to process the task and reassigns
 // the task in a subsequent response to PollForTask. Task runners should call
 // ReportTaskProgress every 60 seconds.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation ReportTaskProgress for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * TaskNotFoundException
+//   The specified task was not found.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) ReportTaskProgress(input *ReportTaskProgressInput) (*ReportTaskProgressOutput, error) {
 	req, out := c.ReportTaskProgressRequest(input)
 	err := req.Send()
@@ -904,6 +1309,8 @@ const opReportTaskRunnerHeartbeat = "ReportTaskRunnerHeartbeat"
 // client's request for the ReportTaskRunnerHeartbeat operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReportTaskRunnerHeartbeat for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -939,11 +1346,30 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerH
 	return
 }
 
+// ReportTaskRunnerHeartbeat API operation for AWS Data Pipeline.
+//
 // Task runners call ReportTaskRunnerHeartbeat every 15 minutes to indicate
 // that they are operational. If the AWS Data Pipeline Task Runner is launched
 // on a resource managed by AWS Data Pipeline, the web service can use this
 // call to detect when the task runner application has failed and restart a
 // new instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation ReportTaskRunnerHeartbeat for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbeatInput) (*ReportTaskRunnerHeartbeatOutput, error) {
 	req, out := c.ReportTaskRunnerHeartbeatRequest(input)
 	err := req.Send()
@@ -956,6 +1382,8 @@ const opSetStatus = "SetStatus"
 // client's request for the SetStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -993,11 +1421,37 @@ func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *request.Req
 	return
 }
 
+// SetStatus API operation for AWS Data Pipeline.
+//
 // Requests that the status of the specified physical or logical pipeline objects
 // be updated in the specified pipeline. This update might not occur immediately,
 // but is eventually consistent. The status that can be set depends on the type
 // of object (for example, DataNode or Activity). You cannot perform this operation
 // on FINISHED pipelines and attempting to do so returns InvalidRequestException.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation SetStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
 func (c *DataPipeline) SetStatus(input *SetStatusInput) (*SetStatusOutput, error) {
 	req, out := c.SetStatusRequest(input)
 	err := req.Send()
@@ -1010,6 +1464,8 @@ const opSetTaskStatus = "SetTaskStatus"
 // client's request for the SetTaskStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetTaskStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1045,11 +1501,40 @@ func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *req
 	return
 }
 
+// SetTaskStatus API operation for AWS Data Pipeline.
+//
 // Task runners call SetTaskStatus to notify AWS Data Pipeline that a task is
 // completed and provide information about the final status. A task runner makes
 // this call regardless of whether the task was sucessful. A task runner does
 // not need to call SetTaskStatus for tasks that are canceled by the web service
 // during a call to ReportTaskProgress.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation SetTaskStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * TaskNotFoundException
+//   The specified task was not found.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) SetTaskStatus(input *SetTaskStatusInput) (*SetTaskStatusOutput, error) {
 	req, out := c.SetTaskStatusRequest(input)
 	err := req.Send()
@@ -1062,6 +1547,8 @@ const opValidatePipelineDefinition = "ValidatePipelineDefinition"
 // client's request for the ValidatePipelineDefinition operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ValidatePipelineDefinition for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1097,8 +1584,34 @@ func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipeline
 	return
 }
 
+// ValidatePipelineDefinition API operation for AWS Data Pipeline.
+//
 // Validates the specified pipeline definition to ensure that it is well formed
 // and can be run without error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Pipeline's
+// API operation ValidatePipelineDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServiceError
+//   An internal service error occurred.
+//
+//   * InvalidRequestException
+//   The request was not valid. Verify that your request was properly formatted,
+//   that the signature was generated with the correct credentials, and that you
+//   haven't exceeded any of the service limits for your account.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was not found. Verify that you used the correct user
+//   and account identifiers.
+//
+//   * PipelineDeletedException
+//   The specified pipeline has been deleted.
+//
 func (c *DataPipeline) ValidatePipelineDefinition(input *ValidatePipelineDefinitionInput) (*ValidatePipelineDefinitionOutput, error) {
 	req, out := c.ValidatePipelineDefinitionRequest(input)
 	err := req.Send()

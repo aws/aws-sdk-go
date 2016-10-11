@@ -18,6 +18,8 @@ const opDescribeProduct = "DescribeProduct"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeProduct for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,10 +54,27 @@ func (c *ServiceCatalog) DescribeProductRequest(input *DescribeProductInput) (re
 	return
 }
 
+// DescribeProduct API operation for AWS Service Catalog.
+//
 // Retrieves information about a specified product.
 //
 // This operation is functionally identical to DescribeProductView except that
 // it takes as input ProductId instead of ProductViewId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation DescribeProduct for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
 func (c *ServiceCatalog) DescribeProduct(input *DescribeProductInput) (*DescribeProductOutput, error) {
 	req, out := c.DescribeProductRequest(input)
 	err := req.Send()
@@ -68,6 +87,8 @@ const opDescribeProductView = "DescribeProductView"
 // client's request for the DescribeProductView operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeProductView for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,10 +124,27 @@ func (c *ServiceCatalog) DescribeProductViewRequest(input *DescribeProductViewIn
 	return
 }
 
+// DescribeProductView API operation for AWS Service Catalog.
+//
 // Retrieves information about a specified product.
 //
 // This operation is functionally identical to DescribeProduct except that
 // it takes as input ProductViewId instead of ProductId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation DescribeProductView for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
 func (c *ServiceCatalog) DescribeProductView(input *DescribeProductViewInput) (*DescribeProductViewOutput, error) {
 	req, out := c.DescribeProductViewRequest(input)
 	err := req.Send()
@@ -119,6 +157,8 @@ const opDescribeProvisioningParameters = "DescribeProvisioningParameters"
 // client's request for the DescribeProvisioningParameters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeProvisioningParameters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -154,10 +194,27 @@ func (c *ServiceCatalog) DescribeProvisioningParametersRequest(input *DescribePr
 	return
 }
 
+// DescribeProvisioningParameters API operation for AWS Service Catalog.
+//
 // Provides information about parameters required to provision a specified product
 // in a specified manner. Use this operation to obtain the list of ProvisioningArtifactParameters
 // parameters available to call the ProvisionProduct operation for the specified
 // product.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation DescribeProvisioningParameters for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
 func (c *ServiceCatalog) DescribeProvisioningParameters(input *DescribeProvisioningParametersInput) (*DescribeProvisioningParametersOutput, error) {
 	req, out := c.DescribeProvisioningParametersRequest(input)
 	err := req.Send()
@@ -170,6 +227,8 @@ const opDescribeRecord = "DescribeRecord"
 // client's request for the DescribeRecord operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeRecord for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -205,9 +264,23 @@ func (c *ServiceCatalog) DescribeRecordRequest(input *DescribeRecordInput) (req 
 	return
 }
 
+// DescribeRecord API operation for AWS Service Catalog.
+//
 // Retrieves a paginated list of the full details of a specific request. Use
 // this operation after calling a request operation (ProvisionProduct, TerminateProvisionedProduct,
 // or UpdateProvisionedProduct).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation DescribeRecord for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
 func (c *ServiceCatalog) DescribeRecord(input *DescribeRecordInput) (*DescribeRecordOutput, error) {
 	req, out := c.DescribeRecordRequest(input)
 	err := req.Send()
@@ -220,6 +293,8 @@ const opListLaunchPaths = "ListLaunchPaths"
 // client's request for the ListLaunchPaths operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListLaunchPaths for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -255,9 +330,26 @@ func (c *ServiceCatalog) ListLaunchPathsRequest(input *ListLaunchPathsInput) (re
 	return
 }
 
+// ListLaunchPaths API operation for AWS Service Catalog.
+//
 // Returns a paginated list of all paths to a specified product. A path is how
 // the user has access to a specified product, and is necessary when provisioning
 // a product. A path also determines the constraints put on the product.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation ListLaunchPaths for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
 func (c *ServiceCatalog) ListLaunchPaths(input *ListLaunchPathsInput) (*ListLaunchPathsOutput, error) {
 	req, out := c.ListLaunchPathsRequest(input)
 	err := req.Send()
@@ -270,6 +362,8 @@ const opListRecordHistory = "ListRecordHistory"
 // client's request for the ListRecordHistory operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListRecordHistory for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -305,8 +399,22 @@ func (c *ServiceCatalog) ListRecordHistoryRequest(input *ListRecordHistoryInput)
 	return
 }
 
+// ListRecordHistory API operation for AWS Service Catalog.
+//
 // Returns a paginated list of all performed requests, in the form of RecordDetails
 // objects that are filtered as specified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation ListRecordHistory for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
 func (c *ServiceCatalog) ListRecordHistory(input *ListRecordHistoryInput) (*ListRecordHistoryOutput, error) {
 	req, out := c.ListRecordHistoryRequest(input)
 	err := req.Send()
@@ -319,6 +427,8 @@ const opProvisionProduct = "ProvisionProduct"
 // client's request for the ProvisionProduct operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ProvisionProduct for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -354,12 +464,32 @@ func (c *ServiceCatalog) ProvisionProductRequest(input *ProvisionProductInput) (
 	return
 }
 
+// ProvisionProduct API operation for AWS Service Catalog.
+//
 // Requests a Provision of a specified product. A ProvisionedProduct is a resourced
 // instance for a product. For example, provisioning a CloudFormation-template-backed
 // product results in launching a CloudFormation stack and all the underlying
 // resources that come with it.
 //
 // You can check the status of this request using the DescribeRecord operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation ProvisionProduct for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * DuplicateResourceException
+//   The specified resource is a duplicate.
+//
 func (c *ServiceCatalog) ProvisionProduct(input *ProvisionProductInput) (*ProvisionProductOutput, error) {
 	req, out := c.ProvisionProductRequest(input)
 	err := req.Send()
@@ -372,6 +502,8 @@ const opScanProvisionedProducts = "ScanProvisionedProducts"
 // client's request for the ScanProvisionedProducts operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ScanProvisionedProducts for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -407,8 +539,22 @@ func (c *ServiceCatalog) ScanProvisionedProductsRequest(input *ScanProvisionedPr
 	return
 }
 
+// ScanProvisionedProducts API operation for AWS Service Catalog.
+//
 // Returns a paginated list of all the ProvisionedProduct objects that are currently
 // available (not terminated).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation ScanProvisionedProducts for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
 func (c *ServiceCatalog) ScanProvisionedProducts(input *ScanProvisionedProductsInput) (*ScanProvisionedProductsOutput, error) {
 	req, out := c.ScanProvisionedProductsRequest(input)
 	err := req.Send()
@@ -421,6 +567,8 @@ const opSearchProducts = "SearchProducts"
 // client's request for the SearchProducts operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SearchProducts for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -456,11 +604,25 @@ func (c *ServiceCatalog) SearchProductsRequest(input *SearchProductsInput) (req 
 	return
 }
 
+// SearchProducts API operation for AWS Service Catalog.
+//
 // Returns a paginated list all of the Products objects to which the caller
 // has access.
 //
 // The output of this operation can be used as input for other operations,
 // such as DescribeProductView.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation SearchProducts for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
 func (c *ServiceCatalog) SearchProducts(input *SearchProductsInput) (*SearchProductsOutput, error) {
 	req, out := c.SearchProductsRequest(input)
 	err := req.Send()
@@ -473,6 +635,8 @@ const opTerminateProvisionedProduct = "TerminateProvisionedProduct"
 // client's request for the TerminateProvisionedProduct operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TerminateProvisionedProduct for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -508,6 +672,8 @@ func (c *ServiceCatalog) TerminateProvisionedProductRequest(input *TerminateProv
 	return
 }
 
+// TerminateProvisionedProduct API operation for AWS Service Catalog.
+//
 // Requests termination of an existing ProvisionedProduct object. If there are
 // Tags associated with the object, they are terminated when the ProvisionedProduct
 // object is terminated.
@@ -516,6 +682,18 @@ func (c *ServiceCatalog) TerminateProvisionedProductRequest(input *TerminateProv
 // object.
 //
 // You can check the status of this request using the DescribeRecord operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation TerminateProvisionedProduct for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
 func (c *ServiceCatalog) TerminateProvisionedProduct(input *TerminateProvisionedProductInput) (*TerminateProvisionedProductOutput, error) {
 	req, out := c.TerminateProvisionedProductRequest(input)
 	err := req.Send()
@@ -528,6 +706,8 @@ const opUpdateProvisionedProduct = "UpdateProvisionedProduct"
 // client's request for the UpdateProvisionedProduct operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateProvisionedProduct for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -563,6 +743,8 @@ func (c *ServiceCatalog) UpdateProvisionedProductRequest(input *UpdateProvisione
 	return
 }
 
+// UpdateProvisionedProduct API operation for AWS Service Catalog.
+//
 // Requests updates to the configuration of an existing ProvisionedProduct object.
 // If there are tags associated with the object, they cannot be updated or added
 // with this operation. Depending on the specific updates requested, this operation
@@ -570,6 +752,21 @@ func (c *ServiceCatalog) UpdateProvisionedProductRequest(input *UpdateProvisione
 // object entirely.
 //
 // You can check the status of this request using the DescribeRecord operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation UpdateProvisionedProduct for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are invalid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
 func (c *ServiceCatalog) UpdateProvisionedProduct(input *UpdateProvisionedProductInput) (*UpdateProvisionedProductOutput, error) {
 	req, out := c.UpdateProvisionedProductRequest(input)
 	err := req.Send()

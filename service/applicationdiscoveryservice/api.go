@@ -18,6 +18,8 @@ const opCreateTags = "CreateTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CreateTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,9 +54,38 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 	return
 }
 
+// CreateTags API operation for AWS Application Discovery Service.
+//
 // Creates one or more tags for configuration items. Tags are metadata that
 // help you categorize IT assets. This API accepts a list of multiple configuration
 // items.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation CreateTags for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ResourceNotFoundException
+//   The specified configuration ID was not located. Verify the configuration
+//   ID and try again.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
@@ -67,6 +98,8 @@ const opDeleteTags = "DeleteTags"
 // client's request for the DeleteTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -102,8 +135,37 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 	return
 }
 
+// DeleteTags API operation for AWS Application Discovery Service.
+//
 // Deletes the association between configuration items and one or more tags.
 // This API accepts a list of multiple configuration items.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DeleteTags for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ResourceNotFoundException
+//   The specified configuration ID was not located. Verify the configuration
+//   ID and try again.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
@@ -116,6 +178,8 @@ const opDescribeAgents = "DescribeAgents"
 // client's request for the DescribeAgents operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAgents for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -151,8 +215,33 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 	return
 }
 
+// DescribeAgents API operation for AWS Application Discovery Service.
+//
 // Lists AWS agents by ID or lists all agents associated with your user account
 // if you did not specify an agent ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DescribeAgents for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput) (*DescribeAgentsOutput, error) {
 	req, out := c.DescribeAgentsRequest(input)
 	err := req.Send()
@@ -165,6 +254,8 @@ const opDescribeConfigurations = "DescribeConfigurations"
 // client's request for the DescribeConfigurations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConfigurations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -200,10 +291,35 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 	return
 }
 
+// DescribeConfigurations API operation for AWS Application Discovery Service.
+//
 // Retrieves a list of attributes for a specific configuration ID. For example,
 // the output for a server configuration item includes a list of attributes
 // about the server, including host name, operating system, number of network
 // cards, etc.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DescribeConfigurations for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConfigurationsInput) (*DescribeConfigurationsOutput, error) {
 	req, out := c.DescribeConfigurationsRequest(input)
 	err := req.Send()
@@ -216,6 +332,8 @@ const opDescribeExportConfigurations = "DescribeExportConfigurations"
 // client's request for the DescribeExportConfigurations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeExportConfigurations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -251,8 +369,37 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 	return
 }
 
+// DescribeExportConfigurations API operation for AWS Application Discovery Service.
+//
 // Retrieves the status of a given export process. You can retrieve status from
 // a maximum of 100 processes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DescribeExportConfigurations for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ResourceNotFoundException
+//   The specified configuration ID was not located. Verify the configuration
+//   ID and try again.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *DescribeExportConfigurationsInput) (*DescribeExportConfigurationsOutput, error) {
 	req, out := c.DescribeExportConfigurationsRequest(input)
 	err := req.Send()
@@ -265,6 +412,8 @@ const opDescribeTags = "DescribeTags"
 // client's request for the DescribeTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -300,8 +449,37 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 	return
 }
 
+// DescribeTags API operation for AWS Application Discovery Service.
+//
 // Retrieves a list of configuration items that are tagged with a specific tag.
 // Or retrieves a list of all tags assigned to a specific configuration item.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation DescribeTags for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ResourceNotFoundException
+//   The specified configuration ID was not located. Verify the configuration
+//   ID and try again.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -314,6 +492,8 @@ const opExportConfigurations = "ExportConfigurations"
 // client's request for the ExportConfigurations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ExportConfigurations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -349,11 +529,39 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 	return
 }
 
+// ExportConfigurations API operation for AWS Application Discovery Service.
+//
 // Exports all discovered configuration data to an Amazon S3 bucket or an application
 // that enables you to view and evaluate the data. Data includes tags and tag
 // associations, processes, connections, servers, and system performance. This
 // API returns an export ID which you can query using the GetExportStatus API.
 // The system imposes a limit of two configuration exports in six hours.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation ExportConfigurations for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
+//   * OperationNotPermittedException
+//   This operation is not permitted.
+//
 func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigurationsInput) (*ExportConfigurationsOutput, error) {
 	req, out := c.ExportConfigurationsRequest(input)
 	err := req.Send()
@@ -366,6 +574,8 @@ const opListConfigurations = "ListConfigurations"
 // client's request for the ListConfigurations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListConfigurations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -401,8 +611,37 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 	return
 }
 
+// ListConfigurations API operation for AWS Application Discovery Service.
+//
 // Retrieves a list of configurations items according to the criteria you specify
 // in a filter. The filter criteria identify relationship requirements.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation ListConfigurations for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * ResourceNotFoundException
+//   The specified configuration ID was not located. Verify the configuration
+//   ID and try again.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsOutput, error) {
 	req, out := c.ListConfigurationsRequest(input)
 	err := req.Send()
@@ -415,6 +654,8 @@ const opStartDataCollectionByAgentIds = "StartDataCollectionByAgentIds"
 // client's request for the StartDataCollectionByAgentIds operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartDataCollectionByAgentIds for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -450,8 +691,33 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 	return
 }
 
+// StartDataCollectionByAgentIds API operation for AWS Application Discovery Service.
+//
 // Instructs the specified agents to start collecting data. Agents can reside
 // on host servers or virtual machines in your data center.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation StartDataCollectionByAgentIds for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *StartDataCollectionByAgentIdsInput) (*StartDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StartDataCollectionByAgentIdsRequest(input)
 	err := req.Send()
@@ -464,6 +730,8 @@ const opStopDataCollectionByAgentIds = "StopDataCollectionByAgentIds"
 // client's request for the StopDataCollectionByAgentIds operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopDataCollectionByAgentIds for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -499,7 +767,32 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 	return
 }
 
+// StopDataCollectionByAgentIds API operation for AWS Application Discovery Service.
+//
 // Instructs the specified agents to stop collecting data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Application Discovery Service's
+// API operation StopDataCollectionByAgentIds for usage and error information.
+//
+// Returned Error Codes:
+//   * AuthorizationErrorException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
+//   * InvalidParameterValueException
+//   The value of one or more parameters are either invalid or out of range. Verify
+//   the parameter values and try again.
+//
+//   * ServerInternalErrorException
+//   The server experienced an internal error. Try again.
+//
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDataCollectionByAgentIdsInput) (*StopDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StopDataCollectionByAgentIdsRequest(input)
 	err := req.Send()

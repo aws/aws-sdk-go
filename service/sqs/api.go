@@ -19,6 +19,8 @@ const opAddPermission = "AddPermission"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddPermission for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -55,6 +57,8 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Requ
 	return
 }
 
+// AddPermission API operation for Amazon Simple Queue Service.
+//
 // Adds a permission to a queue for a specific principal (http://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P).
 // This allows for sharing access to the queue.
 //
@@ -71,6 +75,21 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Requ
 //  Some API actions take lists of parameters. These lists are specified using
 // the param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation AddPermission for usage and error information.
+//
+// Returned Error Codes:
+//   * OverLimit
+//   The action that you requested would violate a limit. For example, ReceiveMessage
+//   returns this error if the maximum number of messages inflight has already
+//   been reached. AddPermission returns this error if the maximum number of permissions
+//   for the queue has already been reached.
+//
 func (c *SQS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, error) {
 	req, out := c.AddPermissionRequest(input)
 	err := req.Send()
@@ -83,6 +102,8 @@ const opChangeMessageVisibility = "ChangeMessageVisibility"
 // client's request for the ChangeMessageVisibility operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ChangeMessageVisibility for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -120,6 +141,8 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 	return
 }
 
+// ChangeMessageVisibility API operation for Amazon Simple Queue Service.
+//
 // Changes the visibility timeout of a specified message in a queue to a new
 // value. The maximum allowed timeout value you can set the value to is 12 hours.
 // This means you can't extend the timeout of a message in an existing queue
@@ -153,6 +176,21 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 // visibility timeout for the message the next time it is received reverts to
 // the original timeout value, not the value you set with the ChangeMessageVisibility
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation ChangeMessageVisibility for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.MessageNotInflight
+//   The message referred to is not in flight.
+//
+//   * ReceiptHandleIsInvalid
+//   The receipt handle provided is not valid.
+//
 func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*ChangeMessageVisibilityOutput, error) {
 	req, out := c.ChangeMessageVisibilityRequest(input)
 	err := req.Send()
@@ -165,6 +203,8 @@ const opChangeMessageVisibilityBatch = "ChangeMessageVisibilityBatch"
 // client's request for the ChangeMessageVisibilityBatch operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ChangeMessageVisibilityBatch for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -200,6 +240,8 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 	return
 }
 
+// ChangeMessageVisibilityBatch API operation for Amazon Simple Queue Service.
+//
 // Changes the visibility timeout of multiple messages. This is a batch version
 // of ChangeMessageVisibility. The result of the action on each message is reported
 // individually in the response. You can send up to 10 ChangeMessageVisibility
@@ -212,6 +254,27 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 // Some API actions take lists of parameters. These lists are specified using
 // the param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation ChangeMessageVisibilityBatch for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.TooManyEntriesInBatchRequest
+//   Batch request contains more number of entries than permissible.
+//
+//   * AWS.SimpleQueueService.EmptyBatchRequest
+//   Batch request does not contain an entry.
+//
+//   * AWS.SimpleQueueService.BatchEntryIdsNotDistinct
+//   Two or more batch entries have the same Id in the request.
+//
+//   * AWS.SimpleQueueService.InvalidBatchEntryId
+//   The Id of a batch entry in a batch request does not abide by the specification.
+//
 func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchInput) (*ChangeMessageVisibilityBatchOutput, error) {
 	req, out := c.ChangeMessageVisibilityBatchRequest(input)
 	err := req.Send()
@@ -224,6 +287,8 @@ const opCreateQueue = "CreateQueue"
 // client's request for the CreateQueue operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateQueue for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -259,6 +324,8 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request,
 	return
 }
 
+// CreateQueue API operation for Amazon Simple Queue Service.
+//
 // Creates a new queue, or returns the URL of an existing one. When you request
 // CreateQueue, you provide a name for the queue. To successfully create a new
 // queue, you must provide a name that is unique within the scope of your own
@@ -282,6 +349,24 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request,
 // Some API actions take lists of parameters. These lists are specified using
 // the param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation CreateQueue for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.QueueDeletedRecently
+//   You must wait 60 seconds after deleting a queue before you can create another
+//   with the same name.
+//
+//   * QueueAlreadyExists
+//   A queue already exists with this name. Amazon SQS returns this error only
+//   if the request includes attributes whose values differ from those of the
+//   existing queue.
+//
 func (c *SQS) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
 	req, out := c.CreateQueueRequest(input)
 	err := req.Send()
@@ -294,6 +379,8 @@ const opDeleteMessage = "DeleteMessage"
 // client's request for the DeleteMessage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteMessage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -331,6 +418,8 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 	return
 }
 
+// DeleteMessage API operation for Amazon Simple Queue Service.
+//
 // Deletes the specified message from the specified queue. You specify the message
 // by using the message's receipt handle and not the message ID you received
 // when you sent the message. Even if the message is locked by another reader
@@ -351,6 +440,21 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 // copy remains on the server and might be returned to you again on a subsequent
 // receive request. You should create your system to be idempotent so that receiving
 // a particular message more than once is not a problem.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation DeleteMessage for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidIdFormat
+//   The receipt handle is not valid for the current version.
+//
+//   * ReceiptHandleIsInvalid
+//   The receipt handle provided is not valid.
+//
 func (c *SQS) DeleteMessage(input *DeleteMessageInput) (*DeleteMessageOutput, error) {
 	req, out := c.DeleteMessageRequest(input)
 	err := req.Send()
@@ -363,6 +467,8 @@ const opDeleteMessageBatch = "DeleteMessageBatch"
 // client's request for the DeleteMessageBatch operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteMessageBatch for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -398,6 +504,8 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *re
 	return
 }
 
+// DeleteMessageBatch API operation for Amazon Simple Queue Service.
+//
 // Deletes up to ten messages from the specified queue. This is a batch version
 // of DeleteMessage. The result of the delete action on each message is reported
 // individually in the response.
@@ -409,6 +517,27 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *re
 //  Some API actions take lists of parameters. These lists are specified using
 // the param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation DeleteMessageBatch for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.TooManyEntriesInBatchRequest
+//   Batch request contains more number of entries than permissible.
+//
+//   * AWS.SimpleQueueService.EmptyBatchRequest
+//   Batch request does not contain an entry.
+//
+//   * AWS.SimpleQueueService.BatchEntryIdsNotDistinct
+//   Two or more batch entries have the same Id in the request.
+//
+//   * AWS.SimpleQueueService.InvalidBatchEntryId
+//   The Id of a batch entry in a batch request does not abide by the specification.
+//
 func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (*DeleteMessageBatchOutput, error) {
 	req, out := c.DeleteMessageBatchRequest(input)
 	err := req.Send()
@@ -421,6 +550,8 @@ const opDeleteQueue = "DeleteQueue"
 // client's request for the DeleteQueue operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteQueue for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -458,6 +589,8 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 	return
 }
 
+// DeleteQueue API operation for Amazon Simple Queue Service.
+//
 // Deletes the queue specified by the queue URL, regardless of whether the queue
 // is empty. If the specified queue does not exist, Amazon SQS returns a successful
 // response.
@@ -475,6 +608,13 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 //  We reserve the right to delete queues that have had no activity for more
 // than 30 days. For more information, see How Amazon SQS Queues Work (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSConcepts.html)
 // in the Amazon SQS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation DeleteQueue for usage and error information.
 func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
 	req, out := c.DeleteQueueRequest(input)
 	err := req.Send()
@@ -487,6 +627,8 @@ const opGetQueueAttributes = "GetQueueAttributes"
 // client's request for the GetQueueAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetQueueAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -522,11 +664,25 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *re
 	return
 }
 
+// GetQueueAttributes API operation for Amazon Simple Queue Service.
+//
 // Gets attributes for the specified queue.
 //
 // Some API actions take lists of parameters. These lists are specified using
 // the param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation GetQueueAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidAttributeName
+//   The attribute referred to does not exist.
+//
 func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttributesOutput, error) {
 	req, out := c.GetQueueAttributesRequest(input)
 	err := req.Send()
@@ -539,6 +695,8 @@ const opGetQueueUrl = "GetQueueUrl"
 // client's request for the GetQueueUrl operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetQueueUrl for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -574,6 +732,8 @@ func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request,
 	return
 }
 
+// GetQueueUrl API operation for Amazon Simple Queue Service.
+//
 // Returns the URL of an existing queue. This action provides a simple way to
 // retrieve the URL of an Amazon SQS queue.
 //
@@ -582,6 +742,18 @@ func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request,
 // must grant you permission to access the queue. For more information about
 // shared queue access, see AddPermission or go to Shared Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/acp-overview.html)
 // in the Amazon SQS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation GetQueueUrl for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.NonExistentQueue
+//   The queue referred to does not exist.
+//
 func (c *SQS) GetQueueUrl(input *GetQueueUrlInput) (*GetQueueUrlOutput, error) {
 	req, out := c.GetQueueUrlRequest(input)
 	err := req.Send()
@@ -594,6 +766,8 @@ const opListDeadLetterSourceQueues = "ListDeadLetterSourceQueues"
 // client's request for the ListDeadLetterSourceQueues operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDeadLetterSourceQueues for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -629,11 +803,25 @@ func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueue
 	return
 }
 
+// ListDeadLetterSourceQueues API operation for Amazon Simple Queue Service.
+//
 // Returns a list of your queues that have the RedrivePolicy queue attribute
 // configured with a dead letter queue.
 //
 // For more information about using dead letter queues, see Using Amazon SQS
 // Dead Letter Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation ListDeadLetterSourceQueues for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.NonExistentQueue
+//   The queue referred to does not exist.
+//
 func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput) (*ListDeadLetterSourceQueuesOutput, error) {
 	req, out := c.ListDeadLetterSourceQueuesRequest(input)
 	err := req.Send()
@@ -646,6 +834,8 @@ const opListQueues = "ListQueues"
 // client's request for the ListQueues operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListQueues for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -681,9 +871,18 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, o
 	return
 }
 
+// ListQueues API operation for Amazon Simple Queue Service.
+//
 // Returns a list of your queues. The maximum number of queues that can be returned
 // is 1000. If you specify a value for the optional QueueNamePrefix parameter,
 // only queues with a name beginning with the specified value are returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation ListQueues for usage and error information.
 func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
 	req, out := c.ListQueuesRequest(input)
 	err := req.Send()
@@ -696,6 +895,8 @@ const opPurgeQueue = "PurgeQueue"
 // client's request for the PurgeQueue operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PurgeQueue for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -733,6 +934,8 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, o
 	return
 }
 
+// PurgeQueue API operation for Amazon Simple Queue Service.
+//
 // Deletes the messages in a queue specified by the queue URL.
 //
 // When you use the PurgeQueue API, the deleted messages in the queue cannot
@@ -743,6 +946,23 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, o
 // messages sent to the queue while it is being purged may be deleted. While
 // the queue is being purged, messages sent to the queue before PurgeQueue was
 // called may be received, but will be deleted within the next minute.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation PurgeQueue for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.NonExistentQueue
+//   The queue referred to does not exist.
+//
+//   * AWS.SimpleQueueService.PurgeQueueInProgress
+//   Indicates that the specified queue previously received a PurgeQueue request
+//   within the last 60 seconds, the time it can take to delete the messages in
+//   the queue.
+//
 func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, error) {
 	req, out := c.PurgeQueueRequest(input)
 	err := req.Send()
@@ -755,6 +975,8 @@ const opReceiveMessage = "ReceiveMessage"
 // client's request for the ReceiveMessage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReceiveMessage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -790,6 +1012,8 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Re
 	return
 }
 
+// ReceiveMessage API operation for Amazon Simple Queue Service.
+//
 // Retrieves one or more messages, with a maximum limit of 10 messages, from
 // the specified queue. Long poll support is enabled by using the WaitTimeSeconds
 // parameter. For more information, see Amazon SQS Long Poll (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html)
@@ -832,6 +1056,21 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Re
 //   Going forward, new attributes might be added. If you are writing code
 // that calls this action, we recommend that you structure your code so that
 // it can handle new attributes gracefully.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation ReceiveMessage for usage and error information.
+//
+// Returned Error Codes:
+//   * OverLimit
+//   The action that you requested would violate a limit. For example, ReceiveMessage
+//   returns this error if the maximum number of messages inflight has already
+//   been reached. AddPermission returns this error if the maximum number of permissions
+//   for the queue has already been reached.
+//
 func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput, error) {
 	req, out := c.ReceiveMessageRequest(input)
 	err := req.Send()
@@ -844,6 +1083,8 @@ const opRemovePermission = "RemovePermission"
 // client's request for the RemovePermission operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemovePermission for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -881,8 +1122,17 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *reques
 	return
 }
 
+// RemovePermission API operation for Amazon Simple Queue Service.
+//
 // Revokes any permissions in the queue policy that matches the specified Label
 // parameter. Only the owner of the queue can remove permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation RemovePermission for usage and error information.
 func (c *SQS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
 	req, out := c.RemovePermissionRequest(input)
 	err := req.Send()
@@ -895,6 +1145,8 @@ const opSendMessage = "SendMessage"
 // client's request for the SendMessage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SendMessage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -930,6 +1182,8 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request,
 	return
 }
 
+// SendMessage API operation for Amazon Simple Queue Service.
+//
 // Delivers a message to the specified queue. With Amazon SQS, you now have
 // the ability to send large payload messages that are up to 256KB (262,144
 // bytes) in size. To send large payloads, you must use an AWS SDK that supports
@@ -942,6 +1196,21 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request,
 // in the list, your request will be rejected.
 //
 //  #x9 | #xA | #xD | [#x20 to #xD7FF] | [#xE000 to #xFFFD] | [#x10000 to #x10FFFF]
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation SendMessage for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidMessageContents
+//   The message contains characters outside the allowed set.
+//
+//   * AWS.SimpleQueueService.UnsupportedOperation
+//   Error code 400. Unsupported operation.
+//
 func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, error) {
 	req, out := c.SendMessageRequest(input)
 	err := req.Send()
@@ -954,6 +1223,8 @@ const opSendMessageBatch = "SendMessageBatch"
 // client's request for the SendMessageBatch operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SendMessageBatch for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -989,6 +1260,8 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 	return
 }
 
+// SendMessageBatch API operation for Amazon Simple Queue Service.
+//
 // Delivers up to ten messages to the specified queue. This is a batch version
 // of SendMessage. The result of the send action on each message is reported
 // individually in the response. The maximum allowed individual message size
@@ -1015,6 +1288,33 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 //  Some API actions take lists of parameters. These lists are specified using
 // the param.n notation. Values of n are integers starting from 1. For example,
 // a parameter list with two elements looks like this:
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation SendMessageBatch for usage and error information.
+//
+// Returned Error Codes:
+//   * AWS.SimpleQueueService.TooManyEntriesInBatchRequest
+//   Batch request contains more number of entries than permissible.
+//
+//   * AWS.SimpleQueueService.EmptyBatchRequest
+//   Batch request does not contain an entry.
+//
+//   * AWS.SimpleQueueService.BatchEntryIdsNotDistinct
+//   Two or more batch entries have the same Id in the request.
+//
+//   * AWS.SimpleQueueService.BatchRequestTooLong
+//   The length of all the messages put together is more than the limit.
+//
+//   * AWS.SimpleQueueService.InvalidBatchEntryId
+//   The Id of a batch entry in a batch request does not abide by the specification.
+//
+//   * AWS.SimpleQueueService.UnsupportedOperation
+//   Error code 400. Unsupported operation.
+//
 func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchOutput, error) {
 	req, out := c.SendMessageBatchRequest(input)
 	err := req.Send()
@@ -1027,6 +1327,8 @@ const opSetQueueAttributes = "SetQueueAttributes"
 // client's request for the SetQueueAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetQueueAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1064,6 +1366,8 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *re
 	return
 }
 
+// SetQueueAttributes API operation for Amazon Simple Queue Service.
+//
 // Sets the value of one or more queue attributes. When you change a queue's
 // attributes, the change can take up to 60 seconds for most of the attributes
 // to propagate throughout the SQS system. Changes made to the MessageRetentionPeriod
@@ -1072,6 +1376,18 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *re
 // Going forward, new attributes might be added. If you are writing code that
 // calls this action, we recommend that you structure your code so that it can
 // handle new attributes gracefully.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Queue Service's
+// API operation SetQueueAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidAttributeName
+//   The attribute referred to does not exist.
+//
 func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (*SetQueueAttributesOutput, error) {
 	req, out := c.SetQueueAttributesRequest(input)
 	err := req.Send()

@@ -17,6 +17,8 @@ const opCancelJob = "CancelJob"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CancelJob for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,11 +53,44 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *reques
 	return
 }
 
+// CancelJob API operation for Amazon Elastic Transcoder.
+//
 // The CancelJob operation cancels an unfinished job.
 //
 // You can only cancel a job that has a status of Submitted. To prevent a pipeline
 // from starting to process a job while you're getting the job identifier, use
 // UpdatePipelineStatus to temporarily pause the pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation CancelJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * ResourceInUseException
+//   The resource you are attempting to change is in use. For example, you are
+//   attempting to delete a pipeline that is currently in use.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
 	err := req.Send()
@@ -68,6 +103,8 @@ const opCreateJob = "CreateJob"
 // client's request for the CreateJob operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateJob for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,6 +140,8 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *reques
 	return
 }
 
+// CreateJob API operation for Amazon Elastic Transcoder.
+//
 // When you create a job, Elastic Transcoder returns JSON data that includes
 // the values that you specified plus information about the job that is created.
 //
@@ -110,6 +149,37 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *reques
 // output for the Kindle Fire and another output for the Apple iPhone 4s), you
 // currently must use the Elastic Transcoder API to list the jobs (as opposed
 // to the AWS Console).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation CreateJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * LimitExceededException
+//   Too many operations for a given AWS account. For example, the number of pipelines
+//   exceeds the maximum allowed.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse, error) {
 	req, out := c.CreateJobRequest(input)
 	err := req.Send()
@@ -122,6 +192,8 @@ const opCreatePipeline = "CreatePipeline"
 // client's request for the CreatePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -157,7 +229,40 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 	return
 }
 
+// CreatePipeline API operation for Amazon Elastic Transcoder.
+//
 // The CreatePipeline operation creates a pipeline with settings that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation CreatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * LimitExceededException
+//   Too many operations for a given AWS account. For example, the number of pipelines
+//   exceeds the maximum allowed.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
 	err := req.Send()
@@ -170,6 +275,8 @@ const opCreatePreset = "CreatePreset"
 // client's request for the CreatePreset operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePreset for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -205,6 +312,8 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 	return
 }
 
+// CreatePreset API operation for Amazon Elastic Transcoder.
+//
 // The CreatePreset operation creates a preset with settings that you specify.
 //
 // Elastic Transcoder checks the CreatePreset settings to ensure that they
@@ -220,6 +329,32 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 // more information, see the International Telecommunication Union publication
 // Recommendation ITU-T H.264: Advanced video coding for generic audiovisual
 // services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation CreatePreset for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * LimitExceededException
+//   Too many operations for a given AWS account. For example, the number of pipelines
+//   exceeds the maximum allowed.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePresetOutput, error) {
 	req, out := c.CreatePresetRequest(input)
 	err := req.Send()
@@ -232,6 +367,8 @@ const opDeletePipeline = "DeletePipeline"
 // client's request for the DeletePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeletePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -267,11 +404,44 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 	return
 }
 
+// DeletePipeline API operation for Amazon Elastic Transcoder.
+//
 // The DeletePipeline operation removes a pipeline.
 //
 //  You can only delete a pipeline that has never been used or that is not
 // currently in use (doesn't contain any active jobs). If the pipeline is currently
 // in use, DeletePipeline returns an error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation DeletePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * ResourceInUseException
+//   The resource you are attempting to change is in use. For example, you are
+//   attempting to delete a pipeline that is currently in use.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
 	err := req.Send()
@@ -284,6 +454,8 @@ const opDeletePreset = "DeletePreset"
 // client's request for the DeletePreset operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeletePreset for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -319,9 +491,38 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 	return
 }
 
+// DeletePreset API operation for Amazon Elastic Transcoder.
+//
 // The DeletePreset operation removes a preset that you've added in an AWS region.
 //
 //  You can't delete the default presets that are included with Elastic Transcoder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation DeletePreset for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePresetOutput, error) {
 	req, out := c.DeletePresetRequest(input)
 	err := req.Send()
@@ -334,6 +535,8 @@ const opListJobsByPipeline = "ListJobsByPipeline"
 // client's request for the ListJobsByPipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListJobsByPipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -375,11 +578,40 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 	return
 }
 
+// ListJobsByPipeline API operation for Amazon Elastic Transcoder.
+//
 // The ListJobsByPipeline operation gets a list of the jobs currently in a pipeline.
 //
 // Elastic Transcoder returns all of the jobs currently in the specified pipeline.
 // The response body contains one element for each job that satisfies the search
 // criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ListJobsByPipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ListJobsByPipeline(input *ListJobsByPipelineInput) (*ListJobsByPipelineOutput, error) {
 	req, out := c.ListJobsByPipelineRequest(input)
 	err := req.Send()
@@ -417,6 +649,8 @@ const opListJobsByStatus = "ListJobsByStatus"
 // client's request for the ListJobsByStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListJobsByStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -458,9 +692,38 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 	return
 }
 
+// ListJobsByStatus API operation for Amazon Elastic Transcoder.
+//
 // The ListJobsByStatus operation gets a list of jobs that have a specified
 // status. The response body contains one element for each job that satisfies
 // the search criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ListJobsByStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ListJobsByStatus(input *ListJobsByStatusInput) (*ListJobsByStatusOutput, error) {
 	req, out := c.ListJobsByStatusRequest(input)
 	err := req.Send()
@@ -498,6 +761,8 @@ const opListPipelines = "ListPipelines"
 // client's request for the ListPipelines operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPipelines for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -539,8 +804,32 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 	return
 }
 
+// ListPipelines API operation for Amazon Elastic Transcoder.
+//
 // The ListPipelines operation gets a list of the pipelines associated with
 // the current AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ListPipelines for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
@@ -578,6 +867,8 @@ const opListPresets = "ListPresets"
 // client's request for the ListPresets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPresets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -619,8 +910,32 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *re
 	return
 }
 
+// ListPresets API operation for Amazon Elastic Transcoder.
+//
 // The ListPresets operation gets a list of the default presets included with
 // Elastic Transcoder and the presets that you've added in an AWS region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ListPresets for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ListPresets(input *ListPresetsInput) (*ListPresetsOutput, error) {
 	req, out := c.ListPresetsRequest(input)
 	err := req.Send()
@@ -659,6 +974,8 @@ const opReadJob = "ReadJob"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ReadJob for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -693,7 +1010,36 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *request.Re
 	return
 }
 
+// ReadJob API operation for Amazon Elastic Transcoder.
+//
 // The ReadJob operation returns detailed information about a job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ReadJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, error) {
 	req, out := c.ReadJobRequest(input)
 	err := req.Send()
@@ -706,6 +1052,8 @@ const opReadPipeline = "ReadPipeline"
 // client's request for the ReadPipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReadPipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -741,7 +1089,36 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 	return
 }
 
+// ReadPipeline API operation for Amazon Elastic Transcoder.
+//
 // The ReadPipeline operation gets detailed information about a pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ReadPipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelineOutput, error) {
 	req, out := c.ReadPipelineRequest(input)
 	err := req.Send()
@@ -754,6 +1131,8 @@ const opReadPreset = "ReadPreset"
 // client's request for the ReadPreset operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReadPreset for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -789,7 +1168,36 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *requ
 	return
 }
 
+// ReadPreset API operation for Amazon Elastic Transcoder.
+//
 // The ReadPreset operation gets detailed information about a preset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation ReadPreset for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutput, error) {
 	req, out := c.ReadPresetRequest(input)
 	err := req.Send()
@@ -802,6 +1210,8 @@ const opTestRole = "TestRole"
 // client's request for the TestRole operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TestRole for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -837,6 +1247,8 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.
 	return
 }
 
+// TestRole API operation for Amazon Elastic Transcoder.
+//
 // The TestRole operation tests the IAM role used to create the pipeline.
 //
 // The TestRole action lets you determine whether the IAM role you are using
@@ -844,6 +1256,33 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.
 // with the transcoding process. The action attempts to assume the specified
 // IAM role, checks read access to the input and output buckets, and tries to
 // send a test notification to Amazon SNS topics that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation TestRole for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, error) {
 	req, out := c.TestRoleRequest(input)
 	err := req.Send()
@@ -856,6 +1295,8 @@ const opUpdatePipeline = "UpdatePipeline"
 // client's request for the UpdatePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdatePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -891,11 +1332,44 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 	return
 }
 
+// UpdatePipeline API operation for Amazon Elastic Transcoder.
+//
 // Use the UpdatePipeline operation to update settings for a pipeline. When
 // you change pipeline settings, your changes take effect immediately. Jobs
 // that you have already submitted and that Elastic Transcoder has not started
 // to process are affected in addition to jobs that you submit after you change
 // settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation UpdatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * ResourceInUseException
+//   The resource you are attempting to change is in use. For example, you are
+//   attempting to delete a pipeline that is currently in use.
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, error) {
 	req, out := c.UpdatePipelineRequest(input)
 	err := req.Send()
@@ -908,6 +1382,8 @@ const opUpdatePipelineNotifications = "UpdatePipelineNotifications"
 // client's request for the UpdatePipelineNotifications operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdatePipelineNotifications for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -943,11 +1419,44 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 	return
 }
 
+// UpdatePipelineNotifications API operation for Amazon Elastic Transcoder.
+//
 // With the UpdatePipelineNotifications operation, you can update Amazon Simple
 // Notification Service (Amazon SNS) notifications for a pipeline.
 //
 // When you update notifications for a pipeline, Elastic Transcoder returns
 // the values that you specified in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation UpdatePipelineNotifications for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * ResourceInUseException
+//   The resource you are attempting to change is in use. For example, you are
+//   attempting to delete a pipeline that is currently in use.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNotificationsInput) (*UpdatePipelineNotificationsOutput, error) {
 	req, out := c.UpdatePipelineNotificationsRequest(input)
 	err := req.Send()
@@ -960,6 +1469,8 @@ const opUpdatePipelineStatus = "UpdatePipelineStatus"
 // client's request for the UpdatePipelineStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdatePipelineStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -995,6 +1506,8 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 	return
 }
 
+// UpdatePipelineStatus API operation for Amazon Elastic Transcoder.
+//
 // The UpdatePipelineStatus operation pauses or reactivates a pipeline, so that
 // the pipeline stops or restarts the processing of jobs.
 //
@@ -1003,6 +1516,37 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 // them; if you pause the pipeline to which you submitted the jobs, you have
 // more time to get the job IDs for the jobs that you want to cancel, and to
 // send a CancelJob request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Transcoder's
+// API operation UpdatePipelineStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   One or more required parameter values were not provided in the request.
+//
+//   * IncompatibleVersionException
+
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist or is not available. For example, the
+//   pipeline to which you're trying to add a job doesn't exist or is still being
+//   created.
+//
+//   * ResourceInUseException
+//   The resource you are attempting to change is in use. For example, you are
+//   attempting to delete a pipeline that is currently in use.
+//
+//   * AccessDeniedException
+//   General authentication failure. The request was not signed correctly.
+//
+//   * InternalServiceException
+//   Elastic Transcoder encountered an unexpected exception while trying to fulfill
+//   the request.
+//
 func (c *ElasticTranscoder) UpdatePipelineStatus(input *UpdatePipelineStatusInput) (*UpdatePipelineStatusOutput, error) {
 	req, out := c.UpdatePipelineStatusRequest(input)
 	err := req.Send()

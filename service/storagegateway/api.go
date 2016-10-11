@@ -18,6 +18,8 @@ const opActivateGateway = "ActivateGateway"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ActivateGateway for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,6 +54,8 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 	return
 }
 
+// ActivateGateway API operation for AWS Storage Gateway.
+//
 // Activates the gateway you previously deployed on your host. For more information,
 // see  Activate the AWS Storage Gateway (http://docs.aws.amazon.com/storagegateway/latest/userguide/GettingStartedActivateGateway-common.html).
 // In the activation process, you specify information such as the you want to
@@ -61,6 +65,23 @@ func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (re
 // more information, see UpdateGatewayInformation.
 //
 // You must turn on the gateway VM before you can activate your gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ActivateGateway for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (*ActivateGatewayOutput, error) {
 	req, out := c.ActivateGatewayRequest(input)
 	err := req.Send()
@@ -73,6 +94,8 @@ const opAddCache = "AddCache"
 // client's request for the AddCache operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddCache for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -108,6 +131,8 @@ func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *request.Req
 	return
 }
 
+// AddCache API operation for AWS Storage Gateway.
+//
 // Configures one or more gateway local disks as cache for a cached-volume gateway.
 // This operation is supported only for the gateway-cached volume architecture
 // (see Storage Gateway Concepts (http://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html)).
@@ -115,6 +140,23 @@ func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *request.Req
 // In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add cache, and one or more disk IDs that you want to configure
 // as cache.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation AddCache for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, error) {
 	req, out := c.AddCacheRequest(input)
 	err := req.Send()
@@ -127,6 +169,8 @@ const opAddTagsToResource = "AddTagsToResource"
 // client's request for the AddTagsToResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddTagsToResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -162,6 +206,8 @@ func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput)
 	return
 }
 
+// AddTagsToResource API operation for AWS Storage Gateway.
+//
 // Adds one or more tags to the specified resource. You use tags to add metadata
 // to resources, which you can use to categorize these resources. For example,
 // you can categorize resources by purpose, owner, environment, or team. Each
@@ -176,6 +222,23 @@ func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput)
 //
 //   You can create a maximum of 10 tags for each resource. Virtual tapes and
 // storage volumes that are recovered to a new gateway maintain their tags.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation AddTagsToResource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -188,6 +251,8 @@ const opAddUploadBuffer = "AddUploadBuffer"
 // client's request for the AddUploadBuffer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddUploadBuffer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -223,6 +288,8 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 	return
 }
 
+// AddUploadBuffer API operation for AWS Storage Gateway.
+//
 // Configures one or more gateway local disks as upload buffer for a specified
 // gateway. This operation is supported for both the gateway-stored and gateway-cached
 // volume architectures.
@@ -230,6 +297,23 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 // In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add upload buffer, and one or more disk IDs that you want to
 // configure as upload buffer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation AddUploadBuffer for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploadBufferOutput, error) {
 	req, out := c.AddUploadBufferRequest(input)
 	err := req.Send()
@@ -242,6 +326,8 @@ const opAddWorkingStorage = "AddWorkingStorage"
 // client's request for the AddWorkingStorage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddWorkingStorage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -277,6 +363,8 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 	return
 }
 
+// AddWorkingStorage API operation for AWS Storage Gateway.
+//
 // Configures one or more gateway local disks as working storage for a gateway.
 // This operation is supported only for the gateway-stored volume architecture.
 // This operation is deprecated in cached-volumes API version 20120630. Use
@@ -288,6 +376,23 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 //  In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add working storage, and one or more disk IDs that you want to
 // configure as working storage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation AddWorkingStorage for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddWorkingStorageOutput, error) {
 	req, out := c.AddWorkingStorageRequest(input)
 	err := req.Send()
@@ -300,6 +405,8 @@ const opCancelArchival = "CancelArchival"
 // client's request for the CancelArchival operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CancelArchival for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -335,8 +442,27 @@ func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req 
 	return
 }
 
+// CancelArchival API operation for AWS Storage Gateway.
+//
 // Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after
 // the archiving process is initiated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CancelArchival for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (*CancelArchivalOutput, error) {
 	req, out := c.CancelArchivalRequest(input)
 	err := req.Send()
@@ -349,6 +475,8 @@ const opCancelRetrieval = "CancelRetrieval"
 // client's request for the CancelRetrieval operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CancelRetrieval for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -384,9 +512,28 @@ func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (re
 	return
 }
 
+// CancelRetrieval API operation for AWS Storage Gateway.
+//
 // Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to
 // a gateway after the retrieval process is initiated. The virtual tape is returned
 // to the VTS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CancelRetrieval for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (*CancelRetrievalOutput, error) {
 	req, out := c.CancelRetrievalRequest(input)
 	err := req.Send()
@@ -399,6 +546,8 @@ const opCreateCachediSCSIVolume = "CreateCachediSCSIVolume"
 // client's request for the CreateCachediSCSIVolume operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCachediSCSIVolume for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -434,6 +583,8 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 	return
 }
 
+// CreateCachediSCSIVolume API operation for AWS Storage Gateway.
+//
 // Creates a cached volume on a specified cached gateway. This operation is
 // supported only for the gateway-cached volume architecture.
 //
@@ -446,6 +597,23 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 // and returns information about it such as the volume Amazon Resource Name
 // (ARN), its size, and the iSCSI target ARN that initiators can use to connect
 // to the volume target.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CreateCachediSCSIVolume for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeInput) (*CreateCachediSCSIVolumeOutput, error) {
 	req, out := c.CreateCachediSCSIVolumeRequest(input)
 	err := req.Send()
@@ -458,6 +626,8 @@ const opCreateSnapshot = "CreateSnapshot"
 // client's request for the CreateSnapshot operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateSnapshot for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -493,6 +663,8 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 	return
 }
 
+// CreateSnapshot API operation for AWS Storage Gateway.
+//
 // Initiates a snapshot of a volume.
 //
 // AWS Storage Gateway provides the ability to back up point-in-time snapshots
@@ -518,6 +690,23 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 //   Volume and snapshot IDs are changing to a longer length ID format. For
 // more information, see the important note on the Welcome (http://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html)
 // page.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CreateSnapshot for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
@@ -530,6 +719,8 @@ const opCreateSnapshotFromVolumeRecoveryPoint = "CreateSnapshotFromVolumeRecover
 // client's request for the CreateSnapshotFromVolumeRecoveryPoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateSnapshotFromVolumeRecoveryPoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -565,6 +756,8 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 	return
 }
 
+// CreateSnapshotFromVolumeRecoveryPoint API operation for AWS Storage Gateway.
+//
 // Initiates a snapshot of a gateway from a volume recovery point. This operation
 // is supported only for the gateway-cached volume architecture.
 //
@@ -582,6 +775,23 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 //
 //  To list or delete a snapshot, you must use the Amazon EC2 API. For more
 // information, in Amazon Elastic Compute Cloud API Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CreateSnapshotFromVolumeRecoveryPoint for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnapshotFromVolumeRecoveryPointInput) (*CreateSnapshotFromVolumeRecoveryPointOutput, error) {
 	req, out := c.CreateSnapshotFromVolumeRecoveryPointRequest(input)
 	err := req.Send()
@@ -594,6 +804,8 @@ const opCreateStorediSCSIVolume = "CreateStorediSCSIVolume"
 // client's request for the CreateStorediSCSIVolume operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateStorediSCSIVolume for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -629,6 +841,8 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 	return
 }
 
+// CreateStorediSCSIVolume API operation for AWS Storage Gateway.
+//
 // Creates a volume on a specified gateway. This operation is supported only
 // for the gateway-stored volume architecture.
 //
@@ -642,6 +856,23 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 // the volume and returns volume information such as the volume Amazon Resource
 // Name (ARN), its size, and the iSCSI target ARN that initiators can use to
 // connect to the volume target.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CreateStorediSCSIVolume for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeInput) (*CreateStorediSCSIVolumeOutput, error) {
 	req, out := c.CreateStorediSCSIVolumeRequest(input)
 	err := req.Send()
@@ -654,6 +885,8 @@ const opCreateTapeWithBarcode = "CreateTapeWithBarcode"
 // client's request for the CreateTapeWithBarcode operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateTapeWithBarcode for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -689,11 +922,30 @@ func (c *StorageGateway) CreateTapeWithBarcodeRequest(input *CreateTapeWithBarco
 	return
 }
 
+// CreateTapeWithBarcode API operation for AWS Storage Gateway.
+//
 // Creates a virtual tape by using your own barcode. You write data to the virtual
 // tape and then archive the tape.
 //
 // Cache storage must be allocated to the gateway before you can create a virtual
 // tape. Use the AddCache operation to add cache storage to a gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CreateTapeWithBarcode for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CreateTapeWithBarcode(input *CreateTapeWithBarcodeInput) (*CreateTapeWithBarcodeOutput, error) {
 	req, out := c.CreateTapeWithBarcodeRequest(input)
 	err := req.Send()
@@ -706,6 +958,8 @@ const opCreateTapes = "CreateTapes"
 // client's request for the CreateTapes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateTapes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -741,11 +995,30 @@ func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *reque
 	return
 }
 
+// CreateTapes API operation for AWS Storage Gateway.
+//
 // Creates one or more virtual tapes. You write data to the virtual tapes and
 // then archive the tapes.
 //
 // Cache storage must be allocated to the gateway before you can create virtual
 // tapes. Use the AddCache operation to add cache storage to a gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation CreateTapes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (*CreateTapesOutput, error) {
 	req, out := c.CreateTapesRequest(input)
 	err := req.Send()
@@ -758,6 +1031,8 @@ const opDeleteBandwidthRateLimit = "DeleteBandwidthRateLimit"
 // client's request for the DeleteBandwidthRateLimit operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBandwidthRateLimit for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -793,11 +1068,30 @@ func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthR
 	return
 }
 
+// DeleteBandwidthRateLimit API operation for AWS Storage Gateway.
+//
 // Deletes the bandwidth rate limits of a gateway. You can delete either the
 // upload and download bandwidth rate limit, or you can delete both. If you
 // delete only one of the limits, the other limit remains unchanged. To specify
 // which gateway to work with, use the Amazon Resource Name (ARN) of the gateway
 // in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteBandwidthRateLimit for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimitInput) (*DeleteBandwidthRateLimitOutput, error) {
 	req, out := c.DeleteBandwidthRateLimitRequest(input)
 	err := req.Send()
@@ -810,6 +1104,8 @@ const opDeleteChapCredentials = "DeleteChapCredentials"
 // client's request for the DeleteChapCredentials operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteChapCredentials for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -845,8 +1141,27 @@ func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentia
 	return
 }
 
+// DeleteChapCredentials API operation for AWS Storage Gateway.
+//
 // Deletes Challenge-Handshake Authentication Protocol (CHAP) credentials for
 // a specified iSCSI target and initiator pair.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteChapCredentials for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput) (*DeleteChapCredentialsOutput, error) {
 	req, out := c.DeleteChapCredentialsRequest(input)
 	err := req.Send()
@@ -859,6 +1174,8 @@ const opDeleteGateway = "DeleteGateway"
 // client's request for the DeleteGateway operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteGateway for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -894,6 +1211,8 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *r
 	return
 }
 
+// DeleteGateway API operation for AWS Storage Gateway.
+//
 // Deletes a gateway. To specify which gateway to delete, use the Amazon Resource
 // Name (ARN) of the gateway in your request. The operation deletes the gateway;
 // however, it does not delete the gateway virtual machine (VM) from your host
@@ -910,6 +1229,23 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *r
 // by canceling your Amazon EC2 subscription.  If you prefer not to cancel your
 // Amazon EC2 subscription, you can delete your snapshots using the Amazon EC2
 // console. For more information, see the  AWS Storage Gateway Detail Page (http://aws.amazon.com/storagegateway).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteGateway for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewayOutput, error) {
 	req, out := c.DeleteGatewayRequest(input)
 	err := req.Send()
@@ -922,6 +1258,8 @@ const opDeleteSnapshotSchedule = "DeleteSnapshotSchedule"
 // client's request for the DeleteSnapshotSchedule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteSnapshotSchedule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -957,6 +1295,8 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 	return
 }
 
+// DeleteSnapshotSchedule API operation for AWS Storage Gateway.
+//
 // Deletes a snapshot of a volume.
 //
 // You can take snapshots of your gateway volumes on a scheduled or ad hoc
@@ -967,6 +1307,23 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 //
 //  To list or delete a snapshot, you must use the Amazon EC2 API. in Amazon
 // Elastic Compute Cloud API Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteSnapshotSchedule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInput) (*DeleteSnapshotScheduleOutput, error) {
 	req, out := c.DeleteSnapshotScheduleRequest(input)
 	err := req.Send()
@@ -979,6 +1336,8 @@ const opDeleteTape = "DeleteTape"
 // client's request for the DeleteTape operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTape for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1014,7 +1373,26 @@ func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *request
 	return
 }
 
+// DeleteTape API operation for AWS Storage Gateway.
+//
 // Deletes the specified virtual tape.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteTape for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (*DeleteTapeOutput, error) {
 	req, out := c.DeleteTapeRequest(input)
 	err := req.Send()
@@ -1027,6 +1405,8 @@ const opDeleteTapeArchive = "DeleteTapeArchive"
 // client's request for the DeleteTapeArchive operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTapeArchive for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1062,7 +1442,26 @@ func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput)
 	return
 }
 
+// DeleteTapeArchive API operation for AWS Storage Gateway.
+//
 // Deletes the specified virtual tape from the virtual tape shelf (VTS).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteTapeArchive for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (*DeleteTapeArchiveOutput, error) {
 	req, out := c.DeleteTapeArchiveRequest(input)
 	err := req.Send()
@@ -1075,6 +1474,8 @@ const opDeleteVolume = "DeleteVolume"
 // client's request for the DeleteVolume operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteVolume for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1110,6 +1511,8 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *req
 	return
 }
 
+// DeleteVolume API operation for AWS Storage Gateway.
+//
 // Deletes the specified gateway volume that you previously created using the
 // CreateCachediSCSIVolume or CreateStorediSCSIVolume API. For gateway-stored
 // volumes, the local disk that was configured as the storage volume is not
@@ -1124,6 +1527,23 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *req
 //
 // In the request, you must provide the Amazon Resource Name (ARN) of the storage
 // volume you want to delete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DeleteVolume for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error) {
 	req, out := c.DeleteVolumeRequest(input)
 	err := req.Send()
@@ -1136,6 +1556,8 @@ const opDescribeBandwidthRateLimit = "DescribeBandwidthRateLimit"
 // client's request for the DescribeBandwidthRateLimit operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeBandwidthRateLimit for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1171,6 +1593,8 @@ func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwi
 	return
 }
 
+// DescribeBandwidthRateLimit API operation for AWS Storage Gateway.
+//
 // Returns the bandwidth rate limits of a gateway. By default, these limits
 // are not set, which means no bandwidth rate limiting is in effect.
 //
@@ -1178,6 +1602,23 @@ func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwi
 // limit is set. If no limits are set for the gateway, then this operation returns
 // only the gateway ARN in the response body. To specify which gateway to describe,
 // use the Amazon Resource Name (ARN) of the gateway in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeBandwidthRateLimit for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRateLimitInput) (*DescribeBandwidthRateLimitOutput, error) {
 	req, out := c.DescribeBandwidthRateLimitRequest(input)
 	err := req.Send()
@@ -1190,6 +1631,8 @@ const opDescribeCache = "DescribeCache"
 // client's request for the DescribeCache operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCache for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1225,11 +1668,30 @@ func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *r
 	return
 }
 
+// DescribeCache API operation for AWS Storage Gateway.
+//
 // Returns information about the cache of a gateway. This operation is supported
 // only for the gateway-cached volume architecture.
 //
 // The response includes disk IDs that are configured as cache, and it includes
 // the amount of cache allocated and used.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeCache for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCacheOutput, error) {
 	req, out := c.DescribeCacheRequest(input)
 	err := req.Send()
@@ -1242,6 +1704,8 @@ const opDescribeCachediSCSIVolumes = "DescribeCachediSCSIVolumes"
 // client's request for the DescribeCachediSCSIVolumes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCachediSCSIVolumes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1277,12 +1741,31 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 	return
 }
 
+// DescribeCachediSCSIVolumes API operation for AWS Storage Gateway.
+//
 // Returns a description of the gateway volumes specified in the request. This
 // operation is supported only for the gateway-cached volume architecture.
 //
 // The list of gateway volumes in the request must be from one gateway. In
 // the response Amazon Storage Gateway returns volume information sorted by
 // volume Amazon Resource Name (ARN).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeCachediSCSIVolumes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVolumesInput) (*DescribeCachediSCSIVolumesOutput, error) {
 	req, out := c.DescribeCachediSCSIVolumesRequest(input)
 	err := req.Send()
@@ -1295,6 +1778,8 @@ const opDescribeChapCredentials = "DescribeChapCredentials"
 // client's request for the DescribeChapCredentials operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeChapCredentials for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1330,8 +1815,27 @@ func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCrede
 	return
 }
 
+// DescribeChapCredentials API operation for AWS Storage Gateway.
+//
 // Returns an array of Challenge-Handshake Authentication Protocol (CHAP) credentials
 // information for a specified iSCSI target, one for each target-initiator pair.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeChapCredentials for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsInput) (*DescribeChapCredentialsOutput, error) {
 	req, out := c.DescribeChapCredentialsRequest(input)
 	err := req.Send()
@@ -1344,6 +1848,8 @@ const opDescribeGatewayInformation = "DescribeGatewayInformation"
 // client's request for the DescribeGatewayInformation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeGatewayInformation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1379,10 +1885,29 @@ func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewa
 	return
 }
 
+// DescribeGatewayInformation API operation for AWS Storage Gateway.
+//
 // Returns metadata about a gateway such as its name, network interfaces, configured
 // time zone, and the state (whether the gateway is running or not). To specify
 // which gateway to describe, use the Amazon Resource Name (ARN) of the gateway
 // in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeGatewayInformation for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInformationInput) (*DescribeGatewayInformationOutput, error) {
 	req, out := c.DescribeGatewayInformationRequest(input)
 	err := req.Send()
@@ -1395,6 +1920,8 @@ const opDescribeMaintenanceStartTime = "DescribeMaintenanceStartTime"
 // client's request for the DescribeMaintenanceStartTime operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeMaintenanceStartTime for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1430,8 +1957,27 @@ func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMain
 	return
 }
 
+// DescribeMaintenanceStartTime API operation for AWS Storage Gateway.
+//
 // Returns your gateway's weekly maintenance start time including the day and
 // time of the week. Note that values are in terms of the gateway's time zone.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeMaintenanceStartTime for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenanceStartTimeInput) (*DescribeMaintenanceStartTimeOutput, error) {
 	req, out := c.DescribeMaintenanceStartTimeRequest(input)
 	err := req.Send()
@@ -1444,6 +1990,8 @@ const opDescribeSnapshotSchedule = "DescribeSnapshotSchedule"
 // client's request for the DescribeSnapshotSchedule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeSnapshotSchedule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1479,9 +2027,28 @@ func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshot
 	return
 }
 
+// DescribeSnapshotSchedule API operation for AWS Storage Gateway.
+//
 // Describes the snapshot schedule for the specified gateway volume. The snapshot
 // schedule information includes intervals at which snapshots are automatically
 // initiated on the volume.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeSnapshotSchedule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotScheduleInput) (*DescribeSnapshotScheduleOutput, error) {
 	req, out := c.DescribeSnapshotScheduleRequest(input)
 	err := req.Send()
@@ -1494,6 +2061,8 @@ const opDescribeStorediSCSIVolumes = "DescribeStorediSCSIVolumes"
 // client's request for the DescribeStorediSCSIVolumes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeStorediSCSIVolumes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1529,10 +2098,29 @@ func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStored
 	return
 }
 
+// DescribeStorediSCSIVolumes API operation for AWS Storage Gateway.
+//
 // Returns the description of the gateway volumes specified in the request.
 // The list of gateway volumes in the request must be from one gateway. In the
 // response Amazon Storage Gateway returns volume information sorted by volume
 // ARNs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeStorediSCSIVolumes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVolumesInput) (*DescribeStorediSCSIVolumesOutput, error) {
 	req, out := c.DescribeStorediSCSIVolumesRequest(input)
 	err := req.Send()
@@ -1545,6 +2133,8 @@ const opDescribeTapeArchives = "DescribeTapeArchives"
 // client's request for the DescribeTapeArchives operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeTapeArchives for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1586,11 +2176,30 @@ func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchives
 	return
 }
 
+// DescribeTapeArchives API operation for AWS Storage Gateway.
+//
 // Returns a description of specified virtual tapes in the virtual tape shelf
 // (VTS).
 //
 // If a specific TapeARN is not specified, AWS Storage Gateway returns a description
 // of all virtual tapes found in the VTS associated with your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeTapeArchives for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) (*DescribeTapeArchivesOutput, error) {
 	req, out := c.DescribeTapeArchivesRequest(input)
 	err := req.Send()
@@ -1628,6 +2237,8 @@ const opDescribeTapeRecoveryPoints = "DescribeTapeRecoveryPoints"
 // client's request for the DescribeTapeRecoveryPoints operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeTapeRecoveryPoints for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1669,12 +2280,31 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 	return
 }
 
+// DescribeTapeRecoveryPoints API operation for AWS Storage Gateway.
+//
 // Returns a list of virtual tape recovery points that are available for the
 // specified gateway-VTL.
 //
 // A recovery point is a point-in-time view of a virtual tape at which all
 // the data on the virtual tape is consistent. If your gateway crashes, virtual
 // tapes that have recovery points can be recovered to a new gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeTapeRecoveryPoints for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryPointsInput) (*DescribeTapeRecoveryPointsOutput, error) {
 	req, out := c.DescribeTapeRecoveryPointsRequest(input)
 	err := req.Send()
@@ -1712,6 +2342,8 @@ const opDescribeTapes = "DescribeTapes"
 // client's request for the DescribeTapes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeTapes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1753,9 +2385,28 @@ func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *r
 	return
 }
 
+// DescribeTapes API operation for AWS Storage Gateway.
+//
 // Returns a description of the specified Amazon Resource Name (ARN) of virtual
 // tapes. If a TapeARN is not specified, returns a description of all virtual
 // tapes associated with the specified gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeTapes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTapesOutput, error) {
 	req, out := c.DescribeTapesRequest(input)
 	err := req.Send()
@@ -1794,6 +2445,8 @@ const opDescribeUploadBuffer = "DescribeUploadBuffer"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeUploadBuffer for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1828,11 +2481,30 @@ func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBuffer
 	return
 }
 
+// DescribeUploadBuffer API operation for AWS Storage Gateway.
+//
 // Returns information about the upload buffer of a gateway. This operation
 // is supported for both the gateway-stored and gateway-cached volume architectures.
 //
 // The response includes disk IDs that are configured as upload buffer space,
 // and it includes the amount of upload buffer space allocated and used.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeUploadBuffer for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) (*DescribeUploadBufferOutput, error) {
 	req, out := c.DescribeUploadBufferRequest(input)
 	err := req.Send()
@@ -1845,6 +2517,8 @@ const opDescribeVTLDevices = "DescribeVTLDevices"
 // client's request for the DescribeVTLDevices operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeVTLDevices for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1886,10 +2560,29 @@ func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInpu
 	return
 }
 
+// DescribeVTLDevices API operation for AWS Storage Gateway.
+//
 // Returns a description of virtual tape library (VTL) devices for the specified
 // gateway. In the response, AWS Storage Gateway returns VTL device information.
 //
 // The list of VTL devices must be from one gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeVTLDevices for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*DescribeVTLDevicesOutput, error) {
 	req, out := c.DescribeVTLDevicesRequest(input)
 	err := req.Send()
@@ -1928,6 +2621,8 @@ const opDescribeWorkingStorage = "DescribeWorkingStorage"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeWorkingStorage for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1962,6 +2657,8 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 	return
 }
 
+// DescribeWorkingStorage API operation for AWS Storage Gateway.
+//
 // Returns information about the working storage of a gateway. This operation
 // is supported only for the gateway-stored volume architecture. This operation
 // is deprecated in cached-volumes API version (20120630). Use DescribeUploadBuffer
@@ -1973,6 +2670,23 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 //
 //  The response includes disk IDs that are configured as working storage,
 // and it includes the amount of working storage allocated and used.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeWorkingStorage for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInput) (*DescribeWorkingStorageOutput, error) {
 	req, out := c.DescribeWorkingStorageRequest(input)
 	err := req.Send()
@@ -1985,6 +2699,8 @@ const opDisableGateway = "DisableGateway"
 // client's request for the DisableGateway operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableGateway for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2020,6 +2736,8 @@ func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req 
 	return
 }
 
+// DisableGateway API operation for AWS Storage Gateway.
+//
 // Disables a gateway when the gateway is no longer functioning. For example,
 // if your gateway VM is damaged, you can disable the gateway so you can recover
 // virtual tapes.
@@ -2027,6 +2745,23 @@ func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req 
 // Use this operation for a gateway-VTL that is not reachable or not functioning.
 //
 // Once a gateway is disabled it cannot be enabled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DisableGateway for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (*DisableGatewayOutput, error) {
 	req, out := c.DisableGatewayRequest(input)
 	err := req.Send()
@@ -2039,6 +2774,8 @@ const opListGateways = "ListGateways"
 // client's request for the ListGateways operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListGateways for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2080,6 +2817,8 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *req
 	return
 }
 
+// ListGateways API operation for AWS Storage Gateway.
+//
 // Lists gateways owned by an AWS account in a region specified in the request.
 // The returned list is ordered by gateway Amazon Resource Name (ARN).
 //
@@ -2091,6 +2830,23 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *req
 // response returns only a truncated list of your gateways), the response contains
 // a marker that you can specify in your next request to fetch the next page
 // of gateways.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListGateways for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOutput, error) {
 	req, out := c.ListGatewaysRequest(input)
 	err := req.Send()
@@ -2129,6 +2885,8 @@ const opListLocalDisks = "ListLocalDisks"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListLocalDisks for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -2163,6 +2921,8 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 	return
 }
 
+// ListLocalDisks API operation for AWS Storage Gateway.
+//
 // Returns a list of the gateway's local disks. To specify which gateway to
 // describe, you use the Amazon Resource Name (ARN) of the gateway in the body
 // of the request.
@@ -2173,6 +2933,23 @@ func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req 
 // of present (the disk is available to use), missing (the disk is no longer
 // connected to the gateway), or mismatch (the disk node is occupied by a disk
 // that has incorrect metadata or the disk content is corrupted).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListLocalDisks for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalDisksOutput, error) {
 	req, out := c.ListLocalDisksRequest(input)
 	err := req.Send()
@@ -2185,6 +2962,8 @@ const opListTagsForResource = "ListTagsForResource"
 // client's request for the ListTagsForResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTagsForResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2220,7 +2999,26 @@ func (c *StorageGateway) ListTagsForResourceRequest(input *ListTagsForResourceIn
 	return
 }
 
+// ListTagsForResource API operation for AWS Storage Gateway.
+//
 // Lists the tags that have been added to the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -2233,6 +3031,8 @@ const opListTapes = "ListTapes"
 // client's request for the ListTapes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTapes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2268,6 +3068,8 @@ func (c *StorageGateway) ListTapesRequest(input *ListTapesInput) (req *request.R
 	return
 }
 
+// ListTapes API operation for AWS Storage Gateway.
+//
 // Lists virtual tapes in your virtual tape library (VTL) and your virtual tape
 // shelf (VTS). You specify the tapes to list by specifying one or more tape
 // Amazon Resource Names (ARNs). If you don't specify a tape ARN, the operation
@@ -2279,6 +3081,23 @@ func (c *StorageGateway) ListTapesRequest(input *ListTapesInput) (req *request.R
 // tapes returned in the response is truncated, the response includes a Marker
 // element that you can use in your subsequent request to retrieve the next
 // set of tapes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListTapes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListTapes(input *ListTapesInput) (*ListTapesOutput, error) {
 	req, out := c.ListTapesRequest(input)
 	err := req.Send()
@@ -2291,6 +3110,8 @@ const opListVolumeInitiators = "ListVolumeInitiators"
 // client's request for the ListVolumeInitiators operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListVolumeInitiators for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2326,8 +3147,27 @@ func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiators
 	return
 }
 
+// ListVolumeInitiators API operation for AWS Storage Gateway.
+//
 // Lists iSCSI initiators that are connected to a volume. You can use this operation
 // to determine whether a volume is being used or not.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListVolumeInitiators for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListVolumeInitiators(input *ListVolumeInitiatorsInput) (*ListVolumeInitiatorsOutput, error) {
 	req, out := c.ListVolumeInitiatorsRequest(input)
 	err := req.Send()
@@ -2340,6 +3180,8 @@ const opListVolumeRecoveryPoints = "ListVolumeRecoveryPoints"
 // client's request for the ListVolumeRecoveryPoints operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListVolumeRecoveryPoints for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2375,6 +3217,8 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 	return
 }
 
+// ListVolumeRecoveryPoints API operation for AWS Storage Gateway.
+//
 // Lists the recovery points for a specified gateway. This operation is supported
 // only for the gateway-cached volume architecture.
 //
@@ -2382,6 +3226,23 @@ func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecove
 // is a point in time at which all data of the volume is consistent and from
 // which you can create a snapshot. To create a snapshot from a volume recovery
 // point use the CreateSnapshotFromVolumeRecoveryPoint operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListVolumeRecoveryPoints for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPointsInput) (*ListVolumeRecoveryPointsOutput, error) {
 	req, out := c.ListVolumeRecoveryPointsRequest(input)
 	err := req.Send()
@@ -2394,6 +3255,8 @@ const opListVolumes = "ListVolumes"
 // client's request for the ListVolumes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListVolumes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2435,6 +3298,8 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *reque
 	return
 }
 
+// ListVolumes API operation for AWS Storage Gateway.
+//
 // Lists the iSCSI stored volumes of a gateway. Results are sorted by volume
 // ARN. The response includes only the volume ARNs. If you want additional volume
 // information, use the DescribeStorediSCSIVolumes API.
@@ -2445,6 +3310,23 @@ func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *reque
 // returned in the response is truncated, the response includes a Marker field.
 // You can use this Marker value in your subsequent request to retrieve the
 // next set of volumes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListVolumes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutput, error) {
 	req, out := c.ListVolumesRequest(input)
 	err := req.Send()
@@ -2483,6 +3365,8 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See RemoveTagsFromResource for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -2517,7 +3401,26 @@ func (c *StorageGateway) RemoveTagsFromResourceRequest(input *RemoveTagsFromReso
 	return
 }
 
+// RemoveTagsFromResource API operation for AWS Storage Gateway.
+//
 // Removes one or more tags from the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation RemoveTagsFromResource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -2530,6 +3433,8 @@ const opResetCache = "ResetCache"
 // client's request for the ResetCache operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ResetCache for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2565,6 +3470,8 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *request
 	return
 }
 
+// ResetCache API operation for AWS Storage Gateway.
+//
 // Resets all cache disks that have encountered a error and makes the disks
 // available for reconfiguration as cache storage. If your cache disk encounters
 // a error, the gateway prevents read and write operations on virtual tapes
@@ -2576,6 +3483,23 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *request
 // to Amazon S3 yet, that data can be lost. After you reset cache disks, there
 // will be no configured cache disks left in the gateway, so you must configure
 // at least one new cache disk for your gateway to function properly.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ResetCache for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, error) {
 	req, out := c.ResetCacheRequest(input)
 	err := req.Send()
@@ -2588,6 +3512,8 @@ const opRetrieveTapeArchive = "RetrieveTapeArchive"
 // client's request for the RetrieveTapeArchive operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RetrieveTapeArchive for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2623,6 +3549,8 @@ func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveIn
 	return
 }
 
+// RetrieveTapeArchive API operation for AWS Storage Gateway.
+//
 // Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a
 // gateway-VTL. Virtual tapes archived in the VTS are not associated with any
 // gateway. However after a tape is retrieved, it is associated with a gateway,
@@ -2631,6 +3559,23 @@ func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveIn
 // Once a tape is successfully retrieved to a gateway, it cannot be retrieved
 // again to another gateway. You must archive the tape again before you can
 // retrieve it to another gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation RetrieveTapeArchive for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (*RetrieveTapeArchiveOutput, error) {
 	req, out := c.RetrieveTapeArchiveRequest(input)
 	err := req.Send()
@@ -2643,6 +3588,8 @@ const opRetrieveTapeRecoveryPoint = "RetrieveTapeRecoveryPoint"
 // client's request for the RetrieveTapeRecoveryPoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RetrieveTapeRecoveryPoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2678,6 +3625,8 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 	return
 }
 
+// RetrieveTapeRecoveryPoint API operation for AWS Storage Gateway.
+//
 // Retrieves the recovery point for the specified virtual tape.
 //
 // A recovery point is a point in time view of a virtual tape at which all
@@ -2687,6 +3636,23 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 // The virtual tape can be retrieved to only one gateway. The retrieved tape
 // is read-only. The virtual tape can be retrieved to only a gateway-VTL. There
 // is no charge for retrieving recovery points.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation RetrieveTapeRecoveryPoint for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPointInput) (*RetrieveTapeRecoveryPointOutput, error) {
 	req, out := c.RetrieveTapeRecoveryPointRequest(input)
 	err := req.Send()
@@ -2699,6 +3665,8 @@ const opSetLocalConsolePassword = "SetLocalConsolePassword"
 // client's request for the SetLocalConsolePassword operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetLocalConsolePassword for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2734,10 +3702,29 @@ func (c *StorageGateway) SetLocalConsolePasswordRequest(input *SetLocalConsolePa
 	return
 }
 
+// SetLocalConsolePassword API operation for AWS Storage Gateway.
+//
 // Sets the password for your VM local console. When you log in to the local
 // console for the first time, you log in to the VM with the default credentials.
 // We recommend that you set a new password. You don't need to know the default
 // password to set a new password.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation SetLocalConsolePassword for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) SetLocalConsolePassword(input *SetLocalConsolePasswordInput) (*SetLocalConsolePasswordOutput, error) {
 	req, out := c.SetLocalConsolePasswordRequest(input)
 	err := req.Send()
@@ -2750,6 +3737,8 @@ const opShutdownGateway = "ShutdownGateway"
 // client's request for the ShutdownGateway operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ShutdownGateway for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2785,6 +3774,8 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 	return
 }
 
+// ShutdownGateway API operation for AWS Storage Gateway.
+//
 // Shuts down a gateway. To specify which gateway to shut down, use the Amazon
 // Resource Name (ARN) of the gateway in the body of your request.
 //
@@ -2807,6 +3798,23 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 //  If do not intend to use the gateway again, you must delete the gateway
 // (using DeleteGateway) to no longer pay software charges associated with the
 // gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ShutdownGateway for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*ShutdownGatewayOutput, error) {
 	req, out := c.ShutdownGatewayRequest(input)
 	err := req.Send()
@@ -2819,6 +3827,8 @@ const opStartGateway = "StartGateway"
 // client's request for the StartGateway operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartGateway for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2854,6 +3864,8 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *req
 	return
 }
 
+// StartGateway API operation for AWS Storage Gateway.
+//
 // Starts a gateway that you previously shut down (see ShutdownGateway). After
 // the gateway starts, you can then make other API calls, your applications
 // can read from or write to the gateway's storage volumes and you will be able
@@ -2866,6 +3878,23 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *req
 //
 //  To specify which gateway to start, use the Amazon Resource Name (ARN) of
 // the gateway in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation StartGateway for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOutput, error) {
 	req, out := c.StartGatewayRequest(input)
 	err := req.Send()
@@ -2878,6 +3907,8 @@ const opUpdateBandwidthRateLimit = "UpdateBandwidthRateLimit"
 // client's request for the UpdateBandwidthRateLimit operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateBandwidthRateLimit for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2913,6 +3944,8 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 	return
 }
 
+// UpdateBandwidthRateLimit API operation for AWS Storage Gateway.
+//
 // Updates the bandwidth rate limits of a gateway. You can update both the upload
 // and download bandwidth rate limit or specify only one of the two. If you
 // don't set a bandwidth rate limit, the existing rate limit remains.
@@ -2923,6 +3956,23 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 //
 // To specify which gateway to update, use the Amazon Resource Name (ARN) of
 // the gateway in your request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateBandwidthRateLimit for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimitInput) (*UpdateBandwidthRateLimitOutput, error) {
 	req, out := c.UpdateBandwidthRateLimitRequest(input)
 	err := req.Send()
@@ -2935,6 +3985,8 @@ const opUpdateChapCredentials = "UpdateChapCredentials"
 // client's request for the UpdateChapCredentials operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateChapCredentials for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2970,12 +4022,31 @@ func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentia
 	return
 }
 
+// UpdateChapCredentials API operation for AWS Storage Gateway.
+//
 // Updates the Challenge-Handshake Authentication Protocol (CHAP) credentials
 // for a specified iSCSI target. By default, a gateway does not have CHAP enabled;
 // however, for added security, you might use it.
 //
 //  When you update CHAP credentials, all existing connections on the target
 // are closed and initiators must reconnect with the new credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateChapCredentials for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput) (*UpdateChapCredentialsOutput, error) {
 	req, out := c.UpdateChapCredentialsRequest(input)
 	err := req.Send()
@@ -2988,6 +4059,8 @@ const opUpdateGatewayInformation = "UpdateGatewayInformation"
 // client's request for the UpdateGatewayInformation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateGatewayInformation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3023,6 +4096,8 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 	return
 }
 
+// UpdateGatewayInformation API operation for AWS Storage Gateway.
+//
 // Updates a gateway's metadata, which includes the gateway's name and time
 // zone. To specify which gateway to update, use the Amazon Resource Name (ARN)
 // of the gateway in your request.
@@ -3030,6 +4105,23 @@ func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInf
 // For Gateways activated after September 2, 2015, the gateway's ARN contains
 // the gateway ID rather than the gateway name. However, changing the name of
 // the gateway has no effect on the gateway's ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateGatewayInformation for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformationInput) (*UpdateGatewayInformationOutput, error) {
 	req, out := c.UpdateGatewayInformationRequest(input)
 	err := req.Send()
@@ -3042,6 +4134,8 @@ const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
 // client's request for the UpdateGatewaySoftwareNow operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateGatewaySoftwareNow for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3077,6 +4171,8 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 	return
 }
 
+// UpdateGatewaySoftwareNow API operation for AWS Storage Gateway.
+//
 // Updates the gateway virtual machine (VM) software. The request immediately
 // triggers the software update.
 //
@@ -3092,6 +4188,23 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 // (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings)
 // and Customizing Your Linux iSCSI Settings (http://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings),
 // respectively.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateGatewaySoftwareNow for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNowInput) (*UpdateGatewaySoftwareNowOutput, error) {
 	req, out := c.UpdateGatewaySoftwareNowRequest(input)
 	err := req.Send()
@@ -3104,6 +4217,8 @@ const opUpdateMaintenanceStartTime = "UpdateMaintenanceStartTime"
 // client's request for the UpdateMaintenanceStartTime operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateMaintenanceStartTime for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3139,9 +4254,28 @@ func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintena
 	return
 }
 
+// UpdateMaintenanceStartTime API operation for AWS Storage Gateway.
+//
 // Updates a gateway's weekly maintenance start time information, including
 // day and time of the week. The maintenance time is the time in your gateway's
 // time zone.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateMaintenanceStartTime for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStartTimeInput) (*UpdateMaintenanceStartTimeOutput, error) {
 	req, out := c.UpdateMaintenanceStartTimeRequest(input)
 	err := req.Send()
@@ -3154,6 +4288,8 @@ const opUpdateSnapshotSchedule = "UpdateSnapshotSchedule"
 // client's request for the UpdateSnapshotSchedule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateSnapshotSchedule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3189,6 +4325,8 @@ func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotSche
 	return
 }
 
+// UpdateSnapshotSchedule API operation for AWS Storage Gateway.
+//
 // Updates a snapshot schedule configured for a gateway volume.
 //
 // The default snapshot schedule for volume is once every 24 hours, starting
@@ -3198,6 +4336,23 @@ func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotSche
 // In the request you must identify the gateway volume whose snapshot schedule
 // you want to update, and the schedule information, including when you want
 // the snapshot to begin on a day and the frequency (in hours) of snapshots.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateSnapshotSchedule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInput) (*UpdateSnapshotScheduleOutput, error) {
 	req, out := c.UpdateSnapshotScheduleRequest(input)
 	err := req.Send()
@@ -3210,6 +4365,8 @@ const opUpdateVTLDeviceType = "UpdateVTLDeviceType"
 // client's request for the UpdateVTLDeviceType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateVTLDeviceType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3245,10 +4402,29 @@ func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeIn
 	return
 }
 
+// UpdateVTLDeviceType API operation for AWS Storage Gateway.
+//
 // Updates the type of medium changer in a gateway-VTL. When you activate a
 // gateway-VTL, you select a medium changer type for the gateway-VTL. This operation
 // enables you to select a different type of medium changer after a gateway-VTL
 // is activated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateVTLDeviceType for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
 func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*UpdateVTLDeviceTypeOutput, error) {
 	req, out := c.UpdateVTLDeviceTypeRequest(input)
 	err := req.Send()

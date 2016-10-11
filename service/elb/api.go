@@ -18,6 +18,8 @@ const opAddTags = "AddTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,6 +54,8 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 	return
 }
 
+// AddTags API operation for Elastic Load Balancing.
+//
 // Adds the specified tags to the specified load balancer. Each load balancer
 // can have a maximum of 10 tags.
 //
@@ -60,6 +64,25 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 //
 // For more information, see Tag Your Classic Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/add-remove-tags.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation AddTags for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * TooManyTags
+//   The quota for the number of tags that can be assigned to a load balancer
+//   has been reached.
+//
+//   * DuplicateTagKeys
+//   A tag key was specified more than once.
+//
 func (c *ELB) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -72,6 +95,8 @@ const opApplySecurityGroupsToLoadBalancer = "ApplySecurityGroupsToLoadBalancer"
 // client's request for the ApplySecurityGroupsToLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ApplySecurityGroupsToLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -107,12 +132,32 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 	return
 }
 
+// ApplySecurityGroupsToLoadBalancer API operation for Elastic Load Balancing.
+//
 // Associates one or more security groups with your load balancer in a virtual
 // private cloud (VPC). The specified security groups override the previously
 // associated security groups.
 //
 // For more information, see Security Groups for Load Balancers in a VPC (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-security-groups.html#elb-vpc-security-groups)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation ApplySecurityGroupsToLoadBalancer for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
+//   * InvalidSecurityGroup
+//   One or more of the specified security groups do not exist.
+//
 func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoadBalancerInput) (*ApplySecurityGroupsToLoadBalancerOutput, error) {
 	req, out := c.ApplySecurityGroupsToLoadBalancerRequest(input)
 	err := req.Send()
@@ -125,6 +170,8 @@ const opAttachLoadBalancerToSubnets = "AttachLoadBalancerToSubnets"
 // client's request for the AttachLoadBalancerToSubnets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AttachLoadBalancerToSubnets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -160,6 +207,8 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 	return
 }
 
+// AttachLoadBalancerToSubnets API operation for Elastic Load Balancing.
+//
 // Adds one or more subnets to the set of configured subnets for the specified
 // load balancer.
 //
@@ -167,6 +216,27 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 // For more information, see Add or Remove Subnets for Your Load Balancer in
 // a VPC (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-manage-subnets.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation AttachLoadBalancerToSubnets for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
+//   * SubnetNotFound
+//   One or more of the specified subnets do not exist.
+//
+//   * InvalidSubnet
+//   The specified VPC has no associated Internet gateway.
+//
 func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInput) (*AttachLoadBalancerToSubnetsOutput, error) {
 	req, out := c.AttachLoadBalancerToSubnetsRequest(input)
 	err := req.Send()
@@ -179,6 +249,8 @@ const opConfigureHealthCheck = "ConfigureHealthCheck"
 // client's request for the ConfigureHealthCheck operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ConfigureHealthCheck for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -214,12 +286,26 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 	return
 }
 
+// ConfigureHealthCheck API operation for Elastic Load Balancing.
+//
 // Specifies the health check settings to use when evaluating the health state
 // of your EC2 instances.
 //
 // For more information, see Configure Health Checks for Your Load Balancer
 // (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation ConfigureHealthCheck for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
 func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (*ConfigureHealthCheckOutput, error) {
 	req, out := c.ConfigureHealthCheckRequest(input)
 	err := req.Send()
@@ -232,6 +318,8 @@ const opCreateAppCookieStickinessPolicy = "CreateAppCookieStickinessPolicy"
 // client's request for the CreateAppCookieStickinessPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateAppCookieStickinessPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -267,6 +355,8 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 	return
 }
 
+// CreateAppCookieStickinessPolicy API operation for Elastic Load Balancing.
+//
 // Generates a stickiness policy with sticky session lifetimes that follow that
 // of an application-generated cookie. This policy can be associated only with
 // HTTP/HTTPS listeners.
@@ -282,6 +372,27 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 //
 // For more information, see Application-Controlled Session Stickiness (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation CreateAppCookieStickinessPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * DuplicatePolicyName
+//   A policy with the specified name already exists for this load balancer.
+//
+//   * TooManyPolicies
+//   The quota for the number of policies for this load balancer has been reached.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPolicyInput) (*CreateAppCookieStickinessPolicyOutput, error) {
 	req, out := c.CreateAppCookieStickinessPolicyRequest(input)
 	err := req.Send()
@@ -294,6 +405,8 @@ const opCreateLBCookieStickinessPolicy = "CreateLBCookieStickinessPolicy"
 // client's request for the CreateLBCookieStickinessPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateLBCookieStickinessPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -329,6 +442,8 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 	return
 }
 
+// CreateLBCookieStickinessPolicy API operation for Elastic Load Balancing.
+//
 // Generates a stickiness policy with sticky session lifetimes controlled by
 // the lifetime of the browser (user-agent) or a specified expiration period.
 // This policy can be associated only with HTTP/HTTPS listeners.
@@ -346,6 +461,27 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 //
 // For more information, see Duration-Based Session Stickiness (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation CreateLBCookieStickinessPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * DuplicatePolicyName
+//   A policy with the specified name already exists for this load balancer.
+//
+//   * TooManyPolicies
+//   The quota for the number of policies for this load balancer has been reached.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPolicyInput) (*CreateLBCookieStickinessPolicyOutput, error) {
 	req, out := c.CreateLBCookieStickinessPolicyRequest(input)
 	err := req.Send()
@@ -358,6 +494,8 @@ const opCreateLoadBalancer = "CreateLoadBalancer"
 // client's request for the CreateLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -393,6 +531,8 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *re
 	return
 }
 
+// CreateLoadBalancer API operation for Elastic Load Balancing.
+//
 // Creates a Classic load balancer.
 //
 // You can add listeners, security groups, subnets, and tags when you create
@@ -406,6 +546,53 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *re
 // an increase for the number of load balancers for your account. For more information,
 // see Limits for Your Classic Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-limits.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation CreateLoadBalancer for usage and error information.
+//
+// Returned Error Codes:
+//   * DuplicateLoadBalancerName
+//   The specified load balancer name already exists for this account.
+//
+//   * TooManyLoadBalancers
+//   The quota for the number of load balancers has been reached.
+//
+//   * CertificateNotFound
+//   The specified ARN does not refer to a valid SSL certificate in AWS Identity
+//   and Access Management (IAM) or AWS Certificate Manager (ACM). Note that if
+//   you recently uploaded the certificate to IAM, this error might indicate that
+//   the certificate is not fully available yet.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
+//   * SubnetNotFound
+//   One or more of the specified subnets do not exist.
+//
+//   * InvalidSubnet
+//   The specified VPC has no associated Internet gateway.
+//
+//   * InvalidSecurityGroup
+//   One or more of the specified security groups do not exist.
+//
+//   * InvalidScheme
+//   The specified value for the schema is not valid. You can only specify a scheme
+//   for load balancers in a VPC.
+//
+//   * TooManyTags
+//   The quota for the number of tags that can be assigned to a load balancer
+//   has been reached.
+//
+//   * DuplicateTagKeys
+//   A tag key was specified more than once.
+//
+//   * UnsupportedProtocol
+
+//
 func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (*CreateLoadBalancerOutput, error) {
 	req, out := c.CreateLoadBalancerRequest(input)
 	err := req.Send()
@@ -418,6 +605,8 @@ const opCreateLoadBalancerListeners = "CreateLoadBalancerListeners"
 // client's request for the CreateLoadBalancerListeners operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateLoadBalancerListeners for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -453,6 +642,8 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 	return
 }
 
+// CreateLoadBalancerListeners API operation for Elastic Load Balancing.
+//
 // Creates one or more listeners for the specified load balancer. If a listener
 // with the specified port does not already exist, it is created; otherwise,
 // the properties of the new listener must match the properties of the existing
@@ -460,6 +651,34 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 //
 // For more information, see Listeners for Your Classic Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation CreateLoadBalancerListeners for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * DuplicateListener
+//   A listener already exists for the specified load balancer name and port,
+//   but with a different instance port, protocol, or SSL certificate.
+//
+//   * CertificateNotFound
+//   The specified ARN does not refer to a valid SSL certificate in AWS Identity
+//   and Access Management (IAM) or AWS Certificate Manager (ACM). Note that if
+//   you recently uploaded the certificate to IAM, this error might indicate that
+//   the certificate is not fully available yet.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
+//   * UnsupportedProtocol
+
+//
 func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInput) (*CreateLoadBalancerListenersOutput, error) {
 	req, out := c.CreateLoadBalancerListenersRequest(input)
 	err := req.Send()
@@ -472,6 +691,8 @@ const opCreateLoadBalancerPolicy = "CreateLoadBalancerPolicy"
 // client's request for the CreateLoadBalancerPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateLoadBalancerPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -507,11 +728,37 @@ func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInp
 	return
 }
 
+// CreateLoadBalancerPolicy API operation for Elastic Load Balancing.
+//
 // Creates a policy with the specified attributes for the specified load balancer.
 //
 // Policies are settings that are saved for your load balancer and that can
 // be applied to the listener or the application server, depending on the policy
 // type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation CreateLoadBalancerPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * PolicyTypeNotFound
+//   One or more of the specified policy types do not exist.
+//
+//   * DuplicatePolicyName
+//   A policy with the specified name already exists for this load balancer.
+//
+//   * TooManyPolicies
+//   The quota for the number of policies for this load balancer has been reached.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (*CreateLoadBalancerPolicyOutput, error) {
 	req, out := c.CreateLoadBalancerPolicyRequest(input)
 	err := req.Send()
@@ -524,6 +771,8 @@ const opDeleteLoadBalancer = "DeleteLoadBalancer"
 // client's request for the DeleteLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -559,6 +808,8 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *re
 	return
 }
 
+// DeleteLoadBalancer API operation for Elastic Load Balancing.
+//
 // Deletes the specified load balancer.
 //
 // If you are attempting to recreate a load balancer, you must reconfigure
@@ -569,6 +820,13 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *re
 //
 // If the load balancer does not exist or has already been deleted, the call
 // to DeleteLoadBalancer still succeeds.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DeleteLoadBalancer for usage and error information.
 func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (*DeleteLoadBalancerOutput, error) {
 	req, out := c.DeleteLoadBalancerRequest(input)
 	err := req.Send()
@@ -581,6 +839,8 @@ const opDeleteLoadBalancerListeners = "DeleteLoadBalancerListeners"
 // client's request for the DeleteLoadBalancerListeners operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteLoadBalancerListeners for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -616,7 +876,21 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 	return
 }
 
+// DeleteLoadBalancerListeners API operation for Elastic Load Balancing.
+//
 // Deletes the specified listeners from the specified load balancer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DeleteLoadBalancerListeners for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
 func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInput) (*DeleteLoadBalancerListenersOutput, error) {
 	req, out := c.DeleteLoadBalancerListenersRequest(input)
 	err := req.Send()
@@ -629,6 +903,8 @@ const opDeleteLoadBalancerPolicy = "DeleteLoadBalancerPolicy"
 // client's request for the DeleteLoadBalancerPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteLoadBalancerPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -664,8 +940,25 @@ func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInp
 	return
 }
 
+// DeleteLoadBalancerPolicy API operation for Elastic Load Balancing.
+//
 // Deletes the specified policy from the specified load balancer. This policy
 // must not be enabled for any listeners.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DeleteLoadBalancerPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (*DeleteLoadBalancerPolicyOutput, error) {
 	req, out := c.DeleteLoadBalancerPolicyRequest(input)
 	err := req.Send()
@@ -678,6 +971,8 @@ const opDeregisterInstancesFromLoadBalancer = "DeregisterInstancesFromLoadBalanc
 // client's request for the DeregisterInstancesFromLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeregisterInstancesFromLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -713,6 +1008,8 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 	return
 }
 
+// DeregisterInstancesFromLoadBalancer API operation for Elastic Load Balancing.
+//
 // Deregisters the specified instances from the specified load balancer. After
 // the instance is deregistered, it no longer receives traffic from the load
 // balancer.
@@ -722,6 +1019,21 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 //
 // For more information, see Register or De-Register EC2 Instances (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DeregisterInstancesFromLoadBalancer for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidInstance
+//   The specified endpoint is not valid.
+//
 func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFromLoadBalancerInput) (*DeregisterInstancesFromLoadBalancerOutput, error) {
 	req, out := c.DeregisterInstancesFromLoadBalancerRequest(input)
 	err := req.Send()
@@ -734,6 +1046,8 @@ const opDescribeInstanceHealth = "DescribeInstanceHealth"
 // client's request for the DescribeInstanceHealth operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeInstanceHealth for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -769,12 +1083,29 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 	return
 }
 
+// DescribeInstanceHealth API operation for Elastic Load Balancing.
+//
 // Describes the state of the specified instances with respect to the specified
 // load balancer. If no instances are specified, the call describes the state
 // of all instances that are currently registered with the load balancer. If
 // instances are specified, their state is returned even if they are no longer
 // registered with the load balancer. The state of terminated instances is not
 // returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DescribeInstanceHealth for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidInstance
+//   The specified endpoint is not valid.
+//
 func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (*DescribeInstanceHealthOutput, error) {
 	req, out := c.DescribeInstanceHealthRequest(input)
 	err := req.Send()
@@ -787,6 +1118,8 @@ const opDescribeLoadBalancerAttributes = "DescribeLoadBalancerAttributes"
 // client's request for the DescribeLoadBalancerAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeLoadBalancerAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -822,7 +1155,24 @@ func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerA
 	return
 }
 
+// DescribeLoadBalancerAttributes API operation for Elastic Load Balancing.
+//
 // Describes the attributes for the specified load balancer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DescribeLoadBalancerAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * LoadBalancerAttributeNotFound
+//   The specified load balancer attribute does not exist.
+//
 func (c *ELB) DescribeLoadBalancerAttributes(input *DescribeLoadBalancerAttributesInput) (*DescribeLoadBalancerAttributesOutput, error) {
 	req, out := c.DescribeLoadBalancerAttributesRequest(input)
 	err := req.Send()
@@ -835,6 +1185,8 @@ const opDescribeLoadBalancerPolicies = "DescribeLoadBalancerPolicies"
 // client's request for the DescribeLoadBalancerPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeLoadBalancerPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -870,6 +1222,8 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 	return
 }
 
+// DescribeLoadBalancerPolicies API operation for Elastic Load Balancing.
+//
 // Describes the specified policies.
 //
 // If you specify a load balancer name, the action returns the descriptions
@@ -878,6 +1232,21 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 // that policy. If you don't specify a load balancer name, the action returns
 // descriptions of the specified sample policies, or descriptions of all sample
 // policies. The names of the sample policies have the ELBSample- prefix.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DescribeLoadBalancerPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * PolicyNotFound
+//   One or more of the specified policies do not exist.
+//
 func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesInput) (*DescribeLoadBalancerPoliciesOutput, error) {
 	req, out := c.DescribeLoadBalancerPoliciesRequest(input)
 	err := req.Send()
@@ -890,6 +1259,8 @@ const opDescribeLoadBalancerPolicyTypes = "DescribeLoadBalancerPolicyTypes"
 // client's request for the DescribeLoadBalancerPolicyTypes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeLoadBalancerPolicyTypes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -925,6 +1296,8 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 	return
 }
 
+// DescribeLoadBalancerPolicyTypes API operation for Elastic Load Balancing.
+//
 // Describes the specified load balancer policy types or all load balancer policy
 // types.
 //
@@ -937,6 +1310,18 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 // any of these policy types. Then, depending on the policy type, use either
 // SetLoadBalancerPoliciesOfListener or SetLoadBalancerPoliciesForBackendServer
 // to set the policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DescribeLoadBalancerPolicyTypes for usage and error information.
+//
+// Returned Error Codes:
+//   * PolicyTypeNotFound
+//   One or more of the specified policy types do not exist.
+//
 func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyTypesInput) (*DescribeLoadBalancerPolicyTypesOutput, error) {
 	req, out := c.DescribeLoadBalancerPolicyTypesRequest(input)
 	err := req.Send()
@@ -949,6 +1334,8 @@ const opDescribeLoadBalancers = "DescribeLoadBalancers"
 // client's request for the DescribeLoadBalancers operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeLoadBalancers for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -990,8 +1377,25 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 	return
 }
 
+// DescribeLoadBalancers API operation for Elastic Load Balancing.
+//
 // Describes the specified the load balancers. If no load balancers are specified,
 // the call describes all of your load balancers.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DescribeLoadBalancers for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * DependencyThrottle
+
+//
 func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*DescribeLoadBalancersOutput, error) {
 	req, out := c.DescribeLoadBalancersRequest(input)
 	err := req.Send()
@@ -1030,6 +1434,8 @@ const opDescribeTags = "DescribeTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1064,7 +1470,21 @@ func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 	return
 }
 
+// DescribeTags API operation for Elastic Load Balancing.
+//
 // Describes the tags associated with the specified load balancers.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DescribeTags for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
 func (c *ELB) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -1077,6 +1497,8 @@ const opDetachLoadBalancerFromSubnets = "DetachLoadBalancerFromSubnets"
 // client's request for the DetachLoadBalancerFromSubnets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DetachLoadBalancerFromSubnets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1112,12 +1534,29 @@ func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFrom
 	return
 }
 
+// DetachLoadBalancerFromSubnets API operation for Elastic Load Balancing.
+//
 // Removes the specified subnets from the set of configured subnets for the
 // load balancer.
 //
 // After a subnet is removed, all EC2 instances registered with the load balancer
 // in the removed subnet go into the OutOfService state. Then, the load balancer
 // balances the traffic among the remaining routable subnets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DetachLoadBalancerFromSubnets for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnetsInput) (*DetachLoadBalancerFromSubnetsOutput, error) {
 	req, out := c.DetachLoadBalancerFromSubnetsRequest(input)
 	err := req.Send()
@@ -1130,6 +1569,8 @@ const opDisableAvailabilityZonesForLoadBalancer = "DisableAvailabilityZonesForLo
 // client's request for the DisableAvailabilityZonesForLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableAvailabilityZonesForLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1165,6 +1606,8 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 	return
 }
 
+// DisableAvailabilityZonesForLoadBalancer API operation for Elastic Load Balancing.
+//
 // Removes the specified Availability Zones from the set of Availability Zones
 // for the specified load balancer.
 //
@@ -1176,6 +1619,21 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 //
 // For more information, see Add or Remove Availability Zones (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation DisableAvailabilityZonesForLoadBalancer for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *DisableAvailabilityZonesForLoadBalancerInput) (*DisableAvailabilityZonesForLoadBalancerOutput, error) {
 	req, out := c.DisableAvailabilityZonesForLoadBalancerRequest(input)
 	err := req.Send()
@@ -1188,6 +1646,8 @@ const opEnableAvailabilityZonesForLoadBalancer = "EnableAvailabilityZonesForLoad
 // client's request for the EnableAvailabilityZonesForLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EnableAvailabilityZonesForLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1223,6 +1683,8 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 	return
 }
 
+// EnableAvailabilityZonesForLoadBalancer API operation for Elastic Load Balancing.
+//
 // Adds the specified Availability Zones to the set of Availability Zones for
 // the specified load balancer.
 //
@@ -1231,6 +1693,18 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 //
 // For more information, see Add or Remove Availability Zones (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation EnableAvailabilityZonesForLoadBalancer for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
 func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZonesForLoadBalancerInput) (*EnableAvailabilityZonesForLoadBalancerOutput, error) {
 	req, out := c.EnableAvailabilityZonesForLoadBalancerRequest(input)
 	err := req.Send()
@@ -1243,6 +1717,8 @@ const opModifyLoadBalancerAttributes = "ModifyLoadBalancerAttributes"
 // client's request for the ModifyLoadBalancerAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyLoadBalancerAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1278,6 +1754,8 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 	return
 }
 
+// ModifyLoadBalancerAttributes API operation for Elastic Load Balancing.
+//
 // Modifies the attributes of the specified load balancer.
 //
 // You can modify the load balancer attributes, such as AccessLogs, ConnectionDraining,
@@ -1294,6 +1772,24 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 //    Access Logs (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html)
 //
 //    Idle Connection Timeout (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation ModifyLoadBalancerAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * LoadBalancerAttributeNotFound
+//   The specified load balancer attribute does not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) ModifyLoadBalancerAttributes(input *ModifyLoadBalancerAttributesInput) (*ModifyLoadBalancerAttributesOutput, error) {
 	req, out := c.ModifyLoadBalancerAttributesRequest(input)
 	err := req.Send()
@@ -1306,6 +1802,8 @@ const opRegisterInstancesWithLoadBalancer = "RegisterInstancesWithLoadBalancer"
 // client's request for the RegisterInstancesWithLoadBalancer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterInstancesWithLoadBalancer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1341,6 +1839,8 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 	return
 }
 
+// RegisterInstancesWithLoadBalancer API operation for Elastic Load Balancing.
+//
 // Adds the specified instances to the specified load balancer.
 //
 // The instance must be a running instance in the same network as the load
@@ -1364,6 +1864,21 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 //
 // For more information, see Register or De-Register EC2 Instances (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-deregister-register-instances.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation RegisterInstancesWithLoadBalancer for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * InvalidInstance
+//   The specified endpoint is not valid.
+//
 func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoadBalancerInput) (*RegisterInstancesWithLoadBalancerOutput, error) {
 	req, out := c.RegisterInstancesWithLoadBalancerRequest(input)
 	err := req.Send()
@@ -1376,6 +1891,8 @@ const opRemoveTags = "RemoveTags"
 // client's request for the RemoveTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1411,7 +1928,21 @@ func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 	return
 }
 
+// RemoveTags API operation for Elastic Load Balancing.
+//
 // Removes one or more tags from the specified load balancer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation RemoveTags for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
 func (c *ELB) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -1424,6 +1955,8 @@ const opSetLoadBalancerListenerSSLCertificate = "SetLoadBalancerListenerSSLCerti
 // client's request for the SetLoadBalancerListenerSSLCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetLoadBalancerListenerSSLCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1459,6 +1992,8 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 	return
 }
 
+// SetLoadBalancerListenerSSLCertificate API operation for Elastic Load Balancing.
+//
 // Sets the certificate that terminates the specified listener's SSL connections.
 // The specified certificate replaces any prior certificate that was used on
 // the same load balancer and port.
@@ -1466,6 +2001,33 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 // For more information about updating your SSL certificate, see Replace the
 // SSL Certificate for Your Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-update-ssl-cert.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation SetLoadBalancerListenerSSLCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * CertificateNotFound
+//   The specified ARN does not refer to a valid SSL certificate in AWS Identity
+//   and Access Management (IAM) or AWS Certificate Manager (ACM). Note that if
+//   you recently uploaded the certificate to IAM, this error might indicate that
+//   the certificate is not fully available yet.
+//
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * ListenerNotFound
+//   The load balancer does not have a listener configured at the specified port.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
+//   * UnsupportedProtocol
+
+//
 func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListenerSSLCertificateInput) (*SetLoadBalancerListenerSSLCertificateOutput, error) {
 	req, out := c.SetLoadBalancerListenerSSLCertificateRequest(input)
 	err := req.Send()
@@ -1478,6 +2040,8 @@ const opSetLoadBalancerPoliciesForBackendServer = "SetLoadBalancerPoliciesForBac
 // client's request for the SetLoadBalancerPoliciesForBackendServer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetLoadBalancerPoliciesForBackendServer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1513,6 +2077,8 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 	return
 }
 
+// SetLoadBalancerPoliciesForBackendServer API operation for Elastic Load Balancing.
+//
 // Replaces the set of policies associated with the specified port on which
 // the EC2 instance is listening with a new set of policies. At this time, only
 // the back-end server authentication policy type can be applied to the instance
@@ -1530,6 +2096,24 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 // in the Classic Load Balancers Guide. For more information about Proxy Protocol,
 // see Configure Proxy Protocol Support (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-proxy-protocol.html)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation SetLoadBalancerPoliciesForBackendServer for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * PolicyNotFound
+//   One or more of the specified policies do not exist.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) SetLoadBalancerPoliciesForBackendServer(input *SetLoadBalancerPoliciesForBackendServerInput) (*SetLoadBalancerPoliciesForBackendServerOutput, error) {
 	req, out := c.SetLoadBalancerPoliciesForBackendServerRequest(input)
 	err := req.Send()
@@ -1542,6 +2126,8 @@ const opSetLoadBalancerPoliciesOfListener = "SetLoadBalancerPoliciesOfListener"
 // client's request for the SetLoadBalancerPoliciesOfListener operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetLoadBalancerPoliciesOfListener for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1577,6 +2163,8 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 	return
 }
 
+// SetLoadBalancerPoliciesOfListener API operation for Elastic Load Balancing.
+//
 // Replaces the current set of policies for the specified load balancer port
 // with the specified set of policies.
 //
@@ -1587,6 +2175,27 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 // Duration-Based Session Stickiness (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-duration),
 // and Application-Controlled Session Stickiness (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application)
 // in the Classic Load Balancers Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Elastic Load Balancing's
+// API operation SetLoadBalancerPoliciesOfListener for usage and error information.
+//
+// Returned Error Codes:
+//   * LoadBalancerNotFound
+//   The specified load balancer does not exist.
+//
+//   * PolicyNotFound
+//   One or more of the specified policies do not exist.
+//
+//   * ListenerNotFound
+//   The load balancer does not have a listener configured at the specified port.
+//
+//   * InvalidConfigurationRequest
+//   The requested configuration change is not valid.
+//
 func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOfListenerInput) (*SetLoadBalancerPoliciesOfListenerOutput, error) {
 	req, out := c.SetLoadBalancerPoliciesOfListenerRequest(input)
 	err := req.Send()

@@ -18,6 +18,8 @@ const opCheckDomainAvailability = "CheckDomainAvailability"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CheckDomainAvailability for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,9 +54,28 @@ func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvaila
 	return
 }
 
+// CheckDomainAvailability API operation for Amazon Route 53 Domains.
+//
 // This operation checks the availability of one domain name. Note that if the
 // availability status of a domain is pending, you must submit another request
 // to determine the availability of the domain name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation CheckDomainAvailability for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityInput) (*CheckDomainAvailabilityOutput, error) {
 	req, out := c.CheckDomainAvailabilityRequest(input)
 	err := req.Send()
@@ -67,6 +88,8 @@ const opDeleteTagsForDomain = "DeleteTagsForDomain"
 // client's request for the DeleteTagsForDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTagsForDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -102,10 +125,33 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 	return
 }
 
+// DeleteTagsForDomain API operation for Amazon Route 53 Domains.
+//
 // This operation deletes the specified tags for a domain.
 //
 // All tag operations are eventually consistent; subsequent operations may
 // not immediately represent all issued operations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation DeleteTagsForDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (*DeleteTagsForDomainOutput, error) {
 	req, out := c.DeleteTagsForDomainRequest(input)
 	err := req.Send()
@@ -118,6 +164,8 @@ const opDisableDomainAutoRenew = "DisableDomainAutoRenew"
 // client's request for the DisableDomainAutoRenew operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableDomainAutoRenew for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -153,8 +201,27 @@ func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoR
 	return
 }
 
+// DisableDomainAutoRenew API operation for Amazon Route 53 Domains.
+//
 // This operation disables automatic renewal of domain registration for the
 // specified domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation DisableDomainAutoRenew for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInput) (*DisableDomainAutoRenewOutput, error) {
 	req, out := c.DisableDomainAutoRenewRequest(input)
 	err := req.Send()
@@ -167,6 +234,8 @@ const opDisableDomainTransferLock = "DisableDomainTransferLock"
 // client's request for the DisableDomainTransferLock operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableDomainTransferLock for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -202,6 +271,8 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 	return
 }
 
+// DisableDomainTransferLock API operation for Amazon Route 53 Domains.
+//
 // This operation removes the transfer lock on the domain (specifically the
 // clientTransferProhibited status) to allow domain transfers. We recommend
 // you refrain from performing this action unless you intend to transfer the
@@ -209,6 +280,33 @@ func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTr
 // ID that you can use to track the progress and completion of the action. If
 // the request is not completed successfully, the domain registrant will be
 // notified by email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation DisableDomainTransferLock for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferLockInput) (*DisableDomainTransferLockOutput, error) {
 	req, out := c.DisableDomainTransferLockRequest(input)
 	err := req.Send()
@@ -221,6 +319,8 @@ const opEnableDomainAutoRenew = "EnableDomainAutoRenew"
 // client's request for the EnableDomainAutoRenew operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EnableDomainAutoRenew for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -256,6 +356,8 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 	return
 }
 
+// EnableDomainAutoRenew API operation for Amazon Route 53 Domains.
+//
 // This operation configures Amazon Route 53 to automatically renew the specified
 // domain before the domain registration expires. The cost of renewing your
 // domain registration is billed to your AWS account.
@@ -266,6 +368,26 @@ func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRen
 // on the website for our registrar partner, Gandi. Route 53 requires that you
 // renew before the end of the renewal period that is listed on the Gandi website
 // so we can complete processing before the deadline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation EnableDomainAutoRenew for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
 func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput) (*EnableDomainAutoRenewOutput, error) {
 	req, out := c.EnableDomainAutoRenewRequest(input)
 	err := req.Send()
@@ -278,6 +400,8 @@ const opEnableDomainTransferLock = "EnableDomainTransferLock"
 // client's request for the EnableDomainTransferLock operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EnableDomainTransferLock for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -313,11 +437,40 @@ func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTran
 	return
 }
 
+// EnableDomainTransferLock API operation for Amazon Route 53 Domains.
+//
 // This operation sets the transfer lock on the domain (specifically the clientTransferProhibited
 // status) to prevent domain transfers. Successful submission returns an operation
 // ID that you can use to track the progress and completion of the action. If
 // the request is not completed successfully, the domain registrant will be
 // notified by email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation EnableDomainTransferLock for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLockInput) (*EnableDomainTransferLockOutput, error) {
 	req, out := c.EnableDomainTransferLockRequest(input)
 	err := req.Send()
@@ -330,6 +483,8 @@ const opGetContactReachabilityStatus = "GetContactReachabilityStatus"
 // client's request for the GetContactReachabilityStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetContactReachabilityStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -365,12 +520,35 @@ func (c *Route53Domains) GetContactReachabilityStatusRequest(input *GetContactRe
 	return
 }
 
+// GetContactReachabilityStatus API operation for Amazon Route 53 Domains.
+//
 // For operations that require confirmation that the email address for the registrant
 // contact is valid, such as registering a new domain, this operation returns
 // information about whether the registrant contact has responded.
 //
 // If you want us to resend the email, use the ResendContactReachabilityEmail
 // operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation GetContactReachabilityStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) GetContactReachabilityStatus(input *GetContactReachabilityStatusInput) (*GetContactReachabilityStatusOutput, error) {
 	req, out := c.GetContactReachabilityStatusRequest(input)
 	err := req.Send()
@@ -383,6 +561,8 @@ const opGetDomainDetail = "GetDomainDetail"
 // client's request for the GetDomainDetail operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDomainDetail for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -418,8 +598,27 @@ func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (re
 	return
 }
 
+// GetDomainDetail API operation for Amazon Route 53 Domains.
+//
 // This operation returns detailed information about the domain. The domain's
 // contact information is also returned as part of the output.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation GetDomainDetail for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (*GetDomainDetailOutput, error) {
 	req, out := c.GetDomainDetailRequest(input)
 	err := req.Send()
@@ -432,6 +631,8 @@ const opGetDomainSuggestions = "GetDomainSuggestions"
 // client's request for the GetDomainSuggestions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDomainSuggestions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -467,6 +668,8 @@ func (c *Route53Domains) GetDomainSuggestionsRequest(input *GetDomainSuggestions
 	return
 }
 
+// GetDomainSuggestions API operation for Amazon Route 53 Domains.
+//
 // The GetDomainSuggestions operation returns a list of suggested domain names
 // given a string, which can either be a domain name or simply a word or phrase
 // (without spaces).
@@ -479,6 +682,23 @@ func (c *Route53Domains) GetDomainSuggestionsRequest(input *GetDomainSuggestions
 // returned without checking whether the domain is actually available, and caller
 // will have to call checkDomainAvailability for each suggestion to determine
 // availability for registration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation GetDomainSuggestions for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) GetDomainSuggestions(input *GetDomainSuggestionsInput) (*GetDomainSuggestionsOutput, error) {
 	req, out := c.GetDomainSuggestionsRequest(input)
 	err := req.Send()
@@ -491,6 +711,8 @@ const opGetOperationDetail = "GetOperationDetail"
 // client's request for the GetOperationDetail operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetOperationDetail for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -526,7 +748,23 @@ func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInpu
 	return
 }
 
+// GetOperationDetail API operation for Amazon Route 53 Domains.
+//
 // This operation returns the current status of an operation that is not completed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation GetOperationDetail for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
 func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (*GetOperationDetailOutput, error) {
 	req, out := c.GetOperationDetailRequest(input)
 	err := req.Send()
@@ -539,6 +777,8 @@ const opListDomains = "ListDomains"
 // client's request for the ListDomains operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDomains for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -580,8 +820,24 @@ func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *reque
 	return
 }
 
+// ListDomains API operation for Amazon Route 53 Domains.
+//
 // This operation returns all the domain names registered with Amazon Route
 // 53 for the current AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation ListDomains for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
 func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
 	err := req.Send()
@@ -619,6 +875,8 @@ const opListOperations = "ListOperations"
 // client's request for the ListOperations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListOperations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -660,7 +918,23 @@ func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req 
 	return
 }
 
+// ListOperations API operation for Amazon Route 53 Domains.
+//
 // This operation returns the operation IDs of operations that are not yet complete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation ListOperations for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
 func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, error) {
 	req, out := c.ListOperationsRequest(input)
 	err := req.Send()
@@ -699,6 +973,8 @@ const opListTagsForDomain = "ListTagsForDomain"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListTagsForDomain for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -733,11 +1009,34 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 	return
 }
 
+// ListTagsForDomain API operation for Amazon Route 53 Domains.
+//
 // This operation returns all of the tags that are associated with the specified
 // domain.
 //
 // All tag operations are eventually consistent; subsequent operations may
 // not immediately represent all issued operations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation ListTagsForDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (*ListTagsForDomainOutput, error) {
 	req, out := c.ListTagsForDomainRequest(input)
 	err := req.Send()
@@ -750,6 +1049,8 @@ const opRegisterDomain = "RegisterDomain"
 // client's request for the RegisterDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -785,6 +1086,8 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 	return
 }
 
+// RegisterDomain API operation for Amazon Route 53 Domains.
+//
 // This operation registers a domain. Domains are registered by the AWS registrar
 // partner, Gandi. For some top-level domains (TLDs), this operation requires
 // extra parameters.
@@ -804,6 +1107,36 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 // successfully, the domain registrant is notified by email. Charges your AWS
 // account an amount based on the top-level domain. For more information, see
 // Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation RegisterDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * DomainLimitExceeded
+//   The number of domains has exceeded the allowed threshold for the account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
 func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (*RegisterDomainOutput, error) {
 	req, out := c.RegisterDomainRequest(input)
 	err := req.Send()
@@ -816,6 +1149,8 @@ const opRenewDomain = "RenewDomain"
 // client's request for the RenewDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RenewDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -851,6 +1186,8 @@ func (c *Route53Domains) RenewDomainRequest(input *RenewDomainInput) (req *reque
 	return
 }
 
+// RenewDomain API operation for Amazon Route 53 Domains.
+//
 // This operation renews a domain for the specified number of years. The cost
 // of renewing your domain is billed to your AWS account.
 //
@@ -859,6 +1196,33 @@ func (c *Route53Domains) RenewDomainRequest(input *RenewDomainInput) (req *reque
 // haven't renewed far enough in advance. For more information about renewing
 // domain registration, see Renewing Registration for a Domain (http://docs.aws.amazon.com/console/route53/domain-renew)
 // in the Amazon Route 53 documentation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation RenewDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
 func (c *Route53Domains) RenewDomain(input *RenewDomainInput) (*RenewDomainOutput, error) {
 	req, out := c.RenewDomainRequest(input)
 	err := req.Send()
@@ -871,6 +1235,8 @@ const opResendContactReachabilityEmail = "ResendContactReachabilityEmail"
 // client's request for the ResendContactReachabilityEmail operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ResendContactReachabilityEmail for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -906,9 +1272,32 @@ func (c *Route53Domains) ResendContactReachabilityEmailRequest(input *ResendCont
 	return
 }
 
+// ResendContactReachabilityEmail API operation for Amazon Route 53 Domains.
+//
 // For operations that require confirmation that the email address for the registrant
 // contact is valid, such as registering a new domain, this operation resends
 // the confirmation email to the current email address for the registrant contact.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation ResendContactReachabilityEmail for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) ResendContactReachabilityEmail(input *ResendContactReachabilityEmailInput) (*ResendContactReachabilityEmailOutput, error) {
 	req, out := c.ResendContactReachabilityEmailRequest(input)
 	err := req.Send()
@@ -921,6 +1310,8 @@ const opRetrieveDomainAuthCode = "RetrieveDomainAuthCode"
 // client's request for the RetrieveDomainAuthCode operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RetrieveDomainAuthCode for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -956,8 +1347,27 @@ func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuth
 	return
 }
 
+// RetrieveDomainAuthCode API operation for Amazon Route 53 Domains.
+//
 // This operation returns the AuthCode for the domain. To transfer a domain
 // to another registrar, you provide this value to the new registrar.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation RetrieveDomainAuthCode for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInput) (*RetrieveDomainAuthCodeOutput, error) {
 	req, out := c.RetrieveDomainAuthCodeRequest(input)
 	err := req.Send()
@@ -970,6 +1380,8 @@ const opTransferDomain = "TransferDomain"
 // client's request for the TransferDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TransferDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1005,6 +1417,8 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 	return
 }
 
+// TransferDomain API operation for Amazon Route 53 Domains.
+//
 // This operation transfers a domain from another registrar to Amazon Route
 // 53. When the transfer is complete, the domain is registered with the AWS
 // registrar partner, Gandi.
@@ -1029,6 +1443,36 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 // operation ID that you can use to track the progress and completion of the
 // action. If the transfer doesn't complete successfully, the domain registrant
 // will be notified by email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation TransferDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * DomainLimitExceeded
+//   The number of domains has exceeded the allowed threshold for the account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
 func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (*TransferDomainOutput, error) {
 	req, out := c.TransferDomainRequest(input)
 	err := req.Send()
@@ -1041,6 +1485,8 @@ const opUpdateDomainContact = "UpdateDomainContact"
 // client's request for the UpdateDomainContact operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDomainContact for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1076,6 +1522,8 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 	return
 }
 
+// UpdateDomainContact API operation for Amazon Route 53 Domains.
+//
 // This operation updates the contact information for a particular domain. Information
 // for at least one contact (registrant, administrator, or technical) must be
 // supplied for update.
@@ -1084,6 +1532,33 @@ func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactIn
 // can use to track the progress and completion of the action. If the request
 // is not completed successfully, the domain registrant will be notified by
 // email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation UpdateDomainContact for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (*UpdateDomainContactOutput, error) {
 	req, out := c.UpdateDomainContactRequest(input)
 	err := req.Send()
@@ -1096,6 +1571,8 @@ const opUpdateDomainContactPrivacy = "UpdateDomainContactPrivacy"
 // client's request for the UpdateDomainContactPrivacy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDomainContactPrivacy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1131,6 +1608,8 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 	return
 }
 
+// UpdateDomainContactPrivacy API operation for Amazon Route 53 Domains.
+//
 // This operation updates the specified domain contact's privacy setting. When
 // the privacy option is enabled, personal information such as postal or email
 // address is hidden from the results of a public WHOIS query. The privacy services
@@ -1142,6 +1621,33 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 // you can use with GetOperationDetail to track the progress and completion
 // of the action. If the request is not completed successfully, the domain registrant
 // will be notified by email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation UpdateDomainContactPrivacy for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPrivacyInput) (*UpdateDomainContactPrivacyOutput, error) {
 	req, out := c.UpdateDomainContactPrivacyRequest(input)
 	err := req.Send()
@@ -1154,6 +1660,8 @@ const opUpdateDomainNameservers = "UpdateDomainNameservers"
 // client's request for the UpdateDomainNameservers operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDomainNameservers for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1189,6 +1697,8 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 	return
 }
 
+// UpdateDomainNameservers API operation for Amazon Route 53 Domains.
+//
 // This operation replaces the current set of name servers for the domain with
 // the specified set of name servers. If you use Amazon Route 53 as your DNS
 // service, specify the four name servers in the delegation set for the hosted
@@ -1197,6 +1707,33 @@ func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNames
 // If successful, this operation returns an operation ID that you can use to
 // track the progress and completion of the action. If the request is not completed
 // successfully, the domain registrant will be notified by email.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation UpdateDomainNameservers for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * DuplicateRequest
+//   The request is already in progress for the domain.
+//
+//   * TLDRulesViolation
+//   The top-level domain does not support this operation.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversInput) (*UpdateDomainNameserversOutput, error) {
 	req, out := c.UpdateDomainNameserversRequest(input)
 	err := req.Send()
@@ -1209,6 +1746,8 @@ const opUpdateTagsForDomain = "UpdateTagsForDomain"
 // client's request for the UpdateTagsForDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateTagsForDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1244,10 +1783,33 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 	return
 }
 
+// UpdateTagsForDomain API operation for Amazon Route 53 Domains.
+//
 // This operation adds or updates tags for a specified domain.
 //
 // All tag operations are eventually consistent; subsequent operations may
 // not immediately represent all issued operations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation UpdateTagsForDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
+//   * OperationLimitExceeded
+//   The number of operations or jobs running exceeded the allowed threshold for
+//   the account.
+//
+//   * UnsupportedTLD
+//   Amazon Route 53 does not support this top-level domain.
+//
 func (c *Route53Domains) UpdateTagsForDomain(input *UpdateTagsForDomainInput) (*UpdateTagsForDomainOutput, error) {
 	req, out := c.UpdateTagsForDomainRequest(input)
 	err := req.Send()
@@ -1260,6 +1822,8 @@ const opViewBilling = "ViewBilling"
 // client's request for the ViewBilling operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ViewBilling for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1295,8 +1859,24 @@ func (c *Route53Domains) ViewBillingRequest(input *ViewBillingInput) (req *reque
 	return
 }
 
+// ViewBilling API operation for Amazon Route 53 Domains.
+//
 // This operation returns all the domain-related billing records for the current
 // AWS account for a specified period
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Domains's
+// API operation ViewBilling for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInput
+//   The requested item is not acceptable. For example, for an OperationId it
+//   may refer to the ID of an operation that is already completed. For a domain
+//   name, it may not be a valid domain name or belong to the requester account.
+//
 func (c *Route53Domains) ViewBilling(input *ViewBillingInput) (*ViewBillingOutput, error) {
 	req, out := c.ViewBillingRequest(input)
 	err := req.Send()

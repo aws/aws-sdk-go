@@ -20,6 +20,8 @@ const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIden
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CreateCloudFrontOriginAccessIdentity for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -54,7 +56,38 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCl
 	return
 }
 
+// CreateCloudFrontOriginAccessIdentity API operation for Amazon CloudFront.
+//
 // Create a new origin access identity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateCloudFrontOriginAccessIdentity for usage and error information.
+//
+// Returned Error Codes:
+//   * OriginAccessIdentityAlreadyExists
+//   If the CallerReference is a value you already sent in a previous request
+//   to create an identity but the content of the CloudFrontOriginAccessIdentityConfig
+//   is different from the original request, CloudFront returns a CloudFrontOriginAccessIdentityAlreadyExists
+//   error.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * TooManyCloudFrontOriginAccessIdentities
+//   Processing your request would cause you to exceed the maximum number of origin
+//   access identities allowed.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
 func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFrontOriginAccessIdentityInput) (*CreateCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.CreateCloudFrontOriginAccessIdentityRequest(input)
 	err := req.Send()
@@ -67,6 +100,8 @@ const opCreateDistribution = "CreateDistribution2016_09_07"
 // client's request for the CreateDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -102,7 +137,135 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 	return
 }
 
+// CreateDistribution API operation for Amazon CloudFront.
+//
 // Create a new distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * CNAMEAlreadyExists
+
+//
+//   * DistributionAlreadyExists
+//   The caller reference you attempted to create the distribution with is associated
+//   with another distribution.
+//
+//   * InvalidOrigin
+//   The Amazon S3 origin server specified does not refer to a valid Amazon S3
+//   bucket.
+//
+//   * InvalidOriginAccessIdentity
+//   The origin access identity is not valid or doesn't exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
+//   * TooManyTrustedSigners
+//   Your request contains more trusted signers than are allowed per distribution.
+//
+//   * TrustedSignerDoesNotExist
+//   One or more of your trusted signers do not exist.
+//
+//   * InvalidViewerCertificate
+
+//
+//   * InvalidMinimumProtocolVersion
+
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * TooManyDistributionCNAMEs
+//   Your request contains more CNAMEs than are allowed per distribution.
+//
+//   * TooManyDistributions
+//   Processing your request would cause you to exceed the maximum number of distributions
+//   allowed.
+//
+//   * InvalidDefaultRootObject
+//   The default root object file name is too big or contains an invalid character.
+//
+//   * InvalidRelativePath
+//   The relative path is too big, is not URL-encoded, or does not begin with
+//   a slash (/).
+//
+//   * InvalidErrorCode
+
+//
+//   * InvalidResponseCode
+
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidRequiredProtocol
+//   This operation requires the HTTPS protocol. Ensure that you specify the HTTPS
+//   protocol in your request, or omit the RequiredProtocols element from your
+//   distribution configuration.
+//
+//   * NoSuchOrigin
+//   No origin exists with the specified Origin Id.
+//
+//   * TooManyOrigins
+//   You cannot create anymore origins for the distribution.
+//
+//   * TooManyCacheBehaviors
+//   You cannot create anymore cache behaviors for the distribution.
+//
+//   * TooManyCookieNamesInWhiteList
+//   Your request contains more cookie names in the whitelist than are allowed
+//   per cache behavior.
+//
+//   * InvalidForwardCookies
+//   Your request contains forward cookies option which doesn't match with the
+//   expectation for the whitelisted list of cookie names. Either list of cookie
+//   names has been specified when not allowed or list of cookie names is missing
+//   when expected.
+//
+//   * TooManyHeadersInForwardedValues
+
+//
+//   * InvalidHeadersForS3Origin
+
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
+//   * TooManyCertificates
+//   You cannot create anymore custom ssl certificates.
+//
+//   * InvalidLocationCode
+
+//
+//   * InvalidGeoRestrictionParameter
+
+//
+//   * InvalidProtocolSettings
+//   You cannot specify SSLv3 as the minimum protocol version if you only want
+//   to support only clients that Support Server Name Indication (SNI).
+//
+//   * InvalidTTLOrder
+
+//
+//   * InvalidWebACLId
+
+//
+//   * TooManyOriginCustomHeaders
+
+//
+//   * TooManyQueryStringParameters
+
+//
+//   * InvalidQueryStringParameters
+
+//
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
 	req, out := c.CreateDistributionRequest(input)
 	err := req.Send()
@@ -115,6 +278,8 @@ const opCreateDistributionWithTags = "CreateDistributionWithTags2016_09_07"
 // client's request for the CreateDistributionWithTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDistributionWithTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -150,7 +315,139 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 	return
 }
 
+// CreateDistributionWithTags API operation for Amazon CloudFront.
+//
 // Create a new distribution with tags.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateDistributionWithTags for usage and error information.
+//
+// Returned Error Codes:
+//   * CNAMEAlreadyExists
+
+//
+//   * DistributionAlreadyExists
+//   The caller reference you attempted to create the distribution with is associated
+//   with another distribution.
+//
+//   * InvalidOrigin
+//   The Amazon S3 origin server specified does not refer to a valid Amazon S3
+//   bucket.
+//
+//   * InvalidOriginAccessIdentity
+//   The origin access identity is not valid or doesn't exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
+//   * TooManyTrustedSigners
+//   Your request contains more trusted signers than are allowed per distribution.
+//
+//   * TrustedSignerDoesNotExist
+//   One or more of your trusted signers do not exist.
+//
+//   * InvalidViewerCertificate
+
+//
+//   * InvalidMinimumProtocolVersion
+
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * TooManyDistributionCNAMEs
+//   Your request contains more CNAMEs than are allowed per distribution.
+//
+//   * TooManyDistributions
+//   Processing your request would cause you to exceed the maximum number of distributions
+//   allowed.
+//
+//   * InvalidDefaultRootObject
+//   The default root object file name is too big or contains an invalid character.
+//
+//   * InvalidRelativePath
+//   The relative path is too big, is not URL-encoded, or does not begin with
+//   a slash (/).
+//
+//   * InvalidErrorCode
+
+//
+//   * InvalidResponseCode
+
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidRequiredProtocol
+//   This operation requires the HTTPS protocol. Ensure that you specify the HTTPS
+//   protocol in your request, or omit the RequiredProtocols element from your
+//   distribution configuration.
+//
+//   * NoSuchOrigin
+//   No origin exists with the specified Origin Id.
+//
+//   * TooManyOrigins
+//   You cannot create anymore origins for the distribution.
+//
+//   * TooManyCacheBehaviors
+//   You cannot create anymore cache behaviors for the distribution.
+//
+//   * TooManyCookieNamesInWhiteList
+//   Your request contains more cookie names in the whitelist than are allowed
+//   per cache behavior.
+//
+//   * InvalidForwardCookies
+//   Your request contains forward cookies option which doesn't match with the
+//   expectation for the whitelisted list of cookie names. Either list of cookie
+//   names has been specified when not allowed or list of cookie names is missing
+//   when expected.
+//
+//   * TooManyHeadersInForwardedValues
+
+//
+//   * InvalidHeadersForS3Origin
+
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
+//   * TooManyCertificates
+//   You cannot create anymore custom ssl certificates.
+//
+//   * InvalidLocationCode
+
+//
+//   * InvalidGeoRestrictionParameter
+
+//
+//   * InvalidProtocolSettings
+//   You cannot specify SSLv3 as the minimum protocol version if you only want
+//   to support only clients that Support Server Name Indication (SNI).
+//
+//   * InvalidTTLOrder
+
+//
+//   * InvalidWebACLId
+
+//
+//   * TooManyOriginCustomHeaders
+
+//
+//   * InvalidTagging
+//   The specified tagging for a CloudFront resource is invalid. For more information,
+//   see the error text.
+//
+//   * TooManyQueryStringParameters
+
+//
+//   * InvalidQueryStringParameters
+
+//
 func (c *CloudFront) CreateDistributionWithTags(input *CreateDistributionWithTagsInput) (*CreateDistributionWithTagsOutput, error) {
 	req, out := c.CreateDistributionWithTagsRequest(input)
 	err := req.Send()
@@ -163,6 +460,8 @@ const opCreateInvalidation = "CreateInvalidation2016_09_07"
 // client's request for the CreateInvalidation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateInvalidation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -198,7 +497,41 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 	return
 }
 
+// CreateInvalidation API operation for Amazon CloudFront.
+//
 // Create a new invalidation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateInvalidation for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * BatchTooLarge
+
+//
+//   * TooManyInvalidationsInProgress
+//   You have exceeded the maximum number of allowable InProgress invalidation
+//   batch requests, or invalidation objects.
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
 func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (*CreateInvalidationOutput, error) {
 	req, out := c.CreateInvalidationRequest(input)
 	err := req.Send()
@@ -211,6 +544,8 @@ const opCreateStreamingDistribution = "CreateStreamingDistribution2016_09_07"
 // client's request for the CreateStreamingDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateStreamingDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -246,7 +581,57 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 	return
 }
 
+// CreateStreamingDistribution API operation for Amazon CloudFront.
+//
 // Create a new streaming distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateStreamingDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * CNAMEAlreadyExists
+
+//
+//   * StreamingDistributionAlreadyExists
+
+//
+//   * InvalidOrigin
+//   The Amazon S3 origin server specified does not refer to a valid Amazon S3
+//   bucket.
+//
+//   * InvalidOriginAccessIdentity
+//   The origin access identity is not valid or doesn't exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
+//   * TooManyTrustedSigners
+//   Your request contains more trusted signers than are allowed per distribution.
+//
+//   * TrustedSignerDoesNotExist
+//   One or more of your trusted signers do not exist.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * TooManyStreamingDistributionCNAMEs
+
+//
+//   * TooManyStreamingDistributions
+//   Processing your request would cause you to exceed the maximum number of streaming
+//   distributions allowed.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
 func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistributionInput) (*CreateStreamingDistributionOutput, error) {
 	req, out := c.CreateStreamingDistributionRequest(input)
 	err := req.Send()
@@ -259,6 +644,8 @@ const opCreateStreamingDistributionWithTags = "CreateStreamingDistributionWithTa
 // client's request for the CreateStreamingDistributionWithTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateStreamingDistributionWithTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -294,7 +681,61 @@ func (c *CloudFront) CreateStreamingDistributionWithTagsRequest(input *CreateStr
 	return
 }
 
+// CreateStreamingDistributionWithTags API operation for Amazon CloudFront.
+//
 // Create a new streaming distribution with tags.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateStreamingDistributionWithTags for usage and error information.
+//
+// Returned Error Codes:
+//   * CNAMEAlreadyExists
+
+//
+//   * StreamingDistributionAlreadyExists
+
+//
+//   * InvalidOrigin
+//   The Amazon S3 origin server specified does not refer to a valid Amazon S3
+//   bucket.
+//
+//   * InvalidOriginAccessIdentity
+//   The origin access identity is not valid or doesn't exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
+//   * TooManyTrustedSigners
+//   Your request contains more trusted signers than are allowed per distribution.
+//
+//   * TrustedSignerDoesNotExist
+//   One or more of your trusted signers do not exist.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * TooManyStreamingDistributionCNAMEs
+
+//
+//   * TooManyStreamingDistributions
+//   Processing your request would cause you to exceed the maximum number of streaming
+//   distributions allowed.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
+//   * InvalidTagging
+//   The specified tagging for a CloudFront resource is invalid. For more information,
+//   see the error text.
+//
 func (c *CloudFront) CreateStreamingDistributionWithTags(input *CreateStreamingDistributionWithTagsInput) (*CreateStreamingDistributionWithTagsOutput, error) {
 	req, out := c.CreateStreamingDistributionWithTagsRequest(input)
 	err := req.Send()
@@ -307,6 +748,8 @@ const opDeleteCloudFrontOriginAccessIdentity = "DeleteCloudFrontOriginAccessIden
 // client's request for the DeleteCloudFrontOriginAccessIdentity operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCloudFrontOriginAccessIdentity for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -344,7 +787,34 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 	return
 }
 
+// DeleteCloudFrontOriginAccessIdentity API operation for Amazon CloudFront.
+//
 // Delete an origin access identity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteCloudFrontOriginAccessIdentity for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * InvalidIfMatchVersion
+//   The If-Match version is missing or not valid for the distribution.
+//
+//   * NoSuchCloudFrontOriginAccessIdentity
+//   The specified origin access identity does not exist.
+//
+//   * PreconditionFailed
+//   The precondition given in one or more of the request-header fields evaluated
+//   to false.
+//
+//   * OriginAccessIdentityInUse
+
+//
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (*DeleteCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.DeleteCloudFrontOriginAccessIdentityRequest(input)
 	err := req.Send()
@@ -357,6 +827,8 @@ const opDeleteDistribution = "DeleteDistribution2016_09_07"
 // client's request for the DeleteDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -394,7 +866,34 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 	return
 }
 
+// DeleteDistribution API operation for Amazon CloudFront.
+//
 // Delete a distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * DistributionNotDisabled
+
+//
+//   * InvalidIfMatchVersion
+//   The If-Match version is missing or not valid for the distribution.
+//
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * PreconditionFailed
+//   The precondition given in one or more of the request-header fields evaluated
+//   to false.
+//
 func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*DeleteDistributionOutput, error) {
 	req, out := c.DeleteDistributionRequest(input)
 	err := req.Send()
@@ -407,6 +906,8 @@ const opDeleteStreamingDistribution = "DeleteStreamingDistribution2016_09_07"
 // client's request for the DeleteStreamingDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteStreamingDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -444,7 +945,34 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 	return
 }
 
+// DeleteStreamingDistribution API operation for Amazon CloudFront.
+//
 // Delete a streaming distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteStreamingDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * StreamingDistributionNotDisabled
+
+//
+//   * InvalidIfMatchVersion
+//   The If-Match version is missing or not valid for the distribution.
+//
+//   * NoSuchStreamingDistribution
+//   The specified streaming distribution does not exist.
+//
+//   * PreconditionFailed
+//   The precondition given in one or more of the request-header fields evaluated
+//   to false.
+//
 func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (*DeleteStreamingDistributionOutput, error) {
 	req, out := c.DeleteStreamingDistributionRequest(input)
 	err := req.Send()
@@ -457,6 +985,8 @@ const opGetCloudFrontOriginAccessIdentity = "GetCloudFrontOriginAccessIdentity20
 // client's request for the GetCloudFrontOriginAccessIdentity operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetCloudFrontOriginAccessIdentity for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -492,7 +1022,24 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFro
 	return
 }
 
+// GetCloudFrontOriginAccessIdentity API operation for Amazon CloudFront.
+//
 // Get the information about an origin access identity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetCloudFrontOriginAccessIdentity for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchCloudFrontOriginAccessIdentity
+//   The specified origin access identity does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOriginAccessIdentityInput) (*GetCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityRequest(input)
 	err := req.Send()
@@ -505,6 +1052,8 @@ const opGetCloudFrontOriginAccessIdentityConfig = "GetCloudFrontOriginAccessIden
 // client's request for the GetCloudFrontOriginAccessIdentityConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetCloudFrontOriginAccessIdentityConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -540,7 +1089,24 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCl
 	return
 }
 
+// GetCloudFrontOriginAccessIdentityConfig API operation for Amazon CloudFront.
+//
 // Get the configuration information about an origin access identity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetCloudFrontOriginAccessIdentityConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchCloudFrontOriginAccessIdentity
+//   The specified origin access identity does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFrontOriginAccessIdentityConfigInput) (*GetCloudFrontOriginAccessIdentityConfigOutput, error) {
 	req, out := c.GetCloudFrontOriginAccessIdentityConfigRequest(input)
 	err := req.Send()
@@ -553,6 +1119,8 @@ const opGetDistribution = "GetDistribution2016_09_07"
 // client's request for the GetDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -588,7 +1156,24 @@ func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *r
 	return
 }
 
+// GetDistribution API operation for Amazon CloudFront.
+//
 // Get the information about a distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetDistribution(input *GetDistributionInput) (*GetDistributionOutput, error) {
 	req, out := c.GetDistributionRequest(input)
 	err := req.Send()
@@ -601,6 +1186,8 @@ const opGetDistributionConfig = "GetDistributionConfig2016_09_07"
 // client's request for the GetDistributionConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDistributionConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -636,7 +1223,24 @@ func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigIn
 	return
 }
 
+// GetDistributionConfig API operation for Amazon CloudFront.
+//
 // Get the configuration information about a distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetDistributionConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (*GetDistributionConfigOutput, error) {
 	req, out := c.GetDistributionConfigRequest(input)
 	err := req.Send()
@@ -649,6 +1253,8 @@ const opGetInvalidation = "GetInvalidation2016_09_07"
 // client's request for the GetInvalidation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetInvalidation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -684,7 +1290,27 @@ func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *r
 	return
 }
 
+// GetInvalidation API operation for Amazon CloudFront.
+//
 // Get the information about an invalidation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetInvalidation for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchInvalidation
+//   The specified invalidation does not exist.
+//
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (*GetInvalidationOutput, error) {
 	req, out := c.GetInvalidationRequest(input)
 	err := req.Send()
@@ -697,6 +1323,8 @@ const opGetStreamingDistribution = "GetStreamingDistribution2016_09_07"
 // client's request for the GetStreamingDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetStreamingDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -732,7 +1360,24 @@ func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistribu
 	return
 }
 
+// GetStreamingDistribution API operation for Amazon CloudFront.
+//
 // Get the information about a streaming distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetStreamingDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchStreamingDistribution
+//   The specified streaming distribution does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInput) (*GetStreamingDistributionOutput, error) {
 	req, out := c.GetStreamingDistributionRequest(input)
 	err := req.Send()
@@ -745,6 +1390,8 @@ const opGetStreamingDistributionConfig = "GetStreamingDistributionConfig2016_09_
 // client's request for the GetStreamingDistributionConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetStreamingDistributionConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -780,7 +1427,24 @@ func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDi
 	return
 }
 
+// GetStreamingDistributionConfig API operation for Amazon CloudFront.
+//
 // Get the configuration information about a streaming distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetStreamingDistributionConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchStreamingDistribution
+//   The specified streaming distribution does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistributionConfigInput) (*GetStreamingDistributionConfigOutput, error) {
 	req, out := c.GetStreamingDistributionConfigRequest(input)
 	err := req.Send()
@@ -793,6 +1457,8 @@ const opListCloudFrontOriginAccessIdentities = "ListCloudFrontOriginAccessIdenti
 // client's request for the ListCloudFrontOriginAccessIdentities operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListCloudFrontOriginAccessIdentities for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -834,7 +1500,21 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListClou
 	return
 }
 
+// ListCloudFrontOriginAccessIdentities API operation for Amazon CloudFront.
+//
 // List origin access identities.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListCloudFrontOriginAccessIdentities for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgument
+//   The argument is invalid.
+//
 func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontOriginAccessIdentitiesInput) (*ListCloudFrontOriginAccessIdentitiesOutput, error) {
 	req, out := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
 	err := req.Send()
@@ -872,6 +1552,8 @@ const opListDistributions = "ListDistributions2016_09_07"
 // client's request for the ListDistributions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDistributions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -913,7 +1595,21 @@ func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (re
 	return
 }
 
+// ListDistributions API operation for Amazon CloudFront.
+//
 // List distributions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListDistributions for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgument
+//   The argument is invalid.
+//
 func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (*ListDistributionsOutput, error) {
 	req, out := c.ListDistributionsRequest(input)
 	err := req.Send()
@@ -952,6 +1648,8 @@ const opListDistributionsByWebACLId = "ListDistributionsByWebACLId2016_09_07"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListDistributionsByWebACLId for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -986,7 +1684,24 @@ func (c *CloudFront) ListDistributionsByWebACLIdRequest(input *ListDistributions
 	return
 }
 
+// ListDistributionsByWebACLId API operation for Amazon CloudFront.
+//
 // List the distributions that are associated with a specified AWS WAF web ACL.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListDistributionsByWebACLId for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidWebACLId
+
+//
 func (c *CloudFront) ListDistributionsByWebACLId(input *ListDistributionsByWebACLIdInput) (*ListDistributionsByWebACLIdOutput, error) {
 	req, out := c.ListDistributionsByWebACLIdRequest(input)
 	err := req.Send()
@@ -999,6 +1714,8 @@ const opListInvalidations = "ListInvalidations2016_09_07"
 // client's request for the ListInvalidations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListInvalidations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1040,7 +1757,27 @@ func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (re
 	return
 }
 
+// ListInvalidations API operation for Amazon CloudFront.
+//
 // List invalidation batches.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListInvalidations for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * AccessDenied
+//   Access denied.
+//
 func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (*ListInvalidationsOutput, error) {
 	req, out := c.ListInvalidationsRequest(input)
 	err := req.Send()
@@ -1078,6 +1815,8 @@ const opListStreamingDistributions = "ListStreamingDistributions2016_09_07"
 // client's request for the ListStreamingDistributions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListStreamingDistributions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1119,7 +1858,21 @@ func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistr
 	return
 }
 
+// ListStreamingDistributions API operation for Amazon CloudFront.
+//
 // List streaming distributions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListStreamingDistributions for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgument
+//   The argument is invalid.
+//
 func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistributionsInput) (*ListStreamingDistributionsOutput, error) {
 	req, out := c.ListStreamingDistributionsRequest(input)
 	err := req.Send()
@@ -1158,6 +1911,8 @@ const opListTagsForResource = "ListTagsForResource2016_09_07"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListTagsForResource for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1192,7 +1947,31 @@ func (c *CloudFront) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 	return
 }
 
+// ListTagsForResource API operation for Amazon CloudFront.
+//
 // List tags for a CloudFront resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidTagging
+//   The specified tagging for a CloudFront resource is invalid. For more information,
+//   see the error text.
+//
+//   * NoSuchResource
+//   The specified CloudFront resource does not exist.
+//
 func (c *CloudFront) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -1205,6 +1984,8 @@ const opTagResource = "TagResource2016_09_07"
 // client's request for the TagResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TagResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1242,7 +2023,31 @@ func (c *CloudFront) TagResourceRequest(input *TagResourceInput) (req *request.R
 	return
 }
 
+// TagResource API operation for Amazon CloudFront.
+//
 // Add tags to a CloudFront resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidTagging
+//   The specified tagging for a CloudFront resource is invalid. For more information,
+//   see the error text.
+//
+//   * NoSuchResource
+//   The specified CloudFront resource does not exist.
+//
 func (c *CloudFront) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
 	err := req.Send()
@@ -1255,6 +2060,8 @@ const opUntagResource = "UntagResource2016_09_07"
 // client's request for the UntagResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UntagResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1292,7 +2099,31 @@ func (c *CloudFront) UntagResourceRequest(input *UntagResourceInput) (req *reque
 	return
 }
 
+// UntagResource API operation for Amazon CloudFront.
+//
 // Remove tags from a CloudFront resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidTagging
+//   The specified tagging for a CloudFront resource is invalid. For more information,
+//   see the error text.
+//
+//   * NoSuchResource
+//   The specified CloudFront resource does not exist.
+//
 func (c *CloudFront) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
 	err := req.Send()
@@ -1305,6 +2136,8 @@ const opUpdateCloudFrontOriginAccessIdentity = "UpdateCloudFrontOriginAccessIden
 // client's request for the UpdateCloudFrontOriginAccessIdentity operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateCloudFrontOriginAccessIdentity for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1340,7 +2173,44 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 	return
 }
 
+// UpdateCloudFrontOriginAccessIdentity API operation for Amazon CloudFront.
+//
 // Update an origin access identity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateCloudFrontOriginAccessIdentity for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * IllegalUpdate
+//   Origin and CallerReference cannot be updated.
+//
+//   * InvalidIfMatchVersion
+//   The If-Match version is missing or not valid for the distribution.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * NoSuchCloudFrontOriginAccessIdentity
+//   The specified origin access identity does not exist.
+//
+//   * PreconditionFailed
+//   The precondition given in one or more of the request-header fields evaluated
+//   to false.
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
 func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFrontOriginAccessIdentityInput) (*UpdateCloudFrontOriginAccessIdentityOutput, error) {
 	req, out := c.UpdateCloudFrontOriginAccessIdentityRequest(input)
 	err := req.Send()
@@ -1353,6 +2223,8 @@ const opUpdateDistribution = "UpdateDistribution2016_09_07"
 // client's request for the UpdateDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1388,7 +2260,132 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 	return
 }
 
+// UpdateDistribution API operation for Amazon CloudFront.
+//
 // Update a distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * CNAMEAlreadyExists
+
+//
+//   * IllegalUpdate
+//   Origin and CallerReference cannot be updated.
+//
+//   * InvalidIfMatchVersion
+//   The If-Match version is missing or not valid for the distribution.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * NoSuchDistribution
+//   The specified distribution does not exist.
+//
+//   * PreconditionFailed
+//   The precondition given in one or more of the request-header fields evaluated
+//   to false.
+//
+//   * TooManyDistributionCNAMEs
+//   Your request contains more CNAMEs than are allowed per distribution.
+//
+//   * InvalidDefaultRootObject
+//   The default root object file name is too big or contains an invalid character.
+//
+//   * InvalidRelativePath
+//   The relative path is too big, is not URL-encoded, or does not begin with
+//   a slash (/).
+//
+//   * InvalidErrorCode
+
+//
+//   * InvalidResponseCode
+
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidOriginAccessIdentity
+//   The origin access identity is not valid or doesn't exist.
+//
+//   * TooManyTrustedSigners
+//   Your request contains more trusted signers than are allowed per distribution.
+//
+//   * TrustedSignerDoesNotExist
+//   One or more of your trusted signers do not exist.
+//
+//   * InvalidViewerCertificate
+
+//
+//   * InvalidMinimumProtocolVersion
+
+//
+//   * InvalidRequiredProtocol
+//   This operation requires the HTTPS protocol. Ensure that you specify the HTTPS
+//   protocol in your request, or omit the RequiredProtocols element from your
+//   distribution configuration.
+//
+//   * NoSuchOrigin
+//   No origin exists with the specified Origin Id.
+//
+//   * TooManyOrigins
+//   You cannot create anymore origins for the distribution.
+//
+//   * TooManyCacheBehaviors
+//   You cannot create anymore cache behaviors for the distribution.
+//
+//   * TooManyCookieNamesInWhiteList
+//   Your request contains more cookie names in the whitelist than are allowed
+//   per cache behavior.
+//
+//   * InvalidForwardCookies
+//   Your request contains forward cookies option which doesn't match with the
+//   expectation for the whitelisted list of cookie names. Either list of cookie
+//   names has been specified when not allowed or list of cookie names is missing
+//   when expected.
+//
+//   * TooManyHeadersInForwardedValues
+
+//
+//   * InvalidHeadersForS3Origin
+
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
+//   * TooManyCertificates
+//   You cannot create anymore custom ssl certificates.
+//
+//   * InvalidLocationCode
+
+//
+//   * InvalidGeoRestrictionParameter
+
+//
+//   * InvalidTTLOrder
+
+//
+//   * InvalidWebACLId
+
+//
+//   * TooManyOriginCustomHeaders
+
+//
+//   * TooManyQueryStringParameters
+
+//
+//   * InvalidQueryStringParameters
+
+//
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
 	req, out := c.UpdateDistributionRequest(input)
 	err := req.Send()
@@ -1401,6 +2398,8 @@ const opUpdateStreamingDistribution = "UpdateStreamingDistribution2016_09_07"
 // client's request for the UpdateStreamingDistribution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateStreamingDistribution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1436,7 +2435,59 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 	return
 }
 
+// UpdateStreamingDistribution API operation for Amazon CloudFront.
+//
 // Update a streaming distribution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateStreamingDistribution for usage and error information.
+//
+// Returned Error Codes:
+//   * AccessDenied
+//   Access denied.
+//
+//   * CNAMEAlreadyExists
+
+//
+//   * IllegalUpdate
+//   Origin and CallerReference cannot be updated.
+//
+//   * InvalidIfMatchVersion
+//   The If-Match version is missing or not valid for the distribution.
+//
+//   * MissingBody
+//   This operation requires a body. Ensure that the body is present and the Content-Type
+//   header is set.
+//
+//   * NoSuchStreamingDistribution
+//   The specified streaming distribution does not exist.
+//
+//   * PreconditionFailed
+//   The precondition given in one or more of the request-header fields evaluated
+//   to false.
+//
+//   * TooManyStreamingDistributionCNAMEs
+
+//
+//   * InvalidArgument
+//   The argument is invalid.
+//
+//   * InvalidOriginAccessIdentity
+//   The origin access identity is not valid or doesn't exist.
+//
+//   * TooManyTrustedSigners
+//   Your request contains more trusted signers than are allowed per distribution.
+//
+//   * TrustedSignerDoesNotExist
+//   One or more of your trusted signers do not exist.
+//
+//   * InconsistentQuantities
+//   The value of Quantity and the size of Items do not match.
+//
 func (c *CloudFront) UpdateStreamingDistribution(input *UpdateStreamingDistributionInput) (*UpdateStreamingDistributionOutput, error) {
 	req, out := c.UpdateStreamingDistributionRequest(input)
 	err := req.Send()

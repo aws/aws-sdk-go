@@ -21,6 +21,8 @@ const opAbortMultipartUpload = "AbortMultipartUpload"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AbortMultipartUpload for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -55,11 +57,25 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req 
 	return
 }
 
+// AbortMultipartUpload API operation for Amazon Simple Storage Service.
+//
 // Aborts a multipart upload.
 //
 // To verify that all parts have been removed, so you don't get charged for
 // the part storage, you should call the List Parts operation and ensure the
 // parts list is empty.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation AbortMultipartUpload for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchUpload
+//   The specified multipart upload does not exist.
+//
 func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (*AbortMultipartUploadOutput, error) {
 	req, out := c.AbortMultipartUploadRequest(input)
 	err := req.Send()
@@ -72,6 +88,8 @@ const opCompleteMultipartUpload = "CompleteMultipartUpload"
 // client's request for the CompleteMultipartUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CompleteMultipartUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -107,7 +125,16 @@ func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput)
 	return
 }
 
+// CompleteMultipartUpload API operation for Amazon Simple Storage Service.
+//
 // Completes a multipart upload by assembling previously uploaded parts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation CompleteMultipartUpload for usage and error information.
 func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (*CompleteMultipartUploadOutput, error) {
 	req, out := c.CompleteMultipartUploadRequest(input)
 	err := req.Send()
@@ -120,6 +147,8 @@ const opCopyObject = "CopyObject"
 // client's request for the CopyObject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CopyObject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -155,7 +184,22 @@ func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *request.Request, ou
 	return
 }
 
+// CopyObject API operation for Amazon Simple Storage Service.
+//
 // Creates a copy of an object that is already stored in Amazon S3.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation CopyObject for usage and error information.
+//
+// Returned Error Codes:
+//   * ObjectNotInActiveTierError
+//   The source object of the COPY operation is not in the active tier and is
+//   only stored in Amazon Glacier.
+//
 func (c *S3) CopyObject(input *CopyObjectInput) (*CopyObjectOutput, error) {
 	req, out := c.CopyObjectRequest(input)
 	err := req.Send()
@@ -168,6 +212,8 @@ const opCreateBucket = "CreateBucket"
 // client's request for the CreateBucket operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateBucket for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -203,7 +249,25 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 	return
 }
 
+// CreateBucket API operation for Amazon Simple Storage Service.
+//
 // Creates a new bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation CreateBucket for usage and error information.
+//
+// Returned Error Codes:
+//   * BucketAlreadyExists
+//   The requested bucket name is not available. The bucket namespace is shared
+//   by all users of the system. Please select a different name and try again.
+//
+//   * BucketAlreadyOwnedByYou
+
+//
 func (c *S3) CreateBucket(input *CreateBucketInput) (*CreateBucketOutput, error) {
 	req, out := c.CreateBucketRequest(input)
 	err := req.Send()
@@ -216,6 +280,8 @@ const opCreateMultipartUpload = "CreateMultipartUpload"
 // client's request for the CreateMultipartUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateMultipartUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -251,6 +317,8 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 	return
 }
 
+// CreateMultipartUpload API operation for Amazon Simple Storage Service.
+//
 // Initiates a multipart upload and returns an upload ID.
 //
 // Note: After you initiate multipart upload and upload one or more parts, you
@@ -258,6 +326,13 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 // for storage of the uploaded parts. Only after you either complete or abort
 // multipart upload, Amazon S3 frees up the parts storage and stops charging
 // you for the parts storage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation CreateMultipartUpload for usage and error information.
 func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (*CreateMultipartUploadOutput, error) {
 	req, out := c.CreateMultipartUploadRequest(input)
 	err := req.Send()
@@ -270,6 +345,8 @@ const opDeleteBucket = "DeleteBucket"
 // client's request for the DeleteBucket operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucket for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -307,8 +384,17 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *request.Request
 	return
 }
 
+// DeleteBucket API operation for Amazon Simple Storage Service.
+//
 // Deletes the bucket. All objects (including all object versions and Delete
 // Markers) in the bucket must be deleted before the bucket itself can be deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucket for usage and error information.
 func (c *S3) DeleteBucket(input *DeleteBucketInput) (*DeleteBucketOutput, error) {
 	req, out := c.DeleteBucketRequest(input)
 	err := req.Send()
@@ -321,6 +407,8 @@ const opDeleteBucketCors = "DeleteBucketCors"
 // client's request for the DeleteBucketCors operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucketCors for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -358,7 +446,16 @@ func (c *S3) DeleteBucketCorsRequest(input *DeleteBucketCorsInput) (req *request
 	return
 }
 
+// DeleteBucketCors API operation for Amazon Simple Storage Service.
+//
 // Deletes the cors configuration information set for the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketCors for usage and error information.
 func (c *S3) DeleteBucketCors(input *DeleteBucketCorsInput) (*DeleteBucketCorsOutput, error) {
 	req, out := c.DeleteBucketCorsRequest(input)
 	err := req.Send()
@@ -371,6 +468,8 @@ const opDeleteBucketLifecycle = "DeleteBucketLifecycle"
 // client's request for the DeleteBucketLifecycle operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucketLifecycle for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -408,7 +507,16 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (re
 	return
 }
 
+// DeleteBucketLifecycle API operation for Amazon Simple Storage Service.
+//
 // Deletes the lifecycle configuration from the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketLifecycle for usage and error information.
 func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (*DeleteBucketLifecycleOutput, error) {
 	req, out := c.DeleteBucketLifecycleRequest(input)
 	err := req.Send()
@@ -421,6 +529,8 @@ const opDeleteBucketPolicy = "DeleteBucketPolicy"
 // client's request for the DeleteBucketPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucketPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -458,7 +568,16 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *req
 	return
 }
 
+// DeleteBucketPolicy API operation for Amazon Simple Storage Service.
+//
 // Deletes the policy from the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketPolicy for usage and error information.
 func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (*DeleteBucketPolicyOutput, error) {
 	req, out := c.DeleteBucketPolicyRequest(input)
 	err := req.Send()
@@ -471,6 +590,8 @@ const opDeleteBucketReplication = "DeleteBucketReplication"
 // client's request for the DeleteBucketReplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucketReplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -508,7 +629,16 @@ func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput)
 	return
 }
 
+// DeleteBucketReplication API operation for Amazon Simple Storage Service.
+//
 // Deletes the replication configuration from the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketReplication for usage and error information.
 func (c *S3) DeleteBucketReplication(input *DeleteBucketReplicationInput) (*DeleteBucketReplicationOutput, error) {
 	req, out := c.DeleteBucketReplicationRequest(input)
 	err := req.Send()
@@ -521,6 +651,8 @@ const opDeleteBucketTagging = "DeleteBucketTagging"
 // client's request for the DeleteBucketTagging operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucketTagging for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -558,7 +690,16 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *r
 	return
 }
 
+// DeleteBucketTagging API operation for Amazon Simple Storage Service.
+//
 // Deletes the tags from the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketTagging for usage and error information.
 func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (*DeleteBucketTaggingOutput, error) {
 	req, out := c.DeleteBucketTaggingRequest(input)
 	err := req.Send()
@@ -571,6 +712,8 @@ const opDeleteBucketWebsite = "DeleteBucketWebsite"
 // client's request for the DeleteBucketWebsite operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBucketWebsite for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -608,7 +751,16 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *r
 	return
 }
 
+// DeleteBucketWebsite API operation for Amazon Simple Storage Service.
+//
 // This operation removes the website configuration from the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketWebsite for usage and error information.
 func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (*DeleteBucketWebsiteOutput, error) {
 	req, out := c.DeleteBucketWebsiteRequest(input)
 	err := req.Send()
@@ -621,6 +773,8 @@ const opDeleteObject = "DeleteObject"
 // client's request for the DeleteObject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteObject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -656,9 +810,18 @@ func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *request.Request
 	return
 }
 
+// DeleteObject API operation for Amazon Simple Storage Service.
+//
 // Removes the null version (if there is one) of an object and inserts a delete
 // marker, which becomes the latest version of the object. If there isn't a
 // null version, Amazon S3 does not remove any objects.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteObject for usage and error information.
 func (c *S3) DeleteObject(input *DeleteObjectInput) (*DeleteObjectOutput, error) {
 	req, out := c.DeleteObjectRequest(input)
 	err := req.Send()
@@ -671,6 +834,8 @@ const opDeleteObjects = "DeleteObjects"
 // client's request for the DeleteObjects operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteObjects for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -706,8 +871,17 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *request.Reque
 	return
 }
 
+// DeleteObjects API operation for Amazon Simple Storage Service.
+//
 // This operation enables you to delete multiple objects from a bucket using
 // a single HTTP request. You may specify up to 1000 keys.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteObjects for usage and error information.
 func (c *S3) DeleteObjects(input *DeleteObjectsInput) (*DeleteObjectsOutput, error) {
 	req, out := c.DeleteObjectsRequest(input)
 	err := req.Send()
@@ -720,6 +894,8 @@ const opGetBucketAccelerateConfiguration = "GetBucketAccelerateConfiguration"
 // client's request for the GetBucketAccelerateConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketAccelerateConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -755,7 +931,16 @@ func (c *S3) GetBucketAccelerateConfigurationRequest(input *GetBucketAccelerateC
 	return
 }
 
+// GetBucketAccelerateConfiguration API operation for Amazon Simple Storage Service.
+//
 // Returns the accelerate configuration of a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketAccelerateConfiguration for usage and error information.
 func (c *S3) GetBucketAccelerateConfiguration(input *GetBucketAccelerateConfigurationInput) (*GetBucketAccelerateConfigurationOutput, error) {
 	req, out := c.GetBucketAccelerateConfigurationRequest(input)
 	err := req.Send()
@@ -768,6 +953,8 @@ const opGetBucketAcl = "GetBucketAcl"
 // client's request for the GetBucketAcl operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketAcl for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -803,7 +990,16 @@ func (c *S3) GetBucketAclRequest(input *GetBucketAclInput) (req *request.Request
 	return
 }
 
+// GetBucketAcl API operation for Amazon Simple Storage Service.
+//
 // Gets the access control policy for the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketAcl for usage and error information.
 func (c *S3) GetBucketAcl(input *GetBucketAclInput) (*GetBucketAclOutput, error) {
 	req, out := c.GetBucketAclRequest(input)
 	err := req.Send()
@@ -816,6 +1012,8 @@ const opGetBucketCors = "GetBucketCors"
 // client's request for the GetBucketCors operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketCors for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -851,7 +1049,16 @@ func (c *S3) GetBucketCorsRequest(input *GetBucketCorsInput) (req *request.Reque
 	return
 }
 
+// GetBucketCors API operation for Amazon Simple Storage Service.
+//
 // Returns the cors configuration for the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketCors for usage and error information.
 func (c *S3) GetBucketCors(input *GetBucketCorsInput) (*GetBucketCorsOutput, error) {
 	req, out := c.GetBucketCorsRequest(input)
 	err := req.Send()
@@ -864,6 +1071,8 @@ const opGetBucketLifecycle = "GetBucketLifecycle"
 // client's request for the GetBucketLifecycle operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketLifecycle for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -902,7 +1111,16 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *req
 	return
 }
 
+// GetBucketLifecycle API operation for Amazon Simple Storage Service.
+//
 // Deprecated, see the GetBucketLifecycleConfiguration operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketLifecycle for usage and error information.
 func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (*GetBucketLifecycleOutput, error) {
 	req, out := c.GetBucketLifecycleRequest(input)
 	err := req.Send()
@@ -915,6 +1133,8 @@ const opGetBucketLifecycleConfiguration = "GetBucketLifecycleConfiguration"
 // client's request for the GetBucketLifecycleConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketLifecycleConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -950,7 +1170,16 @@ func (c *S3) GetBucketLifecycleConfigurationRequest(input *GetBucketLifecycleCon
 	return
 }
 
+// GetBucketLifecycleConfiguration API operation for Amazon Simple Storage Service.
+//
 // Returns the lifecycle configuration information set on the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketLifecycleConfiguration for usage and error information.
 func (c *S3) GetBucketLifecycleConfiguration(input *GetBucketLifecycleConfigurationInput) (*GetBucketLifecycleConfigurationOutput, error) {
 	req, out := c.GetBucketLifecycleConfigurationRequest(input)
 	err := req.Send()
@@ -963,6 +1192,8 @@ const opGetBucketLocation = "GetBucketLocation"
 // client's request for the GetBucketLocation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketLocation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -998,7 +1229,16 @@ func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *reque
 	return
 }
 
+// GetBucketLocation API operation for Amazon Simple Storage Service.
+//
 // Returns the region the bucket resides in.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketLocation for usage and error information.
 func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (*GetBucketLocationOutput, error) {
 	req, out := c.GetBucketLocationRequest(input)
 	err := req.Send()
@@ -1011,6 +1251,8 @@ const opGetBucketLogging = "GetBucketLogging"
 // client's request for the GetBucketLogging operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketLogging for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1046,8 +1288,17 @@ func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *request
 	return
 }
 
+// GetBucketLogging API operation for Amazon Simple Storage Service.
+//
 // Returns the logging status of a bucket and the permissions users have to
 // view and modify that status. To use GET, you must be the bucket owner.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketLogging for usage and error information.
 func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (*GetBucketLoggingOutput, error) {
 	req, out := c.GetBucketLoggingRequest(input)
 	err := req.Send()
@@ -1060,6 +1311,8 @@ const opGetBucketNotification = "GetBucketNotification"
 // client's request for the GetBucketNotification operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketNotification for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1098,7 +1351,16 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurat
 	return
 }
 
+// GetBucketNotification API operation for Amazon Simple Storage Service.
+//
 // Deprecated, see the GetBucketNotificationConfiguration operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketNotification for usage and error information.
 func (c *S3) GetBucketNotification(input *GetBucketNotificationConfigurationRequest) (*NotificationConfigurationDeprecated, error) {
 	req, out := c.GetBucketNotificationRequest(input)
 	err := req.Send()
@@ -1111,6 +1373,8 @@ const opGetBucketNotificationConfiguration = "GetBucketNotificationConfiguration
 // client's request for the GetBucketNotificationConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketNotificationConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1146,7 +1410,16 @@ func (c *S3) GetBucketNotificationConfigurationRequest(input *GetBucketNotificat
 	return
 }
 
+// GetBucketNotificationConfiguration API operation for Amazon Simple Storage Service.
+//
 // Returns the notification configuration of a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketNotificationConfiguration for usage and error information.
 func (c *S3) GetBucketNotificationConfiguration(input *GetBucketNotificationConfigurationRequest) (*NotificationConfiguration, error) {
 	req, out := c.GetBucketNotificationConfigurationRequest(input)
 	err := req.Send()
@@ -1159,6 +1432,8 @@ const opGetBucketPolicy = "GetBucketPolicy"
 // client's request for the GetBucketPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1194,7 +1469,16 @@ func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *request.R
 	return
 }
 
+// GetBucketPolicy API operation for Amazon Simple Storage Service.
+//
 // Returns the policy of a specified bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketPolicy for usage and error information.
 func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (*GetBucketPolicyOutput, error) {
 	req, out := c.GetBucketPolicyRequest(input)
 	err := req.Send()
@@ -1207,6 +1491,8 @@ const opGetBucketReplication = "GetBucketReplication"
 // client's request for the GetBucketReplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketReplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1242,7 +1528,16 @@ func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req 
 	return
 }
 
+// GetBucketReplication API operation for Amazon Simple Storage Service.
+//
 // Returns the replication configuration of a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketReplication for usage and error information.
 func (c *S3) GetBucketReplication(input *GetBucketReplicationInput) (*GetBucketReplicationOutput, error) {
 	req, out := c.GetBucketReplicationRequest(input)
 	err := req.Send()
@@ -1255,6 +1550,8 @@ const opGetBucketRequestPayment = "GetBucketRequestPayment"
 // client's request for the GetBucketRequestPayment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketRequestPayment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1290,7 +1587,16 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput)
 	return
 }
 
+// GetBucketRequestPayment API operation for Amazon Simple Storage Service.
+//
 // Returns the request payment configuration of a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketRequestPayment for usage and error information.
 func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (*GetBucketRequestPaymentOutput, error) {
 	req, out := c.GetBucketRequestPaymentRequest(input)
 	err := req.Send()
@@ -1303,6 +1609,8 @@ const opGetBucketTagging = "GetBucketTagging"
 // client's request for the GetBucketTagging operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketTagging for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1338,7 +1646,16 @@ func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *request
 	return
 }
 
+// GetBucketTagging API operation for Amazon Simple Storage Service.
+//
 // Returns the tag set associated with the bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketTagging for usage and error information.
 func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (*GetBucketTaggingOutput, error) {
 	req, out := c.GetBucketTaggingRequest(input)
 	err := req.Send()
@@ -1351,6 +1668,8 @@ const opGetBucketVersioning = "GetBucketVersioning"
 // client's request for the GetBucketVersioning operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketVersioning for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1386,7 +1705,16 @@ func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *r
 	return
 }
 
+// GetBucketVersioning API operation for Amazon Simple Storage Service.
+//
 // Returns the versioning state of a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketVersioning for usage and error information.
 func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (*GetBucketVersioningOutput, error) {
 	req, out := c.GetBucketVersioningRequest(input)
 	err := req.Send()
@@ -1399,6 +1727,8 @@ const opGetBucketWebsite = "GetBucketWebsite"
 // client's request for the GetBucketWebsite operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBucketWebsite for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1434,7 +1764,16 @@ func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *request
 	return
 }
 
+// GetBucketWebsite API operation for Amazon Simple Storage Service.
+//
 // Returns the website configuration for a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketWebsite for usage and error information.
 func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (*GetBucketWebsiteOutput, error) {
 	req, out := c.GetBucketWebsiteRequest(input)
 	err := req.Send()
@@ -1447,6 +1786,8 @@ const opGetObject = "GetObject"
 // client's request for the GetObject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetObject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1482,7 +1823,21 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) (req *request.Request, outp
 	return
 }
 
+// GetObject API operation for Amazon Simple Storage Service.
+//
 // Retrieves objects from Amazon S3.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetObject for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchKey
+//   The specified key does not exist.
+//
 func (c *S3) GetObject(input *GetObjectInput) (*GetObjectOutput, error) {
 	req, out := c.GetObjectRequest(input)
 	err := req.Send()
@@ -1495,6 +1850,8 @@ const opGetObjectAcl = "GetObjectAcl"
 // client's request for the GetObjectAcl operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetObjectAcl for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1530,7 +1887,21 @@ func (c *S3) GetObjectAclRequest(input *GetObjectAclInput) (req *request.Request
 	return
 }
 
+// GetObjectAcl API operation for Amazon Simple Storage Service.
+//
 // Returns the access control list (ACL) of an object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetObjectAcl for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchKey
+//   The specified key does not exist.
+//
 func (c *S3) GetObjectAcl(input *GetObjectAclInput) (*GetObjectAclOutput, error) {
 	req, out := c.GetObjectAclRequest(input)
 	err := req.Send()
@@ -1543,6 +1914,8 @@ const opGetObjectTorrent = "GetObjectTorrent"
 // client's request for the GetObjectTorrent operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetObjectTorrent for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1578,7 +1951,16 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *request
 	return
 }
 
+// GetObjectTorrent API operation for Amazon Simple Storage Service.
+//
 // Return torrent files from a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetObjectTorrent for usage and error information.
 func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (*GetObjectTorrentOutput, error) {
 	req, out := c.GetObjectTorrentRequest(input)
 	err := req.Send()
@@ -1591,6 +1973,8 @@ const opHeadBucket = "HeadBucket"
 // client's request for the HeadBucket operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See HeadBucket for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1628,8 +2012,22 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *request.Request, ou
 	return
 }
 
+// HeadBucket API operation for Amazon Simple Storage Service.
+//
 // This operation is useful to determine if a bucket exists and you have permission
 // to access it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation HeadBucket for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchBucket
+//   The specified bucket does not exist.
+//
 func (c *S3) HeadBucket(input *HeadBucketInput) (*HeadBucketOutput, error) {
 	req, out := c.HeadBucketRequest(input)
 	err := req.Send()
@@ -1642,6 +2040,8 @@ const opHeadObject = "HeadObject"
 // client's request for the HeadObject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See HeadObject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1677,9 +2077,23 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *request.Request, ou
 	return
 }
 
+// HeadObject API operation for Amazon Simple Storage Service.
+//
 // The HEAD operation retrieves metadata from an object without returning the
 // object itself. This operation is useful if you're only interested in an object's
 // metadata. To use HEAD, you must have READ access to the object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation HeadObject for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchKey
+//   The specified key does not exist.
+//
 func (c *S3) HeadObject(input *HeadObjectInput) (*HeadObjectOutput, error) {
 	req, out := c.HeadObjectRequest(input)
 	err := req.Send()
@@ -1692,6 +2106,8 @@ const opListBuckets = "ListBuckets"
 // client's request for the ListBuckets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListBuckets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1727,7 +2143,16 @@ func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *request.Request, 
 	return
 }
 
+// ListBuckets API operation for Amazon Simple Storage Service.
+//
 // Returns a list of all buckets owned by the authenticated sender of the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation ListBuckets for usage and error information.
 func (c *S3) ListBuckets(input *ListBucketsInput) (*ListBucketsOutput, error) {
 	req, out := c.ListBucketsRequest(input)
 	err := req.Send()
@@ -1740,6 +2165,8 @@ const opListMultipartUploads = "ListMultipartUploads"
 // client's request for the ListMultipartUploads operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListMultipartUploads for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1781,7 +2208,16 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req 
 	return
 }
 
+// ListMultipartUploads API operation for Amazon Simple Storage Service.
+//
 // This operation lists in-progress multipart uploads.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation ListMultipartUploads for usage and error information.
 func (c *S3) ListMultipartUploads(input *ListMultipartUploadsInput) (*ListMultipartUploadsOutput, error) {
 	req, out := c.ListMultipartUploadsRequest(input)
 	err := req.Send()
@@ -1819,6 +2255,8 @@ const opListObjectVersions = "ListObjectVersions"
 // client's request for the ListObjectVersions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListObjectVersions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1860,7 +2298,16 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *req
 	return
 }
 
+// ListObjectVersions API operation for Amazon Simple Storage Service.
+//
 // Returns metadata about all of the versions of objects in a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation ListObjectVersions for usage and error information.
 func (c *S3) ListObjectVersions(input *ListObjectVersionsInput) (*ListObjectVersionsOutput, error) {
 	req, out := c.ListObjectVersionsRequest(input)
 	err := req.Send()
@@ -1898,6 +2345,8 @@ const opListObjects = "ListObjects"
 // client's request for the ListObjects operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListObjects for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1939,9 +2388,23 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *request.Request, 
 	return
 }
 
+// ListObjects API operation for Amazon Simple Storage Service.
+//
 // Returns some or all (up to 1000) of the objects in a bucket. You can use
 // the request parameters as selection criteria to return a subset of the objects
 // in a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation ListObjects for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchBucket
+//   The specified bucket does not exist.
+//
 func (c *S3) ListObjects(input *ListObjectsInput) (*ListObjectsOutput, error) {
 	req, out := c.ListObjectsRequest(input)
 	err := req.Send()
@@ -1979,6 +2442,8 @@ const opListObjectsV2 = "ListObjectsV2"
 // client's request for the ListObjectsV2 operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListObjectsV2 for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2020,10 +2485,24 @@ func (c *S3) ListObjectsV2Request(input *ListObjectsV2Input) (req *request.Reque
 	return
 }
 
+// ListObjectsV2 API operation for Amazon Simple Storage Service.
+//
 // Returns some or all (up to 1000) of the objects in a bucket. You can use
 // the request parameters as selection criteria to return a subset of the objects
 // in a bucket. Note: ListObjectsV2 is the revised List Objects API and we recommend
 // you use this revised API for new application development.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation ListObjectsV2 for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchBucket
+//   The specified bucket does not exist.
+//
 func (c *S3) ListObjectsV2(input *ListObjectsV2Input) (*ListObjectsV2Output, error) {
 	req, out := c.ListObjectsV2Request(input)
 	err := req.Send()
@@ -2061,6 +2540,8 @@ const opListParts = "ListParts"
 // client's request for the ListParts operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListParts for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2102,7 +2583,16 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) (req *request.Request, outp
 	return
 }
 
+// ListParts API operation for Amazon Simple Storage Service.
+//
 // Lists the parts that have been uploaded for a specific multipart upload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation ListParts for usage and error information.
 func (c *S3) ListParts(input *ListPartsInput) (*ListPartsOutput, error) {
 	req, out := c.ListPartsRequest(input)
 	err := req.Send()
@@ -2141,6 +2631,8 @@ const opPutBucketAccelerateConfiguration = "PutBucketAccelerateConfiguration"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PutBucketAccelerateConfiguration for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -2177,7 +2669,16 @@ func (c *S3) PutBucketAccelerateConfigurationRequest(input *PutBucketAccelerateC
 	return
 }
 
+// PutBucketAccelerateConfiguration API operation for Amazon Simple Storage Service.
+//
 // Sets the accelerate configuration of an existing bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketAccelerateConfiguration for usage and error information.
 func (c *S3) PutBucketAccelerateConfiguration(input *PutBucketAccelerateConfigurationInput) (*PutBucketAccelerateConfigurationOutput, error) {
 	req, out := c.PutBucketAccelerateConfigurationRequest(input)
 	err := req.Send()
@@ -2190,6 +2691,8 @@ const opPutBucketAcl = "PutBucketAcl"
 // client's request for the PutBucketAcl operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketAcl for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2227,7 +2730,16 @@ func (c *S3) PutBucketAclRequest(input *PutBucketAclInput) (req *request.Request
 	return
 }
 
+// PutBucketAcl API operation for Amazon Simple Storage Service.
+//
 // Sets the permissions on a bucket using access control lists (ACL).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketAcl for usage and error information.
 func (c *S3) PutBucketAcl(input *PutBucketAclInput) (*PutBucketAclOutput, error) {
 	req, out := c.PutBucketAclRequest(input)
 	err := req.Send()
@@ -2240,6 +2752,8 @@ const opPutBucketCors = "PutBucketCors"
 // client's request for the PutBucketCors operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketCors for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2277,7 +2791,16 @@ func (c *S3) PutBucketCorsRequest(input *PutBucketCorsInput) (req *request.Reque
 	return
 }
 
+// PutBucketCors API operation for Amazon Simple Storage Service.
+//
 // Sets the cors configuration for a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketCors for usage and error information.
 func (c *S3) PutBucketCors(input *PutBucketCorsInput) (*PutBucketCorsOutput, error) {
 	req, out := c.PutBucketCorsRequest(input)
 	err := req.Send()
@@ -2290,6 +2813,8 @@ const opPutBucketLifecycle = "PutBucketLifecycle"
 // client's request for the PutBucketLifecycle operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketLifecycle for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2330,7 +2855,16 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *req
 	return
 }
 
+// PutBucketLifecycle API operation for Amazon Simple Storage Service.
+//
 // Deprecated, see the PutBucketLifecycleConfiguration operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketLifecycle for usage and error information.
 func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (*PutBucketLifecycleOutput, error) {
 	req, out := c.PutBucketLifecycleRequest(input)
 	err := req.Send()
@@ -2343,6 +2877,8 @@ const opPutBucketLifecycleConfiguration = "PutBucketLifecycleConfiguration"
 // client's request for the PutBucketLifecycleConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketLifecycleConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2380,8 +2916,17 @@ func (c *S3) PutBucketLifecycleConfigurationRequest(input *PutBucketLifecycleCon
 	return
 }
 
+// PutBucketLifecycleConfiguration API operation for Amazon Simple Storage Service.
+//
 // Sets lifecycle configuration for your bucket. If a lifecycle configuration
 // exists, it replaces it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketLifecycleConfiguration for usage and error information.
 func (c *S3) PutBucketLifecycleConfiguration(input *PutBucketLifecycleConfigurationInput) (*PutBucketLifecycleConfigurationOutput, error) {
 	req, out := c.PutBucketLifecycleConfigurationRequest(input)
 	err := req.Send()
@@ -2394,6 +2939,8 @@ const opPutBucketLogging = "PutBucketLogging"
 // client's request for the PutBucketLogging operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketLogging for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2431,9 +2978,18 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *request
 	return
 }
 
+// PutBucketLogging API operation for Amazon Simple Storage Service.
+//
 // Set the logging parameters for a bucket and to specify permissions for who
 // can view and modify the logging parameters. To set the logging status of
 // a bucket, you must be the bucket owner.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketLogging for usage and error information.
 func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (*PutBucketLoggingOutput, error) {
 	req, out := c.PutBucketLoggingRequest(input)
 	err := req.Send()
@@ -2446,6 +3002,8 @@ const opPutBucketNotification = "PutBucketNotification"
 // client's request for the PutBucketNotification operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketNotification for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2486,7 +3044,16 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 	return
 }
 
+// PutBucketNotification API operation for Amazon Simple Storage Service.
+//
 // Deprecated, see the PutBucketNotificationConfiguraiton operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketNotification for usage and error information.
 func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (*PutBucketNotificationOutput, error) {
 	req, out := c.PutBucketNotificationRequest(input)
 	err := req.Send()
@@ -2499,6 +3066,8 @@ const opPutBucketNotificationConfiguration = "PutBucketNotificationConfiguration
 // client's request for the PutBucketNotificationConfiguration operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketNotificationConfiguration for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2536,7 +3105,16 @@ func (c *S3) PutBucketNotificationConfigurationRequest(input *PutBucketNotificat
 	return
 }
 
+// PutBucketNotificationConfiguration API operation for Amazon Simple Storage Service.
+//
 // Enables notifications of specified events for a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketNotificationConfiguration for usage and error information.
 func (c *S3) PutBucketNotificationConfiguration(input *PutBucketNotificationConfigurationInput) (*PutBucketNotificationConfigurationOutput, error) {
 	req, out := c.PutBucketNotificationConfigurationRequest(input)
 	err := req.Send()
@@ -2549,6 +3127,8 @@ const opPutBucketPolicy = "PutBucketPolicy"
 // client's request for the PutBucketPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2586,8 +3166,17 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *request.R
 	return
 }
 
+// PutBucketPolicy API operation for Amazon Simple Storage Service.
+//
 // Replaces a policy on a bucket. If the bucket already has a policy, the one
 // in this request completely replaces it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketPolicy for usage and error information.
 func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (*PutBucketPolicyOutput, error) {
 	req, out := c.PutBucketPolicyRequest(input)
 	err := req.Send()
@@ -2600,6 +3189,8 @@ const opPutBucketReplication = "PutBucketReplication"
 // client's request for the PutBucketReplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketReplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2637,8 +3228,17 @@ func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req 
 	return
 }
 
+// PutBucketReplication API operation for Amazon Simple Storage Service.
+//
 // Creates a new replication configuration (or replaces an existing one, if
 // present).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketReplication for usage and error information.
 func (c *S3) PutBucketReplication(input *PutBucketReplicationInput) (*PutBucketReplicationOutput, error) {
 	req, out := c.PutBucketReplicationRequest(input)
 	err := req.Send()
@@ -2651,6 +3251,8 @@ const opPutBucketRequestPayment = "PutBucketRequestPayment"
 // client's request for the PutBucketRequestPayment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketRequestPayment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2688,11 +3290,20 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 	return
 }
 
+// PutBucketRequestPayment API operation for Amazon Simple Storage Service.
+//
 // Sets the request payment configuration for a bucket. By default, the bucket
 // owner pays for downloads from the bucket. This configuration parameter enables
 // the bucket owner (only) to specify that the person requesting the download
 // will be charged for the download. Documentation on requester pays buckets
 // can be found at http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketRequestPayment for usage and error information.
 func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (*PutBucketRequestPaymentOutput, error) {
 	req, out := c.PutBucketRequestPaymentRequest(input)
 	err := req.Send()
@@ -2705,6 +3316,8 @@ const opPutBucketTagging = "PutBucketTagging"
 // client's request for the PutBucketTagging operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketTagging for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2742,7 +3355,16 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *request
 	return
 }
 
+// PutBucketTagging API operation for Amazon Simple Storage Service.
+//
 // Sets the tags for a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketTagging for usage and error information.
 func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (*PutBucketTaggingOutput, error) {
 	req, out := c.PutBucketTaggingRequest(input)
 	err := req.Send()
@@ -2755,6 +3377,8 @@ const opPutBucketVersioning = "PutBucketVersioning"
 // client's request for the PutBucketVersioning operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketVersioning for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2792,8 +3416,17 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *r
 	return
 }
 
+// PutBucketVersioning API operation for Amazon Simple Storage Service.
+//
 // Sets the versioning state of an existing bucket. To set the versioning state,
 // you must be the bucket owner.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketVersioning for usage and error information.
 func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (*PutBucketVersioningOutput, error) {
 	req, out := c.PutBucketVersioningRequest(input)
 	err := req.Send()
@@ -2806,6 +3439,8 @@ const opPutBucketWebsite = "PutBucketWebsite"
 // client's request for the PutBucketWebsite operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutBucketWebsite for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2843,7 +3478,16 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *request
 	return
 }
 
+// PutBucketWebsite API operation for Amazon Simple Storage Service.
+//
 // Set the website configuration for a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketWebsite for usage and error information.
 func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (*PutBucketWebsiteOutput, error) {
 	req, out := c.PutBucketWebsiteRequest(input)
 	err := req.Send()
@@ -2856,6 +3500,8 @@ const opPutObject = "PutObject"
 // client's request for the PutObject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutObject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2891,7 +3537,16 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) (req *request.Request, outp
 	return
 }
 
+// PutObject API operation for Amazon Simple Storage Service.
+//
 // Adds an object to a bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutObject for usage and error information.
 func (c *S3) PutObject(input *PutObjectInput) (*PutObjectOutput, error) {
 	req, out := c.PutObjectRequest(input)
 	err := req.Send()
@@ -2904,6 +3559,8 @@ const opPutObjectAcl = "PutObjectAcl"
 // client's request for the PutObjectAcl operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutObjectAcl for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2939,8 +3596,22 @@ func (c *S3) PutObjectAclRequest(input *PutObjectAclInput) (req *request.Request
 	return
 }
 
+// PutObjectAcl API operation for Amazon Simple Storage Service.
+//
 // uses the acl subresource to set the access control list (ACL) permissions
 // for an object that already exists in a bucket
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutObjectAcl for usage and error information.
+//
+// Returned Error Codes:
+//   * NoSuchKey
+//   The specified key does not exist.
+//
 func (c *S3) PutObjectAcl(input *PutObjectAclInput) (*PutObjectAclOutput, error) {
 	req, out := c.PutObjectAclRequest(input)
 	err := req.Send()
@@ -2953,6 +3624,8 @@ const opRestoreObject = "RestoreObject"
 // client's request for the RestoreObject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RestoreObject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2988,7 +3661,21 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *request.Reque
 	return
 }
 
+// RestoreObject API operation for Amazon Simple Storage Service.
+//
 // Restores an archived copy of an object back into Amazon S3
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation RestoreObject for usage and error information.
+//
+// Returned Error Codes:
+//   * ObjectAlreadyInActiveTierError
+//   This operation is not allowed against this storage tier
+//
 func (c *S3) RestoreObject(input *RestoreObjectInput) (*RestoreObjectOutput, error) {
 	req, out := c.RestoreObjectRequest(input)
 	err := req.Send()
@@ -3001,6 +3688,8 @@ const opUploadPart = "UploadPart"
 // client's request for the UploadPart operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UploadPart for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3036,6 +3725,8 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *request.Request, ou
 	return
 }
 
+// UploadPart API operation for Amazon Simple Storage Service.
+//
 // Uploads a part in a multipart upload.
 //
 // Note: After you initiate multipart upload and upload one or more parts, you
@@ -3043,6 +3734,13 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *request.Request, ou
 // for storage of the uploaded parts. Only after you either complete or abort
 // multipart upload, Amazon S3 frees up the parts storage and stops charging
 // you for the parts storage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation UploadPart for usage and error information.
 func (c *S3) UploadPart(input *UploadPartInput) (*UploadPartOutput, error) {
 	req, out := c.UploadPartRequest(input)
 	err := req.Send()
@@ -3055,6 +3753,8 @@ const opUploadPartCopy = "UploadPartCopy"
 // client's request for the UploadPartCopy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UploadPartCopy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -3090,7 +3790,16 @@ func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *request.Req
 	return
 }
 
+// UploadPartCopy API operation for Amazon Simple Storage Service.
+//
 // Uploads a part by copying data from an existing object as data source.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation UploadPartCopy for usage and error information.
 func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (*UploadPartCopyOutput, error) {
 	req, out := c.UploadPartCopyRequest(input)
 	err := req.Send()

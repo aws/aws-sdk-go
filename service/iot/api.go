@@ -20,6 +20,8 @@ const opAcceptCertificateTransfer = "AcceptCertificateTransfer"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AcceptCertificateTransfer for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -56,11 +58,44 @@ func (c *IoT) AcceptCertificateTransferRequest(input *AcceptCertificateTransferI
 	return
 }
 
+// AcceptCertificateTransfer API operation for AWS IoT.
+//
 // Accepts a pending certificate transfer. The default state of the certificate
 // is INACTIVE.
 //
 // To check for pending certificate transfers, call ListCertificates to enumerate
 // your certificates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation AcceptCertificateTransfer for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * TransferAlreadyCompletedException
+//   You can't revert the certificate transfer because the transfer is already
+//   complete.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) AcceptCertificateTransfer(input *AcceptCertificateTransferInput) (*AcceptCertificateTransferOutput, error) {
 	req, out := c.AcceptCertificateTransferRequest(input)
 	err := req.Send()
@@ -73,6 +108,8 @@ const opAttachPrincipalPolicy = "AttachPrincipalPolicy"
 // client's request for the AttachPrincipalPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AttachPrincipalPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -110,8 +147,40 @@ func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (r
 	return
 }
 
+// AttachPrincipalPolicy API operation for AWS IoT.
+//
 // Attaches the specified policy to the specified principal (certificate or
 // other credential).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation AttachPrincipalPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * LimitExceededException
+//   The number of attached entities exceeds the limit.
+//
 func (c *IoT) AttachPrincipalPolicy(input *AttachPrincipalPolicyInput) (*AttachPrincipalPolicyOutput, error) {
 	req, out := c.AttachPrincipalPolicyRequest(input)
 	err := req.Send()
@@ -124,6 +193,8 @@ const opAttachThingPrincipal = "AttachThingPrincipal"
 // client's request for the AttachThingPrincipal operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AttachThingPrincipal for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -159,7 +230,36 @@ func (c *IoT) AttachThingPrincipalRequest(input *AttachThingPrincipalInput) (req
 	return
 }
 
+// AttachThingPrincipal API operation for AWS IoT.
+//
 // Attaches the specified principal to the specified thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation AttachThingPrincipal for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) AttachThingPrincipal(input *AttachThingPrincipalInput) (*AttachThingPrincipalOutput, error) {
 	req, out := c.AttachThingPrincipalRequest(input)
 	err := req.Send()
@@ -172,6 +272,8 @@ const opCancelCertificateTransfer = "CancelCertificateTransfer"
 // client's request for the CancelCertificateTransfer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CancelCertificateTransfer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -209,6 +311,8 @@ func (c *IoT) CancelCertificateTransferRequest(input *CancelCertificateTransferI
 	return
 }
 
+// CancelCertificateTransfer API operation for AWS IoT.
+//
 // Cancels a pending transfer for the specified certificate.
 //
 // Note Only the transfer source account can use this operation to cancel a
@@ -219,6 +323,37 @@ func (c *IoT) CancelCertificateTransferRequest(input *CancelCertificateTransferI
 //
 // After a certificate transfer is cancelled, the status of the certificate
 // changes from PENDING_TRANSFER to INACTIVE.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CancelCertificateTransfer for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * TransferAlreadyCompletedException
+//   You can't revert the certificate transfer because the transfer is already
+//   complete.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) CancelCertificateTransfer(input *CancelCertificateTransferInput) (*CancelCertificateTransferOutput, error) {
 	req, out := c.CancelCertificateTransferRequest(input)
 	err := req.Send()
@@ -231,6 +366,8 @@ const opCreateCertificateFromCsr = "CreateCertificateFromCsr"
 // client's request for the CreateCertificateFromCsr operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCertificateFromCsr for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -266,6 +403,8 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 	return
 }
 
+// CreateCertificateFromCsr API operation for AWS IoT.
+//
 // Creates an X.509 certificate using the specified certificate signing request.
 //
 // Note Reusing the same certificate signing request (CSR) results in a distinct
@@ -304,6 +443,30 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 //
 //  > forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
 // --certificate-signing-request file://@path"
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateCertificateFromCsr for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) CreateCertificateFromCsr(input *CreateCertificateFromCsrInput) (*CreateCertificateFromCsrOutput, error) {
 	req, out := c.CreateCertificateFromCsrRequest(input)
 	err := req.Send()
@@ -316,6 +479,8 @@ const opCreateKeysAndCertificate = "CreateKeysAndCertificate"
 // client's request for the CreateKeysAndCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateKeysAndCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -351,11 +516,37 @@ func (c *IoT) CreateKeysAndCertificateRequest(input *CreateKeysAndCertificateInp
 	return
 }
 
+// CreateKeysAndCertificate API operation for AWS IoT.
+//
 // Creates a 2048-bit RSA key pair and issues an X.509 certificate using the
 // issued public key.
 //
 // Note This is the only time AWS IoT issues the private key for this certificate,
 // so it is important to keep it in a secure location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateKeysAndCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) CreateKeysAndCertificate(input *CreateKeysAndCertificateInput) (*CreateKeysAndCertificateOutput, error) {
 	req, out := c.CreateKeysAndCertificateRequest(input)
 	err := req.Send()
@@ -368,6 +559,8 @@ const opCreatePolicy = "CreatePolicy"
 // client's request for the CreatePolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -403,11 +596,43 @@ func (c *IoT) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Reques
 	return
 }
 
+// CreatePolicy API operation for AWS IoT.
+//
 // Creates an AWS IoT policy.
 //
 // The created policy is the default version for the policy. This operation
 // creates a policy version with a version identifier of 1 and sets 1 as the
 // policy's default version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreatePolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * MalformedPolicyException
+//   The policy documentation is not valid.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, error) {
 	req, out := c.CreatePolicyRequest(input)
 	err := req.Send()
@@ -420,6 +645,8 @@ const opCreatePolicyVersion = "CreatePolicyVersion"
 // client's request for the CreatePolicyVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePolicyVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -455,6 +682,8 @@ func (c *IoT) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 	return
 }
 
+// CreatePolicyVersion API operation for AWS IoT.
+//
 // Creates a new version of the specified AWS IoT policy. To update a policy,
 // create a new policy version. A managed policy can have up to five versions.
 // If the policy has five versions, you must use DeletePolicyVersion to delete
@@ -463,6 +692,39 @@ func (c *IoT) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 // Optionally, you can set the new version as the policy's default version.
 // The default version is the operative version (that is, the version that is
 // in effect for the certificates to which the policy is attached).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreatePolicyVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * MalformedPolicyException
+//   The policy documentation is not valid.
+//
+//   * VersionsLimitExceededException
+//   The number of policy versions exceeds the limit.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolicyVersionOutput, error) {
 	req, out := c.CreatePolicyVersionRequest(input)
 	err := req.Send()
@@ -475,6 +737,8 @@ const opCreateThing = "CreateThing"
 // client's request for the CreateThing operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateThing for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -510,7 +774,39 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 	return
 }
 
+// CreateThing API operation for AWS IoT.
+//
 // Creates a thing record in the thing registry.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateThing for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) CreateThing(input *CreateThingInput) (*CreateThingOutput, error) {
 	req, out := c.CreateThingRequest(input)
 	err := req.Send()
@@ -523,6 +819,8 @@ const opCreateThingType = "CreateThingType"
 // client's request for the CreateThingType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateThingType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -558,7 +856,36 @@ func (c *IoT) CreateThingTypeRequest(input *CreateThingTypeInput) (req *request.
 	return
 }
 
+// CreateThingType API operation for AWS IoT.
+//
 // Creates a new thing type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateThingType for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
 func (c *IoT) CreateThingType(input *CreateThingTypeInput) (*CreateThingTypeOutput, error) {
 	req, out := c.CreateThingTypeRequest(input)
 	err := req.Send()
@@ -571,6 +898,8 @@ const opCreateTopicRule = "CreateTopicRule"
 // client's request for the CreateTopicRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateTopicRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -608,9 +937,35 @@ func (c *IoT) CreateTopicRuleRequest(input *CreateTopicRuleInput) (req *request.
 	return
 }
 
+// CreateTopicRule API operation for AWS IoT.
+//
 // Creates a rule. Creating rules is an administrator-level action. Any user
 // who has permission to create rules will be able to access data processed
 // by the rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateTopicRule for usage and error information.
+//
+// Returned Error Codes:
+//   * SqlParseException
+//   The Rule-SQL expression can't be parsed correctly.
+//
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
 func (c *IoT) CreateTopicRule(input *CreateTopicRuleInput) (*CreateTopicRuleOutput, error) {
 	req, out := c.CreateTopicRuleRequest(input)
 	err := req.Send()
@@ -623,6 +978,8 @@ const opDeleteCACertificate = "DeleteCACertificate"
 // client's request for the DeleteCACertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCACertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -658,7 +1015,39 @@ func (c *IoT) DeleteCACertificateRequest(input *DeleteCACertificateInput) (req *
 	return
 }
 
+// DeleteCACertificate API operation for AWS IoT.
+//
 // Deletes a registered CA certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteCACertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * CertificateStateException
+//   The certificate operation is not allowed.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) DeleteCACertificate(input *DeleteCACertificateInput) (*DeleteCACertificateOutput, error) {
 	req, out := c.DeleteCACertificateRequest(input)
 	err := req.Send()
@@ -671,6 +1060,8 @@ const opDeleteCertificate = "DeleteCertificate"
 // client's request for the DeleteCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -708,12 +1099,47 @@ func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 	return
 }
 
+// DeleteCertificate API operation for AWS IoT.
+//
 // Deletes the specified certificate.
 //
 // A certificate cannot be deleted if it has a policy attached to it or if
 // its status is set to ACTIVE. To delete a certificate, first use the DetachPrincipalPolicy
 // API to detach all policies. Next, use the UpdateCertificate API to set the
 // certificate to the INACTIVE status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * CertificateStateException
+//   The certificate operation is not allowed.
+//
+//   * DeleteConflictException
+//   You can't delete the resource because it is attached to one or more resources.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -726,6 +1152,8 @@ const opDeletePolicy = "DeletePolicy"
 // client's request for the DeletePolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeletePolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -763,6 +1191,8 @@ func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 	return
 }
 
+// DeletePolicy API operation for AWS IoT.
+//
 // Deletes the specified policy.
 //
 // A policy cannot be deleted if it has non-default versions or it is attached
@@ -774,6 +1204,36 @@ func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 //
 // When a policy is deleted using DeletePolicy, its default version is deleted
 // with it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeletePolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * DeleteConflictException
+//   You can't delete the resource because it is attached to one or more resources.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
 	err := req.Send()
@@ -786,6 +1246,8 @@ const opDeletePolicyVersion = "DeletePolicyVersion"
 // client's request for the DeletePolicyVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeletePolicyVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -823,10 +1285,42 @@ func (c *IoT) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 	return
 }
 
+// DeletePolicyVersion API operation for AWS IoT.
+//
 // Deletes the specified version of the specified policy. You cannot delete
 // the default version of a policy using this API. To delete the default version
 // of a policy, use DeletePolicy. To find out which version of a policy is marked
 // as the default version, use ListPolicyVersions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeletePolicyVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * DeleteConflictException
+//   You can't delete the resource because it is attached to one or more resources.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolicyVersionOutput, error) {
 	req, out := c.DeletePolicyVersionRequest(input)
 	err := req.Send()
@@ -839,6 +1333,8 @@ const opDeleteRegistrationCode = "DeleteRegistrationCode"
 // client's request for the DeleteRegistrationCode operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteRegistrationCode for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -874,7 +1370,33 @@ func (c *IoT) DeleteRegistrationCodeRequest(input *DeleteRegistrationCodeInput) 
 	return
 }
 
+// DeleteRegistrationCode API operation for AWS IoT.
+//
 // Deletes a CA certificate registration code.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteRegistrationCode for usage and error information.
+//
+// Returned Error Codes:
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DeleteRegistrationCode(input *DeleteRegistrationCodeInput) (*DeleteRegistrationCodeOutput, error) {
 	req, out := c.DeleteRegistrationCodeRequest(input)
 	err := req.Send()
@@ -887,6 +1409,8 @@ const opDeleteThing = "DeleteThing"
 // client's request for the DeleteThing operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteThing for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -922,7 +1446,40 @@ func (c *IoT) DeleteThingRequest(input *DeleteThingInput) (req *request.Request,
 	return
 }
 
+// DeleteThing API operation for AWS IoT.
+//
 // Deletes the specified thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteThing for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * VersionConflictException
+//   An exception thrown when the version of a thing passed to a command is different
+//   than the version specified with the --version parameter.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DeleteThing(input *DeleteThingInput) (*DeleteThingOutput, error) {
 	req, out := c.DeleteThingRequest(input)
 	err := req.Send()
@@ -935,6 +1492,8 @@ const opDeleteThingType = "DeleteThingType"
 // client's request for the DeleteThingType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteThingType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -970,11 +1529,40 @@ func (c *IoT) DeleteThingTypeRequest(input *DeleteThingTypeInput) (req *request.
 	return
 }
 
+// DeleteThingType API operation for AWS IoT.
+//
 // Deletes the specified thing type . You cannot delete a thing type if it has
 // things associated with it. To delete a thing type, first mark it as deprecated
 // by calling DeprecateThingType, then remove any associated things by calling
 // UpdateThing to change the thing type on any associated thing, and finally
 // use DeleteThingType to delete the thing type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteThingType for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DeleteThingType(input *DeleteThingTypeInput) (*DeleteThingTypeOutput, error) {
 	req, out := c.DeleteThingTypeRequest(input)
 	err := req.Send()
@@ -987,6 +1575,8 @@ const opDeleteTopicRule = "DeleteTopicRule"
 // client's request for the DeleteTopicRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTopicRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1024,7 +1614,30 @@ func (c *IoT) DeleteTopicRuleRequest(input *DeleteTopicRuleInput) (req *request.
 	return
 }
 
+// DeleteTopicRule API operation for AWS IoT.
+//
 // Deletes the specified rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteTopicRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
 func (c *IoT) DeleteTopicRule(input *DeleteTopicRuleInput) (*DeleteTopicRuleOutput, error) {
 	req, out := c.DeleteTopicRuleRequest(input)
 	err := req.Send()
@@ -1037,6 +1650,8 @@ const opDeprecateThingType = "DeprecateThingType"
 // client's request for the DeprecateThingType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeprecateThingType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1072,8 +1687,37 @@ func (c *IoT) DeprecateThingTypeRequest(input *DeprecateThingTypeInput) (req *re
 	return
 }
 
+// DeprecateThingType API operation for AWS IoT.
+//
 // Deprecates a thing type. You can not associate new things with deprecated
 // thing type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeprecateThingType for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DeprecateThingType(input *DeprecateThingTypeInput) (*DeprecateThingTypeOutput, error) {
 	req, out := c.DeprecateThingTypeRequest(input)
 	err := req.Send()
@@ -1086,6 +1730,8 @@ const opDescribeCACertificate = "DescribeCACertificate"
 // client's request for the DescribeCACertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCACertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1121,7 +1767,36 @@ func (c *IoT) DescribeCACertificateRequest(input *DescribeCACertificateInput) (r
 	return
 }
 
+// DescribeCACertificate API operation for AWS IoT.
+//
 // Describes a registered CA certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeCACertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) DescribeCACertificate(input *DescribeCACertificateInput) (*DescribeCACertificateOutput, error) {
 	req, out := c.DescribeCACertificateRequest(input)
 	err := req.Send()
@@ -1134,6 +1809,8 @@ const opDescribeCertificate = "DescribeCertificate"
 // client's request for the DescribeCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1169,7 +1846,36 @@ func (c *IoT) DescribeCertificateRequest(input *DescribeCertificateInput) (req *
 	return
 }
 
+// DescribeCertificate API operation for AWS IoT.
+//
 // Gets information about the specified certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
 	req, out := c.DescribeCertificateRequest(input)
 	err := req.Send()
@@ -1182,6 +1888,8 @@ const opDescribeEndpoint = "DescribeEndpoint"
 // client's request for the DescribeEndpoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEndpoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1217,7 +1925,27 @@ func (c *IoT) DescribeEndpointRequest(input *DescribeEndpointInput) (req *reques
 	return
 }
 
+// DescribeEndpoint API operation for AWS IoT.
+//
 // Returns a unique endpoint specific to the AWS account making the call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
 func (c *IoT) DescribeEndpoint(input *DescribeEndpointInput) (*DescribeEndpointOutput, error) {
 	req, out := c.DescribeEndpointRequest(input)
 	err := req.Send()
@@ -1230,6 +1958,8 @@ const opDescribeThing = "DescribeThing"
 // client's request for the DescribeThing operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeThing for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1265,7 +1995,36 @@ func (c *IoT) DescribeThingRequest(input *DescribeThingInput) (req *request.Requ
 	return
 }
 
+// DescribeThing API operation for AWS IoT.
+//
 // Gets information about the specified thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeThing for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DescribeThing(input *DescribeThingInput) (*DescribeThingOutput, error) {
 	req, out := c.DescribeThingRequest(input)
 	err := req.Send()
@@ -1278,6 +2037,8 @@ const opDescribeThingType = "DescribeThingType"
 // client's request for the DescribeThingType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeThingType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1313,7 +2074,36 @@ func (c *IoT) DescribeThingTypeRequest(input *DescribeThingTypeInput) (req *requ
 	return
 }
 
+// DescribeThingType API operation for AWS IoT.
+//
 // Gets information about the specified thing type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeThingType for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DescribeThingType(input *DescribeThingTypeInput) (*DescribeThingTypeOutput, error) {
 	req, out := c.DescribeThingTypeRequest(input)
 	err := req.Send()
@@ -1326,6 +2116,8 @@ const opDetachPrincipalPolicy = "DetachPrincipalPolicy"
 // client's request for the DetachPrincipalPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DetachPrincipalPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1363,7 +2155,36 @@ func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (r
 	return
 }
 
+// DetachPrincipalPolicy API operation for AWS IoT.
+//
 // Removes the specified policy from the specified certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DetachPrincipalPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DetachPrincipalPolicy(input *DetachPrincipalPolicyInput) (*DetachPrincipalPolicyOutput, error) {
 	req, out := c.DetachPrincipalPolicyRequest(input)
 	err := req.Send()
@@ -1376,6 +2197,8 @@ const opDetachThingPrincipal = "DetachThingPrincipal"
 // client's request for the DetachThingPrincipal operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DetachThingPrincipal for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1411,7 +2234,36 @@ func (c *IoT) DetachThingPrincipalRequest(input *DetachThingPrincipalInput) (req
 	return
 }
 
+// DetachThingPrincipal API operation for AWS IoT.
+//
 // Detaches the specified principal from the specified thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DetachThingPrincipal for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) DetachThingPrincipal(input *DetachThingPrincipalInput) (*DetachThingPrincipalOutput, error) {
 	req, out := c.DetachThingPrincipalRequest(input)
 	err := req.Send()
@@ -1424,6 +2276,8 @@ const opDisableTopicRule = "DisableTopicRule"
 // client's request for the DisableTopicRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableTopicRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1461,7 +2315,30 @@ func (c *IoT) DisableTopicRuleRequest(input *DisableTopicRuleInput) (req *reques
 	return
 }
 
+// DisableTopicRule API operation for AWS IoT.
+//
 // Disables the specified rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DisableTopicRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
 func (c *IoT) DisableTopicRule(input *DisableTopicRuleInput) (*DisableTopicRuleOutput, error) {
 	req, out := c.DisableTopicRuleRequest(input)
 	err := req.Send()
@@ -1474,6 +2351,8 @@ const opEnableTopicRule = "EnableTopicRule"
 // client's request for the EnableTopicRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EnableTopicRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1511,7 +2390,30 @@ func (c *IoT) EnableTopicRuleRequest(input *EnableTopicRuleInput) (req *request.
 	return
 }
 
+// EnableTopicRule API operation for AWS IoT.
+//
 // Enables the specified rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation EnableTopicRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
 func (c *IoT) EnableTopicRule(input *EnableTopicRuleInput) (*EnableTopicRuleOutput, error) {
 	req, out := c.EnableTopicRuleRequest(input)
 	err := req.Send()
@@ -1524,6 +2426,8 @@ const opGetLoggingOptions = "GetLoggingOptions"
 // client's request for the GetLoggingOptions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetLoggingOptions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1559,7 +2463,27 @@ func (c *IoT) GetLoggingOptionsRequest(input *GetLoggingOptionsInput) (req *requ
 	return
 }
 
+// GetLoggingOptions API operation for AWS IoT.
+//
 // Gets the logging options.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetLoggingOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
 func (c *IoT) GetLoggingOptions(input *GetLoggingOptionsInput) (*GetLoggingOptionsOutput, error) {
 	req, out := c.GetLoggingOptionsRequest(input)
 	err := req.Send()
@@ -1572,6 +2496,8 @@ const opGetPolicy = "GetPolicy"
 // client's request for the GetPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1607,8 +2533,37 @@ func (c *IoT) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 	return
 }
 
+// GetPolicy API operation for AWS IoT.
+//
 // Gets information about the specified policy with the policy document of the
 // default version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 	req, out := c.GetPolicyRequest(input)
 	err := req.Send()
@@ -1621,6 +2576,8 @@ const opGetPolicyVersion = "GetPolicyVersion"
 // client's request for the GetPolicyVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetPolicyVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1656,7 +2613,36 @@ func (c *IoT) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *reques
 	return
 }
 
+// GetPolicyVersion API operation for AWS IoT.
+//
 // Gets information about the specified policy version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetPolicyVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionOutput, error) {
 	req, out := c.GetPolicyVersionRequest(input)
 	err := req.Send()
@@ -1669,6 +2655,8 @@ const opGetRegistrationCode = "GetRegistrationCode"
 // client's request for the GetRegistrationCode operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetRegistrationCode for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1704,7 +2692,33 @@ func (c *IoT) GetRegistrationCodeRequest(input *GetRegistrationCodeInput) (req *
 	return
 }
 
+// GetRegistrationCode API operation for AWS IoT.
+//
 // Gets a registration code used to register a CA certificate with AWS IoT.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetRegistrationCode for usage and error information.
+//
+// Returned Error Codes:
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
 func (c *IoT) GetRegistrationCode(input *GetRegistrationCodeInput) (*GetRegistrationCodeOutput, error) {
 	req, out := c.GetRegistrationCodeRequest(input)
 	err := req.Send()
@@ -1717,6 +2731,8 @@ const opGetTopicRule = "GetTopicRule"
 // client's request for the GetTopicRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetTopicRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1752,7 +2768,30 @@ func (c *IoT) GetTopicRuleRequest(input *GetTopicRuleInput) (req *request.Reques
 	return
 }
 
+// GetTopicRule API operation for AWS IoT.
+//
 // Gets information about the specified rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetTopicRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
 func (c *IoT) GetTopicRule(input *GetTopicRuleInput) (*GetTopicRuleOutput, error) {
 	req, out := c.GetTopicRuleRequest(input)
 	err := req.Send()
@@ -1765,6 +2804,8 @@ const opListCACertificates = "ListCACertificates"
 // client's request for the ListCACertificates operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListCACertificates for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1800,10 +2841,36 @@ func (c *IoT) ListCACertificatesRequest(input *ListCACertificatesInput) (req *re
 	return
 }
 
+// ListCACertificates API operation for AWS IoT.
+//
 // Lists the CA certificates registered for your AWS account.
 //
 // The results are paginated with a default page size of 25. You can use the
 // returned marker to retrieve additional results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListCACertificates for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListCACertificates(input *ListCACertificatesInput) (*ListCACertificatesOutput, error) {
 	req, out := c.ListCACertificatesRequest(input)
 	err := req.Send()
@@ -1816,6 +2883,8 @@ const opListCertificates = "ListCertificates"
 // client's request for the ListCertificates operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListCertificates for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1851,10 +2920,36 @@ func (c *IoT) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 	return
 }
 
+// ListCertificates API operation for AWS IoT.
+//
 // Lists the certificates registered in your AWS account.
 //
 // The results are paginated with a default page size of 25. You can use the
 // returned marker to retrieve additional results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListCertificates for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
 	req, out := c.ListCertificatesRequest(input)
 	err := req.Send()
@@ -1867,6 +2962,8 @@ const opListCertificatesByCA = "ListCertificatesByCA"
 // client's request for the ListCertificatesByCA operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListCertificatesByCA for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1902,7 +2999,33 @@ func (c *IoT) ListCertificatesByCARequest(input *ListCertificatesByCAInput) (req
 	return
 }
 
+// ListCertificatesByCA API operation for AWS IoT.
+//
 // List the device certificates signed by the specified CA certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListCertificatesByCA for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListCertificatesByCA(input *ListCertificatesByCAInput) (*ListCertificatesByCAOutput, error) {
 	req, out := c.ListCertificatesByCARequest(input)
 	err := req.Send()
@@ -1915,6 +3038,8 @@ const opListOutgoingCertificates = "ListOutgoingCertificates"
 // client's request for the ListOutgoingCertificates operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListOutgoingCertificates for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1950,7 +3075,33 @@ func (c *IoT) ListOutgoingCertificatesRequest(input *ListOutgoingCertificatesInp
 	return
 }
 
+// ListOutgoingCertificates API operation for AWS IoT.
+//
 // Lists certificates that are being transfered but not yet accepted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListOutgoingCertificates for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListOutgoingCertificates(input *ListOutgoingCertificatesInput) (*ListOutgoingCertificatesOutput, error) {
 	req, out := c.ListOutgoingCertificatesRequest(input)
 	err := req.Send()
@@ -1963,6 +3114,8 @@ const opListPolicies = "ListPolicies"
 // client's request for the ListPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1998,7 +3151,33 @@ func (c *IoT) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 	return
 }
 
+// ListPolicies API operation for AWS IoT.
+//
 // Lists your policies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error) {
 	req, out := c.ListPoliciesRequest(input)
 	err := req.Send()
@@ -2011,6 +3190,8 @@ const opListPolicyPrincipals = "ListPolicyPrincipals"
 // client's request for the ListPolicyPrincipals operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPolicyPrincipals for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2046,7 +3227,36 @@ func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req
 	return
 }
 
+// ListPolicyPrincipals API operation for AWS IoT.
+//
 // Lists the principals associated with the specified policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPolicyPrincipals for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListPolicyPrincipals(input *ListPolicyPrincipalsInput) (*ListPolicyPrincipalsOutput, error) {
 	req, out := c.ListPolicyPrincipalsRequest(input)
 	err := req.Send()
@@ -2059,6 +3269,8 @@ const opListPolicyVersions = "ListPolicyVersions"
 // client's request for the ListPolicyVersions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPolicyVersions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2094,7 +3306,36 @@ func (c *IoT) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *re
 	return
 }
 
+// ListPolicyVersions API operation for AWS IoT.
+//
 // Lists the versions of the specified policy and identifies the default version.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPolicyVersions for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVersionsOutput, error) {
 	req, out := c.ListPolicyVersionsRequest(input)
 	err := req.Send()
@@ -2107,6 +3348,8 @@ const opListPrincipalPolicies = "ListPrincipalPolicies"
 // client's request for the ListPrincipalPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPrincipalPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2142,8 +3385,37 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 	return
 }
 
+// ListPrincipalPolicies API operation for AWS IoT.
+//
 // Lists the policies attached to the specified principal. If you use an Cognito
 // identity, the ID must be in AmazonCognito Identity format (http://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPrincipalPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListPrincipalPolicies(input *ListPrincipalPoliciesInput) (*ListPrincipalPoliciesOutput, error) {
 	req, out := c.ListPrincipalPoliciesRequest(input)
 	err := req.Send()
@@ -2156,6 +3428,8 @@ const opListPrincipalThings = "ListPrincipalThings"
 // client's request for the ListPrincipalThings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPrincipalThings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2191,7 +3465,36 @@ func (c *IoT) ListPrincipalThingsRequest(input *ListPrincipalThingsInput) (req *
 	return
 }
 
+// ListPrincipalThings API operation for AWS IoT.
+//
 // Lists the things associated with the specified principal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListPrincipalThings for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) ListPrincipalThings(input *ListPrincipalThingsInput) (*ListPrincipalThingsOutput, error) {
 	req, out := c.ListPrincipalThingsRequest(input)
 	err := req.Send()
@@ -2204,6 +3507,8 @@ const opListThingPrincipals = "ListThingPrincipals"
 // client's request for the ListThingPrincipals operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListThingPrincipals for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2239,7 +3544,36 @@ func (c *IoT) ListThingPrincipalsRequest(input *ListThingPrincipalsInput) (req *
 	return
 }
 
+// ListThingPrincipals API operation for AWS IoT.
+//
 // Lists the principals associated with the specified thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListThingPrincipals for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) ListThingPrincipals(input *ListThingPrincipalsInput) (*ListThingPrincipalsOutput, error) {
 	req, out := c.ListThingPrincipalsRequest(input)
 	err := req.Send()
@@ -2252,6 +3586,8 @@ const opListThingTypes = "ListThingTypes"
 // client's request for the ListThingTypes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListThingTypes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2287,7 +3623,33 @@ func (c *IoT) ListThingTypesRequest(input *ListThingTypesInput) (req *request.Re
 	return
 }
 
+// ListThingTypes API operation for AWS IoT.
+//
 // Lists the existing thing types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListThingTypes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListThingTypes(input *ListThingTypesInput) (*ListThingTypesOutput, error) {
 	req, out := c.ListThingTypesRequest(input)
 	err := req.Send()
@@ -2300,6 +3662,8 @@ const opListThings = "ListThings"
 // client's request for the ListThings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListThings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2335,10 +3699,36 @@ func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, o
 	return
 }
 
+// ListThings API operation for AWS IoT.
+//
 // Lists your things. Use the attributeName and attributeValue parameters to
 // filter your things. For example, calling ListThings with attributeName=Color
 // and attributeValue=Red retrieves all things in the registry that contain
 // an attribute Color with the value Red.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListThings for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) ListThings(input *ListThingsInput) (*ListThingsOutput, error) {
 	req, out := c.ListThingsRequest(input)
 	err := req.Send()
@@ -2351,6 +3741,8 @@ const opListTopicRules = "ListTopicRules"
 // client's request for the ListTopicRules operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTopicRules for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2386,7 +3778,27 @@ func (c *IoT) ListTopicRulesRequest(input *ListTopicRulesInput) (req *request.Re
 	return
 }
 
+// ListTopicRules API operation for AWS IoT.
+//
 // Lists the rules for the specific topic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListTopicRules for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
 func (c *IoT) ListTopicRules(input *ListTopicRulesInput) (*ListTopicRulesOutput, error) {
 	req, out := c.ListTopicRulesRequest(input)
 	err := req.Send()
@@ -2399,6 +3811,8 @@ const opRegisterCACertificate = "RegisterCACertificate"
 // client's request for the RegisterCACertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterCACertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2434,6 +3848,8 @@ func (c *IoT) RegisterCACertificateRequest(input *RegisterCACertificateInput) (r
 	return
 }
 
+// RegisterCACertificate API operation for AWS IoT.
+//
 // Registers a CA certificate with AWS IoT. This CA certificate can then be
 // used to sign device certificates, which can be then registered with AWS IoT.
 // You can register up to 10 CA certificates per AWS account that have the same
@@ -2441,6 +3857,42 @@ func (c *IoT) RegisterCACertificateRequest(input *RegisterCACertificateInput) (r
 // authorities sign your device certificates. If you have more than one CA certificate
 // registered, make sure you pass the CA certificate when you register your
 // device certificates with the RegisterCertificate API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation RegisterCACertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * RegistrationCodeValidationException
+//   The registration code is invalid.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * CertificateValidationException
+//   The certificate is invalid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * LimitExceededException
+//   The number of attached entities exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) RegisterCACertificate(input *RegisterCACertificateInput) (*RegisterCACertificateOutput, error) {
 	req, out := c.RegisterCACertificateRequest(input)
 	err := req.Send()
@@ -2453,6 +3905,8 @@ const opRegisterCertificate = "RegisterCertificate"
 // client's request for the RegisterCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2488,9 +3942,49 @@ func (c *IoT) RegisterCertificateRequest(input *RegisterCertificateInput) (req *
 	return
 }
 
+// RegisterCertificate API operation for AWS IoT.
+//
 // Registers a device certificate with AWS IoT. If you have more than one CA
 // certificate that has the same subject field, you must specify the CA certificate
 // that was used to sign the device certificate being registered.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation RegisterCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * CertificateValidationException
+//   The certificate is invalid.
+//
+//   * CertificateStateException
+//   The certificate operation is not allowed.
+//
+//   * CertificateConflictException
+//   Unable to verify the CA certificate used to sign the device certificate you
+//   are attempting to register. This is happens when you have registered more
+//   than one CA certificate that has the same subject field and public key.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) RegisterCertificate(input *RegisterCertificateInput) (*RegisterCertificateOutput, error) {
 	req, out := c.RegisterCertificateRequest(input)
 	err := req.Send()
@@ -2503,6 +3997,8 @@ const opRejectCertificateTransfer = "RejectCertificateTransfer"
 // client's request for the RejectCertificateTransfer operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RejectCertificateTransfer for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2540,6 +4036,8 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 	return
 }
 
+// RejectCertificateTransfer API operation for AWS IoT.
+//
 // Rejects a pending certificate transfer. After AWS IoT rejects a certificate
 // transfer, the certificate status changes from PENDING_TRANSFER to INACTIVE.
 //
@@ -2549,6 +4047,37 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 // This operation can only be called by the transfer destination. After it
 // is called, the certificate will be returned to the source's account in the
 // INACTIVE state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation RejectCertificateTransfer for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * TransferAlreadyCompletedException
+//   You can't revert the certificate transfer because the transfer is already
+//   complete.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) RejectCertificateTransfer(input *RejectCertificateTransferInput) (*RejectCertificateTransferOutput, error) {
 	req, out := c.RejectCertificateTransferRequest(input)
 	err := req.Send()
@@ -2561,6 +4090,8 @@ const opReplaceTopicRule = "ReplaceTopicRule"
 // client's request for the ReplaceTopicRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReplaceTopicRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2598,9 +4129,35 @@ func (c *IoT) ReplaceTopicRuleRequest(input *ReplaceTopicRuleInput) (req *reques
 	return
 }
 
+// ReplaceTopicRule API operation for AWS IoT.
+//
 // Replaces the specified rule. You must specify all parameters for the new
 // rule. Creating rules is an administrator-level action. Any user who has permission
 // to create rules will be able to access data processed by the rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ReplaceTopicRule for usage and error information.
+//
+// Returned Error Codes:
+//   * SqlParseException
+//   The Rule-SQL expression can't be parsed correctly.
+//
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
 func (c *IoT) ReplaceTopicRule(input *ReplaceTopicRuleInput) (*ReplaceTopicRuleOutput, error) {
 	req, out := c.ReplaceTopicRuleRequest(input)
 	err := req.Send()
@@ -2613,6 +4170,8 @@ const opSetDefaultPolicyVersion = "SetDefaultPolicyVersion"
 // client's request for the SetDefaultPolicyVersion operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetDefaultPolicyVersion for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2650,10 +4209,39 @@ func (c *IoT) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 	return
 }
 
+// SetDefaultPolicyVersion API operation for AWS IoT.
+//
 // Sets the specified version of the specified policy as the policy's default
 // (operative) version. This action affects all certificates to which the policy
 // is attached. To list the principals the policy is attached to, use the ListPrincipalPolicy
 // API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation SetDefaultPolicyVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*SetDefaultPolicyVersionOutput, error) {
 	req, out := c.SetDefaultPolicyVersionRequest(input)
 	err := req.Send()
@@ -2666,6 +4254,8 @@ const opSetLoggingOptions = "SetLoggingOptions"
 // client's request for the SetLoggingOptions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetLoggingOptions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2703,7 +4293,27 @@ func (c *IoT) SetLoggingOptionsRequest(input *SetLoggingOptionsInput) (req *requ
 	return
 }
 
+// SetLoggingOptions API operation for AWS IoT.
+//
 // Sets the logging options.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation SetLoggingOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
 func (c *IoT) SetLoggingOptions(input *SetLoggingOptionsInput) (*SetLoggingOptionsOutput, error) {
 	req, out := c.SetLoggingOptionsRequest(input)
 	err := req.Send()
@@ -2716,6 +4326,8 @@ const opTransferCertificate = "TransferCertificate"
 // client's request for the TransferCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TransferCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2751,6 +4363,8 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 	return
 }
 
+// TransferCertificate API operation for AWS IoT.
+//
 // Transfers the specified certificate to the specified AWS account.
 //
 // You can cancel the transfer until it is acknowledged by the recipient.
@@ -2763,6 +4377,40 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 //
 // The certificate must not have any policies attached to it. You can use the
 // DetachPrincipalPolicy API to detach them.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation TransferCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * CertificateStateException
+//   The certificate operation is not allowed.
+//
+//   * TransferConflictException
+//   You can't transfer the certificate because authorization policies are still
+//   attached.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) TransferCertificate(input *TransferCertificateInput) (*TransferCertificateOutput, error) {
 	req, out := c.TransferCertificateRequest(input)
 	err := req.Send()
@@ -2775,6 +4423,8 @@ const opUpdateCACertificate = "UpdateCACertificate"
 // client's request for the UpdateCACertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateCACertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2812,7 +4462,36 @@ func (c *IoT) UpdateCACertificateRequest(input *UpdateCACertificateInput) (req *
 	return
 }
 
+// UpdateCACertificate API operation for AWS IoT.
+//
 // Updates a registered CA certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateCACertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) UpdateCACertificate(input *UpdateCACertificateInput) (*UpdateCACertificateOutput, error) {
 	req, out := c.UpdateCACertificateRequest(input)
 	err := req.Send()
@@ -2825,6 +4504,8 @@ const opUpdateCertificate = "UpdateCertificate"
 // client's request for the UpdateCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2862,6 +4543,8 @@ func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *requ
 	return
 }
 
+// UpdateCertificate API operation for AWS IoT.
+//
 // Updates the status of the specified certificate. This operation is idempotent.
 //
 // Moving a certificate from the ACTIVE state (including REVOKED) will not
@@ -2870,6 +4553,36 @@ func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *requ
 //
 // The ACTIVE state is required to authenticate devices connecting to AWS IoT
 // using a certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * CertificateStateException
+//   The certificate operation is not allowed.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
 func (c *IoT) UpdateCertificate(input *UpdateCertificateInput) (*UpdateCertificateOutput, error) {
 	req, out := c.UpdateCertificateRequest(input)
 	err := req.Send()
@@ -2882,6 +4595,8 @@ const opUpdateThing = "UpdateThing"
 // client's request for the UpdateThing operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateThing for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2917,7 +4632,40 @@ func (c *IoT) UpdateThingRequest(input *UpdateThingInput) (req *request.Request,
 	return
 }
 
+// UpdateThing API operation for AWS IoT.
+//
 // Updates the data for a thing.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateThing for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * VersionConflictException
+//   An exception thrown when the version of a thing passed to a command is different
+//   than the version specified with the --version parameter.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
 func (c *IoT) UpdateThing(input *UpdateThingInput) (*UpdateThingOutput, error) {
 	req, out := c.UpdateThingRequest(input)
 	err := req.Send()

@@ -18,6 +18,8 @@ const opBatchGetItem = "BatchGetItem"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See BatchGetItem for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -58,6 +60,8 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.R
 	return
 }
 
+// BatchGetItem API operation for Amazon DynamoDB.
+//
 // The BatchGetItem operation returns the attributes of one or more items from
 // one or more tables. You identify requested items by primary key.
 //
@@ -107,6 +111,30 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.R
 // for nonexistent items consume the minimum read capacity units according to
 // the type of read. For more information, see Capacity Units Calculations (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations)
 // in the Amazon DynamoDB Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation BatchGetItem for usage and error information.
+//
+// Returned Error Codes:
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, error) {
 	req, out := c.BatchGetItemRequest(input)
 	err := req.Send()
@@ -145,6 +173,8 @@ const opBatchWriteItem = "BatchWriteItem"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See BatchWriteItem for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -179,6 +209,8 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 	return
 }
 
+// BatchWriteItem API operation for Amazon DynamoDB.
+//
 // The BatchWriteItem operation puts or deletes multiple items in one or more
 // tables. A single call to BatchWriteItem can write up to 16 MB of data, which
 // can comprise as many as 25 put or delete requests. Individual items to be
@@ -248,6 +280,34 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *reque
 //   Any individual item in a batch exceeds 400 KB.
 //
 //   The total request size exceeds 16 MB.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation BatchWriteItem for usage and error information.
+//
+// Returned Error Codes:
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * ItemCollectionSizeLimitExceededException
+//   An item collection is too large. This exception is only returned for tables
+//   that have one or more local secondary indexes.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (*BatchWriteItemOutput, error) {
 	req, out := c.BatchWriteItemRequest(input)
 	err := req.Send()
@@ -260,6 +320,8 @@ const opCreateTable = "CreateTable"
 // client's request for the CreateTable operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateTable for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -295,6 +357,8 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Req
 	return
 }
 
+// CreateTable API operation for Amazon DynamoDB.
+//
 // The CreateTable operation adds a new table to your account. In an AWS account,
 // table names must be unique within each region. That is, you can have two
 // tables with same name if you create the tables in different regions.
@@ -310,6 +374,33 @@ func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Req
 // with secondary indexes can be in the CREATING state at any given time.
 //
 // You can use the DescribeTable API to check the table status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation CreateTable for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceInUseException
+//   The operation conflicts with the resource's availability. For example, you
+//   attempted to recreate an existing table, or tried to delete a table currently
+//   in the CREATING state.
+//
+//   * LimitExceededException
+//   The number of concurrent table requests (cumulative number of tables in the
+//   CREATING, DELETING or UPDATING state) exceeds the maximum allowed of 10.
+//
+//   Also, for tables with secondary indexes, only one of those tables can be
+//   in the CREATING state at any point in time. Do not attempt to create more
+//   than one such table simultaneously.
+//
+//   The total limit of tables in the ACTIVE state is 250.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) CreateTable(input *CreateTableInput) (*CreateTableOutput, error) {
 	req, out := c.CreateTableRequest(input)
 	err := req.Send()
@@ -322,6 +413,8 @@ const opDeleteItem = "DeleteItem"
 // client's request for the DeleteItem operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteItem for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -357,6 +450,8 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Reque
 	return
 }
 
+// DeleteItem API operation for Amazon DynamoDB.
+//
 // Deletes a single item in a table by primary key. You can perform a conditional
 // delete operation that deletes the item if it exists, or if it has an expected
 // attribute value.
@@ -371,6 +466,37 @@ func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Reque
 // Conditional deletes are useful for deleting items only if specific conditions
 // are met. If those conditions are met, DynamoDB performs the delete. Otherwise,
 // the item is not deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation DeleteItem for usage and error information.
+//
+// Returned Error Codes:
+//   * ConditionalCheckFailedException
+//   A condition specified in the operation could not be evaluated.
+//
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * ItemCollectionSizeLimitExceededException
+//   An item collection is too large. This exception is only returned for tables
+//   that have one or more local secondary indexes.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (*DeleteItemOutput, error) {
 	req, out := c.DeleteItemRequest(input)
 	err := req.Send()
@@ -383,6 +509,8 @@ const opDeleteTable = "DeleteTable"
 // client's request for the DeleteTable operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTable for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -418,6 +546,8 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Req
 	return
 }
 
+// DeleteTable API operation for Amazon DynamoDB.
+//
 // The DeleteTable operation deletes a table and all of its items. After a DeleteTable
 // request, the specified table is in the DELETING state until DynamoDB completes
 // the deletion. If the table is in the ACTIVE state, you can delete it. If
@@ -436,6 +566,37 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Req
 // deleted after 24 hours.
 //
 // Use the DescribeTable API to check the status of the table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation DeleteTable for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceInUseException
+//   The operation conflicts with the resource's availability. For example, you
+//   attempted to recreate an existing table, or tried to delete a table currently
+//   in the CREATING state.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * LimitExceededException
+//   The number of concurrent table requests (cumulative number of tables in the
+//   CREATING, DELETING or UPDATING state) exceeds the maximum allowed of 10.
+//
+//   Also, for tables with secondary indexes, only one of those tables can be
+//   in the CREATING state at any point in time. Do not attempt to create more
+//   than one such table simultaneously.
+//
+//   The total limit of tables in the ACTIVE state is 250.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, error) {
 	req, out := c.DeleteTableRequest(input)
 	err := req.Send()
@@ -448,6 +609,8 @@ const opDescribeLimits = "DescribeLimits"
 // client's request for the DescribeLimits operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeLimits for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -483,6 +646,8 @@ func (c *DynamoDB) DescribeLimitsRequest(input *DescribeLimitsInput) (req *reque
 	return
 }
 
+// DescribeLimits API operation for Amazon DynamoDB.
+//
 // Returns the current provisioned-capacity limits for your AWS account in a
 // region, both for the region as a whole and for any one DynamoDB table that
 // you create there.
@@ -541,6 +706,18 @@ func (c *DynamoDB) DescribeLimitsRequest(input *DescribeLimitsInput) (req *reque
 // errors if you call it more than once in a minute.
 //
 //  The DescribeLimits Request element has no content.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation DescribeLimits for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) DescribeLimits(input *DescribeLimitsInput) (*DescribeLimitsOutput, error) {
 	req, out := c.DescribeLimitsRequest(input)
 	err := req.Send()
@@ -553,6 +730,8 @@ const opDescribeTable = "DescribeTable"
 // client's request for the DescribeTable operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeTable for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -588,6 +767,8 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request
 	return
 }
 
+// DescribeTable API operation for Amazon DynamoDB.
+//
 // Returns information about the table, including the current status of the
 // table, when it was created, the primary key schema, and any indexes on the
 // table.
@@ -597,6 +778,22 @@ func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request
 // uses an eventually consistent query, and the metadata for your table might
 // not be available at that moment. Wait for a few seconds, and then try the
 // DescribeTable request again.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation DescribeTable for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (*DescribeTableOutput, error) {
 	req, out := c.DescribeTableRequest(input)
 	err := req.Send()
@@ -609,6 +806,8 @@ const opGetItem = "GetItem"
 // client's request for the GetItem operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetItem for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -644,6 +843,8 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, ou
 	return
 }
 
+// GetItem API operation for Amazon DynamoDB.
+//
 // The GetItem operation returns a set of attributes for the item with the given
 // primary key. If there is no matching item, GetItem does not return any data.
 //
@@ -651,6 +852,30 @@ func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, ou
 // requires a strongly consistent read, set ConsistentRead to true. Although
 // a strongly consistent read might take more time than an eventually consistent
 // read, it always returns the last updated value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation GetItem for usage and error information.
+//
+// Returned Error Codes:
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) GetItem(input *GetItemInput) (*GetItemOutput, error) {
 	req, out := c.GetItemRequest(input)
 	err := req.Send()
@@ -663,6 +888,8 @@ const opListTables = "ListTables"
 // client's request for the ListTables operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTables for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -704,9 +931,23 @@ func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Reque
 	return
 }
 
+// ListTables API operation for Amazon DynamoDB.
+//
 // Returns an array of table names associated with the current account and endpoint.
 // The output from ListTables is paginated, with each page returning a maximum
 // of 100 table names.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation ListTables for usage and error information.
+//
+// Returned Error Codes:
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error) {
 	req, out := c.ListTablesRequest(input)
 	err := req.Send()
@@ -745,6 +986,8 @@ const opPutItem = "PutItem"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PutItem for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -779,6 +1022,8 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, ou
 	return
 }
 
+// PutItem API operation for Amazon DynamoDB.
+//
 // Creates a new item, or replaces an old item with a new item. If an item that
 // has the same primary key as the new item already exists in the specified
 // table, the new item completely replaces the existing item. You can perform
@@ -806,6 +1051,37 @@ func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, ou
 //
 //  For more information about using this API, see Working with Items (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
 // in the Amazon DynamoDB Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation PutItem for usage and error information.
+//
+// Returned Error Codes:
+//   * ConditionalCheckFailedException
+//   A condition specified in the operation could not be evaluated.
+//
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * ItemCollectionSizeLimitExceededException
+//   An item collection is too large. This exception is only returned for tables
+//   that have one or more local secondary indexes.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) PutItem(input *PutItemInput) (*PutItemOutput, error) {
 	req, out := c.PutItemRequest(input)
 	err := req.Send()
@@ -818,6 +1094,8 @@ const opQuery = "Query"
 // client's request for the Query operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See Query for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -859,6 +1137,8 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output
 	return
 }
 
+// Query API operation for Amazon DynamoDB.
+//
 // A Query operation uses the primary key of a table or a secondary index to
 // directly access items from that table or index.
 //
@@ -885,6 +1165,30 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output
 // parameter to true and obtain a strongly consistent result. Global secondary
 // indexes support eventually consistent reads only, so do not specify ConsistentRead
 // when querying a global secondary index.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation Query for usage and error information.
+//
+// Returned Error Codes:
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 	req, out := c.QueryRequest(input)
 	err := req.Send()
@@ -922,6 +1226,8 @@ const opScan = "Scan"
 // client's request for the Scan operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See Scan for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -963,6 +1269,8 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *
 	return
 }
 
+// Scan API operation for Amazon DynamoDB.
+//
 // The Scan operation returns one or more items and item attributes by accessing
 // every item in a table or a secondary index. To have DynamoDB return fewer
 // items, you can provide a ScanFilter operation.
@@ -984,6 +1292,30 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *
 // in the table immediately before the operation began. If you need a consistent
 // copy of the data, as of the time that the Scan begins, you can set the ConsistentRead
 // parameter to true.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation Scan for usage and error information.
+//
+// Returned Error Codes:
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 	req, out := c.ScanRequest(input)
 	err := req.Send()
@@ -1022,6 +1354,8 @@ const opUpdateItem = "UpdateItem"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See UpdateItem for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1056,6 +1390,8 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Reque
 	return
 }
 
+// UpdateItem API operation for Amazon DynamoDB.
+//
 // Edits an existing item's attributes, or adds a new item to the table if it
 // does not already exist. You can put, delete, or add attribute values. You
 // can also perform a conditional update on an existing item (insert a new attribute
@@ -1064,6 +1400,37 @@ func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Reque
 //
 // You can also return the item's attribute values in the same UpdateItem operation
 // using the ReturnValues parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation UpdateItem for usage and error information.
+//
+// Returned Error Codes:
+//   * ConditionalCheckFailedException
+//   A condition specified in the operation could not be evaluated.
+//
+//   * ProvisionedThroughputExceededException
+//   Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
+//   requests that receive this exception. Your request is eventually successful,
+//   unless your retry queue is too large to finish. Reduce the frequency of requests
+//   and use exponential backoff. For more information, go to Error Retries and
+//   Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
+//   in the Amazon DynamoDB Developer Guide.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * ItemCollectionSizeLimitExceededException
+//   An item collection is too large. This exception is only returned for tables
+//   that have one or more local secondary indexes.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (*UpdateItemOutput, error) {
 	req, out := c.UpdateItemRequest(input)
 	err := req.Send()
@@ -1076,6 +1443,8 @@ const opUpdateTable = "UpdateTable"
 // client's request for the UpdateTable operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateTable for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1111,6 +1480,8 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 	return
 }
 
+// UpdateTable API operation for Amazon DynamoDB.
+//
 // Modifies the provisioned throughput settings, global secondary indexes, or
 // DynamoDB Streams settings for a given table.
 //
@@ -1129,6 +1500,37 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Req
 // table status changes from ACTIVE to UPDATING. While it is UPDATING, you cannot
 // issue another UpdateTable request. When the table returns to the ACTIVE state,
 // the UpdateTable operation is complete.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DynamoDB's
+// API operation UpdateTable for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceInUseException
+//   The operation conflicts with the resource's availability. For example, you
+//   attempted to recreate an existing table, or tried to delete a table currently
+//   in the CREATING state.
+//
+//   * ResourceNotFoundException
+//   The operation tried to access a nonexistent table or index. The resource
+//   might not be specified correctly, or its status might not be ACTIVE.
+//
+//   * LimitExceededException
+//   The number of concurrent table requests (cumulative number of tables in the
+//   CREATING, DELETING or UPDATING state) exceeds the maximum allowed of 10.
+//
+//   Also, for tables with secondary indexes, only one of those tables can be
+//   in the CREATING state at any point in time. Do not attempt to create more
+//   than one such table simultaneously.
+//
+//   The total limit of tables in the ACTIVE state is 250.
+//
+//   * InternalServerError
+//   An error occurred on the server side.
+//
 func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, error) {
 	req, out := c.UpdateTableRequest(input)
 	err := req.Send()

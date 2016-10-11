@@ -19,6 +19,8 @@ const opAddTagsToResource = "AddTagsToResource"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTagsToResource for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -53,6 +55,8 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 	return
 }
 
+// AddTagsToResource API operation for Amazon ElastiCache.
+//
 // The AddTagsToResource action adds up to 10 cost allocation tags to the named
 // resource. A cost allocation tag is a key-value pair where the key and value
 // are case-sensitive. Cost allocation tags can be used to categorize and track
@@ -65,6 +69,29 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 // your costs across multiple services. For more information, see Using Cost
 // Allocation Tags in Amazon ElastiCache (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Tagging.html)
 // in the ElastiCache User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation AddTagsToResource for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * SnapshotNotFoundFault
+//   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * TagQuotaPerResourceExceeded
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 10.
+//
+//   * InvalidARN
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
 func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagListMessage, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -77,6 +104,8 @@ const opAuthorizeCacheSecurityGroupIngress = "AuthorizeCacheSecurityGroupIngress
 // client's request for the AuthorizeCacheSecurityGroupIngress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AuthorizeCacheSecurityGroupIngress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -112,12 +141,40 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 	return
 }
 
+// AuthorizeCacheSecurityGroupIngress API operation for Amazon ElastiCache.
+//
 // The AuthorizeCacheSecurityGroupIngress action allows network ingress to a
 // cache security group. Applications using ElastiCache must be running on Amazon
 // EC2, and Amazon EC2 security groups are used as the authorization mechanism.
 //
 //  You cannot authorize ingress from an Amazon EC2 security group in one region
 // to an ElastiCache cluster in another region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation AuthorizeCacheSecurityGroupIngress for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * InvalidCacheSecurityGroupState
+//   The current state of the cache security group does not allow deletion.
+//
+//   * AuthorizationAlreadyExists
+//   The specified Amazon EC2 security group is already authorized for the specified
+//   cache security group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSecurityGroupIngressInput) (*AuthorizeCacheSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeCacheSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -130,6 +187,8 @@ const opCopySnapshot = "CopySnapshot"
 // client's request for the CopySnapshot operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CopySnapshot for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -165,6 +224,8 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *reques
 	return
 }
 
+// CopySnapshot API operation for Amazon ElastiCache.
+//
 // The CopySnapshot action makes a copy of an existing snapshot.
 //
 //  Users or groups that have permissions to use the CopySnapshot API can create
@@ -178,6 +239,35 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *reques
 // sufficient permissions to perform the desired activity.
 //
 //  Solution: Contact your system administrator to get the needed permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CopySnapshot for usage and error information.
+//
+// Returned Error Codes:
+//   * SnapshotAlreadyExistsFault
+//   You already have a snapshot with the given name.
+//
+//   * SnapshotNotFoundFault
+//   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * SnapshotQuotaExceededFault
+//   The request cannot be processed because it would exceed the maximum number
+//   of snapshots.
+//
+//   * InvalidSnapshotState
+//   The current state of the snapshot does not allow the requested action to
+//   occur.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error) {
 	req, out := c.CopySnapshotRequest(input)
 	err := req.Send()
@@ -190,6 +280,8 @@ const opCreateCacheCluster = "CreateCacheCluster"
 // client's request for the CreateCacheCluster operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCacheCluster for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -225,9 +317,71 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) 
 	return
 }
 
+// CreateCacheCluster API operation for Amazon ElastiCache.
+//
 // The CreateCacheCluster action creates a cache cluster. All nodes in the cache
 // cluster run the same protocol-compliant cache engine software, either Memcached
 // or Redis.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateCacheCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ReplicationGroupNotFoundFault
+//   The specified replication group does not exist.
+//
+//   * InvalidReplicationGroupState
+//   The requested replication group is not in the available state.
+//
+//   * CacheClusterAlreadyExists
+//   You already have a cache cluster with the given identifier.
+//
+//   * InsufficientCacheClusterCapacity
+//   The requested cache node type is not available in the specified Availability
+//   Zone.
+//
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * CacheSubnetGroupNotFoundFault
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
+//   * ClusterQuotaForCustomerExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache clusters per customer.
+//
+//   * NodeQuotaForClusterExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes in a single cache cluster.
+//
+//   * NodeQuotaForCustomerExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes per customer.
+//
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidVPCNetworkStateFault
+//   The VPC network is in an invalid state.
+//
+//   * TagQuotaPerResourceExceeded
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 10.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*CreateCacheClusterOutput, error) {
 	req, out := c.CreateCacheClusterRequest(input)
 	err := req.Send()
@@ -240,6 +394,8 @@ const opCreateCacheParameterGroup = "CreateCacheParameterGroup"
 // client's request for the CreateCacheParameterGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCacheParameterGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -275,9 +431,37 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 	return
 }
 
+// CreateCacheParameterGroup API operation for Amazon ElastiCache.
+//
 // The CreateCacheParameterGroup action creates a new cache parameter group.
 // A cache parameter group is a collection of parameters that you apply to all
 // of the nodes in a cache cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateCacheParameterGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheParameterGroupQuotaExceeded
+//   The request cannot be processed because it would exceed the maximum number
+//   of cache security groups.
+//
+//   * CacheParameterGroupAlreadyExists
+//   A cache parameter group with the requested name already exists.
+//
+//   * InvalidCacheParameterGroupState
+//   The current state of the cache parameter group does not allow the requested
+//   action to occur.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroupInput) (*CreateCacheParameterGroupOutput, error) {
 	req, out := c.CreateCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -290,6 +474,8 @@ const opCreateCacheSecurityGroup = "CreateCacheSecurityGroup"
 // client's request for the CreateCacheSecurityGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCacheSecurityGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -325,6 +511,8 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 	return
 }
 
+// CreateCacheSecurityGroup API operation for Amazon ElastiCache.
+//
 // The CreateCacheSecurityGroup action creates a new cache security group. Use
 // a cache security group to control access to one or more cache clusters.
 //
@@ -332,6 +520,28 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 // outside of an Amazon Virtual Private Cloud (VPC). If you are creating a cache
 // cluster inside of a VPC, use a cache subnet group instead. For more information,
 // see CreateCacheSubnetGroup (http://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheSubnetGroup.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateCacheSecurityGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSecurityGroupAlreadyExists
+//   A cache security group with the specified name already exists.
+//
+//   * QuotaExceeded.CacheSecurityGroup
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache security groups.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupInput) (*CreateCacheSecurityGroupOutput, error) {
 	req, out := c.CreateCacheSecurityGroupRequest(input)
 	err := req.Send()
@@ -344,6 +554,8 @@ const opCreateCacheSubnetGroup = "CreateCacheSubnetGroup"
 // client's request for the CreateCacheSubnetGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCacheSubnetGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -379,10 +591,36 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 	return
 }
 
+// CreateCacheSubnetGroup API operation for Amazon ElastiCache.
+//
 // The CreateCacheSubnetGroup action creates a new cache subnet group.
 //
 // Use this parameter only when you are creating a cluster in an Amazon Virtual
 // Private Cloud (VPC).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateCacheSubnetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSubnetGroupAlreadyExists
+//   The requested cache subnet group name is already in use by an existing cache
+//   subnet group.
+//
+//   * CacheSubnetGroupQuotaExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache subnet groups.
+//
+//   * CacheSubnetQuotaExceededFault
+//   The request cannot be processed because it would exceed the allowed number
+//   of subnets in a cache subnet group.
+//
+//   * InvalidSubnet
+//   An invalid subnet identifier was specified.
+//
 func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput) (*CreateCacheSubnetGroupOutput, error) {
 	req, out := c.CreateCacheSubnetGroupRequest(input)
 	err := req.Send()
@@ -395,6 +633,8 @@ const opCreateReplicationGroup = "CreateReplicationGroup"
 // client's request for the CreateReplicationGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReplicationGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -430,6 +670,8 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 	return
 }
 
+// CreateReplicationGroup API operation for Amazon ElastiCache.
+//
 // The CreateReplicationGroup action creates a replication group. A replication
 // group is a collection of cache clusters, where one of the cache clusters
 // is a read/write primary and the others are read-only replicas. Writes to
@@ -441,6 +683,66 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // up to a total of five read replicas.
 //
 //  This action is valid only for Redis.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateReplicationGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * InvalidCacheClusterState
+//   The requested cache cluster is not in the available state.
+//
+//   * ReplicationGroupAlreadyExists
+//   The specified replication group already exists.
+//
+//   * InsufficientCacheClusterCapacity
+//   The requested cache node type is not available in the specified Availability
+//   Zone.
+//
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * CacheSubnetGroupNotFoundFault
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
+//   * ClusterQuotaForCustomerExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache clusters per customer.
+//
+//   * NodeQuotaForClusterExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes in a single cache cluster.
+//
+//   * NodeQuotaForCustomerExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes per customer.
+//
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidVPCNetworkStateFault
+//   The VPC network is in an invalid state.
+//
+//   * TagQuotaPerResourceExceeded
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 10.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput) (*CreateReplicationGroupOutput, error) {
 	req, out := c.CreateReplicationGroupRequest(input)
 	err := req.Send()
@@ -453,6 +755,8 @@ const opCreateSnapshot = "CreateSnapshot"
 // client's request for the CreateSnapshot operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateSnapshot for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -488,8 +792,49 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *re
 	return
 }
 
+// CreateSnapshot API operation for Amazon ElastiCache.
+//
 // The CreateSnapshot action creates a copy of an entire cache cluster at a
 // specific moment in time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateSnapshot for usage and error information.
+//
+// Returned Error Codes:
+//   * SnapshotAlreadyExistsFault
+//   You already have a snapshot with the given name.
+//
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * InvalidCacheClusterState
+//   The requested cache cluster is not in the available state.
+//
+//   * SnapshotQuotaExceededFault
+//   The request cannot be processed because it would exceed the maximum number
+//   of snapshots.
+//
+//   * SnapshotFeatureNotSupportedFault
+//   You attempted one of the following actions:
+//
+//     Creating a snapshot of a Redis cache cluster running on a t1.micro cache
+//   node.
+//
+//     Creating a snapshot of a cache cluster that is running Memcached rather
+//   than Redis.
+//
+//     Neither of these are supported by ElastiCache.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
 func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
@@ -502,6 +847,8 @@ const opDeleteCacheCluster = "DeleteCacheCluster"
 // client's request for the DeleteCacheCluster operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCacheCluster for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -537,6 +884,8 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 	return
 }
 
+// DeleteCacheCluster API operation for Amazon ElastiCache.
+//
 // The DeleteCacheCluster action deletes a previously provisioned cache cluster.
 // DeleteCacheCluster deletes all associated cache nodes, node endpoints and
 // the cache cluster itself. When you receive a successful response from this
@@ -545,6 +894,45 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 //
 // This API cannot be used to delete a cache cluster that is the last read
 // replica of a replication group that has Multi-AZ mode enabled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteCacheCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * InvalidCacheClusterState
+//   The requested cache cluster is not in the available state.
+//
+//   * SnapshotAlreadyExistsFault
+//   You already have a snapshot with the given name.
+//
+//   * SnapshotFeatureNotSupportedFault
+//   You attempted one of the following actions:
+//
+//     Creating a snapshot of a Redis cache cluster running on a t1.micro cache
+//   node.
+//
+//     Creating a snapshot of a cache cluster that is running Memcached rather
+//   than Redis.
+//
+//     Neither of these are supported by ElastiCache.
+//
+//   * SnapshotQuotaExceededFault
+//   The request cannot be processed because it would exceed the maximum number
+//   of snapshots.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*DeleteCacheClusterOutput, error) {
 	req, out := c.DeleteCacheClusterRequest(input)
 	err := req.Send()
@@ -557,6 +945,8 @@ const opDeleteCacheParameterGroup = "DeleteCacheParameterGroup"
 // client's request for the DeleteCacheParameterGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCacheParameterGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -594,9 +984,34 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 	return
 }
 
+// DeleteCacheParameterGroup API operation for Amazon ElastiCache.
+//
 // The DeleteCacheParameterGroup action deletes the specified cache parameter
 // group. You cannot delete a cache parameter group if it is associated with
 // any cache clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteCacheParameterGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidCacheParameterGroupState
+//   The current state of the cache parameter group does not allow the requested
+//   action to occur.
+//
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupInput) (*DeleteCacheParameterGroupOutput, error) {
 	req, out := c.DeleteCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -609,6 +1024,8 @@ const opDeleteCacheSecurityGroup = "DeleteCacheSecurityGroup"
 // client's request for the DeleteCacheSecurityGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCacheSecurityGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -646,10 +1063,34 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 	return
 }
 
+// DeleteCacheSecurityGroup API operation for Amazon ElastiCache.
+//
 // The DeleteCacheSecurityGroup action deletes a cache security group.
 //
 //  You cannot delete a cache security group if it is associated with any cache
 // clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteCacheSecurityGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidCacheSecurityGroupState
+//   The current state of the cache security group does not allow deletion.
+//
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupInput) (*DeleteCacheSecurityGroupOutput, error) {
 	req, out := c.DeleteCacheSecurityGroupRequest(input)
 	err := req.Send()
@@ -662,6 +1103,8 @@ const opDeleteCacheSubnetGroup = "DeleteCacheSubnetGroup"
 // client's request for the DeleteCacheSubnetGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCacheSubnetGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -699,10 +1142,28 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 	return
 }
 
+// DeleteCacheSubnetGroup API operation for Amazon ElastiCache.
+//
 // The DeleteCacheSubnetGroup action deletes a cache subnet group.
 //
 //  You cannot delete a cache subnet group if it is associated with any cache
 // clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteCacheSubnetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSubnetGroupInUse
+//   The requested cache subnet group is currently in use.
+//
+//   * CacheSubnetGroupNotFoundFault
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
 func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput) (*DeleteCacheSubnetGroupOutput, error) {
 	req, out := c.DeleteCacheSubnetGroupRequest(input)
 	err := req.Send()
@@ -715,6 +1176,8 @@ const opDeleteReplicationGroup = "DeleteReplicationGroup"
 // client's request for the DeleteReplicationGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReplicationGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -750,6 +1213,8 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 	return
 }
 
+// DeleteReplicationGroup API operation for Amazon ElastiCache.
+//
 // The DeleteReplicationGroup action deletes an existing replication group.
 // By default, this action deletes the entire replication group, including the
 // primary cluster and all of the read replicas. You can optionally delete only
@@ -758,6 +1223,45 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 // When you receive a successful response from this action, Amazon ElastiCache
 // immediately begins deleting the selected resources; you cannot cancel or
 // revert this action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteReplicationGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ReplicationGroupNotFoundFault
+//   The specified replication group does not exist.
+//
+//   * InvalidReplicationGroupState
+//   The requested replication group is not in the available state.
+//
+//   * SnapshotAlreadyExistsFault
+//   You already have a snapshot with the given name.
+//
+//   * SnapshotFeatureNotSupportedFault
+//   You attempted one of the following actions:
+//
+//     Creating a snapshot of a Redis cache cluster running on a t1.micro cache
+//   node.
+//
+//     Creating a snapshot of a cache cluster that is running Memcached rather
+//   than Redis.
+//
+//     Neither of these are supported by ElastiCache.
+//
+//   * SnapshotQuotaExceededFault
+//   The request cannot be processed because it would exceed the maximum number
+//   of snapshots.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput) (*DeleteReplicationGroupOutput, error) {
 	req, out := c.DeleteReplicationGroupRequest(input)
 	err := req.Send()
@@ -770,6 +1274,8 @@ const opDeleteSnapshot = "DeleteSnapshot"
 // client's request for the DeleteSnapshot operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteSnapshot for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -805,9 +1311,33 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *re
 	return
 }
 
+// DeleteSnapshot API operation for Amazon ElastiCache.
+//
 // The DeleteSnapshot action deletes an existing snapshot. When you receive
 // a successful response from this action, ElastiCache immediately begins deleting
 // the snapshot; you cannot cancel or revert this action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteSnapshot for usage and error information.
+//
+// Returned Error Codes:
+//   * SnapshotNotFoundFault
+//   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * InvalidSnapshotState
+//   The current state of the snapshot does not allow the requested action to
+//   occur.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	err := req.Send()
@@ -820,6 +1350,8 @@ const opDescribeCacheClusters = "DescribeCacheClusters"
 // client's request for the DescribeCacheClusters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCacheClusters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -861,6 +1393,8 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 	return
 }
 
+// DescribeCacheClusters API operation for Amazon ElastiCache.
+//
 // The DescribeCacheClusters action returns information about all provisioned
 // cache clusters if no cache cluster identifier is specified, or about a specific
 // cache cluster if a cache cluster identifier is supplied.
@@ -883,6 +1417,24 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 //
 // If cache nodes are currently being removed from the cache cluster, no endpoint
 // information for the removed nodes is displayed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeCacheClusters for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (*DescribeCacheClustersOutput, error) {
 	req, out := c.DescribeCacheClustersRequest(input)
 	err := req.Send()
@@ -920,6 +1472,8 @@ const opDescribeCacheEngineVersions = "DescribeCacheEngineVersions"
 // client's request for the DescribeCacheEngineVersions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCacheEngineVersions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -961,8 +1515,17 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 	return
 }
 
+// DescribeCacheEngineVersions API operation for Amazon ElastiCache.
+//
 // The DescribeCacheEngineVersions action returns a list of the available cache
 // engines and their versions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeCacheEngineVersions for usage and error information.
 func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVersionsInput) (*DescribeCacheEngineVersionsOutput, error) {
 	req, out := c.DescribeCacheEngineVersionsRequest(input)
 	err := req.Send()
@@ -1000,6 +1563,8 @@ const opDescribeCacheParameterGroups = "DescribeCacheParameterGroups"
 // client's request for the DescribeCacheParameterGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCacheParameterGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1041,9 +1606,30 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 	return
 }
 
+// DescribeCacheParameterGroups API operation for Amazon ElastiCache.
+//
 // The DescribeCacheParameterGroups action returns a list of cache parameter
 // group descriptions. If a cache parameter group name is specified, the list
 // will contain only the descriptions for that group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeCacheParameterGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameterGroupsInput) (*DescribeCacheParameterGroupsOutput, error) {
 	req, out := c.DescribeCacheParameterGroupsRequest(input)
 	err := req.Send()
@@ -1081,6 +1667,8 @@ const opDescribeCacheParameters = "DescribeCacheParameters"
 // client's request for the DescribeCacheParameters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCacheParameters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1122,8 +1710,29 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 	return
 }
 
+// DescribeCacheParameters API operation for Amazon ElastiCache.
+//
 // The DescribeCacheParameters action returns the detailed parameter list for
 // a particular cache parameter group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeCacheParameters for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInput) (*DescribeCacheParametersOutput, error) {
 	req, out := c.DescribeCacheParametersRequest(input)
 	err := req.Send()
@@ -1161,6 +1770,8 @@ const opDescribeCacheSecurityGroups = "DescribeCacheSecurityGroups"
 // client's request for the DescribeCacheSecurityGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCacheSecurityGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1202,9 +1813,30 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 	return
 }
 
+// DescribeCacheSecurityGroups API operation for Amazon ElastiCache.
+//
 // The DescribeCacheSecurityGroups action returns a list of cache security group
 // descriptions. If a cache security group name is specified, the list will
 // contain only the description of that group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeCacheSecurityGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGroupsInput) (*DescribeCacheSecurityGroupsOutput, error) {
 	req, out := c.DescribeCacheSecurityGroupsRequest(input)
 	err := req.Send()
@@ -1242,6 +1874,8 @@ const opDescribeCacheSubnetGroups = "DescribeCacheSubnetGroups"
 // client's request for the DescribeCacheSubnetGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCacheSubnetGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1283,9 +1917,24 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 	return
 }
 
+// DescribeCacheSubnetGroups API operation for Amazon ElastiCache.
+//
 // The DescribeCacheSubnetGroups action returns a list of cache subnet group
 // descriptions. If a subnet group name is specified, the list will contain
 // only the description of that group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeCacheSubnetGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSubnetGroupNotFoundFault
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
 func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroupsInput) (*DescribeCacheSubnetGroupsOutput, error) {
 	req, out := c.DescribeCacheSubnetGroupsRequest(input)
 	err := req.Send()
@@ -1323,6 +1972,8 @@ const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 // client's request for the DescribeEngineDefaultParameters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEngineDefaultParameters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1364,8 +2015,25 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 	return
 }
 
+// DescribeEngineDefaultParameters API operation for Amazon ElastiCache.
+//
 // The DescribeEngineDefaultParameters action returns the default engine and
 // system parameter information for the specified cache engine.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeEngineDefaultParameters for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	err := req.Send()
@@ -1403,6 +2071,8 @@ const opDescribeEvents = "DescribeEvents"
 // client's request for the DescribeEvents operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEvents for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1444,6 +2114,8 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *re
 	return
 }
 
+// DescribeEvents API operation for Amazon ElastiCache.
+//
 // The DescribeEvents action returns events related to cache clusters, cache
 // security groups, and cache parameter groups. You can obtain events specific
 // to a particular cache cluster, cache security group, or cache parameter group
@@ -1451,6 +2123,21 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *re
 //
 // By default, only the events occurring within the last hour are returned;
 // however, you can retrieve up to 14 days' worth of events if necessary.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeEvents for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -1488,6 +2175,8 @@ const opDescribeReplicationGroups = "DescribeReplicationGroups"
 // client's request for the DescribeReplicationGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReplicationGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1529,9 +2218,29 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 	return
 }
 
+// DescribeReplicationGroups API operation for Amazon ElastiCache.
+//
 // The DescribeReplicationGroups action returns information about a particular
 // replication group. If no identifier is specified, DescribeReplicationGroups
 // returns information about all replication groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeReplicationGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ReplicationGroupNotFoundFault
+//   The specified replication group does not exist.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroupsInput) (*DescribeReplicationGroupsOutput, error) {
 	req, out := c.DescribeReplicationGroupsRequest(input)
 	err := req.Send()
@@ -1569,6 +2278,8 @@ const opDescribeReservedCacheNodes = "DescribeReservedCacheNodes"
 // client's request for the DescribeReservedCacheNodes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReservedCacheNodes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1610,8 +2321,28 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 	return
 }
 
+// DescribeReservedCacheNodes API operation for Amazon ElastiCache.
+//
 // The DescribeReservedCacheNodes action returns information about reserved
 // cache nodes for this account, or about a specified reserved cache node.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeReservedCacheNodes for usage and error information.
+//
+// Returned Error Codes:
+//   * ReservedCacheNodeNotFound
+//   The requested reserved cache node was not found.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNodesInput) (*DescribeReservedCacheNodesOutput, error) {
 	req, out := c.DescribeReservedCacheNodesRequest(input)
 	err := req.Send()
@@ -1649,6 +2380,8 @@ const opDescribeReservedCacheNodesOfferings = "DescribeReservedCacheNodesOfferin
 // client's request for the DescribeReservedCacheNodesOfferings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReservedCacheNodesOfferings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1690,8 +2423,28 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 	return
 }
 
+// DescribeReservedCacheNodesOfferings API operation for Amazon ElastiCache.
+//
 // The DescribeReservedCacheNodesOfferings action lists available reserved cache
 // node offerings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeReservedCacheNodesOfferings for usage and error information.
+//
+// Returned Error Codes:
+//   * ReservedCacheNodesOfferingNotFound
+//   The requested cache node offering does not exist.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReservedCacheNodesOfferingsInput) (*DescribeReservedCacheNodesOfferingsOutput, error) {
 	req, out := c.DescribeReservedCacheNodesOfferingsRequest(input)
 	err := req.Send()
@@ -1729,6 +2482,8 @@ const opDescribeSnapshots = "DescribeSnapshots"
 // client's request for the DescribeSnapshots operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeSnapshots for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1770,10 +2525,33 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 	return
 }
 
+// DescribeSnapshots API operation for Amazon ElastiCache.
+//
 // The DescribeSnapshots action returns information about cache cluster snapshots.
 // By default, DescribeSnapshots lists all of your snapshots; it can optionally
 // describe a single snapshot, or just the snapshots associated with a particular
 // cache cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeSnapshots for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * SnapshotNotFoundFault
+//   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	err := req.Send()
@@ -1812,6 +2590,8 @@ const opListAllowedNodeTypeModifications = "ListAllowedNodeTypeModifications"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListAllowedNodeTypeModifications for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1846,6 +2626,8 @@ func (c *ElastiCache) ListAllowedNodeTypeModificationsRequest(input *ListAllowed
 	return
 }
 
+// ListAllowedNodeTypeModifications API operation for Amazon ElastiCache.
+//
 // The ListAllowedNodeTypeModifications action lists all available node types
 // that you can scale your Redis cluster's or replication group's current node
 // type up to.
@@ -1853,6 +2635,27 @@ func (c *ElastiCache) ListAllowedNodeTypeModificationsRequest(input *ListAllowed
 // When you use the ModifyCacheCluster or ModifyReplicationGroup APIs to scale
 // up your cluster or replication group, the value of the CacheNodeType parameter
 // must be one of the node types returned by this action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ListAllowedNodeTypeModifications for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * ReplicationGroupNotFoundFault
+//   The specified replication group does not exist.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
 func (c *ElastiCache) ListAllowedNodeTypeModifications(input *ListAllowedNodeTypeModificationsInput) (*ListAllowedNodeTypeModificationsOutput, error) {
 	req, out := c.ListAllowedNodeTypeModificationsRequest(input)
 	err := req.Send()
@@ -1865,6 +2668,8 @@ const opListTagsForResource = "ListTagsForResource"
 // client's request for the ListTagsForResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTagsForResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1900,6 +2705,8 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 	return
 }
 
+// ListTagsForResource API operation for Amazon ElastiCache.
+//
 // The ListTagsForResource action lists all cost allocation tags currently on
 // the named resource. A cost allocation tag is a key-value pair where the key
 // is case-sensitive and the value is optional. Cost allocation tags can be
@@ -1908,6 +2715,24 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 // You can have a maximum of 10 cost allocation tags on an ElastiCache resource.
 // For more information, see Using Cost Allocation Tags in Amazon ElastiCache
 // (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/BestPractices.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * SnapshotNotFoundFault
+//   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * InvalidARN
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
 func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*TagListMessage, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -1920,6 +2745,8 @@ const opModifyCacheCluster = "ModifyCacheCluster"
 // client's request for the ModifyCacheCluster operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyCacheCluster for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1955,9 +2782,58 @@ func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) 
 	return
 }
 
+// ModifyCacheCluster API operation for Amazon ElastiCache.
+//
 // The ModifyCacheCluster action modifies the settings for a cache cluster.
 // You can use this action to change one or more cluster configuration parameters
 // by specifying the parameters and the new values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ModifyCacheCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidCacheClusterState
+//   The requested cache cluster is not in the available state.
+//
+//   * InvalidCacheSecurityGroupState
+//   The current state of the cache security group does not allow deletion.
+//
+//   * InsufficientCacheClusterCapacity
+//   The requested cache node type is not available in the specified Availability
+//   Zone.
+//
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * NodeQuotaForClusterExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes in a single cache cluster.
+//
+//   * NodeQuotaForCustomerExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes per customer.
+//
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidVPCNetworkStateFault
+//   The VPC network is in an invalid state.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*ModifyCacheClusterOutput, error) {
 	req, out := c.ModifyCacheClusterRequest(input)
 	err := req.Send()
@@ -1970,6 +2846,8 @@ const opModifyCacheParameterGroup = "ModifyCacheParameterGroup"
 // client's request for the ModifyCacheParameterGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyCacheParameterGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2005,9 +2883,34 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 	return
 }
 
+// ModifyCacheParameterGroup API operation for Amazon ElastiCache.
+//
 // The ModifyCacheParameterGroup action modifies the parameters of a cache parameter
 // group. You can modify up to 20 parameters in a single request by submitting
 // a list parameter name and value pairs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ModifyCacheParameterGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidCacheParameterGroupState
+//   The current state of the cache parameter group does not allow the requested
+//   action to occur.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
 	req, out := c.ModifyCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -2020,6 +2923,8 @@ const opModifyCacheSubnetGroup = "ModifyCacheSubnetGroup"
 // client's request for the ModifyCacheSubnetGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyCacheSubnetGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2055,7 +2960,32 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 	return
 }
 
+// ModifyCacheSubnetGroup API operation for Amazon ElastiCache.
+//
 // The ModifyCacheSubnetGroup action modifies an existing cache subnet group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ModifyCacheSubnetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSubnetGroupNotFoundFault
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
+//   * CacheSubnetQuotaExceededFault
+//   The request cannot be processed because it would exceed the allowed number
+//   of subnets in a cache subnet group.
+//
+//   * SubnetInUse
+//   The requested subnet is being used by another cache subnet group.
+//
+//   * InvalidSubnet
+//   An invalid subnet identifier was specified.
+//
 func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput) (*ModifyCacheSubnetGroupOutput, error) {
 	req, out := c.ModifyCacheSubnetGroupRequest(input)
 	err := req.Send()
@@ -2068,6 +2998,8 @@ const opModifyReplicationGroup = "ModifyReplicationGroup"
 // client's request for the ModifyReplicationGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ModifyReplicationGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2103,8 +3035,63 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 	return
 }
 
+// ModifyReplicationGroup API operation for Amazon ElastiCache.
+//
 // The ModifyReplicationGroup action modifies the settings for a replication
 // group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ModifyReplicationGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ReplicationGroupNotFoundFault
+//   The specified replication group does not exist.
+//
+//   * InvalidReplicationGroupState
+//   The requested replication group is not in the available state.
+//
+//   * InvalidCacheClusterState
+//   The requested cache cluster is not in the available state.
+//
+//   * InvalidCacheSecurityGroupState
+//   The current state of the cache security group does not allow deletion.
+//
+//   * InsufficientCacheClusterCapacity
+//   The requested cache node type is not available in the specified Availability
+//   Zone.
+//
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * NodeQuotaForClusterExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes in a single cache cluster.
+//
+//   * NodeQuotaForCustomerExceeded
+//   The request cannot be processed because it would exceed the allowed number
+//   of cache nodes per customer.
+//
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidVPCNetworkStateFault
+//   The VPC network is in an invalid state.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput) (*ModifyReplicationGroupOutput, error) {
 	req, out := c.ModifyReplicationGroupRequest(input)
 	err := req.Send()
@@ -2117,6 +3104,8 @@ const opPurchaseReservedCacheNodesOffering = "PurchaseReservedCacheNodesOffering
 // client's request for the PurchaseReservedCacheNodesOffering operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PurchaseReservedCacheNodesOffering for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2152,8 +3141,35 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 	return
 }
 
+// PurchaseReservedCacheNodesOffering API operation for Amazon ElastiCache.
+//
 // The PurchaseReservedCacheNodesOffering action allows you to purchase a reserved
 // cache node offering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation PurchaseReservedCacheNodesOffering for usage and error information.
+//
+// Returned Error Codes:
+//   * ReservedCacheNodesOfferingNotFound
+//   The requested cache node offering does not exist.
+//
+//   * ReservedCacheNodeAlreadyExists
+//   You already have a reservation with the given identifier.
+//
+//   * ReservedCacheNodeQuotaExceeded
+//   The request cannot be processed because it would exceed the user's cache
+//   node quota.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReservedCacheNodesOfferingInput) (*PurchaseReservedCacheNodesOfferingOutput, error) {
 	req, out := c.PurchaseReservedCacheNodesOfferingRequest(input)
 	err := req.Send()
@@ -2166,6 +3182,8 @@ const opRebootCacheCluster = "RebootCacheCluster"
 // client's request for the RebootCacheCluster operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RebootCacheCluster for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2201,6 +3219,8 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 	return
 }
 
+// RebootCacheCluster API operation for Amazon ElastiCache.
+//
 // The RebootCacheCluster action reboots some, or all, of the cache nodes within
 // a provisioned cache cluster. This API will apply any modified cache parameter
 // groups to the cache cluster. The reboot action takes place as soon as possible,
@@ -2211,6 +3231,21 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 // to be lost.
 //
 // When the reboot is complete, a cache cluster event is created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation RebootCacheCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidCacheClusterState
+//   The requested cache cluster is not in the available state.
+//
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
 func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*RebootCacheClusterOutput, error) {
 	req, out := c.RebootCacheClusterRequest(input)
 	err := req.Send()
@@ -2223,6 +3258,8 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // client's request for the RemoveTagsFromResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTagsFromResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2258,8 +3295,31 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 	return
 }
 
+// RemoveTagsFromResource API operation for Amazon ElastiCache.
+//
 // The RemoveTagsFromResource action removes the tags identified by the TagKeys
 // list from the named resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation RemoveTagsFromResource for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheClusterNotFound
+//   The requested cache cluster ID does not refer to an existing cache cluster.
+//
+//   * SnapshotNotFoundFault
+//   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * InvalidARN
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
+//   * TagNotFound
+//   The requested tag was not found on this resource.
+//
 func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*TagListMessage, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -2272,6 +3332,8 @@ const opResetCacheParameterGroup = "ResetCacheParameterGroup"
 // client's request for the ResetCacheParameterGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ResetCacheParameterGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2307,10 +3369,35 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 	return
 }
 
+// ResetCacheParameterGroup API operation for Amazon ElastiCache.
+//
 // The ResetCacheParameterGroup action modifies the parameters of a cache parameter
 // group to the engine or system default value. You can reset specific parameters
 // by submitting a list of parameter names. To reset the entire cache parameter
 // group, specify the ResetAllParameters and CacheParameterGroupName parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ResetCacheParameterGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidCacheParameterGroupState
+//   The current state of the cache parameter group does not allow the requested
+//   action to occur.
+//
+//   * CacheParameterGroupNotFound
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
 	req, out := c.ResetCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -2323,6 +3410,8 @@ const opRevokeCacheSecurityGroupIngress = "RevokeCacheSecurityGroupIngress"
 // client's request for the RevokeCacheSecurityGroupIngress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RevokeCacheSecurityGroupIngress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2358,9 +3447,37 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheS
 	return
 }
 
+// RevokeCacheSecurityGroupIngress API operation for Amazon ElastiCache.
+//
 // The RevokeCacheSecurityGroupIngress action revokes ingress from a cache security
 // group. Use this action to disallow access from an Amazon EC2 security group
 // that had been previously authorized.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation RevokeCacheSecurityGroupIngress for usage and error information.
+//
+// Returned Error Codes:
+//   * CacheSecurityGroupNotFound
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * AuthorizationNotFound
+//   The specified Amazon EC2 security group is not authorized for the specified
+//   cache security group.
+//
+//   * InvalidCacheSecurityGroupState
+//   The current state of the cache security group does not allow deletion.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidParameterCombination
+//   Two or more incompatible parameters were specified.
+//
 func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurityGroupIngressInput) (*RevokeCacheSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeCacheSecurityGroupIngressRequest(input)
 	err := req.Send()

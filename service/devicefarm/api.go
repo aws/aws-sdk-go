@@ -17,6 +17,8 @@ const opCreateDevicePool = "CreateDevicePool"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CreateDevicePool for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,7 +53,30 @@ func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req 
 	return
 }
 
+// CreateDevicePool API operation for AWS Device Farm.
+//
 // Creates a device pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation CreateDevicePool for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) CreateDevicePool(input *CreateDevicePoolInput) (*CreateDevicePoolOutput, error) {
 	req, out := c.CreateDevicePoolRequest(input)
 	err := req.Send()
@@ -64,6 +89,8 @@ const opCreateProject = "CreateProject"
 // client's request for the CreateProject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateProject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -99,7 +126,30 @@ func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *reque
 	return
 }
 
+// CreateProject API operation for AWS Device Farm.
+//
 // Creates a new project.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation CreateProject for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
 	req, out := c.CreateProjectRequest(input)
 	err := req.Send()
@@ -112,6 +162,8 @@ const opCreateRemoteAccessSession = "CreateRemoteAccessSession"
 // client's request for the CreateRemoteAccessSession operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateRemoteAccessSession for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -147,7 +199,30 @@ func (c *DeviceFarm) CreateRemoteAccessSessionRequest(input *CreateRemoteAccessS
 	return
 }
 
+// CreateRemoteAccessSession API operation for AWS Device Farm.
+//
 // Specifies and starts a remote access session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation CreateRemoteAccessSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) CreateRemoteAccessSession(input *CreateRemoteAccessSessionInput) (*CreateRemoteAccessSessionOutput, error) {
 	req, out := c.CreateRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -160,6 +235,8 @@ const opCreateUpload = "CreateUpload"
 // client's request for the CreateUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -195,7 +272,30 @@ func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *request
 	return
 }
 
+// CreateUpload API operation for AWS Device Farm.
+//
 // Uploads an app or test scripts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation CreateUpload for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) CreateUpload(input *CreateUploadInput) (*CreateUploadOutput, error) {
 	req, out := c.CreateUploadRequest(input)
 	err := req.Send()
@@ -208,6 +308,8 @@ const opDeleteDevicePool = "DeleteDevicePool"
 // client's request for the DeleteDevicePool operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDevicePool for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -243,8 +345,31 @@ func (c *DeviceFarm) DeleteDevicePoolRequest(input *DeleteDevicePoolInput) (req 
 	return
 }
 
+// DeleteDevicePool API operation for AWS Device Farm.
+//
 // Deletes a device pool given the pool ARN. Does not allow deletion of curated
 // pools owned by the system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation DeleteDevicePool for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) DeleteDevicePool(input *DeleteDevicePoolInput) (*DeleteDevicePoolOutput, error) {
 	req, out := c.DeleteDevicePoolRequest(input)
 	err := req.Send()
@@ -257,6 +382,8 @@ const opDeleteProject = "DeleteProject"
 // client's request for the DeleteProject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteProject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -292,9 +419,32 @@ func (c *DeviceFarm) DeleteProjectRequest(input *DeleteProjectInput) (req *reque
 	return
 }
 
+// DeleteProject API operation for AWS Device Farm.
+//
 // Deletes an AWS Device Farm project, given the project ARN.
 //
 //  Note Deleting this resource does not stop an in-progress run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation DeleteProject for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
 	err := req.Send()
@@ -307,6 +457,8 @@ const opDeleteRemoteAccessSession = "DeleteRemoteAccessSession"
 // client's request for the DeleteRemoteAccessSession operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteRemoteAccessSession for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -342,7 +494,30 @@ func (c *DeviceFarm) DeleteRemoteAccessSessionRequest(input *DeleteRemoteAccessS
 	return
 }
 
+// DeleteRemoteAccessSession API operation for AWS Device Farm.
+//
 // Deletes a completed remote access session and its results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation DeleteRemoteAccessSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) DeleteRemoteAccessSession(input *DeleteRemoteAccessSessionInput) (*DeleteRemoteAccessSessionOutput, error) {
 	req, out := c.DeleteRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -355,6 +530,8 @@ const opDeleteRun = "DeleteRun"
 // client's request for the DeleteRun operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteRun for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -390,9 +567,32 @@ func (c *DeviceFarm) DeleteRunRequest(input *DeleteRunInput) (req *request.Reque
 	return
 }
 
+// DeleteRun API operation for AWS Device Farm.
+//
 // Deletes the run, given the run ARN.
 //
 //  Note Deleting this resource does not stop an in-progress run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation DeleteRun for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) DeleteRun(input *DeleteRunInput) (*DeleteRunOutput, error) {
 	req, out := c.DeleteRunRequest(input)
 	err := req.Send()
@@ -405,6 +605,8 @@ const opDeleteUpload = "DeleteUpload"
 // client's request for the DeleteUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -440,7 +642,30 @@ func (c *DeviceFarm) DeleteUploadRequest(input *DeleteUploadInput) (req *request
 	return
 }
 
+// DeleteUpload API operation for AWS Device Farm.
+//
 // Deletes an upload given the upload ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation DeleteUpload for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) DeleteUpload(input *DeleteUploadInput) (*DeleteUploadOutput, error) {
 	req, out := c.DeleteUploadRequest(input)
 	err := req.Send()
@@ -453,6 +678,8 @@ const opGetAccountSettings = "GetAccountSettings"
 // client's request for the GetAccountSettings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetAccountSettings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -488,8 +715,31 @@ func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (
 	return
 }
 
+// GetAccountSettings API operation for AWS Device Farm.
+//
 // Returns the number of unmetered iOS and/or unmetered Android devices that
 // have been purchased by the account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetAccountSettings for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountSettingsOutput, error) {
 	req, out := c.GetAccountSettingsRequest(input)
 	err := req.Send()
@@ -502,6 +752,8 @@ const opGetDevice = "GetDevice"
 // client's request for the GetDevice operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDevice for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -537,7 +789,30 @@ func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *request.Reque
 	return
 }
 
+// GetDevice API operation for AWS Device Farm.
+//
 // Gets information about a unique device type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetDevice for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
 	err := req.Send()
@@ -550,6 +825,8 @@ const opGetDevicePool = "GetDevicePool"
 // client's request for the GetDevicePool operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDevicePool for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -585,7 +862,30 @@ func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *reque
 	return
 }
 
+// GetDevicePool API operation for AWS Device Farm.
+//
 // Gets information about a device pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetDevicePool for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetDevicePool(input *GetDevicePoolInput) (*GetDevicePoolOutput, error) {
 	req, out := c.GetDevicePoolRequest(input)
 	err := req.Send()
@@ -598,6 +898,8 @@ const opGetDevicePoolCompatibility = "GetDevicePoolCompatibility"
 // client's request for the GetDevicePoolCompatibility operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDevicePoolCompatibility for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -633,7 +935,30 @@ func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompa
 	return
 }
 
+// GetDevicePoolCompatibility API operation for AWS Device Farm.
+//
 // Gets information about compatibility with a device pool.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetDevicePoolCompatibility for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetDevicePoolCompatibility(input *GetDevicePoolCompatibilityInput) (*GetDevicePoolCompatibilityOutput, error) {
 	req, out := c.GetDevicePoolCompatibilityRequest(input)
 	err := req.Send()
@@ -646,6 +971,8 @@ const opGetJob = "GetJob"
 // client's request for the GetJob operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetJob for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -681,7 +1008,30 @@ func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *request.Request, ou
 	return
 }
 
+// GetJob API operation for AWS Device Farm.
+//
 // Gets information about a job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetJob(input *GetJobInput) (*GetJobOutput, error) {
 	req, out := c.GetJobRequest(input)
 	err := req.Send()
@@ -694,6 +1044,8 @@ const opGetOfferingStatus = "GetOfferingStatus"
 // client's request for the GetOfferingStatus operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetOfferingStatus for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -735,12 +1087,39 @@ func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (re
 	return
 }
 
+// GetOfferingStatus API operation for AWS Device Farm.
+//
 // Gets the current status and future status of all offerings purchased by an
 // AWS account. The response indicates how many offerings are currently available
 // and the offerings that will be available in the next period. The API returns
 // a NotEligible error if the user is not permitted to invoke the operation.
 // Please contact aws-devicefarm-support@amazon.com (mailto:aws-devicefarm-support@amazon.com)
 // if you believe that you should be able to invoke this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetOfferingStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * NotEligibleException
+//   Exception gets thrown when a user is not eligible to perform the specified
+//   transaction.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOfferingStatusOutput, error) {
 	req, out := c.GetOfferingStatusRequest(input)
 	err := req.Send()
@@ -779,6 +1158,8 @@ const opGetProject = "GetProject"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See GetProject for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -813,7 +1194,30 @@ func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *request.Req
 	return
 }
 
+// GetProject API operation for AWS Device Farm.
+//
 // Gets information about a project.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetProject for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetProject(input *GetProjectInput) (*GetProjectOutput, error) {
 	req, out := c.GetProjectRequest(input)
 	err := req.Send()
@@ -826,6 +1230,8 @@ const opGetRemoteAccessSession = "GetRemoteAccessSession"
 // client's request for the GetRemoteAccessSession operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetRemoteAccessSession for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -861,7 +1267,30 @@ func (c *DeviceFarm) GetRemoteAccessSessionRequest(input *GetRemoteAccessSession
 	return
 }
 
+// GetRemoteAccessSession API operation for AWS Device Farm.
+//
 // Returns a link to a currently running remote access session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetRemoteAccessSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetRemoteAccessSession(input *GetRemoteAccessSessionInput) (*GetRemoteAccessSessionOutput, error) {
 	req, out := c.GetRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -874,6 +1303,8 @@ const opGetRun = "GetRun"
 // client's request for the GetRun operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetRun for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -909,7 +1340,30 @@ func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *request.Request, ou
 	return
 }
 
+// GetRun API operation for AWS Device Farm.
+//
 // Gets information about a run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetRun for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetRun(input *GetRunInput) (*GetRunOutput, error) {
 	req, out := c.GetRunRequest(input)
 	err := req.Send()
@@ -922,6 +1376,8 @@ const opGetSuite = "GetSuite"
 // client's request for the GetSuite operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetSuite for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -957,7 +1413,30 @@ func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *request.Request
 	return
 }
 
+// GetSuite API operation for AWS Device Farm.
+//
 // Gets information about a suite.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetSuite for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetSuite(input *GetSuiteInput) (*GetSuiteOutput, error) {
 	req, out := c.GetSuiteRequest(input)
 	err := req.Send()
@@ -970,6 +1449,8 @@ const opGetTest = "GetTest"
 // client's request for the GetTest operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetTest for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1005,7 +1486,30 @@ func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *request.Request, 
 	return
 }
 
+// GetTest API operation for AWS Device Farm.
+//
 // Gets information about a test.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetTest for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetTest(input *GetTestInput) (*GetTestOutput, error) {
 	req, out := c.GetTestRequest(input)
 	err := req.Send()
@@ -1018,6 +1522,8 @@ const opGetUpload = "GetUpload"
 // client's request for the GetUpload operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetUpload for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1053,7 +1559,30 @@ func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *request.Reque
 	return
 }
 
+// GetUpload API operation for AWS Device Farm.
+//
 // Gets information about an upload.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation GetUpload for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) GetUpload(input *GetUploadInput) (*GetUploadOutput, error) {
 	req, out := c.GetUploadRequest(input)
 	err := req.Send()
@@ -1066,6 +1595,8 @@ const opInstallToRemoteAccessSession = "InstallToRemoteAccessSession"
 // client's request for the InstallToRemoteAccessSession operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See InstallToRemoteAccessSession for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1101,9 +1632,32 @@ func (c *DeviceFarm) InstallToRemoteAccessSessionRequest(input *InstallToRemoteA
 	return
 }
 
+// InstallToRemoteAccessSession API operation for AWS Device Farm.
+//
 // Installs an application to the device in a remote access session. For Android
 // applications, the file must be in .apk format. For iOS applications, the
 // file must be in .ipa format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation InstallToRemoteAccessSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) InstallToRemoteAccessSession(input *InstallToRemoteAccessSessionInput) (*InstallToRemoteAccessSessionOutput, error) {
 	req, out := c.InstallToRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -1116,6 +1670,8 @@ const opListArtifacts = "ListArtifacts"
 // client's request for the ListArtifacts operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListArtifacts for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1157,7 +1713,30 @@ func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *reque
 	return
 }
 
+// ListArtifacts API operation for AWS Device Farm.
+//
 // Gets information about artifacts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListArtifacts for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOutput, error) {
 	req, out := c.ListArtifactsRequest(input)
 	err := req.Send()
@@ -1195,6 +1774,8 @@ const opListDevicePools = "ListDevicePools"
 // client's request for the ListDevicePools operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDevicePools for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1236,7 +1817,30 @@ func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *r
 	return
 }
 
+// ListDevicePools API operation for AWS Device Farm.
+//
 // Gets information about device pools.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListDevicePools for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListDevicePools(input *ListDevicePoolsInput) (*ListDevicePoolsOutput, error) {
 	req, out := c.ListDevicePoolsRequest(input)
 	err := req.Send()
@@ -1274,6 +1878,8 @@ const opListDevices = "ListDevices"
 // client's request for the ListDevices operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDevices for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1315,7 +1921,30 @@ func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *request.R
 	return
 }
 
+// ListDevices API operation for AWS Device Farm.
+//
 // Gets information about unique device types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListDevices for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
 	req, out := c.ListDevicesRequest(input)
 	err := req.Send()
@@ -1353,6 +1982,8 @@ const opListJobs = "ListJobs"
 // client's request for the ListJobs operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListJobs for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1394,7 +2025,30 @@ func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *request.Request
 	return
 }
 
+// ListJobs API operation for AWS Device Farm.
+//
 // Gets information about jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListJobs for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
 	err := req.Send()
@@ -1432,6 +2086,8 @@ const opListOfferingTransactions = "ListOfferingTransactions"
 // client's request for the ListOfferingTransactions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListOfferingTransactions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1473,12 +2129,39 @@ func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransact
 	return
 }
 
+// ListOfferingTransactions API operation for AWS Device Farm.
+//
 // Returns a list of all historical purchases, renewals, and system renewal
 // transactions for an AWS account. The list is paginated and ordered by a descending
 // timestamp (most recent transactions are first). The API returns a NotEligible
 // error if the user is not permitted to invoke the operation. Please contact
 // aws-devicefarm-support@amazon.com (mailto:aws-devicefarm-support@amazon.com)
 // if you believe that you should be able to invoke this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListOfferingTransactions for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * NotEligibleException
+//   Exception gets thrown when a user is not eligible to perform the specified
+//   transaction.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInput) (*ListOfferingTransactionsOutput, error) {
 	req, out := c.ListOfferingTransactionsRequest(input)
 	err := req.Send()
@@ -1516,6 +2199,8 @@ const opListOfferings = "ListOfferings"
 // client's request for the ListOfferings operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListOfferings for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1557,12 +2242,39 @@ func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *reque
 	return
 }
 
+// ListOfferings API operation for AWS Device Farm.
+//
 // Returns a list of products or offerings that the user can manage through
 // the API. Each offering record indicates the recurring price per unit and
 // the frequency for that offering. The API returns a NotEligible error if the
 // user is not permitted to invoke the operation. Please contact aws-devicefarm-support@amazon.com
 // (mailto:aws-devicefarm-support@amazon.com) if you believe that you should
 // be able to invoke this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListOfferings for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * NotEligibleException
+//   Exception gets thrown when a user is not eligible to perform the specified
+//   transaction.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOutput, error) {
 	req, out := c.ListOfferingsRequest(input)
 	err := req.Send()
@@ -1600,6 +2312,8 @@ const opListProjects = "ListProjects"
 // client's request for the ListProjects operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListProjects for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1641,7 +2355,30 @@ func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *request
 	return
 }
 
+// ListProjects API operation for AWS Device Farm.
+//
 // Gets information about projects.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListProjects for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListProjects(input *ListProjectsInput) (*ListProjectsOutput, error) {
 	req, out := c.ListProjectsRequest(input)
 	err := req.Send()
@@ -1680,6 +2417,8 @@ const opListRemoteAccessSessions = "ListRemoteAccessSessions"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListRemoteAccessSessions for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1714,7 +2453,30 @@ func (c *DeviceFarm) ListRemoteAccessSessionsRequest(input *ListRemoteAccessSess
 	return
 }
 
+// ListRemoteAccessSessions API operation for AWS Device Farm.
+//
 // Returns a list of all currently running remote access sessions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListRemoteAccessSessions for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListRemoteAccessSessions(input *ListRemoteAccessSessionsInput) (*ListRemoteAccessSessionsOutput, error) {
 	req, out := c.ListRemoteAccessSessionsRequest(input)
 	err := req.Send()
@@ -1727,6 +2489,8 @@ const opListRuns = "ListRuns"
 // client's request for the ListRuns operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListRuns for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1768,7 +2532,30 @@ func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *request.Request
 	return
 }
 
+// ListRuns API operation for AWS Device Farm.
+//
 // Gets information about runs, given an AWS Device Farm project ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListRuns for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListRuns(input *ListRunsInput) (*ListRunsOutput, error) {
 	req, out := c.ListRunsRequest(input)
 	err := req.Send()
@@ -1806,6 +2593,8 @@ const opListSamples = "ListSamples"
 // client's request for the ListSamples operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListSamples for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1847,7 +2636,30 @@ func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *request.R
 	return
 }
 
+// ListSamples API operation for AWS Device Farm.
+//
 // Gets information about samples, given an AWS Device Farm project ARN
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListSamples for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListSamples(input *ListSamplesInput) (*ListSamplesOutput, error) {
 	req, out := c.ListSamplesRequest(input)
 	err := req.Send()
@@ -1885,6 +2697,8 @@ const opListSuites = "ListSuites"
 // client's request for the ListSuites operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListSuites for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1926,7 +2740,30 @@ func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *request.Req
 	return
 }
 
+// ListSuites API operation for AWS Device Farm.
+//
 // Gets information about suites.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListSuites for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListSuites(input *ListSuitesInput) (*ListSuitesOutput, error) {
 	req, out := c.ListSuitesRequest(input)
 	err := req.Send()
@@ -1964,6 +2801,8 @@ const opListTests = "ListTests"
 // client's request for the ListTests operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTests for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2005,7 +2844,30 @@ func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *request.Reque
 	return
 }
 
+// ListTests API operation for AWS Device Farm.
+//
 // Gets information about tests.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListTests for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListTests(input *ListTestsInput) (*ListTestsOutput, error) {
 	req, out := c.ListTestsRequest(input)
 	err := req.Send()
@@ -2043,6 +2905,8 @@ const opListUniqueProblems = "ListUniqueProblems"
 // client's request for the ListUniqueProblems operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListUniqueProblems for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2084,7 +2948,30 @@ func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (
 	return
 }
 
+// ListUniqueProblems API operation for AWS Device Farm.
+//
 // Gets information about unique problems.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListUniqueProblems for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListUniqueProblems(input *ListUniqueProblemsInput) (*ListUniqueProblemsOutput, error) {
 	req, out := c.ListUniqueProblemsRequest(input)
 	err := req.Send()
@@ -2122,6 +3009,8 @@ const opListUploads = "ListUploads"
 // client's request for the ListUploads operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListUploads for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2163,7 +3052,30 @@ func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *request.R
 	return
 }
 
+// ListUploads API operation for AWS Device Farm.
+//
 // Gets information about uploads, given an AWS Device Farm project ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ListUploads for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ListUploads(input *ListUploadsInput) (*ListUploadsOutput, error) {
 	req, out := c.ListUploadsRequest(input)
 	err := req.Send()
@@ -2202,6 +3114,8 @@ const opPurchaseOffering = "PurchaseOffering"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PurchaseOffering for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -2236,12 +3150,39 @@ func (c *DeviceFarm) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req 
 	return
 }
 
+// PurchaseOffering API operation for AWS Device Farm.
+//
 // Immediately purchases offerings for an AWS account. Offerings renew with
 // the latest total purchased quantity for an offering, unless the renewal was
 // overridden. The API returns a NotEligible error if the user is not permitted
 // to invoke the operation. Please contact aws-devicefarm-support@amazon.com
 // (mailto:aws-devicefarm-support@amazon.com) if you believe that you should
 // be able to invoke this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation PurchaseOffering for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * NotEligibleException
+//   Exception gets thrown when a user is not eligible to perform the specified
+//   transaction.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) PurchaseOffering(input *PurchaseOfferingInput) (*PurchaseOfferingOutput, error) {
 	req, out := c.PurchaseOfferingRequest(input)
 	err := req.Send()
@@ -2254,6 +3195,8 @@ const opRenewOffering = "RenewOffering"
 // client's request for the RenewOffering operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RenewOffering for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2289,11 +3232,38 @@ func (c *DeviceFarm) RenewOfferingRequest(input *RenewOfferingInput) (req *reque
 	return
 }
 
+// RenewOffering API operation for AWS Device Farm.
+//
 // Explicitly sets the quantity of devices to renew for an offering, starting
 // from the effectiveDate of the next period. The API returns a NotEligible
 // error if the user is not permitted to invoke the operation. Please contact
 // aws-devicefarm-support@amazon.com (mailto:aws-devicefarm-support@amazon.com)
 // if you believe that you should be able to invoke this operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation RenewOffering for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * NotEligibleException
+//   Exception gets thrown when a user is not eligible to perform the specified
+//   transaction.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) RenewOffering(input *RenewOfferingInput) (*RenewOfferingOutput, error) {
 	req, out := c.RenewOfferingRequest(input)
 	err := req.Send()
@@ -2306,6 +3276,8 @@ const opScheduleRun = "ScheduleRun"
 // client's request for the ScheduleRun operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ScheduleRun for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2341,7 +3313,33 @@ func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.R
 	return
 }
 
+// ScheduleRun API operation for AWS Device Farm.
+//
 // Schedules a run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation ScheduleRun for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, error) {
 	req, out := c.ScheduleRunRequest(input)
 	err := req.Send()
@@ -2354,6 +3352,8 @@ const opStopRemoteAccessSession = "StopRemoteAccessSession"
 // client's request for the StopRemoteAccessSession operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopRemoteAccessSession for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2389,7 +3389,30 @@ func (c *DeviceFarm) StopRemoteAccessSessionRequest(input *StopRemoteAccessSessi
 	return
 }
 
+// StopRemoteAccessSession API operation for AWS Device Farm.
+//
 // Ends a specified remote access session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation StopRemoteAccessSession for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) StopRemoteAccessSession(input *StopRemoteAccessSessionInput) (*StopRemoteAccessSessionOutput, error) {
 	req, out := c.StopRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -2402,6 +3425,8 @@ const opStopRun = "StopRun"
 // client's request for the StopRun operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopRun for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2437,12 +3462,35 @@ func (c *DeviceFarm) StopRunRequest(input *StopRunInput) (req *request.Request, 
 	return
 }
 
+// StopRun API operation for AWS Device Farm.
+//
 // Initiates a stop request for the current test run. AWS Device Farm will immediately
 // stop the run on devices where tests have not started executing, and you will
 // not be billed for these devices. On devices where tests have started executing,
 // Setup Suite and Teardown Suite tests will run to completion before stopping
 // execution on those devices. You will be billed for Setup, Teardown, and any
 // tests that were in progress or already completed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation StopRun for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) StopRun(input *StopRunInput) (*StopRunOutput, error) {
 	req, out := c.StopRunRequest(input)
 	err := req.Send()
@@ -2455,6 +3503,8 @@ const opUpdateDevicePool = "UpdateDevicePool"
 // client's request for the UpdateDevicePool operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDevicePool for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2490,9 +3540,32 @@ func (c *DeviceFarm) UpdateDevicePoolRequest(input *UpdateDevicePoolInput) (req 
 	return
 }
 
+// UpdateDevicePool API operation for AWS Device Farm.
+//
 // Modifies the name, description, and rules in a device pool given the attributes
 // and the pool ARN. Rule updates are all-or-nothing, meaning they can only
 // be updated as a whole (or not at all).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation UpdateDevicePool for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) UpdateDevicePool(input *UpdateDevicePoolInput) (*UpdateDevicePoolOutput, error) {
 	req, out := c.UpdateDevicePoolRequest(input)
 	err := req.Send()
@@ -2505,6 +3578,8 @@ const opUpdateProject = "UpdateProject"
 // client's request for the UpdateProject operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateProject for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2540,7 +3615,30 @@ func (c *DeviceFarm) UpdateProjectRequest(input *UpdateProjectInput) (req *reque
 	return
 }
 
+// UpdateProject API operation for AWS Device Farm.
+//
 // Modifies the specified project name, given the project ARN and a new name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Device Farm's
+// API operation UpdateProject for usage and error information.
+//
+// Returned Error Codes:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * NotFoundException
+//   The specified entity was not found.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ServiceAccountException
+//   There was a problem with the service account.
+//
 func (c *DeviceFarm) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
 	req, out := c.UpdateProjectRequest(input)
 	err := req.Send()

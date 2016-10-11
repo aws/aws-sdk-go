@@ -19,6 +19,8 @@ const opPutEvents = "PutEvents"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PutEvents for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -55,9 +57,23 @@ func (c *MobileAnalytics) PutEventsRequest(input *PutEventsInput) (req *request.
 	return
 }
 
+// PutEvents API operation for Amazon Mobile Analytics.
+//
 // The PutEvents operation records one or more events. You can have up to 1,500
 // unique custom events per app, any combination of up to 40 attributes and
 // metrics per custom event, and any number of attribute or metric values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Mobile Analytics's
+// API operation PutEvents for usage and error information.
+//
+// Returned Error Codes:
+//   * BadRequestException
+//   An exception object returned when a request fails.
+//
 func (c *MobileAnalytics) PutEvents(input *PutEventsInput) (*PutEventsOutput, error) {
 	req, out := c.PutEventsRequest(input)
 	err := req.Send()

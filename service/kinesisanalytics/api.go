@@ -18,6 +18,8 @@ const opAddApplicationInput = "AddApplicationInput"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddApplicationInput for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,6 +54,8 @@ func (c *KinesisAnalytics) AddApplicationInputRequest(input *AddApplicationInput
 	return
 }
 
+// AddApplicationInput API operation for Amazon Kinesis Analytics.
+//
 // Adds a streaming source to your Amazon Kinesis application. For conceptual
 // information, see Configuring Application Input (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
 //
@@ -65,6 +69,29 @@ func (c *KinesisAnalytics) AddApplicationInputRequest(input *AddApplicationInput
 //
 // This operation requires permissions to perform the kinesisanalytics:AddApplicationInput
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation AddApplicationInput for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
 func (c *KinesisAnalytics) AddApplicationInput(input *AddApplicationInputInput) (*AddApplicationInputOutput, error) {
 	req, out := c.AddApplicationInputRequest(input)
 	err := req.Send()
@@ -77,6 +104,8 @@ const opAddApplicationOutput = "AddApplicationOutput"
 // client's request for the AddApplicationOutput operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddApplicationOutput for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -112,6 +141,8 @@ func (c *KinesisAnalytics) AddApplicationOutputRequest(input *AddApplicationOutp
 	return
 }
 
+// AddApplicationOutput API operation for Amazon Kinesis Analytics.
+//
 // Adds an external destination to your Amazon Kinesis Analytics application.
 //
 // If you want Amazon Kinesis Analytics to deliver data from an in-application
@@ -135,6 +166,29 @@ func (c *KinesisAnalytics) AddApplicationOutputRequest(input *AddApplicationOutp
 //
 // This operation requires permissions to perform the kinesisanalytics:AddApplicationOutput
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation AddApplicationOutput for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
 func (c *KinesisAnalytics) AddApplicationOutput(input *AddApplicationOutputInput) (*AddApplicationOutputOutput, error) {
 	req, out := c.AddApplicationOutputRequest(input)
 	err := req.Send()
@@ -147,6 +201,8 @@ const opAddApplicationReferenceDataSource = "AddApplicationReferenceDataSource"
 // client's request for the AddApplicationReferenceDataSource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AddApplicationReferenceDataSource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -182,6 +238,8 @@ func (c *KinesisAnalytics) AddApplicationReferenceDataSourceRequest(input *AddAp
 	return
 }
 
+// AddApplicationReferenceDataSource API operation for Amazon Kinesis Analytics.
+//
 // Adds a reference data source to an existing application.
 //
 // Amazon Kinesis Analytics reads reference data (that is, an Amazon S3 object)
@@ -197,6 +255,29 @@ func (c *KinesisAnalytics) AddApplicationReferenceDataSourceRequest(input *AddAp
 //
 //  This operation requires permissions to perform the kinesisanalytics:AddApplicationOutput
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation AddApplicationReferenceDataSource for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
 func (c *KinesisAnalytics) AddApplicationReferenceDataSource(input *AddApplicationReferenceDataSourceInput) (*AddApplicationReferenceDataSourceOutput, error) {
 	req, out := c.AddApplicationReferenceDataSourceRequest(input)
 	err := req.Send()
@@ -209,6 +290,8 @@ const opCreateApplication = "CreateApplication"
 // client's request for the CreateApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -244,6 +327,8 @@ func (c *KinesisAnalytics) CreateApplicationRequest(input *CreateApplicationInpu
 	return
 }
 
+// CreateApplication API operation for Amazon Kinesis Analytics.
+//
 // Creates an Amazon Kinesis Analytics application. You can configure each application
 // with one streaming source as input, application code to process the input,
 // and up to five streaming destinations where you want Amazon Kinesis Analytics
@@ -271,6 +356,28 @@ func (c *KinesisAnalytics) CreateApplicationRequest(input *CreateApplicationInpu
 //
 //  For introductory exercises to create an Amazon Kinesis Analytics application,
 // see Getting Started (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/getting-started.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation CreateApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * CodeValidationException
+//   User-provided application code (query) is invalid. This can be a simple syntax
+//   error.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * LimitExceededException
+//   Exceeded the number of applications allowed.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
 func (c *KinesisAnalytics) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
 	req, out := c.CreateApplicationRequest(input)
 	err := req.Send()
@@ -283,6 +390,8 @@ const opDeleteApplication = "DeleteApplication"
 // client's request for the DeleteApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -318,12 +427,34 @@ func (c *KinesisAnalytics) DeleteApplicationRequest(input *DeleteApplicationInpu
 	return
 }
 
+// DeleteApplication API operation for Amazon Kinesis Analytics.
+//
 // Deletes the specified application. Amazon Kinesis Analytics halts application
 // execution and deletes the application, including any application artifacts
 // (such as in-application streams, reference table, and application code).
 //
 // This operation requires permissions to perform the kinesisanalytics:DeleteApplication
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DeleteApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
 func (c *KinesisAnalytics) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
 	err := req.Send()
@@ -336,6 +467,8 @@ const opDeleteApplicationOutput = "DeleteApplicationOutput"
 // client's request for the DeleteApplicationOutput operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteApplicationOutput for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -371,12 +504,34 @@ func (c *KinesisAnalytics) DeleteApplicationOutputRequest(input *DeleteApplicati
 	return
 }
 
+// DeleteApplicationOutput API operation for Amazon Kinesis Analytics.
+//
 // Deletes output destination configuration from your application configuration.
 // Amazon Kinesis Analytics will no longer write data from the corresponding
 // in-application stream to the external output destination.
 //
 // This operation requires permissions to perform the kinesisanalytics:DeleteApplicationOutput
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DeleteApplicationOutput for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
 func (c *KinesisAnalytics) DeleteApplicationOutput(input *DeleteApplicationOutputInput) (*DeleteApplicationOutputOutput, error) {
 	req, out := c.DeleteApplicationOutputRequest(input)
 	err := req.Send()
@@ -389,6 +544,8 @@ const opDeleteApplicationReferenceDataSource = "DeleteApplicationReferenceDataSo
 // client's request for the DeleteApplicationReferenceDataSource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteApplicationReferenceDataSource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -424,6 +581,8 @@ func (c *KinesisAnalytics) DeleteApplicationReferenceDataSourceRequest(input *De
 	return
 }
 
+// DeleteApplicationReferenceDataSource API operation for Amazon Kinesis Analytics.
+//
 // Deletes a reference data source configuration from the specified application
 // configuration.
 //
@@ -433,6 +592,29 @@ func (c *KinesisAnalytics) DeleteApplicationReferenceDataSourceRequest(input *De
 //
 // This operation requires permissions to perform the kinesisanalytics.DeleteApplicationReferenceDataSource
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DeleteApplicationReferenceDataSource for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
 func (c *KinesisAnalytics) DeleteApplicationReferenceDataSource(input *DeleteApplicationReferenceDataSourceInput) (*DeleteApplicationReferenceDataSourceOutput, error) {
 	req, out := c.DeleteApplicationReferenceDataSourceRequest(input)
 	err := req.Send()
@@ -445,6 +627,8 @@ const opDescribeApplication = "DescribeApplication"
 // client's request for the DescribeApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -480,6 +664,8 @@ func (c *KinesisAnalytics) DescribeApplicationRequest(input *DescribeApplication
 	return
 }
 
+// DescribeApplication API operation for Amazon Kinesis Analytics.
+//
 // Returns information about a specific Amazon Kinesis Analytics application.
 //
 // If you want to retrieve a list of all applications in your account, use
@@ -488,6 +674,18 @@ func (c *KinesisAnalytics) DescribeApplicationRequest(input *DescribeApplication
 // This operation requires permissions to perform the kinesisanalytics:DescribeApplication
 // action. You can use DescribeApplication to get the current application versionId,
 // which you need to call other operations such as Update.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DescribeApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
 func (c *KinesisAnalytics) DescribeApplication(input *DescribeApplicationInput) (*DescribeApplicationOutput, error) {
 	req, out := c.DescribeApplicationRequest(input)
 	err := req.Send()
@@ -500,6 +698,8 @@ const opDiscoverInputSchema = "DiscoverInputSchema"
 // client's request for the DiscoverInputSchema operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DiscoverInputSchema for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -535,6 +735,8 @@ func (c *KinesisAnalytics) DiscoverInputSchemaRequest(input *DiscoverInputSchema
 	return
 }
 
+// DiscoverInputSchema API operation for Amazon Kinesis Analytics.
+//
 // Infers a schema by evaluating sample records on the specified streaming source
 // (Amazon Kinesis stream or Amazon Kinesis Firehose delivery stream). In the
 // response, the operation returns the inferred schema and also the sample records
@@ -549,6 +751,26 @@ func (c *KinesisAnalytics) DiscoverInputSchemaRequest(input *DiscoverInputSchema
 //
 //  This operation requires permissions to perform the kinesisanalytics:DiscoverInputSchema
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DiscoverInputSchema for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * UnableToDetectSchemaException
+//   Data format is not valid, Kinesis Analytics is not able to detect schema
+//   for the given streaming source.
+//
+//   * ResourceProvisionedThroughputExceededException
+//   Discovery failed to get a record from the streaming source because of the
+//   Kinesis Streams ProvisionedThroughputExceededException.
+//
 func (c *KinesisAnalytics) DiscoverInputSchema(input *DiscoverInputSchemaInput) (*DiscoverInputSchemaOutput, error) {
 	req, out := c.DiscoverInputSchemaRequest(input)
 	err := req.Send()
@@ -561,6 +783,8 @@ const opListApplications = "ListApplications"
 // client's request for the ListApplications operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListApplications for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -596,6 +820,8 @@ func (c *KinesisAnalytics) ListApplicationsRequest(input *ListApplicationsInput)
 	return
 }
 
+// ListApplications API operation for Amazon Kinesis Analytics.
+//
 // Returns a list of Amazon Kinesis Analytics applications in your account.
 // For each application, the response includes the application name, Amazon
 // Resource Name (ARN), and status. If the response returns the HasMoreApplications
@@ -607,6 +833,13 @@ func (c *KinesisAnalytics) ListApplicationsRequest(input *ListApplicationsInput)
 //
 // This operation requires permissions to perform the kinesisanalytics:ListApplications
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation ListApplications for usage and error information.
 func (c *KinesisAnalytics) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
 	req, out := c.ListApplicationsRequest(input)
 	err := req.Send()
@@ -619,6 +852,8 @@ const opStartApplication = "StartApplication"
 // client's request for the StartApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -654,6 +889,8 @@ func (c *KinesisAnalytics) StartApplicationRequest(input *StartApplicationInput)
 	return
 }
 
+// StartApplication API operation for Amazon Kinesis Analytics.
+//
 // Starts the specified Amazon Kinesis Analytics application. After creating
 // an application, you must exclusively call this operation to start your application.
 //
@@ -669,6 +906,27 @@ func (c *KinesisAnalytics) StartApplicationRequest(input *StartApplicationInput)
 //
 // This operation requires permissions to perform the kinesisanalytics:StartApplication
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation StartApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * InvalidApplicationConfigurationException
+//   User-provided application configuration is not valid.
+//
 func (c *KinesisAnalytics) StartApplication(input *StartApplicationInput) (*StartApplicationOutput, error) {
 	req, out := c.StartApplicationRequest(input)
 	err := req.Send()
@@ -681,6 +939,8 @@ const opStopApplication = "StopApplication"
 // client's request for the StopApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -716,6 +976,8 @@ func (c *KinesisAnalytics) StopApplicationRequest(input *StopApplicationInput) (
 	return
 }
 
+// StopApplication API operation for Amazon Kinesis Analytics.
+//
 // Stops the application from processing input data. You can stop an application
 // only if it is in the running state. You can use the DescribeApplication operation
 // to find the application state. After the application is stopped, Amazon Kinesis
@@ -724,6 +986,21 @@ func (c *KinesisAnalytics) StopApplicationRequest(input *StopApplicationInput) (
 //
 // This operation requires permissions to perform the kinesisanalytics:StopApplication
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation StopApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
 func (c *KinesisAnalytics) StopApplication(input *StopApplicationInput) (*StopApplicationOutput, error) {
 	req, out := c.StopApplicationRequest(input)
 	err := req.Send()
@@ -736,6 +1013,8 @@ const opUpdateApplication = "UpdateApplication"
 // client's request for the UpdateApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -771,6 +1050,8 @@ func (c *KinesisAnalytics) UpdateApplicationRequest(input *UpdateApplicationInpu
 	return
 }
 
+// UpdateApplication API operation for Amazon Kinesis Analytics.
+//
 // Updates an existing Kinesis Analytics application. Using this API, you can
 // update application code, input configuration, and output configuration.
 //
@@ -779,6 +1060,33 @@ func (c *KinesisAnalytics) UpdateApplicationRequest(input *UpdateApplicationInpu
 //
 // This opeation requires permission for the kinesisanalytics:UpdateApplication
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation UpdateApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * CodeValidationException
+//   User-provided application code (query) is invalid. This can be a simple syntax
+//   error.
+//
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   Application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   Specified input parameter value is invalid.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modification to an application.
+//   For example, two individuals attempting to edit the same application at the
+//   same time.
+//
 func (c *KinesisAnalytics) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
 	err := req.Send()
