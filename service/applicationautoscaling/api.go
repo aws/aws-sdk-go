@@ -18,6 +18,8 @@ const opDeleteScalingPolicy = "DeleteScalingPolicy"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DeleteScalingPolicy for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,6 +54,8 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 	return
 }
 
+// DeleteScalingPolicy API operation for Application Auto Scaling.
+//
 // Deletes an Application Auto Scaling scaling policy that was previously created.
 // If you are no longer using a scaling policy, you can delete it with this
 // operation.
@@ -61,6 +65,34 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 // has an associated action.
 //
 // To create a new scaling policy or update an existing one, see PutScalingPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation DeleteScalingPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * ObjectNotFoundException
+//   The specified object could not be found. For any Put or Register API operation,
+//   which depends on the existence of a scalable target, this exception is thrown
+//   if the scalable target with the specified service namespace, resource ID,
+//   and scalable dimension does not exist. For any Delete or Deregister API operation,
+//   this exception is thrown if the resource that is to be deleted or deregistered
+//   cannot be found.
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*DeleteScalingPolicyOutput, error) {
 	req, out := c.DeleteScalingPolicyRequest(input)
 	err := req.Send()
@@ -73,6 +105,8 @@ const opDeregisterScalableTarget = "DeregisterScalableTarget"
 // client's request for the DeregisterScalableTarget operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeregisterScalableTarget for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -108,12 +142,42 @@ func (c *ApplicationAutoScaling) DeregisterScalableTargetRequest(input *Deregist
 	return
 }
 
+// DeregisterScalableTarget API operation for Application Auto Scaling.
+//
 // Deregisters a scalable target that was previously registered. If you are
 // no longer using a scalable target, you can delete it with this operation.
 // When you deregister a scalable target, all of the scaling policies that are
 // associated with that scalable target are deleted.
 //
 // To create a new scalable target or update an existing one, see RegisterScalableTarget.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation DeregisterScalableTarget for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * ObjectNotFoundException
+//   The specified object could not be found. For any Put or Register API operation,
+//   which depends on the existence of a scalable target, this exception is thrown
+//   if the scalable target with the specified service namespace, resource ID,
+//   and scalable dimension does not exist. For any Delete or Deregister API operation,
+//   this exception is thrown if the resource that is to be deleted or deregistered
+//   cannot be found.
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) DeregisterScalableTarget(input *DeregisterScalableTargetInput) (*DeregisterScalableTargetOutput, error) {
 	req, out := c.DeregisterScalableTargetRequest(input)
 	err := req.Send()
@@ -126,6 +190,8 @@ const opDescribeScalableTargets = "DescribeScalableTargets"
 // client's request for the DescribeScalableTargets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeScalableTargets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -167,6 +233,8 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeS
 	return
 }
 
+// DescribeScalableTargets API operation for Application Auto Scaling.
+//
 // Provides descriptive information for scalable targets with a specified service
 // namespace.
 //
@@ -176,6 +244,29 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeS
 // To create a new scalable target or update an existing one, see RegisterScalableTarget.
 // If you are no longer using a scalable target, you can deregister it with
 // DeregisterScalableTarget.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation DescribeScalableTargets for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * InvalidNextTokenException
+//   The next token supplied was invalid.
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) DescribeScalableTargets(input *DescribeScalableTargetsInput) (*DescribeScalableTargetsOutput, error) {
 	req, out := c.DescribeScalableTargetsRequest(input)
 	err := req.Send()
@@ -213,6 +304,8 @@ const opDescribeScalingActivities = "DescribeScalingActivities"
 // client's request for the DescribeScalingActivities operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeScalingActivities for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -254,6 +347,8 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 	return
 }
 
+// DescribeScalingActivities API operation for Application Auto Scaling.
+//
 // Provides descriptive information for scaling activities with a specified
 // service namespace for the previous six weeks.
 //
@@ -264,6 +359,29 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 // with scaling policies. To view the existing scaling policies for a service
 // namespace, see DescribeScalingPolicies. To create a new scaling policy or
 // update an existing one, see PutScalingPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation DescribeScalingActivities for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * InvalidNextTokenException
+//   The next token supplied was invalid.
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (*DescribeScalingActivitiesOutput, error) {
 	req, out := c.DescribeScalingActivitiesRequest(input)
 	err := req.Send()
@@ -301,6 +419,8 @@ const opDescribeScalingPolicies = "DescribeScalingPolicies"
 // client's request for the DescribeScalingPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeScalingPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -342,6 +462,8 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeS
 	return
 }
 
+// DescribeScalingPolicies API operation for Application Auto Scaling.
+//
 // Provides descriptive information for scaling policies with a specified service
 // namespace.
 //
@@ -350,6 +472,38 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeS
 //
 // To create a new scaling policy or update an existing one, see PutScalingPolicy.
 // If you are no longer using a scaling policy, you can delete it with DeleteScalingPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation DescribeScalingPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * FailedResourceAccessException
+//   Failed access to resources caused an exception. This exception currently
+//   only applies to DescribeScalingPolicies. It is thrown when Application Auto
+//   Scaling is unable to retrieve the alarms associated with a scaling policy
+//   due to a client error, for example, if the role ARN specified for a scalable
+//   target does not have the proper permissions to call the CloudWatch DescribeAlarms
+//   (http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)
+//   API operation on behalf of your account.
+//
+//   * InvalidNextTokenException
+//   The next token supplied was invalid.
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
 	req, out := c.DescribeScalingPoliciesRequest(input)
 	err := req.Send()
@@ -388,6 +542,8 @@ const opPutScalingPolicy = "PutScalingPolicy"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PutScalingPolicy for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -422,6 +578,8 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 	return
 }
 
+// PutScalingPolicy API operation for Application Auto Scaling.
+//
 // Creates or updates a policy for an existing Application Auto Scaling scalable
 // target. Each scalable target is identified by service namespace, a resource
 // ID, and a scalable dimension, and a scaling policy applies to a scalable
@@ -435,6 +593,39 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 // You can view the existing scaling policies for a service namespace with
 // DescribeScalingPolicies. If you are no longer using a scaling policy, you
 // can delete it with DeleteScalingPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation PutScalingPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * LimitExceededException
+//   Your account exceeded a limit. This exception is thrown when a per-account
+//   resource limit is exceeded. For more information, see Application Auto Scaling
+//   Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_as-app).
+//
+//   * ObjectNotFoundException
+//   The specified object could not be found. For any Put or Register API operation,
+//   which depends on the existence of a scalable target, this exception is thrown
+//   if the scalable target with the specified service namespace, resource ID,
+//   and scalable dimension does not exist. For any Delete or Deregister API operation,
+//   this exception is thrown if the resource that is to be deleted or deregistered
+//   cannot be found.
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
 	req, out := c.PutScalingPolicyRequest(input)
 	err := req.Send()
@@ -447,6 +638,8 @@ const opRegisterScalableTarget = "RegisterScalableTarget"
 // client's request for the RegisterScalableTarget operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterScalableTarget for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -482,6 +675,8 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 	return
 }
 
+// RegisterScalableTarget API operation for Application Auto Scaling.
+//
 // Registers or updates a scalable target. A scalable target is a resource that
 // can be scaled out or in with Application Auto Scaling. After you have registered
 // a scalable target, you can use this operation to update the minimum and maximum
@@ -492,6 +687,31 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // view the existing scaling policies for a service namespace with DescribeScalableTargets.
 // If you are no longer using a scalable target, you can deregister it with
 // DeregisterScalableTarget.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Auto Scaling's
+// API operation RegisterScalableTarget for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   An exception was thrown for a validation issue. Review the available parameters
+//   for the API request.
+//
+//   * LimitExceededException
+//   Your account exceeded a limit. This exception is thrown when a per-account
+//   resource limit is exceeded. For more information, see Application Auto Scaling
+//   Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_as-app).
+//
+//   * ConcurrentUpdateException
+//   Concurrent updates caused an exception, for example, if you request an update
+//   to an Application Auto Scaling resource that already has a pending update.
+//
+//   * InternalServiceException
+//   The service encountered an internal error.
+//
 func (c *ApplicationAutoScaling) RegisterScalableTarget(input *RegisterScalableTargetInput) (*RegisterScalableTargetOutput, error) {
 	req, out := c.RegisterScalableTargetRequest(input)
 	err := req.Send()

@@ -20,6 +20,8 @@ const opCountClosedWorkflowExecutions = "CountClosedWorkflowExecutions"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CountClosedWorkflowExecutions for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -54,6 +56,8 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 	return
 }
 
+// CountClosedWorkflowExecutions API operation for Amazon Simple Workflow Service.
+//
 // Returns the number of closed workflow executions within the given domain
 // that meet the specified filtering criteria.
 //
@@ -74,6 +78,24 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation CountClosedWorkflowExecutions for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) CountClosedWorkflowExecutions(input *CountClosedWorkflowExecutionsInput) (*WorkflowExecutionCount, error) {
 	req, out := c.CountClosedWorkflowExecutionsRequest(input)
 	err := req.Send()
@@ -86,6 +108,8 @@ const opCountOpenWorkflowExecutions = "CountOpenWorkflowExecutions"
 // client's request for the CountOpenWorkflowExecutions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CountOpenWorkflowExecutions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -121,6 +145,8 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 	return
 }
 
+// CountOpenWorkflowExecutions API operation for Amazon Simple Workflow Service.
+//
 // Returns the number of open workflow executions within the given domain that
 // meet the specified filtering criteria.
 //
@@ -141,6 +167,24 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation CountOpenWorkflowExecutions for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) CountOpenWorkflowExecutions(input *CountOpenWorkflowExecutionsInput) (*WorkflowExecutionCount, error) {
 	req, out := c.CountOpenWorkflowExecutionsRequest(input)
 	err := req.Send()
@@ -153,6 +197,8 @@ const opCountPendingActivityTasks = "CountPendingActivityTasks"
 // client's request for the CountPendingActivityTasks operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CountPendingActivityTasks for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -188,6 +234,8 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 	return
 }
 
+// CountPendingActivityTasks API operation for Amazon Simple Workflow Service.
+//
 // Returns the estimated number of activity tasks in the specified task list.
 // The count returned is an approximation and is not guaranteed to be exact.
 // If you specify a task list that no activity task was ever scheduled in then
@@ -207,6 +255,24 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation CountPendingActivityTasks for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) CountPendingActivityTasks(input *CountPendingActivityTasksInput) (*PendingTaskCount, error) {
 	req, out := c.CountPendingActivityTasksRequest(input)
 	err := req.Send()
@@ -219,6 +285,8 @@ const opCountPendingDecisionTasks = "CountPendingDecisionTasks"
 // client's request for the CountPendingDecisionTasks operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CountPendingDecisionTasks for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -254,6 +322,8 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 	return
 }
 
+// CountPendingDecisionTasks API operation for Amazon Simple Workflow Service.
+//
 // Returns the estimated number of decision tasks in the specified task list.
 // The count returned is an approximation and is not guaranteed to be exact.
 // If you specify a task list that no decision task was ever scheduled in then
@@ -273,6 +343,24 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation CountPendingDecisionTasks for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) CountPendingDecisionTasks(input *CountPendingDecisionTasksInput) (*PendingTaskCount, error) {
 	req, out := c.CountPendingDecisionTasksRequest(input)
 	err := req.Send()
@@ -285,6 +373,8 @@ const opDeprecateActivityType = "DeprecateActivityType"
 // client's request for the DeprecateActivityType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeprecateActivityType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -322,6 +412,8 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 	return
 }
 
+// DeprecateActivityType API operation for Amazon Simple Workflow Service.
+//
 // Deprecates the specified activity type. After an activity type has been deprecated,
 // you cannot create new tasks of that activity type. Tasks of this type that
 // were scheduled before the type was deprecated will continue to run.
@@ -342,6 +434,27 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DeprecateActivityType for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * TypeDeprecatedFault
+//   Returned when the specified activity or workflow type was already deprecated.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (*DeprecateActivityTypeOutput, error) {
 	req, out := c.DeprecateActivityTypeRequest(input)
 	err := req.Send()
@@ -354,6 +467,8 @@ const opDeprecateDomain = "DeprecateDomain"
 // client's request for the DeprecateDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeprecateDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -391,6 +506,8 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *request.
 	return
 }
 
+// DeprecateDomain API operation for Amazon Simple Workflow Service.
+//
 // Deprecates the specified domain. After a domain has been deprecated it cannot
 // be used to create new workflow executions or register new types. However,
 // you can still use visibility actions on this domain. Deprecating a domain
@@ -412,6 +529,27 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *request.
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DeprecateDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * DomainDeprecatedFault
+//   Returned when the specified domain has been deprecated.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (*DeprecateDomainOutput, error) {
 	req, out := c.DeprecateDomainRequest(input)
 	err := req.Send()
@@ -424,6 +562,8 @@ const opDeprecateWorkflowType = "DeprecateWorkflowType"
 // client's request for the DeprecateWorkflowType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeprecateWorkflowType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -461,6 +601,8 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 	return
 }
 
+// DeprecateWorkflowType API operation for Amazon Simple Workflow Service.
+//
 // Deprecates the specified workflow type. After a workflow type has been deprecated,
 // you cannot create new executions of that type. Executions that were started
 // before the type was deprecated will continue to run. A deprecated workflow
@@ -482,6 +624,27 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DeprecateWorkflowType for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * TypeDeprecatedFault
+//   Returned when the specified activity or workflow type was already deprecated.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (*DeprecateWorkflowTypeOutput, error) {
 	req, out := c.DeprecateWorkflowTypeRequest(input)
 	err := req.Send()
@@ -494,6 +657,8 @@ const opDescribeActivityType = "DescribeActivityType"
 // client's request for the DescribeActivityType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeActivityType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -529,6 +694,8 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 	return
 }
 
+// DescribeActivityType API operation for Amazon Simple Workflow Service.
+//
 // Returns information about the specified activity type. This includes configuration
 // settings provided when the type was registered and other general information
 // about the type.
@@ -548,6 +715,24 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DescribeActivityType for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (*DescribeActivityTypeOutput, error) {
 	req, out := c.DescribeActivityTypeRequest(input)
 	err := req.Send()
@@ -560,6 +745,8 @@ const opDescribeDomain = "DescribeDomain"
 // client's request for the DescribeDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -595,6 +782,8 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Re
 	return
 }
 
+// DescribeDomain API operation for Amazon Simple Workflow Service.
+//
 // Returns information about the specified domain, including description and
 // status.
 //
@@ -611,6 +800,24 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Re
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DescribeDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput, error) {
 	req, out := c.DescribeDomainRequest(input)
 	err := req.Send()
@@ -623,6 +830,8 @@ const opDescribeWorkflowExecution = "DescribeWorkflowExecution"
 // client's request for the DescribeWorkflowExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeWorkflowExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -658,6 +867,8 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 	return
 }
 
+// DescribeWorkflowExecution API operation for Amazon Simple Workflow Service.
+//
 // Returns information about the specified workflow execution including its
 // type and some statistics.
 //
@@ -675,6 +886,24 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DescribeWorkflowExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (*DescribeWorkflowExecutionOutput, error) {
 	req, out := c.DescribeWorkflowExecutionRequest(input)
 	err := req.Send()
@@ -687,6 +916,8 @@ const opDescribeWorkflowType = "DescribeWorkflowType"
 // client's request for the DescribeWorkflowType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeWorkflowType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -722,6 +953,8 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 	return
 }
 
+// DescribeWorkflowType API operation for Amazon Simple Workflow Service.
+//
 // Returns information about the specified workflow type. This includes configuration
 // settings specified when the type was registered and other information such
 // as creation date, current status, and so on.
@@ -741,6 +974,24 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation DescribeWorkflowType for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (*DescribeWorkflowTypeOutput, error) {
 	req, out := c.DescribeWorkflowTypeRequest(input)
 	err := req.Send()
@@ -753,6 +1004,8 @@ const opGetWorkflowExecutionHistory = "GetWorkflowExecutionHistory"
 // client's request for the GetWorkflowExecutionHistory operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetWorkflowExecutionHistory for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -794,6 +1047,8 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 	return
 }
 
+// GetWorkflowExecutionHistory API operation for Amazon Simple Workflow Service.
+//
 // Returns the history of the specified workflow execution. The results may
 // be split into multiple pages. To retrieve subsequent pages, make the call
 // again using the nextPageToken returned by the initial call.
@@ -812,6 +1067,24 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation GetWorkflowExecutionHistory for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) GetWorkflowExecutionHistory(input *GetWorkflowExecutionHistoryInput) (*GetWorkflowExecutionHistoryOutput, error) {
 	req, out := c.GetWorkflowExecutionHistoryRequest(input)
 	err := req.Send()
@@ -849,6 +1122,8 @@ const opListActivityTypes = "ListActivityTypes"
 // client's request for the ListActivityTypes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListActivityTypes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -890,6 +1165,8 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *requ
 	return
 }
 
+// ListActivityTypes API operation for Amazon Simple Workflow Service.
+//
 // Returns information about all activities registered in the specified domain
 // that match the specified name and registration status. The result includes
 // information like creation date, current status of the activity, etc. The
@@ -909,6 +1186,24 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *requ
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation ListActivityTypes for usage and error information.
+//
+// Returned Error Codes:
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
 func (c *SWF) ListActivityTypes(input *ListActivityTypesInput) (*ListActivityTypesOutput, error) {
 	req, out := c.ListActivityTypesRequest(input)
 	err := req.Send()
@@ -946,6 +1241,8 @@ const opListClosedWorkflowExecutions = "ListClosedWorkflowExecutions"
 // client's request for the ListClosedWorkflowExecutions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListClosedWorkflowExecutions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -987,6 +1284,8 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 	return
 }
 
+// ListClosedWorkflowExecutions API operation for Amazon Simple Workflow Service.
+//
 // Returns a list of closed workflow executions in the specified domain that
 // meet the filtering criteria. The results may be split into multiple pages.
 // To retrieve subsequent pages, make the call again using the nextPageToken
@@ -1009,6 +1308,24 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation ListClosedWorkflowExecutions for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) ListClosedWorkflowExecutions(input *ListClosedWorkflowExecutionsInput) (*WorkflowExecutionInfos, error) {
 	req, out := c.ListClosedWorkflowExecutionsRequest(input)
 	err := req.Send()
@@ -1046,6 +1363,8 @@ const opListDomains = "ListDomains"
 // client's request for the ListDomains operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDomains for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1087,6 +1406,8 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *request.Request,
 	return
 }
 
+// ListDomains API operation for Amazon Simple Workflow Service.
+//
 // Returns the list of domains registered in the account. The results may be
 // split into multiple pages. To retrieve subsequent pages, make the call again
 // using the nextPageToken returned by the initial call.
@@ -1106,6 +1427,19 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *request.Request,
 // specified constraints, the action fails. The associated event attribute's
 // cause parameter will be set to OPERATION_NOT_PERMITTED. For details and example
 // IAM policies, see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation ListDomains for usage and error information.
+//
+// Returned Error Codes:
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
 	err := req.Send()
@@ -1143,6 +1477,8 @@ const opListOpenWorkflowExecutions = "ListOpenWorkflowExecutions"
 // client's request for the ListOpenWorkflowExecutions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListOpenWorkflowExecutions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1184,6 +1520,8 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 	return
 }
 
+// ListOpenWorkflowExecutions API operation for Amazon Simple Workflow Service.
+//
 // Returns a list of open workflow executions in the specified domain that meet
 // the filtering criteria. The results may be split into multiple pages. To
 // retrieve subsequent pages, make the call again using the nextPageToken returned
@@ -1206,6 +1544,24 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation ListOpenWorkflowExecutions for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) ListOpenWorkflowExecutions(input *ListOpenWorkflowExecutionsInput) (*WorkflowExecutionInfos, error) {
 	req, out := c.ListOpenWorkflowExecutionsRequest(input)
 	err := req.Send()
@@ -1243,6 +1599,8 @@ const opListWorkflowTypes = "ListWorkflowTypes"
 // client's request for the ListWorkflowTypes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListWorkflowTypes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1284,6 +1642,8 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *requ
 	return
 }
 
+// ListWorkflowTypes API operation for Amazon Simple Workflow Service.
+//
 // Returns information about workflow types in the specified domain. The results
 // may be split into multiple pages that can be retrieved by making the call
 // repeatedly.
@@ -1301,6 +1661,24 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *requ
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation ListWorkflowTypes for usage and error information.
+//
+// Returned Error Codes:
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
 func (c *SWF) ListWorkflowTypes(input *ListWorkflowTypesInput) (*ListWorkflowTypesOutput, error) {
 	req, out := c.ListWorkflowTypesRequest(input)
 	err := req.Send()
@@ -1339,6 +1717,8 @@ const opPollForActivityTask = "PollForActivityTask"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PollForActivityTask for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1373,6 +1753,8 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 	return
 }
 
+// PollForActivityTask API operation for Amazon Simple Workflow Service.
+//
 // Used by workers to get an ActivityTask from the specified activity taskList.
 // This initiates a long poll, where the service holds the HTTP connection open
 // and responds as soon as a task becomes available. The maximum time the service
@@ -1398,6 +1780,29 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation PollForActivityTask for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
+//   * LimitExceededFault
+//   Returned by any operation if a system imposed limitation has been reached.
+//   To address this fault you should either clean up unused resources or increase
+//   the limit by contacting AWS.
+//
 func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (*PollForActivityTaskOutput, error) {
 	req, out := c.PollForActivityTaskRequest(input)
 	err := req.Send()
@@ -1410,6 +1815,8 @@ const opPollForDecisionTask = "PollForDecisionTask"
 // client's request for the PollForDecisionTask operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PollForDecisionTask for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1451,6 +1858,8 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 	return
 }
 
+// PollForDecisionTask API operation for Amazon Simple Workflow Service.
+//
 // Used by deciders to get a DecisionTask from the specified decision taskList.
 // A decision task may be returned for any open workflow execution that is using
 // the specified task list. The task includes a paginated view of the history
@@ -1484,6 +1893,29 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 // the action fails. The associated event attribute's cause parameter will be
 // set to OPERATION_NOT_PERMITTED. For details and example IAM policies, see
 // Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation PollForDecisionTask for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
+//   * LimitExceededFault
+//   Returned by any operation if a system imposed limitation has been reached.
+//   To address this fault you should either clean up unused resources or increase
+//   the limit by contacting AWS.
+//
 func (c *SWF) PollForDecisionTask(input *PollForDecisionTaskInput) (*PollForDecisionTaskOutput, error) {
 	req, out := c.PollForDecisionTaskRequest(input)
 	err := req.Send()
@@ -1522,6 +1954,8 @@ const opRecordActivityTaskHeartbeat = "RecordActivityTaskHeartbeat"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See RecordActivityTaskHeartbeat for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1556,6 +1990,8 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 	return
 }
 
+// RecordActivityTaskHeartbeat API operation for Amazon Simple Workflow Service.
+//
 // Used by activity workers to report to the service that the ActivityTask represented
 // by the specified taskToken is still making progress. The worker can also
 // (optionally) specify details of the progress, for example percent complete,
@@ -1592,6 +2028,24 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RecordActivityTaskHeartbeat for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInput) (*RecordActivityTaskHeartbeatOutput, error) {
 	req, out := c.RecordActivityTaskHeartbeatRequest(input)
 	err := req.Send()
@@ -1604,6 +2058,8 @@ const opRegisterActivityType = "RegisterActivityType"
 // client's request for the RegisterActivityType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterActivityType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1641,6 +2097,8 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 	return
 }
 
+// RegisterActivityType API operation for Amazon Simple Workflow Service.
+//
 // Registers a new activity type along with its configuration settings in the
 // specified domain.
 //
@@ -1662,6 +2120,35 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 // event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RegisterActivityType for usage and error information.
+//
+// Returned Error Codes:
+//   * TypeAlreadyExistsFault
+//   Returned if the type already exists in the specified domain. You will get
+//   this fault even if the existing type is in deprecated status. You can specify
+//   another version if the intent is to create a new distinct version of the
+//   type.
+//
+//   * LimitExceededFault
+//   Returned by any operation if a system imposed limitation has been reached.
+//   To address this fault you should either clean up unused resources or increase
+//   the limit by contacting AWS.
+//
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (*RegisterActivityTypeOutput, error) {
 	req, out := c.RegisterActivityTypeRequest(input)
 	err := req.Send()
@@ -1674,6 +2161,8 @@ const opRegisterDomain = "RegisterDomain"
 // client's request for the RegisterDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1711,6 +2200,8 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *request.Re
 	return
 }
 
+// RegisterDomain API operation for Amazon Simple Workflow Service.
+//
 // Registers a new domain.
 //
 // Access Control
@@ -1727,6 +2218,28 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *request.Re
 // The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RegisterDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * DomainAlreadyExistsFault
+//   Returned if the specified domain already exists. You will get this fault
+//   even if the existing domain is in deprecated status.
+//
+//   * LimitExceededFault
+//   Returned by any operation if a system imposed limitation has been reached.
+//   To address this fault you should either clean up unused resources or increase
+//   the limit by contacting AWS.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RegisterDomain(input *RegisterDomainInput) (*RegisterDomainOutput, error) {
 	req, out := c.RegisterDomainRequest(input)
 	err := req.Send()
@@ -1739,6 +2252,8 @@ const opRegisterWorkflowType = "RegisterWorkflowType"
 // client's request for the RegisterWorkflowType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterWorkflowType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1776,6 +2291,8 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 	return
 }
 
+// RegisterWorkflowType API operation for Amazon Simple Workflow Service.
+//
 // Registers a new workflow type and its configuration settings in the specified
 // domain.
 //
@@ -1800,6 +2317,35 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 // event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RegisterWorkflowType for usage and error information.
+//
+// Returned Error Codes:
+//   * TypeAlreadyExistsFault
+//   Returned if the type already exists in the specified domain. You will get
+//   this fault even if the existing type is in deprecated status. You can specify
+//   another version if the intent is to create a new distinct version of the
+//   type.
+//
+//   * LimitExceededFault
+//   Returned by any operation if a system imposed limitation has been reached.
+//   To address this fault you should either clean up unused resources or increase
+//   the limit by contacting AWS.
+//
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (*RegisterWorkflowTypeOutput, error) {
 	req, out := c.RegisterWorkflowTypeRequest(input)
 	err := req.Send()
@@ -1812,6 +2358,8 @@ const opRequestCancelWorkflowExecution = "RequestCancelWorkflowExecution"
 // client's request for the RequestCancelWorkflowExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RequestCancelWorkflowExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1849,6 +2397,8 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 	return
 }
 
+// RequestCancelWorkflowExecution API operation for Amazon Simple Workflow Service.
+//
 // Records a WorkflowExecutionCancelRequested event in the currently running
 // workflow execution identified by the given domain, workflowId, and runId.
 // This logically requests the cancellation of the workflow execution as a whole.
@@ -1872,6 +2422,24 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RequestCancelWorkflowExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecutionInput) (*RequestCancelWorkflowExecutionOutput, error) {
 	req, out := c.RequestCancelWorkflowExecutionRequest(input)
 	err := req.Send()
@@ -1884,6 +2452,8 @@ const opRespondActivityTaskCanceled = "RespondActivityTaskCanceled"
 // client's request for the RespondActivityTaskCanceled operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RespondActivityTaskCanceled for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1921,6 +2491,8 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 	return
 }
 
+// RespondActivityTaskCanceled API operation for Amazon Simple Workflow Service.
+//
 // Used by workers to tell the service that the ActivityTask identified by the
 // taskToken was successfully canceled. Additional details can be optionally
 // provided using the details argument.
@@ -1949,6 +2521,24 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RespondActivityTaskCanceled for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInput) (*RespondActivityTaskCanceledOutput, error) {
 	req, out := c.RespondActivityTaskCanceledRequest(input)
 	err := req.Send()
@@ -1961,6 +2551,8 @@ const opRespondActivityTaskCompleted = "RespondActivityTaskCompleted"
 // client's request for the RespondActivityTaskCompleted operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RespondActivityTaskCompleted for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1998,6 +2590,8 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 	return
 }
 
+// RespondActivityTaskCompleted API operation for Amazon Simple Workflow Service.
+//
 // Used by workers to tell the service that the ActivityTask identified by the
 // taskToken completed successfully with a result (if provided). The result
 // appears in the ActivityTaskCompleted event in the workflow history.
@@ -2024,6 +2618,24 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RespondActivityTaskCompleted for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedInput) (*RespondActivityTaskCompletedOutput, error) {
 	req, out := c.RespondActivityTaskCompletedRequest(input)
 	err := req.Send()
@@ -2036,6 +2648,8 @@ const opRespondActivityTaskFailed = "RespondActivityTaskFailed"
 // client's request for the RespondActivityTaskFailed operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RespondActivityTaskFailed for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2073,6 +2687,8 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 	return
 }
 
+// RespondActivityTaskFailed API operation for Amazon Simple Workflow Service.
+//
 // Used by workers to tell the service that the ActivityTask identified by the
 // taskToken has failed with reason (if specified). The reason and details appear
 // in the ActivityTaskFailed event added to the workflow history.
@@ -2096,6 +2712,24 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RespondActivityTaskFailed for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (*RespondActivityTaskFailedOutput, error) {
 	req, out := c.RespondActivityTaskFailedRequest(input)
 	err := req.Send()
@@ -2108,6 +2742,8 @@ const opRespondDecisionTaskCompleted = "RespondDecisionTaskCompleted"
 // client's request for the RespondDecisionTaskCompleted operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RespondDecisionTaskCompleted for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2145,6 +2781,8 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 	return
 }
 
+// RespondDecisionTaskCompleted API operation for Amazon Simple Workflow Service.
+//
 // Used by deciders to tell the service that the DecisionTask identified by
 // the taskToken has successfully completed. The decisions argument specifies
 // the list of decisions made while processing the task.
@@ -2161,6 +2799,24 @@ func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskComp
 // permissions on decisions as if they were actual API calls, including applying
 // conditions to some parameters. For more information, see Using IAM to Manage
 // Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation RespondDecisionTaskCompleted for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedInput) (*RespondDecisionTaskCompletedOutput, error) {
 	req, out := c.RespondDecisionTaskCompletedRequest(input)
 	err := req.Send()
@@ -2173,6 +2829,8 @@ const opSignalWorkflowExecution = "SignalWorkflowExecution"
 // client's request for the SignalWorkflowExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SignalWorkflowExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2210,6 +2868,8 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 	return
 }
 
+// SignalWorkflowExecution API operation for Amazon Simple Workflow Service.
+//
 // Records a WorkflowExecutionSignaled event in the workflow execution history
 // and creates a decision task for the workflow execution identified by the
 // given domain, workflowId and runId. The event is recorded with the specified
@@ -2231,6 +2891,24 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation SignalWorkflowExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (*SignalWorkflowExecutionOutput, error) {
 	req, out := c.SignalWorkflowExecutionRequest(input)
 	err := req.Send()
@@ -2243,6 +2921,8 @@ const opStartWorkflowExecution = "StartWorkflowExecution"
 // client's request for the StartWorkflowExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartWorkflowExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2278,6 +2958,8 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 	return
 }
 
+// StartWorkflowExecution API operation for Amazon Simple Workflow Service.
+//
 // Starts an execution of the workflow type in the specified domain using the
 // provided workflowId and input data.
 //
@@ -2302,6 +2984,39 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 // constraints, the action fails. The associated event attribute's cause parameter
 // will be set to OPERATION_NOT_PERMITTED. For details and example IAM policies,
 // see Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation StartWorkflowExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * TypeDeprecatedFault
+//   Returned when the specified activity or workflow type was already deprecated.
+//
+//   * WorkflowExecutionAlreadyStartedFault
+//   Returned by StartWorkflowExecution when an open execution with the same workflowId
+//   is already running in the specified domain.
+//
+//   * LimitExceededFault
+//   Returned by any operation if a system imposed limitation has been reached.
+//   To address this fault you should either clean up unused resources or increase
+//   the limit by contacting AWS.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
+//   * DefaultUndefinedFault
+
+//
 func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (*StartWorkflowExecutionOutput, error) {
 	req, out := c.StartWorkflowExecutionRequest(input)
 	err := req.Send()
@@ -2314,6 +3029,8 @@ const opTerminateWorkflowExecution = "TerminateWorkflowExecution"
 // client's request for the TerminateWorkflowExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See TerminateWorkflowExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2351,6 +3068,8 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 	return
 }
 
+// TerminateWorkflowExecution API operation for Amazon Simple Workflow Service.
+//
 // Records a WorkflowExecutionTerminated event and forces closure of the workflow
 // execution identified by the given domain, runId, and workflowId. The child
 // policy, registered with the workflow type or specified when starting this
@@ -2375,6 +3094,24 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Workflow Service's
+// API operation TerminateWorkflowExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * UnknownResourceFault
+//   Returned when the named resource cannot be found with in the scope of this
+//   operation (region or domain). This could happen if the named resource was
+//   never created or is no longer available for this operation.
+//
+//   * OperationNotPermittedFault
+//   Returned when the caller does not have sufficient permissions to invoke the
+//   action.
+//
 func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput) (*TerminateWorkflowExecutionOutput, error) {
 	req, out := c.TerminateWorkflowExecutionRequest(input)
 	err := req.Send()

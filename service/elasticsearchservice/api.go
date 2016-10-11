@@ -20,6 +20,8 @@ const opAddTags = "AddTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -56,10 +58,37 @@ func (c *ElasticsearchService) AddTagsRequest(input *AddTagsInput) (req *request
 	return
 }
 
+// AddTags API operation for Amazon Elasticsearch Service.
+//
 // Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive
 // key value pairs. An Elasticsearch domain may have up to 10 tags. See  Tagging
 // Amazon Elasticsearch Service Domains for more information. (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging"
 // target="_blank)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation AddTags for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * LimitExceededException
+//   An exception for trying to create more than allowed resources or sub-resources.
+//   Gives http status code of 409.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
 func (c *ElasticsearchService) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -72,6 +101,8 @@ const opCreateElasticsearchDomain = "CreateElasticsearchDomain"
 // client's request for the CreateElasticsearchDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateElasticsearchDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -107,9 +138,48 @@ func (c *ElasticsearchService) CreateElasticsearchDomainRequest(input *CreateEla
 	return
 }
 
+// CreateElasticsearchDomain API operation for Amazon Elasticsearch Service.
+//
 // Creates a new Elasticsearch domain. For more information, see Creating Elasticsearch
 // Domains (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains"
 // target="_blank) in the Amazon Elasticsearch Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation CreateElasticsearchDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * DisabledOperationException
+//   An error occured because the client wanted to access a not supported operation.
+//   Gives http status code of 409.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * InvalidTypeException
+//   An exception for trying to create or access sub-resource that is either invalid
+//   or not supported. Gives http status code of 409.
+//
+//   * LimitExceededException
+//   An exception for trying to create more than allowed resources or sub-resources.
+//   Gives http status code of 409.
+//
+//   * ResourceAlreadyExistsException
+//   An exception for creating a resource that already exists. Gives http status
+//   code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) CreateElasticsearchDomain(input *CreateElasticsearchDomainInput) (*CreateElasticsearchDomainOutput, error) {
 	req, out := c.CreateElasticsearchDomainRequest(input)
 	err := req.Send()
@@ -122,6 +192,8 @@ const opDeleteElasticsearchDomain = "DeleteElasticsearchDomain"
 // client's request for the DeleteElasticsearchDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteElasticsearchDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -157,8 +229,35 @@ func (c *ElasticsearchService) DeleteElasticsearchDomainRequest(input *DeleteEla
 	return
 }
 
+// DeleteElasticsearchDomain API operation for Amazon Elasticsearch Service.
+//
 // Permanently deletes the specified Elasticsearch domain and all of its data.
 // Once a domain is deleted, it cannot be recovered.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DeleteElasticsearchDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) DeleteElasticsearchDomain(input *DeleteElasticsearchDomainInput) (*DeleteElasticsearchDomainOutput, error) {
 	req, out := c.DeleteElasticsearchDomainRequest(input)
 	err := req.Send()
@@ -171,6 +270,8 @@ const opDescribeElasticsearchDomain = "DescribeElasticsearchDomain"
 // client's request for the DescribeElasticsearchDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeElasticsearchDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -206,8 +307,35 @@ func (c *ElasticsearchService) DescribeElasticsearchDomainRequest(input *Describ
 	return
 }
 
+// DescribeElasticsearchDomain API operation for Amazon Elasticsearch Service.
+//
 // Returns domain configuration information about the specified Elasticsearch
 // domain, including the domain ID, domain endpoint, and domain ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DescribeElasticsearchDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) DescribeElasticsearchDomain(input *DescribeElasticsearchDomainInput) (*DescribeElasticsearchDomainOutput, error) {
 	req, out := c.DescribeElasticsearchDomainRequest(input)
 	err := req.Send()
@@ -220,6 +348,8 @@ const opDescribeElasticsearchDomainConfig = "DescribeElasticsearchDomainConfig"
 // client's request for the DescribeElasticsearchDomainConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeElasticsearchDomainConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -255,9 +385,36 @@ func (c *ElasticsearchService) DescribeElasticsearchDomainConfigRequest(input *D
 	return
 }
 
+// DescribeElasticsearchDomainConfig API operation for Amazon Elasticsearch Service.
+//
 // Provides cluster configuration information about the specified Elasticsearch
 // domain, such as the state, creation date, update version, and update date
 // for cluster options.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DescribeElasticsearchDomainConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) DescribeElasticsearchDomainConfig(input *DescribeElasticsearchDomainConfigInput) (*DescribeElasticsearchDomainConfigOutput, error) {
 	req, out := c.DescribeElasticsearchDomainConfigRequest(input)
 	err := req.Send()
@@ -270,6 +427,8 @@ const opDescribeElasticsearchDomains = "DescribeElasticsearchDomains"
 // client's request for the DescribeElasticsearchDomains operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeElasticsearchDomains for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -305,8 +464,31 @@ func (c *ElasticsearchService) DescribeElasticsearchDomainsRequest(input *Descri
 	return
 }
 
+// DescribeElasticsearchDomains API operation for Amazon Elasticsearch Service.
+//
 // Returns domain configuration information about the specified Elasticsearch
 // domains, including the domain ID, domain endpoint, and domain ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DescribeElasticsearchDomains for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) DescribeElasticsearchDomains(input *DescribeElasticsearchDomainsInput) (*DescribeElasticsearchDomainsOutput, error) {
 	req, out := c.DescribeElasticsearchDomainsRequest(input)
 	err := req.Send()
@@ -319,6 +501,8 @@ const opListDomainNames = "ListDomainNames"
 // client's request for the ListDomainNames operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDomainNames for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -354,8 +538,26 @@ func (c *ElasticsearchService) ListDomainNamesRequest(input *ListDomainNamesInpu
 	return
 }
 
+// ListDomainNames API operation for Amazon Elasticsearch Service.
+//
 // Returns the name of all Elasticsearch domains owned by the current user's
 // account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation ListDomainNames for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) ListDomainNames(input *ListDomainNamesInput) (*ListDomainNamesOutput, error) {
 	req, out := c.ListDomainNamesRequest(input)
 	err := req.Send()
@@ -368,6 +570,8 @@ const opListTags = "ListTags"
 // client's request for the ListTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -403,7 +607,34 @@ func (c *ElasticsearchService) ListTagsRequest(input *ListTagsInput) (req *reque
 	return
 }
 
+// ListTags API operation for Amazon Elasticsearch Service.
+//
 // Returns all tags for the given Elasticsearch domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation ListTags for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
 func (c *ElasticsearchService) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
 	req, out := c.ListTagsRequest(input)
 	err := req.Send()
@@ -416,6 +647,8 @@ const opRemoveTags = "RemoveTags"
 // client's request for the RemoveTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -453,7 +686,30 @@ func (c *ElasticsearchService) RemoveTagsRequest(input *RemoveTagsInput) (req *r
 	return
 }
 
+// RemoveTags API operation for Amazon Elasticsearch Service.
+//
 // Removes the specified set of tags from the specified Elasticsearch domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation RemoveTags for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
 func (c *ElasticsearchService) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -466,6 +722,8 @@ const opUpdateElasticsearchDomainConfig = "UpdateElasticsearchDomainConfig"
 // client's request for the UpdateElasticsearchDomainConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateElasticsearchDomainConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -501,8 +759,43 @@ func (c *ElasticsearchService) UpdateElasticsearchDomainConfigRequest(input *Upd
 	return
 }
 
+// UpdateElasticsearchDomainConfig API operation for Amazon Elasticsearch Service.
+//
 // Modifies the cluster configuration of the specified Elasticsearch domain,
 // setting as setting the instance type and the number of instances.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation UpdateElasticsearchDomainConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * InvalidTypeException
+//   An exception for trying to create or access sub-resource that is either invalid
+//   or not supported. Gives http status code of 409.
+//
+//   * LimitExceededException
+//   An exception for trying to create more than allowed resources or sub-resources.
+//   Gives http status code of 409.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
 func (c *ElasticsearchService) UpdateElasticsearchDomainConfig(input *UpdateElasticsearchDomainConfigInput) (*UpdateElasticsearchDomainConfigOutput, error) {
 	req, out := c.UpdateElasticsearchDomainConfigRequest(input)
 	err := req.Send()

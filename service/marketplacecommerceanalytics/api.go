@@ -17,6 +17,8 @@ const opGenerateDataSet = "GenerateDataSet"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See GenerateDataSet for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,6 +53,8 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 	return
 }
 
+// GenerateDataSet API operation for AWS Marketplace Commerce Analytics.
+//
 // Given a data set type and data set publication date, asynchronously publishes
 // the requested data set to the specified S3 bucket and notifies the specified
 // SNS topic once the data is available. Returns a unique request identifier
@@ -61,6 +65,18 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 // will be overwritten by the new file. Requires a Role with an attached permissions
 // policy providing Allow permissions for the following actions: s3:PutObject,
 // s3:GetBucketLocation, sns:GetTopicAttributes, sns:Publish, iam:GetRolePolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Commerce Analytics's
+// API operation GenerateDataSet for usage and error information.
+//
+// Returned Error Codes:
+//   * Exception
+//   This exception is thrown when an internal service error occurs.
+//
 func (c *MarketplaceCommerceAnalytics) GenerateDataSet(input *GenerateDataSetInput) (*GenerateDataSetOutput, error) {
 	req, out := c.GenerateDataSetRequest(input)
 	err := req.Send()
@@ -73,6 +89,8 @@ const opStartSupportDataExport = "StartSupportDataExport"
 // client's request for the StartSupportDataExport operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartSupportDataExport for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -108,6 +126,8 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 	return
 }
 
+// StartSupportDataExport API operation for AWS Marketplace Commerce Analytics.
+//
 // Given a data set type and a from date, asynchronously publishes the requested
 // customer support data to the specified S3 bucket and notifies the specified
 // SNS topic once the data is available. Returns a unique request identifier
@@ -119,6 +139,18 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 // an attached permissions policy providing Allow permissions for the following
 // actions: s3:PutObject, s3:GetBucketLocation, sns:GetTopicAttributes, sns:Publish,
 // iam:GetRolePolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Marketplace Commerce Analytics's
+// API operation StartSupportDataExport for usage and error information.
+//
+// Returned Error Codes:
+//   * Exception
+//   This exception is thrown when an internal service error occurs.
+//
 func (c *MarketplaceCommerceAnalytics) StartSupportDataExport(input *StartSupportDataExportInput) (*StartSupportDataExportOutput, error) {
 	req, out := c.StartSupportDataExportRequest(input)
 	err := req.Send()

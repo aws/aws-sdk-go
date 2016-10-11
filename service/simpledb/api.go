@@ -19,6 +19,8 @@ const opBatchDeleteAttributes = "BatchDeleteAttributes"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See BatchDeleteAttributes for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -55,6 +57,8 @@ func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInpu
 	return
 }
 
+// BatchDeleteAttributes API operation for Amazon SimpleDB.
+//
 // Performs multiple DeleteAttributes operations in a single call, which reduces
 // round trips and latencies. This enables Amazon SimpleDB to optimize requests,
 // which generally yields better throughput.
@@ -78,6 +82,13 @@ func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInpu
 //
 //   The following limitations are enforced for this operation:  1 MB request
 // size 25 item limit per BatchDeleteAttributes operation
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation BatchDeleteAttributes for usage and error information.
 func (c *SimpleDB) BatchDeleteAttributes(input *BatchDeleteAttributesInput) (*BatchDeleteAttributesOutput, error) {
 	req, out := c.BatchDeleteAttributesRequest(input)
 	err := req.Send()
@@ -90,6 +101,8 @@ const opBatchPutAttributes = "BatchPutAttributes"
 // client's request for the BatchPutAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchPutAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -127,6 +140,8 @@ func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (re
 	return
 }
 
+// BatchPutAttributes API operation for Amazon SimpleDB.
+//
 // The BatchPutAttributes operation creates or replaces attributes within one
 // or more items. By using this operation, the client can perform multiple PutAttribute
 // operation with a single call. This helps yield savings in round trips and
@@ -168,6 +183,42 @@ func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (re
 // name-value pairs per item 1 MB request size 1 billion attributes per domain
 // 10 GB of total user data storage per domain 25 item limit per BatchPutAttributes
 // operation
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation BatchPutAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * DuplicateItemName
+//   The item name was specified more than once.
+//
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NoSuchDomain
+//   The specified domain does not exist.
+//
+//   * NumberItemAttributesExceeded
+//   Too many attributes in this item.
+//
+//   * NumberDomainAttributesExceeded
+//   Too many attributes in this domain.
+//
+//   * NumberDomainBytesExceeded
+//   Too many bytes in this domain.
+//
+//   * NumberSubmittedItemsExceeded
+//   Too many items exist in a single call.
+//
+//   * NumberSubmittedAttributesExceeded
+//   Too many attributes exist in a single call.
+//
 func (c *SimpleDB) BatchPutAttributes(input *BatchPutAttributesInput) (*BatchPutAttributesOutput, error) {
 	req, out := c.BatchPutAttributesRequest(input)
 	err := req.Send()
@@ -180,6 +231,8 @@ const opCreateDomain = "CreateDomain"
 // client's request for the CreateDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -217,6 +270,8 @@ func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.R
 	return
 }
 
+// CreateDomain API operation for Amazon SimpleDB.
+//
 // The CreateDomain operation creates a new domain. The domain name should be
 // unique among the domains associated with the Access Key ID provided in the
 // request. The CreateDomain operation may take 10 or more seconds to complete.
@@ -227,6 +282,24 @@ func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.R
 //
 //  If the client requires additional domains, go to  http://aws.amazon.com/contact-us/simpledb-limit-request/
 // (http://aws.amazon.com/contact-us/simpledb-limit-request/).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation CreateDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NumberDomainsExceeded
+//   Too many domains exist per this account.
+//
 func (c *SimpleDB) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
 	err := req.Send()
@@ -239,6 +312,8 @@ const opDeleteAttributes = "DeleteAttributes"
 // client's request for the DeleteAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -276,6 +351,8 @@ func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *r
 	return
 }
 
+// DeleteAttributes API operation for Amazon SimpleDB.
+//
 // Deletes one or more attributes associated with an item. If all attributes
 // of the item are deleted, the item is deleted.
 //
@@ -288,6 +365,27 @@ func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *r
 // eventual consistency update model, performing a GetAttributes or Select operation
 // (read) immediately after a DeleteAttributes or PutAttributes operation (write)
 // might not return updated item data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation DeleteAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NoSuchDomain
+//   The specified domain does not exist.
+//
+//   * AttributeDoesNotExist
+//   The specified attribute does not exist.
+//
 func (c *SimpleDB) DeleteAttributes(input *DeleteAttributesInput) (*DeleteAttributesOutput, error) {
 	req, out := c.DeleteAttributesRequest(input)
 	err := req.Send()
@@ -300,6 +398,8 @@ const opDeleteDomain = "DeleteDomain"
 // client's request for the DeleteDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -337,12 +437,26 @@ func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *request.R
 	return
 }
 
+// DeleteDomain API operation for Amazon SimpleDB.
+//
 // The DeleteDomain operation deletes a domain. Any items (and their attributes)
 // in the domain are deleted as well. The DeleteDomain operation might take
 // 10 or more seconds to complete.
 //
 //  Running DeleteDomain on a domain that does not exist or running the function
 // multiple times using the same domain name will not result in an error response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation DeleteDomain for usage and error information.
+//
+// Returned Error Codes:
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
 func (c *SimpleDB) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
 	err := req.Send()
@@ -355,6 +469,8 @@ const opDomainMetadata = "DomainMetadata"
 // client's request for the DomainMetadata operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DomainMetadata for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -390,9 +506,26 @@ func (c *SimpleDB) DomainMetadataRequest(input *DomainMetadataInput) (req *reque
 	return
 }
 
+// DomainMetadata API operation for Amazon SimpleDB.
+//
 // Returns information about the domain, including when the domain was created,
 // the number of items and attributes in the domain, and the size of the attribute
 // names and values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation DomainMetadata for usage and error information.
+//
+// Returned Error Codes:
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NoSuchDomain
+//   The specified domain does not exist.
+//
 func (c *SimpleDB) DomainMetadata(input *DomainMetadataInput) (*DomainMetadataOutput, error) {
 	req, out := c.DomainMetadataRequest(input)
 	err := req.Send()
@@ -405,6 +538,8 @@ const opGetAttributes = "GetAttributes"
 // client's request for the GetAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -440,6 +575,8 @@ func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request
 	return
 }
 
+// GetAttributes API operation for Amazon SimpleDB.
+//
 // Returns all of the attributes associated with the specified item. Optionally,
 // the attributes returned can be limited to one or more attributes by specifying
 // an attribute name parameter.
@@ -450,6 +587,24 @@ func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request
 //
 //  If GetAttributes is called without being passed any attribute names, all
 // the attributes for the item are returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation GetAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NoSuchDomain
+//   The specified domain does not exist.
+//
 func (c *SimpleDB) GetAttributes(input *GetAttributesInput) (*GetAttributesOutput, error) {
 	req, out := c.GetAttributesRequest(input)
 	err := req.Send()
@@ -462,6 +617,8 @@ const opListDomains = "ListDomains"
 // client's request for the ListDomains operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDomains for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -503,12 +660,29 @@ func (c *SimpleDB) ListDomainsRequest(input *ListDomainsInput) (req *request.Req
 	return
 }
 
+// ListDomains API operation for Amazon SimpleDB.
+//
 // The ListDomains operation lists all domains associated with the Access Key
 // ID. It returns domain names up to the limit set by MaxNumberOfDomains (#MaxNumberOfDomains).
 // A NextToken (#NextToken) is returned if there are more than MaxNumberOfDomains
 // domains. Calling ListDomains successive times with the NextToken provided
 // by the operation returns up to MaxNumberOfDomains more domain names with
 // each successive operation call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation ListDomains for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidNextToken
+//   The specified NextToken is not valid.
+//
 func (c *SimpleDB) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, error) {
 	req, out := c.ListDomainsRequest(input)
 	err := req.Send()
@@ -547,6 +721,8 @@ const opPutAttributes = "PutAttributes"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See PutAttributes for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -583,6 +759,8 @@ func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request
 	return
 }
 
+// PutAttributes API operation for Amazon SimpleDB.
+//
 // The PutAttributes operation creates or replaces attributes in an item. The
 // client may specify new attributes using a combination of the Attribute.X.Name
 // and Attribute.X.Value parameters. The client specifies the first attribute
@@ -614,6 +792,36 @@ func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request
 //  The following limitations are enforced for this operation:  256 total attribute
 // name-value pairs per item One billion attributes per domain 10 GB of total
 // user data storage per domain
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation PutAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NoSuchDomain
+//   The specified domain does not exist.
+//
+//   * NumberDomainAttributesExceeded
+//   Too many attributes in this domain.
+//
+//   * NumberDomainBytesExceeded
+//   Too many bytes in this domain.
+//
+//   * NumberItemAttributesExceeded
+//   Too many attributes in this item.
+//
+//   * AttributeDoesNotExist
+//   The specified attribute does not exist.
+//
 func (c *SimpleDB) PutAttributes(input *PutAttributesInput) (*PutAttributesOutput, error) {
 	req, out := c.PutAttributesRequest(input)
 	err := req.Send()
@@ -626,6 +834,8 @@ const opSelect = "Select"
 // client's request for the Select operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See Select for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -667,6 +877,8 @@ func (c *SimpleDB) SelectRequest(input *SelectInput) (req *request.Request, outp
 	return
 }
 
+// Select API operation for Amazon SimpleDB.
+//
 // The Select operation returns a set of attributes for ItemNames that match
 // the select expression. Select is similar to the standard SQL SELECT statement.
 //
@@ -678,6 +890,43 @@ func (c *SimpleDB) SelectRequest(input *SelectInput) (req *request.Request, outp
 //
 //  For information on how to construct select expressions, see Using Select
 // to Create Amazon SimpleDB Queries in the Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SimpleDB's
+// API operation Select for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterValue
+//   The value for a parameter is invalid.
+//
+//   * InvalidNextToken
+//   The specified NextToken is not valid.
+//
+//   * InvalidNumberPredicates
+//   Too many predicates exist in the query expression.
+//
+//   * InvalidNumberValueTests
+//   Too many predicates exist in the query expression.
+//
+//   * InvalidQueryExpression
+//   The specified query expression syntax is not valid.
+//
+//   * MissingParameter
+//   The request must contain the specified missing parameter.
+//
+//   * NoSuchDomain
+//   The specified domain does not exist.
+//
+//   * RequestTimeout
+//   A timeout occurred when attempting to query the specified domain with specified
+//   query expression.
+//
+//   * TooManyRequestedAttributes
+//   Too many attributes requested.
+//
 func (c *SimpleDB) Select(input *SelectInput) (*SelectOutput, error) {
 	req, out := c.SelectRequest(input)
 	err := req.Send()

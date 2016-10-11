@@ -18,6 +18,8 @@ const opCreateDeliveryStream = "CreateDeliveryStream"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CreateDeliveryStream for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,6 +54,8 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 	return
 }
 
+// CreateDeliveryStream API operation for Amazon Kinesis Firehose.
+//
 // Creates a delivery stream.
 //
 //  CreateDeliveryStream is an asynchronous operation that immediately returns.
@@ -102,6 +106,24 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 // the role should have permissions that allows the service to deliver the data.
 // For more information, see Amazon S3 Bucket Access (http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3)
 // in the Amazon Kinesis Firehose Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation CreateDeliveryStream for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgumentException
+//   The specified input parameter has an value that is not valid.
+//
+//   * LimitExceededException
+//   You have already reached the limit for a requested resource.
+//
+//   * ResourceInUseException
+//   The resource is already in use and not available for this operation.
+//
 func (c *Firehose) CreateDeliveryStream(input *CreateDeliveryStreamInput) (*CreateDeliveryStreamOutput, error) {
 	req, out := c.CreateDeliveryStreamRequest(input)
 	err := req.Send()
@@ -114,6 +136,8 @@ const opDeleteDeliveryStream = "DeleteDeliveryStream"
 // client's request for the DeleteDeliveryStream operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDeliveryStream for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -149,6 +173,8 @@ func (c *Firehose) DeleteDeliveryStreamRequest(input *DeleteDeliveryStreamInput)
 	return
 }
 
+// DeleteDeliveryStream API operation for Amazon Kinesis Firehose.
+//
 // Deletes a delivery stream and its data.
 //
 // You can delete a delivery stream only if it is in ACTIVE or DELETING state,
@@ -161,6 +187,21 @@ func (c *Firehose) DeleteDeliveryStreamRequest(input *DeleteDeliveryStreamInput)
 // accept the records, but the service doesn't make any guarantees with respect
 // to delivering the data. Therefore, as a best practice, you should first stop
 // any applications that are sending records before deleting a delivery stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation DeleteDeliveryStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceInUseException
+//   The resource is already in use and not available for this operation.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
 func (c *Firehose) DeleteDeliveryStream(input *DeleteDeliveryStreamInput) (*DeleteDeliveryStreamOutput, error) {
 	req, out := c.DeleteDeliveryStreamRequest(input)
 	err := req.Send()
@@ -173,6 +214,8 @@ const opDescribeDeliveryStream = "DescribeDeliveryStream"
 // client's request for the DescribeDeliveryStream operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeDeliveryStream for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -208,10 +251,24 @@ func (c *Firehose) DescribeDeliveryStreamRequest(input *DescribeDeliveryStreamIn
 	return
 }
 
+// DescribeDeliveryStream API operation for Amazon Kinesis Firehose.
+//
 // Describes the specified delivery stream and gets the status. For example,
 // after your delivery stream is created, call DescribeDeliveryStream to see
 // if the delivery stream is ACTIVE and therefore ready for data to be sent
 // to it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation DescribeDeliveryStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
 func (c *Firehose) DescribeDeliveryStream(input *DescribeDeliveryStreamInput) (*DescribeDeliveryStreamOutput, error) {
 	req, out := c.DescribeDeliveryStreamRequest(input)
 	err := req.Send()
@@ -224,6 +281,8 @@ const opListDeliveryStreams = "ListDeliveryStreams"
 // client's request for the ListDeliveryStreams operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDeliveryStreams for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -259,6 +318,8 @@ func (c *Firehose) ListDeliveryStreamsRequest(input *ListDeliveryStreamsInput) (
 	return
 }
 
+// ListDeliveryStreams API operation for Amazon Kinesis Firehose.
+//
 // Lists your delivery streams.
 //
 // The number of delivery streams might be too large to return using a single
@@ -268,6 +329,13 @@ func (c *Firehose) ListDeliveryStreamsRequest(input *ListDeliveryStreamsInput) (
 // output. If there are more delivery streams to list, you can request them
 // by specifying the name of the last delivery stream returned in the call in
 // the ExclusiveStartDeliveryStreamName parameter of a subsequent call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation ListDeliveryStreams for usage and error information.
 func (c *Firehose) ListDeliveryStreams(input *ListDeliveryStreamsInput) (*ListDeliveryStreamsOutput, error) {
 	req, out := c.ListDeliveryStreamsRequest(input)
 	err := req.Send()
@@ -280,6 +348,8 @@ const opPutRecord = "PutRecord"
 // client's request for the PutRecord operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutRecord for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -315,6 +385,8 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 	return
 }
 
+// PutRecord API operation for Amazon Kinesis Firehose.
+//
 // Writes a single data record into an Amazon Kinesis Firehose delivery stream.
 // To write multiple data records into a delivery stream, use PutRecordBatch.
 // Applications using these operations are referred to as producers.
@@ -348,6 +420,27 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 // are added to a delivery stream as it attempts to send the records to the
 // destination. If the destination is unreachable for more than 24 hours, the
 // data is no longer available.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation PutRecord for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * InvalidArgumentException
+//   The specified input parameter has an value that is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is unavailable, back off and retry the operation. If you continue
+//   to see the exception, throughput limits for the delivery stream may have
+//   been exceeded. For more information about limits and how to request an increase,
+//   see Amazon Kinesis Firehose Limits (http://docs.aws.amazon.com/firehose/latest/dev/limits.html).
+//
 func (c *Firehose) PutRecord(input *PutRecordInput) (*PutRecordOutput, error) {
 	req, out := c.PutRecordRequest(input)
 	err := req.Send()
@@ -360,6 +453,8 @@ const opPutRecordBatch = "PutRecordBatch"
 // client's request for the PutRecordBatch operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutRecordBatch for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -395,6 +490,8 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 	return
 }
 
+// PutRecordBatch API operation for Amazon Kinesis Firehose.
+//
 // Writes multiple data records into a delivery stream in a single call, which
 // can achieve higher throughput per producer than when writing single records.
 // To write single data records into a delivery stream, use PutRecord. Applications
@@ -451,6 +548,27 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 // are added to a delivery stream as it attempts to send the records to the
 // destination. If the destination is unreachable for more than 24 hours, the
 // data is no longer available.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation PutRecordBatch for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * InvalidArgumentException
+//   The specified input parameter has an value that is not valid.
+//
+//   * ServiceUnavailableException
+//   The service is unavailable, back off and retry the operation. If you continue
+//   to see the exception, throughput limits for the delivery stream may have
+//   been exceeded. For more information about limits and how to request an increase,
+//   see Amazon Kinesis Firehose Limits (http://docs.aws.amazon.com/firehose/latest/dev/limits.html).
+//
 func (c *Firehose) PutRecordBatch(input *PutRecordBatchInput) (*PutRecordBatchOutput, error) {
 	req, out := c.PutRecordBatchRequest(input)
 	err := req.Send()
@@ -463,6 +581,8 @@ const opUpdateDestination = "UpdateDestination"
 // client's request for the UpdateDestination operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDestination for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -498,6 +618,8 @@ func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req 
 	return
 }
 
+// UpdateDestination API operation for Amazon Kinesis Firehose.
+//
 // Updates the specified destination of the specified delivery stream. Note:
 // Switching between Elasticsearch and other services is not supported. For
 // Elasticsearch destination, you can only update an existing Elasticsearch
@@ -530,6 +652,28 @@ func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req 
 // updated, which can be retrieved with the DescribeDeliveryStream operation.
 // The new VersionId should be uses to set CurrentDeliveryStreamVersionId in
 // the next UpdateDestination operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Firehose's
+// API operation UpdateDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidArgumentException
+//   The specified input parameter has an value that is not valid.
+//
+//   * ResourceInUseException
+//   The resource is already in use and not available for this operation.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConcurrentModificationException
+//   Another modification has already happened. Fetch VersionId again and use
+//   it to update the destination.
+//
 func (c *Firehose) UpdateDestination(input *UpdateDestinationInput) (*UpdateDestinationOutput, error) {
 	req, out := c.UpdateDestinationRequest(input)
 	err := req.Send()

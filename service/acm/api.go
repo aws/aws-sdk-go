@@ -20,6 +20,8 @@ const opAddTagsToCertificate = "AddTagsToCertificate"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTagsToCertificate for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -56,6 +58,8 @@ func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req
 	return
 }
 
+// AddTagsToCertificate API operation for AWS Certificate Manager.
+//
 // Adds one or more tags to an ACM Certificate. Tags are labels that you can
 // use to identify and organize your AWS resources. Each tag consists of a key
 // and an optional value. You specify the certificate on input by its Amazon
@@ -73,6 +77,29 @@ func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req
 // To remove one or more tags, use the RemoveTagsFromCertificate action. To
 // view all of the tags that have been applied to the certificate, use the ListTagsForCertificate
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation AddTagsToCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
+//   * InvalidTagException
+//   One or both of the values that make up the key-value pair is not valid. For
+//   example, you cannot specify a tag value that begins with aws:.
+//
+//   * TooManyTagsException
+//   The request contains too many tags. Try the request again with fewer tags.
+//
 func (c *ACM) AddTagsToCertificate(input *AddTagsToCertificateInput) (*AddTagsToCertificateOutput, error) {
 	req, out := c.AddTagsToCertificateRequest(input)
 	err := req.Send()
@@ -85,6 +112,8 @@ const opDeleteCertificate = "DeleteCertificate"
 // client's request for the DeleteCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -122,6 +151,8 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 	return
 }
 
+// DeleteCertificate API operation for AWS Certificate Manager.
+//
 // Deletes an ACM Certificate and its associated private key. If this action
 // succeeds, the certificate no longer appears in the list of ACM Certificates
 // that can be displayed by calling the ListCertificates action or be retrieved
@@ -131,6 +162,26 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 //  You cannot delete an ACM Certificate that is being used by another AWS
 // service. To delete a certificate that is in use, the certificate association
 // must first be removed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation DeleteCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * ResourceInUseException
+//   The certificate is in use by another AWS service in the caller's account.
+//   Remove the association and try again.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
 func (c *ACM) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -143,6 +194,8 @@ const opDescribeCertificate = "DescribeCertificate"
 // client's request for the DescribeCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -178,11 +231,29 @@ func (c *ACM) DescribeCertificateRequest(input *DescribeCertificateInput) (req *
 	return
 }
 
+// DescribeCertificate API operation for AWS Certificate Manager.
+//
 // Returns a list of the fields contained in the specified ACM Certificate.
 // For example, this action returns the certificate status, a flag that indicates
 // whether the certificate is associated with any other AWS service, and the
 // date at which the certificate request was created. You specify the ACM Certificate
 // on input by its Amazon Resource Name (ARN).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation DescribeCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
 func (c *ACM) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
 	req, out := c.DescribeCertificateRequest(input)
 	err := req.Send()
@@ -195,6 +266,8 @@ const opGetCertificate = "GetCertificate"
 // client's request for the GetCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -230,6 +303,8 @@ func (c *ACM) GetCertificateRequest(input *GetCertificateInput) (req *request.Re
 	return
 }
 
+// GetCertificate API operation for AWS Certificate Manager.
+//
 // Retrieves an ACM Certificate and certificate chain for the certificate specified
 // by an ARN. The chain is an ordered list of certificates that contains the
 // root certificate, intermediate certificates of subordinate CAs, and the ACM
@@ -239,6 +314,26 @@ func (c *ACM) GetCertificateRequest(input *GetCertificateInput) (req *request.Re
 //
 //  Currently, ACM Certificates can be used only with Elastic Load Balancing
 // and Amazon CloudFront.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation GetCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * RequestInProgressException
+//   The certificate request is in process and the certificate in your account
+//   has not yet been issued.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
 func (c *ACM) GetCertificate(input *GetCertificateInput) (*GetCertificateOutput, error) {
 	req, out := c.GetCertificateRequest(input)
 	err := req.Send()
@@ -251,6 +346,8 @@ const opListCertificates = "ListCertificates"
 // client's request for the ListCertificates operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListCertificates for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -292,9 +389,18 @@ func (c *ACM) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 	return
 }
 
+// ListCertificates API operation for AWS Certificate Manager.
+//
 // Retrieves a list of ACM Certificates and the domain name for each. You can
 // optionally filter the list to return only the certificates that match the
 // specified status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation ListCertificates for usage and error information.
 func (c *ACM) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
 	req, out := c.ListCertificatesRequest(input)
 	err := req.Send()
@@ -333,6 +439,8 @@ const opListTagsForCertificate = "ListTagsForCertificate"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListTagsForCertificate for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -367,10 +475,28 @@ func (c *ACM) ListTagsForCertificateRequest(input *ListTagsForCertificateInput) 
 	return
 }
 
+// ListTagsForCertificate API operation for AWS Certificate Manager.
+//
 // Lists the tags that have been applied to the ACM Certificate. Use the certificate
 // ARN to specify the certificate. To add a tag to an ACM Certificate, use the
 // AddTagsToCertificate action. To delete a tag, use the RemoveTagsFromCertificate
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation ListTagsForCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
 func (c *ACM) ListTagsForCertificate(input *ListTagsForCertificateInput) (*ListTagsForCertificateOutput, error) {
 	req, out := c.ListTagsForCertificateRequest(input)
 	err := req.Send()
@@ -383,6 +509,8 @@ const opRemoveTagsFromCertificate = "RemoveTagsFromCertificate"
 // client's request for the RemoveTagsFromCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTagsFromCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -420,6 +548,8 @@ func (c *ACM) RemoveTagsFromCertificateRequest(input *RemoveTagsFromCertificateI
 	return
 }
 
+// RemoveTagsFromCertificate API operation for AWS Certificate Manager.
+//
 // Remove one or more tags from an ACM Certificate. A tag consists of a key-value
 // pair. If you do not specify the value portion of the tag when calling this
 // function, the tag will be removed regardless of value. If you specify a value,
@@ -428,6 +558,26 @@ func (c *ACM) RemoveTagsFromCertificateRequest(input *RemoveTagsFromCertificateI
 // To add tags to a certificate, use the AddTagsToCertificate action. To view
 // all of the tags that have been applied to a specific ACM Certificate, use
 // the ListTagsForCertificate action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation RemoveTagsFromCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
+//   * InvalidTagException
+//   One or both of the values that make up the key-value pair is not valid. For
+//   example, you cannot specify a tag value that begins with aws:.
+//
 func (c *ACM) RemoveTagsFromCertificate(input *RemoveTagsFromCertificateInput) (*RemoveTagsFromCertificateOutput, error) {
 	req, out := c.RemoveTagsFromCertificateRequest(input)
 	err := req.Send()
@@ -440,6 +590,8 @@ const opRequestCertificate = "RequestCertificate"
 // client's request for the RequestCertificate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RequestCertificate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -475,6 +627,8 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 	return
 }
 
+// RequestCertificate API operation for AWS Certificate Manager.
+//
 // Requests an ACM Certificate for use with other AWS services. To request an
 // ACM Certificate, you must specify the fully qualified domain name (FQDN)
 // for your site. You can also specify additional FQDNs if users can reach your
@@ -482,6 +636,25 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 // to the domain owner to request approval to issue the certificate. After receiving
 // approval from the domain owner, the ACM Certificate is issued. For more information,
 // see the AWS Certificate Manager User Guide  (http://docs.aws.amazon.com/acm/latest/userguide/overview.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation RequestCertificate for usage and error information.
+//
+// Returned Error Codes:
+//   * LimitExceededException
+//   An ACM limit has been exceeded. For example, you may have input more domains
+//   than are allowed or you've requested too many certificates for your account.
+//   See the exception message returned by ACM to determine which limit you have
+//   violated. For more information about ACM limits, see the Limits (http://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html)
+//   topic.
+//
+//   * InvalidDomainValidationOptionsException
+//   One or more values in the DomainValidationOption structure is incorrect.
+//
 func (c *ACM) RequestCertificate(input *RequestCertificateInput) (*RequestCertificateOutput, error) {
 	req, out := c.RequestCertificateRequest(input)
 	err := req.Send()
@@ -494,6 +667,8 @@ const opResendValidationEmail = "ResendValidationEmail"
 // client's request for the ResendValidationEmail operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ResendValidationEmail for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -531,6 +706,8 @@ func (c *ACM) ResendValidationEmailRequest(input *ResendValidationEmailInput) (r
 	return
 }
 
+// ResendValidationEmail API operation for AWS Certificate Manager.
+//
 // Resends the email that requests domain ownership validation. The domain owner
 // or an authorized representative must approve the ACM Certificate before it
 // can be issued. The certificate can be approved by clicking a link in the
@@ -540,6 +717,31 @@ func (c *ACM) ResendValidationEmailRequest(input *ResendValidationEmailInput) (r
 // the mail be resent within 72 hours of requesting the ACM Certificate. If
 // more than 72 hours have elapsed since your original request or since your
 // last attempt to resend validation mail, you must request a new certificate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation ResendValidationEmail for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   The specified certificate cannot be found in the caller's account, or the
+//   caller's account cannot be found.
+//
+//   * InvalidStateException
+//   Processing has reached an invalid state. For example, this exception can
+//   occur if the specified domain is not using email validation, or the current
+//   certificate status does not permit the requested operation. See the exception
+//   message returned by ACM to determine which state is not valid.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
+//
+//   * InvalidDomainValidationOptionsException
+//   One or more values in the DomainValidationOption structure is incorrect.
+//
 func (c *ACM) ResendValidationEmail(input *ResendValidationEmailInput) (*ResendValidationEmailOutput, error) {
 	req, out := c.ResendValidationEmailRequest(input)
 	err := req.Send()

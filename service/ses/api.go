@@ -20,6 +20,8 @@ const opCloneReceiptRuleSet = "CloneReceiptRuleSet"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CloneReceiptRuleSet for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -54,6 +56,8 @@ func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *
 	return
 }
 
+// CloneReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Creates a receipt rule set by cloning an existing one. All receipt rules
 // and configurations are copied to the new receipt rule set and are completely
 // independent of the source rule set.
@@ -62,6 +66,25 @@ func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CloneReceiptRuleSet for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
+//   * AlreadyExists
+//   Indicates that a resource could not be created due to a naming conflict.
+//
+//   * LimitExceeded
+//   Indicates that a resource could not be created due to service limits. For
+//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
 func (c *SES) CloneReceiptRuleSet(input *CloneReceiptRuleSetInput) (*CloneReceiptRuleSetOutput, error) {
 	req, out := c.CloneReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -74,6 +97,8 @@ const opCreateReceiptFilter = "CreateReceiptFilter"
 // client's request for the CreateReceiptFilter operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReceiptFilter for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -109,12 +134,30 @@ func (c *SES) CreateReceiptFilterRequest(input *CreateReceiptFilterInput) (req *
 	return
 }
 
+// CreateReceiptFilter API operation for Amazon Simple Email Service.
+//
 // Creates a new IP address filter.
 //
 // For information about setting up IP address filters, see the Amazon SES
 // Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateReceiptFilter for usage and error information.
+//
+// Returned Error Codes:
+//   * LimitExceeded
+//   Indicates that a resource could not be created due to service limits. For
+//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
+//   * AlreadyExists
+//   Indicates that a resource could not be created due to a naming conflict.
+//
 func (c *SES) CreateReceiptFilter(input *CreateReceiptFilterInput) (*CreateReceiptFilterOutput, error) {
 	req, out := c.CreateReceiptFilterRequest(input)
 	err := req.Send()
@@ -127,6 +170,8 @@ const opCreateReceiptRule = "CreateReceiptRule"
 // client's request for the CreateReceiptRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReceiptRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -162,12 +207,53 @@ func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *requ
 	return
 }
 
+// CreateReceiptRule API operation for Amazon Simple Email Service.
+//
 // Creates a receipt rule.
 //
 // For information about setting up receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateReceiptRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidSnsTopic
+//   Indicates that the provided Amazon SNS topic is invalid, or that Amazon SES
+//   could not publish to the topic, possibly due to permissions issues. For information
+//   about giving permissions, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//
+//   * InvalidS3Configuration
+//   Indicates that the provided Amazon S3 bucket or AWS KMS encryption key is
+//   invalid, or that Amazon SES could not publish to the bucket, possibly due
+//   to permissions issues. For information about giving permissions, see the
+//   Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//
+//   * InvalidLambdaFunction
+//   Indicates that the provided AWS Lambda function is invalid, or that Amazon
+//   SES could not execute the provided function, possibly due to permissions
+//   issues. For information about giving permissions, see the Amazon SES Developer
+//   Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//
+//   * AlreadyExists
+//   Indicates that a resource could not be created due to a naming conflict.
+//
+//   * RuleDoesNotExist
+//   Indicates that the provided receipt rule does not exist.
+//
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
+//   * LimitExceeded
+//   Indicates that a resource could not be created due to service limits. For
+//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
 func (c *SES) CreateReceiptRule(input *CreateReceiptRuleInput) (*CreateReceiptRuleOutput, error) {
 	req, out := c.CreateReceiptRuleRequest(input)
 	err := req.Send()
@@ -180,6 +266,8 @@ const opCreateReceiptRuleSet = "CreateReceiptRuleSet"
 // client's request for the CreateReceiptRuleSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateReceiptRuleSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -215,12 +303,30 @@ func (c *SES) CreateReceiptRuleSetRequest(input *CreateReceiptRuleSetInput) (req
 	return
 }
 
+// CreateReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Creates an empty receipt rule set.
 //
 // For information about setting up receipt rule sets, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateReceiptRuleSet for usage and error information.
+//
+// Returned Error Codes:
+//   * AlreadyExists
+//   Indicates that a resource could not be created due to a naming conflict.
+//
+//   * LimitExceeded
+//   Indicates that a resource could not be created due to service limits. For
+//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
 func (c *SES) CreateReceiptRuleSet(input *CreateReceiptRuleSetInput) (*CreateReceiptRuleSetOutput, error) {
 	req, out := c.CreateReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -233,6 +339,8 @@ const opDeleteIdentity = "DeleteIdentity"
 // client's request for the DeleteIdentity operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteIdentity for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -268,10 +376,19 @@ func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *request.Re
 	return
 }
 
+// DeleteIdentity API operation for Amazon Simple Email Service.
+//
 // Deletes the specified identity (an email address or a domain) from the list
 // of verified identities.
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteIdentity for usage and error information.
 func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (*DeleteIdentityOutput, error) {
 	req, out := c.DeleteIdentityRequest(input)
 	err := req.Send()
@@ -284,6 +401,8 @@ const opDeleteIdentityPolicy = "DeleteIdentityPolicy"
 // client's request for the DeleteIdentityPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteIdentityPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -319,6 +438,8 @@ func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req
 	return
 }
 
+// DeleteIdentityPolicy API operation for Amazon Simple Email Service.
+//
 // Deletes the specified sending authorization policy for the given identity
 // (an email address or a domain). This API returns successfully even if a policy
 // with the specified name does not exist.
@@ -331,6 +452,13 @@ func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req
 // authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteIdentityPolicy for usage and error information.
 func (c *SES) DeleteIdentityPolicy(input *DeleteIdentityPolicyInput) (*DeleteIdentityPolicyOutput, error) {
 	req, out := c.DeleteIdentityPolicyRequest(input)
 	err := req.Send()
@@ -343,6 +471,8 @@ const opDeleteReceiptFilter = "DeleteReceiptFilter"
 // client's request for the DeleteReceiptFilter operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReceiptFilter for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -378,12 +508,21 @@ func (c *SES) DeleteReceiptFilterRequest(input *DeleteReceiptFilterInput) (req *
 	return
 }
 
+// DeleteReceiptFilter API operation for Amazon Simple Email Service.
+//
 // Deletes the specified IP address filter.
 //
 // For information about managing IP address filters, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteReceiptFilter for usage and error information.
 func (c *SES) DeleteReceiptFilter(input *DeleteReceiptFilterInput) (*DeleteReceiptFilterOutput, error) {
 	req, out := c.DeleteReceiptFilterRequest(input)
 	err := req.Send()
@@ -396,6 +535,8 @@ const opDeleteReceiptRule = "DeleteReceiptRule"
 // client's request for the DeleteReceiptRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReceiptRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -431,12 +572,26 @@ func (c *SES) DeleteReceiptRuleRequest(input *DeleteReceiptRuleInput) (req *requ
 	return
 }
 
+// DeleteReceiptRule API operation for Amazon Simple Email Service.
+//
 // Deletes the specified receipt rule.
 //
 // For information about managing receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteReceiptRule for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
 func (c *SES) DeleteReceiptRule(input *DeleteReceiptRuleInput) (*DeleteReceiptRuleOutput, error) {
 	req, out := c.DeleteReceiptRuleRequest(input)
 	err := req.Send()
@@ -449,6 +604,8 @@ const opDeleteReceiptRuleSet = "DeleteReceiptRuleSet"
 // client's request for the DeleteReceiptRuleSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteReceiptRuleSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -484,6 +641,8 @@ func (c *SES) DeleteReceiptRuleSetRequest(input *DeleteReceiptRuleSetInput) (req
 	return
 }
 
+// DeleteReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Deletes the specified receipt rule set and all of the receipt rules it contains.
 //
 //  The currently active rule set cannot be deleted.
@@ -492,6 +651,18 @@ func (c *SES) DeleteReceiptRuleSetRequest(input *DeleteReceiptRuleSetInput) (req
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteReceiptRuleSet for usage and error information.
+//
+// Returned Error Codes:
+//   * CannotDelete
+//   Indicates that the delete operation could not be completed.
+//
 func (c *SES) DeleteReceiptRuleSet(input *DeleteReceiptRuleSetInput) (*DeleteReceiptRuleSetOutput, error) {
 	req, out := c.DeleteReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -504,6 +675,8 @@ const opDeleteVerifiedEmailAddress = "DeleteVerifiedEmailAddress"
 // client's request for the DeleteVerifiedEmailAddress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteVerifiedEmailAddress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -541,12 +714,21 @@ func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddres
 	return
 }
 
+// DeleteVerifiedEmailAddress API operation for Amazon Simple Email Service.
+//
 // Deletes the specified email address from the list of verified addresses.
 //
 //  The DeleteVerifiedEmailAddress action is deprecated as of the May 15, 2012
 // release of Domain Verification. The DeleteIdentity action is now preferred.
 //
 //  This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteVerifiedEmailAddress for usage and error information.
 func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput) (*DeleteVerifiedEmailAddressOutput, error) {
 	req, out := c.DeleteVerifiedEmailAddressRequest(input)
 	err := req.Send()
@@ -559,6 +741,8 @@ const opDescribeActiveReceiptRuleSet = "DescribeActiveReceiptRuleSet"
 // client's request for the DescribeActiveReceiptRuleSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeActiveReceiptRuleSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -594,6 +778,8 @@ func (c *SES) DescribeActiveReceiptRuleSetRequest(input *DescribeActiveReceiptRu
 	return
 }
 
+// DescribeActiveReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Returns the metadata and receipt rules for the receipt rule set that is currently
 // active.
 //
@@ -601,6 +787,13 @@ func (c *SES) DescribeActiveReceiptRuleSetRequest(input *DescribeActiveReceiptRu
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DescribeActiveReceiptRuleSet for usage and error information.
 func (c *SES) DescribeActiveReceiptRuleSet(input *DescribeActiveReceiptRuleSetInput) (*DescribeActiveReceiptRuleSetOutput, error) {
 	req, out := c.DescribeActiveReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -613,6 +806,8 @@ const opDescribeReceiptRule = "DescribeReceiptRule"
 // client's request for the DescribeReceiptRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReceiptRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -648,12 +843,29 @@ func (c *SES) DescribeReceiptRuleRequest(input *DescribeReceiptRuleInput) (req *
 	return
 }
 
+// DescribeReceiptRule API operation for Amazon Simple Email Service.
+//
 // Returns the details of the specified receipt rule.
 //
 // For information about setting up receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DescribeReceiptRule for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleDoesNotExist
+//   Indicates that the provided receipt rule does not exist.
+//
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
 func (c *SES) DescribeReceiptRule(input *DescribeReceiptRuleInput) (*DescribeReceiptRuleOutput, error) {
 	req, out := c.DescribeReceiptRuleRequest(input)
 	err := req.Send()
@@ -666,6 +878,8 @@ const opDescribeReceiptRuleSet = "DescribeReceiptRuleSet"
 // client's request for the DescribeReceiptRuleSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeReceiptRuleSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -701,12 +915,26 @@ func (c *SES) DescribeReceiptRuleSetRequest(input *DescribeReceiptRuleSetInput) 
 	return
 }
 
+// DescribeReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Returns the details of the specified receipt rule set.
 //
 // For information about managing receipt rule sets, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DescribeReceiptRuleSet for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
 func (c *SES) DescribeReceiptRuleSet(input *DescribeReceiptRuleSetInput) (*DescribeReceiptRuleSetOutput, error) {
 	req, out := c.DescribeReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -719,6 +947,8 @@ const opGetIdentityDkimAttributes = "GetIdentityDkimAttributes"
 // client's request for the GetIdentityDkimAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetIdentityDkimAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -754,6 +984,8 @@ func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesI
 	return
 }
 
+// GetIdentityDkimAttributes API operation for Amazon Simple Email Service.
+//
 // Returns the current status of Easy DKIM signing for an entity. For domain
 // name identities, this action also returns the DKIM tokens that are required
 // for Easy DKIM signing, and whether Amazon SES has successfully verified that
@@ -776,6 +1008,13 @@ func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesI
 //
 // For more information about creating DNS records using DKIM tokens, go to
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetIdentityDkimAttributes for usage and error information.
 func (c *SES) GetIdentityDkimAttributes(input *GetIdentityDkimAttributesInput) (*GetIdentityDkimAttributesOutput, error) {
 	req, out := c.GetIdentityDkimAttributesRequest(input)
 	err := req.Send()
@@ -788,6 +1027,8 @@ const opGetIdentityMailFromDomainAttributes = "GetIdentityMailFromDomainAttribut
 // client's request for the GetIdentityMailFromDomainAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetIdentityMailFromDomainAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -823,11 +1064,20 @@ func (c *SES) GetIdentityMailFromDomainAttributesRequest(input *GetIdentityMailF
 	return
 }
 
+// GetIdentityMailFromDomainAttributes API operation for Amazon Simple Email Service.
+//
 // Returns the custom MAIL FROM attributes for a list of identities (email addresses
 // and/or domains).
 //
 // This action is throttled at one request per second and can only get custom
 // MAIL FROM attributes for up to 100 identities at a time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetIdentityMailFromDomainAttributes for usage and error information.
 func (c *SES) GetIdentityMailFromDomainAttributes(input *GetIdentityMailFromDomainAttributesInput) (*GetIdentityMailFromDomainAttributesOutput, error) {
 	req, out := c.GetIdentityMailFromDomainAttributesRequest(input)
 	err := req.Send()
@@ -840,6 +1090,8 @@ const opGetIdentityNotificationAttributes = "GetIdentityNotificationAttributes"
 // client's request for the GetIdentityNotificationAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetIdentityNotificationAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -875,6 +1127,8 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 	return
 }
 
+// GetIdentityNotificationAttributes API operation for Amazon Simple Email Service.
+//
 // Given a list of verified identities (email addresses and/or domains), returns
 // a structure describing identity notification attributes.
 //
@@ -883,6 +1137,13 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 //
 // For more information about using notifications with Amazon SES, see the
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetIdentityNotificationAttributes for usage and error information.
 func (c *SES) GetIdentityNotificationAttributes(input *GetIdentityNotificationAttributesInput) (*GetIdentityNotificationAttributesOutput, error) {
 	req, out := c.GetIdentityNotificationAttributesRequest(input)
 	err := req.Send()
@@ -895,6 +1156,8 @@ const opGetIdentityPolicies = "GetIdentityPolicies"
 // client's request for the GetIdentityPolicies operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetIdentityPolicies for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -930,6 +1193,8 @@ func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *
 	return
 }
 
+// GetIdentityPolicies API operation for Amazon Simple Email Service.
+//
 // Returns the requested sending authorization policies for the given identity
 // (an email address or a domain). The policies are returned as a map of policy
 // names to policy contents. You can retrieve a maximum of 20 policies at a
@@ -943,6 +1208,13 @@ func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *
 // authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetIdentityPolicies for usage and error information.
 func (c *SES) GetIdentityPolicies(input *GetIdentityPoliciesInput) (*GetIdentityPoliciesOutput, error) {
 	req, out := c.GetIdentityPoliciesRequest(input)
 	err := req.Send()
@@ -955,6 +1227,8 @@ const opGetIdentityVerificationAttributes = "GetIdentityVerificationAttributes"
 // client's request for the GetIdentityVerificationAttributes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetIdentityVerificationAttributes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -990,12 +1264,21 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 	return
 }
 
+// GetIdentityVerificationAttributes API operation for Amazon Simple Email Service.
+//
 // Given a list of identities (email addresses and/or domains), returns the
 // verification status and (for domain identities) the verification token for
 // each identity.
 //
 // This action is throttled at one request per second and can only get verification
 // attributes for up to 100 identities at a time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetIdentityVerificationAttributes for usage and error information.
 func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAttributesInput) (*GetIdentityVerificationAttributesOutput, error) {
 	req, out := c.GetIdentityVerificationAttributesRequest(input)
 	err := req.Send()
@@ -1008,6 +1291,8 @@ const opGetSendQuota = "GetSendQuota"
 // client's request for the GetSendQuota operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetSendQuota for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1043,9 +1328,18 @@ func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *request.Reques
 	return
 }
 
+// GetSendQuota API operation for Amazon Simple Email Service.
+//
 // Returns the user's current sending limits.
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetSendQuota for usage and error information.
 func (c *SES) GetSendQuota(input *GetSendQuotaInput) (*GetSendQuotaOutput, error) {
 	req, out := c.GetSendQuotaRequest(input)
 	err := req.Send()
@@ -1058,6 +1352,8 @@ const opGetSendStatistics = "GetSendStatistics"
 // client's request for the GetSendStatistics operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetSendStatistics for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1093,12 +1389,21 @@ func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *requ
 	return
 }
 
+// GetSendStatistics API operation for Amazon Simple Email Service.
+//
 // Returns the user's sending statistics. The result is a list of data points,
 // representing the last two weeks of sending activity.
 //
 // Each data point in the list contains statistics for a 15-minute interval.
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetSendStatistics for usage and error information.
 func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (*GetSendStatisticsOutput, error) {
 	req, out := c.GetSendStatisticsRequest(input)
 	err := req.Send()
@@ -1111,6 +1416,8 @@ const opListIdentities = "ListIdentities"
 // client's request for the ListIdentities operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListIdentities for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1152,10 +1459,19 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Re
 	return
 }
 
+// ListIdentities API operation for Amazon Simple Email Service.
+//
 // Returns a list containing all of the identities (email addresses and domains)
 // for your AWS account, regardless of verification status.
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListIdentities for usage and error information.
 func (c *SES) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput, error) {
 	req, out := c.ListIdentitiesRequest(input)
 	err := req.Send()
@@ -1194,6 +1510,8 @@ const opListIdentityPolicies = "ListIdentityPolicies"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListIdentityPolicies for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1228,6 +1546,8 @@ func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req
 	return
 }
 
+// ListIdentityPolicies API operation for Amazon Simple Email Service.
+//
 // Returns a list of sending authorization policies that are attached to the
 // given identity (an email address or a domain). This API returns only a list.
 // If you want the actual policy content, you can use GetIdentityPolicies.
@@ -1240,6 +1560,13 @@ func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req
 // authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListIdentityPolicies for usage and error information.
 func (c *SES) ListIdentityPolicies(input *ListIdentityPoliciesInput) (*ListIdentityPoliciesOutput, error) {
 	req, out := c.ListIdentityPoliciesRequest(input)
 	err := req.Send()
@@ -1252,6 +1579,8 @@ const opListReceiptFilters = "ListReceiptFilters"
 // client's request for the ListReceiptFilters operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListReceiptFilters for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1287,12 +1616,21 @@ func (c *SES) ListReceiptFiltersRequest(input *ListReceiptFiltersInput) (req *re
 	return
 }
 
+// ListReceiptFilters API operation for Amazon Simple Email Service.
+//
 // Lists the IP address filters associated with your AWS account.
 //
 // For information about managing IP address filters, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListReceiptFilters for usage and error information.
 func (c *SES) ListReceiptFilters(input *ListReceiptFiltersInput) (*ListReceiptFiltersOutput, error) {
 	req, out := c.ListReceiptFiltersRequest(input)
 	err := req.Send()
@@ -1305,6 +1643,8 @@ const opListReceiptRuleSets = "ListReceiptRuleSets"
 // client's request for the ListReceiptRuleSets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListReceiptRuleSets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1340,6 +1680,8 @@ func (c *SES) ListReceiptRuleSetsRequest(input *ListReceiptRuleSetsInput) (req *
 	return
 }
 
+// ListReceiptRuleSets API operation for Amazon Simple Email Service.
+//
 // Lists the receipt rule sets that exist under your AWS account. If there are
 // additional receipt rule sets to be retrieved, you will receive a NextToken
 // that you can provide to the next call to ListReceiptRuleSets to retrieve
@@ -1349,6 +1691,13 @@ func (c *SES) ListReceiptRuleSetsRequest(input *ListReceiptRuleSetsInput) (req *
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListReceiptRuleSets for usage and error information.
 func (c *SES) ListReceiptRuleSets(input *ListReceiptRuleSetsInput) (*ListReceiptRuleSetsOutput, error) {
 	req, out := c.ListReceiptRuleSetsRequest(input)
 	err := req.Send()
@@ -1361,6 +1710,8 @@ const opListVerifiedEmailAddresses = "ListVerifiedEmailAddresses"
 // client's request for the ListVerifiedEmailAddresses operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListVerifiedEmailAddresses for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1396,12 +1747,21 @@ func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddresse
 	return
 }
 
+// ListVerifiedEmailAddresses API operation for Amazon Simple Email Service.
+//
 // Returns a list containing all of the email addresses that have been verified.
 //
 //  The ListVerifiedEmailAddresses action is deprecated as of the May 15, 2012
 // release of Domain Verification. The ListIdentities action is now preferred.
 //
 //  This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListVerifiedEmailAddresses for usage and error information.
 func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput) (*ListVerifiedEmailAddressesOutput, error) {
 	req, out := c.ListVerifiedEmailAddressesRequest(input)
 	err := req.Send()
@@ -1414,6 +1774,8 @@ const opPutIdentityPolicy = "PutIdentityPolicy"
 // client's request for the PutIdentityPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutIdentityPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1449,6 +1811,8 @@ func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *requ
 	return
 }
 
+// PutIdentityPolicy API operation for Amazon Simple Email Service.
+//
 // Adds or updates a sending authorization policy for the specified identity
 // (an email address or a domain).
 //
@@ -1460,6 +1824,19 @@ func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *requ
 // authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutIdentityPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidPolicy
+//   Indicates that the provided policy is invalid. Check the error stack for
+//   more information about what caused the error.
+//
 func (c *SES) PutIdentityPolicy(input *PutIdentityPolicyInput) (*PutIdentityPolicyOutput, error) {
 	req, out := c.PutIdentityPolicyRequest(input)
 	err := req.Send()
@@ -1472,6 +1849,8 @@ const opReorderReceiptRuleSet = "ReorderReceiptRuleSet"
 // client's request for the ReorderReceiptRuleSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ReorderReceiptRuleSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1507,6 +1886,8 @@ func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (r
 	return
 }
 
+// ReorderReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Reorders the receipt rules within a receipt rule set.
 //
 //  All of the rules in the rule set must be represented in this request. That
@@ -1517,6 +1898,21 @@ func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (r
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ReorderReceiptRuleSet for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
+//   * RuleDoesNotExist
+//   Indicates that the provided receipt rule does not exist.
+//
 func (c *SES) ReorderReceiptRuleSet(input *ReorderReceiptRuleSetInput) (*ReorderReceiptRuleSetOutput, error) {
 	req, out := c.ReorderReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -1529,6 +1925,8 @@ const opSendBounce = "SendBounce"
 // client's request for the SendBounce operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SendBounce for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1564,6 +1962,8 @@ func (c *SES) SendBounceRequest(input *SendBounceInput) (req *request.Request, o
 	return
 }
 
+// SendBounce API operation for Amazon Simple Email Service.
+//
 // Generates and sends a bounce message to the sender of an email you received
 // through Amazon SES. You can only use this API on an email up to 24 hours
 // after you receive it.
@@ -1575,6 +1975,19 @@ func (c *SES) SendBounceRequest(input *SendBounceInput) (req *request.Request, o
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SendBounce for usage and error information.
+//
+// Returned Error Codes:
+//   * MessageRejected
+//   Indicates that the action failed, and the message could not be sent. Check
+//   the error stack for more information about what caused the error.
+//
 func (c *SES) SendBounce(input *SendBounceInput) (*SendBounceOutput, error) {
 	req, out := c.SendBounceRequest(input)
 	err := req.Send()
@@ -1587,6 +2000,8 @@ const opSendEmail = "SendEmail"
 // client's request for the SendEmail operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SendEmail for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1622,6 +2037,8 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 	return
 }
 
+// SendEmail API operation for Amazon Simple Email Service.
+//
 // Composes an email message based on input data, and then immediately queues
 // the message for sending.
 //
@@ -1646,6 +2063,25 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 // CC: and BCC:) is counted against your sending quota - the maximum number
 // of emails you can send in a 24-hour period. For information about your sending
 // quota, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SendEmail for usage and error information.
+//
+// Returned Error Codes:
+//   * MessageRejected
+//   Indicates that the action failed, and the message could not be sent. Check
+//   the error stack for more information about what caused the error.
+//
+//   * MailFromDomainNotVerifiedException
+//   Indicates that the message could not be sent because Amazon SES could not
+//   read the MX record required to use the specified MAIL FROM domain. For information
+//   about editing the custom MAIL FROM domain settings for an identity, see the
+//   Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//
 func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
 	req, out := c.SendEmailRequest(input)
 	err := req.Send()
@@ -1658,6 +2094,8 @@ const opSendRawEmail = "SendRawEmail"
 // client's request for the SendRawEmail operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SendRawEmail for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1693,6 +2131,8 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 	return
 }
 
+// SendRawEmail API operation for Amazon Simple Email Service.
+//
 // Sends an email message, with header and content specified by the client.
 // The SendRawEmail action is useful for sending multipart MIME emails. The
 // raw text of the message must comply with Internet email standards; otherwise,
@@ -1749,6 +2189,25 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 // "From" address and the "Return Path" address to the identity specified in
 // SourceIdentityArn. For more information about sending authorization, see
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SendRawEmail for usage and error information.
+//
+// Returned Error Codes:
+//   * MessageRejected
+//   Indicates that the action failed, and the message could not be sent. Check
+//   the error stack for more information about what caused the error.
+//
+//   * MailFromDomainNotVerifiedException
+//   Indicates that the message could not be sent because Amazon SES could not
+//   read the MX record required to use the specified MAIL FROM domain. For information
+//   about editing the custom MAIL FROM domain settings for an identity, see the
+//   Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//
 func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error) {
 	req, out := c.SendRawEmailRequest(input)
 	err := req.Send()
@@ -1761,6 +2220,8 @@ const opSetActiveReceiptRuleSet = "SetActiveReceiptRuleSet"
 // client's request for the SetActiveReceiptRuleSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetActiveReceiptRuleSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1796,6 +2257,8 @@ func (c *SES) SetActiveReceiptRuleSetRequest(input *SetActiveReceiptRuleSetInput
 	return
 }
 
+// SetActiveReceiptRuleSet API operation for Amazon Simple Email Service.
+//
 // Sets the specified receipt rule set as the active receipt rule set.
 //
 //  To disable your email-receiving through Amazon SES completely, you can
@@ -1805,6 +2268,18 @@ func (c *SES) SetActiveReceiptRuleSetRequest(input *SetActiveReceiptRuleSetInput
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetActiveReceiptRuleSet for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
 func (c *SES) SetActiveReceiptRuleSet(input *SetActiveReceiptRuleSetInput) (*SetActiveReceiptRuleSetOutput, error) {
 	req, out := c.SetActiveReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -1817,6 +2292,8 @@ const opSetIdentityDkimEnabled = "SetIdentityDkimEnabled"
 // client's request for the SetIdentityDkimEnabled operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetIdentityDkimEnabled for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1852,6 +2329,8 @@ func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) 
 	return
 }
 
+// SetIdentityDkimEnabled API operation for Amazon Simple Email Service.
+//
 // Enables or disables Easy DKIM signing of email sent from an identity:
 //
 //   If Easy DKIM signing is enabled for a domain name identity (e.g., example.com),
@@ -1869,6 +2348,13 @@ func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) 
 //
 // For more information about Easy DKIM signing, go to the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetIdentityDkimEnabled for usage and error information.
 func (c *SES) SetIdentityDkimEnabled(input *SetIdentityDkimEnabledInput) (*SetIdentityDkimEnabledOutput, error) {
 	req, out := c.SetIdentityDkimEnabledRequest(input)
 	err := req.Send()
@@ -1881,6 +2367,8 @@ const opSetIdentityFeedbackForwardingEnabled = "SetIdentityFeedbackForwardingEna
 // client's request for the SetIdentityFeedbackForwardingEnabled operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetIdentityFeedbackForwardingEnabled for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1916,6 +2404,8 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 	return
 }
 
+// SetIdentityFeedbackForwardingEnabled API operation for Amazon Simple Email Service.
+//
 // Given an identity (an email address or a domain), enables or disables whether
 // Amazon SES forwards bounce and complaint notifications as email. Feedback
 // forwarding can only be disabled when Amazon Simple Notification Service (Amazon
@@ -1928,6 +2418,13 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 //
 // For more information about using notifications with Amazon SES, see the
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetIdentityFeedbackForwardingEnabled for usage and error information.
 func (c *SES) SetIdentityFeedbackForwardingEnabled(input *SetIdentityFeedbackForwardingEnabledInput) (*SetIdentityFeedbackForwardingEnabledOutput, error) {
 	req, out := c.SetIdentityFeedbackForwardingEnabledRequest(input)
 	err := req.Send()
@@ -1940,6 +2437,8 @@ const opSetIdentityHeadersInNotificationsEnabled = "SetIdentityHeadersInNotifica
 // client's request for the SetIdentityHeadersInNotificationsEnabled operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetIdentityHeadersInNotificationsEnabled for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1975,6 +2474,8 @@ func (c *SES) SetIdentityHeadersInNotificationsEnabledRequest(input *SetIdentity
 	return
 }
 
+// SetIdentityHeadersInNotificationsEnabled API operation for Amazon Simple Email Service.
+//
 // Given an identity (an email address or a domain), sets whether Amazon SES
 // includes the original email headers in the Amazon Simple Notification Service
 // (Amazon SNS) notifications of a specified type.
@@ -1983,6 +2484,13 @@ func (c *SES) SetIdentityHeadersInNotificationsEnabledRequest(input *SetIdentity
 //
 // For more information about using notifications with Amazon SES, see the
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetIdentityHeadersInNotificationsEnabled for usage and error information.
 func (c *SES) SetIdentityHeadersInNotificationsEnabled(input *SetIdentityHeadersInNotificationsEnabledInput) (*SetIdentityHeadersInNotificationsEnabledOutput, error) {
 	req, out := c.SetIdentityHeadersInNotificationsEnabledRequest(input)
 	err := req.Send()
@@ -1995,6 +2503,8 @@ const opSetIdentityMailFromDomain = "SetIdentityMailFromDomain"
 // client's request for the SetIdentityMailFromDomain operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetIdentityMailFromDomain for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2030,6 +2540,8 @@ func (c *SES) SetIdentityMailFromDomainRequest(input *SetIdentityMailFromDomainI
 	return
 }
 
+// SetIdentityMailFromDomain API operation for Amazon Simple Email Service.
+//
 // Enables or disables the custom MAIL FROM domain setup for a verified identity
 // (an email address or a domain).
 //
@@ -2039,6 +2551,13 @@ func (c *SES) SetIdentityMailFromDomainRequest(input *SetIdentityMailFromDomainI
 // SPF record. For more information, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-set.html).
 //
 //  This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetIdentityMailFromDomain for usage and error information.
 func (c *SES) SetIdentityMailFromDomain(input *SetIdentityMailFromDomainInput) (*SetIdentityMailFromDomainOutput, error) {
 	req, out := c.SetIdentityMailFromDomainRequest(input)
 	err := req.Send()
@@ -2051,6 +2570,8 @@ const opSetIdentityNotificationTopic = "SetIdentityNotificationTopic"
 // client's request for the SetIdentityNotificationTopic operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetIdentityNotificationTopic for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2086,6 +2607,8 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 	return
 }
 
+// SetIdentityNotificationTopic API operation for Amazon Simple Email Service.
+//
 // Given an identity (an email address or a domain), sets the Amazon Simple
 // Notification Service (Amazon SNS) topic to which Amazon SES will publish
 // bounce, complaint, and/or delivery notifications for emails sent with that
@@ -2098,6 +2621,13 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 //
 // For more information about feedback notification, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetIdentityNotificationTopic for usage and error information.
 func (c *SES) SetIdentityNotificationTopic(input *SetIdentityNotificationTopicInput) (*SetIdentityNotificationTopicOutput, error) {
 	req, out := c.SetIdentityNotificationTopicRequest(input)
 	err := req.Send()
@@ -2110,6 +2640,8 @@ const opSetReceiptRulePosition = "SetReceiptRulePosition"
 // client's request for the SetReceiptRulePosition operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SetReceiptRulePosition for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2145,12 +2677,29 @@ func (c *SES) SetReceiptRulePositionRequest(input *SetReceiptRulePositionInput) 
 	return
 }
 
+// SetReceiptRulePosition API operation for Amazon Simple Email Service.
+//
 // Sets the position of the specified receipt rule in the receipt rule set.
 //
 // For information about managing receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation SetReceiptRulePosition for usage and error information.
+//
+// Returned Error Codes:
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
+//   * RuleDoesNotExist
+//   Indicates that the provided receipt rule does not exist.
+//
 func (c *SES) SetReceiptRulePosition(input *SetReceiptRulePositionInput) (*SetReceiptRulePositionOutput, error) {
 	req, out := c.SetReceiptRulePositionRequest(input)
 	err := req.Send()
@@ -2163,6 +2712,8 @@ const opUpdateReceiptRule = "UpdateReceiptRule"
 // client's request for the UpdateReceiptRule operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateReceiptRule for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2198,12 +2749,50 @@ func (c *SES) UpdateReceiptRuleRequest(input *UpdateReceiptRuleInput) (req *requ
 	return
 }
 
+// UpdateReceiptRule API operation for Amazon Simple Email Service.
+//
 // Updates a receipt rule.
 //
 // For information about managing receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rules.html).
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation UpdateReceiptRule for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidSnsTopic
+//   Indicates that the provided Amazon SNS topic is invalid, or that Amazon SES
+//   could not publish to the topic, possibly due to permissions issues. For information
+//   about giving permissions, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//
+//   * InvalidS3Configuration
+//   Indicates that the provided Amazon S3 bucket or AWS KMS encryption key is
+//   invalid, or that Amazon SES could not publish to the bucket, possibly due
+//   to permissions issues. For information about giving permissions, see the
+//   Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//
+//   * InvalidLambdaFunction
+//   Indicates that the provided AWS Lambda function is invalid, or that Amazon
+//   SES could not execute the provided function, possibly due to permissions
+//   issues. For information about giving permissions, see the Amazon SES Developer
+//   Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
+//
+//   * RuleSetDoesNotExist
+//   Indicates that the provided receipt rule set does not exist.
+//
+//   * RuleDoesNotExist
+//   Indicates that the provided receipt rule does not exist.
+//
+//   * LimitExceeded
+//   Indicates that a resource could not be created due to service limits. For
+//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
 func (c *SES) UpdateReceiptRule(input *UpdateReceiptRuleInput) (*UpdateReceiptRuleOutput, error) {
 	req, out := c.UpdateReceiptRuleRequest(input)
 	err := req.Send()
@@ -2216,6 +2805,8 @@ const opVerifyDomainDkim = "VerifyDomainDkim"
 // client's request for the VerifyDomainDkim operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See VerifyDomainDkim for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2251,6 +2842,8 @@ func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *reques
 	return
 }
 
+// VerifyDomainDkim API operation for Amazon Simple Email Service.
+//
 // Returns a set of DKIM tokens for a domain. DKIM tokens are character strings
 // that represent your domain's identity. Using these tokens, you will need
 // to create DNS CNAME records that point to DKIM public keys hosted by Amazon
@@ -2266,6 +2859,13 @@ func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *reques
 //
 // For more information about creating DNS records using DKIM tokens, go to
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation VerifyDomainDkim for usage and error information.
 func (c *SES) VerifyDomainDkim(input *VerifyDomainDkimInput) (*VerifyDomainDkimOutput, error) {
 	req, out := c.VerifyDomainDkimRequest(input)
 	err := req.Send()
@@ -2278,6 +2878,8 @@ const opVerifyDomainIdentity = "VerifyDomainIdentity"
 // client's request for the VerifyDomainIdentity operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See VerifyDomainIdentity for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2313,9 +2915,18 @@ func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req
 	return
 }
 
+// VerifyDomainIdentity API operation for Amazon Simple Email Service.
+//
 // Verifies a domain.
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation VerifyDomainIdentity for usage and error information.
 func (c *SES) VerifyDomainIdentity(input *VerifyDomainIdentityInput) (*VerifyDomainIdentityOutput, error) {
 	req, out := c.VerifyDomainIdentityRequest(input)
 	err := req.Send()
@@ -2328,6 +2939,8 @@ const opVerifyEmailAddress = "VerifyEmailAddress"
 // client's request for the VerifyEmailAddress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See VerifyEmailAddress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2365,6 +2978,8 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *re
 	return
 }
 
+// VerifyEmailAddress API operation for Amazon Simple Email Service.
+//
 // Verifies an email address. This action causes a confirmation email message
 // to be sent to the specified address.
 //
@@ -2372,6 +2987,13 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *re
 // of Domain Verification. The VerifyEmailIdentity action is now preferred.
 //
 //  This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation VerifyEmailAddress for usage and error information.
 func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (*VerifyEmailAddressOutput, error) {
 	req, out := c.VerifyEmailAddressRequest(input)
 	err := req.Send()
@@ -2384,6 +3006,8 @@ const opVerifyEmailIdentity = "VerifyEmailIdentity"
 // client's request for the VerifyEmailIdentity operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See VerifyEmailIdentity for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -2419,10 +3043,19 @@ func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *
 	return
 }
 
+// VerifyEmailIdentity API operation for Amazon Simple Email Service.
+//
 // Verifies an email address. This action causes a confirmation email message
 // to be sent to the specified address.
 //
 // This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation VerifyEmailIdentity for usage and error information.
 func (c *SES) VerifyEmailIdentity(input *VerifyEmailIdentityInput) (*VerifyEmailIdentityOutput, error) {
 	req, out := c.VerifyEmailIdentityRequest(input)
 	err := req.Send()

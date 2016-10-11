@@ -19,6 +19,8 @@ const opCancelUpdateStack = "CancelUpdateStack"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CancelUpdateStack for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -55,10 +57,19 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 	return
 }
 
+// CancelUpdateStack API operation for AWS CloudFormation.
+//
 // Cancels an update on the specified stack. If the call completes successfully,
 // the stack rolls back the update and reverts to the previous stack configuration.
 //
 //  You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation CancelUpdateStack for usage and error information.
 func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*CancelUpdateStackOutput, error) {
 	req, out := c.CancelUpdateStackRequest(input)
 	err := req.Send()
@@ -71,6 +82,8 @@ const opContinueUpdateRollback = "ContinueUpdateRollback"
 // client's request for the ContinueUpdateRollback operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ContinueUpdateRollback for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -106,6 +119,8 @@ func (c *CloudFormation) ContinueUpdateRollbackRequest(input *ContinueUpdateRoll
 	return
 }
 
+// ContinueUpdateRollback API operation for AWS CloudFormation.
+//
 // For a specified stack that is in the UPDATE_ROLLBACK_FAILED state, continues
 // rolling it back to the UPDATE_ROLLBACK_COMPLETE state. Depending on the cause
 // of the failure, you can manually  fix the error (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-update-rollback-failed)
@@ -119,6 +134,13 @@ func (c *CloudFormation) ContinueUpdateRollbackRequest(input *ContinueUpdateRoll
 // was deleted outside of AWS CloudFormation. Because AWS CloudFormation doesn't
 // know the database was deleted, it assumes that the database instance still
 // exists and attempts to roll back to it, causing the update rollback to fail.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ContinueUpdateRollback for usage and error information.
 func (c *CloudFormation) ContinueUpdateRollback(input *ContinueUpdateRollbackInput) (*ContinueUpdateRollbackOutput, error) {
 	req, out := c.ContinueUpdateRollbackRequest(input)
 	err := req.Send()
@@ -131,6 +153,8 @@ const opCreateChangeSet = "CreateChangeSet"
 // client's request for the CreateChangeSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateChangeSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -166,6 +190,8 @@ func (c *CloudFormation) CreateChangeSetRequest(input *CreateChangeSetInput) (re
 	return
 }
 
+// CreateChangeSet API operation for AWS CloudFormation.
+//
 // Creates a list of changes for a stack. AWS CloudFormation generates the change
 // set by comparing the stack's information with the information that you submit.
 // A change set can help you understand which resources AWS CloudFormation will
@@ -180,6 +206,25 @@ func (c *CloudFormation) CreateChangeSetRequest(input *CreateChangeSetInput) (re
 // After the call successfully completes, AWS CloudFormation starts creating
 // the change set. To check the status of the change set, use the DescribeChangeSet
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation CreateChangeSet for usage and error information.
+//
+// Returned Error Codes:
+//   * AlreadyExistsException
+//   Resource with the name requested already exists.
+//
+//   * InsufficientCapabilitiesException
+//   The template contains resources with capabilities that were not specified
+//   in the Capabilities parameter.
+//
+//   * LimitExceededException
+//   Quota for the resource has already been reached.
+//
 func (c *CloudFormation) CreateChangeSet(input *CreateChangeSetInput) (*CreateChangeSetOutput, error) {
 	req, out := c.CreateChangeSetRequest(input)
 	err := req.Send()
@@ -192,6 +237,8 @@ const opCreateStack = "CreateStack"
 // client's request for the CreateStack operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateStack for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -227,9 +274,30 @@ func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *reque
 	return
 }
 
+// CreateStack API operation for AWS CloudFormation.
+//
 // Creates a stack as specified in the template. After the call completes successfully,
 // the stack creation starts. You can check the status of the stack via the
 // DescribeStacks API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation CreateStack for usage and error information.
+//
+// Returned Error Codes:
+//   * LimitExceededException
+//   Quota for the resource has already been reached.
+//
+//   * AlreadyExistsException
+//   Resource with the name requested already exists.
+//
+//   * InsufficientCapabilitiesException
+//   The template contains resources with capabilities that were not specified
+//   in the Capabilities parameter.
+//
 func (c *CloudFormation) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
 	req, out := c.CreateStackRequest(input)
 	err := req.Send()
@@ -242,6 +310,8 @@ const opDeleteChangeSet = "DeleteChangeSet"
 // client's request for the DeleteChangeSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteChangeSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -277,11 +347,27 @@ func (c *CloudFormation) DeleteChangeSetRequest(input *DeleteChangeSetInput) (re
 	return
 }
 
+// DeleteChangeSet API operation for AWS CloudFormation.
+//
 // Deletes the specified change set. Deleting change sets ensures that no one
 // executes the wrong change set.
 //
 // If the call successfully completes, AWS CloudFormation successfully deleted
 // the change set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DeleteChangeSet for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidChangeSetStatus
+//   The specified change set cannot be used to update the stack. For example,
+//   the change set status might be CREATE_IN_PROGRESS or the stack status might
+//   be UPDATE_IN_PROGRESS.
+//
 func (c *CloudFormation) DeleteChangeSet(input *DeleteChangeSetInput) (*DeleteChangeSetOutput, error) {
 	req, out := c.DeleteChangeSetRequest(input)
 	err := req.Send()
@@ -294,6 +380,8 @@ const opDeleteStack = "DeleteStack"
 // client's request for the DeleteStack operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteStack for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -331,9 +419,18 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *reque
 	return
 }
 
+// DeleteStack API operation for AWS CloudFormation.
+//
 // Deletes a specified stack. Once the call completes successfully, stack deletion
 // starts. Deleted stacks do not show up in the DescribeStacks API if the deletion
 // has been completed successfully.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DeleteStack for usage and error information.
 func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
 	req, out := c.DeleteStackRequest(input)
 	err := req.Send()
@@ -346,6 +443,8 @@ const opDescribeAccountLimits = "DescribeAccountLimits"
 // client's request for the DescribeAccountLimits operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAccountLimits for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -381,8 +480,17 @@ func (c *CloudFormation) DescribeAccountLimitsRequest(input *DescribeAccountLimi
 	return
 }
 
+// DescribeAccountLimits API operation for AWS CloudFormation.
+//
 // Retrieves your account's AWS CloudFormation limits, such as the maximum number
 // of stacks that you can create in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeAccountLimits for usage and error information.
 func (c *CloudFormation) DescribeAccountLimits(input *DescribeAccountLimitsInput) (*DescribeAccountLimitsOutput, error) {
 	req, out := c.DescribeAccountLimitsRequest(input)
 	err := req.Send()
@@ -395,6 +503,8 @@ const opDescribeChangeSet = "DescribeChangeSet"
 // client's request for the DescribeChangeSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeChangeSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -430,10 +540,25 @@ func (c *CloudFormation) DescribeChangeSetRequest(input *DescribeChangeSetInput)
 	return
 }
 
+// DescribeChangeSet API operation for AWS CloudFormation.
+//
 // Returns the inputs for the change set and a list of changes that AWS CloudFormation
 // will make if you execute the change set. For more information, see Updating
 // Stacks Using Change Sets (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html)
 // in the AWS CloudFormation User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeChangeSet for usage and error information.
+//
+// Returned Error Codes:
+//   * ChangeSetNotFound
+//   The specified change set name or ID doesn't exit. To view valid change sets
+//   for a stack, use the ListChangeSets action.
+//
 func (c *CloudFormation) DescribeChangeSet(input *DescribeChangeSetInput) (*DescribeChangeSetOutput, error) {
 	req, out := c.DescribeChangeSetRequest(input)
 	err := req.Send()
@@ -446,6 +571,8 @@ const opDescribeStackEvents = "DescribeStackEvents"
 // client's request for the DescribeStackEvents operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeStackEvents for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -487,12 +614,21 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 	return
 }
 
+// DescribeStackEvents API operation for AWS CloudFormation.
+//
 // Returns all stack related events for a specified stack in reverse chronological
 // order. For more information about a stack's event history, go to Stacks (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html)
 // in the AWS CloudFormation User Guide.
 //
 //  You can list events for stacks that have failed to create or have been
 // deleted by specifying the unique stack identifier (stack ID).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeStackEvents for usage and error information.
 func (c *CloudFormation) DescribeStackEvents(input *DescribeStackEventsInput) (*DescribeStackEventsOutput, error) {
 	req, out := c.DescribeStackEventsRequest(input)
 	err := req.Send()
@@ -531,6 +667,8 @@ const opDescribeStackResource = "DescribeStackResource"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeStackResource for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -565,10 +703,19 @@ func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResour
 	return
 }
 
+// DescribeStackResource API operation for AWS CloudFormation.
+//
 // Returns a description of the specified resource in the specified stack.
 //
 // For deleted stacks, DescribeStackResource returns resource information for
 // up to 90 days after the stack has been deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeStackResource for usage and error information.
 func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput) (*DescribeStackResourceOutput, error) {
 	req, out := c.DescribeStackResourceRequest(input)
 	err := req.Send()
@@ -581,6 +728,8 @@ const opDescribeStackResources = "DescribeStackResources"
 // client's request for the DescribeStackResources operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeStackResources for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -616,6 +765,8 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 	return
 }
 
+// DescribeStackResources API operation for AWS CloudFormation.
+//
 // Returns AWS resource descriptions for running and deleted stacks. If StackName
 // is specified, all the associated resources that are part of the stack are
 // returned. If PhysicalResourceId is specified, the associated resources of
@@ -634,6 +785,13 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 //
 //  A ValidationError is returned if you specify both StackName and PhysicalResourceId
 // in the same request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeStackResources for usage and error information.
 func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInput) (*DescribeStackResourcesOutput, error) {
 	req, out := c.DescribeStackResourcesRequest(input)
 	err := req.Send()
@@ -646,6 +804,8 @@ const opDescribeStacks = "DescribeStacks"
 // client's request for the DescribeStacks operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeStacks for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -687,10 +847,19 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 	return
 }
 
+// DescribeStacks API operation for AWS CloudFormation.
+//
 // Returns the description for the specified stack; if no stack name was specified,
 // then it returns the description for all the stacks created.
 //
 //  If the stack does not exist, an AmazonCloudFormationException is returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation DescribeStacks for usage and error information.
 func (c *CloudFormation) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, error) {
 	req, out := c.DescribeStacksRequest(input)
 	err := req.Send()
@@ -729,6 +898,8 @@ const opEstimateTemplateCost = "EstimateTemplateCost"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See EstimateTemplateCost for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -763,9 +934,18 @@ func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCost
 	return
 }
 
+// EstimateTemplateCost API operation for AWS CloudFormation.
+//
 // Returns the estimated monthly cost of a template. The return value is an
 // AWS Simple Monthly Calculator URL with a query string that describes the
 // resources required to run the template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation EstimateTemplateCost for usage and error information.
 func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) (*EstimateTemplateCostOutput, error) {
 	req, out := c.EstimateTemplateCostRequest(input)
 	err := req.Send()
@@ -778,6 +958,8 @@ const opExecuteChangeSet = "ExecuteChangeSet"
 // client's request for the ExecuteChangeSet operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ExecuteChangeSet for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -813,6 +995,8 @@ func (c *CloudFormation) ExecuteChangeSetRequest(input *ExecuteChangeSetInput) (
 	return
 }
 
+// ExecuteChangeSet API operation for AWS CloudFormation.
+//
 // Updates a stack using the input information that was provided when the specified
 // change set was created. After the call successfully completes, AWS CloudFormation
 // starts updating the stack. Use the DescribeStacks action to view the status
@@ -825,6 +1009,24 @@ func (c *CloudFormation) ExecuteChangeSetRequest(input *ExecuteChangeSetInput) (
 // If a stack policy is associated with the stack, AWS CloudFormation enforces
 // the policy during the update. You can't specify a temporary stack policy
 // that overrides the current policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ExecuteChangeSet for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidChangeSetStatus
+//   The specified change set cannot be used to update the stack. For example,
+//   the change set status might be CREATE_IN_PROGRESS or the stack status might
+//   be UPDATE_IN_PROGRESS.
+//
+//   * ChangeSetNotFound
+//   The specified change set name or ID doesn't exit. To view valid change sets
+//   for a stack, use the ListChangeSets action.
+//
 func (c *CloudFormation) ExecuteChangeSet(input *ExecuteChangeSetInput) (*ExecuteChangeSetOutput, error) {
 	req, out := c.ExecuteChangeSetRequest(input)
 	err := req.Send()
@@ -837,6 +1039,8 @@ const opGetStackPolicy = "GetStackPolicy"
 // client's request for the GetStackPolicy operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetStackPolicy for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -872,8 +1076,17 @@ func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req 
 	return
 }
 
+// GetStackPolicy API operation for AWS CloudFormation.
+//
 // Returns the stack policy for a specified stack. If a stack doesn't have a
 // policy, a null value is returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation GetStackPolicy for usage and error information.
 func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (*GetStackPolicyOutput, error) {
 	req, out := c.GetStackPolicyRequest(input)
 	err := req.Send()
@@ -886,6 +1099,8 @@ const opGetTemplate = "GetTemplate"
 // client's request for the GetTemplate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetTemplate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -921,6 +1136,8 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *reque
 	return
 }
 
+// GetTemplate API operation for AWS CloudFormation.
+//
 // Returns the template body for a specified stack. You can get the template
 // for running or deleted stacks.
 //
@@ -928,6 +1145,13 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *reque
 // the stack has been deleted.
 //
 //   If the template does not exist, a ValidationError is returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation GetTemplate for usage and error information.
 func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutput, error) {
 	req, out := c.GetTemplateRequest(input)
 	err := req.Send()
@@ -940,6 +1164,8 @@ const opGetTemplateSummary = "GetTemplateSummary"
 // client's request for the GetTemplateSummary operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetTemplateSummary for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -975,6 +1201,8 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 	return
 }
 
+// GetTemplateSummary API operation for AWS CloudFormation.
+//
 // Returns information about a new or existing template. The GetTemplateSummary
 // action is useful for viewing parameter information, such as default parameter
 // values and parameter types, before you create or update a stack.
@@ -985,6 +1213,13 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 // For deleted stacks, GetTemplateSummary returns the template information
 // for up to 90 days after the stack has been deleted. If the template does
 // not exist, a ValidationError is returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation GetTemplateSummary for usage and error information.
 func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (*GetTemplateSummaryOutput, error) {
 	req, out := c.GetTemplateSummaryRequest(input)
 	err := req.Send()
@@ -997,6 +1232,8 @@ const opListChangeSets = "ListChangeSets"
 // client's request for the ListChangeSets operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListChangeSets for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1032,9 +1269,18 @@ func (c *CloudFormation) ListChangeSetsRequest(input *ListChangeSetsInput) (req 
 	return
 }
 
+// ListChangeSets API operation for AWS CloudFormation.
+//
 // Returns the ID and status of each active change set for a stack. For example,
 // AWS CloudFormation lists change sets that are in the CREATE_IN_PROGRESS or
 // CREATE_PENDING state.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListChangeSets for usage and error information.
 func (c *CloudFormation) ListChangeSets(input *ListChangeSetsInput) (*ListChangeSetsOutput, error) {
 	req, out := c.ListChangeSetsRequest(input)
 	err := req.Send()
@@ -1047,6 +1293,8 @@ const opListStackResources = "ListStackResources"
 // client's request for the ListStackResources operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListStackResources for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1088,10 +1336,19 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 	return
 }
 
+// ListStackResources API operation for AWS CloudFormation.
+//
 // Returns descriptions of all resources of the specified stack.
 //
 // For deleted stacks, ListStackResources returns resource information for
 // up to 90 days after the stack has been deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListStackResources for usage and error information.
 func (c *CloudFormation) ListStackResources(input *ListStackResourcesInput) (*ListStackResourcesOutput, error) {
 	req, out := c.ListStackResourcesRequest(input)
 	err := req.Send()
@@ -1129,6 +1386,8 @@ const opListStacks = "ListStacks"
 // client's request for the ListStacks operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListStacks for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1170,11 +1429,20 @@ func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *request
 	return
 }
 
+// ListStacks API operation for AWS CloudFormation.
+//
 // Returns the summary information for stacks whose status matches the specified
 // StackStatusFilter. Summary information for stacks that have been deleted
 // is kept for 90 days after the stack is deleted. If no StackStatusFilter is
 // specified, summary information for all stacks is returned (including existing
 // stacks and stacks that have been deleted).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListStacks for usage and error information.
 func (c *CloudFormation) ListStacks(input *ListStacksInput) (*ListStacksOutput, error) {
 	req, out := c.ListStacksRequest(input)
 	err := req.Send()
@@ -1213,6 +1481,8 @@ const opSetStackPolicy = "SetStackPolicy"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See SetStackPolicy for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1249,7 +1519,16 @@ func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req 
 	return
 }
 
+// SetStackPolicy API operation for AWS CloudFormation.
+//
 // Sets a stack policy for a specified stack.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation SetStackPolicy for usage and error information.
 func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (*SetStackPolicyOutput, error) {
 	req, out := c.SetStackPolicyRequest(input)
 	err := req.Send()
@@ -1262,6 +1541,8 @@ const opSignalResource = "SignalResource"
 // client's request for the SignalResource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See SignalResource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1299,12 +1580,21 @@ func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req 
 	return
 }
 
+// SignalResource API operation for AWS CloudFormation.
+//
 // Sends a signal to the specified resource with a success or failure status.
 // You can use the SignalResource API in conjunction with a creation policy
 // or update policy. AWS CloudFormation doesn't proceed with a stack creation
 // or update until resources receive the required number of signals or the timeout
 // period is exceeded. The SignalResource API is useful in cases where you want
 // to send signals from anywhere other than an Amazon EC2 instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation SignalResource for usage and error information.
 func (c *CloudFormation) SignalResource(input *SignalResourceInput) (*SignalResourceOutput, error) {
 	req, out := c.SignalResourceRequest(input)
 	err := req.Send()
@@ -1317,6 +1607,8 @@ const opUpdateStack = "UpdateStack"
 // client's request for the UpdateStack operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateStack for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1352,6 +1644,8 @@ func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *reque
 	return
 }
 
+// UpdateStack API operation for AWS CloudFormation.
+//
 // Updates a stack as specified in the template. After the call completes successfully,
 // the stack update starts. You can check the status of the stack via the DescribeStacks
 // action.
@@ -1361,6 +1655,19 @@ func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *reque
 //
 // For more information about creating an update template, updating a stack,
 // and monitoring the progress of the update, see Updating a Stack (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation UpdateStack for usage and error information.
+//
+// Returned Error Codes:
+//   * InsufficientCapabilitiesException
+//   The template contains resources with capabilities that were not specified
+//   in the Capabilities parameter.
+//
 func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
 	req, out := c.UpdateStackRequest(input)
 	err := req.Send()
@@ -1373,6 +1680,8 @@ const opValidateTemplate = "ValidateTemplate"
 // client's request for the ValidateTemplate operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ValidateTemplate for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1408,10 +1717,19 @@ func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (
 	return
 }
 
+// ValidateTemplate API operation for AWS CloudFormation.
+//
 // Validates a specified template. AWS CloudFormation first checks if the template
 // is valid JSON. If it isn't, AWS CloudFormation checks if the template is
 // valid YAML. If both these checks fail, AWS CloudFormation returns a template
 // validation error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ValidateTemplate for usage and error information.
 func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (*ValidateTemplateOutput, error) {
 	req, out := c.ValidateTemplateRequest(input)
 	err := req.Send()

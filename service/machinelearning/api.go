@@ -18,6 +18,8 @@ const opAddTags = "AddTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,9 +54,36 @@ func (c *MachineLearning) AddTagsRequest(input *AddTagsInput) (req *request.Requ
 	return
 }
 
+// AddTags API operation for Amazon Machine Learning.
+//
 // Adds one or more tags to an object, up to a limit of 10. Each tag consists
 // of a key and an optional value. If you add a tag using a key that is already
 // associated with the ML object, AddTags updates the tag's value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation AddTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InvalidTagException
+
+//
+//   * TagLimitExceededException
+
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -67,6 +96,8 @@ const opCreateBatchPrediction = "CreateBatchPrediction"
 // client's request for the CreateBatchPrediction operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateBatchPrediction for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -102,6 +133,8 @@ func (c *MachineLearning) CreateBatchPredictionRequest(input *CreateBatchPredict
 	return
 }
 
+// CreateBatchPrediction API operation for Amazon Machine Learning.
+//
 // Generates predictions for a group of observations. The observations to process
 // exist in one or more data files referenced by a DataSource. This operation
 // creates a new BatchPrediction, and uses an MLModel and the data files referenced
@@ -116,6 +149,27 @@ func (c *MachineLearning) CreateBatchPredictionRequest(input *CreateBatchPredict
 // and checking the Status parameter of the result. After the COMPLETED status
 // appears, the results are available in the location specified by the OutputUri
 // parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateBatchPrediction for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * IdempotentParameterMismatchException
+//   A second request to use or change an object was not allowed. This can result
+//   from retrying a request using a parameter that was not present in the original
+//   request.
+//
 func (c *MachineLearning) CreateBatchPrediction(input *CreateBatchPredictionInput) (*CreateBatchPredictionOutput, error) {
 	req, out := c.CreateBatchPredictionRequest(input)
 	err := req.Send()
@@ -128,6 +182,8 @@ const opCreateDataSourceFromRDS = "CreateDataSourceFromRDS"
 // client's request for the CreateDataSourceFromRDS operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDataSourceFromRDS for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -163,6 +219,8 @@ func (c *MachineLearning) CreateDataSourceFromRDSRequest(input *CreateDataSource
 	return
 }
 
+// CreateDataSourceFromRDS API operation for Amazon Machine Learning.
+//
 // Creates a DataSource object from an  Amazon Relational Database Service (http://aws.amazon.com/rds/)
 // (Amazon RDS). A DataSource references data that can be used to perform CreateMLModel,
 // CreateEvaluation, or CreateBatchPrediction operations.
@@ -177,6 +235,27 @@ func (c *MachineLearning) CreateDataSourceFromRDSRequest(input *CreateDataSource
 //  If Amazon ML cannot accept the input source, it sets the Status parameter
 // to FAILED and includes an error message in the Message attribute of the GetDataSource
 // operation response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateDataSourceFromRDS for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * IdempotentParameterMismatchException
+//   A second request to use or change an object was not allowed. This can result
+//   from retrying a request using a parameter that was not present in the original
+//   request.
+//
 func (c *MachineLearning) CreateDataSourceFromRDS(input *CreateDataSourceFromRDSInput) (*CreateDataSourceFromRDSOutput, error) {
 	req, out := c.CreateDataSourceFromRDSRequest(input)
 	err := req.Send()
@@ -189,6 +268,8 @@ const opCreateDataSourceFromRedshift = "CreateDataSourceFromRedshift"
 // client's request for the CreateDataSourceFromRedshift operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDataSourceFromRedshift for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -224,6 +305,8 @@ func (c *MachineLearning) CreateDataSourceFromRedshiftRequest(input *CreateDataS
 	return
 }
 
+// CreateDataSourceFromRedshift API operation for Amazon Machine Learning.
+//
 // Creates a DataSource from a database hosted on an Amazon Redshift cluster.
 // A DataSource references data that can be used to perform either CreateMLModel,
 // CreateEvaluation, or CreateBatchPrediction operations.
@@ -257,6 +340,27 @@ func (c *MachineLearning) CreateDataSourceFromRedshiftRequest(input *CreateDataS
 // To do so, call GetDataSource for an existing datasource and copy the values
 // to a CreateDataSource call. Change the settings that you want to change and
 // make sure that all required fields have the appropriate values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateDataSourceFromRedshift for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * IdempotentParameterMismatchException
+//   A second request to use or change an object was not allowed. This can result
+//   from retrying a request using a parameter that was not present in the original
+//   request.
+//
 func (c *MachineLearning) CreateDataSourceFromRedshift(input *CreateDataSourceFromRedshiftInput) (*CreateDataSourceFromRedshiftOutput, error) {
 	req, out := c.CreateDataSourceFromRedshiftRequest(input)
 	err := req.Send()
@@ -269,6 +373,8 @@ const opCreateDataSourceFromS3 = "CreateDataSourceFromS3"
 // client's request for the CreateDataSourceFromS3 operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDataSourceFromS3 for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -304,6 +410,8 @@ func (c *MachineLearning) CreateDataSourceFromS3Request(input *CreateDataSourceF
 	return
 }
 
+// CreateDataSourceFromS3 API operation for Amazon Machine Learning.
+//
 // Creates a DataSource object. A DataSource references data that can be used
 // to perform CreateMLModel, CreateEvaluation, or CreateBatchPrediction operations.
 //
@@ -332,6 +440,27 @@ func (c *MachineLearning) CreateDataSourceFromS3Request(input *CreateDataSourceF
 // from training? Will the variable be manipulated; for example, will it be
 // combined with another variable or will it be split apart into word combinations?
 // The recipe provides answers to these questions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateDataSourceFromS3 for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * IdempotentParameterMismatchException
+//   A second request to use or change an object was not allowed. This can result
+//   from retrying a request using a parameter that was not present in the original
+//   request.
+//
 func (c *MachineLearning) CreateDataSourceFromS3(input *CreateDataSourceFromS3Input) (*CreateDataSourceFromS3Output, error) {
 	req, out := c.CreateDataSourceFromS3Request(input)
 	err := req.Send()
@@ -344,6 +473,8 @@ const opCreateEvaluation = "CreateEvaluation"
 // client's request for the CreateEvaluation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateEvaluation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -379,6 +510,8 @@ func (c *MachineLearning) CreateEvaluationRequest(input *CreateEvaluationInput) 
 	return
 }
 
+// CreateEvaluation API operation for Amazon Machine Learning.
+//
 // Creates a new Evaluation of an MLModel. An MLModel is evaluated on a set
 // of observations associated to a DataSource. Like a DataSource for an MLModel,
 // the DataSource for an Evaluation contains values for the Target Variable.
@@ -395,6 +528,27 @@ func (c *MachineLearning) CreateEvaluationRequest(input *CreateEvaluationInput) 
 //
 // You can use the GetEvaluation operation to check progress of the evaluation
 // during the creation operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateEvaluation for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * IdempotentParameterMismatchException
+//   A second request to use or change an object was not allowed. This can result
+//   from retrying a request using a parameter that was not present in the original
+//   request.
+//
 func (c *MachineLearning) CreateEvaluation(input *CreateEvaluationInput) (*CreateEvaluationOutput, error) {
 	req, out := c.CreateEvaluationRequest(input)
 	err := req.Send()
@@ -407,6 +561,8 @@ const opCreateMLModel = "CreateMLModel"
 // client's request for the CreateMLModel operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateMLModel for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -442,6 +598,8 @@ func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *
 	return
 }
 
+// CreateMLModel API operation for Amazon Machine Learning.
+//
 // Creates a new MLModel using the DataSource and the recipe as information
 // sources.
 //
@@ -459,6 +617,27 @@ func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *
 //  CreateMLModel requires a DataSource with computed statistics, which can
 // be created by setting ComputeStatistics to true in CreateDataSourceFromRDS,
 // CreateDataSourceFromS3, or CreateDataSourceFromRedshift operations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateMLModel for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * IdempotentParameterMismatchException
+//   A second request to use or change an object was not allowed. This can result
+//   from retrying a request using a parameter that was not present in the original
+//   request.
+//
 func (c *MachineLearning) CreateMLModel(input *CreateMLModelInput) (*CreateMLModelOutput, error) {
 	req, out := c.CreateMLModelRequest(input)
 	err := req.Send()
@@ -471,6 +650,8 @@ const opCreateRealtimeEndpoint = "CreateRealtimeEndpoint"
 // client's request for the CreateRealtimeEndpoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateRealtimeEndpoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -506,9 +687,30 @@ func (c *MachineLearning) CreateRealtimeEndpointRequest(input *CreateRealtimeEnd
 	return
 }
 
+// CreateRealtimeEndpoint API operation for Amazon Machine Learning.
+//
 // Creates a real-time endpoint for the MLModel. The endpoint contains the URI
 // of the MLModel; that is, the location to send real-time prediction requests
 // for the specified MLModel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation CreateRealtimeEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) CreateRealtimeEndpoint(input *CreateRealtimeEndpointInput) (*CreateRealtimeEndpointOutput, error) {
 	req, out := c.CreateRealtimeEndpointRequest(input)
 	err := req.Send()
@@ -521,6 +723,8 @@ const opDeleteBatchPrediction = "DeleteBatchPrediction"
 // client's request for the DeleteBatchPrediction operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteBatchPrediction for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -556,12 +760,33 @@ func (c *MachineLearning) DeleteBatchPredictionRequest(input *DeleteBatchPredict
 	return
 }
 
+// DeleteBatchPrediction API operation for Amazon Machine Learning.
+//
 // Assigns the DELETED status to a BatchPrediction, rendering it unusable.
 //
 // After using the DeleteBatchPrediction operation, you can use the GetBatchPrediction
 // operation to verify that the status of the BatchPrediction changed to DELETED.
 //
 // Caution: The result of the DeleteBatchPrediction operation is irreversible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DeleteBatchPrediction for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DeleteBatchPrediction(input *DeleteBatchPredictionInput) (*DeleteBatchPredictionOutput, error) {
 	req, out := c.DeleteBatchPredictionRequest(input)
 	err := req.Send()
@@ -574,6 +799,8 @@ const opDeleteDataSource = "DeleteDataSource"
 // client's request for the DeleteDataSource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDataSource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -609,12 +836,33 @@ func (c *MachineLearning) DeleteDataSourceRequest(input *DeleteDataSourceInput) 
 	return
 }
 
+// DeleteDataSource API operation for Amazon Machine Learning.
+//
 // Assigns the DELETED status to a DataSource, rendering it unusable.
 //
 // After using the DeleteDataSource operation, you can use the GetDataSource
 // operation to verify that the status of the DataSource changed to DELETED.
 //
 // Caution: The results of the DeleteDataSource operation are irreversible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DeleteDataSource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSourceOutput, error) {
 	req, out := c.DeleteDataSourceRequest(input)
 	err := req.Send()
@@ -627,6 +875,8 @@ const opDeleteEvaluation = "DeleteEvaluation"
 // client's request for the DeleteEvaluation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteEvaluation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -662,12 +912,33 @@ func (c *MachineLearning) DeleteEvaluationRequest(input *DeleteEvaluationInput) 
 	return
 }
 
+// DeleteEvaluation API operation for Amazon Machine Learning.
+//
 // Assigns the DELETED status to an Evaluation, rendering it unusable.
 //
 // After invoking the DeleteEvaluation operation, you can use the GetEvaluation
 // operation to verify that the status of the Evaluation changed to DELETED.
 //
 // Caution The results of the DeleteEvaluation operation are irreversible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DeleteEvaluation for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DeleteEvaluation(input *DeleteEvaluationInput) (*DeleteEvaluationOutput, error) {
 	req, out := c.DeleteEvaluationRequest(input)
 	err := req.Send()
@@ -680,6 +951,8 @@ const opDeleteMLModel = "DeleteMLModel"
 // client's request for the DeleteMLModel operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteMLModel for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -715,12 +988,33 @@ func (c *MachineLearning) DeleteMLModelRequest(input *DeleteMLModelInput) (req *
 	return
 }
 
+// DeleteMLModel API operation for Amazon Machine Learning.
+//
 // Assigns the DELETED status to an MLModel, rendering it unusable.
 //
 // After using the DeleteMLModel operation, you can use the GetMLModel operation
 // to verify that the status of the MLModel changed to DELETED.
 //
 // Caution: The result of the DeleteMLModel operation is irreversible.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DeleteMLModel for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DeleteMLModel(input *DeleteMLModelInput) (*DeleteMLModelOutput, error) {
 	req, out := c.DeleteMLModelRequest(input)
 	err := req.Send()
@@ -733,6 +1027,8 @@ const opDeleteRealtimeEndpoint = "DeleteRealtimeEndpoint"
 // client's request for the DeleteRealtimeEndpoint operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteRealtimeEndpoint for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -768,7 +1064,28 @@ func (c *MachineLearning) DeleteRealtimeEndpointRequest(input *DeleteRealtimeEnd
 	return
 }
 
+// DeleteRealtimeEndpoint API operation for Amazon Machine Learning.
+//
 // Deletes a real time endpoint of an MLModel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DeleteRealtimeEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DeleteRealtimeEndpoint(input *DeleteRealtimeEndpointInput) (*DeleteRealtimeEndpointOutput, error) {
 	req, out := c.DeleteRealtimeEndpointRequest(input)
 	err := req.Send()
@@ -781,6 +1098,8 @@ const opDeleteTags = "DeleteTags"
 // client's request for the DeleteTags operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteTags for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -816,10 +1135,34 @@ func (c *MachineLearning) DeleteTagsRequest(input *DeleteTagsInput) (req *reques
 	return
 }
 
+// DeleteTags API operation for Amazon Machine Learning.
+//
 // Deletes the specified tags associated with an ML object. After this operation
 // is complete, you can't recover deleted tags.
 //
 // If you specify a tag that doesn't exist, Amazon ML ignores it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DeleteTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InvalidTagException
+
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
@@ -832,6 +1175,8 @@ const opDescribeBatchPredictions = "DescribeBatchPredictions"
 // client's request for the DescribeBatchPredictions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeBatchPredictions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -873,8 +1218,26 @@ func (c *MachineLearning) DescribeBatchPredictionsRequest(input *DescribeBatchPr
 	return
 }
 
+// DescribeBatchPredictions API operation for Amazon Machine Learning.
+//
 // Returns a list of BatchPrediction operations that match the search criteria
 // in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DescribeBatchPredictions for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DescribeBatchPredictions(input *DescribeBatchPredictionsInput) (*DescribeBatchPredictionsOutput, error) {
 	req, out := c.DescribeBatchPredictionsRequest(input)
 	err := req.Send()
@@ -912,6 +1275,8 @@ const opDescribeDataSources = "DescribeDataSources"
 // client's request for the DescribeDataSources operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeDataSources for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -953,7 +1318,25 @@ func (c *MachineLearning) DescribeDataSourcesRequest(input *DescribeDataSourcesI
 	return
 }
 
+// DescribeDataSources API operation for Amazon Machine Learning.
+//
 // Returns a list of DataSource that match the search criteria in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DescribeDataSources for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DescribeDataSources(input *DescribeDataSourcesInput) (*DescribeDataSourcesOutput, error) {
 	req, out := c.DescribeDataSourcesRequest(input)
 	err := req.Send()
@@ -991,6 +1374,8 @@ const opDescribeEvaluations = "DescribeEvaluations"
 // client's request for the DescribeEvaluations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeEvaluations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1032,8 +1417,26 @@ func (c *MachineLearning) DescribeEvaluationsRequest(input *DescribeEvaluationsI
 	return
 }
 
+// DescribeEvaluations API operation for Amazon Machine Learning.
+//
 // Returns a list of DescribeEvaluations that match the search criteria in the
 // request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DescribeEvaluations for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DescribeEvaluations(input *DescribeEvaluationsInput) (*DescribeEvaluationsOutput, error) {
 	req, out := c.DescribeEvaluationsRequest(input)
 	err := req.Send()
@@ -1071,6 +1474,8 @@ const opDescribeMLModels = "DescribeMLModels"
 // client's request for the DescribeMLModels operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeMLModels for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1112,7 +1517,25 @@ func (c *MachineLearning) DescribeMLModelsRequest(input *DescribeMLModelsInput) 
 	return
 }
 
+// DescribeMLModels API operation for Amazon Machine Learning.
+//
 // Returns a list of MLModel that match the search criteria in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DescribeMLModels for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DescribeMLModels(input *DescribeMLModelsInput) (*DescribeMLModelsOutput, error) {
 	req, out := c.DescribeMLModelsRequest(input)
 	err := req.Send()
@@ -1151,6 +1574,8 @@ const opDescribeTags = "DescribeTags"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeTags for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1185,7 +1610,28 @@ func (c *MachineLearning) DescribeTagsRequest(input *DescribeTagsInput) (req *re
 	return
 }
 
+// DescribeTags API operation for Amazon Machine Learning.
+//
 // Describes one or more of the tags for your Amazon ML object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation DescribeTags for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -1198,6 +1644,8 @@ const opGetBatchPrediction = "GetBatchPrediction"
 // client's request for the GetBatchPrediction operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetBatchPrediction for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1233,8 +1681,29 @@ func (c *MachineLearning) GetBatchPredictionRequest(input *GetBatchPredictionInp
 	return
 }
 
+// GetBatchPrediction API operation for Amazon Machine Learning.
+//
 // Returns a BatchPrediction that includes detailed metadata, status, and data
 // file information for a Batch Prediction request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation GetBatchPrediction for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) GetBatchPrediction(input *GetBatchPredictionInput) (*GetBatchPredictionOutput, error) {
 	req, out := c.GetBatchPredictionRequest(input)
 	err := req.Send()
@@ -1247,6 +1716,8 @@ const opGetDataSource = "GetDataSource"
 // client's request for the GetDataSource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDataSource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1282,12 +1753,33 @@ func (c *MachineLearning) GetDataSourceRequest(input *GetDataSourceInput) (req *
 	return
 }
 
+// GetDataSource API operation for Amazon Machine Learning.
+//
 // Returns a DataSource that includes metadata and data file information, as
 // well as the current status of the DataSource.
 //
 // GetDataSource provides results in normal or verbose format. The verbose
 // format adds the schema description and the list of files pointed to by the
 // DataSource to the normal format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation GetDataSource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) GetDataSource(input *GetDataSourceInput) (*GetDataSourceOutput, error) {
 	req, out := c.GetDataSourceRequest(input)
 	err := req.Send()
@@ -1300,6 +1792,8 @@ const opGetEvaluation = "GetEvaluation"
 // client's request for the GetEvaluation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetEvaluation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1335,8 +1829,29 @@ func (c *MachineLearning) GetEvaluationRequest(input *GetEvaluationInput) (req *
 	return
 }
 
+// GetEvaluation API operation for Amazon Machine Learning.
+//
 // Returns an Evaluation that includes metadata as well as the current status
 // of the Evaluation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation GetEvaluation for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) GetEvaluation(input *GetEvaluationInput) (*GetEvaluationOutput, error) {
 	req, out := c.GetEvaluationRequest(input)
 	err := req.Send()
@@ -1349,6 +1864,8 @@ const opGetMLModel = "GetMLModel"
 // client's request for the GetMLModel operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetMLModel for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1384,10 +1901,31 @@ func (c *MachineLearning) GetMLModelRequest(input *GetMLModelInput) (req *reques
 	return
 }
 
+// GetMLModel API operation for Amazon Machine Learning.
+//
 // Returns an MLModel that includes detailed metadata, data source information,
 // and the current status of the MLModel.
 //
 // GetMLModel provides results in normal or verbose format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation GetMLModel for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) GetMLModel(input *GetMLModelInput) (*GetMLModelOutput, error) {
 	req, out := c.GetMLModelRequest(input)
 	err := req.Send()
@@ -1400,6 +1938,8 @@ const opPredict = "Predict"
 // client's request for the Predict operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See Predict for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1435,10 +1975,38 @@ func (c *MachineLearning) PredictRequest(input *PredictInput) (req *request.Requ
 	return
 }
 
+// Predict API operation for Amazon Machine Learning.
+//
 // Generates a prediction for the observation using the specified ML Model.
 //
 // Note Not all response parameters will be populated. Whether a response parameter
 // is populated depends on the type of model requested.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation Predict for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * LimitExceededException
+//   The subscriber exceeded the maximum number of operations. This exception
+//   can occur when listing objects such as DataSource.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
+//   * PredictorNotMountedException
+//   The exception is thrown when a predict request is made to an unmounted MLModel.
+//
 func (c *MachineLearning) Predict(input *PredictInput) (*PredictOutput, error) {
 	req, out := c.PredictRequest(input)
 	err := req.Send()
@@ -1451,6 +2019,8 @@ const opUpdateBatchPrediction = "UpdateBatchPrediction"
 // client's request for the UpdateBatchPrediction operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateBatchPrediction for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1486,10 +2056,31 @@ func (c *MachineLearning) UpdateBatchPredictionRequest(input *UpdateBatchPredict
 	return
 }
 
+// UpdateBatchPrediction API operation for Amazon Machine Learning.
+//
 // Updates the BatchPredictionName of a BatchPrediction.
 //
 // You can use the GetBatchPrediction operation to view the contents of the
 // updated data element.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation UpdateBatchPrediction for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) UpdateBatchPrediction(input *UpdateBatchPredictionInput) (*UpdateBatchPredictionOutput, error) {
 	req, out := c.UpdateBatchPredictionRequest(input)
 	err := req.Send()
@@ -1502,6 +2093,8 @@ const opUpdateDataSource = "UpdateDataSource"
 // client's request for the UpdateDataSource operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDataSource for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1537,10 +2130,31 @@ func (c *MachineLearning) UpdateDataSourceRequest(input *UpdateDataSourceInput) 
 	return
 }
 
+// UpdateDataSource API operation for Amazon Machine Learning.
+//
 // Updates the DataSourceName of a DataSource.
 //
 // You can use the GetDataSource operation to view the contents of the updated
 // data element.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation UpdateDataSource for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) UpdateDataSource(input *UpdateDataSourceInput) (*UpdateDataSourceOutput, error) {
 	req, out := c.UpdateDataSourceRequest(input)
 	err := req.Send()
@@ -1553,6 +2167,8 @@ const opUpdateEvaluation = "UpdateEvaluation"
 // client's request for the UpdateEvaluation operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateEvaluation for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1588,10 +2204,31 @@ func (c *MachineLearning) UpdateEvaluationRequest(input *UpdateEvaluationInput) 
 	return
 }
 
+// UpdateEvaluation API operation for Amazon Machine Learning.
+//
 // Updates the EvaluationName of an Evaluation.
 //
 // You can use the GetEvaluation operation to view the contents of the updated
 // data element.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation UpdateEvaluation for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) UpdateEvaluation(input *UpdateEvaluationInput) (*UpdateEvaluationOutput, error) {
 	req, out := c.UpdateEvaluationRequest(input)
 	err := req.Send()
@@ -1604,6 +2241,8 @@ const opUpdateMLModel = "UpdateMLModel"
 // client's request for the UpdateMLModel operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateMLModel for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1639,10 +2278,31 @@ func (c *MachineLearning) UpdateMLModelRequest(input *UpdateMLModelInput) (req *
 	return
 }
 
+// UpdateMLModel API operation for Amazon Machine Learning.
+//
 // Updates the MLModelName and the ScoreThreshold of an MLModel.
 //
 // You can use the GetMLModel operation to view the contents of the updated
 // data element.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Machine Learning's
+// API operation UpdateMLModel for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidInputException
+//   An error on the client occurred. Typically, the cause is an invalid input
+//   value.
+//
+//   * ResourceNotFoundException
+//   A specified resource cannot be located.
+//
+//   * InternalServerException
+//   An error on the server occurred when trying to process a request.
+//
 func (c *MachineLearning) UpdateMLModel(input *UpdateMLModelInput) (*UpdateMLModelOutput, error) {
 	req, out := c.UpdateMLModelRequest(input)
 	err := req.Send()

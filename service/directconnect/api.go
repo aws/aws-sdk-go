@@ -17,6 +17,8 @@ const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AllocateConnectionOnInterconnect for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,12 +53,31 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 	return
 }
 
+// AllocateConnectionOnInterconnect API operation for AWS Direct Connect.
+//
 // Creates a hosted connection on an interconnect.
 //
 // Allocates a VLAN number and a specified amount of bandwidth for use by a
 // hosted connection on the given interconnect.
 //
 //  This is intended for use by AWS Direct Connect partners only.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation AllocateConnectionOnInterconnect for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnectionOnInterconnectInput) (*Connection, error) {
 	req, out := c.AllocateConnectionOnInterconnectRequest(input)
 	err := req.Send()
@@ -69,6 +90,8 @@ const opAllocatePrivateVirtualInterface = "AllocatePrivateVirtualInterface"
 // client's request for the AllocatePrivateVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AllocatePrivateVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -104,6 +127,8 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 	return
 }
 
+// AllocatePrivateVirtualInterface API operation for AWS Direct Connect.
+//
 // Provisions a private virtual interface to be owned by a different customer.
 //
 // The owner of a connection calls this function to provision a private virtual
@@ -113,6 +138,23 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 // virtual interface owner by calling ConfirmPrivateVirtualInterface. Until
 // this step has been completed, the virtual interface will be in 'Confirming'
 // state, and will not be available for handling traffic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation AllocatePrivateVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) AllocatePrivateVirtualInterface(input *AllocatePrivateVirtualInterfaceInput) (*VirtualInterface, error) {
 	req, out := c.AllocatePrivateVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -125,6 +167,8 @@ const opAllocatePublicVirtualInterface = "AllocatePublicVirtualInterface"
 // client's request for the AllocatePublicVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AllocatePublicVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -160,6 +204,8 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 	return
 }
 
+// AllocatePublicVirtualInterface API operation for AWS Direct Connect.
+//
 // Provisions a public virtual interface to be owned by a different customer.
 //
 // The owner of a connection calls this function to provision a public virtual
@@ -169,6 +215,23 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 // virtual interface owner by calling ConfirmPublicVirtualInterface. Until this
 // step has been completed, the virtual interface will be in 'Confirming' state,
 // and will not be available for handling traffic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation AllocatePublicVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) AllocatePublicVirtualInterface(input *AllocatePublicVirtualInterfaceInput) (*VirtualInterface, error) {
 	req, out := c.AllocatePublicVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -181,6 +244,8 @@ const opConfirmConnection = "ConfirmConnection"
 // client's request for the ConfirmConnection operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ConfirmConnection for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -216,11 +281,30 @@ func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) 
 	return
 }
 
+// ConfirmConnection API operation for AWS Direct Connect.
+//
 // Confirm the creation of a hosted connection on an interconnect.
 //
 // Upon creation, the hosted connection is initially in the 'Ordering' state,
 // and will remain in this state until the owner calls ConfirmConnection to
 // confirm creation of the hosted connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation ConfirmConnection for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) ConfirmConnection(input *ConfirmConnectionInput) (*ConfirmConnectionOutput, error) {
 	req, out := c.ConfirmConnectionRequest(input)
 	err := req.Send()
@@ -233,6 +317,8 @@ const opConfirmPrivateVirtualInterface = "ConfirmPrivateVirtualInterface"
 // client's request for the ConfirmPrivateVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ConfirmPrivateVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -268,11 +354,30 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 	return
 }
 
+// ConfirmPrivateVirtualInterface API operation for AWS Direct Connect.
+//
 // Accept ownership of a private virtual interface created by another customer.
 //
 // After the virtual interface owner calls this function, the virtual interface
 // will be created and attached to the given virtual private gateway, and will
 // be available for handling traffic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation ConfirmPrivateVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) ConfirmPrivateVirtualInterface(input *ConfirmPrivateVirtualInterfaceInput) (*ConfirmPrivateVirtualInterfaceOutput, error) {
 	req, out := c.ConfirmPrivateVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -285,6 +390,8 @@ const opConfirmPublicVirtualInterface = "ConfirmPublicVirtualInterface"
 // client's request for the ConfirmPublicVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ConfirmPublicVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -320,10 +427,29 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 	return
 }
 
+// ConfirmPublicVirtualInterface API operation for AWS Direct Connect.
+//
 // Accept ownership of a public virtual interface created by another customer.
 //
 // After the virtual interface owner calls this function, the specified virtual
 // interface will be created and made available for handling traffic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation ConfirmPublicVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) ConfirmPublicVirtualInterface(input *ConfirmPublicVirtualInterfaceInput) (*ConfirmPublicVirtualInterfaceOutput, error) {
 	req, out := c.ConfirmPublicVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -336,6 +462,8 @@ const opCreateConnection = "CreateConnection"
 // client's request for the CreateConnection operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateConnection for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -371,6 +499,8 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 	return
 }
 
+// CreateConnection API operation for AWS Direct Connect.
+//
 // Creates a new connection between the customer network and a specific AWS
 // Direct Connect location.
 //
@@ -381,6 +511,23 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 // in the region it is associated with. You can establish connections with AWS
 // Direct Connect locations in multiple regions, but a connection in one region
 // does not provide connectivity to other regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation CreateConnection for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) CreateConnection(input *CreateConnectionInput) (*Connection, error) {
 	req, out := c.CreateConnectionRequest(input)
 	err := req.Send()
@@ -393,6 +540,8 @@ const opCreateInterconnect = "CreateInterconnect"
 // client's request for the CreateInterconnect operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateInterconnect for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -428,6 +577,8 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 	return
 }
 
+// CreateInterconnect API operation for AWS Direct Connect.
+//
 // Creates a new interconnect between a AWS Direct Connect partner's network
 // and a specific AWS Direct Connect location.
 //
@@ -446,6 +597,23 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 // partner.
 //
 //  This is intended for use by AWS Direct Connect partners only.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation CreateInterconnect for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) CreateInterconnect(input *CreateInterconnectInput) (*Interconnect, error) {
 	req, out := c.CreateInterconnectRequest(input)
 	err := req.Send()
@@ -458,6 +626,8 @@ const opCreatePrivateVirtualInterface = "CreatePrivateVirtualInterface"
 // client's request for the CreatePrivateVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePrivateVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -493,9 +663,28 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 	return
 }
 
+// CreatePrivateVirtualInterface API operation for AWS Direct Connect.
+//
 // Creates a new private virtual interface. A virtual interface is the VLAN
 // that transports AWS Direct Connect traffic. A private virtual interface supports
 // sending traffic to a single virtual private cloud (VPC).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation CreatePrivateVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) CreatePrivateVirtualInterface(input *CreatePrivateVirtualInterfaceInput) (*VirtualInterface, error) {
 	req, out := c.CreatePrivateVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -508,6 +697,8 @@ const opCreatePublicVirtualInterface = "CreatePublicVirtualInterface"
 // client's request for the CreatePublicVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePublicVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -543,10 +734,29 @@ func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicV
 	return
 }
 
+// CreatePublicVirtualInterface API operation for AWS Direct Connect.
+//
 // Creates a new public virtual interface. A virtual interface is the VLAN that
 // transports AWS Direct Connect traffic. A public virtual interface supports
 // sending traffic to public services of AWS such as Amazon Simple Storage Service
 // (Amazon S3).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation CreatePublicVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) CreatePublicVirtualInterface(input *CreatePublicVirtualInterfaceInput) (*VirtualInterface, error) {
 	req, out := c.CreatePublicVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -559,6 +769,8 @@ const opDeleteConnection = "DeleteConnection"
 // client's request for the DeleteConnection operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteConnection for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -594,12 +806,31 @@ func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (r
 	return
 }
 
+// DeleteConnection API operation for AWS Direct Connect.
+//
 // Deletes the connection.
 //
 // Deleting a connection only stops the AWS Direct Connect port hour and data
 // transfer charges. You need to cancel separately with the providers any services
 // or charges for cross-connects or network circuits that connect you to the
 // AWS Direct Connect location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DeleteConnection for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DeleteConnection(input *DeleteConnectionInput) (*Connection, error) {
 	req, out := c.DeleteConnectionRequest(input)
 	err := req.Send()
@@ -612,6 +843,8 @@ const opDeleteInterconnect = "DeleteInterconnect"
 // client's request for the DeleteInterconnect operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteInterconnect for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -647,9 +880,28 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 	return
 }
 
+// DeleteInterconnect API operation for AWS Direct Connect.
+//
 // Deletes the specified interconnect.
 //
 //  This is intended for use by AWS Direct Connect partners only.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DeleteInterconnect for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DeleteInterconnect(input *DeleteInterconnectInput) (*DeleteInterconnectOutput, error) {
 	req, out := c.DeleteInterconnectRequest(input)
 	err := req.Send()
@@ -662,6 +914,8 @@ const opDeleteVirtualInterface = "DeleteVirtualInterface"
 // client's request for the DeleteVirtualInterface operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteVirtualInterface for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -697,7 +951,26 @@ func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterf
 	return
 }
 
+// DeleteVirtualInterface API operation for AWS Direct Connect.
+//
 // Deletes a virtual interface.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DeleteVirtualInterface for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DeleteVirtualInterface(input *DeleteVirtualInterfaceInput) (*DeleteVirtualInterfaceOutput, error) {
 	req, out := c.DeleteVirtualInterfaceRequest(input)
 	err := req.Send()
@@ -710,6 +983,8 @@ const opDescribeConnectionLoa = "DescribeConnectionLoa"
 // client's request for the DescribeConnectionLoa operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConnectionLoa for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -745,6 +1020,8 @@ func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLo
 	return
 }
 
+// DescribeConnectionLoa API operation for AWS Direct Connect.
+//
 // Returns the LOA-CFA for a Connection.
 //
 // The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
@@ -752,6 +1029,23 @@ func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLo
 // your cross connect to AWS at the colocation facility. For more information,
 // see Requesting Cross Connects at AWS Direct Connect Locations (http://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
 // in the AWS Direct Connect user guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeConnectionLoa for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeConnectionLoa(input *DescribeConnectionLoaInput) (*DescribeConnectionLoaOutput, error) {
 	req, out := c.DescribeConnectionLoaRequest(input)
 	err := req.Send()
@@ -764,6 +1058,8 @@ const opDescribeConnections = "DescribeConnections"
 // client's request for the DescribeConnections operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConnections for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -799,9 +1095,28 @@ func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInp
 	return
 }
 
+// DescribeConnections API operation for AWS Direct Connect.
+//
 // Displays all connections in this region.
 //
 // If a connection ID is provided, the call returns only that particular connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeConnections for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeConnections(input *DescribeConnectionsInput) (*Connections, error) {
 	req, out := c.DescribeConnectionsRequest(input)
 	err := req.Send()
@@ -814,6 +1129,8 @@ const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 // client's request for the DescribeConnectionsOnInterconnect operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeConnectionsOnInterconnect for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -849,9 +1166,28 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 	return
 }
 
+// DescribeConnectionsOnInterconnect API operation for AWS Direct Connect.
+//
 // Return a list of connections that have been provisioned on the given interconnect.
 //
 //  This is intended for use by AWS Direct Connect partners only.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeConnectionsOnInterconnect for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnectionsOnInterconnectInput) (*Connections, error) {
 	req, out := c.DescribeConnectionsOnInterconnectRequest(input)
 	err := req.Send()
@@ -864,6 +1200,8 @@ const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 // client's request for the DescribeInterconnectLoa operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeInterconnectLoa for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -899,6 +1237,8 @@ func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconne
 	return
 }
 
+// DescribeInterconnectLoa API operation for AWS Direct Connect.
+//
 // Returns the LOA-CFA for an Interconnect.
 //
 // The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
@@ -906,6 +1246,23 @@ func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconne
 // colocation facility. For more information, see Requesting Cross Connects
 // at AWS Direct Connect Locations (http://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
 // in the AWS Direct Connect user guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeInterconnectLoa for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeInterconnectLoa(input *DescribeInterconnectLoaInput) (*DescribeInterconnectLoaOutput, error) {
 	req, out := c.DescribeInterconnectLoaRequest(input)
 	err := req.Send()
@@ -918,6 +1275,8 @@ const opDescribeInterconnects = "DescribeInterconnects"
 // client's request for the DescribeInterconnects operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeInterconnects for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -953,9 +1312,28 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 	return
 }
 
+// DescribeInterconnects API operation for AWS Direct Connect.
+//
 // Returns a list of interconnects owned by the AWS account.
 //
 // If an interconnect ID is provided, it will only return this particular interconnect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeInterconnects for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput) (*DescribeInterconnectsOutput, error) {
 	req, out := c.DescribeInterconnectsRequest(input)
 	err := req.Send()
@@ -968,6 +1346,8 @@ const opDescribeLocations = "DescribeLocations"
 // client's request for the DescribeLocations operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeLocations for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1003,9 +1383,28 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 	return
 }
 
+// DescribeLocations API operation for AWS Direct Connect.
+//
 // Returns the list of AWS Direct Connect locations in the current AWS region.
 // These are the locations that may be selected when calling CreateConnection
 // or CreateInterconnect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeLocations for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (*DescribeLocationsOutput, error) {
 	req, out := c.DescribeLocationsRequest(input)
 	err := req.Send()
@@ -1018,6 +1417,8 @@ const opDescribeVirtualGateways = "DescribeVirtualGateways"
 // client's request for the DescribeVirtualGateways operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeVirtualGateways for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1053,6 +1454,8 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 	return
 }
 
+// DescribeVirtualGateways API operation for AWS Direct Connect.
+//
 // Returns a list of virtual private gateways owned by the AWS account.
 //
 // You can create one or more AWS Direct Connect private virtual interfaces
@@ -1060,6 +1463,23 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 // via Amazon Virtual Private Cloud (VPC) console or the EC2 CreateVpnGateway
 // (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html)
 // action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeVirtualGateways for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysInput) (*DescribeVirtualGatewaysOutput, error) {
 	req, out := c.DescribeVirtualGatewaysRequest(input)
 	err := req.Send()
@@ -1072,6 +1492,8 @@ const opDescribeVirtualInterfaces = "DescribeVirtualInterfaces"
 // client's request for the DescribeVirtualInterfaces operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeVirtualInterfaces for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1107,6 +1529,8 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 	return
 }
 
+// DescribeVirtualInterfaces API operation for AWS Direct Connect.
+//
 // Displays all virtual interfaces for an AWS account. Virtual interfaces deleted
 // fewer than 15 minutes before DescribeVirtualInterfaces is called are also
 // returned. If a connection ID is included then only virtual interfaces associated
@@ -1119,6 +1543,23 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 // If a connection ID is provided, only virtual interfaces provisioned on the
 // specified connection will be returned. If a virtual interface ID is provided,
 // only this particular virtual interface will be returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DescribeVirtualInterfaces for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   A server-side error occurred during the API call. The error message will
+//   contain additional details about the cause.
+//
+//   * ClientException
+//   The API was called with invalid parameters. The error message will contain
+//   additional details about the cause.
+//
 func (c *DirectConnect) DescribeVirtualInterfaces(input *DescribeVirtualInterfacesInput) (*DescribeVirtualInterfacesOutput, error) {
 	req, out := c.DescribeVirtualInterfacesRequest(input)
 	err := req.Send()

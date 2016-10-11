@@ -19,6 +19,8 @@ const opAddTagsToOnPremisesInstances = "AddTagsToOnPremisesInstances"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AddTagsToOnPremisesInstances for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -55,7 +57,37 @@ func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremi
 	return
 }
 
+// AddTagsToOnPremisesInstances API operation for AWS CodeDeploy.
+//
 // Adds tags to on-premises instances.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation AddTagsToOnPremisesInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * InstanceNameRequiredException
+//   An on-premises instance name was not specified.
+//
+//   * TagRequiredException
+//   A tag was not specified.
+//
+//   * InvalidTagException
+//   The specified tag was specified in an invalid format.
+//
+//   * TagLimitExceededException
+//   The maximum allowed number of tags was exceeded.
+//
+//   * InstanceLimitExceededException
+//   The maximum number of allowed on-premises instances in a single call was
+//   exceeded.
+//
+//   * InstanceNotRegisteredException
+//   The specified on-premises instance is not registered.
+//
 func (c *CodeDeploy) AddTagsToOnPremisesInstances(input *AddTagsToOnPremisesInstancesInput) (*AddTagsToOnPremisesInstancesOutput, error) {
 	req, out := c.AddTagsToOnPremisesInstancesRequest(input)
 	err := req.Send()
@@ -68,6 +100,8 @@ const opBatchGetApplicationRevisions = "BatchGetApplicationRevisions"
 // client's request for the BatchGetApplicationRevisions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetApplicationRevisions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,7 +137,36 @@ func (c *CodeDeploy) BatchGetApplicationRevisionsRequest(input *BatchGetApplicat
 	return
 }
 
+// BatchGetApplicationRevisions API operation for AWS CodeDeploy.
+//
 // Gets information about one or more application revisions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation BatchGetApplicationRevisions for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * RevisionRequiredException
+//   The revision ID was not specified.
+//
+//   * InvalidRevisionException
+//   The revision was specified in an invalid format.
+//
+//   * BatchLimitExceededException
+//   The maximum number of names or IDs allowed for this request (100) was exceeded.
+//
 func (c *CodeDeploy) BatchGetApplicationRevisions(input *BatchGetApplicationRevisionsInput) (*BatchGetApplicationRevisionsOutput, error) {
 	req, out := c.BatchGetApplicationRevisionsRequest(input)
 	err := req.Send()
@@ -116,6 +179,8 @@ const opBatchGetApplications = "BatchGetApplications"
 // client's request for the BatchGetApplications operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetApplications for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -151,7 +216,30 @@ func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInpu
 	return
 }
 
+// BatchGetApplications API operation for AWS CodeDeploy.
+//
 // Gets information about one or more applications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation BatchGetApplications for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * BatchLimitExceededException
+//   The maximum number of names or IDs allowed for this request (100) was exceeded.
+//
 func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (*BatchGetApplicationsOutput, error) {
 	req, out := c.BatchGetApplicationsRequest(input)
 	err := req.Send()
@@ -164,6 +252,8 @@ const opBatchGetDeploymentGroups = "BatchGetDeploymentGroups"
 // client's request for the BatchGetDeploymentGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetDeploymentGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -199,7 +289,36 @@ func (c *CodeDeploy) BatchGetDeploymentGroupsRequest(input *BatchGetDeploymentGr
 	return
 }
 
+// BatchGetDeploymentGroups API operation for AWS CodeDeploy.
+//
 // Get information about one or more deployment groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation BatchGetDeploymentGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * BatchLimitExceededException
+//   The maximum number of names or IDs allowed for this request (100) was exceeded.
+//
 func (c *CodeDeploy) BatchGetDeploymentGroups(input *BatchGetDeploymentGroupsInput) (*BatchGetDeploymentGroupsOutput, error) {
 	req, out := c.BatchGetDeploymentGroupsRequest(input)
 	err := req.Send()
@@ -212,6 +331,8 @@ const opBatchGetDeploymentInstances = "BatchGetDeploymentInstances"
 // client's request for the BatchGetDeploymentInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetDeploymentInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -247,8 +368,37 @@ func (c *CodeDeploy) BatchGetDeploymentInstancesRequest(input *BatchGetDeploymen
 	return
 }
 
+// BatchGetDeploymentInstances API operation for AWS CodeDeploy.
+//
 // Gets information about one or more instance that are part of a deployment
 // group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation BatchGetDeploymentInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * DeploymentIdRequiredException
+//   At least one deployment ID must be specified.
+//
+//   * DeploymentDoesNotExistException
+//   The deployment does not exist with the applicable IAM user or AWS account.
+//
+//   * InstanceIdRequiredException
+//   The instance ID was not specified.
+//
+//   * InvalidDeploymentIdException
+//   At least one of the deployment IDs was specified in an invalid format.
+//
+//   * InvalidInstanceNameException
+//   The specified on-premises instance name was specified in an invalid format.
+//
+//   * BatchLimitExceededException
+//   The maximum number of names or IDs allowed for this request (100) was exceeded.
+//
 func (c *CodeDeploy) BatchGetDeploymentInstances(input *BatchGetDeploymentInstancesInput) (*BatchGetDeploymentInstancesOutput, error) {
 	req, out := c.BatchGetDeploymentInstancesRequest(input)
 	err := req.Send()
@@ -261,6 +411,8 @@ const opBatchGetDeployments = "BatchGetDeployments"
 // client's request for the BatchGetDeployments operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetDeployments for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -296,7 +448,27 @@ func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput)
 	return
 }
 
+// BatchGetDeployments API operation for AWS CodeDeploy.
+//
 // Gets information about one or more deployments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation BatchGetDeployments for usage and error information.
+//
+// Returned Error Codes:
+//   * DeploymentIdRequiredException
+//   At least one deployment ID must be specified.
+//
+//   * InvalidDeploymentIdException
+//   At least one of the deployment IDs was specified in an invalid format.
+//
+//   * BatchLimitExceededException
+//   The maximum number of names or IDs allowed for this request (100) was exceeded.
+//
 func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (*BatchGetDeploymentsOutput, error) {
 	req, out := c.BatchGetDeploymentsRequest(input)
 	err := req.Send()
@@ -309,6 +481,8 @@ const opBatchGetOnPremisesInstances = "BatchGetOnPremisesInstances"
 // client's request for the BatchGetOnPremisesInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See BatchGetOnPremisesInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -344,7 +518,27 @@ func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremise
 	return
 }
 
+// BatchGetOnPremisesInstances API operation for AWS CodeDeploy.
+//
 // Gets information about one or more on-premises instances.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation BatchGetOnPremisesInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * InstanceNameRequiredException
+//   An on-premises instance name was not specified.
+//
+//   * InvalidInstanceNameException
+//   The specified on-premises instance name was specified in an invalid format.
+//
+//   * BatchLimitExceededException
+//   The maximum number of names or IDs allowed for this request (100) was exceeded.
+//
 func (c *CodeDeploy) BatchGetOnPremisesInstances(input *BatchGetOnPremisesInstancesInput) (*BatchGetOnPremisesInstancesOutput, error) {
 	req, out := c.BatchGetOnPremisesInstancesRequest(input)
 	err := req.Send()
@@ -357,6 +551,8 @@ const opCreateApplication = "CreateApplication"
 // client's request for the CreateApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -392,7 +588,31 @@ func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (re
 	return
 }
 
+// CreateApplication API operation for AWS CodeDeploy.
+//
 // Creates an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation CreateApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationAlreadyExistsException
+//   An application with the specified name already exists with the applicable
+//   IAM user or AWS account.
+//
+//   * ApplicationLimitExceededException
+//   More applications were attempted to be created than are allowed.
+//
 func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
 	req, out := c.CreateApplicationRequest(input)
 	err := req.Send()
@@ -405,6 +625,8 @@ const opCreateDeployment = "CreateDeployment"
 // client's request for the CreateDeployment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDeployment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -440,7 +662,64 @@ func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 	return
 }
 
+// CreateDeployment API operation for AWS CodeDeploy.
+//
 // Deploys an application revision through the specified deployment group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation CreateDeployment for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * DeploymentGroupDoesNotExistException
+//   The named deployment group does not exist with the applicable IAM user or
+//   AWS account.
+//
+//   * RevisionRequiredException
+//   The revision ID was not specified.
+//
+//   * RevisionDoesNotExistException
+//   The named revision does not exist with the applicable IAM user or AWS account.
+//
+//   * InvalidRevisionException
+//   The revision was specified in an invalid format.
+//
+//   * InvalidDeploymentConfigNameException
+//   The deployment configuration name was specified in an invalid format.
+//
+//   * DeploymentConfigDoesNotExistException
+//   The deployment configuration does not exist with the applicable IAM user
+//   or AWS account.
+//
+//   * DescriptionTooLongException
+//   The description is too long.
+//
+//   * DeploymentLimitExceededException
+//   The number of allowed deployments was exceeded.
+//
+//   * InvalidAutoRollbackConfigException
+//   The automatic rollback configuration was specified in an invalid format.
+//   For example, automatic rollback is enabled but an invalid triggering event
+//   type or no event types were listed.
+//
 func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
 	req, out := c.CreateDeploymentRequest(input)
 	err := req.Send()
@@ -453,6 +732,8 @@ const opCreateDeploymentConfig = "CreateDeploymentConfig"
 // client's request for the CreateDeploymentConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDeploymentConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -488,7 +769,34 @@ func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfig
 	return
 }
 
+// CreateDeploymentConfig API operation for AWS CodeDeploy.
+//
 // Creates a deployment configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation CreateDeploymentConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidDeploymentConfigNameException
+//   The deployment configuration name was specified in an invalid format.
+//
+//   * DeploymentConfigNameRequiredException
+//   The deployment configuration name was not specified.
+//
+//   * DeploymentConfigAlreadyExistsException
+//   A deployment configuration with the specified name already exists with the
+//   applicable IAM user or AWS account.
+//
+//   * InvalidMinimumHealthyHostValueException
+//   The minimum healthy instance value was specified in an invalid format.
+//
+//   * DeploymentConfigLimitExceededException
+//   The deployment configurations limit was exceeded.
+//
 func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) (*CreateDeploymentConfigOutput, error) {
 	req, out := c.CreateDeploymentConfigRequest(input)
 	err := req.Send()
@@ -501,6 +809,8 @@ const opCreateDeploymentGroup = "CreateDeploymentGroup"
 // client's request for the CreateDeploymentGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateDeploymentGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -536,7 +846,94 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 	return
 }
 
+// CreateDeploymentGroup API operation for AWS CodeDeploy.
+//
 // Creates a deployment group to which application revisions will be deployed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation CreateDeploymentGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * DeploymentGroupAlreadyExistsException
+//   A deployment group with the specified name already exists with the applicable
+//   IAM user or AWS account.
+//
+//   * InvalidEC2TagException
+//   The tag was specified in an invalid format.
+//
+//   * InvalidTagException
+//   The specified tag was specified in an invalid format.
+//
+//   * InvalidAutoScalingGroupException
+//   The Auto Scaling group was specified in an invalid format or does not exist.
+//
+//   * InvalidDeploymentConfigNameException
+//   The deployment configuration name was specified in an invalid format.
+//
+//   * DeploymentConfigDoesNotExistException
+//   The deployment configuration does not exist with the applicable IAM user
+//   or AWS account.
+//
+//   * RoleRequiredException
+//   The role ID was not specified.
+//
+//   * InvalidRoleException
+//   The service role ARN was specified in an invalid format. Or, if an Auto Scaling
+//   group was specified, the specified service role does not grant the appropriate
+//   permissions to Auto Scaling.
+//
+//   * DeploymentGroupLimitExceededException
+//   The deployment groups limit was exceeded.
+//
+//   * LifecycleHookLimitExceededException
+//   The limit for lifecycle hooks was exceeded.
+//
+//   * InvalidTriggerConfigException
+//   The trigger was specified in an invalid format.
+//
+//   * TriggerTargetsLimitExceededException
+//   The maximum allowed number of triggers was exceeded.
+//
+//   * InvalidAlarmConfigException
+//   The format of the alarm configuration is invalid. Possible causes include:
+//
+//     The alarm list is null.
+//
+//     The alarm object is null.
+//
+//     The alarm name is empty or null or exceeds the 255 character limit.
+//
+//     Two alarms with the same name have been specified.
+//
+//     The alarm configuration is enabled but the alarm list is empty.
+//
+//   * AlarmsLimitExceededException
+//   The maximum number of alarms for a deployment group (10) was exceeded.
+//
+//   * InvalidAutoRollbackConfigException
+//   The automatic rollback configuration was specified in an invalid format.
+//   For example, automatic rollback is enabled but an invalid triggering event
+//   type or no event types were listed.
+//
 func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (*CreateDeploymentGroupOutput, error) {
 	req, out := c.CreateDeploymentGroupRequest(input)
 	err := req.Send()
@@ -549,6 +946,8 @@ const opDeleteApplication = "DeleteApplication"
 // client's request for the DeleteApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -586,7 +985,24 @@ func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (re
 	return
 }
 
+// DeleteApplication API operation for AWS CodeDeploy.
+//
 // Deletes an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation DeleteApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
 func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
 	err := req.Send()
@@ -599,6 +1015,8 @@ const opDeleteDeploymentConfig = "DeleteDeploymentConfig"
 // client's request for the DeleteDeploymentConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDeploymentConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -636,10 +1054,33 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 	return
 }
 
+// DeleteDeploymentConfig API operation for AWS CodeDeploy.
+//
 // Deletes a deployment configuration.
 //
 //  A deployment configuration cannot be deleted if it is currently in use.
 // Predefined configurations cannot be deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation DeleteDeploymentConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidDeploymentConfigNameException
+//   The deployment configuration name was specified in an invalid format.
+//
+//   * DeploymentConfigNameRequiredException
+//   The deployment configuration name was not specified.
+//
+//   * DeploymentConfigInUseException
+//   The deployment configuration is still in use.
+//
+//   * InvalidOperationException
+//   An invalid operation was detected.
+//
 func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) (*DeleteDeploymentConfigOutput, error) {
 	req, out := c.DeleteDeploymentConfigRequest(input)
 	err := req.Send()
@@ -652,6 +1093,8 @@ const opDeleteDeploymentGroup = "DeleteDeploymentGroup"
 // client's request for the DeleteDeploymentGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteDeploymentGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -687,7 +1130,35 @@ func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupIn
 	return
 }
 
+// DeleteDeploymentGroup API operation for AWS CodeDeploy.
+//
 // Deletes a deployment group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation DeleteDeploymentGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * InvalidRoleException
+//   The service role ARN was specified in an invalid format. Or, if an Auto Scaling
+//   group was specified, the specified service role does not grant the appropriate
+//   permissions to Auto Scaling.
+//
 func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (*DeleteDeploymentGroupOutput, error) {
 	req, out := c.DeleteDeploymentGroupRequest(input)
 	err := req.Send()
@@ -700,6 +1171,8 @@ const opDeregisterOnPremisesInstance = "DeregisterOnPremisesInstance"
 // client's request for the DeregisterOnPremisesInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeregisterOnPremisesInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -737,7 +1210,24 @@ func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPrem
 	return
 }
 
+// DeregisterOnPremisesInstance API operation for AWS CodeDeploy.
+//
 // Deregisters an on-premises instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation DeregisterOnPremisesInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * InstanceNameRequiredException
+//   An on-premises instance name was not specified.
+//
+//   * InvalidInstanceNameException
+//   The specified on-premises instance name was specified in an invalid format.
+//
 func (c *CodeDeploy) DeregisterOnPremisesInstance(input *DeregisterOnPremisesInstanceInput) (*DeregisterOnPremisesInstanceOutput, error) {
 	req, out := c.DeregisterOnPremisesInstanceRequest(input)
 	err := req.Send()
@@ -750,6 +1240,8 @@ const opGetApplication = "GetApplication"
 // client's request for the GetApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -785,7 +1277,27 @@ func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *req
 	return
 }
 
+// GetApplication API operation for AWS CodeDeploy.
+//
 // Gets information about an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
 func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
 	req, out := c.GetApplicationRequest(input)
 	err := req.Send()
@@ -798,6 +1310,8 @@ const opGetApplicationRevision = "GetApplicationRevision"
 // client's request for the GetApplicationRevision operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetApplicationRevision for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -833,7 +1347,36 @@ func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevision
 	return
 }
 
+// GetApplicationRevision API operation for AWS CodeDeploy.
+//
 // Gets information about an application revision.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetApplicationRevision for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * RevisionDoesNotExistException
+//   The named revision does not exist with the applicable IAM user or AWS account.
+//
+//   * RevisionRequiredException
+//   The revision ID was not specified.
+//
+//   * InvalidRevisionException
+//   The revision was specified in an invalid format.
+//
 func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) (*GetApplicationRevisionOutput, error) {
 	req, out := c.GetApplicationRevisionRequest(input)
 	err := req.Send()
@@ -846,6 +1389,8 @@ const opGetDeployment = "GetDeployment"
 // client's request for the GetDeployment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDeployment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -881,7 +1426,27 @@ func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *reque
 	return
 }
 
+// GetDeployment API operation for AWS CodeDeploy.
+//
 // Gets information about a deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetDeployment for usage and error information.
+//
+// Returned Error Codes:
+//   * DeploymentIdRequiredException
+//   At least one deployment ID must be specified.
+//
+//   * InvalidDeploymentIdException
+//   At least one of the deployment IDs was specified in an invalid format.
+//
+//   * DeploymentDoesNotExistException
+//   The deployment does not exist with the applicable IAM user or AWS account.
+//
 func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
 	req, out := c.GetDeploymentRequest(input)
 	err := req.Send()
@@ -894,6 +1459,8 @@ const opGetDeploymentConfig = "GetDeploymentConfig"
 // client's request for the GetDeploymentConfig operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDeploymentConfig for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -929,7 +1496,28 @@ func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput)
 	return
 }
 
+// GetDeploymentConfig API operation for AWS CodeDeploy.
+//
 // Gets information about a deployment configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetDeploymentConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidDeploymentConfigNameException
+//   The deployment configuration name was specified in an invalid format.
+//
+//   * DeploymentConfigNameRequiredException
+//   The deployment configuration name was not specified.
+//
+//   * DeploymentConfigDoesNotExistException
+//   The deployment configuration does not exist with the applicable IAM user
+//   or AWS account.
+//
 func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (*GetDeploymentConfigOutput, error) {
 	req, out := c.GetDeploymentConfigRequest(input)
 	err := req.Send()
@@ -942,6 +1530,8 @@ const opGetDeploymentGroup = "GetDeploymentGroup"
 // client's request for the GetDeploymentGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDeploymentGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -977,7 +1567,37 @@ func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (
 	return
 }
 
+// GetDeploymentGroup API operation for AWS CodeDeploy.
+//
 // Gets information about a deployment group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetDeploymentGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * DeploymentGroupDoesNotExistException
+//   The named deployment group does not exist with the applicable IAM user or
+//   AWS account.
+//
 func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (*GetDeploymentGroupOutput, error) {
 	req, out := c.GetDeploymentGroupRequest(input)
 	err := req.Send()
@@ -990,6 +1610,8 @@ const opGetDeploymentInstance = "GetDeploymentInstance"
 // client's request for the GetDeploymentInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetDeploymentInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1025,7 +1647,36 @@ func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceIn
 	return
 }
 
+// GetDeploymentInstance API operation for AWS CodeDeploy.
+//
 // Gets information about an instance as part of a deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetDeploymentInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * DeploymentIdRequiredException
+//   At least one deployment ID must be specified.
+//
+//   * DeploymentDoesNotExistException
+//   The deployment does not exist with the applicable IAM user or AWS account.
+//
+//   * InstanceIdRequiredException
+//   The instance ID was not specified.
+//
+//   * InvalidDeploymentIdException
+//   At least one of the deployment IDs was specified in an invalid format.
+//
+//   * InstanceDoesNotExistException
+//   The specified instance does not exist in the deployment group.
+//
+//   * InvalidInstanceNameException
+//   The specified on-premises instance name was specified in an invalid format.
+//
 func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*GetDeploymentInstanceOutput, error) {
 	req, out := c.GetDeploymentInstanceRequest(input)
 	err := req.Send()
@@ -1038,6 +1689,8 @@ const opGetOnPremisesInstance = "GetOnPremisesInstance"
 // client's request for the GetOnPremisesInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetOnPremisesInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1073,7 +1726,27 @@ func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceIn
 	return
 }
 
+// GetOnPremisesInstance API operation for AWS CodeDeploy.
+//
 // Gets information about an on-premises instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation GetOnPremisesInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * InstanceNameRequiredException
+//   An on-premises instance name was not specified.
+//
+//   * InstanceNotRegisteredException
+//   The specified on-premises instance is not registered.
+//
+//   * InvalidInstanceNameException
+//   The specified on-premises instance name was specified in an invalid format.
+//
 func (c *CodeDeploy) GetOnPremisesInstance(input *GetOnPremisesInstanceInput) (*GetOnPremisesInstanceOutput, error) {
 	req, out := c.GetOnPremisesInstanceRequest(input)
 	err := req.Send()
@@ -1086,6 +1759,8 @@ const opListApplicationRevisions = "ListApplicationRevisions"
 // client's request for the ListApplicationRevisions operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListApplicationRevisions for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1127,7 +1802,49 @@ func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevis
 	return
 }
 
+// ListApplicationRevisions API operation for AWS CodeDeploy.
+//
 // Lists information about revisions for an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListApplicationRevisions for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * InvalidSortByException
+//   The column name to sort by is either not present or was specified in an invalid
+//   format.
+//
+//   * InvalidSortOrderException
+//   The sort order was specified in an invalid format.
+//
+//   * InvalidBucketNameFilterException
+//   The bucket name either doesn't exist or was specified in an invalid format.
+//
+//   * InvalidKeyPrefixFilterException
+//   The specified key prefix filter was specified in an invalid format.
+//
+//   * BucketNameFilterRequiredException
+//   A bucket name is required, but was not provided.
+//
+//   * InvalidDeployedStateFilterException
+//   The deployed state filter was specified in an invalid format.
+//
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
 func (c *CodeDeploy) ListApplicationRevisions(input *ListApplicationRevisionsInput) (*ListApplicationRevisionsOutput, error) {
 	req, out := c.ListApplicationRevisionsRequest(input)
 	err := req.Send()
@@ -1165,6 +1882,8 @@ const opListApplications = "ListApplications"
 // client's request for the ListApplications operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListApplications for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1206,7 +1925,21 @@ func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req 
 	return
 }
 
+// ListApplications API operation for AWS CodeDeploy.
+//
 // Lists the applications registered with the applicable IAM user or AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListApplications for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
 func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
 	req, out := c.ListApplicationsRequest(input)
 	err := req.Send()
@@ -1244,6 +1977,8 @@ const opListDeploymentConfigs = "ListDeploymentConfigs"
 // client's request for the ListDeploymentConfigs operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDeploymentConfigs for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1285,7 +2020,21 @@ func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsIn
 	return
 }
 
+// ListDeploymentConfigs API operation for AWS CodeDeploy.
+//
 // Lists the deployment configurations with the applicable IAM user or AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListDeploymentConfigs for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
 func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (*ListDeploymentConfigsOutput, error) {
 	req, out := c.ListDeploymentConfigsRequest(input)
 	err := req.Send()
@@ -1323,6 +2072,8 @@ const opListDeploymentGroups = "ListDeploymentGroups"
 // client's request for the ListDeploymentGroups operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDeploymentGroups for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1364,8 +2115,31 @@ func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInpu
 	return
 }
 
+// ListDeploymentGroups API operation for AWS CodeDeploy.
+//
 // Lists the deployment groups for an application registered with the applicable
 // IAM user or AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListDeploymentGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
 func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (*ListDeploymentGroupsOutput, error) {
 	req, out := c.ListDeploymentGroupsRequest(input)
 	err := req.Send()
@@ -1403,6 +2177,8 @@ const opListDeploymentInstances = "ListDeploymentInstances"
 // client's request for the ListDeploymentInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDeploymentInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1444,8 +2220,37 @@ func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstanc
 	return
 }
 
+// ListDeploymentInstances API operation for AWS CodeDeploy.
+//
 // Lists the instance for a deployment associated with the applicable IAM user
 // or AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListDeploymentInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * DeploymentIdRequiredException
+//   At least one deployment ID must be specified.
+//
+//   * DeploymentDoesNotExistException
+//   The deployment does not exist with the applicable IAM user or AWS account.
+//
+//   * DeploymentNotStartedException
+//   The specified deployment has not started.
+//
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
+//   * InvalidDeploymentIdException
+//   At least one of the deployment IDs was specified in an invalid format.
+//
+//   * InvalidInstanceStatusException
+//   The specified instance status does not exist.
+//
 func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput) (*ListDeploymentInstancesOutput, error) {
 	req, out := c.ListDeploymentInstancesRequest(input)
 	err := req.Send()
@@ -1483,6 +2288,8 @@ const opListDeployments = "ListDeployments"
 // client's request for the ListDeployments operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListDeployments for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1524,8 +2331,47 @@ func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *r
 	return
 }
 
+// ListDeployments API operation for AWS CodeDeploy.
+//
 // Lists the deployments in a deployment group for an application registered
 // with the applicable IAM user or AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListDeployments for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * DeploymentGroupDoesNotExistException
+//   The named deployment group does not exist with the applicable IAM user or
+//   AWS account.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * InvalidTimeRangeException
+//   The specified time range was specified in an invalid format.
+//
+//   * InvalidDeploymentStatusException
+//   The specified deployment status doesn't exist or cannot be determined.
+//
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
 func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
 	req, out := c.ListDeploymentsRequest(input)
 	err := req.Send()
@@ -1564,6 +2410,8 @@ const opListOnPremisesInstances = "ListOnPremisesInstances"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See ListOnPremisesInstances for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -1598,11 +2446,31 @@ func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstanc
 	return
 }
 
+// ListOnPremisesInstances API operation for AWS CodeDeploy.
+//
 // Gets a list of names for one or more on-premises instances.
 //
 // Unless otherwise specified, both registered and deregistered on-premises
 // instance names will be listed. To list only registered or deregistered on-premises
 // instance names, use the registration status parameter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation ListOnPremisesInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidRegistrationStatusException
+//   The registration status was specified in an invalid format.
+//
+//   * InvalidTagFilterException
+//   The specified tag filter was specified in an invalid format.
+//
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format.
+//
 func (c *CodeDeploy) ListOnPremisesInstances(input *ListOnPremisesInstancesInput) (*ListOnPremisesInstancesOutput, error) {
 	req, out := c.ListOnPremisesInstancesRequest(input)
 	err := req.Send()
@@ -1615,6 +2483,8 @@ const opRegisterApplicationRevision = "RegisterApplicationRevision"
 // client's request for the RegisterApplicationRevision operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterApplicationRevision for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1652,7 +2522,36 @@ func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicati
 	return
 }
 
+// RegisterApplicationRevision API operation for AWS CodeDeploy.
+//
 // Registers with AWS CodeDeploy a revision for the specified application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation RegisterApplicationRevision for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * DescriptionTooLongException
+//   The description is too long.
+//
+//   * RevisionRequiredException
+//   The revision ID was not specified.
+//
+//   * InvalidRevisionException
+//   The revision was specified in an invalid format.
+//
 func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevisionInput) (*RegisterApplicationRevisionOutput, error) {
 	req, out := c.RegisterApplicationRevisionRequest(input)
 	err := req.Send()
@@ -1665,6 +2564,8 @@ const opRegisterOnPremisesInstance = "RegisterOnPremisesInstance"
 // client's request for the RegisterOnPremisesInstance operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RegisterOnPremisesInstance for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1702,7 +2603,36 @@ func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremises
 	return
 }
 
+// RegisterOnPremisesInstance API operation for AWS CodeDeploy.
+//
 // Registers an on-premises instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation RegisterOnPremisesInstance for usage and error information.
+//
+// Returned Error Codes:
+//   * InstanceNameAlreadyRegisteredException
+//   The specified on-premises instance name is already registered.
+//
+//   * IamUserArnAlreadyRegisteredException
+//   The specified IAM user ARN is already registered with an on-premises instance.
+//
+//   * InstanceNameRequiredException
+//   An on-premises instance name was not specified.
+//
+//   * IamUserArnRequiredException
+//   An IAM user ARN was not specified.
+//
+//   * InvalidInstanceNameException
+//   The specified on-premises instance name was specified in an invalid format.
+//
+//   * InvalidIamUserArnException
+//   The IAM user ARN was specified in an invalid format.
+//
 func (c *CodeDeploy) RegisterOnPremisesInstance(input *RegisterOnPremisesInstanceInput) (*RegisterOnPremisesInstanceOutput, error) {
 	req, out := c.RegisterOnPremisesInstanceRequest(input)
 	err := req.Send()
@@ -1715,6 +2645,8 @@ const opRemoveTagsFromOnPremisesInstances = "RemoveTagsFromOnPremisesInstances"
 // client's request for the RemoveTagsFromOnPremisesInstances operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RemoveTagsFromOnPremisesInstances for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1752,7 +2684,37 @@ func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsF
 	return
 }
 
+// RemoveTagsFromOnPremisesInstances API operation for AWS CodeDeploy.
+//
 // Removes one or more tags from one or more on-premises instances.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation RemoveTagsFromOnPremisesInstances for usage and error information.
+//
+// Returned Error Codes:
+//   * InstanceNameRequiredException
+//   An on-premises instance name was not specified.
+//
+//   * TagRequiredException
+//   A tag was not specified.
+//
+//   * InvalidTagException
+//   The specified tag was specified in an invalid format.
+//
+//   * TagLimitExceededException
+//   The maximum allowed number of tags was exceeded.
+//
+//   * InstanceLimitExceededException
+//   The maximum number of allowed on-premises instances in a single call was
+//   exceeded.
+//
+//   * InstanceNotRegisteredException
+//   The specified on-premises instance is not registered.
+//
 func (c *CodeDeploy) RemoveTagsFromOnPremisesInstances(input *RemoveTagsFromOnPremisesInstancesInput) (*RemoveTagsFromOnPremisesInstancesOutput, error) {
 	req, out := c.RemoveTagsFromOnPremisesInstancesRequest(input)
 	err := req.Send()
@@ -1765,6 +2727,8 @@ const opStopDeployment = "StopDeployment"
 // client's request for the StopDeployment operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StopDeployment for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1800,7 +2764,30 @@ func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *req
 	return
 }
 
+// StopDeployment API operation for AWS CodeDeploy.
+//
 // Attempts to stop an ongoing deployment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation StopDeployment for usage and error information.
+//
+// Returned Error Codes:
+//   * DeploymentIdRequiredException
+//   At least one deployment ID must be specified.
+//
+//   * DeploymentDoesNotExistException
+//   The deployment does not exist with the applicable IAM user or AWS account.
+//
+//   * DeploymentAlreadyCompletedException
+//   The deployment is already complete.
+//
+//   * InvalidDeploymentIdException
+//   At least one of the deployment IDs was specified in an invalid format.
+//
 func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (*StopDeploymentOutput, error) {
 	req, out := c.StopDeploymentRequest(input)
 	err := req.Send()
@@ -1813,6 +2800,8 @@ const opUpdateApplication = "UpdateApplication"
 // client's request for the UpdateApplication operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateApplication for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1850,7 +2839,31 @@ func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (re
 	return
 }
 
+// UpdateApplication API operation for AWS CodeDeploy.
+//
 // Changes the name of an application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation UpdateApplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationAlreadyExistsException
+//   An application with the specified name already exists with the applicable
+//   IAM user or AWS account.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
 func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
 	err := req.Send()
@@ -1863,6 +2876,8 @@ const opUpdateDeploymentGroup = "UpdateDeploymentGroup"
 // client's request for the UpdateDeploymentGroup operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdateDeploymentGroup for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1898,7 +2913,92 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 	return
 }
 
+// UpdateDeploymentGroup API operation for AWS CodeDeploy.
+//
 // Changes information about a deployment group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeDeploy's
+// API operation UpdateDeploymentGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ApplicationNameRequiredException
+//   The minimum number of required application names was not specified.
+//
+//   * InvalidApplicationNameException
+//   The application name was specified in an invalid format.
+//
+//   * ApplicationDoesNotExistException
+//   The application does not exist with the applicable IAM user or AWS account.
+//
+//   * InvalidDeploymentGroupNameException
+//   The deployment group name was specified in an invalid format.
+//
+//   * DeploymentGroupAlreadyExistsException
+//   A deployment group with the specified name already exists with the applicable
+//   IAM user or AWS account.
+//
+//   * DeploymentGroupNameRequiredException
+//   The deployment group name was not specified.
+//
+//   * DeploymentGroupDoesNotExistException
+//   The named deployment group does not exist with the applicable IAM user or
+//   AWS account.
+//
+//   * InvalidEC2TagException
+//   The tag was specified in an invalid format.
+//
+//   * InvalidTagException
+//   The specified tag was specified in an invalid format.
+//
+//   * InvalidAutoScalingGroupException
+//   The Auto Scaling group was specified in an invalid format or does not exist.
+//
+//   * InvalidDeploymentConfigNameException
+//   The deployment configuration name was specified in an invalid format.
+//
+//   * DeploymentConfigDoesNotExistException
+//   The deployment configuration does not exist with the applicable IAM user
+//   or AWS account.
+//
+//   * InvalidRoleException
+//   The service role ARN was specified in an invalid format. Or, if an Auto Scaling
+//   group was specified, the specified service role does not grant the appropriate
+//   permissions to Auto Scaling.
+//
+//   * LifecycleHookLimitExceededException
+//   The limit for lifecycle hooks was exceeded.
+//
+//   * InvalidTriggerConfigException
+//   The trigger was specified in an invalid format.
+//
+//   * TriggerTargetsLimitExceededException
+//   The maximum allowed number of triggers was exceeded.
+//
+//   * InvalidAlarmConfigException
+//   The format of the alarm configuration is invalid. Possible causes include:
+//
+//     The alarm list is null.
+//
+//     The alarm object is null.
+//
+//     The alarm name is empty or null or exceeds the 255 character limit.
+//
+//     Two alarms with the same name have been specified.
+//
+//     The alarm configuration is enabled but the alarm list is empty.
+//
+//   * AlarmsLimitExceededException
+//   The maximum number of alarms for a deployment group (10) was exceeded.
+//
+//   * InvalidAutoRollbackConfigException
+//   The automatic rollback configuration was specified in an invalid format.
+//   For example, automatic rollback is enabled but an invalid triggering event
+//   type or no event types were listed.
+//
 func (c *CodeDeploy) UpdateDeploymentGroup(input *UpdateDeploymentGroupInput) (*UpdateDeploymentGroupOutput, error) {
 	req, out := c.UpdateDeploymentGroupRequest(input)
 	err := req.Send()

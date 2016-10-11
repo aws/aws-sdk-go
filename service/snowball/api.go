@@ -18,6 +18,8 @@ const opCancelJob = "CancelJob"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See CancelJob for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -52,10 +54,33 @@ func (c *Snowball) CancelJobRequest(input *CancelJobInput) (req *request.Request
 	return
 }
 
+// CancelJob API operation for Amazon Import/Export Snowball.
+//
 // Cancels the specified job. Note that you can only cancel a job before its
 // JobState value changes to PreparingAppliance. Requesting the ListJobs or
 // DescribeJob action will return a job's JobState as part of the response element
 // data returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation CancelJob for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+//   * InvalidJobStateException
+//   The action can't be performed because the job's current state doesn't allow
+//   that action to be performed.
+//
+//   * KMSRequestFailedException
+//   The provided AWS Key Management Service key lacks the permissions to perform
+//   the specified CreateJob or UpdateJob action.
+//
 func (c *Snowball) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
 	err := req.Send()
@@ -68,6 +93,8 @@ const opCreateAddress = "CreateAddress"
 // client's request for the CreateAddress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateAddress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,11 +130,31 @@ func (c *Snowball) CreateAddressRequest(input *CreateAddressInput) (req *request
 	return
 }
 
+// CreateAddress API operation for Amazon Import/Export Snowball.
+//
 // Creates an address for a Snowball to be shipped to.
 //
 // Addresses are validated at the time of creation. The address you provide
 // must be located within the serviceable area of your region. If the address
 // is invalid or unsupported, then an exception is thrown.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation CreateAddress for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidAddressException
+//   The address provided was invalid. Check the address with your region's carrier,
+//   and try again.
+//
+//   * UnsupportedAddressException
+//   The address is either outside the serviceable area for your region, or an
+//   error occurred. Check the address with your region's carrier and try again.
+//   If the issue persists, contact AWS Support.
+//
 func (c *Snowball) CreateAddress(input *CreateAddressInput) (*CreateAddressOutput, error) {
 	req, out := c.CreateAddressRequest(input)
 	err := req.Send()
@@ -120,6 +167,8 @@ const opCreateJob = "CreateJob"
 // client's request for the CreateJob operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateJob for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -155,10 +204,29 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 	return
 }
 
+// CreateJob API operation for Amazon Import/Export Snowball.
+//
 // Creates a job to import or export data between Amazon S3 and your on-premises
 // data center. Note that your AWS account must have the right trust policies
 // and permissions in place to create a job for Snowball. For more information,
 // see api-reference-policies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation CreateJob for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+//   * KMSRequestFailedException
+//   The provided AWS Key Management Service key lacks the permissions to perform
+//   the specified CreateJob or UpdateJob action.
+//
 func (c *Snowball) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
 	req, out := c.CreateJobRequest(input)
 	err := req.Send()
@@ -171,6 +239,8 @@ const opDescribeAddress = "DescribeAddress"
 // client's request for the DescribeAddress operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAddress for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -206,8 +276,23 @@ func (c *Snowball) DescribeAddressRequest(input *DescribeAddressInput) (req *req
 	return
 }
 
+// DescribeAddress API operation for Amazon Import/Export Snowball.
+//
 // Takes an AddressId and returns specific details about that address in the
 // form of an Address object.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation DescribeAddress for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
 func (c *Snowball) DescribeAddress(input *DescribeAddressInput) (*DescribeAddressOutput, error) {
 	req, out := c.DescribeAddressRequest(input)
 	err := req.Send()
@@ -220,6 +305,8 @@ const opDescribeAddresses = "DescribeAddresses"
 // client's request for the DescribeAddresses operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DescribeAddresses for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -261,9 +348,24 @@ func (c *Snowball) DescribeAddressesRequest(input *DescribeAddressesInput) (req 
 	return
 }
 
+// DescribeAddresses API operation for Amazon Import/Export Snowball.
+//
 // Returns a specified number of ADDRESS objects. Calling this API in one of
 // the US regions will return addresses from the list of all addresses associated
 // with this account in all US regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation DescribeAddresses for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
 func (c *Snowball) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddressesOutput, error) {
 	req, out := c.DescribeAddressesRequest(input)
 	err := req.Send()
@@ -302,6 +404,8 @@ const opDescribeJob = "DescribeJob"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See DescribeJob for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -336,8 +440,23 @@ func (c *Snowball) DescribeJobRequest(input *DescribeJobInput) (req *request.Req
 	return
 }
 
+// DescribeJob API operation for Amazon Import/Export Snowball.
+//
 // Returns information about a specific job including shipping information,
 // job status, and other important metadata.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation DescribeJob for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
 func (c *Snowball) DescribeJob(input *DescribeJobInput) (*DescribeJobOutput, error) {
 	req, out := c.DescribeJobRequest(input)
 	err := req.Send()
@@ -350,6 +469,8 @@ const opGetJobManifest = "GetJobManifest"
 // client's request for the GetJobManifest operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetJobManifest for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -385,6 +506,8 @@ func (c *Snowball) GetJobManifestRequest(input *GetJobManifestInput) (req *reque
 	return
 }
 
+// GetJobManifest API operation for Amazon Import/Export Snowball.
+//
 // Returns a link to an Amazon S3 presigned URL for the manifest file associated
 // with the specified JobId value. You can access the manifest file for up to
 // 60 minutes after this request has been made. To access the manifest file
@@ -403,6 +526,23 @@ func (c *Snowball) GetJobManifestRequest(input *GetJobManifestInput) (req *reque
 //
 // Note that the credentials of a given job, including its manifest file and
 // unlock code, expire 90 days after the job is created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation GetJobManifest for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+//   * InvalidJobStateException
+//   The action can't be performed because the job's current state doesn't allow
+//   that action to be performed.
+//
 func (c *Snowball) GetJobManifest(input *GetJobManifestInput) (*GetJobManifestOutput, error) {
 	req, out := c.GetJobManifestRequest(input)
 	err := req.Send()
@@ -415,6 +555,8 @@ const opGetJobUnlockCode = "GetJobUnlockCode"
 // client's request for the GetJobUnlockCode operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetJobUnlockCode for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -450,6 +592,8 @@ func (c *Snowball) GetJobUnlockCodeRequest(input *GetJobUnlockCodeInput) (req *r
 	return
 }
 
+// GetJobUnlockCode API operation for Amazon Import/Export Snowball.
+//
 // Returns the UnlockCode code value for the specified job. A particular UnlockCode
 // value can be accessed for up to 90 days after the associated job has been
 // created.
@@ -463,6 +607,23 @@ func (c *Snowball) GetJobUnlockCodeRequest(input *GetJobUnlockCodeInput) (req *r
 // in the same location as the manifest file for that job. Saving these separately
 // helps prevent unauthorized parties from gaining access to the Snowball associated
 // with that job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation GetJobUnlockCode for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+//   * InvalidJobStateException
+//   The action can't be performed because the job's current state doesn't allow
+//   that action to be performed.
+//
 func (c *Snowball) GetJobUnlockCode(input *GetJobUnlockCodeInput) (*GetJobUnlockCodeOutput, error) {
 	req, out := c.GetJobUnlockCodeRequest(input)
 	err := req.Send()
@@ -475,6 +636,8 @@ const opGetSnowballUsage = "GetSnowballUsage"
 // client's request for the GetSnowballUsage operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetSnowballUsage for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -510,12 +673,21 @@ func (c *Snowball) GetSnowballUsageRequest(input *GetSnowballUsageInput) (req *r
 	return
 }
 
+// GetSnowballUsage API operation for Amazon Import/Export Snowball.
+//
 // Returns information about the Snowball service limit for your account, and
 // also the number of Snowballs your account has in use.
 //
 // Note that the default service limit for the number of Snowballs that you
 // can have at one time is 1. If you want to increase your service limit, contact
 // AWS Support.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation GetSnowballUsage for usage and error information.
 func (c *Snowball) GetSnowballUsage(input *GetSnowballUsageInput) (*GetSnowballUsageOutput, error) {
 	req, out := c.GetSnowballUsageRequest(input)
 	err := req.Send()
@@ -528,6 +700,8 @@ const opListJobs = "ListJobs"
 // client's request for the ListJobs operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListJobs for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -569,11 +743,20 @@ func (c *Snowball) ListJobsRequest(input *ListJobsInput) (req *request.Request, 
 	return
 }
 
+// ListJobs API operation for Amazon Import/Export Snowball.
+//
 // Returns an array of JobListEntry objects of the specified length. Each JobListEntry
 // object contains a job's state, a job's ID, and a value that indicates whether
 // the job is a job part, in the case of export jobs. Calling this API action
 // in one of the US regions will return jobs from the list of all jobs associated
 // with this account in all US regions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation ListJobs for usage and error information.
 func (c *Snowball) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
 	err := req.Send()
@@ -612,6 +795,8 @@ const opUpdateJob = "UpdateJob"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See UpdateJob for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -646,9 +831,32 @@ func (c *Snowball) UpdateJobRequest(input *UpdateJobInput) (req *request.Request
 	return
 }
 
+// UpdateJob API operation for Amazon Import/Export Snowball.
+//
 // While a job's JobState value is New, you can update some of the information
 // associated with a job. Once the job changes to a different job state, usually
 // within 60 minutes of the job being created, this action is no longer available.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation UpdateJob for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+//   * InvalidJobStateException
+//   The action can't be performed because the job's current state doesn't allow
+//   that action to be performed.
+//
+//   * KMSRequestFailedException
+//   The provided AWS Key Management Service key lacks the permissions to perform
+//   the specified CreateJob or UpdateJob action.
+//
 func (c *Snowball) UpdateJob(input *UpdateJobInput) (*UpdateJobOutput, error) {
 	req, out := c.UpdateJobRequest(input)
 	err := req.Send()

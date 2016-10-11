@@ -20,6 +20,8 @@ const opAcknowledgeJob = "AcknowledgeJob"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See AcknowledgeJob for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -54,8 +56,28 @@ func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *r
 	return
 }
 
+// AcknowledgeJob API operation for AWS CodePipeline.
+//
 // Returns information about a specified job and whether that job has been received
 // by the job worker. Only used for custom actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation AcknowledgeJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * InvalidNonceException
+//   The specified nonce was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) AcknowledgeJob(input *AcknowledgeJobInput) (*AcknowledgeJobOutput, error) {
 	req, out := c.AcknowledgeJobRequest(input)
 	err := req.Send()
@@ -68,6 +90,8 @@ const opAcknowledgeThirdPartyJob = "AcknowledgeThirdPartyJob"
 // client's request for the AcknowledgeThirdPartyJob operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See AcknowledgeThirdPartyJob for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -103,8 +127,31 @@ func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPa
 	return
 }
 
+// AcknowledgeThirdPartyJob API operation for AWS CodePipeline.
+//
 // Confirms a job worker has received the specified job. Only used for partner
 // actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation AcknowledgeThirdPartyJob for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * InvalidNonceException
+//   The specified nonce was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
+//   * InvalidClientTokenException
+//   The client token was specified in an invalid format
+//
 func (c *CodePipeline) AcknowledgeThirdPartyJob(input *AcknowledgeThirdPartyJobInput) (*AcknowledgeThirdPartyJobOutput, error) {
 	req, out := c.AcknowledgeThirdPartyJobRequest(input)
 	err := req.Send()
@@ -117,6 +164,8 @@ const opCreateCustomActionType = "CreateCustomActionType"
 // client's request for the CreateCustomActionType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreateCustomActionType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -152,8 +201,26 @@ func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTy
 	return
 }
 
+// CreateCustomActionType API operation for AWS CodePipeline.
+//
 // Creates a new custom action that can be used in all pipelines associated
 // with the AWS account. Only used for custom actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation CreateCustomActionType for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * LimitExceededException
+//   The number of pipelines associated with the AWS account has exceeded the
+//   limit allowed for the account.
+//
 func (c *CodePipeline) CreateCustomActionType(input *CreateCustomActionTypeInput) (*CreateCustomActionTypeOutput, error) {
 	req, out := c.CreateCustomActionTypeRequest(input)
 	err := req.Send()
@@ -166,6 +233,8 @@ const opCreatePipeline = "CreatePipeline"
 // client's request for the CreatePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See CreatePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -201,7 +270,40 @@ func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *r
 	return
 }
 
+// CreatePipeline API operation for AWS CodePipeline.
+//
 // Creates a pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation CreatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNameInUseException
+//   The specified pipeline name is already in use.
+//
+//   * InvalidStageDeclarationException
+//   The specified stage declaration was specified in an invalid format.
+//
+//   * InvalidActionDeclarationException
+//   The specified action declaration was specified in an invalid format.
+//
+//   * InvalidBlockerDeclarationException
+//   Reserved for future use.
+//
+//   * InvalidStructureException
+//   The specified structure was specified in an invalid format.
+//
+//   * LimitExceededException
+//   The number of pipelines associated with the AWS account has exceeded the
+//   limit allowed for the account.
+//
 func (c *CodePipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipelineOutput, error) {
 	req, out := c.CreatePipelineRequest(input)
 	err := req.Send()
@@ -214,6 +316,8 @@ const opDeleteCustomActionType = "DeleteCustomActionType"
 // client's request for the DeleteCustomActionType operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeleteCustomActionType for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -251,11 +355,25 @@ func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTy
 	return
 }
 
+// DeleteCustomActionType API operation for AWS CodePipeline.
+//
 // Marks a custom action as deleted. PollForJobs for the custom action will
 // fail after the action is marked for deletion. Only used for custom actions.
 //
 //  You cannot recreate a custom action after it has been deleted unless you
 // increase the version number of the action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation DeleteCustomActionType for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
 func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput) (*DeleteCustomActionTypeOutput, error) {
 	req, out := c.DeleteCustomActionTypeRequest(input)
 	err := req.Send()
@@ -268,6 +386,8 @@ const opDeletePipeline = "DeletePipeline"
 // client's request for the DeletePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DeletePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -305,7 +425,21 @@ func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *r
 	return
 }
 
+// DeletePipeline API operation for AWS CodePipeline.
+//
 // Deletes the specified pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation DeletePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
 func (c *CodePipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipelineOutput, error) {
 	req, out := c.DeletePipelineRequest(input)
 	err := req.Send()
@@ -318,6 +452,8 @@ const opDisableStageTransition = "DisableStageTransition"
 // client's request for the DisableStageTransition operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See DisableStageTransition for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -355,8 +491,28 @@ func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransiti
 	return
 }
 
+// DisableStageTransition API operation for AWS CodePipeline.
+//
 // Prevents artifacts in a pipeline from transitioning to the next stage in
 // the pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation DisableStageTransition for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * StageNotFoundException
+//   The specified stage was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) DisableStageTransition(input *DisableStageTransitionInput) (*DisableStageTransitionOutput, error) {
 	req, out := c.DisableStageTransitionRequest(input)
 	err := req.Send()
@@ -369,6 +525,8 @@ const opEnableStageTransition = "EnableStageTransition"
 // client's request for the EnableStageTransition operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See EnableStageTransition for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -406,7 +564,27 @@ func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransition
 	return
 }
 
+// EnableStageTransition API operation for AWS CodePipeline.
+//
 // Enables artifacts in a pipeline to transition to a stage in a pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation EnableStageTransition for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * StageNotFoundException
+//   The specified stage was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) EnableStageTransition(input *EnableStageTransitionInput) (*EnableStageTransitionOutput, error) {
 	req, out := c.EnableStageTransitionRequest(input)
 	err := req.Send()
@@ -419,6 +597,8 @@ const opGetJobDetails = "GetJobDetails"
 // client's request for the GetJobDetails operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetJobDetails for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -454,12 +634,29 @@ func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *req
 	return
 }
 
+// GetJobDetails API operation for AWS CodePipeline.
+//
 // Returns information about a job. Only used for custom actions.
 //
 //  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation GetJobDetails for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) GetJobDetails(input *GetJobDetailsInput) (*GetJobDetailsOutput, error) {
 	req, out := c.GetJobDetailsRequest(input)
 	err := req.Send()
@@ -472,6 +669,8 @@ const opGetPipeline = "GetPipeline"
 // client's request for the GetPipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetPipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -507,9 +706,30 @@ func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *request
 	return
 }
 
+// GetPipeline API operation for AWS CodePipeline.
+//
 // Returns the metadata, structure, stages, and actions of a pipeline. Can be
 // used to return the entire structure of a pipeline in JSON format, which can
 // then be modified and used to update the pipeline structure with UpdatePipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation GetPipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * PipelineVersionNotFoundException
+//   The specified pipeline version was specified in an invalid format or cannot
+//   be found.
+//
 func (c *CodePipeline) GetPipeline(input *GetPipelineInput) (*GetPipelineOutput, error) {
 	req, out := c.GetPipelineRequest(input)
 	err := req.Send()
@@ -522,6 +742,8 @@ const opGetPipelineExecution = "GetPipelineExecution"
 // client's request for the GetPipelineExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetPipelineExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -557,9 +779,30 @@ func (c *CodePipeline) GetPipelineExecutionRequest(input *GetPipelineExecutionIn
 	return
 }
 
+// GetPipelineExecution API operation for AWS CodePipeline.
+//
 // Returns information about an execution of a pipeline, including details about
 // artifacts, the pipeline execution ID, and the name, version, and status of
 // the pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation GetPipelineExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * PipelineExecutionNotFoundException
+//   The pipeline execution was specified in an invalid format or cannot be found,
+//   or an execution ID does not belong to the specified pipeline.
+//
 func (c *CodePipeline) GetPipelineExecution(input *GetPipelineExecutionInput) (*GetPipelineExecutionOutput, error) {
 	req, out := c.GetPipelineExecutionRequest(input)
 	err := req.Send()
@@ -572,6 +815,8 @@ const opGetPipelineState = "GetPipelineState"
 // client's request for the GetPipelineState operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetPipelineState for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -607,8 +852,25 @@ func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (re
 	return
 }
 
+// GetPipelineState API operation for AWS CodePipeline.
+//
 // Returns information about the state of a pipeline, including the stages and
 // actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation GetPipelineState for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipelineStateOutput, error) {
 	req, out := c.GetPipelineStateRequest(input)
 	err := req.Send()
@@ -621,6 +883,8 @@ const opGetThirdPartyJobDetails = "GetThirdPartyJobDetails"
 // client's request for the GetThirdPartyJobDetails operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See GetThirdPartyJobDetails for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -656,6 +920,8 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 	return
 }
 
+// GetThirdPartyJobDetails API operation for AWS CodePipeline.
+//
 // Requests the details of a job for a third party action. Only used for partner
 // actions.
 //
@@ -663,6 +929,27 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation GetThirdPartyJobDetails for usage and error information.
+//
+// Returned Error Codes:
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * InvalidClientTokenException
+//   The client token was specified in an invalid format
+//
+//   * InvalidJobException
+//   The specified job was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) GetThirdPartyJobDetails(input *GetThirdPartyJobDetailsInput) (*GetThirdPartyJobDetailsOutput, error) {
 	req, out := c.GetThirdPartyJobDetailsRequest(input)
 	err := req.Send()
@@ -675,6 +962,8 @@ const opListActionTypes = "ListActionTypes"
 // client's request for the ListActionTypes operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListActionTypes for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -710,8 +999,26 @@ func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req 
 	return
 }
 
+// ListActionTypes API operation for AWS CodePipeline.
+//
 // Gets a summary of all AWS CodePipeline action types associated with your
 // account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation ListActionTypes for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format. Make sure that the next
+//   token you provided is the token returned by a previous call.
+//
 func (c *CodePipeline) ListActionTypes(input *ListActionTypesInput) (*ListActionTypesOutput, error) {
 	req, out := c.ListActionTypesRequest(input)
 	err := req.Send()
@@ -724,6 +1031,8 @@ const opListPipelines = "ListPipelines"
 // client's request for the ListPipelines operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See ListPipelines for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -759,7 +1068,22 @@ func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *req
 	return
 }
 
+// ListPipelines API operation for AWS CodePipeline.
+//
 // Gets a summary of all of the pipelines associated with your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation ListPipelines for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidNextTokenException
+//   The next token was specified in an invalid format. Make sure that the next
+//   token you provided is the token returned by a previous call.
+//
 func (c *CodePipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesOutput, error) {
 	req, out := c.ListPipelinesRequest(input)
 	err := req.Send()
@@ -772,6 +1096,8 @@ const opPollForJobs = "PollForJobs"
 // client's request for the PollForJobs operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PollForJobs for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -807,12 +1133,29 @@ func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request
 	return
 }
 
+// PollForJobs API operation for AWS CodePipeline.
+//
 // Returns information about any jobs for AWS CodePipeline to act upon.
 //
 //  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
 // Additionally, this API returns any secret values defined for the action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PollForJobs for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * ActionTypeNotFoundException
+//   The specified action type cannot be found.
+//
 func (c *CodePipeline) PollForJobs(input *PollForJobsInput) (*PollForJobsOutput, error) {
 	req, out := c.PollForJobsRequest(input)
 	err := req.Send()
@@ -825,6 +1168,8 @@ const opPollForThirdPartyJobs = "PollForThirdPartyJobs"
 // client's request for the PollForThirdPartyJobs operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PollForThirdPartyJobs for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -860,12 +1205,29 @@ func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobs
 	return
 }
 
+// PollForThirdPartyJobs API operation for AWS CodePipeline.
+//
 // Determines whether there are any third party jobs for a job worker to act
 // on. Only used for partner actions.
 //
 //  When this API is called, AWS CodePipeline returns temporary credentials
 // for the Amazon S3 bucket used to store artifacts for the pipeline, if the
 // action requires access to that Amazon S3 bucket for input or output artifacts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PollForThirdPartyJobs for usage and error information.
+//
+// Returned Error Codes:
+//   * ActionTypeNotFoundException
+//   The specified action type cannot be found.
+//
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
 func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) (*PollForThirdPartyJobsOutput, error) {
 	req, out := c.PollForThirdPartyJobsRequest(input)
 	err := req.Send()
@@ -878,6 +1240,8 @@ const opPutActionRevision = "PutActionRevision"
 // client's request for the PutActionRevision operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutActionRevision for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -913,7 +1277,30 @@ func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (
 	return
 }
 
+// PutActionRevision API operation for AWS CodePipeline.
+//
 // Provides information to AWS CodePipeline about new revisions to a source.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PutActionRevision for usage and error information.
+//
+// Returned Error Codes:
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * StageNotFoundException
+//   The specified stage was specified in an invalid format or cannot be found.
+//
+//   * ActionNotFoundException
+//   The specified action cannot be found.
+//
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
 func (c *CodePipeline) PutActionRevision(input *PutActionRevisionInput) (*PutActionRevisionOutput, error) {
 	req, out := c.PutActionRevisionRequest(input)
 	err := req.Send()
@@ -926,6 +1313,8 @@ const opPutApprovalResult = "PutApprovalResult"
 // client's request for the PutApprovalResult operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutApprovalResult for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -961,8 +1350,37 @@ func (c *CodePipeline) PutApprovalResultRequest(input *PutApprovalResultInput) (
 	return
 }
 
+// PutApprovalResult API operation for AWS CodePipeline.
+//
 // Provides the response to a manual approval request to AWS CodePipeline. Valid
 // responses include Approved and Rejected.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PutApprovalResult for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidApprovalTokenException
+//   The approval request already received a response or has expired.
+//
+//   * ApprovalAlreadyCompletedException
+//   The approval action has already been approved or rejected.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * StageNotFoundException
+//   The specified stage was specified in an invalid format or cannot be found.
+//
+//   * ActionNotFoundException
+//   The specified action cannot be found.
+//
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
 func (c *CodePipeline) PutApprovalResult(input *PutApprovalResultInput) (*PutApprovalResultOutput, error) {
 	req, out := c.PutApprovalResultRequest(input)
 	err := req.Send()
@@ -975,6 +1393,8 @@ const opPutJobFailureResult = "PutJobFailureResult"
 // client's request for the PutJobFailureResult operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutJobFailureResult for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1012,8 +1432,28 @@ func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInpu
 	return
 }
 
+// PutJobFailureResult API operation for AWS CodePipeline.
+//
 // Represents the failure of a job as returned to the pipeline by a job worker.
 // Only used for custom actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PutJobFailureResult for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
+//   * InvalidJobStateException
+//   The specified job state was specified in an invalid format.
+//
 func (c *CodePipeline) PutJobFailureResult(input *PutJobFailureResultInput) (*PutJobFailureResultOutput, error) {
 	req, out := c.PutJobFailureResultRequest(input)
 	err := req.Send()
@@ -1026,6 +1466,8 @@ const opPutJobSuccessResult = "PutJobSuccessResult"
 // client's request for the PutJobSuccessResult operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutJobSuccessResult for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1063,8 +1505,28 @@ func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInpu
 	return
 }
 
+// PutJobSuccessResult API operation for AWS CodePipeline.
+//
 // Represents the success of a job as returned to the pipeline by a job worker.
 // Only used for custom actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PutJobSuccessResult for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
+//   * InvalidJobStateException
+//   The specified job state was specified in an invalid format.
+//
 func (c *CodePipeline) PutJobSuccessResult(input *PutJobSuccessResultInput) (*PutJobSuccessResultOutput, error) {
 	req, out := c.PutJobSuccessResultRequest(input)
 	err := req.Send()
@@ -1077,6 +1539,8 @@ const opPutThirdPartyJobFailureResult = "PutThirdPartyJobFailureResult"
 // client's request for the PutThirdPartyJobFailureResult operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutThirdPartyJobFailureResult for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1114,8 +1578,31 @@ func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdParty
 	return
 }
 
+// PutThirdPartyJobFailureResult API operation for AWS CodePipeline.
+//
 // Represents the failure of a third party job as returned to the pipeline by
 // a job worker. Only used for partner actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PutThirdPartyJobFailureResult for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
+//   * InvalidJobStateException
+//   The specified job state was specified in an invalid format.
+//
+//   * InvalidClientTokenException
+//   The client token was specified in an invalid format
+//
 func (c *CodePipeline) PutThirdPartyJobFailureResult(input *PutThirdPartyJobFailureResultInput) (*PutThirdPartyJobFailureResultOutput, error) {
 	req, out := c.PutThirdPartyJobFailureResultRequest(input)
 	err := req.Send()
@@ -1128,6 +1615,8 @@ const opPutThirdPartyJobSuccessResult = "PutThirdPartyJobSuccessResult"
 // client's request for the PutThirdPartyJobSuccessResult operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See PutThirdPartyJobSuccessResult for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1165,8 +1654,31 @@ func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdParty
 	return
 }
 
+// PutThirdPartyJobSuccessResult API operation for AWS CodePipeline.
+//
 // Represents the success of a third party job as returned to the pipeline by
 // a job worker. Only used for partner actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation PutThirdPartyJobSuccessResult for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * JobNotFoundException
+//   The specified job was specified in an invalid format or cannot be found.
+//
+//   * InvalidJobStateException
+//   The specified job state was specified in an invalid format.
+//
+//   * InvalidClientTokenException
+//   The client token was specified in an invalid format
+//
 func (c *CodePipeline) PutThirdPartyJobSuccessResult(input *PutThirdPartyJobSuccessResultInput) (*PutThirdPartyJobSuccessResultOutput, error) {
 	req, out := c.PutThirdPartyJobSuccessResultRequest(input)
 	err := req.Send()
@@ -1179,6 +1691,8 @@ const opRetryStageExecution = "RetryStageExecution"
 // client's request for the RetryStageExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See RetryStageExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1214,7 +1728,37 @@ func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInpu
 	return
 }
 
+// RetryStageExecution API operation for AWS CodePipeline.
+//
 // Resumes the pipeline execution by retrying the last failed actions in a stage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation RetryStageExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
+//   * StageNotFoundException
+//   The specified stage was specified in an invalid format or cannot be found.
+//
+//   * StageNotRetryableException
+//   The specified stage can't be retried because the pipeline structure or stage
+//   state changed after the stage was not completed; the stage contains no failed
+//   actions; one or more actions are still in progress; or another retry attempt
+//   is already in progress.
+//
+//   * NotLatestPipelineExecutionException
+//   The stage has failed in a later run of the pipeline and the pipelineExecutionId
+//   associated with the request is out of date.
+//
 func (c *CodePipeline) RetryStageExecution(input *RetryStageExecutionInput) (*RetryStageExecutionOutput, error) {
 	req, out := c.RetryStageExecutionRequest(input)
 	err := req.Send()
@@ -1227,6 +1771,8 @@ const opStartPipelineExecution = "StartPipelineExecution"
 // client's request for the StartPipelineExecution operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See StartPipelineExecution for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1262,8 +1808,25 @@ func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecuti
 	return
 }
 
+// StartPipelineExecution API operation for AWS CodePipeline.
+//
 // Starts the specified pipeline. Specifically, it begins processing the latest
 // commit to the source location specified as part of the pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation StartPipelineExecution for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * PipelineNotFoundException
+//   The specified pipeline was specified in an invalid format or cannot be found.
+//
 func (c *CodePipeline) StartPipelineExecution(input *StartPipelineExecutionInput) (*StartPipelineExecutionOutput, error) {
 	req, out := c.StartPipelineExecutionRequest(input)
 	err := req.Send()
@@ -1276,6 +1839,8 @@ const opUpdatePipeline = "UpdatePipeline"
 // client's request for the UpdatePipeline operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UpdatePipeline for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -1311,10 +1876,36 @@ func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *r
 	return
 }
 
+// UpdatePipeline API operation for AWS CodePipeline.
+//
 // Updates a specified pipeline with edits or changes to its structure. Use
 // a JSON file with the pipeline structure in conjunction with UpdatePipeline
 // to provide the full structure of the pipeline. Updating the pipeline increases
 // the version number of the pipeline by 1.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodePipeline's
+// API operation UpdatePipeline for usage and error information.
+//
+// Returned Error Codes:
+//   * ValidationException
+//   The validation was specified in an invalid format.
+//
+//   * InvalidStageDeclarationException
+//   The specified stage declaration was specified in an invalid format.
+//
+//   * InvalidActionDeclarationException
+//   The specified action declaration was specified in an invalid format.
+//
+//   * InvalidBlockerDeclarationException
+//   Reserved for future use.
+//
+//   * InvalidStructureException
+//   The specified structure was specified in an invalid format.
+//
 func (c *CodePipeline) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipelineOutput, error) {
 	req, out := c.UpdatePipelineRequest(input)
 	err := req.Send()

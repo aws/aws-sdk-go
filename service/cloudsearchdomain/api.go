@@ -17,6 +17,8 @@ const opSearch = "Search"
 // value can be used to capture response data after the request's "Send" method
 // is called.
 //
+// See Search for usage and error information.
+//
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
 // access properties on the request object before or after sending the request. If
@@ -51,6 +53,8 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 	return
 }
 
+// Search API operation for Amazon CloudSearch Domain.
+//
 // Retrieves a list of documents that match the specified search criteria. How
 // you specify the search criteria depends on which query parser you use. Amazon
 // CloudSearch supports four query parsers:
@@ -70,6 +74,18 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 // for your domain, use the Amazon CloudSearch configuration service DescribeDomains
 // action. A domain's endpoints are also displayed on the domain dashboard in
 // the Amazon CloudSearch console.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch Domain's
+// API operation Search for usage and error information.
+//
+// Returned Error Codes:
+//   * SearchException
+//   Information about any problems encountered while processing a search request.
+//
 func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
 	req, out := c.SearchRequest(input)
 	err := req.Send()
@@ -82,6 +98,8 @@ const opSuggest = "Suggest"
 // client's request for the Suggest operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See Suggest for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -117,6 +135,8 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Re
 	return
 }
 
+// Suggest API operation for Amazon CloudSearch Domain.
+//
 // Retrieves autocomplete suggestions for a partial query string. You can use
 // suggestions enable you to display likely matches before users finish typing.
 // In Amazon CloudSearch, suggestions are based on the contents of a particular
@@ -134,6 +154,18 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Re
 // for your domain, use the Amazon CloudSearch configuration service DescribeDomains
 // action. A domain's endpoints are also displayed on the domain dashboard in
 // the Amazon CloudSearch console.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch Domain's
+// API operation Suggest for usage and error information.
+//
+// Returned Error Codes:
+//   * SearchException
+//   Information about any problems encountered while processing a search request.
+//
 func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error) {
 	req, out := c.SuggestRequest(input)
 	err := req.Send()
@@ -146,6 +178,8 @@ const opUploadDocuments = "UploadDocuments"
 // client's request for the UploadDocuments operation. The "output" return
 // value can be used to capture response data after the request's "Send" method
 // is called.
+//
+// See UploadDocuments for usage and error information.
 //
 // Creating a request object using this method should be used when you want to inject
 // custom logic into the request's lifecycle using a custom handler, or if you want to
@@ -181,6 +215,8 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 	return
 }
 
+// UploadDocuments API operation for Amazon CloudSearch Domain.
+//
 // Posts a batch of documents to a search domain for indexing. A document batch
 // is a collection of add and delete operations that represent the documents
 // you want to add, update, or delete from your domain. Batches can be described
@@ -203,6 +239,18 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 // in the Amazon CloudSearch Developer Guide. For more information about uploading
 // data for indexing, see Uploading Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/uploading-data.html)
 // in the Amazon CloudSearch Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudSearch Domain's
+// API operation UploadDocuments for usage and error information.
+//
+// Returned Error Codes:
+//   * DocumentServiceException
+//   Information about any problems encountered while processing an upload request.
+//
 func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*UploadDocumentsOutput, error) {
 	req, out := c.UploadDocumentsRequest(input)
 	err := req.Send()
