@@ -30,6 +30,7 @@ func TestTagParse(t *testing.T) {
 		{`dynamodbav:",binaryset"`, false, true, tag{AsBinSet: true}},
 		{`dynamodbav:",numberset"`, false, true, tag{AsNumSet: true}},
 		{`dynamodbav:",stringset"`, false, true, tag{AsStrSet: true}},
+		{`dynamodbav:",stringset,omitemptyelem"`, false, true, tag{AsStrSet: true,OmitEmptyElem:true}},
 	}
 
 	for i, c := range cases {
