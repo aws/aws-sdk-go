@@ -1,3 +1,25 @@
+Release v1.4.16
+===
+
+Service Model Updates
+---
+* `service/ecr`: Update Amazon EC2 Container Registry service model
+  * DescribeImages is a new api used to expose image metadata which today includes image size and image creation timestamp.
+* `service/elasticache`: Update Amazon ElastiCache service model
+  * Elasticache is launching a new major engine release of Redis, 3.2 (providing stability updates and new command sets over 2.8), as well as ElasticSupport for enabling Redis Cluster in 3.2, which provides support for multiple node groups to horizontally scale data, as well as superior engine failover capabilities 
+
+SDK Bug Fixes
+---
+* `aws/session`: Skip shared config on read errors [#883](https://github.com/aws/aws-sdk-go/issues/883)
+* `aws/signer/v4`: Add support for URL.EscapedPath to signer [#885](https://github.com/aws/aws-sdk-go/issues/885)
+
+SDK Features
+---
+* `private/model/api`: Add docs for errors to API operations [#881](https://github.com/aws/aws-sdk-go/issues/881)
+* `private/model/api`: Improve field and waiter doc strings [#879](https://github.com/aws/aws-sdk-go/issues/879)
+* `service/dynamodb/dynamodbattribute`: Allow multiple struct tag elements [#886](https://github.com/aws/aws-sdk-go/issues/886)
+* Add build tags to internal SDK tools [#880](https://github.com/aws/aws-sdk-go/issues/880)
+
 Release v1.4.15
 ===
 

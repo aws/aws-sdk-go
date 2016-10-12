@@ -87,6 +87,10 @@ type ECRAPI interface {
 
 	DeleteRepositoryPolicy(*ecr.DeleteRepositoryPolicyInput) (*ecr.DeleteRepositoryPolicyOutput, error)
 
+	DescribeImagesRequest(*ecr.DescribeImagesInput) (*request.Request, *ecr.DescribeImagesOutput)
+
+	DescribeImages(*ecr.DescribeImagesInput) (*ecr.DescribeImagesOutput, error)
+
 	DescribeRepositoriesRequest(*ecr.DescribeRepositoriesInput) (*request.Request, *ecr.DescribeRepositoriesOutput)
 
 	DescribeRepositories(*ecr.DescribeRepositoriesInput) (*ecr.DescribeRepositoriesOutput, error)
