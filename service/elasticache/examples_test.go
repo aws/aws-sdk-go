@@ -271,8 +271,21 @@ func ExampleElastiCache_CreateReplicationGroup() {
 		CacheSubnetGroupName: aws.String("String"),
 		Engine:               aws.String("String"),
 		EngineVersion:        aws.String("String"),
+		NodeGroupConfiguration: []*elasticache.NodeGroupConfiguration{
+			{ // Required
+				PrimaryAvailabilityZone: aws.String("String"),
+				ReplicaAvailabilityZones: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+				ReplicaCount: aws.Int64(1),
+				Slots:        aws.String("String"),
+			},
+			// More values...
+		},
 		NotificationTopicArn: aws.String("String"),
 		NumCacheClusters:     aws.Int64(1),
+		NumNodeGroups:        aws.Int64(1),
 		Port:                 aws.Int64(1),
 		PreferredCacheClusterAZs: []*string{
 			aws.String("String"), // Required
@@ -280,6 +293,7 @@ func ExampleElastiCache_CreateReplicationGroup() {
 		},
 		PreferredMaintenanceWindow: aws.String("String"),
 		PrimaryClusterId:           aws.String("String"),
+		ReplicasPerNodeGroup:       aws.Int64(1),
 		SecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
@@ -322,8 +336,9 @@ func ExampleElastiCache_CreateSnapshot() {
 	svc := elasticache.New(sess)
 
 	params := &elasticache.CreateSnapshotInput{
-		CacheClusterId: aws.String("String"), // Required
-		SnapshotName:   aws.String("String"), // Required
+		SnapshotName:       aws.String("String"), // Required
+		CacheClusterId:     aws.String("String"),
+		ReplicationGroupId: aws.String("String"),
 	}
 	resp, err := svc.CreateSnapshot(params)
 
@@ -816,11 +831,13 @@ func ExampleElastiCache_DescribeSnapshots() {
 	svc := elasticache.New(sess)
 
 	params := &elasticache.DescribeSnapshotsInput{
-		CacheClusterId: aws.String("String"),
-		Marker:         aws.String("String"),
-		MaxRecords:     aws.Int64(1),
-		SnapshotName:   aws.String("String"),
-		SnapshotSource: aws.String("String"),
+		CacheClusterId:      aws.String("String"),
+		Marker:              aws.String("String"),
+		MaxRecords:          aws.Int64(1),
+		ReplicationGroupId:  aws.String("String"),
+		ShowNodeGroupConfig: aws.Bool(true),
+		SnapshotName:        aws.String("String"),
+		SnapshotSource:      aws.String("String"),
 	}
 	resp, err := svc.DescribeSnapshots(params)
 

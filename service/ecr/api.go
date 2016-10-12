@@ -556,6 +556,87 @@ func (c *ECR) DeleteRepositoryPolicy(input *DeleteRepositoryPolicyInput) (*Delet
 	return out, err
 }
 
+const opDescribeImages = "DescribeImages"
+
+// DescribeImagesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeImages operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DescribeImages for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeImages method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeImagesRequest method.
+//    req, resp := client.DescribeImagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *ECR) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Request, output *DescribeImagesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeImages,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeImagesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeImagesOutput{}
+	req.Data = output
+	return
+}
+
+// DescribeImages API operation for Amazon EC2 Container Registry.
+//
+// Returns metadata about the images in a repository, including image size and
+// creation date.
+//
+//  Beginning with Docker version 1.9, the Docker client compresses image layers
+// before pushing them to a V2 Docker registry. The output of the docker images
+// command shows the uncompressed image size, so it may return a larger image
+// size than the image sizes returned by DescribeImages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Registry's
+// API operation DescribeImages for usage and error information.
+//
+// Returned Error Codes:
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * RepositoryNotFoundException
+//   The specified repository could not be found. Check the spelling of the specified
+//   repository and ensure that you are performing operations on the correct registry.
+//
+//   * ImageNotFoundException
+//   The image requested does not exist in the specified repository.
+//
+func (c *ECR) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput, error) {
+	req, out := c.DescribeImagesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeRepositories = "DescribeRepositories"
 
 // DescribeRepositoriesRequest generates a "aws/request.Request" representing the
@@ -1635,7 +1716,7 @@ func (s *CreateRepositoryInput) Validate() error {
 type CreateRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An object representing a repository.
+	// The repository that was created.
 	Repository *Repository `locationName:"repository" type:"structure"`
 }
 
@@ -1694,7 +1775,7 @@ func (s *DeleteRepositoryInput) Validate() error {
 type DeleteRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An object representing a repository.
+	// The repository that was deleted.
 	Repository *Repository `locationName:"repository" type:"structure"`
 }
 
@@ -1769,6 +1850,116 @@ func (s DeleteRepositoryPolicyOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteRepositoryPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// An object representing a filter on a DescribeImages operation.
+type DescribeImagesFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The tag status with which to filter your DescribeImages results. You can
+	// filter results based on whether they are TAGGED or UNTAGGED.
+	TagStatus *string `locationName:"tagStatus" type:"string" enum:"TagStatus"`
+}
+
+// String returns the string representation
+func (s DescribeImagesFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagesFilter) GoString() string {
+	return s.String()
+}
+
+type DescribeImagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The filter key and value with which to filter your DescribeImages results.
+	Filter *DescribeImagesFilter `locationName:"filter" type:"structure"`
+
+	// The list of image IDs for the requested repository.
+	ImageIds []*ImageIdentifier `locationName:"imageIds" min:"1" type:"list"`
+
+	// The maximum number of repository results returned by DescribeImages in paginated
+	// output. When this parameter is used, DescribeImages only returns maxResults
+	// results in a single page along with a nextToken response element. The remaining
+	// results of the initial request can be seen by sending another DescribeImages
+	// request with the returned nextToken value. This value can be between 1 and
+	// 100. If this parameter is not used, then DescribeImages returns up to 100
+	// results and a nextToken value, if applicable.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The nextToken value returned from a previous paginated DescribeImages request
+	// where maxResults was used and the results exceeded the value of that parameter.
+	// Pagination continues from the end of the previous results that returned the
+	// nextToken value. This value is null when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The AWS account ID associated with the registry that contains the repository
+	// in which to list images. If you do not specify a registry, the default registry
+	// is assumed.
+	RegistryId *string `locationName:"registryId" type:"string"`
+
+	// A list of repositories to describe. If this parameter is omitted, then all
+	// repositories in a registry are described.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeImagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImagesInput"}
+	if s.ImageIds != nil && len(s.ImageIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageIds", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type DescribeImagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ImageDetail objects that contain data about the image.
+	ImageDetails []*ImageDetail `locationName:"imageDetails" type:"list"`
+
+	// The nextToken value to include in a future DescribeImages request. When the
+	// results of a DescribeImages request exceed maxResults, this value can be
+	// used to retrieve the next page of results. This value is null when there
+	// are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeImagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagesOutput) GoString() string {
 	return s.String()
 }
 
@@ -2056,6 +2247,45 @@ func (s Image) String() string {
 
 // GoString returns the string representation
 func (s Image) GoString() string {
+	return s.String()
+}
+
+// An object that describes an image returned by a DescribeImages operation.
+type ImageDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The sha256 digest of the image manifest.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
+	// The date and time, expressed in standard JavaScript date format, at which
+	// the current image was pushed to the repository.
+	ImagePushedAt *time.Time `locationName:"imagePushedAt" type:"timestamp" timestampFormat:"unix"`
+
+	// The size, in bytes, of the image in the repository.
+	//
+	//  Beginning with Docker version 1.9, the Docker client compresses image layers
+	// before pushing them to a V2 Docker registry. The output of the docker images
+	// command shows the uncompressed image size, so it may return a larger image
+	// size than the image sizes returned by DescribeImages.
+	ImageSizeInBytes *int64 `locationName:"imageSizeInBytes" type:"long"`
+
+	// The list of tags associated with this image.
+	ImageTags []*string `locationName:"imageTags" type:"list"`
+
+	// The AWS account ID associated with the registry to which this image belongs.
+	RegistryId *string `locationName:"registryId" type:"string"`
+
+	// The name of the repository to which this image belongs.
+	RepositoryName *string `locationName:"repositoryName" min:"2" type:"string"`
+}
+
+// String returns the string representation
+func (s ImageDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageDetail) GoString() string {
 	return s.String()
 }
 
@@ -2388,6 +2618,10 @@ func (s PutImageOutput) GoString() string {
 // An object representing a repository.
 type Repository struct {
 	_ struct{} `type:"structure"`
+
+	// The date and time, in JavaScript date/time format, when the repository was
+	// created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The AWS account ID associated with the registry that contains the repository.
 	RegistryId *string `locationName:"registryId" type:"string"`
