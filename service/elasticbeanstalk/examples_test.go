@@ -164,6 +164,11 @@ func ExampleElasticBeanstalk_CreateApplicationVersion() {
 		AutoCreateApplication: aws.Bool(true),
 		Description:           aws.String("Description"),
 		Process:               aws.Bool(true),
+		SourceBuildInformation: &elasticbeanstalk.SourceBuildInformation{
+			SourceLocation:   aws.String("SourceLocation"),   // Required
+			SourceRepository: aws.String("SourceRepository"), // Required
+			SourceType:       aws.String("SourceType"),       // Required
+		},
 		SourceBundle: &elasticbeanstalk.S3Location{
 			S3Bucket: aws.String("S3Bucket"),
 			S3Key:    aws.String("S3Key"),
@@ -424,6 +429,8 @@ func ExampleElasticBeanstalk_DescribeApplicationVersions() {
 
 	params := &elasticbeanstalk.DescribeApplicationVersionsInput{
 		ApplicationName: aws.String("ApplicationName"),
+		MaxRecords:      aws.Int64(1),
+		NextToken:       aws.String("Token"),
 		VersionLabels: []*string{
 			aws.String("VersionLabel"), // Required
 			// More values...
