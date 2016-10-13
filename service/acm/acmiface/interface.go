@@ -75,6 +75,10 @@ type ACMAPI interface {
 
 	GetCertificate(*acm.GetCertificateInput) (*acm.GetCertificateOutput, error)
 
+	ImportCertificateRequest(*acm.ImportCertificateInput) (*request.Request, *acm.ImportCertificateOutput)
+
+	ImportCertificate(*acm.ImportCertificateInput) (*acm.ImportCertificateOutput, error)
+
 	ListCertificatesRequest(*acm.ListCertificatesInput) (*request.Request, *acm.ListCertificatesOutput)
 
 	ListCertificates(*acm.ListCertificatesInput) (*acm.ListCertificatesOutput, error)

@@ -1,3 +1,19 @@
+Release v1.4.17
+===
+
+Service Model Updates
+---
+* `service/acm`: Update service API, and documentation.
+  * This change allows users to import third-party SSL/TLS certificates into ACM.
+* `service/elasticbeanstalk`: Update service API, documentation, and pagination.
+  * Elastic Beanstalk DescribeApplicationVersions API is being updated to support pagination.
+* `service/gamelift`: Update service API, and documentation.
+  * New APIs to protect game developer resource (builds, alias, fleets, instances, game sessions and player sessions) against abuse.
+
+SDK Features
+---
+* `service/s3`: Add support for accelerate with dualstack [#887](https://github.com/aws/aws-sdk-go/issues/887)
+
 Release v1.4.16
 ===
 

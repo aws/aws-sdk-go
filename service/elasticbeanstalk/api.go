@@ -395,7 +395,7 @@ func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicat
 //
 // Creates an application version for the specified application.
 //
-// Once you create an application version with a specified Amazon S3 bucket
+//  Once you create an application version with a specified Amazon S3 bucket
 // and key location, you cannot change that Amazon S3 location. If you change
 // the Amazon S3 location, you receive an exception when you attempt to launch
 // an environment from the application version.
@@ -479,7 +479,11 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 //
 // Related Topics
 //
-//   DescribeConfigurationOptions   DescribeConfigurationSettings   ListAvailableSolutionStacks
+//    DescribeConfigurationOptions
+//
+//    DescribeConfigurationSettings
+//
+//    ListAvailableSolutionStacks
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -621,7 +625,7 @@ func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLoca
 //
 // Creates the Amazon S3 storage location for the account.
 //
-//  This location is used to store user log files.
+// This location is used to store user log files.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -698,7 +702,7 @@ func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInpu
 // configurations. The application versions will not be deleted from your Amazon
 // S3 bucket.
 //
-// You cannot delete an application that has a running environment.
+//  You cannot delete an application that has a running environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -767,7 +771,7 @@ func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicat
 //
 // Deletes the specified version from the specified application.
 //
-// You cannot delete an application version that is associated with a running
+//  You cannot delete an application version that is associated with a running
 // environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -849,7 +853,7 @@ func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfi
 //
 // Deletes the specified configuration template.
 //
-// When you launch an environment using a configuration template, the environment
+//  When you launch an environment using a configuration template, the environment
 // gets a copy of the template. You can delete or modify the environment's copy
 // of the template without affecting the running environment.
 //
@@ -1175,15 +1179,15 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 // that is, either a configuration template or the configuration set associated
 // with a running environment.
 //
-//  When describing the settings for the configuration set associated with
-// a running environment, it is possible to receive two sets of setting descriptions.
+// When describing the settings for the configuration set associated with a
+// running environment, it is possible to receive two sets of setting descriptions.
 // One is the deployed configuration set, and the other is a draft configuration
 // of an environment that is either in the process of deployment or that failed
 // to deploy.
 //
 // Related Topics
 //
-//   DeleteEnvironmentConfiguration
+//    DeleteEnvironmentConfiguration
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1577,7 +1581,7 @@ func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (re
 //
 // Returns list of event descriptions matching criteria up to the last 6 weeks.
 //
-// This action returns the most recent 1,000 events from the specified NextToken.
+//  This action returns the most recent 1,000 events from the specified NextToken.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1874,7 +1878,7 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 //
 // Related Topics
 //
-//   RetrieveEnvironmentInfo
+//    RetrieveEnvironmentInfo
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1999,7 +2003,7 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 //
 // Related Topics
 //
-//   RequestEnvironmentInfo
+//    RequestEnvironmentInfo
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2312,10 +2316,11 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // or configuration option values.
 //
 //  If a property (for example, ApplicationName) is not provided, its value
-// remains unchanged. To clear such properties, specify an empty string.  Related
-// Topics
+// remains unchanged. To clear such properties, specify an empty string.
 //
-//   DescribeConfigurationOptions
+//  Related Topics
+//
+//    DescribeConfigurationOptions
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2464,7 +2469,7 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateC
 // Takes a set of configuration settings and either a configuration template
 // or environment, and determines whether those values are valid.
 //
-//  This action returns a list of messages indicating any errors or warnings
+// This action returns a list of messages indicating any errors or warnings
 // associated with the selection of option values.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2635,6 +2640,8 @@ type ApplicationVersionDescription struct {
 
 	// The description of this application version.
 	Description *string `type:"string"`
+
+	SourceBuildInformation *SourceBuildInformation `type:"structure"`
 
 	// The location where the source bundle is located for this version.
 	SourceBundle *S3Location `type:"structure"`
@@ -2845,7 +2852,9 @@ type CheckDNSAvailabilityOutput struct {
 
 	// Indicates if the specified CNAME is available:
 	//
-	//   true : The CNAME is available.   false : The CNAME is not available.
+	//    true : The CNAME is available.
+	//
+	//    false : The CNAME is not available.
 	Available *bool `type:"boolean"`
 
 	// The fully qualified CNAME to reserve when CreateEnvironment is called with
@@ -2918,12 +2927,16 @@ type ConfigurationOptionDescription struct {
 	// An indication of which action is required if the value for this configuration
 	// option changes:
 	//
-	//   NoInterruption : There is no interruption to the environment or application
-	// availability.   RestartEnvironment : The environment is entirely restarted,
-	// all AWS resources are deleted and recreated, and the environment is unavailable
-	// during the process.   RestartApplicationServer : The environment is available
-	// the entire time. However, a short application outage occurs when the application
-	// servers on the running Amazon EC2 instances are restarted.
+	//    NoInterruption : There is no interruption to the environment or application
+	// availability.
+	//
+	//    RestartEnvironment : The environment is entirely restarted, all AWS resources
+	// are deleted and recreated, and the environment is unavailable during the
+	// process.
+	//
+	//    RestartApplicationServer : The environment is available the entire time.
+	// However, a short application outage occurs when the application servers on
+	// the running Amazon EC2 instances are restarted.
 	ChangeSeverity *string `type:"string"`
 
 	// The default value for this configuration option.
@@ -2957,8 +2970,9 @@ type ConfigurationOptionDescription struct {
 	// choice for specifying if this as an Option to Remove when updating configuration
 	// settings.
 	//
-	//   false : This configuration was not defined by the user.    Constraint:
-	// You can remove only UserDefined options from a configuration.
+	//    false : This configuration was not defined by the user.
+	//
+	//    Constraint: You can remove only UserDefined options from a configuration.
 	//
 	//  Valid Values: true | false
 	UserDefined *bool `type:"boolean"`
@@ -2970,11 +2984,16 @@ type ConfigurationOptionDescription struct {
 	// An indication of which type of values this option has and whether it is allowable
 	// to select one or more than one of the possible values:
 	//
-	//   Scalar : Values for this option are a single selection from the possible
+	//    Scalar : Values for this option are a single selection from the possible
 	// values, or an unformatted string, or numeric value governed by the MIN/MAX/Regex
-	// constraints.   List : Values for this option are multiple selections from
-	// the possible values.   Boolean : Values for this option are either true or
-	// false .   Json : Values for this option are a JSON representation of a ConfigDocument.
+	// constraints.
+	//
+	//    List : Values for this option are multiple selections from the possible
+	// values.
+	//
+	//    Boolean : Values for this option are either true or false .
+	//
+	//    Json : Values for this option are a JSON representation of a ConfigDocument.
 	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
 }
 
@@ -3047,11 +3066,15 @@ type ConfigurationSettingsDescription struct {
 	// If this configuration set is associated with an environment, the DeploymentStatus
 	// parameter indicates the deployment status of this configuration set:
 	//
-	//   null: This configuration is not associated with a running environment.
-	//   pending: This is a draft configuration that is not deployed to the associated
-	// environment but is in the process of deploying.   deployed: This is the configuration
-	// that is currently deployed to the associated running environment.   failed:
-	// This is a draft configuration that failed to successfully deploy.
+	//    null: This configuration is not associated with a running environment.
+	//
+	//    pending: This is a draft configuration that is not deployed to the associated
+	// environment but is in the process of deploying.
+	//
+	//    deployed: This is the configuration that is currently deployed to the
+	// associated running environment.
+	//
+	//    failed: This is a draft configuration that failed to successfully deploy.
 	DeploymentStatus *string `type:"string" enum:"ConfigurationDeploymentStatus"`
 
 	// Describes this configuration set.
@@ -3136,10 +3159,13 @@ type CreateApplicationVersionInput struct {
 	// Determines how the system behaves if the specified application for this version
 	// does not already exist:
 	//
-	//   true : Automatically creates the specified application for this release
-	// if it does not already exist.   false : Throws an InvalidParameterValue if
-	// the specified application for this release does not already exist.    Default:
-	// false
+	//    true : Automatically creates the specified application for this release
+	// if it does not already exist.
+	//
+	//    false : Throws an InvalidParameterValue if the specified application
+	// for this release does not already exist.
+	//
+	//    Default: false
 	//
 	//  Valid Values: true | false
 	AutoCreateApplication *bool `type:"boolean"`
@@ -3151,6 +3177,8 @@ type CreateApplicationVersionInput struct {
 	// in the source bundle. Validating configuration files can identify issues
 	// prior to deploying the application version to an environment.
 	Process *bool `type:"boolean"`
+
+	SourceBuildInformation *SourceBuildInformation `type:"structure"`
 
 	// The Amazon S3 bucket and key that identify the location of the source bundle
 	// for this version.
@@ -3200,6 +3228,11 @@ func (s *CreateApplicationVersionInput) Validate() error {
 	if s.VersionLabel != nil && len(*s.VersionLabel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VersionLabel", 1))
 	}
+	if s.SourceBuildInformation != nil {
+		if err := s.SourceBuildInformation.Validate(); err != nil {
+			invalidParams.AddNested("SourceBuildInformation", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3240,9 +3273,9 @@ type CreateConfigurationTemplateInput struct {
 	//  A solution stack name or a source configuration parameter must be specified,
 	// otherwise AWS Elastic Beanstalk returns an InvalidParameterValue error.
 	//
-	//  If a solution stack name is not specified and the source configuration
-	// parameter is specified, AWS Elastic Beanstalk uses the same solution stack
-	// as the source configuration template.
+	// If a solution stack name is not specified and the source configuration parameter
+	// is specified, AWS Elastic Beanstalk uses the same solution stack as the source
+	// configuration template.
 	SolutionStackName *string `type:"string"`
 
 	// If specified, AWS Elastic Beanstalk uses the configuration values from the
@@ -3396,7 +3429,7 @@ type CreateEnvironmentInput struct {
 	//  If the specified application has no associated application versions, AWS
 	// Elastic Beanstalk UpdateEnvironment returns an InvalidParameterValue error.
 	//
-	//  Default: If not specified, AWS Elastic Beanstalk attempts to launch the
+	// Default: If not specified, AWS Elastic Beanstalk attempts to launch the
 	// sample application in the container.
 	VersionLabel *string `min:"1" type:"string"`
 }
@@ -3569,9 +3602,13 @@ type DeleteApplicationVersionInput struct {
 
 	// Indicates whether to delete the associated source bundle from Amazon S3:
 	//
-	//   true: An attempt is made to delete the associated Amazon S3 source bundle
-	// specified at time of creation.   false: No action is taken on the Amazon
-	// S3 source bundle specified at time of creation.    Valid Values: true | false
+	//    true: An attempt is made to delete the associated Amazon S3 source bundle
+	// specified at time of creation.
+	//
+	//    false: No action is taken on the Amazon S3 source bundle specified at
+	// time of creation.
+	//
+	//    Valid Values: true | false
 	DeleteSourceBundle *bool `type:"boolean"`
 
 	// The label of the version to delete.
@@ -3763,8 +3800,11 @@ type Deployment struct {
 
 	// The status of the deployment:
 	//
-	//   In Progress : The deployment is in progress.  Deployed : The deployment
-	// succeeded.  Failed : The deployment failed.
+	//    In Progress : The deployment is in progress.
+	//
+	//    Deployed : The deployment succeeded.
+	//
+	//    Failed : The deployment failed.
 	Status *string `type:"string"`
 
 	// The version label of the application version in the deployment.
@@ -3789,6 +3829,12 @@ type DescribeApplicationVersionsInput struct {
 	// only include ones that are associated with the specified application.
 	ApplicationName *string `min:"1" type:"string"`
 
+	// Specify a maximum number of application versions to paginate in the request.
+	MaxRecords *int64 `min:"1" type:"integer"`
+
+	// Specify a next token to retrieve the next page in a paginated request.
+	NextToken *string `type:"string"`
+
 	// If specified, restricts the returned descriptions to only include ones that
 	// have the specified version labels.
 	VersionLabels []*string `type:"list"`
@@ -3810,6 +3856,9 @@ func (s *DescribeApplicationVersionsInput) Validate() error {
 	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
 	}
+	if s.MaxRecords != nil && *s.MaxRecords < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRecords", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3823,6 +3872,10 @@ type DescribeApplicationVersionsOutput struct {
 
 	// List of ApplicationVersionDescription objects sorted by order of creation.
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
+
+	// For a paginated request, the token that you can pass in a subsequent request
+	// to get the next page.
+	NextToken *string `type:"string"`
 }
 
 // String returns the string representation
@@ -4559,13 +4612,19 @@ type EnvironmentDescription struct {
 	// Describes the health status of the environment. AWS Elastic Beanstalk indicates
 	// the failure levels for a running environment:
 	//
-	//   Red: Indicates the environment is not responsive. Occurs when three or
-	// more consecutive failures occur for an environment.   Yellow: Indicates that
-	// something is wrong. Occurs when two consecutive failures occur for an environment.
-	//   Green: Indicates the environment is healthy and fully functional.   Grey:
-	// Default health for a new environment. The environment is not fully launched
-	// and health checks have not started or health checks are suspended during
-	// an UpdateEnvironment or RestartEnvironement request.    Default: Grey
+	//    Red: Indicates the environment is not responsive. Occurs when three or
+	// more consecutive failures occur for an environment.
+	//
+	//    Yellow: Indicates that something is wrong. Occurs when two consecutive
+	// failures occur for an environment.
+	//
+	//    Green: Indicates the environment is healthy and fully functional.
+	//
+	//    Grey: Default health for a new environment. The environment is not fully
+	// launched and health checks have not started or health checks are suspended
+	// during an UpdateEnvironment or RestartEnvironement request.
+	//
+	//    Default: Grey
 	Health *string `type:"string" enum:"EnvironmentHealth"`
 
 	// Returns the health status of the application running in your environment.
@@ -4580,11 +4639,17 @@ type EnvironmentDescription struct {
 
 	// The current operational status of the environment:
 	//
-	//   Launching: Environment is in the process of initial deployment.   Updating:
-	// Environment is in the process of updating its configuration settings or application
-	// version.   Ready: Environment is available to have an action performed on
-	// it, such as update or terminate.   Terminating: Environment is in the shut-down
-	// process.   Terminated: Environment is not running.
+	//    Launching: Environment is in the process of initial deployment.
+	//
+	//    Updating: Environment is in the process of updating its configuration
+	// settings or application version.
+	//
+	//    Ready: Environment is available to have an action performed on it, such
+	// as update or terminate.
+	//
+	//    Terminating: Environment is in the shut-down process.
+	//
+	//    Terminated: Environment is not running.
 	Status *string `type:"string" enum:"EnvironmentStatus"`
 
 	// The name of the configuration template used to originally launch this environment.
@@ -5522,6 +5587,51 @@ func (s SolutionStackDescription) GoString() string {
 	return s.String()
 }
 
+type SourceBuildInformation struct {
+	_ struct{} `type:"structure"`
+
+	// SourceLocation is a required field
+	SourceLocation *string `min:"3" type:"string" required:"true"`
+
+	// SourceRepository is a required field
+	SourceRepository *string `type:"string" required:"true" enum:"SourceRepository"`
+
+	// SourceType is a required field
+	SourceType *string `type:"string" required:"true" enum:"SourceType"`
+}
+
+// String returns the string representation
+func (s SourceBuildInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceBuildInformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceBuildInformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceBuildInformation"}
+	if s.SourceLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocation"))
+	}
+	if s.SourceLocation != nil && len(*s.SourceLocation) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocation", 3))
+	}
+	if s.SourceRepository == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceRepository"))
+	}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // A specification for an environment configuration
 type SourceConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5752,11 +5862,13 @@ type TerminateEnvironmentInput struct {
 	// Indicates whether the associated AWS resources should shut down when the
 	// environment is terminated:
 	//
-	//   true: The specified environment as well as the associated AWS resources,
-	// such as Auto Scaling group and LoadBalancer, are terminated.   false: AWS
-	// Elastic Beanstalk resource management is removed from the environment, but
-	// the AWS resources continue to operate.    For more information, see the
-	// AWS Elastic Beanstalk User Guide.  (http://docs.aws.amazon.com/elasticbeanstalk/latest/ug/)
+	//    true: The specified environment as well as the associated AWS resources,
+	// such as Auto Scaling group and LoadBalancer, are terminated.
+	//
+	//    false: AWS Elastic Beanstalk resource management is removed from the
+	// environment, but the AWS resources continue to operate.
+	//
+	//    For more information, see the  AWS Elastic Beanstalk User Guide.  (http://docs.aws.amazon.com/elasticbeanstalk/latest/ug/)
 	//
 	//  Default: true
 	//
@@ -6121,7 +6233,7 @@ type ValidateConfigurationSettingsInput struct {
 
 	// The name of the environment to validate the settings against.
 	//
-	//  Condition: You cannot specify both this and a configuration template name.
+	// Condition: You cannot specify both this and a configuration template name.
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// A list of the options and desired values to evaluate.
@@ -6131,7 +6243,7 @@ type ValidateConfigurationSettingsInput struct {
 
 	// The name of the configuration template to validate the settings against.
 	//
-	//  Condition: You cannot specify both this and an environment name.
+	// Condition: You cannot specify both this and an environment name.
 	TemplateName *string `min:"1" type:"string"`
 }
 
@@ -6211,9 +6323,10 @@ type ValidationMessage struct {
 
 	// An indication of the severity of this message:
 	//
-	//   error: This message indicates that this is not a valid setting for an
-	// option.   warning: This message is providing information you should take
-	// into account.
+	//    error: This message indicates that this is not a valid setting for an
+	// option.
+	//
+	//    warning: This message is providing information you should take into account.
 	Severity *string `type:"string" enum:"ValidationSeverity"`
 }
 
@@ -6463,6 +6576,16 @@ const (
 
 	// InstancesHealthAttributeAll is a InstancesHealthAttribute enum value
 	InstancesHealthAttributeAll = "All"
+)
+
+const (
+	// SourceRepositoryCodeCommit is a SourceRepository enum value
+	SourceRepositoryCodeCommit = "CodeCommit"
+)
+
+const (
+	// SourceTypeGit is a SourceType enum value
+	SourceTypeGit = "Git"
 )
 
 const (
