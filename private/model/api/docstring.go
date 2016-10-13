@@ -73,16 +73,11 @@ func (d *apiDocumentation) setup() {
 	}
 }
 
-// TODO
-// Change to use new docstring generator
 var reNewline = regexp.MustCompile(`\r?\n`)
 var reMultiSpace = regexp.MustCompile(`\s+`)
 var reComments = regexp.MustCompile(`<!--.*?-->`)
 var reFullname = regexp.MustCompile(`\s*<fullname?>.+?<\/fullname?>\s*`)
 var reExamples = regexp.MustCompile(`<examples?>.+?<\/examples?>`)
-var rePara = regexp.MustCompile(`<(?:p|h\d)>(.+?)</(?:p|h\d)>`)
-var reLink = regexp.MustCompile(`<a href="(.+?)">(.+?)</a>`)
-var reTag = regexp.MustCompile(`<.+?>`)
 var reEndNL = regexp.MustCompile(`\n+$`)
 
 // docstring rewrites a string to insert godocs formatting.
@@ -93,17 +88,7 @@ func docstring(doc string) string {
 	doc = reFullname.ReplaceAllString(doc, "")
 	doc = reExamples.ReplaceAllString(doc, "")
 
-	_, err := xhtml.Parse(strings.NewReader(doc))
-	// If there is no error, means it is HTML. However, if it isn't HTML, we use the old
-	// way of generating documentation.
-	if err == nil {
-		// this will only occur if an error during the tokenization process occurs.
-		doc = generateDocFromHTML(doc)
-	} else {
-		doc = rePara.ReplaceAllString(doc, "$1\n\n")
-		doc = reLink.ReplaceAllString(doc, "$2 ($1)")
-	}
-
+	doc = generateDoc(doc)
 	doc = reEndNL.ReplaceAllString(doc, "")
 	if doc == "" {
 		return "\n"
@@ -113,8 +98,8 @@ func docstring(doc string) string {
 	return commentify(doc)
 }
 
-// generateDocFromHTML will generate the proper doc string for html encoded doc entries.
-func generateDocFromHTML(htmlSrc string) string {
+// generateDoc will generate the proper doc string for html encoded or plain text doc entries.
+func generateDoc(htmlSrc string) string {
 	tokenizer := xhtml.NewTokenizer(strings.NewReader(htmlSrc))
 	// tagInfo contains necessary token info of start tag
 	type tagInfo struct {
@@ -131,8 +116,6 @@ func generateDocFromHTML(htmlSrc string) string {
 
 	for tt := tokenizer.Next(); tt != xhtml.ErrorToken; tt = tokenizer.Next() {
 		switch tt {
-		case xhtml.ErrorToken:
-			break
 		case xhtml.TextToken:
 			txt := string(tokenizer.Text())
 			if len(stack) > 0 {
