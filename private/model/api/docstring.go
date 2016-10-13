@@ -8,6 +8,8 @@ import (
 	"os"
 	"regexp"
 	"strings"
+
+	xhtml "golang.org/x/net/html"
 )
 
 type apiDocumentation struct {
@@ -71,6 +73,8 @@ func (d *apiDocumentation) setup() {
 	}
 }
 
+// TODO
+// Change to use new docstring generator
 var reNewline = regexp.MustCompile(`\r?\n`)
 var reMultiSpace = regexp.MustCompile(`\s+`)
 var reComments = regexp.MustCompile(`<!--.*?-->`)
@@ -88,19 +92,132 @@ func docstring(doc string) string {
 	doc = reComments.ReplaceAllString(doc, "")
 	doc = reFullname.ReplaceAllString(doc, "")
 	doc = reExamples.ReplaceAllString(doc, "")
-	doc = rePara.ReplaceAllString(doc, "$1\n\n")
-	doc = reLink.ReplaceAllString(doc, "$2 ($1)")
-	doc = reTag.ReplaceAllString(doc, "$1")
+
+	_, err := xhtml.Parse(strings.NewReader(doc))
+	// If there is no error, means it is HTML. However, if it isn't HTML, we use the old
+	// way of generating documentation.
+	if err == nil {
+		// this will only occur if an error during the tokenization process occurs.
+		doc = generateDocFromHTML(doc)
+	} else {
+		doc = rePara.ReplaceAllString(doc, "$1\n\n")
+		doc = reLink.ReplaceAllString(doc, "$2 ($1)")
+	}
+
 	doc = reEndNL.ReplaceAllString(doc, "")
-	doc = strings.TrimSpace(doc)
 	if doc == "" {
 		return "\n"
 	}
 
 	doc = html.UnescapeString(doc)
-	doc = wrap(doc, 72)
-
 	return commentify(doc)
+}
+
+// generateDocFromHTML will generate the proper doc string for html encoded doc entries.
+func generateDocFromHTML(htmlSrc string) string {
+	tokenizer := xhtml.NewTokenizer(strings.NewReader(htmlSrc))
+	// tagInfo contains necessary token info of start tag
+	type tagInfo struct {
+		tag string
+		key string
+		val string
+		txt string
+	}
+	doc := ""
+	level := 0
+	col := 0
+	indent := false
+	stack := []tagInfo{}
+
+	for tt := tokenizer.Next(); tt != xhtml.ErrorToken; tt = tokenizer.Next() {
+		switch tt {
+		case xhtml.ErrorToken:
+			break
+		case xhtml.TextToken:
+			txt := string(tokenizer.Text())
+			if len(stack) > 0 {
+				// set the current entries txt value. We use this
+				// for checking if we need to indent. The indent rules
+				// is if there is nested html tags that aren't empty or space,
+				// we will indent the code or li blocks.
+				size := len(stack)
+				stack[size-1].txt = txt
+				info := stack[size-1]
+
+				// if the tag is <code> or <li> we want to indent this block
+				if info.tag == "pre" || info.tag == "li" {
+					indent = true
+				} else if info.tag == "code" {
+					if level == 1 {
+						indent = true
+					} else {
+						for i := level; size-i >= 0 && i > 1; i-- {
+							if stack[size-i].tag == "li" || stack[size-i].tag == "pre" {
+								indent = true
+								break
+							}
+						}
+
+					}
+				}
+
+				// we only want to append to the doc if the current txt isn't
+				// empty or contains only a space.
+				if len(txt) > 0 && txt != " " {
+					if info.tag == "a" {
+						if info.val != "" {
+							txt += fmt.Sprintf(" (%s)", info.val)
+						}
+					}
+
+					// check spacing
+					// we do not care about the current scope we are on, hence the
+					// i > 1. The reason to check for the check against one is due to the
+					// fact that empty stack is at level 0, which we don't care about.
+					for i := level; size-i >= 0 && i > 1; i-- {
+						if stack[size-i].tag == "p" {
+							if len(stack[size-i].txt) > 0 && stack[size-i].txt != " " {
+								indent = false
+							}
+						}
+					}
+
+					txt, col = wrap(txt, col, 72, indent)
+					doc += txt
+				}
+			} else {
+				indent = false
+				txt, col = wrap(txt, col, 72, indent)
+				doc += txt
+			}
+		case xhtml.StartTagToken:
+			tn, _ := tokenizer.TagName()
+			key, val, _ := tokenizer.TagAttr()
+			info := tagInfo{
+				tag: string(tn),
+				key: string(key),
+				val: string(val),
+			}
+			stack = append(stack, info)
+			level++
+		case xhtml.SelfClosingTagToken, xhtml.EndTagToken:
+			// the stack could be empty here
+			indent = false
+			if len(stack) > 0 {
+				info := stack[len(stack)-1]
+				if info.tag == "p" || (len(info.tag) == 2 && info.tag[0] == 'h') {
+					doc += "\n\n"
+					col = 0
+				} else if (level == 1 && info.tag == "code") || info.tag == "pre" || info.tag == "li" {
+					doc += "\n"
+					col = 0
+				}
+				stack = stack[:len(stack)-1]
+				level--
+			}
+		}
+	}
+	return doc
 }
 
 // commentify converts a string to a Go comment
@@ -120,30 +237,44 @@ func commentify(doc string) string {
 // wrap returns a rewritten version of text to have line breaks
 // at approximately length characters. Line breaks will only be
 // inserted into whitespace.
-func wrap(text string, length int) string {
+func wrap(text string, col, length int, indent bool) (string, int) {
 	var buf bytes.Buffer
 	var last rune
 	var lastNL bool
-	var col int
 
+	if col == 0 && indent {
+		buf.WriteString("   ")
+		col += 3
+	}
 	for _, c := range text {
 		switch c {
 		case '\r': // ignore this
 			continue // and also don't track `last`
 		case '\n': // ignore this too, but reset col
 			if col >= length || last == '\n' {
-				buf.WriteString("\n\n")
+				buf.WriteString("\n")
 			}
+			buf.WriteString("\n")
 			col = 0
+			if indent {
+				buf.WriteString("   ")
+				col += 3
+			}
 		case ' ', '\t': // opportunity to split
 			if col >= length {
 				buf.WriteByte('\n')
 				col = 0
-			} else {
-				if !lastNL {
-					buf.WriteRune(c)
+				if indent {
+					buf.WriteString("   ")
+					col += 3
 				}
-				col++ // count column
+			} else {
+				// We only want to write a leading space if the col is greater than zero.
+				// This will provide the proper spacing for documentation.
+				if !lastNL && col > 0 {
+					buf.WriteRune(c)
+					col++ // count column
+				}
 			}
 		default:
 			buf.WriteRune(c)
@@ -152,5 +283,5 @@ func wrap(text string, length int) string {
 		lastNL = c == '\n'
 		last = c
 	}
-	return buf.String()
+	return buf.String(), col
 }
