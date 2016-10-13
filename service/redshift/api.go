@@ -68,8 +68,8 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 // and EC2SecurityGroupOwnerId. The Amazon EC2 security group and Amazon Redshift
 // cluster must be in the same AWS region.
 //
-// If you authorize access to a CIDR/IP address range, specify CIDRIP. For
-// an overview of CIDR blocks, see the Wikipedia article on Classless Inter-Domain
+// If you authorize access to a CIDR/IP address range, specify CIDRIP. For an
+// overview of CIDR blocks, see the Wikipedia article on Classless Inter-Domain
 // Routing (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 //
 // You must also associate the security group with a cluster so that clients
@@ -153,7 +153,7 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 //
 // Authorizes the specified AWS customer account to restore the specified snapshot.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -247,7 +247,7 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 // snapshot for a longer period, you can make a manual copy of the snapshot.
 // Manual snapshots are retained until you delete them.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -466,8 +466,8 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 // associate an existing cluster with a parameter group after the cluster is
 // created by using ModifyCluster.
 //
-// Parameters in the parameter group define specific behavior that applies
-// to the databases you create on the cluster. For more information about parameters
+// Parameters in the parameter group define specific behavior that applies to
+// the databases you create on the cluster. For more information about parameters
 // and parameter groups, go to Amazon Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -548,7 +548,7 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 // Creates a new Amazon Redshift security group. You use security groups to
 // control access to non-VPC clusters.
 //
-//  For information about managing security groups, go to Amazon Redshift Cluster
+// For information about managing security groups, go to Amazon Redshift Cluster
 // Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -629,7 +629,7 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInpu
 // Creates a manual snapshot of the specified cluster. The cluster must be in
 // the available state.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -716,7 +716,7 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 // or more subnets in your existing Amazon Virtual Private Cloud (Amazon VPC)
 // when creating Amazon Redshift subnet group.
 //
-//  For information about subnet groups, go to Amazon Redshift Cluster Subnet
+// For information about subnet groups, go to Amazon Redshift Cluster Subnet
 // Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-cluster-subnet-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -825,8 +825,8 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 // send notifications for those ERROR events in the Availability and Backup
 // categories for the specified clusters.
 //
-// If you specify both the source type and source IDs, such as source type
-// = cluster and source identifier = my-cluster-1, notifications will be sent
+// If you specify both the source type and source IDs, such as source type =
+// cluster and source identifier = my-cluster-1, notifications will be sent
 // for all the cluster events for my-cluster-1. If you specify a source type
 // but do not specify a source identifier, you will receive notice of the events
 // for the objects of that type in your AWS account. If you do not specify either
@@ -1109,8 +1109,8 @@ func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrant
 // master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied
 // snapshots in a destination region.
 //
-//  For more information about managing snapshot copy grants, go to Amazon
-// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// For more information about managing snapshot copy grants, go to Amazon Redshift
+// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1285,7 +1285,7 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *request
 // snapshot is being taken, then it's "deleting" once Amazon Redshift begins
 // deleting the cluster.
 //
-//  For more information about managing clusters, go to Amazon Redshift Clusters
+// For more information about managing clusters, go to Amazon Redshift Clusters
 // (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -1366,7 +1366,7 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 //
 // Deletes a specified Amazon Redshift parameter group.
 //
-//  You cannot delete a parameter group if it is associated with a cluster.
+// You cannot delete a parameter group if it is associated with a cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1439,11 +1439,11 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 //
 // Deletes an Amazon Redshift security group.
 //
-//  You cannot delete a security group that is associated with any clusters.
+// You cannot delete a security group that is associated with any clusters.
 // You cannot delete the default security group.
 //
-//   For information about managing security groups, go to Amazon Redshift
-// Cluster Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
+// For information about managing security groups, go to Amazon Redshift Cluster
+// Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2024,12 +2024,12 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 // family name. You can optionally specify a name to retrieve the description
 // of a specific parameter group.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all parameter groups that match any combination of the specified
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all parameter groups that match any combination of the specified
 // keys and values. For example, if you have owner and environment for tag keys,
 // and admin and test for tag values, all parameter groups that have any combination
 // of those values are returned.
@@ -2143,7 +2143,7 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 // For example, to retrieve parameters that were modified by a user action such
 // as from ModifyClusterParameterGroup, you can specify source equal to user.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -2244,13 +2244,13 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 // a security group is specified, the response will contain only information
 // about only that security group.
 //
-//  For information about managing security groups, go to Amazon Redshift Cluster
+// For information about managing security groups, go to Amazon Redshift Cluster
 // Security Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all security groups that match any combination of the specified
-// keys and values. For example, if you have owner and environment for tag keys,
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all security groups that match any combination of the specified keys
+// and values. For example, if you have owner and environment for tag keys,
 // and admin and test for tag values, all security groups that have any combination
 // of those values are returned.
 //
@@ -2360,17 +2360,16 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 // of all clusters that are owned by you AWS customer account. No information
 // is returned for snapshots owned by inactive AWS customer accounts.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all snapshots that match any combination of the specified
-// keys and values. For example, if you have owner and environment for tag keys,
-// and admin and test for tag values, all snapshots that have any combination
-// of those values are returned. Only snapshots that you own are returned in
-// the response; shared snapshots are not returned with the tag key and tag
-// value request parameters.
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all snapshots that match any combination of the specified keys and
+// values. For example, if you have owner and environment for tag keys, and
+// admin and test for tag values, all snapshots that have any combination of
+// those values are returned. Only snapshots that you own are returned in the
+// response; shared snapshots are not returned with the tag key and tag value
+// request parameters.
 //
-// If both tag keys and values are omitted from the request, snapshots are
-// returned regardless of whether they have tag keys or values associated with
-// them.
+// If both tag keys and values are omitted from the request, snapshots are returned
+// regardless of whether they have tag keys or values associated with them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2472,15 +2471,15 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 // about your cluster subnet groups. By default, this operation returns information
 // about all cluster subnet groups that are defined in you AWS account.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all subnet groups that match any combination of the specified
-// keys and values. For example, if you have owner and environment for tag keys,
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all subnet groups that match any combination of the specified keys
+// and values. For example, if you have owner and environment for tag keys,
 // and admin and test for tag values, all subnet groups that have any combination
 // of those values are returned.
 //
-// If both tag keys and values are omitted from the request, subnet groups
-// are returned regardless of whether they have tag keys or values associated
-// with them.
+// If both tag keys and values are omitted from the request, subnet groups are
+// returned regardless of whether they have tag keys or values associated with
+// them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2679,11 +2678,11 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *r
 // about managing clusters, go to Amazon Redshift Clusters (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all clusters that match any combination of the specified
-// keys and values. For example, if you have owner and environment for tag keys,
-// and admin and test for tag values, all clusters that have any combination
-// of those values are returned.
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all clusters that match any combination of the specified keys and
+// values. For example, if you have owner and environment for tag keys, and
+// admin and test for tag values, all clusters that have any combination of
+// those values are returned.
 //
 // If both tag keys and values are omitted from the request, clusters are returned
 // regardless of whether they have tag keys or values associated with them.
@@ -2786,7 +2785,7 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 //
 // Returns a list of parameter settings for the specified parameter group family.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -3134,11 +3133,11 @@ func (c *Redshift) DescribeHsmClientCertificatesRequest(input *DescribeHsmClient
 // ID is specified, returns information about all the HSM certificates owned
 // by your AWS customer account.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all HSM client certificates that match any combination of
-// the specified keys and values. For example, if you have owner and environment
-// for tag keys, and admin and test for tag values, all HSM client certificates
-// that have any combination of those values are returned.
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all HSM client certificates that match any combination of the specified
+// keys and values. For example, if you have owner and environment for tag keys,
+// and admin and test for tag values, all HSM client certificates that have
+// any combination of those values are returned.
 //
 // If both tag keys and values are omitted from the request, HSM client certificates
 // are returned regardless of whether they have tag keys or values associated
@@ -3244,9 +3243,9 @@ func (c *Redshift) DescribeHsmConfigurationsRequest(input *DescribeHsmConfigurat
 // If no configuration ID is specified, returns information about all the HSM
 // configurations owned by your AWS customer account.
 //
-// If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all HSM connections that match any combination of the specified
-// keys and values. For example, if you have owner and environment for tag keys,
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all HSM connections that match any combination of the specified keys
+// and values. For example, if you have owner and environment for tag keys,
 // and admin and test for tag values, all HSM connections that have any combination
 // of those values are returned.
 //
@@ -3520,7 +3519,7 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 // to purchase. You then use the unique offering ID in you call to PurchaseReservedNodeOffering
 // to reserve one or more nodes for your Amazon Redshift cluster.
 //
-//  For more information about reserved node offerings, go to Purchasing Reserved
+// For more information about reserved node offerings, go to Purchasing Reserved
 // Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -3785,8 +3784,8 @@ func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopy
 // Returns a list of snapshot copy grants owned by the AWS account in the destination
 // region.
 //
-//  For more information about managing snapshot copy grants, go to Amazon
-// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// For more information about managing snapshot copy grants, go to Amazon Redshift
+// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3932,24 +3931,23 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *request.R
 //
 // The following are limitations for DescribeTags:
 //
-//   You cannot specify an ARN and a resource-type value together in the same
-// request.
+//    You cannot specify an ARN and a resource-type value together in the same
+//    request.
 //
-//   You cannot use the MaxRecords and Marker parameters together with the
+//    You cannot use the MaxRecords and Marker parameters together with the
 // ARN parameter.
 //
-//   The MaxRecords parameter can be a range from 10 to 50 results to return
+//    The MaxRecords parameter can be a range from 10 to 50 results to return
 // in a request.
 //
-//   If you specify both tag keys and tag values in the same request, Amazon
-// Redshift returns all resources that match any combination of the specified
-// keys and values. For example, if you have owner and environment for tag keys,
-// and admin and test for tag values, all resources that have any combination
-// of those values are returned.
+// If you specify both tag keys and tag values in the same request, Amazon Redshift
+// returns all resources that match any combination of the specified keys and
+// values. For example, if you have owner and environment for tag keys, and
+// admin and test for tag values, all resources that have any combination of
+// those values are returned.
 //
-// If both tag keys and values are omitted from the request, resources are
-// returned regardless of whether they have tag keys or values associated with
-// them.
+// If both tag keys and values are omitted from the request, resources are returned
+// regardless of whether they have tag keys or values associated with them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4084,8 +4082,8 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 // Disables the automatic copying of snapshots from one region to another region
 // for a specified cluster.
 //
-// If your cluster and its snapshots are encrypted using a customer master
-// key (CMK) from AWS KMS, use DeleteSnapshotCopyGrant to delete the grant that
+// If your cluster and its snapshots are encrypted using a customer master key
+// (CMK) from AWS KMS, use DeleteSnapshotCopyGrant to delete the grant that
 // grants Amazon Redshift permission to the CMK in the destination region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4527,7 +4525,7 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 //
 // Modifies the parameters of a parameter group.
 //
-//  For more information about parameters and parameter groups, go to Amazon
+// For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -4861,7 +4859,7 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 // reserved node offerings. You can call this API by providing a specific reserved
 // node offering and the number of nodes you want to reserve.
 //
-//  For more information about reserved node offerings, go to Purchasing Reserved
+// For more information about reserved node offerings, go to Purchasing Reserved
 // Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -5095,7 +5093,7 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 // If you restore a cluster into a VPC, you must provide a cluster subnet group
 // where you want the cluster restored.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -5410,7 +5408,7 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 // specified snapshot. If the account is currently restoring the snapshot, the
 // restore will run to completion.
 //
-//  For more information about working with snapshots, go to Amazon Redshift
+// For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
@@ -5865,8 +5863,7 @@ type ClusterIamRole struct {
 	//
 	//    adding: The role is in the process of being associated with the cluster.
 	//
-	//    removing: The role is in the process of being disassociated with the
-	// cluster.
+	//    removing: The role is in the process of being disassociated with the cluster.
 	ApplyStatus *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role, for example, arn:aws:iam::123456789012:role/RedshiftCopyUnload.
@@ -5963,7 +5960,7 @@ type ClusterParameterGroupStatus struct {
 
 	// The list of parameter statuses.
 	//
-	//  For more information about parameters and parameter groups, go to Amazon
+	// For more information about parameters and parameter groups, go to Amazon
 	// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	ClusterParameterStatusList []*ClusterParameterStatus `type:"list"`
@@ -6180,14 +6177,14 @@ type CopyClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the identifier for a valid cluster.
+	//    Must be the identifier for a valid cluster.
 	SourceSnapshotClusterIdentifier *string `type:"string"`
 
 	// The identifier for the source snapshot.
 	//
 	// Constraints:
 	//
-	//   Must be the identifier for a valid automated snapshot whose state is available.
+	//    Must be the identifier for a valid automated snapshot whose state is available.
 	//
 	// SourceSnapshotIdentifier is a required field
 	SourceSnapshotIdentifier *string `type:"string" required:"true"`
@@ -6196,15 +6193,15 @@ type CopyClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank.
+	//    Cannot be null, empty, or blank.
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Must be unique for the AWS account that is making the request.
+	//    Must be unique for the AWS account that is making the request.
 	//
 	// TargetSnapshotIdentifier is a required field
 	TargetSnapshotIdentifier *string `type:"string" required:"true"`
@@ -6262,8 +6259,8 @@ type CreateClusterInput struct {
 	// If true, major version upgrades can be applied during the maintenance window
 	// to the Amazon Redshift engine that is running on the cluster.
 	//
-	// When a new major version of the Amazon Redshift engine is released, you
-	// can request that the service automatically apply upgrades during the maintenance
+	// When a new major version of the Amazon Redshift engine is released, you can
+	// request that the service automatically apply upgrades during the maintenance
 	// window to the Amazon Redshift engine that is running on your cluster.
 	//
 	// Default: true
@@ -6298,17 +6295,17 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   Alphabetic characters must be lowercase.
+	//    Alphabetic characters must be lowercase.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Must be unique for all clusters within an AWS account.
+	//    Must be unique for all clusters within an AWS account.
 	//
-	//   Example: myexamplecluster
+	// Example: myexamplecluster
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -6321,11 +6318,11 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters or hyphens.
+	//    Must be 1 to 255 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	ClusterParameterGroupName *string `type:"string"`
 
 	// A list of security groups to be associated with this cluster.
@@ -6345,7 +6342,7 @@ type CreateClusterInput struct {
 	//
 	//    multi-node, the NumberOfNodes parameter is required.
 	//
-	//   Valid Values: multi-node | single-node
+	// Valid Values: multi-node | single-node
 	//
 	// Default: multi-node
 	ClusterType *string `type:"string"`
@@ -6362,21 +6359,21 @@ type CreateClusterInput struct {
 
 	// The name of the first database to be created when the cluster is created.
 	//
-	// To create additional databases after the cluster is created, connect to
-	// the cluster with a SQL client and use SQL commands to create a database.
-	// For more information, go to Create a Database (http://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html)
+	// To create additional databases after the cluster is created, connect to the
+	// cluster with a SQL client and use SQL commands to create a database. For
+	// more information, go to Create a Database (http://docs.aws.amazon.com/redshift/latest/dg/t_creating_database.html)
 	// in the Amazon Redshift Database Developer Guide.
 	//
 	// Default: dev
 	//
 	// Constraints:
 	//
-	//   Must contain 1 to 64 alphanumeric characters.
+	//    Must contain 1 to 64 alphanumeric characters.
 	//
-	//   Must contain only lowercase letters.
+	//    Must contain only lowercase letters.
 	//
-	//   Cannot be a word that is reserved by the service. A list of reserved words
-	// can be found in Reserved Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
+	//    Cannot be a word that is reserved by the service. A list of reserved words
+	//    can be found in Reserved Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
 	// in the Amazon Redshift Database Developer Guide.
 	DBName *string `type:"string"`
 
@@ -6429,16 +6426,16 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be between 8 and 64 characters in length.
+	//    Must be between 8 and 64 characters in length.
 	//
-	//   Must contain at least one uppercase letter.
+	//    Must contain at least one uppercase letter.
 	//
-	//   Must contain at least one lowercase letter.
+	//    Must contain at least one lowercase letter.
 	//
-	//   Must contain one number.
+	//    Must contain one number.
 	//
-	//   Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
-	// quote), " (double quote), \, /, @, or space.
+	//    Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
+	//    quote), " (double quote), \, /, @, or space.
 	//
 	// MasterUserPassword is a required field
 	MasterUserPassword *string `type:"string" required:"true"`
@@ -6448,11 +6445,11 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 - 128 alphanumeric characters.
+	//    Must be 1 - 128 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot be a reserved word. A list of reserved words can be found in Reserved
+	//    Cannot be a reserved word. A list of reserved words can be found in Reserved
 	// Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
 	// in the Amazon Redshift Database Developer Guide.
 	//
@@ -6499,11 +6496,11 @@ type CreateClusterInput struct {
 	// The weekly time range (in UTC) during which automated cluster maintenance
 	// can occur.
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region, occurring on a random day of the week. For more information
-	// about the time blocks for each region, see Maintenance Windows (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week. For more information about
+	// the time blocks for each region, see Maintenance Windows (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)
 	// in Amazon Redshift Cluster Management Guide.
 	//
 	// Valid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun
@@ -6598,15 +6595,15 @@ type CreateClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters or hyphens
+	//    Must be 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Must be unique withing your AWS account.
+	//    Must be unique withing your AWS account.
 	//
-	//    This value is stored as a lower-case string.
+	// This value is stored as a lower-case string.
 	//
 	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
@@ -6669,13 +6666,13 @@ type CreateClusterSecurityGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain no more than 255 alphanumeric characters or hyphens.
+	//    Must contain no more than 255 alphanumeric characters or hyphens.
 	//
-	//   Must not be "Default".
+	//    Must not be "Default".
 	//
-	//   Must be unique for all security groups that are created by your AWS account.
+	//    Must be unique for all security groups that are created by your AWS account.
 	//
-	//   Example: examplesecuritygroup
+	// Example: examplesecuritygroup
 	//
 	// ClusterSecurityGroupName is a required field
 	ClusterSecurityGroupName *string `type:"string" required:"true"`
@@ -6745,15 +6742,15 @@ type CreateClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank
+	//    Cannot be null, empty, or blank
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-snapshot-id
+	// Example: my-snapshot-id
 	//
 	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
@@ -6813,13 +6810,13 @@ type CreateClusterSubnetGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain no more than 255 alphanumeric characters or hyphens.
+	//    Must contain no more than 255 alphanumeric characters or hyphens.
 	//
-	//   Must not be "Default".
+	//    Must not be "Default".
 	//
-	//   Must be unique for all subnet groups that are created by your AWS account.
+	//    Must be unique for all subnet groups that are created by your AWS account.
 	//
-	//   Example: examplesubnetgroup
+	// Example: examplesubnetgroup
 	//
 	// ClusterSubnetGroupName is a required field
 	ClusterSubnetGroupName *string `type:"string" required:"true"`
@@ -6928,21 +6925,21 @@ type CreateEventSubscriptionInput struct {
 	// for all Amazon Redshift objects in your AWS account. You must specify a source
 	// type in order to specify source IDs.
 	//
-	// Valid values: cluster, cluster-parameter-group, cluster-security-group,
-	// and cluster-snapshot.
+	// Valid values: cluster, cluster-parameter-group, cluster-security-group, and
+	// cluster-snapshot.
 	SourceType *string `type:"string"`
 
 	// The name of the event subscription to be created.
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank.
+	//    Cannot be null, empty, or blank.
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
@@ -7158,15 +7155,15 @@ type CreateSnapshotCopyGrantInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   Alphabetic characters must be lowercase.
+	//    Alphabetic characters must be lowercase.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Must be unique for all clusters within an AWS account.
+	//    Must be unique for all clusters within an AWS account.
 	//
 	// SnapshotCopyGrantName is a required field
 	SnapshotCopyGrantName *string `type:"string" required:"true"`
@@ -7205,8 +7202,8 @@ type CreateSnapshotCopyGrantOutput struct {
 	// copied snapshots with the specified customer master key (CMK) from AWS KMS
 	// in the destination region.
 	//
-	//  For more information about managing snapshot copy grants, go to Amazon
-	// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+	// For more information about managing snapshot copy grants, go to Amazon Redshift
+	// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	SnapshotCopyGrant *SnapshotCopyGrant `type:"structure"`
 }
@@ -7317,13 +7314,13 @@ type DeleteClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain lowercase characters.
+	//    Must contain lowercase characters.
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -7334,21 +7331,21 @@ type DeleteClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters.
+	//    Must be 1 to 255 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	FinalClusterSnapshotIdentifier *string `type:"string"`
 
 	// Determines whether a final snapshot of the cluster is created before Amazon
 	// Redshift deletes the cluster. If true, a final cluster snapshot is not created.
 	// If false, a final cluster snapshot is created before the cluster is deleted.
 	//
-	//  The FinalClusterSnapshotIdentifier parameter must be specified if SkipFinalClusterSnapshot
+	// The FinalClusterSnapshotIdentifier parameter must be specified if SkipFinalClusterSnapshot
 	// is false.
 	//
-	//  Default: false
+	// Default: false
 	SkipFinalClusterSnapshot *bool `type:"boolean"`
 }
 
@@ -7399,9 +7396,9 @@ type DeleteClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the name of an existing cluster parameter group.
+	//    Must be the name of an existing cluster parameter group.
 	//
-	//   Cannot delete a default cluster parameter group.
+	//    Cannot delete a default cluster parameter group.
 	//
 	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
@@ -8006,7 +8003,7 @@ type DescribeClusterSecurityGroupsInput struct {
 	// You can specify either the Marker parameter or a ClusterSecurityGroupName
 	// parameter, but not both.
 	//
-	//  Example: securitygroup1
+	// Example: securitygroup1
 	ClusterSecurityGroupName *string `type:"string"`
 
 	// An optional parameter that specifies the starting point to return a set of
@@ -8269,11 +8266,11 @@ type DescribeClusterVersionsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	ClusterParameterGroupFamily *string `type:"string"`
 
 	// The specific cluster version to return.
@@ -8619,13 +8616,13 @@ type DescribeEventsInput struct {
 	//
 	// If SourceIdentifier is supplied, SourceType must also be provided.
 	//
-	//   Specify a cluster identifier when SourceType is cluster.
+	//    Specify a cluster identifier when SourceType is cluster.
 	//
-	//   Specify a cluster security group name when SourceType is cluster-security-group.
+	//    Specify a cluster security group name when SourceType is cluster-security-group.
 	//
-	//   Specify a cluster parameter group name when SourceType is cluster-parameter-group.
+	//    Specify a cluster parameter group name when SourceType is cluster-parameter-group.
 	//
-	//   Specify a cluster snapshot identifier when SourceType is cluster-snapshot.
+	//    Specify a cluster snapshot identifier when SourceType is cluster-snapshot.
 	SourceIdentifier *string `type:"string"`
 
 	// The event source to retrieve events for. If no value is specified, all events
@@ -8635,15 +8632,15 @@ type DescribeEventsInput struct {
 	//
 	// If SourceType is supplied, SourceIdentifier must also be provided.
 	//
-	//   Specify cluster when SourceIdentifier is a cluster identifier.
+	//    Specify cluster when SourceIdentifier is a cluster identifier.
 	//
-	//   Specify cluster-security-group when SourceIdentifier is a cluster security
+	//    Specify cluster-security-group when SourceIdentifier is a cluster security
 	// group name.
 	//
-	//   Specify cluster-parameter-group when SourceIdentifier is a cluster parameter
+	//    Specify cluster-parameter-group when SourceIdentifier is a cluster parameter
 	// group name.
 	//
-	//   Specify cluster-snapshot when SourceIdentifier is a cluster snapshot identifier.
+	//    Specify cluster-snapshot when SourceIdentifier is a cluster snapshot identifier.
 	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
@@ -9186,8 +9183,8 @@ type DescribeSnapshotCopyGrantsInput struct {
 	// by providing the returned marker value in the Marker parameter and retrying
 	// the request.
 	//
-	// Constraints: You can specify either the SnapshotCopyGrantName parameter
-	// or the Marker parameter, but not both.
+	// Constraints: You can specify either the SnapshotCopyGrantName parameter or
+	// the Marker parameter, but not both.
 	Marker *string `type:"string"`
 
 	// The maximum number of response records to return in each call. If the number
@@ -9240,8 +9237,8 @@ type DescribeSnapshotCopyGrantsOutput struct {
 	// by providing the returned marker value in the Marker parameter and retrying
 	// the request.
 	//
-	// Constraints: You can specify either the SnapshotCopyGrantName parameter
-	// or the Marker parameter, but not both.
+	// Constraints: You can specify either the SnapshotCopyGrantName parameter or
+	// the Marker parameter, but not both.
 	Marker *string `type:"string"`
 
 	// The list of SnapshotCopyGrant objects.
@@ -9334,27 +9331,27 @@ type DescribeTagsInput struct {
 	// The type of resource with which you want to view tags. Valid resource types
 	// are:
 	//
-	//   Cluster
+	//    Cluster
 	//
-	//   CIDR/IP
+	//    CIDR/IP
 	//
-	//   EC2 security group
+	//    EC2 security group
 	//
-	//   Snapshot
+	//    Snapshot
 	//
-	//   Cluster security group
+	//    Cluster security group
 	//
-	//   Subnet group
+	//    Subnet group
 	//
-	//   HSM connection
+	//    HSM connection
 	//
-	//   HSM certificate
+	//    HSM certificate
 	//
-	//   Parameter group
+	//    Parameter group
 	//
-	//   Snapshot copy grant
+	//    Snapshot copy grant
 	//
-	//   For more information about Amazon Redshift resource types and constructing
+	// For more information about Amazon Redshift resource types and constructing
 	// ARNs, go to Constructing an Amazon Redshift Amazon Resource Name (ARN) (http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	ResourceType *string `type:"string"`
@@ -9553,9 +9550,9 @@ type EnableLoggingInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be in the same region as the cluster
+	//    Must be in the same region as the cluster
 	//
-	//   The cluster must have read bucket and put object permissions
+	//    The cluster must have read bucket and put object permissions
 	//
 	// BucketName is a required field
 	BucketName *string `type:"string" required:"true"`
@@ -9571,21 +9568,21 @@ type EnableLoggingInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot exceed 512 characters
+	//    Cannot exceed 512 characters
 	//
-	//   Cannot contain spaces( ), double quotes ("), single quotes ('), a backslash
-	// (\), or control characters. The hexadecimal codes for invalid characters
-	// are:
+	//    Cannot contain spaces( ), double quotes ("), single quotes ('), a backslash
+	//    (\), or control characters. The hexadecimal codes for invalid characters
+	//    are:
 	//
-	//   x00 to x20
+	//    x00 to x20
 	//
-	//   x22
+	//    x22
 	//
-	//   x27
+	//    x27
 	//
-	//   x5c
+	//    x5c
 	//
-	//   x7f or larger
+	//    x7f or larger
 	S3KeyPrefix *string `type:"string"`
 }
 
@@ -9845,11 +9842,11 @@ type EventSubscription struct {
 	//
 	// Constraints:
 	//
-	//   Can be one of the following: active | no-permission | topic-not-exist
+	//    Can be one of the following: active | no-permission | topic-not-exist
 	//
-	//   The status "no-permission" indicates that Amazon Redshift no longer has
-	// permission to post to the Amazon SNS topic. The status "topic-not-exist"
-	// indicates that the topic was deleted after the subscription was created.
+	//    The status "no-permission" indicates that Amazon Redshift no longer has
+	//    permission to post to the Amazon SNS topic. The status "topic-not-exist"
+	//    indicates that the topic was deleted after the subscription was created.
 	Status *string `type:"string"`
 
 	// The date and time the Amazon Redshift event notification subscription was
@@ -10121,32 +10118,32 @@ type ModifyClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters or hyphens
+	//    Must be 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	ClusterSecurityGroups []*string `locationNameList:"ClusterSecurityGroupName" type:"list"`
 
 	// The new cluster type.
 	//
-	// When you submit your cluster resize request, your existing cluster goes
-	// into a read-only mode. After Amazon Redshift provisions a new cluster based
-	// on your resize requirements, there will be outage for a period while the
-	// old cluster is deleted and your connection is switched to the new cluster.
-	// You can use DescribeResize to track the progress of the resize request.
+	// When you submit your cluster resize request, your existing cluster goes into
+	// a read-only mode. After Amazon Redshift provisions a new cluster based on
+	// your resize requirements, there will be outage for a period while the old
+	// cluster is deleted and your connection is switched to the new cluster. You
+	// can use DescribeResize to track the progress of the resize request.
 	//
 	// Valid Values:  multi-node | single-node
 	ClusterType *string `type:"string"`
 
 	// The new version number of the Amazon Redshift engine to upgrade to.
 	//
-	// For major version upgrades, if a non-default cluster parameter group is
-	// currently in use, a new cluster parameter group in the cluster parameter
-	// group family for the new version must be specified. The new cluster parameter
-	// group can be the default for that cluster parameter group family. For more
-	// information about parameters and parameter groups, go to Amazon Redshift
-	// Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+	// For major version upgrades, if a non-default cluster parameter group is currently
+	// in use, a new cluster parameter group in the cluster parameter group family
+	// for the new version must be specified. The new cluster parameter group can
+	// be the default for that cluster parameter group family. For more information
+	// about parameters and parameter groups, go to Amazon Redshift Parameter Groups
+	// (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	//
 	// Example: 1.0
@@ -10184,41 +10181,41 @@ type ModifyClusterInput struct {
 	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
 	// element of the operation response.
 	//
-	//  Operations never return the password, so this operation provides a way
-	// to regain access to the master user account for a cluster if the password
-	// is lost.
+	// Operations never return the password, so this operation provides a way to
+	// regain access to the master user account for a cluster if the password is
+	// lost.
 	//
-	//  Default: Uses existing setting.
+	// Default: Uses existing setting.
 	//
 	// Constraints:
 	//
-	//   Must be between 8 and 64 characters in length.
+	//    Must be between 8 and 64 characters in length.
 	//
-	//   Must contain at least one uppercase letter.
+	//    Must contain at least one uppercase letter.
 	//
-	//   Must contain at least one lowercase letter.
+	//    Must contain at least one lowercase letter.
 	//
-	//   Must contain one number.
+	//    Must contain one number.
 	//
-	//   Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
-	// quote), " (double quote), \, /, @, or space.
+	//    Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
+	//    quote), " (double quote), \, /, @, or space.
 	MasterUserPassword *string `type:"string"`
 
 	// The new identifier for the cluster.
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   Alphabetic characters must be lowercase.
+	//    Alphabetic characters must be lowercase.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Must be unique for all clusters within an AWS account.
+	//    Must be unique for all clusters within an AWS account.
 	//
-	//   Example: examplecluster
+	// Example: examplecluster
 	NewClusterIdentifier *string `type:"string"`
 
 	// The new node type of the cluster. If you specify a new node type, you must
@@ -10465,8 +10462,8 @@ type ModifyEventSubscriptionInput struct {
 	// for all Amazon Redshift objects in your AWS account. You must specify a source
 	// type in order to specify source IDs.
 	//
-	// Valid values: cluster, cluster-parameter-group, cluster-security-group,
-	// and cluster-snapshot.
+	// Valid values: cluster, cluster-parameter-group, cluster-security-group, and
+	// cluster-snapshot.
 	SourceType *string `type:"string"`
 
 	// The name of the modified Amazon Redshift event notification subscription.
@@ -10878,13 +10875,13 @@ type ReservedNode struct {
 	//
 	// Possible Values:
 	//
-	//   pending-payment-This reserved node has recently been purchased, and the
-	// sale has been approved, but payment has not yet been confirmed.
+	//    pending-payment-This reserved node has recently been purchased, and the
+	//    sale has been approved, but payment has not yet been confirmed.
 	//
-	//   active-This reserved node is owned by the caller and is available for
-	// use.
+	//    active-This reserved node is owned by the caller and is available for
+	//    use.
 	//
-	//   payment-failed-Payment failed for the purchase attempt.
+	//    payment-failed-Payment failed for the purchase attempt.
 	State *string `type:"string"`
 
 	// The hourly rate Amazon Redshift charges you for this reserved node.
@@ -11005,8 +11002,7 @@ type RestoreFromClusterSnapshotInput struct {
 	// 0, automated snapshots are disabled. Even if automated snapshots are disabled,
 	// you can still create manual snapshots when you want with CreateClusterSnapshot.
 	//
-	// Default: The value selected for the cluster from which the snapshot was
-	// taken.
+	// Default: The value selected for the cluster from which the snapshot was taken.
 	//
 	// Constraints: Must be a value from 0 to 35.
 	AutomatedSnapshotRetentionPeriod *int64 `type:"integer"`
@@ -11022,15 +11018,15 @@ type RestoreFromClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   Alphabetic characters must be lowercase.
+	//    Alphabetic characters must be lowercase.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Must be unique for all clusters within an AWS account.
+	//    Must be unique for all clusters within an AWS account.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -11043,11 +11039,11 @@ type RestoreFromClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters or hyphens.
+	//    Must be 1 to 255 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	ClusterParameterGroupName *string `type:"string"`
 
 	// A list of security groups to be associated with this cluster.
@@ -11125,10 +11121,10 @@ type RestoreFromClusterSnapshotInput struct {
 	// The weekly time range (in UTC) during which automated cluster maintenance
 	// can occur.
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: The value selected for the cluster from which the snapshot was
-	// taken. For more information about the time blocks for each region, see Maintenance
+	// Default: The value selected for the cluster from which the snapshot was taken.
+	// For more information about the time blocks for each region, see Maintenance
 	// Windows (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-maintenance-windows)
 	// in Amazon Redshift Cluster Management Guide.
 	//
@@ -11653,8 +11649,8 @@ func (s Snapshot) GoString() string {
 // copied snapshots with the specified customer master key (CMK) from AWS KMS
 // in the destination region.
 //
-//  For more information about managing snapshot copy grants, go to Amazon
-// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// For more information about managing snapshot copy grants, go to Amazon Redshift
+// Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
 type SnapshotCopyGrant struct {
 	_ struct{} `type:"structure"`
@@ -11798,25 +11794,25 @@ type TaggedResource struct {
 	// The type of resource with which the tag is associated. Valid resource types
 	// are:
 	//
-	//   Cluster
+	//    Cluster
 	//
-	//   CIDR/IP
+	//    CIDR/IP
 	//
-	//   EC2 security group
+	//    EC2 security group
 	//
-	//   Snapshot
+	//    Snapshot
 	//
-	//   Cluster security group
+	//    Cluster security group
 	//
-	//   Subnet group
+	//    Subnet group
 	//
-	//   HSM connection
+	//    HSM connection
 	//
-	//   HSM certificate
+	//    HSM certificate
 	//
-	//   Parameter group
+	//    Parameter group
 	//
-	//   For more information about Amazon Redshift resource types and constructing
+	// For more information about Amazon Redshift resource types and constructing
 	// ARNs, go to Constructing an Amazon Redshift Amazon Resource Name (ARN) (http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	ResourceType *string `type:"string"`

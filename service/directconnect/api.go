@@ -60,7 +60,7 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 // Allocates a VLAN number and a specified amount of bandwidth for use by a
 // hosted connection on the given interconnect.
 //
-//  This is intended for use by AWS Direct Connect partners only.
+// This is intended for use by AWS Direct Connect partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -134,10 +134,10 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 // The owner of a connection calls this function to provision a private virtual
 // interface which will be owned by another AWS customer.
 //
-// Virtual interfaces created using this function must be confirmed by the
-// virtual interface owner by calling ConfirmPrivateVirtualInterface. Until
-// this step has been completed, the virtual interface will be in 'Confirming'
-// state, and will not be available for handling traffic.
+// Virtual interfaces created using this function must be confirmed by the virtual
+// interface owner by calling ConfirmPrivateVirtualInterface. Until this step
+// has been completed, the virtual interface will be in 'Confirming' state,
+// and will not be available for handling traffic.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -211,9 +211,9 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 // The owner of a connection calls this function to provision a public virtual
 // interface which will be owned by another AWS customer.
 //
-// Virtual interfaces created using this function must be confirmed by the
-// virtual interface owner by calling ConfirmPublicVirtualInterface. Until this
-// step has been completed, the virtual interface will be in 'Confirming' state,
+// Virtual interfaces created using this function must be confirmed by the virtual
+// interface owner by calling ConfirmPublicVirtualInterface. Until this step
+// has been completed, the virtual interface will be in 'Confirming' state,
 // and will not be available for handling traffic.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -596,7 +596,7 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 // on their connection, using the VLAN assigned to them by the AWS Direct Connect
 // partner.
 //
-//  This is intended for use by AWS Direct Connect partners only.
+// This is intended for use by AWS Direct Connect partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -884,7 +884,7 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 //
 // Deletes the specified interconnect.
 //
-//  This is intended for use by AWS Direct Connect partners only.
+// This is intended for use by AWS Direct Connect partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1170,7 +1170,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 //
 // Return a list of connections that have been provisioned on the given interconnect.
 //
-//  This is intended for use by AWS Direct Connect partners only.
+// This is intended for use by AWS Direct Connect partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1537,8 +1537,8 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 // with this connection will be returned. If a virtual interface ID is included
 // then only a single virtual interface will be returned.
 //
-// A virtual interface (VLAN) transmits the traffic between the AWS Direct
-// Connect location and the customer.
+// A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
+// location and the customer.
 //
 // If a connection ID is provided, only virtual interfaces provisioned on the
 // specified connection will be returned. If a virtual interface ID is provided,
@@ -1816,9 +1816,9 @@ type ConfirmConnectionOutput struct {
 
 	// State of the connection.
 	//
-	//    Ordering: The initial state of a hosted connection provisioned on an
-	// interconnect. The connection stays in the ordering state until the owner
-	// of the hosted connection confirms or declines the connection order.
+	//    Ordering: The initial state of a hosted connection provisioned on an interconnect.
+	// The connection stays in the ordering state until the owner of the hosted
+	// connection confirms or declines the connection order.
 	//
 	//    Requested: The initial state of a standard connection. The connection
 	// stays in the requested state until the Letter of Authorization (LOA) is sent
@@ -1834,8 +1834,8 @@ type ConfirmConnectionOutput struct {
 	//
 	//    Deleted: The connection has been deleted.
 	//
-	//    Rejected: A hosted connection in the 'Ordering' state will enter the
-	// 'Rejected' state if it is deleted by the end customer.
+	//    Rejected: A hosted connection in the 'Ordering' state will enter the 'Rejected'
+	// state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 }
 
@@ -1855,8 +1855,8 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 
 	// ID of the virtual private gateway that will be attached to the virtual interface.
 	//
-	//  A virtual private gateway can be managed via the Amazon Virtual Private
-	// Cloud (VPC) console or the EC2 CreateVpnGateway (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html)
+	// A virtual private gateway can be managed via the Amazon Virtual Private Cloud
+	// (VPC) console or the EC2 CreateVpnGateway (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-CreateVpnGateway.html)
 	// action.
 	//
 	// Default: None
@@ -2055,9 +2055,9 @@ type Connection struct {
 
 	// State of the connection.
 	//
-	//    Ordering: The initial state of a hosted connection provisioned on an
-	// interconnect. The connection stays in the ordering state until the owner
-	// of the hosted connection confirms or declines the connection order.
+	//    Ordering: The initial state of a hosted connection provisioned on an interconnect.
+	// The connection stays in the ordering state until the owner of the hosted
+	// connection confirms or declines the connection order.
 	//
 	//    Requested: The initial state of a standard connection. The connection
 	// stays in the requested state until the Letter of Authorization (LOA) is sent
@@ -2073,8 +2073,8 @@ type Connection struct {
 	//
 	//    Deleted: The connection has been deleted.
 	//
-	//    Rejected: A hosted connection in the 'Ordering' state will enter the
-	// 'Rejected' state if it is deleted by the end customer.
+	//    Rejected: A hosted connection in the 'Ordering' state will enter the 'Rejected'
+	// state if it is deleted by the end customer.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
 	// The time of the most recent call to DescribeConnectionLoa for this Connection.
@@ -2446,8 +2446,7 @@ type DeleteInterconnectOutput struct {
 	//
 	//    Pending>: The interconnect has been approved, and is being initialized.
 	//
-	//    Available: The network link is up, and the interconnect is ready for
-	// use.
+	//    Available: The network link is up, and the interconnect is ready for use.
 	//
 	//    Down: The network link is down.
 	//
@@ -2937,8 +2936,7 @@ type Interconnect struct {
 	//
 	//    Pending>: The interconnect has been approved, and is being initialized.
 	//
-	//    Available: The network link is up, and the interconnect is ready for
-	// use.
+	//    Available: The network link is up, and the interconnect is ready for use.
 	//
 	//    Down: The network link is down.
 	//
@@ -3536,9 +3534,9 @@ func (s VirtualInterface) GoString() string {
 
 // State of the connection.
 //
-//    Ordering: The initial state of a hosted connection provisioned on an
-// interconnect. The connection stays in the ordering state until the owner
-// of the hosted connection confirms or declines the connection order.
+//    Ordering: The initial state of a hosted connection provisioned on an interconnect.
+// The connection stays in the ordering state until the owner of the hosted
+// connection confirms or declines the connection order.
 //
 //    Requested: The initial state of a standard connection. The connection
 // stays in the requested state until the Letter of Authorization (LOA) is sent
@@ -3554,8 +3552,8 @@ func (s VirtualInterface) GoString() string {
 //
 //    Deleted: The connection has been deleted.
 //
-//    Rejected: A hosted connection in the 'Ordering' state will enter the
-// 'Rejected' state if it is deleted by the end customer.
+//    Rejected: A hosted connection in the 'Ordering' state will enter the 'Rejected'
+// state if it is deleted by the end customer.
 const (
 	// ConnectionStateOrdering is a ConnectionState enum value
 	ConnectionStateOrdering = "ordering"
@@ -3590,8 +3588,7 @@ const (
 //
 //    Pending>: The interconnect has been approved, and is being initialized.
 //
-//    Available: The network link is up, and the interconnect is ready for
-// use.
+//    Available: The network link is up, and the interconnect is ready for use.
 //
 //    Down: The network link is down.
 //

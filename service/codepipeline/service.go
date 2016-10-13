@@ -21,7 +21,7 @@ import (
 // You can use the AWS CodePipeline API to work with pipelines, stages, actions,
 // gates, and transitions, as described below.
 //
-//  Pipelines are models of automated release processes. Each pipeline is uniquely
+// Pipelines are models of automated release processes. Each pipeline is uniquely
 // named, and consists of actions, gates, and stages.
 //
 // You can work with pipelines by calling:
@@ -47,7 +47,7 @@ import (
 //    UpdatePipeline, which updates a pipeline with edits or changes to the
 // structure of the pipeline.
 //
-//   Pipelines include stages, which are which are logical groupings of gates
+// Pipelines include stages, which are which are logical groupings of gates
 // and actions. Each stage contains one or more actions that must complete before
 // the next stage begins. A stage will result in success or failure. If a stage
 // fails, then the pipeline stops at that stage and will remain stopped until
@@ -74,23 +74,23 @@ import (
 //    DisableStageTransition, which prevents artifacts from transitioning to
 // the next stage in a pipeline.
 //
-//    EnableStageTransition, which enables transition of artifacts between
-// stages in a pipeline.
+//    EnableStageTransition, which enables transition of artifacts between stages
+// in a pipeline.
 //
-//    Using the API to integrate with AWS CodePipeline
+// Using the API to integrate with AWS CodePipeline
 //
 // For third-party integrators or developers who want to create their own integrations
 // with AWS CodePipeline, the expected sequence varies from the standard API
 // user. In order to integrate with AWS CodePipeline, developers will need to
 // work with the following items:
 //
-//  Jobs, which are instances of an action. For example, a job for a source
-// action might import a revision of an artifact from a source.
+// Jobs, which are instances of an action. For example, a job for a source action
+// might import a revision of an artifact from a source.
 //
 // You can work with jobs by calling:
 //
-//    AcknowledgeJob, which confirms whether a job worker has received the
-// specified job,
+//    AcknowledgeJob, which confirms whether a job worker has received the specified
+// job,
 //
 //    GetJobDetails, which returns the details of a job,
 //
@@ -100,9 +100,9 @@ import (
 //
 //    PutJobSuccessResult, which provides details of a job success.
 //
-//    Third party jobs, which are instances of an action created by a partner
-// action and integrated into AWS CodePipeline. Partner actions are created
-// by members of the AWS Partner Network.
+// Third party jobs, which are instances of an action created by a partner action
+// and integrated into AWS CodePipeline. Partner actions are created by members
+// of the AWS Partner Network.
 //
 // You can work with third party jobs by calling:
 //

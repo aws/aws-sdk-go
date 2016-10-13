@@ -178,29 +178,43 @@ type GenerateDataSetInput struct {
 
 	// The desired data set type.
 	//
-	//   customer_subscriber_hourly_monthly_subscriptions - Available daily by
-	// 5:00 PM Pacific Time since 2014-07-21. customer_subscriber_annual_subscriptions
-	// - Available daily by 5:00 PM Pacific Time since 2014-07-21. daily_business_usage_by_instance_type
-	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_fees
-	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_free_trial_conversions
-	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_new_instances
-	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_new_product_subscribers
-	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. daily_business_canceled_product_subscribers
-	// - Available daily by 5:00 PM Pacific Time since 2015-01-26. monthly_revenue_billing_and_revenue_data
-	// - Available monthly on the 4th day of the month by 5:00 PM Pacific Time since
-	// 2015-02. monthly_revenue_annual_subscriptions - Available monthly on the
-	// 4th day of the month by 5:00 PM Pacific Time since 2015-02. disbursed_amount_by_product
-	// - Available every 30 days by 5:00 PM Pacific Time since 2015-01-26. disbursed_amount_by_product_with_uncollected_funds
-	// -This data set is only available from 2012-04-19 until 2015-01-25. After
-	// 2015-01-25, this data set was split into three data sets: disbursed_amount_by_product,
-	// disbursed_amount_by_age_of_uncollected_funds, and disbursed_amount_by_age_of_disbursed_funds.
-	//  disbursed_amount_by_customer_geo - Available every 30 days by 5:00 PM Pacific
-	// Time since 2012-04-19. disbursed_amount_by_age_of_uncollected_funds - Available
-	// every 30 days by 5:00 PM Pacific Time since 2015-01-26. disbursed_amount_by_age_of_disbursed_funds
-	// - Available every 30 days by 5:00 PM Pacific Time since 2015-01-26. customer_profile_by_industry
-	// - Available daily by 5:00 PM Pacific Time since 2015-10-01. customer_profile_by_revenue
-	// - Available daily by 5:00 PM Pacific Time since 2015-10-01. customer_profile_by_geography
-	// - Available daily by 5:00 PM Pacific Time since 2015-10-01.
+	// customer_subscriber_hourly_monthly_subscriptions - Available daily by 5:00
+	//    PM Pacific Time since 2014-07-21.
+	// customer_subscriber_annual_subscriptions - Available daily by 5:00 PM Pacific
+	//    Time since 2014-07-21.
+	// daily_business_usage_by_instance_type - Available daily by 5:00 PM Pacific
+	//    Time since 2015-01-26.
+	// daily_business_fees - Available daily by 5:00 PM Pacific Time since 2015-01-26.
+	// daily_business_free_trial_conversions - Available daily by 5:00 PM Pacific
+	//    Time since 2015-01-26.
+	// daily_business_new_instances - Available daily by 5:00 PM Pacific Time since
+	//    2015-01-26.
+	// daily_business_new_product_subscribers - Available daily by 5:00 PM Pacific
+	//    Time since 2015-01-26.
+	// daily_business_canceled_product_subscribers - Available daily by 5:00 PM
+	//    Pacific Time since 2015-01-26.
+	// monthly_revenue_billing_and_revenue_data - Available monthly on the 4th day
+	//    of the month by 5:00 PM Pacific Time since 2015-02.
+	// monthly_revenue_annual_subscriptions - Available monthly on the 4th day of
+	//    the month by 5:00 PM Pacific Time since 2015-02.
+	// disbursed_amount_by_product - Available every 30 days by 5:00 PM Pacific
+	//    Time since 2015-01-26.
+	// disbursed_amount_by_product_with_uncollected_funds -This data set is only
+	//    available from 2012-04-19 until 2015-01-25. After 2015-01-25, this data
+	//    set was split into three data sets: disbursed_amount_by_product, disbursed_amount_by_age_of_uncollected_funds,
+	//    and disbursed_amount_by_age_of_disbursed_funds.
+	// disbursed_amount_by_customer_geo - Available every 30 days by 5:00 PM Pacific
+	//    Time since 2012-04-19.
+	// disbursed_amount_by_age_of_uncollected_funds - Available every 30 days by
+	//    5:00 PM Pacific Time since 2015-01-26.
+	// disbursed_amount_by_age_of_disbursed_funds - Available every 30 days by 5:00
+	//    PM Pacific Time since 2015-01-26.
+	// customer_profile_by_industry - Available daily by 5:00 PM Pacific Time since
+	//    2015-10-01.
+	// customer_profile_by_revenue - Available daily by 5:00 PM Pacific Time since
+	//    2015-10-01.
+	// customer_profile_by_geography - Available daily by 5:00 PM Pacific Time since
+	//    2015-10-01.
 	//
 	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"DataSetType"`
@@ -317,11 +331,11 @@ type StartSupportDataExportInput struct {
 	// Code, Operation Type, and Operation Time. Currently, only the test_customer_support_contacts_data
 	// value is supported
 	//
-	//   customer_support_contacts_data Customer support contact data. The data
-	// set will contain all changes (Creates, Updates, and Deletes) to customer
-	// support contact data from the date specified in the from_date parameter.
+	// customer_support_contacts_data Customer support contact data. The data set
+	//    will contain all changes (Creates, Updates, and Deletes) to customer support
+	//    contact data from the date specified in the from_date parameter.
 	// test_customer_support_contacts_data An example data set containing static
-	// test data in the same format as customer_support_contacts_data
+	//    test data in the same format as customer_support_contacts_data
 	//
 	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"SupportDataSetType"`

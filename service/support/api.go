@@ -229,8 +229,8 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //    issueType. The type of issue for the case. You can specify either "customer-service"
 // or "technical." If you do not indicate a value, the default is "technical."
 //
-//    serviceCode. The code for an AWS service. You obtain the serviceCode
-// by calling DescribeServices.
+//    serviceCode. The code for an AWS service. You obtain the serviceCode by
+// calling DescribeServices.
 //
 //    categoryCode. The category for the service defined for the serviceCode
 // value. You also obtain the category code for a service by calling DescribeServices.
@@ -252,17 +252,15 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //    language. The human language in which AWS Support handles the case. English
 // and Japanese are currently supported.
 //
-//    ccEmailAddresses. The AWS Support Center CC field on the Create Case
-// (https://console.aws.amazon.com/support/home#/case/create) page. You can
-// list email addresses to be copied on any correspondence about the case. The
-// account that opens the case is already identified by passing the AWS Credentials
-// in the HTTP POST method or in a method or function call from one of the programming
-// languages supported by an AWS SDK (http://aws.amazon.com/tools/).
+//    ccEmailAddresses. The AWS Support Center CC field on the Create Case (https://console.aws.amazon.com/support/home#/case/create)
+// page. You can list email addresses to be copied on any correspondence about
+// the case. The account that opens the case is already identified by passing
+// the AWS Credentials in the HTTP POST method or in a method or function call
+// from one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
 //
-//    To add additional communication or attachments to an existing case, use
-// AddCommunicationToCase.
+// To add additional communication or attachments to an existing case, use AddCommunicationToCase.
 //
-//  A successful CreateCase request returns an AWS Support case number. Case
+// A successful CreateCase request returns an AWS Support case number. Case
 // numbers are used by the DescribeCases operation to retrieve existing AWS
 // Support cases.
 //
@@ -429,9 +427,9 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 //
 // The response returns the following in JSON format:
 //
-//   One or more CaseDetails data types.
+//    One or more CaseDetails data types.
 //
-//   One or more nextToken values, which specify where to paginate the returned
+//    One or more nextToken values, which specify where to paginate the returned
 // records represented by the CaseDetails objects.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -774,7 +772,7 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 // Returns the refresh status of the Trusted Advisor checks that have the specified
 // check IDs. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
 //
-//  Some checks are refreshed automatically, and their refresh statuses cannot
+// Some checks are refreshed automatically, and their refresh statuses cannot
 // be retrieved by using this operation. Use of the DescribeTrustedAdvisorCheckRefreshStatuses
 // operation for these checks causes an InvalidParameterValue error.
 //
@@ -852,7 +850,7 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 //
 //    TrustedAdvisorResourcesSummary
 //
-//   In addition, the response contains these fields:
+// In addition, the response contains these fields:
 //
 //    status. The alert status of the check: "ok" (green), "warning" (yellow),
 // "error" (red), or "not_available".
@@ -1060,12 +1058,12 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 // Requests a refresh of the Trusted Advisor check that has the specified check
 // ID. Check IDs can be obtained by calling DescribeTrustedAdvisorChecks.
 //
-//  Some checks are refreshed automatically, and they cannot be refreshed by
+// Some checks are refreshed automatically, and they cannot be refreshed by
 // using this operation. Use of the RefreshTrustedAdvisorCheck operation for
 // these checks causes an InvalidParameterValue error.
 //
-//  The response contains a TrustedAdvisorCheckRefreshStatus object, which
-// contains these fields:
+// The response contains a TrustedAdvisorCheckRefreshStatus object, which contains
+// these fields:
 //
 //    status. The refresh status of the check: "none", "enqueued", "processing",
 // "success", or "abandoned".
@@ -1515,9 +1513,9 @@ type CreateCaseInput struct {
 
 	// The code for the severity level returned by the call to DescribeSeverityLevels.
 	//
-	//  The availability of severity levels depends on each customer's support
-	// subscription. In other words, your subscription may not necessarily require
-	// the urgent level of response time.
+	// The availability of severity levels depends on each customer's support subscription.
+	// In other words, your subscription may not necessarily require the urgent
+	// level of response time.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
 	// The title of the AWS Support case.

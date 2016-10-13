@@ -35,13 +35,13 @@ import (
 // and AddAttachmentsToSet operations retrieve and add communications and attachments
 // to AWS Support cases.
 //
-//   The following list describes the operations available from the AWS Support
+// The following list describes the operations available from the AWS Support
 // service for Trusted Advisor:
 //
 //    DescribeTrustedAdvisorChecks returns the list of checks that run against
 // your AWS resources.
 //
-//   Using the checkId for a specific check returned by DescribeTrustedAdvisorChecks,
+//    Using the checkId for a specific check returned by DescribeTrustedAdvisorChecks,
 // you can call DescribeTrustedAdvisorCheckResult to obtain the results for
 // the check you specified.
 //
@@ -54,7 +54,7 @@ import (
 //    DescribeTrustedAdvisorCheckRefreshStatuses reports the refresh status
 // of one or more checks.
 //
-//   For authentication of requests, AWS Support uses Signature Version 4 Signing
+// For authentication of requests, AWS Support uses Signature Version 4 Signing
 // Process (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // See About the AWS Support API (http://docs.aws.amazon.com/awssupport/latest/user/Welcome.html)

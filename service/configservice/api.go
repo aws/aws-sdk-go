@@ -139,8 +139,8 @@ func (c *ConfigService) DeleteConfigurationRecorderRequest(input *DeleteConfigur
 //
 // Deletes the configuration recorder.
 //
-// After the configuration recorder is deleted, AWS Config will not record
-// resource configuration changes until you create a new configuration recorder.
+// After the configuration recorder is deleted, AWS Config will not record resource
+// configuration changes until you create a new configuration recorder.
 //
 // This action does not delete the configuration information that was previously
 // recorded. You will be able to access the previously recorded information
@@ -359,9 +359,9 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 // the specified delivery channel. After the delivery has started, AWS Config
 // sends following notifications using an Amazon SNS topic that you have specified.
 //
-//  Notification of starting the delivery. Notification of delivery completed,
-// if the delivery was successfully completed. Notification of delivery failure,
-// if the delivery failed to complete.
+//    Notification of starting the delivery.
+//    Notification of delivery completed, if the delivery was successfully completed.
+//    Notification of delivery failure, if the delivery failed to complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -442,15 +442,17 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 // If AWS Config has no current evaluation results for the rule, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions:
 //
-//  AWS Config has never invoked an evaluation for the rule. To check whether
-// it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
-// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
-// send evaluation results to AWS Config. Verify that the role that you assigned
-// to your configuration recorder includes the config:PutEvaluations permission.
-// If the rule is a custom rule, verify that the AWS Lambda execution role includes
-// the config:PutEvaluations permission. The rule's AWS Lambda function has
-// returned NOT_APPLICABLE for all evaluation results. This can occur if the
-// resources were deleted or removed from the rule's scope.
+//    AWS Config has never invoked an evaluation for the rule. To check whether
+//    it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
+//    and LastFailedInvocationTime.
+//    The rule's AWS Lambda function is failing to send evaluation results to
+//    AWS Config. Verify that the role that you assigned to your configuration
+//    recorder includes the config:PutEvaluations permission. If the rule is
+//    a custom rule, verify that the AWS Lambda execution role includes the
+//    config:PutEvaluations permission.
+//    The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+//    results. This can occur if the resources were deleted or removed from
+//    the rule's scope.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -531,15 +533,17 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions
 // about the rules that evaluate the resource:
 //
-//  AWS Config has never invoked an evaluation for the rule. To check whether
-// it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
-// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
-// send evaluation results to AWS Config. Verify that the role that you assigned
-// to your configuration recorder includes the config:PutEvaluations permission.
-// If the rule is a custom rule, verify that the AWS Lambda execution role includes
-// the config:PutEvaluations permission. The rule's AWS Lambda function has
-// returned NOT_APPLICABLE for all evaluation results. This can occur if the
-// resources were deleted or removed from the rule's scope.
+//    AWS Config has never invoked an evaluation for the rule. To check whether
+//    it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
+//    and LastFailedInvocationTime.
+//    The rule's AWS Lambda function is failing to send evaluation results to
+//    AWS Config. Verify that the role that you assigned to your configuration
+//    recorder includes the config:PutEvaluations permission. If the rule is
+//    a custom rule, verify that the AWS Lambda execution role includes the
+//    config:PutEvaluations permission.
+//    The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+//    results. This can occur if the resources were deleted or removed from
+//    the rule's scope.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -745,7 +749,7 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
 //
-//  Currently, you can specify only one configuration recorder per account.
+// Currently, you can specify only one configuration recorder per account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -813,7 +817,7 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 // recorder name is not specified, this action returns the names of all the
 // configuration recorders associated with the account.
 //
-//  Currently, you can specify only one configuration recorder per account.
+// Currently, you can specify only one configuration recorder per account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -881,7 +885,7 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
 //
-//  Currently, you can specify only one delivery channel per account.
+// Currently, you can specify only one delivery channel per account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -949,7 +953,7 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 // is not specified, this action returns the details of all delivery channels
 // associated with the account.
 //
-//  Currently, you can specify only one delivery channel per account.
+// Currently, you can specify only one delivery channel per account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1298,9 +1302,9 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 // page of results, run the request again and enter this string for the nextToken
 // parameter.
 //
-//  Each call to the API is limited to span a duration of seven days. It is
-// likely that the number of records returned is smaller than the specified
-// limit. In such cases, you can make another call, using the nextToken.
+// Each call to the API is limited to span a duration of seven days. It is likely
+// that the number of records returned is smaller than the specified limit.
+// In such cases, you can make another call, using the nextToken.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1414,12 +1418,12 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 // recording. You can narrow the results to include only resources that have
 // specific resource IDs or a resource name.
 //
-//  You can specify either resource IDs or a resource name but not both in
-// the same request.
+// You can specify either resource IDs or a resource name but not both in the
+// same request.
 //
-//  The response is paginated, and by default AWS Config lists 100 resource
-// identifiers on each page. You can customize this number with the limit parameter.
-// The response includes a nextToken string, and to get the next page of results,
+// The response is paginated, and by default AWS Config lists 100 resource identifiers
+// on each page. You can customize this number with the limit parameter. The
+// response includes a nextToken string, and to get the next page of results,
 // run the request again and enter this string for the nextToken parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1553,9 +1557,10 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //   * InsufficientPermissionsException
 //   Indicates one of the following errors:
 //
-//    The rule cannot be created because the IAM role assigned to AWS Config
-//   lacks permissions to perform the config:Put* action. The AWS Lambda function
-//   cannot be invoked. Check the function ARN, and check the function's permissions.
+//      The rule cannot be created because the IAM role assigned to AWS Config
+//      lacks permissions to perform the config:Put* action.
+//      The AWS Lambda function cannot be invoked. Check the function ARN, and
+//      check the function's permissions.
 //
 //   * NoAvailableConfigurationRecorderException
 //   There are no configuration recorders available to provide the role needed
@@ -1620,7 +1625,7 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 // of an existing recorder. To change the role, call the action on the existing
 // configuration recorder and specify a role.
 //
-//  Currently, you can specify only one configuration recorder per account.
+// Currently, you can specify only one configuration recorder per account.
 //
 // If ConfigurationRecorder does not have the recordingGroup parameter specified,
 // the default is to record all supported resource types.
@@ -1705,14 +1710,14 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // Before you can create a delivery channel, you must create a configuration
 // recorder.
 //
-// You can use this action to change the Amazon S3 bucket or an Amazon SNS
-// topic of the existing delivery channel. To change the Amazon S3 bucket or
-// an Amazon SNS topic, call this action and specify the changed values for
-// the S3 bucket and the SNS topic. If you specify a different value for either
-// the S3 bucket or the SNS topic, this action will keep the existing value
-// for the parameter that is not changed.
+// You can use this action to change the Amazon S3 bucket or an Amazon SNS topic
+// of the existing delivery channel. To change the Amazon S3 bucket or an Amazon
+// SNS topic, call this action and specify the changed values for the S3 bucket
+// and the SNS topic. If you specify a different value for either the S3 bucket
+// or the SNS topic, this action will keep the existing value for the parameter
+// that is not changed.
 //
-//  You can have only one delivery channel per AWS account.
+// You can have only one delivery channel per AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1877,14 +1882,14 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 // stream to an Amazon SNS topic, you will receive a ConfigRuleEvaluationStarted
 // notification when the evaluation starts.
 //
-//  You don't need to call the StartConfigRulesEvaluation API to run an evaluation
+// You don't need to call the StartConfigRulesEvaluation API to run an evaluation
 // for a new rule. When you create a new rule, AWS Config automatically evaluates
 // your resources against the rule.
 //
-//  The StartConfigRulesEvaluation API is useful if you want to run on-demand
+// The StartConfigRulesEvaluation API is useful if you want to run on-demand
 // evaluations, such as the following example:
 //
-//  You have a custom rule that evaluates your IAM resources every 24 hours.
+// You have a custom rule that evaluates your IAM resources every 24 hours.
 //
 // You update your Lambda function to add additional conditions to your rule.
 //
@@ -2076,9 +2081,9 @@ type Compliance struct {
 
 	// Indicates whether an AWS resource or AWS Config rule is compliant.
 	//
-	// A resource is compliant if it complies with all of the AWS Config rules
-	// that evaluate it, and it is noncompliant if it does not comply with one or
-	// more of these rules.
+	// A resource is compliant if it complies with all of the AWS Config rules that
+	// evaluate it, and it is noncompliant if it does not comply with one or more
+	// of these rules.
 	//
 	// A rule is compliant if all of the resources that the rule evaluates comply
 	// with it, and it is noncompliant if any of these resources do not comply.
@@ -2267,11 +2272,11 @@ func (s ConfigExportDeliveryInfo) GoString() string {
 // a configuration change to an AWS resource and at a periodic frequency that
 // you choose (for example, every 24 hours).
 //
-//  You can use the AWS CLI and AWS SDKs if you want to create a rule that
-// triggers evaluations for your resources when AWS Config delivers the configuration
+// You can use the AWS CLI and AWS SDKs if you want to create a rule that triggers
+// evaluations for your resources when AWS Config delivers the configuration
 // snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 //
-//  For more information about developing and using AWS Config rules, see Evaluating
+// For more information about developing and using AWS Config rules, see Evaluating
 // AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 // in the AWS Config Developer Guide.
 type ConfigRule struct {
@@ -2314,12 +2319,12 @@ type ConfigRule struct {
 	// The maximum frequency with which AWS Config runs evaluations for a rule.
 	// You can specify a value for MaximumExecutionFrequency when:
 	//
-	//   You are using an AWS managed rule that is triggered at a periodic frequency.
+	//    You are using an AWS managed rule that is triggered at a periodic frequency.
 	//
-	//   Your custom rule is triggered when AWS Config delivers the configuration
-	// snapshot.
+	//    Your custom rule is triggered when AWS Config delivers the configuration
+	//    snapshot.
 	//
-	//   For more information, see ConfigSnapshotDeliveryProperties.
+	// For more information, see ConfigSnapshotDeliveryProperties.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
 	// Defines which resources can trigger an evaluation for the rule. The scope
@@ -2399,9 +2404,10 @@ type ConfigRuleEvaluationStatus struct {
 	// Indicates whether AWS Config has evaluated your resources against the rule
 	// at least once.
 	//
-	//  true - AWS Config has evaluated your AWS resources against the rule at
-	// least once. false - AWS Config has not once finished evaluating your AWS
-	// resources against the rule.
+	//    true - AWS Config has evaluated your AWS resources against the rule at
+	//    least once.
+	//    false - AWS Config has not once finished evaluating your AWS resources
+	//    against the rule.
 	FirstEvaluationStarted *bool `type:"boolean"`
 
 	// The error code that AWS Config returned when the rule last failed.
@@ -2440,37 +2446,37 @@ func (s ConfigRuleEvaluationStatus) GoString() string {
 // Provides options for how often AWS Config delivers configuration snapshots
 // to the Amazon S3 bucket in your delivery channel.
 //
-//  If you want to create a rule that triggers evaluations for your resources
+// If you want to create a rule that triggers evaluations for your resources
 // when AWS Config delivers the configuration snapshot, see the following:
 //
-//  The frequency for a rule that triggers evaluations for your resources when
+// The frequency for a rule that triggers evaluations for your resources when
 // AWS Config delivers the configuration snapshot is set by one of two values,
 // depending on which is less frequent:
 //
-//   The value for the deliveryFrequency parameter within the delivery channel
+//    The value for the deliveryFrequency parameter within the delivery channel
 // configuration, which sets how often AWS Config delivers configuration snapshots.
 // This value also sets how often AWS Config invokes evaluations for Config
 // rules.
 //
-//   The value for the MaximumExecutionFrequency parameter, which sets the
+//    The value for the MaximumExecutionFrequency parameter, which sets the
 // maximum frequency with which AWS Config invokes evaluations for the rule.
 // For more information, see ConfigRule.
 //
-//   If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
+// If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
 // value for a rule, AWS Config invokes the rule only as often as the deliveryFrequency
 // value.
 //
-//   For example, you want your rule to run evaluations when AWS Config delivers
-// the configuration snapshot.
+//    For example, you want your rule to run evaluations when AWS Config delivers
+//    the configuration snapshot.
 //
-//   You specify the MaximumExecutionFrequency value for Six_Hours.
+//    You specify the MaximumExecutionFrequency value for Six_Hours.
 //
-//   You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
+//    You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
 //
-//   Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
+//    Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
 // AWS Config invokes evaluations for the rule every 24 hours.
 //
-//   You should set the MaximumExecutionFrequency value to be at least as frequent
+// You should set the MaximumExecutionFrequency value to be at least as frequent
 // as the deliveryFrequency value. You can view the deliveryFrequency value
 // by using the DescribeDeliveryChannnels action.
 //
@@ -2527,7 +2533,7 @@ func (s ConfigStreamDeliveryInfo) GoString() string {
 
 // A list that contains detailed configurations of a specified resource.
 //
-//  Currently, the list does not contain information about non-AWS components
+// Currently, the list does not contain information about non-AWS components
 // (for example, applications on your Amazon EC2 instances).
 type ConfigurationItem struct {
 	_ struct{} `type:"structure"`
@@ -2552,8 +2558,8 @@ type ConfigurationItem struct {
 
 	// Unique MD5 hash that represents the configuration item's state.
 	//
-	// You can use MD5 hash to compare the states of two or more configuration
-	// items that are associated with the same resource.
+	// You can use MD5 hash to compare the states of two or more configuration items
+	// that are associated with the same resource.
 	ConfigurationItemMD5Hash *string `locationName:"configurationItemMD5Hash" type:"string"`
 
 	// The configuration item status.
@@ -2955,37 +2961,37 @@ type DeliveryChannel struct {
 	// Provides options for how often AWS Config delivers configuration snapshots
 	// to the Amazon S3 bucket in your delivery channel.
 	//
-	//  If you want to create a rule that triggers evaluations for your resources
+	// If you want to create a rule that triggers evaluations for your resources
 	// when AWS Config delivers the configuration snapshot, see the following:
 	//
-	//  The frequency for a rule that triggers evaluations for your resources when
+	// The frequency for a rule that triggers evaluations for your resources when
 	// AWS Config delivers the configuration snapshot is set by one of two values,
 	// depending on which is less frequent:
 	//
-	//   The value for the deliveryFrequency parameter within the delivery channel
+	//    The value for the deliveryFrequency parameter within the delivery channel
 	// configuration, which sets how often AWS Config delivers configuration snapshots.
 	// This value also sets how often AWS Config invokes evaluations for Config
 	// rules.
 	//
-	//   The value for the MaximumExecutionFrequency parameter, which sets the
+	//    The value for the MaximumExecutionFrequency parameter, which sets the
 	// maximum frequency with which AWS Config invokes evaluations for the rule.
 	// For more information, see ConfigRule.
 	//
-	//   If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
+	// If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
 	// value for a rule, AWS Config invokes the rule only as often as the deliveryFrequency
 	// value.
 	//
-	//   For example, you want your rule to run evaluations when AWS Config delivers
-	// the configuration snapshot.
+	//    For example, you want your rule to run evaluations when AWS Config delivers
+	//    the configuration snapshot.
 	//
-	//   You specify the MaximumExecutionFrequency value for Six_Hours.
+	//    You specify the MaximumExecutionFrequency value for Six_Hours.
 	//
-	//   You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
+	//    You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
 	//
-	//   Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
+	//    Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
 	// AWS Config invokes evaluations for the rule every 24 hours.
 	//
-	//   You should set the MaximumExecutionFrequency value to be at least as frequent
+	// You should set the MaximumExecutionFrequency value to be at least as frequent
 	// as the deliveryFrequency value. You can view the deliveryFrequency value
 	// by using the DescribeDeliveryChannnels action.
 	//
@@ -3992,11 +3998,11 @@ type PutConfigRuleInput struct {
 	// a configuration change to an AWS resource and at a periodic frequency that
 	// you choose (for example, every 24 hours).
 	//
-	//  You can use the AWS CLI and AWS SDKs if you want to create a rule that
-	// triggers evaluations for your resources when AWS Config delivers the configuration
+	// You can use the AWS CLI and AWS SDKs if you want to create a rule that triggers
+	// evaluations for your resources when AWS Config delivers the configuration
 	// snapshot. For more information, see ConfigSnapshotDeliveryProperties.
 	//
-	//  For more information about developing and using AWS Config rules, see Evaluating
+	// For more information about developing and using AWS Config rules, see Evaluating
 	// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
 	// in the AWS Config Developer Guide.
 	//
@@ -4229,11 +4235,11 @@ func (s PutEvaluationsOutput) GoString() string {
 // in that region. Examples of regional resources are EC2 instances and EBS
 // volumes.
 //
-// You can also have AWS Config record configuration changes for supported
-// types of global resources (for example, IAM resources). Global resources
-// are not tied to an individual region and can be used in all regions.
+// You can also have AWS Config record configuration changes for supported types
+// of global resources (for example, IAM resources). Global resources are not
+// tied to an individual region and can be used in all regions.
 //
-//  The configuration details for any global resource are the same in all regions.
+// The configuration details for any global resource are the same in all regions.
 // If you customize AWS Config in multiple regions to record global resources,
 // it will create multiple configuration items each time a global resource changes:
 // one configuration item for each region. These configuration items will contain
@@ -4241,7 +4247,7 @@ func (s PutEvaluationsOutput) GoString() string {
 // customizing AWS Config in only one region to record global resources, unless
 // you want the configuration items to be available in multiple regions.
 //
-//  If you don't want AWS Config to record all resources, you can specify which
+// If you don't want AWS Config to record all resources, you can specify which
 // types of resources it will record with the resourceTypes parameter.
 //
 // For a list of supported resource types, see Supported resource types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
@@ -4464,6 +4470,7 @@ func (s *Source) Validate() error {
 type SourceDetail struct {
 	_ struct{} `type:"structure"`
 
+	//
 	// The source of the event, such as an AWS service, that triggers AWS Config
 	// to evaluate your AWS resources.
 	EventSource *string `type:"string" enum:"EventSource"`
@@ -4479,11 +4486,11 @@ type SourceDetail struct {
 	// ConfigurationItemChangeNotification - Triggers an evaluation when AWS Config
 	// delivers a configuration item change notification.
 	//
-	// ScheduledNotification - Triggers a periodic evaluation at the frequency
-	// specified for MaximumExecutionFrequency.
+	// ScheduledNotification - Triggers a periodic evaluation at the frequency specified
+	// for MaximumExecutionFrequency.
 	//
-	// ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation
-	// when AWS Config delivers a configuration snapshot.
+	// ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation when
+	// AWS Config delivers a configuration snapshot.
 	MessageType *string `type:"string" enum:"MessageType"`
 }
 

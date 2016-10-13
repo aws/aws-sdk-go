@@ -64,18 +64,18 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // not currently exist that is owned by the caller's AWS account with the specified
 // creation token, this operation does the following:
 //
-//   Creates a new, empty file system. The file system will have an Amazon
-// EFS assigned ID, and an initial lifecycle state creating.
+//    Creates a new, empty file system. The file system will have an Amazon
+//    EFS assigned ID, and an initial lifecycle state creating.
 //
-//   Returns with the description of the created file system.
+//    Returns with the description of the created file system.
 //
-//   Otherwise, this operation returns a FileSystemAlreadyExists error with
-// the ID of the existing file system.
+// Otherwise, this operation returns a FileSystemAlreadyExists error with the
+// ID of the existing file system.
 //
-//  For basic use cases, you can use a randomly generated UUID for the creation
+// For basic use cases, you can use a randomly generated UUID for the creation
 // token.
 //
-//   The idempotent operation allows you to retry a CreateFileSystem call without
+// The idempotent operation allows you to retry a CreateFileSystem call without
 // risk of creating an extra file system. This can happen when an initial call
 // fails in a way that leaves it uncertain whether or not a file system was
 // actually created. An example might be that a transport level timeout occurred
@@ -83,12 +83,12 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // if the initial call had succeeded in creating a file system, the client can
 // learn of its existence from the FileSystemAlreadyExists error.
 //
-//  The CreateFileSystem call returns while the file system's lifecycle state
+// The CreateFileSystem call returns while the file system's lifecycle state
 // is still creating. You can check the file system creation status by calling
 // the DescribeFileSystems operation, which among other things returns the file
 // system state.
 //
-//  This operation also takes an optional PerformanceMode parameter that you
+// This operation also takes an optional PerformanceMode parameter that you
 // choose for your file system. We recommend generalPurpose performance mode
 // for most file systems. File systems using the maxIO performance mode can
 // scale to higher levels of aggregate throughput and operations per second
@@ -102,7 +102,7 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // You mount your Amazon EFS file system on an EC2 instances in your VPC via
 // the mount target. For more information, see Amazon EFS: How it Works (http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html).
 //
-//  This operation requires permissions for the elasticfilesystem:CreateFileSystem
+// This operation requires permissions for the elasticfilesystem:CreateFileSystem
 // action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -195,14 +195,14 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 // In the request, you also provide a subnet ID, which determines the following:
 //
-//   VPC in which Amazon EFS creates the mount target
+//    VPC in which Amazon EFS creates the mount target
 //
-//   Availability Zone in which Amazon EFS creates the mount target
+//    Availability Zone in which Amazon EFS creates the mount target
 //
-//   IP address range from which Amazon EFS selects the IP address of the mount
-// target (if you don't specify an IP address in the request)
+//    IP address range from which Amazon EFS selects the IP address of the mount
+//    target (if you don't specify an IP address in the request)
 //
-//   After creating the mount target, Amazon EFS returns a response that includes,
+// After creating the mount target, Amazon EFS returns a response that includes,
 // a MountTargetId and an IpAddress. You use this IP address when mounting the
 // file system in an EC2 instance. You can also use the mount target's DNS name
 // when mounting the file system. The EC2 instance on which you mount the file
@@ -216,44 +216,44 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // subnet specified in the request to add another mount target must meet the
 // following requirements:
 //
-//   Must belong to the same VPC as the subnets of the existing mount targets
+//    Must belong to the same VPC as the subnets of the existing mount targets
 //
-//   Must not be in the same Availability Zone as any of the subnets of the
-// existing mount targets
+//    Must not be in the same Availability Zone as any of the subnets of the
+//    existing mount targets
 //
-//   If the request satisfies the requirements, Amazon EFS does the following:
+// If the request satisfies the requirements, Amazon EFS does the following:
 //
-//   Creates a new mount target in the specified subnet.
+//    Creates a new mount target in the specified subnet.
 //
-//   Also creates a new network interface in the subnet as follows:
+//    Also creates a new network interface in the subnet as follows:
 //
-//   If the request provides an IpAddress, Amazon EFS assigns that IP address
+//    If the request provides an IpAddress, Amazon EFS assigns that IP address
 // to the network interface. Otherwise, Amazon EFS assigns a free address in
 // the subnet (in the same way that the Amazon EC2 CreateNetworkInterface call
 // does when a request does not specify a primary private IP address).
 //
-//   If the request provides SecurityGroups, this network interface is associated
+//    If the request provides SecurityGroups, this network interface is associated
 // with those security groups. Otherwise, it belongs to the default security
 // group for the subnet's VPC.
 //
-//   Assigns the description Mount target fsmt-id for file system fs-id  where
-//  fsmt-id  is the mount target ID, and  fs-id  is the FileSystemId.
+//    Assigns the description Mount target fsmt-id for file system fs-id where
+// fsmt-id is the mount target ID, and fs-id is the FileSystemId.
 //
-//   Sets the requesterManaged property of the network interface to true, and
+//    Sets the requesterManaged property of the network interface to true, and
 // the requesterId value to EFS.
 //
-//   Each Amazon EFS mount target has one corresponding requestor-managed EC2
-// network interface. After the network interface is created, Amazon EFS sets
-// the NetworkInterfaceId field in the mount target's description to the network
-// interface ID, and the IpAddress field to its address. If network interface
-// creation fails, the entire CreateMountTarget operation fails.
+//    Each Amazon EFS mount target has one corresponding requestor-managed EC2
+//    network interface. After the network interface is created, Amazon EFS
+//    sets the NetworkInterfaceId field in the mount target's description to
+// the network interface ID, and the IpAddress field to its address. If network
+// interface creation fails, the entire CreateMountTarget operation fails.
 //
-//    The CreateMountTarget call returns only after creating the network interface,
+// The CreateMountTarget call returns only after creating the network interface,
 // but while the mount target state is still creating. You can check the mount
 // target creation status by calling the DescribeFileSystems operation, which
 // among other things returns the mount target state.
 //
-//  We recommend you create a mount target in each of the Availability Zones.
+// We recommend you create a mount target in each of the Availability Zones.
 // There are cost considerations for using a file system in an Availability
 // Zone through a mount target created in another Availability Zone. For more
 // information, see Amazon EFS (http://aws.amazon.com/efs/). In addition, by
@@ -267,8 +267,7 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 //    elasticfilesystem:CreateMountTarget
 //
-//   This operation also requires permissions for the following Amazon EC2
-// actions:
+// This operation also requires permissions for the following Amazon EC2 actions:
 //
 //    ec2:DescribeSubnets
 //
@@ -390,8 +389,7 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 // If you add the Name tag to your file system, Amazon EFS returns it in the
 // response to the DescribeFileSystems operation.
 //
-// This operation requires permission for the elasticfilesystem:CreateTags
-// action.
+// This operation requires permission for the elasticfilesystem:CreateTags action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -469,17 +467,17 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // return, the file system no longer exists and you can't access any contents
 // of the deleted file system.
 //
-//  You can't delete a file system that is in use. That is, if the file system
+// You can't delete a file system that is in use. That is, if the file system
 // has any mount targets, you must first delete them. For more information,
 // see DescribeMountTargets and DeleteMountTarget.
 //
-//  The DeleteFileSystem call returns while the file system state is still
-// deleting. You can check the file system deletion status by calling the DescribeFileSystems
+// The DeleteFileSystem call returns while the file system state is still deleting.
+// You can check the file system deletion status by calling the DescribeFileSystems
 // operation, which returns a list of file systems in your account. If you pass
 // file system ID or creation token for the deleted file system, the DescribeFileSystems
 // returns a 404 FileSystemNotFound error.
 //
-//  This operation requires permissions for the elasticfilesystem:DeleteFileSystem
+// This operation requires permissions for the elasticfilesystem:DeleteFileSystem
 // action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -573,12 +571,12 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 //
 //    elasticfilesystem:DeleteMountTarget
 //
-//    The DeleteMountTarget call returns while the mount target state is still
+// The DeleteMountTarget call returns while the mount target state is still
 // deleting. You can check the mount target deletion by calling the DescribeMountTargets
 // operation, which returns a list of mount target descriptions for the given
 // file system.
 //
-//  The operation also requires permissions for the following Amazon EC2 action
+// The operation also requires permissions for the following Amazon EC2 action
 // on the mount target's network interface:
 //
 //    ec2:DeleteNetworkInterface
@@ -743,7 +741,7 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // returns descriptions of all file systems owned by the caller's AWS account
 // in the AWS Region of the endpoint that you're calling.
 //
-//  When retrieving all file system descriptions, you can optionally specify
+// When retrieving all file system descriptions, you can optionally specify
 // the MaxItems parameter to limit the number of descriptions in a response.
 // If more file system descriptions remain, Amazon EFS returns a NextMarker,
 // an opaque token, in the response. In this case, you should send a subsequent
@@ -758,11 +756,11 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // The implementation may return fewer than MaxItems file system descriptions
 // while still including a NextMarker value.
 //
-//  The order of file systems returned in the response of one DescribeFileSystems
+// The order of file systems returned in the response of one DescribeFileSystems
 // call and the order of file systems returned across the responses of a multi-call
 // iteration is unspecified.
 //
-//  This operation requires permissions for the elasticfilesystem:DescribeFileSystems
+// This operation requires permissions for the elasticfilesystem:DescribeFileSystems
 // action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1006,7 +1004,7 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 // in the response of one DescribeTags call and the order of tags returned across
 // the responses of a multi-call iteration (when using pagination) is unspecified.
 //
-//  This operation requires permissions for the elasticfilesystem:DescribeTags
+// This operation requires permissions for the elasticfilesystem:DescribeTags
 // action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions

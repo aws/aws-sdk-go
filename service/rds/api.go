@@ -131,8 +131,8 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // with cost allocation reporting to track cost associated with Amazon RDS resources,
 // or used in a Condition statement in an IAM policy for Amazon RDS.
 //
-// For an overview on tagging Amazon RDS resources, see Tagging Amazon RDS
-// Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
+// For an overview on tagging Amazon RDS resources, see Tagging Amazon RDS Resources
+// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -272,11 +272,11 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 // EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either EC2SecurityGroupName
 // or EC2SecurityGroupId for non-VPC).
 //
-//  You cannot authorize ingress from an EC2 security group in one region to
+// You cannot authorize ingress from an EC2 security group in one region to
 // an Amazon RDS DB instance in another. You cannot authorize ingress from a
 // VPC security group in one VPC to an Amazon RDS DB instance in another.
 //
-//  For an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+// For an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -832,7 +832,7 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // Parameters in a DB cluster parameter group apply to all of the instances
 // in a DB cluster.
 //
-//  A DB cluster parameter group is initially created with the default parameters
+// A DB cluster parameter group is initially created with the default parameters
 // for the database engine used by instances in the DB cluster. To provide custom
 // values for any of the parameters, you must modify the group after creating
 // it using ModifyDBClusterParameterGroup. Once you've created a DB cluster
@@ -841,19 +841,19 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // you need to reboot the DB instances in the DB cluster without failover for
 // the new DB cluster parameter group and associated settings to take effect.
 //
-//  After you create a DB cluster parameter group, you should wait at least
-// 5 minutes before creating your first DB cluster that uses that DB cluster
-// parameter group as the default parameter group. This allows Amazon RDS to
-// fully complete the create action before the DB cluster parameter group is
-// used as the default for a new DB cluster. This is especially important for
-// parameters that are critical when creating the default database for a DB
-// cluster, such as the character set for the default database defined by the
-// character_set_database parameter. You can use the Parameter Groups option
-// of the Amazon RDS console (https://console.aws.amazon.com/rds/) or the DescribeDBClusterParameters
+// After you create a DB cluster parameter group, you should wait at least 5
+// minutes before creating your first DB cluster that uses that DB cluster parameter
+// group as the default parameter group. This allows Amazon RDS to fully complete
+// the create action before the DB cluster parameter group is used as the default
+// for a new DB cluster. This is especially important for parameters that are
+// critical when creating the default database for a DB cluster, such as the
+// character set for the default database defined by the character_set_database
+// parameter. You can use the Parameter Groups option of the Amazon RDS console
+// (https://console.aws.amazon.com/rds/) or the DescribeDBClusterParameters
 // command to verify that your DB cluster parameter group has been created or
 // modified.
 //
-//  For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1127,12 +1127,12 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 // Creates a DB instance for a DB instance running MySQL, MariaDB, or PostgreSQL
 // that acts as a Read Replica of a source DB instance.
 //
-// All Read Replica DB instances are created as Single-AZ deployments with
-// backups disabled. All other DB instance attributes (including DB security
-// groups and DB parameter groups) are inherited from the source DB instance,
-// except as specified below.
+// All Read Replica DB instances are created as Single-AZ deployments with backups
+// disabled. All other DB instance attributes (including DB security groups
+// and DB parameter groups) are inherited from the source DB instance, except
+// as specified below.
 //
-//  The source DB instance must have backup retention enabled.
+// The source DB instance must have backup retention enabled.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1256,7 +1256,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 //
 // Creates a new DB parameter group.
 //
-//  A DB parameter group is initially created with the default parameters for
+// A DB parameter group is initially created with the default parameters for
 // the database engine used by the DB instance. To provide custom values for
 // any of the parameters, you must modify the group after creating it using
 // ModifyDBParameterGroup. Once you've created a DB parameter group, you need
@@ -1265,7 +1265,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 // DB instance without failover for the new DB parameter group and associated
 // settings to take effect.
 //
-//  After you create a DB parameter group, you should wait at least 5 minutes
+// After you create a DB parameter group, you should wait at least 5 minutes
 // before creating your first DB instance that uses that DB parameter group
 // as the default parameter group. This allows Amazon RDS to fully complete
 // the create action before the parameter group is used as the default for a
@@ -1573,12 +1573,11 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 // or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon
 // SNS and subscribe to the topic. The ARN is displayed in the SNS console.
 //
-// You can specify the type of source (SourceType) you want to be notified
-// of, provide a list of RDS sources (SourceIds) that triggers the events, and
-// provide a list of event categories (EventCategories) for events you want
-// to be notified of. For example, you can specify SourceType = db-instance,
-// SourceIds = mydbinstance1, mydbinstance2 and EventCategories = Availability,
-// Backup.
+// You can specify the type of source (SourceType) you want to be notified of,
+// provide a list of RDS sources (SourceIds) that triggers the events, and provide
+// a list of event categories (EventCategories) for events you want to be notified
+// of. For example, you can specify SourceType = db-instance, SourceIds = mydbinstance1,
+// mydbinstance2 and EventCategories = Availability, Backup.
 //
 // If you specify both the SourceType and SourceIds, such as SourceType = db-instance
 // and SourceIdentifier = myDBInstance1, you will be notified of all the db-instance
@@ -1740,7 +1739,7 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 // and cannot be recovered. Manual DB cluster snapshots of the specified DB
 // cluster are not deleted.
 //
-//  For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1893,9 +1892,9 @@ func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput
 // Deletes a DB cluster snapshot. If the snapshot is being copied, the copy
 // operation is terminated.
 //
-//  The DB cluster snapshot must be in the available state to be deleted.
+// The DB cluster snapshot must be in the available state to be deleted.
 //
-//  For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1968,7 +1967,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 // deleted and cannot be recovered. Manual DB snapshots of the DB instance to
 // be deleted by DeleteDBInstance are not deleted.
 //
-//  If you request a final DB snapshot the status of the Amazon RDS DB instance
+// If you request a final DB snapshot the status of the Amazon RDS DB instance
 // is deleting until the DB snapshot is created. The API action DescribeDBInstance
 // is used to monitor the status of this operation. The action cannot be canceled
 // or reverted once submitted.
@@ -1980,11 +1979,11 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 // If the specified DB instance is part of an Amazon Aurora DB cluster, you
 // cannot delete the DB instance if the following are true:
 //
-//   The DB cluster is a Read Replica of another Amazon Aurora DB cluster.
+//    The DB cluster is a Read Replica of another Amazon Aurora DB cluster.
 //
-//   The DB instance is the only instance in the DB cluster.
+//    The DB instance is the only instance in the DB cluster.
 //
-//   To delete a DB instance in this case, first call the PromoteReadReplicaDBCluster
+// To delete a DB instance in this case, first call the PromoteReadReplicaDBCluster
 // API action to promote the DB cluster so it's no longer a Read Replica. After
 // the promotion completes, then call the DeleteDBInstance API action to delete
 // the final instance in the DB cluster.
@@ -2137,7 +2136,7 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 //
 // Deletes a DB security group.
 //
-//  The specified DB security group must not be associated with any DB instances.
+// The specified DB security group must not be associated with any DB instances.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2207,7 +2206,7 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *reques
 // Deletes a DBSnapshot. If the snapshot is being copied, the copy operation
 // is terminated.
 //
-//  The DBSnapshot must be in the available state to be deleted.
+// The DBSnapshot must be in the available state to be deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2278,8 +2277,7 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 //
 // Deletes a DB subnet group.
 //
-//  The specified database subnet group must not be associated with any DB
-// instances.
+// The specified database subnet group must not be associated with any DB instances.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5161,21 +5159,20 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
 // in the Amazon RDS User Guide.
 //
-//  Changes to dynamic parameters are applied immediately. Changes to static
+// Changes to dynamic parameters are applied immediately. Changes to static
 // parameters require a reboot without failover to the DB cluster associated
 // with the parameter group before the change can take effect.
 //
-//   After you create a DB cluster parameter group, you should wait at least
-// 5 minutes before creating your first DB cluster that uses that DB cluster
-// parameter group as the default parameter group. This allows Amazon RDS to
-// fully complete the create action before the parameter group is used as the
-// default for a new DB cluster. This is especially important for parameters
-// that are critical when creating the default database for a DB cluster, such
-// as the character set for the default database defined by the character_set_database
-// parameter. You can use the Parameter Groups option of the Amazon RDS console
-// (https://console.aws.amazon.com/rds/) or the DescribeDBClusterParameters
-// command to verify that your DB cluster parameter group has been created or
-// modified.
+// After you create a DB cluster parameter group, you should wait at least 5
+// minutes before creating your first DB cluster that uses that DB cluster parameter
+// group as the default parameter group. This allows Amazon RDS to fully complete
+// the create action before the parameter group is used as the default for a
+// new DB cluster. This is especially important for parameters that are critical
+// when creating the default database for a DB cluster, such as the character
+// set for the default database defined by the character_set_database parameter.
+// You can use the Parameter Groups option of the Amazon RDS console (https://console.aws.amazon.com/rds/)
+// or the DescribeDBClusterParameters command to verify that your DB cluster
+// parameter group has been created or modified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5450,11 +5447,11 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 // parameter, submit a list of the following: ParameterName, ParameterValue,
 // and ApplyMethod. A maximum of 20 parameters can be modified in a single request.
 //
-//  Changes to dynamic parameters are applied immediately. Changes to static
+// Changes to dynamic parameters are applied immediately. Changes to static
 // parameters require a reboot without failover to the DB instance associated
 // with the parameter group before the change can take effect.
 //
-//   After you modify a DB parameter group, you should wait at least 5 minutes
+// After you modify a DB parameter group, you should wait at least 5 minutes
 // before creating your first DB instance that uses that DB parameter group
 // as the default parameter group. This allows Amazon RDS to fully complete
 // the modify action before the parameter group is used as the default for a
@@ -5852,7 +5849,7 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *re
 //
 // Promotes a Read Replica DB instance to a standalone DB instance.
 //
-//  We recommend that you enable automated backups on your Read Replica before
+// We recommend that you enable automated backups on your Read Replica before
 // promoting the Read Replica. This ensures that no backup is taken during the
 // promotion process. Once the instance is promoted to a primary instance, backups
 // are taken based on your backup settings.
@@ -6067,10 +6064,10 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *reques
 // will be conducted through a failover. An Amazon RDS event is created when
 // the reboot is completed.
 //
-// If your DB instance is deployed in multiple Availability Zones, you can
-// force a failover from one AZ to the other during the reboot. You might force
-// a failover to test the availability of your DB instance deployment or to
-// restore operations to the original AZ after a failover occurs.
+// If your DB instance is deployed in multiple Availability Zones, you can force
+// a failover from one AZ to the other during the reboot. You might force a
+// failover to test the availability of your DB instance deployment or to restore
+// operations to the original AZ after a failover occurs.
 //
 // The time required to reboot is a function of the specific database engine's
 // crash recovery process. To improve the reboot time, we recommend that you
@@ -6286,7 +6283,7 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 // and ApplyMethod. To reset the entire DB cluster parameter group, specify
 // the DBClusterParameterGroupName and ResetAllParameters parameters.
 //
-//  When resetting the entire group, dynamic parameters are updated immediately
+// When resetting the entire group, dynamic parameters are updated immediately
 // and static parameters are set to pending-reboot to take effect on the next
 // DB instance restart or RebootDBInstance request. You must call RebootDBInstance
 // for every DB instance in your DB cluster that you want the updated static
@@ -6943,8 +6940,8 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 // property. You can restore to a point up to the number of days specified by
 // the BackupRetentionPeriod property.
 //
-// The target database is created with most of the original configuration,
-// but in a system-selected availability zone, with the default security group,
+// The target database is created with most of the original configuration, but
+// in a system-selected availability zone, with the default security group,
 // the default subnet group, and the default DB parameter group. By default,
 // the new DB instance is created as a single-AZ deployment except when the
 // instance is a SQL Server instance that has an option group that is associated
@@ -7143,16 +7140,16 @@ type AddSourceIdentifierToSubscriptionInput struct {
 	//
 	// Constraints:
 	//
-	//   If the source type is a DB instance, then a DBInstanceIdentifier must
+	//    If the source type is a DB instance, then a DBInstanceIdentifier must
 	// be supplied.
 	//
-	//   If the source type is a DB security group, a DBSecurityGroupName must
+	//    If the source type is a DB security group, a DBSecurityGroupName must
 	// be supplied.
 	//
-	//   If the source type is a DB parameter group, a DBParameterGroupName must
+	//    If the source type is a DB parameter group, a DBParameterGroupName must
 	// be supplied.
 	//
-	//   If the source type is a DB snapshot, a DBSnapshotIdentifier must be supplied.
+	//    If the source type is a DB snapshot, a DBSnapshotIdentifier must be supplied.
 	//
 	// SourceIdentifier is a required field
 	SourceIdentifier *string `type:"string" required:"true"`
@@ -7408,7 +7405,7 @@ type AuthorizeDBSecurityGroupIngressOutput struct {
 	//
 	//    RevokeDBSecurityGroupIngress
 	//
-	//   This data type is used as a response element in the DescribeDBSecurityGroups
+	// This data type is used as a response element in the DescribeDBSecurityGroups
 	// action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 }
@@ -7425,7 +7422,7 @@ func (s AuthorizeDBSecurityGroupIngressOutput) GoString() string {
 
 // Contains Availability Zone information.
 //
-//  This data type is used as an element in the following data type:
+// This data type is used as an element in the following data type:
 //
 //    OrderableDBInstanceOption
 type AvailabilityZone struct {
@@ -7508,14 +7505,14 @@ type CopyDBClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must specify a valid DB cluster parameter group.
+	//    Must specify a valid DB cluster parameter group.
 	//
-	//   If the source DB cluster parameter group is in the same region as the
-	// copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group,
+	//    If the source DB cluster parameter group is in the same region as the
+	//    copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group,
 	// or a valid ARN.
 	//
-	//   If the source DB parameter group is in a different region than the copy,
-	// specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
+	//    If the source DB parameter group is in a different region than the copy,
+	//    specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
 	//
 	// SourceDBClusterParameterGroupIdentifier is a required field
 	SourceDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
@@ -7532,15 +7529,15 @@ type CopyDBClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank
+	//    Cannot be null, empty, or blank
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-cluster-param-group1
+	// Example: my-cluster-param-group1
 	//
 	// TargetDBClusterParameterGroupIdentifier is a required field
 	TargetDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
@@ -7605,13 +7602,13 @@ type CopyDBClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster-snapshot1
+	// Example: my-cluster-snapshot1
 	//
 	// SourceDBClusterSnapshotIdentifier is a required field
 	SourceDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
@@ -7624,13 +7621,13 @@ type CopyDBClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster-snapshot2
+	// Example: my-cluster-snapshot2
 	//
 	// TargetDBClusterSnapshotIdentifier is a required field
 	TargetDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
@@ -7671,7 +7668,7 @@ type CopyDBClusterSnapshotOutput struct {
 	//
 	//    DeleteDBClusterSnapshot
 	//
-	//   This data type is used as a response element in the DescribeDBClusterSnapshots
+	// This data type is used as a response element in the DescribeDBClusterSnapshots
 	// action.
 	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
 }
@@ -7695,9 +7692,9 @@ type CopyDBParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must specify a valid DB parameter group.
+	//    Must specify a valid DB parameter group.
 	//
-	//    Must specify a valid DB parameter group identifier, for example my-db-param-group,
+	//     Must specify a valid DB parameter group identifier, for example my-db-param-group,
 	// or a valid ARN.
 	//
 	// SourceDBParameterGroupIdentifier is a required field
@@ -7715,15 +7712,15 @@ type CopyDBParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank
+	//    Cannot be null, empty, or blank
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-db-parameter-group
+	// Example: my-db-parameter-group
 	//
 	// TargetDBParameterGroupIdentifier is a required field
 	TargetDBParameterGroupIdentifier *string `type:"string" required:"true"`
@@ -7810,16 +7807,16 @@ type CopyDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must specify a valid system snapshot in the "available" state.
+	//    Must specify a valid system snapshot in the "available" state.
 	//
-	//   If the source snapshot is in the same region as the copy, specify a valid
-	// DB snapshot identifier.
+	//    If the source snapshot is in the same region as the copy, specify a valid
+	//    DB snapshot identifier.
 	//
-	//   If the source snapshot is in a different region than the copy, specify
-	// a valid DB snapshot ARN. For more information, go to  Copying a DB Snapshot
+	//    If the source snapshot is in a different region than the copy, specify
+	//    a valid DB snapshot ARN. For more information, go to  Copying a DB Snapshot
 	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html).
 	//
-	//   Example: rds:mydb-2012-04-02-00-01
+	// Example: rds:mydb-2012-04-02-00-01
 	//
 	// Example: arn:aws:rds:rr-regn-1:123456789012:snapshot:mysql-instance1-snapshot-20130805
 	//
@@ -7833,15 +7830,15 @@ type CopyDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank
+	//    Cannot be null, empty, or blank
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-db-snapshot
+	// Example: my-db-snapshot
 	//
 	// TargetDBSnapshotIdentifier is a required field
 	TargetDBSnapshotIdentifier *string `type:"string" required:"true"`
@@ -7882,8 +7879,7 @@ type CopyDBSnapshotOutput struct {
 	//
 	//    DeleteDBSnapshot
 	//
-	//   This data type is used as a response element in the DescribeDBSnapshots
-	// action.
+	// This data type is used as a response element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 }
 
@@ -7905,14 +7901,14 @@ type CopyOptionGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must specify a valid option group.
+	//    Must specify a valid option group.
 	//
-	//   If the source option group is in the same region as the copy, specify
-	// a valid option group identifier, for example my-option-group, or a valid
+	//    If the source option group is in the same region as the copy, specify
+	//    a valid option group identifier, for example my-option-group, or a valid
 	// ARN.
 	//
-	//   If the source option group is in a different region than the copy, specify
-	// a valid option group ARN, for example arn:aws:rds:us-west-2:123456789012:og:special-options.
+	//    If the source option group is in a different region than the copy, specify
+	//    a valid option group ARN, for example arn:aws:rds:us-west-2:123456789012:og:special-options.
 	//
 	// SourceOptionGroupIdentifier is a required field
 	SourceOptionGroupIdentifier *string `type:"string" required:"true"`
@@ -7929,15 +7925,15 @@ type CopyOptionGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank
+	//    Cannot be null, empty, or blank
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-option-group
+	// Example: my-option-group
 	//
 	// TargetOptionGroupIdentifier is a required field
 	TargetOptionGroupIdentifier *string `type:"string" required:"true"`
@@ -8003,7 +7999,7 @@ type CreateDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be a value from 1 to 35
+	//    Must be a value from 1 to 35
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// A value that indicates that the DB cluster should be associated with the
@@ -8014,13 +8010,13 @@ type CreateDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster1
+	// Example: my-cluster1
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -8030,11 +8026,11 @@ type CreateDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// A DB subnet group to associate with this DB cluster.
@@ -8059,7 +8055,7 @@ type CreateDBClusterInput struct {
 
 	// The version number of the database engine to use.
 	//
-	//  Aurora
+	// Aurora
 	//
 	// Example: 5.6.10a
 	EngineVersion *string `type:"string"`
@@ -8087,11 +8083,11 @@ type CreateDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 16 alphanumeric characters.
+	//    Must be 1 to 16 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot be a reserved word for the chosen database engine.
+	//    Cannot be a reserved word for the chosen database engine.
 	MasterUsername *string `type:"string"`
 
 	// A value that indicates that the DB cluster should be associated with the
@@ -8103,7 +8099,7 @@ type CreateDBClusterInput struct {
 
 	// The port number on which the instances in the DB cluster accept connections.
 	//
-	//  Default: 3306
+	// Default: 3306
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -8116,19 +8112,19 @@ type CreateDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be in the format hh24:mi-hh24:mi.
+	//    Must be in the format hh24:mi-hh24:mi.
 	//
-	//   Times should be in Universal Coordinated Time (UTC).
+	//    Times should be in Universal Coordinated Time (UTC).
 	//
-	//   Must not conflict with the preferred maintenance window.
+	//    Must not conflict with the preferred maintenance window.
 	//
-	//   Must be at least 30 minutes.
+	//    Must be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week. To see the time blocks
@@ -8197,8 +8193,7 @@ type CreateDBClusterOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -8219,13 +8214,13 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//    This value is stored as a lowercase string.
+	// This value is stored as a lowercase string.
 	//
 	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
@@ -8306,13 +8301,13 @@ type CreateDBClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster1
+	// Example: my-cluster1
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -8322,13 +8317,13 @@ type CreateDBClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster1-snapshot1
+	// Example: my-cluster1-snapshot1
 	//
 	// DBClusterSnapshotIdentifier is a required field
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
@@ -8372,7 +8367,7 @@ type CreateDBClusterSnapshotOutput struct {
 	//
 	//    DeleteDBClusterSnapshot
 	//
-	//   This data type is used as a response element in the DescribeDBClusterSnapshots
+	// This data type is used as a response element in the DescribeDBClusterSnapshots
 	// action.
 	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
 }
@@ -8395,23 +8390,23 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Constraints: Must be an integer from 5 to 6144.
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Constraints: Must be an integer from 5 to 6144.
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
 	// Constraints: Must be an integer from 5 to 6144.
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Constraints: Must be an integer from 10 to 6144.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Constraints: Must be an integer from 200 to 4096 (Standard Edition and Enterprise
 	// Edition) or from 20 to 4096 (Express Edition and Web Edition)
@@ -8429,9 +8424,9 @@ type CreateDBInstanceInput struct {
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
-	//  Example: us-east-1d
+	// Example: us-east-1d
 	//
-	//  Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ
+	// Constraint: The AvailabilityZone parameter cannot be specified if the MultiAZ
 	// parameter is set to true. The specified Availability Zone must be in the
 	// same region as the current endpoint.
 	AvailabilityZone *string `type:"string"`
@@ -8444,9 +8439,9 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be a value from 0 to 35
+	//    Must be a value from 0 to 35
 	//
-	//   Cannot be set to 0 if the DB instance is a source to Read Replicas
+	//    Cannot be set to 0 if the DB instance is a source to Read Replicas
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// For supported engines, indicates that the DB instance should be associated
@@ -8466,12 +8461,12 @@ type CreateDBInstanceInput struct {
 
 	// The compute and memory capacity of the DB instance.
 	//
-	//  Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large |
-	// db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium
-	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge
-	// | db.m4.2xlarge | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge
-	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
-	// | db.t2.medium | db.t2.large
+	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
+	// | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
+	// | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge
+	// | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
+	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.t2.large
 	//
 	// DBInstanceClass is a required field
 	DBInstanceClass *string `type:"string" required:"true"`
@@ -8480,14 +8475,14 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15
-	// for SQL Server).
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15
+	//    for SQL Server).
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: mydbinstance
+	// Example: mydbinstance
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -8497,29 +8492,29 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: String
 	//
-	//  MySQL
+	// MySQL
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
 	//
 	// Constraints:
 	//
-	//   Must contain 1 to 64 alphanumeric characters
+	//    Must contain 1 to 64 alphanumeric characters
 	//
-	//   Cannot be a word reserved by the specified database engine
+	//    Cannot be a word reserved by the specified database engine
 	//
-	//    MariaDB
+	// MariaDB
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
 	//
 	// Constraints:
 	//
-	//   Must contain 1 to 64 alphanumeric characters
+	//    Must contain 1 to 64 alphanumeric characters
 	//
-	//   Cannot be a word reserved by the specified database engine
+	//    Cannot be a word reserved by the specified database engine
 	//
-	//    PostgreSQL
+	// PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, the default "postgres" database is created in
@@ -8527,14 +8522,14 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain 1 to 63 alphanumeric characters
+	//    Must contain 1 to 63 alphanumeric characters
 	//
-	//   Must begin with a letter or an underscore. Subsequent characters can be
-	// letters, underscores, or digits (0-9).
+	//    Must begin with a letter or an underscore. Subsequent characters can be
+	//    letters, underscores, or digits (0-9).
 	//
-	//   Cannot be a word reserved by the specified database engine
+	//    Cannot be a word reserved by the specified database engine
 	//
-	//    Oracle
+	// Oracle
 	//
 	// The Oracle System ID (SID) of the created DB instance.
 	//
@@ -8542,13 +8537,13 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be longer than 8 characters
+	//    Cannot be longer than 8 characters
 	//
-	//    SQL Server
+	// SQL Server
 	//
 	// Not applicable. Must be null.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
 	// The name of the database to create when the primary instance of the DB cluster
 	// is created. If this parameter is not specified, no database is created in
@@ -8556,9 +8551,9 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain 1 to 64 alphanumeric characters
+	//    Must contain 1 to 64 alphanumeric characters
 	//
-	//   Cannot be a word reserved by the specified database engine
+	//    Cannot be a word reserved by the specified database engine
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -8567,11 +8562,11 @@ type CreateDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBParameterGroupName *string `type:"string"`
 
 	// A list of DB security groups to associate with this DB instance.
@@ -8593,7 +8588,7 @@ type CreateDBInstanceInput struct {
 
 	// The name of the database engine to be used for this instance.
 	//
-	//  Valid Values: mysql | mariadb | oracle-se1 | oracle-se2 | oracle-se | oracle-ee
+	// Valid Values: mysql | mariadb | oracle-se1 | oracle-se2 | oracle-se | oracle-ee
 	// | sqlserver-ee | sqlserver-se | sqlserver-ex | sqlserver-web | postgres |
 	// aurora
 	//
@@ -8608,153 +8603,153 @@ type CreateDBInstanceInput struct {
 	// are available with Amazon RDS. Not every database engine is available for
 	// every AWS region.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
 	//    Version 5.6 (only available in AWS regions ap-northeast-1, ap-northeast-2,
-	// ap-south-1, ap-southeast-2, eu-west-1, us-east-1, us-west-2):  5.6.10a
+	//    ap-south-1, ap-southeast-2, eu-west-1, us-east-1, us-west-2): 5.6.10a
 	//
-	//    MariaDB
+	// MariaDB
 	//
-	//    Version 10.1 (available in all AWS regions except us-gov-west-1):  10.1.14
+	//    Version 10.1 (available in all AWS regions except us-gov-west-1): 10.1.14
 	//
-	//    Version 10.0 (available in all AWS regions):  10.0.17 | 10.0.24
+	//    Version 10.0 (available in all AWS regions): 10.0.17 | 10.0.24
 	//
-	//    Microsoft SQL Server Enterprise Edition (sqlserver-ee)
+	// Microsoft SQL Server Enterprise Edition (sqlserver-ee)
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
-	// | 11.00.6020.0.v1
+	//    Version 11.00 (available in all AWS regions): 11.00.2100.60.v1 | 11.00.5058.0.v1
+	//    | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
-	// | 10.50.6529.0.v1
+	//    Version 10.50 (available in all AWS regions): 10.50.2789.0.v1 | 10.50.6000.34.v1
+	//    | 10.50.6529.0.v1
 	//
-	//    Microsoft SQL Server Express Edition (sqlserver-ex)
+	// Microsoft SQL Server Express Edition (sqlserver-ex)
 	//
-	//    Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
+	//    Version 12.00 (available in all AWS regions): 12.00.4422.0.v1
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
-	// | 11.00.6020.0.v1
+	//    Version 11.00 (available in all AWS regions): 11.00.2100.60.v1 | 11.00.5058.0.v1
+	//    | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
-	// | 10.50.6529.0.v1
+	//    Version 10.50 (available in all AWS regions): 10.50.2789.0.v1 | 10.50.6000.34.v1
+	//    | 10.50.6529.0.v1
 	//
-	//    Microsoft SQL Server Standard Edition (sqlserver-se)
+	// Microsoft SQL Server Standard Edition (sqlserver-se)
 	//
-	//    Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
+	//    Version 12.00 (available in all AWS regions): 12.00.4422.0.v1
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
-	// | 11.00.6020.0.v1
+	//    Version 11.00 (available in all AWS regions): 11.00.2100.60.v1 | 11.00.5058.0.v1
+	//    | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
-	// | 10.50.6529.0.v1
+	//    Version 10.50 (available in all AWS regions): 10.50.2789.0.v1 | 10.50.6000.34.v1
+	//    | 10.50.6529.0.v1
 	//
-	//    Microsoft SQL Server Web Edition (sqlserver-web)
+	// Microsoft SQL Server Web Edition (sqlserver-web)
 	//
-	//    Version 12.00 (available in all AWS regions):  12.00.4422.0.v1
+	//    Version 12.00 (available in all AWS regions): 12.00.4422.0.v1
 	//
-	//    Version 11.00 (available in all AWS regions):  11.00.2100.60.v1 | 11.00.5058.0.v1
-	// | 11.00.6020.0.v1
+	//    Version 11.00 (available in all AWS regions): 11.00.2100.60.v1 | 11.00.5058.0.v1
+	//    | 11.00.6020.0.v1
 	//
-	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
-	// | 10.50.6529.0.v1
+	//    Version 10.50 (available in all AWS regions): 10.50.2789.0.v1 | 10.50.6000.34.v1
+	//    | 10.50.6529.0.v1
 	//
-	//    MySQL
+	// MySQL
 	//
-	//    Version 5.7 (available in all AWS regions):  5.7.10 | 5.7.11
+	//    Version 5.7 (available in all AWS regions): 5.7.10 | 5.7.11
 	//
 	//    Version 5.6 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
+	//    5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
 	//
-	//    Version 5.6 (available in all AWS regions except ap-south-1):  5.6.23
+	//    Version 5.6 (available in all AWS regions except ap-south-1): 5.6.23
 	//
-	//    Version 5.6 (available in all AWS regions):  5.6.27 | 5.6.29
+	//    Version 5.6 (available in all AWS regions): 5.6.27 | 5.6.29
 	//
 	//    Version 5.5 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a
+	//    ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	//    us-west-2): 5.5.40 | 5.5.40a
 	//
 	//    Version 5.5 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  5.5.40b | 5.5.41
+	//    5.5.40b | 5.5.41
 	//
-	//    Version 5.5 (available in all AWS regions except ap-south-1):  5.5.42
+	//    Version 5.5 (available in all AWS regions except ap-south-1): 5.5.42
 	//
-	//    Version 5.5 (available in all AWS regions):  5.5.46
+	//    Version 5.5 (available in all AWS regions): 5.5.46
 	//
-	//    Oracle Database Enterprise Edition (oracle-ee)
-	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  12.1.0.1.v1 | 12.1.0.1.v2
-	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
-	//
-	//    Version 12.1 (available in all AWS regions):  12.1.0.2.v1
-	//
-	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
-	// | 12.1.0.2.v3 | 12.1.0.2.v4
-	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
-	// | 11.2.0.4.v4
-	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
-	//
-	//    Oracle Database Standard Edition (oracle-se)
+	// Oracle Database Enterprise Edition (oracle-ee)
 	//
 	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  12.1.0.1.v1 | 12.1.0.1.v2
+	//    12.1.0.1.v1 | 12.1.0.1.v2
 	//
 	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
+	//    ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	//    us-west-2): 12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
-	// | 11.2.0.4.v4
+	//    Version 12.1 (available in all AWS regions): 12.1.0.2.v1
 	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
+	//    Version 12.1 (available in all AWS regions except us-gov-west-1): 12.1.0.2.v2
+	//    | 12.1.0.2.v3 | 12.1.0.2.v4
 	//
-	//    Oracle Database Standard Edition One (oracle-se1)
+	//    Version 11.2 (available in all AWS regions): 11.2.0.4.v1 | 11.2.0.4.v3
+	//    | 11.2.0.4.v4
+	//
+	//    Version 11.2 (available in all AWS regions except us-gov-west-1): 11.2.0.4.v5
+	//    | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
+	//
+	// Oracle Database Standard Edition (oracle-se)
 	//
 	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  12.1.0.1.v1 | 12.1.0.1.v2
+	//    12.1.0.1.v1 | 12.1.0.1.v2
 	//
 	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
+	//    ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	//    us-west-2): 12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
-	// | 11.2.0.4.v4
+	//    Version 11.2 (available in all AWS regions): 11.2.0.4.v1 | 11.2.0.4.v3
+	//    | 11.2.0.4.v4
 	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
+	//    Version 11.2 (available in all AWS regions except us-gov-west-1): 11.2.0.4.v5
+	//    | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
-	//    Oracle Database Standard Edition Two (oracle-se2)
+	// Oracle Database Standard Edition One (oracle-se1)
 	//
-	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
-	// | 12.1.0.2.v3 | 12.1.0.2.v4
+	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
+	//    12.1.0.1.v1 | 12.1.0.1.v2
 	//
-	//    PostgreSQL
+	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
+	//    ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	//    us-west-2): 12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
 	//
-	//    Version 9.5 (available in all AWS regions except us-gov-west-1):  9.5.2
+	//    Version 11.2 (available in all AWS regions): 11.2.0.4.v1 | 11.2.0.4.v3
+	//    | 11.2.0.4.v4
 	//
-	//    Version 9.4 (available in all AWS regions except ap-south-1):  9.4.1
-	// | 9.4.4
+	//    Version 11.2 (available in all AWS regions except us-gov-west-1): 11.2.0.4.v5
+	//    | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
 	//
-	//    Version 9.4 (available in all AWS regions):  9.4.5
+	// Oracle Database Standard Edition Two (oracle-se2)
 	//
-	//    Version 9.4 (available in all AWS regions except us-gov-west-1):  9.4.7
+	//    Version 12.1 (available in all AWS regions except us-gov-west-1): 12.1.0.2.v2
+	//    | 12.1.0.2.v3 | 12.1.0.2.v4
+	//
+	// PostgreSQL
+	//
+	//    Version 9.5 (available in all AWS regions except us-gov-west-1): 9.5.2
+	//
+	//    Version 9.4 (available in all AWS regions except ap-south-1): 9.4.1 |
+	//    9.4.4
+	//
+	//    Version 9.4 (available in all AWS regions): 9.4.5
+	//
+	//    Version 9.4 (available in all AWS regions except us-gov-west-1): 9.4.7
 	//
 	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
-	// us-west-2):  9.3.1 | 9.3.2
+	//    ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	//    us-west-2): 9.3.1 | 9.3.2
 	//
 	//    Version 9.3 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  9.3.10 | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
+	//    9.3.10 | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
 	//
 	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  9.3.12
+	//    ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	//    us-west-2): 9.3.12
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -8781,7 +8776,7 @@ type CreateDBInstanceInput struct {
 
 	// License model information for this DB instance.
 	//
-	//  Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// The password for the master database user. Can be any printable ASCII character
@@ -8789,82 +8784,82 @@ type CreateDBInstanceInput struct {
 	//
 	// Type: String
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Constraints: Must contain from 8 to 41 characters.
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Constraints: Must contain from 8 to 41 characters.
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Constraints: Must contain from 8 to 30 characters.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Constraints: Must contain from 8 to 128 characters.
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
 	// Constraints: Must contain from 8 to 128 characters.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
 	// Constraints: Must contain from 8 to 41 characters.
 	MasterUserPassword *string `type:"string"`
 
 	// The name of master user for the client DB instance.
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 16 alphanumeric characters.
+	//    Must be 1 to 16 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot be a reserved word for the chosen database engine.
+	//    Cannot be a reserved word for the chosen database engine.
 	//
-	//    MariaDB
-	//
-	// Constraints:
-	//
-	//   Must be 1 to 16 alphanumeric characters.
-	//
-	//   Cannot be a reserved word for the chosen database engine.
-	//
-	//   Type: String
-	//
-	//  Oracle
+	// MariaDB
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 30 alphanumeric characters.
+	//    Must be 1 to 16 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    Cannot be a reserved word for the chosen database engine.
 	//
-	//   Cannot be a reserved word for the chosen database engine.
+	// Type: String
 	//
-	//    SQL Server
-	//
-	// Constraints:
-	//
-	//   Must be 1 to 128 alphanumeric characters.
-	//
-	//   First character must be a letter.
-	//
-	//   Cannot be a reserved word for the chosen database engine.
-	//
-	//    PostgreSQL
+	// Oracle
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 63 alphanumeric characters.
+	//    Must be 1 to 30 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot be a reserved word for the chosen database engine.
+	//    Cannot be a reserved word for the chosen database engine.
+	//
+	// SQL Server
+	//
+	// Constraints:
+	//
+	//    Must be 1 to 128 alphanumeric characters.
+	//
+	//    First character must be a letter.
+	//
+	//    Cannot be a reserved word for the chosen database engine.
+	//
+	// PostgreSQL
+	//
+	// Constraints:
+	//
+	//    Must be 1 to 63 alphanumeric characters.
+	//
+	//    First character must be a letter.
+	//
+	//    Cannot be a reserved word for the chosen database engine.
 	MasterUsername *string `type:"string"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -8900,48 +8895,48 @@ type CreateDBInstanceInput struct {
 
 	// The port number on which the database accepts connections.
 	//
-	//  MySQL
+	// MySQL
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
-	//
-	// Type: Integer
-	//
-	//  MariaDB
-	//
-	//  Default: 3306
-	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	//
-	//  PostgreSQL
+	// MariaDB
 	//
-	//  Default: 5432
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	//
-	//  Oracle
+	// PostgreSQL
 	//
-	//  Default: 1521
+	// Default: 5432
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  SQL Server
+	// Type: Integer
 	//
-	//  Default: 1433
+	// Oracle
 	//
-	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
-	// through 49156.
+	// Default: 1521
 	//
-	//  Amazon Aurora
+	// Valid Values: 1150-65535
 	//
-	//  Default: 3306
+	// SQL Server
 	//
-	//  Valid Values: 1150-65535
+	// Default: 1433
+	//
+	// Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152 through
+	// 49156.
+	//
+	// Amazon Aurora
+	//
+	// Default: 3306
+	//
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	Port *int64 `type:"integer"`
@@ -8950,30 +8945,30 @@ type CreateDBInstanceInput struct {
 	// backups are enabled, using the BackupRetentionPeriod parameter. For more
 	// information, see DB Instance Backups (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html).
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region. To see the time blocks available, see  Adjusting the Preferred
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region. To see the time blocks available, see  Adjusting the Preferred
 	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints:
 	//
-	//   Must be in the format hh24:mi-hh24:mi.
+	//    Must be in the format hh24:mi-hh24:mi.
 	//
-	//   Times should be in Universal Coordinated Time (UTC).
+	//    Times should be in Universal Coordinated Time (UTC).
 	//
-	//   Must not conflict with the preferred maintenance window.
+	//    Must not conflict with the preferred maintenance window.
 	//
-	//   Must be at least 30 minutes.
+	//    Must be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC). For more information, see DB Instance Maintenance
 	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBMaintenance.html).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region, occurring on a random day of the week. To see the time blocks
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week. To see the time blocks
 	// available, see  Adjusting the Preferred Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
 	// in the Amazon RDS User Guide.
 	//
@@ -9003,11 +8998,10 @@ type CreateDBInstanceInput struct {
 	//
 	//    VPC: false
 	//
-	//   If no DB subnet group has been specified as part of the request and the
-	// PubliclyAccessible value has not been set, the DB instance will be publicly
-	// accessible. If a specific DB subnet group has been specified as part of the
-	// request and the PubliclyAccessible value has not been set, the DB instance
-	// will be private.
+	// If no DB subnet group has been specified as part of the request and the PubliclyAccessible
+	// value has not been set, the DB instance will be publicly accessible. If a
+	// specific DB subnet group has been specified as part of the request and the
+	// PubliclyAccessible value has not been set, the DB instance will be private.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// Specifies whether the DB instance is encrypted.
@@ -9017,11 +9011,11 @@ type CreateDBInstanceInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -9084,8 +9078,7 @@ type CreateDBInstanceOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -9112,7 +9105,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
-	//  Example: us-east-1d
+	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
 	// True to copy all tags from the Read Replica to snapshots of the Read Replica;
@@ -9121,12 +9114,11 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The compute and memory capacity of the Read Replica.
 	//
-	//  Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
-	// db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
-	// | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge
-	// | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
-	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
-	// | db.t2.large
+	// Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge | db.m2.xlarge
+	// |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
+	// | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge | db.m4.4xlarge
+	// | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	//
 	// Default: Inherits from the source DB instance.
 	DBInstanceClass *string `type:"string"`
@@ -9144,23 +9136,23 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Constraints:
 	//
-	//   Can only be specified if the source DB instance identifier specifies a
-	// DB instance in another region.
+	//    Can only be specified if the source DB instance identifier specifies a
+	//    DB instance in another region.
 	//
-	//   The specified DB subnet group must be in the same region in which the
-	// operation is running.
+	//    The specified DB subnet group must be in the same region in which the
+	//    operation is running.
 	//
-	//   All Read Replicas in one region that are created from the same source
-	// DB instance must either:>
+	//    All Read Replicas in one region that are created from the same source
+	//    DB instance must either:>
 	//
-	//   Specify DB subnet groups from the same VPC. All these Read Replicas will
-	// be created in the same VPC.
+	//    Specify DB subnet groups from the same VPC. All these Read Replicas will
+	//    be created in the same VPC.
 	//
-	//   Not specify a DB subnet group. All these Read Replicas will be created
-	// outside of any VPC.
+	//    Not specify a DB subnet group. All these Read Replicas will be created
+	//    outside of any VPC.
 	//
-	//     Constraints: Must contain no more than 255 alphanumeric characters,
-	// periods, underscores, spaces, or hyphens. Must not be default.
+	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
+	// underscores, spaces, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string"`
@@ -9211,11 +9203,10 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	//    VPC:false
 	//
-	//   If no DB subnet group has been specified as part of the request and the
-	// PubliclyAccessible value has not been set, the DB instance will be publicly
-	// accessible. If a specific DB subnet group has been specified as part of the
-	// request and the PubliclyAccessible value has not been set, the DB instance
-	// will be private.
+	// If no DB subnet group has been specified as part of the request and the PubliclyAccessible
+	// value has not been set, the DB instance will be publicly accessible. If a
+	// specific DB subnet group has been specified as part of the request and the
+	// PubliclyAccessible value has not been set, the DB instance will be private.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// The identifier of the DB instance that will act as the source for the Read
@@ -9223,23 +9214,23 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the identifier of an existing MySQL, MariaDB, or PostgreSQL DB
-	// instance.
+	//    Must be the identifier of an existing MySQL, MariaDB, or PostgreSQL DB
+	//    instance.
 	//
-	//   Can specify a DB instance that is a MySQL Read Replica only if the source
-	// is running MySQL 5.6.
+	//    Can specify a DB instance that is a MySQL Read Replica only if the source
+	//    is running MySQL 5.6.
 	//
-	//   Can specify a DB instance that is a PostgreSQL Read Replica only if the
-	// source is running PostgreSQL 9.3.5.
+	//    Can specify a DB instance that is a PostgreSQL Read Replica only if the
+	//    source is running PostgreSQL 9.3.5.
 	//
-	//   The specified DB instance must have automatic backups enabled, its backup
-	// retention period must be greater than 0.
+	//    The specified DB instance must have automatic backups enabled, its backup
+	//    retention period must be greater than 0.
 	//
-	//   If the source DB instance is in the same region as the Read Replica, specify
-	// a valid DB instance identifier.
+	//    If the source DB instance is in the same region as the Read Replica, specify
+	//    a valid DB instance identifier.
 	//
-	//   If the source DB instance is in a different region than the Read Replica,
-	// specify a valid DB instance ARN. For more information, go to  Constructing
+	//    If the source DB instance is in a different region than the Read Replica,
+	//    specify a valid DB instance ARN. For more information, go to  Constructing
 	// a Amazon RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing).
 	//
 	// SourceDBInstanceIdentifier is a required field
@@ -9247,11 +9238,11 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// Specifies the storage type to be associated with the Read Replica.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -9295,8 +9286,7 @@ type CreateDBInstanceReadReplicaOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -9325,13 +9315,13 @@ type CreateDBParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//    This value is stored as a lowercase string.
+	// This value is stored as a lowercase string.
 	//
 	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
@@ -9407,15 +9397,15 @@ type CreateDBSecurityGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Must not be "Default"
+	//    Must not be "Default"
 	//
-	//   Example: mysecuritygroup
+	// Example: mysecuritygroup
 	//
 	// DBSecurityGroupName is a required field
 	DBSecurityGroupName *string `type:"string" required:"true"`
@@ -9463,7 +9453,7 @@ type CreateDBSecurityGroupOutput struct {
 	//
 	//    RevokeDBSecurityGroupIngress
 	//
-	//   This data type is used as a response element in the DescribeDBSecurityGroups
+	// This data type is used as a response element in the DescribeDBSecurityGroups
 	// action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 }
@@ -9485,11 +9475,11 @@ type CreateDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -9498,15 +9488,15 @@ type CreateDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Cannot be null, empty, or blank
+	//    Cannot be null, empty, or blank
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-snapshot-id
+	// Example: my-snapshot-id
 	//
 	// DBSnapshotIdentifier is a required field
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
@@ -9550,8 +9540,7 @@ type CreateDBSnapshotOutput struct {
 	//
 	//    DeleteDBSnapshot
 	//
-	//   This data type is used as a response element in the DescribeDBSnapshots
-	// action.
+	// This data type is used as a response element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 }
 
@@ -9634,7 +9623,7 @@ type CreateDBSubnetGroupOutput struct {
 	//
 	//    DeleteDBSubnetGroup
 	//
-	//   This data type is used as a response element in the DescribeDBSubnetGroups
+	// This data type is used as a response element in the DescribeDBSubnetGroups
 	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 }
@@ -9677,18 +9666,18 @@ type CreateEventSubscriptionInput struct {
 	//
 	// Constraints:
 	//
-	//   If SourceIds are supplied, SourceType must also be provided.
+	//    If SourceIds are supplied, SourceType must also be provided.
 	//
-	//   If the source type is a DB instance, then a DBInstanceIdentifier must
+	//    If the source type is a DB instance, then a DBInstanceIdentifier must
 	// be supplied.
 	//
-	//   If the source type is a DB security group, a DBSecurityGroupName must
+	//    If the source type is a DB security group, a DBSecurityGroupName must
 	// be supplied.
 	//
-	//   If the source type is a DB parameter group, a DBParameterGroupName must
+	//    If the source type is a DB parameter group, a DBParameterGroupName must
 	// be supplied.
 	//
-	//   If the source type is a DB snapshot, a DBSnapshotIdentifier must be supplied.
+	//    If the source type is a DB snapshot, a DBSnapshotIdentifier must be supplied.
 	SourceIds []*string `locationNameList:"SourceId" type:"list"`
 
 	// The type of source that will be generating the events. For example, if you
@@ -9779,13 +9768,13 @@ type CreateOptionGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters or hyphens
+	//    Must be 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: myoptiongroup
+	// Example: myoptiongroup
 	//
 	// OptionGroupName is a required field
 	OptionGroupName *string `type:"string" required:"true"`
@@ -9856,8 +9845,7 @@ func (s CreateOptionGroupOutput) GoString() string {
 //
 //    RestoreDBClusterToPointInTime
 //
-//   This data type is used as a response element in the DescribeDBClusters
-// action.
+// This data type is used as a response element in the DescribeDBClusters action.
 type DBCluster struct {
 	_ struct{} `type:"structure"`
 
@@ -10080,13 +10068,13 @@ type DBClusterParameterGroupNameMessage struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//    This value is stored as a lowercase string.
+	// This value is stored as a lowercase string.
 	DBClusterParameterGroupName *string `type:"string"`
 }
 
@@ -10106,7 +10094,7 @@ func (s DBClusterParameterGroupNameMessage) GoString() string {
 //
 //    DeleteDBClusterSnapshot
 //
-//   This data type is used as a response element in the DescribeDBClusterSnapshots
+// This data type is used as a response element in the DescribeDBClusterSnapshots
 // action.
 type DBClusterSnapshot struct {
 	_ struct{} `type:"structure"`
@@ -10199,11 +10187,11 @@ type DBClusterSnapshotAttribute struct {
 
 	// The value(s) for the manual DB cluster snapshot attribute.
 	//
-	// If the AttributeName field is set to restore, then this element returns
-	// a list of IDs of the AWS accounts that are authorized to copy or restore
-	// the manual DB cluster snapshot. If a value of all is in the list, then the
-	// manual DB cluster snapshot is public and available for any AWS account to
-	// copy or restore.
+	// If the AttributeName field is set to restore, then this element returns a
+	// list of IDs of the AWS accounts that are authorized to copy or restore the
+	// manual DB cluster snapshot. If a value of all is in the list, then the manual
+	// DB cluster snapshot is public and available for any AWS account to copy or
+	// restore.
 	AttributeValues []*string `locationNameList:"AttributeValue" type:"list"`
 }
 
@@ -10298,8 +10286,7 @@ func (s DBEngineVersion) GoString() string {
 //
 //    ModifyDBInstance
 //
-//   This data type is used as a response element in the DescribeDBInstances
-// action.
+// This data type is used as a response element in the DescribeDBInstances action.
 type DBInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -10348,7 +10335,7 @@ type DBInstance struct {
 	// when returning values from CreateDBInstanceReadReplica since Read Replicas
 	// are only supported for these engines.
 	//
-	//  MySQL, MariaDB, SQL Server, PostgreSQL, Amazon Aurora
+	// MySQL, MariaDB, SQL Server, PostgreSQL, Amazon Aurora
 	//
 	// Contains the name of the initial database of this instance that was provided
 	// at create time, if one was specified when the DB instance was created. This
@@ -10356,7 +10343,7 @@ type DBInstance struct {
 	//
 	// Type: String
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Contains the Oracle System ID (SID) of the created DB instance. Not shown
 	// when the returned parameters do not apply to an Oracle DB instance.
@@ -10461,11 +10448,10 @@ type DBInstance struct {
 	//
 	//    VPC:false
 	//
-	//   If no DB subnet group has been specified as part of the request and the
-	// PubliclyAccessible value has not been set, the DB instance will be publicly
-	// accessible. If a specific DB subnet group has been specified as part of the
-	// request and the PubliclyAccessible value has not been set, the DB instance
-	// will be private.
+	// If no DB subnet group has been specified as part of the request and the PubliclyAccessible
+	// value has not been set, the DB instance will be publicly accessible. If a
+	// specific DB subnet group has been specified as part of the request and the
+	// PubliclyAccessible value has not been set, the DB instance will be private.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// Contains one or more identifiers of the Read Replicas associated with this
@@ -10640,7 +10626,7 @@ func (s DBParameterGroupStatus) GoString() string {
 //
 //    RevokeDBSecurityGroupIngress
 //
-//   This data type is used as a response element in the DescribeDBSecurityGroups
+// This data type is used as a response element in the DescribeDBSecurityGroups
 // action.
 type DBSecurityGroup struct {
 	_ struct{} `type:"structure"`
@@ -10712,8 +10698,7 @@ func (s DBSecurityGroupMembership) GoString() string {
 //
 //    DeleteDBSnapshot
 //
-//   This data type is used as a response element in the DescribeDBSnapshots
-// action.
+// This data type is used as a response element in the DescribeDBSnapshots action.
 type DBSnapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -10829,10 +10814,10 @@ type DBSnapshotAttribute struct {
 
 	// The value or values for the manual DB snapshot attribute.
 	//
-	// If the AttributeName field is set to restore, then this element returns
-	// a list of IDs of the AWS accounts that are authorized to copy or restore
-	// the manual DB snapshot. If a value of all is in the list, then the manual
-	// DB snapshot is public and available for any AWS account to copy or restore.
+	// If the AttributeName field is set to restore, then this element returns a
+	// list of IDs of the AWS accounts that are authorized to copy or restore the
+	// manual DB snapshot. If a value of all is in the list, then the manual DB
+	// snapshot is public and available for any AWS account to copy or restore.
 	AttributeValues []*string `locationNameList:"AttributeValue" type:"list"`
 }
 
@@ -10882,7 +10867,7 @@ func (s DBSnapshotAttributesResult) GoString() string {
 //
 //    DeleteDBSubnetGroup
 //
-//   This data type is used as a response element in the DescribeDBSubnetGroups
+// This data type is used as a response element in the DescribeDBSubnetGroups
 // action.
 type DBSubnetGroup struct {
 	_ struct{} `type:"structure"`
@@ -10924,11 +10909,11 @@ type DeleteDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -10936,26 +10921,26 @@ type DeleteDBClusterInput struct {
 	// The DB cluster snapshot identifier of the new DB cluster snapshot created
 	// when SkipFinalSnapshot is set to false.
 	//
-	//   Specifying this parameter and also setting the SkipFinalShapshot parameter
+	// Specifying this parameter and also setting the SkipFinalShapshot parameter
 	// to true results in an error.
 	//
-	//  Constraints:
+	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	FinalDBSnapshotIdentifier *string `type:"string"`
 
 	// Determines whether a final DB cluster snapshot is created before the DB cluster
 	// is deleted. If true is specified, no DB cluster snapshot is created. If false
 	// is specified, a DB cluster snapshot is created before the DB cluster is deleted.
 	//
-	//  You must specify a FinalDBSnapshotIdentifier parameter if SkipFinalSnapshot
+	// You must specify a FinalDBSnapshotIdentifier parameter if SkipFinalSnapshot
 	// is false.
 	//
-	//  Default: false
+	// Default: false
 	SkipFinalSnapshot *bool `type:"boolean"`
 }
 
@@ -10999,8 +10984,7 @@ type DeleteDBClusterOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -11021,11 +11005,11 @@ type DeleteDBClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the name of an existing DB cluster parameter group.
+	//    Must be the name of an existing DB cluster parameter group.
 	//
-	//   You cannot delete a default DB cluster parameter group.
+	//    You cannot delete a default DB cluster parameter group.
 	//
-	//   Cannot be associated with any DB clusters.
+	//    Cannot be associated with any DB clusters.
 	//
 	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
@@ -11073,8 +11057,8 @@ type DeleteDBClusterSnapshotInput struct {
 
 	// The identifier of the DB cluster snapshot to delete.
 	//
-	// Constraints: Must be the name of an existing DB cluster snapshot in the
-	// available state.
+	// Constraints: Must be the name of an existing DB cluster snapshot in the available
+	// state.
 	//
 	// DBClusterSnapshotIdentifier is a required field
 	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
@@ -11112,7 +11096,7 @@ type DeleteDBClusterSnapshotOutput struct {
 	//
 	//    DeleteDBClusterSnapshot
 	//
-	//   This data type is used as a response element in the DescribeDBClusterSnapshots
+	// This data type is used as a response element in the DescribeDBClusterSnapshots
 	// action.
 	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
 }
@@ -11135,11 +11119,11 @@ type DeleteDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -11147,18 +11131,18 @@ type DeleteDBInstanceInput struct {
 	// The DBSnapshotIdentifier of the new DBSnapshot created when SkipFinalSnapshot
 	// is set to false.
 	//
-	//  Specifying this parameter and also setting the SkipFinalShapshot parameter
+	// Specifying this parameter and also setting the SkipFinalShapshot parameter
 	// to true results in an error.
 	//
-	//  Constraints:
+	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Cannot be specified when deleting a Read Replica.
+	//    Cannot be specified when deleting a Read Replica.
 	FinalDBSnapshotIdentifier *string `type:"string"`
 
 	// Determines whether a final DB snapshot is created before the DB instance
@@ -11171,10 +11155,10 @@ type DeleteDBInstanceInput struct {
 	//
 	// Specify true when deleting a Read Replica.
 	//
-	//  The FinalDBSnapshotIdentifier parameter must be specified if SkipFinalSnapshot
+	// The FinalDBSnapshotIdentifier parameter must be specified if SkipFinalSnapshot
 	// is false.
 	//
-	//  Default: false
+	// Default: false
 	SkipFinalSnapshot *bool `type:"boolean"`
 }
 
@@ -11212,8 +11196,7 @@ type DeleteDBInstanceOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -11234,11 +11217,11 @@ type DeleteDBParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the name of an existing DB parameter group
+	//    Must be the name of an existing DB parameter group
 	//
-	//   You cannot delete a default DB parameter group
+	//    You cannot delete a default DB parameter group
 	//
-	//   Cannot be associated with any DB instances
+	//    Cannot be associated with any DB instances
 	//
 	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
@@ -11286,17 +11269,17 @@ type DeleteDBSecurityGroupInput struct {
 
 	// The name of the DB security group to delete.
 	//
-	//  You cannot delete the default DB security group.
+	// You cannot delete the default DB security group.
 	//
-	//  Constraints:
+	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Must not be "Default"
+	//    Must not be "Default"
 	//
 	// DBSecurityGroupName is a required field
 	DBSecurityGroupName *string `type:"string" required:"true"`
@@ -11383,8 +11366,7 @@ type DeleteDBSnapshotOutput struct {
 	//
 	//    DeleteDBSnapshot
 	//
-	//   This data type is used as a response element in the DescribeDBSnapshots
-	// action.
+	// This data type is used as a response element in the DescribeDBSnapshots action.
 	DBSnapshot *DBSnapshot `type:"structure"`
 }
 
@@ -11403,9 +11385,9 @@ type DeleteDBSubnetGroupInput struct {
 
 	// The name of the database subnet group to delete.
 	//
-	//  You cannot delete the default subnet group.
+	// You cannot delete the default subnet group.
 	//
-	//  Constraints:
+	// Constraints:
 	//
 	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
 	// underscores, spaces, or hyphens. Must not be default.
@@ -11508,7 +11490,7 @@ type DeleteOptionGroupInput struct {
 
 	// The name of the option group to be deleted.
 	//
-	//  You cannot delete default option groups.
+	// You cannot delete default option groups.
 	//
 	// OptionGroupName is a required field
 	OptionGroupName *string `type:"string" required:"true"`
@@ -11593,11 +11575,11 @@ type DescribeCertificatesInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	CertificateIdentifier *string `type:"string"`
 
 	// This parameter is not currently supported.
@@ -11678,11 +11660,11 @@ type DescribeDBClusterParameterGroupsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// This parameter is not currently supported.
@@ -11763,11 +11745,11 @@ type DescribeDBClusterParametersInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBClusterParameterGroupName is a required field
 	DBClusterParameterGroupName *string `type:"string" required:"true"`
@@ -11914,11 +11896,11 @@ type DescribeDBClusterSnapshotsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterIdentifier *string `type:"string"`
 
 	// A specific DB cluster snapshot identifier to describe. This parameter cannot
@@ -11927,13 +11909,13 @@ type DescribeDBClusterSnapshotsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   If this identifier is for an automated snapshot, the SnapshotType parameter
+	//    If this identifier is for an automated snapshot, the SnapshotType parameter
 	// must also be specified.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
@@ -11984,7 +11966,7 @@ type DescribeDBClusterSnapshotsInput struct {
 	//
 	//    public - Return all DB cluster snapshots that have been marked as public.
 	//
-	//   If you don't specify a SnapshotType value, then both automated and manual
+	// If you don't specify a SnapshotType value, then both automated and manual
 	// DB cluster snapshots are returned. You can include shared DB cluster snapshots
 	// with these results by setting the IncludeShared parameter to true. You can
 	// include public DB cluster snapshots with these results by setting the IncludePublic
@@ -12060,11 +12042,11 @@ type DescribeDBClustersInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterIdentifier *string `type:"string"`
 
 	// This parameter is not currently supported.
@@ -12144,11 +12126,11 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBParameterGroupFamily *string `type:"string"`
 
 	// Indicates that only the default version of the specified engine or engine
@@ -12253,11 +12235,11 @@ type DescribeDBInstancesInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBInstanceIdentifier *string `type:"string"`
 
 	// This parameter is not currently supported.
@@ -12364,11 +12346,11 @@ type DescribeDBLogFilesInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -12459,11 +12441,11 @@ type DescribeDBParameterGroupsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBParameterGroupName *string `type:"string"`
 
 	// This parameter is not currently supported.
@@ -12545,11 +12527,11 @@ type DescribeDBParametersInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
@@ -12777,11 +12759,11 @@ type DescribeDBSnapshotsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBInstanceIdentifier *string `type:"string"`
 
 	// A specific DB snapshot identifier to describe. This parameter cannot be used
@@ -12790,13 +12772,13 @@ type DescribeDBSnapshotsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters.
+	//    Must be 1 to 255 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   If this identifier is for an automated snapshot, the SnapshotType parameter
+	//    If this identifier is for an automated snapshot, the SnapshotType parameter
 	// must also be specified.
 	DBSnapshotIdentifier *string `type:"string"`
 
@@ -12846,7 +12828,7 @@ type DescribeDBSnapshotsInput struct {
 	//
 	//    public - Return all DB snapshots that have been marked as public.
 	//
-	//   If you don't specify a SnapshotType value, then both automated and manual
+	// If you don't specify a SnapshotType value, then both automated and manual
 	// snapshots are returned. Shared and public DB snapshots are not included in
 	// the returned results by default. You can include shared snapshots with these
 	// results by setting the IncludeShared parameter to true. You can include public
@@ -13324,19 +13306,19 @@ type DescribeEventsInput struct {
 	//
 	// Constraints:
 	//
-	//   If SourceIdentifier is supplied, SourceType must also be provided.
+	//    If SourceIdentifier is supplied, SourceType must also be provided.
 	//
-	//   If the source type is DBInstance, then a DBInstanceIdentifier must be
+	//    If the source type is DBInstance, then a DBInstanceIdentifier must be
 	// supplied.
 	//
-	//   If the source type is DBSecurityGroup, a DBSecurityGroupName must be supplied.
+	//    If the source type is DBSecurityGroup, a DBSecurityGroupName must be supplied.
 	//
-	//   If the source type is DBParameterGroup, a DBParameterGroupName must be
+	//    If the source type is DBParameterGroup, a DBParameterGroupName must be
 	// supplied.
 	//
-	//   If the source type is DBSnapshot, a DBSnapshotIdentifier must be supplied.
+	//    If the source type is DBSnapshot, a DBSnapshotIdentifier must be supplied.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	SourceIdentifier *string `type:"string"`
 
 	// The event source to retrieve events for. If no value is specified, all events
@@ -13997,7 +13979,7 @@ type DescribeSourceRegionsInput struct {
 	//
 	// Constraints:
 	//
-	//   Must specify a valid AWS Region name.
+	//    Must specify a valid AWS Region name.
 	RegionName *string `type:"string"`
 }
 
@@ -14093,11 +14075,11 @@ type DownloadDBLogFilePortionInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -14119,21 +14101,21 @@ type DownloadDBLogFilePortionInput struct {
 	// can be from the beginning or the end of the log file, depending on the value
 	// of the Marker parameter.
 	//
-	//   If neither Marker or NumberOfLines are specified, the entire log file
-	// is returned up to a maximum of 10000 lines, starting with the most recent
-	// log entries first.
+	//    If neither Marker or NumberOfLines are specified, the entire log file
+	//    is returned up to a maximum of 10000 lines, starting with the most recent
+	//    log entries first.
 	//
-	//   If NumberOfLines is specified and Marker is not specified, then the most
-	// recent lines from the end of the log file are returned.
+	//    If NumberOfLines is specified and Marker is not specified, then the most
+	//    recent lines from the end of the log file are returned.
 	//
-	//   If Marker is specified as "0", then the specified number of lines from
-	// the beginning of the log file are returned.
+	//    If Marker is specified as "0", then the specified number of lines from
+	//    the beginning of the log file are returned.
 	//
-	//   You can download the log file in blocks of lines by specifying the size
-	// of the block using the NumberOfLines parameter, and by specifying a value
-	// of "0" for the Marker parameter in your first request. Include the Marker
-	// value returned in the response as the Marker value for the next request,
-	// continuing until the AdditionalDataPending response element returns false.
+	//    You can download the log file in blocks of lines by specifying the size
+	//    of the block using the NumberOfLines parameter, and by specifying a value
+	//    of "0" for the Marker parameter in your first request. Include the Marker
+	//    value returned in the response as the Marker value for the next request,
+	//    continuing until the AdditionalDataPending response element returns false.
 	NumberOfLines *int64 `type:"integer"`
 }
 
@@ -14370,8 +14352,8 @@ type EventSubscription struct {
 	//
 	// Constraints:
 	//
-	// Can be one of the following: creating | modifying | deleting | active |
-	// no-permission | topic-not-exist
+	// Can be one of the following: creating | modifying | deleting | active | no-permission
+	// | topic-not-exist
 	//
 	// The status "no-permission" indicates that RDS no longer has permission to
 	// post to the SNS topic. The status "topic-not-exist" indicates that the topic
@@ -14399,11 +14381,11 @@ type FailoverDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterIdentifier *string `type:"string"`
 
 	// The name of the instance to promote to the primary instance.
@@ -14440,8 +14422,7 @@ type FailoverDBClusterOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -14609,7 +14590,7 @@ type ModifyDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be a value from 1 to 35
+	//    Must be a value from 1 to 35
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// The DB cluster identifier for the cluster being modified. This parameter
@@ -14617,13 +14598,13 @@ type ModifyDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the identifier for an existing DB cluster.
+	//    Must be the identifier for an existing DB cluster.
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -14642,13 +14623,13 @@ type ModifyDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-cluster2
+	// Example: my-cluster2
 	NewDBClusterIdentifier *string `type:"string"`
 
 	// A value that indicates that the DB cluster should be associated with the
@@ -14680,19 +14661,19 @@ type ModifyDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be in the format hh24:mi-hh24:mi.
+	//    Must be in the format hh24:mi-hh24:mi.
 	//
-	//   Times should be in Universal Coordinated Time (UTC).
+	//    Times should be in Universal Coordinated Time (UTC).
 	//
-	//   Must not conflict with the preferred maintenance window.
+	//    Must not conflict with the preferred maintenance window.
 	//
-	//   Must be at least 30 minutes.
+	//    Must be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week. To see the time blocks
@@ -14748,8 +14729,7 @@ type ModifyDBClusterOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -14896,7 +14876,7 @@ type ModifyDBInstanceInput struct {
 	// not result in an outage and the change is applied during the next maintenance
 	// window unless ApplyImmediately is set to true for this request.
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Default: Uses existing setting
 	//
@@ -14908,7 +14888,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Default: Uses existing setting
 	//
@@ -14920,7 +14900,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
 	// Default: Uses existing setting
 	//
@@ -14932,7 +14912,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Default: Uses existing setting
 	//
@@ -14942,7 +14922,7 @@ type ModifyDBInstanceInput struct {
 	// value. Values that are not at least 10% greater than the existing value are
 	// rounded up so that they are 10% greater than the current value.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Cannot be modified.
 	//
@@ -14965,16 +14945,16 @@ type ModifyDBInstanceInput struct {
 	// does not result in an outage and the change is asynchronously applied as
 	// soon as possible.
 	//
-	// Constraints: This parameter must be set to true when specifying a value
-	// for the EngineVersion parameter that is a different major version than the
-	// DB instance's current version.
+	// Constraints: This parameter must be set to true when specifying a value for
+	// the EngineVersion parameter that is a different major version than the DB
+	// instance's current version.
 	AllowMajorVersionUpgrade *bool `type:"boolean"`
 
 	// Specifies whether the modifications in this request and any pending modifications
 	// are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow
 	// setting for the DB instance.
 	//
-	//  If this parameter is set to false, changes to the DB instance are applied
+	// If this parameter is set to false, changes to the DB instance are applied
 	// during the next maintenance window. Some parameter changes can cause an outage
 	// and will be applied on the next call to RebootDBInstance, or the next failure
 	// reboot. Review the table of parameters in Modifying a DB Instance and Using
@@ -14997,26 +14977,26 @@ type ModifyDBInstanceInput struct {
 	// a positive number enables backups. Setting this parameter to 0 disables automated
 	// backups.
 	//
-	// Changing this parameter can result in an outage if you change from 0 to
-	// a non-zero value or from a non-zero value to 0. These changes are applied
-	// during the next maintenance window unless the ApplyImmediately parameter
-	// is set to true for this request. If you change the parameter from one non-zero
-	// value to another non-zero value, the change is asynchronously applied as
-	// soon as possible.
+	// Changing this parameter can result in an outage if you change from 0 to a
+	// non-zero value or from a non-zero value to 0. These changes are applied during
+	// the next maintenance window unless the ApplyImmediately parameter is set
+	// to true for this request. If you change the parameter from one non-zero value
+	// to another non-zero value, the change is asynchronously applied as soon as
+	// possible.
 	//
 	// Default: Uses existing setting
 	//
 	// Constraints:
 	//
-	//   Must be a value from 0 to 35
+	//    Must be a value from 0 to 35
 	//
-	//   Can be specified for a MySQL Read Replica only if the source is running
-	// MySQL 5.6
+	//    Can be specified for a MySQL Read Replica only if the source is running
+	//    MySQL 5.6
 	//
-	//   Can be specified for a PostgreSQL Read Replica only if the source is running
-	// PostgreSQL 9.3.5
+	//    Can be specified for a PostgreSQL Read Replica only if the source is running
+	//    PostgreSQL 9.3.5
 	//
-	//   Cannot be set to 0 if the DB instance is a source to Read Replicas
+	//    Cannot be set to 0 if the DB instance is a source to Read Replicas
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// Indicates the certificate that needs to be associated with the instance.
@@ -15030,9 +15010,9 @@ type ModifyDBInstanceInput struct {
 	// instance classes that are available for a particular DB engine, use the DescribeOrderableDBInstanceOptions
 	// action.
 	//
-	//  Passing a value for this setting causes an outage during the change and
-	// is applied during the next maintenance window, unless ApplyImmediately is
-	// specified as true for this request.
+	// Passing a value for this setting causes an outage during the change and is
+	// applied during the next maintenance window, unless ApplyImmediately is specified
+	// as true for this request.
 	//
 	// Default: Uses existing setting
 	//
@@ -15048,13 +15028,13 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the identifier for an existing DB instance
+	//    Must be the identifier for an existing DB instance
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -15080,44 +15060,44 @@ type ModifyDBInstanceInput struct {
 	// Your database will restart when you change the DBPortNumber value regardless
 	// of the value of the ApplyImmediately parameter.
 	//
-	//  MySQL
+	// MySQL
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  MariaDB
+	// MariaDB
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  PostgreSQL
+	// PostgreSQL
 	//
-	//  Default: 5432
+	// Default: 5432
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
 	// Type: Integer
 	//
-	//  Oracle
+	// Oracle
 	//
-	//  Default: 1521
+	// Default: 1521
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	//
-	//  SQL Server
+	// SQL Server
 	//
-	//  Default: 1433
+	// Default: 1433
 	//
-	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
-	// through 49156.
+	// Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152 through
+	// 49156.
 	//
-	//  Amazon Aurora
+	// Amazon Aurora
 	//
-	//  Default: 3306
+	// Default: 3306
 	//
-	//  Valid Values: 1150-65535
+	// Valid Values: 1150-65535
 	DBPortNumber *int64 `type:"integer"`
 
 	// A list of DB security groups to authorize on this DB instance. Changing this
@@ -15126,11 +15106,11 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 
 	// The new DB subnet group for the DB instance. You can use this parameter to
@@ -15184,7 +15164,7 @@ type ModifyDBInstanceInput struct {
 	// The DB instance will require a reboot for the change in storage type to take
 	// effect.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	//
@@ -15213,10 +15193,10 @@ type ModifyDBInstanceInput struct {
 	// The new password for the DB instance master user. Can be any printable ASCII
 	// character except "/", """, or "@".
 	//
-	//  Changing this parameter does not result in an outage and the change is
-	// asynchronously applied as soon as possible. Between the time of the request
-	// and the completion of the request, the MasterUserPassword element exists
-	// in the PendingModifiedValues element of the operation response.
+	// Changing this parameter does not result in an outage and the change is asynchronously
+	// applied as soon as possible. Between the time of the request and the completion
+	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
+	// element of the operation response.
 	//
 	// Default: Uses existing setting
 	//
@@ -15224,7 +15204,7 @@ type ModifyDBInstanceInput struct {
 	// Amazon Aurora), 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric
 	// characters (SQL Server).
 	//
-	//  Amazon RDS API actions never return the password, so this action provides
+	// Amazon RDS API actions never return the password, so this action provides
 	// a way to regain access to a primary instance user if the password is lost.
 	// This includes restoring privileges that might have been accidentally revoked.
 	MasterUserPassword *string `type:"string"`
@@ -15263,11 +15243,11 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	NewDBInstanceIdentifier *string `type:"string"`
 
 	// Indicates that the DB instance should be associated with the specified option
@@ -15290,13 +15270,13 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be in the format hh24:mi-hh24:mi
+	//    Must be in the format hh24:mi-hh24:mi
 	//
-	//   Times should be in Universal Time Coordinated (UTC)
+	//    Times should be in Universal Time Coordinated (UTC)
 	//
-	//   Must not conflict with the preferred maintenance window
+	//    Must not conflict with the preferred maintenance window
 	//
-	//   Must be at least 30 minutes
+	//    Must be at least 30 minutes
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range (in UTC) during which system maintenance can occur,
@@ -15332,7 +15312,7 @@ type ModifyDBInstanceInput struct {
 	// to make the DB instance internal with a DNS name that resolves to a private
 	// IP address.
 	//
-	//  PubliclyAccessible only applies to DB instances in a VPC. The DB instance
+	// PubliclyAccessible only applies to DB instances in a VPC. The DB instance
 	// must be part of a public subnet and PubliclyAccessible must be true in order
 	// for it to be publicly accessible.
 	//
@@ -15344,11 +15324,11 @@ type ModifyDBInstanceInput struct {
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
@@ -15363,11 +15343,11 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
@@ -15405,8 +15385,7 @@ type ModifyDBInstanceOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -15427,13 +15406,13 @@ type ModifyDBParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be the name of an existing DB parameter group
+	//    Must be the name of an existing DB parameter group
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
@@ -15445,7 +15424,7 @@ type ModifyDBParameterGroupInput struct {
 	//
 	// Valid Values (for the application method): immediate | pending-reboot
 	//
-	//  You can use the immediate value with dynamic parameters only. You can use
+	// You can use the immediate value with dynamic parameters only. You can use
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when you reboot the DB instance without failover.
 	//
@@ -15624,7 +15603,7 @@ type ModifyDBSubnetGroupOutput struct {
 	//
 	//    DeleteDBSubnetGroup
 	//
-	//   This data type is used as a response element in the DescribeDBSubnetGroups
+	// This data type is used as a response element in the DescribeDBSubnetGroups
 	// action.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 }
@@ -16109,7 +16088,7 @@ func (s OptionVersion) GoString() string {
 
 // Contains a list of available options for a DB instance
 //
-//  This data type is used as a response element in the DescribeOrderableDBInstanceOptions
+// This data type is used as a response element in the DescribeOrderableDBInstanceOptions
 // action.
 type OrderableDBInstanceOption struct {
 	_ struct{} `type:"structure"`
@@ -16325,13 +16304,13 @@ type PromoteReadReplicaDBClusterInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster-replica1
+	// Example: my-cluster-replica1
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -16377,8 +16356,7 @@ type PromoteReadReplicaDBClusterOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -16403,22 +16381,22 @@ type PromoteReadReplicaInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be a value from 0 to 8
+	//    Must be a value from 0 to 8
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// The DB instance identifier. This value is stored as a lowercase string.
 	//
 	// Constraints:
 	//
-	//   Must be the identifier for an existing Read Replica DB instance
+	//    Must be the identifier for an existing Read Replica DB instance
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: mydbinstance
+	// Example: mydbinstance
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -16426,20 +16404,20 @@ type PromoteReadReplicaInput struct {
 	// The daily time range during which automated backups are created if automated
 	// backups are enabled, using the BackupRetentionPeriod parameter.
 	//
-	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region. To see the time blocks available, see  Adjusting the Preferred
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region. To see the time blocks available, see  Adjusting the Preferred
 	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints:
 	//
-	//   Must be in the format hh24:mi-hh24:mi.
+	//    Must be in the format hh24:mi-hh24:mi.
 	//
-	//   Times should be in Universal Coordinated Time (UTC).
+	//    Times should be in Universal Coordinated Time (UTC).
 	//
-	//   Must not conflict with the preferred maintenance window.
+	//    Must not conflict with the preferred maintenance window.
 	//
-	//   Must be at least 30 minutes.
+	//    Must be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 }
 
@@ -16477,8 +16455,7 @@ type PromoteReadReplicaOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -16564,11 +16541,11 @@ type RebootDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
@@ -16614,8 +16591,7 @@ type RebootDBInstanceOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -16923,11 +16899,11 @@ type ResetDBParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
@@ -16937,7 +16913,7 @@ type ResetDBParameterGroupInput struct {
 	// subsequent arguments are optional. A maximum of 20 parameters can be modified
 	// in a single request.
 	//
-	//  MySQL
+	// MySQL
 	//
 	// Valid Values (for Apply method): immediate | pending-reboot
 	//
@@ -16945,7 +16921,7 @@ type ResetDBParameterGroupInput struct {
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when DB instance reboots.
 	//
-	//  MariaDB
+	// MariaDB
 	//
 	// Valid Values (for Apply method): immediate | pending-reboot
 	//
@@ -16953,7 +16929,7 @@ type ResetDBParameterGroupInput struct {
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when DB instance reboots.
 	//
-	//  Oracle
+	// Oracle
 	//
 	// Valid Values (for Apply method): pending-reboot
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
@@ -17024,7 +17000,7 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Constraints:
 	//
-	//   Must be a value from 1 to 35
+	//    Must be a value from 1 to 35
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// A value that indicates that the restored DB cluster should be associated
@@ -17036,13 +17012,13 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: my-cluster1
+	// Example: my-cluster1
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -17052,11 +17028,11 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 255 alphanumeric characters
+	//    Must be 1 to 255 alphanumeric characters
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// A DB subnet group to associate with the restored DB cluster.
@@ -17079,7 +17055,7 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The version number of the database engine to use.
 	//
-	//  Aurora
+	// Aurora
 	//
 	// Example: 5.6.10a
 	EngineVersion *string `type:"string"`
@@ -17109,11 +17085,11 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Constraints:
 	//
-	//   Must be 1 to 16 alphanumeric characters.
+	//    Must be 1 to 16 alphanumeric characters.
 	//
-	//   First character must be a letter.
+	//    First character must be a letter.
 	//
-	//   Cannot be a reserved word for the chosen database engine.
+	//    Cannot be a reserved word for the chosen database engine.
 	//
 	// MasterUsername is a required field
 	MasterUsername *string `type:"string" required:"true"`
@@ -17128,7 +17104,7 @@ type RestoreDBClusterFromS3Input struct {
 	// The port number on which the instances in the restored DB cluster accept
 	// connections.
 	//
-	//  Default: 3306
+	// Default: 3306
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -17141,19 +17117,19 @@ type RestoreDBClusterFromS3Input struct {
 	//
 	// Constraints:
 	//
-	//   Must be in the format hh24:mi-hh24:mi.
+	//    Must be in the format hh24:mi-hh24:mi.
 	//
-	//   Times should be in Universal Coordinated Time (UTC).
+	//    Times should be in Universal Coordinated Time (UTC).
 	//
-	//   Must not conflict with the preferred maintenance window.
+	//    Must not conflict with the preferred maintenance window.
 	//
-	//   Must be at least 30 minutes.
+	//    Must be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week. To see the time blocks
@@ -17272,8 +17248,7 @@ type RestoreDBClusterFromS3Output struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -17299,13 +17274,13 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-snapshot-id
+	// Example: my-snapshot-id
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -17344,11 +17319,12 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// If you do not specify a value for the KmsKeyId parameter, then the following
 	// will occur:
 	//
-	//   If the DB cluster snapshot is encrypted, then the restored DB cluster
-	// is encrypted using the KMS key that was used to encrypt the DB cluster snapshot.
+	//    If the DB cluster snapshot is encrypted, then the restored DB cluster
+	//    is encrypted using the KMS key that was used to encrypt the DB cluster
+	//    snapshot.
 	//
-	//   If the DB cluster snapshot is not encrypted, then the restored DB cluster
-	// is encrypted using the specified encryption key.
+	//    If the DB cluster snapshot is not encrypted, then the restored DB cluster
+	//    is encrypted using the specified encryption key.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the option group to use for the restored DB cluster.
@@ -17365,11 +17341,11 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
@@ -17427,8 +17403,7 @@ type RestoreDBClusterFromSnapshotOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -17449,11 +17424,11 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
@@ -17474,22 +17449,22 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// the KMS encryption key used to encrypt the new DB cluster, then you can use
 	// the KMS key alias instead of the ARN for the KMS encryption key.
 	//
-	// You can restore to a new DB cluster and encrypt the new DB cluster with
-	// a KMS key that is different than the KMS key used to encrypt the source DB
+	// You can restore to a new DB cluster and encrypt the new DB cluster with a
+	// KMS key that is different than the KMS key used to encrypt the source DB
 	// cluster. The new DB cluster will be encrypted with the KMS key identified
 	// by the KmsKeyId parameter.
 	//
 	// If you do not specify a value for the KmsKeyId parameter, then the following
 	// will occur:
 	//
-	//   If the DB cluster is encrypted, then the restored DB cluster is encrypted
-	// using the KMS key that was used to encrypt the source DB cluster.
+	//    If the DB cluster is encrypted, then the restored DB cluster is encrypted
+	//    using the KMS key that was used to encrypt the source DB cluster.
 	//
-	//   If the DB cluster is not encrypted, then the restored DB cluster is not
-	// encrypted.
+	//    If the DB cluster is not encrypted, then the restored DB cluster is not
+	//    encrypted.
 	//
-	//   If DBClusterIdentifier refers to a DB cluster that is note encrypted,
-	// then the restore request is rejected.
+	// If DBClusterIdentifier refers to a DB cluster that is note encrypted, then
+	// the restore request is rejected.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the option group for the new DB cluster.
@@ -17508,24 +17483,24 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be before the latest restorable time for the DB instance
+	//    Must be before the latest restorable time for the DB instance
 	//
-	//   Cannot be specified if UseLatestRestorableTime parameter is true
+	//    Cannot be specified if UseLatestRestorableTime parameter is true
 	//
-	//   Example: 2015-03-07T23:45:00Z
+	// Example: 2015-03-07T23:45:00Z
 	RestoreToTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The identifier of the source DB cluster from which to restore.
 	//
 	// Constraints:
 	//
-	//   Must be the identifier of an existing database instance
+	//    Must be the identifier of an existing database instance
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// SourceDBClusterIdentifier is a required field
 	SourceDBClusterIdentifier *string `type:"string" required:"true"`
@@ -17588,8 +17563,7 @@ type RestoreDBClusterToPointInTimeOutput struct {
 	//
 	//    RestoreDBClusterToPointInTime
 	//
-	//   This data type is used as a response element in the DescribeDBClusters
-	// action.
+	// This data type is used as a response element in the DescribeDBClusters action.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -17638,34 +17612,34 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15
-	// for SQL Server)
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15
+	//    for SQL Server)
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   Example: my-snapshot-id
+	// Example: my-snapshot-id
 	//
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The database name for the restored DB instance.
 	//
-	//  This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines.
+	// This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines.
 	DBName *string `type:"string"`
 
 	// The identifier for the DB snapshot to restore from.
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
-	//   If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
+	// If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
 	// must be the ARN of the shared DB snapshot.
 	//
 	// DBSnapshotIdentifier is a required field
@@ -17692,7 +17666,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
-	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres | aurora
 	Engine *string `type:"string"`
 
@@ -17705,7 +17679,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints: Must be an integer greater than 1000.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	Iops *int64 `type:"integer"`
@@ -17714,7 +17688,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Default: Same as source.
 	//
-	//  Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment.
@@ -17749,20 +17723,19 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//    VPC: false
 	//
-	//   If no DB subnet group has been specified as part of the request and the
-	// PubliclyAccessible value has not been set, the DB instance will be publicly
-	// accessible. If a specific DB subnet group has been specified as part of the
-	// request and the PubliclyAccessible value has not been set, the DB instance
-	// will be private.
+	// If no DB subnet group has been specified as part of the request and the PubliclyAccessible
+	// value has not been set, the DB instance will be publicly accessible. If a
+	// specific DB subnet group has been specified as part of the request and the
+	// PubliclyAccessible value has not been set, the DB instance will be private.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -17813,8 +17786,7 @@ type RestoreDBInstanceFromDBSnapshotOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -17862,7 +17834,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The database name for the restored DB instance.
 	//
-	//  This parameter is not used for the MySQL or MariaDB engines.
+	// This parameter is not used for the MySQL or MariaDB engines.
 	DBName *string `type:"string"`
 
 	// The DB subnet group name to use for the new instance.
@@ -17886,7 +17858,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
-	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	// Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres | aurora
 	Engine *string `type:"string"`
 
@@ -17895,7 +17867,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraints: Must be an integer greater than 1000.
 	//
-	//  SQL Server
+	// SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
 	Iops *int64 `type:"integer"`
@@ -17904,7 +17876,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Default: Same as source.
 	//
-	//  Valid values: license-included | bring-your-own-license | general-public-license
+	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment.
@@ -17939,11 +17911,10 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	//    VPC:false
 	//
-	//   If no DB subnet group has been specified as part of the request and the
-	// PubliclyAccessible value has not been set, the DB instance will be publicly
-	// accessible. If a specific DB subnet group has been specified as part of the
-	// request and the PubliclyAccessible value has not been set, the DB instance
-	// will be private.
+	// If no DB subnet group has been specified as part of the request and the PubliclyAccessible
+	// value has not been set, the DB instance will be publicly accessible. If a
+	// specific DB subnet group has been specified as part of the request and the
+	// PubliclyAccessible value has not been set, the DB instance will be private.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// The date and time to restore from.
@@ -17952,35 +17923,35 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraints:
 	//
-	//   Must be before the latest restorable time for the DB instance
+	//    Must be before the latest restorable time for the DB instance
 	//
-	//   Cannot be specified if UseLatestRestorableTime parameter is true
+	//    Cannot be specified if UseLatestRestorableTime parameter is true
 	//
-	//   Example: 2009-09-07T23:45:00Z
+	// Example: 2009-09-07T23:45:00Z
 	RestoreTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The identifier of the source DB instance from which to restore.
 	//
 	// Constraints:
 	//
-	//   Must be the identifier of an existing database instance
+	//    Must be the identifier of an existing database instance
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// SourceDBInstanceIdentifier is a required field
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
-	//  Valid values: standard | gp2 | io1
+	// Valid values: standard | gp2 | io1
 	//
-	//  If you specify io1, you must also include a value for the Iops parameter.
+	// If you specify io1, you must also include a value for the Iops parameter.
 	//
-	//  Default: io1 if the Iops parameter is specified; otherwise standard
+	// Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
 	// A list of tags.
@@ -17990,11 +17961,11 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens
+	//    Must contain from 1 to 63 alphanumeric characters or hyphens
 	//
-	//   First character must be a letter
+	//    First character must be a letter
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens
+	//    Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// TargetDBInstanceIdentifier is a required field
 	TargetDBInstanceIdentifier *string `type:"string" required:"true"`
@@ -18052,8 +18023,7 @@ type RestoreDBInstanceToPointInTimeOutput struct {
 	//
 	//    ModifyDBInstance
 	//
-	//   This data type is used as a response element in the DescribeDBInstances
-	// action.
+	// This data type is used as a response element in the DescribeDBInstances action.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -18134,7 +18104,7 @@ type RevokeDBSecurityGroupIngressOutput struct {
 	//
 	//    RevokeDBSecurityGroupIngress
 	//
-	//   This data type is used as a response element in the DescribeDBSecurityGroups
+	// This data type is used as a response element in the DescribeDBSecurityGroups
 	// action.
 	DBSecurityGroup *DBSecurityGroup `type:"structure"`
 }
@@ -18181,7 +18151,7 @@ type Subnet struct {
 
 	// Contains Availability Zone information.
 	//
-	//  This data type is used as an element in the following data type:
+	// This data type is used as an element in the following data type:
 	//
 	//    OrderableDBInstanceOption
 	SubnetAvailabilityZone *AvailabilityZone `type:"structure"`

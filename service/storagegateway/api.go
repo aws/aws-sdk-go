@@ -214,13 +214,13 @@ func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput)
 // tag consists of a key and a value, which you define. You can add tags to
 // the following AWS Storage Gateway resources:
 //
-//   Storage gateways of all types
+//    Storage gateways of all types
 //
-//     Storage Volumes
+//    Storage Volumes
 //
-//     Virtual Tapes
+//    Virtual Tapes
 //
-//   You can create a maximum of 10 tags for each resource. Virtual tapes and
+// You can create a maximum of 10 tags for each resource. Virtual tapes and
 // storage volumes that are recovered to a new gateway maintain their tags.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -370,10 +370,10 @@ func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput)
 // This operation is deprecated in cached-volumes API version 20120630. Use
 // AddUploadBuffer instead.
 //
-//  Working storage is also referred to as upload buffer. You can also use
-// the AddUploadBuffer operation to add upload buffer to a stored-volume gateway.
+// Working storage is also referred to as upload buffer. You can also use the
+// AddUploadBuffer operation to add upload buffer to a stored-volume gateway.
 //
-//  In the request, you specify the gateway Amazon Resource Name (ARN) to which
+// In the request, you specify the gateway Amazon Resource Name (ARN) to which
 // you want to add working storage, and one or more disk IDs that you want to
 // configure as working storage.
 //
@@ -591,7 +591,7 @@ func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSI
 // Cache storage must be allocated to the gateway before you can create a cached
 // volume. Use the AddCache operation to add cache storage to a gateway.
 //
-//  In the request, you must specify the gateway, size of the volume in bytes,
+// In the request, you must specify the gateway, size of the volume in bytes,
 // the iSCSI target name, an IP address on which to expose the target, and a
 // unique client token. In response, AWS Storage Gateway creates the volume
 // and returns information about it such as the volume Amazon Resource Name
@@ -683,12 +683,11 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 // ID to check the snapshot progress or later use it when you want to create
 // a volume from a snapshot.
 //
-// To list or delete a snapshot, you must use the Amazon EC2 API. For more
-// information, see DescribeSnapshots or DeleteSnapshot in the EC2 API reference
-// (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html).
+// To list or delete a snapshot, you must use the Amazon EC2 API. For more information,
+// see DescribeSnapshots or DeleteSnapshot in the EC2 API reference (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_Operations.html).
 //
-//   Volume and snapshot IDs are changing to a longer length ID format. For
-// more information, see the important note on the Welcome (http://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html)
+// Volume and snapshot IDs are changing to a longer length ID format. For more
+// information, see the important note on the Welcome (http://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html)
 // page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -773,8 +772,8 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *Cre
 // can use this snapshot ID to check the snapshot progress or later use it when
 // you want to create a volume from a snapshot.
 //
-//  To list or delete a snapshot, you must use the Amazon EC2 API. For more
-// information, in Amazon Elastic Compute Cloud API Reference.
+// To list or delete a snapshot, you must use the Amazon EC2 API. For more information,
+// in Amazon Elastic Compute Cloud API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -851,9 +850,9 @@ func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSI
 // snapshot, or create an empty volume. If you choose to create an empty gateway
 // volume, then any existing data on the disk is erased.
 //
-// In the request you must specify the gateway and the disk information on
-// which you are creating the volume. In response, AWS Storage Gateway creates
-// the volume and returns volume information such as the volume Amazon Resource
+// In the request you must specify the gateway and the disk information on which
+// you are creating the volume. In response, AWS Storage Gateway creates the
+// volume and returns volume information such as the volume Amazon Resource
 // Name (ARN), its size, and the iSCSI target ARN that initiators can use to
 // connect to the volume target.
 //
@@ -1223,7 +1222,7 @@ func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *r
 // pending snapshots will not complete. After you delete a gateway, your next
 // step is to remove it from your environment.
 //
-//  You no longer pay software charges after the gateway is deleted; however,
+// You no longer pay software charges after the gateway is deleted; however,
 // your existing Amazon EBS snapshots persist and you will continue to be billed
 // for these snapshots. You can choose to remove all remaining Amazon EBS snapshots
 // by canceling your Amazon EC2 subscription.  If you prefer not to cancel your
@@ -1299,13 +1298,13 @@ func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotSche
 //
 // Deletes a snapshot of a volume.
 //
-// You can take snapshots of your gateway volumes on a scheduled or ad hoc
-// basis. This API action enables you to delete a snapshot schedule for a volume.
-// For more information, see Working with Snapshots (http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html).
+// You can take snapshots of your gateway volumes on a scheduled or ad hoc basis.
+// This API action enables you to delete a snapshot schedule for a volume. For
+// more information, see Working with Snapshots (http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html).
 // In the DeleteSnapshotSchedule request, you identify the volume by providing
 // its Amazon Resource Name (ARN).
 //
-//  To list or delete a snapshot, you must use the Amazon EC2 API. in Amazon
+// To list or delete a snapshot, you must use the Amazon EC2 API. in Amazon
 // Elastic Compute Cloud API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1746,9 +1745,9 @@ func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCached
 // Returns a description of the gateway volumes specified in the request. This
 // operation is supported only for the gateway-cached volume architecture.
 //
-// The list of gateway volumes in the request must be from one gateway. In
-// the response Amazon Storage Gateway returns volume information sorted by
-// volume Amazon Resource Name (ARN).
+// The list of gateway volumes in the request must be from one gateway. In the
+// response Amazon Storage Gateway returns volume information sorted by volume
+// Amazon Resource Name (ARN).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2285,8 +2284,8 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRe
 // Returns a list of virtual tape recovery points that are available for the
 // specified gateway-VTL.
 //
-// A recovery point is a point-in-time view of a virtual tape at which all
-// the data on the virtual tape is consistent. If your gateway crashes, virtual
+// A recovery point is a point-in-time view of a virtual tape at which all the
+// data on the virtual tape is consistent. If your gateway crashes, virtual
 // tapes that have recovery points can be recovered to a new gateway.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2664,12 +2663,11 @@ func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingSto
 // is deprecated in cached-volumes API version (20120630). Use DescribeUploadBuffer
 // instead.
 //
-//  Working storage is also referred to as upload buffer. You can also use
-// the DescribeUploadBuffer operation to add upload buffer to a stored-volume
-// gateway.
+// Working storage is also referred to as upload buffer. You can also use the
+// DescribeUploadBuffer operation to add upload buffer to a stored-volume gateway.
 //
-//  The response includes disk IDs that are configured as working storage,
-// and it includes the amount of working storage allocated and used.
+// The response includes disk IDs that are configured as working storage, and
+// it includes the amount of working storage allocated and used.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2826,10 +2824,10 @@ func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *req
 // supports pagination that allows you to optionally reduce the number of gateways
 // returned in a response.
 //
-// If you have more gateways than are returned in a response (that is, the
-// response returns only a truncated list of your gateways), the response contains
-// a marker that you can specify in your next request to fetch the next page
-// of gateways.
+// If you have more gateways than are returned in a response (that is, the response
+// returns only a truncated list of your gateways), the response contains a
+// marker that you can specify in your next request to fetch the next page of
+// gateways.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3075,12 +3073,11 @@ func (c *StorageGateway) ListTapesRequest(input *ListTapesInput) (req *request.R
 // Amazon Resource Names (ARNs). If you don't specify a tape ARN, the operation
 // lists all virtual tapes in both your VTL and VTS.
 //
-// This operation supports pagination. By default, the operation returns a
-// maximum of up to 100 tapes. You can optionally specify the Limit parameter
-// in the body to limit the number of tapes in the response. If the number of
-// tapes returned in the response is truncated, the response includes a Marker
-// element that you can use in your subsequent request to retrieve the next
-// set of tapes.
+// This operation supports pagination. By default, the operation returns a maximum
+// of up to 100 tapes. You can optionally specify the Limit parameter in the
+// body to limit the number of tapes in the response. If the number of tapes
+// returned in the response is truncated, the response includes a Marker element
+// that you can use in your subsequent request to retrieve the next set of tapes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3479,7 +3476,7 @@ func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *request
 // or removed from the gateway. When a cache is reset, the gateway loses its
 // cache storage. At this point you can reconfigure the disks as cache disks.
 //
-//  If the cache disk you are resetting contains data that has not been uploaded
+// If the cache disk you are resetting contains data that has not been uploaded
 // to Amazon S3 yet, that data can be lost. After you reset cache disks, there
 // will be no configured cache disks left in the gateway, so you must configure
 // at least one new cache disk for your gateway to function properly.
@@ -3629,9 +3626,9 @@ func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRec
 //
 // Retrieves the recovery point for the specified virtual tape.
 //
-// A recovery point is a point in time view of a virtual tape at which all
-// the data on the tape is consistent. If your gateway crashes, virtual tapes
-// that have recovery points can be recovered to a new gateway.
+// A recovery point is a point in time view of a virtual tape at which all the
+// data on the tape is consistent. If your gateway crashes, virtual tapes that
+// have recovery points can be recovered to a new gateway.
 //
 // The virtual tape can be retrieved to only one gateway. The retrieved tape
 // is read-only. The virtual tape can be retrieved to only a gateway-VTL. There
@@ -3785,7 +3782,7 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 // If you want to shut down the VM, it is recommended that you first shut down
 // the gateway component in the VM to avoid unpredictable conditions.
 //
-//  After the gateway is shutdown, you cannot call any other API except StartGateway,
+// After the gateway is shutdown, you cannot call any other API except StartGateway,
 // DescribeGatewayInformation, and ListGateways. For more information, see ActivateGateway.
 // Your applications cannot read from or write to the gateway's storage volumes,
 // and there are no snapshots taken.
@@ -3795,9 +3792,8 @@ func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (re
 // You can call the DescribeGatewayInformation API to check the status. For
 // more information, see ActivateGateway.
 //
-//  If do not intend to use the gateway again, you must delete the gateway
-// (using DeleteGateway) to no longer pay software charges associated with the
-// gateway.
+// If do not intend to use the gateway again, you must delete the gateway (using
+// DeleteGateway) to no longer pay software charges associated with the gateway.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3876,7 +3872,7 @@ func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *req
 // call DescribeGatewayInformation and check the status before making any additional
 // API calls. For more information, see ActivateGateway.
 //
-//  To specify which gateway to start, use the Amazon Resource Name (ARN) of
+// To specify which gateway to start, use the Amazon Resource Name (ARN) of
 // the gateway in your request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3950,9 +3946,9 @@ func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthR
 // and download bandwidth rate limit or specify only one of the two. If you
 // don't set a bandwidth rate limit, the existing rate limit remains.
 //
-// By default, a gateway's bandwidth rate limits are not set. If you don't
-// set any limit, the gateway does not have any limitations on its bandwidth
-// usage and could potentially use the maximum available bandwidth.
+// By default, a gateway's bandwidth rate limits are not set. If you don't set
+// any limit, the gateway does not have any limitations on its bandwidth usage
+// and could potentially use the maximum available bandwidth.
 //
 // To specify which gateway to update, use the Amazon Resource Name (ARN) of
 // the gateway in your request.
@@ -4028,7 +4024,7 @@ func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentia
 // for a specified iSCSI target. By default, a gateway does not have CHAP enabled;
 // however, for added security, you might use it.
 //
-//  When you update CHAP credentials, all existing connections on the target
+// When you update CHAP credentials, all existing connections on the target
 // are closed and initiators must reconnect with the new credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4181,7 +4177,7 @@ func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySof
 // DescribeGatewayInformation to verify the gateway is in the STATE_RUNNING
 // state.
 //
-//  A software update forces a system restart of your gateway. You can minimize
+// A software update forces a system restart of your gateway. You can minimize
 // the chance of any disruption to your applications by increasing your iSCSI
 // Initiators' timeouts. For more information about increasing iSCSI Initiator
 // timeouts for Windows and Linux, see Customizing Your Windows iSCSI Settings
@@ -4471,7 +4467,7 @@ type ActivateGatewayInput struct {
 	// and endpoints for AWS Storage Gateway, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region)
 	// in the Amazon Web Services Glossary.
 	//
-	//  Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
+	// Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
 	// "ap-northeast-1", "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
 	//
 	// GatewayRegion is a required field
@@ -4492,13 +4488,13 @@ type ActivateGatewayInput struct {
 	// The value that indicates the type of medium changer to use for gateway-VTL.
 	// This field is optional.
 	//
-	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
 	MediumChangerType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of tape drive to use for gateway-VTL. This
 	// field is optional.
 	//
-	//  Valid Values: "IBM-ULT3580-TD5"
+	// Valid Values: "IBM-ULT3580-TD5"
 	TapeDriveType *string `min:"2" type:"string"`
 }
 
@@ -4653,7 +4649,7 @@ type AddTagsToResourceInput struct {
 	// The key-value pair that represents the tag you want to add to the resource.
 	// The value can be an empty string.
 	//
-	//  Valid characters for key and value are letters, spaces, and numbers representable
+	// Valid characters for key and value are letters, spaces, and numbers representable
 	// in UTF-8 format, and the following special characters: + - = . _ : / @.
 	//
 	// Tags is a required field
@@ -5031,7 +5027,7 @@ type ChapInfo struct {
 
 	// The Amazon Resource Name (ARN) of the volume.
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	TargetARN *string `min:"50" type:"string"`
 }
@@ -5302,7 +5298,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// Only IPv4 addresses are accepted. Use DescribeGatewayInformation to get a
 	// list of the network interfaces available on a gateway.
 	//
-	//  Valid Values: A valid IP address.
+	// Valid Values: A valid IP address.
 	//
 	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `type:"string" required:"true"`
@@ -5310,7 +5306,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// Specify this field as true if you want to preserve the data on the local
 	// disk. Otherwise, specifying this field as false creates an empty volume.
 	//
-	//  Valid Values: true, false
+	// Valid Values: true, false
 	//
 	// PreserveExistingData is a required field
 	PreserveExistingData *bool `type:"boolean" required:"true"`
@@ -6739,8 +6735,8 @@ type DescribeTapesOutput struct {
 	// An opaque string which can be used as part of a subsequent DescribeTapes
 	// call to retrieve the next page of results.
 	//
-	// If a response does not contain a marker, then there are no more results
-	// to be retrieved.
+	// If a response does not contain a marker, then there are no more results to
+	// be retrieved.
 	Marker *string `min:"1" type:"string"`
 
 	// An array of virtual tape descriptions.
@@ -7757,8 +7753,8 @@ type RetrieveTapeArchiveInput struct {
 	// tape to. Use the ListGateways operation to return a list of gateways for
 	// your account and region.
 	//
-	// You retrieve archived virtual tapes to only one gateway and the gateway
-	// must be a gateway-VTL.
+	// You retrieve archived virtual tapes to only one gateway and the gateway must
+	// be a gateway-VTL.
 	//
 	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
@@ -8763,7 +8759,7 @@ type UpdateVTLDeviceTypeInput struct {
 
 	// The type of medium changer you want to select.
 	//
-	//  Valid Values: "STK-L700", "AWS-Gateway-VTL"
+	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
 	//
 	// DeviceType is a required field
 	DeviceType *string `min:"2" type:"string" required:"true"`
@@ -8864,23 +8860,23 @@ type VolumeInfo struct {
 	// becomes part of the gateway Amazon Resource Name (ARN), which you use as
 	// input for other operations.
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	GatewayId *string `min:"12" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the storage volume. For example, the following
 	// is a valid ARN:
 	//
-	//  arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
+	// arn:aws:storagegateway:us-east-1:111122223333:gateway/sgw-12A3456B/volume/vol-1122AABB
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	VolumeARN *string `min:"50" type:"string"`
 
 	// The unique identifier assigned to the volume. This ID becomes part of the
 	// volume Amazon Resource Name (ARN), which you use as input for other operations.
 	//
-	//  Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
+	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
 	VolumeId *string `min:"12" type:"string"`
 

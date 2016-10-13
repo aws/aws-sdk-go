@@ -367,8 +367,8 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 // policy configuration. The load balancer only inserts a new stickiness cookie
 // when the application response includes a new application cookie.
 //
-// If the application cookie is explicitly removed or expires, the session
-// stops being sticky until a new application cookie is issued.
+// If the application cookie is explicitly removed or expires, the session stops
+// being sticky until a new application cookie is issued.
 //
 // For more information, see Application-Controlled Session Stickiness (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html#enable-sticky-sessions-application)
 // in the Classic Load Balancers Guide.
@@ -812,11 +812,11 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *re
 //
 // Deletes the specified load balancer.
 //
-// If you are attempting to recreate a load balancer, you must reconfigure
-// all settings. The DNS name associated with a deleted load balancer are no
-// longer usable. The name and associated DNS record of the deleted load balancer
-// no longer exist and traffic sent to any of its IP addresses is no longer
-// delivered to your instances.
+// If you are attempting to recreate a load balancer, you must reconfigure all
+// settings. The DNS name associated with a deleted load balancer are no longer
+// usable. The name and associated DNS record of the deleted load balancer no
+// longer exist and traffic sent to any of its IP addresses is no longer delivered
+// to your instances.
 //
 // If the load balancer does not exist or has already been deleted, the call
 // to DeleteLoadBalancer still succeeds.
@@ -1301,10 +1301,10 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 // Describes the specified load balancer policy types or all load balancer policy
 // types.
 //
-// The description of each type indicates how it can be used. For example,
-// some policies can be used only with layer 7 listeners, some policies can
-// be used only with layer 4 listeners, and some policies can be used only with
-// your EC2 instances.
+// The description of each type indicates how it can be used. For example, some
+// policies can be used only with layer 7 listeners, some policies can be used
+// only with layer 4 listeners, and some policies can be used only with your
+// EC2 instances.
 //
 // You can use CreateLoadBalancerPolicy to create a policy configuration for
 // any of these policy types. Then, depending on the policy type, use either
@@ -1688,8 +1688,8 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 // Adds the specified Availability Zones to the set of Availability Zones for
 // the specified load balancer.
 //
-// The load balancer evenly distributes requests across all its registered
-// Availability Zones that contain instances.
+// The load balancer evenly distributes requests across all its registered Availability
+// Zones that contain instances.
 //
 // For more information, see Add or Remove Availability Zones (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-az.html)
 // in the Classic Load Balancers Guide.
@@ -1843,9 +1843,9 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 //
 // Adds the specified instances to the specified load balancer.
 //
-// The instance must be a running instance in the same network as the load
-// balancer (EC2-Classic or the same VPC). If you have EC2-Classic instances
-// and a load balancer in a VPC with ClassicLink enabled, you can link the EC2-Classic
+// The instance must be a running instance in the same network as the load balancer
+// (EC2-Classic or the same VPC). If you have EC2-Classic instances and a load
+// balancer in a VPC with ClassicLink enabled, you can link the EC2-Classic
 // instances to that VPC and then register the linked EC2-Classic instances
 // with the load balancer in the VPC.
 //
@@ -2084,9 +2084,8 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 // the back-end server authentication policy type can be applied to the instance
 // ports; this policy type is composed of multiple public key policies.
 //
-// Each time you use SetLoadBalancerPoliciesForBackendServer to enable the
-// policies, use the PolicyNames parameter to list the policies that you want
-// to enable.
+// Each time you use SetLoadBalancerPoliciesForBackendServer to enable the policies,
+// use the PolicyNames parameter to list the policies that you want to enable.
 //
 // You can use DescribeLoadBalancers or DescribeLoadBalancerPolicies to verify
 // that the policy is associated with the EC2 instance.
@@ -3881,16 +3880,16 @@ type InstanceState struct {
 	//
 	//    A transient error occurred. Please try again later.
 	//
-	//    Instance has failed at least the UnhealthyThreshold number of health
-	// checks consecutively.
+	//    Instance has failed at least the UnhealthyThreshold number of health checks
+	//    consecutively.
 	//
 	//    Instance has not passed the configured HealthyThreshold number of health
-	// checks consecutively.
+	//    checks consecutively.
 	//
 	//    Instance registration is still in progress.
 	//
 	//    Instance is in the EC2 Availability Zone for which LoadBalancer is not
-	// configured to route traffic to.
+	//    configured to route traffic to.
 	//
 	//    Instance is not currently registered with the LoadBalancer.
 	//
@@ -3970,8 +3969,8 @@ type Listener struct {
 	// The protocol to use for routing traffic to instances: HTTP, HTTPS, TCP, or
 	// SSL.
 	//
-	// If the front-end protocol is HTTP, HTTPS, TCP, or SSL, InstanceProtocol
-	// must be at the same protocol.
+	// If the front-end protocol is HTTP, HTTPS, TCP, or SSL, InstanceProtocol must
+	// be at the same protocol.
 	//
 	// If there is another listener with the same InstancePort whose InstanceProtocol
 	// is secure, (HTTPS or SSL), the listener's InstanceProtocol must also be secure.
@@ -4355,13 +4354,13 @@ type PolicyAttributeTypeDescription struct {
 	//
 	// Valid values:
 	//
-	//   ONE(1) : Single value required
+	//    ONE(1) : Single value required
 	//
-	//   ZERO_OR_ONE(0..1) : Up to one value is allowed
+	//    ZERO_OR_ONE(0..1) : Up to one value is allowed
 	//
-	//   ZERO_OR_MORE(0..*) : Optional. Multiple values are allowed
+	//    ZERO_OR_MORE(0..*) : Optional. Multiple values are allowed
 	//
-	//   ONE_OR_MORE(1..*0) : Required. Multiple values are allowed
+	//    ONE_OR_MORE(1..*0) : Required. Multiple values are allowed
 	Cardinality *string `type:"string"`
 
 	// The default value of the attribute, if applicable.

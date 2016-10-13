@@ -22,7 +22,7 @@ import (
 //
 // Helpful Links:
 //
-//  Current WSDL (2012-11-05) (http://queue.amazonaws.com/doc/2012-11-05/QueueService.wsdl)
+// Current WSDL (2012-11-05) (http://queue.amazonaws.com/doc/2012-11-05/QueueService.wsdl)
 //
 // Making API Requests (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html)
 //
@@ -34,17 +34,17 @@ import (
 //
 // Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region)
 //
-//  We also provide SDKs that enable you to access Amazon SQS from your preferred
+// We also provide SDKs that enable you to access Amazon SQS from your preferred
 // programming language. The SDKs contain functionality that automatically takes
 // care of tasks such as:
 //
-//  Cryptographically signing your service requests
+// Cryptographically signing your service requests
 //
 // Retrying requests
 //
 // Handling error responses
 //
-//  For a list of available SDKs, go to Tools for Amazon Web Services (http://aws.amazon.com/tools/).
+// For a list of available SDKs, go to Tools for Amazon Web Services (http://aws.amazon.com/tools/).
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type SQS struct {

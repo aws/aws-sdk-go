@@ -22,14 +22,14 @@ import (
 // for Linux (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/execute-remote-commands.html)
 // or Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/execute-remote-commands.html).
 //
-//  You must register your on-premises servers and VMs through an activation
+// You must register your on-premises servers and VMs through an activation
 // process before you can configure them using Run Command. Registered servers
 // and VMs are called managed instances. For more information, see Setting Up
 // Run Command On Managed Instances (On-Premises Servers and VMs) on Linux (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managed-instances.html)
 // or Setting Up Run Command On Managed Instances (On-Premises Servers and VMs)
 // on Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/managed-instances.html).
 //
-//   Run Command
+// Run Command
 //
 // Run Command provides an on-demand experience for executing commands. You
 // can use pre-defined SSM documents to perform the actions listed later in
@@ -49,10 +49,10 @@ import (
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/remote-commands-prereq.html)
 // or Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/remote-commands-prereq.html)).
 //
-//   SSM Config
+// SSM Config
 //
-// SSM Config is a lightweight instance configuration solution. SSM Config
-// is currently only available for Windows instances. With SSM Config, you can
+// SSM Config is a lightweight instance configuration solution. SSM Config is
+// currently only available for Windows instances. With SSM Config, you can
 // specify a setup configuration for your instances. SSM Config is similar to
 // EC2 User Data, which is another way of running one-time scripts or applying
 // settings during instance launch. SSM Config is an extension of this capability.
@@ -69,13 +69,13 @@ import (
 //
 // SSM Config and Run Command include the following pre-defined documents.
 //
-//  Linux
+// Linux
 //
 //    AWS-RunShellScript to run shell scripts
 //
 //    AWS-UpdateSSMAgent to update the Amazon SSM agent
 //
-//     Windows
+// Windows
 //
 //    AWS-JoinDirectoryServiceDomain to join an AWS Directory
 //
@@ -104,7 +104,7 @@ import (
 //
 //    AWS-InstallSpecificWindowsUpdates to install one or more specific updates.
 //
-//    The commands or scripts specified in SSM documents run with administrative
+// The commands or scripts specified in SSM documents run with administrative
 // privilege on your instances because the Amazon SSM agent runs as root on
 // Linux and the EC2Config service runs in the Local System account on Windows.
 // If a user has permission to execute any of the pre-defined SSM documents
@@ -118,7 +118,7 @@ import (
 // document on Windows, to trusted administrators only. You can create SSM documents
 // for specific tasks and delegate access to non-administrators.
 //
-//  For information about creating and sharing SSM documents, see the following
+// For information about creating and sharing SSM documents, see the following
 // topics in the SSM User Guide:
 //
 //    Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-ssm-doc.html)

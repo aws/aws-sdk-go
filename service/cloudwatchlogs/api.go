@@ -141,10 +141,10 @@ func (c *CloudWatchLogs) CreateExportTaskRequest(input *CreateExportTaskInput) (
 // You can only have one active (RUNNING or PENDING) export task at a time,
 // per account.
 //
-// You can export logs from multiple log groups or multiple time ranges to
-// the same Amazon S3 bucket. To separate out log data for each export task,
-// you can specify a prefix that will be used as the Amazon S3 key prefix for
-// all exported objects.
+// You can export logs from multiple log groups or multiple time ranges to the
+// same Amazon S3 bucket. To separate out log data for each export task, you
+// can specify a prefix that will be used as the Amazon S3 key prefix for all
+// exported objects.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -232,10 +232,10 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //
 // You must use the following guidelines when naming a log group:
 //
-//   Log group names can be between 1 and 512 characters long.
+//    Log group names can be between 1 and 512 characters long.
 //
-//   Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
-// '/' (forward slash), and '.' (period).
+//    Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
+//    '/' (forward slash), and '.' (period).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -320,9 +320,9 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 //
 // You must use the following guidelines when naming a log stream:
 //
-//   Log stream names can be between 1 and 512 characters long.
+//    Log stream names can be between 1 and 512 characters long.
 //
-//   The ':' colon character is not allowed.
+//    The ':' colon character is not allowed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1839,28 +1839,29 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //
 // Uploads a batch of log events to the specified log stream.
 //
-// Every PutLogEvents request must include the sequenceToken obtained from
-// the response of the previous request. An upload in a newly created log stream
+// Every PutLogEvents request must include the sequenceToken obtained from the
+// response of the previous request. An upload in a newly created log stream
 // does not require a sequenceToken. You can also get the sequenceToken using
 // DescribeLogStreams.
 //
 // The batch of events must satisfy the following constraints:
 //
-//   The maximum batch size is 1,048,576 bytes, and this size is calculated
-// as the sum of all event messages in UTF-8, plus 26 bytes for each log event.
+//    The maximum batch size is 1,048,576 bytes, and this size is calculated
+//    as the sum of all event messages in UTF-8, plus 26 bytes for each log
+//    event.
 //
-//   None of the log events in the batch can be more than 2 hours in the future.
+//    None of the log events in the batch can be more than 2 hours in the future.
 //
-//   None of the log events in the batch can be older than 14 days or the retention
-// period of the log group.
+//    None of the log events in the batch can be older than 14 days or the retention
+//    period of the log group.
 //
-//   The log events in the batch must be in chronological ordered by their
-// timestamp.
+//    The log events in the batch must be in chronological ordered by their
+//    timestamp.
 //
-//   The maximum number of log events in a batch is 10,000.
+//    The maximum number of log events in a batch is 10,000.
 //
-//   A batch of log events in a single PutLogEvents request cannot span more
-// than 24 hours. Otherwise, the PutLogEvents operation will fail.
+//    A batch of log events in a single PutLogEvents request cannot span more
+//    than 24 hours. Otherwise, the PutLogEvents operation will fail.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2104,20 +2105,20 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 // of log events ingested through PutLogEvents requests and have them delivered
 // to a specific destination. Currently, the supported destinations are:
 //
-//   An Amazon Kinesis stream belonging to the same account as the subscription
-// filter, for same-account delivery.
+//    An Amazon Kinesis stream belonging to the same account as the subscription
+//    filter, for same-account delivery.
 //
-//    A logical destination (used via an ARN of Destination) belonging to a
+//     A logical destination (used via an ARN of Destination) belonging to a
 // different account, for cross-account delivery.
 //
-//   An Amazon Kinesis Firehose stream belonging to the same account as the
-// subscription filter, for same-account delivery.
+//    An Amazon Kinesis Firehose stream belonging to the same account as the
+//    subscription filter, for same-account delivery.
 //
-//   An AWS Lambda function belonging to the same account as the subscription
-// filter, for same-account delivery.
+//    An AWS Lambda function belonging to the same account as the subscription
+//    filter, for same-account delivery.
 //
-//   Currently there can only be one subscription filter associated with a
-// log group.
+// Currently there can only be one subscription filter associated with a log
+// group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2272,7 +2273,7 @@ type CreateExportTaskInput struct {
 
 	// Name of Amazon S3 bucket to which the log data will be exported.
 	//
-	//  Note: Only buckets in the same AWS region are supported.
+	// Note: Only buckets in the same AWS region are supported.
 	//
 	// Destination is a required field
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
@@ -4251,17 +4252,17 @@ type PutSubscriptionFilterInput struct {
 	// The ARN of the destination to deliver matching log events to. Currently,
 	// the supported destinations are:
 	//
-	//   An Amazon Kinesis stream belonging to the same account as the subscription
-	// filter, for same-account delivery.
+	//    An Amazon Kinesis stream belonging to the same account as the subscription
+	//    filter, for same-account delivery.
 	//
-	//   A logical destination (used via an ARN of Destination) belonging to a
+	//    A logical destination (used via an ARN of Destination) belonging to a
 	// different account, for cross-account delivery.
 	//
-	//   An Amazon Kinesis Firehose stream belonging to the same account as the
-	// subscription filter, for same-account delivery.
+	//    An Amazon Kinesis Firehose stream belonging to the same account as the
+	//    subscription filter, for same-account delivery.
 	//
-	//   An AWS Lambda function belonging to the same account as the subscription
-	// filter, for same-account delivery.
+	//    An AWS Lambda function belonging to the same account as the subscription
+	//    filter, for same-account delivery.
 	//
 	// DestinationArn is a required field
 	DestinationArn *string `locationName:"destinationArn" min:"1" type:"string" required:"true"`

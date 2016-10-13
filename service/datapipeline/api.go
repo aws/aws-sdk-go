@@ -290,9 +290,9 @@ func (c *DataPipeline) DeactivatePipelineRequest(input *DeactivatePipelineInput)
 // Deactivates the specified running pipeline. The pipeline is set to the DEACTIVATING
 // state until the deactivation process completes.
 //
-// To resume a deactivated pipeline, use ActivatePipeline. By default, the
-// pipeline resumes from the last completed execution. Optionally, you can specify
-// the date and time to resume the pipeline.
+// To resume a deactivated pipeline, use ActivatePipeline. By default, the pipeline
+// resumes from the last completed execution. Optionally, you can specify the
+// date and time to resume the pipeline.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -990,15 +990,16 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 // Adds tasks, schedules, and preconditions to the specified pipeline. You can
 // use PutPipelineDefinition to populate a new pipeline.
 //
-//  PutPipelineDefinition also validates the configuration as it adds it to
-// the pipeline. Changes to the pipeline are saved unless one of the following
-// three validation errors exists in the pipeline.
+// PutPipelineDefinition also validates the configuration as it adds it to the
+// pipeline. Changes to the pipeline are saved unless one of the following three
+// validation errors exists in the pipeline.
 //
-//  An object is missing a name or identifier field. A string or reference
-// field is empty. The number of objects in the pipeline exceeds the maximum
-// allowed objects. The pipeline is in a FINISHED state.   Pipeline object definitions
-// are passed to the PutPipelineDefinition action and returned by the GetPipelineDefinition
-// action.
+//    An object is missing a name or identifier field.
+//    A string or reference field is empty.
+//    The number of objects in the pipeline exceeds the maximum allowed objects.
+//    The pipeline is in a FINISHED state.
+// Pipeline object definitions are passed to the PutPipelineDefinition action
+// and returned by the GetPipelineDefinition action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2375,13 +2376,24 @@ type Operator struct {
 	// comparison types can be used only with String fields. The comparison types
 	// you can use apply only to certain object fields, as detailed below.
 	//
-	//  The comparison operators EQ and REF_EQ act on the following fields:
+	// The comparison operators EQ and REF_EQ act on the following fields:
 	//
-	//  name @sphere parent @componentParent @instanceParent @status @scheduledStartTime
-	// @scheduledEndTime @actualStartTime @actualEndTime   The comparison operators
-	// GE, LE, and BETWEEN act on the following fields:
+	//    name
+	//    @sphere
+	//    parent
+	//    @componentParent
+	//    @instanceParent
+	//    @status
+	//    @scheduledStartTime
+	//    @scheduledEndTime
+	//    @actualStartTime
+	//    @actualEndTime
+	// The comparison operators GE, LE, and BETWEEN act on the following fields:
 	//
-	//  @scheduledStartTime @scheduledEndTime @actualStartTime @actualEndTime
+	//    @scheduledStartTime
+	//    @scheduledEndTime
+	//    @actualStartTime
+	//    @actualEndTime
 	// Note that fields beginning with the at sign (@) are read-only and set by
 	// the web service. When you name fields, you should choose names containing
 	// only alpha-numeric values, as symbols may be reserved by AWS Data Pipeline.

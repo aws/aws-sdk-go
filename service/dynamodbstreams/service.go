@@ -16,8 +16,7 @@ import (
 // see Capturing Table Activity with DynamoDB Streams (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
 // in the Amazon DynamoDB Developer Guide.
 //
-// The following are short descriptions of each low-level DynamoDB Streams
-// action:
+// The following are short descriptions of each low-level DynamoDB Streams action:
 //
 //    DescribeStream - Returns detailed information about a particular stream.
 //

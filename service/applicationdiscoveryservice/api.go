@@ -928,7 +928,7 @@ type CreateTagsInput struct {
 	// Tags that you want to associate with one or more configuration items. Specify
 	// the tags that you want to create in a key-value format. For example:
 	//
-	//  {"key": "serverType", "value": "webServer"}
+	// {"key": "serverType", "value": "webServer"}
 	//
 	// Tags is a required field
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list" required:"true"`
@@ -995,7 +995,7 @@ type DeleteTagsInput struct {
 	// Tags that you want to delete from one or more configuration items. Specify
 	// the tags that you want to delete in a key-value format. For example:
 	//
-	//  {"key": "serverType", "value": "webServer"}
+	// {"key": "serverType", "value": "webServer"}
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list"`
 }
 
@@ -1349,7 +1349,9 @@ type Filter struct {
 	// The name of the filter. The following filter names are allowed for SERVER
 	// configuration items.
 	//
-	//  Server     server.hostName
+	// Server
+	//
+	//    server.hostName
 	//
 	//    server.osName
 	//
@@ -1359,10 +1361,12 @@ type Filter struct {
 	//
 	//    server.agentid
 	//
-	//   The name of the filter. The following filter names are allowed for PROCESS
+	// The name of the filter. The following filter names are allowed for PROCESS
 	// configuration items.
 	//
-	//  Process     process.configurationid
+	// Process
+	//
+	//    process.configurationid
 	//
 	//    process.name
 	//
@@ -1378,10 +1382,12 @@ type Filter struct {
 	//
 	//    server.agentId
 	//
-	//   The name of the filter. The following filter names are allowed for CONNECTION
+	// The name of the filter. The following filter names are allowed for CONNECTION
 	// configuration items.
 	//
-	//  Connection     connection.sourceIp
+	// Connection
+	//
+	//    connection.sourceIp
 	//
 	//    connection.destinationIp
 	//
@@ -1469,7 +1475,7 @@ type ListConfigurationsInput struct {
 
 	// You can filter the list using a key-value format. For example:
 	//
-	//  {"key": "serverType", "value": "webServer"}
+	// {"key": "serverType", "value": "webServer"}
 	//
 	// You can separate these items by using logical operators.
 	Filters []*Filter `locationName:"filters" type:"list"`

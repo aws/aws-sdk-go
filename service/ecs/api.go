@@ -142,11 +142,10 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // For more information, see Service Load Balancing (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-load-balancing.html)
 // in the Amazon EC2 Container Service Developer Guide.
 //
-// You can optionally specify a deployment configuration for your service.
-// During a deployment (which is triggered by changing the task definition of
-// a service with an UpdateService operation), the service scheduler uses the
-// minimumHealthyPercent and maximumPercent parameters to determine the deployment
-// strategy.
+// You can optionally specify a deployment configuration for your service. During
+// a deployment (which is triggered by changing the task definition of a service
+// with an UpdateService operation), the service scheduler uses the minimumHealthyPercent
+// and maximumPercent parameters to determine the deployment strategy.
 //
 // If the minimumHealthyPercent is below 100%, the scheduler can ignore the
 // desiredCount temporarily during a deployment. For example, if your service
@@ -159,29 +158,29 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // default value for minimumHealthyPercent is 50% in the console and 100% for
 // the AWS CLI, the AWS SDKs, and the APIs.
 //
-// The maximumPercent parameter represents an upper limit on the number of
-// running tasks during a deployment, which enables you to define the deployment
-// batch size. For example, if your service has a desiredCount of four tasks,
-// a maximumPercent value of 200% starts four new tasks before stopping the
-// four older tasks (provided that the cluster resources required to do this
-// are available). The default value for maximumPercent is 200%.
+// The maximumPercent parameter represents an upper limit on the number of running
+// tasks during a deployment, which enables you to define the deployment batch
+// size. For example, if your service has a desiredCount of four tasks, a maximumPercent
+// value of 200% starts four new tasks before stopping the four older tasks
+// (provided that the cluster resources required to do this are available).
+// The default value for maximumPercent is 200%.
 //
 // When the service scheduler launches new tasks, it attempts to balance them
 // across the Availability Zones in your cluster with the following logic:
 //
-//   Determine which of the container instances in your cluster can support
-// your service's task definition (for example, they have the required CPU,
-// memory, ports, and container instance attributes).
+//    Determine which of the container instances in your cluster can support
+//    your service's task definition (for example, they have the required CPU,
+//    memory, ports, and container instance attributes).
 //
-//   Sort the valid container instances by the fewest number of running tasks
-// for this service in the same Availability Zone as the instance. For example,
-// if zone A has one running service task and zones B and C each have zero,
-// valid container instances in either zone B or C are considered optimal for
-// placement.
+//    Sort the valid container instances by the fewest number of running tasks
+//    for this service in the same Availability Zone as the instance. For example,
+//    if zone A has one running service task and zones B and C each have zero,
+//    valid container instances in either zone B or C are considered optimal
+//    for placement.
 //
-//   Place the new service task on a valid container instance in an optimal
-// Availability Zone (based on the previous steps), favoring container instances
-// with the fewest number of running tasks for this service.
+//    Place the new service task on a valid container instance in an optimal
+//    Availability Zone (based on the previous steps), favoring container instances
+//    with the fewest number of running tasks for this service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -353,7 +352,7 @@ func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Requ
 // update the service to a desired task count of zero. For more information,
 // see UpdateService.
 //
-//  When you delete a service, if there are still running tasks that require
+// When you delete a service, if there are still running tasks that require
 // cleanup, the service status moves from ACTIVE to DRAINING, and the service
 // is no longer visible in the console or in ListServices API operations. After
 // the tasks have stopped, then the service status moves from DRAINING to INACTIVE.
@@ -449,11 +448,11 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 // instance before deregistration to avoid any orphaned tasks from consuming
 // resources.
 //
-// Deregistering a container instance removes the instance from a cluster,
-// but it does not terminate the EC2 instance; if you are finished using the
-// instance, be sure to terminate it in the Amazon EC2 console to stop billing.
+// Deregistering a container instance removes the instance from a cluster, but
+// it does not terminate the EC2 instance; if you are finished using the instance,
+// be sure to terminate it in the Amazon EC2 console to stop billing.
 //
-//  If you terminate a running container instance with a connected Amazon ECS
+// If you terminate a running container instance with a connected Amazon ECS
 // container agent, the agent automatically deregisters the instance from your
 // cluster (stopped container instances or instances with disconnected agents
 // are not automatically deregistered when terminated).
@@ -847,8 +846,8 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 // information about a specific task definition, or you can simply specify the
 // family to find the latest ACTIVE revision in that family.
 //
-//  You can only describe INACTIVE task definitions while an active task or
-// service references them.
+// You can only describe INACTIVE task definitions while an active task or service
+// references them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1001,8 +1000,8 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 // This action is only used by the Amazon EC2 Container Service agent, and it
 // is not intended for use outside of the agent.
 //
-//  Returns an endpoint for the Amazon EC2 Container Service agent to poll
-// for updates.
+// Returns an endpoint for the Amazon EC2 Container Service agent to poll for
+// updates.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1617,8 +1616,8 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, out
 // by family name, by a particular container instance, or by the desired status
 // of the task with the family, containerInstance, and desiredStatus parameters.
 //
-// Recently-stopped tasks might appear in the returned results. Currently,
-// stopped tasks appear in the returned results for at least one hour.
+// Recently-stopped tasks might appear in the returned results. Currently, stopped
+// tasks appear in the returned results for at least one hour.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1727,7 +1726,7 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 // This action is only used by the Amazon EC2 Container Service agent, and it
 // is not intended for use outside of the agent.
 //
-//  Registers an EC2 instance into the specified cluster. This instance becomes
+// Registers an EC2 instance into the specified cluster. This instance becomes
 // available to place containers on.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1890,7 +1889,7 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 // To use your own scheduler or place a task on a specific container instance,
 // use StartTask instead.
 //
-//  The count parameter is limited to 10 tasks per call.
+// The count parameter is limited to 10 tasks per call.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1971,7 +1970,7 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 // instance or instances. To use the default Amazon ECS scheduler to place your
 // task, use RunTask instead.
 //
-//  The list of container instances to start tasks on is limited to 10.
+// The list of container instances to start tasks on is limited to 10.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2134,7 +2133,7 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 // This action is only used by the Amazon EC2 Container Service agent, and it
 // is not intended for use outside of the agent.
 //
-//  Sent to acknowledge that a container changed states.
+// Sent to acknowledge that a container changed states.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2206,7 +2205,7 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 // This action is only used by the Amazon EC2 Container Service agent, and it
 // is not intended for use outside of the agent.
 //
-//  Sent to acknowledge that a task changed states.
+// Sent to acknowledge that a task changed states.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2281,7 +2280,7 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 // differs depending on whether your container instance was launched with the
 // Amazon ECS-optimized AMI or another operating system.
 //
-//  UpdateContainerAgent requires the Amazon ECS-optimized AMI or Amazon Linux
+// UpdateContainerAgent requires the Amazon ECS-optimized AMI or Amazon Linux
 // with the ecs-init service installed and running. For help updating the Amazon
 // ECS container agent on other operating systems, see Manually Updating the
 // Amazon ECS Container Agent (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent)
@@ -2404,12 +2403,11 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // are considered healthy if they are in the RUNNING state and the container
 // instance it is hosted on is reported as healthy by the load balancer.
 //
-// The maximumPercent parameter represents an upper limit on the number of
-// running tasks during a deployment, which enables you to define the deployment
-// batch size. For example, if your service has a desiredCount of four tasks,
-// a maximumPercent value of 200% starts four new tasks before stopping the
-// four older tasks (provided that the cluster resources required to do this
-// are available).
+// The maximumPercent parameter represents an upper limit on the number of running
+// tasks during a deployment, which enables you to define the deployment batch
+// size. For example, if your service has a desiredCount of four tasks, a maximumPercent
+// value of 200% starts four new tasks before stopping the four older tasks
+// (provided that the cluster resources required to do this are available).
 //
 // When UpdateService stops a task during a deployment, the equivalent of docker
 // stop is issued to the containers running in the task. This results in a SIGTERM
@@ -2420,19 +2418,19 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // When the service scheduler launches new tasks, it attempts to balance them
 // across the Availability Zones in your cluster with the following logic:
 //
-//   Determine which of the container instances in your cluster can support
-// your service's task definition (for example, they have the required CPU,
-// memory, ports, and container instance attributes).
+//    Determine which of the container instances in your cluster can support
+//    your service's task definition (for example, they have the required CPU,
+//    memory, ports, and container instance attributes).
 //
-//   Sort the valid container instances by the fewest number of running tasks
-// for this service in the same Availability Zone as the instance. For example,
-// if zone A has one running service task and zones B and C each have zero,
-// valid container instances in either zone B or C are considered optimal for
-// placement.
+//    Sort the valid container instances by the fewest number of running tasks
+//    for this service in the same Availability Zone as the instance. For example,
+//    if zone A has one running service task and zones B and C each have zero,
+//    valid container instances in either zone B or C are considered optimal
+//    for placement.
 //
-//   Place the new service task on a valid container instance in an optimal
-// Availability Zone (based on the previous steps), favoring container instances
-// with the fewest number of running tasks for this service.
+//    Place the new service task on a valid container instance in an optimal
+//    Availability Zone (based on the previous steps), favoring container instances
+//    with the fewest number of running tasks for this service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2524,7 +2522,7 @@ type Cluster struct {
 	// The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the cluster, the AWS
 	// account ID of the cluster owner, the cluster namespace, and then the cluster
-	// name. For example, arn:aws:ecs:region:012345678910:cluster/test ..
+	// name. For example, arn:aws:ecs:region:012345678910:cluster/test..
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// A user-generated string that you use to identify your cluster.
@@ -2614,12 +2612,12 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the --cpu-shares option to docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//  You can determine the number of CPU units that are available per EC2 instance
+	// You can determine the number of CPU units that are available per EC2 instance
 	// type by multiplying the vCPUs listed for that instance type on the Amazon
 	// EC2 Instances (http://aws.amazon.com/ec2/instance-types/) detail page by
 	// 1,024.
 	//
-	//  For example, if you run a single-container task on a single-core instance
+	// For example, if you run a single-container task on a single-core instance
 	// type with 512 CPU units specified for that container, and that is the only
 	// task running on the container instance, that container could use the full
 	// 1,024 CPU unit share at any given time. However, if you launched another
@@ -2637,10 +2635,10 @@ type ContainerDefinition struct {
 	// 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
-	//    Agent versions less than or equal to 1.1.0: Null and zero CPU values
-	// are passed to Docker as 0, which Docker then converts to 1,024 CPU shares.
-	// CPU values of 1 are passed to Docker as 1, which the Linux kernel converts
-	// to 2 CPU shares.
+	//    Agent versions less than or equal to 1.1.0: Null and zero CPU values are
+	// passed to Docker as 0, which Docker then converts to 1,024 CPU shares. CPU
+	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
+	// 2 CPU shares.
 	//
 	//    Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
 	// of 1 are passed to Docker as 2.
@@ -2679,7 +2677,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the --security-opt option to docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//  The Amazon ECS container agent running on a container instance must register
+	// The Amazon ECS container agent running on a container instance must register
 	// with the ECS_SELINUX_CAPABLE=true or ECS_APPARMOR_CAPABLE=true environment
 	// variables before containers placed on that instance can use these security
 	// options. For more information, see Amazon ECS Container Agent Configuration
@@ -2691,8 +2689,8 @@ type ContainerDefinition struct {
 	// parameters. If you have problems using entryPoint, update your container
 	// agent or enter your commands and arguments as command array items instead.
 	//
-	//  The entry point that is passed to the container. This parameter maps to
-	// Entrypoint in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// The entry point that is passed to the container. This parameter maps to Entrypoint
+	// in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the --entrypoint option to docker run (https://docs.docker.com/reference/commandline/run/).
 	// For more information, see https://docs.docker.com/reference/builder/#entrypoint
@@ -2704,7 +2702,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the --env option to docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//  We do not recommend using plain text environment variables for sensitive
+	// We do not recommend using plain text environment variables for sensitive
 	// information, such as credential data.
 	Environment []*KeyValuePair `locationName:"environment" type:"list"`
 
@@ -2737,21 +2735,21 @@ type ContainerDefinition struct {
 
 	// The image used to start a container. This string is passed directly to the
 	// Docker daemon. Images in the Docker Hub registry are available by default.
-	// Other repositories are specified with  repository-url/image:tag . Up to 255
+	// Other repositories are specified with repository-url/image:tag. Up to 255
 	// letters (uppercase and lowercase), numbers, hyphens, underscores, colons,
 	// periods, forward slashes, and number signs are allowed. This parameter maps
 	// to Image in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the IMAGE parameter of docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//   Images in official repositories on Docker Hub use a single name (for example,
-	// ubuntu or mongo).
+	//    Images in official repositories on Docker Hub use a single name (for example,
+	//    ubuntu or mongo).
 	//
-	//   Images in other repositories on Docker Hub are qualified with an organization
-	// name (for example, amazon/amazon-ecs-agent).
+	//    Images in other repositories on Docker Hub are qualified with an organization
+	//    name (for example, amazon/amazon-ecs-agent).
 	//
-	//   Images in other online repositories are qualified further by a domain
-	// name (for example, quay.io/assemblyline/ubuntu).
+	//    Images in other online repositories are qualified further by a domain
+	//    name (for example, quay.io/assemblyline/ubuntu).
 	Image *string `locationName:"image" type:"string"`
 
 	// The link parameter allows containers to communicate with each other without
@@ -2764,7 +2762,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the --link option to docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//  Containers that are collocated on a single container instance may be able
+	// Containers that are collocated on a single container instance may be able
 	// to communicate with each other without requiring links or host port mappings.
 	// Network isolation is achieved on the container instance using security groups
 	// and VPC settings.
@@ -2783,17 +2781,17 @@ type ContainerDefinition struct {
 	// supported log drivers, see Configure logging drivers (https://docs.docker.com/engine/admin/logging/overview/)
 	// in the Docker documentation.
 	//
-	//  Amazon ECS currently supports a subset of the logging drivers available
-	// to the Docker daemon (shown in the LogConfiguration data type). Currently
-	// unsupported log drivers may be available in future releases of the Amazon
-	// ECS container agent.
+	// Amazon ECS currently supports a subset of the logging drivers available to
+	// the Docker daemon (shown in the LogConfiguration data type). Currently unsupported
+	// log drivers may be available in future releases of the Amazon ECS container
+	// agent.
 	//
-	//  This parameter requires version 1.18 of the Docker Remote API or greater
+	// This parameter requires version 1.18 of the Docker Remote API or greater
 	// on your container instance. To check the Docker Remote API version on your
 	// container instance, log into your container instance and run the following
 	// command: sudo docker version | grep "Server API version"
 	//
-	//  The Amazon ECS container agent running on a container instance must register
+	// The Amazon ECS container agent running on a container instance must register
 	// the logging drivers available on that instance with the ECS_AVAILABLE_LOGGING_DRIVERS
 	// environment variable before containers placed on that instance can use these
 	// log configuration options. For more information, see Amazon ECS Container
@@ -2866,10 +2864,10 @@ type ContainerDefinition struct {
 	// host, then host ports must either be undefined or they must match the container
 	// port in the port mapping.
 	//
-	//  After a task reaches the RUNNING status, manual and automatic host and
-	// container port assignments are visible in the Network Bindings section of
-	// a container description of a selected task in the Amazon ECS console, or
-	// the networkBindings section DescribeTasks responses.
+	// After a task reaches the RUNNING status, manual and automatic host and container
+	// port assignments are visible in the Network Bindings section of a container
+	// description of a selected task in the Amazon ECS console, or the networkBindings
+	// section DescribeTasks responses.
 	PortMappings []*PortMapping `locationName:"portMappings" type:"list"`
 
 	// When this parameter is true, the container is given elevated privileges on
@@ -2983,8 +2981,7 @@ type ContainerInstance struct {
 	// The Amazon Resource Name (ARN) of the container instance. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the container instance,
 	// the AWS account ID of the container instance owner, the container-instance
-	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID
-	// .
+	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The EC2 instance ID of the container instance.
@@ -3119,12 +3116,12 @@ type CreateServiceInput struct {
 	// a task from this service is placed on a container instance, the container
 	// instance is registered with the load balancer specified here.
 	//
-	// For Elastic Load Balancing Application load balancers, this object must
-	// contain the load balancer target group ARN, the container name (as it appears
-	// in a container definition), and the container port to access from the load
-	// balancer. When a task from this service is placed on a container instance,
-	// the container instance and port combination is registered as a target in
-	// the target group specified here.
+	// For Elastic Load Balancing Application load balancers, this object must contain
+	// the load balancer target group ARN, the container name (as it appears in
+	// a container definition), and the container port to access from the load balancer.
+	// When a task from this service is placed on a container instance, the container
+	// instance and port combination is registered as a target in the target group
+	// specified here.
 	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
 
 	// The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon
@@ -3389,8 +3386,7 @@ type DeregisterContainerInstanceInput struct {
 	// instance to deregister. The ARN contains the arn:aws:ecs namespace, followed
 	// by the region of the container instance, the AWS account ID of the container
 	// instance owner, the container-instance namespace, and then the container
-	// instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID
-	// .
+	// instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	//
 	// ContainerInstance is a required field
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
@@ -3768,8 +3764,7 @@ type DiscoverPollEndpointInput struct {
 	// instance. The ARN contains the arn:aws:ecs namespace, followed by the region
 	// of the container instance, the AWS account ID of the container instance owner,
 	// the container-instance namespace, and then the container instance ID. For
-	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID
-	// .
+	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 }
 
@@ -3930,8 +3925,8 @@ type ListClustersInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	//
-	//  This token should be treated as an opaque identifier that is only used
-	// to retrieve the next items in a list and not for other programmatic purposes.
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -3993,8 +3988,8 @@ type ListContainerInstancesInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	//  This token should be treated as an opaque identifier that is only used
-	// to retrieve the next items in a list and not for other programmatic purposes.
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4054,8 +4049,8 @@ type ListServicesInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	//
-	//  This token should be treated as an opaque identifier that is only used
-	// to retrieve the next items in a list and not for other programmatic purposes.
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4117,8 +4112,8 @@ type ListTaskDefinitionFamiliesInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	//  This token should be treated as an opaque identifier that is only used
-	// to retrieve the next items in a list and not for other programmatic purposes.
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The task definition family status with which to filter the ListTaskDefinitionFamilies
@@ -4188,8 +4183,8 @@ type ListTaskDefinitionsInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	//  This token should be treated as an opaque identifier that is only used
-	// to retrieve the next items in a list and not for other programmatic purposes.
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The order in which to sort the results. Valid values are ASC and DESC. By
@@ -4261,7 +4256,7 @@ type ListTasksInput struct {
 	// not starting properly or have died or finished. The default status filter
 	// is RUNNING, which shows tasks that ECS has set the desired status to RUNNING.
 	//
-	//  Although you can filter results based on a desired status of PENDING, this
+	// Although you can filter results based on a desired status of PENDING, this
 	// will not return any results because ECS never sets the desired status of
 	// a task to that value (only a task's lastStatus may have a value of PENDING).
 	DesiredStatus *string `locationName:"desiredStatus" type:"string" enum:"DesiredStatus"`
@@ -4284,8 +4279,8 @@ type ListTasksInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	//
-	//  This token should be treated as an opaque identifier that is only used
-	// to retrieve the next items in a list and not for other programmatic purposes.
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the service with which to filter the ListTasks results. Specifying
@@ -4370,7 +4365,7 @@ type LogConfiguration struct {
 	// parameter are log drivers that the Amazon ECS container agent can communicate
 	// with by default.
 	//
-	//  If you have a custom driver that is not listed above that you would like
+	// If you have a custom driver that is not listed above that you would like
 	// to work with the Amazon ECS container agent, you can fork the Amazon ECS
 	// container agent project that is available on GitHub (https://github.com/aws/amazon-ecs-agent)
 	// and customize it to work with that driver. We encourage you to submit pull
@@ -4378,7 +4373,7 @@ type LogConfiguration struct {
 	// Web Services does not currently provide support for running modified copies
 	// of this software.
 	//
-	//  This parameter requires version 1.18 of the Docker Remote API or greater
+	// This parameter requires version 1.18 of the Docker Remote API or greater
 	// on your container instance. To check the Docker Remote API version on your
 	// container instance, log into your container instance and run the following
 	// command: sudo docker version | grep "Server API version"
@@ -4751,7 +4746,7 @@ type RunTaskInput struct {
 
 	// The number of instantiations of the specified task to place on your cluster.
 	//
-	//  The count parameter is limited to 10 tasks per call.
+	// The count parameter is limited to 10 tasks per call.
 	Count *int64 `locationName:"count" type:"integer"`
 
 	// A list of container overrides in JSON format that specify the name of a container
@@ -4762,7 +4757,7 @@ type RunTaskInput struct {
 	// or Docker image) on a container or add new environment variables to it with
 	// an environment override.
 	//
-	//  A total of 8192 characters are allowed for overrides. This limit includes
+	// A total of 8192 characters are allowed for overrides. This limit includes
 	// the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
@@ -4874,7 +4869,7 @@ type Service struct {
 	// The Amazon Resource Name (ARN) that identifies the service. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the service, the AWS
 	// account ID of the service owner, the service namespace, and then the service
-	// name. For example, arn:aws:ecs:region:012345678910:service/my-service .
+	// name. For example, arn:aws:ecs:region:012345678910:service/my-service.
 	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
 	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
@@ -4937,7 +4932,7 @@ type StartTaskInput struct {
 	// The container instance IDs or full Amazon Resource Name (ARN) entries for
 	// the container instances on which you would like to place your task.
 	//
-	//  The list of container instances to start tasks on is limited to 10.
+	// The list of container instances to start tasks on is limited to 10.
 	//
 	// ContainerInstances is a required field
 	ContainerInstances []*string `locationName:"containerInstances" type:"list" required:"true"`
@@ -4950,7 +4945,7 @@ type StartTaskInput struct {
 	// or Docker image) on a container or add new environment variables to it with
 	// an environment override.
 	//
-	//  A total of 8192 characters are allowed for overrides. This limit includes
+	// A total of 8192 characters are allowed for overrides. This limit includes
 	// the JSON formatting characters of the override structure.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
@@ -5504,7 +5499,7 @@ type VersionInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
-	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
+	// (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
 	AgentHash *string `locationName:"agentHash" type:"string"`
 
 	// The version number of the Amazon ECS container agent.

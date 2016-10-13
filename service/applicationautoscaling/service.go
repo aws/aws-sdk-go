@@ -17,19 +17,19 @@ import (
 //
 // Application Auto Scaling supports scaling the following AWS resources:
 //
-//   Amazon ECS services
+//    Amazon ECS services
 //
-//   Amazon EC2 Spot fleet instances
+//    Amazon EC2 Spot fleet instances
 //
-//   You can use Application Auto Scaling to accomplish the following tasks:
+// You can use Application Auto Scaling to accomplish the following tasks:
 //
-//   Define scaling policies for automatically adjusting your AWS resources
+//    Define scaling policies for automatically adjusting your AWS resources
 //
-//   Scale your resources in response to CloudWatch alarms
+//    Scale your resources in response to CloudWatch alarms
 //
-//   View history of your scaling events
+//    View history of your scaling events
 //
-//   Application Auto Scaling is available in the following regions:
+// Application Auto Scaling is available in the following regions:
 //
 //    us-east-1
 //

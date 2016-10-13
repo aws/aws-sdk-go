@@ -26,20 +26,32 @@ import (
 //
 // More Resources
 //
-//   Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/):
-// Learn more about GameLift features and how to use them   Lumberyard and GameLift
-// Tutorials (https://gamedev.amazon.com/forums/tutorials): Get started fast
-// with walkthroughs and sample projects  GameDev Blog (https://aws.amazon.com/blogs/gamedev/):
-// Stay up to date with new features and techniques  GameDev Forums (https://gamedev.amazon.com/forums/spaces/123/gamelift-discussion.html):
-// Connect with the GameDev community  Manage Games and Players Through GameLift
+//    Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/):
+//    Learn more about GameLift features and how to use them
+//    Lumberyard and GameLift Tutorials (https://gamedev.amazon.com/forums/tutorials):
+//    Get started fast with walkthroughs and sample projects
+//    GameDev Blog (https://aws.amazon.com/blogs/gamedev/): Stay up to date
+//    with new features and techniques
+//    GameDev Forums (https://gamedev.amazon.com/forums/spaces/123/gamelift-discussion.html):
+//    Connect with the GameDev community
+// Manage Games and Players Through GameLift
 //
-// Call these actions from your game clients and/or services to create and
-// manage multiplayer game sessions and player sessions.
+// Call these actions from your game clients and/or services to create and manage
+// multiplayer game sessions and player sessions.
 //
-//   Game sessions  CreateGameSession DescribeGameSessions DescribeGameSessionDetails
-// UpdateGameSession SearchGameSessions    Player sessions  CreatePlayerSession
-// CreatePlayerSessions DescribePlayerSessions    Other actions:  GetGameSessionLogUrl
-//    Set Up and Manage Game Servers
+//    Game sessionsCreateGameSession
+// DescribeGameSessions
+// DescribeGameSessionDetails
+// UpdateGameSession
+// SearchGameSessions
+//
+//    Player sessionsCreatePlayerSession
+// CreatePlayerSessions
+// DescribePlayerSessions
+//
+//    Other actions:GetGameSessionLogUrl
+//
+// Set Up and Manage Game Servers
 //
 // Use these administrative actions to configure GameLift to host your game
 // servers. When setting up GameLift, you'll need to (1) configure a build for
@@ -47,15 +59,42 @@ import (
 // game sessions. Once you've created and activated a fleet, you can assign
 // aliases to it, scale capacity, track performance and utilization, etc.
 //
-//   Manage your builds:  ListBuilds CreateBuild DescribeBuild UpdateBuild
-// DeleteBuild RequestUploadCredentials    Manage your fleets:  ListFleets CreateFleet
-// Describe fleets:  DescribeFleetAttributes DescribeFleetCapacity DescribeFleetPortSettings
-// DescribeFleetUtilization DescribeEC2InstanceLimits DescribeFleetEvents DescribeRuntimeConfiguration
-//   Update fleets:  UpdateFleetAttributes UpdateFleetCapacity UpdateFleetPortSettings
-// UpdateRuntimeConfiguration   DeleteFleet    Manage fleet aliases:  ListAliases
-// CreateAlias DescribeAlias UpdateAlias DeleteAlias ResolveAlias    Manage
-// autoscaling:  PutScalingPolicy DescribeScalingPolicies DeleteScalingPolicy
-//    To view changes to the API, see the GameLift Document History (http://docs.aws.amazon.com/gamelift/latest/developerguide/doc-history.html)
+//    Manage your builds:ListBuilds
+// CreateBuild
+// DescribeBuild
+// UpdateBuild
+// DeleteBuild
+// RequestUploadCredentials
+//
+//    Manage your fleets:ListFleets
+// CreateFleet
+//    Describe fleets: DescribeFleetAttributes
+// DescribeFleetCapacity
+// DescribeFleetPortSettings
+// DescribeFleetUtilization
+// DescribeEC2InstanceLimits
+// DescribeFleetEvents
+// DescribeRuntimeConfiguration
+//
+//    Update fleets: UpdateFleetAttributes
+// UpdateFleetCapacity
+// UpdateFleetPortSettings
+// UpdateRuntimeConfiguration
+//
+// DeleteFleet
+//
+//    Manage fleet aliases:ListAliases
+// CreateAlias
+// DescribeAlias
+// UpdateAlias
+// DeleteAlias
+// ResolveAlias
+//
+//    Manage autoscaling:PutScalingPolicy
+// DescribeScalingPolicies
+// DeleteScalingPolicy
+//
+// To view changes to the API, see the GameLift Document History (http://docs.aws.amazon.com/gamelift/latest/developerguide/doc-history.html)
 // page.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.

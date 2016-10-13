@@ -69,14 +69,14 @@ func (c *Glacier) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) 
 //
 // This operation is idempotent.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Working with
-// Archives in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
+// For conceptual information and underlying REST API, go to Working with Archives
+// in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html)
 // and Abort Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html)
 // in the Amazon Glacier Developer Guide.
 //
@@ -346,9 +346,9 @@ func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadI
 // upload. It includes checksum information for each uploaded part that can
 // be used to debug a bad checksum issue.
 //
-// Additionally, Amazon Glacier also checks for any missing content ranges
-// when assembling the archive, if missing content ranges are found, Amazon
-// Glacier returns an error and the operation fails.
+// Additionally, Amazon Glacier also checks for any missing content ranges when
+// assembling the archive, if missing content ranges are found, Amazon Glacier
+// returns an error and the operation fails.
 //
 // Complete Multipart Upload is an idempotent operation. After your first successful
 // complete multipart upload, if you call the operation again within a short
@@ -361,13 +361,13 @@ func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadI
 // appear in List Multipart Uploads response, even if idempotent complete is
 // possible.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Uploading Large
+// For conceptual information and underlying REST API, go to Uploading Large
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Complete Multipart Upload (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-complete-upload.html)
 // in the Amazon Glacier Developer Guide.
@@ -543,18 +543,18 @@ func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *request.Requ
 //
 //     Names can be between 1 and 255 characters long.
 //
-//   Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
-// and '.' (period).
+//    Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
+//    and '.' (period).
 //
-//    This operation is idempotent.
+// This operation is idempotent.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Creating a Vault
+// For conceptual information and underlying REST API, go to Creating a Vault
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/creating-vaults.html)
 // and Create Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-put.html)
 // in the Amazon Glacier Developer Guide.
@@ -636,20 +636,22 @@ func (c *Glacier) DeleteArchiveRequest(input *DeleteArchiveInput) (req *request.
 // a retrieval of this archive will fail. Archive retrievals that are in progress
 // for this archive ID may or may not succeed according to the following scenarios:
 //
-//  If the archive retrieval job is actively preparing the data for download
-// when Amazon Glacier receives the delete archive request, the archival retrieval
-// operation might fail.  If the archive retrieval job has successfully prepared
-// the archive for download when Amazon Glacier receives the delete archive
-// request, you will be able to download the output.   This operation is idempotent.
-// Attempting to delete an already-deleted archive does not result in an error.
+//    If the archive retrieval job is actively preparing the data for download
+//    when Amazon Glacier receives the delete archive request, the archival
+//    retrieval operation might fail.
+//    If the archive retrieval job has successfully prepared the archive for
+//    download when Amazon Glacier receives the delete archive request, you
+//    will be able to download the output.
+// This operation is idempotent. Attempting to delete an already-deleted archive
+// does not result in an error.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Deleting an Archive
+// For conceptual information and underlying REST API, go to Deleting an Archive
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-an-archive.html)
 // and Delete Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html)
 // in the Amazon Glacier Developer Guide.
@@ -741,13 +743,13 @@ func (c *Glacier) DeleteVaultRequest(input *DeleteVaultInput) (req *request.Requ
 //
 // This operation is idempotent.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Deleting a Vault
+// For conceptual information and underlying REST API, go to Deleting a Vault
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/deleting-vaults.html)
 // and Delete Vault  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-delete.html)
 // in the Amazon Glacier Developer Guide.
@@ -916,13 +918,13 @@ func (c *Glacier) DeleteVaultNotificationsRequest(input *DeleteVaultNotification
 // Amazon Glacier to completely disable the notifications and you might still
 // receive some notifications for a short time after you send the delete request.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Configuring Vault
+// For conceptual information and underlying REST API, go to Configuring Vault
 // Notifications in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html)
 // and Delete Vault Notification Configuration  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html)
 // in the Amazon Glacier Developer Guide.
@@ -1004,21 +1006,21 @@ func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *request.Requ
 // status code/message and the Amazon SNS topic to notify after Amazon Glacier
 // completes the job. For more information about initiating a job, see InitiateJob.
 //
-// This operation enables you to check the status of your job. However, it
-// is strongly recommended that you set up an Amazon SNS topic and specify it
-// in your initiate job request so that Amazon Glacier can notify the topic
-// after it completes the job.
+// This operation enables you to check the status of your job. However, it is
+// strongly recommended that you set up an Amazon SNS topic and specify it in
+// your initiate job request so that Amazon Glacier can notify the topic after
+// it completes the job.
 //
 // A job ID will not expire for at least 24 hours after Amazon Glacier completes
 // the job.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For information about the underlying REST API, go to Working with Archives
+// For information about the underlying REST API, go to Working with Archives
 // in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-describe-job-get.html)
 // in the Amazon Glacier Developer Guide.
 //
@@ -1104,8 +1106,8 @@ func (c *Glacier) DescribeVaultRequest(input *DescribeVaultInput) (req *request.
 // Amazon Glacier generates vault inventories approximately daily. For more
 // information, see Downloading a Vault Inventory in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-inventory.html).
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -1274,27 +1276,27 @@ func (c *Glacier) GetJobOutputRequest(input *GetJobOutputInput) (req *request.Re
 // of data at a time, which is a total of eight Get Job Output requests. You
 // use the following process to download the job output:
 //
-//   Download a 128 MB chunk of output by specifying the appropriate byte range
-// using the Range header.
+//    Download a 128 MB chunk of output by specifying the appropriate byte range
+//    using the Range header.
 //
-//   Along with the data, the response includes a SHA256 tree hash of the payload.
-// You compute the checksum of the payload on the client and compare it with
-// the checksum you received in the response to ensure you received all the
-// expected data.
+//    Along with the data, the response includes a SHA256 tree hash of the payload.
+//    You compute the checksum of the payload on the client and compare it with
+//    the checksum you received in the response to ensure you received all the
+//    expected data.
 //
-//   Repeat steps 1 and 2 for all the eight 128 MB chunks of output data, each
-// time specifying the appropriate byte range.
+//    Repeat steps 1 and 2 for all the eight 128 MB chunks of output data, each
+//    time specifying the appropriate byte range.
 //
-//   After downloading all the parts of the job output, you have a list of
-// eight checksum values. Compute the tree hash of these values to find the
-// checksum of the entire output. Using the DescribeJob API, obtain job information
+//    After downloading all the parts of the job output, you have a list of
+//    eight checksum values. Compute the tree hash of these values to find the
+//    checksum of the entire output. Using the DescribeJob API, obtain job information
 // of the job that provided you the output. The response includes the checksum
 // of the entire archive stored in Amazon Glacier. You compare this value with
 // the checksum you computed to ensure you have downloaded the entire archive
 // content with no errors.
 //
-//   An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -1456,16 +1458,16 @@ func (c *Glacier) GetVaultLockRequest(input *GetVaultLockInput) (req *request.Re
 // GetVaultLock API operation for Amazon Glacier.
 //
 // This operation retrieves the following attributes from the lock-policy subresource
-// set on the specified vault:   The vault lock policy set on the vault.
+// set on the specified vault: The vault lock policy set on the vault.
 //
-//   The state of the vault lock, which is either InProgess or Locked.
+// The state of the vault lock, which is either InProgess or Locked.
 //
-//   When the lock ID expires. The lock ID is used to complete the vault locking
+// When the lock ID expires. The lock ID is used to complete the vault locking
 // process.
 //
-//   When the vault lock was initiated and put into the InProgress state.
+// When the vault lock was initiated and put into the InProgress state.
 //
-//    A vault lock is put into the InProgress state by calling InitiateVaultLock.
+// A vault lock is put into the InProgress state by calling InitiateVaultLock.
 // A vault lock is put into the Locked state by calling CompleteVaultLock. You
 // can abort the vault locking process by calling AbortVaultLock. For more information
 // about the vault locking process, Amazon Glacier Vault Lock (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html).
@@ -1555,8 +1557,8 @@ func (c *Glacier) GetVaultNotificationsRequest(input *GetVaultNotificationsInput
 // vault notifications, see Configuring Vault Notifications in Amazon Glacier
 // (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html).
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -1644,17 +1646,18 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 //
 // Retrieving data from Amazon Glacier is a two-step process:
 //
-//   Initiate a retrieval job.
+//    Initiate a retrieval job.
 //
-// A data retrieval policy can cause your initiate retrieval job request to
-// fail with a PolicyEnforcedException exception. For more information about
-// data retrieval policies, see Amazon Glacier Data Retrieval Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/data-retrieval-policy.html).
+//    A data retrieval policy can cause your initiate retrieval job request
+//    to fail with a PolicyEnforcedException exception. For more information
+//    about data retrieval policies, see Amazon Glacier Data Retrieval Policies
+// (http://docs.aws.amazon.com/amazonglacier/latest/dev/data-retrieval-policy.html).
 // For more information about the PolicyEnforcedException exception, see Error
 // Responses (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-error-responses.html).
 //
-//   After the job completes, download the bytes.
+// After the job completes, download the bytes.
 //
-//  The retrieval request is executed asynchronously. When you initiate a retrieval
+// The retrieval request is executed asynchronously. When you initiate a retrieval
 // job, Amazon Glacier creates a job and returns a job ID in the response. When
 // Amazon Glacier completes the job, you can get the job output (archive or
 // inventory data). For information about getting job output, see GetJobOutput
@@ -1663,7 +1666,7 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 // The job must complete before you can get its output. To determine when a
 // job is complete, you have the following options:
 //
-//   Use Amazon SNS Notification You can specify an Amazon Simple Notification
+//    Use Amazon SNS Notification You can specify an Amazon Simple Notification
 // Service (Amazon SNS) topic to which Amazon Glacier can post a notification
 // after the job is completed. You can specify an SNS topic per job request.
 // The notification is sent only after Amazon Glacier completes the job. In
@@ -1671,27 +1674,27 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 // notifications for a vault so that job notifications are always sent. For
 // more information, see SetVaultNotifications.
 //
-//   Get job details You can make a DescribeJob request to obtain job status
+//    Get job details You can make a DescribeJob request to obtain job status
 // information while a job is in progress. However, it is more efficient to
 // use an Amazon SNS notification to determine when a job is complete.
 //
-//   The information you get via notification is same that you get by calling
+// The information you get via notification is same that you get by calling
 // DescribeJob.
 //
-// If for a specific event, you add both the notification configuration on
-// the vault and also specify an SNS topic in your initiate job request, Amazon
+// If for a specific event, you add both the notification configuration on the
+// vault and also specify an SNS topic in your initiate job request, Amazon
 // Glacier sends both notifications. For more information, see SetVaultNotifications.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
 // About the Vault Inventory
 //
-// Amazon Glacier prepares an inventory for each vault periodically, every
-// 24 hours. When you initiate a job for a vault inventory, Amazon Glacier returns
+// Amazon Glacier prepares an inventory for each vault periodically, every 24
+// hours. When you initiate a job for a vault inventory, Amazon Glacier returns
 // the last inventory for the vault. The inventory data you get might be up
 // to a day or two days old. Also, the initiate inventory job might take some
 // time to complete before you can download the vault inventory. So you do not
@@ -1711,13 +1714,13 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 //
 // Filtering by Archive Creation Date
 //
-// You can retrieve inventory items for archives created between StartDate
-// and EndDate by specifying values for these parameters in the InitiateJob
-// request. Archives created on or after the StartDate and before the EndDate
-// will be returned. If you only provide the StartDate without the EndDate,
-// you will retrieve the inventory for all archives created on or after the
-// StartDate. If you only provide the EndDate without the StartDate, you will
-// get back the inventory for all archives created before the EndDate.
+// You can retrieve inventory items for archives created between StartDate and
+// EndDate by specifying values for these parameters in the InitiateJob request.
+// Archives created on or after the StartDate and before the EndDate will be
+// returned. If you only provide the StartDate without the EndDate, you will
+// retrieve the inventory for all archives created on or after the StartDate.
+// If you only provide the EndDate without the StartDate, you will get back
+// the inventory for all archives created before the EndDate.
 //
 // Limiting Inventory Items per Retrieval
 //
@@ -1736,8 +1739,8 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 //
 // About Ranged Archive Retrieval
 //
-//  You can initiate an archive retrieval for the whole archive or a range
-// of the archive. In the case of ranged archive retrieval, you specify a byte
+// You can initiate an archive retrieval for the whole archive or a range of
+// the archive. In the case of ranged archive retrieval, you specify a byte
 // range to return or the whole archive. The range specified must be megabyte
 // (MB) aligned, that is the range start value must be divisible by 1 MB and
 // range end value plus 1 must be divisible by 1 MB or equal the end of the
@@ -1745,8 +1748,8 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 // returns a 400 response. Furthermore, to ensure you get checksum values for
 // data you download using Get Job Output API, the range must be tree hash aligned.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -1856,8 +1859,8 @@ func (c *Glacier) InitiateMultipartUploadRequest(input *InitiateMultipartUploadI
 // upload resource if you cancel the multipart upload or it may be removed if
 // there is no activity for a period of 24 hours.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -1940,15 +1943,15 @@ func (c *Glacier) InitiateVaultLockRequest(input *InitiateVaultLockInput) (req *
 // InitiateVaultLock API operation for Amazon Glacier.
 //
 // This operation initiates the vault locking process by doing the following:
-//   Installing a vault lock policy on the specified vault.
+// Installing a vault lock policy on the specified vault.
 //
-//   Setting the lock state of vault lock to InProgress.
+// Setting the lock state of vault lock to InProgress.
 //
-//   Returning a lock ID, which is used to complete the vault locking process.
+// Returning a lock ID, which is used to complete the vault locking process.
 //
-//    You can set one vault lock policy for each vault and this policy can
-// be up to 20 KB in size. For more information about vault lock policies, see
-// Amazon Glacier Access Control with Vault Lock Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html).
+// You can set one vault lock policy for each vault and this policy can be up
+// to 20 KB in size. For more information about vault lock policies, see Amazon
+// Glacier Access Control with Vault Lock Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html).
 //
 // You must complete the vault locking process within 24 hours after the vault
 // lock enters the InProgress state. After the 24 hour window ends, the lock
@@ -2079,8 +2082,8 @@ func (c *Glacier) ListJobsRequest(input *ListJobsInput) (req *request.Request, o
 // a specified status are returned. The completed parameter allows you to specify
 // that only jobs in a specific completion state are returned.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -2210,8 +2213,8 @@ func (c *Glacier) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) 
 // and does not require a multipart upload ID. The List Parts operation requires
 // a multipart upload ID since parts are associated with a single upload.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -2338,8 +2341,8 @@ func (c *Glacier) ListPartsRequest(input *ListPartsInput) (req *request.Request,
 // from a previous List Parts request. You can also limit the number of parts
 // returned in the response by specifying the limit parameter in the request.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -2531,17 +2534,16 @@ func (c *Glacier) ListVaultsRequest(input *ListVaultsInput) (req *request.Reques
 // This operation lists all vaults owned by the calling user's account. The
 // list returned in the response is ASCII-sorted by vault name.
 //
-// By default, this operation returns up to 1,000 items. If there are more
-// vaults to list, the response marker field contains the vault Amazon Resource
-// Name (ARN) at which to continue the list with a new List Vaults request;
-// otherwise, the marker field is null. To return a list of vaults that begins
-// at a specific vault, set the marker request parameter to the vault ARN you
-// obtained from a previous List Vaults request. You can also limit the number
-// of vaults returned in the response by specifying the limit parameter in the
-// request.
+// By default, this operation returns up to 1,000 items. If there are more vaults
+// to list, the response marker field contains the vault Amazon Resource Name
+// (ARN) at which to continue the list with a new List Vaults request; otherwise,
+// the marker field is null. To return a list of vaults that begins at a specific
+// vault, set the marker request parameter to the vault ARN you obtained from
+// a previous List Vaults request. You can also limit the number of vaults returned
+// in the response by specifying the limit parameter in the request.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
@@ -2902,18 +2904,19 @@ func (c *Glacier) SetVaultNotificationsRequest(input *SetVaultNotificationsInput
 // notifications to the topic. You can configure a vault to publish a notification
 // for the following vault events:
 //
-//   ArchiveRetrievalCompleted This event occurs when a job that was initiated
-// for an archive retrieval is completed (InitiateJob). The status of the completed
-// job can be "Succeeded" or "Failed". The notification sent to the SNS topic
-// is the same output as returned from DescribeJob.   InventoryRetrievalCompleted
-// This event occurs when a job that was initiated for an inventory retrieval
-// is completed (InitiateJob). The status of the completed job can be "Succeeded"
-// or "Failed". The notification sent to the SNS topic is the same output as
-// returned from DescribeJob.   An AWS account has full permission to perform
-// all operations (actions). However, AWS Identity and Access Management (IAM)
-// users don't have any permissions by default. You must grant them explicit
-// permission to perform specific actions. For more information, see Access
-// Control Using AWS Identity and Access Management (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
+//    ArchiveRetrievalCompleted This event occurs when a job that was initiated
+//    for an archive retrieval is completed (InitiateJob). The status of the
+//    completed job can be "Succeeded" or "Failed". The notification sent to
+//    the SNS topic is the same output as returned from DescribeJob.
+//    InventoryRetrievalCompleted This event occurs when a job that was initiated
+//    for an inventory retrieval is completed (InitiateJob). The status of the
+//    completed job can be "Succeeded" or "Failed". The notification sent to
+//    the SNS topic is the same output as returned from DescribeJob.
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
+// by default. You must grant them explicit permission to perform specific actions.
+// For more information, see Access Control Using AWS Identity and Access Management
+// (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
 // For conceptual information and underlying REST API, go to Configuring Vault
 // Notifications in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html)
@@ -3018,14 +3021,14 @@ func (c *Glacier) UploadArchiveRequest(input *UploadArchiveInput) (req *request.
 // Archives are immutable. After you upload an archive, you cannot edit the
 // archive or its description.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Uploading an
-// Archive in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-an-archive.html)
+// For conceptual information and underlying REST API, go to Uploading an Archive
+// in Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-an-archive.html)
 // and Upload Archive (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html)
 // in the Amazon Glacier Developer Guide.
 //
@@ -3109,42 +3112,44 @@ func (c *Glacier) UploadMultipartPartRequest(input *UploadMultipartPartInput) (r
 // in any order. You can also upload them in parallel. You can upload up to
 // 10,000 parts for a multipart upload.
 //
-// Amazon Glacier rejects your upload part request if any of the following
-// conditions is true:
+// Amazon Glacier rejects your upload part request if any of the following conditions
+// is true:
 //
-//   SHA256 tree hash does not matchTo ensure that part data is not corrupted
+//    SHA256 tree hash does not matchTo ensure that part data is not corrupted
 // in transmission, you compute a SHA256 tree hash of the part and include it
 // in your request. Upon receiving the part data, Amazon Glacier also computes
 // a SHA256 tree hash. If these hash values don't match, the operation fails.
 // For information about computing a SHA256 tree hash, see Computing Checksums
 // (http://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html).
 //
-//   Part size does not matchThe size of each part except the last must match
+//    Part size does not matchThe size of each part except the last must match
 // the size specified in the corresponding InitiateMultipartUpload request.
 // The size of the last part must be the same size as, or smaller than, the
 // specified size.
 //
-// If you upload a part whose size is smaller than the part size you specified
-// in your initiate multipart upload request and that part is not the last part,
-// then the upload part request will succeed. However, the subsequent Complete
-// Multipart Upload request will fail.
+//    If you upload a part whose size is smaller than the part size you specified
+//    in your initiate multipart upload request and that part is not the last
+//    part, then the upload part request will succeed. However, the subsequent
+//    Complete Multipart Upload request will fail.
 //
-//   Range does not alignThe byte range value in the request does not align
-// with the part size specified in the corresponding initiate request. For example,
-// if you specify a part size of 4194304 bytes (4 MB), then 0 to 4194303 bytes
-// (4 MB - 1) and 4194304 (4 MB) to 8388607 (8 MB - 1) are valid part ranges.
-// However, if you set a range value of 2 MB to 6 MB, the range does not align
-// with the part size and the upload will fail.   This operation is idempotent.
-// If you upload the same part multiple times, the data included in the most
-// recent request overwrites the previously uploaded data.
+//    Range does not alignThe byte range value in the request does not align
+//    with the part size specified in the corresponding initiate request. For
+//    example, if you specify a part size of 4194304 bytes (4 MB), then 0 to
+//    4194303 bytes (4 MB - 1) and 4194304 (4 MB) to 8388607 (8 MB - 1) are
+//    valid part ranges. However, if you set a range value of 2 MB to 6 MB,
+//    the range does not align with the part size and the upload will fail.
 //
-// An AWS account has full permission to perform all operations (actions).
-// However, AWS Identity and Access Management (IAM) users don't have any permissions
+// This operation is idempotent. If you upload the same part multiple times,
+// the data included in the most recent request overwrites the previously uploaded
+// data.
+//
+// An AWS account has full permission to perform all operations (actions). However,
+// AWS Identity and Access Management (IAM) users don't have any permissions
 // by default. You must grant them explicit permission to perform specific actions.
 // For more information, see Access Control Using AWS Identity and Access Management
 // (IAM) (http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html).
 //
-//  For conceptual information and underlying REST API, go to Uploading Large
+// For conceptual information and underlying REST API, go to Uploading Large
 // Archives in Parts (Multipart Upload) (http://docs.aws.amazon.com/amazonglacier/latest/dev/uploading-archive-mpu.html)
 // and Upload Part  (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-upload-part.html)
 // in the Amazon Glacier Developer Guide.
@@ -4159,15 +4164,17 @@ type GetJobOutputOutput struct {
 
 	// The checksum of the data in the response. This header is returned only when
 	// retrieving the output for an archive retrieval job. Furthermore, this header
-	// appears only under the following conditions:  You get the entire range of
-	// the archive. You request a range to return of the archive that starts and
-	// ends on a multiple of 1 MB. For example, if you have an 3.1 MB archive and
-	// you specify a range to return that starts at 1 MB and ends at 2 MB, then
-	// the x-amz-sha256-tree-hash is returned as a response header. You request
-	// a range of the archive to return that starts on a multiple of 1 MB and goes
-	// to the end of the archive. For example, if you have a 3.1 MB archive and
-	// you specify a range that starts at 2 MB and ends at 3.1 MB (the end of the
-	// archive), then the x-amz-sha256-tree-hash is returned as a response header.
+	// appears only under the following conditions: You get the entire range of
+	// the archive.
+	// You request a range to return of the archive that starts and ends on a multiple
+	// of 1 MB. For example, if you have an 3.1 MB archive and you specify a range
+	// to return that starts at 1 MB and ends at 2 MB, then the x-amz-sha256-tree-hash
+	// is returned as a response header.
+	// You request a range of the archive to return that starts on a multiple of
+	// 1 MB and goes to the end of the archive. For example, if you have a 3.1 MB
+	// archive and you specify a range that starts at 2 MB and ends at 3.1 MB (the
+	// end of the archive), then the x-amz-sha256-tree-hash is returned as a response
+	// header.
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
 
 	// The range of bytes returned by Amazon Glacier. If only partial output is
@@ -4742,20 +4749,20 @@ type JobDescription struct {
 	// For an ArchiveRetrieval job, it is the checksum of the archive. Otherwise,
 	// the value is null.
 	//
-	//  The SHA256 tree hash value for the requested range of an archive. If the
+	// The SHA256 tree hash value for the requested range of an archive. If the
 	// Initiate a Job request for an archive specified a tree-hash aligned range,
 	// then this field returns a value.
 	//
-	//  For the specific case when the whole archive is retrieved, this value is
+	// For the specific case when the whole archive is retrieved, this value is
 	// the same as the ArchiveSHA256TreeHash value.
 	//
-	//  This field is null in the following situations:  Archive retrieval jobs
-	// that specify a range that is not tree-hash aligned.
+	// This field is null in the following situations: Archive retrieval jobs that
+	// specify a range that is not tree-hash aligned.
 	//
-	//   Archival jobs that specify a range that is equal to the whole archive
-	// and the job status is InProgress.
+	// Archival jobs that specify a range that is equal to the whole archive and
+	// the job status is InProgress.
 	//
-	//   Inventory jobs.
+	// Inventory jobs.
 	SHA256TreeHash *string `type:"string"`
 
 	// An Amazon Simple Notification Service (Amazon SNS) topic that receives notification.

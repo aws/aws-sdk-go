@@ -30,8 +30,8 @@ import (
 // information, see Capturing Table Activity with DynamoDB Streams (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
 // in the Amazon DynamoDB Developer Guide.)
 //
-//   Instead of making the requests to the low-level DynamoDB API directly
-// from your application, we recommend that you use the AWS Software Development
+// Instead of making the requests to the low-level DynamoDB API directly from
+// your application, we recommend that you use the AWS Software Development
 // Kits (SDKs). The easy-to-use libraries in the AWS SDKs make it unnecessary
 // to call the low-level DynamoDB API directly from your application. The libraries
 // take care of request authentication, serialization, and connection management.
@@ -46,7 +46,7 @@ import (
 // The following are short descriptions of each low-level API action, organized
 // by function.
 //
-//  Managing Tables
+// Managing Tables
 //
 //    CreateTable - Creates a table with user-specified provisioned throughput
 // settings. You must define a primary key for the table - either a simple primary
@@ -66,11 +66,11 @@ import (
 //
 //    DeleteTable - Deletes a table and all of its indexes.
 //
-//   For conceptual information about managing tables, see Working with Tables
+// For conceptual information about managing tables, see Working with Tables
 // (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html)
 // in the Amazon DynamoDB Developer Guide.
 //
-//  Reading Data
+// Reading Data
 //
 //    GetItem - Returns a set of attributes for the item that has a given primary
 // key. By default, GetItem performs an eventually consistent read; however,
@@ -81,11 +81,11 @@ import (
 // BatchGetItem has a size limit of 16 MB and returns a maximum of 100 items.
 // Both eventually consistent and strongly consistent reads can be used.
 //
-//    Query - Returns one or more items from a table or a secondary index.
-// You must provide a specific value for the partition key. You can narrow the
-// scope of the query using comparison operators against a sort key value, or
-// on the index key. Query supports either eventual or strong consistency. A
-// single response has a size limit of 1 MB.
+//    Query - Returns one or more items from a table or a secondary index. You
+// must provide a specific value for the partition key. You can narrow the scope
+// of the query using comparison operators against a sort key value, or on the
+// index key. Query supports either eventual or strong consistency. A single
+// response has a size limit of 1 MB.
 //
 //    Scan - Reads every item in a table; the result set is eventually consistent.
 // You can limit the number of items returned by filtering the data attributes,
@@ -94,12 +94,11 @@ import (
 // scan without using an index, Scan should not be used for any application
 // query use case that requires predictable performance.
 //
-//   For conceptual information about reading data, see Working with Items
-// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
+// For conceptual information about reading data, see Working with Items (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
 // and Query and Scan Operations (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html)
 // in the Amazon DynamoDB Developer Guide.
 //
-//  Modifying Data
+// Modifying Data
 //
 //    PutItem - Creates a new item, or replaces an existing item with a new
 // item (including all the attributes). By default, if an item in the table
@@ -122,8 +121,7 @@ import (
 // of up to 25 items to put or delete, with a maximum total request size of
 // 16 MB.
 //
-//   For conceptual information about modifying data, see Working with Items
-// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
+// For conceptual information about modifying data, see Working with Items (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
 // and Query and Scan Operations (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html)
 // in the Amazon DynamoDB Developer Guide.
 //The service client's operations are safe to be used concurrently.

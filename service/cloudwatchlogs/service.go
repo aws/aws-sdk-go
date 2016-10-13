@@ -34,8 +34,8 @@ import (
 // CloudWatch and receive notifications of particular API activity as captured
 // by CloudTrail and use the notification to perform troubleshooting.
 //
-//    Archive Log Data: You can use CloudWatch Logs to store your log data
-// in highly durable storage. You can change the log retention setting so that
+//    Archive Log Data: You can use CloudWatch Logs to store your log data in
+// highly durable storage. You can change the log retention setting so that
 // any log events older than this setting are automatically deleted. The CloudWatch
 // Logs agent makes it easy to quickly send both rotated and non-rotated log
 // data off of a host and into the log service. You can then access the raw

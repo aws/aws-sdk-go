@@ -4339,17 +4339,19 @@ type ForwardedValues struct {
 	// string parameters. CloudFront behavior depends on the value of QueryString
 	// and on the values that you specify for QueryStringCacheKeys, if any:
 	//
-	//  If you specify true for QueryString and you don't specify any values for
-	// QueryStringCacheKeys, CloudFront forwards all query string parameters to
-	// the origin and caches based on all query string parameters. Depending on
-	// how many query string parameters and values you have, this can adversely
-	// affect performance because CloudFront must forward more requests to the origin.
-	// If you specify true for QueryString and you specify one or more values for
-	// QueryStringCacheKeys, CloudFront forwards all query string parameters to
-	// the origin, but it only caches based on the query string parameters that
-	// you specify. If you specify false for QueryString, CloudFront doesn't forward
-	// any query string parameters to the origin, and doesn't cache based on query
-	// string parameters.
+	//    If you specify true for QueryString and you don't specify any values for
+	//    QueryStringCacheKeys, CloudFront forwards all query string parameters
+	//    to the origin and caches based on all query string parameters. Depending
+	//    on how many query string parameters and values you have, this can adversely
+	//    affect performance because CloudFront must forward more requests to the
+	//    origin.
+	//    If you specify true for QueryString and you specify one or more values
+	//    for QueryStringCacheKeys, CloudFront forwards all query string parameters
+	//    to the origin, but it only caches based on the query string parameters
+	//    that you specify.
+	//    If you specify false for QueryString, CloudFront doesn't forward any query
+	//    string parameters to the origin, and doesn't cache based on query string
+	//    parameters.
 	//
 	// QueryString is a required field
 	QueryString *bool `type:"boolean" required:"true"`

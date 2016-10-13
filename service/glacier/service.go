@@ -27,13 +27,13 @@ import (
 // data, consider using Amazon S3. For more information, go to Amazon Simple
 // Storage Service (Amazon S3) (http://aws.amazon.com/s3/).
 //
-// You can store any kind of data in any format. There is no maximum limit
-// on the total amount of data you can store in Amazon Glacier.
+// You can store any kind of data in any format. There is no maximum limit on
+// the total amount of data you can store in Amazon Glacier.
 //
 // If you are a first-time user of Amazon Glacier, we recommend that you begin
 // by reading the following sections in the Amazon Glacier Developer Guide:
 //
-//  What is Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html)
+// What is Amazon Glacier (http://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html)
 // - This section of the Developer Guide describes the underlying data model,
 // the operations it supports, and the AWS SDKs that you can use to interact
 // with the service.

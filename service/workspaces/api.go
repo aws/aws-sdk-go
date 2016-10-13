@@ -128,7 +128,7 @@ func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req 
 //
 // Creates one or more WorkSpaces.
 //
-//  This operation is asynchronous and returns before the WorkSpaces are created.
+// This operation is asynchronous and returns before the WorkSpaces are created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -792,7 +792,7 @@ func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req 
 // To be able to reboot a WorkSpace, the WorkSpace must have a State of AVAILABLE,
 // IMPAIRED, or INOPERABLE.
 //
-//  This operation is asynchronous and returns before the WorkSpaces have rebooted.
+// This operation is asynchronous and returns before the WorkSpaces have rebooted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -856,19 +856,19 @@ func (c *WorkSpaces) RebuildWorkspacesRequest(input *RebuildWorkspacesInput) (re
 // Rebuilding a WorkSpace is a potentially destructive action that can result
 // in the loss of data. Rebuilding a WorkSpace causes the following to occur:
 //
-//   The system is restored to the image of the bundle that the WorkSpace is
-// created from. Any applications that have been installed, or system settings
-// that have been made since the WorkSpace was created will be lost.
+//    The system is restored to the image of the bundle that the WorkSpace is
+//    created from. Any applications that have been installed, or system settings
+//    that have been made since the WorkSpace was created will be lost.
 //
-//   The data drive (D drive) is re-created from the last automatic snapshot
-// taken of the data drive. The current contents of the data drive are overwritten.
-// Automatic snapshots of the data drive are taken every 12 hours, so the snapshot
-// can be as much as 12 hours old.
+//    The data drive (D drive) is re-created from the last automatic snapshot
+//    taken of the data drive. The current contents of the data drive are overwritten.
+//    Automatic snapshots of the data drive are taken every 12 hours, so the
+//    snapshot can be as much as 12 hours old.
 //
-//   To be able to rebuild a WorkSpace, the WorkSpace must have a State of
-// AVAILABLE or ERROR.
+// To be able to rebuild a WorkSpace, the WorkSpace must have a State of AVAILABLE
+// or ERROR.
 //
-//  This operation is asynchronous and returns before the WorkSpaces have been
+// This operation is asynchronous and returns before the WorkSpaces have been
 // completely rebuilt.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1051,13 +1051,13 @@ func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput)
 //
 // Terminates the specified WorkSpaces.
 //
-// Terminating a WorkSpace is a permanent action and cannot be undone. The
-// user's data is not maintained and will be destroyed. If you need to archive
-// any user data, contact Amazon Web Services before terminating the WorkSpace.
+// Terminating a WorkSpace is a permanent action and cannot be undone. The user's
+// data is not maintained and will be destroyed. If you need to archive any
+// user data, contact Amazon Web Services before terminating the WorkSpace.
 //
 // You can terminate a WorkSpace that is in any state except SUSPENDED.
 //
-//  This operation is asynchronous and returns before the WorkSpaces have been
+// This operation is asynchronous and returns before the WorkSpaces have been
 // completely terminated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1393,7 +1393,7 @@ type DescribeWorkspaceBundlesInput struct {
 	//
 	// This contains one of the following values:
 	//
-	//   null- Retrieves the bundles that belong to the account making the call.
+	//    null- Retrieves the bundles that belong to the account making the call.
 	//
 	//    AMAZON- Retrieves the bundles that are provided by AWS.
 	Owner *string `type:"string"`

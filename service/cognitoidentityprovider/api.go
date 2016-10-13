@@ -5495,9 +5495,9 @@ type AdminCreateUserInput struct {
 	// The user's temporary password. This password must conform to the password
 	// policy that you specified when you created the user pool.
 	//
-	// The temporary password is valid only once. To complete the Admin Create
-	// User flow, the user must enter the temporary password in the sign-in page
-	// along with a new password to be used in all future sign-ins.
+	// The temporary password is valid only once. To complete the Admin Create User
+	// flow, the user must enter the temporary password in the sign-in page along
+	// with a new password to be used in all future sign-ins.
 	//
 	// This parameter is not required. If you do not specify a value, Amazon Cognito
 	// generates one for you.
@@ -6113,15 +6113,15 @@ type AdminGetUserOutput struct {
 
 	// The user status. Can be one of the following:
 	//
-	//   UNCONFIRMED - User has been created but not confirmed.
+	//    UNCONFIRMED - User has been created but not confirmed.
 	//
-	//   CONFIRMED - User has been confirmed.
+	//    CONFIRMED - User has been confirmed.
 	//
-	//   ARCHIVED - User is no longer active.
+	//    ARCHIVED - User is no longer active.
 	//
-	//   COMPROMISED - User is disabled due to a potential security threat.
+	//    COMPROMISED - User is disabled due to a potential security threat.
 	//
-	//   UNKNOWN - User status is not known.
+	//    UNKNOWN - User status is not known.
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user about whom you are receiving information.
@@ -9965,25 +9965,25 @@ type UserImportJobType struct {
 
 	// The status of the user import job. One of the following:
 	//
-	//   Created - The job was created but not started.
+	//    Created - The job was created but not started.
 	//
-	//   Pending - A transition state. You have started the job, but it has not
-	// begun importing users yet.
+	//    Pending - A transition state. You have started the job, but it has not
+	//    begun importing users yet.
 	//
-	//   InProgress - The job has started, and users are being imported.
+	//    InProgress - The job has started, and users are being imported.
 	//
-	//   Stopping - You have stopped the job, but the job has not stopped importing
-	// users yet.
+	//    Stopping - You have stopped the job, but the job has not stopped importing
+	//    users yet.
 	//
-	//   Stopped - You have stopped the job, and the job has stopped importing
-	// users.
+	//    Stopped - You have stopped the job, and the job has stopped importing
+	//    users.
 	//
-	//   Succeeded - The job has completed successfully.
+	//    Succeeded - The job has completed successfully.
 	//
-	//   Failed - The job has stopped due to an error.
+	//    Failed - The job has stopped due to an error.
 	//
-	//   Expired - You created a job, but did not start the job within 24-48 hours.
-	// All data associated with the job was deleted, and the job cannot be started.
+	//    Expired - You created a job, but did not start the job within 24-48 hours.
+	//    All data associated with the job was deleted, and the job cannot be started.
 	Status *string `type:"string" enum:"UserImportJobStatusType"`
 
 	// The user pool ID for the user pool that the users are being imported into.
@@ -10246,15 +10246,15 @@ type UserType struct {
 
 	// The user status. Can be one of the following:
 	//
-	//   UNCONFIRMED - User has been created but not confirmed.
+	//    UNCONFIRMED - User has been created but not confirmed.
 	//
-	//   CONFIRMED - User has been confirmed.
+	//    CONFIRMED - User has been confirmed.
 	//
-	//   ARCHIVED - User is no longer active.
+	//    ARCHIVED - User is no longer active.
 	//
-	//   COMPROMISED - User is disabled due to a potential security threat.
+	//    COMPROMISED - User is disabled due to a potential security threat.
 	//
-	//   UNKNOWN - User status is not known.
+	//    UNKNOWN - User status is not known.
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user you wish to describe.

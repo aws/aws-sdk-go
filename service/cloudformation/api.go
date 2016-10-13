@@ -62,7 +62,7 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 // Cancels an update on the specified stack. If the call completes successfully,
 // the stack rolls back the update and reverts to the previous stack configuration.
 //
-//  You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
+// You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -620,8 +620,8 @@ func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsIn
 // order. For more information about a stack's event history, go to Stacks (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/concept-stack.html)
 // in the AWS CloudFormation User Guide.
 //
-//  You can list events for stacks that have failed to create or have been
-// deleted by specifying the unique stack identifier (stack ID).
+// You can list events for stacks that have failed to create or have been deleted
+// by specifying the unique stack identifier (stack ID).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -772,18 +772,18 @@ func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResou
 // returned. If PhysicalResourceId is specified, the associated resources of
 // the stack that the resource belongs to are returned.
 //
-//  Only the first 100 resources will be returned. If your stack has more resources
+// Only the first 100 resources will be returned. If your stack has more resources
 // than this, you should use ListStackResources instead.
 //
-//  For deleted stacks, DescribeStackResources returns resource information
-// for up to 90 days after the stack has been deleted.
+// For deleted stacks, DescribeStackResources returns resource information for
+// up to 90 days after the stack has been deleted.
 //
 // You must specify either StackName or PhysicalResourceId, but not both. In
 // addition, you can specify LogicalResourceId to filter the returned result.
 // For more information about resources, the LogicalResourceId and PhysicalResourceId,
 // go to the AWS CloudFormation User Guide (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/).
 //
-//  A ValidationError is returned if you specify both StackName and PhysicalResourceId
+// A ValidationError is returned if you specify both StackName and PhysicalResourceId
 // in the same request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -852,7 +852,7 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 // Returns the description for the specified stack; if no stack name was specified,
 // then it returns the description for all the stacks created.
 //
-//  If the stack does not exist, an AmazonCloudFormationException is returned.
+// If the stack does not exist, an AmazonCloudFormationException is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1144,7 +1144,7 @@ func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *reque
 // For deleted stacks, GetTemplate returns the template for up to 90 days after
 // the stack has been deleted.
 //
-//   If the template does not exist, a ValidationError is returned.
+// If the template does not exist, a ValidationError is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1210,9 +1210,9 @@ func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInpu
 // You can use the GetTemplateSummary action when you submit a template, or
 // you can get template information for a running or deleted stack.
 //
-// For deleted stacks, GetTemplateSummary returns the template information
-// for up to 90 days after the stack has been deleted. If the template does
-// not exist, a ValidationError is returned.
+// For deleted stacks, GetTemplateSummary returns the template information for
+// up to 90 days after the stack has been deleted. If the template does not
+// exist, a ValidationError is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1340,8 +1340,8 @@ func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInpu
 //
 // Returns descriptions of all resources of the specified stack.
 //
-// For deleted stacks, ListStackResources returns resource information for
-// up to 90 days after the stack has been deleted.
+// For deleted stacks, ListStackResources returns resource information for up
+// to 90 days after the stack has been deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1889,9 +1889,9 @@ type ContinueUpdateRollbackInput struct {
 	// role even if the users don't have permission to pass it. Ensure that the
 	// role grants least privilege.
 	//
-	// If you don't specify a value, AWS CloudFormation uses the role that was
-	// previously associated with the stack. If no role is available, AWS CloudFormation
-	// uses a temporary session that is generated from your user credentials.
+	// If you don't specify a value, AWS CloudFormation uses the role that was previously
+	// associated with the stack. If no role is available, AWS CloudFormation uses
+	// a temporary session that is generated from your user credentials.
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name or the unique ID of the stack that you want to continue rolling
@@ -1957,11 +1957,11 @@ type CreateChangeSetInput struct {
 	//
 	// The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. The following
 	// resources require you to specify this parameter:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
-	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
-	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
-	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
-	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
-	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	// AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	// AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	// AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	// AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	// AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
 	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
 	// If your stack template contains these resources, we recommend that you review
 	// all permissions associated with them and edit their permissions if necessary.
@@ -2025,9 +2025,9 @@ type CreateChangeSetInput struct {
 	// role even if the users don't have permission to pass it. Ensure that the
 	// role grants least privilege.
 	//
-	// If you don't specify a value, AWS CloudFormation uses the role that was
-	// previously associated with the stack. If no role is available, AWS CloudFormation
-	// uses a temporary session that is generated from your user credentials.
+	// If you don't specify a value, AWS CloudFormation uses the role that was previously
+	// associated with the stack. If no role is available, AWS CloudFormation uses
+	// a temporary session that is generated from your user credentials.
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name or the unique ID of the stack for which you are creating a change
@@ -2140,11 +2140,11 @@ type CreateStackInput struct {
 	//
 	// The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. The following
 	// resources require you to specify this parameter:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
-	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
-	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
-	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
-	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
-	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	// AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	// AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	// AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	// AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	// AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
 	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
 	// If your stack template contains these resources, we recommend that you review
 	// all permissions associated with them and edit their permissions if necessary.
@@ -2185,9 +2185,9 @@ type CreateStackInput struct {
 	// create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance.
 	// Use the following syntax to describe template resource types: AWS::* (for
 	// all AWS resource), Custom::* (for all custom resources), Custom::logical_ID
-	//  (for a specific custom resource), AWS::service_name::* (for all resources
+	// (for a specific custom resource), AWS::service_name::* (for all resources
 	// of a particular AWS service), and AWS::service_name::resource_logical_ID
-	//  (for a specific AWS resource).
+	// (for a specific AWS resource).
 	//
 	// If the list of resource types doesn't include a resource that you're creating,
 	// the stack creation fails. By default, AWS CloudFormation grants permissions
@@ -2205,16 +2205,16 @@ type CreateStackInput struct {
 	// role even if the users don't have permission to pass it. Ensure that the
 	// role grants least privilege.
 	//
-	// If you don't specify a value, AWS CloudFormation uses the role that was
-	// previously associated with the stack. If no role is available, AWS CloudFormation
-	// uses a temporary session that is generated from your user credentials.
+	// If you don't specify a value, AWS CloudFormation uses the role that was previously
+	// associated with the stack. If no role is available, AWS CloudFormation uses
+	// a temporary session that is generated from your user credentials.
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name that is associated with the stack. The name must be unique in the
 	// region in which you are creating the stack.
 	//
-	//  A stack name can contain only alphanumeric characters (case sensitive)
-	// and hyphens. It must start with an alphabetic character and cannot be longer
+	// A stack name can contain only alphanumeric characters (case sensitive) and
+	// hyphens. It must start with an alphabetic character and cannot be longer
 	// than 128 characters.
 	//
 	// StackName is a required field
@@ -2395,9 +2395,9 @@ type DeleteStackInput struct {
 	// role that AWS CloudFormation assumes to delete the stack. AWS CloudFormation
 	// uses the role's credentials to make calls on your behalf.
 	//
-	// If you don't specify a value, AWS CloudFormation uses the role that was
-	// previously associated with the stack. If no role is available, AWS CloudFormation
-	// uses a temporary session that is generated from your user credentials.
+	// If you don't specify a value, AWS CloudFormation uses the role that was previously
+	// associated with the stack. If no role is available, AWS CloudFormation uses
+	// a temporary session that is generated from your user credentials.
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack.
@@ -2635,12 +2635,12 @@ type DescribeStackEventsInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//   Running stacks: You can specify either the stack's name or its unique
-	// stack ID.
+	//    Running stacks: You can specify either the stack's name or its unique
+	//    stack ID.
 	//
-	//   Deleted stacks: You must specify the unique stack ID.
+	//    Deleted stacks: You must specify the unique stack ID.
 	//
-	//   Default: There is no default value.
+	// Default: There is no default value.
 	StackName *string `type:"string"`
 }
 
@@ -2703,12 +2703,12 @@ type DescribeStackResourceInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//   Running stacks: You can specify either the stack's name or its unique
-	// stack ID.
+	//    Running stacks: You can specify either the stack's name or its unique
+	//    stack ID.
 	//
-	//   Deleted stacks: You must specify the unique stack ID.
+	//    Deleted stacks: You must specify the unique stack ID.
 	//
-	//   Default: There is no default value.
+	// Default: There is no default value.
 	//
 	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
@@ -2785,12 +2785,12 @@ type DescribeStackResourcesInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//   Running stacks: You can specify either the stack's name or its unique
-	// stack ID.
+	//    Running stacks: You can specify either the stack's name or its unique
+	//    stack ID.
 	//
-	//   Deleted stacks: You must specify the unique stack ID.
+	//    Deleted stacks: You must specify the unique stack ID.
 	//
-	//   Default: There is no default value.
+	// Default: There is no default value.
 	//
 	// Required: Conditional. If you do not specify StackName, you must specify
 	// PhysicalResourceId.
@@ -2835,12 +2835,12 @@ type DescribeStacksInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//   Running stacks: You can specify either the stack's name or its unique
-	// stack ID.
+	//    Running stacks: You can specify either the stack's name or its unique
+	//    stack ID.
 	//
-	//   Deleted stacks: You must specify the unique stack ID.
+	//    Deleted stacks: You must specify the unique stack ID.
 	//
-	//   Default: There is no default value.
+	// Default: There is no default value.
 	StackName *string `type:"string"`
 }
 
@@ -3058,7 +3058,7 @@ type GetStackPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Structure containing the stack policy body. (For more information, go to
-	//  Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
+	// Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
 	// in the AWS CloudFormation User Guide.)
 	StackPolicyBody *string `min:"1" type:"string"`
 }
@@ -3080,12 +3080,12 @@ type GetTemplateInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//   Running stacks: You can specify either the stack's name or its unique
-	// stack ID.
+	//    Running stacks: You can specify either the stack's name or its unique
+	//    stack ID.
 	//
-	//   Deleted stacks: You must specify the unique stack ID.
+	//    Deleted stacks: You must specify the unique stack ID.
 	//
-	//   Default: There is no default value.
+	// Default: There is no default value.
 	//
 	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
@@ -3323,12 +3323,12 @@ type ListStackResourcesInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//   Running stacks: You can specify either the stack's name or its unique
-	// stack ID.
+	//    Running stacks: You can specify either the stack's name or its unique
+	//    stack ID.
 	//
-	//   Deleted stacks: You must specify the unique stack ID.
+	//    Deleted stacks: You must specify the unique stack ID.
 	//
-	//   Default: There is no default value.
+	// Default: There is no default value.
 	//
 	// StackName is a required field
 	StackName *string `type:"string" required:"true"`
@@ -3615,8 +3615,8 @@ type ResourceChangeDetail struct {
 	// The group to which the CausingEntity value belongs. There are five entity
 	// groups:
 	//
-	//    ResourceReference entities are Ref intrinsic functions that refer to
-	// resources in the template, such as { "Ref" : "MyEC2InstanceResource" }.
+	//    ResourceReference entities are Ref intrinsic functions that refer to resources
+	// in the template, such as { "Ref" : "MyEC2InstanceResource" }.
 	//
 	//    ParameterReference entities are Ref intrinsic functions that get template
 	// parameter values, such as { "Ref" : "MyPasswordParameter" }.
@@ -4242,11 +4242,11 @@ type UpdateStackInput struct {
 	//
 	// The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. The following
 	// resources require you to specify this parameter:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
-	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
-	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
-	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
-	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
-	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	// AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	// AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	// AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	// AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	// AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
 	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
 	// If your stack template contains these resources, we recommend that you review
 	// all permissions associated with them and edit their permissions if necessary.
@@ -4289,9 +4289,9 @@ type UpdateStackInput struct {
 	// role even if the users don't have permission to pass it. Ensure that the
 	// role grants least privilege.
 	//
-	// If you don't specify a value, AWS CloudFormation uses the role that was
-	// previously associated with the stack. If no role is available, AWS CloudFormation
-	// uses a temporary session that is generated from your user credentials.
+	// If you don't specify a value, AWS CloudFormation uses the role that was previously
+	// associated with the stack. If no role is available, AWS CloudFormation uses
+	// a temporary session that is generated from your user credentials.
 	RoleARN *string `min:"20" type:"string"`
 
 	// The name or unique stack ID of the stack to update.

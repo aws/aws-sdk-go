@@ -156,20 +156,20 @@ func (c *GameLift) CreateBuildRequest(input *CreateBuildInput) (req *request.Req
 // a game build to Amazon GameLift. Once the build record has been created and
 // its status is INITIALIZED, you can upload your game build.
 //
-//  Do not use this API action unless you are using your own Amazon Simple
-// Storage Service (Amazon S3) client and need to manually upload your build
-// files. Instead, to create a build, use the CLI command upload-build, which
-// creates a new build record and uploads the build files in one step. (See
-// the Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html)
+// Do not use this API action unless you are using your own Amazon Simple Storage
+// Service (Amazon S3) client and need to manually upload your build files.
+// Instead, to create a build, use the CLI command upload-build, which creates
+// a new build record and uploads the build files in one step. (See the Amazon
+// GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-build-intro.html)
 // help on packaging and uploading your build.)
 //
-//  To create a new build, identify the operating system of the game server
-// binaries. All game servers in a build must use the same operating system.
-// Optionally, specify a build name and version; this metadata is stored with
-// other properties in the build record and is displayed in the GameLift console
-// (it is not visible to players). If successful, this action returns the newly
-// created build record along with the Amazon S3 storage location and AWS account
-// credentials. Use the location and credentials to upload your game build.
+// To create a new build, identify the operating system of the game server binaries.
+// All game servers in a build must use the same operating system. Optionally,
+// specify a build name and version; this metadata is stored with other properties
+// in the build record and is displayed in the GameLift console (it is not visible
+// to players). If successful, this action returns the newly created build record
+// along with the Amazon S3 storage location and AWS account credentials. Use
+// the location and credentials to upload your game build.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -266,22 +266,28 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 // If the CreateFleet call is successful, Amazon GameLift performs the following
 // tasks:
 //
-//  Creates a fleet record and sets the status to NEW (followed by other statuses
-// as the fleet is activated). Sets the fleet's capacity to 1 "desired", which
-// causes GameLift to start one new EC2 instance. Starts launching server processes
-// on the instance. If the fleet is configured to run multiple server processes
-// per instance, GameLift staggers each launch by a few seconds. Begins writing
-// events to the fleet event log, which can be accessed in the GameLift console.
-// Sets the fleet's status to ACTIVE once one server process in the fleet is
-// ready to host a game session.  After a fleet is created, use the following
-// actions to change fleet properties and configuration:
+//    Creates a fleet record and sets the status to NEW (followed by other statuses
+//    as the fleet is activated).
+//    Sets the fleet's capacity to 1 "desired", which causes GameLift to start
+//    one new EC2 instance.
+//    Starts launching server processes on the instance. If the fleet is configured
+//    to run multiple server processes per instance, GameLift staggers each
+//    launch by a few seconds.
+//    Begins writing events to the fleet event log, which can be accessed in
+//    the GameLift console.
+//    Sets the fleet's status to ACTIVE once one server process in the fleet
+//    is ready to host a game session.
+// After a fleet is created, use the following actions to change fleet properties
+// and configuration:
 //
-//   UpdateFleetAttributes -- Update fleet metadata, including name and description.
-//  UpdateFleetCapacity -- Increase or decrease the number of instances you
-// want the fleet to maintain.  UpdateFleetPortSettings -- Change the IP address
-// and port ranges that allow access to incoming traffic.  UpdateRuntimeConfiguration
-// -- Change how server processes are launched in the fleet, including launch
-// path, launch parameters, and the number of concurrent processes.
+//    UpdateFleetAttributes -- Update fleet metadata, including name and description.
+//    UpdateFleetCapacity -- Increase or decrease the number of instances you
+//    want the fleet to maintain.
+//    UpdateFleetPortSettings -- Change the IP address and port ranges that
+//    allow access to incoming traffic.
+//    UpdateRuntimeConfiguration -- Change how server processes are launched
+//    in the fleet, including launch path, launch parameters, and the number
+//    of concurrent processes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -482,9 +488,9 @@ func (c *GameLift) CreatePlayerSessionRequest(input *CreatePlayerSessionInput) (
 // session must be in an ACTIVE status, have a creation policy of ALLOW_ALL,
 // and have an open player slot before players can be added to the session.
 //
-// To create a player session, specify a game session ID and player ID. If
-// successful, the player is added to the game session and a new PlayerSession
-// object is returned.
+// To create a player session, specify a game session ID and player ID. If successful,
+// the player is added to the game session and a new PlayerSession object is
+// returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -764,9 +770,9 @@ func (c *GameLift) DeleteBuildRequest(input *DeleteBuildInput) (req *request.Req
 // Deletes a build. This action permanently deletes the build record and any
 // uploaded build files.
 //
-// To delete a build, specify its ID. Deleting a build does not affect the
-// status of any active fleets using the build, but you can no longer create
-// new fleets with the deleted build.
+// To delete a build, specify its ID. Deleting a build does not affect the status
+// of any active fleets using the build, but you can no longer create new fleets
+// with the deleted build.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1170,10 +1176,11 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 //
 // Retrieves the following information for the specified EC2 instance type:
 //
-//  maximum number of instances allowed per AWS account (service limit) current
-// usage level for the AWS account   Service limits vary depending on region.
-// Available regions for GameLift can be found in the AWS Management Console
-// for GameLift (see the drop-down list in the upper right corner).
+//    maximum number of instances allowed per AWS account (service limit)
+//    current usage level for the AWS account
+// Service limits vary depending on region. Available regions for GameLift can
+// be found in the AWS Management Console for GameLift (see the drop-down list
+// in the upper right corner).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1254,7 +1261,7 @@ func (c *GameLift) DescribeFleetAttributesRequest(input *DescribeFleetAttributes
 // ID. When specifying a list of fleet IDs, attribute objects are returned only
 // for fleets that currently exist.
 //
-//  Some API actions may limit the number of fleet IDs allowed in one request.
+// Some API actions may limit the number of fleet IDs allowed in one request.
 // If a request exceeds this limit, the request fails and the error message
 // includes the maximum allowed.
 //
@@ -1342,7 +1349,7 @@ func (c *GameLift) DescribeFleetCapacityRequest(input *DescribeFleetCapacityInpu
 // fleet ID. When specifying a list of fleet IDs, attribute objects are returned
 // only for fleets that currently exist.
 //
-//  Some API actions may limit the number of fleet IDs allowed in one request.
+// Some API actions may limit the number of fleet IDs allowed in one request.
 // If a request exceeds this limit, the request fails and the error message
 // includes the maximum allowed.
 //
@@ -1590,7 +1597,7 @@ func (c *GameLift) DescribeFleetUtilizationRequest(input *DescribeFleetUtilizati
 // is returned for each requested fleet ID. When specifying a list of fleet
 // IDs, utilization objects are returned only for fleets that currently exist.
 //
-//  Some API actions may limit the number of fleet IDs allowed in one request.
+// Some API actions may limit the number of fleet IDs allowed in one request.
 // If a request exceeds this limit, the request fails and the error message
 // includes the maximum allowed.
 //
@@ -2025,8 +2032,8 @@ func (c *GameLift) DescribeScalingPoliciesRequest(input *DescribeScalingPolicies
 //
 // Retrieves all scaling policies applied to a fleet.
 //
-// To get a fleet's scaling policies, specify the fleet ID. You can filter
-// this request by policy status, such as to retrieve only active scaling policies.
+// To get a fleet's scaling policies, specify the fleet ID. You can filter this
+// request by policy status, such as to retrieve only active scaling policies.
 // Use the pagination parameters to retrieve results as a set of sequential
 // pages. If successful, set of ScalingPolicy objects is returned for the fleet.
 //
@@ -2109,7 +2116,7 @@ func (c *GameLift) GetGameSessionLogUrlRequest(input *GetGameSessionLogUrlInput)
 // When a game session is terminated, Amazon GameLift automatically stores the
 // logs in Amazon S3. Use this URL to download the logs.
 //
-//  See the AWS Service Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_gamelift)
+// See the AWS Service Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_gamelift)
 // page for maximum log file sizes. Log files that exceed this limit are not
 // saved.
 //
@@ -2192,7 +2199,7 @@ func (c *GameLift) ListAliasesRequest(input *ListAliasesInput) (req *request.Req
 // the result set by alias name and/or routing strategy type. Use the pagination
 // parameters to retrieve results in sequential pages.
 //
-//  Aliases are not listed in any particular order.
+// Aliases are not listed in any particular order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2270,7 +2277,7 @@ func (c *GameLift) ListBuildsRequest(input *ListBuildsInput) (req *request.Reque
 // the Status parameter. Use the pagination parameters to retrieve results in
 // a set of sequential pages.
 //
-//  Build records are not listed in any particular order.
+// Build records are not listed in any particular order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2347,7 +2354,7 @@ func (c *GameLift) ListFleetsRequest(input *ListFleetsInput) (req *request.Reque
 // the result set by build ID. Use the pagination parameters to retrieve results
 // in sequential pages.
 //
-//  Fleet records are not listed in any particular order.
+// Fleet records are not listed in any particular order.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2432,7 +2439,7 @@ func (c *GameLift) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *r
 //
 // A scaling policy rule statement has the following structure:
 //
-// If [MetricName] is [ComparisonOperator] [Threshold] for [EvaluationPeriods]
+// If [MetricName] is [ComparisonOperator][Threshold] for [EvaluationPeriods]
 // minutes, then [ScalingAdjustmentType] to/by [ScalingAdjustment].
 //
 // For example, this policy: "If the number of idle instances exceeds 20 for
@@ -2526,12 +2533,12 @@ func (c *GameLift) RequestUploadCredentialsRequest(input *RequestUploadCredentia
 // location for a specific build. Valid credentials are required to upload your
 // game build files to Amazon S3.
 //
-//  Call this action only if you need credentials for a build created with
-// CreateBuild. This is a rare situation; in most cases, builds are created
-// using the CLI command upload-build, which creates a build record and also
-// uploads build files.
+// Call this action only if you need credentials for a build created with CreateBuild.
+// This is a rare situation; in most cases, builds are created using the CLI
+// command upload-build, which creates a build record and also uploads build
+// files.
 //
-//  Upload credentials are returned when you create the build, but they have
+// Upload credentials are returned when you create the build, but they have
 // a limited lifespan. You can get fresh credentials and use them to re-upload
 // game files until the status of that build changes to READY. Once this happens,
 // you must create a brand new build.
@@ -2702,28 +2709,33 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 //
 // You can search or sort by the following game session attributes:
 //
-//   gameSessionId -- ID value assigned to a game session. This unique value
-// is returned in a GameSession object when a new game session is created.
-//  gameSessionName -- Name assigned to a game session. This value is set when
-// requesting a new game session with CreateGameSession or updating with UpdateGameSession.
-// Game session names do not need to be unique to a game session.  creationTimeMillis
-// -- Value indicating when a game session was created. It is expressed in Unix
-// time as milliseconds.  playerSessionCount -- Number of players currently
-// connected to a game session. This value changes rapidly as players join the
-// session or drop out.  maximumSessions -- Maximum number of player sessions
-// allowed for a game session. This value is set when requesting a new game
-// session with CreateGameSession or updating with UpdateGameSession.  hasAvailablePlayerSessions
-// -- Boolean value indicating whether or not a game session has reached its
-// maximum number of players. When searching with this attribute, the search
-// value must be true or false. It is highly recommended that all search requests
-// include this filter attribute to optimize search performance and return only
-// sessions that players can join.   To search or sort, specify either a fleet
-// ID or an alias ID, and provide a search filter expression, a sort expression,
-// or both. Use the pagination parameters to retrieve results as a set of sequential
-// pages. If successful, a collection of GameSession objects matching the request
-// is returned.
+//    gameSessionId -- ID value assigned to a game session. This unique value
+//    is returned in a GameSession object when a new game session is created.
 //
-//  Returned values for playerSessionCount and hasAvailablePlayerSessions change
+//    gameSessionName -- Name assigned to a game session. This value is set
+//    when requesting a new game session with CreateGameSession or updating
+//    with UpdateGameSession. Game session names do not need to be unique to
+//    a game session.
+//    creationTimeMillis -- Value indicating when a game session was created.
+//    It is expressed in Unix time as milliseconds.
+//    playerSessionCount -- Number of players currently connected to a game
+//    session. This value changes rapidly as players join the session or drop
+//    out.
+//    maximumSessions -- Maximum number of player sessions allowed for a game
+//    session. This value is set when requesting a new game session with CreateGameSession
+//    or updating with UpdateGameSession.
+//    hasAvailablePlayerSessions -- Boolean value indicating whether or not
+//    a game session has reached its maximum number of players. When searching
+//    with this attribute, the search value must be true or false. It is highly
+//    recommended that all search requests include this filter attribute to
+//    optimize search performance and return only sessions that players can
+//    join.
+// To search or sort, specify either a fleet ID or an alias ID, and provide
+// a search filter expression, a sort expression, or both. Use the pagination
+// parameters to retrieve results as a set of sequential pages. If successful,
+// a collection of GameSession objects matching the request is returned.
+//
+// Returned values for playerSessionCount and hasAvailablePlayerSessions change
 // quickly as players join sessions and others drop out. Results should be considered
 // a snapshot in time. Be sure to refresh search results often, and handle sessions
 // that fill up before a player can join.
@@ -3499,11 +3511,12 @@ type Build struct {
 	// Possible build statuses include the following:
 	//
 	// INITIALIZED – A new build has been defined, but no files have been uploaded.
-	// You cannot create fleets for builds that are in this status. When a build
-	// is successfully created, the build status is set to this value. READY – The
-	// game build has been successfully uploaded. You can now create new fleets
-	// for this build.FAILED – The game build upload failed. You cannot create new
-	// fleets for this build.
+	//    You cannot create fleets for builds that are in this status. When a build
+	//    is successfully created, the build status is set to this value.
+	// READY – The game build has been successfully uploaded. You can now create
+	//    new fleets for this build.
+	// FAILED – The game build upload failed. You cannot create new fleets for this
+	//    build.
 	Status *string `type:"string" enum:"BuildStatus"`
 
 	// Version associated with this build. Version strings do not need to be unique
@@ -3723,7 +3736,7 @@ type CreateFleetInput struct {
 	//
 	// NoProtection – The game session can be terminated during a scale-down event.
 	// FullProtection – If the game session is in an ACTIVE status, it cannot be
-	// terminated during a scale-down event.
+	//    terminated during a scale-down event.
 	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 
 	// Instructions for launching server processes on each instance in the fleet.
@@ -4436,7 +4449,7 @@ type DescribeFleetAttributesOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -4513,7 +4526,7 @@ type DescribeFleetCapacityOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -4597,7 +4610,7 @@ type DescribeFleetEventsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -4723,7 +4736,7 @@ type DescribeFleetUtilizationOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -4809,7 +4822,7 @@ type DescribeGameSessionDetailsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -4895,7 +4908,7 @@ type DescribeGameSessionsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -4938,12 +4951,13 @@ type DescribePlayerSessionsInput struct {
 	//
 	// Possible player session statuses include the following:
 	//
-	// RESERVED – The player session request has been received, but the player
-	// has not yet connected to the server process and/or been validated. ACTIVE
-	// – The player has been validated by the server process and is currently connected.COMPLETED
-	// – The player connection has been dropped.TIMEDOUT – A player session request
-	// was received, but the player did not connect and/or was not validated within
-	// the time-out limit (60 seconds).
+	// RESERVED – The player session request has been received, but the player has
+	//    not yet connected to the server process and/or been validated.
+	// ACTIVE – The player has been validated by the server process and is currently
+	//    connected.
+	// COMPLETED – The player connection has been dropped.
+	// TIMEDOUT – A player session request was received, but the player did not
+	//    connect and/or was not validated within the time-out limit (60 seconds).
 	PlayerSessionStatusFilter *string `min:"1" type:"string"`
 }
 
@@ -4986,7 +5000,7 @@ type DescribePlayerSessionsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 
@@ -5079,12 +5093,14 @@ type DescribeScalingPoliciesInput struct {
 	// Scaling policy status to filter results on. A scaling policy is only in force
 	// when in an ACTIVE status.
 	//
-	//   ACTIVE – The scaling policy is currently in force.  UPDATEREQUESTED –
-	// A request to update the scaling policy has been received.  UPDATING – A change
-	// is being made to the scaling policy.  DELETEREQUESTED – A request to delete
-	// the scaling policy has been received.  DELETING – The scaling policy is being
-	// deleted.  DELETED – The scaling policy has been deleted.  ERROR – An error
-	// occurred in creating the policy. It should be removed and recreated.
+	//    ACTIVE – The scaling policy is currently in force.
+	//    UPDATEREQUESTED – A request to update the scaling policy has been received.
+	//    UPDATING – A change is being made to the scaling policy.
+	//    DELETEREQUESTED – A request to delete the scaling policy has been received.
+	//    DELETING – The scaling policy is being deleted.
+	//    DELETED – The scaling policy has been deleted.
+	//    ERROR – An error occurred in creating the policy. It should be removed
+	//    and recreated.
 	StatusFilter *string `type:"string" enum:"ScalingStatusType"`
 }
 
@@ -5124,7 +5140,7 @@ type DescribeScalingPoliciesOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 
@@ -5281,7 +5297,7 @@ type FleetAttributes struct {
 	//
 	// NoProtection – The game session can be terminated during a scale-down event.
 	// FullProtection – If the game session is in an ACTIVE status, it cannot be
-	// terminated during a scale-down event.
+	//    terminated during a scale-down event.
 	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 
 	// Operating system of the fleet's computing resources. A fleet's operating
@@ -5303,12 +5319,15 @@ type FleetAttributes struct {
 	//
 	// Possible fleet statuses include the following:
 	//
-	// NEW – A new fleet has been defined and desired instances is set to 1. DOWNLOADING/VALIDATING/BUILDING/ACTIVATING
-	// – GameLift is setting up the new fleet, creating new instances with the game
-	// build and starting server processes.ACTIVE – Hosts can now accept game sessions.ERROR
-	// – An error occurred when downloading, validating, building, or activating
-	// the fleet.DELETING – Hosts are responding to a delete fleet request.TERMINATED
-	// – The fleet no longer exists.
+	// NEW – A new fleet has been defined and desired instances is set to 1.
+	// DOWNLOADING/VALIDATING/BUILDING/ACTIVATING – GameLift is setting up the new
+	//    fleet, creating new instances with the game build and starting server
+	//    processes.
+	// ACTIVE – Hosts can now accept game sessions.
+	// ERROR – An error occurred when downloading, validating, building, or activating
+	//    the fleet.
+	// DELETING – Hosts are responding to a delete fleet request.
+	// TERMINATED – The fleet no longer exists.
 	Status *string `type:"string" enum:"FleetStatus"`
 
 	// Time stamp indicating when this data object was terminated. Format is a number
@@ -5500,7 +5519,7 @@ type GameSessionDetail struct {
 	//
 	// NoProtection – The game session can be terminated during a scale-down event.
 	// FullProtection – If the game session is in an ACTIVE status, it cannot be
-	// terminated during a scale-down event.
+	//    terminated during a scale-down event.
 	ProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 }
 
@@ -5660,9 +5679,10 @@ type ListAliasesInput struct {
 	// Possible routing types include the following:
 	//
 	// SIMPLE – The alias resolves to one specific fleet. Use this type when routing
-	// to active fleets.TERMINAL – The alias does not resolve to a fleet but instead
-	// can be used to display a message to the user. A terminal alias throws a TerminalRoutingStrategyException
-	// with the RoutingStrategy message embedded.
+	//    to active fleets.
+	// TERMINAL – The alias does not resolve to a fleet but instead can be used
+	//    to display a message to the user. A terminal alias throws a TerminalRoutingStrategyException
+	//    with the RoutingStrategy message embedded.
 	RoutingStrategyType *string `type:"string" enum:"RoutingStrategyType"`
 }
 
@@ -5705,7 +5725,7 @@ type ListAliasesOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -5739,11 +5759,12 @@ type ListBuildsInput struct {
 	// Possible build statuses include the following:
 	//
 	// INITIALIZED – A new build has been defined, but no files have been uploaded.
-	// You cannot create fleets for builds that are in this status. When a build
-	// is successfully created, the build status is set to this value. READY – The
-	// game build has been successfully uploaded. You can now create new fleets
-	// for this build.FAILED – The game build upload failed. You cannot create new
-	// fleets for this build.
+	//    You cannot create fleets for builds that are in this status. When a build
+	//    is successfully created, the build status is set to this value.
+	// READY – The game build has been successfully uploaded. You can now create
+	//    new fleets for this build.
+	// FAILED – The game build upload failed. You cannot create new fleets for this
+	//    build.
 	Status *string `type:"string" enum:"BuildStatus"`
 }
 
@@ -5783,7 +5804,7 @@ type ListBuildsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -5855,7 +5876,7 @@ type ListFleetsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -5901,12 +5922,13 @@ type PlayerSession struct {
 	//
 	// Possible player session statuses include the following:
 	//
-	// RESERVED – The player session request has been received, but the player
-	// has not yet connected to the server process and/or been validated. ACTIVE
-	// – The player has been validated by the server process and is currently connected.COMPLETED
-	// – The player connection has been dropped.TIMEDOUT – A player session request
-	// was received, but the player did not connect and/or was not validated within
-	// the time-out limit (60 seconds).
+	// RESERVED – The player session request has been received, but the player has
+	//    not yet connected to the server process and/or been validated.
+	// ACTIVE – The player has been validated by the server process and is currently
+	//    connected.
+	// COMPLETED – The player connection has been dropped.
+	// TIMEDOUT – A player session request was received, but the player did not
+	//    connect and/or was not validated within the time-out limit (60 seconds).
 	Status *string `type:"string" enum:"PlayerSessionStatus"`
 
 	// Time stamp indicating when this data object was terminated. Format is a number
@@ -5947,17 +5969,19 @@ type PutScalingPolicyInput struct {
 
 	// Name of the Amazon GameLift-defined metric that is used to trigger an adjustment.
 	//
-	//   ActivatingGameSessions – number of game sessions in the process of being
-	// created (game session status = ACTIVATING).  ActiveGameSessions – number
-	// of game sessions currently running (game session status = ACTIVE).  CurrentPlayerSessions
-	// – number of active or reserved player sessions (player session status = ACTIVE
-	// or RESERVED).   AvailablePlayerSessions – number of player session slots
-	// currently available in active game sessions across the fleet, calculated
-	// by subtracting a game session's current player session count from its maximum
-	// player session count. This number includes game sessions that are not currently
-	// accepting players (game session PlayerSessionCreationPolicy = DENY_ALL).
-	//  ActiveInstances – number of instances currently running a game session.
-	//  IdleInstances – number of instances not currently running a game session.
+	//    ActivatingGameSessions – number of game sessions in the process of being
+	//    created (game session status = ACTIVATING).
+	//    ActiveGameSessions – number of game sessions currently running (game session
+	//    status = ACTIVE).
+	//    CurrentPlayerSessions – number of active or reserved player sessions (player
+	//    session status = ACTIVE or RESERVED).
+	//    AvailablePlayerSessions – number of player session slots currently available
+	//    in active game sessions across the fleet, calculated by subtracting a
+	//    game session's current player session count from its maximum player session
+	//    count. This number includes game sessions that are not currently accepting
+	//    players (game session PlayerSessionCreationPolicy = DENY_ALL).
+	//    ActiveInstances – number of instances currently running a game session.
+	//    IdleInstances – number of instances not currently running a game session.
 	//
 	// MetricName is a required field
 	MetricName *string `type:"string" required:"true" enum:"MetricName"`
@@ -5975,13 +5999,14 @@ type PutScalingPolicyInput struct {
 
 	// Type of adjustment to make to a fleet's instance count (see FleetCapacity):
 	//
-	//   ChangeInCapacity – add (or subtract) the scaling adjustment value from
-	// the current instance count. Positive values scale up while negative values
-	// scale down.  ExactCapacity – set the instance count to the scaling adjustment
-	// value.  PercentChangeInCapacity – increase or reduce the current instance
-	// count by the scaling adjustment, read as a percentage. Positive values scale
-	// up while negative values scale down; for example, a value of "-10" scales
-	// the fleet down by 10%.
+	//    ChangeInCapacity – add (or subtract) the scaling adjustment value from
+	//    the current instance count. Positive values scale up while negative values
+	//    scale down.
+	//    ExactCapacity – set the instance count to the scaling adjustment value.
+	//    PercentChangeInCapacity – increase or reduce the current instance count
+	//    by the scaling adjustment, read as a percentage. Positive values scale
+	//    up while negative values scale down; for example, a value of "-10" scales
+	//    the fleet down by 10%.
 	//
 	// ScalingAdjustmentType is a required field
 	ScalingAdjustmentType *string `type:"string" required:"true" enum:"ScalingAdjustmentType"`
@@ -6183,9 +6208,10 @@ type RoutingStrategy struct {
 	// Possible routing types include the following:
 	//
 	// SIMPLE – The alias resolves to one specific fleet. Use this type when routing
-	// to active fleets.TERMINAL – The alias does not resolve to a fleet but instead
-	// can be used to display a message to the user. A terminal alias throws a TerminalRoutingStrategyException
-	// with the RoutingStrategy message embedded.
+	//    to active fleets.
+	// TERMINAL – The alias does not resolve to a fleet but instead can be used
+	//    to display a message to the user. A terminal alias throws a TerminalRoutingStrategyException
+	//    with the RoutingStrategy message embedded.
 	Type *string `type:"string" enum:"RoutingStrategyType"`
 }
 
@@ -6205,13 +6231,13 @@ func (s RoutingStrategy) GoString() string {
 // checks for an updated runtime configuration and starts new server processes
 // to match the latest version.
 //
-// The key purpose of a runtime configuration with multiple server process
-// configurations is to be able to run more than one kind of game server in
-// a single fleet. You can include configurations for more than one server executable
-// in order to run two or more different programs to run on the same instance.
-// This option might be useful, for example, to run more than one version of
-// your game server on the same fleet. Another option is to specify configurations
-// for the same server executable but with different launch parameters.
+// The key purpose of a runtime configuration with multiple server process configurations
+// is to be able to run more than one kind of game server in a single fleet.
+// You can include configurations for more than one server executable in order
+// to run two or more different programs to run on the same instance. This option
+// might be useful, for example, to run more than one version of your game server
+// on the same fleet. Another option is to specify configurations for the same
+// server executable but with different launch parameters.
 //
 // A GameLift instance is limited to 50 processes running simultaneously. To
 // calculate the total number of processes specified in a runtime configuration,
@@ -6323,17 +6349,19 @@ type ScalingPolicy struct {
 
 	// Name of the GameLift-defined metric that is used to trigger an adjustment.
 	//
-	//   ActivatingGameSessions – number of game sessions in the process of being
-	// created (game session status = ACTIVATING).  ActiveGameSessions – number
-	// of game sessions currently running (game session status = ACTIVE).  CurrentPlayerSessions
-	// – number of active or reserved player sessions (player session status = ACTIVE
-	// or RESERVED).   AvailablePlayerSessions – number of player session slots
-	// currently available in active game sessions across the fleet, calculated
-	// by subtracting a game session's current player session count from its maximum
-	// player session count. This number does include game sessions that are not
-	// currently accepting players (game session PlayerSessionCreationPolicy = DENY_ALL).
-	//  ActiveInstances – number of instances currently running a game session.
-	//  IdleInstances – number of instances not currently running a game session.
+	//    ActivatingGameSessions – number of game sessions in the process of being
+	//    created (game session status = ACTIVATING).
+	//    ActiveGameSessions – number of game sessions currently running (game session
+	//    status = ACTIVE).
+	//    CurrentPlayerSessions – number of active or reserved player sessions (player
+	//    session status = ACTIVE or RESERVED).
+	//    AvailablePlayerSessions – number of player session slots currently available
+	//    in active game sessions across the fleet, calculated by subtracting a
+	//    game session's current player session count from its maximum player session
+	//    count. This number does include game sessions that are not currently accepting
+	//    players (game session PlayerSessionCreationPolicy = DENY_ALL).
+	//    ActiveInstances – number of instances currently running a game session.
+	//    IdleInstances – number of instances not currently running a game session.
 	MetricName *string `type:"string" enum:"MetricName"`
 
 	// Descriptive label associated with a scaling policy. Policy names do not need
@@ -6345,23 +6373,26 @@ type ScalingPolicy struct {
 
 	// Type of adjustment to make to a fleet's instance count (see FleetCapacity):
 	//
-	//   ChangeInCapacity – add (or subtract) the scaling adjustment value from
-	// the current instance count. Positive values scale up while negative values
-	// scale down.  ExactCapacity – set the instance count to the scaling adjustment
-	// value.  PercentChangeInCapacity – increase or reduce the current instance
-	// count by the scaling adjustment, read as a percentage. Positive values scale
-	// up while negative values scale down.
+	//    ChangeInCapacity – add (or subtract) the scaling adjustment value from
+	//    the current instance count. Positive values scale up while negative values
+	//    scale down.
+	//    ExactCapacity – set the instance count to the scaling adjustment value.
+	//    PercentChangeInCapacity – increase or reduce the current instance count
+	//    by the scaling adjustment, read as a percentage. Positive values scale
+	//    up while negative values scale down.
 	ScalingAdjustmentType *string `type:"string" enum:"ScalingAdjustmentType"`
 
 	// Current status of the scaling policy. The scaling policy is only in force
 	// when in an ACTIVE status.
 	//
-	//   ACTIVE – The scaling policy is currently in force.  UPDATE_REQUESTED –
-	// A request to update the scaling policy has been received.  UPDATING – A change
-	// is being made to the scaling policy.  DELETE_REQUESTED – A request to delete
-	// the scaling policy has been received.  DELETING – The scaling policy is being
-	// deleted.  DELETED – The scaling policy has been deleted.  ERROR – An error
-	// occurred in creating the policy. It should be removed and recreated.
+	//    ACTIVE – The scaling policy is currently in force.
+	//    UPDATE_REQUESTED – A request to update the scaling policy has been received.
+	//    UPDATING – A change is being made to the scaling policy.
+	//    DELETE_REQUESTED – A request to delete the scaling policy has been received.
+	//    DELETING – The scaling policy is being deleted.
+	//    DELETED – The scaling policy has been deleted.
+	//    ERROR – An error occurred in creating the policy. It should be removed
+	//    and recreated.
 	Status *string `type:"string" enum:"ScalingStatusType"`
 
 	// Metric value used to trigger a scaling event.
@@ -6393,24 +6424,31 @@ type SearchGameSessionsInput struct {
 	// A filter expression can contain one or multiple conditions. Each condition
 	// consists of the following:
 	//
-	//   Operand -- Name of a game session attribute. Valid values are gameSessionName,
-	// gameSessionId, creationTimeMillis, playerSessionCount, maximumSessions, hasAvailablePlayerSessions.
-	//  Comparator -- Valid comparators are: =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=.
-	//   Value -- Value to be searched for. Values can be numbers, boolean values
-	// (true/false) or strings. String values are case sensitive, enclosed in single
-	// quotes. Special characters must be escaped. Boolean and string values can
-	// only be used with the comparators = and &lt;&gt;. For example, the following
-	// filter expression searches on gameSessionName: "FilterExpression": "gameSessionName
-	// = 'Matt\\'s Awesome Game 1'".   To chain multiple conditions in a single
-	// expression, use the logical keywords AND, OR, and NOT and parentheses as
-	// needed. For example: x AND y AND NOT z, NOT (x OR y).
+	//    Operand -- Name of a game session attribute. Valid values are gameSessionName,
+	//    gameSessionId, creationTimeMillis, playerSessionCount, maximumSessions,
+	//    hasAvailablePlayerSessions.
+	//    Comparator -- Valid comparators are: =, <>, <, >, <=, >=.
 	//
-	//  Session search evaluates conditions from left to right using the following
+	//    Value -- Value to be searched for. Values can be numbers, boolean values
+	//    (true/false) or strings. String values are case sensitive, enclosed in
+	//    single quotes. Special characters must be escaped. Boolean and string
+	//    values can only be used with the comparators = and <>. For example,
+	//    the following filter expression searches on gameSessionName: "FilterExpression":
+	//    "gameSessionName = 'Matt\\'s Awesome Game 1'".
+	// To chain multiple conditions in a single expression, use the logical keywords
+	// AND, OR, and NOT and parentheses as needed. For example: x AND y AND NOT
+	// z, NOT (x OR y).
+	//
+	// Session search evaluates conditions from left to right using the following
 	// precedence rules:
 	//
-	//   =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=  Parentheses  NOT AND OR  For example,
-	// this filter expression retrieves game sessions hosting at least ten players
-	// that have an open player slot: "maximumSessions&gt;=10 AND hasAvailablePlayerSessions=true".
+	//    =, <>, <, >, <=, >=
+	//    Parentheses
+	//    NOT
+	//    AND
+	//    OR
+	// For example, this filter expression retrieves game sessions hosting at least
+	// ten players that have an open player slot: "maximumSessions>=10 AND hasAvailablePlayerSessions=true".
 	FilterExpression *string `min:"1" type:"string"`
 
 	// Unique identifier for a fleet. Each request must reference either a fleet
@@ -6431,12 +6469,13 @@ type SearchGameSessionsInput struct {
 	// included, the request returns results in random order. A sort expression
 	// consists of the following elements:
 	//
-	//   Operand -- Name of a game session attribute. Valid values are gameSessionName,
-	// gameSessionId, creationTimeMillis, playerSessionCount, maximumSessions, hasAvailablePlayerSessions.
-	//  Order -- Valid sort orders are ASC (ascending) and DESC (descending).  For
-	// example, this sort expression returns the oldest active sessions first: "SortExpression":
-	// "creationTimeMillis ASC". Results with a null value for the sort operand
-	// are returned at the end of the list.
+	//    Operand -- Name of a game session attribute. Valid values are gameSessionName,
+	//    gameSessionId, creationTimeMillis, playerSessionCount, maximumSessions,
+	//    hasAvailablePlayerSessions.
+	//    Order -- Valid sort orders are ASC (ascending) and DESC (descending).
+	// For example, this sort expression returns the oldest active sessions first:
+	// "SortExpression": "creationTimeMillis ASC". Results with a null value for
+	// the sort operand are returned at the end of the list.
 	SortExpression *string `min:"1" type:"string"`
 }
 
@@ -6483,7 +6522,7 @@ type SearchGameSessionsOutput struct {
 	// Token indicating where to resume retrieving results on the next call to this
 	// action. If no token is returned, these results represent the end of the list.
 	//
-	//  If a request has a limit that exactly matches the number of remaining results,
+	// If a request has a limit that exactly matches the number of remaining results,
 	// a token is returned even though there are no more results to retrieve.
 	NextToken *string `min:"1" type:"string"`
 }
@@ -6712,7 +6751,7 @@ type UpdateFleetAttributesInput struct {
 	//
 	// NoProtection – The game session can be terminated during a scale-down event.
 	// FullProtection – If the game session is in an ACTIVE status, it cannot be
-	// terminated during a scale-down event.
+	//    terminated during a scale-down event.
 	NewGameSessionProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 }
 
@@ -6927,7 +6966,7 @@ type UpdateGameSessionInput struct {
 	//
 	// NoProtection – The game session can be terminated during a scale-down event.
 	// FullProtection – If the game session is in an ACTIVE status, it cannot be
-	// terminated during a scale-down event.
+	//    terminated during a scale-down event.
 	ProtectionPolicy *string `type:"string" enum:"ProtectionPolicy"`
 }
 
