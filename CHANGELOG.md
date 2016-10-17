@@ -1,3 +1,10 @@
+Release v1.4.18 (2016-10-17)
+===
+
+Service Model Updates
+---
+* `service/route53`: Updates service API and documentation.
+
 Release v1.4.17
 ===
 
@@ -14,7 +21,7 @@ SDK Features
 ---
 * `service/s3`: Add support for accelerate with dualstack [#887](https://github.com/aws/aws-sdk-go/issues/887)
 
-Release v1.4.16
+Release v1.4.16 (2016-10-13)
 ===
 
 Service Model Updates
@@ -36,7 +43,7 @@ SDK Features
 * `service/dynamodb/dynamodbattribute`: Allow multiple struct tag elements [#886](https://github.com/aws/aws-sdk-go/issues/886)
 * Add build tags to internal SDK tools [#880](https://github.com/aws/aws-sdk-go/issues/880)
 
-Release v1.4.15
+Release v1.4.15 (2016-10-06)
 ===
 
 Service Model Updates

@@ -62,10 +62,9 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 // a private hosted zone. You cannot convert a public hosted zone into a private
 // hosted zone.
 //
-//  Send a POST request to the /Amazon Route 53 API version/hostedzone/hosted
-// zone ID/associatevpc resource. The request body must include an XML document
-// with a AssociateVPCWithHostedZoneRequest element. The response returns the
-// AssociateVPCWithHostedZoneResponse element.
+//  Send a POST request to the /2013-04-01/hostedzone/hosted zone ID/associatevpc
+// resource. The request body must include an XML document with a AssociateVPCWithHostedZoneRequest
+// element. The response returns the AssociateVPCWithHostedZoneResponse element.
 //
 //  If you used different accounts to create the hosted zone and to create
 // the Amazon VPCs that you want to associate with the hosted zone, we need
@@ -97,7 +96,11 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 //   The hosted zone specified in HostedZoneId is a public hosted zone.
 //
 //   * ConflictingDomainExists
-
+//   You specified an Amazon VPC that you're already using for another hosted
+//   zone, and the domain that you specified for one of the hosted zones is a
+//   subdomain of the domain that you specified for the other hosted zone. For
+//   example, you cannot use the same Amazon VPC for the hosted zones for example.com
+//   and test.example.com.
 //
 //   * LimitsExceeded
 //   The limits specified for a resource have been exceeded.
@@ -166,7 +169,7 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 // that Amazon Route 53 never partially implements the intended changes to the
 // resource record sets in a hosted zone.
 //
-// For example, a change batch request that deletes the CNAMErecord for www.example.com
+// For example, a change batch request that deletes the CNAME record for www.example.com
 // and creates an alias resource record set for www.example.com. Amazon Route
 // 53 deletes the first resource record set and creates the second resource
 // record set in a single operation. If either the DELETE or the CREATE action
@@ -186,13 +189,11 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 // in the same hosted zone or in multiple hosted zones. You can roll back the
 // updates if the new configuration isn't performing as expected. For more information,
 // see Using Traffic Flow to Route DNS Traffic (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/traffic-flow.html)
-// in the Amazon Route 53 API Reference or Actions on Traffic Policies and Traffic
-// Policy Instances (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/actions-on-polices)
-// in this guide.
+// in the Amazon Route 53 Developer Guide.
 //
 //  Use ChangeResourceRecordsSetsRequest to perform the following actions:
 //
-//    CREATE:Creates a resource record set that has the specified values.
+//    CREATE: Creates a resource record set that has the specified values.
 //
 //    DELETE: Deletes an existing resource record set that has the specified
 // values for Name, Type, Set Identifier (for code latency, weighted, geolocation,
@@ -217,34 +218,9 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 // 53 name servers in a few minutes. In rare circumstances, propagation can
 // take up to 30 minutes. For more information, see GetChange.
 //
-// Note the following limitations on a ChangeResourceRecordSets request:
-//
-//    A request cannot contain more than 100 Change elements.
-//
-//    A request cannot contain more than 1000 ResourceRecord elements.
-//
-//   The sum of the number of characters (including spaces) in all Value elements
-// in a request cannot exceed 32,000 characters.
-//
-//    If the value of the Action element in a ChangeResourceRecordSets request
-// is UPSERT and the resource record set already exists, Amazon Route 53 automatically
-// performs a DELETE request and a CREATE request. When Amazon Route 53 calculates
-// the number of characters in the Value elements of a change batch request,
-// it adds the number of characters in the Value element of the resource record
-// set being deleted and the number of characters in the Value element of the
-// resource record set being created.
-//
-//    The same resource cannot be deleted more than once in a single batch.
-//
-//    If the value of the Action element in a ChangeResourceRecordSets request
-// is UPSERT and the resource record set already exists, Amazon Route 53 automatically
-// performs a DELETE request and a CREATE request. When Amazon Route 53 calculates
-// the number of characters in the Value elements of a change batch request,
-// it adds the number of characters in the Value element of the resource record
-// set being deleted and the number of characters in the Value element of the
-// resource record set being created.
-//
-//  For more information on transactional changes, see ChangeResourceRecordSets.
+// For information about the limits on a ChangeResourceRecordSets request,
+// see Limits (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html)
+// in the Amazon Route 53 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -325,6 +301,12 @@ func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput
 }
 
 // ChangeTagsForResource API operation for Amazon Route 53.
+//
+// Adds, edits, or deletes tags for a health check or a hosted zone.
+//
+// For information about using tags for cost allocation, see Using Cost Allocation
+// Tags (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the AWS Billing and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -447,7 +429,9 @@ func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *
 //
 // Returned Error Codes:
 //   * TooManyHealthChecks
-
+//   You have reached the maximum number of active health checks for an AWS account.
+//   The default limit is 100. To request a higher limit, create a case (http://aws.amazon.com/route53-request)
+//   with the AWS Support Center.
 //
 //   * HealthCheckAlreadyExists
 //   The health check you're attempting to create already exists.
@@ -517,13 +501,13 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *re
 // versa. Instead, create a new hosted zone with the same name and create new
 // resource record sets.
 //
-//  Send a POST request to the /Amazon Route 53 API version/hostedzone resource.
-// The request body must include an XML document with a CreateHostedZoneRequest
-// element. The response returns the CreateHostedZoneResponse element containing
-// metadata about the hosted zone.
+//  Send a POST request to the /2013-04-01/hostedzone resource. The request
+// body must include an XML document with a CreateHostedZoneRequest element.
+// The response returns the CreateHostedZoneResponse element containing metadata
+// about the hosted zone.
 //
-// Fore more information about charges for hosted zones, see AmazonAmazon Route
-// 53 Pricing (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/pricing/).
+// Fore more information about charges for hosted zones, see Amazon Route 53
+// Pricing (http://aws.amazon.com/route53/pricing/).
 //
 // Note the following:
 //
@@ -547,7 +531,7 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *re
 //
 // When trying to create a hosted zone using a reusable delegation set, specify
 // an optional DelegationSetId, and Amazon Route 53 would assign those 4 NS
-// records for the zone, instead of alloting a new one.
+// records for the zone, instead of allotting a new one.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -586,7 +570,11 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *re
 //   this error, contact Customer Support.
 //
 //   * ConflictingDomainExists
-
+//   You specified an Amazon VPC that you're already using for another hosted
+//   zone, and the domain that you specified for one of the hosted zones is a
+//   subdomain of the domain that you specified for the other hosted zone. For
+//   example, you cannot use the same Amazon VPC for the hosted zones for example.com
+//   and test.example.com.
 //
 //   * NoSuchDelegationSet
 //   A reusable delegation set with the specified ID does not exist.
@@ -645,12 +633,12 @@ func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelega
 
 // CreateReusableDelegationSet API operation for Amazon Route 53.
 //
-// Creates a delegation set (a group of four anem servers) that can be reused
+// Creates a delegation set (a group of four name servers) that can be reused
 // by multiple hosted zones. If a hosted zoned ID is specified, CreateReusableDelegationSet
 // marks the delegation set associated with that zone as reusable
 //
-// Send a POST request to the /Amazon Route 53 API version/delegationset resource.
-// The request body must include an XML document with a CreateReusableDelegationSetRequest
+// Send a POST request to the /2013-04-01/delegationset resource. The request
+// body must include an XML document with a CreateReusableDelegationSetRequest
 // element.
 //
 //  A reusable delegation set cannot be associated with a private hosted zone/
@@ -748,10 +736,10 @@ func (c *Route53) CreateTrafficPolicyRequest(input *CreateTrafficPolicyInput) (r
 // sets for one domain name (such as example.com) or one subdomain name (such
 // as www.example.com).
 //
-// Send a POST request to the /Amazon Route 53 API version/trafficpolicy resource.
-// The request body must include a document with a CreateTrafficPolicyRequest
-// element. The response includes the CreateTrafficPolicyResponse element, which
-// contains information about the new traffic policy.
+// Send a POST request to the /2013-04-01/trafficpolicy resource. The request
+// body must include a document with a CreateTrafficPolicyRequest element. The
+// response includes the CreateTrafficPolicyResponse element, which contains
+// information about the new traffic policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -834,10 +822,10 @@ func (c *Route53) CreateTrafficPolicyInstanceRequest(input *CreateTrafficPolicyI
 // responds to DNS queries for the domain or subdomain name by using the resource
 // record sets that CreateTrafficPolicyInstance created.
 //
-// Send a POST request to the /Amazon Route 53 API version/trafficpolicyinstance
-// resource. The request body must include a document with a CreateTrafficPolicyRequest
-// element. The response returns the CreateTrafficPolicyInstanceResponse element,
-// which contains information about the traffic policy instance.
+// Send a POST request to the /2013-04-01/trafficpolicyinstance resource. The
+// request body must include a document with a CreateTrafficPolicyRequest element.
+// The response returns the CreateTrafficPolicyInstanceResponse element, which
+// contains information about the traffic policy instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -924,10 +912,10 @@ func (c *Route53) CreateTrafficPolicyVersionRequest(input *CreateTrafficPolicyVe
 // the limit and need to create another version, you'll need to start a new
 // traffic policy.
 //
-// Send a POST request to the /Amazon Route 53 version/trafficpolicy/ resource.
-// The request body includes a document with a CreateTrafficPolicyVersionRequest
-// element. The response returns the CreateTrafficPolicyVersionResponse element,
-// which contains information about the new version of the traffic policy.
+// Send a POST request to the /2013-04-01/trafficpolicy/ resource. The request
+// body includes a document with a CreateTrafficPolicyVersionRequest element.
+// The response returns the CreateTrafficPolicyVersionResponse element, which
+// contains information about the new version of the traffic policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1416,10 +1404,9 @@ func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFro
 //
 // Disassociates a VPC from a Amazon Route 53 private hosted zone.
 //
-// Send a POST request to the /Amazon Route 53 API version/hostedzone/hosted
-// zone ID/disassociatevpc resource. The request body must include an XML document
-// with a DisassociateVPCFromHostedZoneRequest element. The response returns
-// the DisassociateVPCFromHostedZoneResponse element.
+// Send a POST request to the /2013-04-01/hostedzone/hosted zone ID/disassociatevpc
+// resource. The request body must include an XML document with a DisassociateVPCFromHostedZoneRequest
+// element. The response returns the DisassociateVPCFromHostedZoneResponse element.
 //
 //  You can only disassociate a VPC from a private hosted zone when two or
 // more VPCs are associated with that hosted zone. You cannot convert a private
@@ -1522,7 +1509,7 @@ func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *request.Request,
 //
 // Returned Error Codes:
 //   * NoSuchChange
-
+//   A change with the specified change ID does not exist.
 //
 //   * InvalidInput
 //   The input is not valid.
@@ -1592,7 +1579,7 @@ func (c *Route53) GetChangeDetailsRequest(input *GetChangeDetailsInput) (req *re
 //
 // Returned Error Codes:
 //   * NoSuchChange
-
+//   A change with the specified change ID does not exist.
 //
 //   * InvalidInput
 //   The input is not valid.
@@ -2808,13 +2795,13 @@ func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *requ
 // in groups of up to 100. The response includes four values that help navigate
 // from one group of maxitems hosted zones to the next:
 //
-//    MaxItemsis the value specified for the maxitems parameter in the request
+//    MaxItems is the value specified for the maxitems parameter in the request
 // that produced the current response.
 //
 //   If the value of IsTruncated in the response is true, there are more hosted
 // zones associated with the current AWS account.
 //
-//    NextMarkeris the hosted zone ID of the next hosted zone that is associated
+//    NextMarker is the hosted zone ID of the next hosted zone that is associated
 // with the current AWS account. If you want to list more hosted zones, make
 // another call to ListHostedZones, and specify the value of the NextMarker
 // element in the marker parameter.
@@ -3040,6 +3027,46 @@ func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInp
 
 // ListResourceRecordSets API operation for Amazon Route 53.
 //
+// Lists the resource record sets in a specified hosted zone.
+//
+//  ListResourceRecordSets returns up to 100 resource record sets at a time
+// in ASCII order, beginning at a position specified by the name and type elements.
+// The action sorts results first by DNS name with the labels reversed, for
+// example:
+//
+//  com.example.www.
+//
+// Note the trailing dot, which can change the sort order in some circumstances.
+//
+// When multiple records have the same DNS name, the action sorts results by
+// the record type.
+//
+// You can use the name and type elements to adjust the beginning position
+// of the list of resource record sets returned:
+//
+//  If you do not specify Name or Type  The results begin with the first resource
+// record set that the hosted zone contains.
+//
+//  If you specify Name but not Type  The results begin with the first resource
+// record set in the list whose name is greater than or equal to Name.
+//
+//  If you specify Type but not Name  Amazon Route 53 returns the InvalidInput
+// error.
+//
+//  If you specify both Name and Type  The results begin with the first resource
+// record set in the list whose name is greater than or equal to Name, and whose
+// type is greater than or equal to Type.
+//
+//   This action returns the most current version of the records. This includes
+// records that are PENDING, and that are not yet available on all Amazon Route
+// 53 DNS servers.
+//
+// To ensure that you get an accurate listing of the resource record sets for
+// a hosted zone at a point in time, do not submit a ChangeResourceRecordSets
+// request while you're paging through the results of a ListResourceRecordSets
+// request. If you do, some pages may display results without the latest changes
+// while other pages display results with the latest changes.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3203,6 +3230,12 @@ func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 
 // ListTagsForResource API operation for Amazon Route 53.
 //
+// Lists tags for one health check or hosted zone.
+//
+// For information about using tags for cost allocation, see Using Cost Allocation
+// Tags (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the AWS Billing and Cost Management User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3281,6 +3314,12 @@ func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) 
 }
 
 // ListTagsForResources API operation for Amazon Route 53.
+//
+// Lists tags for up to 10 health checks or hosted zones.
+//
+// For information about using tags for cost allocation, see Using Cost Allocation
+// Tags (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the AWS Billing and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3789,7 +3828,7 @@ func (c *Route53) ListTrafficPolicyVersionsRequest(input *ListTrafficPolicyVersi
 // them in groups of up to 100.
 //
 // The response includes three values that help you navigate from one group
-// of maxitemsmaxitems traffic policies to the next:
+// of maxitems traffic policies to the next:
 //
 //    IsTruncated
 //
@@ -3879,6 +3918,10 @@ func (c *Route53) TestDNSAnswerRequest(input *TestDNSAnswerInput) (req *request.
 
 // TestDNSAnswer API operation for Amazon Route 53.
 //
+// Gets the value that Amazon Route 53 returns in response to a DNS request
+// for a specified record name and type. You can optionally specify the IP address
+// of a DNS resolver, an EDNS0 client subnet IP address, and a subnet mask.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3946,10 +3989,10 @@ func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *
 //
 // Updates an existing health check.
 //
-// Send a POST request to the /Amazon Route 53 API version/healthcheck/health
-// check ID  resource. The request body must include an XML document with an
-// UpdateHealthCheckRequest element. For more information about updating health
-// checks, see Creating, Updating, and Deleting Health Checks (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html)
+// Send a POST request to the /2013-04-01/healthcheck/health check ID  resource.
+// The request body must include an XML document with an UpdateHealthCheckRequest
+// element. For more information about updating health checks, see Creating,
+// Updating, and Deleting Health Checks (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html)
 // in the Amazon Route 53 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3968,7 +4011,8 @@ func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *
 //   The input is not valid.
 //
 //   * HealthCheckVersionMismatch
-
+//   The value of HealthCheckVersion in the request doesn't match the value of
+//   HealthCheckVersion in the health check.
 //
 func (c *Route53) UpdateHealthCheck(input *UpdateHealthCheckInput) (*UpdateHealthCheckOutput, error) {
 	req, out := c.UpdateHealthCheckRequest(input)
@@ -4091,7 +4135,7 @@ func (c *Route53) UpdateTrafficPolicyCommentRequest(input *UpdateTrafficPolicyCo
 //
 // Updates the comment for a specified traffic policy version.
 //
-// Send a POST request to the /Amazon Route 53 API version/trafficpolicy/ resource.
+// Send a POST request to the /2013-04-01/trafficpolicy/ resource.
 //
 // The request body must include a document with an UpdateTrafficPolicyCommentRequest
 // element.
@@ -4168,8 +4212,8 @@ func (c *Route53) UpdateTrafficPolicyInstanceRequest(input *UpdateTrafficPolicyI
 // Updates the resource record sets in a specified hosted zone that were created
 // based on the settings in a specified traffic policy version.
 //
-// Send a POST request to the /Amazon Route 53 API version/trafficpolicyinstance/traffic
-// policy ID  resource. The request body must include a document with an UpdateTrafficPolicyInstanceRequest
+// Send a POST request to the /2013-04-01/trafficpolicyinstance/traffic policy
+// ID  resource. The request body must include a document with an UpdateTrafficPolicyInstanceRequest
 // element.
 //
 // When you update a traffic policy instance, Amazon Route 53 continues to
@@ -4454,8 +4498,8 @@ type AliasTarget struct {
 	//   Elastic Beanstalk environment  Specify the hosted zone ID for the region
 	// in which you created the environment. The environment must have a regionalized
 	// subdomain. For a list of regions and the corresponding hosted zone IDs, see
-	//  AWS Elastic Beanstalk (http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region)
-	// in the Regions and Endpoints chapter of the AWSk General Reference.
+	// AWS Elastic Beanstalk (http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region)
+	// in the Regions and Endpoints chapter of the AWS General Reference.
 	//
 	//  ELB load balancer  Specify the value of the hosted zone ID for the load
 	// balancer. Use the following methods to get the hosted zone ID:
@@ -5194,6 +5238,8 @@ type CreateHostedZoneOutput struct {
 	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
+	// A complex type that contains information about an Amazon VPC that you associated
+	// with this hosted zone.
 	VPC *VPC `type:"structure"`
 }
 
@@ -5258,7 +5304,7 @@ type CreateReusableDelegationSetOutput struct {
 	// DelegationSet is a required field
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
 
-	// The unique URL representing the new reusbale delegation set.
+	// The unique URL representing the new reusable delegation set.
 	//
 	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
@@ -5427,6 +5473,8 @@ func (s CreateTrafficPolicyInstanceOutput) GoString() string {
 type CreateTrafficPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A unique URL that represents a new traffic policy.
+	//
 	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
@@ -5499,6 +5547,8 @@ func (s *CreateTrafficPolicyVersionInput) Validate() error {
 type CreateTrafficPolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A unique URL that represents a new traffic policy version.
+	//
 	// Location is a required field
 	Location *string `location:"header" locationName:"Location" type:"string" required:"true"`
 
@@ -5523,8 +5573,14 @@ func (s CreateTrafficPolicyVersionOutput) GoString() string {
 type DelegationSet struct {
 	_ struct{} `type:"structure"`
 
+	// A unique string that identifies the request, and that allows you to retry
+	// failed CreateReusableDelegationSet requests without the risk of executing
+	// the operation twice. You must use a unique CallerReference string every time
+	// you submit a CreateReusableDelegationSet request. CallerReference can be
+	// any unique string, for example, a date/time stamp.
 	CallerReference *string `min:"1" type:"string"`
 
+	// The ID that Amazon Route 53 assigns to a reusable delegation set.
 	Id *string `type:"string"`
 
 	// A complex type that contains a list of the authoritative name servers for
@@ -5549,6 +5605,8 @@ func (s DelegationSet) GoString() string {
 type DeleteHealthCheckInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the health check that you want to delete.
+	//
 	// HealthCheckId is a required field
 	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 }
@@ -6143,7 +6201,7 @@ func (s GetCheckerIpRangesOutput) GoString() string {
 type GetGeoLocationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Route 53 supports the following contintent codes:
+	// Amazon Route 53 supports the following continent codes:
 	//
 	//    AF: Africa
 	//
@@ -7838,6 +7896,9 @@ func (s ListHostedZonesByNameOutput) GoString() string {
 type ListHostedZonesInput struct {
 	_ struct{} `type:"structure"`
 
+	// If you're using reusable delegation sets and you want to list all of the
+	// hosted zones that are associated with a reusable delegation set, specify
+	// the ID of that reusable delegation set.
 	DelegationSetId *string `location:"querystring" locationName:"delegationsetid" type:"string"`
 
 	// (Optional) If you have more hosted zones than the value of maxitems, ListHostedZones
@@ -8810,7 +8871,7 @@ type ResourceRecord struct {
 	// The current or new DNS record value, not to exceed 4,000 characters. In the
 	// case of a DELETE action, if the current value does not match the actual value,
 	// an error is returned. For descriptions about how to format Value for different
-	// record types, see Supported DNS Resource Record Types (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DeveloperGuide/ResourceRecordTypes.html)
+	// record types, see Supported DNS Resource Record Types (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
 	// in the Amazon Route 53 Developer Guide.
 	//
 	// You can specify more than one value for all record types except CNAME and
@@ -9011,7 +9072,7 @@ type ResourceRecordSet struct {
 	// and then associate the health check with those resource record sets, health
 	// check results will be unpredictable.
 	//
-	//  For more informaiton, see the following topics in the Amazon Route 53 Developer
+	//  For more information, see the following topics in the Amazon Route 53 Developer
 	// Guide:
 	//
 	//    Amazon Route 53 Health Checks and DNS Failover (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html)
@@ -9116,6 +9177,16 @@ type ResourceRecordSet struct {
 	// values that you specify for Weight.
 	TTL *int64 `type:"long"`
 
+	// When you create a traffic policy instance, Amazon Route 53 automatically
+	// creates a resource record set. TrafficPolicyInstanceId is the ID of the traffic
+	// policy instance that Amazon Route 53 created this resource record set for.
+	//
+	//  To delete the resource record set that is associated with a traffic policy
+	// instance, use DeleteTrafficPolicyInstance. Amazon Route 53 will delete the
+	// resource record set automatically. If you delete the resource record set
+	// by using ChangeResourceRecordSets, Amazon Route 53 doesn't automatically
+	// delete the traffic policy instance, and you'll continue to be charged for
+	// it even though it's no longer in use.
 	TrafficPolicyInstanceId *string `type:"string"`
 
 	// The DNS record type. For information about different record types and how
@@ -9370,19 +9441,37 @@ func (s Tag) GoString() string {
 type TestDNSAnswerInput struct {
 	_ struct{} `type:"structure"`
 
+	// If the resolver that you specified for resolverip supports EDNS0, specify
+	// the IP address of a client in the applicable location.
 	EDNS0ClientSubnetIP *string `location:"querystring" locationName:"edns0clientsubnetip" type:"string"`
 
+	// If you specify an IP address for edns0clientsubnetip, you can optionally
+	// specify the number of bits of the IP address that you want the checking tool
+	// to include in the DNS query. For example, if you specify 192.0.2.44 for edns0clientsubnetip
+	// and 24 for edns0clientsubnetmask, the checking tool will simulate a request
+	// from 192.0.2.0/24. The default value is 24 bits.
 	EDNS0ClientSubnetMask *string `location:"querystring" locationName:"edns0clientsubnetmask" type:"string"`
 
+	// The ID of the hosted zone that you want Amazon Route 53 to simulate a query
+	// for.
+	//
 	// HostedZoneId is a required field
 	HostedZoneId *string `location:"querystring" locationName:"hostedzoneid" type:"string" required:"true"`
 
+	// The name of the resource record set that you want Amazon Route 53 to simulate
+	// a query for.
+	//
 	// RecordName is a required field
 	RecordName *string `location:"querystring" locationName:"recordname" type:"string" required:"true"`
 
+	// The type of the resource record set.
+	//
 	// RecordType is a required field
 	RecordType *string `location:"querystring" locationName:"recordtype" type:"string" required:"true" enum:"RRType"`
 
+	// If you want to simulate a request from a specific DNS resolver, specify the
+	// IP address for that resolver. If you omit this value, TestDnsAnswer uses
+	// the IP address of a DNS resolver in the AWS US East region.
 	ResolverIP *string `location:"querystring" locationName:"resolverip" type:"string"`
 }
 
@@ -9466,23 +9555,40 @@ func (s TestDNSAnswerOutput) GoString() string {
 	return s.String()
 }
 
+// A complex type that contains settings for a traffic policy.
 type TrafficPolicy struct {
 	_ struct{} `type:"structure"`
 
+	// The comment that you specify in the CreateTrafficPolicy request, if any.
 	Comment *string `type:"string"`
 
+	// The definition of a traffic policy in JSON format. You specify the JSON document
+	// to use for a new traffic policy in the CreateTrafficPolicy request. For more
+	// information about the JSON format, see Traffic Policy Document Format (http://docs.aws.amazon.com/Route53/latest/api-reference/api-policies-traffic-policy-document-format.html).
+	//
 	// Document is a required field
 	Document *string `type:"string" required:"true"`
 
+	// The ID that Amazon Route 53 assigned to a traffic policy when you created
+	// it.
+	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// The name that you specified when you created the traffic policy.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The DNS type of the resource record sets that Amazon Route 53 creates when
+	// you use a traffic policy to create a traffic policy instance.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"RRType"`
 
+	// The version number that Amazon Route 53 assigns to a traffic policy. For
+	// a new traffic policy, the value of Version is always 1.
+	//
 	// Version is a required field
 	Version *int64 `min:"1" type:"integer" required:"true"`
 }
@@ -9497,33 +9603,70 @@ func (s TrafficPolicy) GoString() string {
 	return s.String()
 }
 
+// A complex type that contains settings for the new traffic policy instance.
 type TrafficPolicyInstance struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the hosted zone that Amazon Route 53 created resource record sets
+	// in.
+	//
 	// HostedZoneId is a required field
 	HostedZoneId *string `type:"string" required:"true"`
 
+	// The ID that Amazon Route 53 assigned to the new traffic policy instance.
+	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// If State is Failed, an explanation of the reason for the failure. If State
+	// is another value, Message is empty.
+	//
 	// Message is a required field
 	Message *string `type:"string" required:"true"`
 
+	// The DNS name, such as www.example.com, for which Amazon Route 53 responds
+	// to queries by using the resource record sets that are associated with this
+	// traffic policy instance.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The value of State is one of the following values:
+	//
+	//  Applied  Amazon Route 53 has finished creating resource record sets, and
+	// changes have propagated to all Amazon Route 53 edge locations.
+	//
+	//  Creating  Amazon Route 53 is creating the resource record sets. Use GetTrafficPolicyInstance
+	// to confirm that the CreateTrafficPolicyInstance request completed successfully.
+	//
+	//  Failed  Amazon Route 53 wasn't able to create or update the resource record
+	// sets. When the value of State is Failed, see Message for an explanation of
+	// what caused the request to fail.
+	//
 	// State is a required field
 	State *string `type:"string" required:"true"`
 
+	// The TTL that Amazon Route 53 assigned to all of the resource record sets
+	// that it created in the specified hosted zone.
+	//
 	// TTL is a required field
 	TTL *int64 `type:"long" required:"true"`
 
+	// The ID of the traffic policy that Amazon Route 53 used to create resource
+	// record sets in the specified hosted zone.
+	//
 	// TrafficPolicyId is a required field
 	TrafficPolicyId *string `type:"string" required:"true"`
 
+	// The DNS type that Amazon Route 53 assigned to all of the resource record
+	// sets that it created for this traffic policy instance.
+	//
 	// TrafficPolicyType is a required field
 	TrafficPolicyType *string `type:"string" required:"true" enum:"RRType"`
 
+	// The version of the traffic policy that Amazon Route 53 used to create resource
+	// record sets in the specified hosted zone.
+	//
 	// TrafficPolicyVersion is a required field
 	TrafficPolicyVersion *int64 `min:"1" type:"integer" required:"true"`
 }
@@ -9538,21 +9681,35 @@ func (s TrafficPolicyInstance) GoString() string {
 	return s.String()
 }
 
+// A complex type that contains information about the latest version of one
+// traffic policy that is associated with the current AWS account.
 type TrafficPolicySummary struct {
 	_ struct{} `type:"structure"`
 
+	// The ID that Amazon Route 53 assigned to the traffic policy when you created
+	// it.
+	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// The version number of the latest version of the traffic policy.
+	//
 	// LatestVersion is a required field
 	LatestVersion *int64 `min:"1" type:"integer" required:"true"`
 
+	// The name that you specified for the traffic policy when you created it.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The number of traffic policies that are associated with the current AWS account.
+	//
 	// TrafficPolicyCount is a required field
 	TrafficPolicyCount *int64 `min:"1" type:"integer" required:"true"`
 
+	// The DNS type of the resource record sets that Amazon Route 53 creates when
+	// you use a traffic policy to create a traffic policy instance.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"RRType"`
 }
@@ -9725,6 +9882,17 @@ type UpdateHealthCheckInput struct {
 	//  For more information, see UpdateHealthCheckRequest$FullyQualifiedDomainName.
 	IPAddress *string `type:"string"`
 
+	// When CloudWatch has insufficient data about the metric to determine the alarm
+	// state, the status that you want Amazon Route 53 to assign to the health check:
+	//
+	//    Healthy: Amazon Route 53 considers the health check to be healthy.
+	//
+	//    Unhealthy: Amazon Route 53 considers the health check to be unhealthy.
+	//
+	//    LastKnownStatus: Amazon Route 53 uses the status of the health check
+	// from the last time CloudWatch had sufficient data to determine the alarm
+	// state. For new health checks that have no last known status, the default
+	// status for the health check is healthy.
 	InsufficientDataHealthStatus *string `type:"string" enum:"InsufficientDataHealthStatus"`
 
 	// Specify whether you want Amazon Route 53 to invert the status of a health
@@ -10032,12 +10200,16 @@ func (s UpdateTrafficPolicyInstanceOutput) GoString() string {
 	return s.String()
 }
 
+// A complex type that contains information about the Amazon VPC that you're
+// associating with the specified hosted zone.
 type VPC struct {
 	_ struct{} `type:"structure"`
 
 	// A VPC ID
 	VPCId *string `type:"string"`
 
+	// The region in which you created the VPC that you want to associate with the
+	// specified Amazon Route 53 hosted zone.
 	VPCRegion *string `min:"1" type:"string" enum:"VPCRegion"`
 }
 
@@ -10241,6 +10413,9 @@ const (
 	// ResourceRecordSetRegionUsEast1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionUsEast1 = "us-east-1"
 
+	// ResourceRecordSetRegionUsEast2 is a ResourceRecordSetRegion enum value
+	ResourceRecordSetRegionUsEast2 = "us-east-2"
+
 	// ResourceRecordSetRegionUsWest1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionUsWest1 = "us-west-1"
 
@@ -10303,6 +10478,9 @@ const (
 const (
 	// VPCRegionUsEast1 is a VPCRegion enum value
 	VPCRegionUsEast1 = "us-east-1"
+
+	// VPCRegionUsEast2 is a VPCRegion enum value
+	VPCRegionUsEast2 = "us-east-2"
 
 	// VPCRegionUsWest1 is a VPCRegion enum value
 	VPCRegionUsWest1 = "us-west-1"
