@@ -87,7 +87,6 @@ func docstring(doc string) string {
 	doc = reComments.ReplaceAllString(doc, "")
 	doc = reFullname.ReplaceAllString(doc, "")
 	doc = reExamples.ReplaceAllString(doc, "")
-
 	doc = generateDoc(doc)
 	doc = reEndNL.ReplaceAllString(doc, "")
 	if doc == "" {
@@ -98,173 +97,20 @@ func docstring(doc string) string {
 	return commentify(doc)
 }
 
+const (
+	indent = "   "
+)
+
 // style is what we want to prefix a string with.
 // For instance, <li>Foo</li><li>Bar</li>, will generate
 //    * Foo
 //    * Bar
 var style = map[string]string{
-	"li": "* ",
+	"ul":   indent + "* ",
+	"li":   indent + "* ",
+	"code": indent,
+	"pre":  indent,
 }
-
-const (
-	indent = "   "
-)
-
-// generateDoc will generate the proper doc string for html encoded or plain text doc entries.
-/*func generateDoc(htmlSrc string) string {
-	tokenizer := xhtml.NewTokenizer(strings.NewReader(htmlSrc))
-	// tagInfo contains necessary token info of start tag
-	type tagInfo struct {
-		tag        string
-		key        string
-		val        string
-		txt        string
-		closingTag bool
-	}
-
-	doc := ""
-	level := 0
-	col := 0
-	isIndented := true
-	alwaysIndent := false
-	isInlined := true
-	stack := []tagInfo{}
-	stringBlock := []tagInfo{}
-
-	for tt := tokenizer.Next(); tt != xhtml.ErrorToken; tt = tokenizer.Next() {
-		switch tt {
-		case xhtml.TextToken:
-			txt := string(tokenizer.Text())
-			if len(stack) > 0 {
-				// set the current entries txt value. We use this
-				// for checking if we need to indent. The indent rules
-				// is if there is nested html tags that aren't empty or space,
-				// we will indent the code or li blocks.
-				size := len(stack)
-				stack[size-1].txt = txt
-				info := stack[size-1]
-				shouldIndent := false
-				shouldInline := false
-
-				// if the tag is <code> or <li> we want to indent this block
-				if info.tag == "pre" || info.tag == "li" || info.tag == "ul" {
-					alwaysIndent = true
-				} else if info.tag == "code" {
-					if level == 1 {
-						shouldIndent = true
-					} else {
-						for i := len(stack) - 1; i >= 0 && i > 0; i-- {
-							if stack[i].tag == "li" || stack[i].tag == "pre" {
-								// We only care about li and pre parent tags
-								shouldIndent = true
-								break
-							}
-						}
-					}
-				} else {
-					shouldIndent = false
-					shouldInline = true
-				}
-
-				// we only want to append to the doc if the current txt isn't
-				// empty or contains only a space.
-				if len(txt) > 0 && txt != " " {
-					if info.tag == "a" {
-						if info.val != "" {
-							txt += fmt.Sprintf(" (%s)", info.val)
-						}
-					}
-
-					// check spacing
-					// we do not care about the current scope we are on, hence the
-					// i > 1. The reason to check for the check against one is due to the
-					// fact that empty stack is at level 0, which we don't care about.
-					for i := len(stack) - 1; i >= 0 && i > 1; i-- {
-						if stack[i].tag == "p" {
-							if len(stack[i].txt) > 0 && stack[i].txt != " " {
-								shouldIndent = false
-							}
-						}
-					}
-
-					info.txt = txt
-					isIndented = isIndented && shouldIndent
-					isInlined = isInlined && shouldInline
-				} else {
-					info.txt = ""
-				}
-				stringBlock = append(stringBlock, info)
-			} else {
-				isIndented = true
-				txt, col = wrap(txt, col, 72, false)
-				doc += txt
-			}
-		case xhtml.StartTagToken:
-			tn, _ := tokenizer.TagName()
-			key, val, _ := tokenizer.TagAttr()
-			info := tagInfo{
-				tag: string(tn),
-				key: string(key),
-				val: string(val),
-			}
-			stack = append(stack, info)
-			level++
-		case xhtml.SelfClosingTagToken, xhtml.EndTagToken:
-			if len(stringBlock) > 0 {
-				tn, _ := tokenizer.TagName()
-				key, val, _ := tokenizer.TagAttr()
-				info := tagInfo{
-					tag:        string(tn),
-					key:        string(key),
-					val:        string(val),
-					closingTag: true,
-				}
-				stringBlock = append(stringBlock, info)
-				if len(stack) > 0 {
-					stack = stack[:len(stack)-1]
-				}
-				level--
-				if level == 0 {
-					txt := ""
-					for i := 0; i < len(stringBlock); i++ {
-						info = stringBlock[i]
-						if col == 0 && (isIndented || alwaysIndent) {
-							if len(stringBlock) > 0 {
-								fmt.Println("HERE", info.tag)
-								v, ok := style[info.tag]
-								if ok && !info.closingTag {
-									indentStr := indent
-									indentStr += v
-									info.txt = indentStr + info.txt
-									col = len(indentStr)
-									fmt.Println(indentStr)
-								}
-							}
-						}
-						if info.txt != "" {
-							info.txt, col = wrap(info.txt, col, 72, alwaysIndent || isIndented)
-							if info.closingTag {
-								if info.tag == "p" || (len(info.tag) == 2 && info.tag[0] == 'h') {
-									info.txt += "\n\n"
-									col = 0
-								} else if (i == 0 && info.tag == "code") || info.tag == "pre" || info.tag == "li" {
-									info.txt += "\n"
-									col = 0
-								}
-							}
-						}
-						txt += info.txt
-					}
-					doc += txt
-					stringBlock = []tagInfo{}
-					isIndented = true
-					alwaysIndent = false
-				}
-			}
-		}
-	}
-	return doc
-}*/
 
 // commentify converts a string to a Go comment
 func commentify(doc string) string {
@@ -283,10 +129,11 @@ func commentify(doc string) string {
 // wrap returns a rewritten version of text to have line breaks
 // at approximately length characters. Line breaks will only be
 // inserted into whitespace.
-func wrap(text string, col, length int, isIndented bool) (string, int) {
+func wrap(text string, length int, isIndented bool) string {
 	var buf bytes.Buffer
 	var last rune
 	var lastNL bool
+	var col int
 
 	for _, c := range text {
 		switch c {
@@ -298,10 +145,6 @@ func wrap(text string, col, length int, isIndented bool) (string, int) {
 			}
 			buf.WriteString("\n")
 			col = 0
-			if isIndented {
-				buf.WriteString(indent)
-				col += 3
-			}
 		case ' ', '\t': // opportunity to split
 			if col >= length {
 				buf.WriteByte('\n')
@@ -313,19 +156,18 @@ func wrap(text string, col, length int, isIndented bool) (string, int) {
 			} else {
 				// We only want to write a leading space if the col is greater than zero.
 				// This will provide the proper spacing for documentation.
-				if !lastNL && col > 0 {
-					buf.WriteRune(c)
-					col++ // count column
-				}
+				buf.WriteRune(c)
+				col++ // count column
 			}
 		default:
 			buf.WriteRune(c)
 			col++
 		}
 		lastNL = c == '\n'
+		_ = lastNL
 		last = c
 	}
-	return buf.String(), col
+	return buf.String()
 }
 
 type tagInfo struct {
@@ -340,11 +182,12 @@ type tagInfo struct {
 // generateDoc will generate the proper doc string for html encoded or plain text doc entries.
 func generateDoc(htmlSrc string) string {
 	tokenizer := xhtml.NewTokenizer(strings.NewReader(htmlSrc))
-	stack := buildStack(tokenizer)
-	return walk(stack)
+	tokens := buildTokenArray(tokenizer)
+	scopes := findScopes(tokens)
+	return walk(scopes)
 }
 
-func buildStack(tokenizer *xhtml.Tokenizer) []tagInfo {
+func buildTokenArray(tokenizer *xhtml.Tokenizer) []tagInfo {
 	tokens := []tagInfo{}
 	for tt := tokenizer.Next(); tt != xhtml.ErrorToken; tt = tokenizer.Next() {
 		switch tt {
@@ -389,56 +232,48 @@ func buildStack(tokenizer *xhtml.Tokenizer) []tagInfo {
 	return tokens
 }
 
-func walk(tokens []tagInfo) string {
-	// The first token can determine what type of tabbing
+// walk is used to traverse each scoped block. These scoped
+// blocks will act as blocked text where we do most of our
+// text manipulation.
+func walk(scopes [][]tagInfo) string {
 	doc := ""
-	block := ""
-	col := 0
-	level := 0
-	isIndented := false
-	openTagValue := ""
-	next := false
-
-	for _, token := range tokens {
-		if token.closingTag {
-			level--
-			if level == 0 {
-				isIndented = false
-			}
-			block, col = wrap(block, col, 72, isIndented)
-			endl := closeTag(token, level)
-			block += endl
-			if endl != "" {
-				col = 0
-			}
-			doc += block
-			block = ""
-		} else {
-			if token.raw != "" && token.raw != " " {
-				doc += token.raw
-				continue
-			}
-			// If the txt is blank, then it is a opening tag.
-			// This is where indention will occur.
-			if token.txt == "" {
-				indentStr, indenting := indents(token.tag, level)
-				isIndented = isIndented || indenting
-				block += indentStr
-				col += len(indentStr)
-				openTagValue, next = formatText(token)
-				if !next {
-					block += openTagValue
+	// Documentation will be chunked by scopes.
+	// Meaning, for each scope will be divided by one or more newlines.
+	for _, scope := range scopes {
+		indentStr, isIndented := priorityIndentation(scope)
+		block := ""
+		href := ""
+		after := false
+		level := 0
+		lastTag := ""
+		for _, token := range scope {
+			if token.closingTag {
+				endl := closeTag(token, level)
+				block += endl
+				level--
+				lastTag = ""
+			} else if token.txt == "" {
+				if token.val != "" {
+					href, after = formatText(token, "")
+				}
+				if level == 1 && isIndented {
+					block += indentStr
 				}
 				level++
+				lastTag = token.tag
 			} else {
-				value, _ := formatText(token)
-				block += value
-				if next {
-					block += openTagValue
+				if token.txt != " " {
+					str, _ := formatText(token, lastTag)
+					block += str
+					if after {
+						block += href
+						after = false
+					}
 				}
-				next = false
 			}
 		}
+		block = wrap(block, 72, isIndented)
+		doc += block
 	}
 	return doc
 }
@@ -449,12 +284,9 @@ func closeTag(token tagInfo, level int) string {
 	case "pre", "li":
 		return "\n"
 	case "p", "h1", "h2", "h3", "h4", "h5", "h6", "div":
-		// This is being inlined with something. We will ignore newlines
-		if level > 0 {
-			break
-		}
 		return "\n\n"
 	case "code":
+		// indented code is only at the 0th level.
 		if level == 0 {
 			return "\n"
 		}
@@ -462,35 +294,80 @@ func closeTag(token tagInfo, level int) string {
 	return ""
 }
 
-func indents(tag string, level int) (string, bool) {
-	switch tag {
-	case "pre", "code":
-		if level > 0 {
-			break
-		}
-		fallthrough
-	case "li":
-		v, ok := style[tag]
-		indentStr := indent
-		if ok {
-			indentStr += v
-		}
-		return indentStr, true
-	}
-	return "", false
-}
-
 // formatText will format any sort of text based off of a tag. It will also return
 // a boolean to add the string after the text token.
-func formatText(token tagInfo) (string, bool) {
+func formatText(token tagInfo, lastTag string) (string, bool) {
 	switch token.tag {
 	case "a":
 		if token.val != "" {
 			return fmt.Sprintf(" (%s)", token.val), true
 		}
 	}
+
+	// We don't care about a single space nor no text.
 	if len(token.txt) == 0 || token.txt == " " {
 		return "", false
 	}
+
+	// Here we want to indent code blocks that are newlines
+	if lastTag == "code" {
+		// Greater than one, because we don't care about newlines in the beginning
+		block := ""
+		if lines := strings.Split(token.txt, "\n"); len(lines) > 1 {
+			for _, line := range lines {
+				block += indent + line
+			}
+			block += "\n"
+			return block, false
+		}
+	}
 	return token.txt, false
+}
+
+// This is a parser to check what type of indention is needed.
+func priorityIndentation(blocks []tagInfo) (string, bool) {
+	if len(blocks) == 0 {
+		return "", false
+	}
+
+	v, ok := style[blocks[0].tag]
+	return v, ok
+}
+
+// Divides into scopes based off levels.
+// For instance,
+// <p>Testing<code>123</code></p><ul><li>Foo</li></ul>
+// This has 2 scopes, the <p> and <ul>
+func findScopes(tokens []tagInfo) [][]tagInfo {
+	level := 0
+	scope := []tagInfo{}
+	scopes := [][]tagInfo{}
+	for _, token := range tokens {
+		// we will clear empty tagged tokens from the array
+		if (token.txt == "" || token.txt == " ") && (token.tag == "" || token.tag == " ") {
+			continue
+		}
+
+		scope = append(scope, token)
+
+		// If it is a closing tag then we check what level
+		// we are on. If it is 0, then that means we have found a
+		// scoped block.
+		if token.closingTag {
+			level--
+			if level == 0 {
+				scopes = append(scopes, scope)
+				scope = []tagInfo{}
+			}
+			// Check opening tags and increment the level
+		} else if token.txt == "" {
+			level++
+		}
+	}
+	// In this case, we did not run into a closing tag. This would mean
+	// we have plaintext for documentation.
+	if len(scopes) == 0 {
+		scopes = append(scopes, scope)
+	}
+	return scopes
 }
