@@ -14,6 +14,18 @@ type Item struct {
 }
 ```
 
+In DynamoDB the structure of the item to be returned will be:
+```json
+{
+  "Data": {
+    "Value 1": "abc",
+    "Value 2": 1234567890
+  },
+  "Desc": "First ddb item",
+  "Key": 1
+}
+```
+
 ## Usage
 
 `scanItems.go -table "<table_name>" -region "<optional_region>"`
@@ -30,5 +42,5 @@ type Item struct {
 2: Key: 1, Desc: First ddb item
 	Num Data Values: 2
 	- "Value 1": abc
-	- "Value 2": 666
+	- "Value 2": 1234567890
 ```
