@@ -237,6 +237,7 @@ func ExampleCloudFront_CreateDistribution() {
 			},
 			DefaultRootObject: aws.String("string"),
 			HttpVersion:       aws.String("HttpVersion"),
+			IsIPV6Enabled:     aws.Bool(true),
 			Logging: &cloudfront.LoggingConfig{
 				Bucket:         aws.String("string"), // Required
 				Enabled:        aws.Bool(true),       // Required
@@ -474,6 +475,7 @@ func ExampleCloudFront_CreateDistributionWithTags() {
 				},
 				DefaultRootObject: aws.String("string"),
 				HttpVersion:       aws.String("HttpVersion"),
+				IsIPV6Enabled:     aws.Bool(true),
 				Logging: &cloudfront.LoggingConfig{
 					Bucket:         aws.String("string"), // Required
 					Enabled:        aws.Bool(true),       // Required
@@ -1380,6 +1382,7 @@ func ExampleCloudFront_UpdateDistribution() {
 			},
 			DefaultRootObject: aws.String("string"),
 			HttpVersion:       aws.String("HttpVersion"),
+			IsIPV6Enabled:     aws.Bool(true),
 			Logging: &cloudfront.LoggingConfig{
 				Bucket:         aws.String("string"), // Required
 				Enabled:        aws.Bool(true),       // Required

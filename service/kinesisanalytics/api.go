@@ -2054,7 +2054,9 @@ type Input struct {
 	// being created.
 	//
 	// Also used to describe the format of the reference data source.
-	InputSchema *SourceSchema `type:"structure"`
+	//
+	// InputSchema is a required field
+	InputSchema *SourceSchema `type:"structure" required:"true"`
 
 	// If the streaming source is an Amazon Kinesis Firehose delivery stream, identifies
 	// the Firehose delivery stream's ARN and an IAM role that enables Amazon Kinesis
@@ -2089,6 +2091,9 @@ func (s Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Input"}
+	if s.InputSchema == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputSchema"))
+	}
 	if s.NamePrefix == nil {
 		invalidParams.Add(request.NewErrParamRequired("NamePrefix"))
 	}

@@ -4738,6 +4738,11 @@ type Action struct {
 	// Write to a DynamoDB table.
 	DynamoDB *DynamoDBAction `locationName:"dynamoDB" type:"structure"`
 
+	// Write to a DynamoDB table. This is a new version of the DynamoDB action.
+	// It allows you to write each attribute in an MQTT message payload into a separate
+	// DynamoDB column.
+	DynamoDBv2 *DynamoDBv2Action `locationName:"dynamoDBv2" type:"structure"`
+
 	// Write data to an Amazon Elasticsearch Service domain.
 	Elasticsearch *ElasticsearchAction `locationName:"elasticsearch" type:"structure"`
 
@@ -4789,6 +4794,11 @@ func (s *Action) Validate() error {
 	if s.DynamoDB != nil {
 		if err := s.DynamoDB.Validate(); err != nil {
 			invalidParams.AddNested("DynamoDB", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DynamoDBv2 != nil {
+		if err := s.DynamoDBv2.Validate(); err != nil {
+			invalidParams.AddNested("DynamoDBv2", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Elasticsearch != nil {
@@ -6745,6 +6755,52 @@ func (s *DynamoDBAction) Validate() error {
 	return nil
 }
 
+// Describes an action to write to a DynamoDB table.
+//
+// This DynamoDB action writes each attribute in the message payload into it's
+// own column in the DynamoDB table.
+type DynamoDBv2Action struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the DynamoDB table to which the message data will be written. For
+	// example:
+	//
+	// { "dynamoDBv2": { "roleArn": "aws:iam:12341251:my-role" "putItem": { "tableName":
+	// "my-table" } } }
+	//
+	// Each attribute in the message payload will be written to a separate column
+	// in the DynamoDB database.
+	PutItem *PutItemInput `locationName:"putItem" type:"structure"`
+
+	// The ARN of the IAM role that grants access to the DynamoDB table.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation
+func (s DynamoDBv2Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DynamoDBv2Action) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DynamoDBv2Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DynamoDBv2Action"}
+	if s.PutItem != nil {
+		if err := s.PutItem.Validate(); err != nil {
+			invalidParams.AddNested("PutItem", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // Describes an action that writes data to an Amazon Elasticsearch Service domain.
 type ElasticsearchAction struct {
 	_ struct{} `type:"structure"`
@@ -8193,6 +8249,40 @@ func (s PolicyVersion) String() string {
 // GoString returns the string representation
 func (s PolicyVersion) GoString() string {
 	return s.String()
+}
+
+// The input for the DynamoActionVS action that specifies the DynamoDB table
+// to which the message data will be written.
+type PutItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The table where the message data will be written
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutItemInput"}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // The input to the RegisterCACertificate operation.

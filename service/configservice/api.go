@@ -359,9 +359,11 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 // the specified delivery channel. After the delivery has started, AWS Config
 // sends following notifications using an Amazon SNS topic that you have specified.
 //
-//  Notification of starting the delivery. Notification of delivery completed,
-// if the delivery was successfully completed. Notification of delivery failure,
-// if the delivery failed to complete.
+//   Notification of starting the delivery.
+//
+//   Notification of delivery completed, if the delivery was successfully completed.
+//
+//   Notification of delivery failure, if the delivery failed to complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -442,15 +444,19 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 // If AWS Config has no current evaluation results for the rule, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions:
 //
-//  AWS Config has never invoked an evaluation for the rule. To check whether
+//   AWS Config has never invoked an evaluation for the rule. To check whether
 // it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
-// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
-// send evaluation results to AWS Config. Verify that the role that you assigned
-// to your configuration recorder includes the config:PutEvaluations permission.
-// If the rule is a custom rule, verify that the AWS Lambda execution role includes
-// the config:PutEvaluations permission. The rule's AWS Lambda function has
-// returned NOT_APPLICABLE for all evaluation results. This can occur if the
-// resources were deleted or removed from the rule's scope.
+// and LastFailedInvocationTime.
+//
+//   The rule's AWS Lambda function is failing to send evaluation results to
+// AWS Config. Verify that the role that you assigned to your configuration
+// recorder includes the config:PutEvaluations permission. If the rule is a
+// custom rule, verify that the AWS Lambda execution role includes the config:PutEvaluations
+// permission.
+//
+//   The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+// results. This can occur if the resources were deleted or removed from the
+// rule's scope.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -531,15 +537,19 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions
 // about the rules that evaluate the resource:
 //
-//  AWS Config has never invoked an evaluation for the rule. To check whether
+//   AWS Config has never invoked an evaluation for the rule. To check whether
 // it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
-// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
-// send evaluation results to AWS Config. Verify that the role that you assigned
-// to your configuration recorder includes the config:PutEvaluations permission.
-// If the rule is a custom rule, verify that the AWS Lambda execution role includes
-// the config:PutEvaluations permission. The rule's AWS Lambda function has
-// returned NOT_APPLICABLE for all evaluation results. This can occur if the
-// resources were deleted or removed from the rule's scope.
+// and LastFailedInvocationTime.
+//
+//   The rule's AWS Lambda function is failing to send evaluation results to
+// AWS Config. Verify that the role that you assigned to your configuration
+// recorder includes the config:PutEvaluations permission. If the rule is a
+// custom rule, verify that the AWS Lambda execution role includes the config:PutEvaluations
+// permission.
+//
+//   The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+// results. This can occur if the resources were deleted or removed from the
+// rule's scope.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -745,7 +755,8 @@ func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *Descri
 // configuration recorder is not specified, this action returns the status of
 // all configuration recorder associated with the account.
 //
-//  Currently, you can specify only one configuration recorder per account.
+//  Currently, you can specify only one configuration recorder per region in
+// your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -809,11 +820,12 @@ func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeCon
 
 // DescribeConfigurationRecorders API operation for AWS Config.
 //
-// Returns the name of one or more specified configuration recorders. If the
-// recorder name is not specified, this action returns the names of all the
-// configuration recorders associated with the account.
+// Returns the details for the specified configuration recorders. If the configuration
+// recorder is not specified, this action returns the details for all configuration
+// recorders associated with the account.
 //
-//  Currently, you can specify only one configuration recorder per account.
+//  Currently, you can specify only one configuration recorder per region in
+// your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -881,7 +893,8 @@ func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeli
 // channel is not specified, this action returns the current status of all delivery
 // channels associated with the account.
 //
-//  Currently, you can specify only one delivery channel per account.
+//  Currently, you can specify only one delivery channel per region in your
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -949,7 +962,8 @@ func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryC
 // is not specified, this action returns the details of all delivery channels
 // associated with the account.
 //
-//  Currently, you can specify only one delivery channel per account.
+//  Currently, you can specify only one delivery channel per region in your
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1519,9 +1533,9 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
 // are generated by AWS Config for new rules.
 //
-// If you are updating a rule that you have added previously, specify the rule's
-// ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule data type
-// that you use in this request.
+// If you are updating a rule that you added previously, you can specify the
+// rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule
+// data type that you use in this request.
 //
 // The maximum number of rules that AWS Config supports is 25.
 //
@@ -1553,9 +1567,11 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //   * InsufficientPermissionsException
 //   Indicates one of the following errors:
 //
-//    The rule cannot be created because the IAM role assigned to AWS Config
-//   lacks permissions to perform the config:Put* action. The AWS Lambda function
-//   cannot be invoked. Check the function ARN, and check the function's permissions.
+//     The rule cannot be created because the IAM role assigned to AWS Config
+//   lacks permissions to perform the config:Put* action.
+//
+//     The AWS Lambda function cannot be invoked. Check the function ARN, and
+//   check the function's permissions.
 //
 //   * NoAvailableConfigurationRecorderException
 //   There are no configuration recorders available to provide the role needed
@@ -1620,7 +1636,8 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 // of an existing recorder. To change the role, call the action on the existing
 // configuration recorder and specify a role.
 //
-//  Currently, you can specify only one configuration recorder per account.
+//  Currently, you can specify only one configuration recorder per region in
+// your account.
 //
 // If ConfigurationRecorder does not have the recordingGroup parameter specified,
 // the default is to record all supported resource types.
@@ -1712,7 +1729,7 @@ func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput
 // the S3 bucket or the SNS topic, this action will keep the existing value
 // for the parameter that is not changed.
 //
-//  You can have only one delivery channel per AWS account.
+//  You can have only one delivery channel per region in your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1884,16 +1901,16 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 //  The StartConfigRulesEvaluation API is useful if you want to run on-demand
 // evaluations, such as the following example:
 //
-//  You have a custom rule that evaluates your IAM resources every 24 hours.
+//   You have a custom rule that evaluates your IAM resources every 24 hours.
 //
-// You update your Lambda function to add additional conditions to your rule.
+//   You update your Lambda function to add additional conditions to your rule.
 //
-// Instead of waiting for the next periodic evaluation, you call the StartConfigRulesEvaluation
+//   Instead of waiting for the next periodic evaluation, you call the StartConfigRulesEvaluation
 // API.
 //
-// AWS Config invokes your Lambda function and evaluates your IAM resources.
+//   AWS Config invokes your Lambda function and evaluates your IAM resources.
 //
-// Your custom rule will still run periodic evaluations every 24 hours.
+//   Your custom rule will still run periodic evaluations every 24 hours.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2399,9 +2416,11 @@ type ConfigRuleEvaluationStatus struct {
 	// Indicates whether AWS Config has evaluated your resources against the rule
 	// at least once.
 	//
-	//  true - AWS Config has evaluated your AWS resources against the rule at
-	// least once. false - AWS Config has not once finished evaluating your AWS
-	// resources against the rule.
+	//    true - AWS Config has evaluated your AWS resources against the rule at
+	// least once.
+	//
+	//    false - AWS Config has not once finished evaluating your AWS resources
+	// against the rule.
 	FirstEvaluationStarted *bool `type:"boolean"`
 
 	// The error code that AWS Config returned when the rule last failed.
@@ -2506,7 +2525,7 @@ type ConfigStreamDeliveryInfo struct {
 
 	// Status of the last attempted delivery.
 	//
-	// Note Providing an SNS topic on a DeliveryChannel (http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
+	//  Note Providing an SNS topic on a DeliveryChannel (http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
 	// for AWS Config is optional. If the SNS delivery is turned off, the last status
 	// will be Not_Applicable.
 	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
@@ -4425,11 +4444,12 @@ type Source struct {
 	// your AWS resources.
 	SourceDetails []*SourceDetail `type:"list"`
 
-	// For AWS managed Config rules, a pre-defined identifier from a list. To reference
-	// the list, see Using AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+	// For AWS Config managed rules, a predefined identifier from a list. For example,
+	// IAM_PASSWORD_POLICY is a managed rule. To reference a managed rule, see Using
+	// AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
 	//
-	// For custom Config rules, the identifier is the Amazon Resource Name (ARN)
-	// of the rule's AWS Lambda function.
+	// For custom rules, the identifier is the Amazon Resource Name (ARN) of the
+	// rule's AWS Lambda function, such as arn:aws:lambda:us-east-1:123456789012:function:custom_rule_name.
 	SourceIdentifier *string `min:"1" type:"string"`
 }
 
@@ -4476,13 +4496,13 @@ type SourceDetail struct {
 	// The type of notification that triggers AWS Config to run an evaluation. You
 	// can specify the following notification types:
 	//
-	// ConfigurationItemChangeNotification - Triggers an evaluation when AWS Config
+	//  ConfigurationItemChangeNotification - Triggers an evaluation when AWS Config
 	// delivers a configuration item change notification.
 	//
-	// ScheduledNotification - Triggers a periodic evaluation at the frequency
+	//  ScheduledNotification - Triggers a periodic evaluation at the frequency
 	// specified for MaximumExecutionFrequency.
 	//
-	// ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation
+	//  ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation
 	// when AWS Config delivers a configuration snapshot.
 	MessageType *string `type:"string" enum:"MessageType"`
 }
@@ -4835,4 +4855,7 @@ const (
 
 	// ResourceTypeAwsElasticLoadBalancingV2LoadBalancer is a ResourceType enum value
 	ResourceTypeAwsElasticLoadBalancingV2LoadBalancer = "AWS::ElasticLoadBalancingV2::LoadBalancer"
+
+	// ResourceTypeAwsS3Bucket is a ResourceType enum value
+	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
 )

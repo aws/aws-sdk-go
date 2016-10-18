@@ -10,6 +10,20 @@
     "xmlNamespace":"http://rds.amazonaws.com/doc/2014-10-31/"
   },
   "operations":{
+    "AddRoleToDBCluster":{
+      "name":"AddRoleToDBCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddRoleToDBClusterMessage"},
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBClusterRoleAlreadyExistsFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"DBClusterRoleQuotaExceededFault"}
+      ]
+    },
     "AddSourceIdentifierToSubscription":{
       "name":"AddSourceIdentifierToSubscription",
       "http":{
@@ -103,7 +117,9 @@
         {"shape":"DBClusterSnapshotAlreadyExistsFault"},
         {"shape":"DBClusterSnapshotNotFoundFault"},
         {"shape":"InvalidDBClusterStateFault"},
-        {"shape":"InvalidDBClusterSnapshotStateFault"}
+        {"shape":"InvalidDBClusterSnapshotStateFault"},
+        {"shape":"SnapshotQuotaExceededFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
       ]
     },
     "CopyDBParameterGroup":{
@@ -1221,6 +1237,19 @@
         {"shape":"DBInstanceNotFoundFault"}
       ]
     },
+    "RemoveRoleFromDBCluster":{
+      "name":"RemoveRoleFromDBCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveRoleFromDBClusterMessage"},
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBClusterRoleNotFoundFault"},
+        {"shape":"InvalidDBClusterStateFault"}
+      ]
+    },
     "RemoveSourceIdentifierFromSubscription":{
       "name":"RemoveSourceIdentifierFromSubscription",
       "http":{
@@ -1474,6 +1503,17 @@
       "member":{
         "shape":"AccountQuota",
         "locationName":"AccountQuota"
+      }
+    },
+    "AddRoleToDBClusterMessage":{
+      "type":"structure",
+      "required":[
+        "DBClusterIdentifier",
+        "RoleArn"
+      ],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "RoleArn":{"shape":"String"}
       }
     },
     "AddSourceIdentifierToSubscriptionMessage":{
@@ -2061,7 +2101,8 @@
         "StorageEncrypted":{"shape":"Boolean"},
         "KmsKeyId":{"shape":"String"},
         "DbClusterResourceId":{"shape":"String"},
-        "DBClusterArn":{"shape":"String"}
+        "DBClusterArn":{"shape":"String"},
+        "AssociatedRoles":{"shape":"DBClusterRoles"}
       },
       "wrapper":true
     },
@@ -2190,6 +2231,53 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBClusterRole":{
+      "type":"structure",
+      "members":{
+        "RoleArn":{"shape":"String"},
+        "Status":{"shape":"String"}
+      }
+    },
+    "DBClusterRoleAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterRoleAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBClusterRoleNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterRoleNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBClusterRoleQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterRoleQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBClusterRoles":{
+      "type":"list",
+      "member":{
+        "shape":"DBClusterRole",
+        "locationName":"DBClusterRole"
+      }
     },
     "DBClusterSnapshot":{
       "type":"structure",
@@ -4303,6 +4391,17 @@
       "member":{
         "shape":"RecurringCharge",
         "locationName":"RecurringCharge"
+      }
+    },
+    "RemoveRoleFromDBClusterMessage":{
+      "type":"structure",
+      "required":[
+        "DBClusterIdentifier",
+        "RoleArn"
+      ],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "RoleArn":{"shape":"String"}
       }
     },
     "RemoveSourceIdentifierFromSubscriptionMessage":{
