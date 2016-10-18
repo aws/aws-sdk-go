@@ -87,7 +87,6 @@ type Config struct {
 }
 
 func (c *Config) Load() error {
-	//	fs := flag.NewFlagSet("QueryItem config", flag.ExitOnError)
 	flag.Int64Var(&c.Limit, "limit", 0, "Limit is the max items to be returned, 0 is no limit")
 	flag.StringVar(&c.Table, "table", "", "Table to Query on")
 	flag.StringVar(&c.Region, "region", "", "AWS Region the table is in")
