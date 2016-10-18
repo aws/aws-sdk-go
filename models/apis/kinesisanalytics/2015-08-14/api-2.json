@@ -499,7 +499,10 @@
     },
     "Input":{
       "type":"structure",
-      "required":["NamePrefix"],
+      "required":[
+        "NamePrefix",
+        "InputSchema"
+      ],
       "members":{
         "NamePrefix":{"shape":"InAppStreamName"},
         "KinesisStreamsInput":{"shape":"KinesisStreamsInput"},
@@ -1018,7 +1021,8 @@
     "UnableToDetectSchemaException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "RawInputRecords":{"shape":"RawInputRecords"}
       },
       "exception":true
     },

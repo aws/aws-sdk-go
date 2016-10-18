@@ -13,6 +13,85 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/query"
 )
 
+const opAddRoleToDBCluster = "AddRoleToDBCluster"
+
+// AddRoleToDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the AddRoleToDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See AddRoleToDBCluster for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AddRoleToDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AddRoleToDBClusterRequest method.
+//    req, resp := client.AddRoleToDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *RDS) AddRoleToDBClusterRequest(input *AddRoleToDBClusterInput) (req *request.Request, output *AddRoleToDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opAddRoleToDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddRoleToDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &AddRoleToDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// AddRoleToDBCluster API operation for Amazon Relational Database Service.
+//
+// Associates an Identity and Access Management (IAM) role from an Aurora DB
+// cluster. For more information, see Authorizing Amazon Aurora to Access Other
+// AWS Services On Your Behalf (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Authorizing.AWSServices.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation AddRoleToDBCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * DBClusterNotFoundFault
+//   DBClusterIdentifier does not refer to an existing DB cluster.
+//
+//   * DBClusterRoleAlreadyExists
+//   The specified IAM role Amazon Resource Name (ARN) is already associated with
+//   the specified DB cluster.
+//
+//   * InvalidDBClusterStateFault
+//   The DB cluster is not in a valid state.
+//
+//   * DBClusterRoleQuotaExceeded
+//   You have exceeded the maximum number of IAM roles that can be associated
+//   with the specified DB cluster.
+//
+func (c *RDS) AddRoleToDBCluster(input *AddRoleToDBClusterInput) (*AddRoleToDBClusterOutput, error) {
+	req, out := c.AddRoleToDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
 
 // AddSourceIdentifierToSubscriptionRequest generates a "aws/request.Request" representing the
@@ -444,6 +523,12 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 //
 //   * InvalidDBClusterSnapshotStateFault
 //   The supplied value is not a valid DB cluster snapshot state.
+//
+//   * SnapshotQuotaExceeded
+//   Request would result in user exceeding the allowed number of DB snapshots.
+//
+//   * KMSKeyNotAccessibleFault
+//   Error accessing KMS key.
 //
 func (c *RDS) CopyDBClusterSnapshot(input *CopyDBClusterSnapshotInput) (*CopyDBClusterSnapshotOutput, error) {
 	req, out := c.CopyDBClusterSnapshotRequest(input)
@@ -6097,6 +6182,81 @@ func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanceO
 	return out, err
 }
 
+const opRemoveRoleFromDBCluster = "RemoveRoleFromDBCluster"
+
+// RemoveRoleFromDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveRoleFromDBCluster operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See RemoveRoleFromDBCluster for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the RemoveRoleFromDBCluster method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the RemoveRoleFromDBClusterRequest method.
+//    req, resp := client.RemoveRoleFromDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *RDS) RemoveRoleFromDBClusterRequest(input *RemoveRoleFromDBClusterInput) (req *request.Request, output *RemoveRoleFromDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opRemoveRoleFromDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveRoleFromDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &RemoveRoleFromDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// RemoveRoleFromDBCluster API operation for Amazon Relational Database Service.
+//
+// Disassociates an Identity and Access Management (IAM) role from an Aurora
+// DB cluster. For more information, see Authorizing Amazon Aurora to Access
+// Other AWS Services On Your Behalf (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Authorizing.AWSServices.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation RemoveRoleFromDBCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * DBClusterNotFoundFault
+//   DBClusterIdentifier does not refer to an existing DB cluster.
+//
+//   * DBClusterRoleNotFound
+//   The specified IAM role Amazon Resource Name (ARN) is not associated with
+//   the specified DB cluster.
+//
+//   * InvalidDBClusterStateFault
+//   The DB cluster is not in a valid state.
+//
+func (c *RDS) RemoveRoleFromDBCluster(input *RemoveRoleFromDBClusterInput) (*RemoveRoleFromDBClusterOutput, error) {
+	req, out := c.RemoveRoleFromDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubscription"
 
 // RemoveSourceIdentifierFromSubscriptionRequest generates a "aws/request.Request" representing the
@@ -7131,6 +7291,61 @@ func (s AccountQuota) String() string {
 
 // GoString returns the string representation
 func (s AccountQuota) GoString() string {
+	return s.String()
+}
+
+type AddRoleToDBClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the DB cluster to associate the IAM role with.
+	//
+	// DBClusterIdentifier is a required field
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora
+	// DB cluster, for example arn:aws:iam::123456789012:role/AuroraAccessRole.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddRoleToDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddRoleToDBClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddRoleToDBClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddRoleToDBClusterInput"}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type AddRoleToDBClusterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddRoleToDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddRoleToDBClusterOutput) GoString() string {
 	return s.String()
 }
 
@@ -8610,14 +8825,151 @@ type CreateDBInstanceInput struct {
 	//
 	//  Amazon Aurora
 	//
-	//    Version 5.6 (only available in AWS regions ap-northeast-1, ap-northeast-2,
+	//    Version 5.6 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
 	// ap-south-1, ap-southeast-2, eu-west-1, us-east-1, us-west-2):  5.6.10a
 	//
 	//    MariaDB
 	//
-	//    Version 10.1 (available in all AWS regions except us-gov-west-1):  10.1.14
+	//    Version 10.1 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  10.1.14
 	//
 	//    Version 10.0 (available in all AWS regions):  10.0.17 | 10.0.24
+	//
+	//    MySQL
+	//
+	//    Version 5.7 (available in all AWS regions):  5.7.10 | 5.7.11
+	//
+	//    Version 5.6 (available in all AWS regions):  5.6.27 | 5.6.29
+	//
+	//    Version 5.6 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1,
+	// us-gov-west-1, us-west-1, us-west-2):  5.6.23
+	//
+	//    Version 5.6 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-west-1, us-west-2):  5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
+	//
+	//    Version 5.5 (available in all AWS regions):  5.5.46
+	//
+	//    Version 5.5 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1,
+	// us-gov-west-1, us-west-1, us-west-2):  5.5.42
+	//
+	//    Version 5.5 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-west-1, us-west-2):  5.5.40b | 5.5.41
+	//
+	//    Version 5.5 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  5.5.40 | 5.5.40a
+	//
+	//    Oracle Database Enterprise Edition (oracle-ee)
+	//
+	//    Version 12.1.0.2 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  12.1.0.2.v5
+	//
+	//    Version 12.1.0.2 (available in all AWS regions):  12.1.0.2.v1 | 12.1.0.2.v2
+	// | 12.1.0.2.v3 | 12.1.0.2.v4
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  12.1.0.1.v6
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-west-1, us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-gov-west-1, us-west-1, us-west-2):  12.1.0.1.v1 | 12.1.0.1.v2
+	//
+	//    Version 11.2.0.4 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  11.2.0.4.v6 | 11.2.0.4.v9
+	//
+	//    Version 11.2.0.4 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
+	// | 11.2.0.4.v4 | 11.2.0.4.v5 | 11.2.0.4.v7 | 11.2.0.4.v8
+	//
+	//    Oracle Database Standard Edition Two (oracle-se2)
+	//
+	//    Version 12.1.0.2 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  12.1.0.2.v5
+	//
+	//    Version 12.1.0.2 (available in all AWS regions):  12.1.0.2.v2 | 12.1.0.2.v3
+	// | 12.1.0.2.v4
+	//
+	//    Oracle Database Standard Edition One (oracle-se1)
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  12.1.0.1.v6
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-west-1, us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-gov-west-1, us-west-1, us-west-2):  12.1.0.1.v1 | 12.1.0.1.v2
+	//
+	//    Version 11.2.0.4 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  11.2.0.4.v6 | 11.2.0.4.v9
+	//
+	//    Version 11.2.0.4 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
+	// | 11.2.0.4.v4 | 11.2.0.4.v5 | 11.2.0.4.v7 | 11.2.0.4.v8
+	//
+	//    Oracle Database Standard Edition (oracle-se)
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  12.1.0.1.v6
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-west-1, us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
+	//
+	//    Version 12.1.0.1 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-gov-west-1, us-west-1, us-west-2):  12.1.0.1.v1 | 12.1.0.1.v2
+	//
+	//    Version 11.2.0.4 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  11.2.0.4.v6 | 11.2.0.4.v9
+	//
+	//    Version 11.2.0.4 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
+	// | 11.2.0.4.v4 | 11.2.0.4.v5 | 11.2.0.4.v7 | 11.2.0.4.v8
+	//
+	//    PostgreSQL
+	//
+	//    Version 9.5 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  9.5.2 | 9.5.4
+	//
+	//    Version 9.4 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-south-1, ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1,
+	// us-east-1, us-west-1, us-west-2):  9.4.7 | 9.4.9
+	//
+	//    Version 9.4 (available in all AWS regions):  9.4.5
+	//
+	//    Version 9.4 (available in these AWS regions: ap-northeast-1, ap-northeast-2,
+	// ap-southeast-1, ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1,
+	// us-gov-west-1, us-west-1, us-west-2):  9.4.1 | 9.4.4
+	//
+	//    Version 9.3 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-gov-west-1,
+	// us-west-1, us-west-2):  9.3.10 | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
+	//
+	//    Version 9.3 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
+	// us-west-2):  9.3.1 | 9.3.2
+	//
+	//    Version 9.3 (available in these AWS regions: ap-northeast-1, ap-southeast-1,
+	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
+	// us-west-2):  9.3.12 | 9.3.14
 	//
 	//    Microsoft SQL Server Enterprise Edition (sqlserver-ee)
 	//
@@ -8656,105 +9008,6 @@ type CreateDBInstanceInput struct {
 	//
 	//    Version 10.50 (available in all AWS regions):  10.50.2789.0.v1 | 10.50.6000.34.v1
 	// | 10.50.6529.0.v1
-	//
-	//    MySQL
-	//
-	//    Version 5.7 (available in all AWS regions):  5.7.10 | 5.7.11
-	//
-	//    Version 5.6 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  5.6.19a | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22
-	//
-	//    Version 5.6 (available in all AWS regions except ap-south-1):  5.6.23
-	//
-	//    Version 5.6 (available in all AWS regions):  5.6.27 | 5.6.29
-	//
-	//    Version 5.5 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a
-	//
-	//    Version 5.5 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  5.5.40b | 5.5.41
-	//
-	//    Version 5.5 (available in all AWS regions except ap-south-1):  5.5.42
-	//
-	//    Version 5.5 (available in all AWS regions):  5.5.46
-	//
-	//    Oracle Database Enterprise Edition (oracle-ee)
-	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  12.1.0.1.v1 | 12.1.0.1.v2
-	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
-	//
-	//    Version 12.1 (available in all AWS regions):  12.1.0.2.v1
-	//
-	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
-	// | 12.1.0.2.v3 | 12.1.0.2.v4
-	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
-	// | 11.2.0.4.v4
-	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
-	//
-	//    Oracle Database Standard Edition (oracle-se)
-	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  12.1.0.1.v1 | 12.1.0.1.v2
-	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
-	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
-	// | 11.2.0.4.v4
-	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
-	//
-	//    Oracle Database Standard Edition One (oracle-se1)
-	//
-	//    Version 12.1 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  12.1.0.1.v1 | 12.1.0.1.v2
-	//
-	//    Version 12.1 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  12.1.0.1.v3 | 12.1.0.1.v4 | 12.1.0.1.v5
-	//
-	//    Version 11.2 (available in all AWS regions):  11.2.0.4.v1 | 11.2.0.4.v3
-	// | 11.2.0.4.v4
-	//
-	//    Version 11.2 (available in all AWS regions except us-gov-west-1):  11.2.0.4.v5
-	// | 11.2.0.4.v6 | 11.2.0.4.v7 | 11.2.0.4.v8
-	//
-	//    Oracle Database Standard Edition Two (oracle-se2)
-	//
-	//    Version 12.1 (available in all AWS regions except us-gov-west-1):  12.1.0.2.v2
-	// | 12.1.0.2.v3 | 12.1.0.2.v4
-	//
-	//    PostgreSQL
-	//
-	//    Version 9.5 (available in all AWS regions except us-gov-west-1):  9.5.2
-	//
-	//    Version 9.4 (available in all AWS regions except ap-south-1):  9.4.1
-	// | 9.4.4
-	//
-	//    Version 9.4 (available in all AWS regions):  9.4.5
-	//
-	//    Version 9.4 (available in all AWS regions except us-gov-west-1):  9.4.7
-	//
-	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-west-1, sa-east-1, us-east-1, us-gov-west-1, us-west-1,
-	// us-west-2):  9.3.1 | 9.3.2
-	//
-	//    Version 9.3 (available in all AWS regions except ap-south-1, ap-northeast-2):
-	//  9.3.10 | 9.3.3 | 9.3.5 | 9.3.6 | 9.3.9
-	//
-	//    Version 9.3 (only available in AWS regions ap-northeast-1, ap-southeast-1,
-	// ap-southeast-2, eu-central-1, eu-west-1, sa-east-1, us-east-1, us-west-1,
-	// us-west-2):  9.3.12
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -9864,6 +10117,12 @@ type DBCluster struct {
 	// Specifies the allocated storage size in gigabytes (GB).
 	AllocatedStorage *int64 `type:"integer"`
 
+	// Provides a list of the AWS Identity and Access Management (IAM) roles that
+	// are associated with the DB cluster. IAM roles that are associated with a
+	// DB cluster grant permission for the DB cluster to access other AWS services
+	// on your behalf.
+	AssociatedRoles []*DBClusterRole `locationNameList:"DBClusterRole" type:"list"`
+
 	// Provides the list of EC2 Availability Zones that instances in the DB cluster
 	// can be created in.
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
@@ -10097,6 +10356,39 @@ func (s DBClusterParameterGroupNameMessage) String() string {
 
 // GoString returns the string representation
 func (s DBClusterParameterGroupNameMessage) GoString() string {
+	return s.String()
+}
+
+// Describes an AWS Identity and Access Management (IAM) role that is associated
+// with a DB cluster.
+type DBClusterRole struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
+	// DB cluster.
+	RoleArn *string `type:"string"`
+
+	// Describes the state of association between the IAM role and the DB cluster.
+	// The Status property returns one of the following values:
+	//
+	//    ACTIVE - the IAM role ARN is associated with the DB cluster and can be
+	// used to access other AWS services on your behalf.
+	//
+	//    PENDING - the IAM role ARN is being associated with the DB cluster.
+	//
+	//    INVALID - the IAM role ARN is associated with the DB cluster, but the
+	// DB cluster is unable to assume the IAM role in order to access other AWS
+	// services on your behalf.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DBClusterRole) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterRole) GoString() string {
 	return s.String()
 }
 
@@ -15134,10 +15426,9 @@ type ModifyDBInstanceInput struct {
 	DBSecurityGroups []*string `locationNameList:"DBSecurityGroupName" type:"list"`
 
 	// The new DB subnet group for the DB instance. You can use this parameter to
-	// move your DB instance to a different VPC, or to a different subnet group
-	// in the same VPC. If your DB instance is not in a VPC, you can also use this
-	// parameter to move your DB instance into a VPC. For more information, see
-	// Updating the VPC for a DB Instance (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC).
+	// move your DB instance to a different VPC. If your DB instance is not in a
+	// VPC, you can also use this parameter to move your DB instance into a VPC.
+	// For more information, see Updating the VPC for a DB Instance (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC).
 	//
 	// Changing the subnet group causes an outage during the change. The change
 	// is applied during the next maintenance window, unless you specify true for
@@ -16648,6 +16939,61 @@ func (s RecurringCharge) String() string {
 
 // GoString returns the string representation
 func (s RecurringCharge) GoString() string {
+	return s.String()
+}
+
+type RemoveRoleFromDBClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the DB cluster to disassociate the IAM role rom.
+	//
+	// DBClusterIdentifier is a required field
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the IAM role to disassociate from the Aurora
+	// DB cluster, for example arn:aws:iam::123456789012:role/AuroraAccessRole.
+	//
+	// RoleArn is a required field
+	RoleArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveRoleFromDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveRoleFromDBClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveRoleFromDBClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveRoleFromDBClusterInput"}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+type RemoveRoleFromDBClusterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveRoleFromDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveRoleFromDBClusterOutput) GoString() string {
 	return s.String()
 }
 

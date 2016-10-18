@@ -327,6 +327,12 @@ func ExampleIoT_CreateTopicRule() {
 						RangeKeyType:  aws.String("DynamoKeyType"),
 						RangeKeyValue: aws.String("RangeKeyValue"),
 					},
+					DynamoDBv2: &iot.DynamoDBv2Action{
+						PutItem: &iot.PutItemInput{
+							TableName: aws.String("TableName"), // Required
+						},
+						RoleArn: aws.String("AwsArn"),
+					},
 					Elasticsearch: &iot.ElasticsearchAction{
 						Endpoint: aws.String("ElasticsearchEndpoint"), // Required
 						Id:       aws.String("ElasticsearchId"),       // Required
@@ -1436,6 +1442,12 @@ func ExampleIoT_ReplaceTopicRule() {
 						RangeKeyField: aws.String("RangeKeyField"),
 						RangeKeyType:  aws.String("DynamoKeyType"),
 						RangeKeyValue: aws.String("RangeKeyValue"),
+					},
+					DynamoDBv2: &iot.DynamoDBv2Action{
+						PutItem: &iot.PutItemInput{
+							TableName: aws.String("TableName"), // Required
+						},
+						RoleArn: aws.String("AwsArn"),
 					},
 					Elasticsearch: &iot.ElasticsearchAction{
 						Endpoint: aws.String("ElasticsearchEndpoint"), // Required

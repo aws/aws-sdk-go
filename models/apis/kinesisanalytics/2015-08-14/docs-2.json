@@ -553,7 +553,8 @@
     "RawInputRecords": {
       "base": null,
       "refs": {
-        "DiscoverInputSchemaResponse$RawInputRecords": "<p>Raw stream data that was sampled to infer the schema.</p>"
+        "DiscoverInputSchemaResponse$RawInputRecords": "<p>Raw stream data that was sampled to infer the schema.</p>",
+        "UnableToDetectSchemaException$RawInputRecords": null
       }
     },
     "RecordColumn": {
