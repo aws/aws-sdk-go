@@ -269,8 +269,15 @@ func walk(scopes [][]tagInfo) string {
 						block += href
 						after = false
 					}
+				} else {
+					fmt.Println(token.tag)
+					str, _ := formatText(tagInfo{}, lastTag)
+					block += str
 				}
 			}
+		}
+		if !isIndented {
+			block = strings.TrimPrefix(block, " ")
 		}
 		block = wrap(block, 72, isIndented)
 		doc += block
@@ -281,9 +288,9 @@ func walk(scopes [][]tagInfo) string {
 // closeTag will divide up the blocks of documentation to be formated properly.
 func closeTag(token tagInfo, level int) string {
 	switch token.tag {
-	case "pre", "li":
+	case "pre", "li", "div":
 		return "\n"
-	case "p", "h1", "h2", "h3", "h4", "h5", "h6", "div":
+	case "p", "h1", "h2", "h3", "h4", "h5", "h6":
 		return "\n\n"
 	case "code":
 		// indented code is only at the 0th level.
