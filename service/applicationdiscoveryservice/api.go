@@ -928,7 +928,7 @@ type CreateTagsInput struct {
 	// Tags that you want to associate with one or more configuration items. Specify
 	// the tags that you want to create in a key-value format. For example:
 	//
-	//  {"key": "serverType", "value": "webServer"}
+	// {"key": "serverType", "value": "webServer"}
 	//
 	// Tags is a required field
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list" required:"true"`
@@ -995,7 +995,7 @@ type DeleteTagsInput struct {
 	// Tags that you want to delete from one or more configuration items. Specify
 	// the tags that you want to delete in a key-value format. For example:
 	//
-	//  {"key": "serverType", "value": "webServer"}
+	// {"key": "serverType", "value": "webServer"}
 	Tags []*Tag `locationName:"tags" locationNameList:"item" type:"list"`
 }
 
@@ -1349,75 +1349,81 @@ type Filter struct {
 	// The name of the filter. The following filter names are allowed for SERVER
 	// configuration items.
 	//
-	//  Server     server.hostName
+	// Server
 	//
-	//    server.osName
+	//    * server.hostName
 	//
-	//    server.osVersion
+	//    * server.osName
 	//
-	//    server.configurationid
+	//    * server.osVersion
 	//
-	//    server.agentid
+	//    * server.configurationid
 	//
-	//   The name of the filter. The following filter names are allowed for PROCESS
+	//    * server.agentid
+	//
+	// The name of the filter. The following filter names are allowed for PROCESS
 	// configuration items.
 	//
-	//  Process     process.configurationid
+	// Process
 	//
-	//    process.name
+	//    * process.configurationid
 	//
-	//    process.commandLine
+	//    * process.name
 	//
-	//    server.configurationid
+	//    * process.commandLine
 	//
-	//    server.hostName
+	//    * server.configurationid
 	//
-	//    server.osName
+	//    * server.hostName
 	//
-	//    server.osVersion
+	//    * server.osName
 	//
-	//    server.agentId
+	//    * server.osVersion
 	//
-	//   The name of the filter. The following filter names are allowed for CONNECTION
+	//    * server.agentId
+	//
+	// The name of the filter. The following filter names are allowed for CONNECTION
 	// configuration items.
 	//
-	//  Connection     connection.sourceIp
+	// Connection
 	//
-	//    connection.destinationIp
+	//    * connection.sourceIp
 	//
-	//    connection.destinationPort
+	//    * connection.destinationIp
 	//
-	//    sourceProcess.configurationId
+	//    * connection.destinationPort
 	//
-	//    sourceProcess.name
+	//    * sourceProcess.configurationId
 	//
-	//    sourceProcess.commandLine
+	//    * sourceProcess.name
 	//
-	//    destinationProcess.configurationId
+	//    * sourceProcess.commandLine
 	//
-	//    destinationProcess.name
+	//    * destinationProcess.configurationId
 	//
-	//    destinationProcess.commandLine
+	//    * destinationProcess.name
 	//
-	//    sourceServer.configurationId
+	//    * destinationProcess.commandLine
 	//
-	//    sourceServer.hostName
+	//    * sourceServer.configurationId
 	//
-	//    sourceServer.osName
+	//    * sourceServer.hostName
 	//
-	//    sourceServer.osVersion
+	//    * sourceServer.osName
 	//
-	//    sourceServer.agentId
+	//    * sourceServer.osVersion
 	//
-	//    destinationServer.configurationId
+	//    * sourceServer.agentId
 	//
-	//    destinationServer.hostName
+	//    * destinationServer.configurationId
 	//
-	//    destinationServer.osName
+	//    * destinationServer.hostName
 	//
-	//    destinationServer.osVersion
+	//    * destinationServer.osName
 	//
-	//    destinationServer.agentId
+	//    * destinationServer.osVersion
+	//
+	//    * destinationServer.agentId
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -1469,7 +1475,7 @@ type ListConfigurationsInput struct {
 
 	// You can filter the list using a key-value format. For example:
 	//
-	//  {"key": "serverType", "value": "webServer"}
+	// {"key": "serverType", "value": "webServer"}
 	//
 	// You can separate these items by using logical operators.
 	Filters []*Filter `locationName:"filters" type:"list"`

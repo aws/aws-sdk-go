@@ -60,10 +60,13 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 //
 // Creates a new identity pool. The identity pool is a store of user identity
 // information that is specific to your AWS account. The limit on identity pools
-// is 60 per account. The keys for SupportedLoginProviders are as follows:
-// Facebook: graph.facebook.com Google: accounts.google.com Amazon: www.amazon.com
-// Twitter: api.twitter.com Digits: www.digits.com  You must use AWS Developer
-// credentials to call this API.
+// is 60 per account. The keys for SupportedLoginProviders are as follows: Facebook:
+// graph.facebook.com
+// Google: accounts.google.com
+// Amazon: www.amazon.com
+// Twitter: api.twitter.com
+// Digits: www.digits.com
+//  You must use AWS Developer credentials to call this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -824,8 +827,8 @@ func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOp
 // identity pool. The developer provider is the "domain" by which Cognito will
 // refer to your users.
 //
-// You can use GetOpenIdTokenForDeveloperIdentity to create a new identity
-// and to link new logins (that is, user credentials issued by a public provider
+// You can use GetOpenIdTokenForDeveloperIdentity to create a new identity and
+// to link new logins (that is, user credentials issued by a public provider
 // or developer provider) to an existing identity. When you want to create a
 // new identity, the IdentityId should be null. When you want to associate a
 // new login with an existing authenticated/unauthenticated identity, you can
@@ -1928,8 +1931,11 @@ type GetIdInput struct {
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
-	// The available provider names for Logins are as follows:  Facebook: graph.facebook.com
-	// Google: accounts.google.com Amazon: www.amazon.com Twitter: api.twitter.com
+	// The available provider names for Logins are as follows: Facebook: graph.facebook.com
+	//
+	// Google: accounts.google.com
+	// Amazon: www.amazon.com
+	// Twitter: api.twitter.com
 	// Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
 }

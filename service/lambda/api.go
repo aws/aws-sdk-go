@@ -249,8 +249,8 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 // How it Works (http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html)
 // in the AWS Lambda Developer Guide.
 //
-//  You provide mapping information (for example, which stream to read from
-// and which Lambda function to invoke) in the request body.
+// You provide mapping information (for example, which stream to read from and
+// which Lambda function to invoke) in the request body.
 //
 // Each event source, such as an Amazon Kinesis or a DynamoDB stream, can be
 // associated with multiple AWS Lambda function. A given Lambda function can
@@ -345,7 +345,7 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // in the request body. If the function name already exists, the operation will
 // fail. Note that the function name is case-sensitive.
 //
-//  If you are using versioning, you can also publish a version of the Lambda
+// If you are using versioning, you can also publish a version of the Lambda
 // function you are creating using the Publish parameter. For more information
 // about versioning, see AWS Lambda Function Versioning and Aliases (http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
 //
@@ -764,8 +764,7 @@ func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput)
 // Returns configuration information for the specified event source mapping
 // (see CreateEventSourceMapping).
 //
-// This operation requires permission for the lambda:GetEventSourceMapping
-// action.
+// This operation requires permission for the lambda:GetEventSourceMapping action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1019,7 +1018,7 @@ func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, 
 //
 // Returns the resource policy associated with the specified Lambda function.
 //
-//  If you are using the versioning feature, you can get the resource policy
+// If you are using the versioning feature, you can get the resource policy
 // associated with the specific Lambda function version or alias by specifying
 // the version or alias name using the Qualifier parameter. For more information
 // about versioning, see AWS Lambda Function Versioning and Aliases (http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
@@ -1233,7 +1232,7 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 //
 // This API is deprecated. We recommend you use Invoke API (see Invoke).
 //
-//  Submits an invocation request to AWS Lambda. Upon receiving the request,
+// Submits an invocation request to AWS Lambda. Upon receiving the request,
 // Lambda executes the specified function asynchronously. To see the logs generated
 // by the Lambda function execution, see the CloudWatch Logs console.
 //
@@ -1780,8 +1779,8 @@ func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *req
 // with a Lambda function by providing a statement ID that you provided when
 // you added the permission.
 //
-// If you are using versioning, the permissions you remove are specific to
-// the Lambda function version or alias you specify in the AddPermission request
+// If you are using versioning, the permissions you remove are specific to the
+// Lambda function version or alias you specify in the AddPermission request
 // via the Qualifier parameter. For more information about versioning, see AWS
 // Lambda Function Versioning and Aliases (http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html).
 //
@@ -2185,7 +2184,7 @@ type AddPermissionInput struct {
 	// Name of the Lambda function whose resource policy you are updating by adding
 	// a new permission.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
@@ -2210,17 +2209,17 @@ type AddPermissionInput struct {
 	// the qualifier, then permission applies only when request is made using qualified
 	// function ARN:
 	//
-	//  arn:aws:lambda:aws-region:acct-id:function:function-name:2
+	// arn:aws:lambda:aws-region:acct-id:function:function-name:2
 	//
 	// If you specify an alias name, for example PROD, then the permission is valid
 	// only for requests made using the alias ARN:
 	//
-	//  arn:aws:lambda:aws-region:acct-id:function:function-name:PROD
+	// arn:aws:lambda:aws-region:acct-id:function:function-name:PROD
 	//
 	// If the qualifier is not specified, the permission is valid only when requests
 	// is made using unqualified function ARN.
 	//
-	//  arn:aws:lambda:aws-region:acct-id:function:function-name
+	// arn:aws:lambda:aws-region:acct-id:function:function-name
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
 	// This parameter is used for S3 and SES only. The AWS account ID (without a
@@ -2420,19 +2419,19 @@ type CreateEventSourceMappingInput struct {
 
 	// The Lambda function to invoke when AWS Lambda detects an event on the stream.
 	//
-	//  You can specify the function name (for example, Thumbnail) or you can specify
+	// You can specify the function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	//
-	//  If you are using versioning, you can also provide a qualified function
-	// ARN (ARN that is qualified with function version or alias name as suffix).
-	// For more information about versioning, see AWS Lambda Function Versioning
-	// and Aliases (http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html)
+	// If you are using versioning, you can also provide a qualified function ARN
+	// (ARN that is qualified with function version or alias name as suffix). For
+	// more information about versioning, see AWS Lambda Function Versioning and
+	// Aliases (http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html)
 	//
 	// AWS Lambda also allows you to specify only the function name with the account
 	// ID qualifier (for example, account-id:Thumbnail).
 	//
-	// Note that the length constraint applies only to the ARN. If you specify
-	// only the function name, it is limited to 64 character in length.
+	// Note that the length constraint applies only to the ARN. If you specify only
+	// the function name, it is limited to 64 character in length.
 	//
 	// FunctionName is a required field
 	FunctionName *string `min:"1" type:"string" required:"true"`
@@ -2693,7 +2692,7 @@ type DeleteFunctionInput struct {
 
 	// The Lambda function to delete.
 	//
-	//  You can specify the function name (for example, Thumbnail) or you can specify
+	// You can specify the function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// If you are using versioning, you can also provide a qualified function ARN
 	// (ARN that is qualified with function version or alias name as suffix). AWS
@@ -3032,7 +3031,7 @@ type GetFunctionConfigurationInput struct {
 	// The name of the Lambda function for which you want to retrieve the configuration
 	// information.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
@@ -3086,7 +3085,7 @@ type GetFunctionInput struct {
 
 	// The Lambda function name.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
@@ -3160,7 +3159,7 @@ type GetPolicyInput struct {
 
 	// Function name whose resource policy you want to retrieve.
 	//
-	//  You can specify the function name (for example, Thumbnail) or you can specify
+	// You can specify the function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// If you are using versioning, you can also provide a qualified function ARN
 	// (ARN that is qualified with function version or alias name as suffix). AWS
@@ -3302,7 +3301,7 @@ type InvokeInput struct {
 
 	// The Lambda function name.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
@@ -3494,7 +3493,7 @@ type ListEventSourceMappingsInput struct {
 
 	// The name of the Lambda function.
 	//
-	//  You can specify the function name (for example, Thumbnail) or you can specify
+	// You can specify the function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// If you are using versioning, you can also provide a qualified function ARN
 	// (ARN that is qualified with function version or alias name as suffix). AWS
@@ -3743,7 +3742,7 @@ type RemovePermissionInput struct {
 
 	// Lambda function whose resource policy you want to remove a permission from.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
@@ -3882,7 +3881,7 @@ type UpdateEventSourceMappingInput struct {
 
 	// The Lambda function to which you want the stream records sent.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	//
@@ -3891,8 +3890,8 @@ type UpdateEventSourceMappingInput struct {
 	// more information about versioning, see AWS Lambda Function Versioning and
 	// Aliases (http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html)
 	//
-	// Note that the length constraint applies only to the ARN. If you specify
-	// only the function name, it is limited to 64 character in length.
+	// Note that the length constraint applies only to the ARN. If you specify only
+	// the function name, it is limited to 64 character in length.
 	FunctionName *string `min:"1" type:"string"`
 
 	// The event source mapping identifier.
@@ -3935,7 +3934,7 @@ type UpdateFunctionCodeInput struct {
 
 	// The existing Lambda function name whose code you want to replace.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only
@@ -4014,7 +4013,7 @@ type UpdateFunctionConfigurationInput struct {
 
 	// The name of the Lambda function.
 	//
-	//  You can specify a function name (for example, Thumbnail) or you can specify
+	// You can specify a function name (for example, Thumbnail) or you can specify
 	// Amazon Resource Name (ARN) of the function (for example, arn:aws:lambda:us-west-2:account-id:function:ThumbNail).
 	// AWS Lambda also allows you to specify a partial ARN (for example, account-id:Thumbnail).
 	// Note that the length constraint applies only to the ARN. If you specify only

@@ -360,7 +360,7 @@ func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTy
 // Marks a custom action as deleted. PollForJobs for the custom action will
 // fail after the action is marked for deletion. Only used for custom actions.
 //
-//  You cannot recreate a custom action after it has been deleted unless you
+// You cannot recreate a custom action after it has been deleted unless you
 // increase the version number of the action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -638,10 +638,10 @@ func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *req
 //
 // Returns information about a job. Only used for custom actions.
 //
-//  When this API is called, AWS CodePipeline returns temporary credentials
-// for the Amazon S3 bucket used to store artifacts for the pipeline, if the
-// action requires access to that Amazon S3 bucket for input or output artifacts.
-// Additionally, this API returns any secret values defined for the action.
+// When this API is called, AWS CodePipeline returns temporary credentials for
+// the Amazon S3 bucket used to store artifacts for the pipeline, if the action
+// requires access to that Amazon S3 bucket for input or output artifacts. Additionally,
+// this API returns any secret values defined for the action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -925,10 +925,10 @@ func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDet
 // Requests the details of a job for a third party action. Only used for partner
 // actions.
 //
-//  When this API is called, AWS CodePipeline returns temporary credentials
-// for the Amazon S3 bucket used to store artifacts for the pipeline, if the
-// action requires access to that Amazon S3 bucket for input or output artifacts.
-// Additionally, this API returns any secret values defined for the action.
+// When this API is called, AWS CodePipeline returns temporary credentials for
+// the Amazon S3 bucket used to store artifacts for the pipeline, if the action
+// requires access to that Amazon S3 bucket for input or output artifacts. Additionally,
+// this API returns any secret values defined for the action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1137,10 +1137,10 @@ func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *request
 //
 // Returns information about any jobs for AWS CodePipeline to act upon.
 //
-//  When this API is called, AWS CodePipeline returns temporary credentials
-// for the Amazon S3 bucket used to store artifacts for the pipeline, if the
-// action requires access to that Amazon S3 bucket for input or output artifacts.
-// Additionally, this API returns any secret values defined for the action.
+// When this API is called, AWS CodePipeline returns temporary credentials for
+// the Amazon S3 bucket used to store artifacts for the pipeline, if the action
+// requires access to that Amazon S3 bucket for input or output artifacts. Additionally,
+// this API returns any secret values defined for the action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1210,9 +1210,9 @@ func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobs
 // Determines whether there are any third party jobs for a job worker to act
 // on. Only used for partner actions.
 //
-//  When this API is called, AWS CodePipeline returns temporary credentials
-// for the Amazon S3 bucket used to store artifacts for the pipeline, if the
-// action requires access to that Amazon S3 bucket for input or output artifacts.
+// When this API is called, AWS CodePipeline returns temporary credentials for
+// the Amazon S3 bucket used to store artifacts for the pipeline, if the action
+// requires access to that Amazon S3 bucket for input or output artifacts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2869,7 +2869,7 @@ type CreateCustomActionTypeInput struct {
 
 	// The category of the custom action, such as a build action or a test action.
 	//
-	//  Although Source and Approval are listed as valid values, they are not currently
+	// Although Source and Approval are listed as valid values, they are not currently
 	// functional. These values are reserved for future use.
 	//
 	// Category is a required field
@@ -2877,7 +2877,7 @@ type CreateCustomActionTypeInput struct {
 
 	// The configuration properties for the custom action.
 	//
-	//  You can refer to a name in the configuration properties of the custom action
+	// You can refer to a name in the configuration properties of the custom action
 	// within the URL templates by following the format of {Config:name}, as long
 	// as the configuration property is both required and not secret. For more information,
 	// see Create a Custom Action for a Pipeline (http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-custom-action.html).
@@ -3581,7 +3581,7 @@ type GetJobDetailsOutput struct {
 
 	// The details of the job.
 	//
-	//  If AWSSessionCredentials is used, a long-running job can call GetJobDetails
+	// If AWSSessionCredentials is used, a long-running job can call GetJobDetails
 	// again to obtain new credentials.
 	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
 }
@@ -3768,7 +3768,7 @@ type GetPipelineStateOutput struct {
 
 	// The version number of the pipeline.
 	//
-	//  A newly-created pipeline is always assigned a version number of 1.
+	// A newly-created pipeline is always assigned a version number of 1.
 	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
 
 	// A list of the pipeline stage output information, including stage name, state,
@@ -4257,15 +4257,15 @@ type PipelineExecution struct {
 
 	// The status of the pipeline execution.
 	//
-	//   InProgress: The pipeline execution is currently running.
+	//    * InProgress: The pipeline execution is currently running.
 	//
-	//   Succeeded: The pipeline execution completed successfully.
+	//    * Succeeded: The pipeline execution completed successfully.
 	//
-	//   Superseded: While this pipeline execution was waiting for the next stage
-	// to be completed, a newer pipeline execution caught up and continued through
-	// the pipeline instead.
+	//    * Superseded: While this pipeline execution was waiting for the next stage
+	//    to be completed, a newer pipeline execution caught up and continued through
+	//    the pipeline instead.
 	//
-	//   Failed: The pipeline did not complete successfully.
+	//    * Failed: The pipeline did not complete successfully.
 	Status *string `locationName:"status" type:"string" enum:"PipelineExecutionStatus"`
 }
 

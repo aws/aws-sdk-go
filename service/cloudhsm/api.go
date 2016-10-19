@@ -57,8 +57,7 @@ func (c *CloudHSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req 
 //
 // Adds or overwrites one or more tags for the specified AWS CloudHSM resource.
 //
-// Each tag consists of a key and a value. Tag keys must be unique to each
-// resource.
+// Each tag consists of a key and a value. Tag keys must be unique to each resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -207,7 +206,7 @@ func (c *CloudHSM) CreateHsmRequest(input *CreateHsmInput) (req *request.Request
 // the AWS Support Center (https://console.aws.amazon.com/support/home#/), create
 // a new case, and select Account and Billing Support.
 //
-//  It can take up to 20 minutes to create and provision an HSM. You can monitor
+// It can take up to 20 minutes to create and provision an HSM. You can monitor
 // the status of the HSM with the DescribeHsm operation. The HSM is ready to
 // be initialized when the status changes to RUNNING.
 //
@@ -1280,8 +1279,8 @@ func (c *CloudHSM) ModifyHsmRequest(input *ModifyHsmInput) (req *request.Request
 //
 // Modifies an HSM.
 //
-//  This operation can result in the HSM being offline for up to 15 minutes
-// while the AWS CloudHSM service is reconfigured. If you are modifying a production
+// This operation can result in the HSM being offline for up to 15 minutes while
+// the AWS CloudHSM service is reconfigured. If you are modifying a production
 // HSM, you should ensure that your AWS CloudHSM service is configured for high
 // availability, and consider executing this operation during a maintenance
 // window.
@@ -1423,8 +1422,8 @@ func (c *CloudHSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceIn
 //
 // Removes one or more tags from the specified AWS CloudHSM resource.
 //
-// To remove a tag, specify only the tag key to remove (not the value). To
-// overwrite the value for an existing tag, use AddTagsToResource.
+// To remove a tag, specify only the tag key to remove (not the value). To overwrite
+// the value for an existing tag, use AddTagsToResource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1604,8 +1603,8 @@ type CreateHsmInput struct {
 
 	// Specifies the type of subscription for the HSM.
 	//
-	//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
-	// The HSM is being used in a product trial.
+	//    * PRODUCTION - The HSM is being used in a production environment.
+	//    * TRIAL - The HSM is being used in a product trial.
 	//
 	// SubscriptionType is a required field
 	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true" enum:"SubscriptionType"`
@@ -2039,8 +2038,8 @@ type DescribeHsmOutput struct {
 
 	// Specifies the type of subscription for the HSM.
 	//
-	//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
-	// The HSM is being used in a product trial.
+	//    * PRODUCTION - The HSM is being used in a production environment.
+	//    * TRIAL - The HSM is being used in a product trial.
 	SubscriptionType *string `type:"string" enum:"SubscriptionType"`
 
 	// The name of the HSM vendor.
@@ -2725,8 +2724,8 @@ const (
 
 // Specifies the type of subscription for the HSM.
 //
-//  PRODUCTION - The HSM is being used in a production environment. TRIAL -
-// The HSM is being used in a product trial.
+//    * PRODUCTION - The HSM is being used in a production environment.
+//    * TRIAL - The HSM is being used in a product trial.
 const (
 	// SubscriptionTypeProduction is a SubscriptionType enum value
 	SubscriptionTypeProduction = "PRODUCTION"

@@ -60,10 +60,10 @@ func (c *DynamoDBStreams) DescribeStreamRequest(input *DescribeStreamInput) (req
 // its Amazon Resource Name (ARN), the composition of its shards, and its corresponding
 // DynamoDB table.
 //
-//  You can call DescribeStream at a maximum rate of 10 times per second.
+// You can call DescribeStream at a maximum rate of 10 times per second.
 //
-//  Each shard in the stream has a SequenceNumberRange associated with it.
-// If the SequenceNumberRange has a StartingSequenceNumber but no EndingSequenceNumber,
+// Each shard in the stream has a SequenceNumberRange associated with it. If
+// the SequenceNumberRange has a StartingSequenceNumber but no EndingSequenceNumber,
 // then the shard is still open (able to receive more stream records). If both
 // StartingSequenceNumber and EndingSequenceNumber are present, then that shard
 // is closed and can no longer receive more data.
@@ -142,7 +142,7 @@ func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *reques
 // an empty list. Note that it might take multiple calls to get to a portion
 // of the shard that contains stream records.
 //
-//   GetRecords can retrieve a maximum of 1 MB of data or 1000 stream records,
+// GetRecords can retrieve a maximum of 1 MB of data or 1000 stream records,
 // whichever comes first.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -175,16 +175,16 @@ func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *reques
 //   * TrimmedDataAccessException
 //   The operation attempted to read past the oldest stream record in a shard.
 //
-//   In DynamoDB Streams, there is a 24 hour limit on data retention. Stream
-//   records whose age exceeds this limit are subject to removal (trimming) from
-//   the stream. You might receive a TrimmedDataAccessException if:
+//   In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records
+//   whose age exceeds this limit are subject to removal (trimming) from the stream.
+//   You might receive a TrimmedDataAccessException if:
 //
-//    You request a shard iterator with a sequence number older than the trim
-//   point (24 hours).
+//      * You request a shard iterator with a sequence number older than the trim
+//      point (24 hours).
 //
-//    You obtain a shard iterator, but before you use the iterator in a GetRecords
-//   request, a stream record in the shard exceeds the 24 hour period and is trimmed.
-//   This causes the iterator to access a record that no longer exists.
+//      * You obtain a shard iterator, but before you use the iterator in a GetRecords
+//      request, a stream record in the shard exceeds the 24 hour period and is
+//      trimmed. This causes the iterator to access a record that no longer exists.
 //
 func (c *DynamoDBStreams) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, error) {
 	req, out := c.GetRecordsRequest(input)
@@ -241,7 +241,7 @@ func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) 
 // to retrieve the stream records from within a shard. Use the shard iterator
 // in a subsequent GetRecords request to read the stream records from the shard.
 //
-//  A shard iterator expires 15 minutes after it is returned to the requester.
+// A shard iterator expires 15 minutes after it is returned to the requester.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -260,16 +260,16 @@ func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) 
 //   * TrimmedDataAccessException
 //   The operation attempted to read past the oldest stream record in a shard.
 //
-//   In DynamoDB Streams, there is a 24 hour limit on data retention. Stream
-//   records whose age exceeds this limit are subject to removal (trimming) from
-//   the stream. You might receive a TrimmedDataAccessException if:
+//   In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records
+//   whose age exceeds this limit are subject to removal (trimming) from the stream.
+//   You might receive a TrimmedDataAccessException if:
 //
-//    You request a shard iterator with a sequence number older than the trim
-//   point (24 hours).
+//      * You request a shard iterator with a sequence number older than the trim
+//      point (24 hours).
 //
-//    You obtain a shard iterator, but before you use the iterator in a GetRecords
-//   request, a stream record in the shard exceeds the 24 hour period and is trimmed.
-//   This causes the iterator to access a record that no longer exists.
+//      * You obtain a shard iterator, but before you use the iterator in a GetRecords
+//      request, a stream record in the shard exceeds the 24 hour period and is
+//      trimmed. This causes the iterator to access a record that no longer exists.
 //
 func (c *DynamoDBStreams) GetShardIterator(input *GetShardIteratorInput) (*GetShardIteratorOutput, error) {
 	req, out := c.GetShardIteratorRequest(input)
@@ -326,7 +326,7 @@ func (c *DynamoDBStreams) ListStreamsRequest(input *ListStreamsInput) (req *requ
 // If the TableName parameter is present, then ListStreams will return only
 // the streams ARNs for that table.
 //
-//  You can call ListStreams at a maximum rate of 5 times per second.
+// You can call ListStreams at a maximum rate of 5 times per second.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -501,19 +501,19 @@ type GetShardIteratorInput struct {
 	// Determines how the shard iterator is used to start reading stream records
 	// from the shard:
 	//
-	//    AT_SEQUENCE_NUMBER - Start reading exactly from the position denoted
-	// by a specific sequence number.
+	//    * AT_SEQUENCE_NUMBER - Start reading exactly from the position denoted
+	//    by a specific sequence number.
 	//
-	//    AFTER_SEQUENCE_NUMBER - Start reading right after the position denoted
-	// by a specific sequence number.
+	//    * AFTER_SEQUENCE_NUMBER - Start reading right after the position denoted
+	//    by a specific sequence number.
 	//
-	//    TRIM_HORIZON - Start reading at the last (untrimmed) stream record, which
-	// is the oldest record in the shard. In DynamoDB Streams, there is a 24 hour
-	// limit on data retention. Stream records whose age exceeds this limit are
-	// subject to removal (trimming) from the stream.
+	//    * TRIM_HORIZON - Start reading at the last (untrimmed) stream record,
+	//    which is the oldest record in the shard. In DynamoDB Streams, there is
+	//    a 24 hour limit on data retention. Stream records whose age exceeds this
+	//    limit are subject to removal (trimming) from the stream.
 	//
-	//    LATEST - Start reading just after the most recent stream record in the
-	// shard, so that you always read the most recent data in the shard.
+	//    * LATEST - Start reading just after the most recent stream record in the
+	//    shard, so that you always read the most recent data in the shard.
 	//
 	// ShardIteratorType is a required field
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
@@ -636,8 +636,8 @@ type ListStreamsOutput struct {
 	// previous result set. Use this value to start a new operation, excluding this
 	// value in the new request.
 	//
-	// If LastEvaluatedStreamArn is empty, then the "last page" of results has
-	// been processed and there is no more data to be retrieved.
+	// If LastEvaluatedStreamArn is empty, then the "last page" of results has been
+	// processed and there is no more data to be retrieved.
 	//
 	// If LastEvaluatedStreamArn is not empty, it does not necessarily mean that
 	// there is more data in the result set. The only way to know when you have
@@ -675,11 +675,11 @@ type Record struct {
 
 	// The type of data modification that was performed on the DynamoDB table:
 	//
-	//    INSERT - a new item was added to the table.
+	//    * INSERT - a new item was added to the table.
 	//
-	//    MODIFY - one or more of an existing item's attributes were modified.
+	//    * MODIFY - one or more of an existing item's attributes were modified.
 	//
-	//    REMOVE - the item was deleted from the table
+	//    * REMOVE - the item was deleted from the table
 	EventName *string `locationName:"eventName" type:"string" enum:"OperationType"`
 
 	// The AWS service from which the stream record originated. For DynamoDB Streams,
@@ -765,11 +765,11 @@ type Stream struct {
 	// However, the combination of the following three elements is guaranteed to
 	// be unique:
 	//
-	//   the AWS customer ID.
+	//    * the AWS customer ID.
 	//
-	//   the table name
+	//    * the table name
 	//
-	//   the StreamLabel
+	//    * the StreamLabel
 	StreamLabel *string `type:"string"`
 
 	// The DynamoDB table with which the stream is associated.
@@ -803,9 +803,9 @@ type StreamDescription struct {
 	// If LastEvaluatedShardId is empty, then the "last page" of results has been
 	// processed and there is currently no more data to be retrieved.
 	//
-	// If LastEvaluatedShardId is not empty, it does not necessarily mean that
-	// there is more data in the result set. The only way to know when you have
-	// reached the end of the result set is when LastEvaluatedShardId is empty.
+	// If LastEvaluatedShardId is not empty, it does not necessarily mean that there
+	// is more data in the result set. The only way to know when you have reached
+	// the end of the result set is when LastEvaluatedShardId is empty.
 	LastEvaluatedShardId *string `min:"28" type:"string"`
 
 	// The shards that comprise the stream.
@@ -821,37 +821,37 @@ type StreamDescription struct {
 	// However, the combination of the following three elements is guaranteed to
 	// be unique:
 	//
-	//   the AWS customer ID.
+	//    * the AWS customer ID.
 	//
-	//   the table name
+	//    * the table name
 	//
-	//   the StreamLabel
+	//    * the StreamLabel
 	StreamLabel *string `type:"string"`
 
 	// Indicates the current status of the stream:
 	//
-	//    ENABLING - Streams is currently being enabled on the DynamoDB table.
+	//    * ENABLING - Streams is currently being enabled on the DynamoDB table.
 	//
-	//    ENABLED - the stream is enabled.
+	//    * ENABLED - the stream is enabled.
 	//
-	//    DISABLING - Streams is currently being disabled on the DynamoDB table.
+	//    * DISABLING - Streams is currently being disabled on the DynamoDB table.
 	//
-	//    DISABLED - the stream is disabled.
+	//    * DISABLED - the stream is disabled.
 	StreamStatus *string `type:"string" enum:"StreamStatus"`
 
 	// Indicates the format of the records within this stream:
 	//
-	//    KEYS_ONLY - only the key attributes of items that were modified in the
-	// DynamoDB table.
+	//    * KEYS_ONLY - only the key attributes of items that were modified in the
+	//    DynamoDB table.
 	//
-	//    NEW_IMAGE - entire items from the table, as they appeared after they
-	// were modified.
+	//    * NEW_IMAGE - entire items from the table, as they appeared after they
+	//    were modified.
 	//
-	//    OLD_IMAGE - entire items from the table, as they appeared before they
-	// were modified.
+	//    * OLD_IMAGE - entire items from the table, as they appeared before they
+	//    were modified.
 	//
-	//    NEW_AND_OLD_IMAGES - both the new and the old images of the items from
-	// the table.
+	//    * NEW_AND_OLD_IMAGES - both the new and the old images of the items from
+	//    the table.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	// The DynamoDB table with which the stream is associated.
@@ -895,13 +895,13 @@ type StreamRecord struct {
 	// The type of data from the modified DynamoDB item that was captured in this
 	// stream record:
 	//
-	//    KEYS_ONLY - only the key attributes of the modified item.
+	//    * KEYS_ONLY - only the key attributes of the modified item.
 	//
-	//    NEW_IMAGE - the entire item, as it appeared after it was modified.
+	//    * NEW_IMAGE - the entire item, as it appeared after it was modified.
 	//
-	//    OLD_IMAGE - the entire item, as it appeared before it was modified.
+	//    * OLD_IMAGE - the entire item, as it appeared before it was modified.
 	//
-	//    NEW_AND_OLD_IMAGES - both the new and the old item images of the item.
+	//    * NEW_AND_OLD_IMAGES - both the new and the old item images of the item.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 }
 

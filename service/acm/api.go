@@ -159,9 +159,9 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 // by calling the GetCertificate action. The certificate will not be available
 // for use by other AWS services.
 //
-//  You cannot delete an ACM Certificate that is being used by another AWS
-// service. To delete a certificate that is in use, the certificate association
-// must first be removed.
+// You cannot delete an ACM Certificate that is being used by another AWS service.
+// To delete a certificate that is in use, the certificate association must
+// first be removed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -312,7 +312,7 @@ func (c *ACM) GetCertificateRequest(input *GetCertificateInput) (req *request.Re
 // you want to decode the certificate chain to see the individual certificate
 // fields, you can use OpenSSL.
 //
-//  Currently, ACM Certificates can be used only with Elastic Load Balancing
+// Currently, ACM Certificates can be used only with Elastic Load Balancing
 // and Amazon CloudFront.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -388,10 +388,10 @@ func (c *ACM) ImportCertificateRequest(input *ImportCertificateInput) (req *requ
 // Imports an SSL/TLS certificate into AWS Certificate Manager (ACM) to use
 // with ACM's integrated AWS services (http://docs.aws.amazon.com/acm/latest/userguide/acm-services.html).
 //
-//  ACM does not provide managed renewal (http://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html)
+// ACM does not provide managed renewal (http://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html)
 // for certificates that you import.
 //
-//  For more information about importing certificates into ACM, including the
+// For more information about importing certificates into ACM, including the
 // differences between certificates that you import and those that ACM provides,
 // see Importing Certificates (http://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
 // in the AWS Certificate Manager User Guide.
@@ -851,7 +851,7 @@ type AddTagsToCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate to which the tag is to
 	// be applied. This must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1028,7 +1028,7 @@ type CertificateSummary struct {
 
 	// Amazon Resource Name (ARN) of the certificate. This is of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1055,7 +1055,7 @@ type DeleteCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate to be deleted. This must
 	// be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1109,7 +1109,7 @@ type DescribeCertificateInput struct {
 
 	// String that contains an ACM Certificate ARN. The ARN must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1167,7 +1167,7 @@ func (s DescribeCertificateOutput) GoString() string {
 type DomainValidation struct {
 	_ struct{} `type:"structure"`
 
-	// Fully Qualified Domain Name (FQDN) of the form www.example.com or  example.com.
+	// Fully Qualified Domain Name (FQDN) of the form www.example.com or example.com.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
@@ -1207,15 +1207,15 @@ type DomainValidationOption struct {
 	// domain registrant, technical contact, and administrative contact in WHOIS
 	// for the base domain and the following five addresses:
 	//
-	//   admin@subdomain.example.com
+	//    * admin@subdomain.example.com
 	//
-	//   administrator@subdomain.example.com
+	//    * administrator@subdomain.example.com
 	//
-	//   hostmaster@subdomain.example.com
+	//    * hostmaster@subdomain.example.com
 	//
-	//   postmaster@subdomain.example.com
+	//    * postmaster@subdomain.example.com
 	//
-	//   webmaster@subdomain.example.com
+	//    * webmaster@subdomain.example.com
 	//
 	// ValidationDomain is a required field
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
@@ -1258,7 +1258,7 @@ type GetCertificateInput struct {
 
 	// String that contains a certificate ARN in the following format:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1320,13 +1320,13 @@ type ImportCertificateInput struct {
 
 	// The certificate to import. It must meet the following requirements:
 	//
-	//   Must be PEM-encoded.
+	//    * Must be PEM-encoded.
 	//
-	//   Must contain a 1024-bit or 2048-bit RSA public key.
+	//    * Must contain a 1024-bit or 2048-bit RSA public key.
 	//
-	//   Must be valid at the time of import. You cannot import a certificate before
-	// its validity period begins (the certificate's NotBefore date) or after it
-	// expires (the certificate's NotAfter date).
+	//    * Must be valid at the time of import. You cannot import a certificate
+	//    before its validity period begins (the certificate's NotBefore date) or
+	//    after it expires (the certificate's NotAfter date).
 	//
 	// Certificate is automatically base64 encoded/decoded by the SDK.
 	//
@@ -1346,10 +1346,10 @@ type ImportCertificateInput struct {
 	// The private key that matches the public key in the certificate. It must meet
 	// the following requirements:
 	//
-	//   Must be PEM-encoded.
+	//    * Must be PEM-encoded.
 	//
-	//   Must be unencrypted. You cannot import a private key that is protected
-	// by a password or passphrase.
+	//    * Must be unencrypted. You cannot import a private key that is protected
+	//    by a password or passphrase.
 	//
 	// PrivateKey is automatically base64 encoded/decoded by the SDK.
 	//
@@ -1484,7 +1484,7 @@ type ListTagsForCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate for which you want to
 	// list the tags. This must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1542,7 +1542,7 @@ type RemoveTagsFromCertificateInput struct {
 	// String that contains the ARN of the ACM Certificate with one or more tags
 	// that you want to remove. This must be of the form:
 	//
-	//  arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
 	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
@@ -1630,15 +1630,15 @@ type RequestCertificateInput struct {
 	// ACM sends email to the domain registrant, technical contact, and administrative
 	// contact in WHOIS and the following five addresses:
 	//
-	//   admin@example.com
+	//    * admin@example.com
 	//
-	//   administrator@example.com
+	//    * administrator@example.com
 	//
-	//   hostmaster@example.com
+	//    * hostmaster@example.com
 	//
-	//   postmaster@example.com
+	//    * postmaster@example.com
 	//
-	//   webmaster@example.com
+	//    * webmaster@example.com
 	DomainValidationOptions []*DomainValidationOption `min:"1" type:"list"`
 
 	// Customer chosen string that can be used to distinguish between calls to RequestCertificate.
@@ -1707,7 +1707,7 @@ type RequestCertificateOutput struct {
 	// String that contains the ARN of the issued certificate. This must be of the
 	// form:
 	//
-	//  arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	CertificateArn *string `min:"20" type:"string"`
 }
 
@@ -1731,7 +1731,7 @@ type ResendValidationEmailInput struct {
 	//
 	// The ARN must be of the form:
 	//
-	//  arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
+	// arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -1749,15 +1749,15 @@ type ResendValidationEmailInput struct {
 	// ACM sends email to the domain registrant, technical contact, and administrative
 	// contact in WHOIS and the following five addresses:
 	//
-	//   admin@subdomain.example.com
+	//    * admin@subdomain.example.com
 	//
-	//   administrator@subdomain.example.com
+	//    * administrator@subdomain.example.com
 	//
-	//   hostmaster@subdomain.example.com
+	//    * hostmaster@subdomain.example.com
 	//
-	//   postmaster@subdomain.example.com
+	//    * postmaster@subdomain.example.com
 	//
-	//   webmaster@subdomain.example.com
+	//    * webmaster@subdomain.example.com
 	//
 	// ValidationDomain is a required field
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
