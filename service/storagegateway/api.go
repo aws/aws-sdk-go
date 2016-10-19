@@ -214,11 +214,11 @@ func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput)
 // tag consists of a key and a value, which you define. You can add tags to
 // the following AWS Storage Gateway resources:
 //
-//    Storage gateways of all types
+//    * Storage gateways of all types
 //
-//    Storage Volumes
+//    * Storage Volumes
 //
-//    Virtual Tapes
+//    * Virtual Tapes
 //
 // You can create a maximum of 10 tags for each resource. Virtual tapes and
 // storage volumes that are recovered to a new gateway maintain their tags.
@@ -4429,19 +4429,19 @@ func (c *StorageGateway) UpdateVTLDeviceType(input *UpdateVTLDeviceTypeInput) (*
 
 // A JSON object containing one or more of the following fields:
 //
-//    ActivateGatewayInput$ActivationKey
+//    * ActivateGatewayInput$ActivationKey
 //
-//    ActivateGatewayInput$GatewayName
+//    * ActivateGatewayInput$GatewayName
 //
-//    ActivateGatewayInput$GatewayRegion
+//    * ActivateGatewayInput$GatewayRegion
 //
-//    ActivateGatewayInput$GatewayTimezone
+//    * ActivateGatewayInput$GatewayTimezone
 //
-//    ActivateGatewayInput$GatewayType
+//    * ActivateGatewayInput$GatewayType
 //
-//    ActivateGatewayInput$TapeDriveType
+//    * ActivateGatewayInput$TapeDriveType
 //
-//    ActivateGatewayInput$MediumChangerType
+//    * ActivateGatewayInput$MediumChangerType
 type ActivateGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4775,7 +4775,7 @@ func (s AddUploadBufferOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    AddWorkingStorageInput$DiskIds
+//    * AddWorkingStorageInput$DiskIds
 type AddWorkingStorageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5192,9 +5192,9 @@ func (s CreateSnapshotFromVolumeRecoveryPointOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    CreateSnapshotInput$SnapshotDescription
+//    * CreateSnapshotInput$SnapshotDescription
 //
-//    CreateSnapshotInput$VolumeARN
+//    * CreateSnapshotInput$VolumeARN
 type CreateSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5269,15 +5269,15 @@ func (s CreateSnapshotOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    CreateStorediSCSIVolumeInput$DiskId
+//    * CreateStorediSCSIVolumeInput$DiskId
 //
-//    CreateStorediSCSIVolumeInput$NetworkInterfaceId
+//    * CreateStorediSCSIVolumeInput$NetworkInterfaceId
 //
-//    CreateStorediSCSIVolumeInput$PreserveExistingData
+//    * CreateStorediSCSIVolumeInput$PreserveExistingData
 //
-//    CreateStorediSCSIVolumeInput$SnapshotId
+//    * CreateStorediSCSIVolumeInput$SnapshotId
 //
-//    CreateStorediSCSIVolumeInput$TargetName
+//    * CreateStorediSCSIVolumeInput$TargetName
 type CreateStorediSCSIVolumeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5648,9 +5648,9 @@ func (s DeleteBandwidthRateLimitOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    DeleteChapCredentialsInput$InitiatorName
+//    * DeleteChapCredentialsInput$InitiatorName
 //
-//    DeleteChapCredentialsInput$TargetARN
+//    * DeleteChapCredentialsInput$TargetARN
 type DeleteChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6229,16 +6229,16 @@ type DescribeChapCredentialsOutput struct {
 	// pair. If no CHAP credentials are set, an empty array is returned. CHAP credential
 	// information is provided in a JSON object with the following fields:
 	//
-	//    InitiatorName: The iSCSI initiator that connects to the target.
+	//    * InitiatorName: The iSCSI initiator that connects to the target.
 	//
-	//    SecretToAuthenticateInitiator: The secret key that the initiator (for
-	// example, the Windows client) must provide to participate in mutual CHAP with
-	// the target.
+	//    * SecretToAuthenticateInitiator: The secret key that the initiator (for
+	//    example, the Windows client) must provide to participate in mutual CHAP
+	//    with the target.
 	//
-	//    SecretToAuthenticateTarget: The secret key that the target must provide
-	// to participate in mutual CHAP with the initiator (e.g. Windows client).
+	//    * SecretToAuthenticateTarget: The secret key that the target must provide
+	//    to participate in mutual CHAP with the initiator (e.g. Windows client).
 	//
-	//    TargetARN: The Amazon Resource Name (ARN) of the storage volume.
+	//    * TargetARN: The Amazon Resource Name (ARN) of the storage volume.
 	ChapCredentials []*ChapInfo `type:"list"`
 }
 
@@ -7142,9 +7142,9 @@ func (s GatewayInfo) GoString() string {
 
 // A JSON object containing zero or more of the following fields:
 //
-//    ListGatewaysInput$Limit
+//    * ListGatewaysInput$Limit
 //
-//    ListGatewaysInput$Marker
+//    * ListGatewaysInput$Marker
 type ListGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7337,11 +7337,11 @@ func (s ListTagsForResourceOutput) GoString() string {
 
 // A JSON object that contains one or more of the following fields:
 //
-//    ListTapesInput$Limit
+//    * ListTapesInput$Limit
 //
-//    ListTapesInput$Marker
+//    * ListTapesInput$Marker
 //
-//    ListTapesInput$TapeARNs
+//    * ListTapesInput$TapeARNs
 type ListTapesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7386,9 +7386,9 @@ func (s *ListTapesInput) Validate() error {
 
 // A JSON object containing the following fields:
 //
-//    ListTapesOutput$Marker
+//    * ListTapesOutput$Marker
 //
-//    ListTapesOutput$VolumeInfos
+//    * ListTapesOutput$VolumeInfos
 type ListTapesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7528,9 +7528,9 @@ func (s ListVolumeRecoveryPointsOutput) GoString() string {
 
 // A JSON object that contains one or more of the following fields:
 //
-//    ListVolumesInput$Limit
+//    * ListVolumesInput$Limit
 //
-//    ListVolumesInput$Marker
+//    * ListVolumesInput$Marker
 type ListVolumesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8275,9 +8275,9 @@ func (s TapeRecoveryPointInfo) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec
+//    * UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec
 //
-//    UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
+//    * UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
 type UpdateBandwidthRateLimitInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8348,13 +8348,13 @@ func (s UpdateBandwidthRateLimitOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    UpdateChapCredentialsInput$InitiatorName
+//    * UpdateChapCredentialsInput$InitiatorName
 //
-//    UpdateChapCredentialsInput$SecretToAuthenticateInitiator
+//    * UpdateChapCredentialsInput$SecretToAuthenticateInitiator
 //
-//    UpdateChapCredentialsInput$SecretToAuthenticateTarget
+//    * UpdateChapCredentialsInput$SecretToAuthenticateTarget
 //
-//    UpdateChapCredentialsInput$TargetARN
+//    * UpdateChapCredentialsInput$TargetARN
 type UpdateChapCredentialsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8576,11 +8576,11 @@ func (s UpdateGatewaySoftwareNowOutput) GoString() string {
 
 // A JSON object containing the following fields:
 //
-//    UpdateMaintenanceStartTimeInput$DayOfWeek
+//    * UpdateMaintenanceStartTimeInput$DayOfWeek
 //
-//    UpdateMaintenanceStartTimeInput$HourOfDay
+//    * UpdateMaintenanceStartTimeInput$HourOfDay
 //
-//    UpdateMaintenanceStartTimeInput$MinuteOfHour
+//    * UpdateMaintenanceStartTimeInput$MinuteOfHour
 type UpdateMaintenanceStartTimeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8667,13 +8667,13 @@ func (s UpdateMaintenanceStartTimeOutput) GoString() string {
 
 // A JSON object containing one or more of the following fields:
 //
-//    UpdateSnapshotScheduleInput$Description
+//    * UpdateSnapshotScheduleInput$Description
 //
-//    UpdateSnapshotScheduleInput$RecurrenceInHours
+//    * UpdateSnapshotScheduleInput$RecurrenceInHours
 //
-//    UpdateSnapshotScheduleInput$StartAt
+//    * UpdateSnapshotScheduleInput$StartAt
 //
-//    UpdateSnapshotScheduleInput$VolumeARN
+//    * UpdateSnapshotScheduleInput$VolumeARN
 type UpdateSnapshotScheduleInput struct {
 	_ struct{} `type:"structure"`
 

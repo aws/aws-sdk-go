@@ -541,10 +541,10 @@ func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *request.Requ
 //
 // You must use the following guidelines when naming a vault.
 //
-//     Names can be between 1 and 255 characters long.
+// Names can be between 1 and 255 characters long.
 //
-//    Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
-//    and '.' (period).
+// Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen), and
+// '.' (period).
 //
 // This operation is idempotent.
 //
@@ -636,10 +636,10 @@ func (c *Glacier) DeleteArchiveRequest(input *DeleteArchiveInput) (req *request.
 // a retrieval of this archive will fail. Archive retrievals that are in progress
 // for this archive ID may or may not succeed according to the following scenarios:
 //
-//    If the archive retrieval job is actively preparing the data for download
+//    * If the archive retrieval job is actively preparing the data for download
 //    when Amazon Glacier receives the delete archive request, the archival
 //    retrieval operation might fail.
-//    If the archive retrieval job has successfully prepared the archive for
+//    * If the archive retrieval job has successfully prepared the archive for
 //    download when Amazon Glacier receives the delete archive request, you
 //    will be able to download the output.
 // This operation is idempotent. Attempting to delete an already-deleted archive
@@ -1276,21 +1276,21 @@ func (c *Glacier) GetJobOutputRequest(input *GetJobOutputInput) (req *request.Re
 // of data at a time, which is a total of eight Get Job Output requests. You
 // use the following process to download the job output:
 //
-//    Download a 128 MB chunk of output by specifying the appropriate byte range
-//    using the Range header.
+// Download a 128 MB chunk of output by specifying the appropriate byte range
+// using the Range header.
 //
-//    Along with the data, the response includes a SHA256 tree hash of the payload.
-//    You compute the checksum of the payload on the client and compare it with
-//    the checksum you received in the response to ensure you received all the
-//    expected data.
+// Along with the data, the response includes a SHA256 tree hash of the payload.
+// You compute the checksum of the payload on the client and compare it with
+// the checksum you received in the response to ensure you received all the
+// expected data.
 //
-//    Repeat steps 1 and 2 for all the eight 128 MB chunks of output data, each
-//    time specifying the appropriate byte range.
+// Repeat steps 1 and 2 for all the eight 128 MB chunks of output data, each
+// time specifying the appropriate byte range.
 //
-//    After downloading all the parts of the job output, you have a list of
-//    eight checksum values. Compute the tree hash of these values to find the
-//    checksum of the entire output. Using the DescribeJob API, obtain job information
-// of the job that provided you the output. The response includes the checksum
+// After downloading all the parts of the job output, you have a list of eight
+// checksum values. Compute the tree hash of these values to find the checksum
+// of the entire output. Using the DescribeJob API, obtain job information of
+// the job that provided you the output. The response includes the checksum
 // of the entire archive stored in Amazon Glacier. You compare this value with
 // the checksum you computed to ensure you have downloaded the entire archive
 // content with no errors.
@@ -1646,12 +1646,11 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 //
 // Retrieving data from Amazon Glacier is a two-step process:
 //
-//    Initiate a retrieval job.
+// Initiate a retrieval job.
 //
-//    A data retrieval policy can cause your initiate retrieval job request
-//    to fail with a PolicyEnforcedException exception. For more information
-//    about data retrieval policies, see Amazon Glacier Data Retrieval Policies
-// (http://docs.aws.amazon.com/amazonglacier/latest/dev/data-retrieval-policy.html).
+// A data retrieval policy can cause your initiate retrieval job request to
+// fail with a PolicyEnforcedException exception. For more information about
+// data retrieval policies, see Amazon Glacier Data Retrieval Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/data-retrieval-policy.html).
 // For more information about the PolicyEnforcedException exception, see Error
 // Responses (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-error-responses.html).
 //
@@ -1666,17 +1665,17 @@ func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Requ
 // The job must complete before you can get its output. To determine when a
 // job is complete, you have the following options:
 //
-//    Use Amazon SNS Notification You can specify an Amazon Simple Notification
-// Service (Amazon SNS) topic to which Amazon Glacier can post a notification
-// after the job is completed. You can specify an SNS topic per job request.
-// The notification is sent only after Amazon Glacier completes the job. In
-// addition to specifying an SNS topic per job request, you can configure vault
-// notifications for a vault so that job notifications are always sent. For
-// more information, see SetVaultNotifications.
+//    * Use Amazon SNS Notification You can specify an Amazon Simple Notification
+//    Service (Amazon SNS) topic to which Amazon Glacier can post a notification
+//    after the job is completed. You can specify an SNS topic per job request.
+//    The notification is sent only after Amazon Glacier completes the job.
+//    In addition to specifying an SNS topic per job request, you can configure
+//    vault notifications for a vault so that job notifications are always sent.
+//    For more information, see SetVaultNotifications.
 //
-//    Get job details You can make a DescribeJob request to obtain job status
-// information while a job is in progress. However, it is more efficient to
-// use an Amazon SNS notification to determine when a job is complete.
+//    * Get job details You can make a DescribeJob request to obtain job status
+//    information while a job is in progress. However, it is more efficient
+//    to use an Amazon SNS notification to determine when a job is complete.
 //
 // The information you get via notification is same that you get by calling
 // DescribeJob.
@@ -2904,11 +2903,11 @@ func (c *Glacier) SetVaultNotificationsRequest(input *SetVaultNotificationsInput
 // notifications to the topic. You can configure a vault to publish a notification
 // for the following vault events:
 //
-//    ArchiveRetrievalCompleted This event occurs when a job that was initiated
+//    * ArchiveRetrievalCompleted This event occurs when a job that was initiated
 //    for an archive retrieval is completed (InitiateJob). The status of the
 //    completed job can be "Succeeded" or "Failed". The notification sent to
 //    the SNS topic is the same output as returned from DescribeJob.
-//    InventoryRetrievalCompleted This event occurs when a job that was initiated
+//    * InventoryRetrievalCompleted This event occurs when a job that was initiated
 //    for an inventory retrieval is completed (InitiateJob). The status of the
 //    completed job can be "Succeeded" or "Failed". The notification sent to
 //    the SNS topic is the same output as returned from DescribeJob.
@@ -3115,24 +3114,24 @@ func (c *Glacier) UploadMultipartPartRequest(input *UploadMultipartPartInput) (r
 // Amazon Glacier rejects your upload part request if any of the following conditions
 // is true:
 //
-//    SHA256 tree hash does not matchTo ensure that part data is not corrupted
-// in transmission, you compute a SHA256 tree hash of the part and include it
-// in your request. Upon receiving the part data, Amazon Glacier also computes
-// a SHA256 tree hash. If these hash values don't match, the operation fails.
-// For information about computing a SHA256 tree hash, see Computing Checksums
-// (http://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html).
+//    * SHA256 tree hash does not matchTo ensure that part data is not corrupted
+//    in transmission, you compute a SHA256 tree hash of the part and include
+//    it in your request. Upon receiving the part data, Amazon Glacier also
+//    computes a SHA256 tree hash. If these hash values don't match, the operation
+//    fails. For information about computing a SHA256 tree hash, see Computing
+//    Checksums (http://docs.aws.amazon.com/amazonglacier/latest/dev/checksum-calculations.html).
 //
-//    Part size does not matchThe size of each part except the last must match
-// the size specified in the corresponding InitiateMultipartUpload request.
-// The size of the last part must be the same size as, or smaller than, the
-// specified size.
+//    * Part size does not matchThe size of each part except the last must match
+//    the size specified in the corresponding InitiateMultipartUpload request.
+//    The size of the last part must be the same size as, or smaller than, the
+//    specified size.
 //
-//    If you upload a part whose size is smaller than the part size you specified
+// If you upload a part whose size is smaller than the part size you specified
 //    in your initiate multipart upload request and that part is not the last
 //    part, then the upload part request will succeed. However, the subsequent
 //    Complete Multipart Upload request will fail.
 //
-//    Range does not alignThe byte range value in the request does not align
+//    * Range does not alignThe byte range value in the request does not align
 //    with the part size specified in the corresponding initiate request. For
 //    example, if you specify a part size of 4194304 bytes (4 MB), then 0 to
 //    4194303 bytes (4 MB - 1) and 4194304 (4 MB) to 8388607 (8 MB - 1) are

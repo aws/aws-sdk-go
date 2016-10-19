@@ -994,10 +994,11 @@ func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinition
 // pipeline. Changes to the pipeline are saved unless one of the following three
 // validation errors exists in the pipeline.
 //
-//    An object is missing a name or identifier field.
-//    A string or reference field is empty.
-//    The number of objects in the pipeline exceeds the maximum allowed objects.
-//    The pipeline is in a FINISHED state.
+// An object is missing a name or identifier field.
+// A string or reference field is empty.
+// The number of objects in the pipeline exceeds the maximum allowed objects.
+//
+// The pipeline is in a FINISHED state.
 // Pipeline object definitions are passed to the PutPipelineDefinition action
 // and returned by the GetPipelineDefinition action.
 //
@@ -2378,22 +2379,22 @@ type Operator struct {
 	//
 	// The comparison operators EQ and REF_EQ act on the following fields:
 	//
-	//    name
-	//    @sphere
-	//    parent
-	//    @componentParent
-	//    @instanceParent
-	//    @status
-	//    @scheduledStartTime
-	//    @scheduledEndTime
-	//    @actualStartTime
-	//    @actualEndTime
+	//    * name
+	//    * @sphere
+	//    * parent
+	//    * @componentParent
+	//    * @instanceParent
+	//    * @status
+	//    * @scheduledStartTime
+	//    * @scheduledEndTime
+	//    * @actualStartTime
+	//    * @actualEndTime
 	// The comparison operators GE, LE, and BETWEEN act on the following fields:
 	//
-	//    @scheduledStartTime
-	//    @scheduledEndTime
-	//    @actualStartTime
-	//    @actualEndTime
+	//    * @scheduledStartTime
+	//    * @scheduledEndTime
+	//    * @actualStartTime
+	//    * @actualEndTime
 	// Note that fields beginning with the at sign (@) are read-only and set by
 	// the web service. When you name fields, you should choose names containing
 	// only alpha-numeric values, as symbols may be reserved by AWS Data Pipeline.

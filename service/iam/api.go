@@ -2433,17 +2433,17 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 // all of the policy's versions. The following steps describe the process for
 // deleting a managed policy:
 //
-//    Detach the policy from all users, groups, and roles that the policy is
-//    attached to, using the DetachUserPolicy, DetachGroupPolicy, or DetachRolePolicy
-// APIs. To list all the users, groups, and roles that a policy is attached
-// to, use ListEntitiesForPolicy.
+//    * Detach the policy from all users, groups, and roles that the policy
+//    is attached to, using the DetachUserPolicy, DetachGroupPolicy, or DetachRolePolicy
+//    APIs. To list all the users, groups, and roles that a policy is attached
+//    to, use ListEntitiesForPolicy.
 //
-//    Delete all versions of the policy using DeletePolicyVersion. To list the
-// policy's versions, use ListPolicyVersions. You cannot use DeletePolicyVersion
-// to delete the version that is marked as the default version. You delete the
-// policy's default version in the next step of the process.
+//    * Delete all versions of the policy using DeletePolicyVersion. To list
+//    the policy's versions, use ListPolicyVersions. You cannot use DeletePolicyVersion
+//    to delete the version that is marked as the default version. You delete
+//    the policy's default version in the next step of the process.
 //
-//    Delete the policy (this automatically deletes the policy's default version)
+//    * Delete the policy (this automatically deletes the policy's default version)
 //    using this API.
 //
 // For information about managed policies, see Managed Policies and Inline Policies
@@ -10130,12 +10130,12 @@ type AccessKeyLastUsed struct {
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the access key was most recently used. This field is null when:
 	//
-	//    The user does not have an access key.
+	//    * The user does not have an access key.
 	//
-	//    An access key exists but has never been used, at least not since IAM started
-	//    tracking this information on April 22nd, 2015.
+	//    * An access key exists but has never been used, at least not since IAM
+	//    started tracking this information on April 22nd, 2015.
 	//
-	//    There is no sign-in data associated with the user
+	//    * There is no sign-in data associated with the user
 	//
 	// LastUsedDate is a required field
 	LastUsedDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -10143,12 +10143,12 @@ type AccessKeyLastUsed struct {
 	// The AWS region where this access key was most recently used. This field is
 	// null when:
 	//
-	//    The user does not have an access key.
+	//    * The user does not have an access key.
 	//
-	//    An access key exists but has never been used, at least not since IAM started
-	//    tracking this information on April 22nd, 2015.
+	//    * An access key exists but has never been used, at least not since IAM
+	//    started tracking this information on April 22nd, 2015.
 	//
-	//    There is no sign-in data associated with the user
+	//    * There is no sign-in data associated with the user
 	//
 	// For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
 	// in the Amazon Web Services General Reference.
@@ -10159,12 +10159,12 @@ type AccessKeyLastUsed struct {
 	// The name of the AWS service with which this access key was most recently
 	// used. This field is null when:
 	//
-	//    The user does not have an access key.
+	//    * The user does not have an access key.
 	//
-	//    An access key exists but has never been used, at least not since IAM started
-	//    tracking this information on April 22nd, 2015.
+	//    * An access key exists but has never been used, at least not since IAM
+	//    started tracking this information on April 22nd, 2015.
 	//
-	//    There is no sign-in data associated with the user
+	//    * There is no sign-in data associated with the user
 	//
 	// ServiceName is a required field
 	ServiceName *string `type:"string" required:"true"`
@@ -14638,11 +14638,11 @@ func (s GetUserPolicyOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateGroup
+//    * CreateGroup
 //
-//    GetGroup
+//    * GetGroup
 //
-//    ListGroups
+//    * ListGroups
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -14741,13 +14741,13 @@ func (s GroupDetail) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateInstanceProfile
+//    * CreateInstanceProfile
 //
-//    GetInstanceProfile
+//    * GetInstanceProfile
 //
-//    ListInstanceProfiles
+//    * ListInstanceProfiles
 //
-//    ListInstanceProfilesForRole
+//    * ListInstanceProfilesForRole
 type InstanceProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -18030,11 +18030,11 @@ func (s ResyncMFADeviceOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateRole
+//    * CreateRole
 //
-//    GetRole
+//    * GetRole
 //
-//    ListRoles
+//    * ListRoles
 type Role struct {
 	_ struct{} `type:"structure"`
 
@@ -18535,29 +18535,29 @@ type SimulateCustomPolicyInput struct {
 	// the EC2 scenario options, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the AWS EC2 User Guide.
 	//
-	//    EC2-Classic-InstanceStore
+	//    * EC2-Classic-InstanceStore
 	//
-	//    instance, image, security-group
+	// instance, image, security-group
 	//
-	//    EC2-Classic-EBS
+	//    * EC2-Classic-EBS
 	//
-	//    instance, image, security-group, volume
+	// instance, image, security-group, volume
 	//
-	//    EC2-VPC-InstanceStore
+	//    * EC2-VPC-InstanceStore
 	//
-	//    instance, image, security-group, network-interface
+	// instance, image, security-group, network-interface
 	//
-	//    EC2-VPC-InstanceStore-Subnet
+	//    * EC2-VPC-InstanceStore-Subnet
 	//
-	//    instance, image, security-group, network-interface, subnet
+	// instance, image, security-group, network-interface, subnet
 	//
-	//    EC2-VPC-EBS
+	//    * EC2-VPC-EBS
 	//
-	//    instance, image, security-group, network-interface, volume
+	// instance, image, security-group, network-interface, volume
 	//
-	//    EC2-VPC-EBS-Subnet
+	//    * EC2-VPC-EBS-Subnet
 	//
-	//    instance, image, security-group, network-interface, subnet, volume
+	// instance, image, security-group, network-interface, subnet, volume
 	ResourceHandlingOption *string `min:"1" type:"string"`
 
 	// An AWS account ID that specifies the owner of any simulated resource that
@@ -18774,29 +18774,29 @@ type SimulatePrincipalPolicyInput struct {
 	// the EC2 scenario options, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the AWS EC2 User Guide.
 	//
-	//    EC2-Classic-InstanceStore
+	//    * EC2-Classic-InstanceStore
 	//
-	//    instance, image, security-group
+	// instance, image, security-group
 	//
-	//    EC2-Classic-EBS
+	//    * EC2-Classic-EBS
 	//
-	//    instance, image, security-group, volume
+	// instance, image, security-group, volume
 	//
-	//    EC2-VPC-InstanceStore
+	//    * EC2-VPC-InstanceStore
 	//
-	//    instance, image, security-group, network-interface
+	// instance, image, security-group, network-interface
 	//
-	//    EC2-VPC-InstanceStore-Subnet
+	//    * EC2-VPC-InstanceStore-Subnet
 	//
-	//    instance, image, security-group, network-interface, subnet
+	// instance, image, security-group, network-interface, subnet
 	//
-	//    EC2-VPC-EBS
+	//    * EC2-VPC-EBS
 	//
-	//    instance, image, security-group, network-interface, volume
+	// instance, image, security-group, network-interface, volume
 	//
-	//    EC2-VPC-EBS-Subnet
+	//    * EC2-VPC-EBS-Subnet
 	//
-	//    instance, image, security-group, network-interface, subnet, volume
+	// instance, image, security-group, network-interface, subnet, volume
 	ResourceHandlingOption *string `min:"1" type:"string"`
 
 	// An AWS account ID that specifies the owner of any simulated resource that
@@ -20023,11 +20023,11 @@ func (s UploadSigningCertificateOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateUser
+//    * CreateUser
 //
-//    GetUser
+//    * GetUser
 //
-//    ListUsers
+//    * ListUsers
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -20052,12 +20052,12 @@ type User struct {
 	// span, only the first use is returned in this field. This field is null (not
 	// present) when:
 	//
-	//    The user does not have a password
+	//    * The user does not have a password
 	//
-	//    The password exists but has never been used (at least not since IAM started
-	//    tracking this information on October 20th, 2014
+	//    * The password exists but has never been used (at least not since IAM
+	//    started tracking this information on October 20th, 2014
 	//
-	//    there is no sign-in data associated with the user
+	//    * there is no sign-in data associated with the user
 	//
 	// This value is returned only in the GetUser and ListUsers actions.
 	PasswordLastUsed *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -20174,11 +20174,11 @@ type VirtualMFADevice struct {
 	//
 	// This data type is used as a response element in the following actions:
 	//
-	//    CreateUser
+	//    * CreateUser
 	//
-	//    GetUser
+	//    * GetUser
 	//
-	//    ListUsers
+	//    * ListUsers
 	User *User `type:"structure"`
 }
 

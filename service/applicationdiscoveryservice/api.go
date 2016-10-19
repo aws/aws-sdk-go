@@ -1351,79 +1351,79 @@ type Filter struct {
 	//
 	// Server
 	//
-	//    server.hostName
+	//    * server.hostName
 	//
-	//    server.osName
+	//    * server.osName
 	//
-	//    server.osVersion
+	//    * server.osVersion
 	//
-	//    server.configurationid
+	//    * server.configurationid
 	//
-	//    server.agentid
+	//    * server.agentid
 	//
 	// The name of the filter. The following filter names are allowed for PROCESS
 	// configuration items.
 	//
 	// Process
 	//
-	//    process.configurationid
+	//    * process.configurationid
 	//
-	//    process.name
+	//    * process.name
 	//
-	//    process.commandLine
+	//    * process.commandLine
 	//
-	//    server.configurationid
+	//    * server.configurationid
 	//
-	//    server.hostName
+	//    * server.hostName
 	//
-	//    server.osName
+	//    * server.osName
 	//
-	//    server.osVersion
+	//    * server.osVersion
 	//
-	//    server.agentId
+	//    * server.agentId
 	//
 	// The name of the filter. The following filter names are allowed for CONNECTION
 	// configuration items.
 	//
 	// Connection
 	//
-	//    connection.sourceIp
+	//    * connection.sourceIp
 	//
-	//    connection.destinationIp
+	//    * connection.destinationIp
 	//
-	//    connection.destinationPort
+	//    * connection.destinationPort
 	//
-	//    sourceProcess.configurationId
+	//    * sourceProcess.configurationId
 	//
-	//    sourceProcess.name
+	//    * sourceProcess.name
 	//
-	//    sourceProcess.commandLine
+	//    * sourceProcess.commandLine
 	//
-	//    destinationProcess.configurationId
+	//    * destinationProcess.configurationId
 	//
-	//    destinationProcess.name
+	//    * destinationProcess.name
 	//
-	//    destinationProcess.commandLine
+	//    * destinationProcess.commandLine
 	//
-	//    sourceServer.configurationId
+	//    * sourceServer.configurationId
 	//
-	//    sourceServer.hostName
+	//    * sourceServer.hostName
 	//
-	//    sourceServer.osName
+	//    * sourceServer.osName
 	//
-	//    sourceServer.osVersion
+	//    * sourceServer.osVersion
 	//
-	//    sourceServer.agentId
+	//    * sourceServer.agentId
 	//
-	//    destinationServer.configurationId
+	//    * destinationServer.configurationId
 	//
-	//    destinationServer.hostName
+	//    * destinationServer.hostName
 	//
-	//    destinationServer.osName
+	//    * destinationServer.osName
 	//
-	//    destinationServer.osVersion
+	//    * destinationServer.osVersion
 	//
-	//    destinationServer.agentId
+	//    * destinationServer.agentId
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`

@@ -1603,8 +1603,8 @@ type CreateHsmInput struct {
 
 	// Specifies the type of subscription for the HSM.
 	//
-	// PRODUCTION - The HSM is being used in a production environment.
-	// TRIAL - The HSM is being used in a product trial.
+	//    * PRODUCTION - The HSM is being used in a production environment.
+	//    * TRIAL - The HSM is being used in a product trial.
 	//
 	// SubscriptionType is a required field
 	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true" enum:"SubscriptionType"`
@@ -2038,8 +2038,8 @@ type DescribeHsmOutput struct {
 
 	// Specifies the type of subscription for the HSM.
 	//
-	// PRODUCTION - The HSM is being used in a production environment.
-	// TRIAL - The HSM is being used in a product trial.
+	//    * PRODUCTION - The HSM is being used in a production environment.
+	//    * TRIAL - The HSM is being used in a product trial.
 	SubscriptionType *string `type:"string" enum:"SubscriptionType"`
 
 	// The name of the HSM vendor.
@@ -2724,8 +2724,8 @@ const (
 
 // Specifies the type of subscription for the HSM.
 //
-// PRODUCTION - The HSM is being used in a production environment.
-// TRIAL - The HSM is being used in a product trial.
+//    * PRODUCTION - The HSM is being used in a production environment.
+//    * TRIAL - The HSM is being used in a product trial.
 const (
 	// SubscriptionTypeProduction is a SubscriptionType enum value
 	SubscriptionTypeProduction = "PRODUCTION"

@@ -526,11 +526,11 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // query maximum of 50,850 when you call GetMetricStatistics on Amazon EC2 instances
 // with detailed (one-minute) monitoring enabled:
 //
-//    Statistics for up to 400 instances for a span of one hour
+//    * Statistics for up to 400 instances for a span of one hour
 //
-//    Statistics for up to 35 instances over a span of 24 hours
+//    * Statistics for up to 35 instances over a span of 24 hours
 //
-//    Statistics for up to 2 instances over a span of 2 weeks
+//    * Statistics for up to 2 instances over a span of 2 weeks
 //
 // For information about the namespace, metric names, and dimensions that other
 // Amazon Web Services products use to send metrics to CloudWatch, go to Amazon
@@ -733,14 +733,14 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 // If you are using an AWS Identity and Access Management (IAM) account to create
 // or modify an alarm, you must have the following Amazon EC2 permissions:
 //
-//    ec2:DescribeInstanceStatus and ec2:DescribeInstances for all alarms on
-// Amazon EC2 instance status metrics.
+// ec2:DescribeInstanceStatus and ec2:DescribeInstances for all alarms on Amazon
+// EC2 instance status metrics.
 //
-//    ec2:StopInstances for alarms with stop actions.
+// ec2:StopInstances for alarms with stop actions.
 //
-//    ec2:TerminateInstances for alarms with terminate actions.
+// ec2:TerminateInstances for alarms with terminate actions.
 //
-//    ec2:DescribeInstanceRecoveryAttribute, and ec2:RecoverInstances for alarms
+// ec2:DescribeInstanceRecoveryAttribute, and ec2:RecoverInstances for alarms
 // with recover actions.
 //
 // If you have read/write permissions for Amazon CloudWatch but not for Amazon

@@ -727,12 +727,12 @@ func (c *CloudWatchEvents) PutTargetsRequest(input *PutTargetsInput) (req *reque
 // Input and InputPath are mutually-exclusive and optional parameters of a target.
 // When a rule is triggered due to a matched event, if for a target:
 //
-//    Neither Input nor InputPath is specified, then the entire event is passed
+//    * Neither Input nor InputPath is specified, then the entire event is passed
 //    to the target in JSON form.
-//    InputPath is specified in the form of JSONPath (e.g. $.detail), then only
-//    the part of the event specified in the path is passed to the target (e.g.
-//    only the detail part of the event is passed).
-//    Input is specified in the form of a valid JSON, then the matched event
+//    * InputPath is specified in the form of JSONPath (e.g. $.detail), then
+//    only the part of the event specified in the path is passed to the target
+//    (e.g. only the detail part of the event is passed).
+//    * Input is specified in the form of a valid JSON, then the matched event
 //    is overridden with this constant.
 // Note: When you add targets to a rule, when the associated rule triggers,
 // new or updated targets might not be immediately invoked. Please allow a short
@@ -1768,12 +1768,12 @@ func (s Rule) GoString() string {
 // Input and InputPath are mutually-exclusive and optional parameters of a target.
 // When a rule is triggered due to a matched event, if for a target:
 //
-//    Neither Input nor InputPath is specified, then the entire event is passed
+//    * Neither Input nor InputPath is specified, then the entire event is passed
 //    to the target in JSON form.
-//    InputPath is specified in the form of JSONPath (e.g. $.detail), then only
-//    the part of the event specified in the path is passed to the target (e.g.
-//    only the detail part of the event is passed).
-//    Input is specified in the form of a valid JSON, then the matched event
+//    * InputPath is specified in the form of JSONPath (e.g. $.detail), then
+//    only the part of the event specified in the path is passed to the target
+//    (e.g. only the detail part of the event is passed).
+//    * Input is specified in the form of a valid JSON, then the matched event
 //    is overridden with this constant.
 type Target struct {
 	_ struct{} `type:"structure"`

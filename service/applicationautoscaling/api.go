@@ -1594,27 +1594,27 @@ func (s ScalingPolicy) GoString() string {
 // For the following examples, suppose that you have an alarm with a breach
 // threshold of 50:
 //
-//    If you want the adjustment to be triggered when the metric is greater
+//    * If you want the adjustment to be triggered when the metric is greater
 //    than or equal to 50 and less than 60, specify a lower bound of 0 and an
 //    upper bound of 10.
 //
-//    If you want the adjustment to be triggered when the metric is greater
+//    * If you want the adjustment to be triggered when the metric is greater
 //    than 40 and less than or equal to 50, specify a lower bound of -10 and
 //    an upper bound of 0.
 //
 // There are a few rules for the step adjustments for your step policy:
 //
-//    The ranges of your step adjustments can't overlap or have a gap.
+//    * The ranges of your step adjustments can't overlap or have a gap.
 //
-//    At most one step adjustment can have a null lower bound. If one step adjustment
-//    has a negative lower bound, then there must be a step adjustment with
-//    a null lower bound.
+//    * At most one step adjustment can have a null lower bound. If one step
+//    adjustment has a negative lower bound, then there must be a step adjustment
+//    with a null lower bound.
 //
-//    At most one step adjustment can have a null upper bound. If one step adjustment
-//    has a positive upper bound, then there must be a step adjustment with
-//    a null upper bound.
+//    * At most one step adjustment can have a null upper bound. If one step
+//    adjustment has a positive upper bound, then there must be a step adjustment
+//    with a null upper bound.
 //
-//    The upper and lower bound can't be null in the same step adjustment.
+//    * The upper and lower bound can't be null in the same step adjustment.
 type StepAdjustment struct {
 	_ struct{} `type:"structure"`
 

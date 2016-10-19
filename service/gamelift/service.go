@@ -26,30 +26,30 @@ import (
 //
 // More Resources
 //
-//    Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/):
+//    * Amazon GameLift Developer Guide (http://docs.aws.amazon.com/gamelift/latest/developerguide/):
 //    Learn more about GameLift features and how to use them
-//    Lumberyard and GameLift Tutorials (https://gamedev.amazon.com/forums/tutorials):
+//    * Lumberyard and GameLift Tutorials (https://gamedev.amazon.com/forums/tutorials):
 //    Get started fast with walkthroughs and sample projects
-//    GameDev Blog (https://aws.amazon.com/blogs/gamedev/): Stay up to date
+//    * GameDev Blog (https://aws.amazon.com/blogs/gamedev/): Stay up to date
 //    with new features and techniques
-//    GameDev Forums (https://gamedev.amazon.com/forums/spaces/123/gamelift-discussion.html):
+//    * GameDev Forums (https://gamedev.amazon.com/forums/spaces/123/gamelift-discussion.html):
 //    Connect with the GameDev community
 // Manage Games and Players Through GameLift
 //
 // Call these actions from your game clients and/or services to create and manage
 // multiplayer game sessions and player sessions.
 //
-//    Game sessionsCreateGameSession
+//    * Game sessionsCreateGameSession
 // DescribeGameSessions
 // DescribeGameSessionDetails
 // UpdateGameSession
 // SearchGameSessions
 //
-//    Player sessionsCreatePlayerSession
+//    * Player sessionsCreatePlayerSession
 // CreatePlayerSessions
 // DescribePlayerSessions
 //
-//    Other actions:GetGameSessionLogUrl
+//    * Other actions:GetGameSessionLogUrl
 //
 // Set Up and Manage Game Servers
 //
@@ -59,16 +59,16 @@ import (
 // game sessions. Once you've created and activated a fleet, you can assign
 // aliases to it, scale capacity, track performance and utilization, etc.
 //
-//    Manage your builds:ListBuilds
+//    * Manage your builds:ListBuilds
 // CreateBuild
 // DescribeBuild
 // UpdateBuild
 // DeleteBuild
 // RequestUploadCredentials
 //
-//    Manage your fleets:ListFleets
+//    * Manage your fleets:ListFleets
 // CreateFleet
-//    Describe fleets: DescribeFleetAttributes
+// Describe fleets: DescribeFleetAttributes
 // DescribeFleetCapacity
 // DescribeFleetPortSettings
 // DescribeFleetUtilization
@@ -76,21 +76,21 @@ import (
 // DescribeFleetEvents
 // DescribeRuntimeConfiguration
 //
-//    Update fleets: UpdateFleetAttributes
+// Update fleets: UpdateFleetAttributes
 // UpdateFleetCapacity
 // UpdateFleetPortSettings
 // UpdateRuntimeConfiguration
 //
 // DeleteFleet
 //
-//    Manage fleet aliases:ListAliases
+//    * Manage fleet aliases:ListAliases
 // CreateAlias
 // DescribeAlias
 // UpdateAlias
 // DeleteAlias
 // ResolveAlias
 //
-//    Manage autoscaling:PutScalingPolicy
+//    * Manage autoscaling:PutScalingPolicy
 // DescribeScalingPolicies
 // DeleteScalingPolicy
 //

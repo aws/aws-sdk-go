@@ -2454,13 +2454,13 @@ type BatchPrediction struct {
 	// The status of the BatchPrediction. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon Machine Learning (Amazon ML) submitted a request to generate
-	//    predictions for a batch of observations.
-	//    INPROGRESS - The process is underway.
-	//    FAILED - The request to perform a batch prediction did not run to completion.
+	//    * PENDING - Amazon Machine Learning (Amazon ML) submitted a request to
+	//    generate predictions for a batch of observations.
+	//    * INPROGRESS - The process is underway.
+	//    * FAILED - The request to perform a batch prediction did not run to completion.
 	//    It is not usable.
-	//    COMPLETED - The batch prediction process completed successfully.
-	//    DELETED - The BatchPrediction is marked as deleted. It is not usable.
+	//    * COMPLETED - The batch prediction process completed successfully.
+	//    * DELETED - The BatchPrediction is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
 	// Long integer type that is a 64-bit signed number.
@@ -2596,43 +2596,6 @@ type CreateDataSourceFromRDSInput struct {
 
 	// The data specification of an Amazon RDS DataSource:
 	//
-	// DatabaseInformation - DatabaseName - The name of the Amazon RDS database.
-	// InstanceIdentifier  - A unique identifier for the Amazon RDS database instance.
-	//
-	// DatabaseCredentials - AWS Identity and Access Management (IAM) credentials
-	// that are used to connect to the Amazon RDS database.
-	//
-	// ResourceRole - A role (DataPipelineDefaultResourceRole) assumed by an EC2
-	// instance to carry out the copy task from Amazon RDS to Amazon Simple Storage
-	// Service (Amazon S3). For more information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
-	// for data pipelines.
-	//
-	// ServiceRole - A role (DataPipelineDefaultRole) assumed by the AWS Data Pipeline
-	// service to monitor the progress of the copy task from Amazon RDS to Amazon
-	// S3. For more information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
-	// for data pipelines.
-	//
-	// SecurityInfo - The security information to use to access an RDS DB instance.
-	// You need to set up appropriate ingress rules for the security entity IDs
-	// provided to allow access to the Amazon RDS instance. Specify a [SubnetId,
-	// SecurityGroupIds] pair for a VPC-based RDS DB instance.
-	//
-	// SelectSqlQuery - A query that is used to retrieve the observation data for
-	// the Datasource.
-	//
-	// S3StagingLocation - The Amazon S3 location for staging Amazon RDS data. The
-	// data retrieved from Amazon RDS using SelectSqlQuery is stored in this location.
-	//
-	// DataSchemaUri - The Amazon S3 location of the DataSchema.
-	//
-	// DataSchema - A JSON string representing the schema. This is not required
-	// if DataSchemaUri is specified.
-	//
-	//    DataRearrangement - A JSON string that represents the splitting and rearrangement
-	//    requirements for the Datasource.
-	//
-	//     Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
-	//
 	// RDSData is a required field
 	RDSData *RDSDataSpec `type:"structure" required:"true"`
 
@@ -2730,29 +2693,29 @@ type CreateDataSourceFromRedshiftInput struct {
 
 	// The data specification of an Amazon Redshift DataSource:
 	//
-	// DatabaseInformation - DatabaseName - The name of the Amazon Redshift database.
+	//    * DatabaseInformation - DatabaseName - The name of the Amazon Redshift
+	//    database.
+	//  ClusterIdentifier - The unique ID for the Amazon Redshift cluster.
 	//
-	// ClusterIdentifier - The unique ID for the Amazon Redshift cluster.
+	//    * DatabaseCredentials - The AWS Identity and Access Management (IAM) credentials
+	//    that are used to connect to the Amazon Redshift database.
 	//
-	// DatabaseCredentials - The AWS Identity and Access Management (IAM) credentials
-	// that are used to connect to the Amazon Redshift database.
+	//    * SelectSqlQuery - The query that is used to retrieve the observation
+	//    data for the Datasource.
 	//
-	// SelectSqlQuery - The query that is used to retrieve the observation data
-	// for the Datasource.
+	//    * S3StagingLocation - The Amazon Simple Storage Service (Amazon S3) location
+	//    for staging Amazon Redshift data. The data retrieved from Amazon Redshift
+	//    using the SelectSqlQuery query is stored in this location.
 	//
-	// S3StagingLocation - The Amazon Simple Storage Service (Amazon S3) location
-	// for staging Amazon Redshift data. The data retrieved from Amazon Redshift
-	// using the SelectSqlQuery query is stored in this location.
+	//    * DataSchemaUri - The Amazon S3 location of the DataSchema.
 	//
-	// DataSchemaUri - The Amazon S3 location of the DataSchema.
+	//    * DataSchema - A JSON string representing the schema. This is not required
+	//    if DataSchemaUri is specified.
 	//
-	// DataSchema - A JSON string representing the schema. This is not required
-	// if DataSchemaUri is specified.
+	//    * DataRearrangement - A JSON string that represents the splitting and
+	//    rearrangement requirements for the DataSource.
 	//
-	//    DataRearrangement - A JSON string that represents the splitting and rearrangement
-	//    requirements for the DataSource.
-	//
-	//     Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	//
 	// DataSpec is a required field
 	DataSpec *RedshiftDataSpec `type:"structure" required:"true"`
@@ -2853,17 +2816,17 @@ type CreateDataSourceFromS3Input struct {
 
 	// The data specification of a DataSource:
 	//
-	// DataLocationS3 - The Amazon S3 location of the observation data.
+	//    * DataLocationS3 - The Amazon S3 location of the observation data.
 	//
-	// DataSchemaLocationS3 - The Amazon S3 location of the DataSchema.
+	//    * DataSchemaLocationS3 - The Amazon S3 location of the DataSchema.
 	//
-	// DataSchema - A JSON string representing the schema. This is not required
-	// if DataSchemaUri is specified.
+	//    * DataSchema - A JSON string representing the schema. This is not required
+	//    if DataSchemaUri is specified.
 	//
-	//    DataRearrangement - A JSON string that represents the splitting and rearrangement
-	//    requirements for the Datasource.
+	//    * DataRearrangement - A JSON string that represents the splitting and
+	//    rearrangement requirements for the Datasource.
 	//
-	//     Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//  Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	//
 	// DataSpec is a required field
 	DataSpec *S3DataSpec `type:"structure" required:"true"`
@@ -3027,9 +2990,10 @@ type CreateMLModelInput struct {
 	// The category of supervised learning that this MLModel will address. Choose
 	// from the following types:
 	//
-	//    Choose REGRESSION if the MLModel will be used to predict a numeric value.
-	//    Choose BINARY if the MLModel result has two possible values.
-	//    Choose MULTICLASS if the MLModel result has a limited number of values.
+	//    * Choose REGRESSION if the MLModel will be used to predict a numeric value.
+	//
+	//    * Choose BINARY if the MLModel result has two possible values.
+	//    * Choose MULTICLASS if the MLModel result has a limited number of values.
 	//
 	// For more information, see the Amazon Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
 	//
@@ -3041,38 +3005,39 @@ type CreateMLModelInput struct {
 	//
 	// The following is the current set of training parameters:
 	//
-	//    sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
-	// on the input data, the size of the model might affect its performance.
+	//    * sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
+	//    on the input data, the size of the model might affect its performance.
 	//
-	//     The value is an integer that ranges from 100000 to 2147483648. The default
-	// value is 33554432.
+	//  The value is an integer that ranges from 100000 to 2147483648. The default
+	//    value is 33554432.
 	//
-	//    sgd.maxPasses - The number of times that the training process traverses
-	// the observations to build the MLModel. The value is an integer that ranges
-	// from 1 to 10000. The default value is 10.
+	//    * sgd.maxPasses - The number of times that the training process traverses
+	//    the observations to build the MLModel. The value is an integer that ranges
+	//    from 1 to 10000. The default value is 10.
 	//
-	//    sgd.shuffleType - Whether Amazon ML shuffles the training data. Shuffling
-	// the data improves a model's ability to find the optimal solution for a variety
-	// of data types. The valid values are auto and none. The default value is none.
-	// We strongly recommend that you shuffle your data.
+	//    * sgd.shuffleType - Whether Amazon ML shuffles the training data. Shuffling
+	//    the data improves a model's ability to find the optimal solution for a
+	//    variety of data types. The valid values are auto and none. The default
+	//    value is none. We strongly recommend that you shuffle your data.
 	//
-	//    sgd.l1RegularizationAmount - The coefficient regularization L1 norm. It
-	// controls overfitting the data by penalizing large coefficients. This tends
-	// to drive coefficients to zero, resulting in a sparse feature set. If you
-	// use this parameter, start by specifying a small value, such as 1.0E-08.
+	//    * sgd.l1RegularizationAmount - The coefficient regularization L1 norm.
+	//    It controls overfitting the data by penalizing large coefficients. This
+	//    tends to drive coefficients to zero, resulting in a sparse feature set.
+	//    If you use this parameter, start by specifying a small value, such as
+	//    1.0E-08.
 	//
-	//    The value is a double that ranges from 0 to MAX_DOUBLE. The default is
-	// to not use L1 normalization. This parameter can't be used when L2 is specified.
-	// Use this parameter sparingly.
+	// The value is a double that ranges from 0 to MAX_DOUBLE. The default is to
+	//    not use L1 normalization. This parameter can't be used when L2 is specified.
+	//    Use this parameter sparingly.
 	//
-	//    sgd.l2RegularizationAmount - The coefficient regularization L2 norm. It
-	// controls overfitting the data by penalizing large coefficients. This tends
-	// to drive coefficients to small, nonzero values. If you use this parameter,
-	// start by specifying a small value, such as 1.0E-08.
+	//    * sgd.l2RegularizationAmount - The coefficient regularization L2 norm.
+	//    It controls overfitting the data by penalizing large coefficients. This
+	//    tends to drive coefficients to small, nonzero values. If you use this
+	//    parameter, start by specifying a small value, such as 1.0E-08.
 	//
-	//    The value is a double that ranges from 0 to MAX_DOUBLE. The default is
-	// to not use L2 normalization. This parameter can't be used when L1 is specified.
-	// Use this parameter sparingly.
+	// The value is a double that ranges from 0 to MAX_DOUBLE. The default is to
+	//    not use L2 normalization. This parameter can't be used when L1 is specified.
+	//    Use this parameter sparingly.
 	Parameters map[string]*string `type:"map"`
 
 	// The data recipe for creating the MLModel. You must specify either the recipe
@@ -3281,13 +3246,13 @@ type DataSource struct {
 	// The current status of the DataSource. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon Machine Learning (Amazon ML) submitted a request to create
-	//    a DataSource.
-	//    INPROGRESS - The creation process is underway.
-	//    FAILED - The request to create a DataSource did not run to completion.
+	//    * PENDING - Amazon Machine Learning (Amazon ML) submitted a request to
+	//    create a DataSource.
+	//    * INPROGRESS - The creation process is underway.
+	//    * FAILED - The request to create a DataSource did not run to completion.
 	//    It is not usable.
-	//    COMPLETED - The creation process completed successfully.
-	//    DELETED - The DataSource is marked as deleted. It is not usable.
+	//    * COMPLETED - The creation process completed successfully.
+	//    * DELETED - The DataSource is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 }
 
@@ -3667,15 +3632,18 @@ type DescribeBatchPredictionsInput struct {
 
 	// Use one of the following variables to filter a list of BatchPrediction:
 	//
-	//    CreatedAt - Sets the search criteria to the BatchPrediction creation date.
-	//    Status - Sets the search criteria to the BatchPrediction status.
-	//    Name - Sets the search criteria to the contents of the BatchPredictionName.
-	//    IAMUser - Sets the search criteria to the user account that invoked the
-	//    BatchPrediction creation.
-	//    MLModelId - Sets the search criteria to the MLModel used in the BatchPrediction.
-	//    DataSourceId - Sets the search criteria to the DataSource used in the
+	//    * CreatedAt - Sets the search criteria to the BatchPrediction creation
+	//    date.
+	//    * Status - Sets the search criteria to the BatchPrediction status.
+	//    * Name - Sets the search criteria to the contents of the BatchPredictionName.
+	//
+	//    * IAMUser - Sets the search criteria to the user account that invoked
+	//    the BatchPrediction creation.
+	//    * MLModelId - Sets the search criteria to the MLModel used in the BatchPrediction.
+	//
+	//    * DataSourceId - Sets the search criteria to the DataSource used in the
 	//    BatchPrediction.
-	//    DataURI - Sets the search criteria to the data file(s) used in the BatchPrediction.
+	//    * DataURI - Sets the search criteria to the data file(s) used in the BatchPrediction.
 	//    The URL can identify either a file or an Amazon Simple Storage Solution
 	//    (Amazon S3) bucket or directory.
 	FilterVariable *string `type:"string" enum:"BatchPredictionFilterVariable"`
@@ -3715,18 +3683,18 @@ type DescribeBatchPredictionsInput struct {
 	// To search for this BatchPrediction, select Name for the FilterVariable and
 	// any of the following strings for the Prefix:
 	//
-	// 2014-09
+	//    * 2014-09
 	//
-	// 2014-09-09
+	//    * 2014-09-09
 	//
-	// 2014-09-09-Holiday
+	//    * 2014-09-09-Holiday
 	Prefix *string `type:"string"`
 
 	// A two-value parameter that determines the sequence of the resulting list
 	// of MLModels.
 	//
-	//    asc - Arranges the list in ascending order (A-Z, 0-9).
-	//    dsc - Arranges the list in descending order (Z-A, 9-0).
+	//    * asc - Arranges the list in ascending order (A-Z, 0-9).
+	//    * dsc - Arranges the list in descending order (Z-A, 9-0).
 	// Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
@@ -3786,14 +3754,14 @@ type DescribeDataSourcesInput struct {
 
 	// Use one of the following variables to filter a list of DataSource:
 	//
-	//    CreatedAt - Sets the search criteria to DataSource creation dates.
-	//    Status - Sets the search criteria to DataSource statuses.
-	//    Name - Sets the search criteria to the contents of DataSourceName.
-	//    DataUri - Sets the search criteria to the URI of data files used to create
-	//    the DataSource. The URI can identify either a file or an Amazon Simple
-	//    Storage Service (Amazon S3) bucket or directory.
-	//    IAMUser - Sets the search criteria to the user account that invoked the
-	//    DataSource creation.
+	//    * CreatedAt - Sets the search criteria to DataSource creation dates.
+	//    * Status - Sets the search criteria to DataSource statuses.
+	//    * Name - Sets the search criteria to the contents of DataSourceName.
+	//    * DataUri - Sets the search criteria to the URI of data files used to
+	//    create the DataSource. The URI can identify either a file or an Amazon
+	//    Simple Storage Service (Amazon S3) bucket or directory.
+	//    * IAMUser - Sets the search criteria to the user account that invoked
+	//    the DataSource creation.
 	FilterVariable *string `type:"string" enum:"DataSourceFilterVariable"`
 
 	// The greater than or equal to operator. The DataSource results will have FilterVariable
@@ -3828,18 +3796,18 @@ type DescribeDataSourcesInput struct {
 	// To search for this DataSource, select Name for the FilterVariable and any
 	// of the following strings for the Prefix:
 	//
-	// 2014-09
+	//    * 2014-09
 	//
-	// 2014-09-09
+	//    * 2014-09-09
 	//
-	// 2014-09-09-Holiday
+	//    * 2014-09-09-Holiday
 	Prefix *string `type:"string"`
 
 	// A two-value parameter that determines the sequence of the resulting list
 	// of DataSource.
 	//
-	//    asc - Arranges the list in ascending order (A-Z, 0-9).
-	//    dsc - Arranges the list in descending order (Z-A, 9-0).
+	//    * asc - Arranges the list in ascending order (A-Z, 0-9).
+	//    * dsc - Arranges the list in descending order (Z-A, 9-0).
 	// Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
@@ -3899,14 +3867,17 @@ type DescribeEvaluationsInput struct {
 
 	// Use one of the following variable to filter a list of Evaluation objects:
 	//
-	//    CreatedAt - Sets the search criteria to the Evaluation creation date.
-	//    Status - Sets the search criteria to the Evaluation status.
-	//    Name - Sets the search criteria to the contents of EvaluationName.
-	//    IAMUser - Sets the search criteria to the user account that invoked an
-	//    Evaluation.
-	//    MLModelId - Sets the search criteria to the MLModel that was evaluated.
-	//    DataSourceId - Sets the search criteria to the DataSource used in Evaluation.
-	//    DataUri - Sets the search criteria to the data file(s) used in Evaluation.
+	//    * CreatedAt - Sets the search criteria to the Evaluation creation date.
+	//
+	//    * Status - Sets the search criteria to the Evaluation status.
+	//    * Name - Sets the search criteria to the contents of EvaluationName.
+	//    * IAMUser - Sets the search criteria to the user account that invoked
+	//    an Evaluation.
+	//    * MLModelId - Sets the search criteria to the MLModel that was evaluated.
+	//
+	//    * DataSourceId - Sets the search criteria to the DataSource used in Evaluation.
+	//
+	//    * DataUri - Sets the search criteria to the data file(s) used in Evaluation.
 	//    The URL can identify either a file or an Amazon Simple Storage Solution
 	//    (Amazon S3) bucket or directory.
 	FilterVariable *string `type:"string" enum:"EvaluationFilterVariable"`
@@ -3943,18 +3914,18 @@ type DescribeEvaluationsInput struct {
 	// To search for this Evaluation, select Name for the FilterVariable and any
 	// of the following strings for the Prefix:
 	//
-	// 2014-09
+	//    * 2014-09
 	//
-	// 2014-09-09
+	//    * 2014-09-09
 	//
-	// 2014-09-09-Holiday
+	//    * 2014-09-09-Holiday
 	Prefix *string `type:"string"`
 
 	// A two-value parameter that determines the sequence of the resulting list
 	// of Evaluation.
 	//
-	//    asc - Arranges the list in ascending order (A-Z, 0-9).
-	//    dsc - Arranges the list in descending order (Z-A, 9-0).
+	//    * asc - Arranges the list in ascending order (A-Z, 0-9).
+	//    * dsc - Arranges the list in descending order (Z-A, 9-0).
 	// Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
@@ -4014,22 +3985,22 @@ type DescribeMLModelsInput struct {
 
 	// Use one of the following variables to filter a list of MLModel:
 	//
-	//    CreatedAt - Sets the search criteria to MLModel creation date.
-	//    Status - Sets the search criteria to MLModel status.
-	//    Name - Sets the search criteria to the contents of MLModelName.
-	//    IAMUser - Sets the search criteria to the user account that invoked the
-	//    MLModel creation.
-	//    TrainingDataSourceId - Sets the search criteria to the DataSource used
+	//    * CreatedAt - Sets the search criteria to MLModel creation date.
+	//    * Status - Sets the search criteria to MLModel status.
+	//    * Name - Sets the search criteria to the contents of MLModelName.
+	//    * IAMUser - Sets the search criteria to the user account that invoked
+	//    the MLModel creation.
+	//    * TrainingDataSourceId - Sets the search criteria to the DataSource used
 	//    to train one or more MLModel.
-	//    RealtimeEndpointStatus - Sets the search criteria to the MLModel real-time
+	//    * RealtimeEndpointStatus - Sets the search criteria to the MLModel real-time
 	//    endpoint status.
-	//    MLModelType - Sets the search criteria to MLModel type: binary, regression,
+	//    * MLModelType - Sets the search criteria to MLModel type: binary, regression,
 	//    or multi-class.
-	//    Algorithm - Sets the search criteria to the algorithm that the MLModel
+	//    * Algorithm - Sets the search criteria to the algorithm that the MLModel
 	//    uses.
-	//    TrainingDataURI - Sets the search criteria to the data file(s) used in
-	//    training a MLModel. The URL can identify either a file or an Amazon Simple
-	//    Storage Service (Amazon S3) bucket or directory.
+	//    * TrainingDataURI - Sets the search criteria to the data file(s) used
+	//    in training a MLModel. The URL can identify either a file or an Amazon
+	//    Simple Storage Service (Amazon S3) bucket or directory.
 	FilterVariable *string `type:"string" enum:"MLModelFilterVariable"`
 
 	// The greater than or equal to operator. The MLModel results will have FilterVariable
@@ -4065,18 +4036,18 @@ type DescribeMLModelsInput struct {
 	// To search for this MLModel, select Name for the FilterVariable and any of
 	// the following strings for the Prefix:
 	//
-	// 2014-09
+	//    * 2014-09
 	//
-	// 2014-09-09
+	//    * 2014-09-09
 	//
-	// 2014-09-09-Holiday
+	//    * 2014-09-09-Holiday
 	Prefix *string `type:"string"`
 
 	// A two-value parameter that determines the sequence of the resulting list
 	// of MLModel.
 	//
-	//    asc - Arranges the list in ascending order (A-Z, 0-9).
-	//    dsc - Arranges the list in descending order (Z-A, 9-0).
+	//    * asc - Arranges the list in ascending order (A-Z, 0-9).
+	//    * dsc - Arranges the list in descending order (Z-A, 9-0).
 	// Results are sorted by FilterVariable.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
@@ -4243,15 +4214,15 @@ type Evaluation struct {
 	// by the DataSource. One of the following metrics is returned, based on the
 	// type of the MLModel:
 	//
-	//    BinaryAUC: A binary MLModel uses the Area Under the Curve (AUC) technique
-	// to measure performance.
+	//    * BinaryAUC: A binary MLModel uses the Area Under the Curve (AUC) technique
+	//    to measure performance.
 	//
-	//    RegressionRMSE: A regression MLModel uses the Root Mean Square Error (RMSE)
-	// technique to measure performance. RMSE measures the difference between predicted
-	// and actual values for a single variable.
+	//    * RegressionRMSE: A regression MLModel uses the Root Mean Square Error
+	//    (RMSE) technique to measure performance. RMSE measures the difference
+	//    between predicted and actual values for a single variable.
 	//
-	//    MulticlassAvgFScore: A multiclass MLModel uses the F1 score technique
-	// to measure performance.
+	//    * MulticlassAvgFScore: A multiclass MLModel uses the F1 score technique
+	//    to measure performance.
 	//
 	// For more information about performance metrics, please see the Amazon Machine
 	// Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
@@ -4263,13 +4234,13 @@ type Evaluation struct {
 	// The status of the evaluation. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon Machine Learning (Amazon ML) submitted a request to evaluate
-	//    an MLModel.
-	//    INPROGRESS - The evaluation is underway.
-	//    FAILED - The request to evaluate an MLModel did not run to completion.
+	//    * PENDING - Amazon Machine Learning (Amazon ML) submitted a request to
+	//    evaluate an MLModel.
+	//    * INPROGRESS - The evaluation is underway.
+	//    * FAILED - The request to evaluate an MLModel did not run to completion.
 	//    It is not usable.
-	//    COMPLETED - The evaluation process completed successfully.
-	//    DELETED - The Evaluation is marked as deleted. It is not usable.
+	//    * COMPLETED - The evaluation process completed successfully.
+	//    * DELETED - The Evaluation is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 }
 
@@ -4386,13 +4357,13 @@ type GetBatchPredictionOutput struct {
 
 	// The status of the BatchPrediction, which can be one of the following values:
 	//
-	//    PENDING - Amazon Machine Learning (Amazon ML) submitted a request to generate
-	//    batch predictions.
-	//    INPROGRESS - The batch predictions are in progress.
-	//    FAILED - The request to perform a batch prediction did not run to completion.
+	//    * PENDING - Amazon Machine Learning (Amazon ML) submitted a request to
+	//    generate batch predictions.
+	//    * INPROGRESS - The batch predictions are in progress.
+	//    * FAILED - The request to perform a batch prediction did not run to completion.
 	//    It is not usable.
-	//    COMPLETED - The batch prediction process completed successfully.
-	//    DELETED - The BatchPrediction is marked as deleted. It is not usable.
+	//    * COMPLETED - The batch prediction process completed successfully.
+	//    * DELETED - The BatchPrediction is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The number of total records that Amazon Machine Learning saw while processing
@@ -4534,12 +4505,12 @@ type GetDataSourceOutput struct {
 	// The current status of the DataSource. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon ML submitted a request to create a DataSource.
-	//    INPROGRESS - The creation process is underway.
-	//    FAILED - The request to create a DataSource did not run to completion.
+	//    * PENDING - Amazon ML submitted a request to create a DataSource.
+	//    * INPROGRESS - The creation process is underway.
+	//    * FAILED - The request to create a DataSource did not run to completion.
 	//    It is not usable.
-	//    COMPLETED - The creation process completed successfully.
-	//    DELETED - The DataSource is marked as deleted. It is not usable.
+	//    * COMPLETED - The creation process completed successfully.
+	//    * DELETED - The DataSource is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 }
 
@@ -4642,15 +4613,15 @@ type GetEvaluationOutput struct {
 	// by the DataSource. One of the following metric is returned based on the type
 	// of the MLModel:
 	//
-	//    BinaryAUC: A binary MLModel uses the Area Under the Curve (AUC) technique
-	// to measure performance.
+	//    * BinaryAUC: A binary MLModel uses the Area Under the Curve (AUC) technique
+	//    to measure performance.
 	//
-	//    RegressionRMSE: A regression MLModel uses the Root Mean Square Error (RMSE)
-	// technique to measure performance. RMSE measures the difference between predicted
-	// and actual values for a single variable.
+	//    * RegressionRMSE: A regression MLModel uses the Root Mean Square Error
+	//    (RMSE) technique to measure performance. RMSE measures the difference
+	//    between predicted and actual values for a single variable.
 	//
-	//    MulticlassAvgFScore: A multiclass MLModel uses the F1 score technique
-	// to measure performance.
+	//    * MulticlassAvgFScore: A multiclass MLModel uses the F1 score technique
+	//    to measure performance.
 	//
 	// For more information about performance metrics, please see the Amazon Machine
 	// Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
@@ -4663,13 +4634,13 @@ type GetEvaluationOutput struct {
 	// The status of the evaluation. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon Machine Language (Amazon ML) submitted a request to evaluate
-	//    an MLModel.
-	//    INPROGRESS - The evaluation is underway.
-	//    FAILED - The request to evaluate an MLModel did not run to completion.
+	//    * PENDING - Amazon Machine Language (Amazon ML) submitted a request to
+	//    evaluate an MLModel.
+	//    * INPROGRESS - The evaluation is underway.
+	//    * FAILED - The request to evaluate an MLModel did not run to completion.
 	//    It is not usable.
-	//    COMPLETED - The evaluation process completed successfully.
-	//    DELETED - The Evaluation is marked as deleted. It is not usable.
+	//    * COMPLETED - The evaluation process completed successfully.
+	//    * DELETED - The Evaluation is marked as deleted. It is not usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 }
 
@@ -4767,12 +4738,12 @@ type GetMLModelOutput struct {
 
 	// Identifies the MLModel category. The following are the available types:
 	//
-	//    REGRESSION -- Produces a numeric result. For example, "What price should
+	//    * REGRESSION -- Produces a numeric result. For example, "What price should
 	//    a house be listed at?"
-	//    BINARY -- Produces one of two possible results. For example, "Is this
+	//    * BINARY -- Produces one of two possible results. For example, "Is this
 	//    an e-commerce website?"
-	//    MULTICLASS -- Produces one of several possible results. For example, "Is
-	//    this a HIGH, LOW or MEDIUM risk trade?"
+	//    * MULTICLASS -- Produces one of several possible results. For example,
+	//    "Is this a HIGH, LOW or MEDIUM risk trade?"
 	MLModelType *string `type:"string" enum:"MLModelType"`
 
 	// A description of the most recent details about accessing the MLModel.
@@ -4815,12 +4786,13 @@ type GetMLModelOutput struct {
 	// The current status of the MLModel. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon Machine Learning (Amazon ML) submitted a request to describe
-	//    a MLModel.
-	//    INPROGRESS - The request is processing.
-	//    FAILED - The request did not run to completion. The ML model isn't usable.
-	//    COMPLETED - The request completed successfully.
-	//    DELETED - The MLModel is marked as deleted. It isn't usable.
+	//    * PENDING - Amazon Machine Learning (Amazon ML) submitted a request to
+	//    describe a MLModel.
+	//    * INPROGRESS - The request is processing.
+	//    * FAILED - The request did not run to completion. The ML model isn't usable.
+	//
+	//    * COMPLETED - The request completed successfully.
+	//    * DELETED - The MLModel is marked as deleted. It isn't usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The ID of the training DataSource.
@@ -4831,38 +4803,39 @@ type GetMLModelOutput struct {
 	//
 	// The following is the current set of training parameters:
 	//
-	//    sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
-	// on the input data, the size of the model might affect its performance.
+	//    * sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
+	//    on the input data, the size of the model might affect its performance.
 	//
-	//     The value is an integer that ranges from 100000 to 2147483648. The default
-	// value is 33554432.
+	//  The value is an integer that ranges from 100000 to 2147483648. The default
+	//    value is 33554432.
 	//
-	//    sgd.maxPasses - The number of times that the training process traverses
-	// the observations to build the MLModel. The value is an integer that ranges
-	// from 1 to 10000. The default value is 10.
+	//    * sgd.maxPasses - The number of times that the training process traverses
+	//    the observations to build the MLModel. The value is an integer that ranges
+	//    from 1 to 10000. The default value is 10.
 	//
-	//    sgd.shuffleType - Whether Amazon ML shuffles the training data. Shuffling
-	// data improves a model's ability to find the optimal solution for a variety
-	// of data types. The valid values are auto and none. The default value is none.
-	// We strongly recommend that you shuffle your data.
+	//    * sgd.shuffleType - Whether Amazon ML shuffles the training data. Shuffling
+	//    data improves a model's ability to find the optimal solution for a variety
+	//    of data types. The valid values are auto and none. The default value is
+	//    none. We strongly recommend that you shuffle your data.
 	//
-	//    sgd.l1RegularizationAmount - The coefficient regularization L1 norm. It
-	// controls overfitting the data by penalizing large coefficients. This tends
-	// to drive coefficients to zero, resulting in a sparse feature set. If you
-	// use this parameter, start by specifying a small value, such as 1.0E-08.
+	//    * sgd.l1RegularizationAmount - The coefficient regularization L1 norm.
+	//    It controls overfitting the data by penalizing large coefficients. This
+	//    tends to drive coefficients to zero, resulting in a sparse feature set.
+	//    If you use this parameter, start by specifying a small value, such as
+	//    1.0E-08.
 	//
-	//    The value is a double that ranges from 0 to MAX_DOUBLE. The default is
-	// to not use L1 normalization. This parameter can't be used when L2 is specified.
-	// Use this parameter sparingly.
+	// The value is a double that ranges from 0 to MAX_DOUBLE. The default is to
+	//    not use L1 normalization. This parameter can't be used when L2 is specified.
+	//    Use this parameter sparingly.
 	//
-	//    sgd.l2RegularizationAmount - The coefficient regularization L2 norm. It
-	// controls overfitting the data by penalizing large coefficients. This tends
-	// to drive coefficients to small, nonzero values. If you use this parameter,
-	// start by specifying a small value, such as 1.0E-08.
+	//    * sgd.l2RegularizationAmount - The coefficient regularization L2 norm.
+	//    It controls overfitting the data by penalizing large coefficients. This
+	//    tends to drive coefficients to small, nonzero values. If you use this
+	//    parameter, start by specifying a small value, such as 1.0E-08.
 	//
-	//    The value is a double that ranges from 0 to MAX_DOUBLE. The default is
-	// to not use L2 normalization. This parameter can't be used when L1 is specified.
-	// Use this parameter sparingly.
+	// The value is a double that ranges from 0 to MAX_DOUBLE. The default is to
+	//    not use L2 normalization. This parameter can't be used when L1 is specified.
+	//    Use this parameter sparingly.
 	TrainingParameters map[string]*string `type:"map"`
 }
 
@@ -4885,7 +4858,7 @@ type MLModel struct {
 
 	// The algorithm used to train the MLModel. The following algorithm is supported:
 	//
-	//    SGD -- Stochastic gradient descent. The goal of SGD is to minimize the
+	//    * SGD -- Stochastic gradient descent. The goal of SGD is to minimize the
 	//    gradient of the loss function.
 	Algorithm *string `type:"string" enum:"Algorithm"`
 
@@ -4919,12 +4892,12 @@ type MLModel struct {
 
 	// Identifies the MLModel category. The following are the available types:
 	//
-	//    REGRESSION - Produces a numeric result. For example, "What price should
+	//    * REGRESSION - Produces a numeric result. For example, "What price should
 	//    a house be listed at?"
-	//    BINARY - Produces one of two possible results. For example, "Is this a
-	//    child-friendly web site?".
-	//    MULTICLASS - Produces one of several possible results. For example, "Is
-	//    this a HIGH-, LOW-, or MEDIUM-risk trade?".
+	//    * BINARY - Produces one of two possible results. For example, "Is this
+	//    a child-friendly web site?".
+	//    * MULTICLASS - Produces one of several possible results. For example,
+	//    "Is this a HIGH-, LOW-, or MEDIUM-risk trade?".
 	MLModelType *string `type:"string" enum:"MLModelType"`
 
 	// A description of the most recent details about accessing the MLModel.
@@ -4948,13 +4921,13 @@ type MLModel struct {
 	// The current status of an MLModel. This element can have one of the following
 	// values:
 	//
-	//    PENDING - Amazon Machine Learning (Amazon ML) submitted a request to create
-	//    an MLModel.
-	//    INPROGRESS - The creation process is underway.
-	//    FAILED - The request to create an MLModel didn't run to completion. The
-	//    model isn't usable.
-	//    COMPLETED - The creation process completed successfully.
-	//    DELETED - The MLModel is marked as deleted. It isn't usable.
+	//    * PENDING - Amazon Machine Learning (Amazon ML) submitted a request to
+	//    create an MLModel.
+	//    * INPROGRESS - The creation process is underway.
+	//    * FAILED - The request to create an MLModel didn't run to completion.
+	//    The model isn't usable.
+	//    * COMPLETED - The creation process completed successfully.
+	//    * DELETED - The MLModel is marked as deleted. It isn't usable.
 	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The ID of the training DataSource. The CreateMLModel operation uses the TrainingDataSourceId.
@@ -4965,37 +4938,39 @@ type MLModel struct {
 	//
 	// The following is the current set of training parameters:
 	//
-	//    sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
-	// on the input data, the size of the model might affect its performance.
+	//    * sgd.maxMLModelSizeInBytes - The maximum allowed size of the model. Depending
+	//    on the input data, the size of the model might affect its performance.
 	//
-	//     The value is an integer that ranges from 100000 to 2147483648. The default
-	// value is 33554432.
+	//  The value is an integer that ranges from 100000 to 2147483648. The default
+	//    value is 33554432.
 	//
-	//    sgd.maxPasses - The number of times that the training process traverses
-	// the observations to build the MLModel. The value is an integer that ranges
-	// from 1 to 10000. The default value is 10.
+	//    * sgd.maxPasses - The number of times that the training process traverses
+	//    the observations to build the MLModel. The value is an integer that ranges
+	//    from 1 to 10000. The default value is 10.
 	//
-	//    sgd.shuffleType - Whether Amazon ML shuffles the training data. Shuffling
-	// the data improves a model's ability to find the optimal solution for a variety
-	// of data types. The valid values are auto and none. The default value is none.
+	//    * sgd.shuffleType - Whether Amazon ML shuffles the training data. Shuffling
+	//    the data improves a model's ability to find the optimal solution for a
+	//    variety of data types. The valid values are auto and none. The default
+	//    value is none.
 	//
-	//    sgd.l1RegularizationAmount - The coefficient regularization L1 norm, which
-	// controls overfitting the data by penalizing large coefficients. This parameter
-	// tends to drive coefficients to zero, resulting in sparse feature set. If
-	// you use this parameter, start by specifying a small value, such as 1.0E-08.
+	//    * sgd.l1RegularizationAmount - The coefficient regularization L1 norm,
+	//    which controls overfitting the data by penalizing large coefficients.
+	//    This parameter tends to drive coefficients to zero, resulting in sparse
+	//    feature set. If you use this parameter, start by specifying a small value,
+	//    such as 1.0E-08.
 	//
-	//    The value is a double that ranges from 0 to MAX_DOUBLE. The default is
-	// to not use L1 normalization. This parameter can't be used when L2 is specified.
-	// Use this parameter sparingly.
+	// The value is a double that ranges from 0 to MAX_DOUBLE. The default is to
+	//    not use L1 normalization. This parameter can't be used when L2 is specified.
+	//    Use this parameter sparingly.
 	//
-	//    sgd.l2RegularizationAmount - The coefficient regularization L2 norm, which
-	// controls overfitting the data by penalizing large coefficients. This tends
-	// to drive coefficients to small, nonzero values. If you use this parameter,
-	// start by specifying a small value, such as 1.0E-08.
+	//    * sgd.l2RegularizationAmount - The coefficient regularization L2 norm,
+	//    which controls overfitting the data by penalizing large coefficients.
+	//    This tends to drive coefficients to small, nonzero values. If you use
+	//    this parameter, start by specifying a small value, such as 1.0E-08.
 	//
-	//    The value is a double that ranges from 0 to MAX_DOUBLE. The default is
-	// to not use L2 normalization. This parameter can't be used when L1 is specified.
-	// Use this parameter sparingly.
+	// The value is a double that ranges from 0 to MAX_DOUBLE. The default is to
+	//    not use L2 normalization. This parameter can't be used when L1 is specified.
+	//    Use this parameter sparingly.
 	TrainingParameters map[string]*string `type:"map"`
 }
 
@@ -5012,15 +4987,15 @@ func (s MLModel) GoString() string {
 // Measurements of how well the MLModel performed on known observations. One
 // of the following metrics is returned, based on the type of the MLModel:
 //
-//    BinaryAUC: The binary MLModel uses the Area Under the Curve (AUC) technique
-// to measure performance.
+//    * BinaryAUC: The binary MLModel uses the Area Under the Curve (AUC) technique
+//    to measure performance.
 //
-//    RegressionRMSE: The regression MLModel uses the Root Mean Square Error
-// (RMSE) technique to measure performance. RMSE measures the difference between
-// predicted and actual values for a single variable.
+//    * RegressionRMSE: The regression MLModel uses the Root Mean Square Error
+//    (RMSE) technique to measure performance. RMSE measures the difference
+//    between predicted and actual values for a single variable.
 //
-//    MulticlassAvgFScore: The multiclass MLModel uses the F1 score technique
-// to measure performance.
+//    * MulticlassAvgFScore: The multiclass MLModel uses the F1 score technique
+//    to measure performance.
 //
 // For more information about performance metrics, please see the Amazon Machine
 // Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
@@ -5094,15 +5069,16 @@ type PredictOutput struct {
 
 	// The output from a Predict operation:
 	//
-	//    Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
-	// - REGRESSION | BINARY | MULTICLASSDetailsAttributes.ALGORITHM - SGD
+	//    * Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
+	//    - REGRESSION | BINARY | MULTICLASSDetailsAttributes.ALGORITHM - SGD
 	//
-	//    PredictedLabel - Present for either a BINARY or MULTICLASSMLModel request.
+	//    * PredictedLabel - Present for either a BINARY or MULTICLASSMLModel request.
 	//
-	//    PredictedScores - Contains the raw classification score corresponding
-	// to each label.
 	//
-	//    PredictedValue - Present for a REGRESSIONMLModel request.
+	//    * PredictedScores - Contains the raw classification score corresponding
+	//    to each label.
+	//
+	//    * PredictedValue - Present for a REGRESSIONMLModel request.
 	Prediction *Prediction `type:"structure"`
 }
 
@@ -5118,15 +5094,16 @@ func (s PredictOutput) GoString() string {
 
 // The output from a Predict operation:
 //
-//    Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
-// - REGRESSION | BINARY | MULTICLASSDetailsAttributes.ALGORITHM - SGD
+//    * Details - Contains the following attributes: DetailsAttributes.PREDICTIVE_MODEL_TYPE
+//    - REGRESSION | BINARY | MULTICLASSDetailsAttributes.ALGORITHM - SGD
 //
-//    PredictedLabel - Present for either a BINARY or MULTICLASSMLModel request.
+//    * PredictedLabel - Present for either a BINARY or MULTICLASSMLModel request.
 //
-//    PredictedScores - Contains the raw classification score corresponding
-// to each label.
 //
-//    PredictedValue - Present for a REGRESSIONMLModel request.
+//    * PredictedScores - Contains the raw classification score corresponding
+//    to each label.
+//
+//    * PredictedValue - Present for a REGRESSIONMLModel request.
 type Prediction struct {
 	_ struct{} `type:"structure"`
 
@@ -5139,9 +5116,7 @@ type Prediction struct {
 	// Provides the raw classification score corresponding to each label.
 	PredictedScores map[string]*float64 `locationName:"predictedScores" type:"map"`
 
-	// The prediction value for REGRESSION
-	//    MLModel
-	// .
+	// The prediction value for REGRESSIONMLModel
 	PredictedValue *float64 `locationName:"predictedValue" type:"float"`
 }
 
@@ -5167,77 +5142,78 @@ type RDSDataSpec struct {
 	// There are multiple parameters that control what data is used to create a
 	// datasource:
 	//
-	//    percentBegin
+	//    * percentBegin
 	//
-	//    Use percentBegin to indicate the beginning of the range of the data used
-	// to create the Datasource. If you do not include percentBegin and percentEnd,
-	// Amazon ML includes all of the data when creating the datasource.
+	// Use percentBegin to indicate the beginning of the range of the data used
+	//    to create the Datasource. If you do not include percentBegin and percentEnd,
+	//    Amazon ML includes all of the data when creating the datasource.
 	//
-	//    percentEnd
+	//    * percentEnd
 	//
-	//    Use percentEnd to indicate the end of the range of the data used to create
-	// the Datasource. If you do not include percentBegin and percentEnd, Amazon
-	// ML includes all of the data when creating the datasource.
+	// Use percentEnd to indicate the end of the range of the data used to create
+	//    the Datasource. If you do not include percentBegin and percentEnd, Amazon
+	//    ML includes all of the data when creating the datasource.
 	//
-	//    complement
+	//    * complement
 	//
-	//    The complement parameter instructs Amazon ML to use the data that is not
-	// included in the range of percentBegin to percentEnd to create a datasource.
-	// The complement parameter is useful if you need to create complementary datasources
-	// for training and evaluation. To create a complementary datasource, use the
-	// same values for percentBegin and percentEnd, along with the complement parameter.
+	// The complement parameter instructs Amazon ML to use the data that is not
+	//    included in the range of percentBegin to percentEnd to create a datasource.
+	//    The complement parameter is useful if you need to create complementary
+	//    datasources for training and evaluation. To create a complementary datasource,
+	//    use the same values for percentBegin and percentEnd, along with the complement
+	//    parameter.
 	//
-	//    For example, the following two datasources do not share any data, and
-	//    can be used to train and evaluate a model. The first datasource has 25
-	//    percent of the data, and the second one has 75 percent of the data.
+	// For example, the following two datasources do not share any data, and can
+	//    be used to train and evaluate a model. The first datasource has 25 percent
+	//    of the data, and the second one has 75 percent of the data.
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":0, "percentEnd":25}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":0, "percentEnd":25}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":0, "percentEnd":25,
-	// "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":0, "percentEnd":25,
+	//    "complement":"true"}}
 	//
-	//    strategy
+	//    * strategy
 	//
-	//    To change how Amazon ML splits the data for a datasource, use the strategy
-	// parameter.
+	// To change how Amazon ML splits the data for a datasource, use the strategy
+	//    parameter.
 	//
-	//    The default value for the strategy parameter is sequential, meaning that
-	// Amazon ML takes all of the data records between the percentBegin and percentEnd
-	// parameters for the datasource, in the order that the records appear in the
-	// input data.
+	// The default value for the strategy parameter is sequential, meaning that
+	//    Amazon ML takes all of the data records between the percentBegin and percentEnd
+	//    parameters for the datasource, in the order that the records appear in
+	//    the input data.
 	//
-	//    The following two DataRearrangement lines are examples of sequentially
-	// ordered training and evaluation datasources:
+	// The following two DataRearrangement lines are examples of sequentially ordered
+	//    training and evaluation datasources:
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"sequential"}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"sequential"}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"sequential", "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"sequential", "complement":"true"}}
 	//
-	//    To randomly split the input data into the proportions indicated by the
-	//    percentBegin and percentEnd parameters, set the strategy parameter to
-	// random and provide a string that is used as the seed value for the random
-	// data splitting (for example, you can use the S3 path to your data as the
-	// random seed string). If you choose the random split strategy, Amazon ML assigns
-	// each row of data a pseudo-random number between 0 and 100, and then selects
-	// the rows that have an assigned number between percentBegin and percentEnd.
-	// Pseudo-random numbers are assigned using both the input seed string value
-	// and the byte offset as a seed, so changing the data results in a different
-	// split. Any existing ordering is preserved. The random splitting strategy
-	// ensures that variables in the training and evaluation data are distributed
-	// similarly. It is useful in the cases where the input data may have an implicit
-	// sort order, which would otherwise result in training and evaluation datasources
-	// containing non-similar data records.
+	// To randomly split the input data into the proportions indicated by the percentBegin
+	//    and percentEnd parameters, set the strategy parameter to random and provide
+	//    a string that is used as the seed value for the random data splitting
+	//    (for example, you can use the S3 path to your data as the random seed
+	//    string). If you choose the random split strategy, Amazon ML assigns each
+	//    row of data a pseudo-random number between 0 and 100, and then selects
+	//    the rows that have an assigned number between percentBegin and percentEnd.
+	//    Pseudo-random numbers are assigned using both the input seed string value
+	//    and the byte offset as a seed, so changing the data results in a different
+	//    split. Any existing ordering is preserved. The random splitting strategy
+	//    ensures that variables in the training and evaluation data are distributed
+	//    similarly. It is useful in the cases where the input data may have an
+	//    implicit sort order, which would otherwise result in training and evaluation
+	//    datasources containing non-similar data records.
 	//
-	//    The following two DataRearrangement lines are examples of non-sequentially
-	// ordered training and evaluation datasources:
+	// The following two DataRearrangement lines are examples of non-sequentially
+	//    ordered training and evaluation datasources:
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv"}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv"}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv", "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv", "complement":"true"}}
 	DataRearrangement *string `type:"string"`
 
 	// A JSON string that represents the schema for an Amazon RDS DataSource. The
@@ -5550,9 +5526,9 @@ type RealtimeEndpointInfo struct {
 	// The current status of the real-time endpoint for the MLModel. This element
 	// can have one of the following values:
 	//
-	//    NONE - Endpoint does not exist or was previously deleted.
-	//    READY - Endpoint is ready to be used for real-time predictions.
-	//    UPDATING - Updating/creating the endpoint.
+	//    * NONE - Endpoint does not exist or was previously deleted.
+	//    * READY - Endpoint is ready to be used for real-time predictions.
+	//    * UPDATING - Updating/creating the endpoint.
 	EndpointStatus *string `type:"string" enum:"RealtimeEndpointStatus"`
 
 	// The URI that specifies where to send real-time prediction requests for the
@@ -5588,77 +5564,78 @@ type RedshiftDataSpec struct {
 	// There are multiple parameters that control what data is used to create a
 	// datasource:
 	//
-	//    percentBegin
+	//    * percentBegin
 	//
-	//    Use percentBegin to indicate the beginning of the range of the data used
-	// to create the Datasource. If you do not include percentBegin and percentEnd,
-	// Amazon ML includes all of the data when creating the datasource.
+	// Use percentBegin to indicate the beginning of the range of the data used
+	//    to create the Datasource. If you do not include percentBegin and percentEnd,
+	//    Amazon ML includes all of the data when creating the datasource.
 	//
-	//    percentEnd
+	//    * percentEnd
 	//
-	//    Use percentEnd to indicate the end of the range of the data used to create
-	// the Datasource. If you do not include percentBegin and percentEnd, Amazon
-	// ML includes all of the data when creating the datasource.
+	// Use percentEnd to indicate the end of the range of the data used to create
+	//    the Datasource. If you do not include percentBegin and percentEnd, Amazon
+	//    ML includes all of the data when creating the datasource.
 	//
-	//    complement
+	//    * complement
 	//
-	//    The complement parameter instructs Amazon ML to use the data that is not
-	// included in the range of percentBegin to percentEnd to create a datasource.
-	// The complement parameter is useful if you need to create complementary datasources
-	// for training and evaluation. To create a complementary datasource, use the
-	// same values for percentBegin and percentEnd, along with the complement parameter.
+	// The complement parameter instructs Amazon ML to use the data that is not
+	//    included in the range of percentBegin to percentEnd to create a datasource.
+	//    The complement parameter is useful if you need to create complementary
+	//    datasources for training and evaluation. To create a complementary datasource,
+	//    use the same values for percentBegin and percentEnd, along with the complement
+	//    parameter.
 	//
-	//    For example, the following two datasources do not share any data, and
-	//    can be used to train and evaluate a model. The first datasource has 25
-	//    percent of the data, and the second one has 75 percent of the data.
+	// For example, the following two datasources do not share any data, and can
+	//    be used to train and evaluate a model. The first datasource has 25 percent
+	//    of the data, and the second one has 75 percent of the data.
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":0, "percentEnd":25}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":0, "percentEnd":25}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":0, "percentEnd":25,
-	// "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":0, "percentEnd":25,
+	//    "complement":"true"}}
 	//
-	//    strategy
+	//    * strategy
 	//
-	//    To change how Amazon ML splits the data for a datasource, use the strategy
-	// parameter.
+	// To change how Amazon ML splits the data for a datasource, use the strategy
+	//    parameter.
 	//
-	//    The default value for the strategy parameter is sequential, meaning that
-	// Amazon ML takes all of the data records between the percentBegin and percentEnd
-	// parameters for the datasource, in the order that the records appear in the
-	// input data.
+	// The default value for the strategy parameter is sequential, meaning that
+	//    Amazon ML takes all of the data records between the percentBegin and percentEnd
+	//    parameters for the datasource, in the order that the records appear in
+	//    the input data.
 	//
-	//    The following two DataRearrangement lines are examples of sequentially
-	// ordered training and evaluation datasources:
+	// The following two DataRearrangement lines are examples of sequentially ordered
+	//    training and evaluation datasources:
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"sequential"}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"sequential"}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"sequential", "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"sequential", "complement":"true"}}
 	//
-	//    To randomly split the input data into the proportions indicated by the
-	//    percentBegin and percentEnd parameters, set the strategy parameter to
-	// random and provide a string that is used as the seed value for the random
-	// data splitting (for example, you can use the S3 path to your data as the
-	// random seed string). If you choose the random split strategy, Amazon ML assigns
-	// each row of data a pseudo-random number between 0 and 100, and then selects
-	// the rows that have an assigned number between percentBegin and percentEnd.
-	// Pseudo-random numbers are assigned using both the input seed string value
-	// and the byte offset as a seed, so changing the data results in a different
-	// split. Any existing ordering is preserved. The random splitting strategy
-	// ensures that variables in the training and evaluation data are distributed
-	// similarly. It is useful in the cases where the input data may have an implicit
-	// sort order, which would otherwise result in training and evaluation datasources
-	// containing non-similar data records.
+	// To randomly split the input data into the proportions indicated by the percentBegin
+	//    and percentEnd parameters, set the strategy parameter to random and provide
+	//    a string that is used as the seed value for the random data splitting
+	//    (for example, you can use the S3 path to your data as the random seed
+	//    string). If you choose the random split strategy, Amazon ML assigns each
+	//    row of data a pseudo-random number between 0 and 100, and then selects
+	//    the rows that have an assigned number between percentBegin and percentEnd.
+	//    Pseudo-random numbers are assigned using both the input seed string value
+	//    and the byte offset as a seed, so changing the data results in a different
+	//    split. Any existing ordering is preserved. The random splitting strategy
+	//    ensures that variables in the training and evaluation data are distributed
+	//    similarly. It is useful in the cases where the input data may have an
+	//    implicit sort order, which would otherwise result in training and evaluation
+	//    datasources containing non-similar data records.
 	//
-	//    The following two DataRearrangement lines are examples of non-sequentially
-	// ordered training and evaluation datasources:
+	// The following two DataRearrangement lines are examples of non-sequentially
+	//    ordered training and evaluation datasources:
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv"}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv"}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv", "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv", "complement":"true"}}
 	DataRearrangement *string `type:"string"`
 
 	// A JSON string that represents the schema for an Amazon Redshift DataSource.
@@ -5916,77 +5893,78 @@ type S3DataSpec struct {
 	// There are multiple parameters that control what data is used to create a
 	// datasource:
 	//
-	//    percentBegin
+	//    * percentBegin
 	//
-	//    Use percentBegin to indicate the beginning of the range of the data used
-	// to create the Datasource. If you do not include percentBegin and percentEnd,
-	// Amazon ML includes all of the data when creating the datasource.
+	// Use percentBegin to indicate the beginning of the range of the data used
+	//    to create the Datasource. If you do not include percentBegin and percentEnd,
+	//    Amazon ML includes all of the data when creating the datasource.
 	//
-	//    percentEnd
+	//    * percentEnd
 	//
-	//    Use percentEnd to indicate the end of the range of the data used to create
-	// the Datasource. If you do not include percentBegin and percentEnd, Amazon
-	// ML includes all of the data when creating the datasource.
+	// Use percentEnd to indicate the end of the range of the data used to create
+	//    the Datasource. If you do not include percentBegin and percentEnd, Amazon
+	//    ML includes all of the data when creating the datasource.
 	//
-	//    complement
+	//    * complement
 	//
-	//    The complement parameter instructs Amazon ML to use the data that is not
-	// included in the range of percentBegin to percentEnd to create a datasource.
-	// The complement parameter is useful if you need to create complementary datasources
-	// for training and evaluation. To create a complementary datasource, use the
-	// same values for percentBegin and percentEnd, along with the complement parameter.
+	// The complement parameter instructs Amazon ML to use the data that is not
+	//    included in the range of percentBegin to percentEnd to create a datasource.
+	//    The complement parameter is useful if you need to create complementary
+	//    datasources for training and evaluation. To create a complementary datasource,
+	//    use the same values for percentBegin and percentEnd, along with the complement
+	//    parameter.
 	//
-	//    For example, the following two datasources do not share any data, and
-	//    can be used to train and evaluate a model. The first datasource has 25
-	//    percent of the data, and the second one has 75 percent of the data.
+	// For example, the following two datasources do not share any data, and can
+	//    be used to train and evaluate a model. The first datasource has 25 percent
+	//    of the data, and the second one has 75 percent of the data.
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":0, "percentEnd":25}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":0, "percentEnd":25}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":0, "percentEnd":25,
-	// "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":0, "percentEnd":25,
+	//    "complement":"true"}}
 	//
-	//    strategy
+	//    * strategy
 	//
-	//    To change how Amazon ML splits the data for a datasource, use the strategy
-	// parameter.
+	// To change how Amazon ML splits the data for a datasource, use the strategy
+	//    parameter.
 	//
-	//    The default value for the strategy parameter is sequential, meaning that
-	// Amazon ML takes all of the data records between the percentBegin and percentEnd
-	// parameters for the datasource, in the order that the records appear in the
-	// input data.
+	// The default value for the strategy parameter is sequential, meaning that
+	//    Amazon ML takes all of the data records between the percentBegin and percentEnd
+	//    parameters for the datasource, in the order that the records appear in
+	//    the input data.
 	//
-	//    The following two DataRearrangement lines are examples of sequentially
-	// ordered training and evaluation datasources:
+	// The following two DataRearrangement lines are examples of sequentially ordered
+	//    training and evaluation datasources:
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"sequential"}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"sequential"}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"sequential", "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"sequential", "complement":"true"}}
 	//
-	//    To randomly split the input data into the proportions indicated by the
-	//    percentBegin and percentEnd parameters, set the strategy parameter to
-	// random and provide a string that is used as the seed value for the random
-	// data splitting (for example, you can use the S3 path to your data as the
-	// random seed string). If you choose the random split strategy, Amazon ML assigns
-	// each row of data a pseudo-random number between 0 and 100, and then selects
-	// the rows that have an assigned number between percentBegin and percentEnd.
-	// Pseudo-random numbers are assigned using both the input seed string value
-	// and the byte offset as a seed, so changing the data results in a different
-	// split. Any existing ordering is preserved. The random splitting strategy
-	// ensures that variables in the training and evaluation data are distributed
-	// similarly. It is useful in the cases where the input data may have an implicit
-	// sort order, which would otherwise result in training and evaluation datasources
-	// containing non-similar data records.
+	// To randomly split the input data into the proportions indicated by the percentBegin
+	//    and percentEnd parameters, set the strategy parameter to random and provide
+	//    a string that is used as the seed value for the random data splitting
+	//    (for example, you can use the S3 path to your data as the random seed
+	//    string). If you choose the random split strategy, Amazon ML assigns each
+	//    row of data a pseudo-random number between 0 and 100, and then selects
+	//    the rows that have an assigned number between percentBegin and percentEnd.
+	//    Pseudo-random numbers are assigned using both the input seed string value
+	//    and the byte offset as a seed, so changing the data results in a different
+	//    split. Any existing ordering is preserved. The random splitting strategy
+	//    ensures that variables in the training and evaluation data are distributed
+	//    similarly. It is useful in the cases where the input data may have an
+	//    implicit sort order, which would otherwise result in training and evaluation
+	//    datasources containing non-similar data records.
 	//
-	//    The following two DataRearrangement lines are examples of non-sequentially
-	// ordered training and evaluation datasources:
+	// The following two DataRearrangement lines are examples of non-sequentially
+	//    ordered training and evaluation datasources:
 	//
-	//    Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv"}}
+	// Datasource for evaluation: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv"}}
 	//
-	//    Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
-	// "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv", "complement":"true"}}
+	// Datasource for training: {"splitting":{"percentBegin":70, "percentEnd":100,
+	//    "strategy":"random", "randomSeed"="s3://my_s3_path/bucket/file.csv", "complement":"true"}}
 	DataRearrangement *string `type:"string"`
 
 	// A JSON string that represents the schema for an Amazon S3 DataSource. The
@@ -6351,8 +6329,8 @@ func (s UpdateMLModelOutput) GoString() string {
 // The function used to train an MLModel. Training choices supported by Amazon
 // ML include the following:
 //
-//    SGD - Stochastic Gradient Descent.
-//    RandomForest - Random forest of decision trees.
+//    * SGD - Stochastic Gradient Descent.
+//    * RandomForest - Random forest of decision trees.
 const (
 	// AlgorithmSgd is a Algorithm enum value
 	AlgorithmSgd = "sgd"
@@ -6360,15 +6338,18 @@ const (
 
 // A list of the variables to use in searching or filtering BatchPrediction.
 //
-//    CreatedAt - Sets the search criteria to BatchPrediction creation date.
-//    Status - Sets the search criteria to BatchPrediction status.
-//    Name - Sets the search criteria to the contents of BatchPredictionName.
-//    IAMUser - Sets the search criteria to the user account that invoked the
-//    BatchPrediction creation.
-//    MLModelId - Sets the search criteria to the MLModel used in the BatchPrediction.
-//    DataSourceId - Sets the search criteria to the DataSource used in the
+//    * CreatedAt - Sets the search criteria to BatchPrediction creation date.
+//
+//    * Status - Sets the search criteria to BatchPrediction status.
+//    * Name - Sets the search criteria to the contents of BatchPredictionName.
+//
+//    * IAMUser - Sets the search criteria to the user account that invoked
+//    the BatchPrediction creation.
+//    * MLModelId - Sets the search criteria to the MLModel used in the BatchPrediction.
+//
+//    * DataSourceId - Sets the search criteria to the DataSource used in the
 //    BatchPrediction.
-//    DataURI - Sets the search criteria to the data file(s) used in the BatchPrediction.
+//    * DataURI - Sets the search criteria to the data file(s) used in the BatchPrediction.
 //    The URL can identify either a file or an Amazon Simple Storage Service
 //    (Amazon S3) bucket or directory.
 const (
@@ -6399,14 +6380,14 @@ const (
 
 // A list of the variables to use in searching or filtering DataSource.
 //
-//    CreatedAt - Sets the search criteria to DataSource creation date.
-//    Status - Sets the search criteria to DataSource status.
-//    Name - Sets the search criteria to the contents of DataSourceName.
-//    DataUri - Sets the search criteria to the URI of data files used to create
-//    the DataSource. The URI can identify either a file or an Amazon Simple
-//    Storage Service (Amazon S3) bucket or directory.
-//    IAMUser - Sets the search criteria to the user account that invoked the
-//    DataSource creation.
+//    * CreatedAt - Sets the search criteria to DataSource creation date.
+//    * Status - Sets the search criteria to DataSource status.
+//    * Name - Sets the search criteria to the contents of DataSourceName.
+//    * DataUri - Sets the search criteria to the URI of data files used to
+//    create the DataSource. The URI can identify either a file or an Amazon
+//    Simple Storage Service (Amazon S3) bucket or directory.
+//    * IAMUser - Sets the search criteria to the user account that invoked
+//    the DataSource creation.
 // NoteThe variable names should match the variable names in the DataSource.
 const (
 	// DataSourceFilterVariableCreatedAt is a DataSourceFilterVariable enum value
@@ -6428,12 +6409,7 @@ const (
 	DataSourceFilterVariableIamuser = "IAMUser"
 )
 
-// Contains the key values of DetailsMap
-// : PredictiveModelType
-// - Indicates the type of the MLModel
-// . Algorithm
-// - Indicates the algorithm that was used for the MLModel
-// .
+// Contains the key values of DetailsMap: PredictiveModelType- Indicates the type of the MLModel. Algorithm- Indicates the algorithm that was used for the MLModel
 const (
 	// DetailsAttributesPredictiveModelType is a DetailsAttributes enum value
 	DetailsAttributesPredictiveModelType = "PredictiveModelType"
@@ -6444,11 +6420,11 @@ const (
 
 // Object status with the following possible values:
 //
-//    PENDING
-//    INPROGRESS
-//    FAILED
-//    COMPLETED
-//    DELETED
+//    * PENDING
+//    * INPROGRESS
+//    * FAILED
+//    * COMPLETED
+//    * DELETED
 const (
 	// EntityStatusPending is a EntityStatus enum value
 	EntityStatusPending = "PENDING"
@@ -6468,14 +6444,16 @@ const (
 
 // A list of the variables to use in searching or filtering Evaluation.
 //
-//    CreatedAt - Sets the search criteria to Evaluation creation date.
-//    Status - Sets the search criteria to Evaluation status.
-//    Name - Sets the search criteria to the contents of EvaluationName.
-//    IAMUser - Sets the search criteria to the user account that invoked an
-//    evaluation.
-//    MLModelId - Sets the search criteria to the Predictor that was evaluated.
-//    DataSourceId - Sets the search criteria to the DataSource used in evaluation.
-//    DataUri - Sets the search criteria to the data file(s) used in evaluation.
+//    * CreatedAt - Sets the search criteria to Evaluation creation date.
+//    * Status - Sets the search criteria to Evaluation status.
+//    * Name - Sets the search criteria to the contents of EvaluationName.
+//    * IAMUser - Sets the search criteria to the user account that invoked
+//    an evaluation.
+//    * MLModelId - Sets the search criteria to the Predictor that was evaluated.
+//
+//    * DataSourceId - Sets the search criteria to the DataSource used in evaluation.
+//
+//    * DataUri - Sets the search criteria to the data file(s) used in evaluation.
 //    The URL can identify either a file or an Amazon Simple Storage Service
 //    (Amazon S3) bucket or directory.
 const (
@@ -6564,8 +6542,8 @@ const (
 // The sort order specified in a listing condition. Possible values include
 // the following:
 //
-//    asc - Present the information in ascending order (from A-Z).
-//    dsc - Present the information in descending order (from Z-A).
+//    * asc - Present the information in ascending order (from A-Z).
+//    * dsc - Present the information in descending order (from Z-A).
 const (
 	// SortOrderAsc is a SortOrder enum value
 	SortOrderAsc = "asc"

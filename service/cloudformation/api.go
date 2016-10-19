@@ -1957,11 +1957,11 @@ type CreateChangeSetInput struct {
 	//
 	// The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. The following
 	// resources require you to specify this parameter:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
-	// AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
-	// AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
-	// AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
-	// AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
-	// AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
 	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
 	// If your stack template contains these resources, we recommend that you review
 	// all permissions associated with them and edit their permissions if necessary.
@@ -2140,11 +2140,11 @@ type CreateStackInput struct {
 	//
 	// The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. The following
 	// resources require you to specify this parameter:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
-	// AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
-	// AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
-	// AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
-	// AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
-	// AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
 	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
 	// If your stack template contains these resources, we recommend that you review
 	// all permissions associated with them and edit their permissions if necessary.
@@ -2635,10 +2635,10 @@ type DescribeStackEventsInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//    Running stacks: You can specify either the stack's name or its unique
+	//    * Running stacks: You can specify either the stack's name or its unique
 	//    stack ID.
 	//
-	//    Deleted stacks: You must specify the unique stack ID.
+	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
 	StackName *string `type:"string"`
@@ -2703,10 +2703,10 @@ type DescribeStackResourceInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//    Running stacks: You can specify either the stack's name or its unique
+	//    * Running stacks: You can specify either the stack's name or its unique
 	//    stack ID.
 	//
-	//    Deleted stacks: You must specify the unique stack ID.
+	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
 	//
@@ -2785,10 +2785,10 @@ type DescribeStackResourcesInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//    Running stacks: You can specify either the stack's name or its unique
+	//    * Running stacks: You can specify either the stack's name or its unique
 	//    stack ID.
 	//
-	//    Deleted stacks: You must specify the unique stack ID.
+	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
 	//
@@ -2835,10 +2835,10 @@ type DescribeStacksInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//    Running stacks: You can specify either the stack's name or its unique
+	//    * Running stacks: You can specify either the stack's name or its unique
 	//    stack ID.
 	//
-	//    Deleted stacks: You must specify the unique stack ID.
+	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
 	StackName *string `type:"string"`
@@ -3058,7 +3058,7 @@ type GetStackPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Structure containing the stack policy body. (For more information, go to
-	// Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
+	//  Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
 	// in the AWS CloudFormation User Guide.)
 	StackPolicyBody *string `min:"1" type:"string"`
 }
@@ -3080,10 +3080,10 @@ type GetTemplateInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//    Running stacks: You can specify either the stack's name or its unique
+	//    * Running stacks: You can specify either the stack's name or its unique
 	//    stack ID.
 	//
-	//    Deleted stacks: You must specify the unique stack ID.
+	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
 	//
@@ -3323,10 +3323,10 @@ type ListStackResourcesInput struct {
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
-	//    Running stacks: You can specify either the stack's name or its unique
+	//    * Running stacks: You can specify either the stack's name or its unique
 	//    stack ID.
 	//
-	//    Deleted stacks: You must specify the unique stack ID.
+	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
 	//
@@ -3615,25 +3615,25 @@ type ResourceChangeDetail struct {
 	// The group to which the CausingEntity value belongs. There are five entity
 	// groups:
 	//
-	//    ResourceReference entities are Ref intrinsic functions that refer to resources
-	// in the template, such as { "Ref" : "MyEC2InstanceResource" }.
+	//    * ResourceReference entities are Ref intrinsic functions that refer to
+	//    resources in the template, such as { "Ref" : "MyEC2InstanceResource" }.
 	//
-	//    ParameterReference entities are Ref intrinsic functions that get template
-	// parameter values, such as { "Ref" : "MyPasswordParameter" }.
+	//    * ParameterReference entities are Ref intrinsic functions that get template
+	//    parameter values, such as { "Ref" : "MyPasswordParameter" }.
 	//
-	//    ResourceAttribute entities are Fn::GetAtt intrinsic functions that get
-	// resource attribute values, such as { "Fn::GetAtt" : [ "MyEC2InstanceResource",
-	// "PublicDnsName" ] }.
+	//    * ResourceAttribute entities are Fn::GetAtt intrinsic functions that get
+	//    resource attribute values, such as { "Fn::GetAtt" : [ "MyEC2InstanceResource",
+	//    "PublicDnsName" ] }.
 	//
-	//    DirectModification entities are changes that are made directly to the
-	// template.
+	//    * DirectModification entities are changes that are made directly to the
+	//    template.
 	//
-	//    Automatic entities are AWS::CloudFormation::Stack resource types, which
-	// are also known as nested stacks. If you made no changes to the AWS::CloudFormation::Stack
-	// resource, AWS CloudFormation sets the ChangeSource to Automatic because the
-	// nested stack's template might have changed. Changes to a nested stack's template
-	// aren't visible to AWS CloudFormation until you run an update on the parent
-	// stack.
+	//    * Automatic entities are AWS::CloudFormation::Stack resource types, which
+	//    are also known as nested stacks. If you made no changes to the AWS::CloudFormation::Stack
+	//    resource, AWS CloudFormation sets the ChangeSource to Automatic because
+	//    the nested stack's template might have changed. Changes to a nested stack's
+	//    template aren't visible to AWS CloudFormation until you run an update
+	//    on the parent stack.
 	ChangeSource *string `type:"string" enum:"ChangeSource"`
 
 	// Indicates whether AWS CloudFormation can determine the target value, and
@@ -3864,9 +3864,9 @@ type Stack struct {
 
 	// Boolean to enable or disable rollback on stack creation failures:
 	//
-	//    true: disable rollback
+	//    * true: disable rollback
 	//
-	//    false: enable rollback
+	//    * false: enable rollback
 	DisableRollback *bool `type:"boolean"`
 
 	// The time the stack was last updated. This field will only be returned if
@@ -4242,11 +4242,11 @@ type UpdateStackInput struct {
 	//
 	// The only valid values are CAPABILITY_IAM and CAPABILITY_NAMED_IAM. The following
 	// resources require you to specify this parameter:  AWS::IAM::AccessKey (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-accesskey.html),
-	// AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
-	// AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
-	// AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
-	// AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
-	// AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
+	//  AWS::IAM::Group (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-group.html),
+	//  AWS::IAM::InstanceProfile (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-instanceprofile.html),
+	//  AWS::IAM::Policy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-policy.html),
+	//  AWS::IAM::Role (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html),
+	//  AWS::IAM::User (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user.html),
 	// and  AWS::IAM::UserToGroupAddition (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-addusertogroup.html).
 	// If your stack template contains these resources, we recommend that you review
 	// all permissions associated with them and edit their permissions if necessary.

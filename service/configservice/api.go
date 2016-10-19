@@ -359,9 +359,10 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 // the specified delivery channel. After the delivery has started, AWS Config
 // sends following notifications using an Amazon SNS topic that you have specified.
 //
-//    Notification of starting the delivery.
-//    Notification of delivery completed, if the delivery was successfully completed.
-//    Notification of delivery failure, if the delivery failed to complete.
+//    * Notification of starting the delivery.
+//    * Notification of delivery completed, if the delivery was successfully
+//    completed.
+//    * Notification of delivery failure, if the delivery failed to complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -442,15 +443,15 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 // If AWS Config has no current evaluation results for the rule, it returns
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions:
 //
-//    AWS Config has never invoked an evaluation for the rule. To check whether
+//    * AWS Config has never invoked an evaluation for the rule. To check whether
 //    it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 //    and LastFailedInvocationTime.
-//    The rule's AWS Lambda function is failing to send evaluation results to
-//    AWS Config. Verify that the role that you assigned to your configuration
+//    * The rule's AWS Lambda function is failing to send evaluation results
+//    to AWS Config. Verify that the role that you assigned to your configuration
 //    recorder includes the config:PutEvaluations permission. If the rule is
 //    a custom rule, verify that the AWS Lambda execution role includes the
 //    config:PutEvaluations permission.
-//    The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+//    * The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
 //    results. This can occur if the resources were deleted or removed from
 //    the rule's scope.
 //
@@ -533,15 +534,15 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 // INSUFFICIENT_DATA. This result might indicate one of the following conditions
 // about the rules that evaluate the resource:
 //
-//    AWS Config has never invoked an evaluation for the rule. To check whether
+//    * AWS Config has never invoked an evaluation for the rule. To check whether
 //    it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
 //    and LastFailedInvocationTime.
-//    The rule's AWS Lambda function is failing to send evaluation results to
-//    AWS Config. Verify that the role that you assigned to your configuration
+//    * The rule's AWS Lambda function is failing to send evaluation results
+//    to AWS Config. Verify that the role that you assigned to your configuration
 //    recorder includes the config:PutEvaluations permission. If the rule is
 //    a custom rule, verify that the AWS Lambda execution role includes the
 //    config:PutEvaluations permission.
-//    The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
+//    * The rule's AWS Lambda function has returned NOT_APPLICABLE for all evaluation
 //    results. This can occur if the resources were deleted or removed from
 //    the rule's scope.
 //
@@ -1557,9 +1558,9 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //   * InsufficientPermissionsException
 //   Indicates one of the following errors:
 //
-//      The rule cannot be created because the IAM role assigned to AWS Config
+//      * The rule cannot be created because the IAM role assigned to AWS Config
 //      lacks permissions to perform the config:Put* action.
-//      The AWS Lambda function cannot be invoked. Check the function ARN, and
+//      * The AWS Lambda function cannot be invoked. Check the function ARN, and
 //      check the function's permissions.
 //
 //   * NoAvailableConfigurationRecorderException
@@ -2319,9 +2320,9 @@ type ConfigRule struct {
 	// The maximum frequency with which AWS Config runs evaluations for a rule.
 	// You can specify a value for MaximumExecutionFrequency when:
 	//
-	//    You are using an AWS managed rule that is triggered at a periodic frequency.
+	//    * You are using an AWS managed rule that is triggered at a periodic frequency.
 	//
-	//    Your custom rule is triggered when AWS Config delivers the configuration
+	//    * Your custom rule is triggered when AWS Config delivers the configuration
 	//    snapshot.
 	//
 	// For more information, see ConfigSnapshotDeliveryProperties.
@@ -2404,9 +2405,9 @@ type ConfigRuleEvaluationStatus struct {
 	// Indicates whether AWS Config has evaluated your resources against the rule
 	// at least once.
 	//
-	//    true - AWS Config has evaluated your AWS resources against the rule at
-	//    least once.
-	//    false - AWS Config has not once finished evaluating your AWS resources
+	//    * true - AWS Config has evaluated your AWS resources against the rule
+	//    at least once.
+	//    * false - AWS Config has not once finished evaluating your AWS resources
 	//    against the rule.
 	FirstEvaluationStarted *bool `type:"boolean"`
 
@@ -2453,27 +2454,27 @@ func (s ConfigRuleEvaluationStatus) GoString() string {
 // AWS Config delivers the configuration snapshot is set by one of two values,
 // depending on which is less frequent:
 //
-//    The value for the deliveryFrequency parameter within the delivery channel
-// configuration, which sets how often AWS Config delivers configuration snapshots.
-// This value also sets how often AWS Config invokes evaluations for Config
-// rules.
+//    * The value for the deliveryFrequency parameter within the delivery channel
+//    configuration, which sets how often AWS Config delivers configuration
+//    snapshots. This value also sets how often AWS Config invokes evaluations
+//    for Config rules.
 //
-//    The value for the MaximumExecutionFrequency parameter, which sets the
-// maximum frequency with which AWS Config invokes evaluations for the rule.
-// For more information, see ConfigRule.
+//    * The value for the MaximumExecutionFrequency parameter, which sets the
+//    maximum frequency with which AWS Config invokes evaluations for the rule.
+//    For more information, see ConfigRule.
 //
 // If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
 // value for a rule, AWS Config invokes the rule only as often as the deliveryFrequency
 // value.
 //
-//    For example, you want your rule to run evaluations when AWS Config delivers
-//    the configuration snapshot.
+// For example, you want your rule to run evaluations when AWS Config delivers
+// the configuration snapshot.
 //
-//    You specify the MaximumExecutionFrequency value for Six_Hours.
+// You specify the MaximumExecutionFrequency value for Six_Hours.
 //
-//    You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
+// You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
 //
-//    Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
+// Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
 // AWS Config invokes evaluations for the rule every 24 hours.
 //
 // You should set the MaximumExecutionFrequency value to be at least as frequent
@@ -2968,27 +2969,27 @@ type DeliveryChannel struct {
 	// AWS Config delivers the configuration snapshot is set by one of two values,
 	// depending on which is less frequent:
 	//
-	//    The value for the deliveryFrequency parameter within the delivery channel
-	// configuration, which sets how often AWS Config delivers configuration snapshots.
-	// This value also sets how often AWS Config invokes evaluations for Config
-	// rules.
+	//    * The value for the deliveryFrequency parameter within the delivery channel
+	//    configuration, which sets how often AWS Config delivers configuration
+	//    snapshots. This value also sets how often AWS Config invokes evaluations
+	//    for Config rules.
 	//
-	//    The value for the MaximumExecutionFrequency parameter, which sets the
-	// maximum frequency with which AWS Config invokes evaluations for the rule.
-	// For more information, see ConfigRule.
+	//    * The value for the MaximumExecutionFrequency parameter, which sets the
+	//    maximum frequency with which AWS Config invokes evaluations for the rule.
+	//    For more information, see ConfigRule.
 	//
 	// If the deliveryFrequency value is less frequent than the MaximumExecutionFrequency
 	// value for a rule, AWS Config invokes the rule only as often as the deliveryFrequency
 	// value.
 	//
-	//    For example, you want your rule to run evaluations when AWS Config delivers
-	//    the configuration snapshot.
+	// For example, you want your rule to run evaluations when AWS Config delivers
+	// the configuration snapshot.
 	//
-	//    You specify the MaximumExecutionFrequency value for Six_Hours.
+	// You specify the MaximumExecutionFrequency value for Six_Hours.
 	//
-	//    You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
+	// You then specify the delivery channel deliveryFrequency value for TwentyFour_Hours.
 	//
-	//    Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
+	// Because the value for deliveryFrequency is less frequent than MaximumExecutionFrequency,
 	// AWS Config invokes evaluations for the rule every 24 hours.
 	//
 	// You should set the MaximumExecutionFrequency value to be at least as frequent

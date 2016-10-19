@@ -226,37 +226,40 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 // the behavior of the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
 // page. Its parameters require you to specify the following information:
 //
-//    issueType. The type of issue for the case. You can specify either "customer-service"
-// or "technical." If you do not indicate a value, the default is "technical."
+//    * issueType. The type of issue for the case. You can specify either "customer-service"
+//    or "technical." If you do not indicate a value, the default is "technical."
 //
-//    serviceCode. The code for an AWS service. You obtain the serviceCode by
-// calling DescribeServices.
 //
-//    categoryCode. The category for the service defined for the serviceCode
-// value. You also obtain the category code for a service by calling DescribeServices.
-// Each AWS service defines its own set of category codes.
+//    * serviceCode. The code for an AWS service. You obtain the serviceCode
+//    by calling DescribeServices.
 //
-//    severityCode. A value that indicates the urgency of the case, which in
-// turn determines the response time according to your service level agreement
-// with AWS Support. You obtain the SeverityCode by calling DescribeSeverityLevels.
+//    * categoryCode. The category for the service defined for the serviceCode
+//    value. You also obtain the category code for a service by calling DescribeServices.
+//    Each AWS service defines its own set of category codes.
 //
-//    subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
-// page.
+//    * severityCode. A value that indicates the urgency of the case, which
+//    in turn determines the response time according to your service level agreement
+//    with AWS Support. You obtain the SeverityCode by calling DescribeSeverityLevels.
 //
-//    communicationBody. The Description field on the AWS Support Center Create
-// Case (https://console.aws.amazon.com/support/home#/case/create) page.
+//    * subject. The Subject field on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+//    page.
 //
-//    attachmentSetId. The ID of a set of attachments that has been created
-// by using AddAttachmentsToSet.
+//    * communicationBody. The Description field on the AWS Support Center Create
+//    Case (https://console.aws.amazon.com/support/home#/case/create) page.
 //
-//    language. The human language in which AWS Support handles the case. English
-// and Japanese are currently supported.
+//    * attachmentSetId. The ID of a set of attachments that has been created
+//    by using AddAttachmentsToSet.
 //
-//    ccEmailAddresses. The AWS Support Center CC field on the Create Case (https://console.aws.amazon.com/support/home#/case/create)
-// page. You can list email addresses to be copied on any correspondence about
-// the case. The account that opens the case is already identified by passing
-// the AWS Credentials in the HTTP POST method or in a method or function call
-// from one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
+//    * language. The human language in which AWS Support handles the case.
+//    English and Japanese are currently supported.
+//
+//    * ccEmailAddresses. The AWS Support Center CC field on the Create Case
+//    (https://console.aws.amazon.com/support/home#/case/create) page. You can
+//    list email addresses to be copied on any correspondence about the case.
+//    The account that opens the case is already identified by passing the AWS
+//    Credentials in the HTTP POST method or in a method or function call from
+//    one of the programming languages supported by an AWS SDK (http://aws.amazon.com/tools/).
+//
 //
 // To add additional communication or attachments to an existing case, use AddCommunicationToCase.
 //
@@ -427,10 +430,10 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 //
 // The response returns the following in JSON format:
 //
-//    One or more CaseDetails data types.
+//    * One or more CaseDetails data types.
 //
-//    One or more nextToken values, which specify where to paginate the returned
-// records represented by the CaseDetails objects.
+//    * One or more nextToken values, which specify where to paginate the returned
+//    records represented by the CaseDetails objects.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -844,20 +847,20 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 // The response contains a TrustedAdvisorCheckResult object, which contains
 // these three objects:
 //
-//    TrustedAdvisorCategorySpecificSummary
+//    * TrustedAdvisorCategorySpecificSummary
 //
-//    TrustedAdvisorResourceDetail
+//    * TrustedAdvisorResourceDetail
 //
-//    TrustedAdvisorResourcesSummary
+//    * TrustedAdvisorResourcesSummary
 //
 // In addition, the response contains these fields:
 //
-//    status. The alert status of the check: "ok" (green), "warning" (yellow),
-// "error" (red), or "not_available".
+//    * status. The alert status of the check: "ok" (green), "warning" (yellow),
+//    "error" (red), or "not_available".
 //
-//    timestamp. The time of the last refresh of the check.
+//    * timestamp. The time of the last refresh of the check.
 //
-//    checkId. The unique identifier for the check.
+//    * checkId. The unique identifier for the check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1065,13 +1068,13 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 // The response contains a TrustedAdvisorCheckRefreshStatus object, which contains
 // these fields:
 //
-//    status. The refresh status of the check: "none", "enqueued", "processing",
-// "success", or "abandoned".
+//    * status. The refresh status of the check: "none", "enqueued", "processing",
+//    "success", or "abandoned".
 //
-//    millisUntilNextRefreshable. The amount of time, in milliseconds, until
-// the check is eligible for refresh.
+//    * millisUntilNextRefreshable. The amount of time, in milliseconds, until
+//    the check is eligible for refresh.
 //
-//    checkId. The unique identifier for the check.
+//    * checkId. The unique identifier for the check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1338,36 +1341,38 @@ func (s AttachmentDetails) GoString() string {
 // is contained the response from a DescribeCases request. CaseDetails contains
 // the following fields:
 //
-//    caseId. The AWS Support case ID requested or returned in the call. The
-// case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47.
+//    * caseId. The AWS Support case ID requested or returned in the call. The
+//    case ID is an alphanumeric string formatted as shown in this example:
+//    case-12345678910-2013-c4c1d2bf33c5cf47.
 //
-//    categoryCode. The category of problem for the AWS Support case. Corresponds
-// to the CategoryCode values returned by a call to DescribeServices.
+//    * categoryCode. The category of problem for the AWS Support case. Corresponds
+//    to the CategoryCode values returned by a call to DescribeServices.
 //
-//    displayId. The identifier for the case on pages in the AWS Support Center.
+//    * displayId. The identifier for the case on pages in the AWS Support Center.
 //
-//    language. The ISO 639-1 code for the language in which AWS provides support.
-// AWS Support currently supports English ("en") and Japanese ("ja"). Language
-// parameters must be passed explicitly for operations that take them.
+//    * language. The ISO 639-1 code for the language in which AWS provides
+//    support. AWS Support currently supports English ("en") and Japanese ("ja").
+//    Language parameters must be passed explicitly for operations that take
+//    them.
 //
-//    recentCommunications. One or more Communication objects. Fields of these
-// objects are attachments, body, caseId, submittedBy, and timeCreated.
+//    * recentCommunications. One or more Communication objects. Fields of these
+//    objects are attachments, body, caseId, submittedBy, and timeCreated.
 //
-//    nextToken. A resumption point for pagination.
+//    * nextToken. A resumption point for pagination.
 //
-//    serviceCode. The identifier for the AWS service that corresponds to the
-// service code defined in the call to DescribeServices.
+//    * serviceCode. The identifier for the AWS service that corresponds to
+//    the service code defined in the call to DescribeServices.
 //
-//    severityCode. The severity code assigned to the case. Contains one of
-// the values returned by the call to DescribeSeverityLevels.
+//    * severityCode. The severity code assigned to the case. Contains one of
+//    the values returned by the call to DescribeSeverityLevels.
 //
-//    status. The status of the case in the AWS Support Center.
+//    * status. The status of the case in the AWS Support Center.
 //
-//    subject. The subject line of the case.
+//    * subject. The subject line of the case.
 //
-//    submittedBy. The email address of the account that submitted the case.
+//    * submittedBy. The email address of the account that submitted the case.
 //
-//    timeCreated. The time the case was created, in ISO-8601 format.
+//    * timeCreated. The time the case was created, in ISO-8601 format.
 type CaseDetails struct {
 	_ struct{} `type:"structure"`
 

@@ -2558,8 +2558,6 @@ func (s RegisterDeviceOutput) GoString() string {
 }
 
 // A request to configure Cognito Events"
-//
-// "
 type SetCognitoEventsInput struct {
 	_ struct{} `type:"structure"`
 

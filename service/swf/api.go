@@ -62,18 +62,20 @@ func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExe
 // that meet the specified filtering criteria.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
-//    typeFilter.name: String constraint. The key is swf:typeFilter.name.
-//    typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
+//
+// typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -153,18 +155,20 @@ func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecuti
 // meet the specified filtering criteria.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
-//    typeFilter.name: String constraint. The key is swf:typeFilter.name.
-//    typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
+//
+// typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -250,10 +254,11 @@ func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksI
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the taskList.name parameter by using a Condition element with
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the taskList.name parameter by using a Condition element with
 //    the swf:taskList.name key to allow the action to access only certain task
 //    lists.
 // If the caller does not have sufficient permissions to invoke the action,
@@ -340,10 +345,11 @@ func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksI
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the taskList.name parameter by using a Condition element with
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the taskList.name parameter by using a Condition element with
 //    the swf:taskList.name key to allow the action to access only certain task
 //    lists.
 // If the caller does not have sufficient permissions to invoke the action,
@@ -427,17 +433,19 @@ func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (r
 // were scheduled before the type was deprecated will continue to run.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. activityType.name: String constraint. The key is swf:activityType.name.
-//    activityType.version: String constraint. The key is swf:activityType.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. activityType.name: String constraint. The key is
+//    swf:activityType.name.
+// activityType.version: String constraint. The key is swf:activityType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -526,15 +534,17 @@ func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *request.
 // to run.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -620,17 +630,19 @@ func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (r
 // type may still be used when calling visibility actions.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. workflowType.name: String constraint. The key is swf:workflowType.name.
-//    workflowType.version: String constraint. The key is swf:workflowType.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. workflowType.name: String constraint. The key is
+//    swf:workflowType.name.
+// workflowType.version: String constraint. The key is swf:workflowType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -718,12 +730,14 @@ func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. activityType.name: String constraint. The key is swf:activityType.name.
-//    activityType.version: String constraint. The key is swf:activityType.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. activityType.name: String constraint. The key is
+//    swf:activityType.name.
+// activityType.version: String constraint. The key is swf:activityType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -807,10 +821,12 @@ func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Re
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -889,15 +905,17 @@ func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionI
 // type and some statistics.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -981,12 +999,14 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. workflowType.name: String constraint. The key is swf:workflowType.name.
-//    workflowType.version: String constraint. The key is swf:workflowType.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. workflowType.name: String constraint. The key is
+//    swf:workflowType.name.
+// workflowType.version: String constraint. The key is swf:workflowType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -1073,15 +1093,17 @@ func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHist
 // again using the nextPageToken returned by the initial call.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -1198,10 +1220,12 @@ func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *requ
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -1313,18 +1337,20 @@ func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecu
 // returned by the initial call.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
-//    typeFilter.name: String constraint. The key is swf:typeFilter.name.
-//    typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
+//
+// typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -1436,16 +1462,18 @@ func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *request.Request,
 // using the nextPageToken returned by the initial call.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains. The element must be set to arn:aws:swf::AccountID:domain/*,
 //    where AccountID is the account ID, with no dashes.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -1552,18 +1580,20 @@ func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecution
 // by the initial call.
 //
 // This operation is eventually consistent. The results are best effort and
-// may not exactly reflect recent updates and changes. Access Control
+// may not exactly reflect recent updates and changes.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
-//    typeFilter.name: String constraint. The key is swf:typeFilter.name.
-//    typeFilter.version: String constraint. The key is swf:typeFilter.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tagFilter.tag: String constraint. The key is swf:tagFilter.tag.
+//
+// typeFilter.name: String constraint. The key is swf:typeFilter.name.
+// typeFilter.version: String constraint. The key is swf:typeFilter.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -1679,10 +1709,12 @@ func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *requ
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -1792,16 +1824,16 @@ func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *
 // use its type to identify and process it correctly.
 //
 // Workers should set their client side socket timeout to at least 70 seconds
-// (10 seconds higher than the maximum time service may hold the poll request).
-// Access Control
+// (10 seconds higher than the maximum time service may hold the poll request).Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the taskList.name parameter by using a Condition element with
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the taskList.name parameter by using a Condition element with
 //    the swf:taskList.name key to allow the action to access only certain task
 //    lists.
 // If the caller does not have sufficient permissions to invoke the action,
@@ -1902,21 +1934,21 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 // a DecisionTask is returned, but that the value of taskToken is an empty string.
 //
 // Deciders should set their client-side socket timeout to at least 70 seconds
-// (10 seconds higher than the timeout). Because the number of workflow history
-// events for a single workflow execution might be very large, the result returned
-// might be split up across a number of pages. To retrieve subsequent pages,
-// make additional calls to PollForDecisionTask using the nextPageToken returned
-// by the initial call. Note that you do not call GetWorkflowExecutionHistory
-// with this nextPageToken. Instead, call PollForDecisionTask again. Access
-// Control
+// (10 seconds higher than the timeout).Because the number of workflow history events for a single workflow execution
+// might be very large, the result returned might be split up across a number
+// of pages. To retrieve subsequent pages, make additional calls to PollForDecisionTask
+// using the nextPageToken returned by the initial call. Note that you do not
+// call GetWorkflowExecutionHistory with this nextPageToken. Instead, call PollForDecisionTask
+// again.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the taskList.name parameter by using a Condition element with
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the taskList.name parameter by using a Condition element with
 //    the swf:taskList.name key to allow the action to access only certain task
 //    lists.
 // If the caller does not have sufficient permissions to invoke the action,
@@ -2041,20 +2073,20 @@ func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartb
 //
 // The taskStartToCloseTimeout of an activity type is the maximum duration of
 // an activity task, regardless of the number of RecordActivityTaskHeartbeat
-// requests received. The taskStartToCloseTimeout is also specified in RegisterActivityType.
-// This operation is only useful for long-lived activities to report liveliness
-// of the task and to determine if a cancellation is being attempted.  If the
-// cancelRequested flag returns true, a cancellation is being attempted. If
-// the worker can cancel the activity, it should respond with RespondActivityTaskCanceled.
-// Otherwise, it should ignore the cancellation request. Access Control
+// requests received. The taskStartToCloseTimeout is also specified in RegisterActivityType.This operation is only useful for long-lived activities to report liveliness
+// of the task and to determine if a cancellation is being attempted. If the cancelRequested flag returns true, a cancellation is being attempted.
+// If the worker can cancel the activity, it should respond with RespondActivityTaskCanceled.
+// Otherwise, it should ignore the cancellation request.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -2136,19 +2168,20 @@ func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req
 //
 // A TypeAlreadyExists fault is returned if the type already exists in the domain.
 // You cannot change any configuration settings of the type after its registration,
-// and it must be registered as a new version. Access Control
+// and it must be registered as a new version.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. defaultTaskList.name: String constraint. The key is
-//    swf:defaultTaskList.name.
-//    name: String constraint. The key is swf:name.
-//    version: String constraint. The key is swf:version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. defaultTaskList.name: String constraint. The key
+//    is swf:defaultTaskList.name.
+// name: String constraint. The key is swf:name.
+// version: String constraint. The key is swf:version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -2244,11 +2277,13 @@ func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *request.Re
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    You cannot use an IAM policy to control domain access for this action.
+//    * You cannot use an IAM policy to control domain access for this action.
 //    The name of the domain being registered is available as the resource of
 //    this action.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -2337,19 +2372,20 @@ func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req
 //
 // If the type already exists, then a TypeAlreadyExists fault is returned. You
 // cannot change the configuration settings of a workflow type once it is registered
-// and it must be registered as a new version. Access Control
+// and it must be registered as a new version.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. defaultTaskList.name: String constraint. The key is
-//    swf:defaultTaskList.name.
-//    name: String constraint. The key is swf:name.
-//    version: String constraint. The key is swf:version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. defaultTaskList.name: String constraint. The key
+//    is swf:defaultTaskList.name.
+// name: String constraint. The key is swf:name.
+// version: String constraint. The key is swf:version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -2446,17 +2482,18 @@ func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflow
 //
 // If the runId is not specified, the WorkflowExecutionCancelRequested event
 // is recorded in the history of the current open workflow execution with the
-// specified workflowId in the domain. Because this action allows the workflow
-// to properly clean up and gracefully close, it should be used instead of TerminateWorkflowExecution
-// when possible. Access Control
+// specified workflowId in the domain.Because this action allows the workflow to properly clean up and gracefully
+// close, it should be used instead of TerminateWorkflowExecution when possible.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -2541,8 +2578,7 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 // to the workflow history.
 //
 // Only use this operation if the canceled flag of a RecordActivityTaskHeartbeat
-// request returns true and if the activity can be safely undone or abandoned.
-// A task is considered open from the time that it is scheduled until it is
+// request returns true and if the activity can be safely undone or abandoned.A task is considered open from the time that it is scheduled until it is
 // closed. Therefore a task is reported as open while a worker is processing
 // it. A task is closed after it has been specified in a call to RespondActivityTaskCompleted,
 // RespondActivityTaskCanceled, RespondActivityTaskFailed, or the task has timed
@@ -2553,10 +2589,12 @@ func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCance
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -2640,21 +2678,23 @@ func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskComp
 // If the requested task does not complete successfully, use RespondActivityTaskFailed
 // instead. If the worker finds that the task is canceled through the canceled
 // flag returned by RecordActivityTaskHeartbeat, it should cancel the task,
-// clean up and then call RespondActivityTaskCanceled. A task is considered
-// open from the time that it is scheduled until it is closed. Therefore a task
-// is reported as open while a worker is processing it. A task is closed after
-// it has been specified in a call to RespondActivityTaskCompleted, RespondActivityTaskCanceled,
-// RespondActivityTaskFailed, or the task has timed out (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-basic.html#swf-dev-timeout-types).
+// clean up and then call RespondActivityTaskCanceled.A task is considered open from the time that it is scheduled until it is
+// closed. Therefore a task is reported as open while a worker is processing
+// it. A task is closed after it has been specified in a call to RespondActivityTaskCompleted,
+// RespondActivityTaskCanceled, RespondActivityTaskFailed, or the task has timed
+// out (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-basic.html#swf-dev-timeout-types).
 //
 // Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -2746,10 +2786,12 @@ func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedI
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -2920,16 +2962,17 @@ func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput
 //
 // If a runId is not specified, then the WorkflowExecutionSignaled event is
 // recorded in the history of the current open workflow with the matching workflowId
-// in the domain.  If the specified workflow execution is not open, this method
-// fails with UnknownResource. Access Control
+// in the domain.If the specified workflow execution is not open, this method fails with UnknownResource.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -3014,18 +3057,20 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tagList.member.0: The key is swf:tagList.member.0.
-//    tagList.member.1: The key is swf:tagList.member.1.
-//    tagList.member.2: The key is swf:tagList.member.2.
-//    tagList.member.3: The key is swf:tagList.member.3.
-//    tagList.member.4: The key is swf:tagList.member.4.
-//    taskList: String constraint. The key is swf:taskList.name.
-//    workflowType.name: String constraint. The key is swf:workflowType.name.
-//    workflowType.version: String constraint. The key is swf:workflowType.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tagList.member.0: The key is swf:tagList.member.0.
+//
+// tagList.member.1: The key is swf:tagList.member.1.
+// tagList.member.2: The key is swf:tagList.member.2.
+// tagList.member.3: The key is swf:tagList.member.3.
+// tagList.member.4: The key is swf:tagList.member.4.
+// taskList: String constraint. The key is swf:taskList.name.
+// workflowType.name: String constraint. The key is swf:workflowType.name.
+// workflowType.version: String constraint. The key is swf:workflowType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -3124,20 +3169,21 @@ func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutio
 // execution, is applied to any open child workflow executions of this workflow
 // execution.
 //
-// If the identified workflow execution was in progress, it is terminated immediately.
-// If a runId is not specified, then the WorkflowExecutionTerminated event is
+// If the identified workflow execution was in progress, it is terminated immediately.If a runId is not specified, then the WorkflowExecutionTerminated event is
 // recorded in the history of the current open workflow with the matching workflowId
-// in the domain.  You should consider using RequestCancelWorkflowExecution
-// action instead because it allows the workflow to gracefully close while TerminateWorkflowExecution
-// does not. Access Control
+// in the domain.You should consider using RequestCancelWorkflowExecution action instead because
+// it allows the workflow to gracefully close while TerminateWorkflowExecution
+// does not.Access Control
 //
 // You can use IAM policies to control this action's access to Amazon SWF resources
 // as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -3604,10 +3650,12 @@ func (s ActivityTypeInfo) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -3693,10 +3741,12 @@ func (s CancelTimerFailedEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -4045,10 +4095,12 @@ func (s *CloseStatusFilter) Validate() error {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -4112,14 +4164,15 @@ func (s CompleteWorkflowExecutionFailedEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tag: Optional.. A tag used to identify the workflow
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tag: Optional.. A tag used to identify the workflow
 //    execution
-//    taskList: String constraint. The key is swf:taskList.name.
-//    workflowType.version: String constraint. The key is swf:workflowType.version.
+// taskList: String constraint. The key is swf:taskList.name.
+// workflowType.version: String constraint. The key is swf:workflowType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -4136,12 +4189,13 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	// A child policy for this workflow execution must be specified either as a
 	// default for the workflow type or through this parameter. If neither this
 	// parameter is set nor a default child policy was specified at registration
@@ -4560,42 +4614,42 @@ func (s *CountPendingDecisionTasksInput) Validate() error {
 // Specifies a decision made by the decider. A decision can be one of these
 // types:
 //
-//    CancelTimer: cancels a previously started timer and records a TimerCanceled
+//    * CancelTimer: cancels a previously started timer and records a TimerCanceled
 //    event in the history.
-//    CancelWorkflowExecution: closes the workflow execution and records a WorkflowExecutionCanceled
-//    event in the history.
-//    CompleteWorkflowExecution: closes the workflow execution and records a
-//    WorkflowExecutionCompleted event in the history .
-//    ContinueAsNewWorkflowExecution: closes the workflow execution and starts
+//    * CancelWorkflowExecution: closes the workflow execution and records a
+//    WorkflowExecutionCanceled event in the history.
+//    * CompleteWorkflowExecution: closes the workflow execution and records
+//    a WorkflowExecutionCompleted event in the history .
+//    * ContinueAsNewWorkflowExecution: closes the workflow execution and starts
 //    a new workflow execution of the same type using the same workflow ID and
 //    a unique run ID. A WorkflowExecutionContinuedAsNew event is recorded in
 //    the history.
-//    FailWorkflowExecution: closes the workflow execution and records a WorkflowExecutionFailed
+//    * FailWorkflowExecution: closes the workflow execution and records a WorkflowExecutionFailed
 //    event in the history.
-//    RecordMarker: records a MarkerRecorded event in the history. Markers can
-//    be used for adding custom information in the history for instance to let
-//    deciders know that they do not need to look at the history beyond the
-//    marker event.
-//    RequestCancelActivityTask: attempts to cancel a previously scheduled activity
-//    task. If the activity task was scheduled but has not been assigned to
-//    a worker, then it will be canceled. If the activity task was already assigned
-//    to a worker, then the worker will be informed that cancellation has been
-//    requested in the response to RecordActivityTaskHeartbeat.
-//    RequestCancelExternalWorkflowExecution: requests that a request be made
+//    * RecordMarker: records a MarkerRecorded event in the history. Markers
+//    can be used for adding custom information in the history for instance
+//    to let deciders know that they do not need to look at the history beyond
+//    the marker event.
+//    * RequestCancelActivityTask: attempts to cancel a previously scheduled
+//    activity task. If the activity task was scheduled but has not been assigned
+//    to a worker, then it will be canceled. If the activity task was already
+//    assigned to a worker, then the worker will be informed that cancellation
+//    has been requested in the response to RecordActivityTaskHeartbeat.
+//    * RequestCancelExternalWorkflowExecution: requests that a request be made
 //    to cancel the specified external workflow execution and records a RequestCancelExternalWorkflowExecutionInitiated
 //    event in the history.
-//    ScheduleActivityTask: schedules an activity task.
-//    ScheduleLambdaFunction: schedules a AWS Lambda function.
-//    SignalExternalWorkflowExecution: requests a signal to be delivered to
+//    * ScheduleActivityTask: schedules an activity task.
+//    * ScheduleLambdaFunction: schedules a AWS Lambda function.
+//    * SignalExternalWorkflowExecution: requests a signal to be delivered to
 //    the specified external workflow execution and records a SignalExternalWorkflowExecutionInitiated
 //    event in the history.
-//    StartChildWorkflowExecution: requests that a child workflow execution
+//    * StartChildWorkflowExecution: requests that a child workflow execution
 //    be started and records a StartChildWorkflowExecutionInitiated event in
 //    the history. The child workflow execution is a separate workflow execution
 //    with its own history.
-//    StartTimer: starts a timer for this workflow execution and records a TimerStarted
-//    event in the history. This timer will fire after the specified delay and
-//    record a TimerFired event.
+//    * StartTimer: starts a timer for this workflow execution and records a
+//    TimerStarted event in the history. This timer will fire after the specified
+//    delay and record a TimerFired event.
 // Access Control
 //
 // If you grant permission to use RespondDecisionTaskCompleted, you can use
@@ -4609,50 +4663,52 @@ func (s *CountPendingDecisionTasksInput) Validate() error {
 //
 // Decisions can fail for several reasons
 //
-//    The ordering of decisions should follow a logical flow. Some decisions
+//    * The ordering of decisions should follow a logical flow. Some decisions
 //    might not make sense in the current context of the workflow execution
 //    and will therefore fail.
-//    A limit on your account was reached.
-//    The decision lacks sufficient permissions.
+//    * A limit on your account was reached.
+//    * The decision lacks sufficient permissions.
 // One of the following events might be added to the history to indicate an
 // error. The event attribute's cause parameter indicates the cause. If cause
 // is set to OPERATION_NOT_PERMITTED, the decision failed because it lacked
 // sufficient permissions. For details and example IAM policies, see Using IAM
 // to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 //
-//    ScheduleActivityTaskFailed: a ScheduleActivityTask decision failed. This
-//    could happen if the activity type specified in the decision is not registered,
-//    is in a deprecated state, or the decision is not properly configured.
-//    ScheduleLambdaFunctionFailed: a ScheduleLambdaFunctionFailed decision
+//    * ScheduleActivityTaskFailed: a ScheduleActivityTask decision failed.
+//    This could happen if the activity type specified in the decision is not
+//    registered, is in a deprecated state, or the decision is not properly
+//    configured.
+//    * ScheduleLambdaFunctionFailed: a ScheduleLambdaFunctionFailed decision
 //    failed. This could happen if the AWS Lambda function specified in the
 //    decision does not exist, or the AWS Lambda service's limits are exceeded.
-//    RequestCancelActivityTaskFailed: a RequestCancelActivityTask decision
+//
+//    * RequestCancelActivityTaskFailed: a RequestCancelActivityTask decision
 //    failed. This could happen if there is no open activity task with the specified
 //    activityId.
-//    StartTimerFailed: a StartTimer decision failed. This could happen if there
-//    is another open timer with the same timerId.
-//    CancelTimerFailed: a CancelTimer decision failed. This could happen if
-//    there is no open timer with the specified timerId.
-//    StartChildWorkflowExecutionFailed: a StartChildWorkflowExecution decision
+//    * StartTimerFailed: a StartTimer decision failed. This could happen if
+//    there is another open timer with the same timerId.
+//    * CancelTimerFailed: a CancelTimer decision failed. This could happen
+//    if there is no open timer with the specified timerId.
+//    * StartChildWorkflowExecutionFailed: a StartChildWorkflowExecution decision
 //    failed. This could happen if the workflow type specified is not registered,
 //    is deprecated, or the decision is not properly configured.
-//    SignalExternalWorkflowExecutionFailed: a SignalExternalWorkflowExecution
+//    * SignalExternalWorkflowExecutionFailed: a SignalExternalWorkflowExecution
 //    decision failed. This could happen if the workflowID specified in the
 //    decision was incorrect.
-//    RequestCancelExternalWorkflowExecutionFailed: a RequestCancelExternalWorkflowExecution
+//    * RequestCancelExternalWorkflowExecutionFailed: a RequestCancelExternalWorkflowExecution
 //    decision failed. This could happen if the workflowID specified in the
 //    decision was incorrect.
-//    CancelWorkflowExecutionFailed: a CancelWorkflowExecution decision failed.
+//    * CancelWorkflowExecutionFailed: a CancelWorkflowExecution decision failed.
 //    This could happen if there is an unhandled decision task pending in the
 //    workflow execution.
-//    CompleteWorkflowExecutionFailed: a CompleteWorkflowExecution decision
+//    * CompleteWorkflowExecutionFailed: a CompleteWorkflowExecution decision
 //    failed. This could happen if there is an unhandled decision task pending
 //    in the workflow execution.
-//    ContinueAsNewWorkflowExecutionFailed: a ContinueAsNewWorkflowExecution
+//    * ContinueAsNewWorkflowExecutionFailed: a ContinueAsNewWorkflowExecution
 //    decision failed. This could happen if there is an unhandled decision task
 //    pending in the workflow execution or the ContinueAsNewWorkflowExecution
 //    decision was not configured correctly.
-//    FailWorkflowExecutionFailed: a FailWorkflowExecution decision failed.
+//    * FailWorkflowExecutionFailed: a FailWorkflowExecution decision failed.
 //    This could happen if there is an unhandled decision task pending in the
 //    workflow execution.
 // The preceding error events might occur due to an error in the decider logic,
@@ -4670,25 +4726,25 @@ func (s *CountPendingDecisionTasksInput) Validate() error {
 // RespondDecisionTaskCompleted without any decisions. This would result in
 // another decision task with these new events included in the history. The
 // decider should handle the new events and may decide to close the workflow
-// execution. How to code a decision
+// execution.How to code a decision
 //
 // You code a decision by first setting the decision type field to one of the
 // above decision values, and then set the corresponding attributes field shown
 // below:
 //
-//    ScheduleActivityTaskDecisionAttributes
-//    ScheduleLambdaFunctionDecisionAttributes
-//    RequestCancelActivityTaskDecisionAttributes
-//    CompleteWorkflowExecutionDecisionAttributes
-//    FailWorkflowExecutionDecisionAttributes
-//    CancelWorkflowExecutionDecisionAttributes
-//    ContinueAsNewWorkflowExecutionDecisionAttributes
-//    RecordMarkerDecisionAttributes
-//    StartTimerDecisionAttributes
-//    CancelTimerDecisionAttributes
-//    SignalExternalWorkflowExecutionDecisionAttributes
-//    RequestCancelExternalWorkflowExecutionDecisionAttributes
-//    StartChildWorkflowExecutionDecisionAttributes
+//    * ScheduleActivityTaskDecisionAttributes
+//    * ScheduleLambdaFunctionDecisionAttributes
+//    * RequestCancelActivityTaskDecisionAttributes
+//    * CompleteWorkflowExecutionDecisionAttributes
+//    * FailWorkflowExecutionDecisionAttributes
+//    * CancelWorkflowExecutionDecisionAttributes
+//    * ContinueAsNewWorkflowExecutionDecisionAttributes
+//    * RecordMarkerDecisionAttributes
+//    * StartTimerDecisionAttributes
+//    * CancelTimerDecisionAttributes
+//    * SignalExternalWorkflowExecutionDecisionAttributes
+//    * RequestCancelExternalWorkflowExecutionDecisionAttributes
+//    * StartChildWorkflowExecutionDecisionAttributes
 type Decision struct {
 	_ struct{} `type:"structure"`
 
@@ -4740,13 +4796,16 @@ type Decision struct {
 	// You can use IAM policies to control this decision's access to Amazon SWF
 	// resources as follows:
 	//
-	//    Use a Resource element with the domain name to limit the action to only
+	//    * Use a Resource element with the domain name to limit the action to only
 	//    specified domains.
-	//    Use an Action element to allow or deny permission to call this action.
-	//    Constrain the following parameters by using a Condition element with the
-	//    appropriate keys. activityType.name: String constraint. The key is swf:activityType.name.
-	//    activityType.version: String constraint. The key is swf:activityType.version.
-	//    taskList: String constraint. The key is swf:taskList.name.
+	//    * Use an Action element to allow or deny permission to call this action.
+	//
+	//    * Constrain the following parameters by using a Condition element with
+	//    the appropriate keys. activityType.name: String constraint. The key is
+	//    swf:activityType.name.
+	// activityType.version: String constraint. The key is swf:activityType.version.
+	//
+	// taskList: String constraint. The key is swf:taskList.name.
 	//
 	// If the caller does not have sufficient permissions to invoke the action,
 	// or the parameter values fall outside the specified constraints, the action
@@ -5206,11 +5265,11 @@ type DescribeActivityTypeOutput struct {
 	// The status of activity type (returned in the ActivityTypeInfo structure)
 	// can be one of the following.
 	//
-	//    REGISTERED: The type is registered and available. Workers supporting this
-	//    type should be running.
-	//    DEPRECATED: The type was deprecated using DeprecateActivityType, but is
-	//    still in use. You should keep workers supporting this type running. You
-	//    cannot create new tasks of this type.
+	//    * REGISTERED: The type is registered and available. Workers supporting
+	//    this type should be running.
+	//    * DEPRECATED: The type was deprecated using DeprecateActivityType, but
+	//    is still in use. You should keep workers supporting this type running.
+	//    You cannot create new tasks of this type.
 	//
 	// TypeInfo is a required field
 	TypeInfo *ActivityTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
@@ -5438,11 +5497,11 @@ type DescribeWorkflowTypeOutput struct {
 	// The status of the workflow type (returned in the WorkflowTypeInfo structure)
 	// can be one of the following.
 	//
-	//    REGISTERED: The type is registered and available. Workers supporting this
-	//    type should be running.
-	//    DEPRECATED: The type was deprecated using DeprecateWorkflowType, but is
-	//    still in use. You should keep workers supporting this type running. You
-	//    cannot create new workflow executions of this type.
+	//    * REGISTERED: The type is registered and available. Workers supporting
+	//    this type should be running.
+	//    * DEPRECATED: The type was deprecated using DeprecateWorkflowType, but
+	//    is still in use. You should keep workers supporting this type running.
+	//    You cannot create new workflow executions of this type.
 	//
 	// TypeInfo is a required field
 	TypeInfo *WorkflowTypeInfo `locationName:"typeInfo" type:"structure" required:"true"`
@@ -5492,11 +5551,11 @@ type DomainInfo struct {
 
 	// The status of the domain:
 	//
-	//    REGISTERED: The domain is properly registered and available. You can use
-	//    this domain for registering types and creating new workflow executions.
+	//    * REGISTERED: The domain is properly registered and available. You can
+	//    use this domain for registering types and creating new workflow executions.
 	//
-	//    DEPRECATED: The domain was deprecated using DeprecateDomain, but is still
-	//    in use. You should not create new workflow executions in this domain.
+	//    * DEPRECATED: The domain was deprecated using DeprecateDomain, but is
+	//    still in use. You should not create new workflow executions in this domain.
 	//
 	//
 	// Status is a required field
@@ -5616,10 +5675,12 @@ func (s ExternalWorkflowExecutionSignaledEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -5779,95 +5840,107 @@ func (s GetWorkflowExecutionHistoryOutput) GoString() string {
 
 // Event within a workflow execution. A history event can be one of these types:
 //
-//    WorkflowExecutionStarted: The workflow execution was started.
-//    WorkflowExecutionCompleted: The workflow execution was closed due to successful
-//    completion.
-//    WorkflowExecutionFailed: The workflow execution closed due to a failure.
-//    WorkflowExecutionTimedOut: The workflow execution was closed because a
-//    time out was exceeded.
-//    WorkflowExecutionCanceled: The workflow execution was successfully canceled
+//    * WorkflowExecutionStarted: The workflow execution was started.
+//    * WorkflowExecutionCompleted: The workflow execution was closed due to
+//    successful completion.
+//    * WorkflowExecutionFailed: The workflow execution closed due to a failure.
+//
+//    * WorkflowExecutionTimedOut: The workflow execution was closed because
+//    a time out was exceeded.
+//    * WorkflowExecutionCanceled: The workflow execution was successfully canceled
 //    and closed.
-//    WorkflowExecutionTerminated: The workflow execution was terminated.
-//    WorkflowExecutionContinuedAsNew: The workflow execution was closed and
+//    * WorkflowExecutionTerminated: The workflow execution was terminated.
+//
+//    * WorkflowExecutionContinuedAsNew: The workflow execution was closed and
 //    a new execution of the same type was created with the same workflowId.
-//    WorkflowExecutionCancelRequested: A request to cancel this workflow execution
-//    was made.
-//    DecisionTaskScheduled: A decision task was scheduled for the workflow
+//
+//    * WorkflowExecutionCancelRequested: A request to cancel this workflow
+//    execution was made.
+//    * DecisionTaskScheduled: A decision task was scheduled for the workflow
 //    execution.
-//    DecisionTaskStarted: The decision task was dispatched to a decider.
-//    DecisionTaskCompleted: The decider successfully completed a decision task
-//    by calling RespondDecisionTaskCompleted.
-//    DecisionTaskTimedOut: The decision task timed out.
-//    ActivityTaskScheduled: An activity task was scheduled for execution.
-//    ScheduleActivityTaskFailed: Failed to process ScheduleActivityTask decision.
+//    * DecisionTaskStarted: The decision task was dispatched to a decider.
+//
+//    * DecisionTaskCompleted: The decider successfully completed a decision
+//    task by calling RespondDecisionTaskCompleted.
+//    * DecisionTaskTimedOut: The decision task timed out.
+//    * ActivityTaskScheduled: An activity task was scheduled for execution.
+//
+//    * ScheduleActivityTaskFailed: Failed to process ScheduleActivityTask decision.
 //    This happens when the decision is not configured properly, for example
 //    the activity type specified is not registered.
-//    ActivityTaskStarted: The scheduled activity task was dispatched to a worker.
-//    ActivityTaskCompleted: An activity worker successfully completed an activity
-//    task by calling RespondActivityTaskCompleted.
-//    ActivityTaskFailed: An activity worker failed an activity task by calling
+//    * ActivityTaskStarted: The scheduled activity task was dispatched to a
+//    worker.
+//    * ActivityTaskCompleted: An activity worker successfully completed an
+//    activity task by calling RespondActivityTaskCompleted.
+//    * ActivityTaskFailed: An activity worker failed an activity task by calling
 //    RespondActivityTaskFailed.
-//    ActivityTaskTimedOut: The activity task timed out.
-//    ActivityTaskCanceled: The activity task was successfully canceled.
-//    ActivityTaskCancelRequested: A RequestCancelActivityTask decision was
+//    * ActivityTaskTimedOut: The activity task timed out.
+//    * ActivityTaskCanceled: The activity task was successfully canceled.
+//    * ActivityTaskCancelRequested: A RequestCancelActivityTask decision was
 //    received by the system.
-//    RequestCancelActivityTaskFailed: Failed to process RequestCancelActivityTask
+//    * RequestCancelActivityTaskFailed: Failed to process RequestCancelActivityTask
 //    decision. This happens when the decision is not configured properly.
-//    WorkflowExecutionSignaled: An external signal was received for the workflow
+//    * WorkflowExecutionSignaled: An external signal was received for the workflow
 //    execution.
-//    MarkerRecorded: A marker was recorded in the workflow history as the result
-//    of a RecordMarker decision.
-//    TimerStarted: A timer was started for the workflow execution due to a
-//    StartTimer decision.
-//    StartTimerFailed: Failed to process StartTimer decision. This happens
+//    * MarkerRecorded: A marker was recorded in the workflow history as the
+//    result of a RecordMarker decision.
+//    * TimerStarted: A timer was started for the workflow execution due to
+//    a StartTimer decision.
+//    * StartTimerFailed: Failed to process StartTimer decision. This happens
 //    when the decision is not configured properly, for example a timer already
 //    exists with the specified timer ID.
-//    TimerFired: A timer, previously started for this workflow execution, fired.
-//    TimerCanceled: A timer, previously started for this workflow execution,
+//    * TimerFired: A timer, previously started for this workflow execution,
+//    fired.
+//    * TimerCanceled: A timer, previously started for this workflow execution,
 //    was successfully canceled.
-//    CancelTimerFailed: Failed to process CancelTimer decision. This happens
+//    * CancelTimerFailed: Failed to process CancelTimer decision. This happens
 //    when the decision is not configured properly, for example no timer exists
 //    with the specified timer ID.
-//    StartChildWorkflowExecutionInitiated: A request was made to start a child
-//    workflow execution.
-//    StartChildWorkflowExecutionFailed: Failed to process StartChildWorkflowExecution
+//    * StartChildWorkflowExecutionInitiated: A request was made to start a
+//    child workflow execution.
+//    * StartChildWorkflowExecutionFailed: Failed to process StartChildWorkflowExecution
 //    decision. This happens when the decision is not configured properly, for
 //    example the workflow type specified is not registered.
-//    ChildWorkflowExecutionStarted: A child workflow execution was successfully
+//    * ChildWorkflowExecutionStarted: A child workflow execution was successfully
 //    started.
-//    ChildWorkflowExecutionCompleted: A child workflow execution, started by
-//    this workflow execution, completed successfully and was closed.
-//    ChildWorkflowExecutionFailed: A child workflow execution, started by this
-//    workflow execution, failed to complete successfully and was closed.
-//    ChildWorkflowExecutionTimedOut: A child workflow execution, started by
-//    this workflow execution, timed out and was closed.
-//    ChildWorkflowExecutionCanceled: A child workflow execution, started by
-//    this workflow execution, was canceled and closed.
-//    ChildWorkflowExecutionTerminated: A child workflow execution, started
+//    * ChildWorkflowExecutionCompleted: A child workflow execution, started
+//    by this workflow execution, completed successfully and was closed.
+//    * ChildWorkflowExecutionFailed: A child workflow execution, started by
+//    this workflow execution, failed to complete successfully and was closed.
+//
+//    * ChildWorkflowExecutionTimedOut: A child workflow execution, started
+//    by this workflow execution, timed out and was closed.
+//    * ChildWorkflowExecutionCanceled: A child workflow execution, started
+//    by this workflow execution, was canceled and closed.
+//    * ChildWorkflowExecutionTerminated: A child workflow execution, started
 //    by this workflow execution, was terminated.
-//    SignalExternalWorkflowExecutionInitiated: A request to signal an external
+//    * SignalExternalWorkflowExecutionInitiated: A request to signal an external
 //    workflow was made.
-//    ExternalWorkflowExecutionSignaled: A signal, requested by this workflow
+//    * ExternalWorkflowExecutionSignaled: A signal, requested by this workflow
 //    execution, was successfully delivered to the target external workflow
 //    execution.
-//    SignalExternalWorkflowExecutionFailed: The request to signal an external
+//    * SignalExternalWorkflowExecutionFailed: The request to signal an external
 //    workflow execution failed.
-//    RequestCancelExternalWorkflowExecutionInitiated: A request was made to
-//    request the cancellation of an external workflow execution.
-//    ExternalWorkflowExecutionCancelRequested: Request to cancel an external
+//    * RequestCancelExternalWorkflowExecutionInitiated: A request was made
+//    to request the cancellation of an external workflow execution.
+//    * ExternalWorkflowExecutionCancelRequested: Request to cancel an external
 //    workflow execution was successfully delivered to the target execution.
-//    RequestCancelExternalWorkflowExecutionFailed: Request to cancel an external
+//
+//    * RequestCancelExternalWorkflowExecutionFailed: Request to cancel an external
 //    workflow execution failed.
-//    LambdaFunctionScheduled: An AWS Lambda function was scheduled for execution.
-//    LambdaFunctionStarted: The scheduled function was invoked in the AWS Lambda
-//    service.
-//    LambdaFunctionCompleted: The AWS Lambda function successfully completed.
-//    LambdaFunctionFailed: The AWS Lambda function execution failed.
-//    LambdaFunctionTimedOut: The AWS Lambda function execution timed out.
-//    ScheduleLambdaFunctionFailed: Failed to process ScheduleLambdaFunction
+//    * LambdaFunctionScheduled: An AWS Lambda function was scheduled for execution.
+//
+//    * LambdaFunctionStarted: The scheduled function was invoked in the AWS
+//    Lambda service.
+//    * LambdaFunctionCompleted: The AWS Lambda function successfully completed.
+//
+//    * LambdaFunctionFailed: The AWS Lambda function execution failed.
+//    * LambdaFunctionTimedOut: The AWS Lambda function execution timed out.
+//
+//    * ScheduleLambdaFunctionFailed: Failed to process ScheduleLambdaFunction
 //    decision. This happens when the workflow execution does not have the proper
 //    IAM role attached to invoke AWS Lambda functions.
-//    StartLambdaFunctionFailed: Failed to invoke the scheduled function in
+//    * StartLambdaFunctionFailed: Failed to invoke the scheduled function in
 //    the AWS Lambda service. This happens when the AWS Lambda service is not
 //    available in the current region, or received too many requests.
 type HistoryEvent struct {
@@ -7004,7 +7077,7 @@ type PollForDecisionTaskInput struct {
 	// The nextPageToken returned by this action cannot be used with GetWorkflowExecutionHistory
 	// to get the next page. You must call PollForDecisionTask again (with the nextPageToken)
 	// to retrieve the next page of history records. Calling PollForDecisionTask
-	// with a nextPageToken will not return a new decision task..
+	// with a nextPageToken will not return a new decision task.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	// When set to true, returns the events in reverse order. By default the results
@@ -7182,10 +7255,12 @@ func (s RecordActivityTaskHeartbeatOutput) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -7342,10 +7417,9 @@ type RegisterActivityTypeInput struct {
 	// The version of the activity type.
 	//
 	// The activity type consists of the name and version, the combination of which
-	// must be unique within the domain. The specified string must not start or
-	// end with whitespace. It must not contain a : (colon), / (slash), | (vertical
-	// bar), or any control characters (\u0000-\u001f | \u007f - \u009f). Also,
-	// it must not contain the literal string quotarnquot.
+	// must be unique within the domain.The specified string must not start or end with whitespace. It must not contain
+	// a : (colon), / (slash), | (vertical bar), or any control characters (\u0000-\u001f
+	// | \u007f - \u009f). Also, it must not contain the literal string quotarnquot.
 	//
 	// Version is a required field
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
@@ -7497,12 +7571,13 @@ type RegisterWorkflowTypeInput struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string" enum:"ChildPolicy"`
 
 	// If set, specifies the default maximum duration for executions of this workflow
@@ -7570,10 +7645,9 @@ type RegisterWorkflowTypeInput struct {
 	//
 	// The workflow type consists of the name and version, the combination of which
 	// must be unique within the domain. To get a list of all currently registered
-	// workflow types, use the ListWorkflowTypes action. The specified string must
-	// not start or end with whitespace. It must not contain a : (colon), / (slash),
-	// | (vertical bar), or any control characters (\u0000-\u001f | \u007f - \u009f).
-	// Also, it must not contain the literal string quotarnquot.
+	// workflow types, use the ListWorkflowTypes action.The specified string must not start or end with whitespace. It must not contain
+	// a : (colon), / (slash), | (vertical bar), or any control characters (\u0000-\u001f
+	// | \u007f - \u009f). Also, it must not contain the literal string quotarnquot.
 	//
 	// Version is a required field
 	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
@@ -7646,10 +7720,12 @@ func (s RegisterWorkflowTypeOutput) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -7735,10 +7811,12 @@ func (s RequestCancelActivityTaskFailedEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -8185,13 +8263,16 @@ func (s RespondDecisionTaskCompletedOutput) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. activityType.name: String constraint. The key is swf:activityType.name.
-//    activityType.version: String constraint. The key is swf:activityType.version.
-//    taskList: String constraint. The key is swf:taskList.name.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. activityType.name: String constraint. The key is
+//    swf:activityType.name.
+// activityType.version: String constraint. The key is swf:activityType.version.
+//
+// taskList: String constraint. The key is swf:taskList.name.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -8277,10 +8358,9 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	// A task list for this activity task must be specified either as a default
 	// for the activity type or through this field. If neither this field is set
 	// nor a default task list was specified at registration time then a fault will
-	// be returned. The specified string must not start or end with whitespace.
-	// It must not contain a : (colon), / (slash), | (vertical bar), or any control
-	// characters (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the
-	// literal string quotarnquot.
+	// be returned.The specified string must not start or end with whitespace. It must not contain
+	// a : (colon), / (slash), | (vertical bar), or any control characters (\u0000-\u001f
+	// | \u007f - \u009f). Also, it must not contain the literal string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure"`
 
 	// Optional. If set, specifies the priority with which the activity task is
@@ -8384,13 +8464,16 @@ func (s ScheduleActivityTaskFailedEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. activityType.name: String constraint. The key is swf:activityType.name.
-//    activityType.version: String constraint. The key is swf:activityType.version.
-//    taskList: String constraint. The key is swf:taskList.name.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. activityType.name: String constraint. The key is
+//    swf:activityType.name.
+// activityType.version: String constraint. The key is swf:activityType.version.
+//
+// taskList: String constraint. The key is swf:taskList.name.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -8506,10 +8589,12 @@ func (s ScheduleLambdaFunctionFailedEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -8754,15 +8839,16 @@ func (s SignalWorkflowExecutionOutput) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    Constrain the following parameters by using a Condition element with the
-//    appropriate keys. tagList.member.N: The key is "swf:tagList.N" where N
-//    is the tag number from 0 to 4, inclusive.
-//    taskList: String constraint. The key is swf:taskList.name.
-//    workflowType.name: String constraint. The key is swf:workflowType.name.
-//    workflowType.version: String constraint. The key is swf:workflowType.version.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * Constrain the following parameters by using a Condition element with
+//    the appropriate keys. tagList.member.N: The key is "swf:tagList.N" where
+//    N is the tag number from 0 to 4, inclusive.
+// taskList: String constraint. The key is swf:taskList.name.
+// workflowType.name: String constraint. The key is swf:workflowType.name.
+// workflowType.version: String constraint. The key is swf:workflowType.version.
 //
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
@@ -8779,12 +8865,13 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	// A child policy for this workflow execution must be specified either as a
 	// default for the workflow type or through this parameter. If neither this
 	// parameter is set nor a default child policy was specified at registration
@@ -8829,10 +8916,9 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// A task list for this workflow execution must be specified either as a default
 	// for the workflow type or through this parameter. If neither this parameter
 	// is set nor a default task list was specified at registration time then a
-	// fault will be returned. The specified string must not start or end with whitespace.
-	// It must not contain a : (colon), / (slash), | (vertical bar), or any control
-	// characters (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the
-	// literal string quotarnquot.
+	// fault will be returned.The specified string must not start or end with whitespace. It must not contain
+	// a : (colon), / (slash), | (vertical bar), or any control characters (\u0000-\u001f
+	// | \u007f - \u009f). Also, it must not contain the literal string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure"`
 
 	// Optional. A task priority that, if set, specifies the priority for a decision
@@ -8980,12 +9066,13 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	//
 	// ChildPolicy is a required field
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
@@ -9100,10 +9187,12 @@ func (s StartLambdaFunctionFailedEventAttributes) GoString() string {
 // You can use IAM policies to control this decision's access to Amazon SWF
 // resources as follows:
 //
-//    Use a Resource element with the domain name to limit the action to only
+//    * Use a Resource element with the domain name to limit the action to only
 //    specified domains.
-//    Use an Action element to allow or deny permission to call this action.
-//    You cannot use an IAM policy to constrain this action's parameters.
+//    * Use an Action element to allow or deny permission to call this action.
+//
+//    * You cannot use an IAM policy to constrain this action's parameters.
+//
 // If the caller does not have sufficient permissions to invoke the action,
 // or the parameter values fall outside the specified constraints, the action
 // fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
@@ -9214,12 +9303,13 @@ type StartWorkflowExecutionInput struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	// A child policy for this workflow execution must be specified either as a
 	// default for the workflow type or through this parameter. If neither this
 	// parameter is set nor a default child policy was specified at registration
@@ -9271,10 +9361,9 @@ type StartWorkflowExecutionInput struct {
 	// A task list for this workflow execution must be specified either as a default
 	// for the workflow type or through this parameter. If neither this parameter
 	// is set nor a default task list was specified at registration time then a
-	// fault will be returned. The specified string must not start or end with whitespace.
-	// It must not contain a : (colon), / (slash), | (vertical bar), or any control
-	// characters (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the
-	// literal string quotarnquot.
+	// fault will be returned.The specified string must not start or end with whitespace. It must not contain
+	// a : (colon), / (slash), | (vertical bar), or any control characters (\u0000-\u001f
+	// | \u007f - \u009f). Also, it must not contain the literal string quotarnquot.
 	TaskList *TaskList `locationName:"taskList" type:"structure"`
 
 	// The task priority to use for this workflow execution. This will override
@@ -9471,12 +9560,13 @@ type TerminateWorkflowExecutionInput struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	// A child policy for this workflow execution must be specified either as a
 	// default for the workflow type or through this parameter. If neither this
 	// parameter is set nor a default child policy was specified at registration
@@ -9793,12 +9883,13 @@ type WorkflowExecutionConfiguration struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	//
 	// ChildPolicy is a required field
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
@@ -9857,12 +9948,13 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	//
 	// ChildPolicy is a required field
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
@@ -10025,14 +10117,14 @@ type WorkflowExecutionInfo struct {
 	// If the execution status is closed then this specifies how the execution was
 	// closed:
 	//
-	//    COMPLETED: the execution was successfully completed.
-	//    CANCELED: the execution was canceled.Cancellation allows the implementation
+	//    * COMPLETED: the execution was successfully completed.
+	//    * CANCELED: the execution was canceled.Cancellation allows the implementation
 	//    to gracefully clean up before the execution is closed.
-	//    TERMINATED: the execution was force terminated.
-	//    FAILED: the execution failed to complete.
-	//    TIMED_OUT: the execution did not complete in the alloted time and was
+	//    * TERMINATED: the execution was force terminated.
+	//    * FAILED: the execution failed to complete.
+	//    * TIMED_OUT: the execution did not complete in the alloted time and was
 	//    automatically timed out.
-	//    CONTINUED_AS_NEW: the execution is logically continued. This means the
+	//    * CONTINUED_AS_NEW: the execution is logically continued. This means the
 	//    current execution was completed and a new execution was started to carry
 	//    on the workflow.
 	CloseStatus *string `locationName:"closeStatus" type:"string" enum:"CloseStatus"`
@@ -10197,12 +10289,13 @@ type WorkflowExecutionStartedEventAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	//
 	// ChildPolicy is a required field
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
@@ -10283,12 +10376,13 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	//
 	// ChildPolicy is a required field
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
@@ -10318,12 +10412,13 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	//
 	// ChildPolicy is a required field
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
@@ -10409,12 +10504,13 @@ type WorkflowTypeConfiguration struct {
 	//
 	// The supported child policies are:
 	//
-	// TERMINATE: the child executions will be terminated.
-	// REQUEST_CANCEL: a request to cancel will be attempted for each child execution
-	//    by recording a WorkflowExecutionCancelRequested event in its history.
-	//    It is up to the decider to take appropriate actions when it receives an
-	//    execution history with this event.
-	// ABANDON: no action will be taken. The child executions will continue to run.
+	//    * TERMINATE: the child executions will be terminated.
+	//    * REQUEST_CANCEL: a request to cancel will be attempted for each child
+	//    execution by recording a WorkflowExecutionCancelRequested event in its
+	//    history. It is up to the decider to take appropriate actions when it receives
+	//    an execution history with this event.
+	//    * ABANDON: no action will be taken. The child executions will continue
+	//    to run.
 	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string" enum:"ChildPolicy"`
 
 	// Optional. The default maximum duration, specified when registering the workflow

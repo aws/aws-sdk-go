@@ -64,17 +64,17 @@ func (c *WAF) CreateByteMatchSetRequest(input *CreateByteMatchSetInput) (req *re
 //
 // To create and configure a ByteMatchSet, perform the following steps:
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateByteMatchSet request.
 //
-//    Submit a CreateByteMatchSet request.
+// Submit a CreateByteMatchSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateByteMatchSet request.
 //
-//    Submit an UpdateByteMatchSet request to specify the part of the request
-// that you want AWS WAF to inspect (for example, the header or the URI) and
-// the value that you want AWS WAF to watch for.
+// Submit an UpdateByteMatchSet request to specify the part of the request that
+// you want AWS WAF to inspect (for example, the header or the URI) and the
+// value that you want AWS WAF to watch for.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
 // requests, see the AWS WAF Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
@@ -102,24 +102,24 @@ func (c *WAF) CreateByteMatchSetRequest(input *CreateByteMatchSetInput) (req *re
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * StaleDataException
 //   The operation failed because you tried to create, update, or delete an object
@@ -191,16 +191,16 @@ func (c *WAF) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Request,
 //
 // To create and configure an IPSet, perform the following steps:
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateIPSet request.
 //
-//    Submit a CreateIPSet request.
+// Submit a CreateIPSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateIPSet request.
 //
-//    Submit an UpdateIPSet request to specify the IP addresses that you want
-// AWS WAF to watch for.
+// Submit an UpdateIPSet request to specify the IP addresses that you want AWS
+// WAF to watch for.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
 // requests, see the AWS WAF Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
@@ -232,24 +232,24 @@ func (c *WAF) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Request,
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -314,9 +314,9 @@ func (c *WAF) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, o
 // to be allowed or blocked. For example, suppose you add the following to a
 // Rule:
 //
-//    An IPSet that matches the IP address 192.0.2.44/32
+//    * An IPSet that matches the IP address 192.0.2.44/32
 //
-//    A ByteMatchSet that matches BadBot in the User-Agent header
+//    * A ByteMatchSet that matches BadBot in the User-Agent header
 //
 // You then add the Rule to a WebACL and specify that you want to blocks requests
 // that satisfy the Rule. For a request to be blocked, it must come from the
@@ -325,21 +325,21 @@ func (c *WAF) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, o
 //
 // To create and configure a Rule, perform the following steps:
 //
-//    Create and update the predicates that you want to include in the Rule.
-// For more information, see CreateByteMatchSet, CreateIPSet, and CreateSqlInjectionMatchSet.
+// Create and update the predicates that you want to include in the Rule. For
+// more information, see CreateByteMatchSet, CreateIPSet, and CreateSqlInjectionMatchSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateRule request.
 //
-//    Submit a CreateRule request.
+// Submit a CreateRule request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateRule request.
 //
-//    Submit an UpdateRule request to specify the predicates that you want to
-// include in the Rule.
+// Submit an UpdateRule request to specify the predicates that you want to include
+// in the Rule.
 //
-//    Create and update a WebACL that contains the Rule. For more information,
+// Create and update a WebACL that contains the Rule. For more information,
 // see CreateWebACL.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
@@ -368,24 +368,24 @@ func (c *WAF) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, o
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -453,15 +453,15 @@ func (c *WAF) CreateSizeConstraintSetRequest(input *CreateSizeConstraintSetInput
 //
 // To create and configure a SizeConstraintSet, perform the following steps:
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateSizeConstraintSet request.
 //
-//    Submit a CreateSizeConstraintSet request.
+// Submit a CreateSizeConstraintSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateSizeConstraintSet request.
 //
-//    Submit an UpdateSizeConstraintSet request to specify the part of the request
+// Submit an UpdateSizeConstraintSet request to specify the part of the request
 // that you want AWS WAF to inspect (for example, the header or the URI) and
 // the value that you want AWS WAF to watch for.
 //
@@ -495,24 +495,24 @@ func (c *WAF) CreateSizeConstraintSetRequest(input *CreateSizeConstraintSetInput
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -577,15 +577,15 @@ func (c *WAF) CreateSqlInjectionMatchSetRequest(input *CreateSqlInjectionMatchSe
 //
 // To create and configure a SqlInjectionMatchSet, perform the following steps:
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateSqlInjectionMatchSet request.
 //
-//    Submit a CreateSqlInjectionMatchSet request.
+// Submit a CreateSqlInjectionMatchSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateSqlInjectionMatchSet request.
 //
-//    Submit an UpdateSqlInjectionMatchSet request to specify the parts of web
+// Submit an UpdateSqlInjectionMatchSet request to specify the parts of web
 // requests in which you want to allow, block, or count malicious SQL code.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
@@ -614,24 +614,24 @@ func (c *WAF) CreateSqlInjectionMatchSetRequest(input *CreateSqlInjectionMatchSe
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * StaleDataException
 //   The operation failed because you tried to create, update, or delete an object
@@ -704,22 +704,22 @@ func (c *WAF) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Reques
 //
 // To create and configure a WebACL, perform the following steps:
 //
-//    Create and update the ByteMatchSet objects and other predicates that you
+// Create and update the ByteMatchSet objects and other predicates that you
 // want to include in Rules. For more information, see CreateByteMatchSet, UpdateByteMatchSet,
 // CreateIPSet, UpdateIPSet, CreateSqlInjectionMatchSet, and UpdateSqlInjectionMatchSet.
 //
-//    Create and update the Rules that you want to include in the WebACL. For
-// more information, see CreateRule and UpdateRule.
+// Create and update the Rules that you want to include in the WebACL. For more
+// information, see CreateRule and UpdateRule.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateWebACL request.
 //
-//    Submit a CreateWebACL request.
+// Submit a CreateWebACL request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateWebACL request.
 //
-//    Submit an UpdateWebACL request to specify the Rules that you want to include
+// Submit an UpdateWebACL request to specify the Rules that you want to include
 // in the WebACL, to specify the default action, and to associate the WebACL
 // with a CloudFront distribution.
 //
@@ -753,24 +753,24 @@ func (c *WAF) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Reques
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -836,15 +836,15 @@ func (c *WAF) CreateXssMatchSetRequest(input *CreateXssMatchSetInput) (req *requ
 //
 // To create and configure an XssMatchSet, perform the following steps:
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a CreateXssMatchSet request.
 //
-//    Submit a CreateXssMatchSet request.
+// Submit a CreateXssMatchSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateXssMatchSet request.
 //
-//    Submit an UpdateXssMatchSet request to specify the parts of web requests
+// Submit an UpdateXssMatchSet request to specify the parts of web requests
 // in which you want to allow, block, or count cross-site scripting attacks.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
@@ -873,24 +873,24 @@ func (c *WAF) CreateXssMatchSetRequest(input *CreateXssMatchSetInput) (req *requ
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * StaleDataException
 //   The operation failed because you tried to create, update, or delete an object
@@ -961,13 +961,13 @@ func (c *WAF) DeleteByteMatchSetRequest(input *DeleteByteMatchSetInput) (req *re
 //
 // To permanently delete a ByteMatchSet, perform the following steps:
 //
-//    Update the ByteMatchSet to remove filters, if any. For more information,
+// Update the ByteMatchSet to remove filters, if any. For more information,
 // see UpdateByteMatchSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteByteMatchSet request.
 //
-//    Submit a DeleteByteMatchSet request.
+// Submit a DeleteByteMatchSet request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -992,9 +992,9 @@ func (c *WAF) DeleteByteMatchSetRequest(input *DeleteByteMatchSetInput) (req *re
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * StaleDataException
 //   The operation failed because you tried to create, update, or delete an object
@@ -1004,15 +1004,15 @@ func (c *WAF) DeleteByteMatchSetRequest(input *DeleteByteMatchSetInput) (req *re
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteByteMatchSet(input *DeleteByteMatchSetInput) (*DeleteByteMatchSetOutput, error) {
 	req, out := c.DeleteByteMatchSetRequest(input)
@@ -1072,13 +1072,13 @@ func (c *WAF) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Request,
 //
 // To permanently delete an IPSet from AWS WAF, perform the following steps:
 //
-//    Update the IPSet to remove IP address ranges, if any. For more information,
+// Update the IPSet to remove IP address ranges, if any. For more information,
 // see UpdateIPSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteIPSet request.
 //
-//    Submit a DeleteIPSet request.
+// Submit a DeleteIPSet request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1107,23 +1107,23 @@ func (c *WAF) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Request,
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * NonEmptyEntityException
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteIPSet(input *DeleteIPSetInput) (*DeleteIPSetOutput, error) {
 	req, out := c.DeleteIPSetRequest(input)
@@ -1184,13 +1184,12 @@ func (c *WAF) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, o
 //
 // To permanently delete a Rule from AWS WAF, perform the following steps:
 //
-//    Update the Rule to remove predicates, if any. For more information, see
-// UpdateRule.
+// Update the Rule to remove predicates, if any. For more information, see UpdateRule.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteRule request.
 //
-//    Submit a DeleteRule request.
+// Submit a DeleteRule request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1219,23 +1218,23 @@ func (c *WAF) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, o
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * NonEmptyEntityException
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
 	req, out := c.DeleteRuleRequest(input)
@@ -1296,13 +1295,13 @@ func (c *WAF) DeleteSizeConstraintSetRequest(input *DeleteSizeConstraintSetInput
 //
 // To permanently delete a SizeConstraintSet, perform the following steps:
 //
-//    Update the SizeConstraintSet to remove filters, if any. For more information,
+// Update the SizeConstraintSet to remove filters, if any. For more information,
 // see UpdateSizeConstraintSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteSizeConstraintSet request.
 //
-//    Submit a DeleteSizeConstraintSet request.
+// Submit a DeleteSizeConstraintSet request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1331,23 +1330,23 @@ func (c *WAF) DeleteSizeConstraintSetRequest(input *DeleteSizeConstraintSetInput
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * NonEmptyEntityException
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteSizeConstraintSet(input *DeleteSizeConstraintSetInput) (*DeleteSizeConstraintSetOutput, error) {
 	req, out := c.DeleteSizeConstraintSetRequest(input)
@@ -1409,13 +1408,13 @@ func (c *WAF) DeleteSqlInjectionMatchSetRequest(input *DeleteSqlInjectionMatchSe
 // To permanently delete a SqlInjectionMatchSet from AWS WAF, perform the following
 // steps:
 //
-//    Update the SqlInjectionMatchSet to remove filters, if any. For more information,
+// Update the SqlInjectionMatchSet to remove filters, if any. For more information,
 // see UpdateSqlInjectionMatchSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteSqlInjectionMatchSet request.
 //
-//    Submit a DeleteSqlInjectionMatchSet request.
+// Submit a DeleteSqlInjectionMatchSet request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1440,9 +1439,9 @@ func (c *WAF) DeleteSqlInjectionMatchSetRequest(input *DeleteSqlInjectionMatchSe
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * StaleDataException
 //   The operation failed because you tried to create, update, or delete an object
@@ -1452,15 +1451,15 @@ func (c *WAF) DeleteSqlInjectionMatchSetRequest(input *DeleteSqlInjectionMatchSe
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteSqlInjectionMatchSet(input *DeleteSqlInjectionMatchSetInput) (*DeleteSqlInjectionMatchSetOutput, error) {
 	req, out := c.DeleteSqlInjectionMatchSetRequest(input)
@@ -1518,12 +1517,12 @@ func (c *WAF) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Reques
 //
 // To delete a WebACL, perform the following steps:
 //
-//    Update the WebACL to remove Rules, if any. For more information, see UpdateWebACL.
+// Update the WebACL to remove Rules, if any. For more information, see UpdateWebACL.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteWebACL request.
 //
-//    Submit a DeleteWebACL request.
+// Submit a DeleteWebACL request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1552,23 +1551,23 @@ func (c *WAF) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Reques
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * NonEmptyEntityException
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteWebACL(input *DeleteWebACLInput) (*DeleteWebACLOutput, error) {
 	req, out := c.DeleteWebACLRequest(input)
@@ -1629,13 +1628,13 @@ func (c *WAF) DeleteXssMatchSetRequest(input *DeleteXssMatchSetInput) (req *requ
 // To permanently delete an XssMatchSet from AWS WAF, perform the following
 // steps:
 //
-//    Update the XssMatchSet to remove filters, if any. For more information,
-// see UpdateXssMatchSet.
+// Update the XssMatchSet to remove filters, if any. For more information, see
+// UpdateXssMatchSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of a DeleteXssMatchSet request.
 //
-//    Submit a DeleteXssMatchSet request.
+// Submit a DeleteXssMatchSet request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1660,9 +1659,9 @@ func (c *WAF) DeleteXssMatchSetRequest(input *DeleteXssMatchSetInput) (req *requ
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * StaleDataException
 //   The operation failed because you tried to create, update, or delete an object
@@ -1672,15 +1671,15 @@ func (c *WAF) DeleteXssMatchSetRequest(input *DeleteXssMatchSetInput) (req *requ
 //   The operation failed because you tried to delete an object that isn't empty.
 //   For example:
 //
-//      You tried to delete a WebACL that still contains one or more Rule objects.
+//      * You tried to delete a WebACL that still contains one or more Rule objects.
 //
-//      You tried to delete a Rule that still contains one or more ByteMatchSet
-//   objects or other predicates.
+//      * You tried to delete a Rule that still contains one or more ByteMatchSet
+//      objects or other predicates.
 //
-//      You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
-//   objects.
+//      * You tried to delete a ByteMatchSet that contains one or more ByteMatchTuple
+//      objects.
 //
-//      You tried to delete an IPSet that references one or more IP addresses.
+//      * You tried to delete an IPSet that references one or more IP addresses.
 //
 func (c *WAF) DeleteXssMatchSet(input *DeleteXssMatchSetInput) (*DeleteXssMatchSetOutput, error) {
 	req, out := c.DeleteXssMatchSetRequest(input)
@@ -1887,14 +1886,14 @@ func (c *WAF) GetChangeTokenStatusRequest(input *GetChangeTokenStatusInput) (req
 // Returns the status of a ChangeToken that you got by calling GetChangeToken.
 // ChangeTokenStatus is one of the following values:
 //
-//    PROVISIONED: You requested the change token by calling GetChangeToken,
-// but you haven't used it yet in a call to create, update, or delete an AWS
-// WAF object.
+//    * PROVISIONED: You requested the change token by calling GetChangeToken,
+//    but you haven't used it yet in a call to create, update, or delete an
+//    AWS WAF object.
 //
-//    PENDING: AWS WAF is propagating the create, update, or delete request
-// to all AWS WAF servers.
+//    * PENDING: AWS WAF is propagating the create, update, or delete request
+//    to all AWS WAF servers.
 //
-//    IN_SYNC: Propagation is complete.
+//    * IN_SYNC: Propagation is complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2959,21 +2958,21 @@ func (c *WAF) UpdateByteMatchSetRequest(input *UpdateByteMatchSetInput) (req *re
 // Inserts or deletes ByteMatchTuple objects (filters) in a ByteMatchSet. For
 // each ByteMatchTuple object, you specify the following values:
 //
-//    Whether to insert or delete the object from the array. If you want to
+//    * Whether to insert or delete the object from the array. If you want to
 //    change a ByteMatchSetUpdate object, you delete the existing object and
-// add a new one.
+//    add a new one.
 //
-//    The part of a web request that you want AWS WAF to inspect, such as a
-//    query string or the value of the User-Agent header.
+//    * The part of a web request that you want AWS WAF to inspect, such as
+//    a query string or the value of the User-Agent header.
 //
-//    The bytes (typically a string that corresponds with ASCII characters)
+//    * The bytes (typically a string that corresponds with ASCII characters)
 //    that you want AWS WAF to look for. For more information, including how
 //    you specify the values for the AWS WAF API and the AWS CLI or SDKs, see
 //    TargetString in the ByteMatchTuple data type.
 //
-//    Where to look, such as at the beginning or the end of a query string.
+//    * Where to look, such as at the beginning or the end of a query string.
 //
-//    Whether to perform any conversions on the request, such as converting
+//    * Whether to perform any conversions on the request, such as converting
 //    it to lowercase, before inspecting it for the specified string.
 //
 // For example, you can add a ByteMatchSetUpdate object that matches web requests
@@ -2982,14 +2981,14 @@ func (c *WAF) UpdateByteMatchSetRequest(input *UpdateByteMatchSetInput) (req *re
 //
 // To create and configure a ByteMatchSet, perform the following steps:
 //
-//    Create a ByteMatchSet. For more information, see CreateByteMatchSet.
+// Create a ByteMatchSet. For more information, see CreateByteMatchSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateByteMatchSet request.
 //
-//    Submit an UpdateByteMatchSet request to specify the part of the request
-// that you want AWS WAF to inspect (for example, the header or the URI) and
-// the value that you want AWS WAF to watch for.
+// Submit an UpdateByteMatchSet request to specify the part of the request that
+// you want AWS WAF to inspect (for example, the header or the URI) and the
+// value that you want AWS WAF to watch for.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
 // requests, see the AWS WAF Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
@@ -3013,62 +3012,62 @@ func (c *WAF) UpdateByteMatchSetRequest(input *UpdateByteMatchSetInput) (req *re
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -3137,15 +3136,15 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 // Inserts or deletes IPSetDescriptor objects in an IPSet. For each IPSetDescriptor
 // object, you specify the following values:
 //
-//    Whether to insert or delete the object from the array. If you want to
+//    * Whether to insert or delete the object from the array. If you want to
 //    change an IPSetDescriptor object, you delete the existing object and add
-// a new one.
+//    a new one.
 //
-//    The IP address version, IPv4 or IPv6.
+//    * The IP address version, IPv4 or IPv6.
 //
-//    The IP address in CIDR notation, for example, 192.0.2.0/24 (for the range
-// of IP addresses from 192.0.2.0 to 192.0.2.255) or 192.0.2.44/32 (for the
-// individual IP address 192.0.2.44).
+//    * The IP address in CIDR notation, for example, 192.0.2.0/24 (for the
+//    range of IP addresses from 192.0.2.0 to 192.0.2.255) or 192.0.2.44/32
+//    (for the individual IP address 192.0.2.44).
 //
 // AWS WAF supports /8, /16, /24, and /32 IP address ranges for IPv4, and /24,
 // /32, /48, /56, /64 and /128 for IPv6. For more information about CIDR notation,
@@ -3153,13 +3152,13 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 //
 // IPv6 addresses can be represented using any of the following formats:
 //
-//    1111:0000:0000:0000:0000:0000:0000:0111/128
+//    * 1111:0000:0000:0000:0000:0000:0000:0111/128
 //
-//    1111:0:0:0:0:0:0:0111/128
+//    * 1111:0:0:0:0:0:0:0111/128
 //
-//    1111::0111/128
+//    * 1111::0111/128
 //
-//    1111::111/128
+//    * 1111::111/128
 //
 // You use an IPSet to specify which web requests you want to allow or block
 // based on the IP addresses that the requests originated from. For example,
@@ -3169,13 +3168,13 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 //
 // To create and configure an IPSet, perform the following steps:
 //
-//    Submit a CreateIPSet request.
+// Submit a CreateIPSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateIPSet request.
 //
-//    Submit an UpdateIPSet request to specify the IP addresses that you want
-// AWS WAF to watch for.
+// Submit an UpdateIPSet request to specify the IP addresses that you want AWS
+// WAF to watch for.
 //
 // When you update an IPSet, you specify the IP addresses that you want to add
 // and/or the IP addresses that you want to delete. If you want to change an
@@ -3207,62 +3206,62 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -3271,9 +3270,9 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -3338,9 +3337,9 @@ func (c *WAF) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, o
 // to a Rule, a request must match all of the specifications to be allowed,
 // blocked, or counted. For example, suppose you add the following to a Rule:
 //
-//    A ByteMatchSet that matches the value BadBot in the User-Agent header
+//    * A ByteMatchSet that matches the value BadBot in the User-Agent header
 //
-//    An IPSet that matches the IP address 192.0.2.44
+//    * An IPSet that matches the IP address 192.0.2.44
 //
 // You then add the Rule to a WebACL and specify that you want to block requests
 // that satisfy the Rule. For a request to be blocked, the User-Agent header
@@ -3349,16 +3348,16 @@ func (c *WAF) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, o
 //
 // To create and configure a Rule, perform the following steps:
 //
-//    Create and update the predicates that you want to include in the Rule.
+// Create and update the predicates that you want to include in the Rule.
 //
-//    Create the Rule. See CreateRule.
+// Create the Rule. See CreateRule.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateRule request.
 //
-//    Submit an UpdateRule request to add predicates to the Rule.
+// Submit an UpdateRule request to add predicates to the Rule.
 //
-//    Create and update a WebACL that contains the Rule. See CreateWebACL.
+// Create and update a WebACL that contains the Rule. See CreateWebACL.
 //
 // If you want to replace one ByteMatchSet or IPSet with another, you delete
 // the existing one and add the new one.
@@ -3389,62 +3388,62 @@ func (c *WAF) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, o
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -3453,9 +3452,9 @@ func (c *WAF) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, o
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -3517,24 +3516,24 @@ func (c *WAF) UpdateSizeConstraintSetRequest(input *UpdateSizeConstraintSetInput
 // Inserts or deletes SizeConstraint objects (filters) in a SizeConstraintSet.
 // For each SizeConstraint object, you specify the following values:
 //
-//    Whether to insert or delete the object from the array. If you want to
+//    * Whether to insert or delete the object from the array. If you want to
 //    change a SizeConstraintSetUpdate object, you delete the existing object
-// and add a new one.
+//    and add a new one.
 //
-//    The part of a web request that you want AWS WAF to evaluate, such as the
-//    length of a query string or the length of the User-Agent header.
+//    * The part of a web request that you want AWS WAF to evaluate, such as
+//    the length of a query string or the length of the User-Agent header.
 //
-//    Whether to perform any transformations on the request, such as converting
+//    * Whether to perform any transformations on the request, such as converting
 //    it to lowercase, before checking its length. Note that transformations
 //    of the request body are not supported because the AWS resource forwards
 //    only the first 8192 bytes of your request to AWS WAF.
 //
-//    A ComparisonOperator used for evaluating the selected part of the request
-// against the specified Size, such as equals, greater than, less than, and
-// so on.
+//    * A ComparisonOperator used for evaluating the selected part of the request
+//    against the specified Size, such as equals, greater than, less than, and
+//    so on.
 //
-//    The length, in bytes, that you want AWS WAF to watch for in selected part
-//    of the request. The length is computed after applying the transformation.
+//    * The length, in bytes, that you want AWS WAF to watch for in selected
+//    part of the request. The length is computed after applying the transformation.
 //
 // For example, you can add a SizeConstraintSetUpdate object that matches web
 // requests in which the length of the User-Agent header is greater than 100
@@ -3542,12 +3541,12 @@ func (c *WAF) UpdateSizeConstraintSetRequest(input *UpdateSizeConstraintSetInput
 //
 // To create and configure a SizeConstraintSet, perform the following steps:
 //
-//    Create a SizeConstraintSet. For more information, see CreateSizeConstraintSet.
+// Create a SizeConstraintSet. For more information, see CreateSizeConstraintSet.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateSizeConstraintSet request.
 //
-//    Submit an UpdateSizeConstraintSet request to specify the part of the request
+// Submit an UpdateSizeConstraintSet request to specify the part of the request
 // that you want AWS WAF to inspect (for example, the header or the URI) and
 // the value that you want AWS WAF to watch for.
 //
@@ -3577,62 +3576,62 @@ func (c *WAF) UpdateSizeConstraintSetRequest(input *UpdateSizeConstraintSetInput
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -3641,9 +3640,9 @@ func (c *WAF) UpdateSizeConstraintSetRequest(input *UpdateSizeConstraintSetInput
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -3705,15 +3704,16 @@ func (c *WAF) UpdateSqlInjectionMatchSetRequest(input *UpdateSqlInjectionMatchSe
 // Inserts or deletes SqlInjectionMatchTuple objects (filters) in a SqlInjectionMatchSet.
 // For each SqlInjectionMatchTuple object, you specify the following values:
 //
-//    Action: Whether to insert the object into or delete the object from the
-// array. To change a SqlInjectionMatchTuple, you delete the existing object
-// and add a new one.
+//    * Action: Whether to insert the object into or delete the object from
+//    the array. To change a SqlInjectionMatchTuple, you delete the existing
+//    object and add a new one.
 //
-//    FieldToMatch: The part of web requests that you want AWS WAF to inspect
-// and, if you want AWS WAF to inspect a header, the name of the header.
+//    * FieldToMatch: The part of web requests that you want AWS WAF to inspect
+//    and, if you want AWS WAF to inspect a header, the name of the header.
 //
-//    TextTransformation: Which text transformation, if any, to perform on the
-// web request before inspecting the request for snippets of malicious SQL code.
+//    * TextTransformation: Which text transformation, if any, to perform on
+//    the web request before inspecting the request for snippets of malicious
+//    SQL code.
 //
 // You use SqlInjectionMatchSet objects to specify which CloudFront requests
 // you want to allow, block, or count. For example, if you're receiving requests
@@ -3723,12 +3723,12 @@ func (c *WAF) UpdateSqlInjectionMatchSetRequest(input *UpdateSqlInjectionMatchSe
 //
 // To create and configure a SqlInjectionMatchSet, perform the following steps:
 //
-//    Submit a CreateSqlInjectionMatchSet request.
+// Submit a CreateSqlInjectionMatchSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateIPSet request.
 //
-//    Submit an UpdateSqlInjectionMatchSet request to specify the parts of web
+// Submit an UpdateSqlInjectionMatchSet request to specify the parts of web
 // requests that you want AWS WAF to inspect for snippets of SQL code.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
@@ -3753,62 +3753,62 @@ func (c *WAF) UpdateSqlInjectionMatchSetRequest(input *UpdateSqlInjectionMatchSe
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -3878,41 +3878,42 @@ func (c *WAF) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Reques
 // web requests that you want to allow, block, or count. When you update a WebACL,
 // you specify the following values:
 //
-//    A default action for the WebACL, either ALLOW or BLOCK. AWS WAF performs
-// the default action if a request doesn't match the criteria in any of the
-// Rules in a WebACL.
+//    * A default action for the WebACL, either ALLOW or BLOCK. AWS WAF performs
+//    the default action if a request doesn't match the criteria in any of the
+//    Rules in a WebACL.
 //
-//    The Rules that you want to add and/or delete. If you want to replace one
-// Rule with another, you delete the existing Rule and add the new one.
+//    * The Rules that you want to add and/or delete. If you want to replace
+//    one Rule with another, you delete the existing Rule and add the new one.
 //
-//    For each Rule, whether you want AWS WAF to allow requests, block requests,
-// or count requests that match the conditions in the Rule.
+//    * For each Rule, whether you want AWS WAF to allow requests, block requests,
+//    or count requests that match the conditions in the Rule.
 //
-//    The order in which you want AWS WAF to evaluate the Rules in a WebACL.
-// If you add more than one Rule to a WebACL, AWS WAF evaluates each request
-// against the Rules in order based on the value of Priority. (The Rule that
-// has the lowest value for Priority is evaluated first.) When a web request
-// matches all of the predicates (such as ByteMatchSets and IPSets) in a Rule,
-// AWS WAF immediately takes the corresponding action, allow or block, and doesn't
-// evaluate the request against the remaining Rules in the WebACL, if any.
+//    * The order in which you want AWS WAF to evaluate the Rules in a WebACL.
+//    If you add more than one Rule to a WebACL, AWS WAF evaluates each request
+//    against the Rules in order based on the value of Priority. (The Rule that
+//    has the lowest value for Priority is evaluated first.) When a web request
+//    matches all of the predicates (such as ByteMatchSets and IPSets) in a
+//    Rule, AWS WAF immediately takes the corresponding action, allow or block,
+//    and doesn't evaluate the request against the remaining Rules in the WebACL,
+//    if any.
 //
-//    The CloudFront distribution that you want to associate with the WebACL.
+//    * The CloudFront distribution that you want to associate with the WebACL.
 //
 // To create and configure a WebACL, perform the following steps:
 //
-//    Create and update the predicates that you want to include in Rules. For
-// more information, see CreateByteMatchSet, UpdateByteMatchSet, CreateIPSet,
-// UpdateIPSet, CreateSqlInjectionMatchSet, and UpdateSqlInjectionMatchSet.
+// Create and update the predicates that you want to include in Rules. For more
+// information, see CreateByteMatchSet, UpdateByteMatchSet, CreateIPSet, UpdateIPSet,
+// CreateSqlInjectionMatchSet, and UpdateSqlInjectionMatchSet.
 //
-//    Create and update the Rules that you want to include in the WebACL. For
-// more information, see CreateRule and UpdateRule.
+// Create and update the Rules that you want to include in the WebACL. For more
+// information, see CreateRule and UpdateRule.
 //
-//    Create a WebACL. See CreateWebACL.
+// Create a WebACL. See CreateWebACL.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateWebACL request.
 //
-//    Submit an UpdateWebACL request to specify the Rules that you want to include
+// Submit an UpdateWebACL request to specify the Rules that you want to include
 // in the WebACL, to specify the default action, and to associate the WebACL
 // with a CloudFront distribution.
 //
@@ -3942,62 +3943,62 @@ func (c *WAF) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Reques
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -4006,9 +4007,9 @@ func (c *WAF) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Reques
 //   The operation failed because you tried to delete an object that is still
 //   in use. For example:
 //
-//      You tried to delete a ByteMatchSet that is still referenced by a Rule.
+//      * You tried to delete a ByteMatchSet that is still referenced by a Rule.
 //
-//      You tried to delete a Rule that is still referenced by a WebACL.
+//      * You tried to delete a Rule that is still referenced by a WebACL.
 //
 //   * LimitsExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
@@ -4070,15 +4071,16 @@ func (c *WAF) UpdateXssMatchSetRequest(input *UpdateXssMatchSetInput) (req *requ
 // Inserts or deletes XssMatchTuple objects (filters) in an XssMatchSet. For
 // each XssMatchTuple object, you specify the following values:
 //
-//    Action: Whether to insert the object into or delete the object from the
-// array. To change a XssMatchTuple, you delete the existing object and add
-// a new one.
+//    * Action: Whether to insert the object into or delete the object from
+//    the array. To change a XssMatchTuple, you delete the existing object and
+//    add a new one.
 //
-//    FieldToMatch: The part of web requests that you want AWS WAF to inspect
-// and, if you want AWS WAF to inspect a header, the name of the header.
+//    * FieldToMatch: The part of web requests that you want AWS WAF to inspect
+//    and, if you want AWS WAF to inspect a header, the name of the header.
 //
-//    TextTransformation: Which text transformation, if any, to perform on the
-// web request before inspecting the request for cross-site scripting attacks.
+//    * TextTransformation: Which text transformation, if any, to perform on
+//    the web request before inspecting the request for cross-site scripting
+//    attacks.
 //
 // You use XssMatchSet objects to specify which CloudFront requests you want
 // to allow, block, or count. For example, if you're receiving requests that
@@ -4088,12 +4090,12 @@ func (c *WAF) UpdateXssMatchSetRequest(input *UpdateXssMatchSetInput) (req *requ
 //
 // To create and configure an XssMatchSet, perform the following steps:
 //
-//    Submit a CreateXssMatchSet request.
+// Submit a CreateXssMatchSet request.
 //
-//    Use GetChangeToken to get the change token that you provide in the ChangeToken
+// Use GetChangeToken to get the change token that you provide in the ChangeToken
 // parameter of an UpdateIPSet request.
 //
-//    Submit an UpdateXssMatchSet request to specify the parts of web requests
+// Submit an UpdateXssMatchSet request to specify the parts of web requests
 // that you want AWS WAF to inspect for cross-site scripting attacks.
 //
 // For more information about how to use the AWS WAF API to allow or block HTTP
@@ -4118,62 +4120,62 @@ func (c *WAF) UpdateXssMatchSetRequest(input *UpdateXssMatchSetInput) (req *requ
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example:
 //
-//      You tried to remove a Rule from a WebACL, but the Rule isn't in the specified
-//   WebACL.
+//      * You tried to remove a Rule from a WebACL, but the Rule isn't in the
+//      specified WebACL.
 //
-//      You tried to remove an IP address from an IPSet, but the IP address isn't
-//   in the specified IPSet.
+//      * You tried to remove an IP address from an IPSet, but the IP address
+//      isn't in the specified IPSet.
 //
-//      You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
-//   isn't in the specified WebACL.
+//      * You tried to remove a ByteMatchTuple from a ByteMatchSet, but the ByteMatchTuple
+//      isn't in the specified WebACL.
 //
-//      You tried to add a Rule to a WebACL, but the Rule already exists in the
-//   specified WebACL.
+//      * You tried to add a Rule to a WebACL, but the Rule already exists in
+//      the specified WebACL.
 //
-//      You tried to add an IP address to an IPSet, but the IP address already
-//   exists in the specified IPSet.
+//      * You tried to add an IP address to an IPSet, but the IP address already
+//      exists in the specified IPSet.
 //
-//      You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
-//   already exists in the specified WebACL.
+//      * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
+//      already exists in the specified WebACL.
 //
 //   * InvalidParameterException
 //   The operation failed because AWS WAF didn't recognize a parameter in the
 //   request. For example:
 //
-//      You specified an invalid parameter name.
+//      * You specified an invalid parameter name.
 //
-//      You specified an invalid value.
+//      * You specified an invalid value.
 //
-//      You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL) using
-//   an action other than INSERT or DELETE.
+//      * You tried to update an object (ByteMatchSet, IPSet, Rule, or WebACL)
+//      using an action other than INSERT or DELETE.
 //
-//      You tried to create a WebACL with a DefaultActionType other than ALLOW,
-//   BLOCK, or COUNT.
+//      * You tried to create a WebACL with a DefaultActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a WebACL with a WafActionType other than ALLOW, BLOCK,
-//   or COUNT.
+//      * You tried to update a WebACL with a WafActionType other than ALLOW,
+//      BLOCK, or COUNT.
 //
-//      You tried to update a ByteMatchSet with a FieldToMatchType other than
-//   HEADER, QUERY_STRING, or URI.
+//      * You tried to update a ByteMatchSet with a FieldToMatchType other than
+//      HEADER, QUERY_STRING, or URI.
 //
-//      You tried to update a ByteMatchSet with a Field of HEADER but no value
-//   for Data.
+//      * You tried to update a ByteMatchSet with a Field of HEADER but no value
+//      for Data.
 //
 //   * NonexistentContainerException
 //   The operation failed because you tried to add an object to or delete an object
 //   from another object that doesn't exist. For example:
 //
-//      You tried to add a Rule to or delete a Rule from a WebACL that doesn't
-//   exist.
+//      * You tried to add a Rule to or delete a Rule from a WebACL that doesn't
+//      exist.
 //
-//      You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
-//   that doesn't exist.
+//      * You tried to add a ByteMatchSet to or delete a ByteMatchSet from a Rule
+//      that doesn't exist.
 //
-//      You tried to add an IP address to or delete an IP address from an IPSet
-//   that doesn't exist.
+//      * You tried to add an IP address to or delete an IP address from an IPSet
+//      that doesn't exist.
 //
-//      You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from a
-//   ByteMatchSet that doesn't exist.
+//      * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
+//      a ByteMatchSet that doesn't exist.
 //
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
@@ -4207,13 +4209,13 @@ type ActivatedRule struct {
 	// Specifies the action that CloudFront or AWS WAF takes when a web request
 	// matches the conditions in the Rule. Valid values for Action include the following:
 	//
-	//    ALLOW: CloudFront responds with the requested object.
+	//    * ALLOW: CloudFront responds with the requested object.
 	//
-	//    BLOCK: CloudFront responds with an HTTP 403 (Forbidden) status code.
+	//    * BLOCK: CloudFront responds with an HTTP 403 (Forbidden) status code.
 	//
-	//    COUNT: AWS WAF increments a counter of requests that match the conditions
-	// in the rule and then continues to inspect the web request based on the remaining
-	// rules in the web ACL.
+	//    * COUNT: AWS WAF increments a counter of requests that match the conditions
+	//    in the rule and then continues to inspect the web request based on the
+	//    remaining rules in the web ACL.
 	//
 	// Action is a required field
 	Action *WafAction `type:"structure" required:"true"`
@@ -4427,20 +4429,20 @@ type ByteMatchTuple struct {
 	// (A-Z, a-z, 0-9, or _). In addition, TargetString must be a word, which means
 	// one of the following:
 	//
-	//    TargetString exactly matches the value of the specified part of the web
-	// request, such as the value of a header.
+	//    * TargetString exactly matches the value of the specified part of the
+	//    web request, such as the value of a header.
 	//
-	//    TargetString is at the beginning of the specified part of the web request
-	// and is followed by a character other than an alphanumeric character or underscore
-	// (_), for example, BadBot;.
+	//    * TargetString is at the beginning of the specified part of the web request
+	//    and is followed by a character other than an alphanumeric character or
+	//    underscore (_), for example, BadBot;.
 	//
-	//    TargetString is at the end of the specified part of the web request and
-	// is preceded by a character other than an alphanumeric character or underscore
-	// (_), for example, ;BadBot.
+	//    * TargetString is at the end of the specified part of the web request
+	//    and is preceded by a character other than an alphanumeric character or
+	//    underscore (_), for example, ;BadBot.
 	//
-	//    TargetString is in the middle of the specified part of the web request
-	// and is preceded and followed by characters other than alphanumeric characters
-	// or underscore (_), for example, -BadBot;.
+	//    * TargetString is in the middle of the specified part of the web request
+	//    and is preceded and followed by characters other than alphanumeric characters
+	//    or underscore (_), for example, -BadBot;.
 	//
 	// EXACTLY
 	//
@@ -4466,26 +4468,27 @@ type ByteMatchTuple struct {
 	//
 	// Valid values depend on the values that you specified for FieldToMatch:
 	//
-	//    HEADER: The value that you want AWS WAF to search for in the request header
-	// that you specified in FieldToMatch, for example, the value of the User-Agent
-	// or Referer header.
+	//    * HEADER: The value that you want AWS WAF to search for in the request
+	//    header that you specified in FieldToMatch, for example, the value of the
+	//    User-Agent or Referer header.
 	//
-	//    METHOD: The HTTP method, which indicates the type of operation specified
-	// in the request. CloudFront supports the following methods: DELETE, GET, HEAD,
-	// OPTIONS, PATCH, POST, and PUT.
+	//    * METHOD: The HTTP method, which indicates the type of operation specified
+	//    in the request. CloudFront supports the following methods: DELETE, GET,
+	//    HEAD, OPTIONS, PATCH, POST, and PUT.
 	//
-	//    QUERY_STRING: The value that you want AWS WAF to search for in the query
-	// string, which is the part of a URL that appears after a ? character.
+	//    * QUERY_STRING: The value that you want AWS WAF to search for in the query
+	//    string, which is the part of a URL that appears after a ? character.
 	//
-	//    URI: The value that you want AWS WAF to search for in the part of a URL
-	// that identifies a resource, for example, /images/daily-ad.jpg.
+	//    * URI: The value that you want AWS WAF to search for in the part of a
+	//    URL that identifies a resource, for example, /images/daily-ad.jpg.
 	//
-	//    BODY: The part of a request that contains any additional data that you
-	// want to send to your web server as the HTTP request body, such as data from
-	// a form. The request body immediately follows the request headers. Note that
-	// only the first 8192 bytes of the request body are forwarded to AWS WAF for
-	// inspection. To allow or block requests based on the length of the body, you
-	// can create a size constraint set. For more information, see CreateSizeConstraintSet.
+	//    * BODY: The part of a request that contains any additional data that you
+	//    want to send to your web server as the HTTP request body, such as data
+	//    from a form. The request body immediately follows the request headers.
+	//    Note that only the first 8192 bytes of the request body are forwarded
+	//    to AWS WAF for inspection. To allow or block requests based on the length
+	//    of the body, you can create a size constraint set. For more information,
+	//    see CreateSizeConstraintSet.
 	//
 	// If TargetString includes alphabetic characters A-Z and a-z, note that the
 	// value is case sensitive.
@@ -4521,32 +4524,32 @@ type ByteMatchTuple struct {
 	// command and using unusual formatting to disguise some or all of the command,
 	// use this option to perform the following transformations:
 	//
-	//    Delete the following characters: \ " ' ^
+	//    * Delete the following characters: \ " ' ^
 	//
-	//    Delete spaces before the following characters: / (
+	//    * Delete spaces before the following characters: / (
 	//
-	//    Replace the following characters with a space: , ;
+	//    * Replace the following characters with a space: , ;
 	//
-	//    Replace multiple spaces with one space
+	//    * Replace multiple spaces with one space
 	//
-	//    Convert uppercase letters (A-Z) to lowercase (a-z)
+	//    * Convert uppercase letters (A-Z) to lowercase (a-z)
 	//
 	// COMPRESS_WHITE_SPACE
 	//
 	// Use this option to replace the following characters with a space character
 	// (decimal 32):
 	//
-	//    \f, formfeed, decimal 12
+	//    * \f, formfeed, decimal 12
 	//
-	//    \t, tab, decimal 9
+	//    * \t, tab, decimal 9
 	//
-	//    \n, newline, decimal 10
+	//    * \n, newline, decimal 10
 	//
-	//    \r, carriage return, decimal 13
+	//    * \r, carriage return, decimal 13
 	//
-	//    \v, vertical tab, decimal 11
+	//    * \v, vertical tab, decimal 11
 	//
-	//    non-breaking space, decimal 160
+	//    * non-breaking space, decimal 160
 	//
 	// COMPRESS_WHITE_SPACE also replaces multiple spaces with one space.
 	//
@@ -4555,19 +4558,19 @@ type ByteMatchTuple struct {
 	// Use this option to replace HTML-encoded characters with unencoded characters.
 	// HTML_ENTITY_DECODE performs the following operations:
 	//
-	//    Replaces (ampersand)quot; with "
+	//    * Replaces (ampersand)quot; with "
 	//
-	//    Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
+	//    * Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
 	//
-	//    Replaces (ampersand)lt; with a "less than" symbol
+	//    * Replaces (ampersand)lt; with a "less than" symbol
 	//
-	//    Replaces (ampersand)gt; with >
+	//    * Replaces (ampersand)gt; with >
 	//
-	//    Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
+	//    with the corresponding characters
 	//
-	//    Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
+	//    with the corresponding characters
 	//
 	// LOWERCASE
 	//
@@ -5625,26 +5628,27 @@ type FieldToMatch struct {
 	// The part of the web request that you want AWS WAF to search for a specified
 	// string. Parts of a request that you can search include the following:
 	//
-	//    HEADER: A specified request header, for example, the value of the User-Agent
-	// or Referer header. If you choose HEADER for the type, specify the name of
-	// the header in Data.
+	//    * HEADER: A specified request header, for example, the value of the User-Agent
+	//    or Referer header. If you choose HEADER for the type, specify the name
+	//    of the header in Data.
 	//
-	//    METHOD: The HTTP method, which indicated the type of operation that the
-	// request is asking the origin to perform. Amazon CloudFront supports the following
-	// methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and PUT.
+	//    * METHOD: The HTTP method, which indicated the type of operation that
+	//    the request is asking the origin to perform. Amazon CloudFront supports
+	//    the following methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, and PUT.
 	//
-	//    QUERY_STRING: A query string, which is the part of a URL that appears
-	// after a ? character, if any.
+	//    * QUERY_STRING: A query string, which is the part of a URL that appears
+	//    after a ? character, if any.
 	//
-	//    URI: The part of a web request that identifies a resource, for example,
-	// /images/daily-ad.jpg.
+	//    * URI: The part of a web request that identifies a resource, for example,
+	//    /images/daily-ad.jpg.
 	//
-	//    BODY: The part of a request that contains any additional data that you
-	// want to send to your web server as the HTTP request body, such as data from
-	// a form. The request body immediately follows the request headers. Note that
-	// only the first 8192 bytes of the request body are forwarded to AWS WAF for
-	// inspection. To allow or block requests based on the length of the body, you
-	// can create a size constraint set. For more information, see CreateSizeConstraintSet.
+	//    * BODY: The part of a request that contains any additional data that you
+	//    want to send to your web server as the HTTP request body, such as data
+	//    from a form. The request body immediately follows the request headers.
+	//    Note that only the first 8192 bytes of the request body are forwarded
+	//    to AWS WAF for inspection. To allow or block requests based on the length
+	//    of the body, you can create a size constraint set. For more information,
+	//    see CreateSizeConstraintSet.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"MatchFieldType"`
@@ -5715,12 +5719,13 @@ type GetByteMatchSetOutput struct {
 	// Information about the ByteMatchSet that you specified in the GetByteMatchSet
 	// request. For more information, see the following topics:
 	//
-	//    ByteMatchSet: Contains ByteMatchSetId, ByteMatchTuples, and Name
+	//    * ByteMatchSet: Contains ByteMatchSetId, ByteMatchTuples, and Name
 	//
-	//    ByteMatchTuples: Contains an array of ByteMatchTuple objects. Each ByteMatchTuple
-	// object contains FieldToMatch, PositionalConstraint, TargetString, and TextTransformation
+	//    * ByteMatchTuples: Contains an array of ByteMatchTuple objects. Each ByteMatchTuple
+	//    object contains FieldToMatch, PositionalConstraint, TargetString, and
+	//    TextTransformation
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	ByteMatchSet *ByteMatchSet `type:"structure"`
 }
 
@@ -5861,10 +5866,10 @@ type GetIPSetOutput struct {
 	// Information about the IPSet that you specified in the GetIPSet request. For
 	// more information, see the following topics:
 	//
-	//    IPSet: Contains IPSetDescriptors, IPSetId, and Name
+	//    * IPSet: Contains IPSetDescriptors, IPSetId, and Name
 	//
-	//    IPSetDescriptors: Contains an array of IPSetDescriptor objects. Each IPSetDescriptor
-	// object contains Type and Value
+	//    * IPSetDescriptors: Contains an array of IPSetDescriptor objects. Each
+	//    IPSetDescriptor object contains Type and Value
 	IPSet *IPSet `type:"structure"`
 }
 
@@ -5920,9 +5925,10 @@ type GetRuleOutput struct {
 	// Information about the Rule that you specified in the GetRule request. For
 	// more information, see the following topics:
 	//
-	//    Rule: Contains MetricName, Name, an array of Predicate objects, and RuleId
+	//    * Rule: Contains MetricName, Name, an array of Predicate objects, and
+	//    RuleId
 	//
-	//    Predicate: Each Predicate object contains DataId, Negated, and Type
+	//    * Predicate: Each Predicate object contains DataId, Negated, and Type
 	Rule *Rule `type:"structure"`
 }
 
@@ -5949,11 +5955,11 @@ type GetSampledRequestsInput struct {
 
 	// RuleId is one of two values:
 	//
-	//    The RuleId of the Rule for which you want GetSampledRequests to return
-	// a sample of requests.
+	//    * The RuleId of the Rule for which you want GetSampledRequests to return
+	//    a sample of requests.
 	//
-	//    Default_Action, which causes GetSampledRequests to return a sample of
-	// the requests that didn't match any of the rules in the specified WebACL.
+	//    * Default_Action, which causes GetSampledRequests to return a sample of
+	//    the requests that didn't match any of the rules in the specified WebACL.
 	//
 	// RuleId is a required field
 	RuleId *string `min:"1" type:"string" required:"true"`
@@ -6090,14 +6096,14 @@ type GetSizeConstraintSetOutput struct {
 	// Information about the SizeConstraintSet that you specified in the GetSizeConstraintSet
 	// request. For more information, see the following topics:
 	//
-	//    SizeConstraintSet: Contains SizeConstraintSetId, SizeConstraints, and
-	// Name
+	//    * SizeConstraintSet: Contains SizeConstraintSetId, SizeConstraints, and
+	//    Name
 	//
-	//    SizeConstraints: Contains an array of SizeConstraint objects. Each SizeConstraint
-	// object contains FieldToMatch, TextTransformation, ComparisonOperator, and
-	// Size
+	//    * SizeConstraints: Contains an array of SizeConstraint objects. Each SizeConstraint
+	//    object contains FieldToMatch, TextTransformation, ComparisonOperator,
+	//    and Size
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	SizeConstraintSet *SizeConstraintSet `type:"structure"`
 }
 
@@ -6155,13 +6161,13 @@ type GetSqlInjectionMatchSetOutput struct {
 	// Information about the SqlInjectionMatchSet that you specified in the GetSqlInjectionMatchSet
 	// request. For more information, see the following topics:
 	//
-	//    SqlInjectionMatchSet: Contains Name, SqlInjectionMatchSetId, and an array
-	// of SqlInjectionMatchTuple objects
+	//    * SqlInjectionMatchSet: Contains Name, SqlInjectionMatchSetId, and an
+	//    array of SqlInjectionMatchTuple objects
 	//
-	//    SqlInjectionMatchTuple: Each SqlInjectionMatchTuple object contains FieldToMatch
-	// and TextTransformation
+	//    * SqlInjectionMatchTuple: Each SqlInjectionMatchTuple object contains
+	//    FieldToMatch and TextTransformation
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	SqlInjectionMatchSet *SqlInjectionMatchSet `type:"structure"`
 }
 
@@ -6217,15 +6223,15 @@ type GetWebACLOutput struct {
 	// Information about the WebACL that you specified in the GetWebACL request.
 	// For more information, see the following topics:
 	//
-	//    WebACL: Contains DefaultAction, MetricName, Name, an array of Rule objects,
-	// and WebACLId
+	//    * WebACL: Contains DefaultAction, MetricName, Name, an array of Rule objects,
+	//    and WebACLId
 	//
-	//    DefaultAction (Data type is WafAction): Contains Type
+	//    * DefaultAction (Data type is WafAction): Contains Type
 	//
-	//    Rules: Contains an array of ActivatedRule objects, which contain Action,
-	// Priority, and RuleId
+	//    * Rules: Contains an array of ActivatedRule objects, which contain Action,
+	//    Priority, and RuleId
 	//
-	//    Action: Contains Type
+	//    * Action: Contains Type
 	WebACL *WebACL `type:"structure"`
 }
 
@@ -6283,12 +6289,12 @@ type GetXssMatchSetOutput struct {
 	// Information about the XssMatchSet that you specified in the GetXssMatchSet
 	// request. For more information, see the following topics:
 	//
-	//    XssMatchSet: Contains Name, XssMatchSetId, and an array of XssMatchTuple
-	// objects
+	//    * XssMatchSet: Contains Name, XssMatchSetId, and an array of XssMatchTuple
+	//    objects
 	//
-	//    XssMatchTuple: Each XssMatchTuple object contains FieldToMatch and TextTransformation
+	//    * XssMatchTuple: Each XssMatchTuple object contains FieldToMatch and TextTransformation
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	XssMatchSet *XssMatchSet `type:"structure"`
 }
 
@@ -6336,11 +6342,11 @@ type HTTPRequest struct {
 	// with a CloudFront distribution, this is the value of one of the following
 	// fields in CloudFront access logs:
 	//
-	//    c-ip, if the viewer did not use an HTTP proxy or a load balancer to send
-	// the request
+	//    * c-ip, if the viewer did not use an HTTP proxy or a load balancer to
+	//    send the request
 	//
-	//    x-forwarded-for, if the viewer did use an HTTP proxy or a load balancer
-	// to send the request
+	//    * x-forwarded-for, if the viewer did use an HTTP proxy or a load balancer
+	//    to send the request
 	ClientIP *string `type:"string"`
 
 	// The two-letter country code for the country that the request originated from.
@@ -6391,11 +6397,11 @@ type IPSet struct {
 	// distribution, this is the value of one of the following fields in CloudFront
 	// access logs:
 	//
-	//    c-ip, if the viewer did not use an HTTP proxy or a load balancer to send
-	// the request
+	//    * c-ip, if the viewer did not use an HTTP proxy or a load balancer to
+	//    send the request
 	//
-	//    x-forwarded-for, if the viewer did use an HTTP proxy or a load balancer
-	// to send the request
+	//    * x-forwarded-for, if the viewer did use an HTTP proxy or a load balancer
+	//    to send the request
 	//
 	// IPSetDescriptors is a required field
 	IPSetDescriptors []*IPSetDescriptor `type:"list" required:"true"`
@@ -6437,10 +6443,10 @@ type IPSetDescriptor struct {
 
 	// Specify an IPv4 address by using CIDR notation. For example:
 	//
-	//    To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure AWS WAF to allow, block, or count requests that originated
 	//    from the IP address 192.0.2.44, specify 192.0.2.44/32.
 	//
-	//    To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure AWS WAF to allow, block, or count requests that originated
 	//    from IP addresses from 192.0.2.0 to 192.0.2.255, specify 192.0.2.0/24.
 	//
 	// For more information about CIDR notation, see the Wikipedia entry Classless
@@ -6448,10 +6454,10 @@ type IPSetDescriptor struct {
 	//
 	// Specify an IPv6 address by using CIDR notation. For example:
 	//
-	//    To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure AWS WAF to allow, block, or count requests that originated
 	//    from the IP address 1111:0000:0000:0000:0000:0000:0000:0111, specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
 	//
-	//    To configure AWS WAF to allow, block, or count requests that originated
+	//    * To configure AWS WAF to allow, block, or count requests that originated
 	//    from IP addresses 1111:0000:0000:0000:0000:0000:0000:0000 to 1111:0000:0000:0000:ffff:ffff:ffff:ffff,
 	//    specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
@@ -7079,11 +7085,11 @@ func (s *Predicate) Validate() error {
 // that identify the web requests that you want to allow, block, or count. For
 // example, you might create a Rule that includes the following predicates:
 //
-//    An IPSet that causes AWS WAF to search for web requests that originate
-// from the IP address 192.0.2.44
+//    * An IPSet that causes AWS WAF to search for web requests that originate
+//    from the IP address 192.0.2.44
 //
-//    A ByteMatchSet that causes AWS WAF to search for web requests for which
-// the value of the User-Agent header is BadBot.
+//    * A ByteMatchSet that causes AWS WAF to search for web requests for which
+//    the value of the User-Agent header is BadBot.
 //
 // To match the settings in this Rule, a request must originate from 192.0.2.44
 // AND include a User-Agent header for which the value is BadBot.
@@ -7306,32 +7312,32 @@ type SizeConstraint struct {
 	// line command and using unusual formatting to disguise some or all of the
 	// command, use this option to perform the following transformations:
 	//
-	//    Delete the following characters: \ " ' ^
+	//    * Delete the following characters: \ " ' ^
 	//
-	//    Delete spaces before the following characters: / (
+	//    * Delete spaces before the following characters: / (
 	//
-	//    Replace the following characters with a space: , ;
+	//    * Replace the following characters with a space: , ;
 	//
-	//    Replace multiple spaces with one space
+	//    * Replace multiple spaces with one space
 	//
-	//    Convert uppercase letters (A-Z) to lowercase (a-z)
+	//    * Convert uppercase letters (A-Z) to lowercase (a-z)
 	//
 	// COMPRESS_WHITE_SPACE
 	//
 	// Use this option to replace the following characters with a space character
 	// (decimal 32):
 	//
-	//    \f, formfeed, decimal 12
+	//    * \f, formfeed, decimal 12
 	//
-	//    \t, tab, decimal 9
+	//    * \t, tab, decimal 9
 	//
-	//    \n, newline, decimal 10
+	//    * \n, newline, decimal 10
 	//
-	//    \r, carriage return, decimal 13
+	//    * \r, carriage return, decimal 13
 	//
-	//    \v, vertical tab, decimal 11
+	//    * \v, vertical tab, decimal 11
 	//
-	//    non-breaking space, decimal 160
+	//    * non-breaking space, decimal 160
 	//
 	// COMPRESS_WHITE_SPACE also replaces multiple spaces with one space.
 	//
@@ -7340,19 +7346,19 @@ type SizeConstraint struct {
 	// Use this option to replace HTML-encoded characters with unencoded characters.
 	// HTML_ENTITY_DECODE performs the following operations:
 	//
-	//    Replaces (ampersand)quot; with "
+	//    * Replaces (ampersand)quot; with "
 	//
-	//    Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
+	//    * Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
 	//
-	//    Replaces (ampersand)lt; with a "less than" symbol
+	//    * Replaces (ampersand)lt; with a "less than" symbol
 	//
-	//    Replaces (ampersand)gt; with >
+	//    * Replaces (ampersand)gt; with >
 	//
-	//    Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
+	//    with the corresponding characters
 	//
-	//    Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
+	//    with the corresponding characters
 	//
 	// LOWERCASE
 	//
@@ -7667,32 +7673,32 @@ type SqlInjectionMatchTuple struct {
 	// command and using unusual formatting to disguise some or all of the command,
 	// use this option to perform the following transformations:
 	//
-	//    Delete the following characters: \ " ' ^
+	//    * Delete the following characters: \ " ' ^
 	//
-	//    Delete spaces before the following characters: / (
+	//    * Delete spaces before the following characters: / (
 	//
-	//    Replace the following characters with a space: , ;
+	//    * Replace the following characters with a space: , ;
 	//
-	//    Replace multiple spaces with one space
+	//    * Replace multiple spaces with one space
 	//
-	//    Convert uppercase letters (A-Z) to lowercase (a-z)
+	//    * Convert uppercase letters (A-Z) to lowercase (a-z)
 	//
 	// COMPRESS_WHITE_SPACE
 	//
 	// Use this option to replace the following characters with a space character
 	// (decimal 32):
 	//
-	//    \f, formfeed, decimal 12
+	//    * \f, formfeed, decimal 12
 	//
-	//    \t, tab, decimal 9
+	//    * \t, tab, decimal 9
 	//
-	//    \n, newline, decimal 10
+	//    * \n, newline, decimal 10
 	//
-	//    \r, carriage return, decimal 13
+	//    * \r, carriage return, decimal 13
 	//
-	//    \v, vertical tab, decimal 11
+	//    * \v, vertical tab, decimal 11
 	//
-	//    non-breaking space, decimal 160
+	//    * non-breaking space, decimal 160
 	//
 	// COMPRESS_WHITE_SPACE also replaces multiple spaces with one space.
 	//
@@ -7701,19 +7707,19 @@ type SqlInjectionMatchTuple struct {
 	// Use this option to replace HTML-encoded characters with unencoded characters.
 	// HTML_ENTITY_DECODE performs the following operations:
 	//
-	//    Replaces (ampersand)quot; with "
+	//    * Replaces (ampersand)quot; with "
 	//
-	//    Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
+	//    * Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
 	//
-	//    Replaces (ampersand)lt; with a "less than" symbol
+	//    * Replaces (ampersand)lt; with a "less than" symbol
 	//
-	//    Replaces (ampersand)gt; with >
+	//    * Replaces (ampersand)gt; with >
 	//
-	//    Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
+	//    with the corresponding characters
 	//
-	//    Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
+	//    with the corresponding characters
 	//
 	// LOWERCASE
 	//
@@ -7833,12 +7839,12 @@ type UpdateByteMatchSetInput struct {
 	// An array of ByteMatchSetUpdate objects that you want to insert into or delete
 	// from a ByteMatchSet. For more information, see the applicable data types:
 	//
-	//    ByteMatchSetUpdate: Contains Action and ByteMatchTuple
+	//    * ByteMatchSetUpdate: Contains Action and ByteMatchTuple
 	//
-	//    ByteMatchTuple: Contains FieldToMatch, PositionalConstraint, TargetString,
-	// and TextTransformation
+	//    * ByteMatchTuple: Contains FieldToMatch, PositionalConstraint, TargetString,
+	//    and TextTransformation
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	//
 	// Updates is a required field
 	Updates []*ByteMatchSetUpdate `type:"list" required:"true"`
@@ -7925,9 +7931,9 @@ type UpdateIPSetInput struct {
 	// An array of IPSetUpdate objects that you want to insert into or delete from
 	// an IPSet. For more information, see the applicable data types:
 	//
-	//    IPSetUpdate: Contains Action and IPSetDescriptor
+	//    * IPSetUpdate: Contains Action and IPSetDescriptor
 	//
-	//    IPSetDescriptor: Contains Type and Value
+	//    * IPSetDescriptor: Contains Type and Value
 	//
 	// Updates is a required field
 	Updates []*IPSetUpdate `type:"list" required:"true"`
@@ -8014,11 +8020,11 @@ type UpdateRuleInput struct {
 	// An array of RuleUpdate objects that you want to insert into or delete from
 	// a Rule. For more information, see the applicable data types:
 	//
-	//    RuleUpdate: Contains Action and Predicate
+	//    * RuleUpdate: Contains Action and Predicate
 	//
-	//    Predicate: Contains DataId, Negated, and Type
+	//    * Predicate: Contains DataId, Negated, and Type
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	//
 	// Updates is a required field
 	Updates []*RuleUpdate `type:"list" required:"true"`
@@ -8106,12 +8112,12 @@ type UpdateSizeConstraintSetInput struct {
 	// or delete from a SizeConstraintSet. For more information, see the applicable
 	// data types:
 	//
-	//    SizeConstraintSetUpdate: Contains Action and SizeConstraint
+	//    * SizeConstraintSetUpdate: Contains Action and SizeConstraint
 	//
-	//    SizeConstraint: Contains FieldToMatch, TextTransformation, ComparisonOperator,
-	// and Size
+	//    * SizeConstraint: Contains FieldToMatch, TextTransformation, ComparisonOperator,
+	//    and Size
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	//
 	// Updates is a required field
 	Updates []*SizeConstraintSetUpdate `type:"list" required:"true"`
@@ -8200,11 +8206,11 @@ type UpdateSqlInjectionMatchSetInput struct {
 	// or delete from a SqlInjectionMatchSet. For more information, see the applicable
 	// data types:
 	//
-	//    SqlInjectionMatchSetUpdate: Contains Action and SqlInjectionMatchTuple
+	//    * SqlInjectionMatchSetUpdate: Contains Action and SqlInjectionMatchTuple
 	//
-	//    SqlInjectionMatchTuple: Contains FieldToMatch and TextTransformation
+	//    * SqlInjectionMatchTuple: Contains FieldToMatch and TextTransformation
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	//
 	// Updates is a required field
 	Updates []*SqlInjectionMatchSetUpdate `type:"list" required:"true"`
@@ -8295,11 +8301,11 @@ type UpdateWebACLInput struct {
 	// An array of WebACLUpdate objects that you want to insert into or delete from
 	// a WebACL. For more information, see the applicable data types:
 	//
-	//    WebACLUpdate: Contains Action and ActivatedRule
+	//    * WebACLUpdate: Contains Action and ActivatedRule
 	//
-	//    ActivatedRule: Contains Action, Priority, and RuleId
+	//    * ActivatedRule: Contains Action, Priority, and RuleId
 	//
-	//    WafAction: Contains Type
+	//    * WafAction: Contains Type
 	Updates []*WebACLUpdate `type:"list"`
 
 	// The WebACLId of the WebACL that you want to update. WebACLId is returned
@@ -8387,11 +8393,11 @@ type UpdateXssMatchSetInput struct {
 	// An array of XssMatchSetUpdate objects that you want to insert into or delete
 	// from a XssMatchSet. For more information, see the applicable data types:
 	//
-	//    XssMatchSetUpdate: Contains Action and XssMatchTuple
+	//    * XssMatchSetUpdate: Contains Action and XssMatchTuple
 	//
-	//    XssMatchTuple: Contains FieldToMatch and TextTransformation
+	//    * XssMatchTuple: Contains FieldToMatch and TextTransformation
 	//
-	//    FieldToMatch: Contains Data and Type
+	//    * FieldToMatch: Contains Data and Type
 	//
 	// Updates is a required field
 	Updates []*XssMatchSetUpdate `type:"list" required:"true"`
@@ -8479,14 +8485,14 @@ type WafAction struct {
 	// Specifies how you want AWS WAF to respond to requests that match the settings
 	// in a Rule. Valid settings include the following:
 	//
-	//    ALLOW: AWS WAF allows requests
+	//    * ALLOW: AWS WAF allows requests
 	//
-	//    BLOCK: AWS WAF blocks requests
+	//    * BLOCK: AWS WAF blocks requests
 	//
-	//    COUNT: AWS WAF increments a counter of the requests that match all of
-	// the conditions in the rule. AWS WAF then continues to inspect the web request
-	// based on the remaining rules in the web ACL. You can't specify COUNT for
-	// the default action for a WebACL.
+	//    * COUNT: AWS WAF increments a counter of the requests that match all of
+	//    the conditions in the rule. AWS WAF then continues to inspect the web
+	//    request based on the remaining rules in the web ACL. You can't specify
+	//    COUNT for the default action for a WebACL.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"WafActionType"`
@@ -8788,32 +8794,32 @@ type XssMatchTuple struct {
 	// command and using unusual formatting to disguise some or all of the command,
 	// use this option to perform the following transformations:
 	//
-	//    Delete the following characters: \ " ' ^
+	//    * Delete the following characters: \ " ' ^
 	//
-	//    Delete spaces before the following characters: / (
+	//    * Delete spaces before the following characters: / (
 	//
-	//    Replace the following characters with a space: , ;
+	//    * Replace the following characters with a space: , ;
 	//
-	//    Replace multiple spaces with one space
+	//    * Replace multiple spaces with one space
 	//
-	//    Convert uppercase letters (A-Z) to lowercase (a-z)
+	//    * Convert uppercase letters (A-Z) to lowercase (a-z)
 	//
 	// COMPRESS_WHITE_SPACE
 	//
 	// Use this option to replace the following characters with a space character
 	// (decimal 32):
 	//
-	//    \f, formfeed, decimal 12
+	//    * \f, formfeed, decimal 12
 	//
-	//    \t, tab, decimal 9
+	//    * \t, tab, decimal 9
 	//
-	//    \n, newline, decimal 10
+	//    * \n, newline, decimal 10
 	//
-	//    \r, carriage return, decimal 13
+	//    * \r, carriage return, decimal 13
 	//
-	//    \v, vertical tab, decimal 11
+	//    * \v, vertical tab, decimal 11
 	//
-	//    non-breaking space, decimal 160
+	//    * non-breaking space, decimal 160
 	//
 	// COMPRESS_WHITE_SPACE also replaces multiple spaces with one space.
 	//
@@ -8822,19 +8828,19 @@ type XssMatchTuple struct {
 	// Use this option to replace HTML-encoded characters with unencoded characters.
 	// HTML_ENTITY_DECODE performs the following operations:
 	//
-	//    Replaces (ampersand)quot; with "
+	//    * Replaces (ampersand)quot; with "
 	//
-	//    Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
+	//    * Replaces (ampersand)nbsp; with a non-breaking space, decimal 160
 	//
-	//    Replaces (ampersand)lt; with a "less than" symbol
+	//    * Replaces (ampersand)lt; with a "less than" symbol
 	//
-	//    Replaces (ampersand)gt; with >
+	//    * Replaces (ampersand)gt; with >
 	//
-	//    Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in hexadecimal format, (ampersand)#xhhhh;,
+	//    with the corresponding characters
 	//
-	//    Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
-	// with the corresponding characters
+	//    * Replaces characters that are represented in decimal format, (ampersand)#nnnn;,
+	//    with the corresponding characters
 	//
 	// LOWERCASE
 	//

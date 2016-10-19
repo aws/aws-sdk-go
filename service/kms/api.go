@@ -359,10 +359,10 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *request.Request, out
 // are used to encrypt raw data. For more information about DEKs and the difference
 // between CMKs and DEKs, see the following:
 //
-//    The GenerateDataKey operation
+//    * The GenerateDataKey operation
 //
-//    AWS Key Management Service Concepts (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
-// in the AWS Key Management Service Developer Guide
+//    * AWS Key Management Service Concepts (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html)
+//    in the AWS Key Management Service Developer Guide
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -450,11 +450,11 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *request.Request, output 
 // Decrypts ciphertext. Ciphertext is plaintext that has been previously encrypted
 // by using any of the following functions:
 //
-//    GenerateDataKey
+//    * GenerateDataKey
 //
-//    GenerateDataKeyWithoutPlaintext
+//    * GenerateDataKeyWithoutPlaintext
 //
-//    Encrypt
+//    * Encrypt
 //
 // Note that if a caller has been granted access permissions to all keys (through,
 // for example, IAM user policies that grant Decrypt permission on all resources),
@@ -1186,14 +1186,14 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *request.Request, output 
 // Encrypts plaintext into ciphertext by using a customer master key. The Encrypt
 // function has two primary use cases:
 //
-//    You can encrypt up to 4 KB of arbitrary data such as an RSA key, a database
+//    * You can encrypt up to 4 KB of arbitrary data such as an RSA key, a database
 //    password, or other sensitive customer information.
 //
-//    If you are moving encrypted data from one region to another, you can use
-//    this API to encrypt in the new region the plaintext data key that was
-//    used to encrypt the data in the original region. This provides you with
-//    an encrypted copy of the data key that can be decrypted in the new region
-//    and used there to decrypt the encrypted data.
+//    * If you are moving encrypted data from one region to another, you can
+//    use this API to encrypt in the new region the plaintext data key that
+//    was used to encrypt the data in the original region. This provides you
+//    with an encrypted copy of the data key that can be decrypted in the new
+//    region and used there to decrypt the encrypted data.
 //
 // Unless you are moving encrypted data from one region to another, you don't
 // use this function to encrypt a generated data key within a region. You retrieve
@@ -1313,22 +1313,22 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *request.
 // We recommend that you use the following pattern to encrypt data locally in
 // your application:
 //
-//    Use this operation (GenerateDataKey) to retrieve a data encryption key.
+// Use this operation (GenerateDataKey) to retrieve a data encryption key.
 //
-//    Use the plaintext data encryption key (returned in the Plaintext field
-// of the response) to encrypt data locally, then erase the plaintext data key
+// Use the plaintext data encryption key (returned in the Plaintext field of
+// the response) to encrypt data locally, then erase the plaintext data key
 // from memory.
 //
-//    Store the encrypted data key (returned in the CiphertextBlob field of
-// the response) alongside the locally encrypted data.
+// Store the encrypted data key (returned in the CiphertextBlob field of the
+// response) alongside the locally encrypted data.
 //
 // To decrypt data locally:
 //
-//    Use the Decrypt operation to decrypt the encrypted data key into a plaintext
+// Use the Decrypt operation to decrypt the encrypted data key into a plaintext
 // copy of the data key.
 //
-//    Use the plaintext data key to decrypt data locally, then erase the plaintext
-//    data key from memory.
+// Use the plaintext data key to decrypt data locally, then erase the plaintext
+// data key from memory.
 //
 // To return only an encrypted copy of the data key, use GenerateDataKeyWithoutPlaintext.
 // To return an arbitrary unpredictable byte string, use GenerateRandom.
@@ -2756,11 +2756,11 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *request.Request,
 // up. You should revoke a grant when you intend to actively deny operations
 // that depend on it. The following are permitted to call this API:
 //
-//    The account that created the grant
+//    * The account that created the grant
 //
-//    The RetiringPrincipal, if present
+//    * The RetiringPrincipal, if present
 //
-//    The GranteePrincipal, if RetireGrant is a grantee operation
+//    * The GranteePrincipal, if RetireGrant is a grantee operation
 //
 // The grant to retire must be identified by its grant token or by a combination
 // of the key ARN and the grant ID. A grant token is a unique variable-length
@@ -3210,9 +3210,9 @@ type CancelKeyDeletionInput struct {
 	// To specify this value, use the unique key ID or the Amazon Resource Name
 	// (ARN) of the CMK. Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// To obtain the unique key ID and key ARN for a given CMK, use ListKeys or
 	// DescribeKey.
@@ -3278,9 +3278,9 @@ type CreateAliasInput struct {
 	// cannot be another alias but can be a globally unique identifier or a fully
 	// specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// TargetKeyId is a required field
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
@@ -3368,9 +3368,9 @@ type CreateGrantInput struct {
 	// To specify this value, use the globally unique key ID or the Amazon Resource
 	// Name (ARN) of the key. Examples:
 	//
-	//    Globally unique key ID: 12345678-1234-1234-1234-123456789012
+	//    * Globally unique key ID: 12345678-1234-1234-1234-123456789012
 	//
-	//    Key ARN: arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN: arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -3392,23 +3392,23 @@ type CreateGrantInput struct {
 	// A list of operations that the grant permits. The list can contain any combination
 	// of one or more of the following values:
 	//
-	//    Decrypt
+	//    * Decrypt
 	//
-	//    Encrypt
+	//    * Encrypt
 	//
-	//    GenerateDataKey
+	//    * GenerateDataKey
 	//
-	//    GenerateDataKeyWithoutPlaintext
+	//    * GenerateDataKeyWithoutPlaintext
 	//
-	//    ReEncryptFrom (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
+	//    * ReEncryptFrom (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
 	//
-	//    ReEncryptTo (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
+	//    * ReEncryptTo (http://docs.aws.amazon.com/kms/latest/APIReference/API_ReEncrypt.html)
 	//
-	//    CreateGrant
+	//    * CreateGrant
 	//
-	//    RetireGrant
+	//    * RetireGrant
 	//
-	//    DescribeKey
+	//    * DescribeKey
 	Operations []*string `type:"list"`
 
 	// The principal that is given permission to retire the grant by using RetireGrant
@@ -3532,19 +3532,19 @@ type CreateKeyInput struct {
 	// If you specify a policy and do not set BypassPolicyLockoutSafetyCheck to
 	// true, the policy must meet the following criteria:
 	//
-	//    It must allow the principal making the CreateKey request to make a subsequent
-	// PutKeyPolicy request on the CMK. This reduces the likelihood that the CMK
-	// becomes unmanageable. For more information, refer to the scenario in the
-	// Default Key Policy (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam)
-	// section in the AWS Key Management Service Developer Guide.
+	//    * It must allow the principal making the CreateKey request to make a subsequent
+	//    PutKeyPolicy request on the CMK. This reduces the likelihood that the
+	//    CMK becomes unmanageable. For more information, refer to the scenario
+	//    in the Default Key Policy (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam)
+	//    section in the AWS Key Management Service Developer Guide.
 	//
-	//    The principal(s) specified in the key policy must exist and be visible
+	//    * The principal(s) specified in the key policy must exist and be visible
 	//    to AWS KMS. When you create a new AWS principal (for example, an IAM user
 	//    or role), you might need to enforce a delay before specifying the new
 	//    principal in a key policy because the new principal might not immediately
 	//    be visible to AWS KMS. For more information, see Changes that I make are
-	// not always immediately visible (http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency)
-	// in the IAM User Guide.
+	//    not always immediately visible (http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency)
+	//    in the IAM User Guide.
 	//
 	// If you do not specify a policy, AWS KMS attaches a default key policy to
 	// the CMK. For more information, see Default Key Policy (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default)
@@ -3725,9 +3725,9 @@ type DeleteImportedKeyMaterialInput struct {
 	// A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
 	// of the CMK. Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -3786,13 +3786,13 @@ type DescribeKeyInput struct {
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	//    * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
-	//    Alias Name Example - alias/MyAliasName
+	//    * Alias Name Example - alias/MyAliasName
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -3848,9 +3848,9 @@ type DisableKeyInput struct {
 	//
 	// Use the CMK's unique identifier or its Amazon Resource Name (ARN). For example:
 	//
-	//    Unique ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -3902,9 +3902,9 @@ type DisableKeyRotationInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -3956,9 +3956,9 @@ type EnableKeyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4010,9 +4010,9 @@ type EnableKeyRotationInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4077,13 +4077,13 @@ type EncryptInput struct {
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	//    * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
-	//    Alias Name Example - alias/MyAliasName
+	//    * Alias Name Example - alias/MyAliasName
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4173,13 +4173,13 @@ type GenerateDataKeyInput struct {
 	// of the CMK, or the alias name or ARN of an alias that points to the CMK.
 	// Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    CMK ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * CMK ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Alias name: alias/ExampleAlias
+	//    * Alias name: alias/ExampleAlias
 	//
-	//    Alias ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
+	//    * Alias ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4275,13 +4275,13 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// of the CMK, or the alias name or ARN of an alias that points to the CMK.
 	// Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    CMK ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * CMK ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Alias name: alias/ExampleAlias
+	//    * Alias name: alias/ExampleAlias
 	//
-	//    Alias ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
+	//    * Alias ARN: arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4404,9 +4404,9 @@ type GetKeyPolicyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4473,9 +4473,9 @@ type GetKeyRotationStatusInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4533,9 +4533,9 @@ type GetParametersForImportInput struct {
 	// A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
 	// of the CMK. Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4732,9 +4732,9 @@ type ImportKeyMaterialInput struct {
 	// A valid identifier is the unique key ID or the Amazon Resource Name (ARN)
 	// of the CMK. Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -4967,9 +4967,9 @@ type ListGrantsInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -5053,13 +5053,13 @@ type ListKeyPoliciesInput struct {
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	//    * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
-	//    Alias Name Example - alias/MyAliasName
+	//    * Alias Name Example - alias/MyAliasName
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -5290,9 +5290,9 @@ type PutKeyPolicyInput struct {
 	//
 	// Use the CMK's unique identifier or its Amazon Resource Name (ARN). For example:
 	//
-	//    Unique ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -5302,19 +5302,19 @@ type PutKeyPolicyInput struct {
 	// If you do not set BypassPolicyLockoutSafetyCheck to true, the policy must
 	// meet the following criteria:
 	//
-	//    It must allow the principal making the PutKeyPolicy request to make a
-	// subsequent PutKeyPolicy request on the CMK. This reduces the likelihood that
-	// the CMK becomes unmanageable. For more information, refer to the scenario
-	// in the Default Key Policy (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam)
-	// section in the AWS Key Management Service Developer Guide.
+	//    * It must allow the principal making the PutKeyPolicy request to make
+	//    a subsequent PutKeyPolicy request on the CMK. This reduces the likelihood
+	//    that the CMK becomes unmanageable. For more information, refer to the
+	//    scenario in the Default Key Policy (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam)
+	//    section in the AWS Key Management Service Developer Guide.
 	//
-	//    The principal(s) specified in the key policy must exist and be visible
+	//    * The principal(s) specified in the key policy must exist and be visible
 	//    to AWS KMS. When you create a new AWS principal (for example, an IAM user
 	//    or role), you might need to enforce a delay before specifying the new
 	//    principal in a key policy because the new principal might not immediately
 	//    be visible to AWS KMS. For more information, see Changes that I make are
-	// not always immediately visible (http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency)
-	// in the IAM User Guide.
+	//    not always immediately visible (http://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_eventual-consistency)
+	//    in the IAM User Guide.
 	//
 	// The policy size limit is 32 KiB (32768 bytes).
 	//
@@ -5398,13 +5398,13 @@ type ReEncryptInput struct {
 	// This value can be a globally unique identifier, a fully specified ARN to
 	// either an alias or a key, or an alias name prefixed by "alias/".
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	//    * Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
-	//    Alias Name Example - alias/MyAliasName
+	//    * Alias Name Example - alias/MyAliasName
 	//
 	// DestinationKeyId is a required field
 	DestinationKeyId *string `min:"1" type:"string" required:"true"`
@@ -5484,7 +5484,7 @@ type RetireGrantInput struct {
 	// Unique identifier of the grant to be retired. The grant ID is returned by
 	// the CreateGrant function.
 	//
-	//    Grant ID Example - 0123456789012345678901234567890123456789012345678901234567890123
+	//    * Grant ID Example - 0123456789012345678901234567890123456789012345678901234567890123
 	GrantId *string `min:"1" type:"string"`
 
 	// Token that identifies the grant to be retired.
@@ -5494,9 +5494,9 @@ type RetireGrantInput struct {
 	// This value can be a globally unique identifier or a fully specified ARN of
 	// the key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string"`
 }
 
@@ -5555,9 +5555,9 @@ type RevokeGrantInput struct {
 	// This value can be a globally unique identifier or the fully specified ARN
 	// to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -5617,9 +5617,9 @@ type ScheduleKeyDeletionInput struct {
 	// To specify this value, use the unique key ID or the Amazon Resource Name
 	// (ARN) of the CMK. Examples:
 	//
-	//    Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
-	//    Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//    * Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
 	//
 	// To obtain the unique key ID and key ARN for a given CMK, use ListKeys or
 	// DescribeKey.
@@ -5699,9 +5699,9 @@ type UpdateAliasInput struct {
 	// value can be a globally unique identifier or the fully specified ARN of a
 	// key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// You can call ListAliases to verify that the alias is mapped to the correct
 	// TargetKeyId.
@@ -5767,9 +5767,9 @@ type UpdateKeyDescriptionInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.
 	//
-	//    Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//    * Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`

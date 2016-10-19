@@ -38,23 +38,23 @@ import (
 // To get started with an Application load balancer, complete the following
 // tasks:
 //
-//    Create a load balancer using CreateLoadBalancer.
+// Create a load balancer using CreateLoadBalancer.
 //
-//    Create a target group using CreateTargetGroup.
+// Create a target group using CreateTargetGroup.
 //
-//    Register targets for the target group using RegisterTargets.
+// Register targets for the target group using RegisterTargets.
 //
-//    Create one or more listeners for your load balancer using CreateListener.
+// Create one or more listeners for your load balancer using CreateListener.
 //
-//    (Optional) Create one or more rules for content routing based on URL using
-//    CreateRule.
+// (Optional) Create one or more rules for content routing based on URL using
+// CreateRule.
 //
 // To delete an Application load balancer and its related resources, complete
 // the following tasks:
 //
-//    Delete the load balancer using DeleteLoadBalancer.
+// Delete the load balancer using DeleteLoadBalancer.
 //
-//    Delete the target group using DeleteTargetGroup.
+// Delete the target group using DeleteTargetGroup.
 //
 // All Elastic Load Balancing operations are idempotent, which means that they
 // complete at most one time. If you repeat an operation, it succeeds.

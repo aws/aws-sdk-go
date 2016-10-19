@@ -2613,11 +2613,11 @@ type CreateReplicationInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// Example: myrepinstance
 	//
@@ -2773,11 +2773,11 @@ type CreateReplicationTaskInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// ReplicationTaskIdentifier is a required field
 	ReplicationTaskIdentifier *string `type:"string" required:"true"`
@@ -4598,11 +4598,11 @@ type ReplicationInstance struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// Example: myrepinstance
 	ReplicationInstanceIdentifier *string `type:"string"`
@@ -4721,11 +4721,11 @@ type ReplicationTask struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	ReplicationTaskIdentifier *string `type:"string"`
 
 	// The settings for the replication task.

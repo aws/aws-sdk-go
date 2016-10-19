@@ -66,7 +66,7 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 // Amazon: www.amazon.com
 // Twitter: api.twitter.com
 // Digits: www.digits.com
-// You must use AWS Developer credentials to call this API.
+//  You must use AWS Developer credentials to call this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1932,6 +1932,7 @@ type GetIdInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
 	// The available provider names for Logins are as follows: Facebook: graph.facebook.com
+	//
 	// Google: accounts.google.com
 	// Amazon: www.amazon.com
 	// Twitter: api.twitter.com

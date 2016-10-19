@@ -1765,13 +1765,13 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 //
 // For more information, see the following in the Classic Load Balancers Guide:
 //
-//    Cross-Zone Load Balancing (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html)
+//    * Cross-Zone Load Balancing (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/enable-disable-crosszone-lb.html)
 //
-//    Connection Draining (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html)
+//    * Connection Draining (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-conn-drain.html)
 //
-//    Access Logs (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html)
+//    * Access Logs (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/access-log-collection.html)
 //
-//    Idle Connection Timeout (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html)
+//    * Idle Connection Timeout (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/config-idle-timeout.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3876,32 +3876,32 @@ type InstanceState struct {
 	// A description of the instance state. This string can contain one or more
 	// of the following messages.
 	//
-	//    N/A
+	//    * N/A
 	//
-	//    A transient error occurred. Please try again later.
+	//    * A transient error occurred. Please try again later.
 	//
-	//    Instance has failed at least the UnhealthyThreshold number of health checks
-	//    consecutively.
-	//
-	//    Instance has not passed the configured HealthyThreshold number of health
+	//    * Instance has failed at least the UnhealthyThreshold number of health
 	//    checks consecutively.
 	//
-	//    Instance registration is still in progress.
+	//    * Instance has not passed the configured HealthyThreshold number of health
+	//    checks consecutively.
 	//
-	//    Instance is in the EC2 Availability Zone for which LoadBalancer is not
+	//    * Instance registration is still in progress.
+	//
+	//    * Instance is in the EC2 Availability Zone for which LoadBalancer is not
 	//    configured to route traffic to.
 	//
-	//    Instance is not currently registered with the LoadBalancer.
+	//    * Instance is not currently registered with the LoadBalancer.
 	//
-	//    Instance deregistration currently in progress.
+	//    * Instance deregistration currently in progress.
 	//
-	//    Disable Availability Zone is currently in progress.
+	//    * Disable Availability Zone is currently in progress.
 	//
-	//    Instance is in pending state.
+	//    * Instance is in pending state.
 	//
-	//    Instance is in stopped state.
+	//    * Instance is in stopped state.
 	//
-	//    Instance is in terminated state.
+	//    * Instance is in terminated state.
 	Description *string `type:"string"`
 
 	// The ID of the instance.
@@ -4354,13 +4354,13 @@ type PolicyAttributeTypeDescription struct {
 	//
 	// Valid values:
 	//
-	//    ONE(1) : Single value required
+	//    * ONE(1) : Single value required
 	//
-	//    ZERO_OR_ONE(0..1) : Up to one value is allowed
+	//    * ZERO_OR_ONE(0..1) : Up to one value is allowed
 	//
-	//    ZERO_OR_MORE(0..*) : Optional. Multiple values are allowed
+	//    * ZERO_OR_MORE(0..*) : Optional. Multiple values are allowed
 	//
-	//    ONE_OR_MORE(1..*0) : Required. Multiple values are allowed
+	//    * ONE_OR_MORE(1..*0) : Required. Multiple values are allowed
 	Cardinality *string `type:"string"`
 
 	// The default value of the attribute, if applicable.

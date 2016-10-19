@@ -1095,19 +1095,21 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 //
 // When you register a domain, Amazon Route 53 does the following:
 //
-//    Creates a Amazon Route 53 hosted zone that has the same name as the domain.
-//    Amazon Route 53 assigns four name servers to your hosted zone and automatically
-//    updates your domain registration with the names of these name servers.
-//    Enables autorenew, so your domain registration will renew automatically
+//    * Creates a Amazon Route 53 hosted zone that has the same name as the
+//    domain. Amazon Route 53 assigns four name servers to your hosted zone
+//    and automatically updates your domain registration with the names of these
+//    name servers.
+//    * Enables autorenew, so your domain registration will renew automatically
 //    each year. We'll notify you in advance of the renewal date so you can
 //    choose whether to renew the registration.
-//    Optionally enables privacy protection, so WHOIS queries return contact
+//    * Optionally enables privacy protection, so WHOIS queries return contact
 //    information for our registrar partner, Gandi, instead of the information
 //    you entered for registrant, admin, and tech contacts.
-//    If registration is successful, returns an operation ID that you can use
-//    to track the progress and completion of the action. If the request is
-//    not completed successfully, the domain registrant is notified by email.
-//    Charges your AWS account an amount based on the top-level domain. For
+//    * If registration is successful, returns an operation ID that you can
+//    use to track the progress and completion of the action. If the request
+//    is not completed successfully, the domain registrant is notified by email.
+//
+//    * Charges your AWS account an amount based on the top-level domain. For
 //    more information, see Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1441,10 +1443,10 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 // Caution! If the registrar for your domain is also the DNS service provider
 // for the domain and you don't transfer DNS service to another provider, your
 // website, email, and the web applications associated with the domain might
-// become unavailable. If the transfer is successful, this method returns an
-// operation ID that you can use to track the progress and completion of the
-// action. If the transfer doesn't complete successfully, the domain registrant
-// will be notified by email.
+// become unavailable.If the transfer is successful, this method returns an operation ID that you
+// can use to track the progress and completion of the action. If the transfer
+// doesn't complete successfully, the domain registrant will be notified by
+// email.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1989,14 +1991,17 @@ type CheckDomainAvailabilityOutput struct {
 	//
 	// Valid values:
 	//
-	//    AVAILABLE – The domain name is available.
-	//    AVAILABLE_RESERVED – The domain name is reserved under specific conditions.
-	//    AVAILABLE_PREORDER – The domain name is available and can be preordered.
-	//    UNAVAILABLE – The domain name is not available.
-	//    UNAVAILABLE_PREMIUM – The domain name is not available.
-	//    UNAVAILABLE_RESTRICTED – The domain name is forbidden.
-	//    RESERVED – The domain name has been reserved for another person or organization.
-	//    DONT_KNOW – The TLD registry didn't reply with a definitive answer about
+	//    * AVAILABLE – The domain name is available.
+	//    * AVAILABLE_RESERVED – The domain name is reserved under specific conditions.
+	//
+	//    * AVAILABLE_PREORDER – The domain name is available and can be preordered.
+	//
+	//    * UNAVAILABLE – The domain name is not available.
+	//    * UNAVAILABLE_PREMIUM – The domain name is not available.
+	//    * UNAVAILABLE_RESTRICTED – The domain name is forbidden.
+	//    * RESERVED – The domain name has been reserved for another person or organization.
+	//
+	//    * DONT_KNOW – The TLD registry didn't reply with a definitive answer about
 	//    whether the domain name is available. Amazon Route 53 can return this
 	//    response for a variety of reasons, for example, the registry is performing
 	//    maintenance. Try again later.
@@ -2270,8 +2275,6 @@ type DeleteTagsForDomainInput struct {
 	// Default: None
 	//
 	// Required: No
-	//
-	// '>
 	//
 	// TagsToDelete is a required field
 	TagsToDelete []*string `type:"list" required:"true"`
@@ -3259,17 +3262,17 @@ type ListTagsForDomainOutput struct {
 	//
 	// Each tag includes the following elements.
 	//
-	// Key
+	//    * Key
 	//
-	//    The key (name) of a tag.
+	// The key (name) of a tag.
 	//
-	//    Type: String
+	// Type: String
 	//
-	// Value
+	//    * Value
 	//
-	//    The value of a tag.
+	// The value of a tag.
 	//
-	//    Type: String
+	// Type: String
 	//
 	// TagList is a required field
 	TagList []*Tag `type:"list" required:"true"`
@@ -4427,33 +4430,33 @@ type UpdateTagsForDomainInput struct {
 	//
 	// '> Each tag includes the following elements:
 	//
-	// Key
+	//    * Key
 	//
-	//    The key (name) of a tag.
+	// The key (name) of a tag.
 	//
-	//    Type: String
+	// Type: String
 	//
-	//    Default: None
+	// Default: None
 	//
-	//    Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
+	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
 	//
-	//    Constraints: Each key can be 1-128 characters long.
+	// Constraints: Each key can be 1-128 characters long.
 	//
-	//    Required: Yes
+	// Required: Yes
 	//
-	// Value
+	//    * Value
 	//
-	//    The value of a tag.
+	// The value of a tag.
 	//
-	//    Type: String
+	// Type: String
 	//
-	//    Default: None
+	// Default: None
 	//
-	//    Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
+	// Valid values: Unicode characters including alphanumeric, space, and ".:/=+\-@"
 	//
-	//    Constraints: Each value can be 0-256 characters long.
+	// Constraints: Each value can be 0-256 characters long.
 	//
-	//    Required: Yes
+	// Required: Yes
 	TagsToUpdate []*Tag `type:"list"`
 }
 

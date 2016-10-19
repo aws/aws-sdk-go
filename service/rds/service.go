@@ -39,21 +39,21 @@ import (
 //
 // Amazon RDS API Reference
 //
-//    For the alphabetical list of API actions, see API Actions (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html).
+//    * For the alphabetical list of API actions, see API Actions (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html).
 //
-//    For the alphabetical list of data types, see Data Types (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Types.html).
+//    * For the alphabetical list of data types, see Data Types (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Types.html).
 //
-//    For a list of common query parameters, see Common Parameters (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonParameters.html).
+//    * For a list of common query parameters, see Common Parameters (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonParameters.html).
 //
-//    For descriptions of the error codes, see Common Errors (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonErrors.html).
+//    * For descriptions of the error codes, see Common Errors (http://docs.aws.amazon.com/AmazonRDS/latest/APIReference/CommonErrors.html).
 //
 // Amazon RDS User Guide
 //
-//    For a summary of the Amazon RDS interfaces, see Available RDS Interfaces
-// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Interfaces).
+//    * For a summary of the Amazon RDS interfaces, see Available RDS Interfaces
+//    (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html#Welcome.Interfaces).
 //
-//    For more information about how to use the Query API, see Using the Query
-// API (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Using_the_Query_API.html).
+//    * For more information about how to use the Query API, see Using the Query
+//    API (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Using_the_Query_API.html).
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type RDS struct {

@@ -88,16 +88,16 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 //
 // A few notes about RedshiftDestinationConfiguration:
 //
-//    An Amazon Redshift destination requires an S3 bucket as intermediate location,
-//    as Firehose first delivers data to S3 and then uses COPY syntax to load
-// data into an Amazon Redshift table. This is specified in the RedshiftDestinationConfiguration.S3Configuration
-// parameter element.
+//    * An Amazon Redshift destination requires an S3 bucket as intermediate
+//    location, as Firehose first delivers data to S3 and then uses COPY syntax
+//    to load data into an Amazon Redshift table. This is specified in the RedshiftDestinationConfiguration.S3Configuration
+//    parameter element.
 //
-//    The compression formats SNAPPY or ZIP cannot be specified in RedshiftDestinationConfiguration.S3Configuration
-// because the Amazon Redshift COPY operation that reads from the S3 bucket
-// doesn't support these compression formats.
+//    * The compression formats SNAPPY or ZIP cannot be specified in RedshiftDestinationConfiguration.S3Configuration
+//    because the Amazon Redshift COPY operation that reads from the S3 bucket
+//    doesn't support these compression formats.
 //
-//    We strongly recommend that the username and password provided is used
+//    * We strongly recommend that the username and password provided is used
 //    exclusively for Firehose purposes, and that the permissions for the account
 //    are restricted for Amazon Redshift INSERT permissions.
 //

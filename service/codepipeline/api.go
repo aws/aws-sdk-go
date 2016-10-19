@@ -4257,15 +4257,15 @@ type PipelineExecution struct {
 
 	// The status of the pipeline execution.
 	//
-	//    InProgress: The pipeline execution is currently running.
+	//    * InProgress: The pipeline execution is currently running.
 	//
-	//    Succeeded: The pipeline execution completed successfully.
+	//    * Succeeded: The pipeline execution completed successfully.
 	//
-	//    Superseded: While this pipeline execution was waiting for the next stage
+	//    * Superseded: While this pipeline execution was waiting for the next stage
 	//    to be completed, a newer pipeline execution caught up and continued through
 	//    the pipeline instead.
 	//
-	//    Failed: The pipeline did not complete successfully.
+	//    * Failed: The pipeline did not complete successfully.
 	Status *string `locationName:"status" type:"string" enum:"PipelineExecutionStatus"`
 }
 

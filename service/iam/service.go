@@ -53,17 +53,17 @@ import (
 //
 // For more information, see the following:
 //
-//    AWS Security Credentials (http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html).
-// This topic provides general information about the types of credentials used
-// for accessing AWS.
+//    * AWS Security Credentials (http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html).
+//    This topic provides general information about the types of credentials
+//    used for accessing AWS.
 //
-//    IAM Best Practices (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html).
-// This topic presents a list of suggestions for using the IAM service to help
-// secure your AWS resources.
+//    * IAM Best Practices (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html).
+//    This topic presents a list of suggestions for using the IAM service to
+//    help secure your AWS resources.
 //
-//    Signing AWS API Requests (http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html).
-// This set of topics walk you through the process of signing a request using
-// an access key ID and secret access key.
+//    * Signing AWS API Requests (http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html).
+//    This set of topics walk you through the process of signing a request using
+//    an access key ID and secret access key.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type IAM struct {

@@ -92,17 +92,17 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * InvalidTagParameterException
 //   This exception is thrown when the key or value specified for the tag does
@@ -212,17 +212,17 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * TrailNotProvidedException
 //   This exception is deprecated.
@@ -327,17 +327,17 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * InvalidHomeRegionException
 //   This exception is thrown when an operation is called on a trail from a region
@@ -483,17 +483,17 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *req
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatusOutput, error) {
 	req, out := c.GetTrailStatusRequest(input)
@@ -654,17 +654,17 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * UnsupportedOperationException
 //   This exception is thrown when the requested operation is not supported.
@@ -843,17 +843,17 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * InvalidTagParameterException
 //   This exception is thrown when the key or value specified for the tag does
@@ -937,17 +937,17 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * InvalidHomeRegionException
 //   This exception is thrown when an operation is called on a trail from a region
@@ -1027,17 +1027,17 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * InvalidHomeRegionException
 //   This exception is thrown when an operation is called on a trail from a region
@@ -1141,17 +1141,17 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //   This exception is thrown when the provided trail name is not valid. Trail
 //   names must meet the following requirements:
 //
-//      Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+//      * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 //      (_), or dashes (-)
 //
-//      Start with a letter or number, and end with a letter or number
+//      * Start with a letter or number, and end with a letter or number
 //
-//      Be between 3 and 128 characters
+//      * Be between 3 and 128 characters
 //
-//      Have no adjacent periods, underscores or dashes. Names like my-_namespace
-//   and my--namespace are invalid.
+//      * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+//      and my--namespace are invalid.
 //
-//      Not be in IP address format (for example, 192.168.5.4)
+//      * Not be in IP address format (for example, 192.168.5.4)
 //
 //   * TrailNotProvidedException
 //   This exception is deprecated.
@@ -1301,28 +1301,28 @@ type CreateTrailInput struct {
 	//
 	// Examples:
 	//
-	//    alias/MyAliasName
+	//    * alias/MyAliasName
 	//
-	//    arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	//    * arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	//
-	//    arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    12345678-1234-1234-1234-123456789012
+	//    * 12345678-1234-1234-1234-123456789012
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the name of the trail. The name must meet the following requirements:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-)
 	//
-	//    Start with a letter or number, and end with a letter or number
+	//    * Start with a letter or number, and end with a letter or number
 	//
-	//    Be between 3 and 128 characters
+	//    * Be between 3 and 128 characters
 	//
-	//    Have no adjacent periods, underscores or dashes. Names like my-_namespace
-	// and my--namespace are invalid.
+	//    * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+	//    and my--namespace are invalid.
 	//
-	//    Not be in IP address format (for example, 192.168.5.4)
+	//    * Not be in IP address format (for example, 192.168.5.4)
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -1506,10 +1506,10 @@ type DescribeTrailsInput struct {
 	// If an empty list is specified, information for the trail in the current region
 	// is returned.
 	//
-	//    If an empty list is specified and IncludeShadowTrails is false, then information
-	// for all trails in the current region is returned.
+	//    * If an empty list is specified and IncludeShadowTrails is false, then
+	//    information for all trails in the current region is returned.
 	//
-	//    If an empty list is specified and IncludeShadowTrails is null or true,
+	//    * If an empty list is specified and IncludeShadowTrails is null or true,
 	//    then information for all trails in the current region and any associated
 	//    shadow trails in other regions is returned.
 	//
@@ -2354,29 +2354,29 @@ type UpdateTrailInput struct {
 	//
 	// Examples:
 	//
-	//    alias/MyAliasName
+	//    * alias/MyAliasName
 	//
-	//    arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	//    * arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	//
-	//    arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	//    * arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	//
-	//    12345678-1234-1234-1234-123456789012
+	//    * 12345678-1234-1234-1234-123456789012
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the name of the trail or trail ARN. If Name is a trail name, the
 	// string must meet the following requirements:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-)
 	//
-	//    Start with a letter or number, and end with a letter or number
+	//    * Start with a letter or number, and end with a letter or number
 	//
-	//    Be between 3 and 128 characters
+	//    * Be between 3 and 128 characters
 	//
-	//    Have no adjacent periods, underscores or dashes. Names like my-_namespace
-	// and my--namespace are invalid.
+	//    * Have no adjacent periods, underscores or dashes. Names like my-_namespace
+	//    and my--namespace are invalid.
 	//
-	//    Not be in IP address format (for example, 192.168.5.4)
+	//    * Not be in IP address format (for example, 192.168.5.4)
 	//
 	// If Name is a trail ARN, it must be in the format:
 	//

@@ -2665,14 +2665,7 @@ type CacheBehavior struct {
 	// a CloudFront edge location is unusually busy, some files might not be compressed.
 	// The value of the Content-Type header must be on the list of file types that
 	// CloudFront will compress. For the current list, see Serving Compressed Content
-	// (http://docs.aws.amazon.com/console/cloudfront/compressed-content) in the
-	// Amazon CloudFront Developer Guide. If you configure CloudFront to compress
-	// content, CloudFront removes the ETag response header from the objects that
-	// it compresses. The ETag header indicates that the version in a CloudFront
-	// edge cache is identical to the version on the origin server, but after compression
-	// the two versions are no longer identical. As a result, for compressed objects,
-	// CloudFront can't use the ETag header to determine whether an expired object
-	// in the CloudFront edge cache is still the latest version.
+	// (http://docs.aws.amazon.com/console/cloudfront/compressed-content)
 	Compress *bool `type:"boolean"`
 
 	// If you don't configure your origin to add a Cache-Control max-age directive
@@ -3609,14 +3602,7 @@ type DefaultCacheBehavior struct {
 	// a CloudFront edge location is unusually busy, some files might not be compressed.
 	// The value of the Content-Type header must be on the list of file types that
 	// CloudFront will compress. For the current list, see Serving Compressed Content
-	// (http://docs.aws.amazon.com/console/cloudfront/compressed-content) in the
-	// Amazon CloudFront Developer Guide. If you configure CloudFront to compress
-	// content, CloudFront removes the ETag response header from the objects that
-	// it compresses. The ETag header indicates that the version in a CloudFront
-	// edge cache is identical to the version on the origin server, but after compression
-	// the two versions are no longer identical. As a result, for compressed objects,
-	// CloudFront can't use the ETag header to determine whether an expired object
-	// in the CloudFront edge cache is still the latest version.
+	// (http://docs.aws.amazon.com/console/cloudfront/compressed-content)
 	Compress *bool `type:"boolean"`
 
 	// If you don't configure your origin to add a Cache-Control max-age directive
@@ -4339,19 +4325,19 @@ type ForwardedValues struct {
 	// string parameters. CloudFront behavior depends on the value of QueryString
 	// and on the values that you specify for QueryStringCacheKeys, if any:
 	//
-	//    If you specify true for QueryString and you don't specify any values for
-	//    QueryStringCacheKeys, CloudFront forwards all query string parameters
+	//    * If you specify true for QueryString and you don't specify any values
+	//    for QueryStringCacheKeys, CloudFront forwards all query string parameters
 	//    to the origin and caches based on all query string parameters. Depending
 	//    on how many query string parameters and values you have, this can adversely
 	//    affect performance because CloudFront must forward more requests to the
 	//    origin.
-	//    If you specify true for QueryString and you specify one or more values
+	//    * If you specify true for QueryString and you specify one or more values
 	//    for QueryStringCacheKeys, CloudFront forwards all query string parameters
 	//    to the origin, but it only caches based on the query string parameters
 	//    that you specify.
-	//    If you specify false for QueryString, CloudFront doesn't forward any query
-	//    string parameters to the origin, and doesn't cache based on query string
-	//    parameters.
+	//    * If you specify false for QueryString, CloudFront doesn't forward any
+	//    query string parameters to the origin, and doesn't cache based on query
+	//    string parameters.
 	//
 	// QueryString is a required field
 	QueryString *bool `type:"boolean" required:"true"`

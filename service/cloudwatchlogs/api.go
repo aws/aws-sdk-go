@@ -232,9 +232,9 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //
 // You must use the following guidelines when naming a log group:
 //
-//    Log group names can be between 1 and 512 characters long.
+//    * Log group names can be between 1 and 512 characters long.
 //
-//    Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
+//    * Allowed characters are a-z, A-Z, 0-9, '_' (underscore), '-' (hyphen),
 //    '/' (forward slash), and '.' (period).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -320,9 +320,9 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 //
 // You must use the following guidelines when naming a log stream:
 //
-//    Log stream names can be between 1 and 512 characters long.
+//    * Log stream names can be between 1 and 512 characters long.
 //
-//    The ':' colon character is not allowed.
+//    * The ':' colon character is not allowed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1846,21 +1846,22 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //
 // The batch of events must satisfy the following constraints:
 //
-//    The maximum batch size is 1,048,576 bytes, and this size is calculated
+//    * The maximum batch size is 1,048,576 bytes, and this size is calculated
 //    as the sum of all event messages in UTF-8, plus 26 bytes for each log
 //    event.
 //
-//    None of the log events in the batch can be more than 2 hours in the future.
+//    * None of the log events in the batch can be more than 2 hours in the
+//    future.
 //
-//    None of the log events in the batch can be older than 14 days or the retention
-//    period of the log group.
+//    * None of the log events in the batch can be older than 14 days or the
+//    retention period of the log group.
 //
-//    The log events in the batch must be in chronological ordered by their
+//    * The log events in the batch must be in chronological ordered by their
 //    timestamp.
 //
-//    The maximum number of log events in a batch is 10,000.
+//    * The maximum number of log events in a batch is 10,000.
 //
-//    A batch of log events in a single PutLogEvents request cannot span more
+//    * A batch of log events in a single PutLogEvents request cannot span more
 //    than 24 hours. Otherwise, the PutLogEvents operation will fail.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2105,16 +2106,16 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 // of log events ingested through PutLogEvents requests and have them delivered
 // to a specific destination. Currently, the supported destinations are:
 //
-//    An Amazon Kinesis stream belonging to the same account as the subscription
+//    * An Amazon Kinesis stream belonging to the same account as the subscription
 //    filter, for same-account delivery.
 //
-//     A logical destination (used via an ARN of Destination) belonging to a
-// different account, for cross-account delivery.
+//    *  A logical destination (used via an ARN of Destination) belonging to
+//    a different account, for cross-account delivery.
 //
-//    An Amazon Kinesis Firehose stream belonging to the same account as the
+//    * An Amazon Kinesis Firehose stream belonging to the same account as the
 //    subscription filter, for same-account delivery.
 //
-//    An AWS Lambda function belonging to the same account as the subscription
+//    * An AWS Lambda function belonging to the same account as the subscription
 //    filter, for same-account delivery.
 //
 // Currently there can only be one subscription filter associated with a log
@@ -4252,16 +4253,16 @@ type PutSubscriptionFilterInput struct {
 	// The ARN of the destination to deliver matching log events to. Currently,
 	// the supported destinations are:
 	//
-	//    An Amazon Kinesis stream belonging to the same account as the subscription
+	//    * An Amazon Kinesis stream belonging to the same account as the subscription
 	//    filter, for same-account delivery.
 	//
-	//    A logical destination (used via an ARN of Destination) belonging to a
-	// different account, for cross-account delivery.
+	//    * A logical destination (used via an ARN of Destination) belonging to
+	//    a different account, for cross-account delivery.
 	//
-	//    An Amazon Kinesis Firehose stream belonging to the same account as the
+	//    * An Amazon Kinesis Firehose stream belonging to the same account as the
 	//    subscription filter, for same-account delivery.
 	//
-	//    An AWS Lambda function belonging to the same account as the subscription
+	//    * An AWS Lambda function belonging to the same account as the subscription
 	//    filter, for same-account delivery.
 	//
 	// DestinationArn is a required field

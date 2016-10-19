@@ -16,8 +16,9 @@ import (
 //
 // You can use the AWS CodeCommit API to work with the following objects:
 //
-//    Repositories, by calling the following: BatchGetRepositories, which returns
-//    information about one or more repositories associated with your AWS account
+//    * Repositories, by calling the following: BatchGetRepositories, which
+//    returns information about one or more repositories associated with your
+//    AWS account
 // CreateRepository, which creates an AWS CodeCommit repository
 // DeleteRepository, which deletes an AWS CodeCommit repository
 // GetRepository, which returns information about a specified repository
@@ -29,17 +30,17 @@ import (
 //    the name of a repository, no other users of that repository will be able
 //    to access it until you send them the new HTTPS or SSH URL to use.
 //
-//    Branches, by calling the following: CreateBranch, which creates a new
+//    * Branches, by calling the following: CreateBranch, which creates a new
 //    branch in a specified repository
 // GetBranch, which returns information about a specified branch
 // ListBranches, which lists all branches for a specified repository
 // UpdateDefaultBranch, which changes the default branch for a repository
 //
-//    Information about committed code in a repository, by calling the following:
+//    * Information about committed code in a repository, by calling the following:
 //    GetCommit, which returns information about a commit, including commit
 //    messages and committer information.
 //
-//    Triggers, by calling the following: GetRepositoryTriggers, which returns
+//    * Triggers, by calling the following: GetRepositoryTriggers, which returns
 //    information about triggers configured for a repository
 // PutRepositoryTriggers, which replaces all triggers for a repository and can
 //    be used to create or delete triggers

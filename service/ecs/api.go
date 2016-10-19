@@ -168,17 +168,17 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // When the service scheduler launches new tasks, it attempts to balance them
 // across the Availability Zones in your cluster with the following logic:
 //
-//    Determine which of the container instances in your cluster can support
+//    * Determine which of the container instances in your cluster can support
 //    your service's task definition (for example, they have the required CPU,
 //    memory, ports, and container instance attributes).
 //
-//    Sort the valid container instances by the fewest number of running tasks
+//    * Sort the valid container instances by the fewest number of running tasks
 //    for this service in the same Availability Zone as the instance. For example,
 //    if zone A has one running service task and zones B and C each have zero,
 //    valid container instances in either zone B or C are considered optimal
 //    for placement.
 //
-//    Place the new service task on a valid container instance in an optimal
+//    * Place the new service task on a valid container instance in an optimal
 //    Availability Zone (based on the previous steps), favoring container instances
 //    with the fewest number of running tasks for this service.
 //
@@ -2418,17 +2418,17 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // When the service scheduler launches new tasks, it attempts to balance them
 // across the Availability Zones in your cluster with the following logic:
 //
-//    Determine which of the container instances in your cluster can support
+//    * Determine which of the container instances in your cluster can support
 //    your service's task definition (for example, they have the required CPU,
 //    memory, ports, and container instance attributes).
 //
-//    Sort the valid container instances by the fewest number of running tasks
+//    * Sort the valid container instances by the fewest number of running tasks
 //    for this service in the same Availability Zone as the instance. For example,
 //    if zone A has one running service task and zones B and C each have zero,
 //    valid container instances in either zone B or C are considered optimal
 //    for placement.
 //
-//    Place the new service task on a valid container instance in an optimal
+//    * Place the new service task on a valid container instance in an optimal
 //    Availability Zone (based on the previous steps), favoring container instances
 //    with the fewest number of running tasks for this service.
 //
@@ -2635,13 +2635,13 @@ type ContainerDefinition struct {
 	// 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
-	//    Agent versions less than or equal to 1.1.0: Null and zero CPU values are
-	// passed to Docker as 0, which Docker then converts to 1,024 CPU shares. CPU
-	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
-	// 2 CPU shares.
+	//    * Agent versions less than or equal to 1.1.0: Null and zero CPU values
+	//    are passed to Docker as 0, which Docker then converts to 1,024 CPU shares.
+	//    CPU values of 1 are passed to Docker as 1, which the Linux kernel converts
+	//    to 2 CPU shares.
 	//
-	//    Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
-	// of 1 are passed to Docker as 2.
+	//    * Agent versions greater than or equal to 1.2.0: Null, zero, and CPU values
+	//    of 1 are passed to Docker as 2.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
 	// When this parameter is true, networking is disabled within the container.
@@ -2742,13 +2742,13 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
 	// and the IMAGE parameter of docker run (https://docs.docker.com/reference/commandline/run/).
 	//
-	//    Images in official repositories on Docker Hub use a single name (for example,
-	//    ubuntu or mongo).
+	//    * Images in official repositories on Docker Hub use a single name (for
+	//    example, ubuntu or mongo).
 	//
-	//    Images in other repositories on Docker Hub are qualified with an organization
+	//    * Images in other repositories on Docker Hub are qualified with an organization
 	//    name (for example, amazon/amazon-ecs-agent).
 	//
-	//    Images in other online repositories are qualified further by a domain
+	//    * Images in other online repositories are qualified further by a domain
 	//    name (for example, quay.io/assemblyline/ubuntu).
 	Image *string `locationName:"image" type:"string"`
 
@@ -5499,7 +5499,7 @@ type VersionInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
-	// (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
+	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
 	AgentHash *string `locationName:"agentHash" type:"string"`
 
 	// The version number of the Amazon ECS container agent.

@@ -179,12 +179,12 @@ func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *reques
 //   whose age exceeds this limit are subject to removal (trimming) from the stream.
 //   You might receive a TrimmedDataAccessException if:
 //
-//   You request a shard iterator with a sequence number older than the trim point
-//   (24 hours).
+//      * You request a shard iterator with a sequence number older than the trim
+//      point (24 hours).
 //
-//   You obtain a shard iterator, but before you use the iterator in a GetRecords
-//   request, a stream record in the shard exceeds the 24 hour period and is trimmed.
-//   This causes the iterator to access a record that no longer exists.
+//      * You obtain a shard iterator, but before you use the iterator in a GetRecords
+//      request, a stream record in the shard exceeds the 24 hour period and is
+//      trimmed. This causes the iterator to access a record that no longer exists.
 //
 func (c *DynamoDBStreams) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, error) {
 	req, out := c.GetRecordsRequest(input)
@@ -264,12 +264,12 @@ func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) 
 //   whose age exceeds this limit are subject to removal (trimming) from the stream.
 //   You might receive a TrimmedDataAccessException if:
 //
-//   You request a shard iterator with a sequence number older than the trim point
-//   (24 hours).
+//      * You request a shard iterator with a sequence number older than the trim
+//      point (24 hours).
 //
-//   You obtain a shard iterator, but before you use the iterator in a GetRecords
-//   request, a stream record in the shard exceeds the 24 hour period and is trimmed.
-//   This causes the iterator to access a record that no longer exists.
+//      * You obtain a shard iterator, but before you use the iterator in a GetRecords
+//      request, a stream record in the shard exceeds the 24 hour period and is
+//      trimmed. This causes the iterator to access a record that no longer exists.
 //
 func (c *DynamoDBStreams) GetShardIterator(input *GetShardIteratorInput) (*GetShardIteratorOutput, error) {
 	req, out := c.GetShardIteratorRequest(input)
@@ -501,19 +501,19 @@ type GetShardIteratorInput struct {
 	// Determines how the shard iterator is used to start reading stream records
 	// from the shard:
 	//
-	//    AT_SEQUENCE_NUMBER - Start reading exactly from the position denoted by
-	// a specific sequence number.
+	//    * AT_SEQUENCE_NUMBER - Start reading exactly from the position denoted
+	//    by a specific sequence number.
 	//
-	//    AFTER_SEQUENCE_NUMBER - Start reading right after the position denoted
-	// by a specific sequence number.
+	//    * AFTER_SEQUENCE_NUMBER - Start reading right after the position denoted
+	//    by a specific sequence number.
 	//
-	//    TRIM_HORIZON - Start reading at the last (untrimmed) stream record, which
-	// is the oldest record in the shard. In DynamoDB Streams, there is a 24 hour
-	// limit on data retention. Stream records whose age exceeds this limit are
-	// subject to removal (trimming) from the stream.
+	//    * TRIM_HORIZON - Start reading at the last (untrimmed) stream record,
+	//    which is the oldest record in the shard. In DynamoDB Streams, there is
+	//    a 24 hour limit on data retention. Stream records whose age exceeds this
+	//    limit are subject to removal (trimming) from the stream.
 	//
-	//    LATEST - Start reading just after the most recent stream record in the
-	// shard, so that you always read the most recent data in the shard.
+	//    * LATEST - Start reading just after the most recent stream record in the
+	//    shard, so that you always read the most recent data in the shard.
 	//
 	// ShardIteratorType is a required field
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
@@ -675,11 +675,11 @@ type Record struct {
 
 	// The type of data modification that was performed on the DynamoDB table:
 	//
-	//    INSERT - a new item was added to the table.
+	//    * INSERT - a new item was added to the table.
 	//
-	//    MODIFY - one or more of an existing item's attributes were modified.
+	//    * MODIFY - one or more of an existing item's attributes were modified.
 	//
-	//    REMOVE - the item was deleted from the table
+	//    * REMOVE - the item was deleted from the table
 	EventName *string `locationName:"eventName" type:"string" enum:"OperationType"`
 
 	// The AWS service from which the stream record originated. For DynamoDB Streams,
@@ -765,11 +765,11 @@ type Stream struct {
 	// However, the combination of the following three elements is guaranteed to
 	// be unique:
 	//
-	//    the AWS customer ID.
+	//    * the AWS customer ID.
 	//
-	//    the table name
+	//    * the table name
 	//
-	//    the StreamLabel
+	//    * the StreamLabel
 	StreamLabel *string `type:"string"`
 
 	// The DynamoDB table with which the stream is associated.
@@ -821,37 +821,37 @@ type StreamDescription struct {
 	// However, the combination of the following three elements is guaranteed to
 	// be unique:
 	//
-	//    the AWS customer ID.
+	//    * the AWS customer ID.
 	//
-	//    the table name
+	//    * the table name
 	//
-	//    the StreamLabel
+	//    * the StreamLabel
 	StreamLabel *string `type:"string"`
 
 	// Indicates the current status of the stream:
 	//
-	//    ENABLING - Streams is currently being enabled on the DynamoDB table.
+	//    * ENABLING - Streams is currently being enabled on the DynamoDB table.
 	//
-	//    ENABLED - the stream is enabled.
+	//    * ENABLED - the stream is enabled.
 	//
-	//    DISABLING - Streams is currently being disabled on the DynamoDB table.
+	//    * DISABLING - Streams is currently being disabled on the DynamoDB table.
 	//
-	//    DISABLED - the stream is disabled.
+	//    * DISABLED - the stream is disabled.
 	StreamStatus *string `type:"string" enum:"StreamStatus"`
 
 	// Indicates the format of the records within this stream:
 	//
-	//    KEYS_ONLY - only the key attributes of items that were modified in the
-	// DynamoDB table.
+	//    * KEYS_ONLY - only the key attributes of items that were modified in the
+	//    DynamoDB table.
 	//
-	//    NEW_IMAGE - entire items from the table, as they appeared after they were
-	// modified.
+	//    * NEW_IMAGE - entire items from the table, as they appeared after they
+	//    were modified.
 	//
-	//    OLD_IMAGE - entire items from the table, as they appeared before they
-	// were modified.
+	//    * OLD_IMAGE - entire items from the table, as they appeared before they
+	//    were modified.
 	//
-	//    NEW_AND_OLD_IMAGES - both the new and the old images of the items from
-	// the table.
+	//    * NEW_AND_OLD_IMAGES - both the new and the old images of the items from
+	//    the table.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	// The DynamoDB table with which the stream is associated.
@@ -895,13 +895,13 @@ type StreamRecord struct {
 	// The type of data from the modified DynamoDB item that was captured in this
 	// stream record:
 	//
-	//    KEYS_ONLY - only the key attributes of the modified item.
+	//    * KEYS_ONLY - only the key attributes of the modified item.
 	//
-	//    NEW_IMAGE - the entire item, as it appeared after it was modified.
+	//    * NEW_IMAGE - the entire item, as it appeared after it was modified.
 	//
-	//    OLD_IMAGE - the entire item, as it appeared before it was modified.
+	//    * OLD_IMAGE - the entire item, as it appeared before it was modified.
 	//
-	//    NEW_AND_OLD_IMAGES - both the new and the old item images of the item.
+	//    * NEW_AND_OLD_IMAGES - both the new and the old item images of the item.
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 }
 

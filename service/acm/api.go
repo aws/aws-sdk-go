@@ -1095,15 +1095,15 @@ type DomainValidationOption struct {
 	// domain registrant, technical contact, and administrative contact in WHOIS
 	// for the base domain and the following five addresses:
 	//
-	//    admin@subdomain.example.com
+	//    * admin@subdomain.example.com
 	//
-	//    administrator@subdomain.example.com
+	//    * administrator@subdomain.example.com
 	//
-	//    hostmaster@subdomain.example.com
+	//    * hostmaster@subdomain.example.com
 	//
-	//    postmaster@subdomain.example.com
+	//    * postmaster@subdomain.example.com
 	//
-	//    webmaster@subdomain.example.com
+	//    * webmaster@subdomain.example.com
 	//
 	// ValidationDomain is a required field
 	ValidationDomain *string `min:"1" type:"string" required:"true"`
@@ -1420,15 +1420,15 @@ type RequestCertificateInput struct {
 	// ACM sends email to the domain registrant, technical contact, and administrative
 	// contact in WHOIS and the following five addresses:
 	//
-	//    admin@example.com
+	//    * admin@example.com
 	//
-	//    administrator@example.com
+	//    * administrator@example.com
 	//
-	//    hostmaster@example.com
+	//    * hostmaster@example.com
 	//
-	//    postmaster@example.com
+	//    * postmaster@example.com
 	//
-	//    webmaster@example.com
+	//    * webmaster@example.com
 	DomainValidationOptions []*DomainValidationOption `min:"1" type:"list"`
 
 	// Customer chosen string that can be used to distinguish between calls to RequestCertificate.
@@ -1539,15 +1539,15 @@ type ResendValidationEmailInput struct {
 	// ACM sends email to the domain registrant, technical contact, and administrative
 	// contact in WHOIS and the following five addresses:
 	//
-	//    admin@subdomain.example.com
+	//    * admin@subdomain.example.com
 	//
-	//    administrator@subdomain.example.com
+	//    * administrator@subdomain.example.com
 	//
-	//    hostmaster@subdomain.example.com
+	//    * hostmaster@subdomain.example.com
 	//
-	//    postmaster@subdomain.example.com
+	//    * postmaster@subdomain.example.com
 	//
-	//    webmaster@subdomain.example.com
+	//    * webmaster@subdomain.example.com
 	//
 	// ValidationDomain is a required field
 	ValidationDomain *string `min:"1" type:"string" required:"true"`

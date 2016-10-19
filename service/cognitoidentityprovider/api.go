@@ -5524,15 +5524,15 @@ type AdminCreateUserInput struct {
 	// to True, and you can set the phone_number_verified attribute to True. (You
 	// cannot do this by calling other operations such as AdminUpdateUserAttributes.)
 	//
-	//    email: The email address of the user to whom the message that contains
-	// the code and username will be sent. Required if the email_verified attribute
-	// is set to True, or if "EMAIL" is specified in the DesiredDeliveryMediums
-	// parameter.
+	//    * email: The email address of the user to whom the message that contains
+	//    the code and username will be sent. Required if the email_verified attribute
+	//    is set to True, or if "EMAIL" is specified in the DesiredDeliveryMediums
+	//    parameter.
 	//
-	//    phone_number: The phone number of the user to whom the message that contains
-	// the code and username will be sent. Required if the phone_number_verified
-	// attribute is set to True, or if "SMS" is specified in the DesiredDeliveryMediums
-	// parameter.
+	//    * phone_number: The phone number of the user to whom the message that
+	//    contains the code and username will be sent. Required if the phone_number_verified
+	//    attribute is set to True, or if "SMS" is specified in the DesiredDeliveryMediums
+	//    parameter.
 	UserAttributes []*AttributeType `type:"list"`
 
 	// The user pool ID for the user pool where the user will be created.
@@ -6113,15 +6113,15 @@ type AdminGetUserOutput struct {
 
 	// The user status. Can be one of the following:
 	//
-	//    UNCONFIRMED - User has been created but not confirmed.
+	//    * UNCONFIRMED - User has been created but not confirmed.
 	//
-	//    CONFIRMED - User has been confirmed.
+	//    * CONFIRMED - User has been confirmed.
 	//
-	//    ARCHIVED - User is no longer active.
+	//    * ARCHIVED - User is no longer active.
 	//
-	//    COMPROMISED - User is disabled due to a potential security threat.
+	//    * COMPROMISED - User is disabled due to a potential security threat.
 	//
-	//    UNKNOWN - User status is not known.
+	//    * UNKNOWN - User status is not known.
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user about whom you are receiving information.
@@ -9818,13 +9818,13 @@ type UpdateUserPoolInput struct {
 
 	// Can be one of the following values:
 	//
-	//    OFF - MFA tokens are not required and cannot be specified during user
-	// registration.
+	//    * OFF - MFA tokens are not required and cannot be specified during user
+	//    registration.
 	//
-	//    ON - MFA tokens are required for all user registrations. You can only
-	// specify required when you are initially creating a user pool.
+	//    * ON - MFA tokens are required for all user registrations. You can only
+	//    specify required when you are initially creating a user pool.
 	//
-	//    OPTIONAL - Users have the option when registering to create an MFA token.
+	//    * OPTIONAL - Users have the option when registering to create an MFA token.
 	MfaConfiguration *string `type:"string" enum:"UserPoolMfaType"`
 
 	// A container with the policies you wish to update in a user pool.
@@ -9965,25 +9965,26 @@ type UserImportJobType struct {
 
 	// The status of the user import job. One of the following:
 	//
-	//    Created - The job was created but not started.
+	//    * Created - The job was created but not started.
 	//
-	//    Pending - A transition state. You have started the job, but it has not
+	//    * Pending - A transition state. You have started the job, but it has not
 	//    begun importing users yet.
 	//
-	//    InProgress - The job has started, and users are being imported.
+	//    * InProgress - The job has started, and users are being imported.
 	//
-	//    Stopping - You have stopped the job, but the job has not stopped importing
+	//    * Stopping - You have stopped the job, but the job has not stopped importing
 	//    users yet.
 	//
-	//    Stopped - You have stopped the job, and the job has stopped importing
+	//    * Stopped - You have stopped the job, and the job has stopped importing
 	//    users.
 	//
-	//    Succeeded - The job has completed successfully.
+	//    * Succeeded - The job has completed successfully.
 	//
-	//    Failed - The job has stopped due to an error.
+	//    * Failed - The job has stopped due to an error.
 	//
-	//    Expired - You created a job, but did not start the job within 24-48 hours.
-	//    All data associated with the job was deleted, and the job cannot be started.
+	//    * Expired - You created a job, but did not start the job within 24-48
+	//    hours. All data associated with the job was deleted, and the job cannot
+	//    be started.
 	Status *string `type:"string" enum:"UserImportJobStatusType"`
 
 	// The user pool ID for the user pool that the users are being imported into.
@@ -10181,13 +10182,13 @@ type UserPoolType struct {
 
 	// Can be one of the following values:
 	//
-	//    OFF - MFA tokens are not required and cannot be specified during user
-	// registration.
+	//    * OFF - MFA tokens are not required and cannot be specified during user
+	//    registration.
 	//
-	//    ON - MFA tokens are required for all user registrations. You can only
-	// specify required when you are initially creating a user pool.
+	//    * ON - MFA tokens are required for all user registrations. You can only
+	//    specify required when you are initially creating a user pool.
 	//
-	//    OPTIONAL - Users have the option when registering to create an MFA token.
+	//    * OPTIONAL - Users have the option when registering to create an MFA token.
 	MfaConfiguration *string `type:"string" enum:"UserPoolMfaType"`
 
 	// The name of the user pool.
@@ -10246,15 +10247,15 @@ type UserType struct {
 
 	// The user status. Can be one of the following:
 	//
-	//    UNCONFIRMED - User has been created but not confirmed.
+	//    * UNCONFIRMED - User has been created but not confirmed.
 	//
-	//    CONFIRMED - User has been confirmed.
+	//    * CONFIRMED - User has been confirmed.
 	//
-	//    ARCHIVED - User is no longer active.
+	//    * ARCHIVED - User is no longer active.
 	//
-	//    COMPROMISED - User is disabled due to a potential security threat.
+	//    * COMPROMISED - User is disabled due to a potential security threat.
 	//
-	//    UNKNOWN - User status is not known.
+	//    * UNKNOWN - User status is not known.
 	UserStatus *string `type:"string" enum:"UserStatusType"`
 
 	// The user name of the user you wish to describe.

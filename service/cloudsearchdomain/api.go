@@ -59,13 +59,14 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 // you specify the search criteria depends on which query parser you use. Amazon
 // CloudSearch supports four query parsers:
 //
-//    simple: search all text and text-array fields for the specified string.
+//    * simple: search all text and text-array fields for the specified string.
 //    Search for phrases, individual terms, and prefixes.
-//    structured: search specific fields, construct compound queries using Boolean
-//    operators, and use advanced features such as term boosting and proximity
-//    searching.
-//    lucene: specify search criteria using the Apache Lucene query parser syntax.
-//    dismax: specify search criteria using the simplified subset of the Apache
+//    * structured: search specific fields, construct compound queries using
+//    Boolean operators, and use advanced features such as term boosting and
+//    proximity searching.
+//    * lucene: specify search criteria using the Apache Lucene query parser
+//    syntax.
+//    * dismax: specify search criteria using the simplified subset of the Apache
 //    Lucene query parser syntax defined by the DisMax query parser.
 // For more information, see Searching Your Data (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching.html)
 // in the Amazon CloudSearch Developer Guide.
@@ -468,24 +469,25 @@ type SearchInput struct {
 	//
 	// You can specify the following faceting options:
 	//
-	//    buckets specifies an array of the facet values or ranges to count. Ranges
-	// are specified using the same syntax that you use to search for a range of
-	// values. For more information, see  Searching for a Range of Values (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching-ranges.html)
-	// in the Amazon CloudSearch Developer Guide. Buckets are returned in the order
-	// they are specified in the request. The sort and size options are not valid
-	// if you specify buckets.
+	//    * buckets specifies an array of the facet values or ranges to count. Ranges
+	//    are specified using the same syntax that you use to search for a range
+	//    of values. For more information, see  Searching for a Range of Values
+	//    (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching-ranges.html)
+	//    in the Amazon CloudSearch Developer Guide. Buckets are returned in the
+	//    order they are specified in the request. The sort and size options are
+	//    not valid if you specify buckets.
 	//
-	//    size specifies the maximum number of facets to include in the results.
-	// By default, Amazon CloudSearch returns counts for the top 10. The size parameter
-	// is only valid when you specify the sort option; it cannot be used in conjunction
-	// with buckets.
+	//    * size specifies the maximum number of facets to include in the results.
+	//    By default, Amazon CloudSearch returns counts for the top 10. The size
+	//    parameter is only valid when you specify the sort option; it cannot be
+	//    used in conjunction with buckets.
 	//
-	//    sort specifies how you want to sort the facets in the results: bucket
-	// or count. Specify bucket to sort alphabetically or numerically by facet value
-	// (in ascending order). Specify count to sort by the facet counts computed
-	// for each facet value (in descending order). To retrieve facet counts for
-	// particular values or ranges of values, use the buckets option instead of
-	// sort.
+	//    * sort specifies how you want to sort the facets in the results: bucket
+	//    or count. Specify bucket to sort alphabetically or numerically by facet
+	//    value (in ascending order). Specify count to sort by the facet counts
+	//    computed for each facet value (in descending order). To retrieve facet
+	//    counts for particular values or ranges of values, use the buckets option
+	//    instead of sort.
 	//
 	// If no facet options are specified, facet counts are computed for all field
 	// values, the facets are sorted by facet count, and the top 10 facets are returned
@@ -533,16 +535,16 @@ type SearchInput struct {
 	//
 	// You can specify the following highlight options:
 	//
-	//    format: specifies the format of the data in the text field: text or html.
-	//    When data is returned as HTML, all non-alphanumeric characters are encoded.
-	//    The default is html.
-	//    max_phrases: specifies the maximum number of occurrences of the search
+	//    * format: specifies the format of the data in the text field: text or
+	//    html. When data is returned as HTML, all non-alphanumeric characters are
+	//    encoded. The default is html.
+	//    * max_phrases: specifies the maximum number of occurrences of the search
 	//    term(s) you want to highlight. By default, the first occurrence is highlighted.
 	//
-	//    pre_tag: specifies the string to prepend to an occurrence of a search
+	//    * pre_tag: specifies the string to prepend to an occurrence of a search
 	//    term. The default for HTML highlights is <em>. The default for text
 	//    highlights is *.
-	//    post_tag: specifies the string to append to an occurrence of a search
+	//    * post_tag: specifies the string to append to an occurrence of a search
 	//    term. The default for HTML highlights is </em>. The default for
 	//    text highlights is *.
 	// If no highlight options are specified for a field, the returned field text
@@ -587,7 +589,7 @@ type SearchInput struct {
 	//
 	// The options you can configure vary according to which parser you use:
 	//
-	//    defaultOperator: The default operator used to combine individual terms
+	//    * defaultOperator: The default operator used to combine individual terms
 	//    in the search string. For example: defaultOperator: 'or'. For the dismax
 	//    parser, you specify a percentage that represents the percentage of terms
 	//    in the search string (rounded down) that must match, rather than a default
@@ -597,7 +599,7 @@ type SearchInput struct {
 	//    50%. Valid values: and, or, a percentage in the range 0%-100% (dismax).
 	//    Default: and (simple, structured, lucene) or 100 (dismax). Valid for:
 	//    simple, structured, lucene, and dismax.
-	//    fields: An array of the fields to search when no fields are specified
+	//    * fields: An array of the fields to search when no fields are specified
 	//    in a search. If no fields are specified in a search and this option is
 	//    not specified, all text and text-array fields are searched. You can specify
 	//    a weight for each field to control the relative importance of each field
@@ -608,9 +610,9 @@ type SearchInput struct {
 	//    The name of any configured field and an optional numeric value greater
 	//    than zero. Default: All text and text-array fields. Valid for: simple,
 	//    structured, lucene, and dismax.
-	//    operators: An array of the operators or special characters you want to
-	//    disable for the simple query parser. If you disable the and, or, or not
-	//    operators, the corresponding operators (+, |, -) have no special meaning
+	//    * operators: An array of the operators or special characters you want
+	//    to disable for the simple query parser. If you disable the and, or, or
+	//    not operators, the corresponding operators (+, |, -) have no special meaning
 	//    and are dropped from the search string. Similarly, disabling prefix disables
 	//    the wildcard operator (*) and disabling phrase disables the ability to
 	//    search for phrases by enclosing phrases in double quotes. Disabling precedence
@@ -627,11 +629,11 @@ type SearchInput struct {
 	//    Valid values: and, escape, fuzzy, near, not, or, phrase, precedence, prefix,
 	//    whitespace. Default: All operators and special characters are enabled.
 	//    Valid for: simple.
-	//    phraseFields: An array of the text or text-array fields you want to use
-	//    for phrase searches. When the terms in the search string appear in close
-	//    proximity within a field, the field scores higher. You can specify a weight
-	//    for each field to boost that score. The phraseSlop option controls how
-	//    much the matches can deviate from the search string and still be boosted.
+	//    * phraseFields: An array of the text or text-array fields you want to
+	//    use for phrase searches. When the terms in the search string appear in
+	//    close proximity within a field, the field scores higher. You can specify
+	//    a weight for each field to boost that score. The phraseSlop option controls
+	//    how much the matches can deviate from the search string and still be boosted.
 	//    To specify a field weight, append a caret (^) symbol and the weight to
 	//    the field name. For example, to boost phrase matches in the title field
 	//    over the abstract field, you could specify: "phraseFields":["title^3",
@@ -639,18 +641,18 @@ type SearchInput struct {
 	//    optional numeric value greater than zero. Default: No fields. If you don't
 	//    specify any fields with phraseFields, proximity scoring is disabled even
 	//    if phraseSlop is specified. Valid for: dismax.
-	//    phraseSlop: An integer value that specifies how much matches can deviate
+	//    * phraseSlop: An integer value that specifies how much matches can deviate
 	//    from the search phrase and still be boosted according to the weights specified
 	//    in the phraseFields option; for example, phraseSlop: 2. You must also
 	//    specify phraseFields to enable proximity scoring. Valid values: positive
 	//    integers. Default: 0. Valid for: dismax.
-	//    explicitPhraseSlop: An integer value that specifies how much a match can
-	//    deviate from the search phrase when the phrase is enclosed in double quotes
-	//    in the search string. (Phrases that exceed this proximity distance are
-	//    not considered a match.) For example, to specify a slop of three for dismax
-	//    phrase queries, you would specify "explicitPhraseSlop":3. Valid values:
-	//    positive integers. Default: 0. Valid for: dismax.
-	//    tieBreaker: When a term in the search string is found in a document's
+	//    * explicitPhraseSlop: An integer value that specifies how much a match
+	//    can deviate from the search phrase when the phrase is enclosed in double
+	//    quotes in the search string. (Phrases that exceed this proximity distance
+	//    are not considered a match.) For example, to specify a slop of three for
+	//    dismax phrase queries, you would specify "explicitPhraseSlop":3. Valid
+	//    values: positive integers. Default: 0. Valid for: dismax.
+	//    * tieBreaker: When a term in the search string is found in a document's
 	//    field, a score is calculated for that field based on how common the word
 	//    is in that field compared to other documents. If the term occurs in multiple
 	//    fields within a document, by default only the highest scoring field contributes
@@ -671,7 +673,7 @@ type SearchInput struct {
 	//
 	// Amazon CloudSearch supports four query parsers:
 	//
-	//    simple: perform simple searches of text and text-array fields. By default,
+	//    * simple: perform simple searches of text and text-array fields. By default,
 	//    the simple query parser searches all text and text-array fields. You can
 	//    specify which fields to search by with the queryOptions parameter. If
 	//    you prefix a search term with a plus sign (+) documents must contain the
@@ -682,16 +684,16 @@ type SearchInput struct {
 	//    To search for a phrase rather than individual terms, enclose the phrase
 	//    in double quotes. For more information, see Searching for Text (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching-text.html)
 	//    in the Amazon CloudSearch Developer Guide.
-	//    structured: perform advanced searches by combining multiple expressions
+	//    * structured: perform advanced searches by combining multiple expressions
 	//    to define the search criteria. You can also search within particular fields,
 	//    search for values and ranges of values, and use advanced options such
 	//    as term boosting, matchall, and near. For more information, see Constructing
 	//    Compound Queries (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/searching-compound-queries.html)
 	//    in the Amazon CloudSearch Developer Guide.
-	//    lucene: search using the Apache Lucene query parser syntax. For more information,
-	//    see Apache Lucene Query Parser Syntax (http://lucene.apache.org/core/4_6_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description).
+	//    * lucene: search using the Apache Lucene query parser syntax. For more
+	//    information, see Apache Lucene Query Parser Syntax (http://lucene.apache.org/core/4_6_0/queryparser/org/apache/lucene/queryparser/classic/package-summary.html#package_description).
 	//
-	//    dismax: search using the simplified subset of the Apache Lucene query
+	//    * dismax: search using the simplified subset of the Apache Lucene query
 	//    parser syntax defined by the DisMax query parser. For more information,
 	//    see DisMax Query Parser Syntax (http://wiki.apache.org/solr/DisMaxQParserPlugin#Query_Syntax).
 	//
@@ -732,8 +734,7 @@ type SearchInput struct {
 	// specified field must be facet-enabled in the domain configuration. The fields
 	// are specified in JSON using the form:
 	//
-	//    {"FIELD-A":{},"FIELD-B":{}}
-	// There are currently no options supported for statistics.
+	// {"FIELD-A":{},"FIELD-B":{}}There are currently no options supported for statistics.
 	Stats *string `location:"querystring" locationName:"stats" type:"string"`
 }
 
@@ -953,8 +954,8 @@ type UploadDocumentsInput struct {
 	// The format of the batch you are uploading. Amazon CloudSearch supports two
 	// document batch formats:
 	//
-	//    application/json
-	//    application/xml
+	//    * application/json
+	//    * application/xml
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true" enum:"ContentType"`

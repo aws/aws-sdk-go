@@ -64,10 +64,10 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // not currently exist that is owned by the caller's AWS account with the specified
 // creation token, this operation does the following:
 //
-//    Creates a new, empty file system. The file system will have an Amazon
+//    * Creates a new, empty file system. The file system will have an Amazon
 //    EFS assigned ID, and an initial lifecycle state creating.
 //
-//    Returns with the description of the created file system.
+//    * Returns with the description of the created file system.
 //
 // Otherwise, this operation returns a FileSystemAlreadyExists error with the
 // ID of the existing file system.
@@ -195,12 +195,12 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 // In the request, you also provide a subnet ID, which determines the following:
 //
-//    VPC in which Amazon EFS creates the mount target
+//    * VPC in which Amazon EFS creates the mount target
 //
-//    Availability Zone in which Amazon EFS creates the mount target
+//    * Availability Zone in which Amazon EFS creates the mount target
 //
-//    IP address range from which Amazon EFS selects the IP address of the mount
-//    target (if you don't specify an IP address in the request)
+//    * IP address range from which Amazon EFS selects the IP address of the
+//    mount target (if you don't specify an IP address in the request)
 //
 // After creating the mount target, Amazon EFS returns a response that includes,
 // a MountTargetId and an IpAddress. You use this IP address when mounting the
@@ -216,37 +216,37 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // subnet specified in the request to add another mount target must meet the
 // following requirements:
 //
-//    Must belong to the same VPC as the subnets of the existing mount targets
+//    * Must belong to the same VPC as the subnets of the existing mount targets
 //
-//    Must not be in the same Availability Zone as any of the subnets of the
+//    * Must not be in the same Availability Zone as any of the subnets of the
 //    existing mount targets
 //
 // If the request satisfies the requirements, Amazon EFS does the following:
 //
-//    Creates a new mount target in the specified subnet.
+//    * Creates a new mount target in the specified subnet.
 //
-//    Also creates a new network interface in the subnet as follows:
+//    * Also creates a new network interface in the subnet as follows:
 //
-//    If the request provides an IpAddress, Amazon EFS assigns that IP address
-// to the network interface. Otherwise, Amazon EFS assigns a free address in
-// the subnet (in the same way that the Amazon EC2 CreateNetworkInterface call
-// does when a request does not specify a primary private IP address).
+// If the request provides an IpAddress, Amazon EFS assigns that IP address
+//    to the network interface. Otherwise, Amazon EFS assigns a free address
+//    in the subnet (in the same way that the Amazon EC2 CreateNetworkInterface
+//    call does when a request does not specify a primary private IP address).
 //
-//    If the request provides SecurityGroups, this network interface is associated
-// with those security groups. Otherwise, it belongs to the default security
-// group for the subnet's VPC.
+// If the request provides SecurityGroups, this network interface is associated
+//    with those security groups. Otherwise, it belongs to the default security
+//    group for the subnet's VPC.
 //
-//    Assigns the description Mount target fsmt-id for file system fs-id where
-// fsmt-id is the mount target ID, and fs-id is the FileSystemId.
+// Assigns the description Mount target fsmt-id for file system fs-id where
+//    fsmt-id is the mount target ID, and fs-id is the FileSystemId.
 //
-//    Sets the requesterManaged property of the network interface to true, and
-// the requesterId value to EFS.
+// Sets the requesterManaged property of the network interface to true, and
+//    the requesterId value to EFS.
 //
-//    Each Amazon EFS mount target has one corresponding requestor-managed EC2
+// Each Amazon EFS mount target has one corresponding requestor-managed EC2
 //    network interface. After the network interface is created, Amazon EFS
 //    sets the NetworkInterfaceId field in the mount target's description to
-// the network interface ID, and the IpAddress field to its address. If network
-// interface creation fails, the entire CreateMountTarget operation fails.
+//    the network interface ID, and the IpAddress field to its address. If network
+//    interface creation fails, the entire CreateMountTarget operation fails.
 //
 // The CreateMountTarget call returns only after creating the network interface,
 // but while the mount target state is still creating. You can check the mount
@@ -265,15 +265,15 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // This operation requires permissions for the following action on the file
 // system:
 //
-//    elasticfilesystem:CreateMountTarget
+//    * elasticfilesystem:CreateMountTarget
 //
 // This operation also requires permissions for the following Amazon EC2 actions:
 //
-//    ec2:DescribeSubnets
+//    * ec2:DescribeSubnets
 //
-//    ec2:DescribeNetworkInterfaces
+//    * ec2:DescribeNetworkInterfaces
 //
-//    ec2:CreateNetworkInterface
+//    * ec2:CreateNetworkInterface
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -569,7 +569,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // This operation requires permissions for the following action on the file
 // system:
 //
-//    elasticfilesystem:DeleteMountTarget
+//    * elasticfilesystem:DeleteMountTarget
 //
 // The DeleteMountTarget call returns while the mount target state is still
 // deleting. You can check the mount target deletion by calling the DescribeMountTargets
@@ -579,7 +579,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // The operation also requires permissions for the following Amazon EC2 action
 // on the mount target's network interface:
 //
-//    ec2:DeleteNetworkInterface
+//    * ec2:DeleteNetworkInterface
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -839,11 +839,11 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 //
 // This operation requires permissions for the following actions:
 //
-//    elasticfilesystem:DescribeMountTargetSecurityGroups action on the mount
-// target's file system.
+//    * elasticfilesystem:DescribeMountTargetSecurityGroups action on the mount
+//    target's file system.
 //
-//    ec2:DescribeNetworkInterfaceAttribute action on the mount target's network
-// interface.
+//    * ec2:DescribeNetworkInterfaceAttribute action on the mount target's network
+//    interface.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1090,11 +1090,11 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 //
 // The operation requires permissions for the following actions:
 //
-//    elasticfilesystem:ModifyMountTargetSecurityGroups action on the mount
-// target's file system.
+//    * elasticfilesystem:ModifyMountTargetSecurityGroups action on the mount
+//    target's file system.
 //
-//    ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
-// interface.
+//    * ec2:ModifyNetworkInterfaceAttribute action on the mount target's network
+//    interface.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

@@ -502,10 +502,10 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 // If no parameters are supplied, then job flows matching either of the following
 // criteria are returned:
 //
-//    Job flows created and completed in the last two weeks
+//    * Job flows created and completed in the last two weeks
 //
-//     Job flows created within the last two months that are in one of the following
-//    states: RUNNING, WAITING, SHUTTING_DOWN, STARTING
+//    *  Job flows created within the last two months that are in one of the
+//    following states: RUNNING, WAITING, SHUTTING_DOWN, STARTING
 //
 // Amazon Elastic MapReduce can return a maximum of 512 job flow descriptions.
 //
@@ -1899,11 +1899,11 @@ func (s AddTagsOutput) GoString() string {
 // Flow on the MapR Distribution for Hadoop (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html).
 // Currently supported values are:
 //
-//    "mapr-m3" - launch the job flow using MapR M3 Edition.
+//    * "mapr-m3" - launch the job flow using MapR M3 Edition.
 //
-//    "mapr-m5" - launch the job flow using MapR M5 Edition.
+//    * "mapr-m5" - launch the job flow using MapR M5 Edition.
 //
-//    "mapr" with the user arguments specifying "--edition,m3" or "--edition,m5"
+//    * "mapr" with the user arguments specifying "--edition,m3" or "--edition,m5"
 //    - launch the job flow using MapR M3 or M5 Edition, respectively.
 //
 // In Amazon EMR releases 4.0 and greater, the only accepted parameter is the
@@ -4109,7 +4109,7 @@ type RunJobFlowInput struct {
 	// The version of the Amazon Machine Image (AMI) to use when launching Amazon
 	// EC2 instances in the job flow. The following values are valid:
 	//
-	//    The version number of the AMI to use, for example, "2.0."
+	//    * The version number of the AMI to use, for example, "2.0."
 	//
 	// If the AMI supports multiple versions of Hadoop (for example, AMI 1.0 supports
 	// both Hadoop 0.18 and 0.20) you can use the JobFlowInstancesConfigHadoopVersion
@@ -4166,22 +4166,22 @@ type RunJobFlowInput struct {
 	// Hadoop (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html).
 	// Currently supported values are:
 	//
-	//    "mapr-m3" - launch the cluster using MapR M3 Edition.
+	//    * "mapr-m3" - launch the cluster using MapR M3 Edition.
 	//
-	//    "mapr-m5" - launch the cluster using MapR M5 Edition.
+	//    * "mapr-m5" - launch the cluster using MapR M5 Edition.
 	//
-	//    "mapr" with the user arguments specifying "--edition,m3" or "--edition,m5"
+	//    * "mapr" with the user arguments specifying "--edition,m3" or "--edition,m5"
 	//    - launch the job flow using MapR M3 or M5 Edition respectively.
 	//
-	//    "mapr-m7" - launch the cluster using MapR M7 Edition.
+	//    * "mapr-m7" - launch the cluster using MapR M7 Edition.
 	//
-	//    "hunk" - launch the cluster with the Hunk Big Data Analtics Platform.
+	//    * "hunk" - launch the cluster with the Hunk Big Data Analtics Platform.
 	//
-	//    "hue"- launch the cluster with Hue installed.
+	//    * "hue"- launch the cluster with Hue installed.
 	//
-	//    "spark" - launch the cluster with Apache Spark installed.
+	//    * "spark" - launch the cluster with Apache Spark installed.
 	//
-	//    "ganglia" - launch the cluster with the Ganglia Monitoring System installed.
+	//    * "ganglia" - launch the cluster with the Ganglia Monitoring System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
 
 	// Amazon EMR releases 4.x or later.
@@ -4208,9 +4208,9 @@ type RunJobFlowInput struct {
 	// EMR (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-supported-products.html).
 	// Currently supported values are:
 	//
-	//    "mapr-m3" - launch the job flow using MapR M3 Edition.
+	//    * "mapr-m3" - launch the job flow using MapR M3 Edition.
 	//
-	//    "mapr-m5" - launch the job flow using MapR M5 Edition.
+	//    * "mapr-m5" - launch the job flow using MapR M5 Edition.
 	SupportedProducts []*string `type:"list"`
 
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.

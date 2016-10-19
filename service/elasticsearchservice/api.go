@@ -900,12 +900,12 @@ func (s AddTagsOutput) GoString() string {
 // Status of the advanced options for the specified Elasticsearch domain. Currently,
 // the following advanced options are available:
 //
-//    Option to allow references to indices in an HTTP request body. Must be
-//    false when configuring access to individual sub-resources. By default,
+//    * Option to allow references to indices in an HTTP request body. Must
+//    be false when configuring access to individual sub-resources. By default,
 //    the value is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options)
 //    for more information.
-//    Option to specify the percentage of heap space that is allocated to field
-//    data. By default, this setting is unbounded.
+//    * Option to specify the percentage of heap space that is allocated to
+//    field data. By default, this setting is unbounded.
 // For more information, see Configuring Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options).
 type AdvancedOptionsStatus struct {
 	_ struct{} `type:"structure"`
@@ -1929,8 +1929,8 @@ const (
 
 // The state of a requested change. One of the following:
 //
-//    Processing: The request change is still in-process.
-//    Active: The request change is processed and deployed to the Elasticsearch
+//    * Processing: The request change is still in-process.
+//    * Active: The request change is processed and deployed to the Elasticsearch
 //    domain.
 const (
 	// OptionStateRequiresIndexDocuments is a OptionState enum value

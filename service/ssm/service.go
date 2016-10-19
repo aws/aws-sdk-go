@@ -71,63 +71,64 @@ import (
 //
 // Linux
 //
-//    AWS-RunShellScript to run shell scripts
+// AWS-RunShellScript to run shell scripts
 //
-//    AWS-UpdateSSMAgent to update the Amazon SSM agent
+//    * AWS-UpdateSSMAgent to update the Amazon SSM agent
 //
 // Windows
 //
-//    AWS-JoinDirectoryServiceDomain to join an AWS Directory
+//    * AWS-JoinDirectoryServiceDomain to join an AWS Directory
 //
-//    AWS-RunPowerShellScript to run PowerShell commands or scripts
+//    * AWS-RunPowerShellScript to run PowerShell commands or scripts
 //
-//    AWS-UpdateEC2Config to update the EC2Config service
+//    * AWS-UpdateEC2Config to update the EC2Config service
 //
-//    AWS-ConfigureWindowsUpdate to configure Windows Update settings
+//    * AWS-ConfigureWindowsUpdate to configure Windows Update settings
 //
-//    AWS-InstallApplication to install, repair, or uninstall software using
-// an MSI package
+//    * AWS-InstallApplication to install, repair, or uninstall software using
+//    an MSI package
 //
-//    AWS-InstallPowerShellModule to install PowerShell modules
+//    * AWS-InstallPowerShellModule to install PowerShell modules
 //
-//    AWS-ConfigureCloudWatch to configure Amazon CloudWatch Logs to monitor
-// applications and systems
+//    * AWS-ConfigureCloudWatch to configure Amazon CloudWatch Logs to monitor
+//    applications and systems
 //
-//    AWS-ListWindowsInventory to collect information about an EC2 instance
-// running in Windows.
+//    * AWS-ListWindowsInventory to collect information about an EC2 instance
+//    running in Windows.
 //
-//    AWS-FindWindowsUpdates to scan an instance and determines which updates
-// are missing.
+//    * AWS-FindWindowsUpdates to scan an instance and determines which updates
+//    are missing.
 //
-//    AWS-InstallMissingWindowsUpdates to install missing updates on your EC2
-// instance.
+//    * AWS-InstallMissingWindowsUpdates to install missing updates on your
+//    EC2 instance.
 //
-//    AWS-InstallSpecificWindowsUpdates to install one or more specific updates.
+//    * AWS-InstallSpecificWindowsUpdates to install one or more specific updates.
 //
 // The commands or scripts specified in SSM documents run with administrative
-// privilege on your instances because the Amazon SSM agent runs as root on
-// Linux and the EC2Config service runs in the Local System account on Windows.
-// If a user has permission to execute any of the pre-defined SSM documents
-// (any document that begins with AWS-*) then that user also has administrator
-// access to the instance. Delegate access to Run Command and SSM Config judiciously.
-// This becomes extremely important if you create your own SSM documents. Amazon
-// Web Services does not provide guidance about how to create secure SSM documents.
-// You create SSM documents and delegate access to Run Command at your own risk.
-// As a security best practice, we recommend that you assign access to "AWS-*"
-// documents, especially the AWS-RunShellScript document on Linux and the AWS-RunPowerShellScript
-// document on Windows, to trusted administrators only. You can create SSM documents
-// for specific tasks and delegate access to non-administrators.
+//    privilege on your instances because the Amazon SSM agent runs as root
+//    on Linux and the EC2Config service runs in the Local System account on
+//    Windows. If a user has permission to execute any of the pre-defined SSM
+//    documents (any document that begins with AWS-*) then that user also has
+//    administrator access to the instance. Delegate access to Run Command and
+//    SSM Config judiciously. This becomes extremely important if you create
+//    your own SSM documents. Amazon Web Services does not provide guidance
+//    about how to create secure SSM documents. You create SSM documents and
+//    delegate access to Run Command at your own risk. As a security best practice,
+//    we recommend that you assign access to "AWS-*" documents, especially the
+//    AWS-RunShellScript document on Linux and the AWS-RunPowerShellScript document
+//    on Windows, to trusted administrators only. You can create SSM documents
+//    for specific tasks and delegate access to non-administrators.
 //
 // For information about creating and sharing SSM documents, see the following
-// topics in the SSM User Guide:
+//    topics in the SSM User Guide:
 //
-//    Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-ssm-doc.html)
-// and Sharing SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssm-sharing.html)
-// (Linux)
+//    * Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-ssm-doc.html)
+//    and    * Sharing SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssm-sharing.html)
+//    (Linux)
 //
-//    Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/create-ssm-doc.html)
-// and Sharing SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ssm-sharing.html)
-// (Windows)
+//    * Creating SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/create-ssm-doc.html)
+//    and    * Sharing SSM Documents (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ssm-sharing.html)
+//    (Windows)
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type SSM struct {

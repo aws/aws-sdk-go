@@ -270,6 +270,59 @@ func TestUnmarshalMapError(t *testing.T) {
 	}
 }
 
+func TestUnmarshalListOfMaps(t *testing.T) {
+	type testItem struct {
+		Value  string
+		Value2 int
+	}
+
+	cases := []struct {
+		in               []map[string]*dynamodb.AttributeValue
+		actual, expected interface{}
+		err              error
+	}{
+		{ // Simple map conversion.
+			in: []map[string]*dynamodb.AttributeValue{
+				{
+					"Value": &dynamodb.AttributeValue{
+						BOOL: aws.Bool(true),
+					},
+				},
+			},
+			actual: &[]map[string]interface{}{},
+			expected: []map[string]interface{}{
+				{
+					"Value": true,
+				},
+			},
+		},
+		{ // attribute to struct.
+			in: []map[string]*dynamodb.AttributeValue{
+				{
+					"Value": &dynamodb.AttributeValue{
+						S: aws.String("abc"),
+					},
+					"Value2": &dynamodb.AttributeValue{
+						N: aws.String("123"),
+					},
+				},
+			},
+			actual: &[]testItem{},
+			expected: []testItem{
+				{
+					Value:  "abc",
+					Value2: 123,
+				},
+			},
+		},
+	}
+
+	for i, c := range cases {
+		err := UnmarshalListOfMaps(c.in, c.actual)
+		assertConvertTest(t, i, c.actual, c.expected, err, c.err)
+	}
+}
+
 type unmarshalUnmarshaler struct {
 	Value  string
 	Value2 int

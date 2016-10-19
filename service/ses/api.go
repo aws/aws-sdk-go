@@ -994,12 +994,12 @@ func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesI
 // This action takes a list of identities as input and returns the following
 // information for each:
 //
-//    Whether Easy DKIM signing is enabled or disabled.
+//    * Whether Easy DKIM signing is enabled or disabled.
 //
-//    A set of DKIM tokens that represent the identity. If the identity is an
-//    email address, the tokens represent the domain of that address.
+//    * A set of DKIM tokens that represent the identity. If the identity is
+//    an email address, the tokens represent the domain of that address.
 //
-//    Whether Amazon SES has successfully verified the DKIM tokens published
+//    * Whether Amazon SES has successfully verified the DKIM tokens published
 //    in the domain's DNS. This information is only returned for domain name
 //    identities, not for email addresses.
 //
@@ -2044,23 +2044,23 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 //
 // There are several important points to know about SendEmail:
 //
-//    You can only send email from verified email addresses and domains; otherwise,
+//    * You can only send email from verified email addresses and domains; otherwise,
 //    you will get an "Email address not verified" error. If your account is
 //    still in the Amazon SES sandbox, you must also verify every recipient
 //    email address except for the recipients provided by the Amazon SES mailbox
 //    simulator. For more information, go to the Amazon SES Developer Guide
-// (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//    (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
 //
-//    The total size of the message cannot exceed 10 MB. This includes any attachments
-//    that are part of the message.
+//    * The total size of the message cannot exceed 10 MB. This includes any
+//    attachments that are part of the message.
 //
-//    Amazon SES has a limit on the total number of recipients per message.
+//    * Amazon SES has a limit on the total number of recipients per message.
 //    The combined number of To:, CC: and BCC: email addresses cannot exceed
 //    50. If you need to send an email message to a larger audience, you can
 //    divide your recipient list into groups of 50 or fewer, and then call Amazon
 //    SES repeatedly to send the message to each group.
 //
-//    For every message that you send, the total number of recipients (To:,
+//    * For every message that you send, the total number of recipients (To:,
 //    CC: and BCC:) is counted against your sending quota - the maximum number
 //    of emails you can send in a 24-hour period. For information about your
 //    sending quota, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
@@ -2141,56 +2141,56 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 //
 // There are several important points to know about SendRawEmail:
 //
-//    You can only send email from verified email addresses and domains; otherwise,
+//    * You can only send email from verified email addresses and domains; otherwise,
 //    you will get an "Email address not verified" error. If your account is
 //    still in the Amazon SES sandbox, you must also verify every recipient
 //    email address except for the recipients provided by the Amazon SES mailbox
 //    simulator. For more information, go to the Amazon SES Developer Guide
-// (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+//    (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
 //
-//    The total size of the message cannot exceed 10 MB. This includes any attachments
-//    that are part of the message.
+//    * The total size of the message cannot exceed 10 MB. This includes any
+//    attachments that are part of the message.
 //
-//    Amazon SES has a limit on the total number of recipients per message.
+//    * Amazon SES has a limit on the total number of recipients per message.
 //    The combined number of To:, CC: and BCC: email addresses cannot exceed
 //    50. If you need to send an email message to a larger audience, you can
 //    divide your recipient list into groups of 50 or fewer, and then call Amazon
 //    SES repeatedly to send the message to each group.
 //
-//    The To:, CC:, and BCC: headers in the raw message can contain a group
+//    * The To:, CC:, and BCC: headers in the raw message can contain a group
 //    list. Note that each recipient in a group list counts towards the 50-recipient
 //    limit.
 //
-//    Amazon SES overrides any Message-ID and Date headers you provide.
+//    * Amazon SES overrides any Message-ID and Date headers you provide.
 //
-//    For every message that you send, the total number of recipients (To:,
+//    * For every message that you send, the total number of recipients (To:,
 //    CC: and BCC:) is counted against your sending quota - the maximum number
 //    of emails you can send in a 24-hour period. For information about your
 //    sending quota, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
 //
-//    If you are using sending authorization to send on behalf of another user,
-//    SendRawEmail enables you to specify the cross-account identity for the
-// email's "Source," "From," and "Return-Path" parameters in one of two ways:
-// you can pass optional parameters SourceArn, FromArn, and/or ReturnPathArn
-// to the API, or you can include the following X-headers in the header of your
-// raw email:
+//    * If you are using sending authorization to send on behalf of another
+//    user, SendRawEmail enables you to specify the cross-account identity for
+//    the email's "Source," "From," and "Return-Path" parameters in one of two
+//    ways: you can pass optional parameters SourceArn, FromArn, and/or ReturnPathArn
+//    to the API, or you can include the following X-headers in the header of
+//    your raw email:
 //
-//    X-SES-SOURCE-ARN
+// X-SES-SOURCE-ARN
 //
-//    X-SES-FROM-ARN
+// X-SES-FROM-ARN
 //
-//    X-SES-RETURN-PATH-ARN
+// X-SES-RETURN-PATH-ARN
 //
-//    Do not include these X-headers in the DKIM signature, because they are
-//    removed by Amazon SES before sending the email.
+// Do not include these X-headers in the DKIM signature, because they are removed
+//    by Amazon SES before sending the email.
 //
-//    For the most common sending authorization use case, we recommend that
-//    you specify the SourceIdentityArn and do not specify either the FromIdentityArn
-// or ReturnPathIdentityArn. (The same note applies to the corresponding X-headers.)
-// If you only specify the SourceIdentityArn, Amazon SES will simply set the
-// "From" address and the "Return Path" address to the identity specified in
-// SourceIdentityArn. For more information about sending authorization, see
-// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+// For the most common sending authorization use case, we recommend that you
+//    specify the SourceIdentityArn and do not specify either the FromIdentityArn
+//    or ReturnPathIdentityArn. (The same note applies to the corresponding
+//    X-headers.) If you only specify the SourceIdentityArn, Amazon SES will
+//    simply set the "From" address and the "Return Path" address to the identity
+//    specified in SourceIdentityArn. For more information about sending authorization,
+//    see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2335,11 +2335,11 @@ func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) 
 //
 // Enables or disables Easy DKIM signing of email sent from an identity:
 //
-//    If Easy DKIM signing is enabled for a domain name identity (e.g., example.com),
-// then Amazon SES will DKIM-sign all email sent by addresses under that domain
-// name (e.g., user@example.com).
+//    * If Easy DKIM signing is enabled for a domain name identity (e.g., example.com),
+//    then Amazon SES will DKIM-sign all email sent by addresses under that
+//    domain name (e.g., user@example.com).
 //
-//    If Easy DKIM signing is enabled for an email address, then Amazon SES
+//    * If Easy DKIM signing is enabled for an email address, then Amazon SES
 //    will DKIM-sign all email sent by that email address.
 //
 // For email addresses (e.g., user@example.com), you can only enable Easy DKIM
@@ -3290,12 +3290,12 @@ type CloneReceiptRuleSetInput struct {
 
 	// The name of the rule set to create. The name must:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-).
 	//
-	//    Start and end with a letter or number.
+	//    * Start and end with a letter or number.
 	//
-	//    Contain less than 64 characters.
+	//    * Contain less than 64 characters.
 	//
 	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
@@ -3515,12 +3515,12 @@ type CreateReceiptRuleSetInput struct {
 
 	// The name of the rule set to create. The name must:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-).
 	//
-	//    Start and end with a letter or number.
+	//    * Start and end with a letter or number.
 	//
-	//    Contain less than 64 characters.
+	//    * Contain less than 64 characters.
 	//
 	// RuleSetName is a required field
 	RuleSetName *string `type:"string" required:"true"`
@@ -5304,12 +5304,12 @@ type ReceiptFilter struct {
 
 	// The name of the IP address filter. The name must:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-).
 	//
-	//    Start and end with a letter or number.
+	//    * Start and end with a letter or number.
 	//
-	//    Contain less than 64 characters.
+	//    * Contain less than 64 characters.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -5417,12 +5417,12 @@ type ReceiptRule struct {
 
 	// The name of the receipt rule. The name must:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-).
 	//
-	//    Start and end with a letter or number.
+	//    * Start and end with a letter or number.
 	//
-	//    Contain less than 64 characters.
+	//    * Contain less than 64 characters.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -5491,12 +5491,12 @@ type ReceiptRuleSetMetadata struct {
 
 	// The name of the receipt rule set. The name must:
 	//
-	//    Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
 	//    (_), or dashes (-).
 	//
-	//    Start and end with a letter or number.
+	//    * Start and end with a letter or number.
 	//
-	//    Contain less than 64 characters.
+	//    * Contain less than 64 characters.
 	Name *string `type:"string"`
 }
 
@@ -5681,14 +5681,14 @@ type S3Action struct {
 	// before saving them to the Amazon S3 bucket. You can use the default master
 	// key or a custom master key you created in AWS KMS as follows:
 	//
-	//    To use the default master key, provide an ARN in the form of arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses.
-	// For example, if your AWS account ID is 123456789012 and you want to use the
-	// default master key in the US West (Oregon) region, the ARN of the default
-	// master key would be arn:aws:kms:us-west-2:123456789012:alias/aws/ses. If
-	// you use the default master key, you don't need to perform any extra steps
-	// to give Amazon SES permission to use the key.
+	//    * To use the default master key, provide an ARN in the form of arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses.
+	//    For example, if your AWS account ID is 123456789012 and you want to use
+	//    the default master key in the US West (Oregon) region, the ARN of the
+	//    default master key would be arn:aws:kms:us-west-2:123456789012:alias/aws/ses.
+	//    If you use the default master key, you don't need to perform any extra
+	//    steps to give Amazon SES permission to use the key.
 	//
-	//    To use a custom master key you created in AWS KMS, provide the ARN of
+	//    * To use a custom master key you created in AWS KMS, provide the ARN of
 	//    the master key and ensure that you add a statement to your key's policy
 	//    to give Amazon SES permission to use it. For more information about giving
 	//    permissions, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
@@ -6085,16 +6085,16 @@ type SendRawEmailInput struct {
 
 	// The raw text of the message. The client is responsible for ensuring the following:
 	//
-	//    Message must contain a header and a body, separated by a blank line.
+	//    * Message must contain a header and a body, separated by a blank line.
 	//
-	//    All required header fields must be present.
+	//    * All required header fields must be present.
 	//
-	//    Each part of a multipart MIME message must be formatted properly.
+	//    * Each part of a multipart MIME message must be formatted properly.
 	//
-	//    MIME content types must be among those supported by Amazon SES. For more
-	//    information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html).
+	//    * MIME content types must be among those supported by Amazon SES. For
+	//    more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html).
 	//
-	//    Must be base64-encoded.
+	//    * Must be base64-encoded.
 	//
 	// RawMessage is a required field
 	RawMessage *RawMessage `type:"structure" required:"true"`

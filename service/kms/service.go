@@ -57,17 +57,17 @@ import (
 //
 // For more information about credentials and request signing, see the following:
 //
-//    AWS Security Credentials (http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)
-// - This topic provides general information about the types of credentials
-// used for accessing AWS.
+//    * AWS Security Credentials (http://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)
+//    - This topic provides general information about the types of credentials
+//    used for accessing AWS.
 //
-//    Temporary Security Credentials (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html)
-// - This section of the IAM User Guide describes how to create and use temporary
-// security credentials.
+//    * Temporary Security Credentials (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html)
+//    - This section of the IAM User Guide describes how to create and use temporary
+//    security credentials.
 //
-//    Signature Version 4 Signing Process (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
-// - This set of topics walks you through the process of signing a request using
-// an access key ID and a secret access key.
+//    * Signature Version 4 Signing Process (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
+//    - This set of topics walks you through the process of signing a request
+//    using an access key ID and a secret access key.
 //
 // Commonly Used APIs
 //
@@ -75,13 +75,13 @@ import (
 // for most applications. You will likely perform actions other than these,
 // such as creating keys and assigning policies, by using the console.
 //
-//    Encrypt
+//    * Encrypt
 //
-//    Decrypt
+//    * Decrypt
 //
-//    GenerateDataKey
+//    * GenerateDataKey
 //
-//    GenerateDataKeyWithoutPlaintext
+//    * GenerateDataKeyWithoutPlaintext
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type KMS struct {

@@ -21,9 +21,9 @@ import (
 //
 // Additional Resources
 //
-//    AWS Service Catalog Administrator Guide (http://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html)
+//    * AWS Service Catalog Administrator Guide (http://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html)
 //
-//    AWS Service Catalog User Guide (http://docs.aws.amazon.com/servicecatalog/latest/userguide/introduction.html)
+//    * AWS Service Catalog User Guide (http://docs.aws.amazon.com/servicecatalog/latest/userguide/introduction.html)
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type ServiceCatalog struct {

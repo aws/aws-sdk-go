@@ -1130,17 +1130,17 @@ type CreateJobInput struct {
 	// moves to its destination while in transit. Regional shipping speeds are as
 	// follows:
 	//
-	//    In Australia, you have access to express shipping. Typically, Snowballs
+	//    * In Australia, you have access to express shipping. Typically, Snowballs
 	//    shipped express are delivered in about a day.
 	//
-	//    In the European Union (EU), you have access to express shipping. Typically,
+	//    * In the European Union (EU), you have access to express shipping. Typically,
 	//    Snowballs shipped express are delivered in about a day. In addition, most
 	//    countries in the EU have access to standard shipping, which typically
 	//    takes less than a week, one way.
 	//
-	//    In India, Snowballs are delivered in one to seven days.
+	//    * In India, Snowballs are delivered in one to seven days.
 	//
-	//    In the US, you have access to one-day shipping and two-day shipping.
+	//    * In the US, you have access to one-day shipping and two-day shipping.
 	//
 	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
@@ -1969,17 +1969,17 @@ type ShippingDetails struct {
 	// represents how quickly it moves to its destination while in transit. Regional
 	// shipping speeds are as follows:
 	//
-	//    In Australia, you have access to express shipping. Typically, Snowballs
+	//    * In Australia, you have access to express shipping. Typically, Snowballs
 	//    shipped express are delivered in about a day.
 	//
-	//    In the European Union (EU), you have access to express shipping. Typically,
+	//    * In the European Union (EU), you have access to express shipping. Typically,
 	//    Snowballs shipped express are delivered in about a day. In addition, most
 	//    countries in the EU have access to standard shipping, which typically
 	//    takes less than a week, one way.
 	//
-	//    In India, Snowballs are delivered in one to seven days.
+	//    * In India, Snowballs are delivered in one to seven days.
 	//
-	//    In the United States of America (US), you have access to one-day shipping
+	//    * In the United States of America (US), you have access to one-day shipping
 	//    and two-day shipping.
 	ShippingOption *string `type:"string" enum:"ShippingOption"`
 }

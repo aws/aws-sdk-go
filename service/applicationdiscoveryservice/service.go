@@ -41,7 +41,8 @@ import (
 // programming language or platform that you're using. For more information,
 // see AWS SDKs (http://aws.amazon.com/tools/#SDKs).
 //
-// This guide is intended for use with the AWS Discovery Service User Guide.
+// This guide is intended for use with the AWS Discovery Service User Guide
+// (http://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html).
 //
 // The following are short descriptions of each API action, organized by function.
 //
@@ -54,44 +55,45 @@ import (
 // the following information and send it to the Application Discovery Service
 // using Secure Sockets Layer (SSL) encryption:
 //
-//    User information (user name, home directory)
+//    * User information (user name, home directory)
 //
-//    Group information (name)
+//    * Group information (name)
 //
-//    List of installed packages
+//    * List of installed packages
 //
-//    List of kernel modules
+//    * List of kernel modules
 //
-//    All create and stop process events
+//    * All create and stop process events
 //
-//    DNS queries
+//    * DNS queries
 //
-//    NIC information
+//    * NIC information
 //
-//    TCP/UDP process listening ports
+//    * TCP/UDP process listening ports
 //
-//    TCPV4/V6 connections
+//    * TCPV4/V6 connections
 //
-//    Operating system information
+//    * Operating system information
 //
-//    System performance
+//    * System performance
 //
-//    Process performance
+//    * Process performance
 //
 // The Application Discovery Service API includes the following actions to manage
 // AWS agents:
 //
-//    StartDataCollectionByAgentIds: Instructs the specified agents to start
-// collecting data. The Application Discovery Service takes several minutes
-// to receive and process data after you initiate data collection.
+//    * StartDataCollectionByAgentIds: Instructs the specified agents to start
+//    collecting data. The Application Discovery Service takes several minutes
+//    to receive and process data after you initiate data collection.
 //
-//    StopDataCollectionByAgentIds: Instructs the specified agents to stop collecting
-// data.
+//    * StopDataCollectionByAgentIds: Instructs the specified agents to stop
+//    collecting data.
 //
-//    DescribeAgents: Lists AWS agents by ID or lists all agents associated
-// with your user account if you did not specify an agent ID. The output includes
-// agent IDs, IP addresses, media access control (MAC) addresses, agent health,
-// host name where the agent resides, and the version number of each agent.
+//    * DescribeAgents: Lists AWS agents by ID or lists all agents associated
+//    with your user account if you did not specify an agent ID. The output
+//    includes agent IDs, IP addresses, media access control (MAC) addresses,
+//    agent health, host name where the agent resides, and the version number
+//    of each agent.
 //
 // Querying Configuration Items
 //
@@ -103,84 +105,84 @@ import (
 //
 // Server
 //
-//    server.HostName
+//    * server.HostName
 //
-//    server.osName
+//    * server.osName
 //
-//    server.osVersion
+//    * server.osVersion
 //
-//    server.configurationId
+//    * server.configurationId
 //
-//    server.agentId
+//    * server.agentId
 //
 // Process
 //
-//    process.name
+//    * process.name
 //
-//    process.CommandLine
+//    * process.CommandLine
 //
-//    process.configurationId
+//    * process.configurationId
 //
-//    server.hostName
+//    * server.hostName
 //
-//    server.osName
+//    * server.osName
 //
-//    server.osVersion
+//    * server.osVersion
 //
-//    server.configurationId
+//    * server.configurationId
 //
-//    server.agentId
+//    * server.agentId
 //
 // Connection
 //
-//    connection.sourceIp
+//    * connection.sourceIp
 //
-//    connection.sourcePort
+//    * connection.sourcePort
 //
-//    connection.destinationIp
+//    * connection.destinationIp
 //
-//    connection.destinationPort
+//    * connection.destinationPort
 //
-//    sourceProcess.configurationId
+//    * sourceProcess.configurationId
 //
-//    sourceProcess.commandLine
+//    * sourceProcess.commandLine
 //
-//    sourceProcess.name
+//    * sourceProcess.name
 //
-//    destinationProcessId.configurationId
+//    * destinationProcessId.configurationId
 //
-//    destinationProcess.commandLine
+//    * destinationProcess.commandLine
 //
-//    destinationProcess.name
+//    * destinationProcess.name
 //
-//    sourceServer.configurationId
+//    * sourceServer.configurationId
 //
-//    sourceServer.hostName
+//    * sourceServer.hostName
 //
-//    sourceServer.osName
+//    * sourceServer.osName
 //
-//    sourceServer.osVersion
+//    * sourceServer.osVersion
 //
-//    destinationServer.configurationId
+//    * destinationServer.configurationId
 //
-//    destinationServer.hostName
+//    * destinationServer.hostName
 //
-//    destinationServer.osName
+//    * destinationServer.osName
 //
-//    destinationServer.osVersion
+//    * destinationServer.osVersion
 //
 // The Application Discovery Service includes the following actions for querying
 // configuration items.
 //
-//    DescribeConfigurations: Retrieves a list of attributes for a specific
-// configuration ID. For example, the output for a server configuration item
-// includes a list of attributes about the server, including host name, operating
-// system, number of network cards, etc.
+//    * DescribeConfigurations: Retrieves a list of attributes for a specific
+//    configuration ID. For example, the output for a server configuration item
+//    includes a list of attributes about the server, including host name, operating
+//    system, number of network cards, etc.
 //
-//    ListConfigurations: Retrieves a list of configuration items according
-// to the criteria you specify in a filter. The filter criteria identify relationship
-// requirements. For example, you can specify filter criteria of process.name
-// with values of nginx and apache.
+//    * ListConfigurations: Retrieves a list of configuration items according
+//    to the criteria you specify in a filter. The filter criteria identify
+//    relationship requirements. For example, you can specify filter criteria
+//    of process.name with values of nginx and apache.
 //
 // Tagging Discovered Configuration Items
 //
@@ -188,14 +190,14 @@ import (
 // categorize IT assets in your data center. Tags use a key-value format. For
 // example, {"key": "serverType", "value": "webServer"}.
 //
-//    CreateTags: Creates one or more tags for a configuration items.
+//    * CreateTags: Creates one or more tags for a configuration items.
 //
-//    DescribeTags: Retrieves a list of configuration items that are tagged
-// with a specific tag. Or, retrieves a list of all tags assigned to a specific
-// configuration item.
+//    * DescribeTags: Retrieves a list of configuration items that are tagged
+//    with a specific tag. Or, retrieves a list of all tags assigned to a specific
+//    configuration item.
 //
-//    DeleteTags: Deletes the association between a configuration item and one
-// or more tags.
+//    * DeleteTags: Deletes the association between a configuration item and
+//    one or more tags.
 //
 // Exporting Data
 //
@@ -203,14 +205,14 @@ import (
 // visualization tool or cloud migration solution to help reduce the complexity
 // and time in planning your cloud migration.
 //
-//    ExportConfigurations: Exports all discovered configuration data to an
-// Amazon S3 bucket. Data includes tags and tag associations, processes, connections,
-// servers, and system performance. This API returns an export ID which you
-// can query using the GetExportStatus API.
+//    * ExportConfigurations: Exports all discovered configuration data to an
+//    Amazon S3 bucket. Data includes tags and tag associations, processes,
+//    connections, servers, and system performance. This API returns an export
+//    ID which you can query using the GetExportStatus API.
 //
-//    DescribeExportConfigurations: Gets the status of the data export. When
-// the export is complete, the service returns an Amazon S3 URL where you can
-// download CSV files that include the data.
+//    * DescribeExportConfigurations: Gets the status of the data export. When
+//    the export is complete, the service returns an Amazon S3 URL where you
+//    can download CSV files that include the data.
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type ApplicationDiscoveryService struct {

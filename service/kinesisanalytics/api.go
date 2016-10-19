@@ -2343,14 +2343,14 @@ type InputStartingPositionConfiguration struct {
 
 	// The starting position on the stream.
 	//
-	//    LATEST - Start reading just after the most recent record in the stream.
+	//    * LATEST - Start reading just after the most recent record in the stream.
 	//
-	//    TRIM_HORIZON - Start reading at the last untrimmed record in the stream,
-	// which is the oldest record available in the stream. This option is not available
-	// for an Amazon Kinesis Firehose delivery stream.
+	//    * TRIM_HORIZON - Start reading at the last untrimmed record in the stream,
+	//    which is the oldest record available in the stream. This option is not
+	//    available for an Amazon Kinesis Firehose delivery stream.
 	//
-	//    LAST_STOPPED_POINT - Resume reading from where the application last stopped
-	// reading.
+	//    * LAST_STOPPED_POINT - Resume reading from where the application last
+	//    stopped reading.
 	InputStartingPosition *string `type:"string" enum:"InputStartingPosition"`
 }
 
@@ -3058,8 +3058,6 @@ func (s *MappingParameters) Validate() error {
 // stream and a destination where you want the in-application stream data to
 // be written. The destination can be an Amazon Kinesis stream or an Amazon
 // Kinesis Firehose delivery stream.
-//
-// You can configure your application to write output to up to five destinations.
 type Output struct {
 	_ struct{} `type:"structure"`
 

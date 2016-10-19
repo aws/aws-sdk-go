@@ -3931,14 +3931,14 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *request.R
 //
 // The following are limitations for DescribeTags:
 //
-//    You cannot specify an ARN and a resource-type value together in the same
-//    request.
+//    * You cannot specify an ARN and a resource-type value together in the
+//    same request.
 //
-//    You cannot use the MaxRecords and Marker parameters together with the
-// ARN parameter.
+//    * You cannot use the MaxRecords and Marker parameters together with the
+//    ARN parameter.
 //
-//    The MaxRecords parameter can be a range from 10 to 50 results to return
-// in a request.
+//    * The MaxRecords parameter can be a range from 10 to 50 results to return
+//    in a request.
 //
 // If you specify both tag keys and tag values in the same request, Amazon Redshift
 // returns all resources that match any combination of the specified keys and
@@ -5717,37 +5717,37 @@ type Cluster struct {
 
 	// The current state of the cluster. Possible values are the following:
 	//
-	//    available
+	//    * available
 	//
-	//    creating
+	//    * creating
 	//
-	//    deleting
+	//    * deleting
 	//
-	//    final-snapshot
+	//    * final-snapshot
 	//
-	//    hardware-failure
+	//    * hardware-failure
 	//
-	//    incompatible-hsm
+	//    * incompatible-hsm
 	//
-	//    incompatible-network
+	//    * incompatible-network
 	//
-	//    incompatible-parameters
+	//    * incompatible-parameters
 	//
-	//    incompatible-restore
+	//    * incompatible-restore
 	//
-	//    modifying
+	//    * modifying
 	//
-	//    rebooting
+	//    * rebooting
 	//
-	//    renaming
+	//    * renaming
 	//
-	//    resizing
+	//    * resizing
 	//
-	//    rotating-keys
+	//    * rotating-keys
 	//
-	//    storage-full
+	//    * storage-full
 	//
-	//    updating-hsm
+	//    * updating-hsm
 	ClusterStatus *string `type:"string"`
 
 	// The name of the subnet group that is associated with the cluster. This parameter
@@ -5859,11 +5859,12 @@ type ClusterIamRole struct {
 	//
 	// The following are possible statuses and descriptions.
 	//
-	//    in-sync: The role is available for use by the cluster.
+	//    * in-sync: The role is available for use by the cluster.
 	//
-	//    adding: The role is in the process of being associated with the cluster.
+	//    * adding: The role is in the process of being associated with the cluster.
 	//
-	//    removing: The role is in the process of being disassociated with the cluster.
+	//    * removing: The role is in the process of being disassociated with the
+	//    cluster.
 	ApplyStatus *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role, for example, arn:aws:iam::123456789012:role/RedshiftCopyUnload.
@@ -5995,24 +5996,24 @@ type ClusterParameterStatus struct {
 	//
 	// The following are possible statuses and descriptions.
 	//
-	//    in-sync: The parameter value is in sync with the database.
+	//    * in-sync: The parameter value is in sync with the database.
 	//
-	//    pending-reboot: The parameter value will be applied after the cluster
-	// reboots.
+	//    * pending-reboot: The parameter value will be applied after the cluster
+	//    reboots.
 	//
-	//    applying: The parameter value is being applied to the database.
+	//    * applying: The parameter value is being applied to the database.
 	//
-	//    invalid-parameter: Cannot apply the parameter value because it has an
-	// invalid value or syntax.
+	//    * invalid-parameter: Cannot apply the parameter value because it has an
+	//    invalid value or syntax.
 	//
-	//    apply-deferred: The parameter contains static property changes. The changes
-	// are deferred until the cluster reboots.
+	//    * apply-deferred: The parameter contains static property changes. The
+	//    changes are deferred until the cluster reboots.
 	//
-	//    apply-error: Cannot connect to the cluster. The parameter change will
-	// be applied after the cluster reboots.
+	//    * apply-error: Cannot connect to the cluster. The parameter change will
+	//    be applied after the cluster reboots.
 	//
-	//    unknown-error: Cannot apply the parameter change right now. The change
-	// will be applied after the cluster reboots.
+	//    * unknown-error: Cannot apply the parameter change right now. The change
+	//    will be applied after the cluster reboots.
 	ParameterApplyStatus *string `type:"string"`
 
 	// The name of the parameter.
@@ -6177,14 +6178,15 @@ type CopyClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be the identifier for a valid cluster.
+	//    * Must be the identifier for a valid cluster.
 	SourceSnapshotClusterIdentifier *string `type:"string"`
 
 	// The identifier for the source snapshot.
 	//
 	// Constraints:
 	//
-	//    Must be the identifier for a valid automated snapshot whose state is available.
+	//    * Must be the identifier for a valid automated snapshot whose state is
+	//    available.
 	//
 	// SourceSnapshotIdentifier is a required field
 	SourceSnapshotIdentifier *string `type:"string" required:"true"`
@@ -6193,15 +6195,15 @@ type CopyClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    Cannot be null, empty, or blank.
+	//    * Cannot be null, empty, or blank.
 	//
-	//    Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 255 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    Must be unique for the AWS account that is making the request.
+	//    * Must be unique for the AWS account that is making the request.
 	//
 	// TargetSnapshotIdentifier is a required field
 	TargetSnapshotIdentifier *string `type:"string" required:"true"`
@@ -6295,15 +6297,15 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    Alphabetic characters must be lowercase.
+	//    * Alphabetic characters must be lowercase.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    Must be unique for all clusters within an AWS account.
+	//    * Must be unique for all clusters within an AWS account.
 	//
 	// Example: myexamplecluster
 	//
@@ -6318,11 +6320,11 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 to 255 alphanumeric characters or hyphens.
+	//    * Must be 1 to 255 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	ClusterParameterGroupName *string `type:"string"`
 
 	// A list of security groups to be associated with this cluster.
@@ -6338,9 +6340,9 @@ type CreateClusterInput struct {
 
 	// The type of the cluster. When cluster type is specified as
 	//
-	//    single-node, the NumberOfNodes parameter is not required.
+	//    * single-node, the NumberOfNodes parameter is not required.
 	//
-	//    multi-node, the NumberOfNodes parameter is required.
+	//    * multi-node, the NumberOfNodes parameter is required.
 	//
 	// Valid Values: multi-node | single-node
 	//
@@ -6368,13 +6370,13 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain 1 to 64 alphanumeric characters.
+	//    * Must contain 1 to 64 alphanumeric characters.
 	//
-	//    Must contain only lowercase letters.
+	//    * Must contain only lowercase letters.
 	//
-	//    Cannot be a word that is reserved by the service. A list of reserved words
-	//    can be found in Reserved Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
-	// in the Amazon Redshift Database Developer Guide.
+	//    * Cannot be a word that is reserved by the service. A list of reserved
+	//    words can be found in Reserved Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
+	//    in the Amazon Redshift Database Developer Guide.
 	DBName *string `type:"string"`
 
 	// The Elastic IP (EIP) address for the cluster.
@@ -6426,16 +6428,16 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be between 8 and 64 characters in length.
+	//    * Must be between 8 and 64 characters in length.
 	//
-	//    Must contain at least one uppercase letter.
+	//    * Must contain at least one uppercase letter.
 	//
-	//    Must contain at least one lowercase letter.
+	//    * Must contain at least one lowercase letter.
 	//
-	//    Must contain one number.
+	//    * Must contain one number.
 	//
-	//    Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
-	//    quote), " (double quote), \, /, @, or space.
+	//    * Can be any printable ASCII character (ASCII code 33 to 126) except '
+	//    (single quote), " (double quote), \, /, @, or space.
 	//
 	// MasterUserPassword is a required field
 	MasterUserPassword *string `type:"string" required:"true"`
@@ -6445,13 +6447,13 @@ type CreateClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 - 128 alphanumeric characters.
+	//    * Must be 1 - 128 alphanumeric characters.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot be a reserved word. A list of reserved words can be found in Reserved
-	// Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
-	// in the Amazon Redshift Database Developer Guide.
+	//    * Cannot be a reserved word. A list of reserved words can be found in
+	//    Reserved Words (http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)
+	//    in the Amazon Redshift Database Developer Guide.
 	//
 	// MasterUsername is a required field
 	MasterUsername *string `type:"string" required:"true"`
@@ -6595,13 +6597,13 @@ type CreateClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 to 255 alphanumeric characters or hyphens
+	//    * Must be 1 to 255 alphanumeric characters or hyphens
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    Must be unique withing your AWS account.
+	//    * Must be unique withing your AWS account.
 	//
 	// This value is stored as a lower-case string.
 	//
@@ -6666,11 +6668,12 @@ type CreateClusterSecurityGroupInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain no more than 255 alphanumeric characters or hyphens.
+	//    * Must contain no more than 255 alphanumeric characters or hyphens.
 	//
-	//    Must not be "Default".
+	//    * Must not be "Default".
 	//
-	//    Must be unique for all security groups that are created by your AWS account.
+	//    * Must be unique for all security groups that are created by your AWS
+	//    account.
 	//
 	// Example: examplesecuritygroup
 	//
@@ -6742,13 +6745,13 @@ type CreateClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    Cannot be null, empty, or blank
+	//    * Cannot be null, empty, or blank
 	//
-	//    Must contain from 1 to 255 alphanumeric characters or hyphens
+	//    * Must contain from 1 to 255 alphanumeric characters or hyphens
 	//
-	//    First character must be a letter
+	//    * First character must be a letter
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens
+	//    * Cannot end with a hyphen or contain two consecutive hyphens
 	//
 	// Example: my-snapshot-id
 	//
@@ -6810,11 +6813,11 @@ type CreateClusterSubnetGroupInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain no more than 255 alphanumeric characters or hyphens.
+	//    * Must contain no more than 255 alphanumeric characters or hyphens.
 	//
-	//    Must not be "Default".
+	//    * Must not be "Default".
 	//
-	//    Must be unique for all subnet groups that are created by your AWS account.
+	//    * Must be unique for all subnet groups that are created by your AWS account.
 	//
 	// Example: examplesubnetgroup
 	//
@@ -6933,13 +6936,13 @@ type CreateEventSubscriptionInput struct {
 	//
 	// Constraints:
 	//
-	//    Cannot be null, empty, or blank.
+	//    * Cannot be null, empty, or blank.
 	//
-	//    Must contain from 1 to 255 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 255 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// SubscriptionName is a required field
 	SubscriptionName *string `type:"string" required:"true"`
@@ -7155,15 +7158,15 @@ type CreateSnapshotCopyGrantInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    Alphabetic characters must be lowercase.
+	//    * Alphabetic characters must be lowercase.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    Must be unique for all clusters within an AWS account.
+	//    * Must be unique for all clusters within an AWS account.
 	//
 	// SnapshotCopyGrantName is a required field
 	SnapshotCopyGrantName *string `type:"string" required:"true"`
@@ -7314,13 +7317,13 @@ type DeleteClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain lowercase characters.
+	//    * Must contain lowercase characters.
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -7331,11 +7334,11 @@ type DeleteClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 to 255 alphanumeric characters.
+	//    * Must be 1 to 255 alphanumeric characters.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	FinalClusterSnapshotIdentifier *string `type:"string"`
 
 	// Determines whether a final snapshot of the cluster is created before Amazon
@@ -7396,9 +7399,9 @@ type DeleteClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be the name of an existing cluster parameter group.
+	//    * Must be the name of an existing cluster parameter group.
 	//
-	//    Cannot delete a default cluster parameter group.
+	//    * Cannot delete a default cluster parameter group.
 	//
 	// ParameterGroupName is a required field
 	ParameterGroupName *string `type:"string" required:"true"`
@@ -8266,11 +8269,11 @@ type DescribeClusterVersionsInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 to 255 alphanumeric characters
+	//    * Must be 1 to 255 alphanumeric characters
 	//
-	//    First character must be a letter
+	//    * First character must be a letter
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens
+	//    * Cannot end with a hyphen or contain two consecutive hyphens
 	ClusterParameterGroupFamily *string `type:"string"`
 
 	// The specific cluster version to return.
@@ -8616,13 +8619,13 @@ type DescribeEventsInput struct {
 	//
 	// If SourceIdentifier is supplied, SourceType must also be provided.
 	//
-	//    Specify a cluster identifier when SourceType is cluster.
+	//    * Specify a cluster identifier when SourceType is cluster.
 	//
-	//    Specify a cluster security group name when SourceType is cluster-security-group.
+	//    * Specify a cluster security group name when SourceType is cluster-security-group.
 	//
-	//    Specify a cluster parameter group name when SourceType is cluster-parameter-group.
+	//    * Specify a cluster parameter group name when SourceType is cluster-parameter-group.
 	//
-	//    Specify a cluster snapshot identifier when SourceType is cluster-snapshot.
+	//    * Specify a cluster snapshot identifier when SourceType is cluster-snapshot.
 	SourceIdentifier *string `type:"string"`
 
 	// The event source to retrieve events for. If no value is specified, all events
@@ -8632,15 +8635,16 @@ type DescribeEventsInput struct {
 	//
 	// If SourceType is supplied, SourceIdentifier must also be provided.
 	//
-	//    Specify cluster when SourceIdentifier is a cluster identifier.
+	//    * Specify cluster when SourceIdentifier is a cluster identifier.
 	//
-	//    Specify cluster-security-group when SourceIdentifier is a cluster security
-	// group name.
+	//    * Specify cluster-security-group when SourceIdentifier is a cluster security
+	//    group name.
 	//
-	//    Specify cluster-parameter-group when SourceIdentifier is a cluster parameter
-	// group name.
+	//    * Specify cluster-parameter-group when SourceIdentifier is a cluster parameter
+	//    group name.
 	//
-	//    Specify cluster-snapshot when SourceIdentifier is a cluster snapshot identifier.
+	//    * Specify cluster-snapshot when SourceIdentifier is a cluster snapshot
+	//    identifier.
 	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
@@ -9331,25 +9335,25 @@ type DescribeTagsInput struct {
 	// The type of resource with which you want to view tags. Valid resource types
 	// are:
 	//
-	//    Cluster
+	//    * Cluster
 	//
-	//    CIDR/IP
+	//    * CIDR/IP
 	//
-	//    EC2 security group
+	//    * EC2 security group
 	//
-	//    Snapshot
+	//    * Snapshot
 	//
-	//    Cluster security group
+	//    * Cluster security group
 	//
-	//    Subnet group
+	//    * Subnet group
 	//
-	//    HSM connection
+	//    * HSM connection
 	//
-	//    HSM certificate
+	//    * HSM certificate
 	//
-	//    Parameter group
+	//    * Parameter group
 	//
-	//    Snapshot copy grant
+	//    * Snapshot copy grant
 	//
 	// For more information about Amazon Redshift resource types and constructing
 	// ARNs, go to Constructing an Amazon Redshift Amazon Resource Name (ARN) (http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html)
@@ -9550,9 +9554,9 @@ type EnableLoggingInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be in the same region as the cluster
+	//    * Must be in the same region as the cluster
 	//
-	//    The cluster must have read bucket and put object permissions
+	//    * The cluster must have read bucket and put object permissions
 	//
 	// BucketName is a required field
 	BucketName *string `type:"string" required:"true"`
@@ -9568,21 +9572,21 @@ type EnableLoggingInput struct {
 	//
 	// Constraints:
 	//
-	//    Cannot exceed 512 characters
+	//    * Cannot exceed 512 characters
 	//
-	//    Cannot contain spaces( ), double quotes ("), single quotes ('), a backslash
+	//    * Cannot contain spaces( ), double quotes ("), single quotes ('), a backslash
 	//    (\), or control characters. The hexadecimal codes for invalid characters
 	//    are:
 	//
-	//    x00 to x20
+	// x00 to x20
 	//
-	//    x22
+	// x22
 	//
-	//    x27
+	// x27
 	//
-	//    x5c
+	// x5c
 	//
-	//    x7f or larger
+	// x7f or larger
 	S3KeyPrefix *string `type:"string"`
 }
 
@@ -9842,10 +9846,10 @@ type EventSubscription struct {
 	//
 	// Constraints:
 	//
-	//    Can be one of the following: active | no-permission | topic-not-exist
+	//    * Can be one of the following: active | no-permission | topic-not-exist
 	//
-	//    The status "no-permission" indicates that Amazon Redshift no longer has
-	//    permission to post to the Amazon SNS topic. The status "topic-not-exist"
+	//    * The status "no-permission" indicates that Amazon Redshift no longer
+	//    has permission to post to the Amazon SNS topic. The status "topic-not-exist"
 	//    indicates that the topic was deleted after the subscription was created.
 	Status *string `type:"string"`
 
@@ -10118,11 +10122,11 @@ type ModifyClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 to 255 alphanumeric characters or hyphens
+	//    * Must be 1 to 255 alphanumeric characters or hyphens
 	//
-	//    First character must be a letter
+	//    * First character must be a letter
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens
+	//    * Cannot end with a hyphen or contain two consecutive hyphens
 	ClusterSecurityGroups []*string `locationNameList:"ClusterSecurityGroupName" type:"list"`
 
 	// The new cluster type.
@@ -10189,31 +10193,31 @@ type ModifyClusterInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be between 8 and 64 characters in length.
+	//    * Must be between 8 and 64 characters in length.
 	//
-	//    Must contain at least one uppercase letter.
+	//    * Must contain at least one uppercase letter.
 	//
-	//    Must contain at least one lowercase letter.
+	//    * Must contain at least one lowercase letter.
 	//
-	//    Must contain one number.
+	//    * Must contain one number.
 	//
-	//    Can be any printable ASCII character (ASCII code 33 to 126) except ' (single
-	//    quote), " (double quote), \, /, @, or space.
+	//    * Can be any printable ASCII character (ASCII code 33 to 126) except '
+	//    (single quote), " (double quote), \, /, @, or space.
 	MasterUserPassword *string `type:"string"`
 
 	// The new identifier for the cluster.
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    Alphabetic characters must be lowercase.
+	//    * Alphabetic characters must be lowercase.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    Must be unique for all clusters within an AWS account.
+	//    * Must be unique for all clusters within an AWS account.
 	//
 	// Example: examplecluster
 	NewClusterIdentifier *string `type:"string"`
@@ -10875,13 +10879,13 @@ type ReservedNode struct {
 	//
 	// Possible Values:
 	//
-	//    pending-payment-This reserved node has recently been purchased, and the
-	//    sale has been approved, but payment has not yet been confirmed.
+	//    * pending-payment-This reserved node has recently been purchased, and
+	//    the sale has been approved, but payment has not yet been confirmed.
 	//
-	//    active-This reserved node is owned by the caller and is available for
+	//    * active-This reserved node is owned by the caller and is available for
 	//    use.
 	//
-	//    payment-failed-Payment failed for the purchase attempt.
+	//    * payment-failed-Payment failed for the purchase attempt.
 	State *string `type:"string"`
 
 	// The hourly rate Amazon Redshift charges you for this reserved node.
@@ -11018,15 +11022,15 @@ type RestoreFromClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//    Alphabetic characters must be lowercase.
+	//    * Alphabetic characters must be lowercase.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    Must be unique for all clusters within an AWS account.
+	//    * Must be unique for all clusters within an AWS account.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -11039,11 +11043,11 @@ type RestoreFromClusterSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//    Must be 1 to 255 alphanumeric characters or hyphens.
+	//    * Must be 1 to 255 alphanumeric characters or hyphens.
 	//
-	//    First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//    Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	ClusterParameterGroupName *string `type:"string"`
 
 	// A list of security groups to be associated with this cluster.
@@ -11615,12 +11619,13 @@ type Snapshot struct {
 	// The snapshot status. The value of the status depends on the API operation
 	// used.
 	//
-	//    CreateClusterSnapshot and CopyClusterSnapshot returns status as "creating".
+	//    * CreateClusterSnapshot and CopyClusterSnapshot returns status as "creating".
 	//
-	//    DescribeClusterSnapshots returns status as "creating", "available", "final
-	// snapshot", or "failed".
 	//
-	//    DeleteClusterSnapshot returns status as "deleted".
+	//    * DescribeClusterSnapshots returns status as "creating", "available",
+	//    "final snapshot", or "failed".
+	//
+	//    * DeleteClusterSnapshot returns status as "deleted".
 	Status *string `type:"string"`
 
 	// The list of tags for the cluster snapshot.
@@ -11794,23 +11799,23 @@ type TaggedResource struct {
 	// The type of resource with which the tag is associated. Valid resource types
 	// are:
 	//
-	//    Cluster
+	//    * Cluster
 	//
-	//    CIDR/IP
+	//    * CIDR/IP
 	//
-	//    EC2 security group
+	//    * EC2 security group
 	//
-	//    Snapshot
+	//    * Snapshot
 	//
-	//    Cluster security group
+	//    * Cluster security group
 	//
-	//    Subnet group
+	//    * Subnet group
 	//
-	//    HSM connection
+	//    * HSM connection
 	//
-	//    HSM certificate
+	//    * HSM certificate
 	//
-	//    Parameter group
+	//    * Parameter group
 	//
 	// For more information about Amazon Redshift resource types and constructing
 	// ARNs, go to Constructing an Amazon Redshift Amazon Resource Name (ARN) (http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html)

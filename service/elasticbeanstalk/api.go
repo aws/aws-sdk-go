@@ -479,9 +479,9 @@ func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfi
 //
 // Related Topics
 //
-//    DescribeConfigurationOptions
-//    DescribeConfigurationSettings
-//    ListAvailableSolutionStacks
+//    * DescribeConfigurationOptions
+//    * DescribeConfigurationSettings
+//    * ListAvailableSolutionStacks
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1185,7 +1185,7 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeC
 //
 // Related Topics
 //
-//    DeleteEnvironmentConfiguration
+//    * DeleteEnvironmentConfiguration
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1876,7 +1876,7 @@ func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironme
 //
 // Related Topics
 //
-//    RetrieveEnvironmentInfo
+//    * RetrieveEnvironmentInfo
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2001,7 +2001,7 @@ func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnviron
 //
 // Related Topics
 //
-//    RequestEnvironmentInfo
+//    * RequestEnvironmentInfo
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2314,9 +2314,9 @@ func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfi
 // or configuration option values.
 //
 // If a property (for example, ApplicationName) is not provided, its value remains
-// unchanged. To clear such properties, specify an empty string.  Related Topics
+// unchanged. To clear such properties, specify an empty string. Related Topics
 //
-//    DescribeConfigurationOptions
+//    * DescribeConfigurationOptions
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2846,8 +2846,8 @@ type CheckDNSAvailabilityOutput struct {
 
 	// Indicates if the specified CNAME is available:
 	//
-	//    true : The CNAME is available.
-	//    false : The CNAME is not available.
+	//    * true : The CNAME is available.
+	//    * false : The CNAME is not available.
 	Available *bool `type:"boolean"`
 
 	// The fully qualified CNAME to reserve when CreateEnvironment is called with
@@ -2920,12 +2920,12 @@ type ConfigurationOptionDescription struct {
 	// An indication of which action is required if the value for this configuration
 	// option changes:
 	//
-	//    NoInterruption : There is no interruption to the environment or application
+	//    * NoInterruption : There is no interruption to the environment or application
 	//    availability.
-	//    RestartEnvironment : The environment is entirely restarted, all AWS resources
-	//    are deleted and recreated, and the environment is unavailable during the
-	//    process.
-	//    RestartApplicationServer : The environment is available the entire time.
+	//    * RestartEnvironment : The environment is entirely restarted, all AWS
+	//    resources are deleted and recreated, and the environment is unavailable
+	//    during the process.
+	//    * RestartApplicationServer : The environment is available the entire time.
 	//    However, a short application outage occurs when the application servers
 	//    on the running Amazon EC2 instances are restarted.
 	ChangeSeverity *string `type:"string"`
@@ -2957,11 +2957,11 @@ type ConfigurationOptionDescription struct {
 
 	// An indication of whether the user defined this configuration option:
 	//
-	//    true : This configuration option was defined by the user. It is a valid
-	// choice for specifying if this as an Option to Remove when updating configuration
-	// settings.
+	//    * true : This configuration option was defined by the user. It is a valid
+	//    choice for specifying if this as an Option to Remove when updating configuration
+	//    settings.
 	//
-	//    false : This configuration was not defined by the user.
+	//    * false : This configuration was not defined by the user.
 	// Constraint: You can remove only UserDefined options from a configuration.
 	//
 	// Valid Values: true | false
@@ -2974,13 +2974,13 @@ type ConfigurationOptionDescription struct {
 	// An indication of which type of values this option has and whether it is allowable
 	// to select one or more than one of the possible values:
 	//
-	//    Scalar : Values for this option are a single selection from the possible
+	//    * Scalar : Values for this option are a single selection from the possible
 	//    values, or an unformatted string, or numeric value governed by the MIN/MAX/Regex
 	//    constraints.
-	//    List : Values for this option are multiple selections from the possible
+	//    * List : Values for this option are multiple selections from the possible
 	//    values.
-	//    Boolean : Values for this option are either true or false .
-	//    Json : Values for this option are a JSON representation of a ConfigDocument.
+	//    * Boolean : Values for this option are either true or false .
+	//    * Json : Values for this option are a JSON representation of a ConfigDocument.
 	//
 	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
 }
@@ -3054,13 +3054,13 @@ type ConfigurationSettingsDescription struct {
 	// If this configuration set is associated with an environment, the DeploymentStatus
 	// parameter indicates the deployment status of this configuration set:
 	//
-	//    null: This configuration is not associated with a running environment.
+	//    * null: This configuration is not associated with a running environment.
 	//
-	//    pending: This is a draft configuration that is not deployed to the associated
+	//    * pending: This is a draft configuration that is not deployed to the associated
 	//    environment but is in the process of deploying.
-	//    deployed: This is the configuration that is currently deployed to the
+	//    * deployed: This is the configuration that is currently deployed to the
 	//    associated running environment.
-	//    failed: This is a draft configuration that failed to successfully deploy.
+	//    * failed: This is a draft configuration that failed to successfully deploy.
 	//
 	DeploymentStatus *string `type:"string" enum:"ConfigurationDeploymentStatus"`
 
@@ -3146,10 +3146,10 @@ type CreateApplicationVersionInput struct {
 	// Determines how the system behaves if the specified application for this version
 	// does not already exist:
 	//
-	//    true : Automatically creates the specified application for this release
+	//    * true : Automatically creates the specified application for this release
 	//    if it does not already exist.
-	//    false : Throws an InvalidParameterValue if the specified application for
-	//    this release does not already exist.
+	//    * false : Throws an InvalidParameterValue if the specified application
+	//    for this release does not already exist.
 	// Default: false
 	//
 	// Valid Values: true | false
@@ -3578,9 +3578,9 @@ type DeleteApplicationVersionInput struct {
 
 	// Indicates whether to delete the associated source bundle from Amazon S3:
 	//
-	//    true: An attempt is made to delete the associated Amazon S3 source bundle
+	//    * true: An attempt is made to delete the associated Amazon S3 source bundle
 	//    specified at time of creation.
-	//    false: No action is taken on the Amazon S3 source bundle specified at
+	//    * false: No action is taken on the Amazon S3 source bundle specified at
 	//    time of creation.
 	// Valid Values: true | false
 	DeleteSourceBundle *bool `type:"boolean"`
@@ -3774,9 +3774,9 @@ type Deployment struct {
 
 	// The status of the deployment:
 	//
-	//    In Progress : The deployment is in progress.
-	//    Deployed : The deployment succeeded.
-	//    Failed : The deployment failed.
+	//    * In Progress : The deployment is in progress.
+	//    * Deployed : The deployment succeeded.
+	//    * Failed : The deployment failed.
 	Status *string `type:"string"`
 
 	// The version label of the application version in the deployment.
@@ -4571,12 +4571,12 @@ type EnvironmentDescription struct {
 	// Describes the health status of the environment. AWS Elastic Beanstalk indicates
 	// the failure levels for a running environment:
 	//
-	//    Red: Indicates the environment is not responsive. Occurs when three or
-	//    more consecutive failures occur for an environment.
-	//    Yellow: Indicates that something is wrong. Occurs when two consecutive
+	//    * Red: Indicates the environment is not responsive. Occurs when three
+	//    or more consecutive failures occur for an environment.
+	//    * Yellow: Indicates that something is wrong. Occurs when two consecutive
 	//    failures occur for an environment.
-	//    Green: Indicates the environment is healthy and fully functional.
-	//    Grey: Default health for a new environment. The environment is not fully
+	//    * Green: Indicates the environment is healthy and fully functional.
+	//    * Grey: Default health for a new environment. The environment is not fully
 	//    launched and health checks have not started or health checks are suspended
 	//    during an UpdateEnvironment or RestartEnvironement request.
 	// Default: Grey
@@ -4594,13 +4594,13 @@ type EnvironmentDescription struct {
 
 	// The current operational status of the environment:
 	//
-	//    Launching: Environment is in the process of initial deployment.
-	//    Updating: Environment is in the process of updating its configuration
+	//    * Launching: Environment is in the process of initial deployment.
+	//    * Updating: Environment is in the process of updating its configuration
 	//    settings or application version.
-	//    Ready: Environment is available to have an action performed on it, such
+	//    * Ready: Environment is available to have an action performed on it, such
 	//    as update or terminate.
-	//    Terminating: Environment is in the shut-down process.
-	//    Terminated: Environment is not running.
+	//    * Terminating: Environment is in the shut-down process.
+	//    * Terminated: Environment is not running.
 	Status *string `type:"string" enum:"EnvironmentStatus"`
 
 	// The name of the configuration template used to originally launch this environment.
@@ -5768,10 +5768,10 @@ type TerminateEnvironmentInput struct {
 	// Indicates whether the associated AWS resources should shut down when the
 	// environment is terminated:
 	//
-	//    true: The specified environment as well as the associated AWS resources,
+	//    * true: The specified environment as well as the associated AWS resources,
 	//    such as Auto Scaling group and LoadBalancer, are terminated.
-	//    false: AWS Elastic Beanstalk resource management is removed from the environment,
-	//    but the AWS resources continue to operate.
+	//    * false: AWS Elastic Beanstalk resource management is removed from the
+	//    environment, but the AWS resources continue to operate.
 	// For more information, see the  AWS Elastic Beanstalk User Guide.  (http://docs.aws.amazon.com/elasticbeanstalk/latest/ug/)
 	//
 	// Default: true
@@ -6227,10 +6227,10 @@ type ValidationMessage struct {
 
 	// An indication of the severity of this message:
 	//
-	//    error: This message indicates that this is not a valid setting for an
+	//    * error: This message indicates that this is not a valid setting for an
 	//    option.
-	//    warning: This message is providing information you should take into account.
-	//
+	//    * warning: This message is providing information you should take into
+	//    account.
 	Severity *string `type:"string" enum:"ValidationSeverity"`
 }
 
