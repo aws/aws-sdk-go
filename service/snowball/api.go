@@ -1130,17 +1130,17 @@ type CreateJobInput struct {
 	// moves to its destination while in transit. Regional shipping speeds are as
 	// follows:
 	//
-	//    * In Australia, you have access to express shipping. Typically, Snowballs
-	//    shipped express are delivered in about a day.
+	//   In Australia, you have access to express shipping. Typically, Snowballs
+	// shipped express are delivered in about a day.
 	//
-	//    * In the European Union (EU), you have access to express shipping. Typically,
-	//    Snowballs shipped express are delivered in about a day. In addition, most
-	//    countries in the EU have access to standard shipping, which typically
-	//    takes less than a week, one way.
+	//   In the European Union (EU), you have access to express shipping. Typically,
+	// Snowballs shipped express are delivered in about a day. In addition, most
+	// countries in the EU have access to standard shipping, which typically takes
+	// less than a week, one way.
 	//
-	//    * In India, Snowballs are delivered in one to seven days.
+	//   In India, Snowballs are delivered in one to seven days.
 	//
-	//    * In the US, you have access to one-day shipping and two-day shipping.
+	//   In the US, you have access to one-day shipping and two-day shipping.
 	//
 	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
@@ -1595,9 +1595,9 @@ func (s JobListEntry) GoString() string {
 // logs after 60 minutes have passed, you'll have to make another call to the
 // DescribeJob action.
 //
-// For import jobs, the PDF job report becomes available at the end of the import
-// process. For export jobs, your job report typically becomes available while
-// the Snowball for your job part is being delivered to you.
+// For import jobs, the PDF job report becomes available at the end of the
+// import process. For export jobs, your job report typically becomes available
+// while the Snowball for your job part is being delivered to you.
 //
 // The job report provides you insight into the state of your Amazon S3 data
 // transfer. The report includes details about your job or job part for your
@@ -1849,8 +1849,8 @@ func (s ListJobsOutput) GoString() string {
 // part of the response syntax of the DescribeJob action in the JobMetadata
 // data type.
 //
-// When the notification settings are defined during job creation, you can choose
-// to notify based on a specific set of job states using the JobStatesToNotify
+// When the notification settings are defined during job creation, you can
+// choose to notify based on a specific set of job states using the JobStatesToNotify
 // array of strings, or you can specify that you want to have Amazon SNS notifications
 // sent out for all job states with NotifyAll set to true.
 type Notification struct {
@@ -1969,18 +1969,18 @@ type ShippingDetails struct {
 	// represents how quickly it moves to its destination while in transit. Regional
 	// shipping speeds are as follows:
 	//
-	//    * In Australia, you have access to express shipping. Typically, Snowballs
-	//    shipped express are delivered in about a day.
+	//   In Australia, you have access to express shipping. Typically, Snowballs
+	// shipped express are delivered in about a day.
 	//
-	//    * In the European Union (EU), you have access to express shipping. Typically,
-	//    Snowballs shipped express are delivered in about a day. In addition, most
-	//    countries in the EU have access to standard shipping, which typically
-	//    takes less than a week, one way.
+	//   In the European Union (EU), you have access to express shipping. Typically,
+	// Snowballs shipped express are delivered in about a day. In addition, most
+	// countries in the EU have access to standard shipping, which typically takes
+	// less than a week, one way.
 	//
-	//    * In India, Snowballs are delivered in one to seven days.
+	//   In India, Snowballs are delivered in one to seven days.
 	//
-	//    * In the United States of America (US), you have access to one-day shipping
-	//    and two-day shipping.
+	//   In the United States of America (US), you have access to one-day shipping
+	// and two-day shipping.
 	ShippingOption *string `type:"string" enum:"ShippingOption"`
 }
 

@@ -590,8 +590,9 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 // you want to change. Any existing parameter not changed in an update to an
 // existing policy is not changed in this update request.
 //
-// You can view the existing scaling policies for a service namespace with DescribeScalingPolicies.
-// If you are no longer using a scaling policy, you can delete it with DeleteScalingPolicy.
+// You can view the existing scaling policies for a service namespace with
+// DescribeScalingPolicies. If you are no longer using a scaling policy, you
+// can delete it with DeleteScalingPolicy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -681,9 +682,9 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // a scalable target, you can use this operation to update the minimum and maximum
 // values for your scalable dimension.
 //
-// After you register a scalable target with Application Auto Scaling, you can
-// create and apply scaling policies to it with PutScalingPolicy. You can view
-// the existing scaling policies for a service namespace with DescribeScalableTargets.
+// After you register a scalable target with Application Auto Scaling, you
+// can create and apply scaling policies to it with PutScalingPolicy. You can
+// view the existing scaling policies for a service namespace with DescribeScalableTargets.
 // If you are no longer using a scalable target, you can deregister it with
 // DeregisterScalableTarget.
 //
@@ -1594,27 +1595,27 @@ func (s ScalingPolicy) GoString() string {
 // For the following examples, suppose that you have an alarm with a breach
 // threshold of 50:
 //
-//    * If you want the adjustment to be triggered when the metric is greater
-//    than or equal to 50 and less than 60, specify a lower bound of 0 and an
-//    upper bound of 10.
+//   If you want the adjustment to be triggered when the metric is greater
+// than or equal to 50 and less than 60, specify a lower bound of 0 and an upper
+// bound of 10.
 //
-//    * If you want the adjustment to be triggered when the metric is greater
-//    than 40 and less than or equal to 50, specify a lower bound of -10 and
-//    an upper bound of 0.
+//   If you want the adjustment to be triggered when the metric is greater
+// than 40 and less than or equal to 50, specify a lower bound of -10 and an
+// upper bound of 0.
 //
-// There are a few rules for the step adjustments for your step policy:
+//   There are a few rules for the step adjustments for your step policy:
 //
-//    * The ranges of your step adjustments can't overlap or have a gap.
+//   The ranges of your step adjustments can't overlap or have a gap.
 //
-//    * At most one step adjustment can have a null lower bound. If one step
-//    adjustment has a negative lower bound, then there must be a step adjustment
-//    with a null lower bound.
+//   At most one step adjustment can have a null lower bound. If one step adjustment
+// has a negative lower bound, then there must be a step adjustment with a null
+// lower bound.
 //
-//    * At most one step adjustment can have a null upper bound. If one step
-//    adjustment has a positive upper bound, then there must be a step adjustment
-//    with a null upper bound.
+//   At most one step adjustment can have a null upper bound. If one step adjustment
+// has a positive upper bound, then there must be a step adjustment with a null
+// upper bound.
 //
-//    * The upper and lower bound can't be null in the same step adjustment.
+//   The upper and lower bound can't be null in the same step adjustment.
 type StepAdjustment struct {
 	_ struct{} `type:"structure"`
 

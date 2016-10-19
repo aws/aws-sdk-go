@@ -122,6 +122,34 @@ func ExampleACM_GetCertificate() {
 	fmt.Println(resp)
 }
 
+func ExampleACM_ImportCertificate() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := acm.New(sess)
+
+	params := &acm.ImportCertificateInput{
+		Certificate:      []byte("PAYLOAD"), // Required
+		PrivateKey:       []byte("PAYLOAD"), // Required
+		CertificateArn:   aws.String("Arn"),
+		CertificateChain: []byte("PAYLOAD"),
+	}
+	resp, err := svc.ImportCertificate(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleACM_ListCertificates() {
 	sess, err := session.NewSession()
 	if err != nil {

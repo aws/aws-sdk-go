@@ -59,8 +59,8 @@ func (c *ELBV2) AddTagsRequest(input *AddTagsInput) (req *request.Request, outpu
 // Adds the specified tags to the specified resource. You can tag your Application
 // load balancers and your target groups.
 //
-// Each tag consists of a key and an optional value. If a resource already has
-// a tag with the same key, AddTags updates its value.
+// Each tag consists of a key and an optional value. If a resource already
+// has a tag with the same key, AddTags updates its value.
 //
 // To list the current tags for your resources, use DescribeTags. To remove
 // tags from your resources, use RemoveTags.
@@ -142,7 +142,8 @@ func (c *ELBV2) CreateListenerRequest(input *CreateListenerInput) (req *request.
 // you can delete it using DeleteListener. If you are finished with both the
 // listener and the load balancer, you can delete them both using DeleteLoadBalancer.
 //
-// For more information, see Listeners for Your Application Load Balancers (http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
+// For more information, see Listeners for Your Application Load Balancers
+// (http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html)
 // in the Application Load Balancers Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -243,9 +244,9 @@ func (c *ELBV2) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *
 //
 // Creates an Application load balancer.
 //
-// To create listeners for your load balancer, use CreateListener. You can add
-// security groups, subnets, and tags when you create your load balancer, or
-// you can add them later using SetSecurityGroups, SetSubnets, and AddTags.
+// To create listeners for your load balancer, use CreateListener. You can
+// add security groups, subnets, and tags when you create your load balancer,
+// or you can add them later using SetSecurityGroups, SetSubnets, and AddTags.
 //
 // To describe your current load balancers, see DescribeLoadBalancers. When
 // you are finished with a load balancer, you can delete it using DeleteLoadBalancer.
@@ -343,10 +344,10 @@ func (c *ELBV2) CreateRuleRequest(input *CreateRuleInput) (req *request.Request,
 //
 // Creates a rule for the specified listener.
 //
-// A rule consists conditions and actions. Rules are evaluated in priority order,
-// from the lowest value to the highest value. When the conditions for a rule
-// are met, the specified actions are taken. If no rule's conditions are met,
-// the default actions for the listener are taken.
+// A rule consists conditions and actions. Rules are evaluated in priority
+// order, from the lowest value to the highest value. When the conditions for
+// a rule are met, the specified actions are taken. If no rule's conditions
+// are met, the default actions for the listener are taken.
 //
 // To view your current rules, use DescribeRules. To update a rule, use ModifyRule.
 // To set the priorities of your rules, use SetRulePriorities. To delete a rule,
@@ -2114,8 +2115,8 @@ func (c *ELBV2) SetRulePrioritiesRequest(input *SetRulePrioritiesInput) (req *re
 //
 // Sets the priorities of the specified rules.
 //
-// You can reorder the rules as long as there are no priority conflicts in the
-// new order. Any existing rules that you do not specify retain their current
+// You can reorder the rules as long as there are no priority conflicts in
+// the new order. Any existing rules that you do not specify retain their current
 // priority.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2559,9 +2560,9 @@ type CreateLoadBalancerInput struct {
 
 	// The name of the load balancer.
 	//
-	// This name must be unique within your AWS account, can have a maximum of 32
-	// characters, must contain only alphanumeric characters or hyphens, and must
-	// not begin or end with a hyphen.
+	// This name must be unique within your AWS account, can have a maximum of
+	// 32 characters, must contain only alphanumeric characters or hyphens, and
+	// must not begin or end with a hyphen.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -3737,23 +3738,23 @@ type LoadBalancerAttribute struct {
 
 	// The name of the attribute.
 	//
-	//    * access_logs.s3.enabled - Indicates whether access logs stored in Amazon
-	//    S3 are enabled.
+	//    access_logs.s3.enabled - Indicates whether access logs stored in Amazon
+	// S3 are enabled.
 	//
-	//    * access_logs.s3.bucket - The name of the S3 bucket for the access logs.
-	//    This attribute is required if access logs in Amazon S3 are enabled. The
-	//    bucket must exist in the same region as the load balancer and have a bucket
-	//    policy that grants Elastic Load Balancing permission to write to the bucket.
+	//    access_logs.s3.bucket - The name of the S3 bucket for the access logs.
+	// This attribute is required if access logs in Amazon S3 are enabled. The bucket
+	// must exist in the same region as the load balancer and have a bucket policy
+	// that grants Elastic Load Balancing permission to write to the bucket.
 	//
-	//    * access_logs.s3.prefix - The prefix for the location in the S3 bucket.
-	//    If you don't specify a prefix, the access logs are stored in the root
-	//    of the bucket.
+	//    access_logs.s3.prefix - The prefix for the location in the S3 bucket.
+	// If you don't specify a prefix, the access logs are stored in the root of
+	// the bucket.
 	//
-	//    * deletion_protection.enabled - Indicates whether deletion protection
-	//    is enabled.
+	//    deletion_protection.enabled - Indicates whether deletion protection is
+	// enabled.
 	//
-	//    * idle_timeout.timeout_seconds - The idle timeout value, in seconds. The
-	//    valid range is 1-3600. The default is 60 seconds.
+	//    idle_timeout.timeout_seconds - The idle timeout value, in seconds. The
+	// valid range is 1-3600. The default is 60 seconds.
 	Key *string `type:"string"`
 
 	// The value of the attribute.
@@ -4354,15 +4355,15 @@ type RuleCondition struct {
 	// A path pattern is case sensitive, can be up to 255 characters in length,
 	// and can contain any of the following characters:
 	//
-	//    * A-Z, a-z, 0-9
+	//   A-Z, a-z, 0-9
 	//
-	//    * _ - . $ / ~ " ' @ : +
+	//   _ - . $ / ~ " ' @ : +
 	//
-	//    * & (using &amp;)
+	//   &amp; (using &amp;amp;)
 	//
-	//    * * (matches 0 or more characters)
+	//   * (matches 0 or more characters)
 	//
-	//    * ? (matches exactly 1 character)
+	//   ? (matches exactly 1 character)
 	Values []*string `type:"list"`
 }
 
@@ -4781,21 +4782,21 @@ type TargetGroupAttribute struct {
 
 	// The name of the attribute.
 	//
-	//    * deregistration_delay.timeout_seconds - The amount time for Elastic Load
-	//    Balancing to wait before changing the state of a deregistering target
-	//    from draining to unused. The range is 0-3600 seconds. The default value
-	//    is 300 seconds.
+	//    deregistration_delay.timeout_seconds - The amount time for Elastic Load
+	// Balancing to wait before changing the state of a deregistering target from
+	// draining to unused. The range is 0-3600 seconds. The default value is 300
+	// seconds.
 	//
-	//    * stickiness.enabled - Indicates whether sticky sessions are enabled.
+	//    stickiness.enabled - Indicates whether sticky sessions are enabled.
 	//
-	//    * stickiness.type - The type of sticky sessions. The possible value is
-	//    lb_cookie.
+	//    stickiness.type - The type of sticky sessions. The possible value is
+	// lb_cookie.
 	//
-	//    * stickiness.lb_cookie.duration_seconds - The time period, in seconds,
-	//    during which requests from a client should be routed to the same target.
-	//    After this time period expires, the load balancer-generated cookie is
-	//    considered stale. The range is 1 second to 1 week (604800 seconds). The
-	//    default value is 1 day (86400 seconds).
+	//    stickiness.lb_cookie.duration_seconds - The time period, in seconds,
+	// during which requests from a client should be routed to the same target.
+	// After this time period expires, the load balancer-generated cookie is considered
+	// stale. The range is 1 second to 1 week (604800 seconds). The default value
+	// is 1 day (86400 seconds).
 	Key *string `type:"string"`
 
 	// The value of the attribute.
@@ -4825,42 +4826,41 @@ type TargetHealth struct {
 	// If the target state is initial, the reason code can be one of the following
 	// values:
 	//
-	//    * Elb.RegistrationInProgress - The target is in the process of being registered
-	//    with the load balancer.
+	//    Elb.RegistrationInProgress - The target is in the process of being registered
+	// with the load balancer.
 	//
-	//    * Elb.InitialHealthChecking - The load balancer is still sending the target
-	//    the minimum number of health checks required to determine its health status.
+	//    Elb.InitialHealthChecking - The load balancer is still sending the target
+	// the minimum number of health checks required to determine its health status.
 	//
-	// If the target state is unhealthy, the reason code can be one of the following
+	//   If the target state is unhealthy, the reason code can be one of the following
 	// values:
 	//
-	//    * Target.ResponseCodeMismatch - The health checks did not return an expected
-	//    HTTP code.
+	//    Target.ResponseCodeMismatch - The health checks did not return an expected
+	// HTTP code.
 	//
-	//    * Target.Timeout - The health check requests timed out.
+	//    Target.Timeout - The health check requests timed out.
 	//
-	//    * Target.FailedHealthChecks - The health checks failed because the connection
-	//    to the target timed out, the target response was malformed, or the target
-	//    failed the health check for an unknown reason.
+	//    Target.FailedHealthChecks - The health checks failed because the connection
+	// to the target timed out, the target response was malformed, or the target
+	// failed the health check for an unknown reason.
 	//
-	//    * Elb.InternalError - The health checks failed due to an internal error.
+	//    Elb.InternalError - The health checks failed due to an internal error.
 	//
-	// If the target state is unused, the reason code can be one of the following
+	//   If the target state is unused, the reason code can be one of the following
 	// values:
 	//
-	//    * Target.NotRegistered - The target is not registered with the target
-	//    group.
+	//    Target.NotRegistered - The target is not registered with the target group.
 	//
-	//    * Target.NotInUse - The target group is not used by any load balancer
-	//    or the target is in an Availability Zone that is not enabled for its load
-	//    balancer.
+	//    Target.NotInUse - The target group is not used by any load balancer or
+	// the target is in an Availability Zone that is not enabled for its load balancer.
 	//
-	//    * Target.InvalidState - The target is in the stopped or terminated state.
+	//    Target.InvalidState - The target is in the stopped or terminated state.
 	//
-	// If the target state is draining, the reason code can be the following value:
+	//   If the target state is draining, the reason code can be the following
+	// value:
 	//
-	//    * Target.DeregistrationInProgress - The target is in the process of being
-	//    deregistered and the deregistration delay period has not expired.
+	//    Target.DeregistrationInProgress - The target is in the process of being
+	// deregistered and the deregistration delay period has not expired.
 	Reason *string `type:"string" enum:"TargetHealthReasonEnum"`
 
 	// The state of the target.

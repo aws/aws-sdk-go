@@ -129,8 +129,8 @@ func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainIn
 //
 // This operation deletes the specified tags for a domain.
 //
-// All tag operations are eventually consistent; subsequent operations may not
-// immediately represent all issued operations.
+// All tag operations are eventually consistent; subsequent operations may
+// not immediately represent all issued operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -674,15 +674,14 @@ func (c *Route53Domains) GetDomainSuggestionsRequest(input *GetDomainSuggestions
 // given a string, which can either be a domain name or simply a word or phrase
 // (without spaces).
 //
-// Parameters: DomainName (string): The basis for your domain suggestion search,
-// a string with (or without) top-level domain specified.
-// SuggestionCount (int): The number of domain suggestions to be returned, maximum
-// 50, minimum 1.
-// OnlyAvailable (bool): If true, availability check will be performed on suggestion
-// results, and only available domains will be returned. If false, suggestions
-// will be returned without checking whether the domain is actually available,
-// and caller will have to call checkDomainAvailability for each suggestion
-// to determine availability for registration.
+//  Parameters: DomainName (string): The basis for your domain suggestion search,
+// a string with (or without) top-level domain specified. SuggestionCount (int):
+// The number of domain suggestions to be returned, maximum 50, minimum 1. OnlyAvailable
+// (bool): If true, availability check will be performed on suggestion results,
+// and only available domains will be returned. If false, suggestions will be
+// returned without checking whether the domain is actually available, and caller
+// will have to call checkDomainAvailability for each suggestion to determine
+// availability for registration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1015,8 +1014,8 @@ func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput)
 // This operation returns all of the tags that are associated with the specified
 // domain.
 //
-// All tag operations are eventually consistent; subsequent operations may not
-// immediately represent all issued operations.
+// All tag operations are eventually consistent; subsequent operations may
+// not immediately represent all issued operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1095,22 +1094,19 @@ func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req 
 //
 // When you register a domain, Amazon Route 53 does the following:
 //
-//    * Creates a Amazon Route 53 hosted zone that has the same name as the
-//    domain. Amazon Route 53 assigns four name servers to your hosted zone
-//    and automatically updates your domain registration with the names of these
-//    name servers.
-//    * Enables autorenew, so your domain registration will renew automatically
-//    each year. We'll notify you in advance of the renewal date so you can
-//    choose whether to renew the registration.
-//    * Optionally enables privacy protection, so WHOIS queries return contact
-//    information for our registrar partner, Gandi, instead of the information
-//    you entered for registrant, admin, and tech contacts.
-//    * If registration is successful, returns an operation ID that you can
-//    use to track the progress and completion of the action. If the request
-//    is not completed successfully, the domain registrant is notified by email.
-//
-//    * Charges your AWS account an amount based on the top-level domain. For
-//    more information, see Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
+//  Creates a Amazon Route 53 hosted zone that has the same name as the domain.
+// Amazon Route 53 assigns four name servers to your hosted zone and automatically
+// updates your domain registration with the names of these name servers. Enables
+// autorenew, so your domain registration will renew automatically each year.
+// We'll notify you in advance of the renewal date so you can choose whether
+// to renew the registration. Optionally enables privacy protection, so WHOIS
+// queries return contact information for our registrar partner, Gandi, instead
+// of the information you entered for registrant, admin, and tech contacts.
+// If registration is successful, returns an operation ID that you can use to
+// track the progress and completion of the action. If the request is not completed
+// successfully, the domain registrant is notified by email. Charges your AWS
+// account an amount based on the top-level domain. For more information, see
+// Amazon Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1443,10 +1439,10 @@ func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req 
 // Caution! If the registrar for your domain is also the DNS service provider
 // for the domain and you don't transfer DNS service to another provider, your
 // website, email, and the web applications associated with the domain might
-// become unavailable.If the transfer is successful, this method returns an operation ID that you
-// can use to track the progress and completion of the action. If the transfer
-// doesn't complete successfully, the domain registrant will be notified by
-// email.
+// become unavailable. If the transfer is successful, this method returns an
+// operation ID that you can use to track the progress and completion of the
+// action. If the transfer doesn't complete successfully, the domain registrant
+// will be notified by email.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1618,7 +1614,7 @@ func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainCo
 // the privacy option is enabled, personal information such as postal or email
 // address is hidden from the results of a public WHOIS query. The privacy services
 // are provided by the AWS registrar, Gandi. For more information, see the Gandi
-// privacy features (http://www.gandi.net/domain/whois/?currency=USD&lang=en).
+// privacy features (http://www.gandi.net/domain/whois/?currency=USD&amp;lang=en).
 //
 // This operation only affects the privacy of the specified contact type (registrant,
 // administrator, or tech). Successful acceptance returns an operation ID that
@@ -1791,8 +1787,8 @@ func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainIn
 //
 // This operation adds or updates tags for a specified domain.
 //
-// All tag operations are eventually consistent; subsequent operations may not
-// immediately represent all issued operations.
+// All tag operations are eventually consistent; subsequent operations may
+// not immediately represent all issued operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1909,10 +1905,7 @@ type BillingRecord struct {
 	//
 	// Type: String
 	//
-	// Valid values: REGISTER_DOMAIN
-	// TRANSFER_IN_DOMAIN
-	// RENEW_DOMAIN
-	// CHANGE_DOMAIN_OWNER
+	// Valid values:  REGISTER_DOMAIN TRANSFER_IN_DOMAIN RENEW_DOMAIN CHANGE_DOMAIN_OWNER
 	Operation *string `type:"string" enum:"OperationType"`
 
 	// The price that you were charged for the operation, in US dollars.
@@ -1985,26 +1978,21 @@ type CheckDomainAvailabilityOutput struct {
 
 	// Whether the domain name is available for registering.
 	//
-	// You can only register domains designated as AVAILABLE.
+	//  You can only register domains designated as AVAILABLE.
 	//
-	// Type: String
+	//  Type: String
 	//
 	// Valid values:
 	//
-	//    * AVAILABLE – The domain name is available.
-	//    * AVAILABLE_RESERVED – The domain name is reserved under specific conditions.
-	//
-	//    * AVAILABLE_PREORDER – The domain name is available and can be preordered.
-	//
-	//    * UNAVAILABLE – The domain name is not available.
-	//    * UNAVAILABLE_PREMIUM – The domain name is not available.
-	//    * UNAVAILABLE_RESTRICTED – The domain name is forbidden.
-	//    * RESERVED – The domain name has been reserved for another person or organization.
-	//
-	//    * DONT_KNOW – The TLD registry didn't reply with a definitive answer about
-	//    whether the domain name is available. Amazon Route 53 can return this
-	//    response for a variety of reasons, for example, the registry is performing
-	//    maintenance. Try again later.
+	//  AVAILABLE – The domain name is available. AVAILABLE_RESERVED – The domain
+	// name is reserved under specific conditions. AVAILABLE_PREORDER – The domain
+	// name is available and can be preordered. UNAVAILABLE – The domain name is
+	// not available. UNAVAILABLE_PREMIUM – The domain name is not available. UNAVAILABLE_RESTRICTED
+	// – The domain name is forbidden. RESERVED – The domain name has been reserved
+	// for another person or organization. DONT_KNOW – The TLD registry didn't reply
+	// with a definitive answer about whether the domain name is available. Amazon
+	// Route 53 can return this response for a variety of reasons, for example,
+	// the registry is performing maintenance. Try again later.
 	//
 	// Availability is a required field
 	Availability *string `type:"string" required:"true" enum:"DomainAvailability"`
@@ -2275,6 +2263,8 @@ type DeleteTagsForDomainInput struct {
 	// Default: None
 	//
 	// Required: No
+	//
+	// '>
 	//
 	// TagsToDelete is a required field
 	TagsToDelete []*string `type:"list" required:"true"`
@@ -3262,13 +3252,13 @@ type ListTagsForDomainOutput struct {
 	//
 	// Each tag includes the following elements.
 	//
-	//    * Key
+	//  Key
 	//
 	// The key (name) of a tag.
 	//
 	// Type: String
 	//
-	//    * Value
+	//  Value
 	//
 	// The value of a tag.
 	//
@@ -4430,7 +4420,7 @@ type UpdateTagsForDomainInput struct {
 	//
 	// '> Each tag includes the following elements:
 	//
-	//    * Key
+	//  Key
 	//
 	// The key (name) of a tag.
 	//
@@ -4444,7 +4434,7 @@ type UpdateTagsForDomainInput struct {
 	//
 	// Required: Yes
 	//
-	//    * Value
+	//  Value
 	//
 	// The value of a tag.
 	//
@@ -4522,8 +4512,8 @@ type ViewBillingInput struct {
 	//
 	// Default: None
 	//
-	// Constraints: The marker must match the value of NextPageMarker that was returned
-	// in the previous response.
+	// Constraints: The marker must match the value of NextPageMarker that was
+	// returned in the previous response.
 	//
 	// Required: No
 	Marker *string `type:"string"`

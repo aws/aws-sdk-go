@@ -58,8 +58,8 @@ func (c *ECR) BatchCheckLayerAvailabilityRequest(input *BatchCheckLayerAvailabil
 // Check the availability of multiple image layers in a specified registry and
 // repository.
 //
-// This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+//  This operation is used by the Amazon ECR proxy, and it is not intended
+// for general use by customers. Use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -281,8 +281,8 @@ func (c *ECR) CompleteLayerUploadRequest(input *CompleteLayerUploadInput) (req *
 // name, and upload ID, has completed. You can optionally provide a sha256 digest
 // of the image layer for data validation purposes.
 //
-// This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+//  This operation is used by the Amazon ECR proxy, and it is not intended
+// for general use by customers. Use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -604,7 +604,7 @@ func (c *ECR) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Re
 // Returns metadata about the images in a repository, including image size and
 // creation date.
 //
-// Beginning with Docker version 1.9, the Docker client compresses image layers
+//  Beginning with Docker version 1.9, the Docker client compresses image layers
 // before pushing them to a V2 Docker registry. The output of the docker images
 // command shows the uncompressed image size, so it may return a larger image
 // size than the image sizes returned by DescribeImages.
@@ -758,10 +758,10 @@ func (c *ECR) GetAuthorizationTokenRequest(input *GetAuthorizationTokenInput) (r
 // command allows you to use the docker CLI to push and pull images with Amazon
 // ECR. If you do not specify a registry, the default registry is assumed.
 //
-// The authorizationToken returned for each registry specified is a base64 encoded
-// string that can be decoded and used in a docker login command to authenticate
-// to a registry. The AWS CLI offers an aws ecr get-login command that simplifies
-// the login process.
+// The authorizationToken returned for each registry specified is a base64
+// encoded string that can be decoded and used in a docker login command to
+// authenticate to a registry. The AWS CLI offers an aws ecr get-login command
+// that simplifies the login process.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -832,8 +832,8 @@ func (c *ECR) GetDownloadUrlForLayerRequest(input *GetDownloadUrlForLayerInput) 
 // Retrieves the pre-signed Amazon S3 download URL corresponding to an image
 // layer. You can only get URLs for image layers that are referenced in an image.
 //
-// This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+//  This operation is used by the Amazon ECR proxy, and it is not intended
+// for general use by customers. Use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -991,8 +991,8 @@ func (c *ECR) InitiateLayerUploadRequest(input *InitiateLayerUploadInput) (req *
 //
 // Notify Amazon ECR that you intend to upload an image layer.
 //
-// This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+//  This operation is used by the Amazon ECR proxy, and it is not intended
+// for general use by customers. Use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1144,8 +1144,8 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 //
 // Creates or updates the image manifest associated with an image.
 //
-// This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+//  This operation is used by the Amazon ECR proxy, and it is not intended
+// for general use by customers. Use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1305,8 +1305,8 @@ func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.
 //
 // Uploads an image layer part to Amazon ECR.
 //
-// This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+//  This operation is used by the Amazon ECR proxy, and it is not intended
+// for general use by customers. Use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1981,8 +1981,8 @@ type DescribeRepositoriesInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The AWS account ID associated with the registry that contains the repositories
@@ -2263,7 +2263,7 @@ type ImageDetail struct {
 
 	// The size, in bytes, of the image in the repository.
 	//
-	// Beginning with Docker version 1.9, the Docker client compresses image layers
+	//  Beginning with Docker version 1.9, the Docker client compresses image layers
 	// before pushing them to a V2 Docker registry. The output of the docker images
 	// command shows the uncompressed image size, so it may return a larger image
 	// size than the image sizes returned by DescribeImages.
@@ -2483,8 +2483,8 @@ type ListImagesInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
+	//  This token should be treated as an opaque identifier that is only used
+	// to retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The AWS account ID associated with the registry that contains the repository

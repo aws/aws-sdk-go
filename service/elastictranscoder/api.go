@@ -316,17 +316,19 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 //
 // The CreatePreset operation creates a preset with settings that you specify.
 //
-// Elastic Transcoder checks the CreatePreset settings to ensure that they meet
-// Elastic Transcoder requirements and to determine whether they comply with
-// H.264 standards. If your settings are not valid for Elastic Transcoder, Elastic
-// Transcoder returns an HTTP 400 response (ValidationException) and does not
-// create the preset. If the settings are valid for Elastic Transcoder but aren't
-// strictly compliant with the H.264 standard, Elastic Transcoder creates the
-// preset and returns a warning message in the response. This helps you determine
-// whether your settings comply with the H.264 standard while giving you greater
-// flexibility with respect to the video that Elastic Transcoder produces.Elastic Transcoder uses the H.264 video-compression format. For more information,
-// see the International Telecommunication Union publication Recommendation
-// ITU-T H.264: Advanced video coding for generic audiovisual services.
+// Elastic Transcoder checks the CreatePreset settings to ensure that they
+// meet Elastic Transcoder requirements and to determine whether they comply
+// with H.264 standards. If your settings are not valid for Elastic Transcoder,
+// Elastic Transcoder returns an HTTP 400 response (ValidationException) and
+// does not create the preset. If the settings are valid for Elastic Transcoder
+// but aren't strictly compliant with the H.264 standard, Elastic Transcoder
+// creates the preset and returns a warning message in the response. This helps
+// you determine whether your settings comply with the H.264 standard while
+// giving you greater flexibility with respect to the video that Elastic Transcoder
+// produces. Elastic Transcoder uses the H.264 video-compression format. For
+// more information, see the International Telecommunication Union publication
+// Recommendation ITU-T H.264: Advanced video coding for generic audiovisual
+// services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -406,9 +408,9 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 //
 // The DeletePipeline operation removes a pipeline.
 //
-// You can only delete a pipeline that has never been used or that is not currently
-// in use (doesn't contain any active jobs). If the pipeline is currently in
-// use, DeletePipeline returns an error.
+//  You can only delete a pipeline that has never been used or that is not
+// currently in use (doesn't contain any active jobs). If the pipeline is currently
+// in use, DeletePipeline returns an error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -493,7 +495,7 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 //
 // The DeletePreset operation removes a preset that you've added in an AWS region.
 //
-// You can't delete the default presets that are included with Elastic Transcoder.
+//  You can't delete the default presets that are included with Elastic Transcoder.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1598,28 +1600,25 @@ type Artwork struct {
 	// Specify one of the following values to control scaling of the output album
 	// art:
 	//
-	// Fit: Elastic Transcoder scales the output art so it matches the value that
-	// you specified in either MaxWidth or MaxHeight without exceeding the other
-	// value.
-	// Fill: Elastic Transcoder scales the output art so it matches the value that
-	// you specified in either MaxWidth or MaxHeight and matches or exceeds the
-	// other value. Elastic Transcoder centers the output art and then crops it
-	// in the dimension (if any) that exceeds the maximum value.
+	//   Fit: Elastic Transcoder scales the output art so it matches the value
+	// that you specified in either MaxWidth or MaxHeight without exceeding the
+	// other value. Fill: Elastic Transcoder scales the output art so it matches
+	// the value that you specified in either MaxWidth or MaxHeight and matches
+	// or exceeds the other value. Elastic Transcoder centers the output art and
+	// then crops it in the dimension (if any) that exceeds the maximum value.
 	// Stretch: Elastic Transcoder stretches the output art to match the values
 	// that you specified for MaxWidth and MaxHeight. If the relative proportions
 	// of the input art and the output art are different, the output art will be
-	// distorted.
-	// Keep: Elastic Transcoder does not scale the output art. If either dimension
-	// of the input art exceeds the values that you specified for MaxWidth and MaxHeight,
-	// Elastic Transcoder crops the output art.
-	// ShrinkToFit: Elastic Transcoder scales the output art down so that its dimensions
-	// match the values that you specified for at least one of MaxWidth and MaxHeight
-	// without exceeding either value. If you specify this option, Elastic Transcoder
-	// does not scale the art up.
-	// ShrinkToFill Elastic Transcoder scales the output art down so that its dimensions
-	// match the values that you specified for at least one of MaxWidth and MaxHeight
-	// without dropping below either value. If you specify this option, Elastic
-	// Transcoder does not scale the art up.
+	// distorted. Keep: Elastic Transcoder does not scale the output art. If either
+	// dimension of the input art exceeds the values that you specified for MaxWidth
+	// and MaxHeight, Elastic Transcoder crops the output art. ShrinkToFit: Elastic
+	// Transcoder scales the output art down so that its dimensions match the values
+	// that you specified for at least one of MaxWidth and MaxHeight without exceeding
+	// either value. If you specify this option, Elastic Transcoder does not scale
+	// the art up. ShrinkToFill Elastic Transcoder scales the output art down so
+	// that its dimensions match the values that you specified for at least one
+	// of MaxWidth and MaxHeight without dropping below either value. If you specify
+	// this option, Elastic Transcoder does not scale the art up.
 	SizingPolicy *string `type:"string"`
 }
 
@@ -1676,15 +1675,13 @@ type AudioCodecOptions struct {
 	// Specify the AAC profile for the output file. Elastic Transcoder supports
 	// the following profiles:
 	//
-	//    * auto: If you specify auto, Elastic Transcoder will select the profile
-	//    based on the bit rate selected for the output file.
-	//    * AAC-LC: The most common AAC profile. Use for bit rates larger than 64
-	//    kbps.
-	//    * HE-AAC: Not supported on some older players and devices. Use for bit
-	//    rates between 40 and 80 kbps.
-	//    * HE-AACv2: Not supported on some players and devices. Use for bit rates
-	//    less than 48 kbps.
-	// All outputs in a Smooth playlist must have the same value for Profile.
+	//  auto: If you specify auto, Elastic Transcoder will select the profile based
+	// on the bit rate selected for the output file. AAC-LC: The most common AAC
+	// profile. Use for bit rates larger than 64 kbps. HE-AAC: Not supported on
+	// some older players and devices. Use for bit rates between 40 and 80 kbps.
+	// HE-AACv2: Not supported on some players and devices. Use for bit rates less
+	// than 48 kbps.  All outputs in a Smooth playlist must have the same value
+	// for Profile.
 	//
 	// If you created any presets before AAC profiles were added, Elastic Transcoder
 	// automatically updated your presets to use AAC-LC. You can change the value
@@ -1724,79 +1721,59 @@ type AudioParameters struct {
 	//
 	// SingleTrack, OneChannelPerTrack, and OneChannelPerTrackWithMosTo8Tracks
 	//
-	// When you specify SingleTrack, Elastic Transcoder creates a single track for
-	// your output. The track can have up to eight channels. Use SingleTrack for
-	// all non-mxf containers.
+	// When you specify SingleTrack, Elastic Transcoder creates a single track
+	// for your output. The track can have up to eight channels. Use SingleTrack
+	// for all non-mxf containers.
 	//
 	// The outputs of SingleTrack for a specific channel value and inputs are as
 	// follows:
 	//
-	//    * 0 channels with any input: Audio omitted from the output
-	//    * 1, 2, or auto channels with no audio input: Audio omitted from the output
-	//
-	//    * 1 channel with any input with audio: One track with one channel, downmixed
-	//    if necessary
-	//    * 2 channels with one track with one channel: One track with two identical
-	//    channels
-	//    * 2 or auto channels with two tracks with one channel each: One track
-	//    with two channels
-	//    * 2 or auto channels with one track with two channels: One track with
-	//    two channels
-	//    * 2 channels with one track with multiple channels: One track with two
-	//    channels
-	//    * auto channels with one track with one channel: One track with one channel
-	//
-	//    * auto channels with one track with multiple channels: One track with
-	//    multiple channels
-	// When you specify OneChannelPerTrack, Elastic Transcoder creates a new track
-	// for every channel in your output. Your output can have up to eight single-channel
-	// tracks.
+	//  0  channels with any input: Audio omitted from the output 1, 2, or auto
+	//  channels with no audio input: Audio omitted from the output 1  channel with
+	// any input with audio: One track with one channel, downmixed if necessary
+	// 2  channels with one track with one channel: One track with two identical
+	// channels 2 or auto  channels with two tracks with one channel each: One track
+	// with two channels 2 or auto  channels with one track with two channels: One
+	// track with two channels 2  channels with one track with multiple channels:
+	// One track with two channels auto  channels with one track with one channel:
+	// One track with one channel auto  channels with one track with multiple channels:
+	// One track with multiple channels  When you specify OneChannelPerTrack, Elastic
+	// Transcoder creates a new track for every channel in your output. Your output
+	// can have up to eight single-channel tracks.
 	//
 	// The outputs of OneChannelPerTrack for a specific channel value and inputs
 	// are as follows:
 	//
-	//    * 0 channels with any input: Audio omitted from the output
-	//    * 1, 2, or auto channels with no audio input: Audio omitted from the output
-	//
-	//    * 1 channel with any input with audio: One track with one channel, downmixed
-	//    if necessary
-	//    * 2 channels with one track with one channel: Two tracks with one identical
-	//    channel each
-	//    * 2 or auto channels with two tracks with one channel each: Two tracks
-	//    with one channel each
-	//    * 2 or auto channels with one track with two channels: Two tracks with
-	//    one channel each
-	//    * 2 channels with one track with multiple channels: Two tracks with one
-	//    channel each
-	//    * auto channels with one track with one channel: One track with one channel
-	//
-	//    * auto channels with one track with multiple channels: Up to eight tracks
-	//    with one channel each
-	// When you specify OneChannelPerTrackWithMosTo8Tracks, Elastic Transcoder creates
+	//  0  channels with any input: Audio omitted from the output 1, 2, or auto
+	//  channels with no audio input: Audio omitted from the output 1  channel with
+	// any input with audio: One track with one channel, downmixed if necessary
+	// 2  channels with one track with one channel: Two tracks with one identical
+	// channel each 2 or auto  channels with two tracks with one channel each: Two
+	// tracks with one channel each 2 or auto  channels with one track with two
+	// channels: Two tracks with one channel each 2  channels with one track with
+	// multiple channels: Two tracks with one channel each auto  channels with one
+	// track with one channel: One track with one channel auto  channels with one
+	// track with multiple channels: Up to eight tracks with one channel each  When
+	// you specify OneChannelPerTrackWithMosTo8Tracks, Elastic Transcoder creates
 	// eight single-channel tracks for your output. All tracks that do not contain
 	// audio data from an input channel are MOS, or Mit Out Sound, tracks.
 	//
 	// The outputs of OneChannelPerTrackWithMosTo8Tracks for a specific channel
 	// value and inputs are as follows:
 	//
-	//    * 0 channels with any input: Audio omitted from the output
-	//    * 1, 2, or auto channels with no audio input: Audio omitted from the output
-	//
-	//    * 1 channel with any input with audio: One track with one channel, downmixed
-	//    if necessary, plus six MOS tracks
-	//    * 2 channels with one track with one channel: Two tracks with one identical
-	//    channel each, plus six MOS tracks
-	//    * 2 or auto channels with two tracks with one channel each: Two tracks
-	//    with one channel each, plus six MOS tracks
-	//    * 2 or auto channels with one track with two channels: Two tracks with
-	//    one channel each, plus six MOS tracks
-	//    * 2 channels with one track with multiple channels: Two tracks with one
-	//    channel each, plus six MOS tracks
-	//    * auto channels with one track with one channel: One track with one channel,
-	//    plus seven MOS tracks
-	//    * auto channels with one track with multiple channels: Up to eight tracks
-	//    with one channel each, plus MOS tracks until there are eight tracks in
-	//    all
+	//  0  channels with any input: Audio omitted from the output 1, 2, or auto
+	//  channels with no audio input: Audio omitted from the output 1  channel with
+	// any input with audio: One track with one channel, downmixed if necessary,
+	// plus six MOS tracks 2  channels with one track with one channel: Two tracks
+	// with one identical channel each, plus six MOS tracks 2 or auto  channels
+	// with two tracks with one channel each: Two tracks with one channel each,
+	// plus six MOS tracks 2 or auto  channels with one track with two channels:
+	// Two tracks with one channel each, plus six MOS tracks 2  channels with one
+	// track with multiple channels: Two tracks with one channel each, plus six
+	// MOS tracks auto  channels with one track with one channel: One track with
+	// one channel, plus seven MOS tracks auto  channels with one track with multiple
+	// channels: Up to eight tracks with one channel each, plus MOS tracks until
+	// there are eight tracks in all
 	AudioPackingMode *string `type:"string"`
 
 	// The bit rate of the audio stream in the output file, in kilobits/second.
@@ -1817,16 +1794,12 @@ type AudioParameters struct {
 	//
 	// The output of a specific channel value and inputs are as follows:
 	//
-	//    * auto channel specified, with any input: Pass through up to eight input
-	//    channels.
-	//    * 0 channels specified, with any input: Audio omitted from the output.
-	//
-	//    * 1 channel specified, with at least one input channel: Mono sound.
-	//    * 2 channels specified, with any input: Two identical mono channels or
-	//    stereo. For more information about tracks, see Audio:AudioPackingMode.
-	//
-	// For more information about how Elastic Transcoder organizes channels and
-	// tracks, see Audio:AudioPackingMode.
+	//  auto channel specified, with any input: Pass through up to eight input
+	// channels. 0 channels specified, with any input: Audio omitted from the output.
+	// 1 channel specified, with at least one input channel: Mono sound. 2 channels
+	// specified, with any input: Two identical mono channels or stereo. For more
+	// information about tracks, see Audio:AudioPackingMode.   For more information
+	// about how Elastic Transcoder organizes channels and tracks, see Audio:AudioPackingMode.
 	Channels *string `type:"string"`
 
 	// The audio codec for the output file. Valid values include aac, flac, mp2,
@@ -1868,8 +1841,8 @@ type CancelJobInput struct {
 
 	// The identifier of the job that you want to cancel.
 	//
-	// To get a list of the jobs (including their jobId) that have a status of Submitted,
-	// use the ListJobsByStatus API action.
+	// To get a list of the jobs (including their jobId) that have a status of
+	// Submitted, use the ListJobsByStatus API action.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -1926,9 +1899,9 @@ type CaptionFormat struct {
 	// The format you specify determines whether Elastic Transcoder generates an
 	// embedded or sidecar caption for this output.
 	//
-	//    * Valid Embedded Caption Formats:
+	//  Valid Embedded Caption Formats:
 	//
-	// for FLAC: None
+	//  for FLAC: None
 	//
 	// For MP3: None
 	//
@@ -1940,31 +1913,29 @@ type CaptionFormat struct {
 	//
 	// For webm: None
 	//
-	//    * Valid Sidecar Caption Formats: Elastic Transcoder supports dfxp (first
-	//    div element only), scc, srt, and webvtt. If you want ttml or smpte-tt
-	//    compatible captions, specify dfxp as your output format.
+	//   Valid Sidecar Caption Formats: Elastic Transcoder supports dfxp (first
+	// div element only), scc, srt, and webvtt. If you want ttml or smpte-tt compatible
+	// captions, specify dfxp as your output format.
 	//
-	// For FMP4: dfxp
+	//  For FMP4: dfxp
 	//
 	// Non-FMP4 outputs: All sidecar types
 	//
-	// fmp4 captions have an extension of .ismt
+	//  fmp4 captions have an extension of .ismt
 	Format *string `type:"string"`
 
 	// The prefix for caption filenames, in the form description-{language}, where:
 	//
-	//    * description is a description of the video.
-	//    * {language} is a literal value that Elastic Transcoder replaces with
-	//    the two- or three-letter code for the language of the caption in the output
-	//    file names.
-	// If you don't include {language} in the file name pattern, Elastic Transcoder
-	// automatically appends "{language}" to the value that you specify for the
-	// description. In addition, Elastic Transcoder automatically appends the count
-	// to the end of the segment files.
+	//  description is a description of the video. {language} is a literal value
+	// that Elastic Transcoder replaces with the two- or three-letter code for the
+	// language of the caption in the output file names.  If you don't include {language}
+	// in the file name pattern, Elastic Transcoder automatically appends "{language}"
+	// to the value that you specify for the description. In addition, Elastic Transcoder
+	// automatically appends the count to the end of the segment files.
 	//
-	// For example, suppose you're transcoding into srt format. When you enter "Sydney-{language}-sunrise",
-	// and the language of the captions is English (en), the name of the first caption
-	// file will be Sydney-en-sunrise00000.srt.
+	// For example, suppose you're transcoding into srt format. When you enter
+	// "Sydney-{language}-sunrise", and the language of the captions is English
+	// (en), the name of the first caption file will be Sydney-en-sunrise00000.srt.
 	Pattern *string `type:"string"`
 }
 
@@ -1999,12 +1970,12 @@ type CaptionSource struct {
 	// A string that specifies the language of the caption. Specify this as one
 	// of:
 	//
-	//    * 2-character ISO 639-1 code
+	//  2-character ISO 639-1 code
 	//
-	//    * 3-character ISO 639-2 code
+	// 3-character ISO 639-2 code
 	//
-	// For more information on ISO language codes and language names, see the List
-	// of ISO 639-1 codes.
+	//  For more information on ISO language codes and language names, see the
+	// List of ISO 639-1 codes.
 	Language *string `min:"1" type:"string"`
 
 	// For clip generation or captions that do not start at the same time as the
@@ -2059,22 +2030,21 @@ type Captions struct {
 	// A policy that determines how Elastic Transcoder handles the existence of
 	// multiple captions.
 	//
-	//    * MergeOverride: Elastic Transcoder transcodes both embedded and sidecar
-	//    captions into outputs. If captions for a language are embedded in the
-	//    input file and also appear in a sidecar file, Elastic Transcoder uses
-	//    the sidecar captions and ignores the embedded captions for that language.
+	//  MergeOverride: Elastic Transcoder transcodes both embedded and sidecar
+	// captions into outputs. If captions for a language are embedded in the input
+	// file and also appear in a sidecar file, Elastic Transcoder uses the sidecar
+	// captions and ignores the embedded captions for that language.
 	//
-	//    * MergeRetain: Elastic Transcoder transcodes both embedded and sidecar
-	//    captions into outputs. If captions for a language are embedded in the
-	//    input file and also appear in a sidecar file, Elastic Transcoder uses
-	//    the embedded captions and ignores the sidecar captions for that language.
-	//    If CaptionSources is empty, Elastic Transcoder omits all sidecar captions
-	//    from the output files.
+	// MergeRetain: Elastic Transcoder transcodes both embedded and sidecar captions
+	// into outputs. If captions for a language are embedded in the input file and
+	// also appear in a sidecar file, Elastic Transcoder uses the embedded captions
+	// and ignores the sidecar captions for that language. If CaptionSources is
+	// empty, Elastic Transcoder omits all sidecar captions from the output files.
 	//
-	//    * Override: Elastic Transcoder transcodes only the sidecar captions that
-	//    you specify in CaptionSources.
+	// Override: Elastic Transcoder transcodes only the sidecar captions that you
+	// specify in CaptionSources.
 	//
-	// MergePolicy cannot be null.
+	//  MergePolicy cannot be null.
 	MergePolicy *string `type:"string"`
 }
 
@@ -2245,30 +2215,30 @@ type CreateJobOutput struct {
 	// from one format to another. All captions must be in UTF-8. Elastic Transcoder
 	// supports two types of captions:
 	//
-	//    * Embedded: Embedded captions are included in the same file as the audio
-	//    and video. Elastic Transcoder supports only one embedded caption per language,
-	//    to a maximum of 300 embedded captions per file.
+	//  Embedded: Embedded captions are included in the same file as the audio
+	// and video. Elastic Transcoder supports only one embedded caption per language,
+	// to a maximum of 300 embedded captions per file.
 	//
 	// Valid input values include: CEA-608 (EIA-608, first non-empty channel only),
-	//    CEA-708 (EIA-708, first non-empty channel only), and mov-text
+	// CEA-708 (EIA-708, first non-empty channel only), and mov-text
 	//
 	// Valid outputs include: mov-text
 	//
 	// Elastic Transcoder supports a maximum of one embedded format per output.
 	//
-	//    * Sidecar: Sidecar captions are kept in a separate metadata file from
-	//    the audio and video data. Sidecar captions require a player that is capable
-	//    of understanding the relationship between the video file and the sidecar
-	//    file. Elastic Transcoder supports only one sidecar caption per language,
-	//    to a maximum of 20 sidecar captions per file.
+	// Sidecar: Sidecar captions are kept in a separate metadata file from the
+	// audio and video data. Sidecar captions require a player that is capable of
+	// understanding the relationship between the video file and the sidecar file.
+	// Elastic Transcoder supports only one sidecar caption per language, to a maximum
+	// of 20 sidecar captions per file.
 	//
-	// Valid input values include: dfxp (first div element only), ebu-tt, scc, smpt,
-	//    srt, ttml (first div element only), and webvtt
+	// Valid input values include: dfxp (first div element only), ebu-tt, scc,
+	// smpt, srt, ttml (first div element only), and webvtt
 	//
 	// Valid outputs include: dfxp (first div element only), scc, srt, and webvtt.
 	//
-	// If you want ttml or smpte-tt compatible captions, specify dfxp as your output
-	// format.
+	//   If you want ttml or smpte-tt compatible captions, specify dfxp as your
+	// output format.
 	//
 	// Elastic Transcoder does not support OCR (Optical Character Recognition),
 	// does not accept pictures as a valid input for captions, and is not available
@@ -2341,28 +2311,27 @@ type CreateJobOutput struct {
 	//
 	// If you don't want Elastic Transcoder to create thumbnails, specify "".
 	//
-	// If you do want Elastic Transcoder to create thumbnails, specify the information
+	//  If you do want Elastic Transcoder to create thumbnails, specify the information
 	// that you want to include in the file name for each thumbnail. You can specify
 	// the following values in any sequence:
 	//
-	//    * {count} (Required): If you want to create thumbnails, you must include
-	//    {count} in the ThumbnailPattern object. Wherever you specify {count},
-	//    Elastic Transcoder adds a five-digit sequence number (beginning with 00001)
-	//    to thumbnail file names. The number indicates where a given thumbnail
-	//    appears in the sequence of thumbnails for a transcoded file.
+	//    {count} (Required): If you want to create thumbnails, you must include
+	// {count} in the ThumbnailPattern object. Wherever you specify {count}, Elastic
+	// Transcoder adds a five-digit sequence number (beginning with 00001) to thumbnail
+	// file names. The number indicates where a given thumbnail appears in the sequence
+	// of thumbnails for a transcoded file.
 	//
 	// If you specify a literal value and/or {resolution} but you omit {count},
-	//    Elastic Transcoder returns a validation error and does not create the
-	//    job.
-	//    * Literal values (Optional): You can specify literal values anywhere in
-	//    the ThumbnailPattern object. For example, you can include them as a file
-	//    name prefix or as a delimiter between {resolution} and {count}.
+	// Elastic Transcoder returns a validation error and does not create the job.
+	//    Literal values (Optional): You can specify literal values anywhere in
+	// the ThumbnailPattern object. For example, you can include them as a file
+	// name prefix or as a delimiter between {resolution} and {count}.
 	//
-	//    * {resolution} (Optional): If you want Elastic Transcoder to include the
-	//    resolution in the file name, include {resolution} in the ThumbnailPattern
-	//    object.
+	//    {resolution} (Optional): If you want Elastic Transcoder to include the
+	// resolution in the file name, include {resolution} in the ThumbnailPattern
+	// object.
 	//
-	// When creating thumbnails, Elastic Transcoder automatically saves the files
+	//   When creating thumbnails, Elastic Transcoder automatically saves the files
 	// in the format (.jpg or .png) that appears in the preset that you specified
 	// in the PresetID value of CreateJobOutput. Elastic Transcoder also appends
 	// the applicable file name extension.
@@ -2445,24 +2414,24 @@ type CreateJobPlaylist struct {
 	// For each output in this job that you want to include in a master playlist,
 	// the value of the Outputs:Key object.
 	//
-	//    * If your output is not HLS or does not have a segment duration set, the
-	//    name of the output file is a concatenation of OutputKeyPrefix and Outputs:Key:
+	//   If your output is not HLS or does not have a segment duration set, the
+	// name of the output file is a concatenation of OutputKeyPrefix and Outputs:Key:
 	//
 	// OutputKeyPrefixOutputs:Key
 	//
-	//    * If your output is HLSv3 and has a segment duration set, or is not included
-	//    in a playlist, Elastic Transcoder creates an output playlist file with
-	//    a file extension of .m3u8, and a series of .ts files that include a five-digit
-	//    sequential counter beginning with 00000:
+	//   If your output is HLSv3 and has a segment duration set, or is not included
+	// in a playlist, Elastic Transcoder creates an output playlist file with a
+	// file extension of .m3u8, and a series of .ts files that include a five-digit
+	// sequential counter beginning with 00000:
 	//
 	// OutputKeyPrefixOutputs:Key.m3u8
 	//
 	// OutputKeyPrefixOutputs:Key00000.ts
 	//
-	//    * If your output is HLSv4, has a segment duration set, and is included
-	//    in an HLSv4 playlist, Elastic Transcoder creates an output playlist file
-	//    with a file extension of _v4.m3u8. If the output is video, Elastic Transcoder
-	//    also creates an output file with an extension of _iframe.m3u8:
+	//   If your output is HLSv4, has a segment duration set, and is included in
+	// an HLSv4 playlist, Elastic Transcoder creates an output playlist file with
+	// a file extension of _v4.m3u8. If the output is video, Elastic Transcoder
+	// also creates an output file with an extension of _iframe.m3u8:
 	//
 	// OutputKeyPrefixOutputs:Key_v4.m3u8
 	//
@@ -2470,14 +2439,15 @@ type CreateJobPlaylist struct {
 	//
 	// OutputKeyPrefixOutputs:Key.ts
 	//
-	// Elastic Transcoder automatically appends the relevant file extension to the
-	// file name. If you include a file extension in Output Key, the file name will
-	// have two extensions.
+	//   Elastic Transcoder automatically appends the relevant file extension to
+	// the file name. If you include a file extension in Output Key, the file name
+	// will have two extensions.
 	//
-	// If you include more than one output in a playlist, any segment duration settings,
-	// clip settings, or caption settings must be the same for all outputs in the
-	// playlist. For Smooth playlists, the Audio:Profile, Video:Profile, and Video:FrameRate
-	// to Video:KeyframesMaxDist ratio must be the same for all outputs.
+	// If you include more than one output in a playlist, any segment duration
+	// settings, clip settings, or caption settings must be the same for all outputs
+	// in the playlist. For Smooth playlists, the Audio:Profile, Video:Profile,
+	// and Video:FrameRate to Video:KeyframesMaxDist ratio must be the same for
+	// all outputs.
 	OutputKeys []*string `type:"list"`
 
 	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
@@ -2558,47 +2528,39 @@ type CreatePipelineInput struct {
 	// If you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket
 	// object.
 	//
-	//    * Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to
-	//    save transcoded files and playlists.
-	//    * Permissions (Optional): The Permissions object specifies which users
-	//    you want to have access to transcoded files and the type of access you
-	//    want them to have. You can grant permissions to a maximum of 30 users
-	//    and/or predefined Amazon S3 groups.
-	//    * Grantee Type: Specify the type of value that appears in the Grantee
-	//    object: Canonical: The value in the Grantee object is either the canonical
-	//    user ID for an AWS account or an origin access identity for an Amazon
-	//    CloudFront distribution. For more information about canonical user IDs,
-	//    see Access Control List (ACL) Overview in the Amazon Simple Storage Service
-	//    Developer Guide. For more information about using CloudFront origin access
-	//    identities to require that users use CloudFront URLs instead of Amazon
-	//    S3 URLs, see Using an Origin Access Identity to Restrict Access to Your
-	//    Amazon S3 Content. A canonical user ID is not the same as an AWS account
-	//    number.
-	// Email: The value in the Grantee object is the registered email address of
-	//    an AWS account.
-	// Group: The value in the Grantee object is one of the following predefined
-	//    Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.
-	//
-	//    * Grantee: The AWS user or group that you want to have access to transcoded
-	//    files and playlists. To identify the user or group, you can specify the
-	//    canonical user ID for an AWS account, an origin access identity for a
-	//    CloudFront distribution, the registered email address of an AWS account,
-	//    or a predefined Amazon S3 group
-	//    * Access: The permission that you want to give to the AWS user that you
-	//    specified in Grantee. Permissions are granted on the files that Elastic
-	//    Transcoder adds to the bucket, including playlists and video files. Valid
-	//    values include: READ: The grantee can read the objects and metadata for
-	//    objects that Elastic Transcoder adds to the Amazon S3 bucket.
-	// READ_ACP: The grantee can read the object ACL for objects that Elastic Transcoder
-	//    adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the objects that Elastic Transcoder
-	//    adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	//    the objects that Elastic Transcoder adds to the Amazon S3 bucket.
-	//
-	//    * StorageClass: The Amazon S3 storage class, Standard or ReducedRedundancy,
-	//    that you want Elastic Transcoder to assign to the video files and playlists
-	//    that it stores in your Amazon S3 bucket.
+	//  Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save
+	// transcoded files and playlists. Permissions (Optional): The Permissions object
+	// specifies which users you want to have access to transcoded files and the
+	// type of access you want them to have. You can grant permissions to a maximum
+	// of 30 users and/or predefined Amazon S3 groups. Grantee Type: Specify the
+	// type of value that appears in the Grantee object:  Canonical: The value in
+	// the Grantee object is either the canonical user ID for an AWS account or
+	// an origin access identity for an Amazon CloudFront distribution. For more
+	// information about canonical user IDs, see Access Control List (ACL) Overview
+	// in the Amazon Simple Storage Service Developer Guide. For more information
+	// about using CloudFront origin access identities to require that users use
+	// CloudFront URLs instead of Amazon S3 URLs, see Using an Origin Access Identity
+	// to Restrict Access to Your Amazon S3 Content. A canonical user ID is not
+	// the same as an AWS account number.  Email: The value in the Grantee object
+	// is the registered email address of an AWS account. Group: The value in the
+	// Grantee object is one of the following predefined Amazon S3 groups: AllUsers,
+	// AuthenticatedUsers, or LogDelivery.    Grantee: The AWS user or group that
+	// you want to have access to transcoded files and playlists. To identify the
+	// user or group, you can specify the canonical user ID for an AWS account,
+	// an origin access identity for a CloudFront distribution, the registered email
+	// address of an AWS account, or a predefined Amazon S3 group   Access: The
+	// permission that you want to give to the AWS user that you specified in Grantee.
+	// Permissions are granted on the files that Elastic Transcoder adds to the
+	// bucket, including playlists and video files. Valid values include:  READ:
+	// The grantee can read the objects and metadata for objects that Elastic Transcoder
+	// adds to the Amazon S3 bucket. READ_ACP: The grantee can read the object ACL
+	// for objects that Elastic Transcoder adds to the Amazon S3 bucket.  WRITE_ACP:
+	// The grantee can write the ACL for the objects that Elastic Transcoder adds
+	// to the Amazon S3 bucket. FULL_CONTROL: The grantee has READ, READ_ACP, and
+	// WRITE_ACP permissions for the objects that Elastic Transcoder adds to the
+	// Amazon S3 bucket.    StorageClass: The Amazon S3 storage class, Standard
+	// or ReducedRedundancy, that you want Elastic Transcoder to assign to the video
+	// files and playlists that it stores in your Amazon S3 bucket.
 	ContentConfig *PipelineOutputConfig `type:"structure"`
 
 	// The Amazon S3 bucket in which you saved the media files that you want to
@@ -2619,38 +2581,34 @@ type CreatePipelineInput struct {
 	// notify to report job status.
 	//
 	// To receive notifications, you must also subscribe to the new topic in the
-	// Amazon SNS console.   * Progressing: The topic ARN for the Amazon Simple Notification Service
-	//    (Amazon SNS) topic that you want to notify when Elastic Transcoder has
-	//    started to process a job in this pipeline. This is the ARN that Amazon
-	//    SNS returned when you created the topic. For more information, see Create
-	//    a Topic in the Amazon Simple Notification Service Developer Guide.
-	//    * Completed: The topic ARN for the Amazon SNS topic that you want to notify
-	//    when Elastic Transcoder has finished processing a job in this pipeline.
-	//    This is the ARN that Amazon SNS returned when you created the topic.
-	//    * Warning: The topic ARN for the Amazon SNS topic that you want to notify
-	//    when Elastic Transcoder encounters a warning condition while processing
-	//    a job in this pipeline. This is the ARN that Amazon SNS returned when
-	//    you created the topic.
-	//    * Error: The topic ARN for the Amazon SNS topic that you want to notify
-	//    when Elastic Transcoder encounters an error condition while processing
-	//    a job in this pipeline. This is the ARN that Amazon SNS returned when
-	//    you created the topic.
+	// Amazon SNS console.  Progressing: The topic ARN for the Amazon Simple Notification
+	// Service (Amazon SNS) topic that you want to notify when Elastic Transcoder
+	// has started to process a job in this pipeline. This is the ARN that Amazon
+	// SNS returned when you created the topic. For more information, see Create
+	// a Topic in the Amazon Simple Notification Service Developer Guide. Completed:
+	// The topic ARN for the Amazon SNS topic that you want to notify when Elastic
+	// Transcoder has finished processing a job in this pipeline. This is the ARN
+	// that Amazon SNS returned when you created the topic. Warning: The topic ARN
+	// for the Amazon SNS topic that you want to notify when Elastic Transcoder
+	// encounters a warning condition while processing a job in this pipeline. This
+	// is the ARN that Amazon SNS returned when you created the topic. Error: The
+	// topic ARN for the Amazon SNS topic that you want to notify when Elastic Transcoder
+	// encounters an error condition while processing a job in this pipeline. This
+	// is the ARN that Amazon SNS returned when you created the topic.
 	Notifications *Notifications `type:"structure"`
 
 	// The Amazon S3 bucket in which you want Elastic Transcoder to save the transcoded
 	// files. (Use this, or use ContentConfig:Bucket plus ThumbnailConfig:Bucket.)
 	//
-	// Specify this value when all of the following are true: You want to save transcoded
-	// files, thumbnails (if any), and playlists (if any) together in one bucket.
-	//
-	// You do not want to specify the users or groups who have access to the transcoded
-	// files, thumbnails, and playlists.
-	// You do not want to specify the permissions that Elastic Transcoder grants
-	// to the files. When Elastic Transcoder saves files in OutputBucket, it grants
-	// full control over the files only to the AWS account that owns the role that
-	// is specified by Role.
-	// You want to associate the transcoded files and thumbnails with the Amazon
-	// S3 Standard storage class.
+	// Specify this value when all of the following are true:  You want to save
+	// transcoded files, thumbnails (if any), and playlists (if any) together in
+	// one bucket. You do not want to specify the users or groups who have access
+	// to the transcoded files, thumbnails, and playlists. You do not want to specify
+	// the permissions that Elastic Transcoder grants to the files. When Elastic
+	// Transcoder saves files in OutputBucket, it grants full control over the files
+	// only to the AWS account that owns the role that is specified by Role. You
+	// want to associate the transcoded files and thumbnails with the Amazon S3
+	// Standard storage class.
 	//
 	// If you want to save transcoded files and playlists in one bucket and thumbnails
 	// in another bucket, specify which users can access the transcoded files or
@@ -2675,42 +2633,34 @@ type CreatePipelineInput struct {
 	// If you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket
 	// object.
 	//
-	//    * Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to
-	//    save thumbnail files.
-	//    * Permissions (Optional): The Permissions object specifies which users
-	//    and/or predefined Amazon S3 groups you want to have access to thumbnail
-	//    files, and the type of access you want them to have. You can grant permissions
-	//    to a maximum of 30 users and/or predefined Amazon S3 groups.
-	//    * GranteeType: Specify the type of value that appears in the Grantee object:
-	//    Canonical: The value in the Grantee object is either the canonical user
-	//    ID for an AWS account or an origin access identity for an Amazon CloudFront
-	//    distribution. A canonical user ID is not the same as an AWS account number.
-	//
+	//  Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save
+	// thumbnail files. Permissions (Optional): The Permissions object specifies
+	// which users and/or predefined Amazon S3 groups you want to have access to
+	// thumbnail files, and the type of access you want them to have. You can grant
+	// permissions to a maximum of 30 users and/or predefined Amazon S3 groups.
+	//  GranteeType: Specify the type of value that appears in the Grantee object:
+	//   Canonical: The value in the Grantee object is either the canonical user
+	// ID for an AWS account or an origin access identity for an Amazon CloudFront
+	// distribution. A canonical user ID is not the same as an AWS account number.
 	// Email: The value in the Grantee object is the registered email address of
-	//    an AWS account.
-	// Group: The value in the Grantee object is one of the following predefined
-	//    Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.
-	//
-	//    * Grantee: The AWS user or group that you want to have access to thumbnail
-	//    files. To identify the user or group, you can specify the canonical user
-	//    ID for an AWS account, an origin access identity for a CloudFront distribution,
-	//    the registered email address of an AWS account, or a predefined Amazon
-	//    S3 group.
-	//    * Access: The permission that you want to give to the AWS user that you
-	//    specified in Grantee. Permissions are granted on the thumbnail files that
-	//    Elastic Transcoder adds to the bucket. Valid values include: READ: The
-	//    grantee can read the thumbnails and metadata for objects that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// READ_ACP: The grantee can read the object ACL for thumbnails that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the thumbnails that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	//    the thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
-	//
-	//    * StorageClass: The Amazon S3 storage class, Standard or ReducedRedundancy,
-	//    that you want Elastic Transcoder to assign to the thumbnails that it stores
-	//    in your Amazon S3 bucket.
+	// an AWS account.  Group: The value in the Grantee object is one of the following
+	// predefined Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.
+	//    Grantee: The AWS user or group that you want to have access to thumbnail
+	// files. To identify the user or group, you can specify the canonical user
+	// ID for an AWS account, an origin access identity for a CloudFront distribution,
+	// the registered email address of an AWS account, or a predefined Amazon S3
+	// group.   Access: The permission that you want to give to the AWS user that
+	// you specified in Grantee. Permissions are granted on the thumbnail files
+	// that Elastic Transcoder adds to the bucket. Valid values include:  READ:
+	// The grantee can read the thumbnails and metadata for objects that Elastic
+	// Transcoder adds to the Amazon S3 bucket. READ_ACP: The grantee can read the
+	// object ACL for thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
+	//  WRITE_ACP: The grantee can write the ACL for the thumbnails that Elastic
+	// Transcoder adds to the Amazon S3 bucket. FULL_CONTROL: The grantee has READ,
+	// READ_ACP, and WRITE_ACP permissions for the thumbnails that Elastic Transcoder
+	// adds to the Amazon S3 bucket.     StorageClass: The Amazon S3 storage class,
+	// Standard or ReducedRedundancy, that you want Elastic Transcoder to assign
+	// to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 }
 
@@ -3036,33 +2986,32 @@ type Encryption struct {
 	// to use when decrypting your input files or encrypting your output files.
 	// Elastic Transcoder supports the following options:
 	//
-	//    * S3: Amazon S3 creates and manages the keys used for encrypting your
-	//    files.
+	//  S3: Amazon S3 creates and manages the keys used for encrypting your files.
 	//
-	//    * S3-AWS-KMS: Amazon S3 calls the Amazon Key Management Service, which
-	//    creates and manages the keys that are used for encrypting your files.
-	//    If you specify S3-AWS-KMS and you don't want to use the default key, you
-	//    must add the AWS-KMS key that you want to use to your pipeline.
+	// S3-AWS-KMS: Amazon S3 calls the Amazon Key Management Service, which creates
+	// and manages the keys that are used for encrypting your files. If you specify
+	// S3-AWS-KMS and you don't want to use the default key, you must add the AWS-KMS
+	// key that you want to use to your pipeline.
 	//
-	//    * AES-CBC-PKCS7: A padded cipher-block mode of operation originally used
-	//    for HLS files.
+	// AES-CBC-PKCS7: A padded cipher-block mode of operation originally used for
+	// HLS files.
 	//
-	//    * AES-CTR: AES Counter Mode.
+	// AES-CTR: AES Counter Mode.
 	//
-	//    * AES-GCM: AES Galois Counter Mode, a mode of operation that is an authenticated
-	//    encryption format, meaning that a file, key, or initialization vector
-	//    that has been tampered with will fail the decryption process.
+	// AES-GCM: AES Galois Counter Mode, a mode of operation that is an authenticated
+	// encryption format, meaning that a file, key, or initialization vector that
+	// has been tampered with will fail the decryption process.
 	//
-	// For all three AES options, you must provide the following settings, which
+	//  For all three AES options, you must provide the following settings, which
 	// must be base64-encoded:
 	//
-	//    * Key
+	//  Key
 	//
-	//    * Key MD5
+	// Key MD5
 	//
-	//    * Initialization Vector
+	// Initialization Vector
 	//
-	// For the AES modes, your private encryption keys and your unencrypted data
+	//  For the AES modes, your private encryption keys and your unencrypted data
 	// are never stored by AWS; therefore, it is important that you safely manage
 	// your encryption keys. If you lose them, you won't be able to unencrypt your
 	// data.
@@ -3087,8 +3036,8 @@ type HlsContentProtection struct {
 	// If Elastic Transcoder is generating your key for you, you must leave this
 	// field blank.
 	//
-	// The series of random bits created by a random bit generator, unique for every
-	// encryption operation, that you want Elastic Transcoder to use to encrypt
+	// The series of random bits created by a random bit generator, unique for
+	// every encryption operation, that you want Elastic Transcoder to use to encrypt
 	// your output files. The initialization vector must be base64-encoded, and
 	// it must be exactly 16 bytes before being base64-encoded.
 	InitializationVector *string `type:"string"`
@@ -3096,8 +3045,8 @@ type HlsContentProtection struct {
 	// If you want Elastic Transcoder to generate a key for you, leave this field
 	// blank.
 	//
-	// If you choose to supply your own key, you must encrypt the key by using AWS
-	// KMS. The key must be base64-encoded, and it must be one of the following
+	// If you choose to supply your own key, you must encrypt the key by using
+	// AWS KMS. The key must be base64-encoded, and it must be one of the following
 	// bit lengths before being base64-encoded:
 	//
 	// 128, 192, or 256.
@@ -3176,7 +3125,7 @@ type Job struct {
 	// file into only one format. Do not use both the Outputs and Output syntaxes
 	// in the same request. You can create a maximum of 30 outputs per job.
 	//
-	// If you specify more than one output for a job, Elastic Transcoder creates
+	//  If you specify more than one output for a job, Elastic Transcoder creates
 	// the files for each output in the order in which you specify them in the job.
 	Outputs []*JobOutput `type:"list"`
 
@@ -3207,13 +3156,13 @@ type Job struct {
 	//
 	// Metadata keys and values must use characters from the following list:
 	//
-	//    * 0-9
+	//  0-9
 	//
-	//    * A-Z and a-z
+	// A-Z and a-z
 	//
-	//    * Space
+	// Space
 	//
-	//    * The following symbols: _.:/=+-%@
+	// The following symbols: _.:/=+-%@
 	UserMetadata map[string]*string `type:"map"`
 }
 
@@ -3238,14 +3187,13 @@ type JobAlbumArt struct {
 	// A policy that determines how Elastic Transcoder will handle the existence
 	// of multiple album artwork files.
 	//
-	// Replace: The specified album art will replace any existing album art.
+	//   Replace: The specified album art will replace any existing album art.
 	// Prepend: The specified album art will be placed in front of any existing
-	// album art.
-	// Append: The specified album art will be placed after any existing album art.
-	//
-	// Fallback: If the original input file contains artwork, Elastic Transcoder
-	// will use that artwork for the output. If the original input does not contain
-	// artwork, Elastic Transcoder will use the specified album art file.
+	// album art. Append: The specified album art will be placed after any existing
+	// album art. Fallback: If the original input file contains artwork, Elastic
+	// Transcoder will use that artwork for the output. If the original input does
+	// not contain artwork, Elastic Transcoder will use the specified album art
+	// file.
 	MergePolicy *string `type:"string"`
 }
 
@@ -3287,9 +3235,9 @@ type JobInput struct {
 	// detect the aspect ratio of the input file, specify auto. If you want to specify
 	// the aspect ratio for the output file, enter one of the following values:
 	//
-	// 1:1, 4:3, 3:2, 16:9
+	//  1:1, 4:3, 3:2, 16:9
 	//
-	// If you specify a value other than auto, Elastic Transcoder disables automatic
+	//  If you specify a value other than auto, Elastic Transcoder disables automatic
 	// detection of the aspect ratio.
 	AspectRatio *string `type:"string"`
 
@@ -3298,8 +3246,8 @@ type JobInput struct {
 	// If you want to specify the container type for the input file, enter one of
 	// the following values:
 	//
-	// 3gp, aac, asf, avi, divx, flv, m4a, mkv, mov, mp3, mp4, mpeg, mpeg-ps, mpeg-ts,
-	// mxf, ogg, vob, wav, webm
+	//  3gp, aac, asf, avi, divx, flv, m4a, mkv, mov, mp3, mp4, mpeg, mpeg-ps,
+	// mpeg-ts, mxf, ogg, vob, wav, webm
 	Container *string `type:"string"`
 
 	// The detected properties of the input file.
@@ -3314,7 +3262,7 @@ type JobInput struct {
 	// detect the frame rate of the input file, specify auto. If you want to specify
 	// the frame rate for the input file, enter one of the following values:
 	//
-	// 10, 15, 23.97, 24, 25, 29.97, 30, 60
+	//  10, 15, 23.97, 24, 25, 29.97, 30, 60
 	//
 	// If you specify a value other than auto, Elastic Transcoder disables automatic
 	// detection of the frame rate.
@@ -3389,30 +3337,30 @@ type JobOutput struct {
 	// from one format to another. All captions must be in UTF-8. Elastic Transcoder
 	// supports two types of captions:
 	//
-	//    * Embedded: Embedded captions are included in the same file as the audio
-	//    and video. Elastic Transcoder supports only one embedded caption per language,
-	//    to a maximum of 300 embedded captions per file.
+	//  Embedded: Embedded captions are included in the same file as the audio
+	// and video. Elastic Transcoder supports only one embedded caption per language,
+	// to a maximum of 300 embedded captions per file.
 	//
 	// Valid input values include: CEA-608 (EIA-608, first non-empty channel only),
-	//    CEA-708 (EIA-708, first non-empty channel only), and mov-text
+	// CEA-708 (EIA-708, first non-empty channel only), and mov-text
 	//
 	// Valid outputs include: mov-text
 	//
 	// Elastic Transcoder supports a maximum of one embedded format per output.
 	//
-	//    * Sidecar: Sidecar captions are kept in a separate metadata file from
-	//    the audio and video data. Sidecar captions require a player that is capable
-	//    of understanding the relationship between the video file and the sidecar
-	//    file. Elastic Transcoder supports only one sidecar caption per language,
-	//    to a maximum of 20 sidecar captions per file.
+	// Sidecar: Sidecar captions are kept in a separate metadata file from the
+	// audio and video data. Sidecar captions require a player that is capable of
+	// understanding the relationship between the video file and the sidecar file.
+	// Elastic Transcoder supports only one sidecar caption per language, to a maximum
+	// of 20 sidecar captions per file.
 	//
-	// Valid input values include: dfxp (first div element only), ebu-tt, scc, smpt,
-	//    srt, ttml (first div element only), and webvtt
+	// Valid input values include: dfxp (first div element only), ebu-tt, scc,
+	// smpt, srt, ttml (first div element only), and webvtt
 	//
 	// Valid outputs include: dfxp (first div element only), scc, srt, and webvtt.
 	//
-	// If you want ttml or smpte-tt compatible captions, specify dfxp as your output
-	// format.
+	//   If you want ttml or smpte-tt compatible captions, specify dfxp as your
+	// output format.
 	//
 	// Elastic Transcoder does not support OCR (Optical Character Recognition),
 	// does not accept pictures as a valid input for captions, and is not available
@@ -3480,8 +3428,8 @@ type JobOutput struct {
 	//
 	// auto, 0, 90, 180, 270
 	//
-	// The value auto generally works only if the file that you're transcoding contains
-	// rotation metadata.
+	//  The value auto generally works only if the file that you're transcoding
+	// contains rotation metadata.
 	Rotate *string `type:"string"`
 
 	// (Outputs in Fragmented MP4 or MPEG-TS format only.If you specify a preset
@@ -3504,20 +3452,18 @@ type JobOutput struct {
 
 	// The status of one output in a job. If you specified only one output for the
 	// job, Outputs:Status is always the same as Job:Status. If you specified more
-	// than one output: Job:Status and Outputs:Status for all of the outputs is
-	// Submitted until Elastic Transcoder starts to process the first output.
-	// When Elastic Transcoder starts to process the first output, Outputs:Status
-	// for that output and Job:Status both change to Progressing. For each output,
-	// the value of Outputs:Status remains Submitted until Elastic Transcoder starts
-	// to process the output.
-	// Job:Status remains Progressing until all of the outputs reach a terminal
-	// status, either Complete or Error.
-	// When all of the outputs reach a terminal status, Job:Status changes to Complete
-	// only if Outputs:Status for all of the outputs is Complete. If Outputs:Status
-	// for one or more outputs is Error, the terminal status for Job:Status is also
-	// Error.
-	//  The value of Status is one of the following: Submitted, Progressing, Complete,
-	// Canceled, or Error.
+	// than one output:  Job:Status and Outputs:Status for all of the outputs is
+	// Submitted until Elastic Transcoder starts to process the first output. When
+	// Elastic Transcoder starts to process the first output, Outputs:Status for
+	// that output and Job:Status both change to Progressing. For each output, the
+	// value of Outputs:Status remains Submitted until Elastic Transcoder starts
+	// to process the output. Job:Status remains Progressing until all of the outputs
+	// reach a terminal status, either Complete or Error. When all of the outputs
+	// reach a terminal status, Job:Status changes to Complete only if Outputs:Status
+	// for all of the outputs is Complete. If Outputs:Status for one or more outputs
+	// is Error, the terminal status for Job:Status is also Error.  The value of
+	// Status is one of the following: Submitted, Progressing, Complete, Canceled,
+	// or Error.
 	Status *string `type:"string"`
 
 	// Information that further explains Status.
@@ -3532,28 +3478,27 @@ type JobOutput struct {
 	//
 	// If you don't want Elastic Transcoder to create thumbnails, specify "".
 	//
-	// If you do want Elastic Transcoder to create thumbnails, specify the information
+	//  If you do want Elastic Transcoder to create thumbnails, specify the information
 	// that you want to include in the file name for each thumbnail. You can specify
 	// the following values in any sequence:
 	//
-	//    * {count} (Required): If you want to create thumbnails, you must include
-	//    {count} in the ThumbnailPattern object. Wherever you specify {count},
-	//    Elastic Transcoder adds a five-digit sequence number (beginning with 00001)
-	//    to thumbnail file names. The number indicates where a given thumbnail
-	//    appears in the sequence of thumbnails for a transcoded file.
+	//    {count} (Required): If you want to create thumbnails, you must include
+	// {count} in the ThumbnailPattern object. Wherever you specify {count}, Elastic
+	// Transcoder adds a five-digit sequence number (beginning with 00001) to thumbnail
+	// file names. The number indicates where a given thumbnail appears in the sequence
+	// of thumbnails for a transcoded file.
 	//
 	// If you specify a literal value and/or {resolution} but you omit {count},
-	//    Elastic Transcoder returns a validation error and does not create the
-	//    job.
-	//    * Literal values (Optional): You can specify literal values anywhere in
-	//    the ThumbnailPattern object. For example, you can include them as a file
-	//    name prefix or as a delimiter between {resolution} and {count}.
+	// Elastic Transcoder returns a validation error and does not create the job.
+	//    Literal values (Optional): You can specify literal values anywhere in
+	// the ThumbnailPattern object. For example, you can include them as a file
+	// name prefix or as a delimiter between {resolution} and {count}.
 	//
-	//    * {resolution} (Optional): If you want Elastic Transcoder to include the
-	//    resolution in the file name, include {resolution} in the ThumbnailPattern
-	//    object.
+	//    {resolution} (Optional): If you want Elastic Transcoder to include the
+	// resolution in the file name, include {resolution} in the ThumbnailPattern
+	// object.
 	//
-	// When creating thumbnails, Elastic Transcoder automatically saves the files
+	//   When creating thumbnails, Elastic Transcoder automatically saves the files
 	// in the format (.jpg or .png) that appears in the preset that you specified
 	// in the PresetID value of CreateJobOutput. Elastic Transcoder also appends
 	// the applicable file name extension.
@@ -3601,7 +3546,7 @@ type JobWatermark struct {
 	// Transcoder checks the pipeline specified by Pipeline; the Input Bucket object
 	// in that pipeline identifies the bucket.
 	//
-	// If the file name includes a prefix, for example, logos/128x64.png, include
+	//  If the file name includes a prefix, for example, logos/128x64.png, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
 	InputKey *string `min:"1" type:"string"`
@@ -3903,14 +3848,13 @@ type Permission struct {
 	_ struct{} `type:"structure"`
 
 	// The permission that you want to give to the AWS user that is listed in Grantee.
-	// Valid values include: READ: The grantee can read the thumbnails and metadata
-	// for thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
-	// READ_ACP: The grantee can read the object ACL for thumbnails that Elastic
-	// Transcoder adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the thumbnails that Elastic
-	// Transcoder adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	// the thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
+	// Valid values include:  READ: The grantee can read the thumbnails and metadata
+	// for thumbnails that Elastic Transcoder adds to the Amazon S3 bucket. READ_ACP:
+	// The grantee can read the object ACL for thumbnails that Elastic Transcoder
+	// adds to the Amazon S3 bucket. WRITE_ACP: The grantee can write the ACL for
+	// the thumbnails that Elastic Transcoder adds to the Amazon S3 bucket. FULL_CONTROL:
+	// The grantee has READ, READ_ACP, and WRITE_ACP permissions for the thumbnails
+	// that Elastic Transcoder adds to the Amazon S3 bucket.
 	Access []*string `type:"list"`
 
 	// The AWS user or group that you want to have access to transcoded files and
@@ -3920,11 +3864,10 @@ type Permission struct {
 	// group.
 	Grantee *string `min:"1" type:"string"`
 
-	// The type of value that appears in the Grantee object: Canonical: Either the
-	// canonical user ID for an AWS account or an origin access identity for an
-	// Amazon CloudFront distribution. A canonical user ID is not the same as an
-	// AWS account number.
-	// Email: The registered email address of an AWS account.
+	// The type of value that appears in the Grantee object:  Canonical: Either
+	// the canonical user ID for an AWS account or an origin access identity for
+	// an Amazon CloudFront distribution. A canonical user ID is not the same as
+	// an AWS account number. Email: The registered email address of an AWS account.
 	// Group: One of the following predefined Amazon S3 groups: AllUsers, AuthenticatedUsers,
 	// or LogDelivery.
 	GranteeType *string `type:"string"`
@@ -3974,34 +3917,26 @@ type Pipeline struct {
 	// to save transcoded files and playlists. Either you specify both ContentConfig
 	// and ThumbnailConfig, or you specify OutputBucket.
 	//
-	//    * Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to
-	//    save transcoded files and playlists.
-	//    * Permissions: A list of the users and/or predefined Amazon S3 groups
-	//    you want to have access to transcoded files and playlists, and the type
-	//    of access that you want them to have. GranteeType: The type of value that
-	//    appears in the Grantee object: Canonical: Either the canonical user ID
-	//    for an AWS account or an origin access identity for an Amazon CloudFront
-	//    distribution.
-	// Email: The registered email address of an AWS account.
-	// Group: One of the following predefined Amazon S3 groups: AllUsers, AuthenticatedUsers,
-	//    or LogDelivery.
-	//
-	// Grantee: The AWS user or group that you want to have access to transcoded
-	//    files and playlists.
-	// Access: The permission that you want to give to the AWS user that is listed
-	//    in Grantee. Valid values include: READ: The grantee can read the objects
-	//    and metadata for objects that Elastic Transcoder adds to the Amazon S3
-	//    bucket.
-	// READ_ACP: The grantee can read the object ACL for objects that Elastic Transcoder
-	//    adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the objects that Elastic Transcoder
-	//    adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	//    the objects that Elastic Transcoder adds to the Amazon S3 bucket.
-	//
-	//    * StorageClass: The Amazon S3 storage class, Standard or ReducedRedundancy,
-	//    that you want Elastic Transcoder to assign to the video files and playlists
-	//    that it stores in your Amazon S3 bucket.
+	//  Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save
+	// transcoded files and playlists. Permissions: A list of the users and/or predefined
+	// Amazon S3 groups you want to have access to transcoded files and playlists,
+	// and the type of access that you want them to have.  GranteeType: The type
+	// of value that appears in the Grantee object:  Canonical: Either the canonical
+	// user ID for an AWS account or an origin access identity for an Amazon CloudFront
+	// distribution. Email: The registered email address of an AWS account. Group:
+	// One of the following predefined Amazon S3 groups: AllUsers, AuthenticatedUsers,
+	// or LogDelivery.   Grantee: The AWS user or group that you want to have access
+	// to transcoded files and playlists. Access: The permission that you want to
+	// give to the AWS user that is listed in Grantee. Valid values include:  READ:
+	// The grantee can read the objects and metadata for objects that Elastic Transcoder
+	// adds to the Amazon S3 bucket. READ_ACP: The grantee can read the object ACL
+	// for objects that Elastic Transcoder adds to the Amazon S3 bucket. WRITE_ACP:
+	// The grantee can write the ACL for the objects that Elastic Transcoder adds
+	// to the Amazon S3 bucket. FULL_CONTROL: The grantee has READ, READ_ACP, and
+	// WRITE_ACP permissions for the objects that Elastic Transcoder adds to the
+	// Amazon S3 bucket.     StorageClass: The Amazon S3 storage class, Standard
+	// or ReducedRedundancy, that you want Elastic Transcoder to assign to the video
+	// files and playlists that it stores in your Amazon S3 bucket.
 	ContentConfig *PipelineOutputConfig `type:"structure"`
 
 	// The identifier for the pipeline. You use this value to identify the pipeline
@@ -4023,15 +3958,14 @@ type Pipeline struct {
 	// notify to report job status.
 	//
 	// To receive notifications, you must also subscribe to the new topic in the
-	// Amazon SNS console.   * Progressing (optional): The Amazon Simple Notification Service (Amazon
-	//    SNS) topic that you want to notify when Elastic Transcoder has started
-	//    to process the job.
-	//    * Completed (optional): The Amazon SNS topic that you want to notify when
-	//    Elastic Transcoder has finished processing the job.
-	//    * Warning (optional): The Amazon SNS topic that you want to notify when
-	//    Elastic Transcoder encounters a warning condition.
-	//    * Error (optional): The Amazon SNS topic that you want to notify when
-	//    Elastic Transcoder encounters an error condition.
+	// Amazon SNS console.  Progressing (optional): The Amazon Simple Notification
+	// Service (Amazon SNS) topic that you want to notify when Elastic Transcoder
+	// has started to process the job. Completed (optional): The Amazon SNS topic
+	// that you want to notify when Elastic Transcoder has finished processing the
+	// job. Warning (optional): The Amazon SNS topic that you want to notify when
+	// Elastic Transcoder encounters a warning condition. Error (optional): The
+	// Amazon SNS topic that you want to notify when Elastic Transcoder encounters
+	// an error condition.
 	Notifications *Notifications `type:"structure"`
 
 	// The Amazon S3 bucket in which you want Elastic Transcoder to save transcoded
@@ -4045,42 +3979,34 @@ type Pipeline struct {
 
 	// The current status of the pipeline:
 	//
-	//    * Active: The pipeline is processing jobs.
-	//    * Paused: The pipeline is not currently processing jobs.
+	//  Active: The pipeline is processing jobs. Paused: The pipeline is not currently
+	// processing jobs.
 	Status *string `type:"string"`
 
 	// Information about the Amazon S3 bucket in which you want Elastic Transcoder
 	// to save thumbnail files. Either you specify both ContentConfig and ThumbnailConfig,
 	// or you specify OutputBucket.
 	//
-	//    * Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to
-	//    save thumbnail files.
-	//    * Permissions: A list of the users and/or predefined Amazon S3 groups
-	//    you want to have access to thumbnail files, and the type of access that
-	//    you want them to have. GranteeType: The type of value that appears in
-	//    the Grantee object: Canonical: Either the canonical user ID for an AWS
-	//    account or an origin access identity for an Amazon CloudFront distribution.
-	//    A canonical user ID is not the same as an AWS account number.
-	// Email: The registered email address of an AWS account.
-	// Group: One of the following predefined Amazon S3 groups: AllUsers, AuthenticatedUsers,
-	//    or LogDelivery.
-	//
-	// Grantee: The AWS user or group that you want to have access to thumbnail
-	//    files.
-	// Access: The permission that you want to give to the AWS user that is listed
-	//    in Grantee. Valid values include: READ: The grantee can read the thumbnails
-	//    and metadata for thumbnails that Elastic Transcoder adds to the Amazon
-	//    S3 bucket.
-	// READ_ACP: The grantee can read the object ACL for thumbnails that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the thumbnails that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	//    the thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
-	//
-	//    * StorageClass: The Amazon S3 storage class, Standard or ReducedRedundancy,
-	//    that you want Elastic Transcoder to assign to the thumbnails that it stores
-	//    in your Amazon S3 bucket.
+	//  Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save
+	// thumbnail files.  Permissions: A list of the users and/or predefined Amazon
+	// S3 groups you want to have access to thumbnail files, and the type of access
+	// that you want them to have.  GranteeType: The type of value that appears
+	// in the Grantee object:  Canonical: Either the canonical user ID for an AWS
+	// account or an origin access identity for an Amazon CloudFront distribution.
+	// A canonical user ID is not the same as an AWS account number. Email: The
+	// registered email address of an AWS account. Group: One of the following predefined
+	// Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.   Grantee:
+	// The AWS user or group that you want to have access to thumbnail files. Access:
+	// The permission that you want to give to the AWS user that is listed in Grantee.
+	// Valid values include:  READ: The grantee can read the thumbnails and metadata
+	// for thumbnails that Elastic Transcoder adds to the Amazon S3 bucket. READ_ACP:
+	// The grantee can read the object ACL for thumbnails that Elastic Transcoder
+	// adds to the Amazon S3 bucket. WRITE_ACP: The grantee can write the ACL for
+	// the thumbnails that Elastic Transcoder adds to the Amazon S3 bucket. FULL_CONTROL:
+	// The grantee has READ, READ_ACP, and WRITE_ACP permissions for the thumbnails
+	// that Elastic Transcoder adds to the Amazon S3 bucket.     StorageClass: The
+	// Amazon S3 storage class, Standard or ReducedRedundancy, that you want Elastic
+	// Transcoder to assign to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 }
 
@@ -4099,19 +4025,17 @@ type PipelineOutputConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon S3 bucket in which you want Elastic Transcoder to save the transcoded
-	// files. Specify this value when all of the following are true: You want to
+	// files. Specify this value when all of the following are true:  You want to
 	// save transcoded files, thumbnails (if any), and playlists (if any) together
-	// in one bucket.
-	// You do not want to specify the users or groups who have access to the transcoded
-	// files, thumbnails, and playlists.
-	// You do not want to specify the permissions that Elastic Transcoder grants
-	// to the files.
-	// You want to associate the transcoded files and thumbnails with the Amazon
-	// S3 Standard storage class.
-	//  If you want to save transcoded files and playlists in one bucket and thumbnails
-	// in another bucket, specify which users can access the transcoded files or
-	// the permissions the users have, or change the Amazon S3 storage class, omit
-	// OutputBucket and specify values for ContentConfig and ThumbnailConfig instead.
+	// in one bucket. You do not want to specify the users or groups who have access
+	// to the transcoded files, thumbnails, and playlists. You do not want to specify
+	// the permissions that Elastic Transcoder grants to the files.  You want to
+	// associate the transcoded files and thumbnails with the Amazon S3 Standard
+	// storage class.  If you want to save transcoded files and playlists in one
+	// bucket and thumbnails in another bucket, specify which users can access the
+	// transcoded files or the permissions the users have, or change the Amazon
+	// S3 storage class, omit OutputBucket and specify values for ContentConfig
+	// and ThumbnailConfig instead.
 	Bucket *string `type:"string"`
 
 	// Optional. The Permissions object specifies which users and/or predefined
@@ -4124,7 +4048,7 @@ type PipelineOutputConfig struct {
 	// role specified by Role. If you want that user to have full control, you must
 	// explicitly grant full control to the user.
 	//
-	// If you omit Permissions, Elastic Transcoder grants full control over the
+	//  If you omit Permissions, Elastic Transcoder grants full control over the
 	// transcoded files and playlists to the owner of the role specified by Role,
 	// and grants no other permissions to any other user or group.
 	Permissions []*Permission `type:"list"`
@@ -4271,24 +4195,24 @@ type Playlist struct {
 	// For each output in this job that you want to include in a master playlist,
 	// the value of the Outputs:Key object.
 	//
-	//    * If your output is not HLS or does not have a segment duration set, the
-	//    name of the output file is a concatenation of OutputKeyPrefix and Outputs:Key:
+	//   If your output is not HLS or does not have a segment duration set, the
+	// name of the output file is a concatenation of OutputKeyPrefix and Outputs:Key:
 	//
 	// OutputKeyPrefixOutputs:Key
 	//
-	//    * If your output is HLSv3 and has a segment duration set, or is not included
-	//    in a playlist, Elastic Transcoder creates an output playlist file with
-	//    a file extension of .m3u8, and a series of .ts files that include a five-digit
-	//    sequential counter beginning with 00000:
+	//   If your output is HLSv3 and has a segment duration set, or is not included
+	// in a playlist, Elastic Transcoder creates an output playlist file with a
+	// file extension of .m3u8, and a series of .ts files that include a five-digit
+	// sequential counter beginning with 00000:
 	//
 	// OutputKeyPrefixOutputs:Key.m3u8
 	//
 	// OutputKeyPrefixOutputs:Key00000.ts
 	//
-	//    * If your output is HLSv4, has a segment duration set, and is included
-	//    in an HLSv4 playlist, Elastic Transcoder creates an output playlist file
-	//    with a file extension of _v4.m3u8. If the output is video, Elastic Transcoder
-	//    also creates an output file with an extension of _iframe.m3u8:
+	//   If your output is HLSv4, has a segment duration set, and is included in
+	// an HLSv4 playlist, Elastic Transcoder creates an output playlist file with
+	// a file extension of _v4.m3u8. If the output is video, Elastic Transcoder
+	// also creates an output file with an extension of _iframe.m3u8:
 	//
 	// OutputKeyPrefixOutputs:Key_v4.m3u8
 	//
@@ -4296,14 +4220,15 @@ type Playlist struct {
 	//
 	// OutputKeyPrefixOutputs:Key.ts
 	//
-	// Elastic Transcoder automatically appends the relevant file extension to the
-	// file name. If you include a file extension in Output Key, the file name will
-	// have two extensions.
+	//   Elastic Transcoder automatically appends the relevant file extension to
+	// the file name. If you include a file extension in Output Key, the file name
+	// will have two extensions.
 	//
-	// If you include more than one output in a playlist, any segment duration settings,
-	// clip settings, or caption settings must be the same for all outputs in the
-	// playlist. For Smooth playlists, the Audio:Profile, Video:Profile, and Video:FrameRate
-	// to Video:KeyframesMaxDist ratio must be the same for all outputs.
+	// If you include more than one output in a playlist, any segment duration
+	// settings, clip settings, or caption settings must be the same for all outputs
+	// in the playlist. For Smooth playlists, the Audio:Profile, Video:Profile,
+	// and Video:FrameRate to Video:KeyframesMaxDist ratio must be the same for
+	// all outputs.
 	OutputKeys []*string `type:"list"`
 
 	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
@@ -4398,18 +4323,16 @@ type PresetWatermark struct {
 	_ struct{} `type:"structure"`
 
 	// The horizontal position of the watermark unless you specify a non-zero value
-	// for HorizontalOffset: Left: The left edge of the watermark is aligned with
-	// the left border of the video.
-	// Right: The right edge of the watermark is aligned with the right border of
-	// the video.
-	// Center: The watermark is centered between the left and right borders.
+	// for HorizontalOffset:  Left: The left edge of the watermark is aligned with
+	// the left border of the video. Right: The right edge of the watermark is aligned
+	// with the right border of the video. Center: The watermark is centered between
+	// the left and right borders.
 	HorizontalAlign *string `type:"string"`
 
 	// The amount by which you want the horizontal position of the watermark to
-	// be offset from the position specified by HorizontalAlign: number of pixels
+	// be offset from the position specified by HorizontalAlign:  number of pixels
 	// (px): The minimum value is 0 pixels, and the maximum value is the value of
-	// MaxWidth.
-	// integer percentage (%): The range of valid values is 0 to 100.
+	// MaxWidth. integer percentage (%): The range of valid values is 0 to 100.
 	// For example, if you specify Left for HorizontalAlign and 5px for HorizontalOffset,
 	// the left side of the watermark appears 5 pixels from the left border of the
 	// output video.
@@ -4425,27 +4348,26 @@ type PresetWatermark struct {
 	// bars that are added by Elastic Transcoder, if any, in the offset calculation.
 	HorizontalOffset *string `type:"string"`
 
-	// A unique identifier for the settings for one watermark. The value of Id
+	// A unique identifier for the settings for one watermark. The value of Id can
+	// be up to 40 characters long.
 	Id *string `min:"1" type:"string"`
 
-	// The maximum height of the watermark in one of the following formats: number
+	// The maximum height of the watermark in one of the following formats:  number
 	// of pixels (px): The minimum value is 16 pixels, and the maximum value is
-	// the value of MaxHeight.
-	// integer percentage (%): The range of valid values is 0 to 100. Use the value
-	// of Target to specify whether you want Elastic Transcoder to include the black
-	// bars that are added by Elastic Transcoder, if any, in the calculation.
-	//  If you specify the value in pixels, it must be less than or equal to the
-	// value of MaxHeight.
+	// the value of MaxHeight. integer percentage (%): The range of valid values
+	// is 0 to 100. Use the value of Target to specify whether you want Elastic
+	// Transcoder to include the black bars that are added by Elastic Transcoder,
+	// if any, in the calculation.  If you specify the value in pixels, it must
+	// be less than or equal to the value of MaxHeight.
 	MaxHeight *string `type:"string"`
 
-	// The maximum width of the watermark in one of the following formats: number
+	// The maximum width of the watermark in one of the following formats:  number
 	// of pixels (px): The minimum value is 16 pixels, and the maximum value is
-	// the value of MaxWidth.
-	// integer percentage (%): The range of valid values is 0 to 100. Use the value
-	// of Target to specify whether you want Elastic Transcoder to include the black
-	// bars that are added by Elastic Transcoder, if any, in the calculation.
-	//  If you specify the value in pixels, it must be less than or equal to the
-	// value of MaxWidth.
+	// the value of MaxWidth. integer percentage (%): The range of valid values
+	// is 0 to 100. Use the value of Target to specify whether you want Elastic
+	// Transcoder to include the black bars that are added by Elastic Transcoder,
+	// if any, in the calculation. If you specify the value in pixels, it must be
+	// less than or equal to the value of MaxWidth.
 	MaxWidth *string `type:"string"`
 
 	// A percentage that indicates how much you want a watermark to obscure the
@@ -4458,17 +4380,16 @@ type PresetWatermark struct {
 	// a value of 0 for Opacity. The .jpg file format doesn't support transparency.
 	Opacity *string `type:"string"`
 
-	// A value that controls scaling of the watermark: Fit: Elastic Transcoder scales
-	// the watermark so it matches the value that you specified in either MaxWidth
-	// or MaxHeight without exceeding the other value.
-	// Stretch: Elastic Transcoder stretches the watermark to match the values that
-	// you specified for MaxWidth and MaxHeight. If the relative proportions of
-	// the watermark and the values of MaxWidth and MaxHeight are different, the
-	// watermark will be distorted.
-	// ShrinkToFit: Elastic Transcoder scales the watermark down so that its dimensions
-	// match the values that you specified for at least one of MaxWidth and MaxHeight
-	// without exceeding either value. If you specify this option, Elastic Transcoder
-	// does not scale the watermark up.
+	// A value that controls scaling of the watermark:  Fit: Elastic Transcoder
+	// scales the watermark so it matches the value that you specified in either
+	// MaxWidth or MaxHeight without exceeding the other value. Stretch: Elastic
+	// Transcoder stretches the watermark to match the values that you specified
+	// for MaxWidth and MaxHeight. If the relative proportions of the watermark
+	// and the values of MaxWidth and MaxHeight are different, the watermark will
+	// be distorted. ShrinkToFit: Elastic Transcoder scales the watermark down so
+	// that its dimensions match the values that you specified for at least one
+	// of MaxWidth and MaxHeight without exceeding either value. If you specify
+	// this option, Elastic Transcoder does not scale the watermark up.
 	SizingPolicy *string `type:"string"`
 
 	// A value that determines how Elastic Transcoder interprets values that you
@@ -4477,39 +4398,35 @@ type PresetWatermark struct {
 	// on the borders of the video excluding black bars added by Elastic Transcoder,
 	// if any. In addition, MaxWidth and MaxHeight, if specified as a percentage,
 	// are calculated based on the borders of the video excluding black bars added
-	// by Elastic Transcoder, if any.
-	// Frame: HorizontalOffset and VerticalOffset values are calculated based on
-	// the borders of the video including black bars added by Elastic Transcoder,
-	// if any.
-	//  In addition, MaxWidth and MaxHeight, if specified as a percentage, are calculated
-	// based on the borders of the video including black bars added by Elastic Transcoder,
-	// if any.
+	// by Elastic Transcoder, if any. Frame: HorizontalOffset and VerticalOffset
+	// values are calculated based on the borders of the video including black bars
+	// added by Elastic Transcoder, if any. In addition, MaxWidth and MaxHeight,
+	// if specified as a percentage, are calculated based on the borders of the
+	// video including black bars added by Elastic Transcoder, if any.
 	Target *string `type:"string"`
 
 	// The vertical position of the watermark unless you specify a non-zero value
-	// for VerticalOffset: Top: The top edge of the watermark is aligned with the
-	// top border of the video.
-	// Bottom: The bottom edge of the watermark is aligned with the bottom border
-	// of the video.
-	// Center: The watermark is centered between the top and bottom borders.
+	// for VerticalOffset:  Top: The top edge of the watermark is aligned with the
+	// top border of the video. Bottom: The bottom edge of the watermark is aligned
+	// with the bottom border of the video. Center: The watermark is centered between
+	// the top and bottom borders.
 	VerticalAlign *string `type:"string"`
 
-	// VerticalOffsetThe amount by which you want the vertical position of the watermark to be
-	// offset from the position specified by VerticalAlign:number of pixels (px):
-	// The minimum value is 0 pixels, and the maximum value is the value of MaxHeight.
-	//
-	// integer percentage (%): The range of valid values is 0 to 100.
-	//  For example, if you specify Top for VerticalAlign and 5px for VerticalOffset,
-	// the top of the watermark appears 5 pixels from the top border of the output
-	// video.
+	// VerticalOffset The amount by which you want the vertical position of the
+	// watermark to be offset from the position specified by VerticalAlign: number
+	// of pixels (px): The minimum value is 0 pixels, and the maximum value is the
+	// value of MaxHeight. integer percentage (%): The range of valid values is
+	// 0 to 100.  For example, if you specify Top for VerticalAlign and 5px for
+	// VerticalOffset, the top of the watermark appears 5 pixels from the top border
+	// of the output video.
 	//
 	// VerticalOffset is only valid when the value of VerticalAlign is Top or Bottom.
 	//
-	// If you specify an offset that causes the watermark to extend beyond the top
-	// or bottom border and Elastic Transcoder has not added black bars, the watermark
-	// is cropped. If Elastic Transcoder has added black bars, the watermark extends
-	// into the black bars. If the watermark extends beyond the black bars, it is
-	// cropped.
+	// If you specify an offset that causes the watermark to extend beyond the
+	// top or bottom border and Elastic Transcoder has not added black bars, the
+	// watermark is cropped. If Elastic Transcoder has added black bars, the watermark
+	// extends into the black bars. If the watermark extends beyond the black bars,
+	// it is cropped.
 	//
 	// Use the value of Target to specify whether you want Elastic Transcoder to
 	// include the black bars that are added by Elastic Transcoder, if any, in the
@@ -4794,7 +4711,7 @@ type Thumbnails struct {
 	// instead of Resolution and AspectRatio. The two groups of settings are mutually
 	// exclusive. Do not use them together.
 	//
-	// The aspect ratio of thumbnails. Valid values include:
+	//  The aspect ratio of thumbnails. Valid values include:
 	//
 	// auto, 1:1, 4:3, 3:2, 16:9
 	//
@@ -4833,33 +4750,31 @@ type Thumbnails struct {
 	// instead of Resolution and AspectRatio. The two groups of settings are mutually
 	// exclusive. Do not use them together.
 	//
-	// The width and height of thumbnail files in pixels. Specify a value in the
+	//  The width and height of thumbnail files in pixels. Specify a value in the
 	// format width x height where both values are even integers. The values cannot
 	// exceed the width and height that you specified in the Video:Resolution object.
 	Resolution *string `type:"string"`
 
 	// Specify one of the following values to control scaling of thumbnails:
 	//
-	// Fit: Elastic Transcoder scales thumbnails so they match the value that you
-	// specified in thumbnail MaxWidth or MaxHeight settings without exceeding the
-	// other value.
-	// Fill: Elastic Transcoder scales thumbnails so they match the value that you
-	// specified in thumbnail MaxWidth or MaxHeight settings and matches or exceeds
-	// the other value. Elastic Transcoder centers the image in thumbnails and then
-	// crops in the dimension (if any) that exceeds the maximum value.
-	// Stretch: Elastic Transcoder stretches thumbnails to match the values that
-	// you specified for thumbnail MaxWidth and MaxHeight settings. If the relative
-	// proportions of the input video and thumbnails are different, the thumbnails
-	// will be distorted.
-	// Keep: Elastic Transcoder does not scale thumbnails. If either dimension of
-	// the input video exceeds the values that you specified for thumbnail MaxWidth
-	// and MaxHeight settings, Elastic Transcoder crops the thumbnails.
-	// ShrinkToFit: Elastic Transcoder scales thumbnails down so that their dimensions
-	// match the values that you specified for at least one of thumbnail MaxWidth
-	// and MaxHeight without exceeding either value. If you specify this option,
-	// Elastic Transcoder does not scale thumbnails up.
-	// ShrinkToFill: Elastic Transcoder scales thumbnails down so that their dimensions
-	// match the values that you specified for at least one of MaxWidth and MaxHeight
+	//   Fit: Elastic Transcoder scales thumbnails so they match the value that
+	// you specified in thumbnail MaxWidth or MaxHeight settings without exceeding
+	// the other value.  Fill: Elastic Transcoder scales thumbnails so they match
+	// the value that you specified in thumbnail MaxWidth or MaxHeight settings
+	// and matches or exceeds the other value. Elastic Transcoder centers the image
+	// in thumbnails and then crops in the dimension (if any) that exceeds the maximum
+	// value. Stretch: Elastic Transcoder stretches thumbnails to match the values
+	// that you specified for thumbnail MaxWidth and MaxHeight settings. If the
+	// relative proportions of the input video and thumbnails are different, the
+	// thumbnails will be distorted. Keep: Elastic Transcoder does not scale thumbnails.
+	// If either dimension of the input video exceeds the values that you specified
+	// for thumbnail MaxWidth and MaxHeight settings, Elastic Transcoder crops the
+	// thumbnails. ShrinkToFit: Elastic Transcoder scales thumbnails down so that
+	// their dimensions match the values that you specified for at least one of
+	// thumbnail MaxWidth and MaxHeight without exceeding either value. If you specify
+	// this option, Elastic Transcoder does not scale thumbnails up. ShrinkToFill:
+	// Elastic Transcoder scales thumbnails down so that their dimensions match
+	// the values that you specified for at least one of MaxWidth and MaxHeight
 	// without dropping below either value. If you specify this option, Elastic
 	// Transcoder does not scale thumbnails up.
 	SizingPolicy *string `type:"string"`
@@ -4955,47 +4870,39 @@ type UpdatePipelineInput struct {
 	// If you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket
 	// object.
 	//
-	//    * Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to
-	//    save transcoded files and playlists.
-	//    * Permissions (Optional): The Permissions object specifies which users
-	//    you want to have access to transcoded files and the type of access you
-	//    want them to have. You can grant permissions to a maximum of 30 users
-	//    and/or predefined Amazon S3 groups.
-	//    * Grantee Type: Specify the type of value that appears in the Grantee
-	//    object: Canonical: The value in the Grantee object is either the canonical
-	//    user ID for an AWS account or an origin access identity for an Amazon
-	//    CloudFront distribution. For more information about canonical user IDs,
-	//    see Access Control List (ACL) Overview in the Amazon Simple Storage Service
-	//    Developer Guide. For more information about using CloudFront origin access
-	//    identities to require that users use CloudFront URLs instead of Amazon
-	//    S3 URLs, see Using an Origin Access Identity to Restrict Access to Your
-	//    Amazon S3 Content. A canonical user ID is not the same as an AWS account
-	//    number.
-	// Email: The value in the Grantee object is the registered email address of
-	//    an AWS account.
-	// Group: The value in the Grantee object is one of the following predefined
-	//    Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.
-	//
-	//    * Grantee: The AWS user or group that you want to have access to transcoded
-	//    files and playlists. To identify the user or group, you can specify the
-	//    canonical user ID for an AWS account, an origin access identity for a
-	//    CloudFront distribution, the registered email address of an AWS account,
-	//    or a predefined Amazon S3 group
-	//    * Access: The permission that you want to give to the AWS user that you
-	//    specified in Grantee. Permissions are granted on the files that Elastic
-	//    Transcoder adds to the bucket, including playlists and video files. Valid
-	//    values include: READ: The grantee can read the objects and metadata for
-	//    objects that Elastic Transcoder adds to the Amazon S3 bucket.
-	// READ_ACP: The grantee can read the object ACL for objects that Elastic Transcoder
-	//    adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the objects that Elastic Transcoder
-	//    adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	//    the objects that Elastic Transcoder adds to the Amazon S3 bucket.
-	//
-	//    * StorageClass: The Amazon S3 storage class, Standard or ReducedRedundancy,
-	//    that you want Elastic Transcoder to assign to the video files and playlists
-	//    that it stores in your Amazon S3 bucket.
+	//  Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save
+	// transcoded files and playlists. Permissions (Optional): The Permissions object
+	// specifies which users you want to have access to transcoded files and the
+	// type of access you want them to have. You can grant permissions to a maximum
+	// of 30 users and/or predefined Amazon S3 groups. Grantee Type: Specify the
+	// type of value that appears in the Grantee object:  Canonical: The value in
+	// the Grantee object is either the canonical user ID for an AWS account or
+	// an origin access identity for an Amazon CloudFront distribution. For more
+	// information about canonical user IDs, see Access Control List (ACL) Overview
+	// in the Amazon Simple Storage Service Developer Guide. For more information
+	// about using CloudFront origin access identities to require that users use
+	// CloudFront URLs instead of Amazon S3 URLs, see Using an Origin Access Identity
+	// to Restrict Access to Your Amazon S3 Content. A canonical user ID is not
+	// the same as an AWS account number.  Email: The value in the Grantee object
+	// is the registered email address of an AWS account. Group: The value in the
+	// Grantee object is one of the following predefined Amazon S3 groups: AllUsers,
+	// AuthenticatedUsers, or LogDelivery.    Grantee: The AWS user or group that
+	// you want to have access to transcoded files and playlists. To identify the
+	// user or group, you can specify the canonical user ID for an AWS account,
+	// an origin access identity for a CloudFront distribution, the registered email
+	// address of an AWS account, or a predefined Amazon S3 group   Access: The
+	// permission that you want to give to the AWS user that you specified in Grantee.
+	// Permissions are granted on the files that Elastic Transcoder adds to the
+	// bucket, including playlists and video files. Valid values include:  READ:
+	// The grantee can read the objects and metadata for objects that Elastic Transcoder
+	// adds to the Amazon S3 bucket. READ_ACP: The grantee can read the object ACL
+	// for objects that Elastic Transcoder adds to the Amazon S3 bucket.  WRITE_ACP:
+	// The grantee can write the ACL for the objects that Elastic Transcoder adds
+	// to the Amazon S3 bucket. FULL_CONTROL: The grantee has READ, READ_ACP, and
+	// WRITE_ACP permissions for the objects that Elastic Transcoder adds to the
+	// Amazon S3 bucket.    StorageClass: The Amazon S3 storage class, Standard
+	// or ReducedRedundancy, that you want Elastic Transcoder to assign to the video
+	// files and playlists that it stores in your Amazon S3 bucket.
 	ContentConfig *PipelineOutputConfig `type:"structure"`
 
 	// The ID of the pipeline that you want to update.
@@ -5035,42 +4942,34 @@ type UpdatePipelineInput struct {
 	// If you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket
 	// object.
 	//
-	//    * Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to
-	//    save thumbnail files.
-	//    * Permissions (Optional): The Permissions object specifies which users
-	//    and/or predefined Amazon S3 groups you want to have access to thumbnail
-	//    files, and the type of access you want them to have. You can grant permissions
-	//    to a maximum of 30 users and/or predefined Amazon S3 groups.
-	//    * GranteeType: Specify the type of value that appears in the Grantee object:
-	//    Canonical: The value in the Grantee object is either the canonical user
-	//    ID for an AWS account or an origin access identity for an Amazon CloudFront
-	//    distribution. A canonical user ID is not the same as an AWS account number.
-	//
+	//  Bucket: The Amazon S3 bucket in which you want Elastic Transcoder to save
+	// thumbnail files. Permissions (Optional): The Permissions object specifies
+	// which users and/or predefined Amazon S3 groups you want to have access to
+	// thumbnail files, and the type of access you want them to have. You can grant
+	// permissions to a maximum of 30 users and/or predefined Amazon S3 groups.
+	//  GranteeType: Specify the type of value that appears in the Grantee object:
+	//   Canonical: The value in the Grantee object is either the canonical user
+	// ID for an AWS account or an origin access identity for an Amazon CloudFront
+	// distribution. A canonical user ID is not the same as an AWS account number.
 	// Email: The value in the Grantee object is the registered email address of
-	//    an AWS account.
-	// Group: The value in the Grantee object is one of the following predefined
-	//    Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.
-	//
-	//    * Grantee: The AWS user or group that you want to have access to thumbnail
-	//    files. To identify the user or group, you can specify the canonical user
-	//    ID for an AWS account, an origin access identity for a CloudFront distribution,
-	//    the registered email address of an AWS account, or a predefined Amazon
-	//    S3 group.
-	//    * Access: The permission that you want to give to the AWS user that you
-	//    specified in Grantee. Permissions are granted on the thumbnail files that
-	//    Elastic Transcoder adds to the bucket. Valid values include: READ: The
-	//    grantee can read the thumbnails and metadata for objects that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// READ_ACP: The grantee can read the object ACL for thumbnails that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// WRITE_ACP: The grantee can write the ACL for the thumbnails that Elastic
-	//    Transcoder adds to the Amazon S3 bucket.
-	// FULL_CONTROL: The grantee has READ, READ_ACP, and WRITE_ACP permissions for
-	//    the thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
-	//
-	//    * StorageClass: The Amazon S3 storage class, Standard or ReducedRedundancy,
-	//    that you want Elastic Transcoder to assign to the thumbnails that it stores
-	//    in your Amazon S3 bucket.
+	// an AWS account.  Group: The value in the Grantee object is one of the following
+	// predefined Amazon S3 groups: AllUsers, AuthenticatedUsers, or LogDelivery.
+	//    Grantee: The AWS user or group that you want to have access to thumbnail
+	// files. To identify the user or group, you can specify the canonical user
+	// ID for an AWS account, an origin access identity for a CloudFront distribution,
+	// the registered email address of an AWS account, or a predefined Amazon S3
+	// group.   Access: The permission that you want to give to the AWS user that
+	// you specified in Grantee. Permissions are granted on the thumbnail files
+	// that Elastic Transcoder adds to the bucket. Valid values include:  READ:
+	// The grantee can read the thumbnails and metadata for objects that Elastic
+	// Transcoder adds to the Amazon S3 bucket. READ_ACP: The grantee can read the
+	// object ACL for thumbnails that Elastic Transcoder adds to the Amazon S3 bucket.
+	//  WRITE_ACP: The grantee can write the ACL for the thumbnails that Elastic
+	// Transcoder adds to the Amazon S3 bucket. FULL_CONTROL: The grantee has READ,
+	// READ_ACP, and WRITE_ACP permissions for the thumbnails that Elastic Transcoder
+	// adds to the Amazon S3 bucket.     StorageClass: The Amazon S3 storage class,
+	// Standard or ReducedRedundancy, that you want Elastic Transcoder to assign
+	// to the thumbnails that it stores in your Amazon S3 bucket.
 	ThumbnailConfig *PipelineOutputConfig `type:"structure"`
 }
 
@@ -5124,19 +5023,18 @@ type UpdatePipelineNotificationsInput struct {
 	// that you want to notify to report job status.
 	//
 	// To receive notifications, you must also subscribe to the new topic in the
-	// Amazon SNS console.   * Progressing: The topic ARN for the Amazon Simple Notification Service
-	//    (Amazon SNS) topic that you want to notify when Elastic Transcoder has
-	//    started to process jobs that are added to this pipeline. This is the ARN
-	//    that Amazon SNS returned when you created the topic.
-	//    * Completed: The topic ARN for the Amazon SNS topic that you want to notify
-	//    when Elastic Transcoder has finished processing a job. This is the ARN
-	//    that Amazon SNS returned when you created the topic.
-	//    * Warning: The topic ARN for the Amazon SNS topic that you want to notify
-	//    when Elastic Transcoder encounters a warning condition. This is the ARN
-	//    that Amazon SNS returned when you created the topic.
-	//    * Error: The topic ARN for the Amazon SNS topic that you want to notify
-	//    when Elastic Transcoder encounters an error condition. This is the ARN
-	//    that Amazon SNS returned when you created the topic.
+	// Amazon SNS console.  Progressing: The topic ARN for the Amazon Simple Notification
+	// Service (Amazon SNS) topic that you want to notify when Elastic Transcoder
+	// has started to process jobs that are added to this pipeline. This is the
+	// ARN that Amazon SNS returned when you created the topic. Completed: The topic
+	// ARN for the Amazon SNS topic that you want to notify when Elastic Transcoder
+	// has finished processing a job. This is the ARN that Amazon SNS returned when
+	// you created the topic. Warning: The topic ARN for the Amazon SNS topic that
+	// you want to notify when Elastic Transcoder encounters a warning condition.
+	// This is the ARN that Amazon SNS returned when you created the topic. Error:
+	// The topic ARN for the Amazon SNS topic that you want to notify when Elastic
+	// Transcoder encounters an error condition. This is the ARN that Amazon SNS
+	// returned when you created the topic.
 	//
 	// Notifications is a required field
 	Notifications *Notifications `type:"structure" required:"true"`
@@ -5224,8 +5122,8 @@ type UpdatePipelineStatusInput struct {
 
 	// The desired status of the pipeline:
 	//
-	//    * Active: The pipeline is processing jobs.
-	//    * Paused: The pipeline is not currently processing jobs.
+	//   Active: The pipeline is processing jobs.  Paused: The pipeline is not
+	// currently processing jobs.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true"`
@@ -5285,7 +5183,8 @@ type VideoParameters struct {
 	// and DisplayAspectRatio instead of Resolution and AspectRatio. The two groups
 	// of settings are mutually exclusive. Do not use them together.
 	//
-	// The display aspect ratio of the video in the output file. Valid values include:
+	//  The display aspect ratio of the video in the output file. Valid values
+	// include:
 	//
 	// auto, 1:1, 4:3, 3:2, 16:9
 	//
@@ -5305,20 +5204,12 @@ type VideoParameters struct {
 	// than or equal to the maximum H.264-compliant value listed for your level
 	// and profile:
 	//
-	// Level - Maximum video bit rate in kilobits/second (baseline and main Profile)
+	//  Level - Maximum video bit rate in kilobits/second (baseline and main Profile)
 	// : maximum video bit rate in kilobits/second (high Profile)
 	//
-	//    * 1 - 64 : 80
-	//    * 1b - 128 : 160
-	//    * 1.1 - 192 : 240
-	//    * 1.2 - 384 : 480
-	//    * 1.3 - 768 : 960
-	//    * 2 - 2000 : 2500
-	//    * 3 - 10000 : 12500
-	//    * 3.1 - 14000 : 17500
-	//    * 3.2 - 20000 : 25000
-	//    * 4 - 20000 : 25000
-	//    * 4.1 - 50000 : 62500
+	//  1 - 64 : 80 1b - 128 : 160 1.1 - 192 : 240 1.2 - 384 : 480 1.3 - 768 :
+	// 960 2 - 2000 : 2500 3 - 10000 : 12500 3.1 - 14000 : 17500 3.2 - 20000 : 25000
+	// 4 - 20000 : 25000 4.1 - 50000 : 62500
 	BitRate *string `type:"string"`
 
 	// The video codec for the output file. Valid values include gif, H.264, mpeg2,
@@ -5331,55 +5222,41 @@ type VideoParameters struct {
 	// The H.264 profile that you want to use for the output file. Elastic Transcoder
 	// supports the following profiles:
 	//
-	//    * baseline: The profile most commonly used for videoconferencing and for
-	//    mobile applications.
-	//    * main: The profile used for standard-definition digital TV broadcasts.
-	//
-	//    * high: The profile used for high-definition digital TV broadcasts and
-	//    for Blu-ray discs.
-	// Level (H.264 Only)
+	//  baseline: The profile most commonly used for videoconferencing and for
+	// mobile applications. main: The profile used for standard-definition digital
+	// TV broadcasts. high: The profile used for high-definition digital TV broadcasts
+	// and for Blu-ray discs.   Level (H.264 Only)
 	//
 	// The H.264 level that you want to use for the output file. Elastic Transcoder
 	// supports the following levels:
 	//
 	// 1, 1b, 1.1, 1.2, 1.3, 2, 2.1, 2.2, 3, 3.1, 3.2, 4, 4.1
 	//
-	// MaxReferenceFrames (H.264 Only)
+	//  MaxReferenceFrames (H.264 Only)
 	//
 	// Applicable only when the value of Video:Codec is H.264. The maximum number
 	// of previously decoded frames to use as a reference for decoding future frames.
 	// Valid values are integers 0 through 16, but we recommend that you not use
 	// a value greater than the following:
 	//
-	// Min(Floor(Maximum decoded picture buffer in macroblocks * 256 / (Width in
-	// pixels * Height in pixels)), 16)
+	//  Min(Floor(Maximum decoded picture buffer in macroblocks * 256 / (Width
+	// in pixels * Height in pixels)), 16)
 	//
 	// where Width in pixels and Height in pixels represent either MaxWidth and
 	// MaxHeight, or Resolution. Maximum decoded picture buffer in macroblocks depends
 	// on the value of the Level object. See the list below. (A macroblock is a
 	// block of pixels measuring 16x16.)
 	//
-	//    * 1 - 396
-	//    * 1b - 396
-	//    * 1.1 - 900
-	//    * 1.2 - 2376
-	//    * 1.3 - 2376
-	//    * 2 - 2376
-	//    * 2.1 - 4752
-	//    * 2.2 - 8100
-	//    * 3 - 8100
-	//    * 3.1 - 18000
-	//    * 3.2 - 20480
-	//    * 4 - 32768
-	//    * 4.1 - 32768
-	// MaxBitRate (Optional, H.264/MPEG2/VP8 only)
+	//  1 - 396 1b - 396 1.1 - 900 1.2 - 2376 1.3 - 2376 2 - 2376 2.1 - 4752 2.2
+	// - 8100 3 - 8100 3.1 - 18000 3.2 - 20480 4 - 32768 4.1 - 32768   MaxBitRate
+	// (Optional, H.264/MPEG2/VP8 only)
 	//
 	// The maximum number of bits per second in a video buffer; the size of the
 	// buffer is specified by BufferSize. Specify a value between 16 and 62,500.
 	// You can reduce the bandwidth required to stream a video by reducing the maximum
 	// bit rate, but this also reduces the quality of the video.
 	//
-	// BufferSize (Optional, H.264/MPEG2/VP8 only)
+	//  BufferSize (Optional, H.264/MPEG2/VP8 only)
 	//
 	// The maximum number of bits in any x seconds of the output video. This window
 	// is commonly 10 seconds, the standard segment duration when you're using FMP4
@@ -5387,15 +5264,15 @@ type VideoParameters struct {
 	// greater than 0. If you specify MaxBitRate and omit BufferSize, Elastic Transcoder
 	// sets BufferSize to 10 times the value of MaxBitRate.
 	//
-	// InterlacedMode (Optional, H.264/MPEG2 Only)
+	//  InterlacedMode (Optional, H.264/MPEG2 Only)
 	//
 	// The interlace mode for the output video.
 	//
-	// Interlaced video is used to double the perceived frame rate for a video by
-	// interlacing two fields (one field on every other line, the other field on
-	// the other lines) so that the human eye registers multiple pictures per frame.
-	// Interlacing reduces the bandwidth required for transmitting a video, but
-	// can result in blurred images and flickering.
+	// Interlaced video is used to double the perceived frame rate for a video
+	// by interlacing two fields (one field on every other line, the other field
+	// on the other lines) so that the human eye registers multiple pictures per
+	// frame. Interlacing reduces the bandwidth required for transmitting a video,
+	// but can result in blurred images and flickering.
 	//
 	// Valid values include Progressive (no interlacing, top to bottom), TopFirst
 	// (top field first), BottomFirst (bottom field first), and Auto.
@@ -5403,7 +5280,7 @@ type VideoParameters struct {
 	// If InterlaceMode is not specified, Elastic Transcoder uses Progressive for
 	// the output. If Auto is specified, Elastic Transcoder interlaces the output.
 	//
-	// ColorSpaceConversionMode (Optional, H.264/MPEG2 Only)
+	//  ColorSpaceConversionMode (Optional, H.264/MPEG2 Only)
 	//
 	// The color space conversion Elastic Transcoder applies to the output video.
 	// Color spaces are the algorithms used by the computer to store information
@@ -5417,22 +5294,19 @@ type VideoParameters struct {
 	// is null, and you are using one of the resolution changes from the list below,
 	// Elastic Transcoder applies the following color space conversions:
 	//
-	//    * Standard to HD, 720x480 to 1920x1080 - Elastic Transcoder applies Bt601ToBt709
-	//
-	//    * Standard to HD, 720x576 to 1920x1080 - Elastic Transcoder applies Bt601ToBt709
-	//
-	//    * HD to Standard, 1920x1080 to 720x480 - Elastic Transcoder applies Bt709ToBt601
-	//
-	//    * HD to Standard, 1920x1080 to 720x576 - Elastic Transcoder applies Bt709ToBt601
-	//
-	// Elastic Transcoder may change the behavior of the ColorspaceConversionModeAuto
-	// mode in the future. All outputs in a playlist must use the same ColorSpaceConversionMode.If you do not specify a ColorSpaceConversionMode, Elastic Transcoder does
+	//  Standard to HD, 720x480 to 1920x1080 - Elastic Transcoder applies Bt601ToBt709
+	// Standard to HD, 720x576 to 1920x1080 - Elastic Transcoder applies Bt601ToBt709
+	// HD to Standard, 1920x1080 to 720x480 - Elastic Transcoder applies Bt709ToBt601
+	// HD to Standard, 1920x1080 to 720x576 - Elastic Transcoder applies Bt709ToBt601
+	//  Elastic Transcoder may change the behavior of the ColorspaceConversionMode
+	// Auto mode in the future. All outputs in a playlist must use the same ColorSpaceConversionMode.
+	// If you do not specify a ColorSpaceConversionMode, Elastic Transcoder does
 	// not change the color space of a file. If you are unsure what ColorSpaceConversionMode
 	// was applied to your output file, you can check the AppliedColorSpaceConversion
 	// parameter included in your job response. If your job does not have an AppliedColorSpaceConversion
 	// in its response, no ColorSpaceConversionMode was applied.
 	//
-	// ChromaSubsampling
+	//  ChromaSubsampling
 	//
 	// The sampling pattern for the chroma (color) channels of the output video.
 	// Valid values include yuv420p and yuv422p.
@@ -5441,7 +5315,7 @@ type VideoParameters struct {
 	// other vertical line, yuv422p samples the color information of every horizontal
 	// line and every other vertical line.
 	//
-	// LoopCount (Gif Only)
+	//  LoopCount (Gif Only)
 	//
 	// The number of times you want the output gif to loop. Valid values include
 	// Infinite and integers between 0 and 100, inclusive.
@@ -5455,11 +5329,10 @@ type VideoParameters struct {
 	//
 	// Whether to use a fixed value for FixedGOP. Valid values are true and false:
 	//
-	//    * true: Elastic Transcoder uses the value of KeyframesMaxDist for the
-	//    distance between key frames (the number of frames in a group of pictures,
-	//    or GOP).
-	//    * false: The distance between key frames can vary.
-	// FixedGOP must be set to true for fmp4 containers.
+	//  true: Elastic Transcoder uses the value of KeyframesMaxDist for the distance
+	// between key frames (the number of frames in a group of pictures, or GOP).
+	// false: The distance between key frames can vary.  FixedGOP must be set to
+	// true for fmp4 containers.
 	FixedGOP *string `type:"string"`
 
 	// The frames per second for the video stream in the output file. Valid values
@@ -5467,36 +5340,25 @@ type VideoParameters struct {
 	//
 	// auto, 10, 15, 23.97, 24, 25, 29.97, 30, 60
 	//
-	// If you specify auto, Elastic Transcoder uses the detected frame rate of the
-	// input source. If you specify a frame rate, we recommend that you perform
+	// If you specify auto, Elastic Transcoder uses the detected frame rate of
+	// the input source. If you specify a frame rate, we recommend that you perform
 	// the following calculation:
 	//
-	// Frame rate = maximum recommended decoding speed in luma samples/second /
-	// (width in pixels * height in pixels)
+	//  Frame rate = maximum recommended decoding speed in luma samples/second
+	// / (width in pixels * height in pixels)
 	//
 	// where:
 	//
-	//    * width in pixels and height in pixels represent the Resolution of the
-	//    output video.
-	//    * maximum recommended decoding speed in Luma samples/second is less than
-	//    or equal to the maximum value listed in the following table, based on
-	//    the value that you specified for Level.
-	// The maximum recommended decoding speed in Luma samples/second for each level
-	// is described in the following list (Level - Decoding speed):
+	//  width in pixels and height in pixels represent the Resolution of the output
+	// video. maximum recommended decoding speed in Luma samples/second is less
+	// than or equal to the maximum value listed in the following table, based on
+	// the value that you specified for Level.  The maximum recommended decoding
+	// speed in Luma samples/second for each level is described in the following
+	// list (Level - Decoding speed):
 	//
-	//    * 1 - 380160
-	//    * 1b - 380160
-	//    * 1.1 - 76800
-	//    * 1.2 - 1536000
-	//    * 1.3 - 3041280
-	//    * 2 - 3041280
-	//    * 2.1 - 5068800
-	//    * 2.2 - 5184000
-	//    * 3 - 10368000
-	//    * 3.1 - 27648000
-	//    * 3.2 - 55296000
-	//    * 4 - 62914560
-	//    * 4.1 - 62914560
+	//  1 - 380160 1b - 380160 1.1 - 76800 1.2 - 1536000 1.3 - 3041280 2 - 3041280
+	// 2.1 - 5068800 2.2 - 5184000 3 - 10368000 3.1 - 27648000 3.2 - 55296000 4
+	// - 62914560 4.1 - 62914560
 	FrameRate *string `type:"string"`
 
 	// Applicable only when the value of Video:Codec is one of H.264, MPEG2, or
@@ -5550,65 +5412,48 @@ type VideoParameters struct {
 	// and DisplayAspectRatio instead of Resolution and AspectRatio. The two groups
 	// of settings are mutually exclusive. Do not use them together.
 	//
-	// The width and height of the video in the output file, in pixels. Valid values
-	// are auto and width x height:
+	//  The width and height of the video in the output file, in pixels. Valid
+	// values are auto and width x height:
 	//
-	//    * auto: Elastic Transcoder attempts to preserve the width and height of
-	//    the input file, subject to the following rules.
-	//    * width x height: The width and height of the output video in pixels.
+	//  auto: Elastic Transcoder attempts to preserve the width and height of the
+	// input file, subject to the following rules. width x height: The width and
+	// height of the output video in pixels.  Note the following about specifying
+	// the width and height:
 	//
-	// Note the following about specifying the width and height:
-	//
-	//    * The width must be an even integer between 128 and 4096, inclusive.
-	//    * The height must be an even integer between 96 and 3072, inclusive.
-	//    * If you specify a resolution that is less than the resolution of the
-	//    input file, Elastic Transcoder rescales the output file to the lower resolution.
-	//
-	//    * If you specify a resolution that is greater than the resolution of the
-	//    input file, Elastic Transcoder rescales the output to the higher resolution.
-	//
-	//    * We recommend that you specify a resolution for which the product of
-	//    width and height is less than or equal to the applicable value in the
-	//    following list (List - Max width x height value):
-	//    * 1 - 25344
-	// 1b - 25344
-	// 1.1 - 101376
-	// 1.2 - 101376
-	// 1.3 - 101376
-	// 2 - 101376
-	// 2.1 - 202752
-	// 2.2 - 404720
-	// 3 - 404720
-	// 3.1 - 921600
-	// 3.2 - 1310720
-	// 4 - 2097152
-	// 4.1 - 2097152
+	//  The width must be an even integer between 128 and 4096, inclusive. The
+	// height must be an even integer between 96 and 3072, inclusive. If you specify
+	// a resolution that is less than the resolution of the input file, Elastic
+	// Transcoder rescales the output file to the lower resolution. If you specify
+	// a resolution that is greater than the resolution of the input file, Elastic
+	// Transcoder rescales the output to the higher resolution. We recommend that
+	// you specify a resolution for which the product of width and height is less
+	// than or equal to the applicable value in the following list (List - Max width
+	// x height value):  1 - 25344 1b - 25344 1.1 - 101376 1.2 - 101376 1.3 - 101376
+	// 2 - 101376 2.1 - 202752 2.2 - 404720 3 - 404720 3.1 - 921600 3.2 - 1310720
+	// 4 - 2097152 4.1 - 2097152
 	Resolution *string `type:"string"`
 
 	// Specify one of the following values to control scaling of the output video:
 	//
-	// Fit: Elastic Transcoder scales the output video so it matches the value that
-	// you specified in either MaxWidth or MaxHeight without exceeding the other
-	// value.
-	// Fill: Elastic Transcoder scales the output video so it matches the value
-	// that you specified in either MaxWidth or MaxHeight and matches or exceeds
-	// the other value. Elastic Transcoder centers the output video and then crops
-	// it in the dimension (if any) that exceeds the maximum value.
-	// Stretch: Elastic Transcoder stretches the output video to match the values
-	// that you specified for MaxWidth and MaxHeight. If the relative proportions
-	// of the input video and the output video are different, the output video will
-	// be distorted.
-	// Keep: Elastic Transcoder does not scale the output video. If either dimension
-	// of the input video exceeds the values that you specified for MaxWidth and
-	// MaxHeight, Elastic Transcoder crops the output video.
-	// ShrinkToFit: Elastic Transcoder scales the output video down so that its
-	// dimensions match the values that you specified for at least one of MaxWidth
-	// and MaxHeight without exceeding either value. If you specify this option,
-	// Elastic Transcoder does not scale the video up.
-	// ShrinkToFill: Elastic Transcoder scales the output video down so that its
-	// dimensions match the values that you specified for at least one of MaxWidth
-	// and MaxHeight without dropping below either value. If you specify this option,
-	// Elastic Transcoder does not scale the video up.
+	//   Fit: Elastic Transcoder scales the output video so it matches the value
+	// that you specified in either MaxWidth or MaxHeight without exceeding the
+	// other value. Fill: Elastic Transcoder scales the output video so it matches
+	// the value that you specified in either MaxWidth or MaxHeight and matches
+	// or exceeds the other value. Elastic Transcoder centers the output video and
+	// then crops it in the dimension (if any) that exceeds the maximum value. Stretch:
+	// Elastic Transcoder stretches the output video to match the values that you
+	// specified for MaxWidth and MaxHeight. If the relative proportions of the
+	// input video and the output video are different, the output video will be
+	// distorted. Keep: Elastic Transcoder does not scale the output video. If either
+	// dimension of the input video exceeds the values that you specified for MaxWidth
+	// and MaxHeight, Elastic Transcoder crops the output video. ShrinkToFit: Elastic
+	// Transcoder scales the output video down so that its dimensions match the
+	// values that you specified for at least one of MaxWidth and MaxHeight without
+	// exceeding either value. If you specify this option, Elastic Transcoder does
+	// not scale the video up. ShrinkToFill: Elastic Transcoder scales the output
+	// video down so that its dimensions match the values that you specified for
+	// at least one of MaxWidth and MaxHeight without dropping below either value.
+	// If you specify this option, Elastic Transcoder does not scale the video up.
 	SizingPolicy *string `type:"string"`
 
 	// Settings for the size, location, and opacity of graphics that you want Elastic

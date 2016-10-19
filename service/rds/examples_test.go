@@ -15,6 +15,32 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleRDS_AddRoleToDBCluster() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := rds.New(sess)
+
+	params := &rds.AddRoleToDBClusterInput{
+		DBClusterIdentifier: aws.String("String"), // Required
+		RoleArn:             aws.String("String"), // Required
+	}
+	resp, err := svc.AddRoleToDBCluster(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_AddSourceIdentifierToSubscription() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -2609,6 +2635,32 @@ func ExampleRDS_RebootDBInstance() {
 		ForceFailover:        aws.Bool(true),
 	}
 	resp, err := svc.RebootDBInstance(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleRDS_RemoveRoleFromDBCluster() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := rds.New(sess)
+
+	params := &rds.RemoveRoleFromDBClusterInput{
+		DBClusterIdentifier: aws.String("String"), // Required
+		RoleArn:             aws.String("String"), // Required
+	}
+	resp, err := svc.RemoveRoleFromDBCluster(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

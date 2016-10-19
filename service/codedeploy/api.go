@@ -916,15 +916,15 @@ func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupIn
 //   * InvalidAlarmConfigException
 //   The format of the alarm configuration is invalid. Possible causes include:
 //
-//      * The alarm list is null.
+//     The alarm list is null.
 //
-//      * The alarm object is null.
+//     The alarm object is null.
 //
-//      * The alarm name is empty or null or exceeds the 255 character limit.
+//     The alarm name is empty or null or exceeds the 255 character limit.
 //
-//      * Two alarms with the same name have been specified.
+//     Two alarms with the same name have been specified.
 //
-//      * The alarm configuration is enabled but the alarm list is empty.
+//     The alarm configuration is enabled but the alarm list is empty.
 //
 //   * AlarmsLimitExceededException
 //   The maximum number of alarms for a deployment group (10) was exceeded.
@@ -1058,8 +1058,8 @@ func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfig
 //
 // Deletes a deployment configuration.
 //
-// A deployment configuration cannot be deleted if it is currently in use. Predefined
-// configurations cannot be deleted.
+//  A deployment configuration cannot be deleted if it is currently in use.
+// Predefined configurations cannot be deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2981,15 +2981,15 @@ func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupIn
 //   * InvalidAlarmConfigException
 //   The format of the alarm configuration is invalid. Possible causes include:
 //
-//      * The alarm list is null.
+//     The alarm list is null.
 //
-//      * The alarm object is null.
+//     The alarm object is null.
 //
-//      * The alarm name is empty or null or exceeds the 255 character limit.
+//     The alarm name is empty or null or exceeds the 255 character limit.
 //
-//      * Two alarms with the same name have been specified.
+//     Two alarms with the same name have been specified.
 //
-//      * The alarm configuration is enabled but the alarm list is empty.
+//     The alarm configuration is enabled but the alarm list is empty.
 //
 //   * AlarmsLimitExceededException
 //   The maximum number of alarms for a deployment group (10) was exceeded.
@@ -3097,11 +3097,11 @@ type AlarmConfiguration struct {
 	// state of alarms cannot be retrieved from Amazon CloudWatch. The default value
 	// is false.
 	//
-	//    * true: The deployment will proceed even if alarm status information can't
-	//    be retrieved from Amazon CloudWatch.
+	//   true: The deployment will proceed even if alarm status information can't
+	// be retrieved from Amazon CloudWatch.
 	//
-	//    * false: The deployment will stop if alarm status information can't be
-	//    retrieved from Amazon CloudWatch.
+	//   false: The deployment will stop if alarm status information can't be retrieved
+	// from Amazon CloudWatch.
 	IgnorePollAlarmFailure *bool `locationName:"ignorePollAlarmFailure" type:"boolean"`
 }
 
@@ -3561,16 +3561,16 @@ type CreateDeploymentConfigInput struct {
 	//
 	// The type parameter takes either of the following values:
 	//
-	//    * HOST_COUNT: The value parameter represents the minimum number of healthy
-	//    instances as an absolute value.
+	//   HOST_COUNT: The value parameter represents the minimum number of healthy
+	// instances as an absolute value.
 	//
-	//    * FLEET_PERCENT: The value parameter represents the minimum number of
-	//    healthy instances as a percentage of the total number of instances in
-	//    the deployment. If you specify FLEET_PERCENT, at the start of the deployment,
-	//    AWS CodeDeploy converts the percentage to the equivalent number of instance
-	//    and rounds up fractional instances.
+	//   FLEET_PERCENT: The value parameter represents the minimum number of healthy
+	// instances as a percentage of the total number of instances in the deployment.
+	// If you specify FLEET_PERCENT, at the start of the deployment, AWS CodeDeploy
+	// converts the percentage to the equivalent number of instance and rounds up
+	// fractional instances.
 	//
-	// The value parameter takes an integer.
+	//   The value parameter takes an integer.
 	//
 	// For example, to set a minimum of 95% healthy instance, specify a type of
 	// FLEET_PERCENT and a value of 95.
@@ -3647,53 +3647,53 @@ type CreateDeploymentGroupInput struct {
 	// configuration that you create by calling the create deployment configuration
 	// operation.
 	//
-	// CodeDeployDefault.OneAtATime is the default deployment configuration. It
+	//  CodeDeployDefault.OneAtATime is the default deployment configuration. It
 	// is used if a configuration isn't specified for the deployment or the deployment
 	// group.
 	//
-	// The predefined deployment configurations include the following:
+	//  The predefined deployment configurations include the following:
 	//
-	//    * CodeDeployDefault.AllAtOnce attempts to deploy an application revision
-	//    to as many instances as possible at once. The status of the overall deployment
-	//    will be displayed as Succeeded if the application revision is deployed
-	//    to one or more of the instances. The status of the overall deployment
-	//    will be displayed as Failed if the application revision is not deployed
-	//    to any of the instances. Using an example of nine instances, CodeDeployDefault.AllAtOnce
-	//    will attempt to deploy to all nine instances at once. The overall deployment
-	//    will succeed if deployment to even a single instance is successful; it
-	//    will fail only if deployments to all nine instances fail.
+	//    CodeDeployDefault.AllAtOnce attempts to deploy an application revision
+	// to as many instances as possible at once. The status of the overall deployment
+	// will be displayed as Succeeded if the application revision is deployed to
+	// one or more of the instances. The status of the overall deployment will be
+	// displayed as Failed if the application revision is not deployed to any of
+	// the instances. Using an example of nine instances, CodeDeployDefault.AllAtOnce
+	// will attempt to deploy to all nine instances at once. The overall deployment
+	// will succeed if deployment to even a single instance is successful; it will
+	// fail only if deployments to all nine instances fail.
 	//
-	//    * CodeDeployDefault.HalfAtATime deploys to up to half of the instances
-	//    at a time (with fractions rounded down). The overall deployment succeeds
-	//    if the application revision is deployed to at least half of the instances
-	//    (with fractions rounded up); otherwise, the deployment fails. In the example
-	//    of nine instances, it will deploy to up to four instances at a time. The
-	//    overall deployment succeeds if deployment to five or more instances succeed;
-	//    otherwise, the deployment fails. The deployment may be successfully deployed
-	//    to some instances even if the overall deployment fails.
+	//    CodeDeployDefault.HalfAtATime deploys to up to half of the instances
+	// at a time (with fractions rounded down). The overall deployment succeeds
+	// if the application revision is deployed to at least half of the instances
+	// (with fractions rounded up); otherwise, the deployment fails. In the example
+	// of nine instances, it will deploy to up to four instances at a time. The
+	// overall deployment succeeds if deployment to five or more instances succeed;
+	// otherwise, the deployment fails. The deployment may be successfully deployed
+	// to some instances even if the overall deployment fails.
 	//
-	//    * CodeDeployDefault.OneAtATime deploys the application revision to only
-	//    one instance at a time.
+	//    CodeDeployDefault.OneAtATime deploys the application revision to only
+	// one instance at a time.
 	//
 	// For deployment groups that contain more than one instance:
 	//
-	// The overall deployment succeeds if the application revision is deployed to
-	//    all of the instances. The exception to this rule is if deployment to the
-	//    last instance fails, the overall deployment still succeeds. This is because
-	//    AWS CodeDeploy allows only one instance at a time to be taken offline
-	//    with the CodeDeployDefault.OneAtATime configuration.
+	//   The overall deployment succeeds if the application revision is deployed
+	// to all of the instances. The exception to this rule is if deployment to the
+	// last instance fails, the overall deployment still succeeds. This is because
+	// AWS CodeDeploy allows only one instance at a time to be taken offline with
+	// the CodeDeployDefault.OneAtATime configuration.
 	//
-	// The overall deployment fails as soon as the application revision fails to
-	//    be deployed to any but the last instance. The deployment may be successfully
-	//    deployed to some instances even if the overall deployment fails.
+	//   The overall deployment fails as soon as the application revision fails
+	// to be deployed to any but the last instance. The deployment may be successfully
+	// deployed to some instances even if the overall deployment fails.
 	//
-	// In an example using nine instances, it will deploy to one instance at a time.
-	//    The overall deployment succeeds if deployment to the first eight instances
-	//    is successful; the overall deployment fails if deployment to any of the
-	//    first eight instances fails.
+	//   In an example using nine instances, it will deploy to one instance at
+	// a time. The overall deployment succeeds if deployment to the first eight
+	// instances is successful; the overall deployment fails if deployment to any
+	// of the first eight instances fails.
 	//
-	// For deployment groups that contain only one instance, the overall deployment
-	//    is successful only if deployment to the single instance is successful
+	//   For deployment groups that contain only one instance, the overall deployment
+	// is successful only if deployment to the single instance is successful
 	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The name of a new deployment group for the specified application.
@@ -4144,11 +4144,11 @@ type DeploymentInfo struct {
 
 	// The means by which the deployment was created:
 	//
-	//    * user: A user created the deployment.
+	//   user: A user created the deployment.
 	//
-	//    * autoscaling: Auto Scaling created the deployment.
+	//   autoscaling: Auto Scaling created the deployment.
 	//
-	//    * codeDeployRollback: A rollback process created the deployment.
+	//   codeDeployRollback: A rollback process created the deployment.
 	Creator *string `locationName:"creator" type:"string" enum:"DeploymentCreator"`
 
 	// The deployment configuration name.
@@ -4297,19 +4297,19 @@ type Diagnostics struct {
 
 	// The associated error code:
 	//
-	//    * Success: The specified script ran.
+	//   Success: The specified script ran.
 	//
-	//    * ScriptMissing: The specified script was not found in the specified location.
+	//   ScriptMissing: The specified script was not found in the specified location.
 	//
-	//    * ScriptNotExecutable: The specified script is not a recognized executable
-	//    file type.
+	//   ScriptNotExecutable: The specified script is not a recognized executable
+	// file type.
 	//
-	//    * ScriptTimedOut: The specified script did not finish running in the specified
-	//    time period.
+	//   ScriptTimedOut: The specified script did not finish running in the specified
+	// time period.
 	//
-	//    * ScriptFailed: The specified script failed to run as expected.
+	//   ScriptFailed: The specified script failed to run as expected.
 	//
-	//    * UnknownError: The specified script did not run for an unknown reason.
+	//   UnknownError: The specified script did not run for an unknown reason.
 	ErrorCode *string `locationName:"errorCode" type:"string" enum:"LifecycleErrorCode"`
 
 	// The last portion of the diagnostic log.
@@ -4344,11 +4344,11 @@ type EC2TagFilter struct {
 
 	// The tag filter type:
 	//
-	//    * KEY_ONLY: Key only.
+	//   KEY_ONLY: Key only.
 	//
-	//    * VALUE_ONLY: Value only.
+	//   VALUE_ONLY: Value only.
 	//
-	//    * KEY_AND_VALUE: Key and value.
+	//   KEY_AND_VALUE: Key and value.
 	Type *string `type:"string" enum:"EC2TagFilterType"`
 
 	// The tag filter value.
@@ -4371,41 +4371,41 @@ type ErrorInformation struct {
 
 	// The error code:
 	//
-	//    * APPLICATION_MISSING: The application was missing. This error code will
-	//    most likely be raised if the application is deleted after the deployment
-	//    is created but before it is started.
+	//   APPLICATION_MISSING: The application was missing. This error code will
+	// most likely be raised if the application is deleted after the deployment
+	// is created but before it is started.
 	//
-	//    * DEPLOYMENT_GROUP_MISSING: The deployment group was missing. This error
-	//    code will most likely be raised if the deployment group is deleted after
-	//    the deployment is created but before it is started.
+	//   DEPLOYMENT_GROUP_MISSING: The deployment group was missing. This error
+	// code will most likely be raised if the deployment group is deleted after
+	// the deployment is created but before it is started.
 	//
-	//    * HEALTH_CONSTRAINTS: The deployment failed on too many instances to be
-	//    successfully deployed within the instance health constraints specified.
+	//   HEALTH_CONSTRAINTS: The deployment failed on too many instances to be
+	// successfully deployed within the instance health constraints specified.
 	//
-	//    * HEALTH_CONSTRAINTS_INVALID: The revision cannot be successfully deployed
-	//    within the instance health constraints specified.
+	//   HEALTH_CONSTRAINTS_INVALID: The revision cannot be successfully deployed
+	// within the instance health constraints specified.
 	//
-	//    * IAM_ROLE_MISSING: The service role cannot be accessed.
+	//   IAM_ROLE_MISSING: The service role cannot be accessed.
 	//
-	//    * IAM_ROLE_PERMISSIONS: The service role does not have the correct permissions.
+	//   IAM_ROLE_PERMISSIONS: The service role does not have the correct permissions.
 	//
-	//    * INTERNAL_ERROR: There was an internal error.
+	//   INTERNAL_ERROR: There was an internal error.
 	//
-	//    * NO_EC2_SUBSCRIPTION: The calling account is not subscribed to the Amazon
-	//    EC2 service.
+	//   NO_EC2_SUBSCRIPTION: The calling account is not subscribed to the Amazon
+	// EC2 service.
 	//
-	//    * NO_INSTANCES: No instance were specified, or no instance can be found.
+	//   NO_INSTANCES: No instance were specified, or no instance can be found.
 	//
-	//    * OVER_MAX_INSTANCES: The maximum number of instance was exceeded.
+	//   OVER_MAX_INSTANCES: The maximum number of instance was exceeded.
 	//
-	//    * THROTTLED: The operation was throttled because the calling account exceeded
-	//    the throttling limits of one or more AWS services.
+	//   THROTTLED: The operation was throttled because the calling account exceeded
+	// the throttling limits of one or more AWS services.
 	//
-	//    * TIMEOUT: The deployment has timed out.
+	//   TIMEOUT: The deployment has timed out.
 	//
-	//    * REVISION_MISSING: The revision ID was missing. This error code will
-	//    most likely be raised if the revision is deleted after the deployment
-	//    is created but before it is started.
+	//   REVISION_MISSING: The revision ID was missing. This error code will most
+	// likely be raised if the revision is deleted after the deployment is created
+	// but before it is started.
 	Code *string `locationName:"code" type:"string" enum:"ErrorCode"`
 
 	// An accompanying error message.
@@ -4934,17 +4934,17 @@ type InstanceSummary struct {
 
 	// The deployment status for this instance:
 	//
-	//    * Pending: The deployment is pending for this instance.
+	//   Pending: The deployment is pending for this instance.
 	//
-	//    * In Progress: The deployment is in progress for this instance.
+	//   In Progress: The deployment is in progress for this instance.
 	//
-	//    * Succeeded: The deployment has succeeded for this instance.
+	//   Succeeded: The deployment has succeeded for this instance.
 	//
-	//    * Failed: The deployment has failed for this instance.
+	//   Failed: The deployment has failed for this instance.
 	//
-	//    * Skipped: The deployment has been skipped for this instance.
+	//   Skipped: The deployment has been skipped for this instance.
 	//
-	//    * Unknown: The deployment status is unknown for this instance.
+	//   Unknown: The deployment status is unknown for this instance.
 	Status *string `locationName:"status" type:"string" enum:"InstanceStatus"`
 }
 
@@ -4977,17 +4977,17 @@ type LifecycleEvent struct {
 
 	// The deployment lifecycle event status:
 	//
-	//    * Pending: The deployment lifecycle event is pending.
+	//   Pending: The deployment lifecycle event is pending.
 	//
-	//    * InProgress: The deployment lifecycle event is in progress.
+	//   InProgress: The deployment lifecycle event is in progress.
 	//
-	//    * Succeeded: The deployment lifecycle event ran successfully.
+	//   Succeeded: The deployment lifecycle event ran successfully.
 	//
-	//    * Failed: The deployment lifecycle event has failed.
+	//   Failed: The deployment lifecycle event has failed.
 	//
-	//    * Skipped: The deployment lifecycle event has been skipped.
+	//   Skipped: The deployment lifecycle event has been skipped.
 	//
-	//    * Unknown: The deployment lifecycle event is unknown.
+	//   Unknown: The deployment lifecycle event is unknown.
 	Status *string `locationName:"status" type:"string" enum:"LifecycleEventStatus"`
 }
 
@@ -5014,12 +5014,12 @@ type ListApplicationRevisionsInput struct {
 	// Whether to list revisions based on whether the revision is the target revision
 	// of an deployment group:
 	//
-	//    * include: List revisions that are target revisions of a deployment group.
+	//   include: List revisions that are target revisions of a deployment group.
 	//
-	//    * exclude: Do not list revisions that are target revisions of a deployment
-	//    group.
+	//   exclude: Do not list revisions that are target revisions of a deployment
+	// group.
 	//
-	//    * ignore: List all revisions.
+	//   ignore: List all revisions.
 	Deployed *string `locationName:"deployed" type:"string" enum:"ListStateFilterAction"`
 
 	// An identifier returned from the previous list application revisions call.
@@ -5036,24 +5036,24 @@ type ListApplicationRevisionsInput struct {
 
 	// The column name to use to sort the list results:
 	//
-	//    * registerTime: Sort by the time the revisions were registered with AWS
-	//    CodeDeploy.
+	//   registerTime: Sort by the time the revisions were registered with AWS
+	// CodeDeploy.
 	//
-	//    * firstUsedTime: Sort by the time the revisions were first used in a deployment.
+	//   firstUsedTime: Sort by the time the revisions were first used in a deployment.
 	//
-	//    * lastUsedTime: Sort by the time the revisions were last used in a deployment.
+	//   lastUsedTime: Sort by the time the revisions were last used in a deployment.
 	//
-	// If not specified or set to null, the results will be returned in an arbitrary
+	//   If not specified or set to null, the results will be returned in an arbitrary
 	// order.
 	SortBy *string `locationName:"sortBy" type:"string" enum:"ApplicationRevisionSortBy"`
 
 	// The order in which to sort the list results:
 	//
-	//    * ascending: ascending order.
+	//   ascending: ascending order.
 	//
-	//    * descending: descending order.
+	//   descending: descending order.
 	//
-	// If not specified, the results will be sorted in ascending order.
+	//   If not specified, the results will be sorted in ascending order.
 	//
 	// If set to null, the results will be sorted in an arbitrary order.
 	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
@@ -5272,17 +5272,17 @@ type ListDeploymentInstancesInput struct {
 
 	// A subset of instances to list by status:
 	//
-	//    * Pending: Include those instance with pending deployments.
+	//   Pending: Include those instance with pending deployments.
 	//
-	//    * InProgress: Include those instance where deployments are still in progress.
+	//   InProgress: Include those instance where deployments are still in progress.
 	//
-	//    * Succeeded: Include those instances with successful deployments.
+	//   Succeeded: Include those instances with successful deployments.
 	//
-	//    * Failed: Include those instance with failed deployments.
+	//   Failed: Include those instance with failed deployments.
 	//
-	//    * Skipped: Include those instance with skipped deployments.
+	//   Skipped: Include those instance with skipped deployments.
 	//
-	//    * Unknown: Include those instance with deployments in an unknown state.
+	//   Unknown: Include those instance with deployments in an unknown state.
 	InstanceStatusFilter []*string `locationName:"instanceStatusFilter" type:"list"`
 
 	// An identifier returned from the previous list deployment instances call.
@@ -5352,17 +5352,17 @@ type ListDeploymentsInput struct {
 
 	// A subset of deployments to list by status:
 	//
-	//    * Created: Include created deployments in the resulting list.
+	//   Created: Include created deployments in the resulting list.
 	//
-	//    * Queued: Include queued deployments in the resulting list.
+	//   Queued: Include queued deployments in the resulting list.
 	//
-	//    * In Progress: Include in-progress deployments in the resulting list.
+	//   In Progress: Include in-progress deployments in the resulting list.
 	//
-	//    * Succeeded: Include successful deployments in the resulting list.
+	//   Succeeded: Include successful deployments in the resulting list.
 	//
-	//    * Failed: Include failed deployments in the resulting list.
+	//   Failed: Include failed deployments in the resulting list.
 	//
-	//    * Stopped: Include stopped deployments in the resulting list.
+	//   Stopped: Include stopped deployments in the resulting list.
 	IncludeOnlyStatuses []*string `locationName:"includeOnlyStatuses" type:"list"`
 
 	// An identifier returned from the previous list deployments call. It can be
@@ -5429,11 +5429,11 @@ type ListOnPremisesInstancesInput struct {
 
 	// The registration status of the on-premises instances:
 	//
-	//    * Deregistered: Include deregistered on-premises instances in the resulting
-	//    list.
+	//   Deregistered: Include deregistered on-premises instances in the resulting
+	// list.
 	//
-	//    * Registered: Include registered on-premises instances in the resulting
-	//    list.
+	//   Registered: Include registered on-premises instances in the resulting
+	// list.
 	RegistrationStatus *string `locationName:"registrationStatus" type:"string" enum:"RegistrationStatus"`
 
 	// The on-premises instance tags that will be used to restrict the corresponding
@@ -5480,19 +5480,19 @@ type MinimumHealthyHosts struct {
 
 	// The minimum healthy instance type:
 	//
-	//    * HOST_COUNT: The minimum number of healthy instance as an absolute value.
+	//   HOST_COUNT: The minimum number of healthy instance as an absolute value.
 	//
-	//    * FLEET_PERCENT: The minimum number of healthy instance as a percentage
-	//    of the total number of instance in the deployment.
+	//   FLEET_PERCENT: The minimum number of healthy instance as a percentage
+	// of the total number of instance in the deployment.
 	//
-	// In an example of nine instance, if a HOST_COUNT of six is specified, deploy
+	//   In an example of nine instance, if a HOST_COUNT of six is specified, deploy
 	// to up to three instances at a time. The deployment will be successful if
 	// six or more instances are deployed to successfully; otherwise, the deployment
 	// fails. If a FLEET_PERCENT of 40 is specified, deploy to up to five instance
 	// at a time. The deployment will be successful if four or more instance are
 	// deployed to successfully; otherwise, the deployment fails.
 	//
-	// In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime
+	//  In a call to the get deployment configuration operation, CodeDeployDefault.OneAtATime
 	// will return a minimum healthy instance type of MOST_CONCURRENCY and a value
 	// of 1. This means a deployment to only one instance at a time. (You cannot
 	// set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.) In
@@ -5720,9 +5720,9 @@ type RevisionLocation struct {
 
 	// The type of application revision:
 	//
-	//    * S3: An application revision stored in Amazon S3.
+	//   S3: An application revision stored in Amazon S3.
 	//
-	//    * GitHub: An application revision stored in GitHub.
+	//   GitHub: An application revision stored in GitHub.
 	RevisionType *string `locationName:"revisionType" type:"string" enum:"RevisionLocationType"`
 
 	// Information about the location of application artifacts stored in Amazon
@@ -5776,11 +5776,11 @@ type S3Location struct {
 
 	// The file type of the application revision. Must be one of the following:
 	//
-	//    * tar: A tar archive file.
+	//   tar: A tar archive file.
 	//
-	//    * tgz: A compressed tar archive file.
+	//   tgz: A compressed tar archive file.
 	//
-	//    * zip: A zip archive file.
+	//   zip: A zip archive file.
 	BundleType *string `locationName:"bundleType" type:"string" enum:"BundleType"`
 
 	// The ETag of the Amazon S3 object that represents the bundled artifacts for
@@ -5856,9 +5856,9 @@ type StopDeploymentOutput struct {
 
 	// The status of the stop deployment operation:
 	//
-	//    * Pending: The stop operation is pending.
+	//   Pending: The stop operation is pending.
 	//
-	//    * Succeeded: The stop operation was successful.
+	//   Succeeded: The stop operation was successful.
 	Status *string `locationName:"status" type:"string" enum:"StopStatus"`
 
 	// An accompanying status message.
@@ -5905,11 +5905,11 @@ type TagFilter struct {
 
 	// The on-premises instance tag filter type:
 	//
-	//    * KEY_ONLY: Key only.
+	//   KEY_ONLY: Key only.
 	//
-	//    * VALUE_ONLY: Value only.
+	//   VALUE_ONLY: Value only.
 	//
-	//    * KEY_AND_VALUE: Key and value.
+	//   KEY_AND_VALUE: Key and value.
 	Type *string `type:"string" enum:"TagFilterType"`
 
 	// The on-premises instance tag filter value.
@@ -5932,12 +5932,12 @@ type TimeRange struct {
 
 	// The end time of the time range.
 	//
-	// Specify null to leave the end time open-ended.
+	//  Specify null to leave the end time open-ended.
 	End *time.Time `locationName:"end" type:"timestamp" timestampFormat:"unix"`
 
 	// The start time of the time range.
 	//
-	// Specify null to leave the start time open-ended.
+	//  Specify null to leave the start time open-ended.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"unix"`
 }
 

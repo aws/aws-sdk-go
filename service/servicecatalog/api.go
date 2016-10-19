@@ -128,8 +128,8 @@ func (c *ServiceCatalog) DescribeProductViewRequest(input *DescribeProductViewIn
 //
 // Retrieves information about a specified product.
 //
-// This operation is functionally identical to DescribeProduct except that it
-// takes as input ProductViewId instead of ProductId.
+// This operation is functionally identical to DescribeProduct except that
+// it takes as input ProductViewId instead of ProductId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -609,8 +609,8 @@ func (c *ServiceCatalog) SearchProductsRequest(input *SearchProductsInput) (req 
 // Returns a paginated list all of the Products objects to which the caller
 // has access.
 //
-// The output of this operation can be used as input for other operations, such
-// as DescribeProductView.
+// The output of this operation can be used as input for other operations,
+// such as DescribeProductView.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -779,11 +779,11 @@ type AccessLevelFilter struct {
 
 	// Specifies the access level.
 	//
-	// Account allows results at the account level.
+	//  Account allows results at the account level.
 	//
-	// Role allows results based on the federated role of the specified user.
+	//  Role allows results based on the federated role of the specified user.
 	//
-	// User allows results limited to the specified user.
+	//  User allows results limited to the specified user.
 	Key *string `type:"string" enum:"AccessLevelFilterKey"`
 
 	// Specifies the user to which the access level applies. A value of Self is

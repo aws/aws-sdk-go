@@ -134,7 +134,7 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 // item type. If an alarm name is not specified, Amazon CloudWatch returns histories
 // for all of the owner's alarms.
 //
-// Amazon CloudWatch retains the history of an alarm for two weeks, whether
+//  Amazon CloudWatch retains the history of an alarm for two weeks, whether
 // or not you delete the alarm.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -506,7 +506,7 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 //
 // Gets statistics for the specified metric.
 //
-// The maximum number of data points that can be queried is 50,850, whereas
+//  The maximum number of data points that can be queried is 50,850, whereas
 // the maximum number of data points returned from a single GetMetricStatistics
 // request is 1,440. If you make a request that generates more than 1,440 data
 // points, Amazon CloudWatch returns an error. In such a case, you can alter
@@ -516,25 +516,25 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // adjacent time ranges. GetMetricStatistics does not return the data in chronological
 // order.
 //
-// Amazon CloudWatch aggregates data points based on the length of the period
+//  Amazon CloudWatch aggregates data points based on the length of the period
 // that you specify. For example, if you request statistics with a one-minute
 // granularity, Amazon CloudWatch aggregates data points with time stamps that
 // fall within the same one-minute period. In such a case, the data points queried
 // can greatly outnumber the data points returned.
 //
-// The following examples show various statistics allowed by the data point
+//  The following examples show various statistics allowed by the data point
 // query maximum of 50,850 when you call GetMetricStatistics on Amazon EC2 instances
 // with detailed (one-minute) monitoring enabled:
 //
-//    * Statistics for up to 400 instances for a span of one hour
+//   Statistics for up to 400 instances for a span of one hour
 //
-//    * Statistics for up to 35 instances over a span of 24 hours
+//   Statistics for up to 35 instances over a span of 24 hours
 //
-//    * Statistics for up to 2 instances over a span of 2 weeks
+//   Statistics for up to 2 instances over a span of 2 weeks
 //
-// For information about the namespace, metric names, and dimensions that other
-// Amazon Web Services products use to send metrics to CloudWatch, go to Amazon
-// CloudWatch Metrics, Namespaces, and Dimensions Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
+//    For information about the namespace, metric names, and dimensions that
+// other Amazon Web Services products use to send metrics to CloudWatch, go
+// to Amazon CloudWatch Metrics, Namespaces, and Dimensions Reference (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -619,11 +619,11 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *request.R
 // metrics can be used with GetMetricStatistics to obtain statistical data for
 // a given metric.
 //
-// Up to 500 results are returned for any one call. To retrieve further results,
+//   Up to 500 results are returned for any one call. To retrieve further results,
 // use returned NextToken values with subsequent ListMetrics operations.
 //
-// If you create a metric with PutMetricData, allow up to fifteen minutes for
-// the metric to appear in calls to ListMetrics. Statistics about the metric,
+//    If you create a metric with PutMetricData, allow up to fifteen minutes
+// for the metric to appear in calls to ListMetrics. Statistics about the metric,
 // however, are available sooner using GetMetricStatistics.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -723,27 +723,27 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 // metric. Optionally, this operation can associate one or more Amazon SNS resources
 // with the alarm.
 //
-// When this operation creates an alarm, the alarm state is immediately set
+//  When this operation creates an alarm, the alarm state is immediately set
 // to INSUFFICIENT_DATA. The alarm is evaluated and its StateValue is set appropriately.
 // Any actions associated with the StateValue are then executed.
 //
-// When updating an existing alarm, its StateValue is left unchanged, but it
-// completely overwrites the alarm's previous configuration.
+//  When updating an existing alarm, its StateValue is left unchanged, but
+// it completely overwrites the alarm's previous configuration.
 //
-// If you are using an AWS Identity and Access Management (IAM) account to create
-// or modify an alarm, you must have the following Amazon EC2 permissions:
+//   If you are using an AWS Identity and Access Management (IAM) account to
+// create or modify an alarm, you must have the following Amazon EC2 permissions:
 //
-// ec2:DescribeInstanceStatus and ec2:DescribeInstances for all alarms on Amazon
-// EC2 instance status metrics.
+//    ec2:DescribeInstanceStatus and ec2:DescribeInstances for all alarms on
+// Amazon EC2 instance status metrics.
 //
-// ec2:StopInstances for alarms with stop actions.
+//    ec2:StopInstances for alarms with stop actions.
 //
-// ec2:TerminateInstances for alarms with terminate actions.
+//    ec2:TerminateInstances for alarms with terminate actions.
 //
-// ec2:DescribeInstanceRecoveryAttribute, and ec2:RecoverInstances for alarms
+//    ec2:DescribeInstanceRecoveryAttribute, and ec2:RecoverInstances for alarms
 // with recover actions.
 //
-// If you have read/write permissions for Amazon CloudWatch but not for Amazon
+//   If you have read/write permissions for Amazon CloudWatch but not for Amazon
 // EC2, you can still create an alarm but the stop or terminate actions won't
 // be performed on the Amazon EC2 instance. However, if you are later granted
 // permission to use the associated Amazon EC2 APIs, the alarm actions you created
@@ -830,16 +830,16 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 // a metric, it can take up to fifteen minutes for the metric to appear in calls
 // to ListMetrics.
 //
-// Each PutMetricData request is limited to 8 KB in size for HTTP GET requests
+//  Each PutMetricData request is limited to 8 KB in size for HTTP GET requests
 // and is limited to 40 KB in size for HTTP POST requests.
 //
-// Although the Value parameter accepts numbers of type Double, Amazon CloudWatch
+//  Although the Value parameter accepts numbers of type Double, Amazon CloudWatch
 // rejects values that are either too small or too large. Values must be in
 // the range of 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360
 // (Base 2). In addition, special values (e.g., NaN, +Infinity, -Infinity) are
 // not supported.
 //
-// Data that is timestamped 24 hours or more in the past may take in excess
+//  Data that is timestamped 24 hours or more in the past may take in excess
 // of 48 hours to become available from submission time using GetMetricStatistics.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1361,7 +1361,7 @@ type DimensionFilter struct {
 
 	// The value of the dimension to be matched.
 	//
-	// Specifying a Name without specifying a Value returns all values associated
+	//  Specifying a Name without specifying a Value returns all values associated
 	// with that Name.
 	Value *string `min:"1" type:"string"`
 }
@@ -1523,7 +1523,7 @@ type GetMetricStatisticsInput struct {
 	// value specified is inclusive; results include datapoints with the time stamp
 	// specified. The time stamp must be in ISO 8601 UTC format (e.g., 2014-09-03T23:00:00Z).
 	//
-	// The specified start time is rounded down to the nearest value. Datapoints
+	//  The specified start time is rounded down to the nearest value. Datapoints
 	// are returned for start times up to two weeks in the past. Specified start
 	// times that are more than two weeks in the past will not return datapoints
 	// for metrics that are older than two weeks.
@@ -1707,9 +1707,9 @@ func (s ListMetricsOutput) GoString() string {
 // call ListMetrics, Amazon CloudWatch returns information contained by this
 // data type.
 //
-// The example in the Examples section publishes two metrics named buffers and
-// latency. Both metrics are in the examples namespace. Both metrics have two
-// dimensions, InstanceID and InstanceType.
+// The example in the Examples section publishes two metrics named buffers
+// and latency. Both metrics are in the examples namespace. Both metrics have
+// two dimensions, InstanceID and InstanceType.
 type Metric struct {
 	_ struct{} `type:"structure"`
 
@@ -1773,7 +1773,7 @@ type MetricAlarm struct {
 	// state from any other state. Each action is specified as an Amazon Resource
 	// Name (ARN).
 	//
-	// The current WSDL lists this attribute as UnknownActions.
+	//  The current WSDL lists this attribute as UnknownActions.
 	InsufficientDataActions []*string `type:"list"`
 
 	// The name of the alarm's metric.
@@ -1850,7 +1850,7 @@ type MetricDatum struct {
 
 	// The value for the metric.
 	//
-	// Although the Value parameter accepts numbers of type Double, Amazon CloudWatch
+	//  Although the Value parameter accepts numbers of type Double, Amazon CloudWatch
 	// rejects values that are either too small or too large. Values must be in
 	// the range of 8.515920e-109 to 1.174271e+108 (Base 10) or 2e-360 to 2e360
 	// (Base 2). In addition, special values (e.g., NaN, +Infinity, -Infinity) are
@@ -1918,7 +1918,7 @@ type PutMetricAlarmInput struct {
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
 	//
-	// Note: You must create at least one stop, terminate, or reboot alarm using
+	//  Note: You must create at least one stop, terminate, or reboot alarm using
 	// the Amazon EC2 or CloudWatch console to create the EC2ActionsAccess IAM role
 	// for the first time. After this IAM role is created, you can create stop,
 	// terminate, or reboot alarms using the CLI.
@@ -1958,7 +1958,7 @@ type PutMetricAlarmInput struct {
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
 	//
-	// Note: You must create at least one stop, terminate, or reboot alarm using
+	//  Note: You must create at least one stop, terminate, or reboot alarm using
 	// the Amazon EC2 or CloudWatch console to create the EC2ActionsAccess IAM role
 	// for the first time. After this IAM role is created, you can create stop,
 	// terminate, or reboot alarms using the CLI.
@@ -1985,7 +1985,7 @@ type PutMetricAlarmInput struct {
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:us-east-1:{customer-account}:action/actions/AWS_EC2.InstanceId.Reboot/1.0
 	//
-	// Note: You must create at least one stop, terminate, or reboot alarm using
+	//  Note: You must create at least one stop, terminate, or reboot alarm using
 	// the Amazon EC2 or CloudWatch console to create the EC2ActionsAccess IAM role
 	// for the first time. After this IAM role is created, you can create stop,
 	// terminate, or reboot alarms using the CLI.
@@ -2013,7 +2013,7 @@ type PutMetricAlarmInput struct {
 	// your data. Metric data points that specify a unit of measure, such as Percent,
 	// are aggregated separately.
 	//
-	// Note: If you specify a unit, you must use a unit that is appropriate for
+	//  Note: If you specify a unit, you must use a unit that is appropriate for
 	// the metric. Otherwise, this can cause an Amazon CloudWatch alarm to get stuck
 	// in the INSUFFICIENT DATA state.
 	Unit *string `type:"string" enum:"StandardUnit"`
@@ -2113,9 +2113,9 @@ type PutMetricDataInput struct {
 
 	// The namespace for the metric data.
 	//
-	// You cannot specify a namespace that begins with "AWS/". Namespaces that begin
-	// with "AWS/" are reserved for other Amazon Web Services products that send
-	// metrics to Amazon CloudWatch.
+	//  You cannot specify a namespace that begins with "AWS/". Namespaces that
+	// begin with "AWS/" are reserved for other Amazon Web Services products that
+	// send metrics to Amazon CloudWatch.
 	//
 	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`

@@ -5599,7 +5599,7 @@ func (c *APIGateway) TestInvokeAuthorizerRequest(input *TestInvokeAuthorizerInpu
 // Simulate the execution of an Authorizer in your RestApi with headers, parameters,
 // and an incoming request body.
 //
-// Enable custom authorizers (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
+//  Enable custom authorizers (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6989,17 +6989,15 @@ func (c *APIGateway) UpdateUsagePlan(input *UpdateUsagePlanInput) (*UsagePlan, e
 
 // Represents an AWS account that is associated with Amazon API Gateway.
 //
-// To view the account info, call GET on this resource.
+//  To view the account info, call GET on this resource.
 //
 // Error Codes
 //
 // The following exception may be thrown when the request fails.
 //
-// UnauthorizedException
-// NotFoundException
-// TooManyRequestsException
-// For detailed error code information, including the corresponding HTTP Status
-// Codes, see API Gateway Error Codes (http://docs.aws.amazon.com/apigateway/api-reference/handling-errors/#api-error-codes)
+//  UnauthorizedException NotFoundException TooManyRequestsException  For detailed
+// error code information, including the corresponding HTTP Status Codes, see
+// API Gateway Error Codes (http://docs.aws.amazon.com/apigateway/api-reference/handling-errors/#api-error-codes)
 //
 // Example: Get the information about an account.
 //
@@ -7007,8 +7005,7 @@ func (c *APIGateway) UpdateUsagePlan(input *UpdateUsagePlanInput) (*UsagePlan, e
 //
 // GET /account HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
 // X-Amz-Date: 20160531T184618Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/us-east-1/apigateway/aws4_request,
-// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-// Response
+// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}  Response
 //
 // The successful response returns a 200 OK status code and a payload similar
 // to the following:
@@ -7016,12 +7013,12 @@ func (c *APIGateway) UpdateUsagePlan(input *UpdateUsagePlanInput) (*UsagePlan, e
 // { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/account-apigateway-{rel}.html",
 // "name": "account", "templated": true }, "self": { "href": "/account" }, "account:update":
 // { "href": "/account" } }, "cloudwatchRoleArn": "arn:aws:iam::123456789012:role/apigAwsProxyRole",
-// "throttleSettings": { "rateLimit": 500, "burstLimit": 1000 } }
-// In addition to making the REST API call directly, you can use the AWS CLI
-// and an AWS SDK to access this resource.
+// "throttleSettings": { "rateLimit": 500, "burstLimit": 1000 } }  In addition
+// to making the REST API call directly, you can use the AWS CLI and an AWS
+// SDK to access this resource.
 //
-// API Gateway Limits (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-limits.html)Developer
-// Guide (http://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html),
+//   API Gateway Limits (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-limits.html)
+// Developer Guide (http://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html),
 // AWS CLI (http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-account.html)
 type Account struct {
 	_ struct{} `type:"structure"`
@@ -7055,11 +7052,12 @@ func (s Account) GoString() string {
 // which indicates that the callers with the API key can make requests to that
 // stage.
 //
-// Use API Keys (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
+//  Use API Keys (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
 type ApiKey struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the API Key was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// The date when the API Key was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm"
+	// target="_blank).
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The description of the API Key.
@@ -7118,7 +7116,7 @@ func (s ApiStage) GoString() string {
 // Represents an authorization layer for methods. If enabled on a method, API
 // Gateway will activate the authorizer when a client calls the method.
 //
-// Enable custom authorization (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
+//  Enable custom authorization (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
 type Authorizer struct {
 	_ struct{} `type:"structure"`
 
@@ -7187,8 +7185,7 @@ func (s Authorizer) GoString() string {
 // the URL after the domain name.
 //
 // A custom domain name plus a BasePathMapping specification identifies a deployed
-// RestApi in a given stage of the owner Account.
-// Use Custom Domain Names (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
+// RestApi in a given stage of the owner Account.  Use Custom Domain Names (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type BasePathMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -7217,21 +7214,23 @@ func (s BasePathMapping) GoString() string {
 // while sending requests to the integration endpoint.
 //
 // Client certificates are used authenticate an API by the back-end server.
-// To authenticate an API client (or user), use a custom Authorizer.
-// Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
+// To authenticate an API client (or user), use a custom Authorizer.  Use Client-Side
+// Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
 type ClientCertificate struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the client certificate.
 	ClientCertificateId *string `locationName:"clientCertificateId" type:"string"`
 
-	// The date when the client certificate was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// The date when the client certificate was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm"
+	// target="_blank).
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The description of the client certificate.
 	Description *string `locationName:"description" type:"string"`
 
-	// The date when the client certificate will expire, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// The date when the client certificate will expire, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm"
+	// target="_blank).
 	ExpirationDate *time.Time `locationName:"expirationDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The PEM-encoded public key of the client certificate, which can be used to
@@ -7563,7 +7562,7 @@ type CreateModelInput struct {
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
 
 	// The schema for the model. For application/json models, this should be JSON-schema
-	// draft v4 (http://json-schema.org/documentation.html) model.
+	// draft v4 (http://json-schema.org/documentation.html" target="_blank) model.
 	Schema *string `locationName:"schema" type:"string"`
 }
 
@@ -8742,7 +8741,6 @@ func (s DeleteUsagePlanOutput) GoString() string {
 // To create a deployment, call POST on the Deployments resource of a RestApi.
 // To view, update, or delete a deployment, call GET, PATCH, or DELETE on the
 // specified deployment resource (/restapis/{restapi_id}/deployments/{deployment_id}).
-//
 // RestApi, Deployments, Stage, AWS CLI (http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html),
 // AWS SDKs (https://aws.amazon.com/tools/)
 type Deployment struct {
@@ -8775,18 +8773,20 @@ func (s Deployment) GoString() string {
 // Represents a domain name that is contained in a simpler, more intuitive URL
 // that can be called.
 //
-// Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
+//  Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type DomainName struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the certificate.
 	CertificateName *string `locationName:"certificateName" type:"string"`
 
-	// The date when the certificate was uploaded, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// The date when the certificate was uploaded, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm"
+	// target="_blank).
 	CertificateUploadDate *time.Time `locationName:"certificateUploadDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The domain name of the Amazon CloudFront distribution. For more information,
-	// see the Amazon CloudFront documentation (http://aws.amazon.com/documentation/cloudfront/).
+	// see the Amazon CloudFront documentation (http://aws.amazon.com/documentation/cloudfront/"
+	// target="_blank).
 	DistributionDomainName *string `locationName:"distributionDomainName" type:"string"`
 
 	// The name of the DomainName resource.
@@ -9014,7 +9014,7 @@ func (s GetApiKeysInput) GoString() string {
 
 // Represents a collection of API keys as represented by an ApiKeys resource.
 //
-// Use API Keys (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
+//  Use API Keys (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
 type GetApiKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9121,7 +9121,7 @@ func (s *GetAuthorizersInput) Validate() error {
 
 // Represents a collection of Authorizer resources.
 //
-// Enable custom authorization (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
+//  Enable custom authorization (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
 type GetAuthorizersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9229,7 +9229,7 @@ func (s *GetBasePathMappingsInput) Validate() error {
 
 // Represents a collection of BasePathMapping resources.
 //
-// Use Custom Domain Names (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
+//  Use Custom Domain Names (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type GetBasePathMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9309,7 +9309,7 @@ func (s GetClientCertificatesInput) GoString() string {
 
 // Represents a collection of ClientCertificate resources.
 //
-// Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
+//  Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
 type GetClientCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9422,8 +9422,7 @@ func (s *GetDeploymentsInput) Validate() error {
 // To create a new deployment of a RestApi, make a POST request against this
 // resource. To view, update, or delete an existing deployment, make a GET,
 // PATCH, or DELETE request, respectively, on a specified Deployment resource.
-//
-// Deploying an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html),
+//  Deploying an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html),
 // AWS CLI (http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html),
 // AWS SDKs (https://aws.amazon.com/tools/)
 type GetDeploymentsOutput struct {
@@ -9503,7 +9502,7 @@ func (s GetDomainNamesInput) GoString() string {
 
 // Represents a collection of DomainName resources.
 //
-// Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
+//  Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
 type GetDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9539,7 +9538,7 @@ type GetExportInput struct {
 	ExportType *string `location:"uri" locationName:"export_type" type:"string" required:"true"`
 
 	// A key-value map of query string parameters that specify properties of the
-	// export, depending on the requested exportType. For exportTypeswagger, any
+	// export, depending on the requested exportType. For exportType swagger, any
 	// combination of the following parameters are supported: integrations will
 	// export the API with x-amazon-apigateway-integration extensions. authorizers
 	// will export the API with x-amazon-apigateway-authorizer extensions. postman
@@ -9913,12 +9912,12 @@ func (s *GetModelTemplateInput) Validate() error {
 
 // Represents a mapping template used to transform a payload.
 //
-// Mapping Templates (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-mappings)
+//  Mapping Templates (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-mappings)
 type GetModelTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Apache Velocity Template Language (VTL) (http://velocity.apache.org/engine/devel/vtl-reference-guide.html)
-	// template content used for the template resource.
+	// The Apache Velocity Template Language (VTL) (http://velocity.apache.org/engine/devel/vtl-reference-guide.html"
+	// target="_blank) template content used for the template resource.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -9975,7 +9974,7 @@ func (s *GetModelsInput) Validate() error {
 
 // Represents a collection of Model resources.
 //
-// Method, MethodResponse, Models and Mappings (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
+//  Method, MethodResponse, Models and Mappings (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 type GetModelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10079,7 +10078,7 @@ func (s *GetResourcesInput) Validate() error {
 
 // Represents a collection of Resource resources.
 //
-// Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+//  Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type GetResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10158,7 +10157,7 @@ func (s GetRestApisInput) GoString() string {
 // Contains references to your APIs and links that guide you in how to interact
 // with your collection. A collection offers a paginated view of your APIs.
 //
-// Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+//  Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type GetRestApisOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10540,7 +10539,7 @@ func (s *GetUsagePlanKeysInput) Validate() error {
 // Represents the collection of usage plan keys added to usage plans for the
 // associated API keys and, possibly, other types of keys.
 //
-// Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
+//  Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type GetUsagePlanKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10587,7 +10586,7 @@ func (s GetUsagePlansInput) GoString() string {
 
 // Represents a collection of usage plans for an AWS account.
 //
-// Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
+//  Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type GetUsagePlansOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10721,8 +10720,7 @@ func (s *ImportRestApiInput) Validate() error {
 // Represents an HTTP, AWS, or Mock integration.
 //
 // In the API Gateway console, the built-in Lambda integration is an AWS integration.
-//
-// Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+//  Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type Integration struct {
 	_ struct{} `type:"structure"`
 
@@ -10745,17 +10743,16 @@ type Integration struct {
 
 	// Specifies the integration's responses.
 	//
-	// Example: Get integration responses of a method
+	//   Example: Get integration responses of a method
 	//
 	// Request
 	//
-	// GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200
+	//  GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200
 	// HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
 	// X-Amz-Date: 20160607T191449Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160607/us-east-1/apigateway/aws4_request,
-	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
+	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}  Response
 	//
-	// The successful response returns 200 OKstatus and a payload as follows:
+	// The successful response returns 200 OK status and a payload as follows:
 	//
 	// { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
 	// "name": "integrationresponse", "templated": true }, "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
@@ -10764,7 +10761,7 @@ type Integration struct {
 	// } }, "responseParameters": { "method.response.header.Content-Type": "'application/xml'"
 	// }, "responseTemplates": { "application/json": "$util.urlDecode(\"%3CkinesisStreams%3E#foreach($stream
 	// in $input.path('$.StreamNames'))%3Cstream%3E%3Cname%3E$stream%3C/name%3E%3C/stream%3E#end%3C/kinesisStreams%3E\")\n"
-	// }, "statusCode": "200" }
+	// }, "statusCode": "200" }    Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 	IntegrationResponses map[string]*IntegrationResponse `locationName:"integrationResponses" type:"map"`
 
 	// Specifies how the method request body of an unmapped content type will be
@@ -10774,16 +10771,15 @@ type Integration struct {
 	// in requestTemplates. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES,
 	// and NEVER.
 	//
-	// WHEN_NO_MATCH passes the method request body through the integration request
+	//   WHEN_NO_MATCH passes the method request body through the integration request
 	// to the back end without transformation when the method request content type
 	// does not match any content type associated with the mapping templates defined
-	// in the integration request.
-	// WHEN_NO_TEMPLATES passes the method request body through the integration
-	// request to the back end without transformation when no mapping template is
-	// defined in the integration request. If a template is defined when this option
-	// is selected, the method request of an unmapped content-type will be rejected
-	// with an HTTP 415 Unsupported Media Type response.
-	// NEVER rejects the method request with an HTTP 415 Unsupported Media Type
+	// in the integration request.   WHEN_NO_TEMPLATES passes the method request
+	// body through the integration request to the back end without transformation
+	// when no mapping template is defined in the integration request. If a template
+	// is defined when this option is selected, the method request of an unmapped
+	// content-type will be rejected with an HTTP 415 Unsupported Media Type response.
+	//   NEVER rejects the method request with an HTTP 415 Unsupported Media Type
 	// response when either the method request content type does not match any content
 	// type associated with the mapping templates defined in the integration request
 	// or no mapping template is defined in the integration request.
@@ -10813,8 +10809,8 @@ type Integration struct {
 
 	// Specifies the integration's Uniform Resource Identifier (URI). For HTTP integrations,
 	// the URI must be a fully formed, encoded HTTP(S) URL according to the RFC-3986
-	// specification (https://www.ietf.org/rfc/rfc3986.txt). For AWS integrations,
-	// the URI should be of the form arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}.
+	// specification (https://www.ietf.org/rfc/rfc3986.txt" target="_blank). For
+	// AWS integrations, the URI should be of the form arn:aws:apigateway:{region}:{subdomain.service|service}:{path|action}/{service_api}.
 	// Region, subdomain and service are used to determine the right endpoint. For
 	// AWS services that use the Action= query string parameter, service_api should
 	// be a valid action for the desired service. For RESTful AWS service APIs,
@@ -10837,7 +10833,7 @@ func (s Integration) GoString() string {
 // MethodResponse, and parameters and templates can be used to transform the
 // back-end response.
 //
-// Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+//  Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type IntegrationResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -10894,66 +10890,64 @@ func (s IntegrationResponse) GoString() string {
 // resource, whereas an integration response is represented by an IntegrationResponse
 // resource.
 //
-// Example: Retrive the GET method on a specified resource
+//   Example: Retrive the GET method on a specified resource
 //
 // Request
 //
 // The following example request retrieves the information about the GET method
 // on an API resource (3kzxbg5sa2) of an API (fugvjdxtri).
 //
-//    GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET HTTP/1.1 Content-Type:
-//    application/json Host: apigateway.us-east-1.amazonaws.com X-Amz-Date:
-//    20160603T210259Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
-//    SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-// Response
+// GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET HTTP/1.1 Content-Type:
+// application/json Host: apigateway.us-east-1.amazonaws.com X-Amz-Date: 20160603T210259Z
+// Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
+// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash} Response
 //
 // The successful response returns a 200 OK status code and a payload similar
 // to the following:
 //
-//    { "_links": { "curies": [ { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
-//    "name": "integration", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
-//    "name": "integrationresponse", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
-//    "name": "method", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-//    "name": "methodresponse", "templated": true } ], "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET",
-//    "name": "GET", "title": "GET" }, "integration:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//    }, "method:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
-//    }, "method:integration": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//    }, "method:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-//    "name": "200", "title": "200" }, "method:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
-//    }, "methodresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/{status_code}",
-//    "templated": true } }, "apiKeyRequired": true, "authorizationType": "NONE",
-//    "httpMethod": "GET", "_embedded": { "method:integration": { "_links":
-//    { "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//    }, "integration:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//    }, "integration:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-//    "name": "200", "title": "200" }, "integration:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
-//    }, "integrationresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/{status_code}",
-//    "templated": true } }, "cacheKeyParameters": [], "cacheNamespace": "3kzxbg5sa2",
-//    "credentials": "arn:aws:iam::123456789012:role/apigAwsProxyRole", "httpMethod":
-//    "POST", "passthroughBehavior": "WHEN_NO_MATCH", "requestParameters": {
-//    "integration.request.header.Content-Type": "'application/x-amz-json-1.1'"
-//    }, "requestTemplates": { "application/json": "{\n}" }, "type": "AWS",
-//    "uri": "arn:aws:apigateway:us-east-1:kinesis:action/ListStreams", "_embedded":
-//    { "integration:responses": { "_links": { "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
-//    "name": "200", "title": "200" }, "integrationresponse:delete": { "href":
-//    "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-//    }, "integrationresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
-//    } }, "responseParameters": { "method.response.header.Content-Type": "'application/xml'"
-//    }, "responseTemplates": { "application/json": "$util.urlDecode(\"%3CkinesisStreams%3E%23foreach(%24stream%20in%20%24input.path(%27%24.StreamNames%27))%3Cstream%3E%3Cname%3E%24stream%3C%2Fname%3E%3C%2Fstream%3E%23end%3C%2FkinesisStreams%3E\")"
-//    }, "statusCode": "200" } } }, "method:responses": { "_links": { "self":
-//    { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-//    "name": "200", "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//    }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//    } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-//    { "method.response.header.Content-Type": false }, "statusCode": "200"
-//    } } }
-// In the example above, the response template for the 200 OK response maps
+// { "_links": { "curies": [ { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
+// "name": "integration", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
+// "name": "integrationresponse", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-{rel}.html",
+// "name": "method", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+// "name": "methodresponse", "templated": true } ], "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET",
+// "name": "GET", "title": "GET" }, "integration:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
+// }, "method:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
+// }, "method:integration": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
+// }, "method:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
+// "name": "200", "title": "200" }, "method:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET"
+// }, "methodresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/{status_code}",
+// "templated": true } }, "apiKeyRequired": true, "authorizationType": "NONE",
+// "httpMethod": "GET", "_embedded": { "method:integration": { "_links": { "self":
+// { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
+// }, "integration:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
+// }, "integration:responses": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
+// "name": "200", "title": "200" }, "integration:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration"
+// }, "integrationresponse:put": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/{status_code}",
+// "templated": true } }, "cacheKeyParameters": [], "cacheNamespace": "3kzxbg5sa2",
+// "credentials": "arn:aws:iam::123456789012:role/apigAwsProxyRole", "httpMethod":
+// "POST", "passthroughBehavior": "WHEN_NO_MATCH", "requestParameters": { "integration.request.header.Content-Type":
+// "'application/x-amz-json-1.1'" }, "requestTemplates": { "application/json":
+// "{\n}" }, "type": "AWS", "uri": "arn:aws:apigateway:us-east-1:kinesis:action/ListStreams",
+// "_embedded": { "integration:responses": { "_links": { "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200",
+// "name": "200", "title": "200" }, "integrationresponse:delete": { "href":
+// "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
+// }, "integrationresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/integration/responses/200"
+// } }, "responseParameters": { "method.response.header.Content-Type": "'application/xml'"
+// }, "responseTemplates": { "application/json": "$util.urlDecode(\"%3CkinesisStreams%3E%23foreach(%24stream%20in%20%24input.path(%27%24.StreamNames%27))%3Cstream%3E%3Cname%3E%24stream%3C%2Fname%3E%3C%2Fstream%3E%23end%3C%2FkinesisStreams%3E\")"
+// }, "statusCode": "200" } } }, "method:responses": { "_links": { "self": {
+// "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
+// "name": "200", "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
+// }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
+// } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
+// { "method.response.header.Content-Type": false }, "statusCode": "200" } }
+// } In the example above, the response template for the 200 OK response maps
 // the JSON output from the ListStreams action in the back end to an XML output.
 // The mapping template is URL-encoded as %3CkinesisStreams%3E%23foreach(%24stream%20in%20%24input.path(%27%24.StreamNames%27))%3Cstream%3E%3Cname%3E%24stream%3C%2Fname%3E%3C%2Fstream%3E%23end%3C%2FkinesisStreams%3E
 // and the output is decoded using the $util.urlDecode() (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#util-templat-reference)
 // helper function.
 //
-// MethodResponse, Integration, IntegrationResponse, Resource, Set up an API's method (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-method-settings.html)
+//   MethodResponse, Integration, IntegrationResponse, Resource, Set up an
+// API's method (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-method-settings.html)
 type Method struct {
 	_ struct{} `type:"structure"`
 
@@ -10975,17 +10969,17 @@ type Method struct {
 	// request to the back end and performing necessary transformations to make
 	// the request compliant with the back end.
 	//
-	// Example:
+	//   Example:
 	//
 	// Request
 	//
-	// GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration HTTP/1.1
+	//  GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration HTTP/1.1
 	// Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com Content-Length:
 	// 117 X-Amz-Date: 20160613T213210Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160613/us-east-1/apigateway/aws4_request,
-	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
+	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash} Response
 	//
-	// The successful response returns a 200 OKstatus code and a payload similar to the following:
+	// The successful response returns a 200 OK status code and a payload similar
+	// to the following:
 	//
 	// { "_links": { "curies": [ { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
 	// "name": "integration", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
@@ -11009,13 +11003,13 @@ type Method struct {
 	// "#set($res = $input.path('$'))\n{\n \"result\": \"$res.a, $res.b, $res.op
 	// => $res.c\",\n \"a\" : \"$res.a\",\n \"b\" : \"$res.b\",\n \"op\" : \"$res.op\",\n
 	// \"c\" : \"$res.c\"\n}" }, "selectionPattern": "", "statusCode": "200" } }
-	// }
+	// }    AWS CLI (http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html)
 	MethodIntegration *Integration `locationName:"methodIntegration" type:"structure"`
 
 	// Gets a method response associated with a given HTTP status code.
 	//
-	// The collection of method responses are encapsulated in a key-value map, where
-	// the key is a response's HTTP status code and the value is a MethodResponse
+	//  The collection of method responses are encapsulated in a key-value map,
+	// where the key is a response's HTTP status code and the value is a MethodResponse
 	// resource that specifies the response returned to the caller from the back
 	// end through the integration response.
 	//
@@ -11023,24 +11017,22 @@ type Method struct {
 	//
 	// Request
 	//
-	//    GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200 HTTP/1.1
-	//    Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-	//    Content-Length: 117 X-Amz-Date: 20160613T215008Z Authorization: AWS4-HMAC-SHA256
-	//    Credential={access_key_ID}/20160613/us-east-1/apigateway/aws4_request,
-	//    SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
+	//  GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200 HTTP/1.1
+	// Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com Content-Length:
+	// 117 X-Amz-Date: 20160613T215008Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160613/us-east-1/apigateway/aws4_request,
+	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash} Response
 	//
 	// The successful response returns a 200 OK status code and a payload similar
 	// to the following:
 	//
-	//    { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-	//    "name": "methodresponse", "templated": true }, "self": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200",
-	//    "title": "200" }, "methodresponse:delete": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200"
-	//    }, "methodresponse:update": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200"
-	//    } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-	//    { "method.response.header.operator": false, "method.response.header.operand_2":
-	//    false, "method.response.header.operand_1": false }, "statusCode": "200"
-	//    }
+	// { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+	// "name": "methodresponse", "templated": true }, "self": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200",
+	// "title": "200" }, "methodresponse:delete": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200"
+	// }, "methodresponse:update": { "href": "/restapis/uojnr9hd57/resources/0cjtch/methods/GET/responses/200"
+	// } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
+	// { "method.response.header.operator": false, "method.response.header.operand_2":
+	// false, "method.response.header.operand_1": false }, "statusCode": "200" }
+	//    AWS CLI (http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-method-response.html)
 	MethodResponses map[string]*MethodResponse `locationName:"methodResponses" type:"map"`
 
 	// A key-value map specifying data schemas, represented by Model resources,
@@ -11073,27 +11065,26 @@ func (s Method) GoString() string {
 // client. The method response is passed from the back end through the associated
 // integration response that can be transformed using a mapping template.
 //
-// Example: A MethodResponse instance of an API
+//   Example: A MethodResponse instance of an API
 //
 // Request
 //
 // The example request retrieves a MethodResponse of the 200 status code.
 //
-//    GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200
-//    HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
-//    X-Amz-Date: 20160603T222952Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
-//    SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-// Response
+// GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200
+// HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com
+// X-Amz-Date: 20160603T222952Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160603/us-east-1/apigateway/aws4_request,
+// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash} Response
 //
 // The successful response returns 200 OK status and a payload as follows:
 //
-//    { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
-//    "name": "methodresponse", "templated": true }, "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
-//    "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//    }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
-//    } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
-//    { "method.response.header.Content-Type": false }, "statusCode": "200"
-//    }
+// { "_links": { "curies": { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-method-response-{rel}.html",
+// "name": "methodresponse", "templated": true }, "self": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200",
+// "title": "200" }, "methodresponse:delete": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
+// }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
+// } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
+// { "method.response.header.Content-Type": false }, "statusCode": "200" }
+//   Method, IntegrationResponse, Integration Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type MethodResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -11219,7 +11210,7 @@ func (s MethodSnapshot) GoString() string {
 
 // Represents the data structure of a method's request or response payload.
 //
-// A request model defines the data structure of the client-supplied request
+//  A request model defines the data structure of the client-supplied request
 // payload. A response model defines the data structure of the response payload
 // returned by the back end. Although not required, models are useful for mapping
 // payloads between the front end and back end.
@@ -11227,7 +11218,7 @@ func (s MethodSnapshot) GoString() string {
 // A model is used for generating an API's SDK, validating the input request
 // body, and creating a skeletal mapping template.
 //
-// Method, MethodResponse, Models and Mappings (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
+//   Method, MethodResponse, Models and Mappings (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
 type Model struct {
 	_ struct{} `type:"structure"`
 
@@ -11244,11 +11235,11 @@ type Model struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// The schema for the model. For application/json models, this should be JSON-schema
-	// draft v4 (http://json-schema.org/documentation.html) model. Do not include
-	// "\*/" characters in the description of any properties because such "\*/"
-	// characters may be interpreted as the closing marker for comments in some
-	// languages, such as Java or JavaScript, causing the installation of your API's
-	// SDK generated by API Gateway to fail.
+	// draft v4 (http://json-schema.org/documentation.html" target="_blank) model.
+	// Do not include "\*/" characters in the description of any properties because
+	// such "\*/" characters may be interpreted as the closing marker for comments
+	// in some languages, such as Java or JavaScript, causing the installation of
+	// your API's SDK generated by API Gateway to fail.
 	Schema *string `locationName:"schema" type:"string"`
 }
 
@@ -11329,15 +11320,15 @@ type PutIntegrationInput struct {
 	// requestTemplates property on the Integration resource. There are three valid
 	// values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER.
 	//
-	//    * WHEN_NO_MATCH passes the request body for unmapped content types through
-	//    to the integration back end without transformation.
+	//  WHEN_NO_MATCH passes the request body for unmapped content types through
+	// to the integration back end without transformation.
 	//
-	//    * NEVER rejects unmapped content types with an HTTP 415 'Unsupported Media
-	//    Type' response.
+	// NEVER rejects unmapped content types with an HTTP 415 'Unsupported Media
+	// Type' response.
 	//
-	//    * WHEN_NO_TEMPLATES allows pass-through when the integration has NO content
-	//    types mapped to templates. However if there is at least one content type
-	//    defined, unmapped content types will be rejected with the same 415 response.
+	// WHEN_NO_TEMPLATES allows pass-through when the integration has NO content
+	// types mapped to templates. However if there is at least one content type
+	// defined, unmapped content types will be rejected with the same 415 response.
 	PassthroughBehavior *string `locationName:"passthroughBehavior" type:"string"`
 
 	// A key-value map specifying request parameters that are passed from the method
@@ -11721,7 +11712,7 @@ func (s QuotaSettings) GoString() string {
 
 // Represents an API resource.
 //
-// Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+//  Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -11739,7 +11730,7 @@ type Resource struct {
 
 	// Gets an API resource's method of a given HTTP verb.
 	//
-	// The resource methods are a map of methods indexed by methods' HTTP verbs
+	//  The resource methods are a map of methods indexed by methods' HTTP verbs
 	// enabled on the resource. This method map is included in the 200 OK response
 	// of the GET /restapis/{restapi_id}/resources/{resource_id} or GET /restapis/{restapi_id}/resources/{resource_id}?embed=methods
 	// request.
@@ -11751,8 +11742,7 @@ type Resource struct {
 	// GET /restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET HTTP/1.1 Content-Type:
 	// application/json Host: apigateway.us-east-1.amazonaws.com X-Amz-Date: 20160608T031827Z
 	// Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160608/us-east-1/apigateway/aws4_request,
-	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}
-	// Response
+	// SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash} Response
 	//
 	// { "_links": { "curies": [ { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html",
 	// "name": "integration", "templated": true }, { "href": "http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html",
@@ -11790,8 +11780,7 @@ type Resource struct {
 	// }, "methodresponse:update": { "href": "/restapis/fugvjdxtri/resources/3kzxbg5sa2/methods/GET/responses/200"
 	// } }, "responseModels": { "application/json": "Empty" }, "responseParameters":
 	// { "method.response.header.Content-Type": false }, "statusCode": "200" } }
-	// }
-	// If the OPTIONS is enabled on the resource, you can follow the example here
+	// } If the OPTIONS is enabled on the resource, you can follow the example here
 	// to get that method. Just replace the GET of the last path segment in the
 	// request URL with OPTIONS.
 	ResourceMethods map[string]*Method `locationName:"resourceMethods" type:"map"`
@@ -11809,11 +11798,12 @@ func (s Resource) GoString() string {
 
 // Represents a REST API.
 //
-// Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+//  Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
 type RestApi struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the API was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// The date when the API was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm"
+	// target="_blank).
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The API's description.
@@ -11844,7 +11834,7 @@ func (s RestApi) GoString() string {
 // Represents a unique identifier for a version of a deployed RestApi that is
 // callable by users.
 //
-// Deploy an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html)
+//  Deploy an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html)
 type Stage struct {
 	_ struct{} `type:"structure"`
 
@@ -11860,7 +11850,8 @@ type Stage struct {
 	// The identifier of a client certificate for an API stage.
 	ClientCertificateId *string `locationName:"clientCertificateId" type:"string"`
 
-	// The date and time that the stage was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// The date and time that the stage was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm"
+	// target="_blank).
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The identifier of the Deployment that the stage points to.
@@ -11870,7 +11861,7 @@ type Stage struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The date and time that information about the stage was last updated, in ISO
-	// 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
+	// 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm" target="_blank).
 	LastUpdatedDate *time.Time `locationName:"lastUpdatedDate" type:"timestamp" timestampFormat:"unix"`
 
 	// A map that defines the method settings for a Stage resource. Keys (designated
@@ -12088,7 +12079,7 @@ func (s *TestInvokeMethodInput) Validate() error {
 
 // Represents the response of the test invoke request in the HTTP method.
 //
-// Test API using the API Gateway console (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-test-method.html#how-to-test-method-console)
+//  Test API using the API Gateway console (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-test-method.html#how-to-test-method-console)
 type TestInvokeMethodOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12896,7 +12887,8 @@ func (s *UpdateUsagePlanInput) Validate() error {
 
 // Represents the usage data of a usage plan.
 //
-// Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html), Manage Usage in a Usage Plan (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-usage-plans-with-console.html#api-gateway-usage-plan-manage-usage)
+//   Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html),
+// Manage Usage in a Usage Plan (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-usage-plans-with-console.html#api-gateway-usage-plan-manage-usage)
 type Usage struct {
 	_ struct{} `type:"structure"`
 
@@ -12932,11 +12924,11 @@ func (s Usage) GoString() string {
 // Represents a usage plan than can specify who can assess associated API stages
 // with specified request limits and quotas.
 //
-// In a usage plan, you associate an API by specifying the API's Id and a stage
-// name of the specified API. You add plan customers by adding API keys to the
-// plan.
+//  In a usage plan, you associate an API by specifying the API's Id and a
+// stage name of the specified API. You add plan customers by adding API keys
+// to the plan.
 //
-// Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
+//   Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type UsagePlan struct {
 	_ struct{} `type:"structure"`
 
@@ -12971,10 +12963,10 @@ func (s UsagePlan) GoString() string {
 
 // Represents a usage plan key to identify a plan customer.
 //
-// To associate an API stage with a selected API key in a usage plan, you must
-// create a UsagePlanKey resource to represent the selected ApiKey.
+//  To associate an API stage with a selected API key in a usage plan, you
+// must create a UsagePlanKey resource to represent the selected ApiKey.
 //
-// " Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
+// "  Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
 type UsagePlanKey struct {
 	_ struct{} `type:"structure"`
 

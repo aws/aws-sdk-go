@@ -62,7 +62,8 @@ func (c *ElasticsearchService) AddTagsRequest(input *AddTagsInput) (req *request
 //
 // Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive
 // key value pairs. An Elasticsearch domain may have up to 10 tags. See  Tagging
-// Amazon Elasticsearch Service Domains for more information. (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging)
+// Amazon Elasticsearch Service Domains for more information. (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging"
+// target="_blank)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -140,8 +141,8 @@ func (c *ElasticsearchService) CreateElasticsearchDomainRequest(input *CreateEla
 // CreateElasticsearchDomain API operation for Amazon Elasticsearch Service.
 //
 // Creates a new Elasticsearch domain. For more information, see Creating Elasticsearch
-// Domains (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains)
-// in the Amazon Elasticsearch Service Developer Guide.
+// Domains (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains"
+// target="_blank) in the Amazon Elasticsearch Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -808,8 +809,8 @@ type AccessPoliciesStatus struct {
 
 	// The access policy configured for the Elasticsearch domain. Access policies
 	// may be resource-based, IP-based, or IAM-based. See  Configuring Access Policies
-	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-access-policies)for
-	// more information.
+	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-access-policies"
+	// target="_blank)for more information.
 	//
 	// Options is a required field
 	Options *string `type:"string" required:"true"`
@@ -900,13 +901,12 @@ func (s AddTagsOutput) GoString() string {
 // Status of the advanced options for the specified Elasticsearch domain. Currently,
 // the following advanced options are available:
 //
-//    * Option to allow references to indices in an HTTP request body. Must
-//    be false when configuring access to individual sub-resources. By default,
-//    the value is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options)
-//    for more information.
-//    * Option to specify the percentage of heap space that is allocated to
-//    field data. By default, this setting is unbounded.
-// For more information, see Configuring Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options).
+//  Option to allow references to indices in an HTTP request body. Must be
+// false when configuring access to individual sub-resources. By default, the
+// value is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
+// target="_blank) for more information. Option to specify the percentage of
+// heap space that is allocated to field data. By default, this setting is unbounded.
+//  For more information, see Configuring Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options).
 type AdvancedOptionsStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -941,8 +941,8 @@ type CreateElasticsearchDomainInput struct {
 
 	// Option to allow references to indices in an HTTP request body. Must be false
 	// when configuring access to individual sub-resources. By default, the value
-	// is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options)
-	// for more information.
+	// is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
+	// target="_blank) for more information.
 	AdvancedOptions map[string]*string `type:"map"`
 
 	// The name of the Elasticsearch domain that you are creating. Domain names
@@ -962,8 +962,8 @@ type CreateElasticsearchDomainInput struct {
 
 	// String of format X.Y to specify version for the Elasticsearch domain eg.
 	// "1.5" or "2.3". For more information, see Creating Elasticsearch Domains
-	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains)
-	// in the Amazon Elasticsearch Service Developer Guide.
+	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains"
+	// target="_blank) in the Amazon Elasticsearch Service Developer Guide.
 	ElasticsearchVersion *string `type:"string"`
 
 	// Option to set time, in UTC format, of the daily automated snapshot. Default
@@ -1262,7 +1262,8 @@ func (s DomainInfo) GoString() string {
 }
 
 // Options to enable, disable, and specify the properties of EBS storage volumes.
-// For more information, see  Configuring EBS-based Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs).
+// For more information, see  Configuring EBS-based Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs"
+// target="_blank).
 type EBSOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -1323,8 +1324,8 @@ type ElasticsearchClusterConfig struct {
 	DedicatedMasterCount *int64 `type:"integer"`
 
 	// A boolean value to indicate whether a dedicated master node is enabled. See
-	// About Dedicated Master Nodes (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-dedicatedmasternodes)
-	// for more information.
+	// About Dedicated Master Nodes (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-dedicatedmasternodes"
+	// target="_blank) for more information.
 	DedicatedMasterEnabled *bool `type:"boolean"`
 
 	// The instance type for a dedicated master node.
@@ -1337,8 +1338,8 @@ type ElasticsearchClusterConfig struct {
 	InstanceType *string `type:"string" enum:"ESPartitionInstanceType"`
 
 	// A boolean value to indicate whether zone awareness is enabled. See About
-	// Zone Awareness (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-zoneawareness)
-	// for more information.
+	// Zone Awareness (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-zoneawareness"
+	// target="_blank) for more information.
 	ZoneAwarenessEnabled *bool `type:"boolean"`
 }
 
@@ -1386,8 +1387,8 @@ type ElasticsearchDomainConfig struct {
 	AccessPolicies *AccessPoliciesStatus `type:"structure"`
 
 	// Specifies the AdvancedOptions for the domain. See Configuring Advanced Options
-	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options)
-	// for more information.
+	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
+	// target="_blank) for more information.
 	AdvancedOptions *AdvancedOptionsStatus `type:"structure"`
 
 	// Specifies the EBSOptions for the Elasticsearch domain.
@@ -1418,8 +1419,8 @@ type ElasticsearchDomainStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon resource name (ARN) of an Elasticsearch domain. See Identifiers
-	// for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html)
-	// in Using AWS Identity and Access Management for more information.
+	// for IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html"
+	// target="_blank) in Using AWS Identity and Access Management for more information.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -1454,8 +1455,8 @@ type ElasticsearchDomainStatus struct {
 	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The EBSOptions for the specified domain. See Configuring EBS-based Storage
-	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs)
-	// for more information.
+	// (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs"
+	// target="_blank) for more information.
 	EBSOptions *EBSOptions `type:"structure"`
 
 	// The type and number of instances in the domain cluster.
@@ -1801,8 +1802,8 @@ type UpdateElasticsearchDomainConfigInput struct {
 
 	// Modifies the advanced option to allow references to indices in an HTTP request
 	// body. Must be false when configuring access to individual sub-resources.
-	// By default, the value is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options)
-	// for more information.
+	// By default, the value is true. See Configuration Advanced Options (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options"
+	// target="_blank) for more information.
 	AdvancedOptions map[string]*string `type:"map"`
 
 	// The name of the Elasticsearch domain that you are updating.
@@ -1929,9 +1930,8 @@ const (
 
 // The state of a requested change. One of the following:
 //
-//    * Processing: The request change is still in-process.
-//    * Active: The request change is processed and deployed to the Elasticsearch
-//    domain.
+//  Processing: The request change is still in-process. Active: The request
+// change is processed and deployed to the Elasticsearch domain.
 const (
 	// OptionStateRequiresIndexDocuments is a OptionState enum value
 	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
@@ -1944,8 +1944,8 @@ const (
 )
 
 // The type of EBS volume, standard, gp2, or io1. See Configuring EBS-based
-// Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs)for
-// more information.
+// Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs"
+// target="_blank)for more information.
 const (
 	// VolumeTypeStandard is a VolumeType enum value
 	VolumeTypeStandard = "standard"

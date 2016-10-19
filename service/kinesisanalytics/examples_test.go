@@ -28,11 +28,7 @@ func ExampleKinesisAnalytics_AddApplicationInput() {
 		ApplicationName:             aws.String("ApplicationName"), // Required
 		CurrentApplicationVersionId: aws.Int64(1),                  // Required
 		Input: &kinesisanalytics.Input{ // Required
-			NamePrefix: aws.String("InAppStreamName"), // Required
-			InputParallelism: &kinesisanalytics.InputParallelism{
-				Count: aws.Int64(1),
-			},
-			InputSchema: &kinesisanalytics.SourceSchema{
+			InputSchema: &kinesisanalytics.SourceSchema{ // Required
 				RecordColumns: []*kinesisanalytics.RecordColumn{ // Required
 					{ // Required
 						Name:    aws.String("RecordColumnName"),    // Required
@@ -54,6 +50,10 @@ func ExampleKinesisAnalytics_AddApplicationInput() {
 					},
 				},
 				RecordEncoding: aws.String("RecordEncoding"),
+			},
+			NamePrefix: aws.String("InAppStreamName"), // Required
+			InputParallelism: &kinesisanalytics.InputParallelism{
+				Count: aws.Int64(1),
 			},
 			KinesisFirehoseInput: &kinesisanalytics.KinesisFirehoseInput{
 				ResourceARN: aws.String("ResourceARN"), // Required
@@ -190,11 +190,7 @@ func ExampleKinesisAnalytics_CreateApplication() {
 		ApplicationDescription: aws.String("ApplicationDescription"),
 		Inputs: []*kinesisanalytics.Input{
 			{ // Required
-				NamePrefix: aws.String("InAppStreamName"), // Required
-				InputParallelism: &kinesisanalytics.InputParallelism{
-					Count: aws.Int64(1),
-				},
-				InputSchema: &kinesisanalytics.SourceSchema{
+				InputSchema: &kinesisanalytics.SourceSchema{ // Required
 					RecordColumns: []*kinesisanalytics.RecordColumn{ // Required
 						{ // Required
 							Name:    aws.String("RecordColumnName"),    // Required
@@ -216,6 +212,10 @@ func ExampleKinesisAnalytics_CreateApplication() {
 						},
 					},
 					RecordEncoding: aws.String("RecordEncoding"),
+				},
+				NamePrefix: aws.String("InAppStreamName"), // Required
+				InputParallelism: &kinesisanalytics.InputParallelism{
+					Count: aws.Int64(1),
 				},
 				KinesisFirehoseInput: &kinesisanalytics.KinesisFirehoseInput{
 					ResourceARN: aws.String("ResourceARN"), // Required

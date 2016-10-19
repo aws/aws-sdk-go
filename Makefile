@@ -47,16 +47,15 @@ gen-endpoints:
 
 build:
 	@echo "go build SDK and vendor packages"
-	@go build ${SDK_ONLY_PKGS}
-	@go build -tags example ./example/...
+	@go build -tags example,codegen ${SDK_ONLY_PKGS}
 
 unit: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
-	@go test $(SDK_ONLY_PKGS)
+	@go test -tags example,codegen $(SDK_ONLY_PKGS)
 
 unit-with-race-cover: get-deps-tests build verify
 	@echo "go test SDK and vendor packages"
-	@go test -race -cpu=1,2,4 $(SDK_ONLY_PKGS)
+	@go test -tags example,codegen -race -cpu=1,2,4 $(SDK_ONLY_PKGS)
 
 integration: get-deps-tests integ-custom smoke-tests performance
 

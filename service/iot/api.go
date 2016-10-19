@@ -422,26 +422,26 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // $ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr
 // --certificate-signing-request file://my-csr-directory/{}
 //
-// This command lists all of the CSRs in my-csr-directory and pipes each CSR
+//  This command lists all of the CSRs in my-csr-directory and pipes each CSR
 // file name to the aws iot create-certificate-from-csr AWS CLI command to create
 // a certificate for the corresponding CSR.
 //
-// The aws iot create-certificate-from-csr part of the command can also be run
-// in parallel to speed up the certificate creation process:
+//  The aws iot create-certificate-from-csr part of the command can also be
+// run in parallel to speed up the certificate creation process:
 //
-// $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
+//  $ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr
 // --certificate-signing-request file://my-csr-directory/{}
 //
-// On Windows PowerShell, the command to create certificates for all CSRs in
-// my-csr-directory is:
-//
-// > ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
-// file://my-csr-directory/$_}
-//
-// On a Windows command prompt, the command to create certificates for all CSRs
+//  On Windows PowerShell, the command to create certificates for all CSRs
 // in my-csr-directory is:
 //
-// > forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
+//  > ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request
+// file://my-csr-directory/$_}
+//
+//  On a Windows command prompt, the command to create certificates for all
+// CSRs in my-csr-directory is:
+//
+//  > forfiles /p my-csr-directory /c "cmd /c aws iot create-certificate-from-csr
 // --certificate-signing-request file://@path"
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1103,8 +1103,8 @@ func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 //
 // Deletes the specified certificate.
 //
-// A certificate cannot be deleted if it has a policy attached to it or if its
-// status is set to ACTIVE. To delete a certificate, first use the DetachPrincipalPolicy
+// A certificate cannot be deleted if it has a policy attached to it or if
+// its status is set to ACTIVE. To delete a certificate, first use the DetachPrincipalPolicy
 // API to detach all policies. Next, use the UpdateCertificate API to set the
 // certificate to the INACTIVE status.
 //
@@ -4044,9 +4044,9 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 // To check for pending certificate transfers, call ListCertificates to enumerate
 // your certificates.
 //
-// This operation can only be called by the transfer destination. After it is
-// called, the certificate will be returned to the source's account in the INACTIVE
-// state.
+// This operation can only be called by the transfer destination. After it
+// is called, the certificate will be returned to the source's account in the
+// INACTIVE state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4369,8 +4369,8 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 //
 // You can cancel the transfer until it is acknowledged by the recipient.
 //
-// No notification is sent to the transfer destination's account. It is up to
-// the caller to notify the transfer target.
+// No notification is sent to the transfer destination's account. It is up
+// to the caller to notify the transfer target.
 //
 // The certificate being transferred must not be in the ACTIVE state. You can
 // use the UpdateCertificate API to deactivate it.
@@ -4547,8 +4547,9 @@ func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *requ
 //
 // Updates the status of the specified certificate. This operation is idempotent.
 //
-// Moving a certificate from the ACTIVE state (including REVOKED) will not disconnect
-// currently connected devices, but these devices will be unable to reconnect.
+// Moving a certificate from the ACTIVE state (including REVOKED) will not
+// disconnect currently connected devices, but these devices will be unable
+// to reconnect.
 //
 // The ACTIVE state is required to authenticate devices connecting to AWS IoT
 // using a certificate.
@@ -4737,6 +4738,11 @@ type Action struct {
 	// Write to a DynamoDB table.
 	DynamoDB *DynamoDBAction `locationName:"dynamoDB" type:"structure"`
 
+	// Write to a DynamoDB table. This is a new version of the DynamoDB action.
+	// It allows you to write each attribute in an MQTT message payload into a separate
+	// DynamoDB column.
+	DynamoDBv2 *DynamoDBv2Action `locationName:"dynamoDBv2" type:"structure"`
+
 	// Write data to an Amazon Elasticsearch Service domain.
 	Elasticsearch *ElasticsearchAction `locationName:"elasticsearch" type:"structure"`
 
@@ -4788,6 +4794,11 @@ func (s *Action) Validate() error {
 	if s.DynamoDB != nil {
 		if err := s.DynamoDB.Validate(); err != nil {
 			invalidParams.AddNested("DynamoDB", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DynamoDBv2 != nil {
+		if err := s.DynamoDBv2.Validate(); err != nil {
+			invalidParams.AddNested("DynamoDBv2", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Elasticsearch != nil {
@@ -4970,7 +4981,7 @@ type AttributePayload struct {
 	//
 	// To remove an attribute, call UpdateThing with an empty attribute value.
 	//
-	// The merge attribute is only valid when calling UpdateThing.
+	//  The merge attribute is only valid when calling UpdateThing.
 	Merge *bool `locationName:"merge" type:"boolean"`
 }
 
@@ -6400,9 +6411,9 @@ type DescribeThingOutput struct {
 
 	// The current version of the thing record in the registry.
 	//
-	// To avoid unintentional changes to the information in the registry, you can
-	// pass the version information in the expectedVersion parameter of the UpdateThing
-	// and DeleteThing calls.
+	//  To avoid unintentional changes to the information in the registry, you
+	// can pass the version information in the expectedVersion parameter of the
+	// UpdateThing and DeleteThing calls.
 	Version *int64 `locationName:"version" type:"long"`
 }
 
@@ -6736,6 +6747,52 @@ func (s *DynamoDBAction) Validate() error {
 	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// Describes an action to write to a DynamoDB table.
+//
+// This DynamoDB action writes each attribute in the message payload into it's
+// own column in the DynamoDB table.
+type DynamoDBv2Action struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the DynamoDB table to which the message data will be written. For
+	// example:
+	//
+	// { "dynamoDBv2": { "roleArn": "aws:iam:12341251:my-role" "putItem": { "tableName":
+	// "my-table" } } }
+	//
+	// Each attribute in the message payload will be written to a separate column
+	// in the DynamoDB database.
+	PutItem *PutItemInput `locationName:"putItem" type:"structure"`
+
+	// The ARN of the IAM role that grants access to the DynamoDB table.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation
+func (s DynamoDBv2Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DynamoDBv2Action) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DynamoDBv2Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DynamoDBv2Action"}
+	if s.PutItem != nil {
+		if err := s.PutItem.Validate(); err != nil {
+			invalidParams.AddNested("PutItem", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8194,6 +8251,40 @@ func (s PolicyVersion) GoString() string {
 	return s.String()
 }
 
+// The input for the DynamoActionVS action that specifies the DynamoDB table
+// to which the message data will be written.
+type PutItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The table where the message data will be written
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutItemInput"}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // The input to the RegisterCACertificate operation.
 type RegisterCACertificateInput struct {
 	_ struct{} `type:"structure"`
@@ -8664,7 +8755,7 @@ type SnsAction struct {
 	// "JSON" and "RAW". The default value of the attribute is "RAW". SNS uses this
 	// setting to determine if the payload should be parsed and relevant platform-specific
 	// bits of the payload should be extracted. To read more about SNS message formats,
-	// see  refer to their official documentation. (http://docs.aws.amazon.com/sns/latest/dg/json-formats.html)
+	// see  refer to their official documentation.
 	MessageFormat *string `locationName:"messageFormat" type:"string" enum:"MessageFormat"`
 
 	// The ARN of the IAM role that grants access.

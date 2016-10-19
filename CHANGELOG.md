@@ -1,4 +1,46 @@
-Release v1.4.16
+Release v1.4.19 (2016-10-18)
+===
+
+Service Client Updates
+---
+* `service/cloudfront`: Updates service API and documentation.
+  * Ability to use Amazon CloudFront to deliver your content both via IPv6 and IPv4 using HTTP/HTTPS.
+* `service/configservice`: Update service API and documentation.
+* `service/iot`: Updates service API and documentation.
+* `service/kinesisanalytics`: Updates service API and documentation.
+  * Whenever Amazon Kinesis Analytics is not able to detect schema for the given streaming source on DiscoverInputSchema API, we would return the raw records that was sampled to detect the schema.
+* `service/rds`: Updates service API and documentation.
+  * Amazon Aurora integrates with other AWS services to allow you to extend your Aurora DB cluster to utilize other capabilities in the AWS cloud. Permission to access other AWS services is granted by creating an IAM role with the necessary permissions, and then associating the role with your DB cluster.
+
+SDK Feature Updates
+---
+* `service/dynamodb/dynamodbattribute`: Add UnmarshalListOfMaps #897
+  * Adds support for unmarshalling a list of maps. This is useful for unmarshalling the DynamoDB AttributeValue list of maps returned by APIs like Query and Scan.
+
+Release v1.4.18 (2016-10-17)
+===
+
+Service Model Updates
+---
+* `service/route53`: Updates service API and documentation.
+
+Release v1.4.17
+===
+
+Service Model Updates
+---
+* `service/acm`: Update service API, and documentation.
+  * This change allows users to import third-party SSL/TLS certificates into ACM.
+* `service/elasticbeanstalk`: Update service API, documentation, and pagination.
+  * Elastic Beanstalk DescribeApplicationVersions API is being updated to support pagination.
+* `service/gamelift`: Update service API, and documentation.
+  * New APIs to protect game developer resource (builds, alias, fleets, instances, game sessions and player sessions) against abuse.
+
+SDK Features
+---
+* `service/s3`: Add support for accelerate with dualstack [#887](https://github.com/aws/aws-sdk-go/issues/887)
+
+Release v1.4.16 (2016-10-13)
 ===
 
 Service Model Updates
@@ -20,7 +62,7 @@ SDK Features
 * `service/dynamodb/dynamodbattribute`: Allow multiple struct tag elements [#886](https://github.com/aws/aws-sdk-go/issues/886)
 * Add build tags to internal SDK tools [#880](https://github.com/aws/aws-sdk-go/issues/880)
 
-Release v1.4.15
+Release v1.4.15 (2016-10-06)
 ===
 
 Service Model Updates

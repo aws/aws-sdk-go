@@ -61,12 +61,12 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 // tag is a key-value pair where the key and value are case-sensitive. You can
 // use cost allocation tags to categorize and track your AWS costs.
 //
-// When you apply tags to your ElastiCache resources, AWS generates a cost allocation
-// report as a comma-separated value (CSV) file with your usage and costs aggregated
-// by your tags. You can apply tags that represent business categories (such
-// as cost centers, application names, or owners) to organize your costs across
-// multiple services. For more information, see Using Cost Allocation Tags in
-// Amazon ElastiCache (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Tagging.html)
+//  When you apply tags to your ElastiCache resources, AWS generates a cost
+// allocation report as a comma-separated value (CSV) file with your usage and
+// costs aggregated by your tags. You can apply tags that represent business
+// categories (such as cost centers, application names, or owners) to organize
+// your costs across multiple services. For more information, see Using Cost
+// Allocation Tags in Amazon ElastiCache (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Tagging.html)
 // in the ElastiCache User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -146,7 +146,7 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 // must be running on Amazon EC2, and Amazon EC2 security groups are used as
 // the authorization mechanism.
 //
-// You cannot authorize ingress from an Amazon EC2 security group in one region
+//  You cannot authorize ingress from an Amazon EC2 security group in one region
 // to an ElastiCache cluster in another region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -227,69 +227,66 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *reques
 //
 // Makes a copy of an existing snapshot.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
-// Users or groups that have permissions to use the CopySnapshot operation can
-// create their own Amazon S3 buckets and copy snapshots to it. To control access
-// to your snapshots, use an IAM policy to control who has the ability to use
-// the CopySnapshot operation. For more information about using IAM to control
-// the use of ElastiCache operations, see Exporting Snapshots (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html)
+//   Users or groups that have permissions to use the CopySnapshot operation
+// can create their own Amazon S3 buckets and copy snapshots to it. To control
+// access to your snapshots, use an IAM policy to control who has the ability
+// to use the CopySnapshot operation. For more information about using IAM to
+// control the use of ElastiCache operations, see Exporting Snapshots (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html)
 // and Authentication & Access Control (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/IAM.html).
 //
-// You could receive the following error messages.
+//  You could receive the following error messages.
 //
-// Error Messages
+//  Error Messages     Error Message: The S3 bucket %s is outside of the region.
 //
-//    * Error Message: The S3 bucket %s is outside of the region.
+//  Solution: Create an Amazon S3 bucket in the same region as your snapshot.
+// For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket)
+// in the ElastiCache User Guide.
 //
-// Solution: Create an Amazon S3 bucket in the same region as your snapshot.
-//    For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket)
-//    in the ElastiCache User Guide.
+//    Error Message: The S3 bucket %s does not exist.
 //
-//    * Error Message: The S3 bucket %s does not exist.
+//  Solution: Create an Amazon S3 bucket in the same region as your snapshot.
+// For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket)
+// in the ElastiCache User Guide.
 //
-// Solution: Create an Amazon S3 bucket in the same region as your snapshot.
-//    For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket)
-//    in the ElastiCache User Guide.
+//    Error Message: The S3 bucket %s is not owned by the authenticated user.
 //
-//    * Error Message: The S3 bucket %s is not owned by the authenticated user.
+//  Solution: Create an Amazon S3 bucket in the same region as your snapshot.
+// For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket)
+// in the ElastiCache User Guide.
 //
-// Solution: Create an Amazon S3 bucket in the same region as your snapshot.
-//    For more information, see Step 1: Create an Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.CreateBucket)
-//    in the ElastiCache User Guide.
+//    Error Message: The authenticated user does not have sufficient permissions
+// to perform the desired activity.
 //
-//    * Error Message: The authenticated user does not have sufficient permissions
-//    to perform the desired activity.
+//  Solution: Contact your system administrator to get the needed permissions.
 //
-// Solution: Contact your system administrator to get the needed permissions.
+//    Error Message: The S3 bucket %s already contains an object with key %s.
 //
-//    * Error Message: The S3 bucket %s already contains an object with key
-//    %s.
+//  Solution: Give the TargetSnapshotName a new and unique value. If exporting
+// a snapshot, you could alternatively create a new Amazon S3 bucket and use
+// this same value for TargetSnapshotName.
 //
-// Solution: Give the TargetSnapshotName a new and unique value. If exporting
-//    a snapshot, you could alternatively create a new Amazon S3 bucket and
-//    use this same value for TargetSnapshotName.
+//    Error Message:  ElastiCache has not been granted READ permissions %s
+// on the S3 Bucket.
 //
-//    * Error Message:  ElastiCache has not been granted READ permissions %s
-//    on the S3 Bucket.
+//  Solution: Add List and Read permissions on the bucket. For more information,
+// see Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
+// in the ElastiCache User Guide.
 //
-// Solution: Add List and Read permissions on the bucket. For more information,
-//    see Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
-//    in the ElastiCache User Guide.
+//    Error Message:  ElastiCache has not been granted WRITE permissions %s
+// on the S3 Bucket.
 //
-//    * Error Message:  ElastiCache has not been granted WRITE permissions %s
-//    on the S3 Bucket.
+//  Solution: Add Upload/Delete permissions on the bucket. For more information,
+// see Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
+// in the ElastiCache User Guide.
 //
-// Solution: Add Upload/Delete permissions on the bucket. For more information,
-//    see Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
-//    in the ElastiCache User Guide.
+//    Error Message:  ElastiCache has not been granted READ_ACP permissions
+// %s on the S3 Bucket.
 //
-//    * Error Message:  ElastiCache has not been granted READ_ACP permissions
-//    %s on the S3 Bucket.
-//
-// Solution: Add View Permissions on the bucket. For more information, see Step
-//    2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
-//    in the ElastiCache User Guide.
+//  Solution: Add View Permissions on the bucket. For more information, see
+// Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Snapshots.Exporting.html#Snapshots.Exporting.GrantAccess)
+// in the ElastiCache User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -373,7 +370,7 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) 
 // Creates a cache cluster. All nodes in the cache cluster run the same protocol-compliant
 // cache engine software, either Memcached or Redis.
 //
-// Due to current limitations on Redis (cluster mode disabled), this operation
+//  Due to current limitations on Redis (cluster mode disabled), this operation
 // or parameter is not supported on Redis (cluster mode enabled) replication
 // groups.
 //
@@ -744,7 +741,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // read replicas. You cannot alter a Redis (cluster mode enabled) replication
 // group once it has been created.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -863,7 +860,7 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *re
 // Creates a copy of an entire cache cluster or replication group at a specific
 // moment in time.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -895,13 +892,13 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *re
 //   * SnapshotFeatureNotSupportedFault
 //   You attempted one of the following operations:
 //
-//      * Creating a snapshot of a Redis cache cluster running on a cache.t1.micro
-//      cache node.
+//     Creating a snapshot of a Redis cache cluster running on a cache.t1.micro
+//   cache node.
 //
-//      * Creating a snapshot of a cache cluster that is running Memcached rather
-//      than Redis.
+//     Creating a snapshot of a cache cluster that is running Memcached rather
+//   than Redis.
 //
-//   Neither of these are supported by ElastiCache.
+//     Neither of these are supported by ElastiCache.
 //
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
@@ -971,7 +968,7 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 // mode enabled or a cache cluster from a Redis (cluster mode enabled) replication
 // group.
 //
-// Due to current limitations on Redis (cluster mode disabled), this operation
+//  Due to current limitations on Redis (cluster mode disabled), this operation
 // or parameter is not supported on Redis (cluster mode enabled) replication
 // groups.
 //
@@ -995,13 +992,13 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 //   * SnapshotFeatureNotSupportedFault
 //   You attempted one of the following operations:
 //
-//      * Creating a snapshot of a Redis cache cluster running on a cache.t1.micro
-//      cache node.
+//     Creating a snapshot of a Redis cache cluster running on a cache.t1.micro
+//   cache node.
 //
-//      * Creating a snapshot of a cache cluster that is running Memcached rather
-//      than Redis.
+//     Creating a snapshot of a cache cluster that is running Memcached rather
+//   than Redis.
 //
-//   Neither of these are supported by ElastiCache.
+//     Neither of these are supported by ElastiCache.
 //
 //   * SnapshotQuotaExceededFault
 //   The request cannot be processed because it would exceed the maximum number
@@ -1146,7 +1143,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 //
 // Deletes a cache security group.
 //
-// You cannot delete a cache security group if it is associated with any cache
+//  You cannot delete a cache security group if it is associated with any cache
 // clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1225,7 +1222,7 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 //
 // Deletes a cache subnet group.
 //
-// You cannot delete a cache subnet group if it is associated with any cache
+//  You cannot delete a cache subnet group if it is associated with any cache
 // clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1304,7 +1301,7 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 // immediately begins deleting the selected resources; you cannot cancel or
 // revert this operation.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1326,13 +1323,13 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 //   * SnapshotFeatureNotSupportedFault
 //   You attempted one of the following operations:
 //
-//      * Creating a snapshot of a Redis cache cluster running on a cache.t1.micro
-//      cache node.
+//     Creating a snapshot of a Redis cache cluster running on a cache.t1.micro
+//   cache node.
 //
-//      * Creating a snapshot of a cache cluster that is running Memcached rather
-//      than Redis.
+//     Creating a snapshot of a cache cluster that is running Memcached rather
+//   than Redis.
 //
-//   Neither of these are supported by ElastiCache.
+//     Neither of these are supported by ElastiCache.
 //
 //   * SnapshotQuotaExceededFault
 //   The request cannot be processed because it would exceed the maximum number
@@ -1399,7 +1396,7 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *re
 // this operation, ElastiCache immediately begins deleting the snapshot; you
 // cannot cancel or revert this operation.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1488,11 +1485,11 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 // about the cache nodes associated with the cache clusters. These details include
 // the DNS address and port for the cache node endpoint.
 //
-// If the cluster is in the CREATING state, only cluster-level information is
-// displayed until all of the nodes are successfully provisioned.
+// If the cluster is in the CREATING state, only cluster-level information
+// is displayed until all of the nodes are successfully provisioned.
 //
-// If the cluster is in the DELETING state, only cluster-level information is
-// displayed.
+// If the cluster is in the DELETING state, only cluster-level information
+// is displayed.
 //
 // If cache nodes are currently being added to the cache cluster, node endpoint
 // information and creation time for the additional nodes are not displayed
@@ -2304,7 +2301,7 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 // is specified, DescribeReplicationGroups returns information about all replication
 // groups.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2613,7 +2610,7 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 // describe a single snapshot, or just the snapshots associated with a particular
 // cache cluster.
 //
-// This operation is valid for Redis only.
+//  This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3121,11 +3118,11 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 //
 // Modifies the settings for a replication group.
 //
-// Due to current limitations on Redis (cluster mode disabled), this operation
+//  Due to current limitations on Redis (cluster mode disabled), this operation
 // or parameter is not supported on Redis (cluster mode enabled) replication
 // groups.
 //
-// This operation is valid for Redis only.
+//   This operation is valid for Redis only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3672,11 +3669,11 @@ type AuthorizeCacheSecurityGroupIngressOutput struct {
 
 	// Represents the output of one of the following operations:
 	//
-	//    * AuthorizeCacheSecurityGroupIngress
+	//    AuthorizeCacheSecurityGroupIngress
 	//
-	//    * CreateCacheSecurityGroup
+	//    CreateCacheSecurityGroup
 	//
-	//    * RevokeCacheSecurityGroupIngress
+	//    RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 }
 
@@ -3731,37 +3728,37 @@ type CacheCluster struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -3819,21 +3816,21 @@ type CacheCluster struct {
 	//
 	// Valid values for ddd are:
 	//
-	//    * sun
+	//    sun
 	//
-	//    * mon
+	//    mon
 	//
-	//    * tue
+	//    tue
 	//
-	//    * wed
+	//    wed
 	//
-	//    * thu
+	//    thu
 	//
-	//    * fri
+	//    fri
 	//
-	//    * sat
+	//    sat
 	//
-	// Example: sun:23:00-mon:01:30
+	//   Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The replication group to which this cache cluster belongs. If this field
@@ -3848,8 +3845,8 @@ type CacheCluster struct {
 	// to 5, a snapshot that was taken today is retained for 5 days before being
 	// deleted.
 	//
-	// If the value of SnapshotRetentionLimit is set to zero (0), backups are turned
-	// off.
+	//   If the value of SnapshotRetentionLimit is set to zero (0), backups are
+	// turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
 	// The daily time range (in UTC) during which ElastiCache begins taking a daily
@@ -3907,37 +3904,37 @@ func (s CacheEngineVersion) GoString() string {
 //
 // Valid node types are as follows:
 //
-//    * General purpose:
+//   General purpose:
 //
-// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 //
-// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-//    cache.m1.xlarge
+//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+// cache.m1.large, cache.m1.xlarge
 //
-//    * Compute optimized: cache.c1.xlarge
+//     Compute optimized: cache.c1.xlarge
 //
-//    * Memory optimized:
+//   Memory optimized:
 //
-// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-//    cache.r3.8xlarge
+//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+// cache.r3.4xlarge, cache.r3.8xlarge
 //
-// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 //
-// Notes:
+//      Notes:
 //
-//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-//    VPC).
+//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+// VPC).
 //
-//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-//    enabled) T2 instances.
+//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+// T2 instances.
 //
-//    * Redis Append-only files (AOF) functionality is not supported for T1
-//    or T2 instances.
+//   Redis Append-only files (AOF) functionality is not supported for T1 or
+// T2 instances.
 //
-// For a complete listing of node types and specifications, see Amazon ElastiCache
+//   For a complete listing of node types and specifications, see Amazon ElastiCache
 // Product Features and Details (http://aws.amazon.com/elasticache/details)
 // and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 // or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -4079,9 +4076,9 @@ func (s CacheParameterGroup) GoString() string {
 
 // Represents the output of one of the following operations:
 //
-//    * ModifyCacheParameterGroup
+//    ModifyCacheParameterGroup
 //
-//    * ResetCacheParameterGroup
+//    ResetCacheParameterGroup
 type CacheParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -4126,11 +4123,11 @@ func (s CacheParameterGroupStatus) GoString() string {
 
 // Represents the output of one of the following operations:
 //
-//    * AuthorizeCacheSecurityGroupIngress
+//    AuthorizeCacheSecurityGroupIngress
 //
-//    * CreateCacheSecurityGroup
+//    CreateCacheSecurityGroup
 //
-//    * RevokeCacheSecurityGroupIngress
+//    RevokeCacheSecurityGroupIngress
 type CacheSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -4183,9 +4180,9 @@ func (s CacheSecurityGroupMembership) GoString() string {
 
 // Represents the output of one of the following operations:
 //
-//    * CreateCacheSubnetGroup
+//    CreateCacheSubnetGroup
 //
-//    * ModifyCacheSubnetGroup
+//    ModifyCacheSubnetGroup
 type CacheSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -4306,13 +4303,13 @@ type CreateCacheClusterInput struct {
 	// The node group (shard) identifier. This parameter is stored as a lowercase
 	// string.
 	//
-	// Constraints:
+	//  Constraints:
 	//
-	//    * A name must contain from 1 to 20 alphanumeric characters or hyphens.
+	//   A name must contain from 1 to 20 alphanumeric characters or hyphens.
 	//
-	//    * The first character must be a letter.
+	//   The first character must be a letter.
 	//
-	//    * A name cannot end with a hyphen or contain two consecutive hyphens.
+	//   A name cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// CacheClusterId is a required field
 	CacheClusterId *string `type:"string" required:"true"`
@@ -4321,37 +4318,37 @@ type CreateCacheClusterInput struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -4374,7 +4371,7 @@ type CreateCacheClusterInput struct {
 	// Use this parameter only when you are creating a cache cluster in an Amazon
 	// Virtual Private Cloud (Amazon VPC).
 	//
-	// If you're going to launch your cluster in an Amazon VPC, you need to create
+	//  If you're going to launch your cluster in an Amazon VPC, you need to create
 	// a subnet group before you start creating a cluster. For more information,
 	// see Subnets and Subnet Groups (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SubnetGroups.html).
 	CacheSubnetGroupName *string `type:"string"`
@@ -4388,7 +4385,7 @@ type CreateCacheClusterInput struct {
 	// To view the supported cache engine versions, use the DescribeCacheEngineVersions
 	// operation.
 	//
-	// Important: You can upgrade to a newer engine version (see Selecting a Cache
+	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement)),
 	// but you cannot downgrade to an earlier engine version. If you want to use
 	// an earlier engine version, you must delete the existing cache cluster or
@@ -4398,7 +4395,7 @@ type CreateCacheClusterInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic to which notifications are sent.
 	//
-	// The Amazon SNS topic owner must be the same as the cache cluster owner.
+	//  The Amazon SNS topic owner must be the same as the cache cluster owner.
 	NotificationTopicArn *string `type:"string"`
 
 	// The initial number of cache nodes that the cache cluster has.
@@ -4428,13 +4425,13 @@ type CreateCacheClusterInput struct {
 	//
 	// This option is only supported on Memcached.
 	//
-	// If you are creating your cache cluster in an Amazon VPC (recommended) you
+	//  If you are creating your cache cluster in an Amazon VPC (recommended) you
 	// can only locate nodes in Availability Zones that are associated with the
 	// subnets in the selected subnet group.
 	//
 	// The number of Availability Zones listed must equal the value of NumCacheNodes.
 	//
-	// If you want all the nodes in the same Availability Zone, use PreferredAvailabilityZone
+	//  If you want all the nodes in the same Availability Zone, use PreferredAvailabilityZone
 	// instead, or repeat the Availability Zone multiple times in the list.
 	//
 	// Default: System chosen Availability Zones.
@@ -4445,34 +4442,34 @@ type CreateCacheClusterInput struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	// Specifies the weekly time range during which maintenance on the cluster is
-	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// Specifies the weekly time range during which maintenance on the cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 	//
 	// Valid values for ddd are:
 	//
-	//    * sun
+	//    sun
 	//
-	//    * mon
+	//    mon
 	//
-	//    * tue
+	//    tue
 	//
-	//    * wed
+	//    wed
 	//
-	//    * thu
+	//    thu
 	//
-	//    * fri
+	//    fri
 	//
-	//    * sat
+	//    sat
 	//
-	// Example: sun:23:00-mon:01:30
+	//   Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// Due to current limitations on Redis (cluster mode disabled), this operation
 	// or parameter is not supported on Redis (cluster mode enabled) replication
 	// groups.
 	//
-	// The ID of the replication group to which this cache cluster should belong.
+	//  The ID of the replication group to which this cache cluster should belong.
 	// If this parameter is specified, the cache cluster is added to the specified
 	// replication group as a read replica; otherwise, the cache cluster is a standalone
 	// primary that is not part of any replication group.
@@ -4481,7 +4478,7 @@ type CreateCacheClusterInput struct {
 	// Zone is not specified, the cache cluster is created in Availability Zones
 	// that provide the best spread of read replicas across Availability Zones.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	ReplicationGroupId *string `type:"string"`
 
 	// One or more VPC security groups associated with the cache cluster.
@@ -4495,25 +4492,25 @@ type CreateCacheClusterInput struct {
 	// file is used to populate the node group (shard). The Amazon S3 object name
 	// in the ARN cannot contain any commas.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	//
-	// Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
+	//  Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
 	SnapshotArns []*string `locationNameList:"SnapshotArn" type:"list"`
 
 	// The name of a Redis snapshot from which to restore data into the new node
 	// group (shard). The snapshot status changes to restoring while the new node
 	// group (shard) is being created.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	SnapshotName *string `type:"string"`
 
 	// The number of days for which ElastiCache retains automatic snapshots before
 	// deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot
 	// taken today is retained for 5 days before being deleted.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	//
-	// Default: 0 (i.e., automatic backups are disabled for this cache cluster).
+	//  Default: 0 (i.e., automatic backups are disabled for this cache cluster).
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
 	// The daily time range (in UTC) during which ElastiCache begins taking a daily
@@ -4521,10 +4518,10 @@ type CreateCacheClusterInput struct {
 	//
 	// Example: 05:00-09:00
 	//
-	// If you do not specify this parameter, ElastiCache automatically chooses an
-	// appropriate time range.
+	// If you do not specify this parameter, ElastiCache automatically chooses
+	// an appropriate time range.
 	//
-	// Note: This parameter is only valid if the Engine parameter is redis.
+	//  Note: This parameter is only valid if the Engine parameter is redis.
 	SnapshotWindow *string `type:"string"`
 
 	// A list of cost allocation tags to be added to this resource. A tag is a key-value
@@ -4693,11 +4690,11 @@ type CreateCacheSecurityGroupOutput struct {
 
 	// Represents the output of one of the following operations:
 	//
-	//    * AuthorizeCacheSecurityGroupIngress
+	//    AuthorizeCacheSecurityGroupIngress
 	//
-	//    * CreateCacheSecurityGroup
+	//    CreateCacheSecurityGroup
 	//
-	//    * RevokeCacheSecurityGroupIngress
+	//    RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 }
 
@@ -4769,9 +4766,9 @@ type CreateCacheSubnetGroupOutput struct {
 
 	// Represents the output of one of the following operations:
 	//
-	//    * CreateCacheSubnetGroup
+	//    CreateCacheSubnetGroup
 	//
-	//    * ModifyCacheSubnetGroup
+	//    ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 }
 
@@ -4798,16 +4795,16 @@ type CreateReplicationGroupInput struct {
 	// If true, Multi-AZ is enabled for this replication group. If false, Multi-AZ
 	// is disabled for this replication group.
 	//
-	// AutomaticFailoverEnabled must be enabled for Redis (cluster mode enabled)
+	//  AutomaticFailoverEnabled must be enabled for Redis (cluster mode enabled)
 	// replication groups.
 	//
 	// Default: false
 	//
-	// ElastiCache Multi-AZ replication groups is not supported on:
+	//  ElastiCache Multi-AZ replication groups is not supported on:
 	//
-	// Redis versions earlier than 2.8.6.
+	//   Redis versions earlier than 2.8.6.
 	//
-	// Redis (cluster mode disabled): T1 and T2 node types.
+	//   Redis (cluster mode disabled): T1 and T2 node types.
 	//
 	// Redis (cluster mode enabled): T2 node types.
 	AutomaticFailoverEnabled *bool `type:"boolean"`
@@ -4816,37 +4813,37 @@ type CreateReplicationGroupInput struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -4860,9 +4857,9 @@ type CreateReplicationGroupInput struct {
 	// and want to use a default parameter group, we recommend that you specify
 	// the parameter group by name.
 	//
-	//    * To create a Redis (cluster mode disabled) replication group, use CacheParameterGroupName=default.redis3.2.
+	//   To create a Redis (cluster mode disabled) replication group, use CacheParameterGroupName=default.redis3.2.
 	//
-	//    * To create a Redis (cluster mode enabled) replication group, use CacheParameterGroupName=default.redis3.2.cluster.on.
+	//   To create a Redis (cluster mode enabled) replication group, use CacheParameterGroupName=default.redis3.2.cluster.on.
 	CacheParameterGroupName *string `type:"string"`
 
 	// A list of cache security group names to associate with this replication group.
@@ -4870,7 +4867,7 @@ type CreateReplicationGroupInput struct {
 
 	// The name of the cache subnet group to be used for the replication group.
 	//
-	// If you're going to launch your cluster in an Amazon VPC, you need to create
+	//  If you're going to launch your cluster in an Amazon VPC, you need to create
 	// a subnet group before you start creating a cluster. For more information,
 	// see Subnets and Subnet Groups (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SubnetGroups.html).
 	CacheSubnetGroupName *string `type:"string"`
@@ -4883,7 +4880,7 @@ type CreateReplicationGroupInput struct {
 	// in this replication group. To view the supported cache engine versions, use
 	// the DescribeCacheEngineVersions operation.
 	//
-	// Important: You can upgrade to a newer engine version (see Selecting a Cache
+	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement))
 	// in the ElastiCache User Guide, but you cannot downgrade to an earlier engine
 	// version. If you want to use an earlier engine version, you must delete the
@@ -4903,7 +4900,7 @@ type CreateReplicationGroupInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic to which notifications are sent.
 	//
-	// The Amazon SNS topic owner must be the same as the cache cluster owner.
+	//  The Amazon SNS topic owner must be the same as the cache cluster owner.
 	NotificationTopicArn *string `type:"string"`
 
 	// The number of clusters this replication group initially has.
@@ -4937,13 +4934,13 @@ type CreateReplicationGroupInput struct {
 	// This parameter is not used if there is more than one node group (shard).
 	// You should use NodeGroupConfiguration instead.
 	//
-	// If you are creating your replication group in an Amazon VPC (recommended),
+	//  If you are creating your replication group in an Amazon VPC (recommended),
 	// you can only locate cache clusters in Availability Zones associated with
 	// the subnets in the selected subnet group.
 	//
 	// The number of Availability Zones listed must equal the value of NumCacheClusters.
 	//
-	// Default: system chosen Availability Zones.
+	//  Default: system chosen Availability Zones.
 	PreferredCacheClusterAZs []*string `locationNameList:"AvailabilityZone" type:"list"`
 
 	// Specifies the weekly time range during which maintenance on the cache cluster
@@ -4951,27 +4948,27 @@ type CreateReplicationGroupInput struct {
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
 	//
-	// Specifies the weekly time range during which maintenance on the cluster is
-	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
+	// Specifies the weekly time range during which maintenance on the cluster
+	// is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
 	//
 	// Valid values for ddd are:
 	//
-	//    * sun
+	//    sun
 	//
-	//    * mon
+	//    mon
 	//
-	//    * tue
+	//    tue
 	//
-	//    * wed
+	//    wed
 	//
-	//    * thu
+	//    thu
 	//
-	//    * fri
+	//    fri
 	//
-	//    * sat
+	//    sat
 	//
-	// Example: sun:23:00-mon:01:30
+	//   Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The identifier of the cache cluster that serves as the primary for this replication
@@ -4995,19 +4992,19 @@ type CreateReplicationGroupInput struct {
 	//
 	// Constraints:
 	//
-	//    * A name must contain from 1 to 20 alphanumeric characters or hyphens.
+	//   A name must contain from 1 to 20 alphanumeric characters or hyphens.
 	//
-	//    * The first character must be a letter.
+	//   The first character must be a letter.
 	//
-	//    * A name cannot end with a hyphen or contain two consecutive hyphens.
+	//   A name cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// One or more Amazon VPC security groups associated with this replication group.
 	//
-	// Use this parameter only when you are creating a replication group in an Amazon
-	// Virtual Private Cloud (Amazon VPC).
+	// Use this parameter only when you are creating a replication group in an
+	// Amazon Virtual Private Cloud (Amazon VPC).
 	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// A list of Amazon Resource Names (ARN) that uniquely identify the Redis RDB
@@ -5016,25 +5013,25 @@ type CreateReplicationGroupInput struct {
 	// any commas. The list must match the number of node groups (shards) in the
 	// replication group, which means you cannot repartition.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	//
-	// Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
+	//  Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
 	SnapshotArns []*string `locationNameList:"SnapshotArn" type:"list"`
 
 	// The name of a snapshot from which to restore data into the new replication
 	// group. The snapshot status changes to restoring while the new replication
 	// group is being created.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	SnapshotName *string `type:"string"`
 
 	// The number of days for which ElastiCache retains automatic snapshots before
 	// deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot
 	// that was taken today is retained for 5 days before being deleted.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	//
-	// Default: 0 (i.e., automatic backups are disabled for this cache cluster).
+	//  Default: 0 (i.e., automatic backups are disabled for this cache cluster).
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
 	// The daily time range (in UTC) during which ElastiCache begins taking a daily
@@ -5042,10 +5039,10 @@ type CreateReplicationGroupInput struct {
 	//
 	// Example: 05:00-09:00
 	//
-	// If you do not specify this parameter, ElastiCache automatically chooses an
-	// appropriate time range.
+	// If you do not specify this parameter, ElastiCache automatically chooses
+	// an appropriate time range.
 	//
-	// This parameter is only valid if the Engine parameter is redis.
+	//  This parameter is only valid if the Engine parameter is redis.
 	SnapshotWindow *string `type:"string"`
 
 	// A list of cost allocation tags to be added to this resource. A tag is a key-value
@@ -5217,7 +5214,7 @@ type DeleteCacheParameterGroupInput struct {
 
 	// The name of the cache parameter group to delete.
 	//
-	// The specified cache security group must not be associated with any cache
+	//  The specified cache security group must not be associated with any cache
 	// clusters.
 	//
 	// CacheParameterGroupName is a required field
@@ -5267,7 +5264,7 @@ type DeleteCacheSecurityGroupInput struct {
 
 	// The name of the cache security group to delete.
 	//
-	// You cannot delete the default security group.
+	//  You cannot delete the default security group.
 	//
 	// CacheSecurityGroupName is a required field
 	CacheSecurityGroupName *string `type:"string" required:"true"`
@@ -5541,11 +5538,11 @@ type DescribeCacheEngineVersionsInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must be 1 to 255 alphanumeric characters
+	//   Must be 1 to 255 alphanumeric characters
 	//
-	//    * First character must be a letter
+	//   First character must be a letter
 	//
-	//    * Cannot end with a hyphen or contain two consecutive hyphens
+	//   Cannot end with a hyphen or contain two consecutive hyphens
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// If true, specifies that only the default version of the specified engine
@@ -6003,8 +6000,8 @@ type DescribeReplicationGroupsInput struct {
 	// The identifier for the replication group to be described. This parameter
 	// is not case sensitive.
 	//
-	// If you do not specify this parameter, information about all replication groups
-	// is returned.
+	// If you do not specify this parameter, information about all replication
+	// groups is returned.
 	ReplicationGroupId *string `type:"string"`
 }
 
@@ -6049,37 +6046,37 @@ type DescribeReservedCacheNodesInput struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -6143,37 +6140,37 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -6463,7 +6460,7 @@ type ListAllowedNodeTypeModificationsInput struct {
 	// this cluster and from that to create a list of node types you can scale up
 	// to.
 	//
-	// You must provide a value for either the CacheClusterId or the ReplicationGroupId.
+	//  You must provide a value for either the CacheClusterId or the ReplicationGroupId.
 	CacheClusterId *string `type:"string"`
 
 	// The name of the replication group want to scale up to a larger node type.
@@ -6471,7 +6468,7 @@ type ListAllowedNodeTypeModificationsInput struct {
 	// being used by this replication group, and from that to create a list of node
 	// types you can scale up to.
 	//
-	// You must provide a value for either the CacheClusterId or the ReplicationGroupId.
+	//  You must provide a value for either the CacheClusterId or the ReplicationGroupId.
 	ReplicationGroupId *string `type:"string"`
 }
 
@@ -6550,8 +6547,8 @@ type ModifyCacheClusterInput struct {
 	//
 	// This option is only supported for Memcached cache clusters.
 	//
-	// You cannot specify single-az if the Memcached cache cluster already has cache
-	// nodes in different Availability Zones. If cross-az is specified, existing
+	//  You cannot specify single-az if the Memcached cache cluster already has
+	// cache nodes in different Availability Zones. If cross-az is specified, existing
 	// Memcached nodes remain in their current Availability Zone.
 	//
 	// Only newly created nodes are located in different Availability Zones. For
@@ -6567,10 +6564,10 @@ type ModifyCacheClusterInput struct {
 	// If false, changes to the cache cluster are applied on the next maintenance
 	// reboot, or the next failure reboot, whichever occurs first.
 	//
-	// If you perform a ModifyCacheCluster before a pending modification is applied,
+	//  If you perform a ModifyCacheCluster before a pending modification is applied,
 	// the pending modification is replaced by the newer modification.
 	//
-	// Valid values: true | false
+	//  Valid values: true | false
 	//
 	// Default: false
 	ApplyImmediately *bool `type:"boolean"`
@@ -6615,7 +6612,7 @@ type ModifyCacheClusterInput struct {
 
 	// The upgraded version of the cache engine to be run on the cache nodes.
 	//
-	// Important: You can upgrade to a newer engine version (see Selecting a Cache
+	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement)),
 	// but you cannot downgrade to an earlier engine version. If you want to use
 	// an earlier engine version, you must delete the existing cache cluster and
@@ -6633,19 +6630,18 @@ type ModifyCacheClusterInput struct {
 	//
 	// Scenarios:
 	//
-	//    * Scenario 1: You have 3 active nodes and wish to add 2 nodes. Specify
-	//    NumCacheNodes=5 (3 + 2) and optionally specify two Availability Zones
-	//    for the two new nodes.
+	//    Scenario 1: You have 3 active nodes and wish to add 2 nodes. Specify
+	// NumCacheNodes=5 (3 + 2) and optionally specify two Availability Zones for
+	// the two new nodes.
 	//
-	//    * Scenario 2: You have 3 active nodes and 2 nodes pending creation (from
-	//    the scenario 1 call) and want to add 1 more node. Specify NumCacheNodes=6
-	//    ((3 + 2) + 1) and optionally specify an Availability Zone for the new
-	//    node.
+	//    Scenario 2: You have 3 active nodes and 2 nodes pending creation (from
+	// the scenario 1 call) and want to add 1 more node. Specify NumCacheNodes=6
+	// ((3 + 2) + 1) and optionally specify an Availability Zone for the new node.
 	//
-	//    * Scenario 3: You want to cancel all pending operations. Specify NumCacheNodes=3
-	//    to cancel all pending operations.
+	//    Scenario 3: You want to cancel all pending operations. Specify NumCacheNodes=3
+	// to cancel all pending operations.
 	//
-	// The Availability Zone placement of nodes pending creation cannot be modified.
+	//   The Availability Zone placement of nodes pending creation cannot be modified.
 	// If you wish to cancel any nodes pending creation, add 0 nodes by setting
 	// NumCacheNodes to the number of current nodes.
 	//
@@ -6655,49 +6651,49 @@ type ModifyCacheClusterInput struct {
 	// Availability Zones, see the Availability Zone Considerations section of Cache
 	// Node Considerations for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNode.Memcached.html).
 	//
-	// Impact of new add/remove requests upon pending requests
+	//  Impact of new add/remove requests upon pending requests
 	//
-	//    * Scenario-1
+	//   Scenario-1
 	//
-	// Pending Action: Delete
+	//   Pending Action: Delete
 	//
-	// New Request: Delete
+	//   New Request: Delete
 	//
-	// Result: The new delete, pending or immediate, replaces the pending delete.
+	//   Result: The new delete, pending or immediate, replaces the pending delete.
 	//
-	//    * Scenario-2
+	//     Scenario-2
 	//
-	// Pending Action: Delete
+	//   Pending Action: Delete
 	//
-	// New Request: Create
+	//   New Request: Create
 	//
-	// Result: The new create, pending or immediate, replaces the pending delete.
+	//   Result: The new create, pending or immediate, replaces the pending delete.
 	//
-	//    * Scenario-3
+	//     Scenario-3
 	//
-	// Pending Action: Create
+	//   Pending Action: Create
 	//
-	// New Request: Delete
+	//   New Request: Delete
 	//
-	// Result: The new delete, pending or immediate, replaces the pending create.
+	//   Result: The new delete, pending or immediate, replaces the pending create.
 	//
-	//    * Scenario-4
+	//     Scenario-4
 	//
-	// Pending Action: Create
+	//   Pending Action: Create
 	//
-	// New Request: Create
+	//   New Request: Create
 	//
-	// Result: The new create is added to the pending create.
+	//   Result: The new create is added to the pending create.
 	//
-	// Important: If the new create request is Apply Immediately - Yes, all creates
-	//    are performed immediately. If the new create request is Apply Immediately
-	//    - No, all creates are pending.
+	//   Important: If the new create request is Apply Immediately - Yes, all creates
+	// are performed immediately. If the new create request is Apply Immediately
+	// - No, all creates are pending.
 	NewAvailabilityZones []*string `locationNameList:"PreferredAvailabilityZone" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
 	// are sent.
 	//
-	// The Amazon SNS topic owner must be same as the cache cluster owner.
+	//  The Amazon SNS topic owner must be same as the cache cluster owner.
 	NotificationTopicArn *string `type:"string"`
 
 	// The status of the Amazon SNS notification topic. Notifications are sent only
@@ -6719,8 +6715,8 @@ type ModifyCacheClusterInput struct {
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
 	// this value must be between 1 and 20.
 	//
-	// Adding or removing Memcached cache nodes can be applied immediately or as
-	// a pending operation (see ApplyImmediately).
+	//  Adding or removing Memcached cache nodes can be applied immediately or
+	// as a pending operation (see ApplyImmediately).
 	//
 	// A pending operation to modify the number of cache nodes in a cluster during
 	// its maintenance window, whether by adding or removing nodes in accordance
@@ -6745,21 +6741,21 @@ type ModifyCacheClusterInput struct {
 	//
 	// Valid values for ddd are:
 	//
-	//    * sun
+	//    sun
 	//
-	//    * mon
+	//    mon
 	//
-	//    * tue
+	//    tue
 	//
-	//    * wed
+	//    wed
 	//
-	//    * thu
+	//    thu
 	//
-	//    * fri
+	//    fri
 	//
-	//    * sat
+	//    sat
 	//
-	// Example: sun:23:00-mon:01:30
+	//   Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// Specifies the VPC Security Groups associated with the cache cluster.
@@ -6773,8 +6769,8 @@ type ModifyCacheClusterInput struct {
 	// to 5, a snapshot that was taken today is retained for 5 days before being
 	// deleted.
 	//
-	// If the value of SnapshotRetentionLimit is set to zero (0), backups are turned
-	// off.
+	//  If the value of SnapshotRetentionLimit is set to zero (0), backups are
+	// turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
 	// The daily time range (in UTC) during which ElastiCache begins taking a daily
@@ -6914,9 +6910,9 @@ type ModifyCacheSubnetGroupOutput struct {
 
 	// Represents the output of one of the following operations:
 	//
-	//    * CreateCacheSubnetGroup
+	//    CreateCacheSubnetGroup
 	//
-	//    * ModifyCacheSubnetGroup
+	//    ModifyCacheSubnetGroup
 	CacheSubnetGroup *CacheSubnetGroup `type:"structure"`
 }
 
@@ -6955,11 +6951,11 @@ type ModifyReplicationGroupInput struct {
 	//
 	// Valid values: true | false
 	//
-	// ElastiCache Multi-AZ replication groups are not supported on:
+	//  ElastiCache Multi-AZ replication groups are not supported on:
 	//
-	// Redis versions earlier than 2.8.6.
+	//   Redis versions earlier than 2.8.6.
 	//
-	// Redis (cluster mode disabled):T1 and T2 cache node types.
+	//   Redis (cluster mode disabled):T1 and T2 cache node types.
 	//
 	// Redis (cluster mode enabled): T1 node types.
 	AutomaticFailoverEnabled *bool `type:"boolean"`
@@ -6976,8 +6972,8 @@ type ModifyReplicationGroupInput struct {
 	// A list of cache security group names to authorize for the clusters in this
 	// replication group. This change is asynchronously applied as soon as possible.
 	//
-	// This parameter can be used only with replication group containing cache clusters
-	// running outside of an Amazon Virtual Private Cloud (Amazon VPC).
+	// This parameter can be used only with replication group containing cache
+	// clusters running outside of an Amazon Virtual Private Cloud (Amazon VPC).
 	//
 	// Constraints: Must contain no more than 255 alphanumeric characters. Must
 	// not be Default.
@@ -6986,7 +6982,7 @@ type ModifyReplicationGroupInput struct {
 	// The upgraded version of the cache engine to be run on the cache clusters
 	// in the replication group.
 	//
-	// Important: You can upgrade to a newer engine version (see Selecting a Cache
+	//  Important: You can upgrade to a newer engine version (see Selecting a Cache
 	// Engine and Version (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html#VersionManagement)),
 	// but you cannot downgrade to an earlier engine version. If you want to use
 	// an earlier engine version, you must delete the existing replication group
@@ -6996,7 +6992,7 @@ type ModifyReplicationGroupInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications
 	// are sent.
 	//
-	// The Amazon SNS topic owner must be same as the replication group owner.
+	//  The Amazon SNS topic owner must be same as the replication group owner.
 	NotificationTopicArn *string `type:"string"`
 
 	// The status of the Amazon SNS notification topic for the replication group.
@@ -7011,21 +7007,21 @@ type ModifyReplicationGroupInput struct {
 	//
 	// Valid values for ddd are:
 	//
-	//    * sun
+	//    sun
 	//
-	//    * mon
+	//    mon
 	//
-	//    * tue
+	//    tue
 	//
-	//    * wed
+	//    wed
 	//
-	//    * thu
+	//    thu
 	//
-	//    * fri
+	//    fri
 	//
-	//    * sat
+	//    sat
 	//
-	// Example: sun:23:00-mon:01:30
+	//   Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// For replication groups with a single primary, if this parameter is specified,
@@ -7045,8 +7041,8 @@ type ModifyReplicationGroupInput struct {
 	// Specifies the VPC Security Groups associated with the cache clusters in the
 	// replication group.
 	//
-	// This parameter can be used only with replication group containing cache clusters
-	// running in an Amazon Virtual Private Cloud (Amazon VPC).
+	// This parameter can be used only with replication group containing cache
+	// clusters running in an Amazon Virtual Private Cloud (Amazon VPC).
 	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// The number of days for which ElastiCache retains automatic node group (shard)
@@ -7054,7 +7050,7 @@ type ModifyReplicationGroupInput struct {
 	// to 5, a snapshot that was taken today is retained for 5 days before being
 	// deleted.
 	//
-	// Important If the value of SnapshotRetentionLimit is set to zero (0), backups
+	//  Important If the value of SnapshotRetentionLimit is set to zero (0), backups
 	// are turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
@@ -7063,8 +7059,8 @@ type ModifyReplicationGroupInput struct {
 	//
 	// Example: 05:00-09:00
 	//
-	// If you do not specify this parameter, ElastiCache automatically chooses an
-	// appropriate time range.
+	// If you do not specify this parameter, ElastiCache automatically chooses
+	// an appropriate time range.
 	SnapshotWindow *string `type:"string"`
 
 	// The cache cluster ID that is used as the daily snapshot source for the replication
@@ -7389,11 +7385,11 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 
 	// A customer-specified identifier to track this reservation.
 	//
-	// The Reserved Cache Node ID is an unique customer-specified identifier to
+	//  The Reserved Cache Node ID is an unique customer-specified identifier to
 	// track this reservation. If this parameter is not specified, ElastiCache automatically
 	// generates an identifier for the reservation.
 	//
-	// Example: myreservationID
+	//  Example: myreservationID
 	ReservedCacheNodeId *string `type:"string"`
 
 	// The ID of the reserved cache node offering to purchase.
@@ -7578,11 +7574,11 @@ type ReplicationGroup struct {
 
 	// Indicates the status of Multi-AZ for this replication group.
 	//
-	// ElastiCache Multi-AZ replication groups are not supported on:
+	//  ElastiCache Multi-AZ replication groups are not supported on:
 	//
-	// Redis versions earlier than 2.8.6.
+	//   Redis versions earlier than 2.8.6.
 	//
-	// Redis (cluster mode disabled):T1 and T2 cache node types.
+	//   Redis (cluster mode disabled):T1 and T2 cache node types.
 	//
 	// Redis (cluster mode enabled): T1 node types.
 	AutomaticFailover *string `type:"string" enum:"AutomaticFailoverStatus"`
@@ -7613,8 +7609,8 @@ type ReplicationGroup struct {
 	// to 5, a snapshot that was taken today is retained for 5 days before being
 	// deleted.
 	//
-	// If the value of SnapshotRetentionLimit is set to zero (0), backups are turned
-	// off.
+	//   If the value of SnapshotRetentionLimit is set to zero (0), backups are
+	// turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
 	// The daily time range (in UTC) during which ElastiCache begins taking a daily
@@ -7622,10 +7618,10 @@ type ReplicationGroup struct {
 	//
 	// Example: 05:00-09:00
 	//
-	// If you do not specify this parameter, ElastiCache automatically chooses an
-	// appropriate time range.
+	// If you do not specify this parameter, ElastiCache automatically chooses
+	// an appropriate time range.
 	//
-	// Note: This parameter is only valid if the Engine parameter is redis.
+	//  Note: This parameter is only valid if the Engine parameter is redis.
 	SnapshotWindow *string `type:"string"`
 
 	// The cache cluster ID that is used as the daily snapshot source for the replication
@@ -7653,11 +7649,11 @@ type ReplicationGroupPendingModifiedValues struct {
 
 	// Indicates the status of Multi-AZ for this Redis replication group.
 	//
-	// ElastiCache Multi-AZ replication groups are not supported on:
+	//  ElastiCache Multi-AZ replication groups are not supported on:
 	//
-	// Redis versions earlier than 2.8.6.
+	//   Redis versions earlier than 2.8.6.
 	//
-	// Redis (cluster mode disabled):T1 and T2 cache node types.
+	//   Redis (cluster mode disabled):T1 and T2 cache node types.
 	//
 	// Redis (cluster mode enabled): T1 node types.
 	AutomaticFailoverStatus *string `type:"string" enum:"PendingAutomaticFailoverStatus"`
@@ -7688,37 +7684,37 @@ type ReservedCacheNode struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -7773,37 +7769,37 @@ type ReservedCacheNodesOffering struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -7942,11 +7938,11 @@ type RevokeCacheSecurityGroupIngressOutput struct {
 
 	// Represents the output of one of the following operations:
 	//
-	//    * AuthorizeCacheSecurityGroupIngress
+	//    AuthorizeCacheSecurityGroupIngress
 	//
-	//    * CreateCacheSecurityGroup
+	//    CreateCacheSecurityGroup
 	//
-	//    * RevokeCacheSecurityGroupIngress
+	//    RevokeCacheSecurityGroupIngress
 	CacheSecurityGroup *CacheSecurityGroup `type:"structure"`
 }
 
@@ -7993,11 +7989,11 @@ type Snapshot struct {
 
 	// Indicates the status of Multi-AZ for the source replication group.
 	//
-	// ElastiCache Multi-AZ replication groups are not supported on:
+	//  ElastiCache Multi-AZ replication groups are not supported on:
 	//
-	// Redis versions earlier than 2.8.6.
+	//   Redis versions earlier than 2.8.6.
 	//
-	// Redis (cluster mode disabled):T1 and T2 cache node types.
+	//   Redis (cluster mode disabled):T1 and T2 cache node types.
 	//
 	// Redis (cluster mode enabled): T1 node types.
 	AutomaticFailover *string `type:"string" enum:"AutomaticFailoverStatus"`
@@ -8013,37 +8009,37 @@ type Snapshot struct {
 	//
 	// Valid node types are as follows:
 	//
-	//    * General purpose:
+	//   General purpose:
 	//
-	// Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
-	//    cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
-	//    cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
+	//   Current generation: cache.t2.micro, cache.t2.small, cache.t2.medium, cache.m3.medium,
+	// cache.m3.large, cache.m3.xlarge, cache.m3.2xlarge, cache.m4.large, cache.m4.xlarge,
+	// cache.m4.2xlarge, cache.m4.4xlarge, cache.m4.10xlarge
 	//
-	// Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium, cache.m1.large,
-	//    cache.m1.xlarge
+	//   Previous generation: cache.t1.micro, cache.m1.small, cache.m1.medium,
+	// cache.m1.large, cache.m1.xlarge
 	//
-	//    * Compute optimized: cache.c1.xlarge
+	//     Compute optimized: cache.c1.xlarge
 	//
-	//    * Memory optimized:
+	//   Memory optimized:
 	//
-	// Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge, cache.r3.4xlarge,
-	//    cache.r3.8xlarge
+	//   Current generation: cache.r3.large, cache.r3.xlarge, cache.r3.2xlarge,
+	// cache.r3.4xlarge, cache.r3.8xlarge
 	//
-	// Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
+	//   Previous generation: cache.m2.xlarge, cache.m2.2xlarge, cache.m2.4xlarge
 	//
-	// Notes:
+	//      Notes:
 	//
-	//    * All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
-	//    VPC).
+	//   All T2 instances are created in an Amazon Virtual Private Cloud (Amazon
+	// VPC).
 	//
-	//    * Redis backup/restore is not supported for Redis (cluster mode disabled)
-	//    T1 and T2 instances. Backup/restore is supported on Redis (cluster mode
-	//    enabled) T2 instances.
+	//   Redis backup/restore is not supported for Redis (cluster mode disabled)
+	// T1 and T2 instances. Backup/restore is supported on Redis (cluster mode enabled)
+	// T2 instances.
 	//
-	//    * Redis Append-only files (AOF) functionality is not supported for T1
-	//    or T2 instances.
+	//   Redis Append-only files (AOF) functionality is not supported for T1 or
+	// T2 instances.
 	//
-	// For a complete listing of node types and specifications, see Amazon ElastiCache
+	//   For a complete listing of node types and specifications, see Amazon ElastiCache
 	// Product Features and Details (http://aws.amazon.com/elasticache/details)
 	// and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 	// or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
@@ -8089,21 +8085,21 @@ type Snapshot struct {
 	//
 	// Valid values for ddd are:
 	//
-	//    * sun
+	//    sun
 	//
-	//    * mon
+	//    mon
 	//
-	//    * tue
+	//    tue
 	//
-	//    * wed
+	//    wed
 	//
-	//    * thu
+	//    thu
 	//
-	//    * fri
+	//    fri
 	//
-	//    * sat
+	//    sat
 	//
-	// Example: sun:23:00-mon:01:30
+	//   Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// A description of the source replication group.
@@ -8124,7 +8120,7 @@ type Snapshot struct {
 	// ignored: Manual snapshots do not expire, and can only be deleted using the
 	// DeleteSnapshot operation.
 	//
-	// Important If the value of SnapshotRetentionLimit is set to zero (0), backups
+	//  Important If the value of SnapshotRetentionLimit is set to zero (0), backups
 	// are turned off.
 	SnapshotRetentionLimit *int64 `type:"integer"`
 
