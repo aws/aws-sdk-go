@@ -145,10 +145,10 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 //
 // Adds the specified IAM role to the specified instance profile.
 //
-//  The caller of this API must be granted the PassRole permission on the IAM
+// The caller of this API must be granted the PassRole permission on the IAM
 // role by a permission policy.
 //
-//  For more information about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
+// For more information about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 // For more information about instance profiles, go to About Instance Profiles
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
@@ -666,11 +666,11 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *request.
 // for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-//  For information about limits on the number of keys you can create, see
-// Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
+// For information about limits on the number of keys you can create, see Limitations
+// on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
-//  To ensure the security of your AWS account, the secret access key is accessible
+// To ensure the security of your AWS account, the secret access key is accessible
 // only during key and user creation. You must save the key (for example, in
 // a text file) if you want to be able to access it again. If a secret key is
 // lost, you can delete the access keys for the associated user and then create
@@ -826,7 +826,7 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *request.Request,
 //
 // Creates a new group.
 //
-//  For information about the number of groups you can create, see Limitations
+// For information about the number of groups you can create, see Limitations
 // on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
@@ -908,7 +908,7 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 // Creates a new instance profile. For information about instance profiles,
 // go to About Instance Profiles (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
-//  For information about the number of instance profiles you can create, see
+// For information about the number of instance profiles you can create, see
 // Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
@@ -1081,9 +1081,9 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 // that the IdP uses. You get all of this information from the OIDC IdP that
 // you want to use for access to AWS.
 //
-//  Because trust for the OIDC provider is ultimately derived from the IAM
-// provider that this action creates, it is a best practice to limit access
-// to the CreateOpenIDConnectProvider action to highly-privileged users.
+// Because trust for the OIDC provider is ultimately derived from the IAM provider
+// that this action creates, it is a best practice to limit access to the CreateOpenIDConnectProvider
+// action to highly-privileged users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1162,8 +1162,8 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Reques
 //
 // Creates a new managed policy for your AWS account.
 //
-// This operation creates a policy version with a version identifier of v1
-// and sets v1 as the policy's default version. For more information about policy
+// This operation creates a policy version with a version identifier of v1 and
+// sets v1 as the policy's default version. For more information about policy
 // versions, see Versioning for Managed Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 // in the IAM User Guide.
 //
@@ -1439,10 +1439,10 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *re
 // document using the identity management software that is used as your organization's
 // IdP.
 //
-//   This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
-//   For more information, see Enabling SAML 2.0 Federated Users to Access
-// the AWS Management Console (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html)
+// For more information, see Enabling SAML 2.0 Federated Users to Access the
+// AWS Management Console (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_enable-console-saml.html)
 // and About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 // in the IAM User Guide.
 //
@@ -1523,7 +1523,7 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *request.Request, o
 //
 // Creates a new IAM user for your AWS account.
 //
-//  For information about limitations on the number of IAM users you can create,
+// For information about limitations on the number of IAM users you can create,
 // see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
@@ -1612,7 +1612,7 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 // see Limitations on Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
-//  The seed information contained in the QR code and the Base32 string should
+// The seed information contained in the QR code and the Base32 string should
 // be treated like any other secret access information, such as your AWS access
 // keys or your passwords. After you provision your virtual device, you should
 // ensure that the information is destroyed following secure procedures.
@@ -2172,12 +2172,12 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 // Deletes the specified instance profile. The instance profile must not have
 // an associated role.
 //
-//  Make sure you do not have any Amazon EC2 instances running with the instance
+// Make sure you do not have any Amazon EC2 instances running with the instance
 // profile you are about to delete. Deleting a role or instance profile that
 // is associated with a running instance will break any applications running
 // on the instance.
 //
-//  For more information about instance profiles, go to About Instance Profiles
+// For more information about instance profiles, go to About Instance Profiles
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2260,11 +2260,10 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *re
 // Deletes the password for the specified IAM user, which terminates the user's
 // ability to access AWS services through the AWS Management Console.
 //
-//   Deleting a user's password does not prevent a user from accessing AWS
-// through the command line interface or the API. To prevent all user access
-// you must also either make any access keys inactive or delete them. For more
-// information about making keys inactive or deleting them, see UpdateAccessKey
-// and DeleteAccessKey.
+// Deleting a user's password does not prevent a user from accessing AWS through
+// the command line interface or the API. To prevent all user access you must
+// also either make any access keys inactive or delete them. For more information
+// about making keys inactive or deleting them, see UpdateAccessKey and DeleteAccessKey.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2434,21 +2433,21 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 // all of the policy's versions. The following steps describe the process for
 // deleting a managed policy:
 //
-//   Detach the policy from all users, groups, and roles that the policy is
-// attached to, using the DetachUserPolicy, DetachGroupPolicy, or DetachRolePolicy
-// APIs. To list all the users, groups, and roles that a policy is attached
-// to, use ListEntitiesForPolicy.
+//    * Detach the policy from all users, groups, and roles that the policy
+//    is attached to, using the DetachUserPolicy, DetachGroupPolicy, or DetachRolePolicy
+//    APIs. To list all the users, groups, and roles that a policy is attached
+//    to, use ListEntitiesForPolicy.
 //
-//   Delete all versions of the policy using DeletePolicyVersion. To list the
-// policy's versions, use ListPolicyVersions. You cannot use DeletePolicyVersion
-// to delete the version that is marked as the default version. You delete the
-// policy's default version in the next step of the process.
+//    * Delete all versions of the policy using DeletePolicyVersion. To list
+//    the policy's versions, use ListPolicyVersions. You cannot use DeletePolicyVersion
+//    to delete the version that is marked as the default version. You delete
+//    the policy's default version in the next step of the process.
 //
-//   Delete the policy (this automatically deletes the policy's default version)
-// using this API.
+//    * Delete the policy (this automatically deletes the policy's default version)
+//    using this API.
 //
-//   For information about managed policies, see Managed Policies and Inline
-// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
+// For information about managed policies, see Managed Policies and Inline Policies
+// (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2538,8 +2537,8 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 // the default version from a policy, use DeletePolicy. To find out which version
 // of a policy is marked as the default version, use ListPolicyVersions.
 //
-// For information about versions for managed policies, see Versioning for
-// Managed Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
+// For information about versions for managed policies, see Versioning for Managed
+// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2626,7 +2625,7 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *request.Request, o
 // Deletes the specified role. The role must not have any policies attached.
 // For more information about roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
-//  Make sure you do not have any Amazon EC2 instances running with the role
+// Make sure you do not have any Amazon EC2 instances running with the role
 // you are about to delete. Deleting a role or instance profile that is associated
 // with a running instance will break any applications running on the instance.
 //
@@ -2795,7 +2794,7 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *re
 // Any attempt to assume a role that references a non-existent provider resource
 // ARN fails.
 //
-//   This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2954,7 +2953,7 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 // with IAM, go to Working with Server Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html)
 // in the IAM User Guide.
 //
-//   If you are using a server certificate with Elastic Load Balancing, deleting
+// If you are using a server certificate with Elastic Load Balancing, deleting
 // the certificate could have implications for your application. If Elastic
 // Load Balancing doesn't detect the deletion of bound certificates, it may
 // continue to use the certificates. This could cause Elastic Load Balancing
@@ -3284,8 +3283,8 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 //
 // Deletes a virtual MFA device.
 //
-//   You must deactivate a user's virtual MFA device before you can delete
-// it. For information about deactivating MFA devices, see DeactivateMFADevice.
+// You must deactivate a user's virtual MFA device before you can delete it.
+// For information about deactivating MFA devices, see DeactivateMFADevice.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4018,7 +4017,7 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *requ
 //
 // Retrieves information about IAM entity usage and IAM quotas in the AWS account.
 //
-//  For information about limitations on IAM entities, see Limitations on IAM
+// For information about limitations on IAM entities, see Limitations on IAM
 // Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
@@ -4168,7 +4167,7 @@ func (c *IAM) GetContextKeysForPrincipalPolicyRequest(input *GetContextKeysForPr
 // as strings. If you want to include only a list of policies by string, use
 // GetContextKeysForCustomPolicy instead.
 //
-//  Note: This API discloses information about the permissions granted to other
+// Note: This API discloses information about the permissions granted to other
 // users. If you do not want users to see other user's permissions, then consider
 // allowing them to use GetContextKeysForCustomPolicy instead.
 //
@@ -4429,14 +4428,14 @@ func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *request.Re
 // Retrieves the specified inline policy document that is embedded in the specified
 // IAM group.
 //
-//  Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
+// Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
 // You can use a URL decoding method to convert the policy back to plain JSON
 // text. For example, if you use Java, you can use the decode method of the
 // java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs
 // provide similar functionality.
 //
-//  An IAM group can also have managed policies attached to it. To retrieve
-// a managed policy document that is attached to a group, use GetPolicy to determine
+// An IAM group can also have managed policies attached to it. To retrieve a
+// managed policy document that is attached to a group, use GetPolicy to determine
 // the policy's default version, then use GetPolicyVersion to retrieve the policy
 // document.
 //
@@ -4817,13 +4816,13 @@ func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *reques
 // Retrieves information about the specified version of the specified managed
 // policy, including the policy document.
 //
-//  Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
+// Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
 // You can use a URL decoding method to convert the policy back to plain JSON
 // text. For example, if you use Java, you can use the decode method of the
 // java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs
 // provide similar functionality.
 //
-//  To list the available versions for a policy, use ListPolicyVersions.
+// To list the available versions for a policy, use ListPolicyVersions.
 //
 // This API retrieves information about managed policies. To retrieve information
 // about an inline policy that is embedded in a user, group, or role, use the
@@ -4912,7 +4911,7 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *request.Request, output 
 // GUID, ARN, and the role's trust policy that grants permission to assume the
 // role. For more information about roles, see Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 //
-//  Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
+// Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
 // You can use a URL decoding method to convert the policy back to plain JSON
 // text. For example, if you use Java, you can use the decode method of the
 // java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs
@@ -4988,14 +4987,14 @@ func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *request.Requ
 // Retrieves the specified inline policy document that is embedded with the
 // specified IAM role.
 //
-//  Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
+// Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
 // You can use a URL decoding method to convert the policy back to plain JSON
 // text. For example, if you use Java, you can use the decode method of the
 // java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs
 // provide similar functionality.
 //
-//  An IAM role can also have managed policies attached to it. To retrieve
-// a managed policy document that is attached to a role, use GetPolicy to determine
+// An IAM role can also have managed policies attached to it. To retrieve a
+// managed policy document that is attached to a role, use GetPolicy to determine
 // the policy's default version, then use GetPolicyVersion to retrieve the policy
 // document.
 //
@@ -5076,7 +5075,7 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *request.
 // Returns the SAML provider metadocument that was uploaded when the IAM SAML
 // provider resource object was created or updated.
 //
-//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5374,14 +5373,14 @@ func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *request.Requ
 // Retrieves the specified inline policy document that is embedded in the specified
 // IAM user.
 //
-//  Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
+// Policies returned by this API are URL-encoded compliant with RFC 3986 (https://tools.ietf.org/html/rfc3986).
 // You can use a URL decoding method to convert the policy back to plain JSON
 // text. For example, if you use Java, you can use the decode method of the
 // java.net.URLDecoder utility class in the Java SDK. Other languages and SDKs
 // provide similar functionality.
 //
-//  An IAM user can also have managed policies attached to it. To retrieve
-// a managed policy document that is attached to a user, use GetPolicy to determine
+// An IAM user can also have managed policies attached to it. To retrieve a
+// managed policy document that is attached to a user, use GetPolicy to determine
 // the policy's default version, then use GetPolicyVersion to retrieve the policy
 // document.
 //
@@ -5473,7 +5472,7 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *request.Re
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-//  To ensure the security of your AWS account, the secret access key is accessible
+// To ensure the security of your AWS account, the secret access key is accessible
 // only during key and user creation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5790,9 +5789,9 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 //
 // Lists all managed policies that are attached to the specified IAM role.
 //
-// An IAM role can also have inline policies embedded with it. To list the
-// inline policies for a role, use the ListRolePolicies API. For information
-// about policies, see Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
+// An IAM role can also have inline policies embedded with it. To list the inline
+// policies for a role, use the ListRolePolicies API. For information about
+// policies, see Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the IAM User Guide.
 //
 // You can paginate the results using the MaxItems and Marker parameters. You
@@ -5905,9 +5904,9 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 //
 // Lists all managed policies that are attached to the specified IAM user.
 //
-// An IAM user can also have inline policies embedded with it. To list the
-// inline policies for a user, use the ListUserPolicies API. For information
-// about policies, see Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
+// An IAM user can also have inline policies embedded with it. To list the inline
+// policies for a user, use the ListUserPolicies API. For information about
+// policies, see Managed Policies and Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the IAM User Guide.
 //
 // You can paginate the results using the MaxItems and Marker parameters. You
@@ -6021,8 +6020,8 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 // Lists all IAM users, groups, and roles that the specified managed policy
 // is attached to.
 //
-// You can use the optional EntityFilter parameter to limit the results to
-// a particular type of entity (users, groups, or roles). For example, to list
+// You can use the optional EntityFilter parameter to limit the results to a
+// particular type of entity (users, groups, or roles). For example, to list
 // only the roles that are attached to the specified policy, set EntityFilter
 // to Role.
 //
@@ -6133,9 +6132,9 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *requ
 // Lists the names of the inline policies that are embedded in the specified
 // IAM group.
 //
-// An IAM group can also have managed policies attached to it. To list the
-// managed policies that are attached to a group, use ListAttachedGroupPolicies.
-// For more information about policies, see Managed Policies and Inline Policies
+// An IAM group can also have managed policies attached to it. To list the managed
+// policies that are attached to a group, use ListAttachedGroupPolicies. For
+// more information about policies, see Managed Policies and Inline Policies
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the IAM User Guide.
 //
@@ -6243,7 +6242,7 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, o
 //
 // Lists the IAM groups that have the specified path prefix.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6819,10 +6818,10 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 // Lists all the managed policies that are available in your AWS account, including
 // your own customer-defined managed policies and all AWS managed policies.
 //
-// You can filter the list of policies that is returned using the optional
-// OnlyAttached, Scope, and PathPrefix parameters. For example, to list only
-// the customer managed policies in your AWS account, set Scope to Local. To
-// list only AWS managed policies, set Scope to AWS.
+// You can filter the list of policies that is returned using the optional OnlyAttached,
+// Scope, and PathPrefix parameters. For example, to list only the customer
+// managed policies in your AWS account, set Scope to Local. To list only AWS
+// managed policies, set Scope to AWS.
 //
 // You can paginate the results using the MaxItems and Marker parameters.
 //
@@ -7239,7 +7238,7 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *requ
 //
 // Lists the SAML provider resource objects defined in IAM in the account.
 //
-//   This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7419,7 +7418,7 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 // Lists the server certificates stored in IAM that have the specified path
 // prefix. If none exist, the action returns an empty list.
 //
-//  You can paginate the results using the MaxItems and Marker parameters.
+// You can paginate the results using the MaxItems and Marker parameters.
 //
 // For more information about working with server certificates, including a
 // list of AWS services that can use the server certificates that you manage
@@ -7943,9 +7942,9 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *request.Re
 // embed in a group, see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
-//  Because policy documents can be large, you should use POST rather than
-// GET when calling PutGroupPolicy. For general information about using the
-// Query API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
+// Because policy documents can be large, you should use POST rather than GET
+// when calling PutGroupPolicy. For general information about using the Query
+// API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8028,12 +8027,11 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *request.Requ
 // Adds or updates an inline policy document that is embedded in the specified
 // IAM role.
 //
-// When you embed an inline policy in a role, the inline policy is used as
-// part of the role's access (permissions) policy. The role's trust policy is
-// created at the same time as the role, using CreateRole. You can update a
-// role's trust policy using UpdateAssumeRolePolicy. For more information about
-// IAM roles, go to Using Roles to Delegate Permissions and Federate Identities
-// (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html).
+// When you embed an inline policy in a role, the inline policy is used as part
+// of the role's access (permissions) policy. The role's trust policy is created
+// at the same time as the role, using CreateRole. You can update a role's trust
+// policy using UpdateAssumeRolePolicy. For more information about IAM roles,
+// go to Using Roles to Delegate Permissions and Federate Identities (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html).
 //
 // A role can also have a managed policy attached to it. To attach a managed
 // policy to a role, use AttachRolePolicy. To create a new managed policy, use
@@ -8045,8 +8043,8 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *request.Requ
 // embed with a role, see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
-//  Because policy documents can be large, you should use POST rather than
-// GET when calling PutRolePolicy. For general information about using the Query
+// Because policy documents can be large, you should use POST rather than GET
+// when calling PutRolePolicy. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the IAM User Guide.
 //
@@ -8140,8 +8138,8 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *request.Requ
 // embed in a user, see Limitations on IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html)
 // in the IAM User Guide.
 //
-//  Because policy documents can be large, you should use POST rather than
-// GET when calling PutUserPolicy. For general information about using the Query
+// Because policy documents can be large, you should use POST rather than GET
+// when calling PutUserPolicy. For general information about using the Query
 // API with IAM, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html)
 // in the IAM User Guide.
 //
@@ -8304,12 +8302,12 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 //
 // Removes the specified IAM role from the specified EC2 instance profile.
 //
-//  Make sure you do not have any Amazon EC2 instances running with the role
+// Make sure you do not have any Amazon EC2 instances running with the role
 // you are about to remove from the instance profile. Removing a role from an
 // instance profile that is associated with a running instance break any applications
 // running on the instance.
 //
-//   For more information about IAM roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
+// For more information about IAM roles, go to Working with Roles (http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html).
 // For more information about instance profiles, go to About Instance Profiles
 // (http://docs.aws.amazon.com/IAM/latest/UserGuide/AboutInstanceProfiles.html).
 //
@@ -8552,8 +8550,8 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 // to. To list the users, groups, and roles that the policy is attached to,
 // use the ListEntitiesForPolicy API.
 //
-// For information about managed policies, see Managed Policies and Inline
-// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
+// For information about managed policies, see Managed Policies and Inline Policies
+// (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8769,7 +8767,7 @@ func (c *IAM) SimulatePrincipalPolicyRequest(input *SimulatePrincipalPolicyInput
 // The simulation does not perform the API actions, it only checks the authorization
 // to determine if the simulated policies allow or deny the actions.
 //
-//  Note: This API discloses information about the permissions granted to other
+// Note: This API discloses information about the permissions granted to other
 // users. If you do not want users to see other user's permissions, then consider
 // allowing them to use SimulateCustomPolicy instead.
 //
@@ -8888,8 +8886,7 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *request.
 // works for access keys under the AWS account, you can use this action to manage
 // root credentials even if the AWS account has no associated users.
 //
-// For information about rotating keys, see Managing Keys and Certificates
-// (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)
+// For information about rotating keys, see Managing Keys and Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8967,13 +8964,13 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 //
 // Updates the password policy settings for the AWS account.
 //
-//  This action does not support partial updates. No parameters are required,
+// This action does not support partial updates. No parameters are required,
 // but if you do not specify a parameter, that parameter's value reverts to
 // its default value. See the Request Parameters section for each parameter's
 // default value.
 //
-//   For more information about using a password policy, see Managing an IAM
-// Password Policy (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html)
+// For more information about using a password policy, see Managing an IAM Password
+// Policy (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9137,11 +9134,11 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request,
 //
 // Updates the name and/or the path of the specified IAM group.
 //
-//   You should understand the implications of changing a group's path or name.
+// You should understand the implications of changing a group's path or name.
 // For more information, see Renaming Users and Groups (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html)
 // in the IAM User Guide.
 //
-//   To change an IAM group name the requester must have appropriate permissions
+// To change an IAM group name the requester must have appropriate permissions
 // on both the source object and the target object. For example, to change "Managers"
 // to "MGRs", the entity making the request must have permission on both "Managers"
 // and "MGRs", or must have permission on all (*). For more information about
@@ -9226,8 +9223,8 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *re
 //
 // Changes the password for the specified IAM user.
 //
-// IAM users can change their own passwords by calling ChangePassword. For
-// more information about modifying passwords, see Managing Passwords (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html)
+// IAM users can change their own passwords by calling ChangePassword. For more
+// information about modifying passwords, see Managing Passwords (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9324,7 +9321,7 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 // does change, any attempt to assume an IAM role that specifies the OIDC provider
 // as a principal fails until the certificate thumbprint is updated.
 //
-//  Because trust for the OIDC provider is ultimately derived from the provider's
+// Because trust for the OIDC provider is ultimately derived from the provider's
 // certificate and is validated by the thumbprint, it is a best practice to
 // limit access to the UpdateOpenIDConnectProviderThumbprint action to highly-privileged
 // users.
@@ -9402,7 +9399,7 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *re
 //
 // Updates the metadata document for an existing SAML provider resource object.
 //
-//  This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+// This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9565,17 +9562,17 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 // with IAM, go to Working with Server Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html)
 // in the IAM User Guide.
 //
-//  You should understand the implications of changing a server certificate's
+// You should understand the implications of changing a server certificate's
 // path or name. For more information, see Renaming a Server Certificate (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs_manage.html#RenamingServerCerts)
 // in the IAM User Guide.
 //
-//   To change a server certificate name the requester must have appropriate
-// permissions on both the source object and the target object. For example,
-// to change the name from "ProductionCert" to "ProdCert", the entity making
-// the request must have permission on "ProductionCert" and "ProdCert", or must
-// have permission on all (*). For more information about permissions, see Access
-// Management (http://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
-// in the IAM User Guide.
+// To change a server certificate name the requester must have appropriate permissions
+// on both the source object and the target object. For example, to change the
+// name from "ProductionCert" to "ProdCert", the entity making the request must
+// have permission on "ProductionCert" and "ProdCert", or must have permission
+// on all (*). For more information about permissions, see Access Management
+// (http://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the IAM
+// User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9738,13 +9735,13 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, o
 //
 // Updates the name and/or the path of the specified IAM user.
 //
-//   You should understand the implications of changing an IAM user's path
-// or name. For more information, see Renaming an IAM User (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_renaming)
+// You should understand the implications of changing an IAM user's path or
+// name. For more information, see Renaming an IAM User (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_renaming)
 // and Renaming an IAM Group (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_manage_rename.html)
 // in the IAM User Guide.
 //
-//    To change a user name the requester must have appropriate permissions
-// on both the source object and the target object. For example, to change Bob
+// To change a user name the requester must have appropriate permissions on
+// both the source object and the target object. For example, to change Bob
 // to Robert, the entity making the request must have permission on Bob and
 // Robert, or must have permission on all (*). For more information about permissions,
 // see Permissions and Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html).
@@ -9926,11 +9923,11 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 // with IAM, go to Working with Server Certificates (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html)
 // in the IAM User Guide.
 //
-// For information about the number of server certificates you can upload,
-// see Limitations on IAM Entities and Objects (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html)
+// For information about the number of server certificates you can upload, see
+// Limitations on IAM Entities and Objects (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-limits.html)
 // in the IAM User Guide.
 //
-//  Because the body of the public key certificate, private key, and the certificate
+// Because the body of the public key certificate, private key, and the certificate
 // chain can be large, you should use POST rather than GET when calling UploadServerCertificate.
 // For information about setting up signatures and authorization through the
 // API, go to Signing AWS API Requests (http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html)
@@ -10022,13 +10019,12 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 // that are signed with a corresponding private key. When you upload the certificate,
 // its default status is Active.
 //
-// If the UserName field is not specified, the IAM user name is determined
-// implicitly based on the AWS access key ID used to sign the request. Because
-// this action works for access keys under the AWS account, you can use this
-// action to manage root credentials even if the AWS account has no associated
-// users.
+// If the UserName field is not specified, the IAM user name is determined implicitly
+// based on the AWS access key ID used to sign the request. Because this action
+// works for access keys under the AWS account, you can use this action to manage
+// root credentials even if the AWS account has no associated users.
 //
-//  Because the body of a X.509 certificate can be large, you should use POST
+// Because the body of a X.509 certificate can be large, you should use POST
 // rather than GET when calling UploadSigningCertificate. For information about
 // setting up signatures and authorization through the API, go to Signing AWS
 // API Requests (http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html)
@@ -10079,10 +10075,10 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*U
 
 // Contains information about an AWS access key.
 //
-//  This data type is used as a response element in the CreateAccessKey and
-// ListAccessKeys actions.
+// This data type is used as a response element in the CreateAccessKey and ListAccessKeys
+// actions.
 //
-//  The SecretAccessKey value is returned only in response to CreateAccessKey.
+// The SecretAccessKey value is returned only in response to CreateAccessKey.
 // You can get a secret access key only when you first create an access key;
 // you cannot recover the secret access key later. If you lose a secret access
 // key, you must create a new access key.
@@ -10134,12 +10130,12 @@ type AccessKeyLastUsed struct {
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the access key was most recently used. This field is null when:
 	//
-	//   The user does not have an access key.
+	//    * The user does not have an access key.
 	//
-	//   An access key exists but has never been used, at least not since IAM started
-	// tracking this information on April 22nd, 2015.
+	//    * An access key exists but has never been used, at least not since IAM
+	//    started tracking this information on April 22nd, 2015.
 	//
-	//   There is no sign-in data associated with the user
+	//    * There is no sign-in data associated with the user
 	//
 	// LastUsedDate is a required field
 	LastUsedDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -10147,14 +10143,14 @@ type AccessKeyLastUsed struct {
 	// The AWS region where this access key was most recently used. This field is
 	// null when:
 	//
-	//   The user does not have an access key.
+	//    * The user does not have an access key.
 	//
-	//   An access key exists but has never been used, at least not since IAM started
-	// tracking this information on April 22nd, 2015.
+	//    * An access key exists but has never been used, at least not since IAM
+	//    started tracking this information on April 22nd, 2015.
 	//
-	//   There is no sign-in data associated with the user
+	//    * There is no sign-in data associated with the user
 	//
-	//   For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
+	// For more information about AWS regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html)
 	// in the Amazon Web Services General Reference.
 	//
 	// Region is a required field
@@ -10163,12 +10159,12 @@ type AccessKeyLastUsed struct {
 	// The name of the AWS service with which this access key was most recently
 	// used. This field is null when:
 	//
-	//   The user does not have an access key.
+	//    * The user does not have an access key.
 	//
-	//   An access key exists but has never been used, at least not since IAM started
-	// tracking this information on April 22nd, 2015.
+	//    * An access key exists but has never been used, at least not since IAM
+	//    started tracking this information on April 22nd, 2015.
 	//
-	//   There is no sign-in data associated with the user
+	//    * There is no sign-in data associated with the user
 	//
 	// ServiceName is a required field
 	ServiceName *string `type:"string" required:"true"`
@@ -10632,8 +10628,8 @@ type AttachedPolicy struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	PolicyArn *string `min:"20" type:"string"`
 
@@ -10726,8 +10722,8 @@ func (s ChangePasswordOutput) GoString() string {
 // multiple values) to use in the simulation. This information is used when
 // evaluating the Condition elements of the input policies.
 //
-// This data type is used as an input parameter to  SimulateCustomPolicy  and
-//  SimulateCustomPolicy .
+// This data type is used as an input parameter to SimulateCustomPolicy and
+// SimulateCustomPolicy.
 type ContextEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -13174,8 +13170,8 @@ func (s EnableMFADeviceOutput) GoString() string {
 
 // Contains the results of a simulation.
 //
-// This data type is used by the return parameter of  SimulateCustomPolicy
-//  and  SimulatePrincipalPolicy .
+// This data type is used by the return parameter of SimulateCustomPolicy and
+// SimulatePrincipalPolicy.
 type EvaluationResult struct {
 	_ struct{} `type:"structure"`
 
@@ -13443,7 +13439,7 @@ type GetAccountPasswordPolicyOutput struct {
 
 	// Contains information about the account password policy.
 	//
-	//  This data type is used as a response element in the GetAccountPasswordPolicy
+	// This data type is used as a response element in the GetAccountPasswordPolicy
 	// action.
 	//
 	// PasswordPolicy is a required field
@@ -14642,11 +14638,11 @@ func (s GetUserPolicyOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateGroup
+//    * CreateGroup
 //
-//    GetGroup
+//    * GetGroup
 //
-//    ListGroups
+//    * ListGroups
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -14702,8 +14698,8 @@ type GroupDetail struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
@@ -14745,13 +14741,13 @@ func (s GroupDetail) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateInstanceProfile
+//    * CreateInstanceProfile
 //
-//    GetInstanceProfile
+//    * GetInstanceProfile
 //
-//    ListInstanceProfiles
+//    * ListInstanceProfiles
 //
-//    ListInstanceProfilesForRole
+//    * ListInstanceProfilesForRole
 type InstanceProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -16011,8 +16007,8 @@ type ListPoliciesInput struct {
 
 	// A flag to filter the results to only the attached policies.
 	//
-	// When OnlyAttached is true, the returned list contains only the policies
-	// that are attached to an IAM user, group, or role. When OnlyAttached is false,
+	// When OnlyAttached is true, the returned list contains only the policies that
+	// are attached to an IAM user, group, or role. When OnlyAttached is false,
 	// or when the parameter is not included, all policies are returned.
 	OnlyAttached *bool `type:"boolean"`
 
@@ -16954,8 +16950,8 @@ func (s ListVirtualMFADevicesOutput) GoString() string {
 
 // Contains the user name and password create date for a user.
 //
-//  This data type is used as a response element in the CreateLoginProfile
-// and GetLoginProfile actions.
+// This data type is used as a response element in the CreateLoginProfile and
+// GetLoginProfile actions.
 type LoginProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -17032,8 +17028,8 @@ type ManagedPolicyDetail struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
@@ -17103,8 +17099,8 @@ type OpenIDConnectProviderListEntry struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 }
@@ -17121,7 +17117,7 @@ func (s OpenIDConnectProviderListEntry) GoString() string {
 
 // Contains information about the account password policy.
 //
-//  This data type is used as a response element in the GetAccountPasswordPolicy
+// This data type is used as a response element in the GetAccountPasswordPolicy
 // action.
 type PasswordPolicy struct {
 	_ struct{} `type:"structure"`
@@ -17184,8 +17180,8 @@ type Policy struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
@@ -17202,8 +17198,8 @@ type Policy struct {
 
 	// A friendly description of the policy.
 	//
-	// This element is included in the response to the GetPolicy operation. It
-	// is not included in the response to the ListPolicies operation.
+	// This element is included in the response to the GetPolicy operation. It is
+	// not included in the response to the ListPolicies operation.
 	Description *string `type:"string"`
 
 	// Specifies whether the policy can be attached to an IAM user, group, or role.
@@ -17376,9 +17372,9 @@ type PolicyVersion struct {
 
 	// The policy document.
 	//
-	// The policy document is returned in the response to the GetPolicyVersion
-	// and GetAccountAuthorizationDetails operations. It is not returned in the
-	// response to the CreatePolicyVersion or ListPolicyVersions operations.
+	// The policy document is returned in the response to the GetPolicyVersion and
+	// GetAccountAuthorizationDetails operations. It is not returned in the response
+	// to the CreatePolicyVersion or ListPolicyVersions operations.
 	Document *string `min:"1" type:"string"`
 
 	// Specifies whether the policy version is set as the policy's default version.
@@ -17386,8 +17382,8 @@ type PolicyVersion struct {
 
 	// The identifier for the policy version.
 	//
-	// Policy version identifiers always begin with v (always lowercase). When
-	// a policy is created, the first policy version is v1.
+	// Policy version identifiers always begin with v (always lowercase). When a
+	// policy is created, the first policy version is v1.
 	VersionId *string `type:"string"`
 }
 
@@ -17404,7 +17400,7 @@ func (s PolicyVersion) GoString() string {
 // Contains the row and column of a location of a Statement element in a policy
 // document.
 //
-// This data type is used as a member of the  Statement  type.
+// This data type is used as a member of the Statement type.
 type Position struct {
 	_ struct{} `type:"structure"`
 
@@ -18034,11 +18030,11 @@ func (s ResyncMFADeviceOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateRole
+//    * CreateRole
 //
-//    GetRole
+//    * GetRole
 //
-//    ListRoles
+//    * ListRoles
 type Role struct {
 	_ struct{} `type:"structure"`
 
@@ -18097,8 +18093,8 @@ type RoleDetail struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
@@ -18170,8 +18166,8 @@ func (s SAMLProviderListEntry) GoString() string {
 
 // Contains information about an SSH public key.
 //
-// This data type is used as a response element in the GetSSHPublicKey and
-// UploadSSHPublicKey actions.
+// This data type is used as a response element in the GetSSHPublicKey and UploadSSHPublicKey
+// actions.
 type SSHPublicKey struct {
 	_ struct{} `type:"structure"`
 
@@ -18257,7 +18253,7 @@ func (s SSHPublicKeyMetadata) GoString() string {
 
 // Contains information about a server certificate.
 //
-//  This data type is used as a response element in the GetServerCertificate
+// This data type is used as a response element in the GetServerCertificate
 // action.
 type ServerCertificate struct {
 	_ struct{} `type:"structure"`
@@ -18290,7 +18286,7 @@ func (s ServerCertificate) GoString() string {
 // Contains information about a server certificate without its certificate body,
 // certificate chain, and private key.
 //
-//  This data type is used as a response element in the UploadServerCertificate
+// This data type is used as a response element in the UploadServerCertificate
 // and ListServerCertificates actions.
 type ServerCertificateMetadata struct {
 	_ struct{} `type:"structure"`
@@ -18461,8 +18457,8 @@ type SimulateCustomPolicyInput struct {
 	// APIs. CallerArn is required if you include a ResourcePolicy so that the policy's
 	// Principal element has a value to use in evaluating the policy.
 	//
-	// You can specify only the ARN of an IAM user. You cannot specify the ARN
-	// of an assumed role, federated user, or a service principal.
+	// You can specify only the ARN of an IAM user. You cannot specify the ARN of
+	// an assumed role, federated user, or a service principal.
 	CallerArn *string `min:"1" type:"string"`
 
 	// A list of context keys and corresponding values for the simulation to use.
@@ -18539,27 +18535,27 @@ type SimulateCustomPolicyInput struct {
 	// the EC2 scenario options, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the AWS EC2 User Guide.
 	//
-	//    EC2-Classic-InstanceStore
+	//    * EC2-Classic-InstanceStore
 	//
 	// instance, image, security-group
 	//
-	//    EC2-Classic-EBS
+	//    * EC2-Classic-EBS
 	//
 	// instance, image, security-group, volume
 	//
-	//    EC2-VPC-InstanceStore
+	//    * EC2-VPC-InstanceStore
 	//
 	// instance, image, security-group, network-interface
 	//
-	//    EC2-VPC-InstanceStore-Subnet
+	//    * EC2-VPC-InstanceStore-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet
 	//
-	//    EC2-VPC-EBS
+	//    * EC2-VPC-EBS
 	//
 	// instance, image, security-group, network-interface, volume
 	//
-	//    EC2-VPC-EBS-Subnet
+	//    * EC2-VPC-EBS-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet, volume
 	ResourceHandlingOption *string `min:"1" type:"string"`
@@ -18689,10 +18685,10 @@ type SimulatePrincipalPolicyInput struct {
 	// and a CallerArn (for example, arn:aws:iam::123456789012:user/Bob), the result
 	// is that you simulate calling the APIs as Bob, as if Bob had David's policies.
 	//
-	// You can specify only the ARN of an IAM user. You cannot specify the ARN
-	// of an assumed role, federated user, or a service principal.
+	// You can specify only the ARN of an IAM user. You cannot specify the ARN of
+	// an assumed role, federated user, or a service principal.
 	//
-	//  CallerArn is required if you include a ResourcePolicy and the PolicySourceArn
+	// CallerArn is required if you include a ResourcePolicy and the PolicySourceArn
 	// is not the ARN for an IAM user. This is required so that the resource-based
 	// policy's Principal element has a value to use in evaluating the policy.
 	//
@@ -18778,27 +18774,27 @@ type SimulatePrincipalPolicyInput struct {
 	// the EC2 scenario options, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the AWS EC2 User Guide.
 	//
-	//    EC2-Classic-InstanceStore
+	//    * EC2-Classic-InstanceStore
 	//
 	// instance, image, security-group
 	//
-	//    EC2-Classic-EBS
+	//    * EC2-Classic-EBS
 	//
 	// instance, image, security-group, volume
 	//
-	//    EC2-VPC-InstanceStore
+	//    * EC2-VPC-InstanceStore
 	//
 	// instance, image, security-group, network-interface
 	//
-	//    EC2-VPC-InstanceStore-Subnet
+	//    * EC2-VPC-InstanceStore-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet
 	//
-	//    EC2-VPC-EBS
+	//    * EC2-VPC-EBS
 	//
 	// instance, image, security-group, network-interface, volume
 	//
-	//    EC2-VPC-EBS-Subnet
+	//    * EC2-VPC-EBS-Subnet
 	//
 	// instance, image, security-group, network-interface, subnet, volume
 	ResourceHandlingOption *string `min:"1" type:"string"`
@@ -18886,8 +18882,8 @@ func (s *SimulatePrincipalPolicyInput) Validate() error {
 // Contains a reference to a Statement element in a policy document that determines
 // the result of the simulation.
 //
-// This data type is used by the MatchedStatements member of the  EvaluationResult
-//  type.
+// This data type is used by the MatchedStatements member of the EvaluationResult
+// type.
 type Statement struct {
 	_ struct{} `type:"structure"`
 
@@ -19036,7 +19032,7 @@ type UpdateAccountPasswordPolicyInput struct {
 	// Specifies whether IAM user passwords must contain at least one of the following
 	// non-alphanumeric characters:
 	//
-	// ! @ # $ % ^ &amp; * ( ) _ + - = [ ] { } | '
+	// ! @ # $ % ^ & * ( ) _ + - = [ ] { } | '
 	//
 	// Default value: false
 	RequireSymbols *bool `type:"boolean"`
@@ -19861,7 +19857,7 @@ type UploadServerCertificateInput struct {
 	// ASCII character from the ! (\u0021) thru the DEL character (\u007F), including
 	// most punctuation characters, digits, and upper and lowercased letters.
 	//
-	//   If you are uploading a server certificate specifically for use with Amazon
+	// If you are uploading a server certificate specifically for use with Amazon
 	// CloudFront distributions, you must specify a path using the --path option.
 	// The path must begin with /cloudfront and must include a trailing slash (for
 	// example, /cloudfront/test/).
@@ -20027,11 +20023,11 @@ func (s UploadSigningCertificateOutput) GoString() string {
 //
 // This data type is used as a response element in the following actions:
 //
-//    CreateUser
+//    * CreateUser
 //
-//    GetUser
+//    * GetUser
 //
-//    ListUsers
+//    * ListUsers
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -20056,14 +20052,14 @@ type User struct {
 	// span, only the first use is returned in this field. This field is null (not
 	// present) when:
 	//
-	//   The user does not have a password
+	//    * The user does not have a password
 	//
-	//   The password exists but has never been used (at least not since IAM started
-	// tracking this information on October 20th, 2014
+	//    * The password exists but has never been used (at least not since IAM
+	//    started tracking this information on October 20th, 2014
 	//
-	//   there is no sign-in data associated with the user
+	//    * there is no sign-in data associated with the user
 	//
-	//   This value is returned only in the GetUser and ListUsers actions.
+	// This value is returned only in the GetUser and ListUsers actions.
 	PasswordLastUsed *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The path to the user. For more information about paths, see IAM Identifiers
@@ -20106,8 +20102,8 @@ type UserDetail struct {
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
-	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
-	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// For more information about ARNs, go to Amazon Resource Names (ARNs) and AWS
+	// Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
@@ -20178,11 +20174,11 @@ type VirtualMFADevice struct {
 	//
 	// This data type is used as a response element in the following actions:
 	//
-	//    CreateUser
+	//    * CreateUser
 	//
-	//    GetUser
+	//    * GetUser
 	//
-	//    ListUsers
+	//    * ListUsers
 	User *User `type:"structure"`
 }
 

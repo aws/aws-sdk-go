@@ -292,24 +292,22 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 // This step is a part of the procedure for adding a lifecycle hook to an Auto
 // Scaling group:
 //
-//   (Optional) Create a Lambda function and a rule that allows CloudWatch
-// Events to invoke your Lambda function when Auto Scaling launches or terminates
-// instances.
+// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+// to invoke your Lambda function when Auto Scaling launches or terminates instances.
 //
-//   (Optional) Create a notification target and an IAM role. The target can
-// be either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
-// Scaling to publish lifecycle notifications to the target.
+// (Optional) Create a notification target and an IAM role. The target can be
+// either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto Scaling
+// to publish lifecycle notifications to the target.
 //
-//   Create the lifecycle hook. Specify whether the hook is used when the instances
+// Create the lifecycle hook. Specify whether the hook is used when the instances
 // launch or terminate.
 //
-//   If you need more time, record the lifecycle action heartbeat to keep the
+// If you need more time, record the lifecycle action heartbeat to keep the
 // instance in a pending state.
 //
-//    If you finish before the timeout period ends, complete the lifecycle
-// action.
+// If you finish before the timeout period ends, complete the lifecycle action.
 //
-//   For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
+// For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
 // in the Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -630,17 +628,16 @@ func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGrou
 // If the group has instances or scaling activities in progress, you must specify
 // the option to force the deletion in order for it to succeed.
 //
-// If the group has policies, deleting the group deletes the policies, the
-// underlying alarm actions, and any alarm that no longer has an associated
-// action.
+// If the group has policies, deleting the group deletes the policies, the underlying
+// alarm actions, and any alarm that no longer has an associated action.
 //
 // To remove instances from the Auto Scaling group before deleting it, call
 // DetachInstances with the list of instances and the option to decrement the
 // desired capacity so that Auto Scaling does not launch replacement instances.
 //
-// To terminate all instances before deleting the Auto Scaling group, call
-// UpdateAutoScalingGroup and set the minimum size and desired capacity of the
-// Auto Scaling group to zero.
+// To terminate all instances before deleting the Auto Scaling group, call UpdateAutoScalingGroup
+// and set the minimum size and desired capacity of the Auto Scaling group to
+// zero.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -716,9 +713,9 @@ func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfig
 //
 // Deletes the specified launch configuration.
 //
-// The launch configuration must not be attached to an Auto Scaling group.
-// When this call completes, the launch configuration is no longer available
-// for use.
+// The launch configuration must not be attached to an Auto Scaling group. When
+// this call completes, the launch configuration is no longer available for
+// use.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2596,10 +2593,10 @@ func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *
 // If you do not specify the option to decrement the desired capacity, Auto
 // Scaling launches instances to replace the ones that are detached.
 //
-// If there is a Classic load balancer attached to the Auto Scaling group,
-// the instances are deregistered from the load balancer. If there are target
-// groups attached to the Auto Scaling group, the instances are deregistered
-// from the target groups.
+// If there is a Classic load balancer attached to the Auto Scaling group, the
+// instances are deregistered from the load balancer. If there are target groups
+// attached to the Auto Scaling group, the instances are deregistered from the
+// target groups.
 //
 // For more information, see Detach EC2 Instances from Your Auto Scaling Group
 // (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/detach-instance-asg.html)
@@ -3159,23 +3156,22 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 // This step is a part of the procedure for adding a lifecycle hook to an Auto
 // Scaling group:
 //
-//   (Optional) Create a Lambda function and a rule that allows CloudWatch
-// Events to invoke your Lambda function when Auto Scaling launches or terminates
-// instances.
+// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+// to invoke your Lambda function when Auto Scaling launches or terminates instances.
 //
-//   (Optional) Create a notification target and an IAM role. The target can
-// be either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
-// Scaling to publish lifecycle notifications to the target.
+// (Optional) Create a notification target and an IAM role. The target can be
+// either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto Scaling
+// to publish lifecycle notifications to the target.
 //
-//    Create the lifecycle hook. Specify whether the hook is used when the
-// instances launch or terminate.
+// Create the lifecycle hook. Specify whether the hook is used when the instances
+// launch or terminate.
 //
-//   If you need more time, record the lifecycle action heartbeat to keep the
+// If you need more time, record the lifecycle action heartbeat to keep the
 // instance in a pending state.
 //
-//   If you finish before the timeout period ends, complete the lifecycle action.
+// If you finish before the timeout period ends, complete the lifecycle action.
 //
-//   For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
+// For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
 // in the Auto Scaling User Guide.
 //
 // If you exceed your maximum limit of lifecycle hooks, which by default is
@@ -3497,23 +3493,22 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 // This step is a part of the procedure for adding a lifecycle hook to an Auto
 // Scaling group:
 //
-//   (Optional) Create a Lambda function and a rule that allows CloudWatch
-// Events to invoke your Lambda function when Auto Scaling launches or terminates
-// instances.
+// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+// to invoke your Lambda function when Auto Scaling launches or terminates instances.
 //
-//   (Optional) Create a notification target and an IAM role. The target can
-// be either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto
-// Scaling to publish lifecycle notifications to the target.
+// (Optional) Create a notification target and an IAM role. The target can be
+// either an Amazon SQS queue or an Amazon SNS topic. The role allows Auto Scaling
+// to publish lifecycle notifications to the target.
 //
-//   Create the lifecycle hook. Specify whether the hook is used when the instances
+// Create the lifecycle hook. Specify whether the hook is used when the instances
 // launch or terminate.
 //
-//    If you need more time, record the lifecycle action heartbeat to keep
-// the instance in a pending state.
+// If you need more time, record the lifecycle action heartbeat to keep the
+// instance in a pending state.
 //
-//   If you finish before the timeout period ends, complete the lifecycle action.
+// If you finish before the timeout period ends, complete the lifecycle action.
 //
-//   For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
+// For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
 // in the Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4039,17 +4034,17 @@ func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGrou
 //
 // Note the following:
 //
-//   If you specify a new value for MinSize without specifying a value for
-// DesiredCapacity, and the new MinSize is larger than the current size of the
-// group, we implicitly call SetDesiredCapacity to set the size of the group
-// to the new value of MinSize.
+//    * If you specify a new value for MinSize without specifying a value for
+//    DesiredCapacity, and the new MinSize is larger than the current size of
+//    the group, we implicitly call SetDesiredCapacity to set the size of the
+//    group to the new value of MinSize.
 //
-//   If you specify a new value for MaxSize without specifying a value for
-// DesiredCapacity, and the new MaxSize is smaller than the current size of
-// the group, we implicitly call SetDesiredCapacity to set the size of the group
-// to the new value of MaxSize.
+//    * If you specify a new value for MaxSize without specifying a value for
+//    DesiredCapacity, and the new MaxSize is smaller than the current size
+//    of the group, we implicitly call SetDesiredCapacity to set the size of
+//    the group to the new value of MaxSize.
 //
-//   All other optional parameters are left unchanged if not specified.
+//    * All other optional parameters are left unchanged if not specified.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4687,9 +4682,9 @@ type CreateLaunchConfigurationInput struct {
 	// If you specify this parameter, be sure to specify at least one subnet when
 	// you create your group.
 	//
-	// Default: If the instance is launched into a default subnet, the default
-	// is true. If the instance is launched into a nondefault subnet, the default
-	// is false. For more information, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
+	// Default: If the instance is launched into a default subnet, the default is
+	// true. If the instance is launched into a nondefault subnet, the default is
+	// false. For more information, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	AssociatePublicIpAddress *bool `type:"boolean"`
 
@@ -4737,8 +4732,8 @@ type CreateLaunchConfigurationInput struct {
 
 	// The ID of the instance to use to create the launch configuration.
 	//
-	// The new launch configuration derives attributes from the instance, with
-	// the exception of the block device mapping.
+	// The new launch configuration derives attributes from the instance, with the
+	// exception of the block device mapping.
 	//
 	// To create a launch configuration with a block device mapping or override
 	// any other instance attributes, specify them as part of the same request.
@@ -4774,9 +4769,9 @@ type CreateLaunchConfigurationInput struct {
 	// The tenancy of the instance. An instance with a tenancy of dedicated runs
 	// on single-tenant hardware and can only be launched into a VPC.
 	//
-	// You must set the value of this parameter to dedicated if want to launch
-	// Dedicated Instances into a shared tenancy VPC (VPC with instance placement
-	// tenancy attribute set to default).
+	// You must set the value of this parameter to dedicated if want to launch Dedicated
+	// Instances into a shared tenancy VPC (VPC with instance placement tenancy
+	// attribute set to default).
 	//
 	// If you specify this parameter, be sure to specify at least one subnet when
 	// you create your group.
@@ -6108,9 +6103,9 @@ type DescribeScheduledActionsInput struct {
 	// scheduled actions are described. If you specify an unknown scheduled action,
 	// it is ignored with no error.
 	//
-	// You can describe up to a maximum of 50 instances with a single call. If
-	// there are more items to return, the call returns a token. To get the next
-	// set of items, repeat the call with the returned token.
+	// You can describe up to a maximum of 50 instances with a single call. If there
+	// are more items to return, the call returns a token. To get the next set of
+	// items, repeat the call with the returned token.
 	ScheduledActionNames []*string `type:"list"`
 
 	// The earliest scheduled start time to return. If scheduled action names are
@@ -6437,21 +6432,21 @@ type DisableMetricsCollectionInput struct {
 	// One or more of the following metrics. If you omit this parameter, all metrics
 	// are disabled.
 	//
-	//    GroupMinSize
+	//    * GroupMinSize
 	//
-	//    GroupMaxSize
+	//    * GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//    * GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//    * GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//    * GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//    * GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//    * GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//    * GroupTotalInstances
 	Metrics []*string `type:"list"`
 }
 
@@ -6526,8 +6521,8 @@ type Ebs struct {
 	// specify a value from 1 to 16,384. If you specify a snapshot, the volume size
 	// must be equal to or larger than the snapshot size.
 	//
-	// Default: If you create a volume from a snapshot and you don't specify a
-	// volume size, the default is the snapshot size.
+	// Default: If you create a volume from a snapshot and you don't specify a volume
+	// size, the default is the snapshot size.
 	VolumeSize *int64 `min:"1" type:"integer"`
 
 	// The volume type. For more information, see Amazon EBS Volume Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
@@ -6589,21 +6584,21 @@ type EnableMetricsCollectionInput struct {
 	// One or more of the following metrics. If you omit this parameter, all metrics
 	// are enabled.
 	//
-	//    GroupMinSize
+	//    * GroupMinSize
 	//
-	//    GroupMaxSize
+	//    * GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//    * GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//    * GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//    * GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//    * GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//    * GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//    * GroupTotalInstances
 	Metrics []*string `type:"list"`
 }
 
@@ -6662,21 +6657,21 @@ type EnabledMetric struct {
 
 	// One of the following metrics:
 	//
-	//    GroupMinSize
+	//    * GroupMinSize
 	//
-	//    GroupMaxSize
+	//    * GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//    * GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//    * GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//    * GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//    * GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//    * GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//    * GroupTotalInstances
 	Metric *string `min:"1" type:"string"`
 }
 
@@ -7013,8 +7008,8 @@ type Group struct {
 
 	// One or more subnet IDs, if applicable, separated by commas.
 	//
-	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the
-	// Availability Zones of the subnets match the values for AvailabilityZones.
+	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the Availability
+	// Zones of the subnets match the values for AvailabilityZones.
 	VPCZoneIdentifier *string `min:"1" type:"string"`
 }
 
@@ -7244,11 +7239,11 @@ func (s LaunchConfiguration) GoString() string {
 // an action when an instance launches or terminates. When you have a lifecycle
 // hook in place, the Auto Scaling group will either:
 //
-//   Pause the instance after it launches, but before it is put into service
+//    * Pause the instance after it launches, but before it is put into service
 //
-//   Pause the instance as it terminates, but before it is fully terminated
+//    * Pause the instance as it terminates, but before it is fully terminated
 //
-//   For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
+// For more information, see Auto Scaling Lifecycle (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html)
 // in the Auto Scaling User Guide.
 type LifecycleHook struct {
 	_ struct{} `type:"structure"`
@@ -7287,19 +7282,19 @@ type LifecycleHook struct {
 	// can be either an SQS queue or an SNS topic. The notification message sent
 	// to the target includes the following:
 	//
-	//   Lifecycle action token
+	//    * Lifecycle action token
 	//
-	//   User account ID
+	//    * User account ID
 	//
-	//   Name of the Auto Scaling group
+	//    * Name of the Auto Scaling group
 	//
-	//   Lifecycle hook name
+	//    * Lifecycle hook name
 	//
-	//   EC2 instance ID
+	//    * EC2 instance ID
 	//
-	//   Lifecycle transition
+	//    * Lifecycle transition
 	//
-	//   Notification metadata
+	//    * Notification metadata
 	NotificationTargetARN *string `min:"1" type:"string"`
 
 	// The ARN of the IAM role that allows the Auto Scaling group to publish to
@@ -7336,18 +7331,20 @@ type LoadBalancerState struct {
 
 	// One of the following load balancer states:
 	//
-	//    Adding - The instances in the group are being registered with the load
-	// balancer.
+	//    * Adding - The instances in the group are being registered with the load
+	//    balancer.
 	//
-	//    Added - All instances in the group are registered with the load balancer.
+	//    * Added - All instances in the group are registered with the load balancer.
 	//
-	//    InService - At least one instance in the group passed an ELB health check.
+	//    * InService - At least one instance in the group passed an ELB health
+	//    check.
 	//
-	//    Removing - The instances in the group are being deregistered from the
-	// load balancer. If connection draining is enabled, Elastic Load Balancing
-	// waits for in-flight requests to complete before deregistering the instances.
+	//    * Removing - The instances in the group are being deregistered from the
+	//    load balancer. If connection draining is enabled, Elastic Load Balancing
+	//    waits for in-flight requests to complete before deregistering the instances.
 	//
-	//    Removed - All instances in the group are deregistered from the load balancer.
+	//    * Removed - All instances in the group are deregistered from the load
+	//    balancer.
 	State *string `min:"1" type:"string"`
 }
 
@@ -7377,19 +7374,20 @@ type LoadBalancerTargetGroupState struct {
 
 	// The state of the target group.
 	//
-	//    Adding - The Auto Scaling instances are being registered with the target
-	// group.
+	//    * Adding - The Auto Scaling instances are being registered with the target
+	//    group.
 	//
-	//    Added - All Auto Scaling instances are registered with the target group.
+	//    * Added - All Auto Scaling instances are registered with the target group.
 	//
-	//    InService - At least one Auto Scaling instance passed an ELB health check.
+	//    * InService - At least one Auto Scaling instance passed an ELB health
+	//    check.
 	//
-	//    Removing - The Auto Scaling instances are being deregistered from the
-	// target group. If connection draining is enabled, Elastic Load Balancing waits
-	// for in-flight requests to complete before deregistering the instances.
+	//    * Removing - The Auto Scaling instances are being deregistered from the
+	//    target group. If connection draining is enabled, Elastic Load Balancing
+	//    waits for in-flight requests to complete before deregistering the instances.
 	//
-	//    Removed - All Auto Scaling instances are deregistered from the target
-	// group.
+	//    * Removed - All Auto Scaling instances are deregistered from the target
+	//    group.
 	State *string `min:"1" type:"string"`
 }
 
@@ -7409,21 +7407,21 @@ type MetricCollectionType struct {
 
 	// One of the following metrics:
 	//
-	//    GroupMinSize
+	//    * GroupMinSize
 	//
-	//    GroupMaxSize
+	//    * GroupMaxSize
 	//
-	//    GroupDesiredCapacity
+	//    * GroupDesiredCapacity
 	//
-	//    GroupInServiceInstances
+	//    * GroupInServiceInstances
 	//
-	//    GroupPendingInstances
+	//    * GroupPendingInstances
 	//
-	//    GroupStandbyInstances
+	//    * GroupStandbyInstances
 	//
-	//    GroupTerminatingInstances
+	//    * GroupTerminatingInstances
 	//
-	//    GroupTotalInstances
+	//    * GroupTotalInstances
 	Metric *string `min:"1" type:"string"`
 }
 
@@ -7464,15 +7462,15 @@ type NotificationConfiguration struct {
 
 	// One of the following event notification types:
 	//
-	//    autoscaling:EC2_INSTANCE_LAUNCH
+	//    * autoscaling:EC2_INSTANCE_LAUNCH
 	//
-	//    autoscaling:EC2_INSTANCE_LAUNCH_ERROR
+	//    * autoscaling:EC2_INSTANCE_LAUNCH_ERROR
 	//
-	//    autoscaling:EC2_INSTANCE_TERMINATE
+	//    * autoscaling:EC2_INSTANCE_TERMINATE
 	//
-	//    autoscaling:EC2_INSTANCE_TERMINATE_ERROR
+	//    * autoscaling:EC2_INSTANCE_TERMINATE_ERROR
 	//
-	//    autoscaling:TEST_NOTIFICATION
+	//    * autoscaling:TEST_NOTIFICATION
 	NotificationType *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
@@ -7499,21 +7497,21 @@ type ProcessType struct {
 
 	// One of the following processes:
 	//
-	//    Launch
+	//    * Launch
 	//
-	//    Terminate
+	//    * Terminate
 	//
-	//    AddToLoadBalancer
+	//    * AddToLoadBalancer
 	//
-	//    AlarmNotification
+	//    * AlarmNotification
 	//
-	//    AZRebalance
+	//    * AZRebalance
 	//
-	//    HealthCheck
+	//    * HealthCheck
 	//
-	//    ReplaceUnhealthy
+	//    * ReplaceUnhealthy
 	//
-	//    ScheduledActions
+	//    * ScheduledActions
 	//
 	// ProcessName is a required field
 	ProcessName *string `min:"1" type:"string" required:"true"`
@@ -7573,21 +7571,21 @@ type PutLifecycleHookInput struct {
 	//
 	// The notification messages sent to the target include the following information:
 	//
-	//    AutoScalingGroupName. The name of the Auto Scaling group.
+	//    * AutoScalingGroupName. The name of the Auto Scaling group.
 	//
-	//    AccountId. The AWS account ID.
+	//    * AccountId. The AWS account ID.
 	//
-	//    LifecycleTransition. The lifecycle hook type.
+	//    * LifecycleTransition. The lifecycle hook type.
 	//
-	//    LifecycleActionToken. The lifecycle action token.
+	//    * LifecycleActionToken. The lifecycle action token.
 	//
-	//    EC2InstanceId. The EC2 instance ID.
+	//    * EC2InstanceId. The EC2 instance ID.
 	//
-	//    LifecycleHookName. The name of the lifecycle hook.
+	//    * LifecycleHookName. The name of the lifecycle hook.
 	//
-	//    NotificationMetadata. User-defined information.
+	//    * NotificationMetadata. User-defined information.
 	//
-	//   This operation uses the JSON format when sending notifications to an Amazon
+	// This operation uses the JSON format when sending notifications to an Amazon
 	// SQS queue, and an email key/value pair format when sending notifications
 	// to an Amazon SNS topic.
 	//
@@ -7901,8 +7899,8 @@ type PutScheduledUpdateGroupActionInput struct {
 	// by the user following the Unix cron syntax format. For more information,
 	// see Cron (http://en.wikipedia.org/wiki/Cron) in Wikipedia.
 	//
-	// When StartTime and EndTime are specified with Recurrence, they form the
-	// boundaries of when the recurring action will start and stop.
+	// When StartTime and EndTime are specified with Recurrence, they form the boundaries
+	// of when the recurring action will start and stop.
 	Recurrence *string `min:"1" type:"string"`
 
 	// The name of this scaling action.
@@ -7913,11 +7911,11 @@ type PutScheduledUpdateGroupActionInput struct {
 	// The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in UTC/GMT
 	// only (for example, 2014-06-01T00:00:00Z).
 	//
-	// If you try to schedule your action in the past, Auto Scaling returns an
-	// error message.
+	// If you try to schedule your action in the past, Auto Scaling returns an error
+	// message.
 	//
-	// When StartTime and EndTime are specified with Recurrence, they form the
-	// boundaries of when the recurring action starts and stops.
+	// When StartTime and EndTime are specified with Recurrence, they form the boundaries
+	// of when the recurring action starts and stops.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// This parameter is deprecated.
@@ -8139,21 +8137,21 @@ type ScalingProcessQuery struct {
 	// One or more of the following processes. If you omit this parameter, all processes
 	// are specified.
 	//
-	//    Launch
+	//    * Launch
 	//
-	//    Terminate
+	//    * Terminate
 	//
-	//    HealthCheck
+	//    * HealthCheck
 	//
-	//    ReplaceUnhealthy
+	//    * ReplaceUnhealthy
 	//
-	//    AZRebalance
+	//    * AZRebalance
 	//
-	//    AlarmNotification
+	//    * AlarmNotification
 	//
-	//    ScheduledActions
+	//    * ScheduledActions
 	//
-	//    AddToLoadBalancer
+	//    * AddToLoadBalancer
 	ScalingProcesses []*string `type:"list"`
 }
 
@@ -8215,8 +8213,8 @@ type ScheduledUpdateGroupAction struct {
 	// The date and time that the action is scheduled to begin. This date and time
 	// can be up to one month in the future.
 	//
-	// When StartTime and EndTime are specified with Recurrence, they form the
-	// boundaries of when the recurring action will start and stop.
+	// When StartTime and EndTime are specified with Recurrence, they form the boundaries
+	// of when the recurring action will start and stop.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// This parameter is deprecated.
@@ -8444,27 +8442,27 @@ func (s SetInstanceProtectionOutput) GoString() string {
 // For the following examples, suppose that you have an alarm with a breach
 // threshold of 50:
 //
-//   If you want the adjustment to be triggered when the metric is greater
-// than or equal to 50 and less than 60, specify a lower bound of 0 and an upper
-// bound of 10.
+//    * If you want the adjustment to be triggered when the metric is greater
+//    than or equal to 50 and less than 60, specify a lower bound of 0 and an
+//    upper bound of 10.
 //
-//   If you want the adjustment to be triggered when the metric is greater
-// than 40 and less than or equal to 50, specify a lower bound of -10 and an
-// upper bound of 0.
+//    * If you want the adjustment to be triggered when the metric is greater
+//    than 40 and less than or equal to 50, specify a lower bound of -10 and
+//    an upper bound of 0.
 //
-//   There are a few rules for the step adjustments for your step policy:
+// There are a few rules for the step adjustments for your step policy:
 //
-//   The ranges of your step adjustments can't overlap or have a gap.
+//    * The ranges of your step adjustments can't overlap or have a gap.
 //
-//   At most one step adjustment can have a null lower bound. If one step adjustment
-// has a negative lower bound, then there must be a step adjustment with a null
-// lower bound.
+//    * At most one step adjustment can have a null lower bound. If one step
+//    adjustment has a negative lower bound, then there must be a step adjustment
+//    with a null lower bound.
 //
-//   At most one step adjustment can have a null upper bound. If one step adjustment
-// has a positive upper bound, then there must be a step adjustment with a null
-// upper bound.
+//    * At most one step adjustment can have a null upper bound. If one step
+//    adjustment has a positive upper bound, then there must be a step adjustment
+//    with a null upper bound.
 //
-//   The upper and lower bound can't be null in the same step adjustment.
+//    * The upper and lower bound can't be null in the same step adjustment.
 type StepAdjustment struct {
 	_ struct{} `type:"structure"`
 
