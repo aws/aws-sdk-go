@@ -300,7 +300,7 @@ func (c *DirectoryService) CreateAliasRequest(input *CreateAliasInput) (req *req
 // The alias is used to construct the access URL for the directory, such as
 // http://<alias>.awsapps.com.
 //
-//  After an alias has been created, it cannot be deleted or reused, so this
+// After an alias has been created, it cannot be deleted or reused, so this
 // operation should only be used when absolutely necessary.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -702,7 +702,7 @@ func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (re
 //
 // Creates a snapshot of a Simple AD or Microsoft AD directory in the AWS cloud.
 //
-//  You cannot take snapshots of AD Connector directories.
+// You cannot take snapshots of AD Connector directories.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1240,8 +1240,8 @@ func (c *DirectoryService) DescribeConditionalForwardersRequest(input *DescribeC
 //
 // Obtains information about the conditional forwarders for this account.
 //
-// If no input parameters are provided for RemoteDomainNames, this request
-// describes all conditional forwarders for the specified directory ID.
+// If no input parameters are provided for RemoteDomainNames, this request describes
+// all conditional forwarders for the specified directory ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2757,46 +2757,43 @@ type AddIpRoutesInput struct {
 	//
 	// Inbound:
 	//
-	//   Type: Custom UDP Rule, Protocol: UDP, Range: 88, Source: 0.0.0.0/0
+	//    * Type: Custom UDP Rule, Protocol: UDP, Range: 88, Source: 0.0.0.0/0
 	//
-	//   Type: Custom UDP Rule, Protocol: UDP, Range: 123, Source: 0.0.0.0/0
+	//    * Type: Custom UDP Rule, Protocol: UDP, Range: 123, Source: 0.0.0.0/0
 	//
-	//   Type: Custom UDP Rule, Protocol: UDP, Range: 138, Source: 0.0.0.0/0
+	//    * Type: Custom UDP Rule, Protocol: UDP, Range: 138, Source: 0.0.0.0/0
 	//
-	//   Type: Custom UDP Rule, Protocol: UDP, Range: 389, Source: 0.0.0.0/0
+	//    * Type: Custom UDP Rule, Protocol: UDP, Range: 389, Source: 0.0.0.0/0
 	//
-	//   Type: Custom UDP Rule, Protocol: UDP, Range: 464, Source: 0.0.0.0/0
+	//    * Type: Custom UDP Rule, Protocol: UDP, Range: 464, Source: 0.0.0.0/0
 	//
-	//   Type: Custom UDP Rule, Protocol: UDP, Range: 445, Source: 0.0.0.0/0
+	//    * Type: Custom UDP Rule, Protocol: UDP, Range: 445, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 88, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 88, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 135, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 135, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 445, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 445, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 464, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 464, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 636, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 636, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 1024-65535, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 1024-65535, Source: 0.0.0.0/0
 	//
-	//   Type: Custom TCP Rule, Protocol: TCP, Range: 3268-33269, Source: 0.0.0.0/0
+	//    * Type: Custom TCP Rule, Protocol: TCP, Range: 3268-33269, Source: 0.0.0.0/0
 	//
-	//   Type: DNS (UDP), Protocol: UDP, Range: 53, Source: 0.0.0.0/0
+	//    * Type: DNS (UDP), Protocol: UDP, Range: 53, Source: 0.0.0.0/0
 	//
-	//   Type: DNS (TCP), Protocol: TCP, Range: 53, Source: 0.0.0.0/0
+	//    * Type: DNS (TCP), Protocol: TCP, Range: 53, Source: 0.0.0.0/0
 	//
-	//   Type: LDAP, Protocol: TCP, Range: 389, Source: 0.0.0.0/0
+	//    * Type: LDAP, Protocol: TCP, Range: 389, Source: 0.0.0.0/0
 	//
-	//   Type: All ICMP, Protocol: All, Range: N/A, Source: 0.0.0.0/0
+	//    * Type: All ICMP, Protocol: All, Range: N/A, Source: 0.0.0.0/0
 	//
-	//    Outbound:
+	// Outbound:
 	//
-	//   Type: All traffic, Protocol: All, Range: All, Destination: 0.0.0.0/0
-	//
-	//   These security rules impact an internal network interface that is not
-	// exposed publicly.
+	// Type: All traffic, Protocol: All, Range: All, Destination: 0.0.0.0/0
 	UpdateSecurityGroupForDirectoryControllers *bool `type:"boolean"`
 }
 
@@ -4196,11 +4193,11 @@ type DirectoryConnectSettings struct {
 	// The username of an account in the on-premises directory that is used to connect
 	// to the directory. This account must have the following privileges:
 	//
-	//   Read users and groups
+	//    * Read users and groups
 	//
-	//   Create computer objects
+	//    * Create computer objects
 	//
-	//   Join computers to the domain
+	//    * Join computers to the domain
 	//
 	// CustomerUserName is a required field
 	CustomerUserName *string `min:"1" type:"string" required:"true"`

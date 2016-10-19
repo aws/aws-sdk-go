@@ -58,7 +58,7 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 //
 // Creates a delivery stream.
 //
-//  CreateDeliveryStream is an asynchronous operation that immediately returns.
+// CreateDeliveryStream is an asynchronous operation that immediately returns.
 // The initial status of the delivery stream is CREATING. After the delivery
 // stream is created, its status is ACTIVE and it now accepts data. Attempts
 // to send data to a delivery stream that is not in the ACTIVE state cause an
@@ -88,20 +88,20 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 //
 // A few notes about RedshiftDestinationConfiguration:
 //
-//   An Amazon Redshift destination requires an S3 bucket as intermediate location,
-// as Firehose first delivers data to S3 and then uses COPY syntax to load data
-// into an Amazon Redshift table. This is specified in the RedshiftDestinationConfiguration.S3Configuration
-// parameter element.
+//    * An Amazon Redshift destination requires an S3 bucket as intermediate
+//    location, as Firehose first delivers data to S3 and then uses COPY syntax
+//    to load data into an Amazon Redshift table. This is specified in the RedshiftDestinationConfiguration.S3Configuration
+//    parameter element.
 //
-//   The compression formats SNAPPY or ZIP cannot be specified in RedshiftDestinationConfiguration.S3Configuration
-// because the Amazon Redshift COPY operation that reads from the S3 bucket
-// doesn't support these compression formats.
+//    * The compression formats SNAPPY or ZIP cannot be specified in RedshiftDestinationConfiguration.S3Configuration
+//    because the Amazon Redshift COPY operation that reads from the S3 bucket
+//    doesn't support these compression formats.
 //
-//   We strongly recommend that the username and password provided is used
-// exclusively for Firehose purposes, and that the permissions for the account
-// are restricted for Amazon Redshift INSERT permissions.
+//    * We strongly recommend that the username and password provided is used
+//    exclusively for Firehose purposes, and that the permissions for the account
+//    are restricted for Amazon Redshift INSERT permissions.
 //
-//   Firehose assumes the IAM role that is configured as part of destinations.
+// Firehose assumes the IAM role that is configured as part of destinations.
 // The IAM role should allow the Firehose principal to assume the role, and
 // the role should have permissions that allows the service to deliver the data.
 // For more information, see Amazon S3 Bucket Access (http://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3)
@@ -625,11 +625,11 @@ func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req 
 // Elasticsearch destination, you can only update an existing Elasticsearch
 // destination with this operation.
 //
-// This operation can be used to change the destination type (for example,
-// to replace the Amazon S3 destination with Amazon Redshift) or change the
-// parameters associated with a given destination (for example, to change the
-// bucket name of the Amazon S3 destination). The update may not occur immediately.
-// The target delivery stream remains active while the configurations are updated,
+// This operation can be used to change the destination type (for example, to
+// replace the Amazon S3 destination with Amazon Redshift) or change the parameters
+// associated with a given destination (for example, to change the bucket name
+// of the Amazon S3 destination). The update may not occur immediately. The
+// target delivery stream remains active while the configurations are updated,
 // so data writes to the delivery stream can continue during this process. The
 // updated configurations are normally effective within a few minutes.
 //
@@ -760,18 +760,18 @@ type CopyCommand struct {
 	// command (http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html). Some
 	// possible examples that would apply to Firehose are as follows.
 	//
-	//  delimiter '\t' lzop; - fields are delimited with "\t" (TAB character) and
+	// delimiter '\t' lzop; - fields are delimited with "\t" (TAB character) and
 	// compressed using lzop.
 	//
-	//  delimiter '| - fields are delimited with "|" (this is the default delimiter).
+	// delimiter '| - fields are delimited with "|" (this is the default delimiter).
 	//
-	//  delimiter '|' escape - the delimiter should be escaped.
+	// delimiter '|' escape - the delimiter should be escaped.
 	//
-	//  fixedwidth 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'
+	// fixedwidth 'venueid:3,venuename:25,venuecity:12,venuestate:2,venueseats:6'
 	// - fields are fixed width in the source, with each width specified after every
 	// column in the table.
 	//
-	//  JSON 's3://mybucket/jsonpaths.txt' - data is in JSON format, and the path
+	// JSON 's3://mybucket/jsonpaths.txt' - data is in JSON format, and the path
 	// specified is the format of the data.
 	//
 	// For more examples, see Amazon Redshift COPY command examples (http://docs.aws.amazon.com/redshift/latest/dg/r_COPY_command_examples.html).

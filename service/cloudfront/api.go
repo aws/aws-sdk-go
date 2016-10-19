@@ -606,7 +606,7 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 // (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-rtmp.html)
 // in the Amazon CloudFront Developer Guide.
 //
-//  Beginning with the 2012-05-05 version of the CloudFront API, we made substantial
+// Beginning with the 2012-05-05 version of the CloudFront API, we made substantial
 // changes to the format of the XML document that you include in the request
 // body when you create or update a web distribution or an RTMP distribution,
 // and when you invalidate objects. With previous versions of the API, we discovered
@@ -981,38 +981,37 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 // Delete a streaming distribution. To delete an RTMP distribution using the
 // CloudFront API, perform the following steps.
 //
-//  To delete an RTMP distribution using the CloudFront API:
+// To delete an RTMP distribution using the CloudFront API:
 //
-//   Disable the RTMP distribution.
+// Disable the RTMP distribution.
 //
-//   Submit a GET Streaming Distribution Config request to get the current
-// configuration and the Etag header for the distribution.
+// Submit a GET Streaming Distribution Config request to get the current configuration
+// and the Etag header for the distribution.
 //
-//   Update the XML document that was returned in the response to your GET
-// Streaming Distribution Config request to change the value of Enabled to false.
+// Update the XML document that was returned in the response to your GET Streaming
+// Distribution Config request to change the value of Enabled to false.
 //
-//   Submit a PUT Streaming Distribution Config request to update the configuration
+// Submit a PUT Streaming Distribution Config request to update the configuration
 // for your distribution. In the request body, include the XML document that
 // you updated in Step 3. Then set the value of the HTTP If-Match header to
 // the value of the ETag header that CloudFront returned when you submitted
 // the GET Streaming Distribution Config request in Step 2.
 //
-//   Review the response to the PUT Streaming Distribution Config request to
-// confirm that the distribution was successfully disabled.
+// Review the response to the PUT Streaming Distribution Config request to confirm
+// that the distribution was successfully disabled.
 //
-//   Submit a GET Streaming Distribution Config request to confirm that your
-// changes have propagated. When propagation is complete, the value of Status
-// is Deployed.
+// Submit a GET Streaming Distribution Config request to confirm that your changes
+// have propagated. When propagation is complete, the value of Status is Deployed.
 //
-//   Submit a DELETE Streaming Distribution request. Set the value of the HTTP
+// Submit a DELETE Streaming Distribution request. Set the value of the HTTP
 // If-Match header to the value of the ETag header that CloudFront returned
 // when you submitted the GET Streaming Distribution Config request in Step
 // 2.
 //
-//   Review the response to your DELETE Streaming Distribution request to confirm
+// Review the response to your DELETE Streaming Distribution request to confirm
 // that the distribution was successfully deleted.
 //
-//   For information about deleting a distribution using the CloudFront console,
+// For information about deleting a distribution using the CloudFront console,
 // see Deleting a Distribution (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html)
 // in the Amazon CloudFront Developer Guide.
 //
@@ -2651,29 +2650,30 @@ func (s *Aliases) Validate() error {
 // forwards to your Amazon S3 bucket or your custom origin. There are three
 // choices:
 //
-//   CloudFront forwards only GET and HEAD requests.
+//    * CloudFront forwards only GET and HEAD requests.
 //
-//   CloudFront forwards only GET, HEAD, and OPTIONS requests.
+//    * CloudFront forwards only GET, HEAD, and OPTIONS requests.
 //
-//   CloudFront forwards GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests.
+//    * CloudFront forwards GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE
+//    requests.
 //
-//   If you pick the third choice, you may need to restrict access to your
-// Amazon S3 bucket or to your custom origin so users can't perform operations
-// that you don't want them to. For example, you might not want users to have
-// permissions to delete objects from your origin.
+// If you pick the third choice, you may need to restrict access to your Amazon
+// S3 bucket or to your custom origin so users can't perform operations that
+// you don't want them to. For example, you might not want users to have permissions
+// to delete objects from your origin.
 type AllowedMethods struct {
 	_ struct{} `type:"structure"`
 
 	// A complex type that controls whether CloudFront caches the response to requests
 	// using the specified HTTP methods. There are two choices:
 	//
-	//   CloudFront caches responses to GET and HEAD requests.
+	//    * CloudFront caches responses to GET and HEAD requests.
 	//
-	//   CloudFront caches responses to GET, HEAD, and OPTIONS requests.
+	//    * CloudFront caches responses to GET, HEAD, and OPTIONS requests.
 	//
-	//   If you pick the second choice for your Amazon S3 Origin, you may need
-	// to forward Access-Control-Request-Method, Access-Control-Request-Headers,
-	// and Origin headers for the responses to be cached correctly.
+	// If you pick the second choice for your Amazon S3 Origin, you may need to
+	// forward Access-Control-Request-Method, Access-Control-Request-Headers, and
+	// Origin headers for the responses to be cached correctly.
 	CachedMethods *CachedMethods `type:"structure"`
 
 	// A complex type that contains the HTTP methods that you want CloudFront to
@@ -2723,20 +2723,20 @@ func (s *AllowedMethods) Validate() error {
 
 // A complex type that describes how CloudFront processes requests.
 //
-// You must create at least as many cache behaviors (including the default
-// cache behavior) as you have origins if you want CloudFront to distribute
-// objects from all of the origins. Each cache behavior specifies the one origin
-// from which you want CloudFront to get objects. If you have two origins and
-// only the default cache behavior, the default cache behavior will cause CloudFront
+// You must create at least as many cache behaviors (including the default cache
+// behavior) as you have origins if you want CloudFront to distribute objects
+// from all of the origins. Each cache behavior specifies the one origin from
+// which you want CloudFront to get objects. If you have two origins and only
+// the default cache behavior, the default cache behavior will cause CloudFront
 // to get objects from one of the origins, but the other origin is never used.
 //
-// For the current limit on the number of cache behaviors that you can add
-// to a distribution, see Amazon CloudFront Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_cloudfront)
+// For the current limit on the number of cache behaviors that you can add to
+// a distribution, see Amazon CloudFront Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_cloudfront)
 // in the AWS General Reference.
 //
-// If you don't want to specify any cache behaviors, include only an empty
-// CacheBehaviors element. Don't include an empty CacheBehavior element, or
-// CloudFront returns a MalformedXML error.
+// If you don't want to specify any cache behaviors, include only an empty CacheBehaviors
+// element. Don't include an empty CacheBehavior element, or CloudFront returns
+// a MalformedXML error.
 //
 // To delete all cache behaviors in an existing distribution, update the distribution
 // configuration and include only an empty CacheBehaviors element.
@@ -2754,16 +2754,17 @@ type CacheBehavior struct {
 	// forwards to your Amazon S3 bucket or your custom origin. There are three
 	// choices:
 	//
-	//   CloudFront forwards only GET and HEAD requests.
+	//    * CloudFront forwards only GET and HEAD requests.
 	//
-	//   CloudFront forwards only GET, HEAD, and OPTIONS requests.
+	//    * CloudFront forwards only GET, HEAD, and OPTIONS requests.
 	//
-	//   CloudFront forwards GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests.
+	//    * CloudFront forwards GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE
+	//    requests.
 	//
-	//   If you pick the third choice, you may need to restrict access to your
-	// Amazon S3 bucket or to your custom origin so users can't perform operations
-	// that you don't want them to. For example, you might not want users to have
-	// permissions to delete objects from your origin.
+	// If you pick the third choice, you may need to restrict access to your Amazon
+	// S3 bucket or to your custom origin so users can't perform operations that
+	// you don't want them to. For example, you might not want users to have permissions
+	// to delete objects from your origin.
 	AllowedMethods *AllowedMethods `type:"structure"`
 
 	// Whether you want CloudFront to automatically compress certain files for this
@@ -2813,11 +2814,11 @@ type CacheBehavior struct {
 	// path is compared with path patterns in the order in which cache behaviors
 	// are listed in the distribution.
 	//
-	//  You can optionally include a slash (/) at the beginning of the path pattern.
+	// You can optionally include a slash (/) at the beginning of the path pattern.
 	// For example, /images/*.jpg. CloudFront behavior is the same with or without
 	// the leading /.
 	//
-	//  The path pattern for the default cache behavior is * and cannot be changed.
+	// The path pattern for the default cache behavior is * and cannot be changed.
 	// If the request for an object does not match the path pattern for any cache
 	// behaviors, CloudFront applies the behavior in the default cache behavior.
 	//
@@ -2864,20 +2865,21 @@ type CacheBehavior struct {
 	// by TargetOriginId when a request matches the path pattern in PathPattern.
 	// You can specify the following options:
 	//
-	//    allow-all: Viewers can use HTTP or HTTPS.
+	//    * allow-all: Viewers can use HTTP or HTTPS.
 	//
-	//    redirect-to-https: If a viewer submits an HTTP request, CloudFront returns
-	// an HTTP status code of 301 (Moved Permanently) to the viewer along with the
-	// HTTPS URL. The viewer then resubmits the request using the new URL.
+	//    * redirect-to-https: If a viewer submits an HTTP request, CloudFront returns
+	//    an HTTP status code of 301 (Moved Permanently) to the viewer along with
+	//    the HTTPS URL. The viewer then resubmits the request using the new URL.
 	//
-	//    https-only: If a viewer sends an HTTP request, CloudFront returns an
-	// HTTP status code of 403 (Forbidden).
 	//
-	//   For more information about requiring the HTTPS protocol, see Using an
-	// HTTPS Connection to Access Your Objects (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
+	//    * https-only: If a viewer sends an HTTP request, CloudFront returns an
+	//    HTTP status code of 403 (Forbidden).
+	//
+	// For more information about requiring the HTTPS protocol, see Using an HTTPS
+	// Connection to Access Your Objects (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
-	//  The only way to guarantee that viewers retrieve an object that was fetched
+	// The only way to guarantee that viewers retrieve an object that was fetched
 	// from the origin using HTTPS is never to use any other protocol to fetch the
 	// object. If you have recently changed from HTTP to HTTPS, we recommend that
 	// you clear your objects' cache because cached objects are protocol agnostic.
@@ -2994,13 +2996,13 @@ func (s *CacheBehaviors) Validate() error {
 // A complex type that controls whether CloudFront caches the response to requests
 // using the specified HTTP methods. There are two choices:
 //
-//   CloudFront caches responses to GET and HEAD requests.
+//    * CloudFront caches responses to GET and HEAD requests.
 //
-//   CloudFront caches responses to GET, HEAD, and OPTIONS requests.
+//    * CloudFront caches responses to GET, HEAD, and OPTIONS requests.
 //
-//   If you pick the second choice for your Amazon S3 Origin, you may need
-// to forward Access-Control-Request-Method, Access-Control-Request-Headers,
-// and Origin headers for the responses to be cached correctly.
+// If you pick the second choice for your Amazon S3 Origin, you may need to
+// forward Access-Control-Request-Method, Access-Control-Request-Headers, and
+// Origin headers for the responses to be cached correctly.
 type CachedMethods struct {
 	_ struct{} `type:"structure"`
 
@@ -3532,12 +3534,13 @@ func (s CreateStreamingDistributionWithTagsOutput) GoString() string {
 
 // A complex type that controls:
 //
-//   Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
-// with custom error messages before returning the response to the viewer.
+//    * Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
+//    with custom error messages before returning the response to the viewer.
 //
-//   How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
 //
-//   For more information about custom error pages, see Customizing Error Responses
+//    * How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
+//
+// For more information about custom error pages, see Customizing Error Responses
 // (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/custom-error-pages.html)
 // in the Amazon CloudFront Developer Guide.
 type CustomErrorResponse struct {
@@ -3566,19 +3569,20 @@ type CustomErrorResponse struct {
 	// want CloudFront to return a status code different from the status code that
 	// your origin returned to CloudFront, for example:
 	//
-	//   Some Internet devices (some firewalls and corporate proxies, for example)
-	// intercept HTTP 4xx and 5xx and prevent the response from being returned to
-	// the viewer. If you substitute 200, the response typically won't be intercepted.
+	//    * Some Internet devices (some firewalls and corporate proxies, for example)
+	//    intercept HTTP 4xx and 5xx and prevent the response from being returned
+	//    to the viewer. If you substitute 200, the response typically won't be
+	//    intercepted.
 	//
-	//   If you don't care about distinguishing among different client errors or
-	// server errors, you can specify 400 or 500 as the ResponseCode for all 4xx
-	// or 5xx errors.
+	//    * If you don't care about distinguishing among different client errors
+	//    or server errors, you can specify 400 or 500 as the ResponseCode for all
+	//    4xx or 5xx errors.
 	//
-	//   You might want to return a 200 status code (OK) and static website so
-	// your customers don't know that your website is down.
+	//    * You might want to return a 200 status code (OK) and static website so
+	//    your customers don't know that your website is down.
 	//
-	//   If you specify a value for ResponseCode, you must also specify a value
-	// for ResponsePagePath. If you don't want to specify a value, include an empty
+	// If you specify a value for ResponseCode, you must also specify a value for
+	// ResponsePagePath. If you don't want to specify a value, include an empty
 	// element, <ResponseCode>, in the XML document.
 	ResponseCode *string `type:"string"`
 
@@ -3588,16 +3592,17 @@ type CustomErrorResponse struct {
 	// and your custom error pages in different locations, your distribution must
 	// include a cache behavior for which the following is true:
 	//
-	//   The value of PathPattern matches the path to your custom error messages.
-	// For example, suppose you saved custom error pages for 4xx errors in an Amazon
-	// S3 bucket in a directory named /4xx-errors. Your distribution must include
-	// a cache behavior for which the path pattern routes requests for your custom
-	// error pages to that location, for example, /4xx-errors/*.
+	//    * The value of PathPattern matches the path to your custom error messages.
+	//    For example, suppose you saved custom error pages for 4xx errors in an
+	//    Amazon S3 bucket in a directory named /4xx-errors. Your distribution must
+	//    include a cache behavior for which the path pattern routes requests for
+	//    your custom error pages to that location, for example, /4xx-errors/*.
 	//
-	//   The value of TargetOriginId specifies the value of the ID element for
-	// the origin that contains your custom error pages.
 	//
-	//   If you specify a value for ResponsePagePath, you must also specify a value
+	//    * The value of TargetOriginId specifies the value of the ID element for
+	//    the origin that contains your custom error pages.
+	//
+	// If you specify a value for ResponsePagePath, you must also specify a value
 	// for ResponseCode. If you don't want to specify a value, include an empty
 	// element, <ResponsePagePath>, in the XML document.
 	//
@@ -3633,12 +3638,12 @@ func (s *CustomErrorResponse) Validate() error {
 
 // A complex type that controls:
 //
-//   Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
-// with custom error messages before returning the response to the viewer.
+//    * Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
+//    with custom error messages before returning the response to the viewer.
 //
-//   How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
+//    * How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
 //
-//   For more information about custom error pages, see Customizing Error Responses
+// For more information about custom error pages, see Customizing Error Responses
 // (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/custom-error-pages.html)
 // in the Amazon CloudFront Developer Guide.
 type CustomErrorResponses struct {
@@ -3805,16 +3810,17 @@ type DefaultCacheBehavior struct {
 	// forwards to your Amazon S3 bucket or your custom origin. There are three
 	// choices:
 	//
-	//   CloudFront forwards only GET and HEAD requests.
+	//    * CloudFront forwards only GET and HEAD requests.
 	//
-	//   CloudFront forwards only GET, HEAD, and OPTIONS requests.
+	//    * CloudFront forwards only GET, HEAD, and OPTIONS requests.
 	//
-	//   CloudFront forwards GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE requests.
+	//    * CloudFront forwards GET, HEAD, OPTIONS, PUT, PATCH, POST, and DELETE
+	//    requests.
 	//
-	//   If you pick the third choice, you may need to restrict access to your
-	// Amazon S3 bucket or to your custom origin so users can't perform operations
-	// that you don't want them to. For example, you might not want users to have
-	// permissions to delete objects from your origin.
+	// If you pick the third choice, you may need to restrict access to your Amazon
+	// S3 bucket or to your custom origin so users can't perform operations that
+	// you don't want them to. For example, you might not want users to have permissions
+	// to delete objects from your origin.
 	AllowedMethods *AllowedMethods `type:"structure"`
 
 	// Whether you want CloudFront to automatically compress certain files for this
@@ -3889,20 +3895,20 @@ type DefaultCacheBehavior struct {
 	// by TargetOriginId when a request matches the path pattern in PathPattern.
 	// You can specify the following options:
 	//
-	//    allow-all: Viewers can use HTTP or HTTPS.
+	//    * allow-all: Viewers can use HTTP or HTTPS.
 	//
-	//    redirect-to-https: If a viewer submits an HTTP request, CloudFront returns
-	// an HTTP status code of 301 (Moved Permanently) to the viewer along with the
-	// HTTPS URL. The viewer then resubmits the request using the new URL.
+	//    * redirect-to-https: If a viewer submits an HTTP request, CloudFront returns
+	//    an HTTP status code of 301 (Moved Permanently) to the viewer along with
+	//    the HTTPS URL. The viewer then resubmits the request using the new URL.
 	//
-	//    https-only: If a viewer sends an HTTP request, CloudFront returns an
-	// HTTP status code of 403 (Forbidden).
+	//    * https-only: If a viewer sends an HTTP request, CloudFront returns an
+	//    HTTP status code of 403 (Forbidden).
 	//
-	//   For more information about requiring the HTTPS protocol, see Using an
-	// HTTPS Connection to Access Your Objects (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
+	// For more information about requiring the HTTPS protocol, see Using an HTTPS
+	// Connection to Access Your Objects (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
-	//  The only way to guarantee that viewers retrieve an object that was fetched
+	// The only way to guarantee that viewers retrieve an object that was fetched
 	// from the origin using HTTPS is never to use any other protocol to fetch the
 	// object. If you have recently changed from HTTP to HTTPS, we recommend that
 	// you clear your objects' cache because cached objects are protocol agnostic.
@@ -4020,36 +4026,36 @@ func (s DeleteCloudFrontOriginAccessIdentityOutput) GoString() string {
 // This action deletes a web distribution. To delete a web distribution using
 // the CloudFront API, perform the following steps.
 //
-//  To delete a web distribution using the CloudFront API:
+// To delete a web distribution using the CloudFront API:
 //
-//   Disable the web distribution
+// Disable the web distribution
 //
-//   Submit a GET Distribution Config request to get the current configuration
+// Submit a GET Distribution Config request to get the current configuration
 // and the Etag header for the distribution.
 //
-//   Update the XML document that was returned in the response to your GET
-// Distribution Config request to change the value of Enabled to false.
+// Update the XML document that was returned in the response to your GET Distribution
+// Config request to change the value of Enabled to false.
 //
-//   Submit a PUT Distribution Config request to update the configuration for
+// Submit a PUT Distribution Config request to update the configuration for
 // your distribution. In the request body, include the XML document that you
 // updated in Step 3. Set the value of the HTTP If-Match header to the value
 // of the ETag header that CloudFront returned when you submitted the GET Distribution
 // Config request in Step 2.
 //
-//   Review the response to the PUT Distribution Config request to confirm
-// that the distribution was successfully disabled.
+// Review the response to the PUT Distribution Config request to confirm that
+// the distribution was successfully disabled.
 //
-//   Submit a GET Distribution request to confirm that your changes have propagated.
+// Submit a GET Distribution request to confirm that your changes have propagated.
 // When propagation is complete, the value of Status is Deployed.
 //
-//   Submit a DELETE Distribution request. Set the value of the HTTP If-Match
+// Submit a DELETE Distribution request. Set the value of the HTTP If-Match
 // header to the value of the ETag header that CloudFront returned when you
 // submitted the GET Distribution Config request in Step 6.
 //
-//   Review the response to your DELETE Distribution request to confirm that
-// the distribution was successfully deleted.
+// Review the response to your DELETE Distribution request to confirm that the
+// distribution was successfully deleted.
 //
-//   For information about deleting a distribution using the CloudFront console,
+// For information about deleting a distribution using the CloudFront console,
 // see Deleting a Distribution (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html)
 // in the Amazon CloudFront Developer Guide.
 type DeleteDistributionInput struct {
@@ -4236,15 +4242,14 @@ type DistributionConfig struct {
 	// If the value of CallerReference is new (regardless of the content of the
 	// DistributionConfig object), CloudFront creates a new distribution.
 	//
-	// If CallerReference is a value you already sent in a previous request to
-	// create a distribution, and if the content of the DistributionConfig is identical
+	// If CallerReference is a value you already sent in a previous request to create
+	// a distribution, and if the content of the DistributionConfig is identical
 	// to the original request (ignoring white space), CloudFront returns the same
 	// the response that it returned to the original request.
 	//
-	// If CallerReference is a value you already sent in a previous request to
-	// create a distribution but the content of the DistributionConfig is different
-	// from the original request, CloudFront returns a DistributionAlreadyExists
-	// error.
+	// If CallerReference is a value you already sent in a previous request to create
+	// a distribution but the content of the DistributionConfig is different from
+	// the original request, CloudFront returns a DistributionAlreadyExists error.
 	//
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
@@ -4264,12 +4269,12 @@ type DistributionConfig struct {
 
 	// A complex type that controls the following:
 	//
-	//   Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
-	// with custom error messages before returning the response to the viewer.
+	//    * Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
+	//    with custom error messages before returning the response to the viewer.
 	//
-	//   How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
+	//    * How long CloudFront caches HTTP status codes in the 4xx and 5xx range.
 	//
-	//   For more information about custom error pages, see Customizing Error Responses
+	// For more information about custom error pages, see Customizing Error Responses
 	// (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/custom-error-pages.html)
 	// in the Amazon CloudFront Developer Guide.
 	CustomErrorResponses *CustomErrorResponses `type:"structure"`
@@ -4292,8 +4297,8 @@ type DistributionConfig struct {
 	// If you don't want to specify a default root object when you create a distribution,
 	// include an empty DefaultRootObject element.
 	//
-	// To delete the default root object from an existing distribution, update
-	// the distribution configuration and include an empty DefaultRootObject element.
+	// To delete the default root object from an existing distribution, update the
+	// distribution configuration and include an empty DefaultRootObject element.
 	//
 	// To replace the default root object, update the distribution configuration
 	// and specify the new object.
@@ -4306,9 +4311,9 @@ type DistributionConfig struct {
 	// Specifies whether you want CloudFront to save access logs to an Amazon S3
 	// bucket.
 	//
-	// If you do not want to enable logging when you create a distribution, or
-	// if you want to disable logging for an existing distribution, specify false
-	// for Enabled, and specify empty Bucket and Prefix elements.
+	// If you do not want to enable logging when you create a distribution, or if
+	// you want to disable logging for an existing distribution, specify false for
+	// Enabled, and specify empty Bucket and Prefix elements.
 	//
 	// If you specify false for Enabled but you specify values for Bucket and Prefix,
 	// the values are automatically deleted.
@@ -4349,18 +4354,18 @@ type DistributionConfig struct {
 	// to your CloudFront distribution, you need to create a second alias resource
 	// record set when both of the following are true:
 	//
-	//   You enable IPv6 for the distribution
+	//    * You enable IPv6 for the distribution
 	//
-	//   You're using alternate domain names in the URLs for your objects
+	//    * You're using alternate domain names in the URLs for your objects
 	//
-	//   For more information, see Routing Traffic to an Amazon CloudFront Web
-	// Distribution by Using Your Domain Name (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html)
+	// For more information, see Routing Traffic to an Amazon CloudFront Web Distribution
+	// by Using Your Domain Name (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html)
 	// in the Amazon Route 53 Developer Guide.
 	//
-	// If you created a CNAME resource record set, either with Amazon Route 53
-	// or with another DNS service, you don't need to make any changes. A CNAME
-	// record will route traffic to your distribution regardless of the IP address
-	// format of the viewer request.
+	// If you created a CNAME resource record set, either with Amazon Route 53 or
+	// with another DNS service, you don't need to make any changes. A CNAME record
+	// will route traffic to your distribution regardless of the IP address format
+	// of the viewer request.
 	IsIPV6Enabled *bool `type:"boolean"`
 
 	// A complex type that controls whether access logs are written for the distribution.
@@ -4397,15 +4402,16 @@ type DistributionConfig struct {
 
 	// A complex type that specifies the following:
 	//
-	//   Which SSL/TLS certificate to use when viewers request objects using HTTPS
+	//    * Which SSL/TLS certificate to use when viewers request objects using
+	//    HTTPS
 	//
-	//   Whether you want CloudFront to use dedicated IP addresses or SNI when
-	// you're using alternate domain names in your object names
+	//    * Whether you want CloudFront to use dedicated IP addresses or SNI when
+	//    you're using alternate domain names in your object names
 	//
-	//   The minimum protocol version that you want CloudFront to use when communicating
-	// with viewers
+	//    * The minimum protocol version that you want CloudFront to use when communicating
+	//    with viewers
 	//
-	//   For more information, see Using an HTTPS Connection to Access Your Objects
+	// For more information, see Using an HTTPS Connection to Access Your Objects
 	// (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
 	// in the Amazon Amazon CloudFront Developer Guide.
 	ViewerCertificate *ViewerCertificate `type:"structure"`
@@ -4686,15 +4692,16 @@ type DistributionSummary struct {
 
 	// A complex type that specifies the following:
 	//
-	//   Which SSL/TLS certificate to use when viewers request objects using HTTPS
+	//    * Which SSL/TLS certificate to use when viewers request objects using
+	//    HTTPS
 	//
-	//   Whether you want CloudFront to use dedicated IP addresses or SNI when
-	// you're using alternate domain names in your object names
+	//    * Whether you want CloudFront to use dedicated IP addresses or SNI when
+	//    you're using alternate domain names in your object names
 	//
-	//   The minimum protocol version that you want CloudFront to use when communicating
-	// with viewers
+	//    * The minimum protocol version that you want CloudFront to use when communicating
+	//    with viewers
 	//
-	//   For more information, see Using an HTTPS Connection to Access Your Objects
+	// For more information, see Using an HTTPS Connection to Access Your Objects
 	// (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
 	// in the Amazon Amazon CloudFront Developer Guide.
 	//
@@ -4820,9 +4827,9 @@ type GeoRestriction struct {
 	// that you want to include in your blacklist or whitelist. Include one Location
 	// element for each country.
 	//
-	// CloudFront and MaxMind both use ISO 3166 country codes. For the current
-	// list of countries and the corresponding codes, see ISO 3166-1-alpha-2 code
-	// on the International Organization for Standardization website. You can also
+	// CloudFront and MaxMind both use ISO 3166 country codes. For the current list
+	// of countries and the corresponding codes, see ISO 3166-1-alpha-2 code on
+	// the International Organization for Standardization website. You can also
 	// refer to the country list in the CloudFront console, which includes both
 	// country names and codes.
 	Items []*string `locationNameList:"Location" type:"list"`
@@ -4837,14 +4844,14 @@ type GeoRestriction struct {
 	// The method that you want to use to restrict distribution of your content
 	// by country:
 	//
-	//    none: No geo restriction is enabled, meaning access to content is not
-	// restricted by client geo location.
+	//    * none: No geo restriction is enabled, meaning access to content is not
+	//    restricted by client geo location.
 	//
-	//    blacklist: The Location elements specify the countries in which you do
-	// not want CloudFront to distribute your content.
+	//    * blacklist: The Location elements specify the countries in which you
+	//    do not want CloudFront to distribute your content.
 	//
-	//    whitelist: The Location elements specify the countries in which you want
-	// CloudFront to distribute your content.
+	//    * whitelist: The Location elements specify the countries in which you
+	//    want CloudFront to distribute your content.
 	//
 	// RestrictionType is a required field
 	RestrictionType *string `type:"string" required:"true" enum:"GeoRestrictionType"`
@@ -5287,22 +5294,23 @@ type Headers struct {
 	// origin for this cache behavior. You can configure each cache behavior in
 	// a web distribution to do one of the following:
 	//
-	//    Forward all headers to your origin: Specify 1 for Quantity and * for
-	// Name.
+	//    * Forward all headers to your origin: Specify 1 for Quantity and * for
+	//    Name.
 	//
-	//  If you configure CloudFront to forward all headers to your origin, CloudFront
-	// doesn't cache the objects associated with this cache behavior. Instead, it
-	// sends every request to the origin.
+	// If you configure CloudFront to forward all headers to your origin, CloudFront
+	//    doesn't cache the objects associated with this cache behavior. Instead,
+	//    it sends every request to the origin.
 	//
-	//     Forward a whitelist of headers you specify: Specify the number of headers
-	// that you want to forward, and specify the header names in Name elements.
-	// CloudFront caches your objects based on the values in all of the specified
-	// headers. CloudFront also forwards the headers that it forwards by default,
-	// but it caches your objects based only on the headers that you specify.
+	//    * Forward a whitelist of headers you specify: Specify the number of headers
+	//    that you want to forward, and specify the header names in Name elements.
+	//    CloudFront caches your objects based on the values in all of the specified
+	//    headers. CloudFront also forwards the headers that it forwards by default,
+	//    but it caches your objects based only on the headers that you specify.
 	//
-	//    Forward only the default headers: Specify 0 for Quantity and omit Items.
-	// In this configuration, CloudFront doesn't cache based on the values in the
-	// request headers.
+	//
+	//    * Forward only the default headers: Specify 0 for Quantity and omit Items.
+	//    In this configuration, CloudFront doesn't cache based on the values in
+	//    the request headers.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -5940,25 +5948,25 @@ type Origin struct {
 	//
 	// Constraints for Amazon S3 origins:
 	//
-	//   If you configured Amazon S3 Transfer Acceleration for your bucket, do
-	// not specify the s3-accelerate endpoint for DomainName.
+	//    * If you configured Amazon S3 Transfer Acceleration for your bucket, do
+	//    not specify the s3-accelerate endpoint for DomainName.
 	//
-	//   The bucket name must be between 3 and 63 characters long (inclusive).
+	//    * The bucket name must be between 3 and 63 characters long (inclusive).
 	//
-	//   The bucket name must contain only lowercase characters, numbers, periods,
-	// underscores, and dashes.
+	//    * The bucket name must contain only lowercase characters, numbers, periods,
+	//    underscores, and dashes.
 	//
-	//   The bucket name must not contain adjacent periods.
+	//    * The bucket name must not contain adjacent periods.
 	//
-	//    Custom Origins: The DNS domain name for the HTTP server from which you
-	// want CloudFront to get objects for this origin, for example, www.example.com.
+	// Custom Origins: The DNS domain name for the HTTP server from which you want
+	// CloudFront to get objects for this origin, for example, www.example.com.
 	//
 	// Constraints for custom origins:
 	//
-	//    DomainName must be a valid DNS name that contains only a-z, A-Z, 0-9,
-	// dot (.), hyphen (-), or underscore (_) characters.
+	//    * DomainName must be a valid DNS name that contains only a-z, A-Z, 0-9,
+	//    dot (.), hyphen (-), or underscore (_) characters.
 	//
-	//   The name cannot exceed 128 characters.
+	//    * The name cannot exceed 128 characters.
 	//
 	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
@@ -5985,17 +5993,17 @@ type Origin struct {
 	//
 	// For example, suppose you've specified the following values for your distribution:
 	//
-	//    DomainName: An Amazon S3 bucket named myawsbucket.
+	//    * DomainName: An Amazon S3 bucket named myawsbucket.
 	//
-	//    OriginPath: /production
+	//    * OriginPath: /production
 	//
-	//    CNAME: example.com
+	//    * CNAME: example.com
 	//
-	//   When a user enters example.com/index.html in a browser, CloudFront sends
+	// When a user enters example.com/index.html in a browser, CloudFront sends
 	// a request to Amazon S3 for myawsbucket/production/index.html.
 	//
-	// When a user enters example.com/acme/index.html in a browser, CloudFront
-	// sends a request to Amazon S3 for myawsbucket/production/acme/index.html.
+	// When a user enters example.com/acme/index.html in a browser, CloudFront sends
+	// a request to Amazon S3 for myawsbucket/production/acme/index.html.
 	OriginPath *string `type:"string"`
 
 	// A complex type that contains information about the Amazon S3 origin. If the
@@ -6542,7 +6550,7 @@ type S3OriginConfig struct {
 	//
 	// origin-access-identity/CloudFront/ID-of-origin-access-identity
 	//
-	// where  ID-of-origin-access-identity  is the value that CloudFront returned
+	// where ID-of-origin-access-identity is the value that CloudFront returned
 	// in the ID element when you created the origin access identity.
 	//
 	// If you want viewers to be able to access objects using either the CloudFront
@@ -6594,9 +6602,9 @@ type Signer struct {
 	// An AWS account that is included in the TrustedSigners complex type for this
 	// RTMP distribution. Valid values include:
 	//
-	//    self, which is the AWS account used to create the distribution.
+	//    * self, which is the AWS account used to create the distribution.
 	//
-	//   An AWS account number.
+	//    * An AWS account number.
 	AwsAccountNumber *string `type:"string"`
 
 	// A complex type that lists the active CloudFront key pairs, if any, that are
@@ -7204,8 +7212,8 @@ func (s *Tags) Validate() error {
 // true (if it's currently false), change Quantity as applicable, and specify
 // all of the trusted signers that you want to include in the updated distribution.
 //
-// For more information about updating the distribution configuration, see
-// DistributionConfig .
+// For more information about updating the distribution configuration, see DistributionConfig
+// .
 type TrustedSigners struct {
 	_ struct{} `type:"structure"`
 
@@ -7521,15 +7529,16 @@ func (s UpdateStreamingDistributionOutput) GoString() string {
 
 // A complex type that specifies the following:
 //
-//   Which SSL/TLS certificate to use when viewers request objects using HTTPS
+//    * Which SSL/TLS certificate to use when viewers request objects using
+//    HTTPS
 //
-//   Whether you want CloudFront to use dedicated IP addresses or SNI when
-// you're using alternate domain names in your object names
+//    * Whether you want CloudFront to use dedicated IP addresses or SNI when
+//    you're using alternate domain names in your object names
 //
-//   The minimum protocol version that you want CloudFront to use when communicating
-// with viewers
+//    * The minimum protocol version that you want CloudFront to use when communicating
+//    with viewers
 //
-//   For more information, see Using an HTTPS Connection to Access Your Objects
+// For more information, see Using an HTTPS Connection to Access Your Objects
 // (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html)
 // in the Amazon Amazon CloudFront Developer Guide.
 type ViewerCertificate struct {
@@ -7543,83 +7552,83 @@ type ViewerCertificate struct {
 
 	// Include one of these values to specify the following:
 	//
-	//   Whether you want viewers to use HTTP or HTTPS to request your objects.
+	//    * Whether you want viewers to use HTTP or HTTPS to request your objects.
 	//
-	//   If you want viewers to use HTTPS, whether you're using an alternate domain
-	// name such as example.com or the CloudFront domain name for your distribution,
-	// such as d111111abcdef8.cloudfront.net.
+	//    * If you want viewers to use HTTPS, whether you're using an alternate
+	//    domain name such as example.com or the CloudFront domain name for your
+	//    distribution, such as d111111abcdef8.cloudfront.net.
 	//
-	//   If you're using an alternate domain name, whether AWS Certificate Manager
-	// (ACM) provided the certificate, or you purchased a certificate from a third-party
-	// certificate authority and imported it into ACM or uploaded it to the IAM
-	// certificate store.
+	//    * If you're using an alternate domain name, whether AWS Certificate Manager
+	//    (ACM) provided the certificate, or you purchased a certificate from a
+	//    third-party certificate authority and imported it into ACM or uploaded
+	//    it to the IAM certificate store.
 	//
-	//   You must specify one (and only one) of the three values. Do not specify
-	// false for CloudFrontDefaultCertificate.
+	// You must specify one (and only one) of the three values. Do not specify false
+	// for CloudFrontDefaultCertificate.
 	//
-	//  If you want viewers to use HTTP to request your objects: Specify the following
+	// If you want viewers to use HTTP to request your objects: Specify the following
 	// value:
 	//
-	//  <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>
+	// <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>
 	//
-	// In addition, specify allow-all for ViewerProtocolPolicy for all of your
-	// cache behaviors.
+	// In addition, specify allow-all for ViewerProtocolPolicy for all of your cache
+	// behaviors.
 	//
-	//  If you want viewers to use HTTPS to request your objects: Choose the type
+	// If you want viewers to use HTTPS to request your objects: Choose the type
 	// of certificate that you want to use based on whether you're using an alternate
 	// domain name for your objects or the CloudFront domain name:
 	//
-	//    If you're using an alternate domain name, such as example.com: Specify
-	// one of the following values, depending on whether ACM provided your certificate
-	// or you purchased your certificate from third-party certificate authority:
+	//    * If you're using an alternate domain name, such as example.com: Specify
+	//    one of the following values, depending on whether ACM provided your certificate
+	//    or you purchased your certificate from third-party certificate authority:
 	//
-	//    <ACMCertificateArn>ARN for ACM SSL/TLS certificate<ACMCertificateArn>
-	// where ARN for ACM SSL/TLS certificate is the ARN for the ACM SSL/TLS certificate
-	// that you want to use for this distribution.
+	// <ACMCertificateArn>ARN for ACM SSL/TLS certificate<ACMCertificateArn> where
+	//    ARN for ACM SSL/TLS certificate is the ARN for the ACM SSL/TLS certificate
+	//    that you want to use for this distribution.
 	//
-	//    <IAMCertificateId>IAM certificate ID<IAMCertificateId> where IAM certificate
-	// ID is the ID that IAM returned when you added the certificate to the IAM
-	// certificate store.
+	// <IAMCertificateId>IAM certificate ID<IAMCertificateId> where IAM certificate
+	//    ID is the ID that IAM returned when you added the certificate to the IAM
+	//    certificate store.
 	//
-	//   If you specify ACMCertificateArn or IAMCertificateId, you must also specify
-	// a value for SSLSupportMethod.
+	// If you specify ACMCertificateArn or IAMCertificateId, you must also specify
+	//    a value for SSLSupportMethod.
 	//
 	// If you choose to use an ACM certificate or a certificate in the IAM certificate
-	// store, we recommend that you use only an alternate domain name in your object
-	// URLs (https://example.com/logo.jpg). If you use the domain name that is associated
-	// with your CloudFront distribution (https://d111111abcdef8.cloudfront.net/logo.jpg)
-	// and the viewer supports SNI, then CloudFront behaves normally. However, if
-	// the browser does not support SNI, the user's experience depends on the value
-	// that you choose for SSLSupportMethod:
+	//    store, we recommend that you use only an alternate domain name in your
+	//    object URLs (https://example.com/logo.jpg). If you use the domain name
+	//    that is associated with your CloudFront distribution (https://d111111abcdef8.cloudfront.net/logo.jpg)
+	//    and the viewer supports SNI, then CloudFront behaves normally. However,
+	//    if the browser does not support SNI, the user's experience depends on
+	//    the value that you choose for SSLSupportMethod:
 	//
-	//    vip: The viewer displays a warning because there is a mismatch between
-	// the CloudFront domain name and the domain name in your SSL/TLS certificate.
+	// vip: The viewer displays a warning because there is a mismatch between the
+	//    CloudFront domain name and the domain name in your SSL/TLS certificate.
 	//
-	//    sni-only: CloudFront drops the connection with the browser without returning
-	// the object.
+	// sni-only: CloudFront drops the connection with the browser without returning
+	//    the object.
 	//
-	//      If you're using the CloudFront domain name for your distribution, such
-	// as d111111abcdef8.cloudfront.net : Specify the following value:
+	//    * If you're using the CloudFront domain name for your distribution, such
+	//    as d111111abcdef8.cloudfront.net: Specify the following value:
 	//
-	//   <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>
+	//  <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>
 	//
 	// If you want viewers to use HTTPS, you must also specify one of the following
-	// values in your cache behaviors:
+	//    values in your cache behaviors:
 	//
-	//     <ViewerProtocolPolicy>https-only<ViewerProtocolPolicy>
+	//  <ViewerProtocolPolicy>https-only<ViewerProtocolPolicy>
 	//
-	//     <ViewerProtocolPolicy>redirect-to-https<ViewerProtocolPolicy>
+	//  <ViewerProtocolPolicy>redirect-to-https<ViewerProtocolPolicy>
 	//
-	//   You can also optionally require that CloudFront use HTTPS to communicate
-	// with your origin by specifying one of the following values for the applicable
-	// origins:
+	// You can also optionally require that CloudFront use HTTPS to communicate
+	//    with your origin by specifying one of the following values for the applicable
+	//    origins:
 	//
-	//     <OriginProtocolPolicy>https-only<OriginProtocolPolicy>
+	//  <OriginProtocolPolicy>https-only<OriginProtocolPolicy>
 	//
-	//     <OriginProtocolPolicy>match-viewer<OriginProtocolPolicy>
+	//  <OriginProtocolPolicy>match-viewer<OriginProtocolPolicy>
 	//
-	//   For more information, see Using Alternate Domain Names and HTTPS (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html#CNAMEsAndHTTPS)
-	// in the Amazon CloudFront Developer Guide.
+	// For more information, see Using Alternate Domain Names and HTTPS (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html#CNAMEsAndHTTPS)
+	//    in the Amazon CloudFront Developer Guide.
 	Certificate *string `deprecated:"true" type:"string"`
 
 	// This field is deprecated. You can use one of the following: [ACMCertificateArn,
@@ -7645,39 +7654,39 @@ type ViewerCertificate struct {
 	// we recommend that you specify SSLv3 only if your users are using browsers
 	// or devices that don't support TLSv1. Note the following:
 	//
-	//   If you specify <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>,
-	// the minimum SSL protocol version is TLSv1 and can't be changed.
+	//    * If you specify <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>,
+	//    the minimum SSL protocol version is TLSv1 and can't be changed.
 	//
-	//   If you're using a custom certificate (if you specify a value for ACMCertificateArn
-	// or for IAMCertificateId) and if you're using SNI (if you specify sni-only
-	// for SSLSupportMethod), you must specify TLSv1 for MinimumProtocolVersion.
+	//    * If you're using a custom certificate (if you specify a value for ACMCertificateArn
+	//    or for IAMCertificateId) and if you're using SNI (if you specify sni-only
+	//    for SSLSupportMethod), you must specify TLSv1 for MinimumProtocolVersion.
 	MinimumProtocolVersion *string `type:"string" enum:"MinimumProtocolVersion"`
 
 	// If you specify a value for ACMCertificateArn or for IAMCertificateId, you
 	// must also specify how you want CloudFront to serve HTTPS requests: using
 	// a method that works for all clients or one that works for most clients:
 	//
-	//    vip: CloudFront uses dedicated IP addresses for your content and can
-	// respond to HTTPS requests from any viewer. However, you must request permission
-	// to use this feature, and you incur additional monthly charges.
+	//    * vip: CloudFront uses dedicated IP addresses for your content and can
+	//    respond to HTTPS requests from any viewer. However, you must request permission
+	//    to use this feature, and you incur additional monthly charges.
 	//
-	//    sni-only: CloudFront can respond to HTTPS requests from viewers that
-	// support Server Name Indication (SNI). All modern browsers support SNI, but
-	// some browsers still in use don't support SNI. If some of your users' browsers
-	// don't support SNI, we recommend that you do one of the following:
+	//    * sni-only: CloudFront can respond to HTTPS requests from viewers that
+	//    support Server Name Indication (SNI). All modern browsers support SNI,
+	//    but some browsers still in use don't support SNI. If some of your users'
+	//    browsers don't support SNI, we recommend that you do one of the following:
 	//
-	//   Use the vip option (dedicated IP addresses) instead of sni-only.
+	// Use the vip option (dedicated IP addresses) instead of sni-only.
 	//
-	//   Use the CloudFront SSL/TLS certificate instead of a custom certificate.
-	// This requires that you use the CloudFront domain name of your distribution
-	// in the URLs for your objects, for example, https://d111111abcdef8.cloudfront.net/logo.png.
+	// Use the CloudFront SSL/TLS certificate instead of a custom certificate. This
+	//    requires that you use the CloudFront domain name of your distribution
+	//    in the URLs for your objects, for example, https://d111111abcdef8.cloudfront.net/logo.png.
 	//
-	//   If you can control which browser your users use, upgrade the browser to
-	// one that supports SNI.
+	// If you can control which browser your users use, upgrade the browser to one
+	//    that supports SNI.
 	//
-	//   Use HTTP instead of HTTPS.
+	// Use HTTP instead of HTTPS.
 	//
-	//     Do not specify a value for SSLSupportMethod if you specified <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>.
+	// Do not specify a value for SSLSupportMethod if you specified <CloudFrontDefaultCertificate>true<CloudFrontDefaultCertificate>.
 	//
 	// For more information, see Using Alternate Domain Names and HTTPS (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/SecureConnections.html#CNAMEsAndHTTPS.html)
 	// in the Amazon CloudFront Developer Guide.

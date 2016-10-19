@@ -22,39 +22,39 @@ import (
 //
 // The following list describes the AWS Support case management operations:
 //
-//    Service names, issue categories, and available severity levels. The DescribeServices
-// and DescribeSeverityLevels operations return AWS service names, service codes,
-// service categories, and problem severity levels. You use these values when
-// you call the CreateCase operation.
+//    * Service names, issue categories, and available severity levels. The
+//    DescribeServices and DescribeSeverityLevels operations return AWS service
+//    names, service codes, service categories, and problem severity levels.
+//    You use these values when you call the CreateCase operation.
 //
-//    Case creation, case details, and case resolution. The CreateCase, DescribeCases,
-// DescribeAttachment, and ResolveCase operations create AWS Support cases,
-// retrieve information about cases, and resolve cases.
+//    * Case creation, case details, and case resolution. The CreateCase, DescribeCases,
+//    DescribeAttachment, and ResolveCase operations create AWS Support cases,
+//    retrieve information about cases, and resolve cases.
 //
-//    Case communication. The DescribeCommunications, AddCommunicationToCase,
-// and AddAttachmentsToSet operations retrieve and add communications and attachments
-// to AWS Support cases.
+//    * Case communication. The DescribeCommunications, AddCommunicationToCase,
+//    and AddAttachmentsToSet operations retrieve and add communications and
+//    attachments to AWS Support cases.
 //
-//   The following list describes the operations available from the AWS Support
+// The following list describes the operations available from the AWS Support
 // service for Trusted Advisor:
 //
-//    DescribeTrustedAdvisorChecks returns the list of checks that run against
-// your AWS resources.
+//    * DescribeTrustedAdvisorChecks returns the list of checks that run against
+//    your AWS resources.
 //
-//   Using the checkId for a specific check returned by DescribeTrustedAdvisorChecks,
-// you can call DescribeTrustedAdvisorCheckResult to obtain the results for
-// the check you specified.
+//    * Using the checkId for a specific check returned by DescribeTrustedAdvisorChecks,
+//    you can call DescribeTrustedAdvisorCheckResult to obtain the results for
+//    the check you specified.
 //
-//    DescribeTrustedAdvisorCheckSummaries returns summarized results for one
-// or more Trusted Advisor checks.
+//    * DescribeTrustedAdvisorCheckSummaries returns summarized results for
+//    one or more Trusted Advisor checks.
 //
-//    RefreshTrustedAdvisorCheck requests that Trusted Advisor rerun a specified
-// check.
+//    * RefreshTrustedAdvisorCheck requests that Trusted Advisor rerun a specified
+//    check.
 //
-//    DescribeTrustedAdvisorCheckRefreshStatuses reports the refresh status
-// of one or more checks.
+//    * DescribeTrustedAdvisorCheckRefreshStatuses reports the refresh status
+//    of one or more checks.
 //
-//   For authentication of requests, AWS Support uses Signature Version 4 Signing
+// For authentication of requests, AWS Support uses Signature Version 4 Signing
 // Process (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // See About the AWS Support API (http://docs.aws.amazon.com/awssupport/latest/user/Welcome.html)
