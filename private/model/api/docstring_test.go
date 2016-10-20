@@ -75,7 +75,7 @@ func TestParagraph(t *testing.T) {
 
 func TestComplexListParagraphCode(t *testing.T) {
 	doc := "<ul> <li><p><code>FOO</code> Bar</p></li><li><p><code>Xyz</code> ABC</p></li></ul>"
-	expected := "//    * FOO Bar\n//    * Xyz ABC\n"
+	expected := "//    * FOO Bar\n// \n//    * Xyz ABC\n"
 	doc = docstring(doc)
 
 	assert.Equal(t, expected, doc)
