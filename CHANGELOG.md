@@ -1,3 +1,11 @@
+Release v1.4.20 (2016-10-20)
+===
+
+Service Client Updates
+---
+* `service/budgets`: Adds new service, AWS Budgets.
+* `service/waf`: Updates service documentation.
+
 Release v1.4.19 (2016-10-18)
 ===
 
