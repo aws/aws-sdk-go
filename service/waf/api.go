@@ -3141,27 +3141,17 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 // change an IPSetDescriptor object, you delete the existing object and add
 // a new one.
 //
-//   The IP address version, IPv4 or IPv6.
+//   The IP address version, IPv4.
 //
 //   The IP address in CIDR notation, for example, 192.0.2.0/24 (for the range
 // of IP addresses from 192.0.2.0 to 192.0.2.255) or 192.0.2.44/32 (for the
 // individual IP address 192.0.2.44).
 //
-//   AWS WAF supports /8, /16, /24, and /32 IP address ranges for IPv4, and
-// /24, /32, /48, /56, /64 and /128 for IPv6. For more information about CIDR
-// notation, see the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+//   AWS WAF supports /8, /16, /24, and /32 IP address ranges. For more information
+// about CIDR notation, see the Wikipedia entry Classless Inter-Domain Routing
+// (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 //
-// IPv6 addresses can be represented using any of the following formats:
-//
-//   1111:0000:0000:0000:0000:0000:0000:0111/128
-//
-//   1111:0:0:0:0:0:0:0111/128
-//
-//   1111::0111/128
-//
-//   1111::111/128
-//
-//   You use an IPSet to specify which web requests you want to allow or block
+// You use an IPSet to specify which web requests you want to allow or block
 // based on the IP addresses that the requests originated from. For example,
 // if you're receiving a lot of requests from one or a small number of IP addresses
 // and you want to block the requests, you can create an IPSet that specifies
@@ -6375,20 +6365,16 @@ func (s HTTPRequest) GoString() string {
 }
 
 // Contains one or more IP addresses or blocks of IP addresses specified in
-// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports /8, /16,
-// /24, and /32 IP address ranges for IPv4, and /24, /32, /48, /56, /64 and
-// /128 for IPv6.
-//
-// To specify an individual IP address, you specify the four-part IP address
-// followed by a /32, for example, 192.0.2.0/31. To block a range of IP addresses,
-// you can specify a /128, /64, /56, /48, /32, /24, /16, or /8 CIDR. For more
-// information about CIDR notation, see the Wikipedia entry Classless Inter-Domain
-// Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+// Classless Inter-Domain Routing (CIDR) notation. To specify an individual
+// IP address, you specify the four-part IP address followed by a /32, for example,
+// 192.0.2.0/31. To block a range of IP addresses, you can specify a /24, a
+// /16, or a /8 CIDR. For more information about CIDR notation, perform an Internet
+// search on cidr notation.
 type IPSet struct {
 	_ struct{} `type:"structure"`
 
-	// The IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation)
-	// that web requests originate from. If the WebACL is associated with a CloudFront
+	// The IP address type (IPV4) and the IP address range (in CIDR notation) that
+	// web requests originate from. If the WebACL is associated with a CloudFront
 	// distribution, this is the value of one of the following fields in CloudFront
 	// access logs:
 	//
@@ -6426,12 +6412,12 @@ func (s IPSet) GoString() string {
 	return s.String()
 }
 
-// Specifies the IP address type (IPV4 or IPV6) and the IP address range (in
-// CIDR format) that web requests originate from.
+// Specifies the IP address type (IPV4) and the IP address range (in CIDR format)
+// that web requests originate from.
 type IPSetDescriptor struct {
 	_ struct{} `type:"structure"`
 
-	// Specify IPV4 or IPV6.
+	// Specify IPV4.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"IPSetDescriptorType"`
@@ -6444,17 +6430,10 @@ type IPSetDescriptor struct {
 	//   To configure AWS WAF to allow, block, or count requests that originated
 	// from IP addresses from 192.0.2.0 to 192.0.2.255, specify 192.0.2.0/24.
 	//
-	//   For more information about CIDR notation, see the Wikipedia entry Classless
+	//   AWS WAF supports only /8, /16, /24, and /32 IP addresses.
+	//
+	// For more information about CIDR notation, see the Wikipedia entry Classless
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
-	//
-	// Specify an IPv6 address by using CIDR notation. For example:
-	//
-	//   To configure AWS WAF to allow, block, or count requests that originated
-	// from the IP address 1111:0000:0000:0000:0000:0000:0000:0111, specify 1111:0000:0000:0000:0000:0000:0000:0111/128.
-	//
-	//   To configure AWS WAF to allow, block, or count requests that originated
-	// from IP addresses 1111:0000:0000:0000:0000:0000:0000:0000 to 1111:0000:0000:0000:ffff:ffff:ffff:ffff,
-	// specify 1111:0000:0000:0000:0000:0000:0000:0000/64.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -6522,8 +6501,8 @@ type IPSetUpdate struct {
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
-	// The IP address type (IPV4 or IPV6) and the IP address range (in CIDR notation)
-	// that web requests originate from.
+	// The IP address type (IPV4) and the IP address range (in CIDR notation) that
+	// web requests originate from.
 	//
 	// IPSetDescriptor is a required field
 	IPSetDescriptor *IPSetDescriptor `type:"structure" required:"true"`
