@@ -353,7 +353,9 @@ func findScopes(tokens []tagInfo) [][]tagInfo {
 	scopes := [][]tagInfo{}
 	for _, token := range tokens {
 		// we will clear empty tagged tokens from the array
-		if (token.txt == "" || token.txt == " ") && (token.tag == "" || token.tag == " ") {
+		txt := strings.TrimSpace(token.txt)
+		tag := strings.TrimSpace(token.tag)
+		if len(txt) == 0 && len(tag) == 0 {
 			continue
 		}
 
