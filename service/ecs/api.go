@@ -133,8 +133,8 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 //
 // Runs and maintains a desired number of tasks from a specified task definition.
 // If the number of tasks running in a service drops below desiredCount, Amazon
-// ECS spawns another instantiation of the task in the specified cluster. To
-// update an existing service, see UpdateService.
+// ECS spawns another copy of the task in the specified cluster. To update an
+// existing service, see UpdateService.
 //
 // In addition to maintaining the desired count of tasks in your service, you
 // can optionally run your service behind a load balancer. The load balancer
@@ -143,27 +143,32 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // in the Amazon EC2 Container Service Developer Guide.
 //
 // You can optionally specify a deployment configuration for your service. During
-// a deployment (which is triggered by changing the task definition of a service
-// with an UpdateService operation), the service scheduler uses the minimumHealthyPercent
-// and maximumPercent parameters to determine the deployment strategy.
+// a deployment (which is triggered by changing the task definition or the desired
+// count of a service with an UpdateService operation), the service scheduler
+// uses the minimumHealthyPercent and maximumPercent parameters to determine
+// the deployment strategy.
 //
-// If the minimumHealthyPercent is below 100%, the scheduler can ignore the
-// desiredCount temporarily during a deployment. For example, if your service
-// has a desiredCount of four tasks, a minimumHealthyPercent of 50% allows the
-// scheduler to stop two existing tasks before starting two new tasks. Tasks
-// for services that do not use a load balancer are considered healthy if they
-// are in the RUNNING state; tasks for services that do use a load balancer
-// are considered healthy if they are in the RUNNING state and the container
-// instance it is hosted on is reported as healthy by the load balancer. The
-// default value for minimumHealthyPercent is 50% in the console and 100% for
-// the AWS CLI, the AWS SDKs, and the APIs.
+// The minimumHealthyPercent represents a lower limit on the number of your
+// service's tasks that must remain in the RUNNING state during a deployment,
+// as a percentage of the desiredCount (rounded up to the nearest integer).
+// This parameter enables you to deploy without using additional cluster capacity.
+// For example, if your service has a desiredCount of four tasks and a minimumHealthyPercent
+// of 50%, the scheduler may stop two existing tasks to free up cluster capacity
+// before starting two new tasks. Tasks for services that do not use a load
+// balancer are considered healthy if they are in the RUNNING state; tasks for
+// services that do use a load balancer are considered healthy if they are in
+// the RUNNING state and the container instance it is hosted on is reported
+// as healthy by the load balancer. The default value for minimumHealthyPercent
+// is 50% in the console and 100% for the AWS CLI, the AWS SDKs, and the APIs.
 //
-// The maximumPercent parameter represents an upper limit on the number of running
-// tasks during a deployment, which enables you to define the deployment batch
-// size. For example, if your service has a desiredCount of four tasks, a maximumPercent
-// value of 200% starts four new tasks before stopping the four older tasks
-// (provided that the cluster resources required to do this are available).
-// The default value for maximumPercent is 200%.
+// The maximumPercent parameter represents an upper limit on the number of your
+// service's tasks that are allowed in the RUNNING or PENDING state during a
+// deployment, as a percentage of the desiredCount (rounded down to the nearest
+// integer). This parameter enables you to define the deployment batch size.
+// For example, if your service has a desiredCount of four tasks and a maximumPercent
+// value of 200%, the scheduler may start four new tasks before stopping the
+// four older tasks (provided that the cluster resources required to do this
+// are available). The default value for maximumPercent is 200%.
 //
 // When the service scheduler launches new tasks, it attempts to balance them
 // across the Availability Zones in your cluster with the following logic:
@@ -452,10 +457,9 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 // it does not terminate the EC2 instance; if you are finished using the instance,
 // be sure to terminate it in the Amazon EC2 console to stop billing.
 //
-// If you terminate a running container instance with a connected Amazon ECS
-// container agent, the agent automatically deregisters the instance from your
-// cluster (stopped container instances or instances with disconnected agents
-// are not automatically deregistered when terminated).
+// If you terminate a running container instance, Amazon ECS automatically deregisters
+// the instance from your cluster (stopped container instances or instances
+// with disconnected agents are not automatically deregistered when terminated).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2596,11 +2600,11 @@ type ContainerDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// The command that is passed to the container. This parameter maps to Cmd in
-	// the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the COMMAND parameter to docker run (https://docs.docker.com/reference/commandline/run/).
-	// For more information, see https://docs.docker.com/reference/builder/#cmd
-	// (https://docs.docker.com/reference/builder/#cmd).
+	// the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the COMMAND parameter to docker run (https://docs.docker.com/engine/reference/run/).
+	// For more information, see https://docs.docker.com/engine/reference/builder/#cmd
+	// (https://docs.docker.com/engine/reference/builder/#cmd).
 	Command []*string `locationName:"command" type:"list"`
 
 	// The number of cpu units reserved for the container. A container instance
@@ -2608,9 +2612,9 @@ type ContainerDefinition struct {
 	// amount of CPU to reserve for a container, and containers share unallocated
 	// CPU units with other containers on the instance with the same ratio as their
 	// allocated amount. This parameter maps to CpuShares in the Create a container
-	// (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --cpu-shares option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --cpu-shares option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	// You can determine the number of CPU units that are available per EC2 instance
 	// type by multiplying the vCPUs listed for that instance type on the Amazon
@@ -2628,7 +2632,7 @@ type ContainerDefinition struct {
 	//
 	// The Docker daemon on the container instance uses the CPU value to calculate
 	// the relative CPU share ratios for running containers. For more information,
-	// see CPU share constraint (https://docs.docker.com/reference/run/#cpu-share-constraint)
+	// see CPU share constraint (https://docs.docker.com/engine/reference/run/#cpu-share-constraint)
 	// in the Docker documentation. The minimum valid CPU share value that the Linux
 	// kernel allows is 2; however, the CPU parameter is not required, and you can
 	// use CPU values below 2 in your container definitions. For CPU values below
@@ -2645,26 +2649,26 @@ type ContainerDefinition struct {
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
 	// When this parameter is true, networking is disabled within the container.
-	// This parameter maps to NetworkDisabled in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/).
+	// This parameter maps to NetworkDisabled in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/).
 	DisableNetworking *bool `locationName:"disableNetworking" type:"boolean"`
 
 	// A list of DNS search domains that are presented to the container. This parameter
-	// maps to DnsSearch in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --dns-search option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// maps to DnsSearch in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --dns-search option to docker run (https://docs.docker.com/engine/reference/run/).
 	DnsSearchDomains []*string `locationName:"dnsSearchDomains" type:"list"`
 
 	// A list of DNS servers that are presented to the container. This parameter
-	// maps to Dns in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --dns option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// maps to Dns in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --dns option to docker run (https://docs.docker.com/engine/reference/run/).
 	DnsServers []*string `locationName:"dnsServers" type:"list"`
 
 	// A key/value map of labels to add to the container. This parameter maps to
-	// Labels in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --label option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// Labels in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --label option to docker run (https://docs.docker.com/engine/reference/run/).
 	// This parameter requires version 1.18 of the Docker Remote API or greater
 	// on your container instance. To check the Docker Remote API version on your
 	// container instance, log into your container instance and run the following
@@ -2673,9 +2677,9 @@ type ContainerDefinition struct {
 
 	// A list of strings to provide custom labels for SELinux and AppArmor multi-level
 	// security systems. This parameter maps to SecurityOpt in the Create a container
-	// (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --security-opt option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --security-opt option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	// The Amazon ECS container agent running on a container instance must register
 	// with the ECS_SELINUX_CAPABLE=true or ECS_APPARMOR_CAPABLE=true environment
@@ -2690,17 +2694,17 @@ type ContainerDefinition struct {
 	// agent or enter your commands and arguments as command array items instead.
 	//
 	// The entry point that is passed to the container. This parameter maps to Entrypoint
-	// in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --entrypoint option to docker run (https://docs.docker.com/reference/commandline/run/).
-	// For more information, see https://docs.docker.com/reference/builder/#entrypoint
-	// (https://docs.docker.com/reference/builder/#entrypoint).
+	// in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --entrypoint option to docker run (https://docs.docker.com/engine/reference/run/).
+	// For more information, see https://docs.docker.com/engine/reference/builder/#entrypoint
+	// (https://docs.docker.com/engine/reference/builder/#entrypoint).
 	EntryPoint []*string `locationName:"entryPoint" type:"list"`
 
 	// The environment variables to pass to a container. This parameter maps to
-	// Env in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --env option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// Env in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --env option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	// We do not recommend using plain text environment variables for sensitive
 	// information, such as credential data.
@@ -2722,15 +2726,15 @@ type ContainerDefinition struct {
 
 	// A list of hostnames and IP address mappings to append to the /etc/hosts file
 	// on the container. This parameter maps to ExtraHosts in the Create a container
-	// (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --add-host option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --add-host option to docker run (https://docs.docker.com/engine/reference/run/).
 	ExtraHosts []*HostEntry `locationName:"extraHosts" type:"list"`
 
 	// The hostname to use for your container. This parameter maps to Hostname in
-	// the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --hostname option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --hostname option to docker run (https://docs.docker.com/engine/reference/run/).
 	Hostname *string `locationName:"hostname" type:"string"`
 
 	// The image used to start a container. This string is passed directly to the
@@ -2738,9 +2742,9 @@ type ContainerDefinition struct {
 	// Other repositories are specified with repository-url/image:tag. Up to 255
 	// letters (uppercase and lowercase), numbers, hyphens, underscores, colons,
 	// periods, forward slashes, and number signs are allowed. This parameter maps
-	// to Image in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the IMAGE parameter of docker run (https://docs.docker.com/reference/commandline/run/).
+	// to Image in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the IMAGE parameter of docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	//    * Images in official repositories on Docker Hub use a single name (for
 	//    example, ubuntu or mongo).
@@ -2757,10 +2761,11 @@ type ContainerDefinition struct {
 	// for the link. This construct is analogous to name:alias in Docker links.
 	// Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores
 	// are allowed for each name and alias. For more information on linking Docker
-	// containers, see https://docs.docker.com/userguide/dockerlinks/ (https://docs.docker.com/userguide/dockerlinks/).
-	// This parameter maps to Links in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --link option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// containers, see https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/
+	// (https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/).
+	// This parameter maps to Links in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --link option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	// Containers that are collocated on a single container instance may be able
 	// to communicate with each other without requiring links or host port mappings.
@@ -2769,9 +2774,9 @@ type ContainerDefinition struct {
 	Links []*string `locationName:"links" type:"list"`
 
 	// The log configuration specification for the container. This parameter maps
-	// to LogConfig in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --log-driver option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// to LogConfig in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --log-driver option to docker run (https://docs.docker.com/engine/reference/run/).
 	// By default, containers use the same logging driver that the Docker daemon
 	// uses; however the container may use a different logging driver than the Docker
 	// daemon by specifying a log driver with this parameter in the container definition.
@@ -2801,9 +2806,9 @@ type ContainerDefinition struct {
 
 	// The hard limit (in MiB) of memory to present to the container. If your container
 	// attempts to exceed the memory specified here, the container is killed. This
-	// parameter maps to Memory in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --memory option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// parameter maps to Memory in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --memory option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	// You must specify a non-zero integer for one or both of memory or memoryReservation
 	// in container definitions. If you specify both, memory must be greater than
@@ -2821,9 +2826,9 @@ type ContainerDefinition struct {
 	// it needs to, up to either the hard limit specified with the memory parameter
 	// (if applicable), or all of the available memory on the container instance,
 	// whichever comes first. This parameter maps to MemoryReservation in the Create
-	// a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --memory-reservation option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --memory-reservation option to docker run (https://docs.docker.com/engine/reference/run/).
 	//
 	// You must specify a non-zero integer for one or both of memory or memoryReservation
 	// in container definitions. If you specify both, memory must be greater than
@@ -2840,25 +2845,25 @@ type ContainerDefinition struct {
 	MemoryReservation *int64 `locationName:"memoryReservation" type:"integer"`
 
 	// The mount points for data volumes in your container. This parameter maps
-	// to Volumes in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --volume option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// to Volumes in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --volume option to docker run (https://docs.docker.com/engine/reference/run/).
 	MountPoints []*MountPoint `locationName:"mountPoints" type:"list"`
 
 	// The name of a container. If you are linking multiple containers together
 	// in a task definition, the name of one container can be entered in the links
 	// of another container to connect the containers. Up to 255 letters (uppercase
 	// and lowercase), numbers, hyphens, and underscores are allowed. This parameter
-	// maps to name in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --name option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// maps to name in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --name option to docker run (https://docs.docker.com/engine/reference/run/).
 	Name *string `locationName:"name" type:"string"`
 
 	// The list of port mappings for the container. Port mappings allow containers
 	// to access ports on the host container instance to send or receive traffic.
-	// This parameter maps to PortBindings in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --publish option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// This parameter maps to PortBindings in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --publish option to docker run (https://docs.docker.com/engine/reference/run/).
 	// If the network mode of a task definition is set to none, then you cannot
 	// specify port mappings. If the network mode of a task definition is set to
 	// host, then host ports must either be undefined or they must match the container
@@ -2872,22 +2877,22 @@ type ContainerDefinition struct {
 
 	// When this parameter is true, the container is given elevated privileges on
 	// the host container instance (similar to the root user). This parameter maps
-	// to Privileged in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --privileged option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// to Privileged in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --privileged option to docker run (https://docs.docker.com/engine/reference/run/).
 	Privileged *bool `locationName:"privileged" type:"boolean"`
 
 	// When this parameter is true, the container is given read-only access to its
 	// root file system. This parameter maps to ReadonlyRootfs in the Create a container
-	// (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
+	// (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
 	// and the --read-only option to docker run.
 	ReadonlyRootFilesystem *bool `locationName:"readonlyRootFilesystem" type:"boolean"`
 
 	// A list of ulimits to set in the container. This parameter maps to Ulimits
-	// in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --ulimit option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --ulimit option to docker run (https://docs.docker.com/engine/reference/run/).
 	// Valid naming values are displayed in the Ulimit data type. This parameter
 	// requires version 1.18 of the Docker Remote API or greater on your container
 	// instance. To check the Docker Remote API version on your container instance,
@@ -2896,21 +2901,21 @@ type ContainerDefinition struct {
 	Ulimits []*Ulimit `locationName:"ulimits" type:"list"`
 
 	// The user name to use inside the container. This parameter maps to User in
-	// the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --user option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --user option to docker run (https://docs.docker.com/engine/reference/run/).
 	User *string `locationName:"user" type:"string"`
 
 	// Data volumes to mount from another container. This parameter maps to VolumesFrom
-	// in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --volumes-from option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --volumes-from option to docker run (https://docs.docker.com/engine/reference/run/).
 	VolumesFrom []*VolumeFrom `locationName:"volumesFrom" type:"list"`
 
 	// The working directory in which to run commands inside the container. This
-	// parameter maps to WorkingDir in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.23/)
-	// and the --workdir option to docker run (https://docs.docker.com/reference/commandline/run/).
+	// parameter maps to WorkingDir in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/#create-a-container)
+	// section of the Docker Remote API (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.23/)
+	// and the --workdir option to docker run (https://docs.docker.com/engine/reference/run/).
 	WorkingDirectory *string `locationName:"workingDirectory" type:"string"`
 }
 
@@ -2990,12 +2995,18 @@ type ContainerInstance struct {
 	// The number of tasks on the container instance that are in the PENDING status.
 	PendingTasksCount *int64 `locationName:"pendingTasksCount" type:"integer"`
 
-	// The registered resources on the container instance that are in use by current
-	// tasks.
+	// For most resource types, this parameter describes the registered resources
+	// on the container instance that are in use by current tasks. For port resource
+	// types, this parameter describes the ports that were reserved by the Amazon
+	// ECS container agent when it registered the container instance with Amazon
+	// ECS.
 	RegisteredResources []*Resource `locationName:"registeredResources" type:"list"`
 
-	// The remaining resources of the container instance that are available for
-	// new tasks.
+	// For most resource types, this parameter describes the remaining resources
+	// of the container instance that are available for new tasks. For port resource
+	// types, this parameter describes the ports that are reserved by the Amazon
+	// ECS container agent and any containers that have reserved port mappings;
+	// any port that is not specified here is available for new tasks.
 	RemainingResources []*Resource `locationName:"remainingResources" type:"list"`
 
 	// The number of tasks on the container instance that are in the RUNNING status.
@@ -3351,13 +3362,14 @@ type DeploymentConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The upper limit (as a percentage of the service's desiredCount) of the number
-	// of running tasks that can be running in a service during a deployment. The
-	// maximum number of tasks during a deployment is the desiredCount multiplied
-	// by the maximumPercent/100, rounded down to the nearest integer value.
+	// of tasks that are allowed in the RUNNING or PENDING state in a service during
+	// a deployment. The maximum number of tasks during a deployment is the desiredCount
+	// multiplied by the maximumPercent/100, rounded down to the nearest integer
+	// value.
 	MaximumPercent *int64 `locationName:"maximumPercent" type:"integer"`
 
 	// The lower limit (as a percentage of the service's desiredCount) of the number
-	// of running tasks that must remain running and healthy in a service during
+	// of running tasks that must remain in the RUNNING state in a service during
 	// a deployment. The minimum healthy tasks during a deployment is the desiredCount
 	// multiplied by the minimumHealthyPercent/100, rounded up to the nearest integer
 	// value.
@@ -3393,12 +3405,16 @@ type DeregisterContainerInstanceInput struct {
 
 	// Forces the deregistration of the container instance. If you have tasks running
 	// on the container instance when you deregister it with the force option, these
-	// tasks remain running and they continue to pass Elastic Load Balancing load
-	// balancer health checks until you terminate the instance or the tasks stop
-	// through some other means, but they are orphaned (no longer monitored or accounted
+	// tasks remain running until you terminate the instance or the tasks stop through
+	// some other means, but they are orphaned (no longer monitored or accounted
 	// for by Amazon ECS). If an orphaned task on your container instance is part
 	// of an Amazon ECS service, then the service scheduler starts another copy
 	// of that task, on a different container instance if possible.
+	//
+	// Any containers in orphaned service tasks that are registered with a Classic
+	// load balancer or an Application load balancer target group are deregistered,
+	// and they will begin connection draining according to the settings on the
+	// load balancer or target group.
 	Force *bool `locationName:"force" type:"boolean"`
 }
 
@@ -3597,7 +3613,8 @@ type DescribeServicesInput struct {
 	// specify a cluster, the default cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
-	// A list of services to describe.
+	// A list of services to describe. You may specify up to 10 services to describe
+	// in a single operation.
 	//
 	// Services is a required field
 	Services []*string `locationName:"services" type:"list" required:"true"`
@@ -3969,7 +3986,7 @@ type ListContainerInstancesInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the container instances to list. If you do not specify a cluster, the default
-	// cluster is assumed..
+	// cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The maximum number of container instance results returned by ListContainerInstances
@@ -4032,7 +4049,7 @@ type ListServicesInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the services to list. If you do not specify a cluster, the default cluster
-	// is assumed..
+	// is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The maximum number of container instance results returned by ListServices
@@ -4242,7 +4259,7 @@ type ListTasksInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the tasks to list. If you do not specify a cluster, the default cluster is
-	// assumed..
+	// assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The container instance ID or full Amazon Resource Name (ARN) of the container
@@ -4499,13 +4516,13 @@ type PortMapping struct {
 	// below 32768 are outside of the ephemeral port range.
 	//
 	// The default reserved ports are 22 for SSH, the Docker ports 2375 and 2376,
-	// and the Amazon ECS container agent port 51678. Any host port that was previously
-	// specified in a running task is also reserved while the task is running (after
-	// a task stops, the host port is released).The current reserved ports are displayed
-	// in the remainingResources of DescribeContainerInstances output, and a container
-	// instance may have up to 100 reserved ports at a time, including the default
-	// reserved ports (automatically assigned ports do not count toward the 100
-	// reserved ports limit).
+	// and the Amazon ECS container agent ports 51678 and 51679. Any host port that
+	// was previously specified in a running task is also reserved while the task
+	// is running (after a task stops, the host port is released).The current reserved
+	// ports are displayed in the remainingResources of DescribeContainerInstances
+	// output, and a container instance may have up to 100 reserved ports at a time,
+	// including the default reserved ports (automatically assigned ports do not
+	// count toward the 100 reserved ports limit).
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
@@ -4531,7 +4548,7 @@ type RegisterContainerInstanceInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster with which
 	// to register your container instance. If you do not specify a cluster, the
-	// default cluster is assumed..
+	// default cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the container instance (if it was previously
@@ -4637,9 +4654,11 @@ type RegisterTaskDefinitionInput struct {
 	// in the Docker run reference.
 	NetworkMode *string `locationName:"networkMode" type:"string" enum:"NetworkMode"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that containers in this task
-	// can assume. All containers in this task are granted the permissions that
-	// are specified in this role.
+	// The short name or full Amazon Resource Name (ARN) of the IAM role that containers
+	// in this task can assume. All containers in this task are granted the permissions
+	// that are specified in this role. For more information, see IAM Roles for
+	// Tasks (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+	// in the Amazon EC2 Container Service Developer Guide.
 	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 
 	// A list of volume definitions in JSON format that containers in your task
@@ -4741,7 +4760,7 @@ type RunTaskInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster on which
 	// to run your task. If you do not specify a cluster, the default cluster is
-	// assumed..
+	// assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The number of instantiations of the specified task to place on your cluster.
@@ -4926,7 +4945,7 @@ type StartTaskInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster on which
 	// to start your task. If you do not specify a cluster, the default cluster
-	// is assumed..
+	// is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// The container instance IDs or full Amazon Resource Name (ARN) entries for
@@ -5020,7 +5039,7 @@ type StopTaskInput struct {
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the task to stop. If you do not specify a cluster, the default cluster is
-	// assumed..
+	// assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
 	// An optional message specified when a task is stopped. For example, if you
