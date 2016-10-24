@@ -1,3 +1,15 @@
+Release v1.4.21 (2016-10-24)
+===
+
+Service Client Updates
+---
+* `service/sms`: AWS Server Migration Service (SMS) is an agentless service which makes it easier and faster for you to migrate thousands of on-premises workloads to AWS. AWS SMS allows you to automate, schedule, and track incremental replications of live server volumes, making it easier for you to coordinate large-scale server migrations.
+* `service/ecs`: Updates documentation.
+
+SDK Feature Updates
+---
+* `private/models/api`: Improve code generation of documentation.
+
 Release v1.4.20 (2016-10-20)
 ===
 
