@@ -167,12 +167,13 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *request.Re
 // to ACTIVE. You should perform read and write operations only on an ACTIVE
 // stream.
 //
-// You receive a LimitExceededException when making a CreateStream request
-// if you try to do one of the following:
+// You receive a LimitExceededException when making a CreateStream request if
+// you try to do one of the following:
 //
-//  Have more than five streams in the CREATING state at any point in time.
-// Create more shards than are authorized for your account.  For the default
-// shard limit for an AWS account, see Streams Limits (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
+//    * Have more than five streams in the CREATING state at any point in time.
+//
+//    * Create more shards than are authorized for your account.
+// For the default shard limit for an AWS account, see Streams Limits (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
 // in the Amazon Kinesis Streams Developer Guide. If you need to increase this
 // limit, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
 //
@@ -1062,13 +1063,13 @@ func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *request.Requ
 // you do not specify a value for the Limit parameter, Amazon Kinesis uses the
 // default limit, which is currently 10.
 //
-// You can detect if there are more streams available to list by using the
-// HasMoreStreams flag from the returned output. If there are more streams available,
-// you can request more streams by using the name of the last stream returned
-// by the ListStreams request in the ExclusiveStartStreamName parameter in a
-// subsequent request to ListStreams. The group of stream names returned by
-// the subsequent request is then added to the list. You can continue this process
-// until all the stream names have been collected in the list.
+// You can detect if there are more streams available to list by using the HasMoreStreams
+// flag from the returned output. If there are more streams available, you can
+// request more streams by using the name of the last stream returned by the
+// ListStreams request in the ExclusiveStartStreamName parameter in a subsequent
+// request to ListStreams. The group of stream names returned by the subsequent
+// request is then added to the list. You can continue this process until all
+// the stream names have been collected in the list.
 //
 // ListStreams has a limit of 5 transactions per second per account.
 //
@@ -1265,8 +1266,8 @@ func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *request.Requ
 // to ACTIVE. Read and write operations continue to work while the stream is
 // in the UPDATING state.
 //
-// You use DescribeStream to determine the shard IDs that are specified in
-// the MergeShards request.
+// You use DescribeStream to determine the shard IDs that are specified in the
+// MergeShards request.
 //
 // If you try to operate on too many streams in parallel using CreateStream,
 // DeleteStream, MergeShards or SplitShard, you will receive a LimitExceededException.
@@ -1481,10 +1482,10 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Reques
 // The data blob can be any type of data; for example, a segment from a log
 // file, geographic/location data, website clickstream data, and so on.
 //
-// The partition key is used by Amazon Kinesis as input to a hash function
-// that maps the partition key and associated data to a specific shard. An MD5
-// hash function is used to map partition keys to 128-bit integer values and
-// to map associated data records to shards. As a result of this hashing mechanism,
+// The partition key is used by Amazon Kinesis as input to a hash function that
+// maps the partition key and associated data to a specific shard. An MD5 hash
+// function is used to map partition keys to 128-bit integer values and to map
+// associated data records to shards. As a result of this hashing mechanism,
 // all data records with the same partition key map to the same shard within
 // the stream. For more information, see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream)
 // in the Amazon Kinesis Streams Developer Guide.
@@ -1520,9 +1521,9 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Reques
 // see Adding Multiple Records with PutRecords (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords)
 // in the Amazon Kinesis Streams Developer Guide.
 //
-// By default, data records are accessible for only 24 hours from the time
-// that they are added to an Amazon Kinesis stream. This retention period can
-// be modified using the DecreaseStreamRetentionPeriod and IncreaseStreamRetentionPeriod
+// By default, data records are accessible for only 24 hours from the time that
+// they are added to an Amazon Kinesis stream. This retention period can be
+// modified using the DecreaseStreamRetentionPeriod and IncreaseStreamRetentionPeriod
 // operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2083,9 +2084,15 @@ type DisableEnhancedMonitoringInput struct {
 	// The following are the valid shard-level metrics. The value "ALL" disables
 	// every metric.
 	//
-	//   IncomingBytes   IncomingRecords   OutgoingBytes   OutgoingRecords   WriteProvisionedThroughputExceeded
-	//   ReadProvisionedThroughputExceeded   IteratorAgeMilliseconds   ALL   For
-	// more information, see Monitoring the Amazon Kinesis Streams Service with
+	//    * IncomingBytes
+	//    * IncomingRecords
+	//    * OutgoingBytes
+	//    * OutgoingRecords
+	//    * WriteProvisionedThroughputExceeded
+	//    * ReadProvisionedThroughputExceeded
+	//    * IteratorAgeMilliseconds
+	//    * ALL
+	// For more information, see Monitoring the Amazon Kinesis Streams Service with
 	// Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html)
 	// in the Amazon Kinesis Streams Developer Guide.
 	//
@@ -2139,9 +2146,15 @@ type EnableEnhancedMonitoringInput struct {
 	// The following are the valid shard-level metrics. The value "ALL" enables
 	// every metric.
 	//
-	//   IncomingBytes   IncomingRecords   OutgoingBytes   OutgoingRecords   WriteProvisionedThroughputExceeded
-	//   ReadProvisionedThroughputExceeded   IteratorAgeMilliseconds   ALL   For
-	// more information, see Monitoring the Amazon Kinesis Streams Service with
+	//    * IncomingBytes
+	//    * IncomingRecords
+	//    * OutgoingBytes
+	//    * OutgoingRecords
+	//    * WriteProvisionedThroughputExceeded
+	//    * ReadProvisionedThroughputExceeded
+	//    * IteratorAgeMilliseconds
+	//    * ALL
+	// For more information, see Monitoring the Amazon Kinesis Streams Service with
 	// Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html)
 	// in the Amazon Kinesis Streams Developer Guide.
 	//
@@ -2195,9 +2208,15 @@ type EnhancedMetrics struct {
 	// The following are the valid shard-level metrics. The value "ALL" enhances
 	// every metric.
 	//
-	//   IncomingBytes   IncomingRecords   OutgoingBytes   OutgoingRecords   WriteProvisionedThroughputExceeded
-	//   ReadProvisionedThroughputExceeded   IteratorAgeMilliseconds   ALL   For
-	// more information, see Monitoring the Amazon Kinesis Streams Service with
+	//    * IncomingBytes
+	//    * IncomingRecords
+	//    * OutgoingBytes
+	//    * OutgoingRecords
+	//    * WriteProvisionedThroughputExceeded
+	//    * ReadProvisionedThroughputExceeded
+	//    * IteratorAgeMilliseconds
+	//    * ALL
+	// For more information, see Monitoring the Amazon Kinesis Streams Service with
 	// Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring-with-cloudwatch.html)
 	// in the Amazon Kinesis Streams Developer Guide.
 	ShardLevelMetrics []*string `min:"1" type:"list"`
@@ -2329,15 +2348,17 @@ type GetShardIteratorInput struct {
 	//
 	// The following are the valid Amazon Kinesis shard iterator types:
 	//
-	//  AT_SEQUENCE_NUMBER - Start reading from the position denoted by a specific
-	// sequence number, provided in the value StartingSequenceNumber. AFTER_SEQUENCE_NUMBER
-	// - Start reading right after the position denoted by a specific sequence number,
-	// provided in the value StartingSequenceNumber. AT_TIMESTAMP - Start reading
-	// from the position denoted by a specific timestamp, provided in the value
-	// Timestamp. TRIM_HORIZON - Start reading at the last untrimmed record in the
-	// shard in the system, which is the oldest data record in the shard. LATEST
-	// - Start reading just after the most recent record in the shard, so that you
-	// always read the most recent data in the shard.
+	//    * AT_SEQUENCE_NUMBER - Start reading from the position denoted by a specific
+	//    sequence number, provided in the value StartingSequenceNumber.
+	//    * AFTER_SEQUENCE_NUMBER - Start reading right after the position denoted
+	//    by a specific sequence number, provided in the value StartingSequenceNumber.
+	//
+	//    * AT_TIMESTAMP - Start reading from the position denoted by a specific
+	//    timestamp, provided in the value Timestamp.
+	//    * TRIM_HORIZON - Start reading at the last untrimmed record in the shard
+	//    in the system, which is the oldest data record in the shard.
+	//    * LATEST - Start reading just after the most recent record in the shard,
+	//    so that you always read the most recent data in the shard.
 	//
 	// ShardIteratorType is a required field
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
@@ -3275,14 +3296,16 @@ type StreamDescription struct {
 	// The current status of the stream being described. The stream status is one
 	// of the following states:
 	//
-	//  CREATING - The stream is being created. Amazon Kinesis immediately returns
-	// and sets StreamStatus to CREATING. DELETING - The stream is being deleted.
-	// The specified stream is in the DELETING state until Amazon Kinesis completes
-	// the deletion. ACTIVE - The stream exists and is ready for read and write
-	// operations or deletion. You should perform read and write operations only
-	// on an ACTIVE stream. UPDATING - Shards in the stream are being merged or
-	// split. Read and write operations continue to work while the stream is in
-	// the UPDATING state.
+	//    * CREATING - The stream is being created. Amazon Kinesis immediately returns
+	//    and sets StreamStatus to CREATING.
+	//    * DELETING - The stream is being deleted. The specified stream is in the
+	//    DELETING state until Amazon Kinesis completes the deletion.
+	//    * ACTIVE - The stream exists and is ready for read and write operations
+	//    or deletion. You should perform read and write operations only on an ACTIVE
+	//    stream.
+	//    * UPDATING - Shards in the stream are being merged or split. Read and
+	//    write operations continue to work while the stream is in the UPDATING
+	//    state.
 	//
 	// StreamStatus is a required field
 	StreamStatus *string `type:"string" required:"true" enum:"StreamStatus"`

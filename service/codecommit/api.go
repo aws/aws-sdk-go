@@ -157,8 +157,8 @@ func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *request
 //
 // Creates a new branch in a repository and points the branch to a commit.
 //
-// Calling the create branch operation does not set a repository's default
-// branch. To do this, call the update default branch operation.
+// Calling the create branch operation does not set a repository's default branch.
+// To do this, call the update default branch operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -364,8 +364,8 @@ func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req 
 // Deletes a repository. If a specified repository was already deleted, a null
 // repository ID will be returned.
 //
-// Deleting a repository also deletes all associated objects and metadata.
-// After a repository is deleted, all future push calls to the deleted repository
+// Deleting a repository also deletes all associated objects and metadata. After
+// a repository is deleted, all future push calls to the deleted repository
 // will fail.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions

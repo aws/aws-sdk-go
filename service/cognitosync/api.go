@@ -63,8 +63,8 @@ func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *request.
 // per 24 hours. Bulk publish is an asynchronous request, customers can see
 // the status of the request via the GetBulkPublishDetails operation.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -316,8 +316,8 @@ func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPo
 // Gets usage details (for example, data storage) about a particular identity
 // pool.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -475,8 +475,8 @@ func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsI
 //
 // Get the status of the last BulkPublish operation for an identity pool.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -552,8 +552,8 @@ func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req
 // Gets the events and the corresponding Lambda functions associated with an
 // identity pool.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -631,8 +631,8 @@ func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPool
 //
 // Gets the configuration settings of an identity pool.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1033,8 +1033,8 @@ func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req
 // pairs are not updated. To remove a key value pair, pass a empty value for
 // the particular key.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1112,8 +1112,8 @@ func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPool
 //
 // Sets the necessary configuration for push sync.
 //
-// This API can only be called with developer credentials. You cannot call
-// this API with the temporary user credentials provided by Cognito Identity.
+// This API can only be called with developer credentials. You cannot call this
+// API with the temporary user credentials provided by Cognito Identity.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2558,8 +2558,6 @@ func (s RegisterDeviceOutput) GoString() string {
 }
 
 // A request to configure Cognito Events"
-//
-// "
 type SetCognitoEventsInput struct {
 	_ struct{} `type:"structure"`
 

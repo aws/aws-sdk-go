@@ -520,7 +520,7 @@ func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointIn
 //
 // Deletes the specified endpoint.
 //
-//  All tasks associated with the endpoint must be deleted before you can delete
+// All tasks associated with the endpoint must be deleted before you can delete
 // the endpoint.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -591,7 +591,7 @@ func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *Delet
 //
 // Deletes the specified replication instance.
 //
-//  You must delete any migration tasks that are associated with the replication
+// You must delete any migration tasks that are associated with the replication
 // instance before you can delete it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2564,7 +2564,7 @@ type CreateReplicationInstanceInput struct {
 	//
 	// Default: A random, system-chosen Availability Zone in the endpoint's region.
 	//
-	//  Example: us-east-1d
+	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
 	// The engine version number of the replication instance.
@@ -2584,7 +2584,7 @@ type CreateReplicationInstanceInput struct {
 	// The weekly time range during which system maintenance can occur, in Universal
 	// Coordinated Time (UTC).
 	//
-	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
 	// per region, occurring on a random day of the week.
@@ -2602,7 +2602,7 @@ type CreateReplicationInstanceInput struct {
 	// The compute and memory capacity of the replication instance as specified
 	// by the replication instance class.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	//
 	// ReplicationInstanceClass is a required field
@@ -2613,13 +2613,13 @@ type CreateReplicationInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: myrepinstance
+	// Example: myrepinstance
 	//
 	// ReplicationInstanceIdentifier is a required field
 	ReplicationInstanceIdentifier *string `type:"string" required:"true"`
@@ -2773,11 +2773,11 @@ type CreateReplicationTaskInput struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
 	// ReplicationTaskIdentifier is a required field
 	ReplicationTaskIdentifier *string `type:"string" required:"true"`
@@ -4197,9 +4197,9 @@ type ModifyReplicationInstanceInput struct {
 	// does not result in an outage and the change is asynchronously applied as
 	// soon as possible.
 	//
-	// Constraints: This parameter must be set to true when specifying a value
-	// for the EngineVersion parameter that is a different major version than the
-	// replication instance's current version.
+	// Constraints: This parameter must be set to true when specifying a value for
+	// the EngineVersion parameter that is a different major version than the replication
+	// instance's current version.
 	AllowMajorVersionUpgrade *bool `type:"boolean"`
 
 	// Indicates whether the changes should be applied immediately or during the
@@ -4245,7 +4245,7 @@ type ModifyReplicationInstanceInput struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 
@@ -4383,7 +4383,7 @@ type OrderableReplicationInstance struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 
@@ -4589,7 +4589,7 @@ type ReplicationInstance struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 
@@ -4598,13 +4598,13 @@ type ReplicationInstance struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//   Example: myrepinstance
+	// Example: myrepinstance
 	ReplicationInstanceIdentifier *string `type:"string"`
 
 	// The private IP address of the replication instance.
@@ -4655,7 +4655,7 @@ type ReplicationPendingModifiedValues struct {
 
 	// The compute and memory capacity of the replication instance.
 	//
-	//  Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
+	// Valid Values: dms.t2.micro | dms.t2.small | dms.t2.medium | dms.t2.large
 	// | dms.c4.large | dms.c4.xlarge | dms.c4.2xlarge | dms.c4.4xlarge
 	ReplicationInstanceClass *string `type:"string"`
 }
@@ -4721,11 +4721,11 @@ type ReplicationTask struct {
 	//
 	// Constraints:
 	//
-	//   Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
 	//
-	//   First character must be a letter.
+	//    * First character must be a letter.
 	//
-	//   Cannot end with a hyphen or contain two consecutive hyphens.
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	ReplicationTaskIdentifier *string `type:"string"`
 
 	// The settings for the replication task.

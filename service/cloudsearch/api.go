@@ -72,8 +72,7 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -131,8 +130,8 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *reques
 // CreateDomain API operation for Amazon CloudSearch.
 //
 // Creates a new search domain. For more information, see Creating a Search
-// Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/creating-domains.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/creating-domains.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -147,8 +146,7 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *reques
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -206,8 +204,8 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 //
 // Configures an analysis scheme that can be applied to a text or text-array
 // field to define language-specific text processing options. For more information,
-// see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -222,8 +220,7 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -288,8 +285,8 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 //
 // Configures an Expression for the search domain. Used to create new expressions
 // and modify existing ones. If the expression exists, the new configuration
-// replaces the old one. For more information, see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// replaces the old one. For more information, see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -304,8 +301,7 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -374,8 +370,8 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 // specifies a unique name, the index field type, and the options you want to
 // configure for the field. The options you can specify depend on the IndexFieldType.
 // If the field exists, the new configuration replaces the old one. For more
-// information, see Configuring Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// information, see Configuring Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -390,8 +386,7 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -458,8 +453,8 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 // matches before users finish typing their queries. When you configure a suggester,
 // you must specify the name of the text field you want to search for possible
 // matches and a unique name for the suggester. For more information, see Getting
-// Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -474,8 +469,7 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -539,8 +533,8 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 // DeleteAnalysisScheme API operation for Amazon CloudSearch.
 //
 // Deletes an analysis scheme. For more information, see Configuring Analysis
-// Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -555,8 +549,7 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * InvalidType
 //   The request was rejected because it specified an invalid type definition.
@@ -618,8 +611,8 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *reques
 //
 // Permanently deletes a search domain and all of its data. Once a domain has
 // been deleted, it cannot be recovered. For more information, see Deleting
-// a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/deleting-domains.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -634,8 +627,7 @@ func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *reques
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
@@ -689,8 +681,8 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 // DeleteExpression API operation for Amazon CloudSearch.
 //
 // Removes an Expression from the search domain. For more information, see Configuring
-// Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -705,8 +697,7 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * InvalidType
 //   The request was rejected because it specified an invalid type definition.
@@ -767,8 +758,8 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 // DeleteIndexField API operation for Amazon CloudSearch.
 //
 // Removes an IndexField from the search domain. For more information, see Configuring
-// Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// Index Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -783,8 +774,7 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * InvalidType
 //   The request was rejected because it specified an invalid type definition.
@@ -845,8 +835,8 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 // DeleteSuggester API operation for Amazon CloudSearch.
 //
 // Deletes a suggester. For more information, see Getting Search Suggestions
-// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -861,8 +851,7 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * InvalidType
 //   The request was rejected because it specified an invalid type definition.
@@ -927,8 +916,8 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 // to specific analysis schemes by name. By default, shows all analysis schemes
 // and includes any pending changes to the configuration. Set the Deployed option
 // to true to show the active configuration and exclude pending changes. For
-// more information, see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// more information, see Configuring Analysis Schemes (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-analysis-schemes.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -943,8 +932,7 @@ func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSche
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1004,8 +992,8 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 // Gets the availability options configured for a domain. By default, shows
 // the configuration with any pending changes. Set the Deployed option to true
 // to show the active configuration and exclude pending changes. For more information,
-// see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1020,8 +1008,7 @@ func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabi
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * InvalidType
 //   The request was rejected because it specified an invalid type definition.
@@ -1090,9 +1077,9 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 // Gets information about the search domains owned by this account. Can be limited
 // to specific domains. Shows all domains by default. To get the number of searchable
 // documents in a domain, use the console or submit a matchall request to your
-// domain's search endpoint: q=matchall&amp;q.parser=structured&amp;size=0.
-// For more information, see Getting Information about a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// domain's search endpoint: q=matchall&q.parser=structured&size=0.
+// For more information, see Getting Information about a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1107,8 +1094,7 @@ func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (*DescribeDomainsOutput, error) {
 	req, out := c.DescribeDomainsRequest(input)
@@ -1165,8 +1151,8 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 // specific expressions by name. By default, shows all expressions and includes
 // any pending changes to the configuration. Set the Deployed option to true
 // to show the active configuration and exclude pending changes. For more information,
-// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1181,8 +1167,7 @@ func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1243,8 +1228,8 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 // Can be limited to specific fields by name. By default, shows all fields and
 // includes any pending changes to the configuration. Set the Deployed option
 // to true to show the active configuration and exclude pending changes. For
-// more information, see Getting Domain Information (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// more information, see Getting Domain Information (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-domain-info.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1259,8 +1244,7 @@ func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1319,8 +1303,8 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 //
 // Gets the scaling parameters configured for a domain. A domain's scaling parameters
 // specify the desired search instance type and replication count. For more
-// information, see Configuring Scaling Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// information, see Configuring Scaling Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1335,8 +1319,7 @@ func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingPar
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1397,8 +1380,8 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 // document and search endpoints. By default, shows the configuration with any
 // pending changes. Set the Deployed option to true to show the active configuration
 // and exclude pending changes. For more information, see Configuring Access
-// for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1413,8 +1396,7 @@ func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServic
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1476,8 +1458,8 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 // to specific suggesters by name. By default, shows all suggesters and includes
 // any pending changes to the configuration. Set the Deployed option to true
 // to show the active configuration and exclude pending changes. For more information,
-// see Getting Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// see Getting Search Suggestions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/getting-suggestions.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1492,8 +1474,7 @@ func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) 
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1567,8 +1548,7 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *re
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * ResourceNotFound
 //   The request was rejected because it attempted to reference a resource that
@@ -1693,8 +1673,8 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 // expands an Amazon CloudSearch domain to an additional Availability Zone in
 // the same Region to increase fault tolerance in the event of a service disruption.
 // Changes to the Multi-AZ option can take about half an hour to become active.
-// For more information, see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// For more information, see Configuring Availability Options (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-availability-options.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1709,8 +1689,7 @@ func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailability
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * InvalidType
 //   The request was rejected because it specified an invalid type definition.
@@ -1782,8 +1761,8 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 // traffic, but not below the desired instance type and replication count. If
 // the Multi-AZ option is enabled, these values control the resources used per
 // Availability Zone. For more information, see Configuring Scaling Options
-// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-scaling-options.html)
+// in the Amazon CloudSearch Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1798,8 +1777,7 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -1864,8 +1842,7 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 //
 // Configures the access rules that control access to the domain's document
 // and search endpoints. For more information, see  Configuring Access for an
-// Amazon CloudSearch Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
-// target="_blank).
+// Amazon CloudSearch Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1880,8 +1857,7 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 //
 //   * InternalException
 //   An internal error occurred while processing the request. If this problem
-//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/"
-//   target="_blank).
+//   persists, report an issue from the Service Health Dashboard (http://status.aws.amazon.com/).
 //
 //   * LimitExceeded
 //   The request was rejected because a resource limit has already been met.
@@ -1905,9 +1881,9 @@ type AccessPoliciesStatus struct {
 	_ struct{} `type:"structure"`
 
 	// Access rules for a domain's document or search service endpoints. For more
-	// information, see Configuring Access for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html"
-	// target="_blank) in the Amazon CloudSearch Developer Guide. The maximum size
-	// of a policy document is 100 KB.
+	// information, see Configuring Access for a Search Domain (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-access.html)
+	// in the Amazon CloudSearch Developer Guide. The maximum size of a policy document
+	// is 100 KB.
 	//
 	// Options is a required field
 	Options *string `type:"string" required:"true"`
@@ -1935,8 +1911,8 @@ type AnalysisOptions struct {
 
 	// The level of algorithmic stemming to perform: none, minimal, light, or full.
 	// The available levels vary depending on the language. For more information,
-	// see Language Specific Text Processing Settings (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/text-processing.html#text-processing-settings"
-	// target="_blank) in the Amazon CloudSearch Developer Guide
+	// see Language Specific Text Processing Settings (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/text-processing.html#text-processing-settings)
+	// in the Amazon CloudSearch Developer Guide
 	AlgorithmicStemming *string `type:"string" enum:"AlgorithmicStemming"`
 
 	// A JSON array that contains a collection of terms, tokens, readings and part
@@ -1991,8 +1967,8 @@ type AnalysisScheme struct {
 	// tokenization dictionary for Japanese.
 	AnalysisOptions *AnalysisOptions `type:"structure"`
 
-	// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
-	// code or mul for multiple languages.
+	// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646) language code or mul
+	// for multiple languages.
 	//
 	// AnalysisSchemeLanguage is a required field
 	AnalysisSchemeLanguage *string `type:"string" required:"true" enum:"AnalysisSchemeLanguage"`
@@ -3506,8 +3482,8 @@ type DomainStatus struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the search domain. See Identifiers for
-	// IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html"
-	// target="_blank) in Using AWS Identity and Access Management for more information.
+	// IAM Entities (http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html)
+	// in Using AWS Identity and Access Management for more information.
 	ARN *string `type:"string"`
 
 	// True if the search domain is created. It can take several minutes to initialize
@@ -3667,8 +3643,8 @@ type Expression struct {
 
 	// The expression to evaluate for sorting while processing a search request.
 	// The Expression syntax is based on JavaScript expressions. For more information,
-	// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
-	// target="_blank) in the Amazon CloudSearch Developer Guide.
+	// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html)
+	// in the Amazon CloudSearch Developer Guide.
 	//
 	// ExpressionValue is a required field
 	ExpressionValue *string `min:"1" type:"string" required:"true"`
@@ -3834,8 +3810,8 @@ type IndexField struct {
 
 	// The type of field. The valid options for a field depend on the field type.
 	// For more information about the supported field types, see Configuring Index
-	// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
-	// target="_blank) in the Amazon CloudSearch Developer Guide.
+	// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html)
+	// in the Amazon CloudSearch Developer Guide.
 	//
 	// IndexFieldType is a required field
 	IndexFieldType *string `type:"string" required:"true" enum:"IndexFieldType"`
@@ -4260,13 +4236,14 @@ type OptionStatus struct {
 
 	// The state of processing a change to an option. Possible values:
 	//
-	//   RequiresIndexDocuments: the option's latest value will not be deployed
-	// until IndexDocuments has been called and indexing is complete.  Processing:
-	// the option's latest value is in the process of being activated.   Active:
-	// the option's latest value is completely deployed.  FailedToValidate: the
-	// option value is not compatible with the domain's data and cannot be used
-	// to index the data. You must either modify the option value or update or remove
-	// the incompatible documents.
+	//    * RequiresIndexDocuments: the option's latest value will not be deployed
+	//    until IndexDocuments has been called and indexing is complete.
+	//    * Processing: the option's latest value is in the process of being activated.
+	//
+	//    * Active: the option's latest value is completely deployed.
+	//    * FailedToValidate: the option value is not compatible with the domain's
+	//    data and cannot be used to index the data. You must either modify the
+	//    option value or update or remove the incompatible documents.
 	//
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"OptionState"`
@@ -4759,8 +4736,8 @@ const (
 	AlgorithmicStemmingFull = "full"
 )
 
-// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
-// code or mul for multiple languages.
+// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646) language code or mul
+// for multiple languages.
 const (
 	// AnalysisSchemeLanguageAr is a AnalysisSchemeLanguage enum value
 	AnalysisSchemeLanguageAr = "ar"
@@ -4870,8 +4847,8 @@ const (
 
 // The type of field. The valid options for a field depend on the field type.
 // For more information about the supported field types, see Configuring Index
-// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
-// target="_blank) in the Amazon CloudSearch Developer Guide.
+// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html)
+// in the Amazon CloudSearch Developer Guide.
 const (
 	// IndexFieldTypeInt is a IndexFieldType enum value
 	IndexFieldTypeInt = "int"
@@ -4909,13 +4886,14 @@ const (
 
 // The state of processing a change to an option. One of:
 //
-//  RequiresIndexDocuments: The option's latest value will not be deployed
-// until IndexDocuments has been called and indexing is complete. Processing:
-// The option's latest value is in the process of being activated. Active: The
-// option's latest value is fully deployed.  FailedToValidate: The option value
-// is not compatible with the domain's data and cannot be used to index the
-// data. You must either modify the option value or update or remove the incompatible
-// documents.
+//    * RequiresIndexDocuments: The option's latest value will not be deployed
+//    until IndexDocuments has been called and indexing is complete.
+//    * Processing: The option's latest value is in the process of being activated.
+//
+//    * Active: The option's latest value is fully deployed.
+//    * FailedToValidate: The option value is not compatible with the domain's
+//    data and cannot be used to index the data. You must either modify the
+//    option value or update or remove the incompatible documents.
 const (
 	// OptionStateRequiresIndexDocuments is a OptionState enum value
 	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
