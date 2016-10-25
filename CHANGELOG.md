@@ -1,3 +1,11 @@
+Release v1.4.22 (2016-10-25)
+===
+
+Service Client Updates
+---
+* `service/elasticloadbalancingv2`: Updates service  documentation.
+* `service/autoscaling`: Updates service  documentation.
+
 Release v1.4.21 (2016-10-24)
 ===
 
