@@ -57,7 +57,7 @@ func (c *ELBV2) AddTagsRequest(input *AddTagsInput) (req *request.Request, outpu
 // AddTags API operation for Elastic Load Balancing.
 //
 // Adds the specified tags to the specified resource. You can tag your Application
-// load balancers and your target groups.
+// Load Balancers and your target groups.
 //
 // Each tag consists of a key and an optional value. If a resource already has
 // a tag with the same key, AddTags updates its value.
@@ -136,7 +136,9 @@ func (c *ELBV2) CreateListenerRequest(input *CreateListenerInput) (req *request.
 
 // CreateListener API operation for Elastic Load Balancing.
 //
-// Creates a listener for the specified Application load balancer.
+// Creates a listener for the specified Application Load Balancer.
+//
+// You can create up to 10 listeners per load balancer.
 //
 // To update a listener, use ModifyListener. When you are finished with a listener,
 // you can delete it using DeleteListener. If you are finished with both the
@@ -241,7 +243,7 @@ func (c *ELBV2) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *
 
 // CreateLoadBalancer API operation for Elastic Load Balancing.
 //
-// Creates an Application load balancer.
+// Creates an Application Load Balancer.
 //
 // To create listeners for your load balancer, use CreateListener. You can add
 // security groups, subnets, and tags when you create your load balancer, or
@@ -253,6 +255,9 @@ func (c *ELBV2) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *
 // You can create up to 20 load balancers per region per account. You can request
 // an increase for the number of load balancers for your account. For more information,
 // see Limits for Your Application Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html)
+// in the Application Load Balancers Guide.
+//
+// For more information, see Application Load Balancers (http://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html)
 // in the Application Load Balancers Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -343,10 +348,12 @@ func (c *ELBV2) CreateRuleRequest(input *CreateRuleInput) (req *request.Request,
 //
 // Creates a rule for the specified listener.
 //
-// A rule consists conditions and actions. Rules are evaluated in priority order,
-// from the lowest value to the highest value. When the conditions for a rule
-// are met, the specified actions are taken. If no rule's conditions are met,
-// the default actions for the listener are taken.
+// Each rule can have one action and one condition. Rules are evaluated in priority
+// order, from the lowest value to the highest value. When the condition for
+// a rule is met, the specified action is taken. If no conditions are met, the
+// default action for the default rule is taken. For more information, see Listener
+// Rules (http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-rules)
+// in the Application Load Balancers Guide.
 //
 // To view your current rules, use DescribeRules. To update a rule, use ModifyRule.
 // To set the priorities of your rules, use SetRulePriorities. To delete a rule,
@@ -583,7 +590,7 @@ func (c *ELBV2) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *
 
 // DeleteLoadBalancer API operation for Elastic Load Balancing.
 //
-// Deletes the specified load balancer and its attached listeners.
+// Deletes the specified Application Load Balancer and its attached listeners.
 //
 // You can't delete a load balancer if deletion protection is enabled. If the
 // load balancer does not exist or has already been deleted, the call succeeds.
@@ -868,8 +875,8 @@ func (c *ELBV2) DescribeListenersRequest(input *DescribeListenersInput) (req *re
 
 // DescribeListeners API operation for Elastic Load Balancing.
 //
-// Describes the specified listeners or the listeners for the specified load
-// balancer. You must specify either a load balancer or one or more listeners.
+// Describes the specified listeners or the listeners for the specified Application
+// Load Balancer. You must specify either a load balancer or one or more listeners.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -961,7 +968,7 @@ func (c *ELBV2) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalance
 
 // DescribeLoadBalancerAttributes API operation for Elastic Load Balancing.
 //
-// Describes the attributes for the specified load balancer.
+// Describes the attributes for the specified Application Load Balancer.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1031,8 +1038,8 @@ func (c *ELBV2) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) 
 
 // DescribeLoadBalancers API operation for Elastic Load Balancing.
 //
-// Describes the specified Application load balancers or all of your Application
-// load balancers.
+// Describes the specified Application Load Balancers or all of your Application
+// Load Balancers.
 //
 // To describe the listeners for a load balancer, use DescribeListeners. To
 // describe the attributes for a load balancer, use DescribeLoadBalancerAttributes.
@@ -1674,7 +1681,7 @@ func (c *ELBV2) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAtt
 
 // ModifyLoadBalancerAttributes API operation for Elastic Load Balancing.
 //
-// Modifies the specified attributes of the specified load balancer.
+// Modifies the specified attributes of the specified Application Load Balancer.
 //
 // If any of the specified attributes can't be modified as requested, the call
 // fails. Any existing attributes that you do not modify retain their current
@@ -1956,8 +1963,13 @@ func (c *ELBV2) RegisterTargetsRequest(input *RegisterTargetsInput) (req *reques
 //
 // Registers the specified targets with the specified target group.
 //
+// By default, the load balancer routes requests to registered targets using
+// the protocol and port number for the target group. Alternatively, you can
+// override the port for a target when you register it.
+//
 // The target must be in the virtual private cloud (VPC) that you specified
-// for the target group.
+// for the target group. If the target is an EC2 instance, it can't be in the
+// stopped or running state when you register it.
 //
 // To remove a target from a target group, use DeregisterTargets.
 //
@@ -2465,7 +2477,7 @@ type CreateListenerInput struct {
 	// protocol is HTTPS.
 	Certificates []*Certificate `type:"list"`
 
-	// The default actions for the listener.
+	// The default action for the listener.
 	//
 	// DefaultActions is a required field
 	DefaultActions []*Action `type:"list" required:"true"`
@@ -2654,12 +2666,24 @@ func (s CreateLoadBalancerOutput) GoString() string {
 type CreateRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The actions for the rule.
+	// An action. Each action has the type forward and specifies a target group.
 	//
 	// Actions is a required field
 	Actions []*Action `type:"list" required:"true"`
 
-	// The conditions.
+	// A condition. Each condition has the field path-pattern and specifies one
+	// path pattern. A path pattern is case sensitive, can be up to 255 characters
+	// in length, and can contain any of the following characters:
+	//
+	//    * A-Z, a-z, 0-9
+	//
+	//    * _ - . $ / ~ " ' @ : +
+	//
+	//    * & (using &)
+	//
+	//    * * (matches 0 or more characters)
+	//
+	//    * ? (matches exactly 1 character)
 	//
 	// Conditions is a required field
 	Conditions []*RuleCondition `type:"list" required:"true"`
@@ -3072,7 +3096,8 @@ type DeregisterTargetsInput struct {
 	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
-	// The targets.
+	// The targets. If you specified a port override when you registered a target,
+	// you must specify both the target ID and the port when you deregister it.
 	//
 	// Targets is a required field
 	Targets []*TargetDescription `type:"list" required:"true"`
@@ -3738,7 +3763,7 @@ type LoadBalancerAttribute struct {
 	// The name of the attribute.
 	//
 	//    * access_logs.s3.enabled - Indicates whether access logs stored in Amazon
-	//    S3 are enabled.
+	//    S3 are enabled. The value is true or false.
 	//
 	//    * access_logs.s3.bucket - The name of the S3 bucket for the access logs.
 	//    This attribute is required if access logs in Amazon S3 are enabled. The
@@ -3750,7 +3775,7 @@ type LoadBalancerAttribute struct {
 	//    of the bucket.
 	//
 	//    * deletion_protection.enabled - Indicates whether deletion protection
-	//    is enabled.
+	//    is enabled. The value is true or false.
 	//
 	//    * idle_timeout.timeout_seconds - The idle timeout value, in seconds. The
 	//    valid range is 1-3600. The default is 60 seconds.
@@ -4199,7 +4224,9 @@ type RegisterTargetsInput struct {
 	// TargetGroupArn is a required field
 	TargetGroupArn *string `type:"string" required:"true"`
 
-	// The targets.
+	// The targets. The default port for a target is the port for the target group.
+	// You can specify a port override. If a target is already registered, you can
+	// register it again using a different port.
 	//
 	// Targets is a required field
 	Targets []*TargetDescription `type:"list" required:"true"`
@@ -4346,10 +4373,10 @@ func (s Rule) GoString() string {
 type RuleCondition struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the field. The possible value is path-pattern.
+	// The only possible value is path-pattern.
 	Field *string `type:"string"`
 
-	// The values for the field.
+	// The path pattern. You can specify a single path pattern.
 	//
 	// A path pattern is case sensitive, can be up to 255 characters in length,
 	// and can contain any of the following characters:
@@ -4358,7 +4385,7 @@ type RuleCondition struct {
 	//
 	//    * _ - . $ / ~ " ' @ : +
 	//
-	//    * & (using &amp;)
+	//    * & (using &)
 	//
 	//    * * (matches 0 or more characters)
 	//
@@ -4787,6 +4814,7 @@ type TargetGroupAttribute struct {
 	//    is 300 seconds.
 	//
 	//    * stickiness.enabled - Indicates whether sticky sessions are enabled.
+	//    The value is true or false.
 	//
 	//    * stickiness.type - The type of sticky sessions. The possible value is
 	//    lb_cookie.
