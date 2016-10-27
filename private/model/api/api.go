@@ -39,6 +39,9 @@ type API struct {
 	// Set to true to not generate validation shapes
 	NoValidataShapeMethods bool
 
+	// Set to true to not generate struct field accessors
+	NoGenStructFieldAccessors bool
+
 	SvcClientImportPath string
 
 	initialized bool

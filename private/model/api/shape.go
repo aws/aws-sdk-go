@@ -130,6 +130,32 @@ func (s *Shape) GoTypeWithPkgName() string {
 	return goType(s, true)
 }
 
+// GenAccessors returns if the shape's reference should have setters generated.
+func (s *ShapeRef) UseIndirection() bool {
+	switch s.Shape.Type {
+	case "map", "list", "blob", "structure":
+		return false
+	}
+
+	if s.Streaming || s.Shape.Streaming {
+		return false
+	}
+
+	return true
+}
+
+// GoStructValueType returns the Shape's Go type value instead of a pointer
+// for the type.
+func (s *Shape) GoStructValueType(name string, ref *ShapeRef) string {
+	v := s.GoStructType(name, ref)
+
+	if ref.UseIndirection() && v[0] == '*' {
+		return v[1:]
+	}
+
+	return v
+}
+
 // GoStructType returns the type of a struct field based on the API
 // model definition.
 func (s *Shape) GoStructType(name string, ref *ShapeRef) string {
@@ -447,10 +473,10 @@ func (s *Shape) NestedShape() *Shape {
 
 var structShapeTmpl = template.Must(template.New("StructShape").Parse(`
 {{ .Docstring }}
+{{ $context := . -}}
 type {{ .ShapeName }} struct {
 	_ struct{} {{ .GoTags true false }}
 
-	{{ $context := . -}}
 	{{ range $_, $name := $context.MemberNames -}}
 		{{ $elem := index $context.MemberRefs $name -}}
 		{{ $isRequired := $context.IsRequired $name -}}
@@ -474,6 +500,26 @@ type {{ .ShapeName }} struct {
 	{{ if .Validations -}}
 		{{ .Validations.GoCode . }}
 	{{ end }}
+{{ end }}
+
+{{ if not .API.NoGenStructFieldAccessors }}
+
+{{ $builderShapeName := print .ShapeName -}}
+
+{{ range $_, $name := $context.MemberNames -}}
+	{{ $elem := index $context.MemberRefs $name -}}
+
+// Set{{ $name }} sets the {{ $name }} field's value.
+func (s *{{ $builderShapeName }}) Set{{ $name }}(v {{ $context.GoStructValueType $name $elem }}) *{{ $builderShapeName }} {
+	{{ if $elem.UseIndirection -}}
+	s.{{ $name }} = &v
+	{{ else -}}
+	s.{{ $name }} = v
+	{{ end -}}
+	return s
+}
+
+{{ end }}
 {{ end }}
 `))
 
