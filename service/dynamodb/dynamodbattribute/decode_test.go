@@ -415,9 +415,11 @@ func TestDecodeUseNumber(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Equal(t, "value", u["abc"])
-	n, ok := u["def"].(Number)
+
+	n, ok := u["def"]
+
 	assert.True(t, ok)
-	assert.Equal(t, "123", n.String())
+	assert.Equal(t, int64(123), n)
 	assert.Equal(t, true, u["ghi"])
 }
 

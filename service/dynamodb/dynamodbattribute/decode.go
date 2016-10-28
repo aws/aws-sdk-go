@@ -346,11 +346,11 @@ func (d *Decoder) decodeNumber(n *string, v reflect.Value) error {
 
 func (d *Decoder) decodeNumberToInterface(n *string) (interface{}, error) {
 	if d.UseNumber {
-		return Number(*n), nil
+		return Number(*n).Int64()
 	}
 
 	// Default to float64 for all numbers
-	return strconv.ParseFloat(*n, 64)
+	return Number(*n).Float64()
 }
 
 func (d *Decoder) decodeNumberSet(ns []*string, v reflect.Value) error {
