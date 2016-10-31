@@ -1464,6 +1464,30 @@ func (s *AddPermissionInput) Validate() error {
 	return nil
 }
 
+// SetAWSAccountIds sets the AWSAccountIds field's value.
+func (s *AddPermissionInput) SetAWSAccountIds(v []*string) *AddPermissionInput {
+	s.AWSAccountIds = v
+	return s
+}
+
+// SetActions sets the Actions field's value.
+func (s *AddPermissionInput) SetActions(v []*string) *AddPermissionInput {
+	s.Actions = v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *AddPermissionInput) SetLabel(v string) *AddPermissionInput {
+	s.Label = &v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *AddPermissionInput) SetQueueUrl(v string) *AddPermissionInput {
+	s.QueueUrl = &v
+	return s
+}
+
 type AddPermissionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1510,6 +1534,30 @@ func (s BatchResultErrorEntry) String() string {
 // GoString returns the string representation
 func (s BatchResultErrorEntry) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *BatchResultErrorEntry) SetCode(v string) *BatchResultErrorEntry {
+	s.Code = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *BatchResultErrorEntry) SetId(v string) *BatchResultErrorEntry {
+	s.Id = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BatchResultErrorEntry) SetMessage(v string) *BatchResultErrorEntry {
+	s.Message = &v
+	return s
+}
+
+// SetSenderFault sets the SenderFault field's value.
+func (s *BatchResultErrorEntry) SetSenderFault(v bool) *BatchResultErrorEntry {
+	s.SenderFault = &v
+	return s
 }
 
 type ChangeMessageVisibilityBatchInput struct {
@@ -1565,6 +1613,18 @@ func (s *ChangeMessageVisibilityBatchInput) Validate() error {
 	return nil
 }
 
+// SetEntries sets the Entries field's value.
+func (s *ChangeMessageVisibilityBatchInput) SetEntries(v []*ChangeMessageVisibilityBatchRequestEntry) *ChangeMessageVisibilityBatchInput {
+	s.Entries = v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *ChangeMessageVisibilityBatchInput) SetQueueUrl(v string) *ChangeMessageVisibilityBatchInput {
+	s.QueueUrl = &v
+	return s
+}
+
 // For each message in the batch, the response contains a ChangeMessageVisibilityBatchResultEntry
 // tag if the message succeeds or a BatchResultErrorEntry tag if the message
 // fails.
@@ -1590,6 +1650,18 @@ func (s ChangeMessageVisibilityBatchOutput) String() string {
 // GoString returns the string representation
 func (s ChangeMessageVisibilityBatchOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailed sets the Failed field's value.
+func (s *ChangeMessageVisibilityBatchOutput) SetFailed(v []*BatchResultErrorEntry) *ChangeMessageVisibilityBatchOutput {
+	s.Failed = v
+	return s
+}
+
+// SetSuccessful sets the Successful field's value.
+func (s *ChangeMessageVisibilityBatchOutput) SetSuccessful(v []*ChangeMessageVisibilityBatchResultEntry) *ChangeMessageVisibilityBatchOutput {
+	s.Successful = v
+	return s
 }
 
 // Encloses a receipt handle and an entry id for each message in ChangeMessageVisibilityBatch.
@@ -1645,6 +1717,24 @@ func (s *ChangeMessageVisibilityBatchRequestEntry) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *ChangeMessageVisibilityBatchRequestEntry) SetId(v string) *ChangeMessageVisibilityBatchRequestEntry {
+	s.Id = &v
+	return s
+}
+
+// SetReceiptHandle sets the ReceiptHandle field's value.
+func (s *ChangeMessageVisibilityBatchRequestEntry) SetReceiptHandle(v string) *ChangeMessageVisibilityBatchRequestEntry {
+	s.ReceiptHandle = &v
+	return s
+}
+
+// SetVisibilityTimeout sets the VisibilityTimeout field's value.
+func (s *ChangeMessageVisibilityBatchRequestEntry) SetVisibilityTimeout(v int64) *ChangeMessageVisibilityBatchRequestEntry {
+	s.VisibilityTimeout = &v
+	return s
+}
+
 // Encloses the id of an entry in ChangeMessageVisibilityBatch.
 type ChangeMessageVisibilityBatchResultEntry struct {
 	_ struct{} `type:"structure"`
@@ -1663,6 +1753,12 @@ func (s ChangeMessageVisibilityBatchResultEntry) String() string {
 // GoString returns the string representation
 func (s ChangeMessageVisibilityBatchResultEntry) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ChangeMessageVisibilityBatchResultEntry) SetId(v string) *ChangeMessageVisibilityBatchResultEntry {
+	s.Id = &v
+	return s
 }
 
 type ChangeMessageVisibilityInput struct {
@@ -1715,6 +1811,24 @@ func (s *ChangeMessageVisibilityInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *ChangeMessageVisibilityInput) SetQueueUrl(v string) *ChangeMessageVisibilityInput {
+	s.QueueUrl = &v
+	return s
+}
+
+// SetReceiptHandle sets the ReceiptHandle field's value.
+func (s *ChangeMessageVisibilityInput) SetReceiptHandle(v string) *ChangeMessageVisibilityInput {
+	s.ReceiptHandle = &v
+	return s
+}
+
+// SetVisibilityTimeout sets the VisibilityTimeout field's value.
+func (s *ChangeMessageVisibilityInput) SetVisibilityTimeout(v int64) *ChangeMessageVisibilityInput {
+	s.VisibilityTimeout = &v
+	return s
 }
 
 type ChangeMessageVisibilityOutput struct {
@@ -1806,6 +1920,18 @@ func (s *CreateQueueInput) Validate() error {
 	return nil
 }
 
+// SetAttributes sets the Attributes field's value.
+func (s *CreateQueueInput) SetAttributes(v map[string]*string) *CreateQueueInput {
+	s.Attributes = v
+	return s
+}
+
+// SetQueueName sets the QueueName field's value.
+func (s *CreateQueueInput) SetQueueName(v string) *CreateQueueInput {
+	s.QueueName = &v
+	return s
+}
+
 // Returns the QueueUrl element of the created queue.
 type CreateQueueOutput struct {
 	_ struct{} `type:"structure"`
@@ -1822,6 +1948,12 @@ func (s CreateQueueOutput) String() string {
 // GoString returns the string representation
 func (s CreateQueueOutput) GoString() string {
 	return s.String()
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *CreateQueueOutput) SetQueueUrl(v string) *CreateQueueOutput {
+	s.QueueUrl = &v
+	return s
 }
 
 type DeleteMessageBatchInput struct {
@@ -1876,6 +2008,18 @@ func (s *DeleteMessageBatchInput) Validate() error {
 	return nil
 }
 
+// SetEntries sets the Entries field's value.
+func (s *DeleteMessageBatchInput) SetEntries(v []*DeleteMessageBatchRequestEntry) *DeleteMessageBatchInput {
+	s.Entries = v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *DeleteMessageBatchInput) SetQueueUrl(v string) *DeleteMessageBatchInput {
+	s.QueueUrl = &v
+	return s
+}
+
 // For each message in the batch, the response contains a DeleteMessageBatchResultEntry
 // tag if the message is deleted or a BatchResultErrorEntry tag if the message
 // cannot be deleted.
@@ -1901,6 +2045,18 @@ func (s DeleteMessageBatchOutput) String() string {
 // GoString returns the string representation
 func (s DeleteMessageBatchOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailed sets the Failed field's value.
+func (s *DeleteMessageBatchOutput) SetFailed(v []*BatchResultErrorEntry) *DeleteMessageBatchOutput {
+	s.Failed = v
+	return s
+}
+
+// SetSuccessful sets the Successful field's value.
+func (s *DeleteMessageBatchOutput) SetSuccessful(v []*DeleteMessageBatchResultEntry) *DeleteMessageBatchOutput {
+	s.Successful = v
+	return s
 }
 
 // Encloses a receipt handle and an identifier for it.
@@ -1946,6 +2102,18 @@ func (s *DeleteMessageBatchRequestEntry) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *DeleteMessageBatchRequestEntry) SetId(v string) *DeleteMessageBatchRequestEntry {
+	s.Id = &v
+	return s
+}
+
+// SetReceiptHandle sets the ReceiptHandle field's value.
+func (s *DeleteMessageBatchRequestEntry) SetReceiptHandle(v string) *DeleteMessageBatchRequestEntry {
+	s.ReceiptHandle = &v
+	return s
+}
+
 // Encloses the id an entry in DeleteMessageBatch.
 type DeleteMessageBatchResultEntry struct {
 	_ struct{} `type:"structure"`
@@ -1964,6 +2132,12 @@ func (s DeleteMessageBatchResultEntry) String() string {
 // GoString returns the string representation
 func (s DeleteMessageBatchResultEntry) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteMessageBatchResultEntry) SetId(v string) *DeleteMessageBatchResultEntry {
+	s.Id = &v
+	return s
 }
 
 type DeleteMessageInput struct {
@@ -2006,6 +2180,18 @@ func (s *DeleteMessageInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *DeleteMessageInput) SetQueueUrl(v string) *DeleteMessageInput {
+	s.QueueUrl = &v
+	return s
+}
+
+// SetReceiptHandle sets the ReceiptHandle field's value.
+func (s *DeleteMessageInput) SetReceiptHandle(v string) *DeleteMessageInput {
+	s.ReceiptHandle = &v
+	return s
 }
 
 type DeleteMessageOutput struct {
@@ -2054,6 +2240,12 @@ func (s *DeleteQueueInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *DeleteQueueInput) SetQueueUrl(v string) *DeleteQueueInput {
+	s.QueueUrl = &v
+	return s
 }
 
 type DeleteQueueOutput struct {
@@ -2157,6 +2349,18 @@ func (s *GetQueueAttributesInput) Validate() error {
 	return nil
 }
 
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *GetQueueAttributesInput) SetAttributeNames(v []*string) *GetQueueAttributesInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *GetQueueAttributesInput) SetQueueUrl(v string) *GetQueueAttributesInput {
+	s.QueueUrl = &v
+	return s
+}
+
 // A list of returned queue attributes.
 type GetQueueAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2173,6 +2377,12 @@ func (s GetQueueAttributesOutput) String() string {
 // GoString returns the string representation
 func (s GetQueueAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *GetQueueAttributesOutput) SetAttributes(v map[string]*string) *GetQueueAttributesOutput {
+	s.Attributes = v
+	return s
 }
 
 type GetQueueUrlInput struct {
@@ -2213,6 +2423,18 @@ func (s *GetQueueUrlInput) Validate() error {
 	return nil
 }
 
+// SetQueueName sets the QueueName field's value.
+func (s *GetQueueUrlInput) SetQueueName(v string) *GetQueueUrlInput {
+	s.QueueName = &v
+	return s
+}
+
+// SetQueueOwnerAWSAccountId sets the QueueOwnerAWSAccountId field's value.
+func (s *GetQueueUrlInput) SetQueueOwnerAWSAccountId(v string) *GetQueueUrlInput {
+	s.QueueOwnerAWSAccountId = &v
+	return s
+}
+
 // For more information, see Responses (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html)
 // in the Amazon SQS Developer Guide.
 type GetQueueUrlOutput struct {
@@ -2230,6 +2452,12 @@ func (s GetQueueUrlOutput) String() string {
 // GoString returns the string representation
 func (s GetQueueUrlOutput) GoString() string {
 	return s.String()
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *GetQueueUrlOutput) SetQueueUrl(v string) *GetQueueUrlOutput {
+	s.QueueUrl = &v
+	return s
 }
 
 type ListDeadLetterSourceQueuesInput struct {
@@ -2266,6 +2494,12 @@ func (s *ListDeadLetterSourceQueuesInput) Validate() error {
 	return nil
 }
 
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *ListDeadLetterSourceQueuesInput) SetQueueUrl(v string) *ListDeadLetterSourceQueuesInput {
+	s.QueueUrl = &v
+	return s
+}
+
 // A list of your dead letter source queues.
 type ListDeadLetterSourceQueuesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2285,6 +2519,12 @@ func (s ListDeadLetterSourceQueuesOutput) String() string {
 // GoString returns the string representation
 func (s ListDeadLetterSourceQueuesOutput) GoString() string {
 	return s.String()
+}
+
+// SetQueueUrls sets the QueueUrls field's value.
+func (s *ListDeadLetterSourceQueuesOutput) SetQueueUrls(v []*string) *ListDeadLetterSourceQueuesOutput {
+	s.QueueUrls = v
+	return s
 }
 
 type ListQueuesInput struct {
@@ -2307,6 +2547,12 @@ func (s ListQueuesInput) GoString() string {
 	return s.String()
 }
 
+// SetQueueNamePrefix sets the QueueNamePrefix field's value.
+func (s *ListQueuesInput) SetQueueNamePrefix(v string) *ListQueuesInput {
+	s.QueueNamePrefix = &v
+	return s
+}
+
 // A list of your queues.
 type ListQueuesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2323,6 +2569,12 @@ func (s ListQueuesOutput) String() string {
 // GoString returns the string representation
 func (s ListQueuesOutput) GoString() string {
 	return s.String()
+}
+
+// SetQueueUrls sets the QueueUrls field's value.
+func (s *ListQueuesOutput) SetQueueUrls(v []*string) *ListQueuesOutput {
+	s.QueueUrls = v
+	return s
 }
 
 // An Amazon SQS message.
@@ -2369,6 +2621,48 @@ func (s Message) String() string {
 // GoString returns the string representation
 func (s Message) GoString() string {
 	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *Message) SetAttributes(v map[string]*string) *Message {
+	s.Attributes = v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *Message) SetBody(v string) *Message {
+	s.Body = &v
+	return s
+}
+
+// SetMD5OfBody sets the MD5OfBody field's value.
+func (s *Message) SetMD5OfBody(v string) *Message {
+	s.MD5OfBody = &v
+	return s
+}
+
+// SetMD5OfMessageAttributes sets the MD5OfMessageAttributes field's value.
+func (s *Message) SetMD5OfMessageAttributes(v string) *Message {
+	s.MD5OfMessageAttributes = &v
+	return s
+}
+
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *Message) SetMessageAttributes(v map[string]*MessageAttributeValue) *Message {
+	s.MessageAttributes = v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *Message) SetMessageId(v string) *Message {
+	s.MessageId = &v
+	return s
+}
+
+// SetReceiptHandle sets the ReceiptHandle field's value.
+func (s *Message) SetReceiptHandle(v string) *Message {
+	s.ReceiptHandle = &v
+	return s
 }
 
 // The user-specified message attribute value. For string data types, the value
@@ -2431,6 +2725,36 @@ func (s *MessageAttributeValue) Validate() error {
 	return nil
 }
 
+// SetBinaryListValues sets the BinaryListValues field's value.
+func (s *MessageAttributeValue) SetBinaryListValues(v [][]byte) *MessageAttributeValue {
+	s.BinaryListValues = v
+	return s
+}
+
+// SetBinaryValue sets the BinaryValue field's value.
+func (s *MessageAttributeValue) SetBinaryValue(v []byte) *MessageAttributeValue {
+	s.BinaryValue = v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *MessageAttributeValue) SetDataType(v string) *MessageAttributeValue {
+	s.DataType = &v
+	return s
+}
+
+// SetStringListValues sets the StringListValues field's value.
+func (s *MessageAttributeValue) SetStringListValues(v []*string) *MessageAttributeValue {
+	s.StringListValues = v
+	return s
+}
+
+// SetStringValue sets the StringValue field's value.
+func (s *MessageAttributeValue) SetStringValue(v string) *MessageAttributeValue {
+	s.StringValue = &v
+	return s
+}
+
 type PurgeQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2464,6 +2788,12 @@ func (s *PurgeQueueInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *PurgeQueueInput) SetQueueUrl(v string) *PurgeQueueInput {
+	s.QueueUrl = &v
+	return s
 }
 
 type PurgeQueueOutput struct {
@@ -2569,6 +2899,42 @@ func (s *ReceiveMessageInput) Validate() error {
 	return nil
 }
 
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *ReceiveMessageInput) SetAttributeNames(v []*string) *ReceiveMessageInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetMaxNumberOfMessages sets the MaxNumberOfMessages field's value.
+func (s *ReceiveMessageInput) SetMaxNumberOfMessages(v int64) *ReceiveMessageInput {
+	s.MaxNumberOfMessages = &v
+	return s
+}
+
+// SetMessageAttributeNames sets the MessageAttributeNames field's value.
+func (s *ReceiveMessageInput) SetMessageAttributeNames(v []*string) *ReceiveMessageInput {
+	s.MessageAttributeNames = v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *ReceiveMessageInput) SetQueueUrl(v string) *ReceiveMessageInput {
+	s.QueueUrl = &v
+	return s
+}
+
+// SetVisibilityTimeout sets the VisibilityTimeout field's value.
+func (s *ReceiveMessageInput) SetVisibilityTimeout(v int64) *ReceiveMessageInput {
+	s.VisibilityTimeout = &v
+	return s
+}
+
+// SetWaitTimeSeconds sets the WaitTimeSeconds field's value.
+func (s *ReceiveMessageInput) SetWaitTimeSeconds(v int64) *ReceiveMessageInput {
+	s.WaitTimeSeconds = &v
+	return s
+}
+
 // A list of received messages.
 type ReceiveMessageOutput struct {
 	_ struct{} `type:"structure"`
@@ -2585,6 +2951,12 @@ func (s ReceiveMessageOutput) String() string {
 // GoString returns the string representation
 func (s ReceiveMessageOutput) GoString() string {
 	return s.String()
+}
+
+// SetMessages sets the Messages field's value.
+func (s *ReceiveMessageOutput) SetMessages(v []*Message) *ReceiveMessageOutput {
+	s.Messages = v
+	return s
 }
 
 type RemovePermissionInput struct {
@@ -2628,6 +3000,18 @@ func (s *RemovePermissionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLabel sets the Label field's value.
+func (s *RemovePermissionInput) SetLabel(v string) *RemovePermissionInput {
+	s.Label = &v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *RemovePermissionInput) SetQueueUrl(v string) *RemovePermissionInput {
+	s.QueueUrl = &v
+	return s
 }
 
 type RemovePermissionOutput struct {
@@ -2696,6 +3080,18 @@ func (s *SendMessageBatchInput) Validate() error {
 	return nil
 }
 
+// SetEntries sets the Entries field's value.
+func (s *SendMessageBatchInput) SetEntries(v []*SendMessageBatchRequestEntry) *SendMessageBatchInput {
+	s.Entries = v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *SendMessageBatchInput) SetQueueUrl(v string) *SendMessageBatchInput {
+	s.QueueUrl = &v
+	return s
+}
+
 // For each message in the batch, the response contains a SendMessageBatchResultEntry
 // tag if the message succeeds or a BatchResultErrorEntry tag if the message
 // fails.
@@ -2722,6 +3118,18 @@ func (s SendMessageBatchOutput) String() string {
 // GoString returns the string representation
 func (s SendMessageBatchOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailed sets the Failed field's value.
+func (s *SendMessageBatchOutput) SetFailed(v []*BatchResultErrorEntry) *SendMessageBatchOutput {
+	s.Failed = v
+	return s
+}
+
+// SetSuccessful sets the Successful field's value.
+func (s *SendMessageBatchOutput) SetSuccessful(v []*SendMessageBatchResultEntry) *SendMessageBatchOutput {
+	s.Successful = v
+	return s
 }
 
 // Contains the details of a single Amazon SQS message along with a Id.
@@ -2784,6 +3192,30 @@ func (s *SendMessageBatchRequestEntry) Validate() error {
 	return nil
 }
 
+// SetDelaySeconds sets the DelaySeconds field's value.
+func (s *SendMessageBatchRequestEntry) SetDelaySeconds(v int64) *SendMessageBatchRequestEntry {
+	s.DelaySeconds = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SendMessageBatchRequestEntry) SetId(v string) *SendMessageBatchRequestEntry {
+	s.Id = &v
+	return s
+}
+
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *SendMessageBatchRequestEntry) SetMessageAttributes(v map[string]*MessageAttributeValue) *SendMessageBatchRequestEntry {
+	s.MessageAttributes = v
+	return s
+}
+
+// SetMessageBody sets the MessageBody field's value.
+func (s *SendMessageBatchRequestEntry) SetMessageBody(v string) *SendMessageBatchRequestEntry {
+	s.MessageBody = &v
+	return s
+}
+
 // Encloses a message ID for successfully enqueued message of a SendMessageBatch.
 type SendMessageBatchResultEntry struct {
 	_ struct{} `type:"structure"`
@@ -2821,6 +3253,30 @@ func (s SendMessageBatchResultEntry) String() string {
 // GoString returns the string representation
 func (s SendMessageBatchResultEntry) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *SendMessageBatchResultEntry) SetId(v string) *SendMessageBatchResultEntry {
+	s.Id = &v
+	return s
+}
+
+// SetMD5OfMessageAttributes sets the MD5OfMessageAttributes field's value.
+func (s *SendMessageBatchResultEntry) SetMD5OfMessageAttributes(v string) *SendMessageBatchResultEntry {
+	s.MD5OfMessageAttributes = &v
+	return s
+}
+
+// SetMD5OfMessageBody sets the MD5OfMessageBody field's value.
+func (s *SendMessageBatchResultEntry) SetMD5OfMessageBody(v string) *SendMessageBatchResultEntry {
+	s.MD5OfMessageBody = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *SendMessageBatchResultEntry) SetMessageId(v string) *SendMessageBatchResultEntry {
+	s.MessageId = &v
+	return s
 }
 
 type SendMessageInput struct {
@@ -2886,6 +3342,30 @@ func (s *SendMessageInput) Validate() error {
 	return nil
 }
 
+// SetDelaySeconds sets the DelaySeconds field's value.
+func (s *SendMessageInput) SetDelaySeconds(v int64) *SendMessageInput {
+	s.DelaySeconds = &v
+	return s
+}
+
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *SendMessageInput) SetMessageAttributes(v map[string]*MessageAttributeValue) *SendMessageInput {
+	s.MessageAttributes = v
+	return s
+}
+
+// SetMessageBody sets the MessageBody field's value.
+func (s *SendMessageInput) SetMessageBody(v string) *SendMessageInput {
+	s.MessageBody = &v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *SendMessageInput) SetQueueUrl(v string) *SendMessageInput {
+	s.QueueUrl = &v
+	return s
+}
+
 // The MD5OfMessageBody and MessageId elements.
 type SendMessageOutput struct {
 	_ struct{} `type:"structure"`
@@ -2916,6 +3396,24 @@ func (s SendMessageOutput) String() string {
 // GoString returns the string representation
 func (s SendMessageOutput) GoString() string {
 	return s.String()
+}
+
+// SetMD5OfMessageAttributes sets the MD5OfMessageAttributes field's value.
+func (s *SendMessageOutput) SetMD5OfMessageAttributes(v string) *SendMessageOutput {
+	s.MD5OfMessageAttributes = &v
+	return s
+}
+
+// SetMD5OfMessageBody sets the MD5OfMessageBody field's value.
+func (s *SendMessageOutput) SetMD5OfMessageBody(v string) *SendMessageOutput {
+	s.MD5OfMessageBody = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *SendMessageOutput) SetMessageId(v string) *SendMessageOutput {
+	s.MessageId = &v
+	return s
 }
 
 type SetQueueAttributesInput struct {
@@ -2996,6 +3494,18 @@ func (s *SetQueueAttributesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *SetQueueAttributesInput) SetAttributes(v map[string]*string) *SetQueueAttributesInput {
+	s.Attributes = v
+	return s
+}
+
+// SetQueueUrl sets the QueueUrl field's value.
+func (s *SetQueueAttributesInput) SetQueueUrl(v string) *SetQueueAttributesInput {
+	s.QueueUrl = &v
+	return s
 }
 
 type SetQueueAttributesOutput struct {

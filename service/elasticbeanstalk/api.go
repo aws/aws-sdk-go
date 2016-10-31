@@ -2528,6 +2528,18 @@ func (s *AbortEnvironmentUpdateInput) Validate() error {
 	return nil
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *AbortEnvironmentUpdateInput) SetEnvironmentId(v string) *AbortEnvironmentUpdateInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *AbortEnvironmentUpdateInput) SetEnvironmentName(v string) *AbortEnvironmentUpdateInput {
+	s.EnvironmentName = &v
+	return s
+}
+
 type AbortEnvironmentUpdateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2575,6 +2587,42 @@ func (s ApplicationDescription) GoString() string {
 	return s.String()
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ApplicationDescription) SetApplicationName(v string) *ApplicationDescription {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetConfigurationTemplates sets the ConfigurationTemplates field's value.
+func (s *ApplicationDescription) SetConfigurationTemplates(v []*string) *ApplicationDescription {
+	s.ConfigurationTemplates = v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *ApplicationDescription) SetDateCreated(v time.Time) *ApplicationDescription {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateUpdated sets the DateUpdated field's value.
+func (s *ApplicationDescription) SetDateUpdated(v time.Time) *ApplicationDescription {
+	s.DateUpdated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ApplicationDescription) SetDescription(v string) *ApplicationDescription {
+	s.Description = &v
+	return s
+}
+
+// SetVersions sets the Versions field's value.
+func (s *ApplicationDescription) SetVersions(v []*string) *ApplicationDescription {
+	s.Versions = v
+	return s
+}
+
 // Result message containing a single description of an application.
 type ApplicationDescriptionMessage struct {
 	_ struct{} `type:"structure"`
@@ -2591,6 +2639,12 @@ func (s ApplicationDescriptionMessage) String() string {
 // GoString returns the string representation
 func (s ApplicationDescriptionMessage) GoString() string {
 	return s.String()
+}
+
+// SetApplication sets the Application field's value.
+func (s *ApplicationDescriptionMessage) SetApplication(v *ApplicationDescription) *ApplicationDescriptionMessage {
+	s.Application = v
+	return s
 }
 
 // Represents the application metrics for a specified environment.
@@ -2623,6 +2677,30 @@ func (s ApplicationMetrics) String() string {
 // GoString returns the string representation
 func (s ApplicationMetrics) GoString() string {
 	return s.String()
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ApplicationMetrics) SetDuration(v int64) *ApplicationMetrics {
+	s.Duration = &v
+	return s
+}
+
+// SetLatency sets the Latency field's value.
+func (s *ApplicationMetrics) SetLatency(v *Latency) *ApplicationMetrics {
+	s.Latency = v
+	return s
+}
+
+// SetRequestCount sets the RequestCount field's value.
+func (s *ApplicationMetrics) SetRequestCount(v int64) *ApplicationMetrics {
+	s.RequestCount = &v
+	return s
+}
+
+// SetStatusCodes sets the StatusCodes field's value.
+func (s *ApplicationMetrics) SetStatusCodes(v *StatusCodes) *ApplicationMetrics {
+	s.StatusCodes = v
+	return s
 }
 
 // Describes the properties of an application version.
@@ -2663,6 +2741,54 @@ func (s ApplicationVersionDescription) GoString() string {
 	return s.String()
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ApplicationVersionDescription) SetApplicationName(v string) *ApplicationVersionDescription {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *ApplicationVersionDescription) SetDateCreated(v time.Time) *ApplicationVersionDescription {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateUpdated sets the DateUpdated field's value.
+func (s *ApplicationVersionDescription) SetDateUpdated(v time.Time) *ApplicationVersionDescription {
+	s.DateUpdated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ApplicationVersionDescription) SetDescription(v string) *ApplicationVersionDescription {
+	s.Description = &v
+	return s
+}
+
+// SetSourceBuildInformation sets the SourceBuildInformation field's value.
+func (s *ApplicationVersionDescription) SetSourceBuildInformation(v *SourceBuildInformation) *ApplicationVersionDescription {
+	s.SourceBuildInformation = v
+	return s
+}
+
+// SetSourceBundle sets the SourceBundle field's value.
+func (s *ApplicationVersionDescription) SetSourceBundle(v *S3Location) *ApplicationVersionDescription {
+	s.SourceBundle = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ApplicationVersionDescription) SetStatus(v string) *ApplicationVersionDescription {
+	s.Status = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *ApplicationVersionDescription) SetVersionLabel(v string) *ApplicationVersionDescription {
+	s.VersionLabel = &v
+	return s
+}
+
 // Result message wrapping a single description of an application version.
 type ApplicationVersionDescriptionMessage struct {
 	_ struct{} `type:"structure"`
@@ -2679,6 +2805,12 @@ func (s ApplicationVersionDescriptionMessage) String() string {
 // GoString returns the string representation
 func (s ApplicationVersionDescriptionMessage) GoString() string {
 	return s.String()
+}
+
+// SetApplicationVersion sets the ApplicationVersion field's value.
+func (s *ApplicationVersionDescriptionMessage) SetApplicationVersion(v *ApplicationVersionDescription) *ApplicationVersionDescriptionMessage {
+	s.ApplicationVersion = v
+	return s
 }
 
 // Request to execute a scheduled managed action immediately.
@@ -2720,6 +2852,24 @@ func (s *ApplyEnvironmentManagedActionInput) Validate() error {
 	return nil
 }
 
+// SetActionId sets the ActionId field's value.
+func (s *ApplyEnvironmentManagedActionInput) SetActionId(v string) *ApplyEnvironmentManagedActionInput {
+	s.ActionId = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *ApplyEnvironmentManagedActionInput) SetEnvironmentId(v string) *ApplyEnvironmentManagedActionInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ApplyEnvironmentManagedActionInput) SetEnvironmentName(v string) *ApplyEnvironmentManagedActionInput {
+	s.EnvironmentName = &v
+	return s
+}
+
 // The result message containing information about the managed action.
 type ApplyEnvironmentManagedActionOutput struct {
 	_ struct{} `type:"structure"`
@@ -2747,6 +2897,30 @@ func (s ApplyEnvironmentManagedActionOutput) GoString() string {
 	return s.String()
 }
 
+// SetActionDescription sets the ActionDescription field's value.
+func (s *ApplyEnvironmentManagedActionOutput) SetActionDescription(v string) *ApplyEnvironmentManagedActionOutput {
+	s.ActionDescription = &v
+	return s
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *ApplyEnvironmentManagedActionOutput) SetActionId(v string) *ApplyEnvironmentManagedActionOutput {
+	s.ActionId = &v
+	return s
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *ApplyEnvironmentManagedActionOutput) SetActionType(v string) *ApplyEnvironmentManagedActionOutput {
+	s.ActionType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ApplyEnvironmentManagedActionOutput) SetStatus(v string) *ApplyEnvironmentManagedActionOutput {
+	s.Status = &v
+	return s
+}
+
 // Describes an Auto Scaling launch configuration.
 type AutoScalingGroup struct {
 	_ struct{} `type:"structure"`
@@ -2763,6 +2937,12 @@ func (s AutoScalingGroup) String() string {
 // GoString returns the string representation
 func (s AutoScalingGroup) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AutoScalingGroup) SetName(v string) *AutoScalingGroup {
+	s.Name = &v
+	return s
 }
 
 // Represents CPU utilization information from the specified instance that belongs
@@ -2810,6 +2990,48 @@ func (s CPUUtilization) GoString() string {
 	return s.String()
 }
 
+// SetIOWait sets the IOWait field's value.
+func (s *CPUUtilization) SetIOWait(v float64) *CPUUtilization {
+	s.IOWait = &v
+	return s
+}
+
+// SetIRQ sets the IRQ field's value.
+func (s *CPUUtilization) SetIRQ(v float64) *CPUUtilization {
+	s.IRQ = &v
+	return s
+}
+
+// SetIdle sets the Idle field's value.
+func (s *CPUUtilization) SetIdle(v float64) *CPUUtilization {
+	s.Idle = &v
+	return s
+}
+
+// SetNice sets the Nice field's value.
+func (s *CPUUtilization) SetNice(v float64) *CPUUtilization {
+	s.Nice = &v
+	return s
+}
+
+// SetSoftIRQ sets the SoftIRQ field's value.
+func (s *CPUUtilization) SetSoftIRQ(v float64) *CPUUtilization {
+	s.SoftIRQ = &v
+	return s
+}
+
+// SetSystem sets the System field's value.
+func (s *CPUUtilization) SetSystem(v float64) *CPUUtilization {
+	s.System = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *CPUUtilization) SetUser(v float64) *CPUUtilization {
+	s.User = &v
+	return s
+}
+
 // Results message indicating whether a CNAME is available.
 type CheckDNSAvailabilityInput struct {
 	_ struct{} `type:"structure"`
@@ -2846,6 +3068,12 @@ func (s *CheckDNSAvailabilityInput) Validate() error {
 	return nil
 }
 
+// SetCNAMEPrefix sets the CNAMEPrefix field's value.
+func (s *CheckDNSAvailabilityInput) SetCNAMEPrefix(v string) *CheckDNSAvailabilityInput {
+	s.CNAMEPrefix = &v
+	return s
+}
+
 // Indicates if the specified CNAME is available.
 type CheckDNSAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
@@ -2870,6 +3098,18 @@ func (s CheckDNSAvailabilityOutput) String() string {
 // GoString returns the string representation
 func (s CheckDNSAvailabilityOutput) GoString() string {
 	return s.String()
+}
+
+// SetAvailable sets the Available field's value.
+func (s *CheckDNSAvailabilityOutput) SetAvailable(v bool) *CheckDNSAvailabilityOutput {
+	s.Available = &v
+	return s
+}
+
+// SetFullyQualifiedCNAME sets the FullyQualifiedCNAME field's value.
+func (s *CheckDNSAvailabilityOutput) SetFullyQualifiedCNAME(v string) *CheckDNSAvailabilityOutput {
+	s.FullyQualifiedCNAME = &v
+	return s
 }
 
 // Request to create or update a group of environments.
@@ -2918,6 +3158,24 @@ func (s *ComposeEnvironmentsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ComposeEnvironmentsInput) SetApplicationName(v string) *ComposeEnvironmentsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *ComposeEnvironmentsInput) SetGroupName(v string) *ComposeEnvironmentsInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetVersionLabels sets the VersionLabels field's value.
+func (s *ComposeEnvironmentsInput) SetVersionLabels(v []*string) *ComposeEnvironmentsInput {
+	s.VersionLabels = v
+	return s
 }
 
 // Describes the possible values for a configuration option.
@@ -3007,6 +3265,72 @@ func (s ConfigurationOptionDescription) GoString() string {
 	return s.String()
 }
 
+// SetChangeSeverity sets the ChangeSeverity field's value.
+func (s *ConfigurationOptionDescription) SetChangeSeverity(v string) *ConfigurationOptionDescription {
+	s.ChangeSeverity = &v
+	return s
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *ConfigurationOptionDescription) SetDefaultValue(v string) *ConfigurationOptionDescription {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetMaxLength sets the MaxLength field's value.
+func (s *ConfigurationOptionDescription) SetMaxLength(v int64) *ConfigurationOptionDescription {
+	s.MaxLength = &v
+	return s
+}
+
+// SetMaxValue sets the MaxValue field's value.
+func (s *ConfigurationOptionDescription) SetMaxValue(v int64) *ConfigurationOptionDescription {
+	s.MaxValue = &v
+	return s
+}
+
+// SetMinValue sets the MinValue field's value.
+func (s *ConfigurationOptionDescription) SetMinValue(v int64) *ConfigurationOptionDescription {
+	s.MinValue = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ConfigurationOptionDescription) SetName(v string) *ConfigurationOptionDescription {
+	s.Name = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ConfigurationOptionDescription) SetNamespace(v string) *ConfigurationOptionDescription {
+	s.Namespace = &v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *ConfigurationOptionDescription) SetRegex(v *OptionRestrictionRegex) *ConfigurationOptionDescription {
+	s.Regex = v
+	return s
+}
+
+// SetUserDefined sets the UserDefined field's value.
+func (s *ConfigurationOptionDescription) SetUserDefined(v bool) *ConfigurationOptionDescription {
+	s.UserDefined = &v
+	return s
+}
+
+// SetValueOptions sets the ValueOptions field's value.
+func (s *ConfigurationOptionDescription) SetValueOptions(v []*string) *ConfigurationOptionDescription {
+	s.ValueOptions = v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *ConfigurationOptionDescription) SetValueType(v string) *ConfigurationOptionDescription {
+	s.ValueType = &v
+	return s
+}
+
 // A specification identifying an individual configuration option along with
 // its current value. For a list of possible option values, go to Option Values
 // (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html)
@@ -3048,6 +3372,30 @@ func (s *ConfigurationOptionSetting) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ConfigurationOptionSetting) SetNamespace(v string) *ConfigurationOptionSetting {
+	s.Namespace = &v
+	return s
+}
+
+// SetOptionName sets the OptionName field's value.
+func (s *ConfigurationOptionSetting) SetOptionName(v string) *ConfigurationOptionSetting {
+	s.OptionName = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *ConfigurationOptionSetting) SetResourceName(v string) *ConfigurationOptionSetting {
+	s.ResourceName = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ConfigurationOptionSetting) SetValue(v string) *ConfigurationOptionSetting {
+	s.Value = &v
+	return s
 }
 
 // Describes the settings for a configuration set.
@@ -3105,6 +3453,60 @@ func (s ConfigurationSettingsDescription) GoString() string {
 	return s.String()
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ConfigurationSettingsDescription) SetApplicationName(v string) *ConfigurationSettingsDescription {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *ConfigurationSettingsDescription) SetDateCreated(v time.Time) *ConfigurationSettingsDescription {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateUpdated sets the DateUpdated field's value.
+func (s *ConfigurationSettingsDescription) SetDateUpdated(v time.Time) *ConfigurationSettingsDescription {
+	s.DateUpdated = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *ConfigurationSettingsDescription) SetDeploymentStatus(v string) *ConfigurationSettingsDescription {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ConfigurationSettingsDescription) SetDescription(v string) *ConfigurationSettingsDescription {
+	s.Description = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ConfigurationSettingsDescription) SetEnvironmentName(v string) *ConfigurationSettingsDescription {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *ConfigurationSettingsDescription) SetOptionSettings(v []*ConfigurationOptionSetting) *ConfigurationSettingsDescription {
+	s.OptionSettings = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *ConfigurationSettingsDescription) SetSolutionStackName(v string) *ConfigurationSettingsDescription {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ConfigurationSettingsDescription) SetTemplateName(v string) *ConfigurationSettingsDescription {
+	s.TemplateName = &v
+	return s
+}
+
 // Request to create an application.
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
@@ -3145,6 +3547,18 @@ func (s *CreateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *CreateApplicationInput) SetApplicationName(v string) *CreateApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateApplicationInput) SetDescription(v string) *CreateApplicationInput {
+	s.Description = &v
+	return s
 }
 
 type CreateApplicationVersionInput struct {
@@ -3238,6 +3652,48 @@ func (s *CreateApplicationVersionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *CreateApplicationVersionInput) SetApplicationName(v string) *CreateApplicationVersionInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetAutoCreateApplication sets the AutoCreateApplication field's value.
+func (s *CreateApplicationVersionInput) SetAutoCreateApplication(v bool) *CreateApplicationVersionInput {
+	s.AutoCreateApplication = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateApplicationVersionInput) SetDescription(v string) *CreateApplicationVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetProcess sets the Process field's value.
+func (s *CreateApplicationVersionInput) SetProcess(v bool) *CreateApplicationVersionInput {
+	s.Process = &v
+	return s
+}
+
+// SetSourceBuildInformation sets the SourceBuildInformation field's value.
+func (s *CreateApplicationVersionInput) SetSourceBuildInformation(v *SourceBuildInformation) *CreateApplicationVersionInput {
+	s.SourceBuildInformation = v
+	return s
+}
+
+// SetSourceBundle sets the SourceBundle field's value.
+func (s *CreateApplicationVersionInput) SetSourceBundle(v *S3Location) *CreateApplicationVersionInput {
+	s.SourceBundle = v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *CreateApplicationVersionInput) SetVersionLabel(v string) *CreateApplicationVersionInput {
+	s.VersionLabel = &v
+	return s
 }
 
 // Request to create a configuration template.
@@ -3347,6 +3803,48 @@ func (s *CreateConfigurationTemplateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *CreateConfigurationTemplateInput) SetApplicationName(v string) *CreateConfigurationTemplateInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateConfigurationTemplateInput) SetDescription(v string) *CreateConfigurationTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *CreateConfigurationTemplateInput) SetEnvironmentId(v string) *CreateConfigurationTemplateInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *CreateConfigurationTemplateInput) SetOptionSettings(v []*ConfigurationOptionSetting) *CreateConfigurationTemplateInput {
+	s.OptionSettings = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *CreateConfigurationTemplateInput) SetSolutionStackName(v string) *CreateConfigurationTemplateInput {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *CreateConfigurationTemplateInput) SetSourceConfiguration(v *SourceConfiguration) *CreateConfigurationTemplateInput {
+	s.SourceConfiguration = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *CreateConfigurationTemplateInput) SetTemplateName(v string) *CreateConfigurationTemplateInput {
+	s.TemplateName = &v
+	return s
 }
 
 type CreateEnvironmentInput struct {
@@ -3503,6 +4001,78 @@ func (s *CreateEnvironmentInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *CreateEnvironmentInput) SetApplicationName(v string) *CreateEnvironmentInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCNAMEPrefix sets the CNAMEPrefix field's value.
+func (s *CreateEnvironmentInput) SetCNAMEPrefix(v string) *CreateEnvironmentInput {
+	s.CNAMEPrefix = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateEnvironmentInput) SetDescription(v string) *CreateEnvironmentInput {
+	s.Description = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *CreateEnvironmentInput) SetEnvironmentName(v string) *CreateEnvironmentInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *CreateEnvironmentInput) SetGroupName(v string) *CreateEnvironmentInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *CreateEnvironmentInput) SetOptionSettings(v []*ConfigurationOptionSetting) *CreateEnvironmentInput {
+	s.OptionSettings = v
+	return s
+}
+
+// SetOptionsToRemove sets the OptionsToRemove field's value.
+func (s *CreateEnvironmentInput) SetOptionsToRemove(v []*OptionSpecification) *CreateEnvironmentInput {
+	s.OptionsToRemove = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *CreateEnvironmentInput) SetSolutionStackName(v string) *CreateEnvironmentInput {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEnvironmentInput) SetTags(v []*Tag) *CreateEnvironmentInput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *CreateEnvironmentInput) SetTemplateName(v string) *CreateEnvironmentInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTier sets the Tier field's value.
+func (s *CreateEnvironmentInput) SetTier(v *EnvironmentTier) *CreateEnvironmentInput {
+	s.Tier = v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *CreateEnvironmentInput) SetVersionLabel(v string) *CreateEnvironmentInput {
+	s.VersionLabel = &v
+	return s
+}
+
 type CreateStorageLocationInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3533,6 +4103,12 @@ func (s CreateStorageLocationOutput) String() string {
 // GoString returns the string representation
 func (s CreateStorageLocationOutput) GoString() string {
 	return s.String()
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *CreateStorageLocationOutput) SetS3Bucket(v string) *CreateStorageLocationOutput {
+	s.S3Bucket = &v
+	return s
 }
 
 // Request to delete an application.
@@ -3573,6 +4149,18 @@ func (s *DeleteApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteApplicationInput) SetApplicationName(v string) *DeleteApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetTerminateEnvByForce sets the TerminateEnvByForce field's value.
+func (s *DeleteApplicationInput) SetTerminateEnvByForce(v bool) *DeleteApplicationInput {
+	s.TerminateEnvByForce = &v
+	return s
 }
 
 type DeleteApplicationOutput struct {
@@ -3647,6 +4235,24 @@ func (s *DeleteApplicationVersionInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteApplicationVersionInput) SetApplicationName(v string) *DeleteApplicationVersionInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDeleteSourceBundle sets the DeleteSourceBundle field's value.
+func (s *DeleteApplicationVersionInput) SetDeleteSourceBundle(v bool) *DeleteApplicationVersionInput {
+	s.DeleteSourceBundle = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *DeleteApplicationVersionInput) SetVersionLabel(v string) *DeleteApplicationVersionInput {
+	s.VersionLabel = &v
+	return s
+}
+
 type DeleteApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3706,6 +4312,18 @@ func (s *DeleteConfigurationTemplateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteConfigurationTemplateInput) SetApplicationName(v string) *DeleteConfigurationTemplateInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DeleteConfigurationTemplateInput) SetTemplateName(v string) *DeleteConfigurationTemplateInput {
+	s.TemplateName = &v
+	return s
 }
 
 type DeleteConfigurationTemplateOutput struct {
@@ -3769,6 +4387,18 @@ func (s *DeleteEnvironmentConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteEnvironmentConfigurationInput) SetApplicationName(v string) *DeleteEnvironmentConfigurationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DeleteEnvironmentConfigurationInput) SetEnvironmentName(v string) *DeleteEnvironmentConfigurationInput {
+	s.EnvironmentName = &v
+	return s
+}
+
 type DeleteEnvironmentConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3819,6 +4449,30 @@ func (s Deployment) GoString() string {
 	return s.String()
 }
 
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *Deployment) SetDeploymentId(v int64) *Deployment {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetDeploymentTime sets the DeploymentTime field's value.
+func (s *Deployment) SetDeploymentTime(v time.Time) *Deployment {
+	s.DeploymentTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Deployment) SetStatus(v string) *Deployment {
+	s.Status = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *Deployment) SetVersionLabel(v string) *Deployment {
+	s.VersionLabel = &v
+	return s
+}
+
 // Result message containing a list of configuration descriptions.
 type DescribeApplicationVersionsInput struct {
 	_ struct{} `type:"structure"`
@@ -3864,6 +4518,30 @@ func (s *DescribeApplicationVersionsInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeApplicationVersionsInput) SetApplicationName(v string) *DescribeApplicationVersionsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeApplicationVersionsInput) SetMaxRecords(v int64) *DescribeApplicationVersionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeApplicationVersionsInput) SetNextToken(v string) *DescribeApplicationVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVersionLabels sets the VersionLabels field's value.
+func (s *DescribeApplicationVersionsInput) SetVersionLabels(v []*string) *DescribeApplicationVersionsInput {
+	s.VersionLabels = v
+	return s
+}
+
 // Result message wrapping a list of application version descriptions.
 type DescribeApplicationVersionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3886,6 +4564,18 @@ func (s DescribeApplicationVersionsOutput) GoString() string {
 	return s.String()
 }
 
+// SetApplicationVersions sets the ApplicationVersions field's value.
+func (s *DescribeApplicationVersionsOutput) SetApplicationVersions(v []*ApplicationVersionDescription) *DescribeApplicationVersionsOutput {
+	s.ApplicationVersions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeApplicationVersionsOutput) SetNextToken(v string) *DescribeApplicationVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Request to describe one or more applications.
 type DescribeApplicationsInput struct {
 	_ struct{} `type:"structure"`
@@ -3905,6 +4595,12 @@ func (s DescribeApplicationsInput) GoString() string {
 	return s.String()
 }
 
+// SetApplicationNames sets the ApplicationNames field's value.
+func (s *DescribeApplicationsInput) SetApplicationNames(v []*string) *DescribeApplicationsInput {
+	s.ApplicationNames = v
+	return s
+}
+
 // Result message containing a list of application descriptions.
 type DescribeApplicationsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3921,6 +4617,12 @@ func (s DescribeApplicationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeApplicationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplications sets the Applications field's value.
+func (s *DescribeApplicationsOutput) SetApplications(v []*ApplicationDescription) *DescribeApplicationsOutput {
+	s.Applications = v
+	return s
 }
 
 // Result message containig a list of application version descriptions.
@@ -3985,6 +4687,36 @@ func (s *DescribeConfigurationOptionsInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeConfigurationOptionsInput) SetApplicationName(v string) *DescribeConfigurationOptionsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeConfigurationOptionsInput) SetEnvironmentName(v string) *DescribeConfigurationOptionsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *DescribeConfigurationOptionsInput) SetOptions(v []*OptionSpecification) *DescribeConfigurationOptionsInput {
+	s.Options = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *DescribeConfigurationOptionsInput) SetSolutionStackName(v string) *DescribeConfigurationOptionsInput {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DescribeConfigurationOptionsInput) SetTemplateName(v string) *DescribeConfigurationOptionsInput {
+	s.TemplateName = &v
+	return s
+}
+
 // Describes the settings for a specified configuration set.
 type DescribeConfigurationOptionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4004,6 +4736,18 @@ func (s DescribeConfigurationOptionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeConfigurationOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *DescribeConfigurationOptionsOutput) SetOptions(v []*ConfigurationOptionDescription) *DescribeConfigurationOptionsOutput {
+	s.Options = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *DescribeConfigurationOptionsOutput) SetSolutionStackName(v string) *DescribeConfigurationOptionsOutput {
+	s.SolutionStackName = &v
+	return s
 }
 
 // Result message containing all of the configuration settings for a specified
@@ -4065,6 +4809,24 @@ func (s *DescribeConfigurationSettingsInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeConfigurationSettingsInput) SetApplicationName(v string) *DescribeConfigurationSettingsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeConfigurationSettingsInput) SetEnvironmentName(v string) *DescribeConfigurationSettingsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DescribeConfigurationSettingsInput) SetTemplateName(v string) *DescribeConfigurationSettingsInput {
+	s.TemplateName = &v
+	return s
+}
+
 // The results from a request to change the configuration settings of an environment.
 type DescribeConfigurationSettingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4081,6 +4843,12 @@ func (s DescribeConfigurationSettingsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeConfigurationSettingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetConfigurationSettings sets the ConfigurationSettings field's value.
+func (s *DescribeConfigurationSettingsOutput) SetConfigurationSettings(v []*ConfigurationSettingsDescription) *DescribeConfigurationSettingsOutput {
+	s.ConfigurationSettings = v
+	return s
 }
 
 // See the example below to learn how to create a request body.
@@ -4129,6 +4897,24 @@ func (s *DescribeEnvironmentHealthInput) Validate() error {
 	return nil
 }
 
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *DescribeEnvironmentHealthInput) SetAttributeNames(v []*string) *DescribeEnvironmentHealthInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DescribeEnvironmentHealthInput) SetEnvironmentId(v string) *DescribeEnvironmentHealthInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeEnvironmentHealthInput) SetEnvironmentName(v string) *DescribeEnvironmentHealthInput {
+	s.EnvironmentName = &v
+	return s
+}
+
 // See the example below for a sample response.
 type DescribeEnvironmentHealthOutput struct {
 	_ struct{} `type:"structure"`
@@ -4171,6 +4957,54 @@ func (s DescribeEnvironmentHealthOutput) GoString() string {
 	return s.String()
 }
 
+// SetApplicationMetrics sets the ApplicationMetrics field's value.
+func (s *DescribeEnvironmentHealthOutput) SetApplicationMetrics(v *ApplicationMetrics) *DescribeEnvironmentHealthOutput {
+	s.ApplicationMetrics = v
+	return s
+}
+
+// SetCauses sets the Causes field's value.
+func (s *DescribeEnvironmentHealthOutput) SetCauses(v []*string) *DescribeEnvironmentHealthOutput {
+	s.Causes = v
+	return s
+}
+
+// SetColor sets the Color field's value.
+func (s *DescribeEnvironmentHealthOutput) SetColor(v string) *DescribeEnvironmentHealthOutput {
+	s.Color = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeEnvironmentHealthOutput) SetEnvironmentName(v string) *DescribeEnvironmentHealthOutput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *DescribeEnvironmentHealthOutput) SetHealthStatus(v string) *DescribeEnvironmentHealthOutput {
+	s.HealthStatus = &v
+	return s
+}
+
+// SetInstancesHealth sets the InstancesHealth field's value.
+func (s *DescribeEnvironmentHealthOutput) SetInstancesHealth(v *InstanceHealthSummary) *DescribeEnvironmentHealthOutput {
+	s.InstancesHealth = v
+	return s
+}
+
+// SetRefreshedAt sets the RefreshedAt field's value.
+func (s *DescribeEnvironmentHealthOutput) SetRefreshedAt(v time.Time) *DescribeEnvironmentHealthOutput {
+	s.RefreshedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeEnvironmentHealthOutput) SetStatus(v string) *DescribeEnvironmentHealthOutput {
+	s.Status = &v
+	return s
+}
+
 // Request to list completed and failed managed actions.
 type DescribeEnvironmentManagedActionHistoryInput struct {
 	_ struct{} `type:"structure"`
@@ -4211,6 +5045,30 @@ func (s *DescribeEnvironmentManagedActionHistoryInput) Validate() error {
 	return nil
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DescribeEnvironmentManagedActionHistoryInput) SetEnvironmentId(v string) *DescribeEnvironmentManagedActionHistoryInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeEnvironmentManagedActionHistoryInput) SetEnvironmentName(v string) *DescribeEnvironmentManagedActionHistoryInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *DescribeEnvironmentManagedActionHistoryInput) SetMaxItems(v int64) *DescribeEnvironmentManagedActionHistoryInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEnvironmentManagedActionHistoryInput) SetNextToken(v string) *DescribeEnvironmentManagedActionHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
 // A result message containing a list of completed and failed managed actions.
 type DescribeEnvironmentManagedActionHistoryOutput struct {
 	_ struct{} `type:"structure"`
@@ -4231,6 +5089,18 @@ func (s DescribeEnvironmentManagedActionHistoryOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEnvironmentManagedActionHistoryOutput) GoString() string {
 	return s.String()
+}
+
+// SetManagedActionHistoryItems sets the ManagedActionHistoryItems field's value.
+func (s *DescribeEnvironmentManagedActionHistoryOutput) SetManagedActionHistoryItems(v []*ManagedActionHistoryItem) *DescribeEnvironmentManagedActionHistoryOutput {
+	s.ManagedActionHistoryItems = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEnvironmentManagedActionHistoryOutput) SetNextToken(v string) *DescribeEnvironmentManagedActionHistoryOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Request to list an environment's upcoming and in-progress managed actions.
@@ -4257,6 +5127,24 @@ func (s DescribeEnvironmentManagedActionsInput) GoString() string {
 	return s.String()
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DescribeEnvironmentManagedActionsInput) SetEnvironmentId(v string) *DescribeEnvironmentManagedActionsInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeEnvironmentManagedActionsInput) SetEnvironmentName(v string) *DescribeEnvironmentManagedActionsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeEnvironmentManagedActionsInput) SetStatus(v string) *DescribeEnvironmentManagedActionsInput {
+	s.Status = &v
+	return s
+}
+
 // The result message containing a list of managed actions.
 type DescribeEnvironmentManagedActionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4273,6 +5161,12 @@ func (s DescribeEnvironmentManagedActionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEnvironmentManagedActionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetManagedActions sets the ManagedActions field's value.
+func (s *DescribeEnvironmentManagedActionsOutput) SetManagedActions(v []*ManagedAction) *DescribeEnvironmentManagedActionsOutput {
+	s.ManagedActions = v
+	return s
 }
 
 // Request to describe the resources in an environment.
@@ -4317,6 +5211,18 @@ func (s *DescribeEnvironmentResourcesInput) Validate() error {
 	return nil
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DescribeEnvironmentResourcesInput) SetEnvironmentId(v string) *DescribeEnvironmentResourcesInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeEnvironmentResourcesInput) SetEnvironmentName(v string) *DescribeEnvironmentResourcesInput {
+	s.EnvironmentName = &v
+	return s
+}
+
 // Result message containing a list of environment resource descriptions.
 type DescribeEnvironmentResourcesOutput struct {
 	_ struct{} `type:"structure"`
@@ -4333,6 +5239,12 @@ func (s DescribeEnvironmentResourcesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEnvironmentResourcesOutput) GoString() string {
 	return s.String()
+}
+
+// SetEnvironmentResources sets the EnvironmentResources field's value.
+func (s *DescribeEnvironmentResourcesOutput) SetEnvironmentResources(v *EnvironmentResourceDescription) *DescribeEnvironmentResourcesOutput {
+	s.EnvironmentResources = v
+	return s
 }
 
 // Request to describe one or more environments.
@@ -4392,6 +5304,42 @@ func (s *DescribeEnvironmentsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeEnvironmentsInput) SetApplicationName(v string) *DescribeEnvironmentsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEnvironmentIds sets the EnvironmentIds field's value.
+func (s *DescribeEnvironmentsInput) SetEnvironmentIds(v []*string) *DescribeEnvironmentsInput {
+	s.EnvironmentIds = v
+	return s
+}
+
+// SetEnvironmentNames sets the EnvironmentNames field's value.
+func (s *DescribeEnvironmentsInput) SetEnvironmentNames(v []*string) *DescribeEnvironmentsInput {
+	s.EnvironmentNames = v
+	return s
+}
+
+// SetIncludeDeleted sets the IncludeDeleted field's value.
+func (s *DescribeEnvironmentsInput) SetIncludeDeleted(v bool) *DescribeEnvironmentsInput {
+	s.IncludeDeleted = &v
+	return s
+}
+
+// SetIncludedDeletedBackTo sets the IncludedDeletedBackTo field's value.
+func (s *DescribeEnvironmentsInput) SetIncludedDeletedBackTo(v time.Time) *DescribeEnvironmentsInput {
+	s.IncludedDeletedBackTo = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *DescribeEnvironmentsInput) SetVersionLabel(v string) *DescribeEnvironmentsInput {
+	s.VersionLabel = &v
+	return s
 }
 
 // Request to retrieve a list of events for an environment.
@@ -4477,6 +5425,72 @@ func (s *DescribeEventsInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeEventsInput) SetApplicationName(v string) *DescribeEventsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeEventsInput) SetEndTime(v time.Time) *DescribeEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DescribeEventsInput) SetEnvironmentId(v string) *DescribeEventsInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeEventsInput) SetEnvironmentName(v string) *DescribeEventsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEventsInput) SetMaxRecords(v int64) *DescribeEventsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEventsInput) SetNextToken(v string) *DescribeEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeEventsInput) SetRequestId(v string) *DescribeEventsInput {
+	s.RequestId = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *DescribeEventsInput) SetSeverity(v string) *DescribeEventsInput {
+	s.Severity = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeEventsInput) SetStartTime(v time.Time) *DescribeEventsInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DescribeEventsInput) SetTemplateName(v string) *DescribeEventsInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *DescribeEventsInput) SetVersionLabel(v string) *DescribeEventsInput {
+	s.VersionLabel = &v
+	return s
+}
+
 // Result message wrapping a list of event descriptions.
 type DescribeEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4497,6 +5511,18 @@ func (s DescribeEventsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *DescribeEventsOutput) SetEvents(v []*EventDescription) *DescribeEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeEventsOutput) SetNextToken(v string) *DescribeEventsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // See the example below to learn how to create a request body.
@@ -4543,6 +5569,30 @@ func (s *DescribeInstancesHealthInput) Validate() error {
 	return nil
 }
 
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *DescribeInstancesHealthInput) SetAttributeNames(v []*string) *DescribeInstancesHealthInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *DescribeInstancesHealthInput) SetEnvironmentId(v string) *DescribeInstancesHealthInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *DescribeInstancesHealthInput) SetEnvironmentName(v string) *DescribeInstancesHealthInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancesHealthInput) SetNextToken(v string) *DescribeInstancesHealthInput {
+	s.NextToken = &v
+	return s
+}
+
 // See the example below for a sample response.
 type DescribeInstancesHealthOutput struct {
 	_ struct{} `type:"structure"`
@@ -4565,6 +5615,24 @@ func (s DescribeInstancesHealthOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInstancesHealthOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceHealthList sets the InstanceHealthList field's value.
+func (s *DescribeInstancesHealthOutput) SetInstanceHealthList(v []*SingleInstanceHealth) *DescribeInstancesHealthOutput {
+	s.InstanceHealthList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancesHealthOutput) SetNextToken(v string) *DescribeInstancesHealthOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRefreshedAt sets the RefreshedAt field's value.
+func (s *DescribeInstancesHealthOutput) SetRefreshedAt(v time.Time) *DescribeInstancesHealthOutput {
+	s.RefreshedAt = &v
+	return s
 }
 
 // Describes the properties of an environment.
@@ -4670,6 +5738,114 @@ func (s EnvironmentDescription) GoString() string {
 	return s.String()
 }
 
+// SetAbortableOperationInProgress sets the AbortableOperationInProgress field's value.
+func (s *EnvironmentDescription) SetAbortableOperationInProgress(v bool) *EnvironmentDescription {
+	s.AbortableOperationInProgress = &v
+	return s
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *EnvironmentDescription) SetApplicationName(v string) *EnvironmentDescription {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCNAME sets the CNAME field's value.
+func (s *EnvironmentDescription) SetCNAME(v string) *EnvironmentDescription {
+	s.CNAME = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *EnvironmentDescription) SetDateCreated(v time.Time) *EnvironmentDescription {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateUpdated sets the DateUpdated field's value.
+func (s *EnvironmentDescription) SetDateUpdated(v time.Time) *EnvironmentDescription {
+	s.DateUpdated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EnvironmentDescription) SetDescription(v string) *EnvironmentDescription {
+	s.Description = &v
+	return s
+}
+
+// SetEndpointURL sets the EndpointURL field's value.
+func (s *EnvironmentDescription) SetEndpointURL(v string) *EnvironmentDescription {
+	s.EndpointURL = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *EnvironmentDescription) SetEnvironmentId(v string) *EnvironmentDescription {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentLinks sets the EnvironmentLinks field's value.
+func (s *EnvironmentDescription) SetEnvironmentLinks(v []*EnvironmentLink) *EnvironmentDescription {
+	s.EnvironmentLinks = v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *EnvironmentDescription) SetEnvironmentName(v string) *EnvironmentDescription {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetHealth sets the Health field's value.
+func (s *EnvironmentDescription) SetHealth(v string) *EnvironmentDescription {
+	s.Health = &v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *EnvironmentDescription) SetHealthStatus(v string) *EnvironmentDescription {
+	s.HealthStatus = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *EnvironmentDescription) SetResources(v *EnvironmentResourcesDescription) *EnvironmentDescription {
+	s.Resources = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *EnvironmentDescription) SetSolutionStackName(v string) *EnvironmentDescription {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EnvironmentDescription) SetStatus(v string) *EnvironmentDescription {
+	s.Status = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *EnvironmentDescription) SetTemplateName(v string) *EnvironmentDescription {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTier sets the Tier field's value.
+func (s *EnvironmentDescription) SetTier(v *EnvironmentTier) *EnvironmentDescription {
+	s.Tier = v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *EnvironmentDescription) SetVersionLabel(v string) *EnvironmentDescription {
+	s.VersionLabel = &v
+	return s
+}
+
 // Result message containing a list of environment descriptions.
 type EnvironmentDescriptionsMessage struct {
 	_ struct{} `type:"structure"`
@@ -4686,6 +5862,12 @@ func (s EnvironmentDescriptionsMessage) String() string {
 // GoString returns the string representation
 func (s EnvironmentDescriptionsMessage) GoString() string {
 	return s.String()
+}
+
+// SetEnvironments sets the Environments field's value.
+func (s *EnvironmentDescriptionsMessage) SetEnvironments(v []*EnvironmentDescription) *EnvironmentDescriptionsMessage {
+	s.Environments = v
+	return s
 }
 
 // The information retrieved from the Amazon EC2 instances.
@@ -4715,6 +5897,30 @@ func (s EnvironmentInfoDescription) GoString() string {
 	return s.String()
 }
 
+// SetEc2InstanceId sets the Ec2InstanceId field's value.
+func (s *EnvironmentInfoDescription) SetEc2InstanceId(v string) *EnvironmentInfoDescription {
+	s.Ec2InstanceId = &v
+	return s
+}
+
+// SetInfoType sets the InfoType field's value.
+func (s *EnvironmentInfoDescription) SetInfoType(v string) *EnvironmentInfoDescription {
+	s.InfoType = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EnvironmentInfoDescription) SetMessage(v string) *EnvironmentInfoDescription {
+	s.Message = &v
+	return s
+}
+
+// SetSampleTimestamp sets the SampleTimestamp field's value.
+func (s *EnvironmentInfoDescription) SetSampleTimestamp(v time.Time) *EnvironmentInfoDescription {
+	s.SampleTimestamp = &v
+	return s
+}
+
 // A link to another environment, defined in the environment's manifest. Links
 // provide connection information in system properties that can be used to connect
 // to another environment in the same group. See Environment Manifest (env.yaml)
@@ -4738,6 +5944,18 @@ func (s EnvironmentLink) String() string {
 // GoString returns the string representation
 func (s EnvironmentLink) GoString() string {
 	return s.String()
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *EnvironmentLink) SetEnvironmentName(v string) *EnvironmentLink {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetLinkName sets the LinkName field's value.
+func (s *EnvironmentLink) SetLinkName(v string) *EnvironmentLink {
+	s.LinkName = &v
+	return s
 }
 
 // Describes the AWS resources in use by this environment. This data is live.
@@ -4776,6 +5994,48 @@ func (s EnvironmentResourceDescription) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroups sets the AutoScalingGroups field's value.
+func (s *EnvironmentResourceDescription) SetAutoScalingGroups(v []*AutoScalingGroup) *EnvironmentResourceDescription {
+	s.AutoScalingGroups = v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *EnvironmentResourceDescription) SetEnvironmentName(v string) *EnvironmentResourceDescription {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *EnvironmentResourceDescription) SetInstances(v []*Instance) *EnvironmentResourceDescription {
+	s.Instances = v
+	return s
+}
+
+// SetLaunchConfigurations sets the LaunchConfigurations field's value.
+func (s *EnvironmentResourceDescription) SetLaunchConfigurations(v []*LaunchConfiguration) *EnvironmentResourceDescription {
+	s.LaunchConfigurations = v
+	return s
+}
+
+// SetLoadBalancers sets the LoadBalancers field's value.
+func (s *EnvironmentResourceDescription) SetLoadBalancers(v []*LoadBalancer) *EnvironmentResourceDescription {
+	s.LoadBalancers = v
+	return s
+}
+
+// SetQueues sets the Queues field's value.
+func (s *EnvironmentResourceDescription) SetQueues(v []*Queue) *EnvironmentResourceDescription {
+	s.Queues = v
+	return s
+}
+
+// SetTriggers sets the Triggers field's value.
+func (s *EnvironmentResourceDescription) SetTriggers(v []*Trigger) *EnvironmentResourceDescription {
+	s.Triggers = v
+	return s
+}
+
 // Describes the AWS resources in use by this environment. This data is not
 // live data.
 type EnvironmentResourcesDescription struct {
@@ -4793,6 +6053,12 @@ func (s EnvironmentResourcesDescription) String() string {
 // GoString returns the string representation
 func (s EnvironmentResourcesDescription) GoString() string {
 	return s.String()
+}
+
+// SetLoadBalancer sets the LoadBalancer field's value.
+func (s *EnvironmentResourcesDescription) SetLoadBalancer(v *LoadBalancerDescription) *EnvironmentResourcesDescription {
+	s.LoadBalancer = v
+	return s
 }
 
 // Describes the properties of an environment tier
@@ -4817,6 +6083,24 @@ func (s EnvironmentTier) String() string {
 // GoString returns the string representation
 func (s EnvironmentTier) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *EnvironmentTier) SetName(v string) *EnvironmentTier {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EnvironmentTier) SetType(v string) *EnvironmentTier {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *EnvironmentTier) SetVersion(v string) *EnvironmentTier {
+	s.Version = &v
+	return s
 }
 
 // Describes an event.
@@ -4858,6 +6142,54 @@ func (s EventDescription) GoString() string {
 	return s.String()
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *EventDescription) SetApplicationName(v string) *EventDescription {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *EventDescription) SetEnvironmentName(v string) *EventDescription {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetEventDate sets the EventDate field's value.
+func (s *EventDescription) SetEventDate(v time.Time) *EventDescription {
+	s.EventDate = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EventDescription) SetMessage(v string) *EventDescription {
+	s.Message = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *EventDescription) SetRequestId(v string) *EventDescription {
+	s.RequestId = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *EventDescription) SetSeverity(v string) *EventDescription {
+	s.Severity = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *EventDescription) SetTemplateName(v string) *EventDescription {
+	s.TemplateName = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *EventDescription) SetVersionLabel(v string) *EventDescription {
+	s.VersionLabel = &v
+	return s
+}
+
 // The description of an Amazon EC2 instance.
 type Instance struct {
 	_ struct{} `type:"structure"`
@@ -4874,6 +6206,12 @@ func (s Instance) String() string {
 // GoString returns the string representation
 func (s Instance) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *Instance) SetId(v string) *Instance {
+	s.Id = &v
+	return s
 }
 
 // Represents summary information about the health of an instance. For more
@@ -4920,6 +6258,54 @@ func (s InstanceHealthSummary) String() string {
 // GoString returns the string representation
 func (s InstanceHealthSummary) GoString() string {
 	return s.String()
+}
+
+// SetDegraded sets the Degraded field's value.
+func (s *InstanceHealthSummary) SetDegraded(v int64) *InstanceHealthSummary {
+	s.Degraded = &v
+	return s
+}
+
+// SetInfo sets the Info field's value.
+func (s *InstanceHealthSummary) SetInfo(v int64) *InstanceHealthSummary {
+	s.Info = &v
+	return s
+}
+
+// SetNoData sets the NoData field's value.
+func (s *InstanceHealthSummary) SetNoData(v int64) *InstanceHealthSummary {
+	s.NoData = &v
+	return s
+}
+
+// SetOk sets the Ok field's value.
+func (s *InstanceHealthSummary) SetOk(v int64) *InstanceHealthSummary {
+	s.Ok = &v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *InstanceHealthSummary) SetPending(v int64) *InstanceHealthSummary {
+	s.Pending = &v
+	return s
+}
+
+// SetSevere sets the Severe field's value.
+func (s *InstanceHealthSummary) SetSevere(v int64) *InstanceHealthSummary {
+	s.Severe = &v
+	return s
+}
+
+// SetUnknown sets the Unknown field's value.
+func (s *InstanceHealthSummary) SetUnknown(v int64) *InstanceHealthSummary {
+	s.Unknown = &v
+	return s
+}
+
+// SetWarning sets the Warning field's value.
+func (s *InstanceHealthSummary) SetWarning(v int64) *InstanceHealthSummary {
+	s.Warning = &v
+	return s
 }
 
 // Represents the average latency for the slowest X percent of requests over
@@ -4970,6 +6356,54 @@ func (s Latency) GoString() string {
 	return s.String()
 }
 
+// SetP10 sets the P10 field's value.
+func (s *Latency) SetP10(v float64) *Latency {
+	s.P10 = &v
+	return s
+}
+
+// SetP50 sets the P50 field's value.
+func (s *Latency) SetP50(v float64) *Latency {
+	s.P50 = &v
+	return s
+}
+
+// SetP75 sets the P75 field's value.
+func (s *Latency) SetP75(v float64) *Latency {
+	s.P75 = &v
+	return s
+}
+
+// SetP85 sets the P85 field's value.
+func (s *Latency) SetP85(v float64) *Latency {
+	s.P85 = &v
+	return s
+}
+
+// SetP90 sets the P90 field's value.
+func (s *Latency) SetP90(v float64) *Latency {
+	s.P90 = &v
+	return s
+}
+
+// SetP95 sets the P95 field's value.
+func (s *Latency) SetP95(v float64) *Latency {
+	s.P95 = &v
+	return s
+}
+
+// SetP99 sets the P99 field's value.
+func (s *Latency) SetP99(v float64) *Latency {
+	s.P99 = &v
+	return s
+}
+
+// SetP999 sets the P999 field's value.
+func (s *Latency) SetP999(v float64) *Latency {
+	s.P999 = &v
+	return s
+}
+
 // Describes an Auto Scaling launch configuration.
 type LaunchConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -4986,6 +6420,12 @@ func (s LaunchConfiguration) String() string {
 // GoString returns the string representation
 func (s LaunchConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LaunchConfiguration) SetName(v string) *LaunchConfiguration {
+	s.Name = &v
+	return s
 }
 
 type ListAvailableSolutionStacksInput struct {
@@ -5023,6 +6463,18 @@ func (s ListAvailableSolutionStacksOutput) GoString() string {
 	return s.String()
 }
 
+// SetSolutionStackDetails sets the SolutionStackDetails field's value.
+func (s *ListAvailableSolutionStacksOutput) SetSolutionStackDetails(v []*SolutionStackDescription) *ListAvailableSolutionStacksOutput {
+	s.SolutionStackDetails = v
+	return s
+}
+
+// SetSolutionStacks sets the SolutionStacks field's value.
+func (s *ListAvailableSolutionStacksOutput) SetSolutionStacks(v []*string) *ListAvailableSolutionStacksOutput {
+	s.SolutionStacks = v
+	return s
+}
+
 // Describes the properties of a Listener for the LoadBalancer.
 type Listener struct {
 	_ struct{} `type:"structure"`
@@ -5044,6 +6496,18 @@ func (s Listener) GoString() string {
 	return s.String()
 }
 
+// SetPort sets the Port field's value.
+func (s *Listener) SetPort(v int64) *Listener {
+	s.Port = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *Listener) SetProtocol(v string) *Listener {
+	s.Protocol = &v
+	return s
+}
+
 // Describes a LoadBalancer.
 type LoadBalancer struct {
 	_ struct{} `type:"structure"`
@@ -5060,6 +6524,12 @@ func (s LoadBalancer) String() string {
 // GoString returns the string representation
 func (s LoadBalancer) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LoadBalancer) SetName(v string) *LoadBalancer {
+	s.Name = &v
+	return s
 }
 
 // Describes the details of a LoadBalancer.
@@ -5084,6 +6554,24 @@ func (s LoadBalancerDescription) String() string {
 // GoString returns the string representation
 func (s LoadBalancerDescription) GoString() string {
 	return s.String()
+}
+
+// SetDomain sets the Domain field's value.
+func (s *LoadBalancerDescription) SetDomain(v string) *LoadBalancerDescription {
+	s.Domain = &v
+	return s
+}
+
+// SetListeners sets the Listeners field's value.
+func (s *LoadBalancerDescription) SetListeners(v []*Listener) *LoadBalancerDescription {
+	s.Listeners = v
+	return s
+}
+
+// SetLoadBalancerName sets the LoadBalancerName field's value.
+func (s *LoadBalancerDescription) SetLoadBalancerName(v string) *LoadBalancerDescription {
+	s.LoadBalancerName = &v
+	return s
 }
 
 // The record of an upcoming or in-progress managed action.
@@ -5116,6 +6604,36 @@ func (s ManagedAction) String() string {
 // GoString returns the string representation
 func (s ManagedAction) GoString() string {
 	return s.String()
+}
+
+// SetActionDescription sets the ActionDescription field's value.
+func (s *ManagedAction) SetActionDescription(v string) *ManagedAction {
+	s.ActionDescription = &v
+	return s
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *ManagedAction) SetActionId(v string) *ManagedAction {
+	s.ActionId = &v
+	return s
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *ManagedAction) SetActionType(v string) *ManagedAction {
+	s.ActionType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ManagedAction) SetStatus(v string) *ManagedAction {
+	s.Status = &v
+	return s
+}
+
+// SetWindowStartTime sets the WindowStartTime field's value.
+func (s *ManagedAction) SetWindowStartTime(v time.Time) *ManagedAction {
+	s.WindowStartTime = &v
+	return s
 }
 
 // The record of a completed or failed managed action.
@@ -5157,6 +6675,54 @@ func (s ManagedActionHistoryItem) GoString() string {
 	return s.String()
 }
 
+// SetActionDescription sets the ActionDescription field's value.
+func (s *ManagedActionHistoryItem) SetActionDescription(v string) *ManagedActionHistoryItem {
+	s.ActionDescription = &v
+	return s
+}
+
+// SetActionId sets the ActionId field's value.
+func (s *ManagedActionHistoryItem) SetActionId(v string) *ManagedActionHistoryItem {
+	s.ActionId = &v
+	return s
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *ManagedActionHistoryItem) SetActionType(v string) *ManagedActionHistoryItem {
+	s.ActionType = &v
+	return s
+}
+
+// SetExecutedTime sets the ExecutedTime field's value.
+func (s *ManagedActionHistoryItem) SetExecutedTime(v time.Time) *ManagedActionHistoryItem {
+	s.ExecutedTime = &v
+	return s
+}
+
+// SetFailureDescription sets the FailureDescription field's value.
+func (s *ManagedActionHistoryItem) SetFailureDescription(v string) *ManagedActionHistoryItem {
+	s.FailureDescription = &v
+	return s
+}
+
+// SetFailureType sets the FailureType field's value.
+func (s *ManagedActionHistoryItem) SetFailureType(v string) *ManagedActionHistoryItem {
+	s.FailureType = &v
+	return s
+}
+
+// SetFinishedTime sets the FinishedTime field's value.
+func (s *ManagedActionHistoryItem) SetFinishedTime(v time.Time) *ManagedActionHistoryItem {
+	s.FinishedTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ManagedActionHistoryItem) SetStatus(v string) *ManagedActionHistoryItem {
+	s.Status = &v
+	return s
+}
+
 // A regular expression representing a restriction on a string configuration
 // option value.
 type OptionRestrictionRegex struct {
@@ -5178,6 +6744,18 @@ func (s OptionRestrictionRegex) String() string {
 // GoString returns the string representation
 func (s OptionRestrictionRegex) GoString() string {
 	return s.String()
+}
+
+// SetLabel sets the Label field's value.
+func (s *OptionRestrictionRegex) SetLabel(v string) *OptionRestrictionRegex {
+	s.Label = &v
+	return s
+}
+
+// SetPattern sets the Pattern field's value.
+func (s *OptionRestrictionRegex) SetPattern(v string) *OptionRestrictionRegex {
+	s.Pattern = &v
+	return s
 }
 
 // A specification identifying an individual configuration option.
@@ -5217,6 +6795,24 @@ func (s *OptionSpecification) Validate() error {
 	return nil
 }
 
+// SetNamespace sets the Namespace field's value.
+func (s *OptionSpecification) SetNamespace(v string) *OptionSpecification {
+	s.Namespace = &v
+	return s
+}
+
+// SetOptionName sets the OptionName field's value.
+func (s *OptionSpecification) SetOptionName(v string) *OptionSpecification {
+	s.OptionName = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *OptionSpecification) SetResourceName(v string) *OptionSpecification {
+	s.ResourceName = &v
+	return s
+}
+
 // Describes a queue.
 type Queue struct {
 	_ struct{} `type:"structure"`
@@ -5236,6 +6832,18 @@ func (s Queue) String() string {
 // GoString returns the string representation
 func (s Queue) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Queue) SetName(v string) *Queue {
+	s.Name = &v
+	return s
+}
+
+// SetURL sets the URL field's value.
+func (s *Queue) SetURL(v string) *Queue {
+	s.URL = &v
+	return s
 }
 
 type RebuildEnvironmentInput struct {
@@ -5277,6 +6885,18 @@ func (s *RebuildEnvironmentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *RebuildEnvironmentInput) SetEnvironmentId(v string) *RebuildEnvironmentInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *RebuildEnvironmentInput) SetEnvironmentName(v string) *RebuildEnvironmentInput {
+	s.EnvironmentName = &v
+	return s
 }
 
 type RebuildEnvironmentOutput struct {
@@ -5350,6 +6970,24 @@ func (s *RequestEnvironmentInfoInput) Validate() error {
 	return nil
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *RequestEnvironmentInfoInput) SetEnvironmentId(v string) *RequestEnvironmentInfoInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *RequestEnvironmentInfoInput) SetEnvironmentName(v string) *RequestEnvironmentInfoInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetInfoType sets the InfoType field's value.
+func (s *RequestEnvironmentInfoInput) SetInfoType(v string) *RequestEnvironmentInfoInput {
+	s.InfoType = &v
+	return s
+}
+
 type RequestEnvironmentInfoOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5403,6 +7041,18 @@ func (s *RestartAppServerInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *RestartAppServerInput) SetEnvironmentId(v string) *RestartAppServerInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *RestartAppServerInput) SetEnvironmentName(v string) *RestartAppServerInput {
+	s.EnvironmentName = &v
+	return s
 }
 
 type RestartAppServerOutput struct {
@@ -5473,6 +7123,24 @@ func (s *RetrieveEnvironmentInfoInput) Validate() error {
 	return nil
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *RetrieveEnvironmentInfoInput) SetEnvironmentId(v string) *RetrieveEnvironmentInfoInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *RetrieveEnvironmentInfoInput) SetEnvironmentName(v string) *RetrieveEnvironmentInfoInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetInfoType sets the InfoType field's value.
+func (s *RetrieveEnvironmentInfoInput) SetInfoType(v string) *RetrieveEnvironmentInfoInput {
+	s.InfoType = &v
+	return s
+}
+
 // Result message containing a description of the requested environment info.
 type RetrieveEnvironmentInfoOutput struct {
 	_ struct{} `type:"structure"`
@@ -5489,6 +7157,12 @@ func (s RetrieveEnvironmentInfoOutput) String() string {
 // GoString returns the string representation
 func (s RetrieveEnvironmentInfoOutput) GoString() string {
 	return s.String()
+}
+
+// SetEnvironmentInfo sets the EnvironmentInfo field's value.
+func (s *RetrieveEnvironmentInfoOutput) SetEnvironmentInfo(v []*EnvironmentInfoDescription) *RetrieveEnvironmentInfoOutput {
+	s.EnvironmentInfo = v
+	return s
 }
 
 // A specification of a location in Amazon S3.
@@ -5510,6 +7184,18 @@ func (s S3Location) String() string {
 // GoString returns the string representation
 func (s S3Location) GoString() string {
 	return s.String()
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *S3Location) SetS3Bucket(v string) *S3Location {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *S3Location) SetS3Key(v string) *S3Location {
+	s.S3Key = &v
+	return s
 }
 
 // Represents health information from the specified instance that belongs to
@@ -5564,6 +7250,66 @@ func (s SingleInstanceHealth) GoString() string {
 	return s.String()
 }
 
+// SetApplicationMetrics sets the ApplicationMetrics field's value.
+func (s *SingleInstanceHealth) SetApplicationMetrics(v *ApplicationMetrics) *SingleInstanceHealth {
+	s.ApplicationMetrics = v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *SingleInstanceHealth) SetAvailabilityZone(v string) *SingleInstanceHealth {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCauses sets the Causes field's value.
+func (s *SingleInstanceHealth) SetCauses(v []*string) *SingleInstanceHealth {
+	s.Causes = v
+	return s
+}
+
+// SetColor sets the Color field's value.
+func (s *SingleInstanceHealth) SetColor(v string) *SingleInstanceHealth {
+	s.Color = &v
+	return s
+}
+
+// SetDeployment sets the Deployment field's value.
+func (s *SingleInstanceHealth) SetDeployment(v *Deployment) *SingleInstanceHealth {
+	s.Deployment = v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *SingleInstanceHealth) SetHealthStatus(v string) *SingleInstanceHealth {
+	s.HealthStatus = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SingleInstanceHealth) SetInstanceId(v string) *SingleInstanceHealth {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *SingleInstanceHealth) SetInstanceType(v string) *SingleInstanceHealth {
+	s.InstanceType = &v
+	return s
+}
+
+// SetLaunchedAt sets the LaunchedAt field's value.
+func (s *SingleInstanceHealth) SetLaunchedAt(v time.Time) *SingleInstanceHealth {
+	s.LaunchedAt = &v
+	return s
+}
+
+// SetSystem sets the System field's value.
+func (s *SingleInstanceHealth) SetSystem(v *SystemStatus) *SingleInstanceHealth {
+	s.System = v
+	return s
+}
+
 // Describes the solution stack.
 type SolutionStackDescription struct {
 	_ struct{} `type:"structure"`
@@ -5583,6 +7329,18 @@ func (s SolutionStackDescription) String() string {
 // GoString returns the string representation
 func (s SolutionStackDescription) GoString() string {
 	return s.String()
+}
+
+// SetPermittedFileTypes sets the PermittedFileTypes field's value.
+func (s *SolutionStackDescription) SetPermittedFileTypes(v []*string) *SolutionStackDescription {
+	s.PermittedFileTypes = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *SolutionStackDescription) SetSolutionStackName(v string) *SolutionStackDescription {
+	s.SolutionStackName = &v
+	return s
 }
 
 type SourceBuildInformation struct {
@@ -5630,6 +7388,24 @@ func (s *SourceBuildInformation) Validate() error {
 	return nil
 }
 
+// SetSourceLocation sets the SourceLocation field's value.
+func (s *SourceBuildInformation) SetSourceLocation(v string) *SourceBuildInformation {
+	s.SourceLocation = &v
+	return s
+}
+
+// SetSourceRepository sets the SourceRepository field's value.
+func (s *SourceBuildInformation) SetSourceRepository(v string) *SourceBuildInformation {
+	s.SourceRepository = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *SourceBuildInformation) SetSourceType(v string) *SourceBuildInformation {
+	s.SourceType = &v
+	return s
+}
+
 // A specification for an environment configuration
 type SourceConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5667,6 +7443,18 @@ func (s *SourceConfiguration) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *SourceConfiguration) SetApplicationName(v string) *SourceConfiguration {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *SourceConfiguration) SetTemplateName(v string) *SourceConfiguration {
+	s.TemplateName = &v
+	return s
+}
+
 // Represents the percentage of requests over the last 10 seconds that resulted
 // in each type of status code response. For more information, see Status Code
 // Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
@@ -5698,6 +7486,30 @@ func (s StatusCodes) String() string {
 // GoString returns the string representation
 func (s StatusCodes) GoString() string {
 	return s.String()
+}
+
+// SetStatus2xx sets the Status2xx field's value.
+func (s *StatusCodes) SetStatus2xx(v int64) *StatusCodes {
+	s.Status2xx = &v
+	return s
+}
+
+// SetStatus3xx sets the Status3xx field's value.
+func (s *StatusCodes) SetStatus3xx(v int64) *StatusCodes {
+	s.Status3xx = &v
+	return s
+}
+
+// SetStatus4xx sets the Status4xx field's value.
+func (s *StatusCodes) SetStatus4xx(v int64) *StatusCodes {
+	s.Status4xx = &v
+	return s
+}
+
+// SetStatus5xx sets the Status5xx field's value.
+func (s *StatusCodes) SetStatus5xx(v int64) *StatusCodes {
+	s.Status5xx = &v
+	return s
 }
 
 // Swaps the CNAMEs of two environments.
@@ -5759,6 +7571,30 @@ func (s *SwapEnvironmentCNAMEsInput) Validate() error {
 	return nil
 }
 
+// SetDestinationEnvironmentId sets the DestinationEnvironmentId field's value.
+func (s *SwapEnvironmentCNAMEsInput) SetDestinationEnvironmentId(v string) *SwapEnvironmentCNAMEsInput {
+	s.DestinationEnvironmentId = &v
+	return s
+}
+
+// SetDestinationEnvironmentName sets the DestinationEnvironmentName field's value.
+func (s *SwapEnvironmentCNAMEsInput) SetDestinationEnvironmentName(v string) *SwapEnvironmentCNAMEsInput {
+	s.DestinationEnvironmentName = &v
+	return s
+}
+
+// SetSourceEnvironmentId sets the SourceEnvironmentId field's value.
+func (s *SwapEnvironmentCNAMEsInput) SetSourceEnvironmentId(v string) *SwapEnvironmentCNAMEsInput {
+	s.SourceEnvironmentId = &v
+	return s
+}
+
+// SetSourceEnvironmentName sets the SourceEnvironmentName field's value.
+func (s *SwapEnvironmentCNAMEsInput) SetSourceEnvironmentName(v string) *SwapEnvironmentCNAMEsInput {
+	s.SourceEnvironmentName = &v
+	return s
+}
+
 type SwapEnvironmentCNAMEsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5798,6 +7634,18 @@ func (s SystemStatus) GoString() string {
 	return s.String()
 }
 
+// SetCPUUtilization sets the CPUUtilization field's value.
+func (s *SystemStatus) SetCPUUtilization(v *CPUUtilization) *SystemStatus {
+	s.CPUUtilization = v
+	return s
+}
+
+// SetLoadAverage sets the LoadAverage field's value.
+func (s *SystemStatus) SetLoadAverage(v []*float64) *SystemStatus {
+	s.LoadAverage = v
+	return s
+}
+
 // Describes a tag applied to a resource in an environment.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -5833,6 +7681,18 @@ func (s *Tag) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // Request to terminate an environment.
@@ -5897,6 +7757,30 @@ func (s *TerminateEnvironmentInput) Validate() error {
 	return nil
 }
 
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *TerminateEnvironmentInput) SetEnvironmentId(v string) *TerminateEnvironmentInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *TerminateEnvironmentInput) SetEnvironmentName(v string) *TerminateEnvironmentInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetForceTerminate sets the ForceTerminate field's value.
+func (s *TerminateEnvironmentInput) SetForceTerminate(v bool) *TerminateEnvironmentInput {
+	s.ForceTerminate = &v
+	return s
+}
+
+// SetTerminateResources sets the TerminateResources field's value.
+func (s *TerminateEnvironmentInput) SetTerminateResources(v bool) *TerminateEnvironmentInput {
+	s.TerminateResources = &v
+	return s
+}
+
 // Describes a trigger.
 type Trigger struct {
 	_ struct{} `type:"structure"`
@@ -5913,6 +7797,12 @@ func (s Trigger) String() string {
 // GoString returns the string representation
 func (s Trigger) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Trigger) SetName(v string) *Trigger {
+	s.Name = &v
+	return s
 }
 
 // Request to update an application.
@@ -5955,6 +7845,18 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *UpdateApplicationInput) SetApplicationName(v string) *UpdateApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateApplicationInput) SetDescription(v string) *UpdateApplicationInput {
+	s.Description = &v
+	return s
 }
 
 type UpdateApplicationVersionInput struct {
@@ -6010,6 +7912,24 @@ func (s *UpdateApplicationVersionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *UpdateApplicationVersionInput) SetApplicationName(v string) *UpdateApplicationVersionInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateApplicationVersionInput) SetDescription(v string) *UpdateApplicationVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *UpdateApplicationVersionInput) SetVersionLabel(v string) *UpdateApplicationVersionInput {
+	s.VersionLabel = &v
+	return s
 }
 
 // The result message containing the options for the specified solution stack.
@@ -6096,6 +8016,36 @@ func (s *UpdateConfigurationTemplateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *UpdateConfigurationTemplateInput) SetApplicationName(v string) *UpdateConfigurationTemplateInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateConfigurationTemplateInput) SetDescription(v string) *UpdateConfigurationTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *UpdateConfigurationTemplateInput) SetOptionSettings(v []*ConfigurationOptionSetting) *UpdateConfigurationTemplateInput {
+	s.OptionSettings = v
+	return s
+}
+
+// SetOptionsToRemove sets the OptionsToRemove field's value.
+func (s *UpdateConfigurationTemplateInput) SetOptionsToRemove(v []*OptionSpecification) *UpdateConfigurationTemplateInput {
+	s.OptionsToRemove = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *UpdateConfigurationTemplateInput) SetTemplateName(v string) *UpdateConfigurationTemplateInput {
+	s.TemplateName = &v
+	return s
 }
 
 // Request to update an environment.
@@ -6219,6 +8169,72 @@ func (s *UpdateEnvironmentInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *UpdateEnvironmentInput) SetApplicationName(v string) *UpdateEnvironmentInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateEnvironmentInput) SetDescription(v string) *UpdateEnvironmentInput {
+	s.Description = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *UpdateEnvironmentInput) SetEnvironmentId(v string) *UpdateEnvironmentInput {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *UpdateEnvironmentInput) SetEnvironmentName(v string) *UpdateEnvironmentInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *UpdateEnvironmentInput) SetGroupName(v string) *UpdateEnvironmentInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *UpdateEnvironmentInput) SetOptionSettings(v []*ConfigurationOptionSetting) *UpdateEnvironmentInput {
+	s.OptionSettings = v
+	return s
+}
+
+// SetOptionsToRemove sets the OptionsToRemove field's value.
+func (s *UpdateEnvironmentInput) SetOptionsToRemove(v []*OptionSpecification) *UpdateEnvironmentInput {
+	s.OptionsToRemove = v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *UpdateEnvironmentInput) SetSolutionStackName(v string) *UpdateEnvironmentInput {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *UpdateEnvironmentInput) SetTemplateName(v string) *UpdateEnvironmentInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTier sets the Tier field's value.
+func (s *UpdateEnvironmentInput) SetTier(v *EnvironmentTier) *UpdateEnvironmentInput {
+	s.Tier = v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *UpdateEnvironmentInput) SetVersionLabel(v string) *UpdateEnvironmentInput {
+	s.VersionLabel = &v
+	return s
+}
+
 // A list of validation messages for a specified configuration template.
 type ValidateConfigurationSettingsInput struct {
 	_ struct{} `type:"structure"`
@@ -6290,6 +8306,30 @@ func (s *ValidateConfigurationSettingsInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ValidateConfigurationSettingsInput) SetApplicationName(v string) *ValidateConfigurationSettingsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ValidateConfigurationSettingsInput) SetEnvironmentName(v string) *ValidateConfigurationSettingsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *ValidateConfigurationSettingsInput) SetOptionSettings(v []*ConfigurationOptionSetting) *ValidateConfigurationSettingsInput {
+	s.OptionSettings = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ValidateConfigurationSettingsInput) SetTemplateName(v string) *ValidateConfigurationSettingsInput {
+	s.TemplateName = &v
+	return s
+}
+
 // Provides a list of validation messages.
 type ValidateConfigurationSettingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6306,6 +8346,12 @@ func (s ValidateConfigurationSettingsOutput) String() string {
 // GoString returns the string representation
 func (s ValidateConfigurationSettingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMessages sets the Messages field's value.
+func (s *ValidateConfigurationSettingsOutput) SetMessages(v []*ValidationMessage) *ValidateConfigurationSettingsOutput {
+	s.Messages = v
+	return s
 }
 
 // An error or warning for a desired configuration option value.
@@ -6337,6 +8383,30 @@ func (s ValidationMessage) String() string {
 // GoString returns the string representation
 func (s ValidationMessage) GoString() string {
 	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ValidationMessage) SetMessage(v string) *ValidationMessage {
+	s.Message = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ValidationMessage) SetNamespace(v string) *ValidationMessage {
+	s.Namespace = &v
+	return s
+}
+
+// SetOptionName sets the OptionName field's value.
+func (s *ValidationMessage) SetOptionName(v string) *ValidationMessage {
+	s.OptionName = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ValidationMessage) SetSeverity(v string) *ValidationMessage {
+	s.Severity = &v
+	return s
 }
 
 const (

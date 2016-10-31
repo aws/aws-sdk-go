@@ -2512,6 +2512,18 @@ func (s *Attribute) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *Attribute) SetName(v string) *Attribute {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Attribute) SetValue(v string) *Attribute {
+	s.Value = &v
+	return s
+}
+
 // A regional grouping of one or more container instances on which you can run
 // task requests. Each account receives a default cluster the first time you
 // use the Amazon ECS service, but you may also create other clusters. Clusters
@@ -2557,6 +2569,48 @@ func (s Cluster) GoString() string {
 	return s.String()
 }
 
+// SetActiveServicesCount sets the ActiveServicesCount field's value.
+func (s *Cluster) SetActiveServicesCount(v int64) *Cluster {
+	s.ActiveServicesCount = &v
+	return s
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *Cluster) SetClusterArn(v string) *Cluster {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *Cluster) SetClusterName(v string) *Cluster {
+	s.ClusterName = &v
+	return s
+}
+
+// SetPendingTasksCount sets the PendingTasksCount field's value.
+func (s *Cluster) SetPendingTasksCount(v int64) *Cluster {
+	s.PendingTasksCount = &v
+	return s
+}
+
+// SetRegisteredContainerInstancesCount sets the RegisteredContainerInstancesCount field's value.
+func (s *Cluster) SetRegisteredContainerInstancesCount(v int64) *Cluster {
+	s.RegisteredContainerInstancesCount = &v
+	return s
+}
+
+// SetRunningTasksCount sets the RunningTasksCount field's value.
+func (s *Cluster) SetRunningTasksCount(v int64) *Cluster {
+	s.RunningTasksCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Cluster) SetStatus(v string) *Cluster {
+	s.Status = &v
+	return s
+}
+
 // A Docker container that is part of a task.
 type Container struct {
 	_ struct{} `type:"structure"`
@@ -2592,6 +2646,48 @@ func (s Container) String() string {
 // GoString returns the string representation
 func (s Container) GoString() string {
 	return s.String()
+}
+
+// SetContainerArn sets the ContainerArn field's value.
+func (s *Container) SetContainerArn(v string) *Container {
+	s.ContainerArn = &v
+	return s
+}
+
+// SetExitCode sets the ExitCode field's value.
+func (s *Container) SetExitCode(v int64) *Container {
+	s.ExitCode = &v
+	return s
+}
+
+// SetLastStatus sets the LastStatus field's value.
+func (s *Container) SetLastStatus(v string) *Container {
+	s.LastStatus = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Container) SetName(v string) *Container {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkBindings sets the NetworkBindings field's value.
+func (s *Container) SetNetworkBindings(v []*NetworkBinding) *Container {
+	s.NetworkBindings = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *Container) SetReason(v string) *Container {
+	s.Reason = &v
+	return s
+}
+
+// SetTaskArn sets the TaskArn field's value.
+func (s *Container) SetTaskArn(v string) *Container {
+	s.TaskArn = &v
+	return s
 }
 
 // Container definitions are used in task definitions to describe the different
@@ -2964,6 +3060,162 @@ func (s *ContainerDefinition) Validate() error {
 	return nil
 }
 
+// SetCommand sets the Command field's value.
+func (s *ContainerDefinition) SetCommand(v []*string) *ContainerDefinition {
+	s.Command = v
+	return s
+}
+
+// SetCpu sets the Cpu field's value.
+func (s *ContainerDefinition) SetCpu(v int64) *ContainerDefinition {
+	s.Cpu = &v
+	return s
+}
+
+// SetDisableNetworking sets the DisableNetworking field's value.
+func (s *ContainerDefinition) SetDisableNetworking(v bool) *ContainerDefinition {
+	s.DisableNetworking = &v
+	return s
+}
+
+// SetDnsSearchDomains sets the DnsSearchDomains field's value.
+func (s *ContainerDefinition) SetDnsSearchDomains(v []*string) *ContainerDefinition {
+	s.DnsSearchDomains = v
+	return s
+}
+
+// SetDnsServers sets the DnsServers field's value.
+func (s *ContainerDefinition) SetDnsServers(v []*string) *ContainerDefinition {
+	s.DnsServers = v
+	return s
+}
+
+// SetDockerLabels sets the DockerLabels field's value.
+func (s *ContainerDefinition) SetDockerLabels(v map[string]*string) *ContainerDefinition {
+	s.DockerLabels = v
+	return s
+}
+
+// SetDockerSecurityOptions sets the DockerSecurityOptions field's value.
+func (s *ContainerDefinition) SetDockerSecurityOptions(v []*string) *ContainerDefinition {
+	s.DockerSecurityOptions = v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *ContainerDefinition) SetEntryPoint(v []*string) *ContainerDefinition {
+	s.EntryPoint = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ContainerDefinition) SetEnvironment(v []*KeyValuePair) *ContainerDefinition {
+	s.Environment = v
+	return s
+}
+
+// SetEssential sets the Essential field's value.
+func (s *ContainerDefinition) SetEssential(v bool) *ContainerDefinition {
+	s.Essential = &v
+	return s
+}
+
+// SetExtraHosts sets the ExtraHosts field's value.
+func (s *ContainerDefinition) SetExtraHosts(v []*HostEntry) *ContainerDefinition {
+	s.ExtraHosts = v
+	return s
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *ContainerDefinition) SetHostname(v string) *ContainerDefinition {
+	s.Hostname = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *ContainerDefinition) SetImage(v string) *ContainerDefinition {
+	s.Image = &v
+	return s
+}
+
+// SetLinks sets the Links field's value.
+func (s *ContainerDefinition) SetLinks(v []*string) *ContainerDefinition {
+	s.Links = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *ContainerDefinition) SetLogConfiguration(v *LogConfiguration) *ContainerDefinition {
+	s.LogConfiguration = v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *ContainerDefinition) SetMemory(v int64) *ContainerDefinition {
+	s.Memory = &v
+	return s
+}
+
+// SetMemoryReservation sets the MemoryReservation field's value.
+func (s *ContainerDefinition) SetMemoryReservation(v int64) *ContainerDefinition {
+	s.MemoryReservation = &v
+	return s
+}
+
+// SetMountPoints sets the MountPoints field's value.
+func (s *ContainerDefinition) SetMountPoints(v []*MountPoint) *ContainerDefinition {
+	s.MountPoints = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerDefinition) SetName(v string) *ContainerDefinition {
+	s.Name = &v
+	return s
+}
+
+// SetPortMappings sets the PortMappings field's value.
+func (s *ContainerDefinition) SetPortMappings(v []*PortMapping) *ContainerDefinition {
+	s.PortMappings = v
+	return s
+}
+
+// SetPrivileged sets the Privileged field's value.
+func (s *ContainerDefinition) SetPrivileged(v bool) *ContainerDefinition {
+	s.Privileged = &v
+	return s
+}
+
+// SetReadonlyRootFilesystem sets the ReadonlyRootFilesystem field's value.
+func (s *ContainerDefinition) SetReadonlyRootFilesystem(v bool) *ContainerDefinition {
+	s.ReadonlyRootFilesystem = &v
+	return s
+}
+
+// SetUlimits sets the Ulimits field's value.
+func (s *ContainerDefinition) SetUlimits(v []*Ulimit) *ContainerDefinition {
+	s.Ulimits = v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *ContainerDefinition) SetUser(v string) *ContainerDefinition {
+	s.User = &v
+	return s
+}
+
+// SetVolumesFrom sets the VolumesFrom field's value.
+func (s *ContainerDefinition) SetVolumesFrom(v []*VolumeFrom) *ContainerDefinition {
+	s.VolumesFrom = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *ContainerDefinition) SetWorkingDirectory(v string) *ContainerDefinition {
+	s.WorkingDirectory = &v
+	return s
+}
+
 // An EC2 instance that is running the Amazon ECS agent and has been registered
 // with a cluster.
 type ContainerInstance struct {
@@ -3031,6 +3283,72 @@ func (s ContainerInstance) GoString() string {
 	return s.String()
 }
 
+// SetAgentConnected sets the AgentConnected field's value.
+func (s *ContainerInstance) SetAgentConnected(v bool) *ContainerInstance {
+	s.AgentConnected = &v
+	return s
+}
+
+// SetAgentUpdateStatus sets the AgentUpdateStatus field's value.
+func (s *ContainerInstance) SetAgentUpdateStatus(v string) *ContainerInstance {
+	s.AgentUpdateStatus = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *ContainerInstance) SetAttributes(v []*Attribute) *ContainerInstance {
+	s.Attributes = v
+	return s
+}
+
+// SetContainerInstanceArn sets the ContainerInstanceArn field's value.
+func (s *ContainerInstance) SetContainerInstanceArn(v string) *ContainerInstance {
+	s.ContainerInstanceArn = &v
+	return s
+}
+
+// SetEc2InstanceId sets the Ec2InstanceId field's value.
+func (s *ContainerInstance) SetEc2InstanceId(v string) *ContainerInstance {
+	s.Ec2InstanceId = &v
+	return s
+}
+
+// SetPendingTasksCount sets the PendingTasksCount field's value.
+func (s *ContainerInstance) SetPendingTasksCount(v int64) *ContainerInstance {
+	s.PendingTasksCount = &v
+	return s
+}
+
+// SetRegisteredResources sets the RegisteredResources field's value.
+func (s *ContainerInstance) SetRegisteredResources(v []*Resource) *ContainerInstance {
+	s.RegisteredResources = v
+	return s
+}
+
+// SetRemainingResources sets the RemainingResources field's value.
+func (s *ContainerInstance) SetRemainingResources(v []*Resource) *ContainerInstance {
+	s.RemainingResources = v
+	return s
+}
+
+// SetRunningTasksCount sets the RunningTasksCount field's value.
+func (s *ContainerInstance) SetRunningTasksCount(v int64) *ContainerInstance {
+	s.RunningTasksCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ContainerInstance) SetStatus(v string) *ContainerInstance {
+	s.Status = &v
+	return s
+}
+
+// SetVersionInfo sets the VersionInfo field's value.
+func (s *ContainerInstance) SetVersionInfo(v *VersionInfo) *ContainerInstance {
+	s.VersionInfo = v
+	return s
+}
+
 // The overrides that should be sent to a container.
 type ContainerOverride struct {
 	_ struct{} `type:"structure"`
@@ -3058,6 +3376,24 @@ func (s ContainerOverride) GoString() string {
 	return s.String()
 }
 
+// SetCommand sets the Command field's value.
+func (s *ContainerOverride) SetCommand(v []*string) *ContainerOverride {
+	s.Command = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ContainerOverride) SetEnvironment(v []*KeyValuePair) *ContainerOverride {
+	s.Environment = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerOverride) SetName(v string) *ContainerOverride {
+	s.Name = &v
+	return s
+}
+
 type CreateClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3077,6 +3413,12 @@ func (s CreateClusterInput) GoString() string {
 	return s.String()
 }
 
+// SetClusterName sets the ClusterName field's value.
+func (s *CreateClusterInput) SetClusterName(v string) *CreateClusterInput {
+	s.ClusterName = &v
+	return s
+}
+
 type CreateClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3092,6 +3434,12 @@ func (s CreateClusterOutput) String() string {
 // GoString returns the string representation
 func (s CreateClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *CreateClusterOutput) SetCluster(v *Cluster) *CreateClusterOutput {
+	s.Cluster = v
+	return s
 }
 
 type CreateServiceInput struct {
@@ -3194,6 +3542,54 @@ func (s *CreateServiceInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateServiceInput) SetClientToken(v string) *CreateServiceInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *CreateServiceInput) SetCluster(v string) *CreateServiceInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetDeploymentConfiguration sets the DeploymentConfiguration field's value.
+func (s *CreateServiceInput) SetDeploymentConfiguration(v *DeploymentConfiguration) *CreateServiceInput {
+	s.DeploymentConfiguration = v
+	return s
+}
+
+// SetDesiredCount sets the DesiredCount field's value.
+func (s *CreateServiceInput) SetDesiredCount(v int64) *CreateServiceInput {
+	s.DesiredCount = &v
+	return s
+}
+
+// SetLoadBalancers sets the LoadBalancers field's value.
+func (s *CreateServiceInput) SetLoadBalancers(v []*LoadBalancer) *CreateServiceInput {
+	s.LoadBalancers = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreateServiceInput) SetRole(v string) *CreateServiceInput {
+	s.Role = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *CreateServiceInput) SetServiceName(v string) *CreateServiceInput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *CreateServiceInput) SetTaskDefinition(v string) *CreateServiceInput {
+	s.TaskDefinition = &v
+	return s
+}
+
 type CreateServiceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3209,6 +3605,12 @@ func (s CreateServiceOutput) String() string {
 // GoString returns the string representation
 func (s CreateServiceOutput) GoString() string {
 	return s.String()
+}
+
+// SetService sets the Service field's value.
+func (s *CreateServiceOutput) SetService(v *Service) *CreateServiceOutput {
+	s.Service = v
+	return s
 }
 
 type DeleteClusterInput struct {
@@ -3243,6 +3645,12 @@ func (s *DeleteClusterInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DeleteClusterInput) SetCluster(v string) *DeleteClusterInput {
+	s.Cluster = &v
+	return s
+}
+
 type DeleteClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3258,6 +3666,12 @@ func (s DeleteClusterOutput) String() string {
 // GoString returns the string representation
 func (s DeleteClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *DeleteClusterOutput) SetCluster(v *Cluster) *DeleteClusterOutput {
+	s.Cluster = v
+	return s
 }
 
 type DeleteServiceInput struct {
@@ -3296,6 +3710,18 @@ func (s *DeleteServiceInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DeleteServiceInput) SetCluster(v string) *DeleteServiceInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *DeleteServiceInput) SetService(v string) *DeleteServiceInput {
+	s.Service = &v
+	return s
+}
+
 type DeleteServiceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3311,6 +3737,12 @@ func (s DeleteServiceOutput) String() string {
 // GoString returns the string representation
 func (s DeleteServiceOutput) GoString() string {
 	return s.String()
+}
+
+// SetService sets the Service field's value.
+func (s *DeleteServiceOutput) SetService(v *Service) *DeleteServiceOutput {
+	s.Service = v
+	return s
 }
 
 // The details of an Amazon ECS service deployment.
@@ -3356,6 +3788,54 @@ func (s Deployment) GoString() string {
 	return s.String()
 }
 
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Deployment) SetCreatedAt(v time.Time) *Deployment {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDesiredCount sets the DesiredCount field's value.
+func (s *Deployment) SetDesiredCount(v int64) *Deployment {
+	s.DesiredCount = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Deployment) SetId(v string) *Deployment {
+	s.Id = &v
+	return s
+}
+
+// SetPendingCount sets the PendingCount field's value.
+func (s *Deployment) SetPendingCount(v int64) *Deployment {
+	s.PendingCount = &v
+	return s
+}
+
+// SetRunningCount sets the RunningCount field's value.
+func (s *Deployment) SetRunningCount(v int64) *Deployment {
+	s.RunningCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Deployment) SetStatus(v string) *Deployment {
+	s.Status = &v
+	return s
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *Deployment) SetTaskDefinition(v string) *Deployment {
+	s.TaskDefinition = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *Deployment) SetUpdatedAt(v time.Time) *Deployment {
+	s.UpdatedAt = &v
+	return s
+}
+
 // Optional deployment parameters that control how many tasks run during the
 // deployment and the ordering of stopping and starting tasks.
 type DeploymentConfiguration struct {
@@ -3384,6 +3864,18 @@ func (s DeploymentConfiguration) String() string {
 // GoString returns the string representation
 func (s DeploymentConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetMaximumPercent sets the MaximumPercent field's value.
+func (s *DeploymentConfiguration) SetMaximumPercent(v int64) *DeploymentConfiguration {
+	s.MaximumPercent = &v
+	return s
+}
+
+// SetMinimumHealthyPercent sets the MinimumHealthyPercent field's value.
+func (s *DeploymentConfiguration) SetMinimumHealthyPercent(v int64) *DeploymentConfiguration {
+	s.MinimumHealthyPercent = &v
+	return s
 }
 
 type DeregisterContainerInstanceInput struct {
@@ -3441,6 +3933,24 @@ func (s *DeregisterContainerInstanceInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DeregisterContainerInstanceInput) SetCluster(v string) *DeregisterContainerInstanceInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *DeregisterContainerInstanceInput) SetContainerInstance(v string) *DeregisterContainerInstanceInput {
+	s.ContainerInstance = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *DeregisterContainerInstanceInput) SetForce(v bool) *DeregisterContainerInstanceInput {
+	s.Force = &v
+	return s
+}
+
 type DeregisterContainerInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3457,6 +3967,12 @@ func (s DeregisterContainerInstanceOutput) String() string {
 // GoString returns the string representation
 func (s DeregisterContainerInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *DeregisterContainerInstanceOutput) SetContainerInstance(v *ContainerInstance) *DeregisterContainerInstanceOutput {
+	s.ContainerInstance = v
+	return s
 }
 
 type DeregisterTaskDefinitionInput struct {
@@ -3492,6 +4008,12 @@ func (s *DeregisterTaskDefinitionInput) Validate() error {
 	return nil
 }
 
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *DeregisterTaskDefinitionInput) SetTaskDefinition(v string) *DeregisterTaskDefinitionInput {
+	s.TaskDefinition = &v
+	return s
+}
+
 type DeregisterTaskDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3507,6 +4029,12 @@ func (s DeregisterTaskDefinitionOutput) String() string {
 // GoString returns the string representation
 func (s DeregisterTaskDefinitionOutput) GoString() string {
 	return s.String()
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *DeregisterTaskDefinitionOutput) SetTaskDefinition(v *TaskDefinition) *DeregisterTaskDefinitionOutput {
+	s.TaskDefinition = v
+	return s
 }
 
 type DescribeClustersInput struct {
@@ -3528,6 +4056,12 @@ func (s DescribeClustersInput) GoString() string {
 	return s.String()
 }
 
+// SetClusters sets the Clusters field's value.
+func (s *DescribeClustersInput) SetClusters(v []*string) *DescribeClustersInput {
+	s.Clusters = v
+	return s
+}
+
 type DescribeClustersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3546,6 +4080,18 @@ func (s DescribeClustersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeClustersOutput) GoString() string {
 	return s.String()
+}
+
+// SetClusters sets the Clusters field's value.
+func (s *DescribeClustersOutput) SetClusters(v []*Cluster) *DescribeClustersOutput {
+	s.Clusters = v
+	return s
+}
+
+// SetFailures sets the Failures field's value.
+func (s *DescribeClustersOutput) SetFailures(v []*Failure) *DescribeClustersOutput {
+	s.Failures = v
+	return s
 }
 
 type DescribeContainerInstancesInput struct {
@@ -3586,6 +4132,18 @@ func (s *DescribeContainerInstancesInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DescribeContainerInstancesInput) SetCluster(v string) *DescribeContainerInstancesInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstances sets the ContainerInstances field's value.
+func (s *DescribeContainerInstancesInput) SetContainerInstances(v []*string) *DescribeContainerInstancesInput {
+	s.ContainerInstances = v
+	return s
+}
+
 type DescribeContainerInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3604,6 +4162,18 @@ func (s DescribeContainerInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeContainerInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetContainerInstances sets the ContainerInstances field's value.
+func (s *DescribeContainerInstancesOutput) SetContainerInstances(v []*ContainerInstance) *DescribeContainerInstancesOutput {
+	s.ContainerInstances = v
+	return s
+}
+
+// SetFailures sets the Failures field's value.
+func (s *DescribeContainerInstancesOutput) SetFailures(v []*Failure) *DescribeContainerInstancesOutput {
+	s.Failures = v
+	return s
 }
 
 type DescribeServicesInput struct {
@@ -3643,6 +4213,18 @@ func (s *DescribeServicesInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DescribeServicesInput) SetCluster(v string) *DescribeServicesInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *DescribeServicesInput) SetServices(v []*string) *DescribeServicesInput {
+	s.Services = v
+	return s
+}
+
 type DescribeServicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3661,6 +4243,18 @@ func (s DescribeServicesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeServicesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *DescribeServicesOutput) SetFailures(v []*Failure) *DescribeServicesOutput {
+	s.Failures = v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *DescribeServicesOutput) SetServices(v []*Service) *DescribeServicesOutput {
+	s.Services = v
+	return s
 }
 
 type DescribeTaskDefinitionInput struct {
@@ -3697,6 +4291,12 @@ func (s *DescribeTaskDefinitionInput) Validate() error {
 	return nil
 }
 
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *DescribeTaskDefinitionInput) SetTaskDefinition(v string) *DescribeTaskDefinitionInput {
+	s.TaskDefinition = &v
+	return s
+}
+
 type DescribeTaskDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3712,6 +4312,12 @@ func (s DescribeTaskDefinitionOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTaskDefinitionOutput) GoString() string {
 	return s.String()
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *DescribeTaskDefinitionOutput) SetTaskDefinition(v *TaskDefinition) *DescribeTaskDefinitionOutput {
+	s.TaskDefinition = v
+	return s
 }
 
 type DescribeTasksInput struct {
@@ -3751,6 +4357,18 @@ func (s *DescribeTasksInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DescribeTasksInput) SetCluster(v string) *DescribeTasksInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *DescribeTasksInput) SetTasks(v []*string) *DescribeTasksInput {
+	s.Tasks = v
+	return s
+}
+
 type DescribeTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3769,6 +4387,18 @@ func (s DescribeTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *DescribeTasksOutput) SetFailures(v []*Failure) *DescribeTasksOutput {
+	s.Failures = v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *DescribeTasksOutput) SetTasks(v []*Task) *DescribeTasksOutput {
+	s.Tasks = v
+	return s
 }
 
 type DiscoverPollEndpointInput struct {
@@ -3795,6 +4425,18 @@ func (s DiscoverPollEndpointInput) GoString() string {
 	return s.String()
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *DiscoverPollEndpointInput) SetCluster(v string) *DiscoverPollEndpointInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *DiscoverPollEndpointInput) SetContainerInstance(v string) *DiscoverPollEndpointInput {
+	s.ContainerInstance = &v
+	return s
+}
+
 type DiscoverPollEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3813,6 +4455,18 @@ func (s DiscoverPollEndpointOutput) String() string {
 // GoString returns the string representation
 func (s DiscoverPollEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DiscoverPollEndpointOutput) SetEndpoint(v string) *DiscoverPollEndpointOutput {
+	s.Endpoint = &v
+	return s
+}
+
+// SetTelemetryEndpoint sets the TelemetryEndpoint field's value.
+func (s *DiscoverPollEndpointOutput) SetTelemetryEndpoint(v string) *DiscoverPollEndpointOutput {
+	s.TelemetryEndpoint = &v
+	return s
 }
 
 // A failed resource.
@@ -3834,6 +4488,18 @@ func (s Failure) String() string {
 // GoString returns the string representation
 func (s Failure) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Failure) SetArn(v string) *Failure {
+	s.Arn = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *Failure) SetReason(v string) *Failure {
+	s.Reason = &v
+	return s
 }
 
 // Hostnames and IP address entries that are added to the /etc/hosts file of
@@ -3878,6 +4544,18 @@ func (s *HostEntry) Validate() error {
 	return nil
 }
 
+// SetHostname sets the Hostname field's value.
+func (s *HostEntry) SetHostname(v string) *HostEntry {
+	s.Hostname = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *HostEntry) SetIpAddress(v string) *HostEntry {
+	s.IpAddress = &v
+	return s
+}
+
 // Details on a container instance host volume.
 type HostVolumeProperties struct {
 	_ struct{} `type:"structure"`
@@ -3902,6 +4580,12 @@ func (s HostVolumeProperties) GoString() string {
 	return s.String()
 }
 
+// SetSourcePath sets the SourcePath field's value.
+func (s *HostVolumeProperties) SetSourcePath(v string) *HostVolumeProperties {
+	s.SourcePath = &v
+	return s
+}
+
 // A key and value pair object.
 type KeyValuePair struct {
 	_ struct{} `type:"structure"`
@@ -3923,6 +4607,18 @@ func (s KeyValuePair) String() string {
 // GoString returns the string representation
 func (s KeyValuePair) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *KeyValuePair) SetName(v string) *KeyValuePair {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *KeyValuePair) SetValue(v string) *KeyValuePair {
+	s.Value = &v
+	return s
 }
 
 type ListClustersInput struct {
@@ -3957,6 +4653,18 @@ func (s ListClustersInput) GoString() string {
 	return s.String()
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListClustersInput) SetMaxResults(v int64) *ListClustersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClustersInput) SetNextToken(v string) *ListClustersInput {
+	s.NextToken = &v
+	return s
+}
+
 type ListClustersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3979,6 +4687,18 @@ func (s ListClustersOutput) String() string {
 // GoString returns the string representation
 func (s ListClustersOutput) GoString() string {
 	return s.String()
+}
+
+// SetClusterArns sets the ClusterArns field's value.
+func (s *ListClustersOutput) SetClusterArns(v []*string) *ListClustersOutput {
+	s.ClusterArns = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListContainerInstancesInput struct {
@@ -4020,6 +4740,24 @@ func (s ListContainerInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *ListContainerInstancesInput) SetCluster(v string) *ListContainerInstancesInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListContainerInstancesInput) SetMaxResults(v int64) *ListContainerInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContainerInstancesInput) SetNextToken(v string) *ListContainerInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
 type ListContainerInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4042,6 +4780,18 @@ func (s ListContainerInstancesOutput) String() string {
 // GoString returns the string representation
 func (s ListContainerInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetContainerInstanceArns sets the ContainerInstanceArns field's value.
+func (s *ListContainerInstancesOutput) SetContainerInstanceArns(v []*string) *ListContainerInstancesOutput {
+	s.ContainerInstanceArns = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContainerInstancesOutput) SetNextToken(v string) *ListContainerInstancesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListServicesInput struct {
@@ -4081,6 +4831,24 @@ func (s ListServicesInput) GoString() string {
 	return s.String()
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *ListServicesInput) SetCluster(v string) *ListServicesInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListServicesInput) SetMaxResults(v int64) *ListServicesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicesInput) SetNextToken(v string) *ListServicesInput {
+	s.NextToken = &v
+	return s
+}
+
 type ListServicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4103,6 +4871,18 @@ func (s ListServicesOutput) String() string {
 // GoString returns the string representation
 func (s ListServicesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicesOutput) SetNextToken(v string) *ListServicesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceArns sets the ServiceArns field's value.
+func (s *ListServicesOutput) SetServiceArns(v []*string) *ListServicesOutput {
+	s.ServiceArns = v
+	return s
 }
 
 type ListTaskDefinitionFamiliesInput struct {
@@ -4153,6 +4933,30 @@ func (s ListTaskDefinitionFamiliesInput) GoString() string {
 	return s.String()
 }
 
+// SetFamilyPrefix sets the FamilyPrefix field's value.
+func (s *ListTaskDefinitionFamiliesInput) SetFamilyPrefix(v string) *ListTaskDefinitionFamiliesInput {
+	s.FamilyPrefix = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTaskDefinitionFamiliesInput) SetMaxResults(v int64) *ListTaskDefinitionFamiliesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTaskDefinitionFamiliesInput) SetNextToken(v string) *ListTaskDefinitionFamiliesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTaskDefinitionFamiliesInput) SetStatus(v string) *ListTaskDefinitionFamiliesInput {
+	s.Status = &v
+	return s
+}
+
 type ListTaskDefinitionFamiliesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4175,6 +4979,18 @@ func (s ListTaskDefinitionFamiliesOutput) String() string {
 // GoString returns the string representation
 func (s ListTaskDefinitionFamiliesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFamilies sets the Families field's value.
+func (s *ListTaskDefinitionFamiliesOutput) SetFamilies(v []*string) *ListTaskDefinitionFamiliesOutput {
+	s.Families = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTaskDefinitionFamiliesOutput) SetNextToken(v string) *ListTaskDefinitionFamiliesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListTaskDefinitionsInput struct {
@@ -4230,6 +5046,36 @@ func (s ListTaskDefinitionsInput) GoString() string {
 	return s.String()
 }
 
+// SetFamilyPrefix sets the FamilyPrefix field's value.
+func (s *ListTaskDefinitionsInput) SetFamilyPrefix(v string) *ListTaskDefinitionsInput {
+	s.FamilyPrefix = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTaskDefinitionsInput) SetMaxResults(v int64) *ListTaskDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTaskDefinitionsInput) SetNextToken(v string) *ListTaskDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSort sets the Sort field's value.
+func (s *ListTaskDefinitionsInput) SetSort(v string) *ListTaskDefinitionsInput {
+	s.Sort = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListTaskDefinitionsInput) SetStatus(v string) *ListTaskDefinitionsInput {
+	s.Status = &v
+	return s
+}
+
 type ListTaskDefinitionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4252,6 +5098,18 @@ func (s ListTaskDefinitionsOutput) String() string {
 // GoString returns the string representation
 func (s ListTaskDefinitionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTaskDefinitionsOutput) SetNextToken(v string) *ListTaskDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTaskDefinitionArns sets the TaskDefinitionArns field's value.
+func (s *ListTaskDefinitionsOutput) SetTaskDefinitionArns(v []*string) *ListTaskDefinitionsOutput {
+	s.TaskDefinitionArns = v
+	return s
 }
 
 type ListTasksInput struct {
@@ -4319,6 +5177,54 @@ func (s ListTasksInput) GoString() string {
 	return s.String()
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *ListTasksInput) SetCluster(v string) *ListTasksInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *ListTasksInput) SetContainerInstance(v string) *ListTasksInput {
+	s.ContainerInstance = &v
+	return s
+}
+
+// SetDesiredStatus sets the DesiredStatus field's value.
+func (s *ListTasksInput) SetDesiredStatus(v string) *ListTasksInput {
+	s.DesiredStatus = &v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *ListTasksInput) SetFamily(v string) *ListTasksInput {
+	s.Family = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTasksInput) SetMaxResults(v int64) *ListTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTasksInput) SetNextToken(v string) *ListTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListTasksInput) SetServiceName(v string) *ListTasksInput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *ListTasksInput) SetStartedBy(v string) *ListTasksInput {
+	s.StartedBy = &v
+	return s
+}
+
 type ListTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4340,6 +5246,18 @@ func (s ListTasksOutput) String() string {
 // GoString returns the string representation
 func (s ListTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTasksOutput) SetNextToken(v string) *ListTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTaskArns sets the TaskArns field's value.
+func (s *ListTasksOutput) SetTaskArns(v []*string) *ListTasksOutput {
+	s.TaskArns = v
+	return s
 }
 
 // Details on a load balancer that is used with a service.
@@ -4372,6 +5290,30 @@ func (s LoadBalancer) String() string {
 // GoString returns the string representation
 func (s LoadBalancer) GoString() string {
 	return s.String()
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *LoadBalancer) SetContainerName(v string) *LoadBalancer {
+	s.ContainerName = &v
+	return s
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *LoadBalancer) SetContainerPort(v int64) *LoadBalancer {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetLoadBalancerName sets the LoadBalancerName field's value.
+func (s *LoadBalancer) SetLoadBalancerName(v string) *LoadBalancer {
+	s.LoadBalancerName = &v
+	return s
+}
+
+// SetTargetGroupArn sets the TargetGroupArn field's value.
+func (s *LoadBalancer) SetTargetGroupArn(v string) *LoadBalancer {
+	s.TargetGroupArn = &v
+	return s
 }
 
 // Log configuration options to send to a custom log driver for the container.
@@ -4429,6 +5371,18 @@ func (s *LogConfiguration) Validate() error {
 	return nil
 }
 
+// SetLogDriver sets the LogDriver field's value.
+func (s *LogConfiguration) SetLogDriver(v string) *LogConfiguration {
+	s.LogDriver = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *LogConfiguration) SetOptions(v map[string]*string) *LogConfiguration {
+	s.Options = v
+	return s
+}
+
 // Details on a volume mount point that is used in a container definition.
 type MountPoint struct {
 	_ struct{} `type:"structure"`
@@ -4453,6 +5407,24 @@ func (s MountPoint) String() string {
 // GoString returns the string representation
 func (s MountPoint) GoString() string {
 	return s.String()
+}
+
+// SetContainerPath sets the ContainerPath field's value.
+func (s *MountPoint) SetContainerPath(v string) *MountPoint {
+	s.ContainerPath = &v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *MountPoint) SetReadOnly(v bool) *MountPoint {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetSourceVolume sets the SourceVolume field's value.
+func (s *MountPoint) SetSourceVolume(v string) *MountPoint {
+	s.SourceVolume = &v
+	return s
 }
 
 // Details on the network bindings between a container and its host container
@@ -4483,6 +5455,30 @@ func (s NetworkBinding) String() string {
 // GoString returns the string representation
 func (s NetworkBinding) GoString() string {
 	return s.String()
+}
+
+// SetBindIP sets the BindIP field's value.
+func (s *NetworkBinding) SetBindIP(v string) *NetworkBinding {
+	s.BindIP = &v
+	return s
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *NetworkBinding) SetContainerPort(v int64) *NetworkBinding {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetHostPort sets the HostPort field's value.
+func (s *NetworkBinding) SetHostPort(v int64) *NetworkBinding {
+	s.HostPort = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *NetworkBinding) SetProtocol(v string) *NetworkBinding {
+	s.Protocol = &v
+	return s
 }
 
 // Port mappings allow containers to access ports on the host container instance
@@ -4538,6 +5534,24 @@ func (s PortMapping) String() string {
 // GoString returns the string representation
 func (s PortMapping) GoString() string {
 	return s.String()
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *PortMapping) SetContainerPort(v int64) *PortMapping {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetHostPort sets the HostPort field's value.
+func (s *PortMapping) SetHostPort(v int64) *PortMapping {
+	s.HostPort = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *PortMapping) SetProtocol(v string) *PortMapping {
+	s.Protocol = &v
+	return s
 }
 
 type RegisterContainerInstanceInput struct {
@@ -4602,6 +5616,48 @@ func (s *RegisterContainerInstanceInput) Validate() error {
 	return nil
 }
 
+// SetAttributes sets the Attributes field's value.
+func (s *RegisterContainerInstanceInput) SetAttributes(v []*Attribute) *RegisterContainerInstanceInput {
+	s.Attributes = v
+	return s
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *RegisterContainerInstanceInput) SetCluster(v string) *RegisterContainerInstanceInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstanceArn sets the ContainerInstanceArn field's value.
+func (s *RegisterContainerInstanceInput) SetContainerInstanceArn(v string) *RegisterContainerInstanceInput {
+	s.ContainerInstanceArn = &v
+	return s
+}
+
+// SetInstanceIdentityDocument sets the InstanceIdentityDocument field's value.
+func (s *RegisterContainerInstanceInput) SetInstanceIdentityDocument(v string) *RegisterContainerInstanceInput {
+	s.InstanceIdentityDocument = &v
+	return s
+}
+
+// SetInstanceIdentityDocumentSignature sets the InstanceIdentityDocumentSignature field's value.
+func (s *RegisterContainerInstanceInput) SetInstanceIdentityDocumentSignature(v string) *RegisterContainerInstanceInput {
+	s.InstanceIdentityDocumentSignature = &v
+	return s
+}
+
+// SetTotalResources sets the TotalResources field's value.
+func (s *RegisterContainerInstanceInput) SetTotalResources(v []*Resource) *RegisterContainerInstanceInput {
+	s.TotalResources = v
+	return s
+}
+
+// SetVersionInfo sets the VersionInfo field's value.
+func (s *RegisterContainerInstanceInput) SetVersionInfo(v *VersionInfo) *RegisterContainerInstanceInput {
+	s.VersionInfo = v
+	return s
+}
+
 type RegisterContainerInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4618,6 +5674,12 @@ func (s RegisterContainerInstanceOutput) String() string {
 // GoString returns the string representation
 func (s RegisterContainerInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *RegisterContainerInstanceOutput) SetContainerInstance(v *ContainerInstance) *RegisterContainerInstanceOutput {
+	s.ContainerInstance = v
+	return s
 }
 
 type RegisterTaskDefinitionInput struct {
@@ -4702,6 +5764,36 @@ func (s *RegisterTaskDefinitionInput) Validate() error {
 	return nil
 }
 
+// SetContainerDefinitions sets the ContainerDefinitions field's value.
+func (s *RegisterTaskDefinitionInput) SetContainerDefinitions(v []*ContainerDefinition) *RegisterTaskDefinitionInput {
+	s.ContainerDefinitions = v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *RegisterTaskDefinitionInput) SetFamily(v string) *RegisterTaskDefinitionInput {
+	s.Family = &v
+	return s
+}
+
+// SetNetworkMode sets the NetworkMode field's value.
+func (s *RegisterTaskDefinitionInput) SetNetworkMode(v string) *RegisterTaskDefinitionInput {
+	s.NetworkMode = &v
+	return s
+}
+
+// SetTaskRoleArn sets the TaskRoleArn field's value.
+func (s *RegisterTaskDefinitionInput) SetTaskRoleArn(v string) *RegisterTaskDefinitionInput {
+	s.TaskRoleArn = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *RegisterTaskDefinitionInput) SetVolumes(v []*Volume) *RegisterTaskDefinitionInput {
+	s.Volumes = v
+	return s
+}
+
 type RegisterTaskDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4717,6 +5809,12 @@ func (s RegisterTaskDefinitionOutput) String() string {
 // GoString returns the string representation
 func (s RegisterTaskDefinitionOutput) GoString() string {
 	return s.String()
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *RegisterTaskDefinitionOutput) SetTaskDefinition(v *TaskDefinition) *RegisterTaskDefinitionOutput {
+	s.TaskDefinition = v
+	return s
 }
 
 // Describes the resources available for a container instance.
@@ -4753,6 +5851,42 @@ func (s Resource) String() string {
 // GoString returns the string representation
 func (s Resource) GoString() string {
 	return s.String()
+}
+
+// SetDoubleValue sets the DoubleValue field's value.
+func (s *Resource) SetDoubleValue(v float64) *Resource {
+	s.DoubleValue = &v
+	return s
+}
+
+// SetIntegerValue sets the IntegerValue field's value.
+func (s *Resource) SetIntegerValue(v int64) *Resource {
+	s.IntegerValue = &v
+	return s
+}
+
+// SetLongValue sets the LongValue field's value.
+func (s *Resource) SetLongValue(v int64) *Resource {
+	s.LongValue = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Resource) SetName(v string) *Resource {
+	s.Name = &v
+	return s
+}
+
+// SetStringSetValue sets the StringSetValue field's value.
+func (s *Resource) SetStringSetValue(v []*string) *Resource {
+	s.StringSetValue = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Resource) SetType(v string) *Resource {
+	s.Type = &v
+	return s
 }
 
 type RunTaskInput struct {
@@ -4822,6 +5956,36 @@ func (s *RunTaskInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *RunTaskInput) SetCluster(v string) *RunTaskInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *RunTaskInput) SetCount(v int64) *RunTaskInput {
+	s.Count = &v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *RunTaskInput) SetOverrides(v *TaskOverride) *RunTaskInput {
+	s.Overrides = v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *RunTaskInput) SetStartedBy(v string) *RunTaskInput {
+	s.StartedBy = &v
+	return s
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *RunTaskInput) SetTaskDefinition(v string) *RunTaskInput {
+	s.TaskDefinition = &v
+	return s
+}
+
 type RunTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4841,6 +6005,18 @@ func (s RunTaskOutput) String() string {
 // GoString returns the string representation
 func (s RunTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *RunTaskOutput) SetFailures(v []*Failure) *RunTaskOutput {
+	s.Failures = v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *RunTaskOutput) SetTasks(v []*Task) *RunTaskOutput {
+	s.Tasks = v
+	return s
 }
 
 // Details on a service within a cluster
@@ -4916,6 +6092,90 @@ func (s Service) GoString() string {
 	return s.String()
 }
 
+// SetClusterArn sets the ClusterArn field's value.
+func (s *Service) SetClusterArn(v string) *Service {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Service) SetCreatedAt(v time.Time) *Service {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDeploymentConfiguration sets the DeploymentConfiguration field's value.
+func (s *Service) SetDeploymentConfiguration(v *DeploymentConfiguration) *Service {
+	s.DeploymentConfiguration = v
+	return s
+}
+
+// SetDeployments sets the Deployments field's value.
+func (s *Service) SetDeployments(v []*Deployment) *Service {
+	s.Deployments = v
+	return s
+}
+
+// SetDesiredCount sets the DesiredCount field's value.
+func (s *Service) SetDesiredCount(v int64) *Service {
+	s.DesiredCount = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *Service) SetEvents(v []*ServiceEvent) *Service {
+	s.Events = v
+	return s
+}
+
+// SetLoadBalancers sets the LoadBalancers field's value.
+func (s *Service) SetLoadBalancers(v []*LoadBalancer) *Service {
+	s.LoadBalancers = v
+	return s
+}
+
+// SetPendingCount sets the PendingCount field's value.
+func (s *Service) SetPendingCount(v int64) *Service {
+	s.PendingCount = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *Service) SetRoleArn(v string) *Service {
+	s.RoleArn = &v
+	return s
+}
+
+// SetRunningCount sets the RunningCount field's value.
+func (s *Service) SetRunningCount(v int64) *Service {
+	s.RunningCount = &v
+	return s
+}
+
+// SetServiceArn sets the ServiceArn field's value.
+func (s *Service) SetServiceArn(v string) *Service {
+	s.ServiceArn = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *Service) SetServiceName(v string) *Service {
+	s.ServiceName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Service) SetStatus(v string) *Service {
+	s.Status = &v
+	return s
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *Service) SetTaskDefinition(v string) *Service {
+	s.TaskDefinition = &v
+	return s
+}
+
 // Details on an event associated with a service.
 type ServiceEvent struct {
 	_ struct{} `type:"structure"`
@@ -4938,6 +6198,24 @@ func (s ServiceEvent) String() string {
 // GoString returns the string representation
 func (s ServiceEvent) GoString() string {
 	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ServiceEvent) SetCreatedAt(v time.Time) *ServiceEvent {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ServiceEvent) SetId(v string) *ServiceEvent {
+	s.Id = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ServiceEvent) SetMessage(v string) *ServiceEvent {
+	s.Message = &v
+	return s
 }
 
 type StartTaskInput struct {
@@ -5013,6 +6291,36 @@ func (s *StartTaskInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *StartTaskInput) SetCluster(v string) *StartTaskInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstances sets the ContainerInstances field's value.
+func (s *StartTaskInput) SetContainerInstances(v []*string) *StartTaskInput {
+	s.ContainerInstances = v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *StartTaskInput) SetOverrides(v *TaskOverride) *StartTaskInput {
+	s.Overrides = v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *StartTaskInput) SetStartedBy(v string) *StartTaskInput {
+	s.StartedBy = &v
+	return s
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *StartTaskInput) SetTaskDefinition(v string) *StartTaskInput {
+	s.TaskDefinition = &v
+	return s
+}
+
 type StartTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5032,6 +6340,18 @@ func (s StartTaskOutput) String() string {
 // GoString returns the string representation
 func (s StartTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *StartTaskOutput) SetFailures(v []*Failure) *StartTaskOutput {
+	s.Failures = v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *StartTaskOutput) SetTasks(v []*Task) *StartTaskOutput {
+	s.Tasks = v
+	return s
 }
 
 type StopTaskInput struct {
@@ -5077,6 +6397,24 @@ func (s *StopTaskInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *StopTaskInput) SetCluster(v string) *StopTaskInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *StopTaskInput) SetReason(v string) *StopTaskInput {
+	s.Reason = &v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *StopTaskInput) SetTask(v string) *StopTaskInput {
+	s.Task = &v
+	return s
+}
+
 type StopTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5092,6 +6430,12 @@ func (s StopTaskOutput) String() string {
 // GoString returns the string representation
 func (s StopTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetTask sets the Task field's value.
+func (s *StopTaskOutput) SetTask(v *Task) *StopTaskOutput {
+	s.Task = v
+	return s
 }
 
 type SubmitContainerStateChangeInput struct {
@@ -5131,6 +6475,48 @@ func (s SubmitContainerStateChangeInput) GoString() string {
 	return s.String()
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *SubmitContainerStateChangeInput) SetCluster(v string) *SubmitContainerStateChangeInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *SubmitContainerStateChangeInput) SetContainerName(v string) *SubmitContainerStateChangeInput {
+	s.ContainerName = &v
+	return s
+}
+
+// SetExitCode sets the ExitCode field's value.
+func (s *SubmitContainerStateChangeInput) SetExitCode(v int64) *SubmitContainerStateChangeInput {
+	s.ExitCode = &v
+	return s
+}
+
+// SetNetworkBindings sets the NetworkBindings field's value.
+func (s *SubmitContainerStateChangeInput) SetNetworkBindings(v []*NetworkBinding) *SubmitContainerStateChangeInput {
+	s.NetworkBindings = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *SubmitContainerStateChangeInput) SetReason(v string) *SubmitContainerStateChangeInput {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SubmitContainerStateChangeInput) SetStatus(v string) *SubmitContainerStateChangeInput {
+	s.Status = &v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *SubmitContainerStateChangeInput) SetTask(v string) *SubmitContainerStateChangeInput {
+	s.Task = &v
+	return s
+}
+
 type SubmitContainerStateChangeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5146,6 +6532,12 @@ func (s SubmitContainerStateChangeOutput) String() string {
 // GoString returns the string representation
 func (s SubmitContainerStateChangeOutput) GoString() string {
 	return s.String()
+}
+
+// SetAcknowledgment sets the Acknowledgment field's value.
+func (s *SubmitContainerStateChangeOutput) SetAcknowledgment(v string) *SubmitContainerStateChangeOutput {
+	s.Acknowledgment = &v
+	return s
 }
 
 type SubmitTaskStateChangeInput struct {
@@ -5176,6 +6568,30 @@ func (s SubmitTaskStateChangeInput) GoString() string {
 	return s.String()
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *SubmitTaskStateChangeInput) SetCluster(v string) *SubmitTaskStateChangeInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *SubmitTaskStateChangeInput) SetReason(v string) *SubmitTaskStateChangeInput {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SubmitTaskStateChangeInput) SetStatus(v string) *SubmitTaskStateChangeInput {
+	s.Status = &v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *SubmitTaskStateChangeInput) SetTask(v string) *SubmitTaskStateChangeInput {
+	s.Task = &v
+	return s
+}
+
 type SubmitTaskStateChangeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5191,6 +6607,12 @@ func (s SubmitTaskStateChangeOutput) String() string {
 // GoString returns the string representation
 func (s SubmitTaskStateChangeOutput) GoString() string {
 	return s.String()
+}
+
+// SetAcknowledgment sets the Acknowledgment field's value.
+func (s *SubmitTaskStateChangeOutput) SetAcknowledgment(v string) *SubmitTaskStateChangeOutput {
+	s.Acknowledgment = &v
+	return s
 }
 
 // Details on a task in a cluster.
@@ -5250,6 +6672,84 @@ func (s Task) String() string {
 // GoString returns the string representation
 func (s Task) GoString() string {
 	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *Task) SetClusterArn(v string) *Task {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetContainerInstanceArn sets the ContainerInstanceArn field's value.
+func (s *Task) SetContainerInstanceArn(v string) *Task {
+	s.ContainerInstanceArn = &v
+	return s
+}
+
+// SetContainers sets the Containers field's value.
+func (s *Task) SetContainers(v []*Container) *Task {
+	s.Containers = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Task) SetCreatedAt(v time.Time) *Task {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDesiredStatus sets the DesiredStatus field's value.
+func (s *Task) SetDesiredStatus(v string) *Task {
+	s.DesiredStatus = &v
+	return s
+}
+
+// SetLastStatus sets the LastStatus field's value.
+func (s *Task) SetLastStatus(v string) *Task {
+	s.LastStatus = &v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *Task) SetOverrides(v *TaskOverride) *Task {
+	s.Overrides = v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *Task) SetStartedAt(v time.Time) *Task {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *Task) SetStartedBy(v string) *Task {
+	s.StartedBy = &v
+	return s
+}
+
+// SetStoppedAt sets the StoppedAt field's value.
+func (s *Task) SetStoppedAt(v time.Time) *Task {
+	s.StoppedAt = &v
+	return s
+}
+
+// SetStoppedReason sets the StoppedReason field's value.
+func (s *Task) SetStoppedReason(v string) *Task {
+	s.StoppedReason = &v
+	return s
+}
+
+// SetTaskArn sets the TaskArn field's value.
+func (s *Task) SetTaskArn(v string) *Task {
+	s.TaskArn = &v
+	return s
+}
+
+// SetTaskDefinitionArn sets the TaskDefinitionArn field's value.
+func (s *Task) SetTaskDefinitionArn(v string) *Task {
+	s.TaskDefinitionArn = &v
+	return s
 }
 
 // Details of a task definition.
@@ -5314,6 +6814,60 @@ func (s TaskDefinition) GoString() string {
 	return s.String()
 }
 
+// SetContainerDefinitions sets the ContainerDefinitions field's value.
+func (s *TaskDefinition) SetContainerDefinitions(v []*ContainerDefinition) *TaskDefinition {
+	s.ContainerDefinitions = v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *TaskDefinition) SetFamily(v string) *TaskDefinition {
+	s.Family = &v
+	return s
+}
+
+// SetNetworkMode sets the NetworkMode field's value.
+func (s *TaskDefinition) SetNetworkMode(v string) *TaskDefinition {
+	s.NetworkMode = &v
+	return s
+}
+
+// SetRequiresAttributes sets the RequiresAttributes field's value.
+func (s *TaskDefinition) SetRequiresAttributes(v []*Attribute) *TaskDefinition {
+	s.RequiresAttributes = v
+	return s
+}
+
+// SetRevision sets the Revision field's value.
+func (s *TaskDefinition) SetRevision(v int64) *TaskDefinition {
+	s.Revision = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *TaskDefinition) SetStatus(v string) *TaskDefinition {
+	s.Status = &v
+	return s
+}
+
+// SetTaskDefinitionArn sets the TaskDefinitionArn field's value.
+func (s *TaskDefinition) SetTaskDefinitionArn(v string) *TaskDefinition {
+	s.TaskDefinitionArn = &v
+	return s
+}
+
+// SetTaskRoleArn sets the TaskRoleArn field's value.
+func (s *TaskDefinition) SetTaskRoleArn(v string) *TaskDefinition {
+	s.TaskRoleArn = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *TaskDefinition) SetVolumes(v []*Volume) *TaskDefinition {
+	s.Volumes = v
+	return s
+}
+
 // The overrides associated with a task.
 type TaskOverride struct {
 	_ struct{} `type:"structure"`
@@ -5335,6 +6889,18 @@ func (s TaskOverride) String() string {
 // GoString returns the string representation
 func (s TaskOverride) GoString() string {
 	return s.String()
+}
+
+// SetContainerOverrides sets the ContainerOverrides field's value.
+func (s *TaskOverride) SetContainerOverrides(v []*ContainerOverride) *TaskOverride {
+	s.ContainerOverrides = v
+	return s
+}
+
+// SetTaskRoleArn sets the TaskRoleArn field's value.
+func (s *TaskOverride) SetTaskRoleArn(v string) *TaskOverride {
+	s.TaskRoleArn = &v
+	return s
 }
 
 // The ulimit settings to pass to the container.
@@ -5386,6 +6952,24 @@ func (s *Ulimit) Validate() error {
 	return nil
 }
 
+// SetHardLimit sets the HardLimit field's value.
+func (s *Ulimit) SetHardLimit(v int64) *Ulimit {
+	s.HardLimit = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Ulimit) SetName(v string) *Ulimit {
+	s.Name = &v
+	return s
+}
+
+// SetSoftLimit sets the SoftLimit field's value.
+func (s *Ulimit) SetSoftLimit(v int64) *Ulimit {
+	s.SoftLimit = &v
+	return s
+}
+
 type UpdateContainerAgentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5425,6 +7009,18 @@ func (s *UpdateContainerAgentInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *UpdateContainerAgentInput) SetCluster(v string) *UpdateContainerAgentInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *UpdateContainerAgentInput) SetContainerInstance(v string) *UpdateContainerAgentInput {
+	s.ContainerInstance = &v
+	return s
+}
+
 type UpdateContainerAgentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5441,6 +7037,12 @@ func (s UpdateContainerAgentOutput) String() string {
 // GoString returns the string representation
 func (s UpdateContainerAgentOutput) GoString() string {
 	return s.String()
+}
+
+// SetContainerInstance sets the ContainerInstance field's value.
+func (s *UpdateContainerAgentOutput) SetContainerInstance(v *ContainerInstance) *UpdateContainerAgentOutput {
+	s.ContainerInstance = v
+	return s
 }
 
 type UpdateServiceInput struct {
@@ -5495,6 +7097,36 @@ func (s *UpdateServiceInput) Validate() error {
 	return nil
 }
 
+// SetCluster sets the Cluster field's value.
+func (s *UpdateServiceInput) SetCluster(v string) *UpdateServiceInput {
+	s.Cluster = &v
+	return s
+}
+
+// SetDeploymentConfiguration sets the DeploymentConfiguration field's value.
+func (s *UpdateServiceInput) SetDeploymentConfiguration(v *DeploymentConfiguration) *UpdateServiceInput {
+	s.DeploymentConfiguration = v
+	return s
+}
+
+// SetDesiredCount sets the DesiredCount field's value.
+func (s *UpdateServiceInput) SetDesiredCount(v int64) *UpdateServiceInput {
+	s.DesiredCount = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *UpdateServiceInput) SetService(v string) *UpdateServiceInput {
+	s.Service = &v
+	return s
+}
+
+// SetTaskDefinition sets the TaskDefinition field's value.
+func (s *UpdateServiceInput) SetTaskDefinition(v string) *UpdateServiceInput {
+	s.TaskDefinition = &v
+	return s
+}
+
 type UpdateServiceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5510,6 +7142,12 @@ func (s UpdateServiceOutput) String() string {
 // GoString returns the string representation
 func (s UpdateServiceOutput) GoString() string {
 	return s.String()
+}
+
+// SetService sets the Service field's value.
+func (s *UpdateServiceOutput) SetService(v *Service) *UpdateServiceOutput {
+	s.Service = v
+	return s
 }
 
 // The Docker and Amazon ECS container agent version information about a container
@@ -5536,6 +7174,24 @@ func (s VersionInfo) String() string {
 // GoString returns the string representation
 func (s VersionInfo) GoString() string {
 	return s.String()
+}
+
+// SetAgentHash sets the AgentHash field's value.
+func (s *VersionInfo) SetAgentHash(v string) *VersionInfo {
+	s.AgentHash = &v
+	return s
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *VersionInfo) SetAgentVersion(v string) *VersionInfo {
+	s.AgentVersion = &v
+	return s
+}
+
+// SetDockerVersion sets the DockerVersion field's value.
+func (s *VersionInfo) SetDockerVersion(v string) *VersionInfo {
+	s.DockerVersion = &v
+	return s
 }
 
 // A data volume used in a task definition.
@@ -5565,6 +7221,18 @@ func (s Volume) GoString() string {
 	return s.String()
 }
 
+// SetHost sets the Host field's value.
+func (s *Volume) SetHost(v *HostVolumeProperties) *Volume {
+	s.Host = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Volume) SetName(v string) *Volume {
+	s.Name = &v
+	return s
+}
+
 // Details on a data volume from another container.
 type VolumeFrom struct {
 	_ struct{} `type:"structure"`
@@ -5586,6 +7254,18 @@ func (s VolumeFrom) String() string {
 // GoString returns the string representation
 func (s VolumeFrom) GoString() string {
 	return s.String()
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *VolumeFrom) SetReadOnly(v bool) *VolumeFrom {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetSourceContainer sets the SourceContainer field's value.
+func (s *VolumeFrom) SetSourceContainer(v string) *VolumeFrom {
+	s.SourceContainer = &v
+	return s
 }
 
 const (

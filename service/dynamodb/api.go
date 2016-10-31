@@ -1586,6 +1586,18 @@ func (s *AttributeDefinition) Validate() error {
 	return nil
 }
 
+// SetAttributeName sets the AttributeName field's value.
+func (s *AttributeDefinition) SetAttributeName(v string) *AttributeDefinition {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeType sets the AttributeType field's value.
+func (s *AttributeDefinition) SetAttributeType(v string) *AttributeDefinition {
+	s.AttributeType = &v
+	return s
+}
+
 // Represents the data for an attribute. You can set one, and only one, of the
 // elements.
 //
@@ -1637,6 +1649,66 @@ func (s AttributeValue) String() string {
 // GoString returns the string representation
 func (s AttributeValue) GoString() string {
 	return s.String()
+}
+
+// SetB sets the B field's value.
+func (s *AttributeValue) SetB(v []byte) *AttributeValue {
+	s.B = v
+	return s
+}
+
+// SetBOOL sets the BOOL field's value.
+func (s *AttributeValue) SetBOOL(v bool) *AttributeValue {
+	s.BOOL = &v
+	return s
+}
+
+// SetBS sets the BS field's value.
+func (s *AttributeValue) SetBS(v [][]byte) *AttributeValue {
+	s.BS = v
+	return s
+}
+
+// SetL sets the L field's value.
+func (s *AttributeValue) SetL(v []*AttributeValue) *AttributeValue {
+	s.L = v
+	return s
+}
+
+// SetM sets the M field's value.
+func (s *AttributeValue) SetM(v map[string]*AttributeValue) *AttributeValue {
+	s.M = v
+	return s
+}
+
+// SetN sets the N field's value.
+func (s *AttributeValue) SetN(v string) *AttributeValue {
+	s.N = &v
+	return s
+}
+
+// SetNS sets the NS field's value.
+func (s *AttributeValue) SetNS(v []*string) *AttributeValue {
+	s.NS = v
+	return s
+}
+
+// SetNULL sets the NULL field's value.
+func (s *AttributeValue) SetNULL(v bool) *AttributeValue {
+	s.NULL = &v
+	return s
+}
+
+// SetS sets the S field's value.
+func (s *AttributeValue) SetS(v string) *AttributeValue {
+	s.S = &v
+	return s
+}
+
+// SetSS sets the SS field's value.
+func (s *AttributeValue) SetSS(v []*string) *AttributeValue {
+	s.SS = v
+	return s
 }
 
 // For the UpdateItem operation, represents the attributes to be modified, the
@@ -1735,6 +1807,18 @@ func (s AttributeValueUpdate) String() string {
 // GoString returns the string representation
 func (s AttributeValueUpdate) GoString() string {
 	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *AttributeValueUpdate) SetAction(v string) *AttributeValueUpdate {
+	s.Action = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AttributeValueUpdate) SetValue(v *AttributeValue) *AttributeValueUpdate {
+	s.Value = v
+	return s
 }
 
 // Represents the input of a BatchGetItem operation.
@@ -1879,6 +1963,18 @@ func (s *BatchGetItemInput) Validate() error {
 	return nil
 }
 
+// SetRequestItems sets the RequestItems field's value.
+func (s *BatchGetItemInput) SetRequestItems(v map[string]*KeysAndAttributes) *BatchGetItemInput {
+	s.RequestItems = v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *BatchGetItemInput) SetReturnConsumedCapacity(v string) *BatchGetItemInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
 // Represents the output of a BatchGetItem operation.
 type BatchGetItemOutput struct {
 	_ struct{} `type:"structure"`
@@ -1928,6 +2024,24 @@ func (s BatchGetItemOutput) String() string {
 // GoString returns the string representation
 func (s BatchGetItemOutput) GoString() string {
 	return s.String()
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *BatchGetItemOutput) SetConsumedCapacity(v []*ConsumedCapacity) *BatchGetItemOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetResponses sets the Responses field's value.
+func (s *BatchGetItemOutput) SetResponses(v map[string][]map[string]*AttributeValue) *BatchGetItemOutput {
+	s.Responses = v
+	return s
+}
+
+// SetUnprocessedKeys sets the UnprocessedKeys field's value.
+func (s *BatchGetItemOutput) SetUnprocessedKeys(v map[string]*KeysAndAttributes) *BatchGetItemOutput {
+	s.UnprocessedKeys = v
+	return s
 }
 
 // Represents the input of a BatchWriteItem operation.
@@ -2014,6 +2128,24 @@ func (s *BatchWriteItemInput) Validate() error {
 	return nil
 }
 
+// SetRequestItems sets the RequestItems field's value.
+func (s *BatchWriteItemInput) SetRequestItems(v map[string][]*WriteRequest) *BatchWriteItemInput {
+	s.RequestItems = v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *BatchWriteItemInput) SetReturnConsumedCapacity(v string) *BatchWriteItemInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetReturnItemCollectionMetrics sets the ReturnItemCollectionMetrics field's value.
+func (s *BatchWriteItemInput) SetReturnItemCollectionMetrics(v string) *BatchWriteItemInput {
+	s.ReturnItemCollectionMetrics = &v
+	return s
+}
+
 // Represents the output of a BatchWriteItem operation.
 type BatchWriteItemOutput struct {
 	_ struct{} `type:"structure"`
@@ -2090,6 +2222,24 @@ func (s BatchWriteItemOutput) GoString() string {
 	return s.String()
 }
 
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *BatchWriteItemOutput) SetConsumedCapacity(v []*ConsumedCapacity) *BatchWriteItemOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetItemCollectionMetrics sets the ItemCollectionMetrics field's value.
+func (s *BatchWriteItemOutput) SetItemCollectionMetrics(v map[string][]*ItemCollectionMetrics) *BatchWriteItemOutput {
+	s.ItemCollectionMetrics = v
+	return s
+}
+
+// SetUnprocessedItems sets the UnprocessedItems field's value.
+func (s *BatchWriteItemOutput) SetUnprocessedItems(v map[string][]*WriteRequest) *BatchWriteItemOutput {
+	s.UnprocessedItems = v
+	return s
+}
+
 // Represents the amount of provisioned throughput capacity consumed on a table
 // or an index.
 type Capacity struct {
@@ -2107,6 +2257,12 @@ func (s Capacity) String() string {
 // GoString returns the string representation
 func (s Capacity) GoString() string {
 	return s.String()
+}
+
+// SetCapacityUnits sets the CapacityUnits field's value.
+func (s *Capacity) SetCapacityUnits(v float64) *Capacity {
+	s.CapacityUnits = &v
+	return s
 }
 
 // Represents the selection criteria for a Query or Scan operation:
@@ -2207,6 +2363,18 @@ func (s *Condition) Validate() error {
 	return nil
 }
 
+// SetAttributeValueList sets the AttributeValueList field's value.
+func (s *Condition) SetAttributeValueList(v []*AttributeValue) *Condition {
+	s.AttributeValueList = v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *Condition) SetComparisonOperator(v string) *Condition {
+	s.ComparisonOperator = &v
+	return s
+}
+
 // The capacity units consumed by an operation. The data returned includes the
 // total provisioned throughput consumed, along with statistics for the table
 // and any indexes involved in the operation. ConsumedCapacity is only returned
@@ -2240,6 +2408,36 @@ func (s ConsumedCapacity) String() string {
 // GoString returns the string representation
 func (s ConsumedCapacity) GoString() string {
 	return s.String()
+}
+
+// SetCapacityUnits sets the CapacityUnits field's value.
+func (s *ConsumedCapacity) SetCapacityUnits(v float64) *ConsumedCapacity {
+	s.CapacityUnits = &v
+	return s
+}
+
+// SetGlobalSecondaryIndexes sets the GlobalSecondaryIndexes field's value.
+func (s *ConsumedCapacity) SetGlobalSecondaryIndexes(v map[string]*Capacity) *ConsumedCapacity {
+	s.GlobalSecondaryIndexes = v
+	return s
+}
+
+// SetLocalSecondaryIndexes sets the LocalSecondaryIndexes field's value.
+func (s *ConsumedCapacity) SetLocalSecondaryIndexes(v map[string]*Capacity) *ConsumedCapacity {
+	s.LocalSecondaryIndexes = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *ConsumedCapacity) SetTable(v *Capacity) *ConsumedCapacity {
+	s.Table = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ConsumedCapacity) SetTableName(v string) *ConsumedCapacity {
+	s.TableName = &v
+	return s
 }
 
 // Represents a new global secondary index to be added to an existing table.
@@ -2330,6 +2528,30 @@ func (s *CreateGlobalSecondaryIndexAction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *CreateGlobalSecondaryIndexAction) SetIndexName(v string) *CreateGlobalSecondaryIndexAction {
+	s.IndexName = &v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *CreateGlobalSecondaryIndexAction) SetKeySchema(v []*KeySchemaElement) *CreateGlobalSecondaryIndexAction {
+	s.KeySchema = v
+	return s
+}
+
+// SetProjection sets the Projection field's value.
+func (s *CreateGlobalSecondaryIndexAction) SetProjection(v *Projection) *CreateGlobalSecondaryIndexAction {
+	s.Projection = v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *CreateGlobalSecondaryIndexAction) SetProvisionedThroughput(v *ProvisionedThroughput) *CreateGlobalSecondaryIndexAction {
+	s.ProvisionedThroughput = v
+	return s
 }
 
 // Represents the input of a CreateTable operation.
@@ -2565,6 +2787,48 @@ func (s *CreateTableInput) Validate() error {
 	return nil
 }
 
+// SetAttributeDefinitions sets the AttributeDefinitions field's value.
+func (s *CreateTableInput) SetAttributeDefinitions(v []*AttributeDefinition) *CreateTableInput {
+	s.AttributeDefinitions = v
+	return s
+}
+
+// SetGlobalSecondaryIndexes sets the GlobalSecondaryIndexes field's value.
+func (s *CreateTableInput) SetGlobalSecondaryIndexes(v []*GlobalSecondaryIndex) *CreateTableInput {
+	s.GlobalSecondaryIndexes = v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *CreateTableInput) SetKeySchema(v []*KeySchemaElement) *CreateTableInput {
+	s.KeySchema = v
+	return s
+}
+
+// SetLocalSecondaryIndexes sets the LocalSecondaryIndexes field's value.
+func (s *CreateTableInput) SetLocalSecondaryIndexes(v []*LocalSecondaryIndex) *CreateTableInput {
+	s.LocalSecondaryIndexes = v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *CreateTableInput) SetProvisionedThroughput(v *ProvisionedThroughput) *CreateTableInput {
+	s.ProvisionedThroughput = v
+	return s
+}
+
+// SetStreamSpecification sets the StreamSpecification field's value.
+func (s *CreateTableInput) SetStreamSpecification(v *StreamSpecification) *CreateTableInput {
+	s.StreamSpecification = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *CreateTableInput) SetTableName(v string) *CreateTableInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a CreateTable operation.
 type CreateTableOutput struct {
 	_ struct{} `type:"structure"`
@@ -2581,6 +2845,12 @@ func (s CreateTableOutput) String() string {
 // GoString returns the string representation
 func (s CreateTableOutput) GoString() string {
 	return s.String()
+}
+
+// SetTableDescription sets the TableDescription field's value.
+func (s *CreateTableOutput) SetTableDescription(v *TableDescription) *CreateTableOutput {
+	s.TableDescription = v
+	return s
 }
 
 // Represents a global secondary index to be deleted from an existing table.
@@ -2617,6 +2887,12 @@ func (s *DeleteGlobalSecondaryIndexAction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *DeleteGlobalSecondaryIndexAction) SetIndexName(v string) *DeleteGlobalSecondaryIndexAction {
+	s.IndexName = &v
+	return s
 }
 
 // Represents the input of a DeleteItem operation.
@@ -2915,6 +3191,66 @@ func (s *DeleteItemInput) Validate() error {
 	return nil
 }
 
+// SetConditionExpression sets the ConditionExpression field's value.
+func (s *DeleteItemInput) SetConditionExpression(v string) *DeleteItemInput {
+	s.ConditionExpression = &v
+	return s
+}
+
+// SetConditionalOperator sets the ConditionalOperator field's value.
+func (s *DeleteItemInput) SetConditionalOperator(v string) *DeleteItemInput {
+	s.ConditionalOperator = &v
+	return s
+}
+
+// SetExpected sets the Expected field's value.
+func (s *DeleteItemInput) SetExpected(v map[string]*ExpectedAttributeValue) *DeleteItemInput {
+	s.Expected = v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *DeleteItemInput) SetExpressionAttributeNames(v map[string]*string) *DeleteItemInput {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetExpressionAttributeValues sets the ExpressionAttributeValues field's value.
+func (s *DeleteItemInput) SetExpressionAttributeValues(v map[string]*AttributeValue) *DeleteItemInput {
+	s.ExpressionAttributeValues = v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *DeleteItemInput) SetKey(v map[string]*AttributeValue) *DeleteItemInput {
+	s.Key = v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *DeleteItemInput) SetReturnConsumedCapacity(v string) *DeleteItemInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetReturnItemCollectionMetrics sets the ReturnItemCollectionMetrics field's value.
+func (s *DeleteItemInput) SetReturnItemCollectionMetrics(v string) *DeleteItemInput {
+	s.ReturnItemCollectionMetrics = &v
+	return s
+}
+
+// SetReturnValues sets the ReturnValues field's value.
+func (s *DeleteItemInput) SetReturnValues(v string) *DeleteItemInput {
+	s.ReturnValues = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DeleteItemInput) SetTableName(v string) *DeleteItemInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a DeleteItem operation.
 type DeleteItemOutput struct {
 	_ struct{} `type:"structure"`
@@ -2964,6 +3300,24 @@ func (s DeleteItemOutput) GoString() string {
 	return s.String()
 }
 
+// SetAttributes sets the Attributes field's value.
+func (s *DeleteItemOutput) SetAttributes(v map[string]*AttributeValue) *DeleteItemOutput {
+	s.Attributes = v
+	return s
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *DeleteItemOutput) SetConsumedCapacity(v *ConsumedCapacity) *DeleteItemOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetItemCollectionMetrics sets the ItemCollectionMetrics field's value.
+func (s *DeleteItemOutput) SetItemCollectionMetrics(v *ItemCollectionMetrics) *DeleteItemOutput {
+	s.ItemCollectionMetrics = v
+	return s
+}
+
 // Represents a request to perform a DeleteItem operation on an item.
 type DeleteRequest struct {
 	_ struct{} `type:"structure"`
@@ -2984,6 +3338,12 @@ func (s DeleteRequest) String() string {
 // GoString returns the string representation
 func (s DeleteRequest) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *DeleteRequest) SetKey(v map[string]*AttributeValue) *DeleteRequest {
+	s.Key = v
+	return s
 }
 
 // Represents the input of a DeleteTable operation.
@@ -3022,6 +3382,12 @@ func (s *DeleteTableInput) Validate() error {
 	return nil
 }
 
+// SetTableName sets the TableName field's value.
+func (s *DeleteTableInput) SetTableName(v string) *DeleteTableInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a DeleteTable operation.
 type DeleteTableOutput struct {
 	_ struct{} `type:"structure"`
@@ -3038,6 +3404,12 @@ func (s DeleteTableOutput) String() string {
 // GoString returns the string representation
 func (s DeleteTableOutput) GoString() string {
 	return s.String()
+}
+
+// SetTableDescription sets the TableDescription field's value.
+func (s *DeleteTableOutput) SetTableDescription(v *TableDescription) *DeleteTableOutput {
+	s.TableDescription = v
+	return s
 }
 
 // Represents the input of a DescribeLimits operation. Has no content.
@@ -3088,6 +3460,30 @@ func (s DescribeLimitsOutput) GoString() string {
 	return s.String()
 }
 
+// SetAccountMaxReadCapacityUnits sets the AccountMaxReadCapacityUnits field's value.
+func (s *DescribeLimitsOutput) SetAccountMaxReadCapacityUnits(v int64) *DescribeLimitsOutput {
+	s.AccountMaxReadCapacityUnits = &v
+	return s
+}
+
+// SetAccountMaxWriteCapacityUnits sets the AccountMaxWriteCapacityUnits field's value.
+func (s *DescribeLimitsOutput) SetAccountMaxWriteCapacityUnits(v int64) *DescribeLimitsOutput {
+	s.AccountMaxWriteCapacityUnits = &v
+	return s
+}
+
+// SetTableMaxReadCapacityUnits sets the TableMaxReadCapacityUnits field's value.
+func (s *DescribeLimitsOutput) SetTableMaxReadCapacityUnits(v int64) *DescribeLimitsOutput {
+	s.TableMaxReadCapacityUnits = &v
+	return s
+}
+
+// SetTableMaxWriteCapacityUnits sets the TableMaxWriteCapacityUnits field's value.
+func (s *DescribeLimitsOutput) SetTableMaxWriteCapacityUnits(v int64) *DescribeLimitsOutput {
+	s.TableMaxWriteCapacityUnits = &v
+	return s
+}
+
 // Represents the input of a DescribeTable operation.
 type DescribeTableInput struct {
 	_ struct{} `type:"structure"`
@@ -3124,6 +3520,12 @@ func (s *DescribeTableInput) Validate() error {
 	return nil
 }
 
+// SetTableName sets the TableName field's value.
+func (s *DescribeTableInput) SetTableName(v string) *DescribeTableInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a DescribeTable operation.
 type DescribeTableOutput struct {
 	_ struct{} `type:"structure"`
@@ -3140,6 +3542,12 @@ func (s DescribeTableOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTableOutput) GoString() string {
 	return s.String()
+}
+
+// SetTable sets the Table field's value.
+func (s *DescribeTableOutput) SetTable(v *TableDescription) *DescribeTableOutput {
+	s.Table = v
+	return s
 }
 
 // Represents a condition to be compared with an attribute value. This condition
@@ -3266,6 +3674,30 @@ func (s ExpectedAttributeValue) String() string {
 // GoString returns the string representation
 func (s ExpectedAttributeValue) GoString() string {
 	return s.String()
+}
+
+// SetAttributeValueList sets the AttributeValueList field's value.
+func (s *ExpectedAttributeValue) SetAttributeValueList(v []*AttributeValue) *ExpectedAttributeValue {
+	s.AttributeValueList = v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *ExpectedAttributeValue) SetComparisonOperator(v string) *ExpectedAttributeValue {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetExists sets the Exists field's value.
+func (s *ExpectedAttributeValue) SetExists(v bool) *ExpectedAttributeValue {
+	s.Exists = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ExpectedAttributeValue) SetValue(v *AttributeValue) *ExpectedAttributeValue {
+	s.Value = v
+	return s
 }
 
 // Represents the input of a GetItem operation.
@@ -3411,6 +3843,48 @@ func (s *GetItemInput) Validate() error {
 	return nil
 }
 
+// SetAttributesToGet sets the AttributesToGet field's value.
+func (s *GetItemInput) SetAttributesToGet(v []*string) *GetItemInput {
+	s.AttributesToGet = v
+	return s
+}
+
+// SetConsistentRead sets the ConsistentRead field's value.
+func (s *GetItemInput) SetConsistentRead(v bool) *GetItemInput {
+	s.ConsistentRead = &v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *GetItemInput) SetExpressionAttributeNames(v map[string]*string) *GetItemInput {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *GetItemInput) SetKey(v map[string]*AttributeValue) *GetItemInput {
+	s.Key = v
+	return s
+}
+
+// SetProjectionExpression sets the ProjectionExpression field's value.
+func (s *GetItemInput) SetProjectionExpression(v string) *GetItemInput {
+	s.ProjectionExpression = &v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *GetItemInput) SetReturnConsumedCapacity(v string) *GetItemInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetItemInput) SetTableName(v string) *GetItemInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a GetItem operation.
 type GetItemOutput struct {
 	_ struct{} `type:"structure"`
@@ -3435,6 +3909,18 @@ func (s GetItemOutput) String() string {
 // GoString returns the string representation
 func (s GetItemOutput) GoString() string {
 	return s.String()
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *GetItemOutput) SetConsumedCapacity(v *ConsumedCapacity) *GetItemOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetItem sets the Item field's value.
+func (s *GetItemOutput) SetItem(v map[string]*AttributeValue) *GetItemOutput {
+	s.Item = v
+	return s
 }
 
 // Represents the properties of a global secondary index.
@@ -3542,6 +4028,30 @@ func (s *GlobalSecondaryIndex) Validate() error {
 	return nil
 }
 
+// SetIndexName sets the IndexName field's value.
+func (s *GlobalSecondaryIndex) SetIndexName(v string) *GlobalSecondaryIndex {
+	s.IndexName = &v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *GlobalSecondaryIndex) SetKeySchema(v []*KeySchemaElement) *GlobalSecondaryIndex {
+	s.KeySchema = v
+	return s
+}
+
+// SetProjection sets the Projection field's value.
+func (s *GlobalSecondaryIndex) SetProjection(v *Projection) *GlobalSecondaryIndex {
+	s.Projection = v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *GlobalSecondaryIndex) SetProvisionedThroughput(v *ProvisionedThroughput) *GlobalSecondaryIndex {
+	s.ProvisionedThroughput = v
+	return s
+}
+
 // Represents the properties of a global secondary index.
 type GlobalSecondaryIndexDescription struct {
 	_ struct{} `type:"structure"`
@@ -3620,6 +4130,60 @@ func (s GlobalSecondaryIndexDescription) GoString() string {
 	return s.String()
 }
 
+// SetBackfilling sets the Backfilling field's value.
+func (s *GlobalSecondaryIndexDescription) SetBackfilling(v bool) *GlobalSecondaryIndexDescription {
+	s.Backfilling = &v
+	return s
+}
+
+// SetIndexArn sets the IndexArn field's value.
+func (s *GlobalSecondaryIndexDescription) SetIndexArn(v string) *GlobalSecondaryIndexDescription {
+	s.IndexArn = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *GlobalSecondaryIndexDescription) SetIndexName(v string) *GlobalSecondaryIndexDescription {
+	s.IndexName = &v
+	return s
+}
+
+// SetIndexSizeBytes sets the IndexSizeBytes field's value.
+func (s *GlobalSecondaryIndexDescription) SetIndexSizeBytes(v int64) *GlobalSecondaryIndexDescription {
+	s.IndexSizeBytes = &v
+	return s
+}
+
+// SetIndexStatus sets the IndexStatus field's value.
+func (s *GlobalSecondaryIndexDescription) SetIndexStatus(v string) *GlobalSecondaryIndexDescription {
+	s.IndexStatus = &v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *GlobalSecondaryIndexDescription) SetItemCount(v int64) *GlobalSecondaryIndexDescription {
+	s.ItemCount = &v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *GlobalSecondaryIndexDescription) SetKeySchema(v []*KeySchemaElement) *GlobalSecondaryIndexDescription {
+	s.KeySchema = v
+	return s
+}
+
+// SetProjection sets the Projection field's value.
+func (s *GlobalSecondaryIndexDescription) SetProjection(v *Projection) *GlobalSecondaryIndexDescription {
+	s.Projection = v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *GlobalSecondaryIndexDescription) SetProvisionedThroughput(v *ProvisionedThroughputDescription) *GlobalSecondaryIndexDescription {
+	s.ProvisionedThroughput = v
+	return s
+}
+
 // Represents one of the following:
 //
 //    * A new global secondary index to be added to an existing table.
@@ -3688,6 +4252,24 @@ func (s *GlobalSecondaryIndexUpdate) Validate() error {
 	return nil
 }
 
+// SetCreate sets the Create field's value.
+func (s *GlobalSecondaryIndexUpdate) SetCreate(v *CreateGlobalSecondaryIndexAction) *GlobalSecondaryIndexUpdate {
+	s.Create = v
+	return s
+}
+
+// SetDelete sets the Delete field's value.
+func (s *GlobalSecondaryIndexUpdate) SetDelete(v *DeleteGlobalSecondaryIndexAction) *GlobalSecondaryIndexUpdate {
+	s.Delete = v
+	return s
+}
+
+// SetUpdate sets the Update field's value.
+func (s *GlobalSecondaryIndexUpdate) SetUpdate(v *UpdateGlobalSecondaryIndexAction) *GlobalSecondaryIndexUpdate {
+	s.Update = v
+	return s
+}
+
 // Information about item collections, if any, that were affected by the operation.
 // ItemCollectionMetrics is only returned if the request asked for it. If the
 // table does not have any local secondary indexes, this information is not
@@ -3719,6 +4301,18 @@ func (s ItemCollectionMetrics) String() string {
 // GoString returns the string representation
 func (s ItemCollectionMetrics) GoString() string {
 	return s.String()
+}
+
+// SetItemCollectionKey sets the ItemCollectionKey field's value.
+func (s *ItemCollectionMetrics) SetItemCollectionKey(v map[string]*AttributeValue) *ItemCollectionMetrics {
+	s.ItemCollectionKey = v
+	return s
+}
+
+// SetSizeEstimateRangeGB sets the SizeEstimateRangeGB field's value.
+func (s *ItemCollectionMetrics) SetSizeEstimateRangeGB(v []*float64) *ItemCollectionMetrics {
+	s.SizeEstimateRangeGB = v
+	return s
 }
 
 // Represents a single element of a key schema. A key schema specifies the attributes
@@ -3786,6 +4380,18 @@ func (s *KeySchemaElement) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *KeySchemaElement) SetAttributeName(v string) *KeySchemaElement {
+	s.AttributeName = &v
+	return s
+}
+
+// SetKeyType sets the KeyType field's value.
+func (s *KeySchemaElement) SetKeyType(v string) *KeySchemaElement {
+	s.KeyType = &v
+	return s
 }
 
 // Represents a set of primary keys and, for each key, the attributes to retrieve
@@ -3894,6 +4500,36 @@ func (s *KeysAndAttributes) Validate() error {
 	return nil
 }
 
+// SetAttributesToGet sets the AttributesToGet field's value.
+func (s *KeysAndAttributes) SetAttributesToGet(v []*string) *KeysAndAttributes {
+	s.AttributesToGet = v
+	return s
+}
+
+// SetConsistentRead sets the ConsistentRead field's value.
+func (s *KeysAndAttributes) SetConsistentRead(v bool) *KeysAndAttributes {
+	s.ConsistentRead = &v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *KeysAndAttributes) SetExpressionAttributeNames(v map[string]*string) *KeysAndAttributes {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetKeys sets the Keys field's value.
+func (s *KeysAndAttributes) SetKeys(v []map[string]*AttributeValue) *KeysAndAttributes {
+	s.Keys = v
+	return s
+}
+
+// SetProjectionExpression sets the ProjectionExpression field's value.
+func (s *KeysAndAttributes) SetProjectionExpression(v string) *KeysAndAttributes {
+	s.ProjectionExpression = &v
+	return s
+}
+
 // Represents the input of a ListTables operation.
 type ListTablesInput struct {
 	_ struct{} `type:"structure"`
@@ -3934,6 +4570,18 @@ func (s *ListTablesInput) Validate() error {
 	return nil
 }
 
+// SetExclusiveStartTableName sets the ExclusiveStartTableName field's value.
+func (s *ListTablesInput) SetExclusiveStartTableName(v string) *ListTablesInput {
+	s.ExclusiveStartTableName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListTablesInput) SetLimit(v int64) *ListTablesInput {
+	s.Limit = &v
+	return s
+}
+
 // Represents the output of a ListTables operation.
 type ListTablesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3963,6 +4611,18 @@ func (s ListTablesOutput) String() string {
 // GoString returns the string representation
 func (s ListTablesOutput) GoString() string {
 	return s.String()
+}
+
+// SetLastEvaluatedTableName sets the LastEvaluatedTableName field's value.
+func (s *ListTablesOutput) SetLastEvaluatedTableName(v string) *ListTablesOutput {
+	s.LastEvaluatedTableName = &v
+	return s
+}
+
+// SetTableNames sets the TableNames field's value.
+func (s *ListTablesOutput) SetTableNames(v []*string) *ListTablesOutput {
+	s.TableNames = v
+	return s
 }
 
 // Represents the properties of a local secondary index.
@@ -4052,6 +4712,24 @@ func (s *LocalSecondaryIndex) Validate() error {
 	return nil
 }
 
+// SetIndexName sets the IndexName field's value.
+func (s *LocalSecondaryIndex) SetIndexName(v string) *LocalSecondaryIndex {
+	s.IndexName = &v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *LocalSecondaryIndex) SetKeySchema(v []*KeySchemaElement) *LocalSecondaryIndex {
+	s.KeySchema = v
+	return s
+}
+
+// SetProjection sets the Projection field's value.
+func (s *LocalSecondaryIndex) SetProjection(v *Projection) *LocalSecondaryIndex {
+	s.Projection = v
+	return s
+}
+
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndexDescription struct {
 	_ struct{} `type:"structure"`
@@ -4104,6 +4782,42 @@ func (s LocalSecondaryIndexDescription) GoString() string {
 	return s.String()
 }
 
+// SetIndexArn sets the IndexArn field's value.
+func (s *LocalSecondaryIndexDescription) SetIndexArn(v string) *LocalSecondaryIndexDescription {
+	s.IndexArn = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *LocalSecondaryIndexDescription) SetIndexName(v string) *LocalSecondaryIndexDescription {
+	s.IndexName = &v
+	return s
+}
+
+// SetIndexSizeBytes sets the IndexSizeBytes field's value.
+func (s *LocalSecondaryIndexDescription) SetIndexSizeBytes(v int64) *LocalSecondaryIndexDescription {
+	s.IndexSizeBytes = &v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *LocalSecondaryIndexDescription) SetItemCount(v int64) *LocalSecondaryIndexDescription {
+	s.ItemCount = &v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *LocalSecondaryIndexDescription) SetKeySchema(v []*KeySchemaElement) *LocalSecondaryIndexDescription {
+	s.KeySchema = v
+	return s
+}
+
+// SetProjection sets the Projection field's value.
+func (s *LocalSecondaryIndexDescription) SetProjection(v *Projection) *LocalSecondaryIndexDescription {
+	s.Projection = v
+	return s
+}
+
 // Represents attributes that are copied (projected) from the table into an
 // index. These are in addition to the primary key attributes and index key
 // attributes, which are automatically projected.
@@ -4150,6 +4864,18 @@ func (s *Projection) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetNonKeyAttributes sets the NonKeyAttributes field's value.
+func (s *Projection) SetNonKeyAttributes(v []*string) *Projection {
+	s.NonKeyAttributes = v
+	return s
+}
+
+// SetProjectionType sets the ProjectionType field's value.
+func (s *Projection) SetProjectionType(v string) *Projection {
+	s.ProjectionType = &v
+	return s
 }
 
 // Represents the provisioned throughput settings for a specified table or index.
@@ -4210,6 +4936,18 @@ func (s *ProvisionedThroughput) Validate() error {
 	return nil
 }
 
+// SetReadCapacityUnits sets the ReadCapacityUnits field's value.
+func (s *ProvisionedThroughput) SetReadCapacityUnits(v int64) *ProvisionedThroughput {
+	s.ReadCapacityUnits = &v
+	return s
+}
+
+// SetWriteCapacityUnits sets the WriteCapacityUnits field's value.
+func (s *ProvisionedThroughput) SetWriteCapacityUnits(v int64) *ProvisionedThroughput {
+	s.WriteCapacityUnits = &v
+	return s
+}
+
 // Represents the provisioned throughput settings for the table, consisting
 // of read and write capacity units, along with data about increases and decreases.
 type ProvisionedThroughputDescription struct {
@@ -4246,6 +4984,36 @@ func (s ProvisionedThroughputDescription) String() string {
 // GoString returns the string representation
 func (s ProvisionedThroughputDescription) GoString() string {
 	return s.String()
+}
+
+// SetLastDecreaseDateTime sets the LastDecreaseDateTime field's value.
+func (s *ProvisionedThroughputDescription) SetLastDecreaseDateTime(v time.Time) *ProvisionedThroughputDescription {
+	s.LastDecreaseDateTime = &v
+	return s
+}
+
+// SetLastIncreaseDateTime sets the LastIncreaseDateTime field's value.
+func (s *ProvisionedThroughputDescription) SetLastIncreaseDateTime(v time.Time) *ProvisionedThroughputDescription {
+	s.LastIncreaseDateTime = &v
+	return s
+}
+
+// SetNumberOfDecreasesToday sets the NumberOfDecreasesToday field's value.
+func (s *ProvisionedThroughputDescription) SetNumberOfDecreasesToday(v int64) *ProvisionedThroughputDescription {
+	s.NumberOfDecreasesToday = &v
+	return s
+}
+
+// SetReadCapacityUnits sets the ReadCapacityUnits field's value.
+func (s *ProvisionedThroughputDescription) SetReadCapacityUnits(v int64) *ProvisionedThroughputDescription {
+	s.ReadCapacityUnits = &v
+	return s
+}
+
+// SetWriteCapacityUnits sets the WriteCapacityUnits field's value.
+func (s *ProvisionedThroughputDescription) SetWriteCapacityUnits(v int64) *ProvisionedThroughputDescription {
+	s.WriteCapacityUnits = &v
+	return s
 }
 
 // Represents the input of a PutItem operation.
@@ -4558,6 +5326,66 @@ func (s *PutItemInput) Validate() error {
 	return nil
 }
 
+// SetConditionExpression sets the ConditionExpression field's value.
+func (s *PutItemInput) SetConditionExpression(v string) *PutItemInput {
+	s.ConditionExpression = &v
+	return s
+}
+
+// SetConditionalOperator sets the ConditionalOperator field's value.
+func (s *PutItemInput) SetConditionalOperator(v string) *PutItemInput {
+	s.ConditionalOperator = &v
+	return s
+}
+
+// SetExpected sets the Expected field's value.
+func (s *PutItemInput) SetExpected(v map[string]*ExpectedAttributeValue) *PutItemInput {
+	s.Expected = v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *PutItemInput) SetExpressionAttributeNames(v map[string]*string) *PutItemInput {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetExpressionAttributeValues sets the ExpressionAttributeValues field's value.
+func (s *PutItemInput) SetExpressionAttributeValues(v map[string]*AttributeValue) *PutItemInput {
+	s.ExpressionAttributeValues = v
+	return s
+}
+
+// SetItem sets the Item field's value.
+func (s *PutItemInput) SetItem(v map[string]*AttributeValue) *PutItemInput {
+	s.Item = v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *PutItemInput) SetReturnConsumedCapacity(v string) *PutItemInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetReturnItemCollectionMetrics sets the ReturnItemCollectionMetrics field's value.
+func (s *PutItemInput) SetReturnItemCollectionMetrics(v string) *PutItemInput {
+	s.ReturnItemCollectionMetrics = &v
+	return s
+}
+
+// SetReturnValues sets the ReturnValues field's value.
+func (s *PutItemInput) SetReturnValues(v string) *PutItemInput {
+	s.ReturnValues = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *PutItemInput) SetTableName(v string) *PutItemInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a PutItem operation.
 type PutItemOutput struct {
 	_ struct{} `type:"structure"`
@@ -4607,6 +5435,24 @@ func (s PutItemOutput) GoString() string {
 	return s.String()
 }
 
+// SetAttributes sets the Attributes field's value.
+func (s *PutItemOutput) SetAttributes(v map[string]*AttributeValue) *PutItemOutput {
+	s.Attributes = v
+	return s
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *PutItemOutput) SetConsumedCapacity(v *ConsumedCapacity) *PutItemOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetItemCollectionMetrics sets the ItemCollectionMetrics field's value.
+func (s *PutItemOutput) SetItemCollectionMetrics(v *ItemCollectionMetrics) *PutItemOutput {
+	s.ItemCollectionMetrics = v
+	return s
+}
+
 // Represents a request to perform a PutItem operation on an item.
 type PutRequest struct {
 	_ struct{} `type:"structure"`
@@ -4629,6 +5475,12 @@ func (s PutRequest) String() string {
 // GoString returns the string representation
 func (s PutRequest) GoString() string {
 	return s.String()
+}
+
+// SetItem sets the Item field's value.
+func (s *PutRequest) SetItem(v map[string]*AttributeValue) *PutRequest {
+	s.Item = v
+	return s
 }
 
 // Represents the input of a Query operation.
@@ -5162,6 +6014,108 @@ func (s *QueryInput) Validate() error {
 	return nil
 }
 
+// SetAttributesToGet sets the AttributesToGet field's value.
+func (s *QueryInput) SetAttributesToGet(v []*string) *QueryInput {
+	s.AttributesToGet = v
+	return s
+}
+
+// SetConditionalOperator sets the ConditionalOperator field's value.
+func (s *QueryInput) SetConditionalOperator(v string) *QueryInput {
+	s.ConditionalOperator = &v
+	return s
+}
+
+// SetConsistentRead sets the ConsistentRead field's value.
+func (s *QueryInput) SetConsistentRead(v bool) *QueryInput {
+	s.ConsistentRead = &v
+	return s
+}
+
+// SetExclusiveStartKey sets the ExclusiveStartKey field's value.
+func (s *QueryInput) SetExclusiveStartKey(v map[string]*AttributeValue) *QueryInput {
+	s.ExclusiveStartKey = v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *QueryInput) SetExpressionAttributeNames(v map[string]*string) *QueryInput {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetExpressionAttributeValues sets the ExpressionAttributeValues field's value.
+func (s *QueryInput) SetExpressionAttributeValues(v map[string]*AttributeValue) *QueryInput {
+	s.ExpressionAttributeValues = v
+	return s
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *QueryInput) SetFilterExpression(v string) *QueryInput {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *QueryInput) SetIndexName(v string) *QueryInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetKeyConditionExpression sets the KeyConditionExpression field's value.
+func (s *QueryInput) SetKeyConditionExpression(v string) *QueryInput {
+	s.KeyConditionExpression = &v
+	return s
+}
+
+// SetKeyConditions sets the KeyConditions field's value.
+func (s *QueryInput) SetKeyConditions(v map[string]*Condition) *QueryInput {
+	s.KeyConditions = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *QueryInput) SetLimit(v int64) *QueryInput {
+	s.Limit = &v
+	return s
+}
+
+// SetProjectionExpression sets the ProjectionExpression field's value.
+func (s *QueryInput) SetProjectionExpression(v string) *QueryInput {
+	s.ProjectionExpression = &v
+	return s
+}
+
+// SetQueryFilter sets the QueryFilter field's value.
+func (s *QueryInput) SetQueryFilter(v map[string]*Condition) *QueryInput {
+	s.QueryFilter = v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *QueryInput) SetReturnConsumedCapacity(v string) *QueryInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetScanIndexForward sets the ScanIndexForward field's value.
+func (s *QueryInput) SetScanIndexForward(v bool) *QueryInput {
+	s.ScanIndexForward = &v
+	return s
+}
+
+// SetSelect sets the Select field's value.
+func (s *QueryInput) SetSelect(v string) *QueryInput {
+	s.Select = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *QueryInput) SetTableName(v string) *QueryInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of a Query operation.
 type QueryOutput struct {
 	_ struct{} `type:"structure"`
@@ -5218,6 +6172,36 @@ func (s QueryOutput) String() string {
 // GoString returns the string representation
 func (s QueryOutput) GoString() string {
 	return s.String()
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *QueryOutput) SetConsumedCapacity(v *ConsumedCapacity) *QueryOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *QueryOutput) SetCount(v int64) *QueryOutput {
+	s.Count = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *QueryOutput) SetItems(v []map[string]*AttributeValue) *QueryOutput {
+	s.Items = v
+	return s
+}
+
+// SetLastEvaluatedKey sets the LastEvaluatedKey field's value.
+func (s *QueryOutput) SetLastEvaluatedKey(v map[string]*AttributeValue) *QueryOutput {
+	s.LastEvaluatedKey = v
+	return s
+}
+
+// SetScannedCount sets the ScannedCount field's value.
+func (s *QueryOutput) SetScannedCount(v int64) *QueryOutput {
+	s.ScannedCount = &v
+	return s
 }
 
 // Represents the input of a Scan operation.
@@ -5564,6 +6548,102 @@ func (s *ScanInput) Validate() error {
 	return nil
 }
 
+// SetAttributesToGet sets the AttributesToGet field's value.
+func (s *ScanInput) SetAttributesToGet(v []*string) *ScanInput {
+	s.AttributesToGet = v
+	return s
+}
+
+// SetConditionalOperator sets the ConditionalOperator field's value.
+func (s *ScanInput) SetConditionalOperator(v string) *ScanInput {
+	s.ConditionalOperator = &v
+	return s
+}
+
+// SetConsistentRead sets the ConsistentRead field's value.
+func (s *ScanInput) SetConsistentRead(v bool) *ScanInput {
+	s.ConsistentRead = &v
+	return s
+}
+
+// SetExclusiveStartKey sets the ExclusiveStartKey field's value.
+func (s *ScanInput) SetExclusiveStartKey(v map[string]*AttributeValue) *ScanInput {
+	s.ExclusiveStartKey = v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *ScanInput) SetExpressionAttributeNames(v map[string]*string) *ScanInput {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetExpressionAttributeValues sets the ExpressionAttributeValues field's value.
+func (s *ScanInput) SetExpressionAttributeValues(v map[string]*AttributeValue) *ScanInput {
+	s.ExpressionAttributeValues = v
+	return s
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *ScanInput) SetFilterExpression(v string) *ScanInput {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *ScanInput) SetIndexName(v string) *ScanInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ScanInput) SetLimit(v int64) *ScanInput {
+	s.Limit = &v
+	return s
+}
+
+// SetProjectionExpression sets the ProjectionExpression field's value.
+func (s *ScanInput) SetProjectionExpression(v string) *ScanInput {
+	s.ProjectionExpression = &v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *ScanInput) SetReturnConsumedCapacity(v string) *ScanInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetScanFilter sets the ScanFilter field's value.
+func (s *ScanInput) SetScanFilter(v map[string]*Condition) *ScanInput {
+	s.ScanFilter = v
+	return s
+}
+
+// SetSegment sets the Segment field's value.
+func (s *ScanInput) SetSegment(v int64) *ScanInput {
+	s.Segment = &v
+	return s
+}
+
+// SetSelect sets the Select field's value.
+func (s *ScanInput) SetSelect(v string) *ScanInput {
+	s.Select = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ScanInput) SetTableName(v string) *ScanInput {
+	s.TableName = &v
+	return s
+}
+
+// SetTotalSegments sets the TotalSegments field's value.
+func (s *ScanInput) SetTotalSegments(v int64) *ScanInput {
+	s.TotalSegments = &v
+	return s
+}
+
 // Represents the output of a Scan operation.
 type ScanOutput struct {
 	_ struct{} `type:"structure"`
@@ -5621,6 +6701,36 @@ func (s ScanOutput) GoString() string {
 	return s.String()
 }
 
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *ScanOutput) SetConsumedCapacity(v *ConsumedCapacity) *ScanOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *ScanOutput) SetCount(v int64) *ScanOutput {
+	s.Count = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *ScanOutput) SetItems(v []map[string]*AttributeValue) *ScanOutput {
+	s.Items = v
+	return s
+}
+
+// SetLastEvaluatedKey sets the LastEvaluatedKey field's value.
+func (s *ScanOutput) SetLastEvaluatedKey(v map[string]*AttributeValue) *ScanOutput {
+	s.LastEvaluatedKey = v
+	return s
+}
+
+// SetScannedCount sets the ScannedCount field's value.
+func (s *ScanOutput) SetScannedCount(v int64) *ScanOutput {
+	s.ScannedCount = &v
+	return s
+}
+
 // Represents the DynamoDB Streams configuration for a table in DynamoDB.
 type StreamSpecification struct {
 	_ struct{} `type:"structure"`
@@ -5660,6 +6770,18 @@ func (s StreamSpecification) String() string {
 // GoString returns the string representation
 func (s StreamSpecification) GoString() string {
 	return s.String()
+}
+
+// SetStreamEnabled sets the StreamEnabled field's value.
+func (s *StreamSpecification) SetStreamEnabled(v bool) *StreamSpecification {
+	s.StreamEnabled = &v
+	return s
+}
+
+// SetStreamViewType sets the StreamViewType field's value.
+func (s *StreamSpecification) SetStreamViewType(v string) *StreamSpecification {
+	s.StreamViewType = &v
+	return s
 }
 
 // Represents the properties of a table.
@@ -5870,6 +6992,90 @@ func (s TableDescription) GoString() string {
 	return s.String()
 }
 
+// SetAttributeDefinitions sets the AttributeDefinitions field's value.
+func (s *TableDescription) SetAttributeDefinitions(v []*AttributeDefinition) *TableDescription {
+	s.AttributeDefinitions = v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *TableDescription) SetCreationDateTime(v time.Time) *TableDescription {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetGlobalSecondaryIndexes sets the GlobalSecondaryIndexes field's value.
+func (s *TableDescription) SetGlobalSecondaryIndexes(v []*GlobalSecondaryIndexDescription) *TableDescription {
+	s.GlobalSecondaryIndexes = v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *TableDescription) SetItemCount(v int64) *TableDescription {
+	s.ItemCount = &v
+	return s
+}
+
+// SetKeySchema sets the KeySchema field's value.
+func (s *TableDescription) SetKeySchema(v []*KeySchemaElement) *TableDescription {
+	s.KeySchema = v
+	return s
+}
+
+// SetLatestStreamArn sets the LatestStreamArn field's value.
+func (s *TableDescription) SetLatestStreamArn(v string) *TableDescription {
+	s.LatestStreamArn = &v
+	return s
+}
+
+// SetLatestStreamLabel sets the LatestStreamLabel field's value.
+func (s *TableDescription) SetLatestStreamLabel(v string) *TableDescription {
+	s.LatestStreamLabel = &v
+	return s
+}
+
+// SetLocalSecondaryIndexes sets the LocalSecondaryIndexes field's value.
+func (s *TableDescription) SetLocalSecondaryIndexes(v []*LocalSecondaryIndexDescription) *TableDescription {
+	s.LocalSecondaryIndexes = v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *TableDescription) SetProvisionedThroughput(v *ProvisionedThroughputDescription) *TableDescription {
+	s.ProvisionedThroughput = v
+	return s
+}
+
+// SetStreamSpecification sets the StreamSpecification field's value.
+func (s *TableDescription) SetStreamSpecification(v *StreamSpecification) *TableDescription {
+	s.StreamSpecification = v
+	return s
+}
+
+// SetTableArn sets the TableArn field's value.
+func (s *TableDescription) SetTableArn(v string) *TableDescription {
+	s.TableArn = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *TableDescription) SetTableName(v string) *TableDescription {
+	s.TableName = &v
+	return s
+}
+
+// SetTableSizeBytes sets the TableSizeBytes field's value.
+func (s *TableDescription) SetTableSizeBytes(v int64) *TableDescription {
+	s.TableSizeBytes = &v
+	return s
+}
+
+// SetTableStatus sets the TableStatus field's value.
+func (s *TableDescription) SetTableStatus(v string) *TableDescription {
+	s.TableStatus = &v
+	return s
+}
+
 // Represents the new provisioned throughput settings to be applied to a global
 // secondary index.
 type UpdateGlobalSecondaryIndexAction struct {
@@ -5923,6 +7129,18 @@ func (s *UpdateGlobalSecondaryIndexAction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *UpdateGlobalSecondaryIndexAction) SetIndexName(v string) *UpdateGlobalSecondaryIndexAction {
+	s.IndexName = &v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *UpdateGlobalSecondaryIndexAction) SetProvisionedThroughput(v *ProvisionedThroughput) *UpdateGlobalSecondaryIndexAction {
+	s.ProvisionedThroughput = v
+	return s
 }
 
 // Represents the input of an UpdateItem operation.
@@ -6397,6 +7615,78 @@ func (s *UpdateItemInput) Validate() error {
 	return nil
 }
 
+// SetAttributeUpdates sets the AttributeUpdates field's value.
+func (s *UpdateItemInput) SetAttributeUpdates(v map[string]*AttributeValueUpdate) *UpdateItemInput {
+	s.AttributeUpdates = v
+	return s
+}
+
+// SetConditionExpression sets the ConditionExpression field's value.
+func (s *UpdateItemInput) SetConditionExpression(v string) *UpdateItemInput {
+	s.ConditionExpression = &v
+	return s
+}
+
+// SetConditionalOperator sets the ConditionalOperator field's value.
+func (s *UpdateItemInput) SetConditionalOperator(v string) *UpdateItemInput {
+	s.ConditionalOperator = &v
+	return s
+}
+
+// SetExpected sets the Expected field's value.
+func (s *UpdateItemInput) SetExpected(v map[string]*ExpectedAttributeValue) *UpdateItemInput {
+	s.Expected = v
+	return s
+}
+
+// SetExpressionAttributeNames sets the ExpressionAttributeNames field's value.
+func (s *UpdateItemInput) SetExpressionAttributeNames(v map[string]*string) *UpdateItemInput {
+	s.ExpressionAttributeNames = v
+	return s
+}
+
+// SetExpressionAttributeValues sets the ExpressionAttributeValues field's value.
+func (s *UpdateItemInput) SetExpressionAttributeValues(v map[string]*AttributeValue) *UpdateItemInput {
+	s.ExpressionAttributeValues = v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *UpdateItemInput) SetKey(v map[string]*AttributeValue) *UpdateItemInput {
+	s.Key = v
+	return s
+}
+
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *UpdateItemInput) SetReturnConsumedCapacity(v string) *UpdateItemInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
+// SetReturnItemCollectionMetrics sets the ReturnItemCollectionMetrics field's value.
+func (s *UpdateItemInput) SetReturnItemCollectionMetrics(v string) *UpdateItemInput {
+	s.ReturnItemCollectionMetrics = &v
+	return s
+}
+
+// SetReturnValues sets the ReturnValues field's value.
+func (s *UpdateItemInput) SetReturnValues(v string) *UpdateItemInput {
+	s.ReturnValues = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateItemInput) SetTableName(v string) *UpdateItemInput {
+	s.TableName = &v
+	return s
+}
+
+// SetUpdateExpression sets the UpdateExpression field's value.
+func (s *UpdateItemInput) SetUpdateExpression(v string) *UpdateItemInput {
+	s.UpdateExpression = &v
+	return s
+}
+
 // Represents the output of an UpdateItem operation.
 type UpdateItemOutput struct {
 	_ struct{} `type:"structure"`
@@ -6429,6 +7719,24 @@ func (s UpdateItemOutput) String() string {
 // GoString returns the string representation
 func (s UpdateItemOutput) GoString() string {
 	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *UpdateItemOutput) SetAttributes(v map[string]*AttributeValue) *UpdateItemOutput {
+	s.Attributes = v
+	return s
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *UpdateItemOutput) SetConsumedCapacity(v *ConsumedCapacity) *UpdateItemOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
+// SetItemCollectionMetrics sets the ItemCollectionMetrics field's value.
+func (s *UpdateItemOutput) SetItemCollectionMetrics(v *ItemCollectionMetrics) *UpdateItemOutput {
+	s.ItemCollectionMetrics = v
+	return s
 }
 
 // Represents the input of an UpdateTable operation.
@@ -6526,6 +7834,36 @@ func (s *UpdateTableInput) Validate() error {
 	return nil
 }
 
+// SetAttributeDefinitions sets the AttributeDefinitions field's value.
+func (s *UpdateTableInput) SetAttributeDefinitions(v []*AttributeDefinition) *UpdateTableInput {
+	s.AttributeDefinitions = v
+	return s
+}
+
+// SetGlobalSecondaryIndexUpdates sets the GlobalSecondaryIndexUpdates field's value.
+func (s *UpdateTableInput) SetGlobalSecondaryIndexUpdates(v []*GlobalSecondaryIndexUpdate) *UpdateTableInput {
+	s.GlobalSecondaryIndexUpdates = v
+	return s
+}
+
+// SetProvisionedThroughput sets the ProvisionedThroughput field's value.
+func (s *UpdateTableInput) SetProvisionedThroughput(v *ProvisionedThroughput) *UpdateTableInput {
+	s.ProvisionedThroughput = v
+	return s
+}
+
+// SetStreamSpecification sets the StreamSpecification field's value.
+func (s *UpdateTableInput) SetStreamSpecification(v *StreamSpecification) *UpdateTableInput {
+	s.StreamSpecification = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateTableInput) SetTableName(v string) *UpdateTableInput {
+	s.TableName = &v
+	return s
+}
+
 // Represents the output of an UpdateTable operation.
 type UpdateTableOutput struct {
 	_ struct{} `type:"structure"`
@@ -6542,6 +7880,12 @@ func (s UpdateTableOutput) String() string {
 // GoString returns the string representation
 func (s UpdateTableOutput) GoString() string {
 	return s.String()
+}
+
+// SetTableDescription sets the TableDescription field's value.
+func (s *UpdateTableOutput) SetTableDescription(v *TableDescription) *UpdateTableOutput {
+	s.TableDescription = v
+	return s
 }
 
 // Represents an operation to perform - either DeleteItem or PutItem. You can
@@ -6566,6 +7910,18 @@ func (s WriteRequest) String() string {
 // GoString returns the string representation
 func (s WriteRequest) GoString() string {
 	return s.String()
+}
+
+// SetDeleteRequest sets the DeleteRequest field's value.
+func (s *WriteRequest) SetDeleteRequest(v *DeleteRequest) *WriteRequest {
+	s.DeleteRequest = v
+	return s
+}
+
+// SetPutRequest sets the PutRequest field's value.
+func (s *WriteRequest) SetPutRequest(v *PutRequest) *WriteRequest {
+	s.PutRequest = v
+	return s
 }
 
 const (

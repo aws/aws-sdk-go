@@ -827,6 +827,24 @@ func (s AgentConfigurationStatus) GoString() string {
 	return s.String()
 }
 
+// SetAgentId sets the AgentId field's value.
+func (s *AgentConfigurationStatus) SetAgentId(v string) *AgentConfigurationStatus {
+	s.AgentId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AgentConfigurationStatus) SetDescription(v string) *AgentConfigurationStatus {
+	s.Description = &v
+	return s
+}
+
+// SetOperationSucceeded sets the OperationSucceeded field's value.
+func (s *AgentConfigurationStatus) SetOperationSucceeded(v bool) *AgentConfigurationStatus {
+	s.OperationSucceeded = &v
+	return s
+}
+
 // Information about agents associated with the user’s AWS account. Information
 // includes agent IDs, IP addresses, media access control (MAC) addresses, agent
 // health, hostname where the agent resides, and agent version for each agent.
@@ -863,6 +881,42 @@ func (s AgentInfo) GoString() string {
 	return s.String()
 }
 
+// SetAgentId sets the AgentId field's value.
+func (s *AgentInfo) SetAgentId(v string) *AgentInfo {
+	s.AgentId = &v
+	return s
+}
+
+// SetAgentNetworkInfoList sets the AgentNetworkInfoList field's value.
+func (s *AgentInfo) SetAgentNetworkInfoList(v []*AgentNetworkInfo) *AgentInfo {
+	s.AgentNetworkInfoList = v
+	return s
+}
+
+// SetConnectorId sets the ConnectorId field's value.
+func (s *AgentInfo) SetConnectorId(v string) *AgentInfo {
+	s.ConnectorId = &v
+	return s
+}
+
+// SetHealth sets the Health field's value.
+func (s *AgentInfo) SetHealth(v string) *AgentInfo {
+	s.Health = &v
+	return s
+}
+
+// SetHostName sets the HostName field's value.
+func (s *AgentInfo) SetHostName(v string) *AgentInfo {
+	s.HostName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AgentInfo) SetVersion(v string) *AgentInfo {
+	s.Version = &v
+	return s
+}
+
 // Network details about the host where the agent resides.
 type AgentNetworkInfo struct {
 	_ struct{} `type:"structure"`
@@ -882,6 +936,18 @@ func (s AgentNetworkInfo) String() string {
 // GoString returns the string representation
 func (s AgentNetworkInfo) GoString() string {
 	return s.String()
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *AgentNetworkInfo) SetIpAddress(v string) *AgentNetworkInfo {
+	s.IpAddress = &v
+	return s
+}
+
+// SetMacAddress sets the MacAddress field's value.
+func (s *AgentNetworkInfo) SetMacAddress(v string) *AgentNetworkInfo {
+	s.MacAddress = &v
+	return s
 }
 
 // Tags for a configuration item. Tags are metadata that help you categorize
@@ -915,6 +981,36 @@ func (s ConfigurationTag) String() string {
 // GoString returns the string representation
 func (s ConfigurationTag) GoString() string {
 	return s.String()
+}
+
+// SetConfigurationId sets the ConfigurationId field's value.
+func (s *ConfigurationTag) SetConfigurationId(v string) *ConfigurationTag {
+	s.ConfigurationId = &v
+	return s
+}
+
+// SetConfigurationType sets the ConfigurationType field's value.
+func (s *ConfigurationTag) SetConfigurationType(v string) *ConfigurationTag {
+	s.ConfigurationType = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *ConfigurationTag) SetKey(v string) *ConfigurationTag {
+	s.Key = &v
+	return s
+}
+
+// SetTimeOfCreation sets the TimeOfCreation field's value.
+func (s *ConfigurationTag) SetTimeOfCreation(v time.Time) *ConfigurationTag {
+	s.TimeOfCreation = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ConfigurationTag) SetValue(v string) *ConfigurationTag {
+	s.Value = &v
+	return s
 }
 
 type CreateTagsInput struct {
@@ -968,6 +1064,18 @@ func (s *CreateTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfigurationIds sets the ConfigurationIds field's value.
+func (s *CreateTagsInput) SetConfigurationIds(v []*string) *CreateTagsInput {
+	s.ConfigurationIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
+	s.Tags = v
+	return s
 }
 
 type CreateTagsOutput struct {
@@ -1032,6 +1140,18 @@ func (s *DeleteTagsInput) Validate() error {
 	return nil
 }
 
+// SetConfigurationIds sets the ConfigurationIds field's value.
+func (s *DeleteTagsInput) SetConfigurationIds(v []*string) *DeleteTagsInput {
+	s.ConfigurationIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DeleteTagsInput) SetTags(v []*Tag) *DeleteTagsInput {
+	s.Tags = v
+	return s
+}
+
 type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1071,6 +1191,24 @@ func (s DescribeAgentsInput) GoString() string {
 	return s.String()
 }
 
+// SetAgentIds sets the AgentIds field's value.
+func (s *DescribeAgentsInput) SetAgentIds(v []*string) *DescribeAgentsInput {
+	s.AgentIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeAgentsInput) SetMaxResults(v int64) *DescribeAgentsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAgentsInput) SetNextToken(v string) *DescribeAgentsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1092,6 +1230,18 @@ func (s DescribeAgentsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAgentsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAgentsInfo sets the AgentsInfo field's value.
+func (s *DescribeAgentsOutput) SetAgentsInfo(v []*AgentInfo) *DescribeAgentsOutput {
+	s.AgentsInfo = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAgentsOutput) SetNextToken(v string) *DescribeAgentsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeConfigurationsInput struct {
@@ -1126,6 +1276,12 @@ func (s *DescribeConfigurationsInput) Validate() error {
 	return nil
 }
 
+// SetConfigurationIds sets the ConfigurationIds field's value.
+func (s *DescribeConfigurationsInput) SetConfigurationIds(v []*string) *DescribeConfigurationsInput {
+	s.ConfigurationIds = v
+	return s
+}
+
 type DescribeConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1141,6 +1297,12 @@ func (s DescribeConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *DescribeConfigurationsOutput) SetConfigurations(v []map[string]*string) *DescribeConfigurationsOutput {
+	s.Configurations = v
+	return s
 }
 
 type DescribeExportConfigurationsInput struct {
@@ -1169,6 +1331,24 @@ func (s DescribeExportConfigurationsInput) GoString() string {
 	return s.String()
 }
 
+// SetExportIds sets the ExportIds field's value.
+func (s *DescribeExportConfigurationsInput) SetExportIds(v []*string) *DescribeExportConfigurationsInput {
+	s.ExportIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeExportConfigurationsInput) SetMaxResults(v int64) *DescribeExportConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeExportConfigurationsInput) SetNextToken(v string) *DescribeExportConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeExportConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1191,6 +1371,18 @@ func (s DescribeExportConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeExportConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetExportsInfo sets the ExportsInfo field's value.
+func (s *DescribeExportConfigurationsOutput) SetExportsInfo(v []*ExportInfo) *DescribeExportConfigurationsOutput {
+	s.ExportsInfo = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeExportConfigurationsOutput) SetNextToken(v string) *DescribeExportConfigurationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeTagsInput struct {
@@ -1238,6 +1430,24 @@ func (s *DescribeTagsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeTagsInput) SetFilters(v []*TagFilter) *DescribeTagsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeTagsInput) SetMaxResults(v int64) *DescribeTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeTagsInput) SetNextToken(v string) *DescribeTagsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1257,6 +1467,18 @@ func (s DescribeTagsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeTagsOutput) SetNextToken(v string) *DescribeTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeTagsOutput) SetTags(v []*ConfigurationTag) *DescribeTagsOutput {
+	s.Tags = v
+	return s
 }
 
 type ExportConfigurationsInput struct {
@@ -1288,6 +1510,12 @@ func (s ExportConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s ExportConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *ExportConfigurationsOutput) SetExportId(v string) *ExportConfigurationsOutput {
+	s.ExportId = &v
+	return s
 }
 
 // Information regarding the export status of the discovered data. The value
@@ -1330,6 +1558,36 @@ func (s ExportInfo) String() string {
 // GoString returns the string representation
 func (s ExportInfo) GoString() string {
 	return s.String()
+}
+
+// SetConfigurationsDownloadUrl sets the ConfigurationsDownloadUrl field's value.
+func (s *ExportInfo) SetConfigurationsDownloadUrl(v string) *ExportInfo {
+	s.ConfigurationsDownloadUrl = &v
+	return s
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *ExportInfo) SetExportId(v string) *ExportInfo {
+	s.ExportId = &v
+	return s
+}
+
+// SetExportRequestTime sets the ExportRequestTime field's value.
+func (s *ExportInfo) SetExportRequestTime(v time.Time) *ExportInfo {
+	s.ExportRequestTime = &v
+	return s
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *ExportInfo) SetExportStatus(v string) *ExportInfo {
+	s.ExportStatus = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ExportInfo) SetStatusMessage(v string) *ExportInfo {
+	s.StatusMessage = &v
+	return s
 }
 
 // A filter that can use conditional operators.
@@ -1465,6 +1723,24 @@ func (s *Filter) Validate() error {
 	return nil
 }
 
+// SetCondition sets the Condition field's value.
+func (s *Filter) SetCondition(v string) *Filter {
+	s.Condition = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
+	return s
+}
+
 type ListConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1520,6 +1796,30 @@ func (s *ListConfigurationsInput) Validate() error {
 	return nil
 }
 
+// SetConfigurationType sets the ConfigurationType field's value.
+func (s *ListConfigurationsInput) SetConfigurationType(v string) *ListConfigurationsInput {
+	s.ConfigurationType = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListConfigurationsInput) SetFilters(v []*Filter) *ListConfigurationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListConfigurationsInput) SetMaxResults(v int64) *ListConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationsInput) SetNextToken(v string) *ListConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
 type ListConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1539,6 +1839,18 @@ func (s ListConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s ListConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *ListConfigurationsOutput) SetConfigurations(v []map[string]*string) *ListConfigurationsOutput {
+	s.Configurations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationsOutput) SetNextToken(v string) *ListConfigurationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type StartDataCollectionByAgentIdsInput struct {
@@ -1579,6 +1891,12 @@ func (s *StartDataCollectionByAgentIdsInput) Validate() error {
 	return nil
 }
 
+// SetAgentIds sets the AgentIds field's value.
+func (s *StartDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StartDataCollectionByAgentIdsInput {
+	s.AgentIds = v
+	return s
+}
+
 type StartDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1596,6 +1914,12 @@ func (s StartDataCollectionByAgentIdsOutput) String() string {
 // GoString returns the string representation
 func (s StartDataCollectionByAgentIdsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAgentsConfigurationStatus sets the AgentsConfigurationStatus field's value.
+func (s *StartDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*AgentConfigurationStatus) *StartDataCollectionByAgentIdsOutput {
+	s.AgentsConfigurationStatus = v
+	return s
 }
 
 type StopDataCollectionByAgentIdsInput struct {
@@ -1630,6 +1954,12 @@ func (s *StopDataCollectionByAgentIdsInput) Validate() error {
 	return nil
 }
 
+// SetAgentIds sets the AgentIds field's value.
+func (s *StopDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StopDataCollectionByAgentIdsInput {
+	s.AgentIds = v
+	return s
+}
+
 type StopDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1647,6 +1977,12 @@ func (s StopDataCollectionByAgentIdsOutput) String() string {
 // GoString returns the string representation
 func (s StopDataCollectionByAgentIdsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAgentsConfigurationStatus sets the AgentsConfigurationStatus field's value.
+func (s *StopDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*AgentConfigurationStatus) *StopDataCollectionByAgentIdsOutput {
+	s.AgentsConfigurationStatus = v
+	return s
 }
 
 // Metadata that help you categorize IT assets.
@@ -1690,6 +2026,18 @@ func (s *Tag) Validate() error {
 	return nil
 }
 
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
 // The name of a tag filter. Valid names are: tagKey, tagValue, configurationId.
 type TagFilter struct {
 	_ struct{} `type:"structure"`
@@ -1729,6 +2077,18 @@ func (s *TagFilter) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TagFilter) SetName(v string) *TagFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *TagFilter) SetValues(v []*string) *TagFilter {
+	s.Values = v
+	return s
 }
 
 const (

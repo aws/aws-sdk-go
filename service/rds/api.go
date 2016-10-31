@@ -7290,6 +7290,24 @@ func (s AccountQuota) GoString() string {
 	return s.String()
 }
 
+// SetAccountQuotaName sets the AccountQuotaName field's value.
+func (s *AccountQuota) SetAccountQuotaName(v string) *AccountQuota {
+	s.AccountQuotaName = &v
+	return s
+}
+
+// SetMax sets the Max field's value.
+func (s *AccountQuota) SetMax(v int64) *AccountQuota {
+	s.Max = &v
+	return s
+}
+
+// SetUsed sets the Used field's value.
+func (s *AccountQuota) SetUsed(v int64) *AccountQuota {
+	s.Used = &v
+	return s
+}
+
 type AddRoleToDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7329,6 +7347,18 @@ func (s *AddRoleToDBClusterInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *AddRoleToDBClusterInput) SetDBClusterIdentifier(v string) *AddRoleToDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AddRoleToDBClusterInput) SetRoleArn(v string) *AddRoleToDBClusterInput {
+	s.RoleArn = &v
+	return s
 }
 
 type AddRoleToDBClusterOutput struct {
@@ -7402,6 +7432,18 @@ func (s *AddSourceIdentifierToSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *AddSourceIdentifierToSubscriptionInput) SetSourceIdentifier(v string) *AddSourceIdentifierToSubscriptionInput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *AddSourceIdentifierToSubscriptionInput) SetSubscriptionName(v string) *AddSourceIdentifierToSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
 type AddSourceIdentifierToSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7418,6 +7460,12 @@ func (s AddSourceIdentifierToSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s AddSourceIdentifierToSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *AddSourceIdentifierToSubscriptionOutput) SetEventSubscription(v *EventSubscription) *AddSourceIdentifierToSubscriptionOutput {
+	s.EventSubscription = v
+	return s
 }
 
 type AddTagsToResourceInput struct {
@@ -7460,6 +7508,18 @@ func (s *AddTagsToResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *AddTagsToResourceInput) SetResourceName(v string) *AddTagsToResourceInput {
+	s.ResourceName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsToResourceInput) SetTags(v []*Tag) *AddTagsToResourceInput {
+	s.Tags = v
+	return s
 }
 
 type AddTagsToResourceOutput struct {
@@ -7538,6 +7598,24 @@ func (s *ApplyPendingMaintenanceActionInput) Validate() error {
 	return nil
 }
 
+// SetApplyAction sets the ApplyAction field's value.
+func (s *ApplyPendingMaintenanceActionInput) SetApplyAction(v string) *ApplyPendingMaintenanceActionInput {
+	s.ApplyAction = &v
+	return s
+}
+
+// SetOptInType sets the OptInType field's value.
+func (s *ApplyPendingMaintenanceActionInput) SetOptInType(v string) *ApplyPendingMaintenanceActionInput {
+	s.OptInType = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ApplyPendingMaintenanceActionInput) SetResourceIdentifier(v string) *ApplyPendingMaintenanceActionInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
 type ApplyPendingMaintenanceActionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7553,6 +7631,12 @@ func (s ApplyPendingMaintenanceActionOutput) String() string {
 // GoString returns the string representation
 func (s ApplyPendingMaintenanceActionOutput) GoString() string {
 	return s.String()
+}
+
+// SetResourcePendingMaintenanceActions sets the ResourcePendingMaintenanceActions field's value.
+func (s *ApplyPendingMaintenanceActionOutput) SetResourcePendingMaintenanceActions(v *ResourcePendingMaintenanceActions) *ApplyPendingMaintenanceActionOutput {
+	s.ResourcePendingMaintenanceActions = v
+	return s
 }
 
 type AuthorizeDBSecurityGroupIngressInput struct {
@@ -7607,6 +7691,36 @@ func (s *AuthorizeDBSecurityGroupIngressInput) Validate() error {
 	return nil
 }
 
+// SetCIDRIP sets the CIDRIP field's value.
+func (s *AuthorizeDBSecurityGroupIngressInput) SetCIDRIP(v string) *AuthorizeDBSecurityGroupIngressInput {
+	s.CIDRIP = &v
+	return s
+}
+
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *AuthorizeDBSecurityGroupIngressInput) SetDBSecurityGroupName(v string) *AuthorizeDBSecurityGroupIngressInput {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupId sets the EC2SecurityGroupId field's value.
+func (s *AuthorizeDBSecurityGroupIngressInput) SetEC2SecurityGroupId(v string) *AuthorizeDBSecurityGroupIngressInput {
+	s.EC2SecurityGroupId = &v
+	return s
+}
+
+// SetEC2SecurityGroupName sets the EC2SecurityGroupName field's value.
+func (s *AuthorizeDBSecurityGroupIngressInput) SetEC2SecurityGroupName(v string) *AuthorizeDBSecurityGroupIngressInput {
+	s.EC2SecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupOwnerId sets the EC2SecurityGroupOwnerId field's value.
+func (s *AuthorizeDBSecurityGroupIngressInput) SetEC2SecurityGroupOwnerId(v string) *AuthorizeDBSecurityGroupIngressInput {
+	s.EC2SecurityGroupOwnerId = &v
+	return s
+}
+
 type AuthorizeDBSecurityGroupIngressOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7635,6 +7749,12 @@ func (s AuthorizeDBSecurityGroupIngressOutput) GoString() string {
 	return s.String()
 }
 
+// SetDBSecurityGroup sets the DBSecurityGroup field's value.
+func (s *AuthorizeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurityGroup) *AuthorizeDBSecurityGroupIngressOutput {
+	s.DBSecurityGroup = v
+	return s
+}
+
 // Contains Availability Zone information.
 //
 // This data type is used as an element in the following data type:
@@ -7655,6 +7775,12 @@ func (s AvailabilityZone) String() string {
 // GoString returns the string representation
 func (s AvailabilityZone) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
+	s.Name = &v
+	return s
 }
 
 // A CA certificate for an AWS account.
@@ -7690,6 +7816,42 @@ func (s Certificate) GoString() string {
 	return s.String()
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *Certificate) SetCertificateArn(v string) *Certificate {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetCertificateIdentifier sets the CertificateIdentifier field's value.
+func (s *Certificate) SetCertificateIdentifier(v string) *Certificate {
+	s.CertificateIdentifier = &v
+	return s
+}
+
+// SetCertificateType sets the CertificateType field's value.
+func (s *Certificate) SetCertificateType(v string) *Certificate {
+	s.CertificateType = &v
+	return s
+}
+
+// SetThumbprint sets the Thumbprint field's value.
+func (s *Certificate) SetThumbprint(v string) *Certificate {
+	s.Thumbprint = &v
+	return s
+}
+
+// SetValidFrom sets the ValidFrom field's value.
+func (s *Certificate) SetValidFrom(v time.Time) *Certificate {
+	s.ValidFrom = &v
+	return s
+}
+
+// SetValidTill sets the ValidTill field's value.
+func (s *Certificate) SetValidTill(v time.Time) *Certificate {
+	s.ValidTill = &v
+	return s
+}
+
 // This data type is used as a response element in the action DescribeDBEngineVersions.
 type CharacterSet struct {
 	_ struct{} `type:"structure"`
@@ -7709,6 +7871,18 @@ func (s CharacterSet) String() string {
 // GoString returns the string representation
 func (s CharacterSet) GoString() string {
 	return s.String()
+}
+
+// SetCharacterSetDescription sets the CharacterSetDescription field's value.
+func (s *CharacterSet) SetCharacterSetDescription(v string) *CharacterSet {
+	s.CharacterSetDescription = &v
+	return s
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *CharacterSet) SetCharacterSetName(v string) *CharacterSet {
+	s.CharacterSetName = &v
+	return s
 }
 
 type CopyDBClusterParameterGroupInput struct {
@@ -7787,6 +7961,30 @@ func (s *CopyDBClusterParameterGroupInput) Validate() error {
 	return nil
 }
 
+// SetSourceDBClusterParameterGroupIdentifier sets the SourceDBClusterParameterGroupIdentifier field's value.
+func (s *CopyDBClusterParameterGroupInput) SetSourceDBClusterParameterGroupIdentifier(v string) *CopyDBClusterParameterGroupInput {
+	s.SourceDBClusterParameterGroupIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyDBClusterParameterGroupInput) SetTags(v []*Tag) *CopyDBClusterParameterGroupInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDBClusterParameterGroupDescription sets the TargetDBClusterParameterGroupDescription field's value.
+func (s *CopyDBClusterParameterGroupInput) SetTargetDBClusterParameterGroupDescription(v string) *CopyDBClusterParameterGroupInput {
+	s.TargetDBClusterParameterGroupDescription = &v
+	return s
+}
+
+// SetTargetDBClusterParameterGroupIdentifier sets the TargetDBClusterParameterGroupIdentifier field's value.
+func (s *CopyDBClusterParameterGroupInput) SetTargetDBClusterParameterGroupIdentifier(v string) *CopyDBClusterParameterGroupInput {
+	s.TargetDBClusterParameterGroupIdentifier = &v
+	return s
+}
+
 type CopyDBClusterParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7807,6 +8005,12 @@ func (s CopyDBClusterParameterGroupOutput) String() string {
 // GoString returns the string representation
 func (s CopyDBClusterParameterGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterParameterGroup sets the DBClusterParameterGroup field's value.
+func (s *CopyDBClusterParameterGroupOutput) SetDBClusterParameterGroup(v *DBClusterParameterGroup) *CopyDBClusterParameterGroupOutput {
+	s.DBClusterParameterGroup = v
+	return s
 }
 
 type CopyDBClusterSnapshotInput struct {
@@ -7874,6 +8078,24 @@ func (s *CopyDBClusterSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetSourceDBClusterSnapshotIdentifier sets the SourceDBClusterSnapshotIdentifier field's value.
+func (s *CopyDBClusterSnapshotInput) SetSourceDBClusterSnapshotIdentifier(v string) *CopyDBClusterSnapshotInput {
+	s.SourceDBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyDBClusterSnapshotInput) SetTags(v []*Tag) *CopyDBClusterSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDBClusterSnapshotIdentifier sets the TargetDBClusterSnapshotIdentifier field's value.
+func (s *CopyDBClusterSnapshotInput) SetTargetDBClusterSnapshotIdentifier(v string) *CopyDBClusterSnapshotInput {
+	s.TargetDBClusterSnapshotIdentifier = &v
+	return s
+}
+
 type CopyDBClusterSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7896,6 +8118,12 @@ func (s CopyDBClusterSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CopyDBClusterSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshot sets the DBClusterSnapshot field's value.
+func (s *CopyDBClusterSnapshotOutput) SetDBClusterSnapshot(v *DBClusterSnapshot) *CopyDBClusterSnapshotOutput {
+	s.DBClusterSnapshot = v
+	return s
 }
 
 type CopyDBParameterGroupInput struct {
@@ -7970,6 +8198,30 @@ func (s *CopyDBParameterGroupInput) Validate() error {
 	return nil
 }
 
+// SetSourceDBParameterGroupIdentifier sets the SourceDBParameterGroupIdentifier field's value.
+func (s *CopyDBParameterGroupInput) SetSourceDBParameterGroupIdentifier(v string) *CopyDBParameterGroupInput {
+	s.SourceDBParameterGroupIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyDBParameterGroupInput) SetTags(v []*Tag) *CopyDBParameterGroupInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDBParameterGroupDescription sets the TargetDBParameterGroupDescription field's value.
+func (s *CopyDBParameterGroupInput) SetTargetDBParameterGroupDescription(v string) *CopyDBParameterGroupInput {
+	s.TargetDBParameterGroupDescription = &v
+	return s
+}
+
+// SetTargetDBParameterGroupIdentifier sets the TargetDBParameterGroupIdentifier field's value.
+func (s *CopyDBParameterGroupInput) SetTargetDBParameterGroupIdentifier(v string) *CopyDBParameterGroupInput {
+	s.TargetDBParameterGroupIdentifier = &v
+	return s
+}
+
 type CopyDBParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7989,6 +8241,12 @@ func (s CopyDBParameterGroupOutput) String() string {
 // GoString returns the string representation
 func (s CopyDBParameterGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBParameterGroup sets the DBParameterGroup field's value.
+func (s *CopyDBParameterGroupOutput) SetDBParameterGroup(v *DBParameterGroup) *CopyDBParameterGroupOutput {
+	s.DBParameterGroup = v
+	return s
 }
 
 type CopyDBSnapshotInput struct {
@@ -8085,6 +8343,36 @@ func (s *CopyDBSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetCopyTags sets the CopyTags field's value.
+func (s *CopyDBSnapshotInput) SetCopyTags(v bool) *CopyDBSnapshotInput {
+	s.CopyTags = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CopyDBSnapshotInput) SetKmsKeyId(v string) *CopyDBSnapshotInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSourceDBSnapshotIdentifier sets the SourceDBSnapshotIdentifier field's value.
+func (s *CopyDBSnapshotInput) SetSourceDBSnapshotIdentifier(v string) *CopyDBSnapshotInput {
+	s.SourceDBSnapshotIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyDBSnapshotInput) SetTags(v []*Tag) *CopyDBSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDBSnapshotIdentifier sets the TargetDBSnapshotIdentifier field's value.
+func (s *CopyDBSnapshotInput) SetTargetDBSnapshotIdentifier(v string) *CopyDBSnapshotInput {
+	s.TargetDBSnapshotIdentifier = &v
+	return s
+}
+
 type CopyDBSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8106,6 +8394,12 @@ func (s CopyDBSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CopyDBSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshot sets the DBSnapshot field's value.
+func (s *CopyDBSnapshotOutput) SetDBSnapshot(v *DBSnapshot) *CopyDBSnapshotOutput {
+	s.DBSnapshot = v
+	return s
 }
 
 type CopyOptionGroupInput struct {
@@ -8183,6 +8477,30 @@ func (s *CopyOptionGroupInput) Validate() error {
 	return nil
 }
 
+// SetSourceOptionGroupIdentifier sets the SourceOptionGroupIdentifier field's value.
+func (s *CopyOptionGroupInput) SetSourceOptionGroupIdentifier(v string) *CopyOptionGroupInput {
+	s.SourceOptionGroupIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopyOptionGroupInput) SetTags(v []*Tag) *CopyOptionGroupInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetOptionGroupDescription sets the TargetOptionGroupDescription field's value.
+func (s *CopyOptionGroupInput) SetTargetOptionGroupDescription(v string) *CopyOptionGroupInput {
+	s.TargetOptionGroupDescription = &v
+	return s
+}
+
+// SetTargetOptionGroupIdentifier sets the TargetOptionGroupIdentifier field's value.
+func (s *CopyOptionGroupInput) SetTargetOptionGroupIdentifier(v string) *CopyOptionGroupInput {
+	s.TargetOptionGroupIdentifier = &v
+	return s
+}
+
 type CopyOptionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8197,6 +8515,12 @@ func (s CopyOptionGroupOutput) String() string {
 // GoString returns the string representation
 func (s CopyOptionGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetOptionGroup sets the OptionGroup field's value.
+func (s *CopyOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CopyOptionGroupOutput {
+	s.OptionGroup = v
+	return s
 }
 
 type CreateDBClusterInput struct {
@@ -8391,6 +8715,126 @@ func (s *CreateDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *CreateDBClusterInput) SetAvailabilityZones(v []*string) *CreateDBClusterInput {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *CreateDBClusterInput) SetBackupRetentionPeriod(v int64) *CreateDBClusterInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *CreateDBClusterInput) SetCharacterSetName(v string) *CreateDBClusterInput {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *CreateDBClusterInput) SetDBClusterIdentifier(v string) *CreateDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *CreateDBClusterInput) SetDBClusterParameterGroupName(v string) *CreateDBClusterInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *CreateDBClusterInput) SetDBSubnetGroupName(v string) *CreateDBClusterInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *CreateDBClusterInput) SetDatabaseName(v string) *CreateDBClusterInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateDBClusterInput) SetEngine(v string) *CreateDBClusterInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateDBClusterInput) SetEngineVersion(v string) *CreateDBClusterInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateDBClusterInput) SetKmsKeyId(v string) *CreateDBClusterInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *CreateDBClusterInput) SetMasterUserPassword(v string) *CreateDBClusterInput {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *CreateDBClusterInput) SetMasterUsername(v string) *CreateDBClusterInput {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *CreateDBClusterInput) SetOptionGroupName(v string) *CreateDBClusterInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateDBClusterInput) SetPort(v int64) *CreateDBClusterInput {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *CreateDBClusterInput) SetPreferredBackupWindow(v string) *CreateDBClusterInput {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *CreateDBClusterInput) SetPreferredMaintenanceWindow(v string) *CreateDBClusterInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReplicationSourceIdentifier sets the ReplicationSourceIdentifier field's value.
+func (s *CreateDBClusterInput) SetReplicationSourceIdentifier(v string) *CreateDBClusterInput {
+	s.ReplicationSourceIdentifier = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *CreateDBClusterInput) SetStorageEncrypted(v bool) *CreateDBClusterInput {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBClusterInput) SetTags(v []*Tag) *CreateDBClusterInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *CreateDBClusterInput) SetVpcSecurityGroupIds(v []*string) *CreateDBClusterInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type CreateDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8420,6 +8864,12 @@ func (s CreateDBClusterOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *CreateDBClusterOutput) SetDBCluster(v *DBCluster) *CreateDBClusterOutput {
+	s.DBCluster = v
+	return s
 }
 
 type CreateDBClusterParameterGroupInput struct {
@@ -8486,6 +8936,30 @@ func (s *CreateDBClusterParameterGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *CreateDBClusterParameterGroupInput) SetDBClusterParameterGroupName(v string) *CreateDBClusterParameterGroupInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *CreateDBClusterParameterGroupInput) SetDBParameterGroupFamily(v string) *CreateDBClusterParameterGroupInput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDBClusterParameterGroupInput) SetDescription(v string) *CreateDBClusterParameterGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBClusterParameterGroupInput) SetTags(v []*Tag) *CreateDBClusterParameterGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBClusterParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8506,6 +8980,12 @@ func (s CreateDBClusterParameterGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBClusterParameterGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterParameterGroup sets the DBClusterParameterGroup field's value.
+func (s *CreateDBClusterParameterGroupOutput) SetDBClusterParameterGroup(v *DBClusterParameterGroup) *CreateDBClusterParameterGroupOutput {
+	s.DBClusterParameterGroup = v
+	return s
 }
 
 type CreateDBClusterSnapshotInput struct {
@@ -8573,6 +9053,24 @@ func (s *CreateDBClusterSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *CreateDBClusterSnapshotInput) SetDBClusterIdentifier(v string) *CreateDBClusterSnapshotInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *CreateDBClusterSnapshotInput) SetDBClusterSnapshotIdentifier(v string) *CreateDBClusterSnapshotInput {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBClusterSnapshotInput) SetTags(v []*Tag) *CreateDBClusterSnapshotInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBClusterSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8595,6 +9093,12 @@ func (s CreateDBClusterSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBClusterSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshot sets the DBClusterSnapshot field's value.
+func (s *CreateDBClusterSnapshotOutput) SetDBClusterSnapshot(v *DBClusterSnapshot) *CreateDBClusterSnapshotOutput {
+	s.DBClusterSnapshot = v
+	return s
 }
 
 type CreateDBInstanceInput struct {
@@ -9320,6 +9824,234 @@ func (s *CreateDBInstanceInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *CreateDBInstanceInput) SetAllocatedStorage(v int64) *CreateDBInstanceInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CreateDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *CreateDBInstanceInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *CreateDBInstanceInput) SetAvailabilityZone(v string) *CreateDBInstanceInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *CreateDBInstanceInput) SetBackupRetentionPeriod(v int64) *CreateDBInstanceInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *CreateDBInstanceInput) SetCharacterSetName(v string) *CreateDBInstanceInput {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *CreateDBInstanceInput) SetCopyTagsToSnapshot(v bool) *CreateDBInstanceInput {
+	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *CreateDBInstanceInput) SetDBClusterIdentifier(v string) *CreateDBInstanceInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *CreateDBInstanceInput) SetDBInstanceClass(v string) *CreateDBInstanceInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *CreateDBInstanceInput) SetDBInstanceIdentifier(v string) *CreateDBInstanceInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBName sets the DBName field's value.
+func (s *CreateDBInstanceInput) SetDBName(v string) *CreateDBInstanceInput {
+	s.DBName = &v
+	return s
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *CreateDBInstanceInput) SetDBParameterGroupName(v string) *CreateDBInstanceInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetDBSecurityGroups sets the DBSecurityGroups field's value.
+func (s *CreateDBInstanceInput) SetDBSecurityGroups(v []*string) *CreateDBInstanceInput {
+	s.DBSecurityGroups = v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *CreateDBInstanceInput) SetDBSubnetGroupName(v string) *CreateDBInstanceInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateDBInstanceInput) SetDomain(v string) *CreateDBInstanceInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *CreateDBInstanceInput) SetDomainIAMRoleName(v string) *CreateDBInstanceInput {
+	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateDBInstanceInput) SetEngine(v string) *CreateDBInstanceInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateDBInstanceInput) SetEngineVersion(v string) *CreateDBInstanceInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *CreateDBInstanceInput) SetIops(v int64) *CreateDBInstanceInput {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateDBInstanceInput) SetKmsKeyId(v string) *CreateDBInstanceInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *CreateDBInstanceInput) SetLicenseModel(v string) *CreateDBInstanceInput {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *CreateDBInstanceInput) SetMasterUserPassword(v string) *CreateDBInstanceInput {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *CreateDBInstanceInput) SetMasterUsername(v string) *CreateDBInstanceInput {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *CreateDBInstanceInput) SetMonitoringInterval(v int64) *CreateDBInstanceInput {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *CreateDBInstanceInput) SetMonitoringRoleArn(v string) *CreateDBInstanceInput {
+	s.MonitoringRoleArn = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *CreateDBInstanceInput) SetMultiAZ(v bool) *CreateDBInstanceInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *CreateDBInstanceInput) SetOptionGroupName(v string) *CreateDBInstanceInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateDBInstanceInput) SetPort(v int64) *CreateDBInstanceInput {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *CreateDBInstanceInput) SetPreferredBackupWindow(v string) *CreateDBInstanceInput {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *CreateDBInstanceInput) SetPreferredMaintenanceWindow(v string) *CreateDBInstanceInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPromotionTier sets the PromotionTier field's value.
+func (s *CreateDBInstanceInput) SetPromotionTier(v int64) *CreateDBInstanceInput {
+	s.PromotionTier = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *CreateDBInstanceInput) SetPubliclyAccessible(v bool) *CreateDBInstanceInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *CreateDBInstanceInput) SetStorageEncrypted(v bool) *CreateDBInstanceInput {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *CreateDBInstanceInput) SetStorageType(v string) *CreateDBInstanceInput {
+	s.StorageType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBInstanceInput) SetTags(v []*Tag) *CreateDBInstanceInput {
+	s.Tags = v
+	return s
+}
+
+// SetTdeCredentialArn sets the TdeCredentialArn field's value.
+func (s *CreateDBInstanceInput) SetTdeCredentialArn(v string) *CreateDBInstanceInput {
+	s.TdeCredentialArn = &v
+	return s
+}
+
+// SetTdeCredentialPassword sets the TdeCredentialPassword field's value.
+func (s *CreateDBInstanceInput) SetTdeCredentialPassword(v string) *CreateDBInstanceInput {
+	s.TdeCredentialPassword = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *CreateDBInstanceInput) SetTimezone(v string) *CreateDBInstanceInput {
+	s.Timezone = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *CreateDBInstanceInput) SetVpcSecurityGroupIds(v []*string) *CreateDBInstanceInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type CreateDBInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9343,6 +10075,12 @@ func (s CreateDBInstanceOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *CreateDBInstanceOutput) SetDBInstance(v *DBInstance) *CreateDBInstanceOutput {
+	s.DBInstance = v
+	return s
 }
 
 type CreateDBInstanceReadReplicaInput struct {
@@ -9528,6 +10266,96 @@ func (s *CreateDBInstanceReadReplicaInput) Validate() error {
 	return nil
 }
 
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetAutoMinorVersionUpgrade(v bool) *CreateDBInstanceReadReplicaInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetAvailabilityZone(v string) *CreateDBInstanceReadReplicaInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetCopyTagsToSnapshot(v bool) *CreateDBInstanceReadReplicaInput {
+	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDBInstanceClass(v string) *CreateDBInstanceReadReplicaInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDBInstanceIdentifier(v string) *CreateDBInstanceReadReplicaInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetDBSubnetGroupName(v string) *CreateDBInstanceReadReplicaInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetIops(v int64) *CreateDBInstanceReadReplicaInput {
+	s.Iops = &v
+	return s
+}
+
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetMonitoringInterval(v int64) *CreateDBInstanceReadReplicaInput {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetMonitoringRoleArn(v string) *CreateDBInstanceReadReplicaInput {
+	s.MonitoringRoleArn = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetOptionGroupName(v string) *CreateDBInstanceReadReplicaInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetPort(v int64) *CreateDBInstanceReadReplicaInput {
+	s.Port = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetPubliclyAccessible(v bool) *CreateDBInstanceReadReplicaInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetSourceDBInstanceIdentifier sets the SourceDBInstanceIdentifier field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetSourceDBInstanceIdentifier(v string) *CreateDBInstanceReadReplicaInput {
+	s.SourceDBInstanceIdentifier = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetStorageType(v string) *CreateDBInstanceReadReplicaInput {
+	s.StorageType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetTags(v []*Tag) *CreateDBInstanceReadReplicaInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBInstanceReadReplicaOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9551,6 +10379,12 @@ func (s CreateDBInstanceReadReplicaOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBInstanceReadReplicaOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *CreateDBInstanceReadReplicaOutput) SetDBInstance(v *DBInstance) *CreateDBInstanceReadReplicaOutput {
+	s.DBInstance = v
+	return s
 }
 
 type CreateDBParameterGroupInput struct {
@@ -9617,6 +10451,30 @@ func (s *CreateDBParameterGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *CreateDBParameterGroupInput) SetDBParameterGroupFamily(v string) *CreateDBParameterGroupInput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *CreateDBParameterGroupInput) SetDBParameterGroupName(v string) *CreateDBParameterGroupInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDBParameterGroupInput) SetDescription(v string) *CreateDBParameterGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBParameterGroupInput) SetTags(v []*Tag) *CreateDBParameterGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9636,6 +10494,12 @@ func (s CreateDBParameterGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBParameterGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBParameterGroup sets the DBParameterGroup field's value.
+func (s *CreateDBParameterGroupOutput) SetDBParameterGroup(v *DBParameterGroup) *CreateDBParameterGroupOutput {
+	s.DBParameterGroup = v
+	return s
 }
 
 type CreateDBSecurityGroupInput struct {
@@ -9693,6 +10557,24 @@ func (s *CreateDBSecurityGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBSecurityGroupDescription sets the DBSecurityGroupDescription field's value.
+func (s *CreateDBSecurityGroupInput) SetDBSecurityGroupDescription(v string) *CreateDBSecurityGroupInput {
+	s.DBSecurityGroupDescription = &v
+	return s
+}
+
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *CreateDBSecurityGroupInput) SetDBSecurityGroupName(v string) *CreateDBSecurityGroupInput {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBSecurityGroupInput) SetTags(v []*Tag) *CreateDBSecurityGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9719,6 +10601,12 @@ func (s CreateDBSecurityGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBSecurityGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSecurityGroup sets the DBSecurityGroup field's value.
+func (s *CreateDBSecurityGroupOutput) SetDBSecurityGroup(v *DBSecurityGroup) *CreateDBSecurityGroupOutput {
+	s.DBSecurityGroup = v
+	return s
 }
 
 type CreateDBSnapshotInput struct {
@@ -9784,6 +10672,24 @@ func (s *CreateDBSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *CreateDBSnapshotInput) SetDBInstanceIdentifier(v string) *CreateDBSnapshotInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *CreateDBSnapshotInput) SetDBSnapshotIdentifier(v string) *CreateDBSnapshotInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBSnapshotInput) SetTags(v []*Tag) *CreateDBSnapshotInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9805,6 +10711,12 @@ func (s CreateDBSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshot sets the DBSnapshot field's value.
+func (s *CreateDBSnapshotOutput) SetDBSnapshot(v *DBSnapshot) *CreateDBSnapshotOutput {
+	s.DBSnapshot = v
+	return s
 }
 
 type CreateDBSubnetGroupInput struct {
@@ -9863,6 +10775,30 @@ func (s *CreateDBSubnetGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBSubnetGroupDescription sets the DBSubnetGroupDescription field's value.
+func (s *CreateDBSubnetGroupInput) SetDBSubnetGroupDescription(v string) *CreateDBSubnetGroupInput {
+	s.DBSubnetGroupDescription = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *CreateDBSubnetGroupInput) SetDBSubnetGroupName(v string) *CreateDBSubnetGroupInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *CreateDBSubnetGroupInput) SetSubnetIds(v []*string) *CreateDBSubnetGroupInput {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBSubnetGroupInput) SetTags(v []*Tag) *CreateDBSubnetGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateDBSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9889,6 +10825,12 @@ func (s CreateDBSubnetGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateDBSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSubnetGroup sets the DBSubnetGroup field's value.
+func (s *CreateDBSubnetGroupOutput) SetDBSubnetGroup(v *DBSubnetGroup) *CreateDBSubnetGroupOutput {
+	s.DBSubnetGroup = v
+	return s
 }
 
 type CreateEventSubscriptionInput struct {
@@ -9980,6 +10922,48 @@ func (s *CreateEventSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetEnabled sets the Enabled field's value.
+func (s *CreateEventSubscriptionInput) SetEnabled(v bool) *CreateEventSubscriptionInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *CreateEventSubscriptionInput) SetEventCategories(v []*string) *CreateEventSubscriptionInput {
+	s.EventCategories = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *CreateEventSubscriptionInput) SetSnsTopicArn(v string) *CreateEventSubscriptionInput {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSourceIds sets the SourceIds field's value.
+func (s *CreateEventSubscriptionInput) SetSourceIds(v []*string) *CreateEventSubscriptionInput {
+	s.SourceIds = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *CreateEventSubscriptionInput) SetSourceType(v string) *CreateEventSubscriptionInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *CreateEventSubscriptionInput) SetSubscriptionName(v string) *CreateEventSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventSubscriptionInput) SetTags(v []*Tag) *CreateEventSubscriptionInput {
+	s.Tags = v
+	return s
+}
+
 type CreateEventSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9996,6 +10980,12 @@ func (s CreateEventSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s CreateEventSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *CreateEventSubscriptionOutput {
+	s.EventSubscription = v
+	return s
 }
 
 type CreateOptionGroupInput struct {
@@ -10069,6 +11059,36 @@ func (s *CreateOptionGroupInput) Validate() error {
 	return nil
 }
 
+// SetEngineName sets the EngineName field's value.
+func (s *CreateOptionGroupInput) SetEngineName(v string) *CreateOptionGroupInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *CreateOptionGroupInput) SetMajorEngineVersion(v string) *CreateOptionGroupInput {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetOptionGroupDescription sets the OptionGroupDescription field's value.
+func (s *CreateOptionGroupInput) SetOptionGroupDescription(v string) *CreateOptionGroupInput {
+	s.OptionGroupDescription = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *CreateOptionGroupInput) SetOptionGroupName(v string) *CreateOptionGroupInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOptionGroupInput) SetTags(v []*Tag) *CreateOptionGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateOptionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10083,6 +11103,12 @@ func (s CreateOptionGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateOptionGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetOptionGroup sets the OptionGroup field's value.
+func (s *CreateOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CreateOptionGroupOutput {
+	s.OptionGroup = v
+	return s
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -10235,6 +11261,192 @@ func (s DBCluster) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *DBCluster) SetAllocatedStorage(v int64) *DBCluster {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAssociatedRoles sets the AssociatedRoles field's value.
+func (s *DBCluster) SetAssociatedRoles(v []*DBClusterRole) *DBCluster {
+	s.AssociatedRoles = v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *DBCluster) SetAvailabilityZones(v []*string) *DBCluster {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *DBCluster) SetBackupRetentionPeriod(v int64) *DBCluster {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *DBCluster) SetCharacterSetName(v string) *DBCluster {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetDBClusterArn sets the DBClusterArn field's value.
+func (s *DBCluster) SetDBClusterArn(v string) *DBCluster {
+	s.DBClusterArn = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DBCluster) SetDBClusterIdentifier(v string) *DBCluster {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterMembers sets the DBClusterMembers field's value.
+func (s *DBCluster) SetDBClusterMembers(v []*DBClusterMember) *DBCluster {
+	s.DBClusterMembers = v
+	return s
+}
+
+// SetDBClusterOptionGroupMemberships sets the DBClusterOptionGroupMemberships field's value.
+func (s *DBCluster) SetDBClusterOptionGroupMemberships(v []*DBClusterOptionGroupStatus) *DBCluster {
+	s.DBClusterOptionGroupMemberships = v
+	return s
+}
+
+// SetDBClusterParameterGroup sets the DBClusterParameterGroup field's value.
+func (s *DBCluster) SetDBClusterParameterGroup(v string) *DBCluster {
+	s.DBClusterParameterGroup = &v
+	return s
+}
+
+// SetDBSubnetGroup sets the DBSubnetGroup field's value.
+func (s *DBCluster) SetDBSubnetGroup(v string) *DBCluster {
+	s.DBSubnetGroup = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DBCluster) SetDatabaseName(v string) *DBCluster {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDbClusterResourceId sets the DbClusterResourceId field's value.
+func (s *DBCluster) SetDbClusterResourceId(v string) *DBCluster {
+	s.DbClusterResourceId = &v
+	return s
+}
+
+// SetEarliestRestorableTime sets the EarliestRestorableTime field's value.
+func (s *DBCluster) SetEarliestRestorableTime(v time.Time) *DBCluster {
+	s.EarliestRestorableTime = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DBCluster) SetEndpoint(v string) *DBCluster {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DBCluster) SetEngine(v string) *DBCluster {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DBCluster) SetEngineVersion(v string) *DBCluster {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *DBCluster) SetHostedZoneId(v string) *DBCluster {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DBCluster) SetKmsKeyId(v string) *DBCluster {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLatestRestorableTime sets the LatestRestorableTime field's value.
+func (s *DBCluster) SetLatestRestorableTime(v time.Time) *DBCluster {
+	s.LatestRestorableTime = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *DBCluster) SetMasterUsername(v string) *DBCluster {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetPercentProgress sets the PercentProgress field's value.
+func (s *DBCluster) SetPercentProgress(v string) *DBCluster {
+	s.PercentProgress = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DBCluster) SetPort(v int64) *DBCluster {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *DBCluster) SetPreferredBackupWindow(v string) *DBCluster {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *DBCluster) SetPreferredMaintenanceWindow(v string) *DBCluster {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReadReplicaIdentifiers sets the ReadReplicaIdentifiers field's value.
+func (s *DBCluster) SetReadReplicaIdentifiers(v []*string) *DBCluster {
+	s.ReadReplicaIdentifiers = v
+	return s
+}
+
+// SetReaderEndpoint sets the ReaderEndpoint field's value.
+func (s *DBCluster) SetReaderEndpoint(v string) *DBCluster {
+	s.ReaderEndpoint = &v
+	return s
+}
+
+// SetReplicationSourceIdentifier sets the ReplicationSourceIdentifier field's value.
+func (s *DBCluster) SetReplicationSourceIdentifier(v string) *DBCluster {
+	s.ReplicationSourceIdentifier = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBCluster) SetStatus(v string) *DBCluster {
+	s.Status = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *DBCluster) SetStorageEncrypted(v bool) *DBCluster {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *DBCluster) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBCluster {
+	s.VpcSecurityGroups = v
+	return s
+}
+
 // Contains information about an instance that is part of a DB cluster.
 type DBClusterMember struct {
 	_ struct{} `type:"structure"`
@@ -10266,6 +11478,30 @@ func (s DBClusterMember) GoString() string {
 	return s.String()
 }
 
+// SetDBClusterParameterGroupStatus sets the DBClusterParameterGroupStatus field's value.
+func (s *DBClusterMember) SetDBClusterParameterGroupStatus(v string) *DBClusterMember {
+	s.DBClusterParameterGroupStatus = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DBClusterMember) SetDBInstanceIdentifier(v string) *DBClusterMember {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetIsClusterWriter sets the IsClusterWriter field's value.
+func (s *DBClusterMember) SetIsClusterWriter(v bool) *DBClusterMember {
+	s.IsClusterWriter = &v
+	return s
+}
+
+// SetPromotionTier sets the PromotionTier field's value.
+func (s *DBClusterMember) SetPromotionTier(v int64) *DBClusterMember {
+	s.PromotionTier = &v
+	return s
+}
+
 // Contains status information for a DB cluster option group.
 type DBClusterOptionGroupStatus struct {
 	_ struct{} `type:"structure"`
@@ -10285,6 +11521,18 @@ func (s DBClusterOptionGroupStatus) String() string {
 // GoString returns the string representation
 func (s DBClusterOptionGroupStatus) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterOptionGroupName sets the DBClusterOptionGroupName field's value.
+func (s *DBClusterOptionGroupStatus) SetDBClusterOptionGroupName(v string) *DBClusterOptionGroupStatus {
+	s.DBClusterOptionGroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBClusterOptionGroupStatus) SetStatus(v string) *DBClusterOptionGroupStatus {
+	s.Status = &v
+	return s
 }
 
 // Contains the result of a successful invocation of the CreateDBClusterParameterGroup
@@ -10321,6 +11569,30 @@ func (s DBClusterParameterGroup) GoString() string {
 	return s.String()
 }
 
+// SetDBClusterParameterGroupArn sets the DBClusterParameterGroupArn field's value.
+func (s *DBClusterParameterGroup) SetDBClusterParameterGroupArn(v string) *DBClusterParameterGroup {
+	s.DBClusterParameterGroupArn = &v
+	return s
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *DBClusterParameterGroup) SetDBClusterParameterGroupName(v string) *DBClusterParameterGroup {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DBClusterParameterGroup) SetDBParameterGroupFamily(v string) *DBClusterParameterGroup {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DBClusterParameterGroup) SetDescription(v string) *DBClusterParameterGroup {
+	s.Description = &v
+	return s
+}
+
 type DBClusterParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -10346,6 +11618,12 @@ func (s DBClusterParameterGroupNameMessage) String() string {
 // GoString returns the string representation
 func (s DBClusterParameterGroupNameMessage) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *DBClusterParameterGroupNameMessage) SetDBClusterParameterGroupName(v string) *DBClusterParameterGroupNameMessage {
+	s.DBClusterParameterGroupName = &v
+	return s
 }
 
 // Describes an AWS Identity and Access Management (IAM) role that is associated
@@ -10379,6 +11657,18 @@ func (s DBClusterRole) String() string {
 // GoString returns the string representation
 func (s DBClusterRole) GoString() string {
 	return s.String()
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DBClusterRole) SetRoleArn(v string) *DBClusterRole {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBClusterRole) SetStatus(v string) *DBClusterRole {
+	s.Status = &v
+	return s
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -10463,6 +11753,114 @@ func (s DBClusterSnapshot) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *DBClusterSnapshot) SetAllocatedStorage(v int64) *DBClusterSnapshot {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *DBClusterSnapshot) SetAvailabilityZones(v []*string) *DBClusterSnapshot {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetClusterCreateTime sets the ClusterCreateTime field's value.
+func (s *DBClusterSnapshot) SetClusterCreateTime(v time.Time) *DBClusterSnapshot {
+	s.ClusterCreateTime = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DBClusterSnapshot) SetDBClusterIdentifier(v string) *DBClusterSnapshot {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterSnapshotArn sets the DBClusterSnapshotArn field's value.
+func (s *DBClusterSnapshot) SetDBClusterSnapshotArn(v string) *DBClusterSnapshot {
+	s.DBClusterSnapshotArn = &v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *DBClusterSnapshot) SetDBClusterSnapshotIdentifier(v string) *DBClusterSnapshot {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DBClusterSnapshot) SetEngine(v string) *DBClusterSnapshot {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DBClusterSnapshot) SetEngineVersion(v string) *DBClusterSnapshot {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DBClusterSnapshot) SetKmsKeyId(v string) *DBClusterSnapshot {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *DBClusterSnapshot) SetLicenseModel(v string) *DBClusterSnapshot {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *DBClusterSnapshot) SetMasterUsername(v string) *DBClusterSnapshot {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetPercentProgress sets the PercentProgress field's value.
+func (s *DBClusterSnapshot) SetPercentProgress(v int64) *DBClusterSnapshot {
+	s.PercentProgress = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DBClusterSnapshot) SetPort(v int64) *DBClusterSnapshot {
+	s.Port = &v
+	return s
+}
+
+// SetSnapshotCreateTime sets the SnapshotCreateTime field's value.
+func (s *DBClusterSnapshot) SetSnapshotCreateTime(v time.Time) *DBClusterSnapshot {
+	s.SnapshotCreateTime = &v
+	return s
+}
+
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *DBClusterSnapshot) SetSnapshotType(v string) *DBClusterSnapshot {
+	s.SnapshotType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBClusterSnapshot) SetStatus(v string) *DBClusterSnapshot {
+	s.Status = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *DBClusterSnapshot) SetStorageEncrypted(v bool) *DBClusterSnapshot {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DBClusterSnapshot) SetVpcId(v string) *DBClusterSnapshot {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the name and values of a manual DB cluster snapshot attribute.
 //
 // Manual DB cluster snapshot attributes are used to authorize other AWS accounts
@@ -10498,6 +11896,18 @@ func (s DBClusterSnapshotAttribute) GoString() string {
 	return s.String()
 }
 
+// SetAttributeName sets the AttributeName field's value.
+func (s *DBClusterSnapshotAttribute) SetAttributeName(v string) *DBClusterSnapshotAttribute {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeValues sets the AttributeValues field's value.
+func (s *DBClusterSnapshotAttribute) SetAttributeValues(v []*string) *DBClusterSnapshotAttribute {
+	s.AttributeValues = v
+	return s
+}
+
 // Contains the results of a successful call to the DescribeDBClusterSnapshotAttributes
 // API action.
 //
@@ -10523,6 +11933,18 @@ func (s DBClusterSnapshotAttributesResult) String() string {
 // GoString returns the string representation
 func (s DBClusterSnapshotAttributesResult) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshotAttributes sets the DBClusterSnapshotAttributes field's value.
+func (s *DBClusterSnapshotAttributesResult) SetDBClusterSnapshotAttributes(v []*DBClusterSnapshotAttribute) *DBClusterSnapshotAttributesResult {
+	s.DBClusterSnapshotAttributes = v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *DBClusterSnapshotAttributesResult) SetDBClusterSnapshotIdentifier(v string) *DBClusterSnapshotAttributesResult {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
 }
 
 // This data type is used as a response element in the action DescribeDBEngineVersions.
@@ -10569,6 +11991,60 @@ func (s DBEngineVersion) String() string {
 // GoString returns the string representation
 func (s DBEngineVersion) GoString() string {
 	return s.String()
+}
+
+// SetDBEngineDescription sets the DBEngineDescription field's value.
+func (s *DBEngineVersion) SetDBEngineDescription(v string) *DBEngineVersion {
+	s.DBEngineDescription = &v
+	return s
+}
+
+// SetDBEngineVersionDescription sets the DBEngineVersionDescription field's value.
+func (s *DBEngineVersion) SetDBEngineVersionDescription(v string) *DBEngineVersion {
+	s.DBEngineVersionDescription = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DBEngineVersion) SetDBParameterGroupFamily(v string) *DBEngineVersion {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDefaultCharacterSet sets the DefaultCharacterSet field's value.
+func (s *DBEngineVersion) SetDefaultCharacterSet(v *CharacterSet) *DBEngineVersion {
+	s.DefaultCharacterSet = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DBEngineVersion) SetEngine(v string) *DBEngineVersion {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DBEngineVersion) SetEngineVersion(v string) *DBEngineVersion {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetSupportedCharacterSets sets the SupportedCharacterSets field's value.
+func (s *DBEngineVersion) SetSupportedCharacterSets(v []*CharacterSet) *DBEngineVersion {
+	s.SupportedCharacterSets = v
+	return s
+}
+
+// SetSupportedTimezones sets the SupportedTimezones field's value.
+func (s *DBEngineVersion) SetSupportedTimezones(v []*Timezone) *DBEngineVersion {
+	s.SupportedTimezones = v
+	return s
+}
+
+// SetValidUpgradeTarget sets the ValidUpgradeTarget field's value.
+func (s *DBEngineVersion) SetValidUpgradeTarget(v []*UpgradeTarget) *DBEngineVersion {
+	s.ValidUpgradeTarget = v
+	return s
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -10793,6 +12269,288 @@ func (s DBInstance) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *DBInstance) SetAllocatedStorage(v int64) *DBInstance {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *DBInstance) SetAutoMinorVersionUpgrade(v bool) *DBInstance {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *DBInstance) SetAvailabilityZone(v string) *DBInstance {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *DBInstance) SetBackupRetentionPeriod(v int64) *DBInstance {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *DBInstance) SetCACertificateIdentifier(v string) *DBInstance {
+	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *DBInstance) SetCharacterSetName(v string) *DBInstance {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *DBInstance) SetCopyTagsToSnapshot(v bool) *DBInstance {
+	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DBInstance) SetDBClusterIdentifier(v string) *DBInstance {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBInstanceArn sets the DBInstanceArn field's value.
+func (s *DBInstance) SetDBInstanceArn(v string) *DBInstance {
+	s.DBInstanceArn = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *DBInstance) SetDBInstanceClass(v string) *DBInstance {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DBInstance) SetDBInstanceIdentifier(v string) *DBInstance {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBInstanceStatus sets the DBInstanceStatus field's value.
+func (s *DBInstance) SetDBInstanceStatus(v string) *DBInstance {
+	s.DBInstanceStatus = &v
+	return s
+}
+
+// SetDBName sets the DBName field's value.
+func (s *DBInstance) SetDBName(v string) *DBInstance {
+	s.DBName = &v
+	return s
+}
+
+// SetDBParameterGroups sets the DBParameterGroups field's value.
+func (s *DBInstance) SetDBParameterGroups(v []*DBParameterGroupStatus) *DBInstance {
+	s.DBParameterGroups = v
+	return s
+}
+
+// SetDBSecurityGroups sets the DBSecurityGroups field's value.
+func (s *DBInstance) SetDBSecurityGroups(v []*DBSecurityGroupMembership) *DBInstance {
+	s.DBSecurityGroups = v
+	return s
+}
+
+// SetDBSubnetGroup sets the DBSubnetGroup field's value.
+func (s *DBInstance) SetDBSubnetGroup(v *DBSubnetGroup) *DBInstance {
+	s.DBSubnetGroup = v
+	return s
+}
+
+// SetDbInstancePort sets the DbInstancePort field's value.
+func (s *DBInstance) SetDbInstancePort(v int64) *DBInstance {
+	s.DbInstancePort = &v
+	return s
+}
+
+// SetDbiResourceId sets the DbiResourceId field's value.
+func (s *DBInstance) SetDbiResourceId(v string) *DBInstance {
+	s.DbiResourceId = &v
+	return s
+}
+
+// SetDomainMemberships sets the DomainMemberships field's value.
+func (s *DBInstance) SetDomainMemberships(v []*DomainMembership) *DBInstance {
+	s.DomainMemberships = v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DBInstance) SetEndpoint(v *Endpoint) *DBInstance {
+	s.Endpoint = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DBInstance) SetEngine(v string) *DBInstance {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DBInstance) SetEngineVersion(v string) *DBInstance {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetEnhancedMonitoringResourceArn sets the EnhancedMonitoringResourceArn field's value.
+func (s *DBInstance) SetEnhancedMonitoringResourceArn(v string) *DBInstance {
+	s.EnhancedMonitoringResourceArn = &v
+	return s
+}
+
+// SetInstanceCreateTime sets the InstanceCreateTime field's value.
+func (s *DBInstance) SetInstanceCreateTime(v time.Time) *DBInstance {
+	s.InstanceCreateTime = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *DBInstance) SetIops(v int64) *DBInstance {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DBInstance) SetKmsKeyId(v string) *DBInstance {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLatestRestorableTime sets the LatestRestorableTime field's value.
+func (s *DBInstance) SetLatestRestorableTime(v time.Time) *DBInstance {
+	s.LatestRestorableTime = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *DBInstance) SetLicenseModel(v string) *DBInstance {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *DBInstance) SetMasterUsername(v string) *DBInstance {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *DBInstance) SetMonitoringInterval(v int64) *DBInstance {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *DBInstance) SetMonitoringRoleArn(v string) *DBInstance {
+	s.MonitoringRoleArn = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *DBInstance) SetMultiAZ(v bool) *DBInstance {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOptionGroupMemberships sets the OptionGroupMemberships field's value.
+func (s *DBInstance) SetOptionGroupMemberships(v []*OptionGroupMembership) *DBInstance {
+	s.OptionGroupMemberships = v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *DBInstance) SetPendingModifiedValues(v *PendingModifiedValues) *DBInstance {
+	s.PendingModifiedValues = v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *DBInstance) SetPreferredBackupWindow(v string) *DBInstance {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *DBInstance) SetPreferredMaintenanceWindow(v string) *DBInstance {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPromotionTier sets the PromotionTier field's value.
+func (s *DBInstance) SetPromotionTier(v int64) *DBInstance {
+	s.PromotionTier = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *DBInstance) SetPubliclyAccessible(v bool) *DBInstance {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetReadReplicaDBInstanceIdentifiers sets the ReadReplicaDBInstanceIdentifiers field's value.
+func (s *DBInstance) SetReadReplicaDBInstanceIdentifiers(v []*string) *DBInstance {
+	s.ReadReplicaDBInstanceIdentifiers = v
+	return s
+}
+
+// SetReadReplicaSourceDBInstanceIdentifier sets the ReadReplicaSourceDBInstanceIdentifier field's value.
+func (s *DBInstance) SetReadReplicaSourceDBInstanceIdentifier(v string) *DBInstance {
+	s.ReadReplicaSourceDBInstanceIdentifier = &v
+	return s
+}
+
+// SetSecondaryAvailabilityZone sets the SecondaryAvailabilityZone field's value.
+func (s *DBInstance) SetSecondaryAvailabilityZone(v string) *DBInstance {
+	s.SecondaryAvailabilityZone = &v
+	return s
+}
+
+// SetStatusInfos sets the StatusInfos field's value.
+func (s *DBInstance) SetStatusInfos(v []*DBInstanceStatusInfo) *DBInstance {
+	s.StatusInfos = v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *DBInstance) SetStorageEncrypted(v bool) *DBInstance {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBInstance) SetStorageType(v string) *DBInstance {
+	s.StorageType = &v
+	return s
+}
+
+// SetTdeCredentialArn sets the TdeCredentialArn field's value.
+func (s *DBInstance) SetTdeCredentialArn(v string) *DBInstance {
+	s.TdeCredentialArn = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *DBInstance) SetTimezone(v string) *DBInstance {
+	s.Timezone = &v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *DBInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBInstance {
+	s.VpcSecurityGroups = v
+	return s
+}
+
 // Provides a list of status information for a DB instance.
 type DBInstanceStatusInfo struct {
 	_ struct{} `type:"structure"`
@@ -10821,6 +12579,30 @@ func (s DBInstanceStatusInfo) String() string {
 // GoString returns the string representation
 func (s DBInstanceStatusInfo) GoString() string {
 	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *DBInstanceStatusInfo) SetMessage(v string) *DBInstanceStatusInfo {
+	s.Message = &v
+	return s
+}
+
+// SetNormal sets the Normal field's value.
+func (s *DBInstanceStatusInfo) SetNormal(v bool) *DBInstanceStatusInfo {
+	s.Normal = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBInstanceStatusInfo) SetStatus(v string) *DBInstanceStatusInfo {
+	s.Status = &v
+	return s
+}
+
+// SetStatusType sets the StatusType field's value.
+func (s *DBInstanceStatusInfo) SetStatusType(v string) *DBInstanceStatusInfo {
+	s.StatusType = &v
+	return s
 }
 
 // Contains the result of a successful invocation of the CreateDBParameterGroup
@@ -10855,6 +12637,30 @@ func (s DBParameterGroup) GoString() string {
 	return s.String()
 }
 
+// SetDBParameterGroupArn sets the DBParameterGroupArn field's value.
+func (s *DBParameterGroup) SetDBParameterGroupArn(v string) *DBParameterGroup {
+	s.DBParameterGroupArn = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DBParameterGroup) SetDBParameterGroupFamily(v string) *DBParameterGroup {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *DBParameterGroup) SetDBParameterGroupName(v string) *DBParameterGroup {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DBParameterGroup) SetDescription(v string) *DBParameterGroup {
+	s.Description = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the ModifyDBParameterGroup
 // or ResetDBParameterGroup action.
 type DBParameterGroupNameMessage struct {
@@ -10872,6 +12678,12 @@ func (s DBParameterGroupNameMessage) String() string {
 // GoString returns the string representation
 func (s DBParameterGroupNameMessage) GoString() string {
 	return s.String()
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *DBParameterGroupNameMessage) SetDBParameterGroupName(v string) *DBParameterGroupNameMessage {
+	s.DBParameterGroupName = &v
+	return s
 }
 
 // The status of the DB parameter group.
@@ -10907,6 +12719,18 @@ func (s DBParameterGroupStatus) String() string {
 // GoString returns the string representation
 func (s DBParameterGroupStatus) GoString() string {
 	return s.String()
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *DBParameterGroupStatus) SetDBParameterGroupName(v string) *DBParameterGroupStatus {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetParameterApplyStatus sets the ParameterApplyStatus field's value.
+func (s *DBParameterGroupStatus) SetParameterApplyStatus(v string) *DBParameterGroupStatus {
+	s.ParameterApplyStatus = &v
+	return s
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -10956,6 +12780,48 @@ func (s DBSecurityGroup) GoString() string {
 	return s.String()
 }
 
+// SetDBSecurityGroupArn sets the DBSecurityGroupArn field's value.
+func (s *DBSecurityGroup) SetDBSecurityGroupArn(v string) *DBSecurityGroup {
+	s.DBSecurityGroupArn = &v
+	return s
+}
+
+// SetDBSecurityGroupDescription sets the DBSecurityGroupDescription field's value.
+func (s *DBSecurityGroup) SetDBSecurityGroupDescription(v string) *DBSecurityGroup {
+	s.DBSecurityGroupDescription = &v
+	return s
+}
+
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *DBSecurityGroup) SetDBSecurityGroupName(v string) *DBSecurityGroup {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroups sets the EC2SecurityGroups field's value.
+func (s *DBSecurityGroup) SetEC2SecurityGroups(v []*EC2SecurityGroup) *DBSecurityGroup {
+	s.EC2SecurityGroups = v
+	return s
+}
+
+// SetIPRanges sets the IPRanges field's value.
+func (s *DBSecurityGroup) SetIPRanges(v []*IPRange) *DBSecurityGroup {
+	s.IPRanges = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *DBSecurityGroup) SetOwnerId(v string) *DBSecurityGroup {
+	s.OwnerId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DBSecurityGroup) SetVpcId(v string) *DBSecurityGroup {
+	s.VpcId = &v
+	return s
+}
+
 // This data type is used as a response element in the following actions:
 //
 //    * ModifyDBInstance
@@ -10983,6 +12849,18 @@ func (s DBSecurityGroupMembership) String() string {
 // GoString returns the string representation
 func (s DBSecurityGroupMembership) GoString() string {
 	return s.String()
+}
+
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *DBSecurityGroupMembership) SetDBSecurityGroupName(v string) *DBSecurityGroupMembership {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBSecurityGroupMembership) SetStatus(v string) *DBSecurityGroupMembership {
+	s.Status = &v
+	return s
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -11090,6 +12968,156 @@ func (s DBSnapshot) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *DBSnapshot) SetAllocatedStorage(v int64) *DBSnapshot {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *DBSnapshot) SetAvailabilityZone(v string) *DBSnapshot {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DBSnapshot) SetDBInstanceIdentifier(v string) *DBSnapshot {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSnapshotArn sets the DBSnapshotArn field's value.
+func (s *DBSnapshot) SetDBSnapshotArn(v string) *DBSnapshot {
+	s.DBSnapshotArn = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DBSnapshot) SetDBSnapshotIdentifier(v string) *DBSnapshot {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *DBSnapshot) SetEncrypted(v bool) *DBSnapshot {
+	s.Encrypted = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DBSnapshot) SetEngine(v string) *DBSnapshot {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DBSnapshot) SetEngineVersion(v string) *DBSnapshot {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetInstanceCreateTime sets the InstanceCreateTime field's value.
+func (s *DBSnapshot) SetInstanceCreateTime(v time.Time) *DBSnapshot {
+	s.InstanceCreateTime = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *DBSnapshot) SetIops(v int64) *DBSnapshot {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DBSnapshot) SetKmsKeyId(v string) *DBSnapshot {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *DBSnapshot) SetLicenseModel(v string) *DBSnapshot {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *DBSnapshot) SetMasterUsername(v string) *DBSnapshot {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *DBSnapshot) SetOptionGroupName(v string) *DBSnapshot {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPercentProgress sets the PercentProgress field's value.
+func (s *DBSnapshot) SetPercentProgress(v int64) *DBSnapshot {
+	s.PercentProgress = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DBSnapshot) SetPort(v int64) *DBSnapshot {
+	s.Port = &v
+	return s
+}
+
+// SetSnapshotCreateTime sets the SnapshotCreateTime field's value.
+func (s *DBSnapshot) SetSnapshotCreateTime(v time.Time) *DBSnapshot {
+	s.SnapshotCreateTime = &v
+	return s
+}
+
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *DBSnapshot) SetSnapshotType(v string) *DBSnapshot {
+	s.SnapshotType = &v
+	return s
+}
+
+// SetSourceDBSnapshotIdentifier sets the SourceDBSnapshotIdentifier field's value.
+func (s *DBSnapshot) SetSourceDBSnapshotIdentifier(v string) *DBSnapshot {
+	s.SourceDBSnapshotIdentifier = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *DBSnapshot) SetSourceRegion(v string) *DBSnapshot {
+	s.SourceRegion = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBSnapshot) SetStatus(v string) *DBSnapshot {
+	s.Status = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBSnapshot) SetStorageType(v string) *DBSnapshot {
+	s.StorageType = &v
+	return s
+}
+
+// SetTdeCredentialArn sets the TdeCredentialArn field's value.
+func (s *DBSnapshot) SetTdeCredentialArn(v string) *DBSnapshot {
+	s.TdeCredentialArn = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *DBSnapshot) SetTimezone(v string) *DBSnapshot {
+	s.Timezone = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DBSnapshot) SetVpcId(v string) *DBSnapshot {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the name and values of a manual DB snapshot attribute
 //
 // Manual DB snapshot attributes are used to authorize other AWS accounts to
@@ -11124,6 +13152,18 @@ func (s DBSnapshotAttribute) GoString() string {
 	return s.String()
 }
 
+// SetAttributeName sets the AttributeName field's value.
+func (s *DBSnapshotAttribute) SetAttributeName(v string) *DBSnapshotAttribute {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeValues sets the AttributeValues field's value.
+func (s *DBSnapshotAttribute) SetAttributeValues(v []*string) *DBSnapshotAttribute {
+	s.AttributeValues = v
+	return s
+}
+
 // Contains the results of a successful call to the DescribeDBSnapshotAttributes
 // API action.
 //
@@ -11148,6 +13188,18 @@ func (s DBSnapshotAttributesResult) String() string {
 // GoString returns the string representation
 func (s DBSnapshotAttributesResult) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshotAttributes sets the DBSnapshotAttributes field's value.
+func (s *DBSnapshotAttributesResult) SetDBSnapshotAttributes(v []*DBSnapshotAttribute) *DBSnapshotAttributesResult {
+	s.DBSnapshotAttributes = v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DBSnapshotAttributesResult) SetDBSnapshotIdentifier(v string) *DBSnapshotAttributesResult {
+	s.DBSnapshotIdentifier = &v
+	return s
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -11192,6 +13244,42 @@ func (s DBSubnetGroup) String() string {
 // GoString returns the string representation
 func (s DBSubnetGroup) GoString() string {
 	return s.String()
+}
+
+// SetDBSubnetGroupArn sets the DBSubnetGroupArn field's value.
+func (s *DBSubnetGroup) SetDBSubnetGroupArn(v string) *DBSubnetGroup {
+	s.DBSubnetGroupArn = &v
+	return s
+}
+
+// SetDBSubnetGroupDescription sets the DBSubnetGroupDescription field's value.
+func (s *DBSubnetGroup) SetDBSubnetGroupDescription(v string) *DBSubnetGroup {
+	s.DBSubnetGroupDescription = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *DBSubnetGroup) SetDBSubnetGroupName(v string) *DBSubnetGroup {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetSubnetGroupStatus sets the SubnetGroupStatus field's value.
+func (s *DBSubnetGroup) SetSubnetGroupStatus(v string) *DBSubnetGroup {
+	s.SubnetGroupStatus = &v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *DBSubnetGroup) SetSubnets(v []*Subnet) *DBSubnetGroup {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DBSubnetGroup) SetVpcId(v string) *DBSubnetGroup {
+	s.VpcId = &v
+	return s
 }
 
 type DeleteDBClusterInput struct {
@@ -11260,6 +13348,24 @@ func (s *DeleteDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DeleteDBClusterInput) SetDBClusterIdentifier(v string) *DeleteDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetFinalDBSnapshotIdentifier sets the FinalDBSnapshotIdentifier field's value.
+func (s *DeleteDBClusterInput) SetFinalDBSnapshotIdentifier(v string) *DeleteDBClusterInput {
+	s.FinalDBSnapshotIdentifier = &v
+	return s
+}
+
+// SetSkipFinalSnapshot sets the SkipFinalSnapshot field's value.
+func (s *DeleteDBClusterInput) SetSkipFinalSnapshot(v bool) *DeleteDBClusterInput {
+	s.SkipFinalSnapshot = &v
+	return s
+}
+
 type DeleteDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11289,6 +13395,12 @@ func (s DeleteDBClusterOutput) String() string {
 // GoString returns the string representation
 func (s DeleteDBClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *DeleteDBClusterOutput) SetDBCluster(v *DBCluster) *DeleteDBClusterOutput {
+	s.DBCluster = v
+	return s
 }
 
 type DeleteDBClusterParameterGroupInput struct {
@@ -11329,6 +13441,12 @@ func (s *DeleteDBClusterParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *DeleteDBClusterParameterGroupInput) SetDBClusterParameterGroupName(v string) *DeleteDBClusterParameterGroupInput {
+	s.DBClusterParameterGroupName = &v
+	return s
 }
 
 type DeleteDBClusterParameterGroupOutput struct {
@@ -11380,6 +13498,12 @@ func (s *DeleteDBClusterSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *DeleteDBClusterSnapshotInput) SetDBClusterSnapshotIdentifier(v string) *DeleteDBClusterSnapshotInput {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
 type DeleteDBClusterSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11402,6 +13526,12 @@ func (s DeleteDBClusterSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s DeleteDBClusterSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshot sets the DBClusterSnapshot field's value.
+func (s *DeleteDBClusterSnapshotOutput) SetDBClusterSnapshot(v *DBClusterSnapshot) *DeleteDBClusterSnapshotOutput {
+	s.DBClusterSnapshot = v
+	return s
 }
 
 type DeleteDBInstanceInput struct {
@@ -11478,6 +13608,24 @@ func (s *DeleteDBInstanceInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DeleteDBInstanceInput) SetDBInstanceIdentifier(v string) *DeleteDBInstanceInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetFinalDBSnapshotIdentifier sets the FinalDBSnapshotIdentifier field's value.
+func (s *DeleteDBInstanceInput) SetFinalDBSnapshotIdentifier(v string) *DeleteDBInstanceInput {
+	s.FinalDBSnapshotIdentifier = &v
+	return s
+}
+
+// SetSkipFinalSnapshot sets the SkipFinalSnapshot field's value.
+func (s *DeleteDBInstanceInput) SetSkipFinalSnapshot(v bool) *DeleteDBInstanceInput {
+	s.SkipFinalSnapshot = &v
+	return s
+}
+
 type DeleteDBInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11501,6 +13649,12 @@ func (s DeleteDBInstanceOutput) String() string {
 // GoString returns the string representation
 func (s DeleteDBInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *DeleteDBInstanceOutput) SetDBInstance(v *DBInstance) *DeleteDBInstanceOutput {
+	s.DBInstance = v
+	return s
 }
 
 type DeleteDBParameterGroupInput struct {
@@ -11541,6 +13695,12 @@ func (s *DeleteDBParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *DeleteDBParameterGroupInput) SetDBParameterGroupName(v string) *DeleteDBParameterGroupInput {
+	s.DBParameterGroupName = &v
+	return s
 }
 
 type DeleteDBParameterGroupOutput struct {
@@ -11601,6 +13761,12 @@ func (s *DeleteDBSecurityGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *DeleteDBSecurityGroupInput) SetDBSecurityGroupName(v string) *DeleteDBSecurityGroupInput {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
 type DeleteDBSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -11650,6 +13816,12 @@ func (s *DeleteDBSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DeleteDBSnapshotInput) SetDBSnapshotIdentifier(v string) *DeleteDBSnapshotInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
 type DeleteDBSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11671,6 +13843,12 @@ func (s DeleteDBSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s DeleteDBSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshot sets the DBSnapshot field's value.
+func (s *DeleteDBSnapshotOutput) SetDBSnapshot(v *DBSnapshot) *DeleteDBSnapshotOutput {
+	s.DBSnapshot = v
+	return s
 }
 
 type DeleteDBSubnetGroupInput struct {
@@ -11712,6 +13890,12 @@ func (s *DeleteDBSubnetGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *DeleteDBSubnetGroupInput) SetDBSubnetGroupName(v string) *DeleteDBSubnetGroupInput {
+	s.DBSubnetGroupName = &v
+	return s
 }
 
 type DeleteDBSubnetGroupOutput struct {
@@ -11760,6 +13944,12 @@ func (s *DeleteEventSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *DeleteEventSubscriptionInput) SetSubscriptionName(v string) *DeleteEventSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
 type DeleteEventSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11776,6 +13966,12 @@ func (s DeleteEventSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s DeleteEventSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *DeleteEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *DeleteEventSubscriptionOutput {
+	s.EventSubscription = v
+	return s
 }
 
 type DeleteOptionGroupInput struct {
@@ -11810,6 +14006,12 @@ func (s *DeleteOptionGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *DeleteOptionGroupInput) SetOptionGroupName(v string) *DeleteOptionGroupInput {
+	s.OptionGroupName = &v
+	return s
 }
 
 type DeleteOptionGroupOutput struct {
@@ -11857,6 +14059,12 @@ func (s DescribeAccountAttributesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAccountAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountQuotas sets the AccountQuotas field's value.
+func (s *DescribeAccountAttributesOutput) SetAccountQuotas(v []*AccountQuota) *DescribeAccountAttributesOutput {
+	s.AccountQuotas = v
+	return s
 }
 
 type DescribeCertificatesInput struct {
@@ -11923,6 +14131,30 @@ func (s *DescribeCertificatesInput) Validate() error {
 	return nil
 }
 
+// SetCertificateIdentifier sets the CertificateIdentifier field's value.
+func (s *DescribeCertificatesInput) SetCertificateIdentifier(v string) *DescribeCertificatesInput {
+	s.CertificateIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeCertificatesInput) SetFilters(v []*Filter) *DescribeCertificatesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCertificatesInput) SetMarker(v string) *DescribeCertificatesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCertificatesInput) SetMaxRecords(v int64) *DescribeCertificatesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Data returned by the DescribeCertificates action.
 type DescribeCertificatesOutput struct {
 	_ struct{} `type:"structure"`
@@ -11944,6 +14176,18 @@ func (s DescribeCertificatesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCertificatesOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificates sets the Certificates field's value.
+func (s *DescribeCertificatesOutput) SetCertificates(v []*Certificate) *DescribeCertificatesOutput {
+	s.Certificates = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCertificatesOutput) SetMarker(v string) *DescribeCertificatesOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBClusterParameterGroupsInput struct {
@@ -12008,6 +14252,30 @@ func (s *DescribeDBClusterParameterGroupsInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *DescribeDBClusterParameterGroupsInput) SetDBClusterParameterGroupName(v string) *DescribeDBClusterParameterGroupsInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBClusterParameterGroupsInput) SetFilters(v []*Filter) *DescribeDBClusterParameterGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterParameterGroupsInput) SetMarker(v string) *DescribeDBClusterParameterGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBClusterParameterGroupsInput) SetMaxRecords(v int64) *DescribeDBClusterParameterGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeDBClusterParameterGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12028,6 +14296,18 @@ func (s DescribeDBClusterParameterGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBClusterParameterGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterParameterGroups sets the DBClusterParameterGroups field's value.
+func (s *DescribeDBClusterParameterGroupsOutput) SetDBClusterParameterGroups(v []*DBClusterParameterGroup) *DescribeDBClusterParameterGroupsOutput {
+	s.DBClusterParameterGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterParameterGroupsOutput) SetMarker(v string) *DescribeDBClusterParameterGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBClusterParametersInput struct {
@@ -12102,6 +14382,36 @@ func (s *DescribeDBClusterParametersInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *DescribeDBClusterParametersInput) SetDBClusterParameterGroupName(v string) *DescribeDBClusterParametersInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBClusterParametersInput) SetFilters(v []*Filter) *DescribeDBClusterParametersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterParametersInput) SetMarker(v string) *DescribeDBClusterParametersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBClusterParametersInput) SetMaxRecords(v int64) *DescribeDBClusterParametersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *DescribeDBClusterParametersInput) SetSource(v string) *DescribeDBClusterParametersInput {
+	s.Source = &v
+	return s
+}
+
 // Provides details about a DB cluster parameter group including the parameters
 // in the DB cluster parameter group.
 type DescribeDBClusterParametersOutput struct {
@@ -12124,6 +14434,18 @@ func (s DescribeDBClusterParametersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBClusterParametersOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterParametersOutput) SetMarker(v string) *DescribeDBClusterParametersOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DescribeDBClusterParametersOutput) SetParameters(v []*Parameter) *DescribeDBClusterParametersOutput {
+	s.Parameters = v
+	return s
 }
 
 type DescribeDBClusterSnapshotAttributesInput struct {
@@ -12158,6 +14480,12 @@ func (s *DescribeDBClusterSnapshotAttributesInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *DescribeDBClusterSnapshotAttributesInput) SetDBClusterSnapshotIdentifier(v string) *DescribeDBClusterSnapshotAttributesInput {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
 type DescribeDBClusterSnapshotAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12178,6 +14506,12 @@ func (s DescribeDBClusterSnapshotAttributesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBClusterSnapshotAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshotAttributesResult sets the DBClusterSnapshotAttributesResult field's value.
+func (s *DescribeDBClusterSnapshotAttributesOutput) SetDBClusterSnapshotAttributesResult(v *DBClusterSnapshotAttributesResult) *DescribeDBClusterSnapshotAttributesOutput {
+	s.DBClusterSnapshotAttributesResult = v
+	return s
 }
 
 type DescribeDBClusterSnapshotsInput struct {
@@ -12302,6 +14636,54 @@ func (s *DescribeDBClusterSnapshotsInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetDBClusterIdentifier(v string) *DescribeDBClusterSnapshotsInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetDBClusterSnapshotIdentifier(v string) *DescribeDBClusterSnapshotsInput {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetFilters(v []*Filter) *DescribeDBClusterSnapshotsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludePublic sets the IncludePublic field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetIncludePublic(v bool) *DescribeDBClusterSnapshotsInput {
+	s.IncludePublic = &v
+	return s
+}
+
+// SetIncludeShared sets the IncludeShared field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetIncludeShared(v bool) *DescribeDBClusterSnapshotsInput {
+	s.IncludeShared = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetMarker(v string) *DescribeDBClusterSnapshotsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetMaxRecords(v int64) *DescribeDBClusterSnapshotsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *DescribeDBClusterSnapshotsInput) SetSnapshotType(v string) *DescribeDBClusterSnapshotsInput {
+	s.SnapshotType = &v
+	return s
+}
+
 // Provides a list of DB cluster snapshots for the user as the result of a call
 // to the DescribeDBClusterSnapshots action.
 type DescribeDBClusterSnapshotsOutput struct {
@@ -12324,6 +14706,18 @@ func (s DescribeDBClusterSnapshotsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBClusterSnapshotsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshots sets the DBClusterSnapshots field's value.
+func (s *DescribeDBClusterSnapshotsOutput) SetDBClusterSnapshots(v []*DBClusterSnapshot) *DescribeDBClusterSnapshotsOutput {
+	s.DBClusterSnapshots = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterSnapshotsOutput) SetMarker(v string) *DescribeDBClusterSnapshotsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBClustersInput struct {
@@ -12390,6 +14784,30 @@ func (s *DescribeDBClustersInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DescribeDBClustersInput) SetDBClusterIdentifier(v string) *DescribeDBClustersInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBClustersInput) SetFilters(v []*Filter) *DescribeDBClustersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClustersInput) SetMarker(v string) *DescribeDBClustersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBClustersInput) SetMaxRecords(v int64) *DescribeDBClustersInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBClusters
 // action.
 type DescribeDBClustersOutput struct {
@@ -12410,6 +14828,18 @@ func (s DescribeDBClustersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBClustersOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusters sets the DBClusters field's value.
+func (s *DescribeDBClustersOutput) SetDBClusters(v []*DBCluster) *DescribeDBClustersOutput {
+	s.DBClusters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClustersOutput) SetMarker(v string) *DescribeDBClustersOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBEngineVersionsInput struct {
@@ -12496,6 +14926,60 @@ func (s *DescribeDBEngineVersionsInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DescribeDBEngineVersionsInput) SetDBParameterGroupFamily(v string) *DescribeDBEngineVersionsInput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDefaultOnly sets the DefaultOnly field's value.
+func (s *DescribeDBEngineVersionsInput) SetDefaultOnly(v bool) *DescribeDBEngineVersionsInput {
+	s.DefaultOnly = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DescribeDBEngineVersionsInput) SetEngine(v string) *DescribeDBEngineVersionsInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DescribeDBEngineVersionsInput) SetEngineVersion(v string) *DescribeDBEngineVersionsInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBEngineVersionsInput) SetFilters(v []*Filter) *DescribeDBEngineVersionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetListSupportedCharacterSets sets the ListSupportedCharacterSets field's value.
+func (s *DescribeDBEngineVersionsInput) SetListSupportedCharacterSets(v bool) *DescribeDBEngineVersionsInput {
+	s.ListSupportedCharacterSets = &v
+	return s
+}
+
+// SetListSupportedTimezones sets the ListSupportedTimezones field's value.
+func (s *DescribeDBEngineVersionsInput) SetListSupportedTimezones(v bool) *DescribeDBEngineVersionsInput {
+	s.ListSupportedTimezones = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBEngineVersionsInput) SetMarker(v string) *DescribeDBEngineVersionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBEngineVersionsInput) SetMaxRecords(v int64) *DescribeDBEngineVersionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBEngineVersions
 // action.
 type DescribeDBEngineVersionsOutput struct {
@@ -12518,6 +15002,18 @@ func (s DescribeDBEngineVersionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBEngineVersionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBEngineVersions sets the DBEngineVersions field's value.
+func (s *DescribeDBEngineVersionsOutput) SetDBEngineVersions(v []*DBEngineVersion) *DescribeDBEngineVersionsOutput {
+	s.DBEngineVersions = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBEngineVersionsOutput) SetMarker(v string) *DescribeDBEngineVersionsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBInstancesInput struct {
@@ -12583,6 +15079,30 @@ func (s *DescribeDBInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DescribeDBInstancesInput) SetDBInstanceIdentifier(v string) *DescribeDBInstancesInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBInstancesInput) SetFilters(v []*Filter) *DescribeDBInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBInstancesInput) SetMarker(v string) *DescribeDBInstancesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBInstancesInput) SetMaxRecords(v int64) *DescribeDBInstancesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBInstances
 // action.
 type DescribeDBInstancesOutput struct {
@@ -12607,6 +15127,18 @@ func (s DescribeDBInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// SetDBInstances sets the DBInstances field's value.
+func (s *DescribeDBInstancesOutput) SetDBInstances(v []*DBInstance) *DescribeDBInstancesOutput {
+	s.DBInstances = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBInstancesOutput) SetMarker(v string) *DescribeDBInstancesOutput {
+	s.Marker = &v
+	return s
+}
+
 // This data type is used as a response element to DescribeDBLogFiles.
 type DescribeDBLogFilesDetails struct {
 	_ struct{} `type:"structure"`
@@ -12629,6 +15161,24 @@ func (s DescribeDBLogFilesDetails) String() string {
 // GoString returns the string representation
 func (s DescribeDBLogFilesDetails) GoString() string {
 	return s.String()
+}
+
+// SetLastWritten sets the LastWritten field's value.
+func (s *DescribeDBLogFilesDetails) SetLastWritten(v int64) *DescribeDBLogFilesDetails {
+	s.LastWritten = &v
+	return s
+}
+
+// SetLogFileName sets the LogFileName field's value.
+func (s *DescribeDBLogFilesDetails) SetLogFileName(v string) *DescribeDBLogFilesDetails {
+	s.LogFileName = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *DescribeDBLogFilesDetails) SetSize(v int64) *DescribeDBLogFilesDetails {
+	s.Size = &v
+	return s
 }
 
 type DescribeDBLogFilesInput struct {
@@ -12706,6 +15256,48 @@ func (s *DescribeDBLogFilesInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DescribeDBLogFilesInput) SetDBInstanceIdentifier(v string) *DescribeDBLogFilesInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetFileLastWritten sets the FileLastWritten field's value.
+func (s *DescribeDBLogFilesInput) SetFileLastWritten(v int64) *DescribeDBLogFilesInput {
+	s.FileLastWritten = &v
+	return s
+}
+
+// SetFileSize sets the FileSize field's value.
+func (s *DescribeDBLogFilesInput) SetFileSize(v int64) *DescribeDBLogFilesInput {
+	s.FileSize = &v
+	return s
+}
+
+// SetFilenameContains sets the FilenameContains field's value.
+func (s *DescribeDBLogFilesInput) SetFilenameContains(v string) *DescribeDBLogFilesInput {
+	s.FilenameContains = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBLogFilesInput) SetFilters(v []*Filter) *DescribeDBLogFilesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBLogFilesInput) SetMarker(v string) *DescribeDBLogFilesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBLogFilesInput) SetMaxRecords(v int64) *DescribeDBLogFilesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // The response from a call to DescribeDBLogFiles.
 type DescribeDBLogFilesOutput struct {
 	_ struct{} `type:"structure"`
@@ -12725,6 +15317,18 @@ func (s DescribeDBLogFilesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBLogFilesOutput) GoString() string {
 	return s.String()
+}
+
+// SetDescribeDBLogFiles sets the DescribeDBLogFiles field's value.
+func (s *DescribeDBLogFilesOutput) SetDescribeDBLogFiles(v []*DescribeDBLogFilesDetails) *DescribeDBLogFilesOutput {
+	s.DescribeDBLogFiles = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBLogFilesOutput) SetMarker(v string) *DescribeDBLogFilesOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBParameterGroupsInput struct {
@@ -12789,6 +15393,30 @@ func (s *DescribeDBParameterGroupsInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *DescribeDBParameterGroupsInput) SetDBParameterGroupName(v string) *DescribeDBParameterGroupsInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBParameterGroupsInput) SetFilters(v []*Filter) *DescribeDBParameterGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBParameterGroupsInput) SetMarker(v string) *DescribeDBParameterGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBParameterGroupsInput) SetMaxRecords(v int64) *DescribeDBParameterGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBParameterGroups
 // action.
 type DescribeDBParameterGroupsOutput struct {
@@ -12811,6 +15439,18 @@ func (s DescribeDBParameterGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBParameterGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBParameterGroups sets the DBParameterGroups field's value.
+func (s *DescribeDBParameterGroupsOutput) SetDBParameterGroups(v []*DBParameterGroup) *DescribeDBParameterGroupsOutput {
+	s.DBParameterGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBParameterGroupsOutput) SetMarker(v string) *DescribeDBParameterGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBParametersInput struct {
@@ -12887,6 +15527,36 @@ func (s *DescribeDBParametersInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *DescribeDBParametersInput) SetDBParameterGroupName(v string) *DescribeDBParametersInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBParametersInput) SetFilters(v []*Filter) *DescribeDBParametersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBParametersInput) SetMarker(v string) *DescribeDBParametersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBParametersInput) SetMaxRecords(v int64) *DescribeDBParametersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *DescribeDBParametersInput) SetSource(v string) *DescribeDBParametersInput {
+	s.Source = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBParameters
 // action.
 type DescribeDBParametersOutput struct {
@@ -12909,6 +15579,18 @@ func (s DescribeDBParametersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBParametersOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBParametersOutput) SetMarker(v string) *DescribeDBParametersOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DescribeDBParametersOutput) SetParameters(v []*Parameter) *DescribeDBParametersOutput {
+	s.Parameters = v
+	return s
 }
 
 type DescribeDBSecurityGroupsInput struct {
@@ -12965,6 +15647,30 @@ func (s *DescribeDBSecurityGroupsInput) Validate() error {
 	return nil
 }
 
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *DescribeDBSecurityGroupsInput) SetDBSecurityGroupName(v string) *DescribeDBSecurityGroupsInput {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBSecurityGroupsInput) SetFilters(v []*Filter) *DescribeDBSecurityGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSecurityGroupsInput) SetMarker(v string) *DescribeDBSecurityGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBSecurityGroupsInput) SetMaxRecords(v int64) *DescribeDBSecurityGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBSecurityGroups
 // action.
 type DescribeDBSecurityGroupsOutput struct {
@@ -12987,6 +15693,18 @@ func (s DescribeDBSecurityGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBSecurityGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSecurityGroups sets the DBSecurityGroups field's value.
+func (s *DescribeDBSecurityGroupsOutput) SetDBSecurityGroups(v []*DBSecurityGroup) *DescribeDBSecurityGroupsOutput {
+	s.DBSecurityGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSecurityGroupsOutput) SetMarker(v string) *DescribeDBSecurityGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBSnapshotAttributesInput struct {
@@ -13021,6 +15739,12 @@ func (s *DescribeDBSnapshotAttributesInput) Validate() error {
 	return nil
 }
 
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DescribeDBSnapshotAttributesInput) SetDBSnapshotIdentifier(v string) *DescribeDBSnapshotAttributesInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
 type DescribeDBSnapshotAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13041,6 +15765,12 @@ func (s DescribeDBSnapshotAttributesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBSnapshotAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshotAttributesResult sets the DBSnapshotAttributesResult field's value.
+func (s *DescribeDBSnapshotAttributesOutput) SetDBSnapshotAttributesResult(v *DBSnapshotAttributesResult) *DescribeDBSnapshotAttributesOutput {
+	s.DBSnapshotAttributesResult = v
+	return s
 }
 
 type DescribeDBSnapshotsInput struct {
@@ -13164,6 +15894,54 @@ func (s *DescribeDBSnapshotsInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DescribeDBSnapshotsInput) SetDBInstanceIdentifier(v string) *DescribeDBSnapshotsInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *DescribeDBSnapshotsInput) SetDBSnapshotIdentifier(v string) *DescribeDBSnapshotsInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBSnapshotsInput) SetFilters(v []*Filter) *DescribeDBSnapshotsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludePublic sets the IncludePublic field's value.
+func (s *DescribeDBSnapshotsInput) SetIncludePublic(v bool) *DescribeDBSnapshotsInput {
+	s.IncludePublic = &v
+	return s
+}
+
+// SetIncludeShared sets the IncludeShared field's value.
+func (s *DescribeDBSnapshotsInput) SetIncludeShared(v bool) *DescribeDBSnapshotsInput {
+	s.IncludeShared = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSnapshotsInput) SetMarker(v string) *DescribeDBSnapshotsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBSnapshotsInput) SetMaxRecords(v int64) *DescribeDBSnapshotsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSnapshotType sets the SnapshotType field's value.
+func (s *DescribeDBSnapshotsInput) SetSnapshotType(v string) *DescribeDBSnapshotsInput {
+	s.SnapshotType = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBSnapshots
 // action.
 type DescribeDBSnapshotsOutput struct {
@@ -13186,6 +15964,18 @@ func (s DescribeDBSnapshotsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBSnapshotsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshots sets the DBSnapshots field's value.
+func (s *DescribeDBSnapshotsOutput) SetDBSnapshots(v []*DBSnapshot) *DescribeDBSnapshotsOutput {
+	s.DBSnapshots = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSnapshotsOutput) SetMarker(v string) *DescribeDBSnapshotsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeDBSubnetGroupsInput struct {
@@ -13242,6 +16032,30 @@ func (s *DescribeDBSubnetGroupsInput) Validate() error {
 	return nil
 }
 
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *DescribeDBSubnetGroupsInput) SetDBSubnetGroupName(v string) *DescribeDBSubnetGroupsInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBSubnetGroupsInput) SetFilters(v []*Filter) *DescribeDBSubnetGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSubnetGroupsInput) SetMarker(v string) *DescribeDBSubnetGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBSubnetGroupsInput) SetMaxRecords(v int64) *DescribeDBSubnetGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeDBSubnetGroups
 // action.
 type DescribeDBSubnetGroupsOutput struct {
@@ -13264,6 +16078,18 @@ func (s DescribeDBSubnetGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDBSubnetGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSubnetGroups sets the DBSubnetGroups field's value.
+func (s *DescribeDBSubnetGroupsOutput) SetDBSubnetGroups(v []*DBSubnetGroup) *DescribeDBSubnetGroupsOutput {
+	s.DBSubnetGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBSubnetGroupsOutput) SetMarker(v string) *DescribeDBSubnetGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeEngineDefaultClusterParametersInput struct {
@@ -13326,6 +16152,30 @@ func (s *DescribeEngineDefaultClusterParametersInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DescribeEngineDefaultClusterParametersInput) SetDBParameterGroupFamily(v string) *DescribeEngineDefaultClusterParametersInput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeEngineDefaultClusterParametersInput) SetFilters(v []*Filter) *DescribeEngineDefaultClusterParametersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEngineDefaultClusterParametersInput) SetMarker(v string) *DescribeEngineDefaultClusterParametersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEngineDefaultClusterParametersInput) SetMaxRecords(v int64) *DescribeEngineDefaultClusterParametersInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeEngineDefaultClusterParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13342,6 +16192,12 @@ func (s DescribeEngineDefaultClusterParametersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEngineDefaultClusterParametersOutput) GoString() string {
 	return s.String()
+}
+
+// SetEngineDefaults sets the EngineDefaults field's value.
+func (s *DescribeEngineDefaultClusterParametersOutput) SetEngineDefaults(v *EngineDefaults) *DescribeEngineDefaultClusterParametersOutput {
+	s.EngineDefaults = v
+	return s
 }
 
 type DescribeEngineDefaultParametersInput struct {
@@ -13403,6 +16259,30 @@ func (s *DescribeEngineDefaultParametersInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DescribeEngineDefaultParametersInput) SetDBParameterGroupFamily(v string) *DescribeEngineDefaultParametersInput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeEngineDefaultParametersInput) SetFilters(v []*Filter) *DescribeEngineDefaultParametersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEngineDefaultParametersInput) SetMarker(v string) *DescribeEngineDefaultParametersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEngineDefaultParametersInput) SetMaxRecords(v int64) *DescribeEngineDefaultParametersInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeEngineDefaultParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13419,6 +16299,12 @@ func (s DescribeEngineDefaultParametersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEngineDefaultParametersOutput) GoString() string {
 	return s.String()
+}
+
+// SetEngineDefaults sets the EngineDefaults field's value.
+func (s *DescribeEngineDefaultParametersOutput) SetEngineDefaults(v *EngineDefaults) *DescribeEngineDefaultParametersOutput {
+	s.EngineDefaults = v
+	return s
 }
 
 type DescribeEventCategoriesInput struct {
@@ -13463,6 +16349,18 @@ func (s *DescribeEventCategoriesInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeEventCategoriesInput) SetFilters(v []*Filter) *DescribeEventCategoriesInput {
+	s.Filters = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *DescribeEventCategoriesInput) SetSourceType(v string) *DescribeEventCategoriesInput {
+	s.SourceType = &v
+	return s
+}
+
 // Data returned from the DescribeEventCategories action.
 type DescribeEventCategoriesOutput struct {
 	_ struct{} `type:"structure"`
@@ -13479,6 +16377,12 @@ func (s DescribeEventCategoriesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEventCategoriesOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventCategoriesMapList sets the EventCategoriesMapList field's value.
+func (s *DescribeEventCategoriesOutput) SetEventCategoriesMapList(v []*EventCategoriesMap) *DescribeEventCategoriesOutput {
+	s.EventCategoriesMapList = v
+	return s
 }
 
 type DescribeEventSubscriptionsInput struct {
@@ -13535,6 +16439,30 @@ func (s *DescribeEventSubscriptionsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeEventSubscriptionsInput) SetFilters(v []*Filter) *DescribeEventSubscriptionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventSubscriptionsInput) SetMarker(v string) *DescribeEventSubscriptionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEventSubscriptionsInput) SetMaxRecords(v int64) *DescribeEventSubscriptionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *DescribeEventSubscriptionsInput) SetSubscriptionName(v string) *DescribeEventSubscriptionsInput {
+	s.SubscriptionName = &v
+	return s
+}
+
 // Data returned by the DescribeEventSubscriptions action.
 type DescribeEventSubscriptionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -13556,6 +16484,18 @@ func (s DescribeEventSubscriptionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEventSubscriptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventSubscriptionsList sets the EventSubscriptionsList field's value.
+func (s *DescribeEventSubscriptionsOutput) SetEventSubscriptionsList(v []*EventSubscription) *DescribeEventSubscriptionsOutput {
+	s.EventSubscriptionsList = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventSubscriptionsOutput) SetMarker(v string) *DescribeEventSubscriptionsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeEventsInput struct {
@@ -13657,6 +16597,60 @@ func (s *DescribeEventsInput) Validate() error {
 	return nil
 }
 
+// SetDuration sets the Duration field's value.
+func (s *DescribeEventsInput) SetDuration(v int64) *DescribeEventsInput {
+	s.Duration = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeEventsInput) SetEndTime(v time.Time) *DescribeEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *DescribeEventsInput) SetEventCategories(v []*string) *DescribeEventsInput {
+	s.EventCategories = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeEventsInput) SetFilters(v []*Filter) *DescribeEventsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventsInput) SetMarker(v string) *DescribeEventsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEventsInput) SetMaxRecords(v int64) *DescribeEventsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *DescribeEventsInput) SetSourceIdentifier(v string) *DescribeEventsInput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *DescribeEventsInput) SetSourceType(v string) *DescribeEventsInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeEventsInput) SetStartTime(v time.Time) *DescribeEventsInput {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeEvents action.
 type DescribeEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -13678,6 +16672,18 @@ func (s DescribeEventsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *DescribeEventsOutput) SetEvents(v []*Event) *DescribeEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeOptionGroupOptionsInput struct {
@@ -13744,6 +16750,36 @@ func (s *DescribeOptionGroupOptionsInput) Validate() error {
 	return nil
 }
 
+// SetEngineName sets the EngineName field's value.
+func (s *DescribeOptionGroupOptionsInput) SetEngineName(v string) *DescribeOptionGroupOptionsInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeOptionGroupOptionsInput) SetFilters(v []*Filter) *DescribeOptionGroupOptionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *DescribeOptionGroupOptionsInput) SetMajorEngineVersion(v string) *DescribeOptionGroupOptionsInput {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOptionGroupOptionsInput) SetMarker(v string) *DescribeOptionGroupOptionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeOptionGroupOptionsInput) SetMaxRecords(v int64) *DescribeOptionGroupOptionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeOptionGroupOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13764,6 +16800,18 @@ func (s DescribeOptionGroupOptionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeOptionGroupOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOptionGroupOptionsOutput) SetMarker(v string) *DescribeOptionGroupOptionsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetOptionGroupOptions sets the OptionGroupOptions field's value.
+func (s *DescribeOptionGroupOptionsOutput) SetOptionGroupOptions(v []*OptionGroupOption) *DescribeOptionGroupOptionsOutput {
+	s.OptionGroupOptions = v
+	return s
 }
 
 type DescribeOptionGroupsInput struct {
@@ -13830,6 +16878,42 @@ func (s *DescribeOptionGroupsInput) Validate() error {
 	return nil
 }
 
+// SetEngineName sets the EngineName field's value.
+func (s *DescribeOptionGroupsInput) SetEngineName(v string) *DescribeOptionGroupsInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeOptionGroupsInput) SetFilters(v []*Filter) *DescribeOptionGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *DescribeOptionGroupsInput) SetMajorEngineVersion(v string) *DescribeOptionGroupsInput {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOptionGroupsInput) SetMarker(v string) *DescribeOptionGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeOptionGroupsInput) SetMaxRecords(v int64) *DescribeOptionGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *DescribeOptionGroupsInput) SetOptionGroupName(v string) *DescribeOptionGroupsInput {
+	s.OptionGroupName = &v
+	return s
+}
+
 // List of option groups.
 type DescribeOptionGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -13851,6 +16935,18 @@ func (s DescribeOptionGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeOptionGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOptionGroupsOutput) SetMarker(v string) *DescribeOptionGroupsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetOptionGroupsList sets the OptionGroupsList field's value.
+func (s *DescribeOptionGroupsOutput) SetOptionGroupsList(v []*OptionGroup) *DescribeOptionGroupsOutput {
+	s.OptionGroupsList = v
+	return s
 }
 
 type DescribeOrderableDBInstanceOptionsInput struct {
@@ -13928,6 +17024,54 @@ func (s *DescribeOrderableDBInstanceOptionsInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetDBInstanceClass(v string) *DescribeOrderableDBInstanceOptionsInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetEngine(v string) *DescribeOrderableDBInstanceOptionsInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetEngineVersion(v string) *DescribeOrderableDBInstanceOptionsInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetFilters(v []*Filter) *DescribeOrderableDBInstanceOptionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetLicenseModel(v string) *DescribeOrderableDBInstanceOptionsInput {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetMarker(v string) *DescribeOrderableDBInstanceOptionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetMaxRecords(v int64) *DescribeOrderableDBInstanceOptionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *DescribeOrderableDBInstanceOptionsInput) SetVpc(v bool) *DescribeOrderableDBInstanceOptionsInput {
+	s.Vpc = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeOrderableDBInstanceOptions
 // action.
 type DescribeOrderableDBInstanceOptionsOutput struct {
@@ -13951,6 +17095,18 @@ func (s DescribeOrderableDBInstanceOptionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeOrderableDBInstanceOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOrderableDBInstanceOptionsOutput) SetMarker(v string) *DescribeOrderableDBInstanceOptionsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetOrderableDBInstanceOptions sets the OrderableDBInstanceOptions field's value.
+func (s *DescribeOrderableDBInstanceOptionsOutput) SetOrderableDBInstanceOptions(v []*OrderableDBInstanceOption) *DescribeOrderableDBInstanceOptionsOutput {
+	s.OrderableDBInstanceOptions = v
+	return s
 }
 
 type DescribePendingMaintenanceActionsInput struct {
@@ -14014,6 +17170,30 @@ func (s *DescribePendingMaintenanceActionsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribePendingMaintenanceActionsInput) SetFilters(v []*Filter) *DescribePendingMaintenanceActionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribePendingMaintenanceActionsInput) SetMarker(v string) *DescribePendingMaintenanceActionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribePendingMaintenanceActionsInput) SetMaxRecords(v int64) *DescribePendingMaintenanceActionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *DescribePendingMaintenanceActionsInput) SetResourceIdentifier(v string) *DescribePendingMaintenanceActionsInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
 // Data returned from the DescribePendingMaintenanceActions action.
 type DescribePendingMaintenanceActionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -14035,6 +17215,18 @@ func (s DescribePendingMaintenanceActionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribePendingMaintenanceActionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribePendingMaintenanceActionsOutput) SetMarker(v string) *DescribePendingMaintenanceActionsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetPendingMaintenanceActions sets the PendingMaintenanceActions field's value.
+func (s *DescribePendingMaintenanceActionsOutput) SetPendingMaintenanceActions(v []*ResourcePendingMaintenanceActions) *DescribePendingMaintenanceActionsOutput {
+	s.PendingMaintenanceActions = v
+	return s
 }
 
 type DescribeReservedDBInstancesInput struct {
@@ -14120,6 +17312,66 @@ func (s *DescribeReservedDBInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *DescribeReservedDBInstancesInput) SetDBInstanceClass(v string) *DescribeReservedDBInstancesInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *DescribeReservedDBInstancesInput) SetDuration(v string) *DescribeReservedDBInstancesInput {
+	s.Duration = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReservedDBInstancesInput) SetFilters(v []*Filter) *DescribeReservedDBInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedDBInstancesInput) SetMarker(v string) *DescribeReservedDBInstancesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReservedDBInstancesInput) SetMaxRecords(v int64) *DescribeReservedDBInstancesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *DescribeReservedDBInstancesInput) SetMultiAZ(v bool) *DescribeReservedDBInstancesInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *DescribeReservedDBInstancesInput) SetOfferingType(v string) *DescribeReservedDBInstancesInput {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *DescribeReservedDBInstancesInput) SetProductDescription(v string) *DescribeReservedDBInstancesInput {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetReservedDBInstanceId sets the ReservedDBInstanceId field's value.
+func (s *DescribeReservedDBInstancesInput) SetReservedDBInstanceId(v string) *DescribeReservedDBInstancesInput {
+	s.ReservedDBInstanceId = &v
+	return s
+}
+
+// SetReservedDBInstancesOfferingId sets the ReservedDBInstancesOfferingId field's value.
+func (s *DescribeReservedDBInstancesInput) SetReservedDBInstancesOfferingId(v string) *DescribeReservedDBInstancesInput {
+	s.ReservedDBInstancesOfferingId = &v
+	return s
+}
+
 type DescribeReservedDBInstancesOfferingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14201,6 +17453,60 @@ func (s *DescribeReservedDBInstancesOfferingsInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetDBInstanceClass(v string) *DescribeReservedDBInstancesOfferingsInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetDuration(v string) *DescribeReservedDBInstancesOfferingsInput {
+	s.Duration = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetFilters(v []*Filter) *DescribeReservedDBInstancesOfferingsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetMarker(v string) *DescribeReservedDBInstancesOfferingsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetMaxRecords(v int64) *DescribeReservedDBInstancesOfferingsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetMultiAZ(v bool) *DescribeReservedDBInstancesOfferingsInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetOfferingType(v string) *DescribeReservedDBInstancesOfferingsInput {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetProductDescription(v string) *DescribeReservedDBInstancesOfferingsInput {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetReservedDBInstancesOfferingId sets the ReservedDBInstancesOfferingId field's value.
+func (s *DescribeReservedDBInstancesOfferingsInput) SetReservedDBInstancesOfferingId(v string) *DescribeReservedDBInstancesOfferingsInput {
+	s.ReservedDBInstancesOfferingId = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeReservedDBInstancesOfferings
 // action.
 type DescribeReservedDBInstancesOfferingsOutput struct {
@@ -14225,6 +17531,18 @@ func (s DescribeReservedDBInstancesOfferingsOutput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedDBInstancesOfferingsOutput) SetMarker(v string) *DescribeReservedDBInstancesOfferingsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReservedDBInstancesOfferings sets the ReservedDBInstancesOfferings field's value.
+func (s *DescribeReservedDBInstancesOfferingsOutput) SetReservedDBInstancesOfferings(v []*ReservedDBInstancesOffering) *DescribeReservedDBInstancesOfferingsOutput {
+	s.ReservedDBInstancesOfferings = v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeReservedDBInstances
 // action.
 type DescribeReservedDBInstancesOutput struct {
@@ -14247,6 +17565,18 @@ func (s DescribeReservedDBInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReservedDBInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedDBInstancesOutput) SetMarker(v string) *DescribeReservedDBInstancesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReservedDBInstances sets the ReservedDBInstances field's value.
+func (s *DescribeReservedDBInstancesOutput) SetReservedDBInstances(v []*ReservedDBInstance) *DescribeReservedDBInstancesOutput {
+	s.ReservedDBInstances = v
+	return s
 }
 
 type DescribeSourceRegionsInput struct {
@@ -14307,6 +17637,30 @@ func (s *DescribeSourceRegionsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeSourceRegionsInput) SetFilters(v []*Filter) *DescribeSourceRegionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeSourceRegionsInput) SetMarker(v string) *DescribeSourceRegionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeSourceRegionsInput) SetMaxRecords(v int64) *DescribeSourceRegionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *DescribeSourceRegionsInput) SetRegionName(v string) *DescribeSourceRegionsInput {
+	s.RegionName = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeSourceRegions
 // action.
 type DescribeSourceRegionsOutput struct {
@@ -14330,6 +17684,18 @@ func (s DescribeSourceRegionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSourceRegionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeSourceRegionsOutput) SetMarker(v string) *DescribeSourceRegionsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSourceRegions sets the SourceRegions field's value.
+func (s *DescribeSourceRegionsOutput) SetSourceRegions(v []*SourceRegion) *DescribeSourceRegionsOutput {
+	s.SourceRegions = v
+	return s
 }
 
 // An Active Directory Domain membership record associated with the DB instance.
@@ -14359,6 +17725,30 @@ func (s DomainMembership) String() string {
 // GoString returns the string representation
 func (s DomainMembership) GoString() string {
 	return s.String()
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DomainMembership) SetDomain(v string) *DomainMembership {
+	s.Domain = &v
+	return s
+}
+
+// SetFQDN sets the FQDN field's value.
+func (s *DomainMembership) SetFQDN(v string) *DomainMembership {
+	s.FQDN = &v
+	return s
+}
+
+// SetIAMRoleName sets the IAMRoleName field's value.
+func (s *DomainMembership) SetIAMRoleName(v string) *DomainMembership {
+	s.IAMRoleName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DomainMembership) SetStatus(v string) *DomainMembership {
+	s.Status = &v
+	return s
 }
 
 type DownloadDBLogFilePortionInput struct {
@@ -14439,6 +17829,30 @@ func (s *DownloadDBLogFilePortionInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *DownloadDBLogFilePortionInput) SetDBInstanceIdentifier(v string) *DownloadDBLogFilePortionInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetLogFileName sets the LogFileName field's value.
+func (s *DownloadDBLogFilePortionInput) SetLogFileName(v string) *DownloadDBLogFilePortionInput {
+	s.LogFileName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DownloadDBLogFilePortionInput) SetMarker(v string) *DownloadDBLogFilePortionInput {
+	s.Marker = &v
+	return s
+}
+
+// SetNumberOfLines sets the NumberOfLines field's value.
+func (s *DownloadDBLogFilePortionInput) SetNumberOfLines(v int64) *DownloadDBLogFilePortionInput {
+	s.NumberOfLines = &v
+	return s
+}
+
 // This data type is used as a response element to DownloadDBLogFilePortion.
 type DownloadDBLogFilePortionOutput struct {
 	_ struct{} `type:"structure"`
@@ -14462,6 +17876,24 @@ func (s DownloadDBLogFilePortionOutput) String() string {
 // GoString returns the string representation
 func (s DownloadDBLogFilePortionOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalDataPending sets the AdditionalDataPending field's value.
+func (s *DownloadDBLogFilePortionOutput) SetAdditionalDataPending(v bool) *DownloadDBLogFilePortionOutput {
+	s.AdditionalDataPending = &v
+	return s
+}
+
+// SetLogFileData sets the LogFileData field's value.
+func (s *DownloadDBLogFilePortionOutput) SetLogFileData(v string) *DownloadDBLogFilePortionOutput {
+	s.LogFileData = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DownloadDBLogFilePortionOutput) SetMarker(v string) *DownloadDBLogFilePortionOutput {
+	s.Marker = &v
+	return s
 }
 
 // This data type is used as a response element in the following actions:
@@ -14499,6 +17931,30 @@ func (s EC2SecurityGroup) GoString() string {
 	return s.String()
 }
 
+// SetEC2SecurityGroupId sets the EC2SecurityGroupId field's value.
+func (s *EC2SecurityGroup) SetEC2SecurityGroupId(v string) *EC2SecurityGroup {
+	s.EC2SecurityGroupId = &v
+	return s
+}
+
+// SetEC2SecurityGroupName sets the EC2SecurityGroupName field's value.
+func (s *EC2SecurityGroup) SetEC2SecurityGroupName(v string) *EC2SecurityGroup {
+	s.EC2SecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupOwnerId sets the EC2SecurityGroupOwnerId field's value.
+func (s *EC2SecurityGroup) SetEC2SecurityGroupOwnerId(v string) *EC2SecurityGroup {
+	s.EC2SecurityGroupOwnerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EC2SecurityGroup) SetStatus(v string) *EC2SecurityGroup {
+	s.Status = &v
+	return s
+}
+
 // This data type is used as a response element in the following actions:
 //
 //    * CreateDBInstance
@@ -14529,6 +17985,24 @@ func (s Endpoint) GoString() string {
 	return s.String()
 }
 
+// SetAddress sets the Address field's value.
+func (s *Endpoint) SetAddress(v string) *Endpoint {
+	s.Address = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *Endpoint) SetHostedZoneId(v string) *Endpoint {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *Endpoint) SetPort(v int64) *Endpoint {
+	s.Port = &v
+	return s
+}
+
 // Contains the result of a successful invocation of the DescribeEngineDefaultParameters
 // action.
 type EngineDefaults struct {
@@ -14555,6 +18029,24 @@ func (s EngineDefaults) String() string {
 // GoString returns the string representation
 func (s EngineDefaults) GoString() string {
 	return s.String()
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *EngineDefaults) SetDBParameterGroupFamily(v string) *EngineDefaults {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *EngineDefaults) SetMarker(v string) *EngineDefaults {
+	s.Marker = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *EngineDefaults) SetParameters(v []*Parameter) *EngineDefaults {
+	s.Parameters = v
+	return s
 }
 
 // This data type is used as a response element in the DescribeEvents action.
@@ -14590,6 +18082,42 @@ func (s Event) GoString() string {
 	return s.String()
 }
 
+// SetDate sets the Date field's value.
+func (s *Event) SetDate(v time.Time) *Event {
+	s.Date = &v
+	return s
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *Event) SetEventCategories(v []*string) *Event {
+	s.EventCategories = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Event) SetMessage(v string) *Event {
+	s.Message = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *Event) SetSourceArn(v string) *Event {
+	s.SourceArn = &v
+	return s
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *Event) SetSourceIdentifier(v string) *Event {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *Event) SetSourceType(v string) *Event {
+	s.SourceType = &v
+	return s
+}
+
 // Contains the results of a successful invocation of the DescribeEventCategories
 // action.
 type EventCategoriesMap struct {
@@ -14610,6 +18138,18 @@ func (s EventCategoriesMap) String() string {
 // GoString returns the string representation
 func (s EventCategoriesMap) GoString() string {
 	return s.String()
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *EventCategoriesMap) SetEventCategories(v []*string) *EventCategoriesMap {
+	s.EventCategories = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *EventCategoriesMap) SetSourceType(v string) *EventCategoriesMap {
+	s.SourceType = &v
+	return s
 }
 
 // Contains the results of a successful invocation of the DescribeEventSubscriptions
@@ -14668,6 +18208,66 @@ func (s EventSubscription) GoString() string {
 	return s.String()
 }
 
+// SetCustSubscriptionId sets the CustSubscriptionId field's value.
+func (s *EventSubscription) SetCustSubscriptionId(v string) *EventSubscription {
+	s.CustSubscriptionId = &v
+	return s
+}
+
+// SetCustomerAwsId sets the CustomerAwsId field's value.
+func (s *EventSubscription) SetCustomerAwsId(v string) *EventSubscription {
+	s.CustomerAwsId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *EventSubscription) SetEnabled(v bool) *EventSubscription {
+	s.Enabled = &v
+	return s
+}
+
+// SetEventCategoriesList sets the EventCategoriesList field's value.
+func (s *EventSubscription) SetEventCategoriesList(v []*string) *EventSubscription {
+	s.EventCategoriesList = v
+	return s
+}
+
+// SetEventSubscriptionArn sets the EventSubscriptionArn field's value.
+func (s *EventSubscription) SetEventSubscriptionArn(v string) *EventSubscription {
+	s.EventSubscriptionArn = &v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *EventSubscription) SetSnsTopicArn(v string) *EventSubscription {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSourceIdsList sets the SourceIdsList field's value.
+func (s *EventSubscription) SetSourceIdsList(v []*string) *EventSubscription {
+	s.SourceIdsList = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *EventSubscription) SetSourceType(v string) *EventSubscription {
+	s.SourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EventSubscription) SetStatus(v string) *EventSubscription {
+	s.Status = &v
+	return s
+}
+
+// SetSubscriptionCreationTime sets the SubscriptionCreationTime field's value.
+func (s *EventSubscription) SetSubscriptionCreationTime(v string) *EventSubscription {
+	s.SubscriptionCreationTime = &v
+	return s
+}
+
 type FailoverDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14699,6 +18299,18 @@ func (s FailoverDBClusterInput) GoString() string {
 	return s.String()
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *FailoverDBClusterInput) SetDBClusterIdentifier(v string) *FailoverDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetTargetDBInstanceIdentifier sets the TargetDBInstanceIdentifier field's value.
+func (s *FailoverDBClusterInput) SetTargetDBInstanceIdentifier(v string) *FailoverDBClusterInput {
+	s.TargetDBInstanceIdentifier = &v
+	return s
+}
+
 type FailoverDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14728,6 +18340,12 @@ func (s FailoverDBClusterOutput) String() string {
 // GoString returns the string representation
 func (s FailoverDBClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *FailoverDBClusterOutput) SetDBCluster(v *DBCluster) *FailoverDBClusterOutput {
+	s.DBCluster = v
+	return s
 }
 
 // This type is not currently supported.
@@ -14771,6 +18389,18 @@ func (s *Filter) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
+	return s
+}
+
 // This data type is used as a response element in the DescribeDBSecurityGroups
 // action.
 type IPRange struct {
@@ -14792,6 +18422,18 @@ func (s IPRange) String() string {
 // GoString returns the string representation
 func (s IPRange) GoString() string {
 	return s.String()
+}
+
+// SetCIDRIP sets the CIDRIP field's value.
+func (s *IPRange) SetCIDRIP(v string) *IPRange {
+	s.CIDRIP = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *IPRange) SetStatus(v string) *IPRange {
+	s.Status = &v
+	return s
 }
 
 type ListTagsForResourceInput struct {
@@ -14841,6 +18483,18 @@ func (s *ListTagsForResourceInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *ListTagsForResourceInput) SetFilters(v []*Filter) *ListTagsForResourceInput {
+	s.Filters = v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *ListTagsForResourceInput) SetResourceName(v string) *ListTagsForResourceInput {
+	s.ResourceName = &v
+	return s
+}
+
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14856,6 +18510,12 @@ func (s ListTagsForResourceOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetTagList sets the TagList field's value.
+func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOutput {
+	s.TagList = v
+	return s
 }
 
 type ModifyDBClusterInput struct {
@@ -15006,6 +18666,72 @@ func (s *ModifyDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *ModifyDBClusterInput) SetApplyImmediately(v bool) *ModifyDBClusterInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *ModifyDBClusterInput) SetBackupRetentionPeriod(v int64) *ModifyDBClusterInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *ModifyDBClusterInput) SetDBClusterIdentifier(v string) *ModifyDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *ModifyDBClusterInput) SetDBClusterParameterGroupName(v string) *ModifyDBClusterInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *ModifyDBClusterInput) SetMasterUserPassword(v string) *ModifyDBClusterInput {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetNewDBClusterIdentifier sets the NewDBClusterIdentifier field's value.
+func (s *ModifyDBClusterInput) SetNewDBClusterIdentifier(v string) *ModifyDBClusterInput {
+	s.NewDBClusterIdentifier = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *ModifyDBClusterInput) SetOptionGroupName(v string) *ModifyDBClusterInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ModifyDBClusterInput) SetPort(v int64) *ModifyDBClusterInput {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *ModifyDBClusterInput) SetPreferredBackupWindow(v string) *ModifyDBClusterInput {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ModifyDBClusterInput) SetPreferredMaintenanceWindow(v string) *ModifyDBClusterInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *ModifyDBClusterInput) SetVpcSecurityGroupIds(v []*string) *ModifyDBClusterInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type ModifyDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15035,6 +18761,12 @@ func (s ModifyDBClusterOutput) String() string {
 // GoString returns the string representation
 func (s ModifyDBClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *ModifyDBClusterOutput) SetDBCluster(v *DBCluster) *ModifyDBClusterOutput {
+	s.DBCluster = v
+	return s
 }
 
 type ModifyDBClusterParameterGroupInput struct {
@@ -15075,6 +18807,18 @@ func (s *ModifyDBClusterParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *ModifyDBClusterParameterGroupInput) SetDBClusterParameterGroupName(v string) *ModifyDBClusterParameterGroupInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ModifyDBClusterParameterGroupInput) SetParameters(v []*Parameter) *ModifyDBClusterParameterGroupInput {
+	s.Parameters = v
+	return s
 }
 
 type ModifyDBClusterSnapshotAttributeInput struct {
@@ -15141,6 +18885,30 @@ func (s *ModifyDBClusterSnapshotAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttributeName sets the AttributeName field's value.
+func (s *ModifyDBClusterSnapshotAttributeInput) SetAttributeName(v string) *ModifyDBClusterSnapshotAttributeInput {
+	s.AttributeName = &v
+	return s
+}
+
+// SetDBClusterSnapshotIdentifier sets the DBClusterSnapshotIdentifier field's value.
+func (s *ModifyDBClusterSnapshotAttributeInput) SetDBClusterSnapshotIdentifier(v string) *ModifyDBClusterSnapshotAttributeInput {
+	s.DBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetValuesToAdd sets the ValuesToAdd field's value.
+func (s *ModifyDBClusterSnapshotAttributeInput) SetValuesToAdd(v []*string) *ModifyDBClusterSnapshotAttributeInput {
+	s.ValuesToAdd = v
+	return s
+}
+
+// SetValuesToRemove sets the ValuesToRemove field's value.
+func (s *ModifyDBClusterSnapshotAttributeInput) SetValuesToRemove(v []*string) *ModifyDBClusterSnapshotAttributeInput {
+	s.ValuesToRemove = v
+	return s
+}
+
 type ModifyDBClusterSnapshotAttributeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15161,6 +18929,12 @@ func (s ModifyDBClusterSnapshotAttributeOutput) String() string {
 // GoString returns the string representation
 func (s ModifyDBClusterSnapshotAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBClusterSnapshotAttributesResult sets the DBClusterSnapshotAttributesResult field's value.
+func (s *ModifyDBClusterSnapshotAttributeOutput) SetDBClusterSnapshotAttributesResult(v *DBClusterSnapshotAttributesResult) *ModifyDBClusterSnapshotAttributeOutput {
+	s.DBClusterSnapshotAttributesResult = v
+	return s
 }
 
 type ModifyDBInstanceInput struct {
@@ -15667,6 +19441,198 @@ func (s *ModifyDBInstanceInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ModifyDBInstanceInput) SetAllocatedStorage(v int64) *ModifyDBInstanceInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
+func (s *ModifyDBInstanceInput) SetAllowMajorVersionUpgrade(v bool) *ModifyDBInstanceInput {
+	s.AllowMajorVersionUpgrade = &v
+	return s
+}
+
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *ModifyDBInstanceInput) SetApplyImmediately(v bool) *ModifyDBInstanceInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *ModifyDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBInstanceInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *ModifyDBInstanceInput) SetBackupRetentionPeriod(v int64) *ModifyDBInstanceInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *ModifyDBInstanceInput) SetCACertificateIdentifier(v string) *ModifyDBInstanceInput {
+	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *ModifyDBInstanceInput) SetCopyTagsToSnapshot(v bool) *ModifyDBInstanceInput {
+	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *ModifyDBInstanceInput) SetDBInstanceClass(v string) *ModifyDBInstanceInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *ModifyDBInstanceInput) SetDBInstanceIdentifier(v string) *ModifyDBInstanceInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *ModifyDBInstanceInput) SetDBParameterGroupName(v string) *ModifyDBInstanceInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetDBPortNumber sets the DBPortNumber field's value.
+func (s *ModifyDBInstanceInput) SetDBPortNumber(v int64) *ModifyDBInstanceInput {
+	s.DBPortNumber = &v
+	return s
+}
+
+// SetDBSecurityGroups sets the DBSecurityGroups field's value.
+func (s *ModifyDBInstanceInput) SetDBSecurityGroups(v []*string) *ModifyDBInstanceInput {
+	s.DBSecurityGroups = v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *ModifyDBInstanceInput) SetDBSubnetGroupName(v string) *ModifyDBInstanceInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ModifyDBInstanceInput) SetDomain(v string) *ModifyDBInstanceInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *ModifyDBInstanceInput) SetDomainIAMRoleName(v string) *ModifyDBInstanceInput {
+	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyDBInstanceInput) SetEngineVersion(v string) *ModifyDBInstanceInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *ModifyDBInstanceInput) SetIops(v int64) *ModifyDBInstanceInput {
+	s.Iops = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *ModifyDBInstanceInput) SetLicenseModel(v string) *ModifyDBInstanceInput {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *ModifyDBInstanceInput) SetMasterUserPassword(v string) *ModifyDBInstanceInput {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *ModifyDBInstanceInput) SetMonitoringInterval(v int64) *ModifyDBInstanceInput {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *ModifyDBInstanceInput) SetMonitoringRoleArn(v string) *ModifyDBInstanceInput {
+	s.MonitoringRoleArn = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ModifyDBInstanceInput) SetMultiAZ(v bool) *ModifyDBInstanceInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetNewDBInstanceIdentifier sets the NewDBInstanceIdentifier field's value.
+func (s *ModifyDBInstanceInput) SetNewDBInstanceIdentifier(v string) *ModifyDBInstanceInput {
+	s.NewDBInstanceIdentifier = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *ModifyDBInstanceInput) SetOptionGroupName(v string) *ModifyDBInstanceInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *ModifyDBInstanceInput) SetPreferredBackupWindow(v string) *ModifyDBInstanceInput {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ModifyDBInstanceInput) SetPreferredMaintenanceWindow(v string) *ModifyDBInstanceInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPromotionTier sets the PromotionTier field's value.
+func (s *ModifyDBInstanceInput) SetPromotionTier(v int64) *ModifyDBInstanceInput {
+	s.PromotionTier = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *ModifyDBInstanceInput) SetPubliclyAccessible(v bool) *ModifyDBInstanceInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *ModifyDBInstanceInput) SetStorageType(v string) *ModifyDBInstanceInput {
+	s.StorageType = &v
+	return s
+}
+
+// SetTdeCredentialArn sets the TdeCredentialArn field's value.
+func (s *ModifyDBInstanceInput) SetTdeCredentialArn(v string) *ModifyDBInstanceInput {
+	s.TdeCredentialArn = &v
+	return s
+}
+
+// SetTdeCredentialPassword sets the TdeCredentialPassword field's value.
+func (s *ModifyDBInstanceInput) SetTdeCredentialPassword(v string) *ModifyDBInstanceInput {
+	s.TdeCredentialPassword = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *ModifyDBInstanceInput) SetVpcSecurityGroupIds(v []*string) *ModifyDBInstanceInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type ModifyDBInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15690,6 +19656,12 @@ func (s ModifyDBInstanceOutput) String() string {
 // GoString returns the string representation
 func (s ModifyDBInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *ModifyDBInstanceOutput) SetDBInstance(v *DBInstance) *ModifyDBInstanceOutput {
+	s.DBInstance = v
+	return s
 }
 
 type ModifyDBParameterGroupInput struct {
@@ -15749,6 +19721,18 @@ func (s *ModifyDBParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *ModifyDBParameterGroupInput) SetDBParameterGroupName(v string) *ModifyDBParameterGroupInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ModifyDBParameterGroupInput) SetParameters(v []*Parameter) *ModifyDBParameterGroupInput {
+	s.Parameters = v
+	return s
 }
 
 type ModifyDBSnapshotAttributeInput struct {
@@ -15813,6 +19797,30 @@ func (s *ModifyDBSnapshotAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttributeName sets the AttributeName field's value.
+func (s *ModifyDBSnapshotAttributeInput) SetAttributeName(v string) *ModifyDBSnapshotAttributeInput {
+	s.AttributeName = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *ModifyDBSnapshotAttributeInput) SetDBSnapshotIdentifier(v string) *ModifyDBSnapshotAttributeInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetValuesToAdd sets the ValuesToAdd field's value.
+func (s *ModifyDBSnapshotAttributeInput) SetValuesToAdd(v []*string) *ModifyDBSnapshotAttributeInput {
+	s.ValuesToAdd = v
+	return s
+}
+
+// SetValuesToRemove sets the ValuesToRemove field's value.
+func (s *ModifyDBSnapshotAttributeInput) SetValuesToRemove(v []*string) *ModifyDBSnapshotAttributeInput {
+	s.ValuesToRemove = v
+	return s
+}
+
 type ModifyDBSnapshotAttributeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15833,6 +19841,12 @@ func (s ModifyDBSnapshotAttributeOutput) String() string {
 // GoString returns the string representation
 func (s ModifyDBSnapshotAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSnapshotAttributesResult sets the DBSnapshotAttributesResult field's value.
+func (s *ModifyDBSnapshotAttributeOutput) SetDBSnapshotAttributesResult(v *DBSnapshotAttributesResult) *ModifyDBSnapshotAttributeOutput {
+	s.DBSnapshotAttributesResult = v
+	return s
 }
 
 type ModifyDBSubnetGroupInput struct {
@@ -15883,6 +19897,24 @@ func (s *ModifyDBSubnetGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBSubnetGroupDescription sets the DBSubnetGroupDescription field's value.
+func (s *ModifyDBSubnetGroupInput) SetDBSubnetGroupDescription(v string) *ModifyDBSubnetGroupInput {
+	s.DBSubnetGroupDescription = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *ModifyDBSubnetGroupInput) SetDBSubnetGroupName(v string) *ModifyDBSubnetGroupInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *ModifyDBSubnetGroupInput) SetSubnetIds(v []*string) *ModifyDBSubnetGroupInput {
+	s.SubnetIds = v
+	return s
+}
+
 type ModifyDBSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15909,6 +19941,12 @@ func (s ModifyDBSubnetGroupOutput) String() string {
 // GoString returns the string representation
 func (s ModifyDBSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBSubnetGroup sets the DBSubnetGroup field's value.
+func (s *ModifyDBSubnetGroupOutput) SetDBSubnetGroup(v *DBSubnetGroup) *ModifyDBSubnetGroupOutput {
+	s.DBSubnetGroup = v
+	return s
 }
 
 type ModifyEventSubscriptionInput struct {
@@ -15966,6 +20004,36 @@ func (s *ModifyEventSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetEnabled sets the Enabled field's value.
+func (s *ModifyEventSubscriptionInput) SetEnabled(v bool) *ModifyEventSubscriptionInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *ModifyEventSubscriptionInput) SetEventCategories(v []*string) *ModifyEventSubscriptionInput {
+	s.EventCategories = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *ModifyEventSubscriptionInput) SetSnsTopicArn(v string) *ModifyEventSubscriptionInput {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ModifyEventSubscriptionInput) SetSourceType(v string) *ModifyEventSubscriptionInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *ModifyEventSubscriptionInput) SetSubscriptionName(v string) *ModifyEventSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
 type ModifyEventSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15982,6 +20050,12 @@ func (s ModifyEventSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s ModifyEventSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *ModifyEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *ModifyEventSubscriptionOutput {
+	s.EventSubscription = v
+	return s
 }
 
 type ModifyOptionGroupInput struct {
@@ -16041,6 +20115,30 @@ func (s *ModifyOptionGroupInput) Validate() error {
 	return nil
 }
 
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *ModifyOptionGroupInput) SetApplyImmediately(v bool) *ModifyOptionGroupInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *ModifyOptionGroupInput) SetOptionGroupName(v string) *ModifyOptionGroupInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetOptionsToInclude sets the OptionsToInclude field's value.
+func (s *ModifyOptionGroupInput) SetOptionsToInclude(v []*OptionConfiguration) *ModifyOptionGroupInput {
+	s.OptionsToInclude = v
+	return s
+}
+
+// SetOptionsToRemove sets the OptionsToRemove field's value.
+func (s *ModifyOptionGroupInput) SetOptionsToRemove(v []*string) *ModifyOptionGroupInput {
+	s.OptionsToRemove = v
+	return s
+}
+
 type ModifyOptionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16055,6 +20153,12 @@ func (s ModifyOptionGroupOutput) String() string {
 // GoString returns the string representation
 func (s ModifyOptionGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetOptionGroup sets the OptionGroup field's value.
+func (s *ModifyOptionGroupOutput) SetOptionGroup(v *OptionGroup) *ModifyOptionGroupOutput {
+	s.OptionGroup = v
+	return s
 }
 
 // Option details.
@@ -16099,6 +20203,60 @@ func (s Option) String() string {
 // GoString returns the string representation
 func (s Option) GoString() string {
 	return s.String()
+}
+
+// SetDBSecurityGroupMemberships sets the DBSecurityGroupMemberships field's value.
+func (s *Option) SetDBSecurityGroupMemberships(v []*DBSecurityGroupMembership) *Option {
+	s.DBSecurityGroupMemberships = v
+	return s
+}
+
+// SetOptionDescription sets the OptionDescription field's value.
+func (s *Option) SetOptionDescription(v string) *Option {
+	s.OptionDescription = &v
+	return s
+}
+
+// SetOptionName sets the OptionName field's value.
+func (s *Option) SetOptionName(v string) *Option {
+	s.OptionName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *Option) SetOptionSettings(v []*OptionSetting) *Option {
+	s.OptionSettings = v
+	return s
+}
+
+// SetOptionVersion sets the OptionVersion field's value.
+func (s *Option) SetOptionVersion(v string) *Option {
+	s.OptionVersion = &v
+	return s
+}
+
+// SetPermanent sets the Permanent field's value.
+func (s *Option) SetPermanent(v bool) *Option {
+	s.Permanent = &v
+	return s
+}
+
+// SetPersistent sets the Persistent field's value.
+func (s *Option) SetPersistent(v bool) *Option {
+	s.Persistent = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *Option) SetPort(v int64) *Option {
+	s.Port = &v
+	return s
+}
+
+// SetVpcSecurityGroupMemberships sets the VpcSecurityGroupMemberships field's value.
+func (s *Option) SetVpcSecurityGroupMemberships(v []*VpcSecurityGroupMembership) *Option {
+	s.VpcSecurityGroupMemberships = v
+	return s
 }
 
 // A list of all available options
@@ -16149,6 +20307,42 @@ func (s *OptionConfiguration) Validate() error {
 	return nil
 }
 
+// SetDBSecurityGroupMemberships sets the DBSecurityGroupMemberships field's value.
+func (s *OptionConfiguration) SetDBSecurityGroupMemberships(v []*string) *OptionConfiguration {
+	s.DBSecurityGroupMemberships = v
+	return s
+}
+
+// SetOptionName sets the OptionName field's value.
+func (s *OptionConfiguration) SetOptionName(v string) *OptionConfiguration {
+	s.OptionName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *OptionConfiguration) SetOptionSettings(v []*OptionSetting) *OptionConfiguration {
+	s.OptionSettings = v
+	return s
+}
+
+// SetOptionVersion sets the OptionVersion field's value.
+func (s *OptionConfiguration) SetOptionVersion(v string) *OptionConfiguration {
+	s.OptionVersion = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *OptionConfiguration) SetPort(v int64) *OptionConfiguration {
+	s.Port = &v
+	return s
+}
+
+// SetVpcSecurityGroupMemberships sets the VpcSecurityGroupMemberships field's value.
+func (s *OptionConfiguration) SetVpcSecurityGroupMemberships(v []*string) *OptionConfiguration {
+	s.VpcSecurityGroupMemberships = v
+	return s
+}
+
 type OptionGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -16193,6 +20387,54 @@ func (s OptionGroup) GoString() string {
 	return s.String()
 }
 
+// SetAllowsVpcAndNonVpcInstanceMemberships sets the AllowsVpcAndNonVpcInstanceMemberships field's value.
+func (s *OptionGroup) SetAllowsVpcAndNonVpcInstanceMemberships(v bool) *OptionGroup {
+	s.AllowsVpcAndNonVpcInstanceMemberships = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *OptionGroup) SetEngineName(v string) *OptionGroup {
+	s.EngineName = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *OptionGroup) SetMajorEngineVersion(v string) *OptionGroup {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetOptionGroupArn sets the OptionGroupArn field's value.
+func (s *OptionGroup) SetOptionGroupArn(v string) *OptionGroup {
+	s.OptionGroupArn = &v
+	return s
+}
+
+// SetOptionGroupDescription sets the OptionGroupDescription field's value.
+func (s *OptionGroup) SetOptionGroupDescription(v string) *OptionGroup {
+	s.OptionGroupDescription = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *OptionGroup) SetOptionGroupName(v string) *OptionGroup {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *OptionGroup) SetOptions(v []*Option) *OptionGroup {
+	s.Options = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *OptionGroup) SetVpcId(v string) *OptionGroup {
+	s.VpcId = &v
+	return s
+}
+
 // Provides information on the option groups the DB instance is a member of.
 type OptionGroupMembership struct {
 	_ struct{} `type:"structure"`
@@ -16214,6 +20456,18 @@ func (s OptionGroupMembership) String() string {
 // GoString returns the string representation
 func (s OptionGroupMembership) GoString() string {
 	return s.String()
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *OptionGroupMembership) SetOptionGroupName(v string) *OptionGroupMembership {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OptionGroupMembership) SetStatus(v string) *OptionGroupMembership {
+	s.Status = &v
+	return s
 }
 
 // Available option.
@@ -16275,6 +20529,84 @@ func (s OptionGroupOption) GoString() string {
 	return s.String()
 }
 
+// SetDefaultPort sets the DefaultPort field's value.
+func (s *OptionGroupOption) SetDefaultPort(v int64) *OptionGroupOption {
+	s.DefaultPort = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *OptionGroupOption) SetDescription(v string) *OptionGroupOption {
+	s.Description = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *OptionGroupOption) SetEngineName(v string) *OptionGroupOption {
+	s.EngineName = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *OptionGroupOption) SetMajorEngineVersion(v string) *OptionGroupOption {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetMinimumRequiredMinorEngineVersion sets the MinimumRequiredMinorEngineVersion field's value.
+func (s *OptionGroupOption) SetMinimumRequiredMinorEngineVersion(v string) *OptionGroupOption {
+	s.MinimumRequiredMinorEngineVersion = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OptionGroupOption) SetName(v string) *OptionGroupOption {
+	s.Name = &v
+	return s
+}
+
+// SetOptionGroupOptionSettings sets the OptionGroupOptionSettings field's value.
+func (s *OptionGroupOption) SetOptionGroupOptionSettings(v []*OptionGroupOptionSetting) *OptionGroupOption {
+	s.OptionGroupOptionSettings = v
+	return s
+}
+
+// SetOptionGroupOptionVersions sets the OptionGroupOptionVersions field's value.
+func (s *OptionGroupOption) SetOptionGroupOptionVersions(v []*OptionVersion) *OptionGroupOption {
+	s.OptionGroupOptionVersions = v
+	return s
+}
+
+// SetOptionsConflictsWith sets the OptionsConflictsWith field's value.
+func (s *OptionGroupOption) SetOptionsConflictsWith(v []*string) *OptionGroupOption {
+	s.OptionsConflictsWith = v
+	return s
+}
+
+// SetOptionsDependedOn sets the OptionsDependedOn field's value.
+func (s *OptionGroupOption) SetOptionsDependedOn(v []*string) *OptionGroupOption {
+	s.OptionsDependedOn = v
+	return s
+}
+
+// SetPermanent sets the Permanent field's value.
+func (s *OptionGroupOption) SetPermanent(v bool) *OptionGroupOption {
+	s.Permanent = &v
+	return s
+}
+
+// SetPersistent sets the Persistent field's value.
+func (s *OptionGroupOption) SetPersistent(v bool) *OptionGroupOption {
+	s.Persistent = &v
+	return s
+}
+
+// SetPortRequired sets the PortRequired field's value.
+func (s *OptionGroupOption) SetPortRequired(v bool) *OptionGroupOption {
+	s.PortRequired = &v
+	return s
+}
+
 // Option group option settings are used to display settings available for each
 // option with their default values and other information. These values are
 // used with the DescribeOptionGroupOptions action.
@@ -16309,6 +20641,42 @@ func (s OptionGroupOptionSetting) String() string {
 // GoString returns the string representation
 func (s OptionGroupOptionSetting) GoString() string {
 	return s.String()
+}
+
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *OptionGroupOptionSetting) SetAllowedValues(v string) *OptionGroupOptionSetting {
+	s.AllowedValues = &v
+	return s
+}
+
+// SetApplyType sets the ApplyType field's value.
+func (s *OptionGroupOptionSetting) SetApplyType(v string) *OptionGroupOptionSetting {
+	s.ApplyType = &v
+	return s
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *OptionGroupOptionSetting) SetDefaultValue(v string) *OptionGroupOptionSetting {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetIsModifiable sets the IsModifiable field's value.
+func (s *OptionGroupOptionSetting) SetIsModifiable(v bool) *OptionGroupOptionSetting {
+	s.IsModifiable = &v
+	return s
+}
+
+// SetSettingDescription sets the SettingDescription field's value.
+func (s *OptionGroupOptionSetting) SetSettingDescription(v string) *OptionGroupOptionSetting {
+	s.SettingDescription = &v
+	return s
+}
+
+// SetSettingName sets the SettingName field's value.
+func (s *OptionGroupOptionSetting) SetSettingName(v string) *OptionGroupOptionSetting {
+	s.SettingName = &v
+	return s
 }
 
 // Option settings are the actual settings being applied or configured for that
@@ -16357,6 +20725,60 @@ func (s OptionSetting) GoString() string {
 	return s.String()
 }
 
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *OptionSetting) SetAllowedValues(v string) *OptionSetting {
+	s.AllowedValues = &v
+	return s
+}
+
+// SetApplyType sets the ApplyType field's value.
+func (s *OptionSetting) SetApplyType(v string) *OptionSetting {
+	s.ApplyType = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *OptionSetting) SetDataType(v string) *OptionSetting {
+	s.DataType = &v
+	return s
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *OptionSetting) SetDefaultValue(v string) *OptionSetting {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *OptionSetting) SetDescription(v string) *OptionSetting {
+	s.Description = &v
+	return s
+}
+
+// SetIsCollection sets the IsCollection field's value.
+func (s *OptionSetting) SetIsCollection(v bool) *OptionSetting {
+	s.IsCollection = &v
+	return s
+}
+
+// SetIsModifiable sets the IsModifiable field's value.
+func (s *OptionSetting) SetIsModifiable(v bool) *OptionSetting {
+	s.IsModifiable = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OptionSetting) SetName(v string) *OptionSetting {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *OptionSetting) SetValue(v string) *OptionSetting {
+	s.Value = &v
+	return s
+}
+
 // The version for an option. Option group option versions are returned by the
 // DescribeOptionGroupOptions action.
 type OptionVersion struct {
@@ -16377,6 +20799,18 @@ func (s OptionVersion) String() string {
 // GoString returns the string representation
 func (s OptionVersion) GoString() string {
 	return s.String()
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *OptionVersion) SetIsDefault(v bool) *OptionVersion {
+	s.IsDefault = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *OptionVersion) SetVersion(v string) *OptionVersion {
+	s.Version = &v
+	return s
 }
 
 // Contains a list of available options for a DB instance
@@ -16434,6 +20868,78 @@ func (s OrderableDBInstanceOption) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *OrderableDBInstanceOption) SetAvailabilityZones(v []*AvailabilityZone) *OrderableDBInstanceOption {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *OrderableDBInstanceOption) SetDBInstanceClass(v string) *OrderableDBInstanceOption {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *OrderableDBInstanceOption) SetEngine(v string) *OrderableDBInstanceOption {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *OrderableDBInstanceOption) SetEngineVersion(v string) *OrderableDBInstanceOption {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *OrderableDBInstanceOption) SetLicenseModel(v string) *OrderableDBInstanceOption {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMultiAZCapable sets the MultiAZCapable field's value.
+func (s *OrderableDBInstanceOption) SetMultiAZCapable(v bool) *OrderableDBInstanceOption {
+	s.MultiAZCapable = &v
+	return s
+}
+
+// SetReadReplicaCapable sets the ReadReplicaCapable field's value.
+func (s *OrderableDBInstanceOption) SetReadReplicaCapable(v bool) *OrderableDBInstanceOption {
+	s.ReadReplicaCapable = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *OrderableDBInstanceOption) SetStorageType(v string) *OrderableDBInstanceOption {
+	s.StorageType = &v
+	return s
+}
+
+// SetSupportsEnhancedMonitoring sets the SupportsEnhancedMonitoring field's value.
+func (s *OrderableDBInstanceOption) SetSupportsEnhancedMonitoring(v bool) *OrderableDBInstanceOption {
+	s.SupportsEnhancedMonitoring = &v
+	return s
+}
+
+// SetSupportsIops sets the SupportsIops field's value.
+func (s *OrderableDBInstanceOption) SetSupportsIops(v bool) *OrderableDBInstanceOption {
+	s.SupportsIops = &v
+	return s
+}
+
+// SetSupportsStorageEncryption sets the SupportsStorageEncryption field's value.
+func (s *OrderableDBInstanceOption) SetSupportsStorageEncryption(v bool) *OrderableDBInstanceOption {
+	s.SupportsStorageEncryption = &v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *OrderableDBInstanceOption) SetVpc(v bool) *OrderableDBInstanceOption {
+	s.Vpc = &v
+	return s
+}
+
 // This data type is used as a request parameter in the ModifyDBParameterGroup
 // and ResetDBParameterGroup actions.
 //
@@ -16485,6 +20991,66 @@ func (s Parameter) GoString() string {
 	return s.String()
 }
 
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *Parameter) SetAllowedValues(v string) *Parameter {
+	s.AllowedValues = &v
+	return s
+}
+
+// SetApplyMethod sets the ApplyMethod field's value.
+func (s *Parameter) SetApplyMethod(v string) *Parameter {
+	s.ApplyMethod = &v
+	return s
+}
+
+// SetApplyType sets the ApplyType field's value.
+func (s *Parameter) SetApplyType(v string) *Parameter {
+	s.ApplyType = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *Parameter) SetDataType(v string) *Parameter {
+	s.DataType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Parameter) SetDescription(v string) *Parameter {
+	s.Description = &v
+	return s
+}
+
+// SetIsModifiable sets the IsModifiable field's value.
+func (s *Parameter) SetIsModifiable(v bool) *Parameter {
+	s.IsModifiable = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *Parameter) SetMinimumEngineVersion(v string) *Parameter {
+	s.MinimumEngineVersion = &v
+	return s
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *Parameter) SetParameterName(v string) *Parameter {
+	s.ParameterName = &v
+	return s
+}
+
+// SetParameterValue sets the ParameterValue field's value.
+func (s *Parameter) SetParameterValue(v string) *Parameter {
+	s.ParameterValue = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *Parameter) SetSource(v string) *Parameter {
+	s.Source = &v
+	return s
+}
+
 // Provides information about a pending maintenance action for a resource.
 type PendingMaintenanceAction struct {
 	_ struct{} `type:"structure"`
@@ -16526,6 +21092,42 @@ func (s PendingMaintenanceAction) String() string {
 // GoString returns the string representation
 func (s PendingMaintenanceAction) GoString() string {
 	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *PendingMaintenanceAction) SetAction(v string) *PendingMaintenanceAction {
+	s.Action = &v
+	return s
+}
+
+// SetAutoAppliedAfterDate sets the AutoAppliedAfterDate field's value.
+func (s *PendingMaintenanceAction) SetAutoAppliedAfterDate(v time.Time) *PendingMaintenanceAction {
+	s.AutoAppliedAfterDate = &v
+	return s
+}
+
+// SetCurrentApplyDate sets the CurrentApplyDate field's value.
+func (s *PendingMaintenanceAction) SetCurrentApplyDate(v time.Time) *PendingMaintenanceAction {
+	s.CurrentApplyDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PendingMaintenanceAction) SetDescription(v string) *PendingMaintenanceAction {
+	s.Description = &v
+	return s
+}
+
+// SetForcedApplyDate sets the ForcedApplyDate field's value.
+func (s *PendingMaintenanceAction) SetForcedApplyDate(v time.Time) *PendingMaintenanceAction {
+	s.ForcedApplyDate = &v
+	return s
+}
+
+// SetOptInStatus sets the OptInStatus field's value.
+func (s *PendingMaintenanceAction) SetOptInStatus(v string) *PendingMaintenanceAction {
+	s.OptInStatus = &v
+	return s
 }
 
 // This data type is used as a response element in the ModifyDBInstance action.
@@ -16589,6 +21191,84 @@ func (s PendingModifiedValues) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *PendingModifiedValues) SetAllocatedStorage(v int64) *PendingModifiedValues {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *PendingModifiedValues) SetBackupRetentionPeriod(v int64) *PendingModifiedValues {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
+func (s *PendingModifiedValues) SetCACertificateIdentifier(v string) *PendingModifiedValues {
+	s.CACertificateIdentifier = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *PendingModifiedValues) SetDBInstanceClass(v string) *PendingModifiedValues {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *PendingModifiedValues) SetDBInstanceIdentifier(v string) *PendingModifiedValues {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *PendingModifiedValues) SetDBSubnetGroupName(v string) *PendingModifiedValues {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *PendingModifiedValues) SetEngineVersion(v string) *PendingModifiedValues {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *PendingModifiedValues) SetIops(v int64) *PendingModifiedValues {
+	s.Iops = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *PendingModifiedValues) SetLicenseModel(v string) *PendingModifiedValues {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *PendingModifiedValues) SetMasterUserPassword(v string) *PendingModifiedValues {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *PendingModifiedValues) SetMultiAZ(v bool) *PendingModifiedValues {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *PendingModifiedValues) SetPort(v int64) *PendingModifiedValues {
+	s.Port = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *PendingModifiedValues) SetStorageType(v string) *PendingModifiedValues {
+	s.StorageType = &v
+	return s
+}
+
 type PromoteReadReplicaDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16632,6 +21312,12 @@ func (s *PromoteReadReplicaDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *PromoteReadReplicaDBClusterInput) SetDBClusterIdentifier(v string) *PromoteReadReplicaDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
 type PromoteReadReplicaDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16661,6 +21347,12 @@ func (s PromoteReadReplicaDBClusterOutput) String() string {
 // GoString returns the string representation
 func (s PromoteReadReplicaDBClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *PromoteReadReplicaDBClusterOutput) SetDBCluster(v *DBCluster) *PromoteReadReplicaDBClusterOutput {
+	s.DBCluster = v
+	return s
 }
 
 type PromoteReadReplicaInput struct {
@@ -16737,6 +21429,24 @@ func (s *PromoteReadReplicaInput) Validate() error {
 	return nil
 }
 
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *PromoteReadReplicaInput) SetBackupRetentionPeriod(v int64) *PromoteReadReplicaInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *PromoteReadReplicaInput) SetDBInstanceIdentifier(v string) *PromoteReadReplicaInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *PromoteReadReplicaInput) SetPreferredBackupWindow(v string) *PromoteReadReplicaInput {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
 type PromoteReadReplicaOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16760,6 +21470,12 @@ func (s PromoteReadReplicaOutput) String() string {
 // GoString returns the string representation
 func (s PromoteReadReplicaOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *PromoteReadReplicaOutput) SetDBInstance(v *DBInstance) *PromoteReadReplicaOutput {
+	s.DBInstance = v
+	return s
 }
 
 type PurchaseReservedDBInstancesOfferingInput struct {
@@ -16809,6 +21525,30 @@ func (s *PurchaseReservedDBInstancesOfferingInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceCount sets the DBInstanceCount field's value.
+func (s *PurchaseReservedDBInstancesOfferingInput) SetDBInstanceCount(v int64) *PurchaseReservedDBInstancesOfferingInput {
+	s.DBInstanceCount = &v
+	return s
+}
+
+// SetReservedDBInstanceId sets the ReservedDBInstanceId field's value.
+func (s *PurchaseReservedDBInstancesOfferingInput) SetReservedDBInstanceId(v string) *PurchaseReservedDBInstancesOfferingInput {
+	s.ReservedDBInstanceId = &v
+	return s
+}
+
+// SetReservedDBInstancesOfferingId sets the ReservedDBInstancesOfferingId field's value.
+func (s *PurchaseReservedDBInstancesOfferingInput) SetReservedDBInstancesOfferingId(v string) *PurchaseReservedDBInstancesOfferingInput {
+	s.ReservedDBInstancesOfferingId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PurchaseReservedDBInstancesOfferingInput) SetTags(v []*Tag) *PurchaseReservedDBInstancesOfferingInput {
+	s.Tags = v
+	return s
+}
+
 type PurchaseReservedDBInstancesOfferingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16825,6 +21565,12 @@ func (s PurchaseReservedDBInstancesOfferingOutput) String() string {
 // GoString returns the string representation
 func (s PurchaseReservedDBInstancesOfferingOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedDBInstance sets the ReservedDBInstance field's value.
+func (s *PurchaseReservedDBInstancesOfferingOutput) SetReservedDBInstance(v *ReservedDBInstance) *PurchaseReservedDBInstancesOfferingOutput {
+	s.ReservedDBInstance = v
+	return s
 }
 
 type RebootDBInstanceInput struct {
@@ -16873,6 +21619,18 @@ func (s *RebootDBInstanceInput) Validate() error {
 	return nil
 }
 
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *RebootDBInstanceInput) SetDBInstanceIdentifier(v string) *RebootDBInstanceInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetForceFailover sets the ForceFailover field's value.
+func (s *RebootDBInstanceInput) SetForceFailover(v bool) *RebootDBInstanceInput {
+	s.ForceFailover = &v
+	return s
+}
+
 type RebootDBInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16898,6 +21656,12 @@ func (s RebootDBInstanceOutput) GoString() string {
 	return s.String()
 }
 
+// SetDBInstance sets the DBInstance field's value.
+func (s *RebootDBInstanceOutput) SetDBInstance(v *DBInstance) *RebootDBInstanceOutput {
+	s.DBInstance = v
+	return s
+}
+
 // This data type is used as a response element in the DescribeReservedDBInstances
 // and DescribeReservedDBInstancesOfferings actions.
 type RecurringCharge struct {
@@ -16918,6 +21682,18 @@ func (s RecurringCharge) String() string {
 // GoString returns the string representation
 func (s RecurringCharge) GoString() string {
 	return s.String()
+}
+
+// SetRecurringChargeAmount sets the RecurringChargeAmount field's value.
+func (s *RecurringCharge) SetRecurringChargeAmount(v float64) *RecurringCharge {
+	s.RecurringChargeAmount = &v
+	return s
+}
+
+// SetRecurringChargeFrequency sets the RecurringChargeFrequency field's value.
+func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge {
+	s.RecurringChargeFrequency = &v
+	return s
 }
 
 type RemoveRoleFromDBClusterInput struct {
@@ -16959,6 +21735,18 @@ func (s *RemoveRoleFromDBClusterInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *RemoveRoleFromDBClusterInput) SetDBClusterIdentifier(v string) *RemoveRoleFromDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *RemoveRoleFromDBClusterInput) SetRoleArn(v string) *RemoveRoleFromDBClusterInput {
+	s.RoleArn = &v
+	return s
 }
 
 type RemoveRoleFromDBClusterOutput struct {
@@ -17017,6 +21805,18 @@ func (s *RemoveSourceIdentifierFromSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *RemoveSourceIdentifierFromSubscriptionInput) SetSourceIdentifier(v string) *RemoveSourceIdentifierFromSubscriptionInput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *RemoveSourceIdentifierFromSubscriptionInput) SetSubscriptionName(v string) *RemoveSourceIdentifierFromSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
 type RemoveSourceIdentifierFromSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17033,6 +21833,12 @@ func (s RemoveSourceIdentifierFromSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s RemoveSourceIdentifierFromSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *RemoveSourceIdentifierFromSubscriptionOutput) SetEventSubscription(v *EventSubscription) *RemoveSourceIdentifierFromSubscriptionOutput {
+	s.EventSubscription = v
+	return s
 }
 
 type RemoveTagsFromResourceInput struct {
@@ -17075,6 +21881,18 @@ func (s *RemoveTagsFromResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *RemoveTagsFromResourceInput) SetResourceName(v string) *RemoveTagsFromResourceInput {
+	s.ResourceName = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *RemoveTagsFromResourceInput) SetTagKeys(v []*string) *RemoveTagsFromResourceInput {
+	s.TagKeys = v
+	return s
 }
 
 type RemoveTagsFromResourceOutput struct {
@@ -17152,6 +21970,96 @@ func (s ReservedDBInstance) GoString() string {
 	return s.String()
 }
 
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *ReservedDBInstance) SetCurrencyCode(v string) *ReservedDBInstance {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *ReservedDBInstance) SetDBInstanceClass(v string) *ReservedDBInstance {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceCount sets the DBInstanceCount field's value.
+func (s *ReservedDBInstance) SetDBInstanceCount(v int64) *ReservedDBInstance {
+	s.DBInstanceCount = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ReservedDBInstance) SetDuration(v int64) *ReservedDBInstance {
+	s.Duration = &v
+	return s
+}
+
+// SetFixedPrice sets the FixedPrice field's value.
+func (s *ReservedDBInstance) SetFixedPrice(v float64) *ReservedDBInstance {
+	s.FixedPrice = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ReservedDBInstance) SetMultiAZ(v bool) *ReservedDBInstance {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *ReservedDBInstance) SetOfferingType(v string) *ReservedDBInstance {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ReservedDBInstance) SetProductDescription(v string) *ReservedDBInstance {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *ReservedDBInstance) SetRecurringCharges(v []*RecurringCharge) *ReservedDBInstance {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetReservedDBInstanceArn sets the ReservedDBInstanceArn field's value.
+func (s *ReservedDBInstance) SetReservedDBInstanceArn(v string) *ReservedDBInstance {
+	s.ReservedDBInstanceArn = &v
+	return s
+}
+
+// SetReservedDBInstanceId sets the ReservedDBInstanceId field's value.
+func (s *ReservedDBInstance) SetReservedDBInstanceId(v string) *ReservedDBInstance {
+	s.ReservedDBInstanceId = &v
+	return s
+}
+
+// SetReservedDBInstancesOfferingId sets the ReservedDBInstancesOfferingId field's value.
+func (s *ReservedDBInstance) SetReservedDBInstancesOfferingId(v string) *ReservedDBInstance {
+	s.ReservedDBInstancesOfferingId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ReservedDBInstance) SetStartTime(v time.Time) *ReservedDBInstance {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ReservedDBInstance) SetState(v string) *ReservedDBInstance {
+	s.State = &v
+	return s
+}
+
+// SetUsagePrice sets the UsagePrice field's value.
+func (s *ReservedDBInstance) SetUsagePrice(v float64) *ReservedDBInstance {
+	s.UsagePrice = &v
+	return s
+}
+
 // This data type is used as a response element in the DescribeReservedDBInstancesOfferings
 // action.
 type ReservedDBInstancesOffering struct {
@@ -17198,6 +22106,66 @@ func (s ReservedDBInstancesOffering) GoString() string {
 	return s.String()
 }
 
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *ReservedDBInstancesOffering) SetCurrencyCode(v string) *ReservedDBInstancesOffering {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *ReservedDBInstancesOffering) SetDBInstanceClass(v string) *ReservedDBInstancesOffering {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ReservedDBInstancesOffering) SetDuration(v int64) *ReservedDBInstancesOffering {
+	s.Duration = &v
+	return s
+}
+
+// SetFixedPrice sets the FixedPrice field's value.
+func (s *ReservedDBInstancesOffering) SetFixedPrice(v float64) *ReservedDBInstancesOffering {
+	s.FixedPrice = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ReservedDBInstancesOffering) SetMultiAZ(v bool) *ReservedDBInstancesOffering {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *ReservedDBInstancesOffering) SetOfferingType(v string) *ReservedDBInstancesOffering {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ReservedDBInstancesOffering) SetProductDescription(v string) *ReservedDBInstancesOffering {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *ReservedDBInstancesOffering) SetRecurringCharges(v []*RecurringCharge) *ReservedDBInstancesOffering {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetReservedDBInstancesOfferingId sets the ReservedDBInstancesOfferingId field's value.
+func (s *ReservedDBInstancesOffering) SetReservedDBInstancesOfferingId(v string) *ReservedDBInstancesOffering {
+	s.ReservedDBInstancesOfferingId = &v
+	return s
+}
+
+// SetUsagePrice sets the UsagePrice field's value.
+func (s *ReservedDBInstancesOffering) SetUsagePrice(v float64) *ReservedDBInstancesOffering {
+	s.UsagePrice = &v
+	return s
+}
+
 type ResetDBClusterParameterGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17238,6 +22206,24 @@ func (s *ResetDBClusterParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *ResetDBClusterParameterGroupInput) SetDBClusterParameterGroupName(v string) *ResetDBClusterParameterGroupInput {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ResetDBClusterParameterGroupInput) SetParameters(v []*Parameter) *ResetDBClusterParameterGroupInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResetAllParameters sets the ResetAllParameters field's value.
+func (s *ResetDBClusterParameterGroupInput) SetResetAllParameters(v bool) *ResetDBClusterParameterGroupInput {
+	s.ResetAllParameters = &v
+	return s
 }
 
 type ResetDBParameterGroupInput struct {
@@ -17312,6 +22298,24 @@ func (s *ResetDBParameterGroupInput) Validate() error {
 	return nil
 }
 
+// SetDBParameterGroupName sets the DBParameterGroupName field's value.
+func (s *ResetDBParameterGroupInput) SetDBParameterGroupName(v string) *ResetDBParameterGroupInput {
+	s.DBParameterGroupName = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ResetDBParameterGroupInput) SetParameters(v []*Parameter) *ResetDBParameterGroupInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResetAllParameters sets the ResetAllParameters field's value.
+func (s *ResetDBParameterGroupInput) SetResetAllParameters(v bool) *ResetDBParameterGroupInput {
+	s.ResetAllParameters = &v
+	return s
+}
+
 // Describes the pending maintenance actions for a resource.
 type ResourcePendingMaintenanceActions struct {
 	_ struct{} `type:"structure"`
@@ -17332,6 +22336,18 @@ func (s ResourcePendingMaintenanceActions) String() string {
 // GoString returns the string representation
 func (s ResourcePendingMaintenanceActions) GoString() string {
 	return s.String()
+}
+
+// SetPendingMaintenanceActionDetails sets the PendingMaintenanceActionDetails field's value.
+func (s *ResourcePendingMaintenanceActions) SetPendingMaintenanceActionDetails(v []*PendingMaintenanceAction) *ResourcePendingMaintenanceActions {
+	s.PendingMaintenanceActionDetails = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ResourcePendingMaintenanceActions) SetResourceIdentifier(v string) *ResourcePendingMaintenanceActions {
+	s.ResourceIdentifier = &v
+	return s
 }
 
 type RestoreDBClusterFromS3Input struct {
@@ -17579,6 +22595,150 @@ func (s *RestoreDBClusterFromS3Input) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *RestoreDBClusterFromS3Input) SetAvailabilityZones(v []*string) *RestoreDBClusterFromS3Input {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *RestoreDBClusterFromS3Input) SetBackupRetentionPeriod(v int64) *RestoreDBClusterFromS3Input {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetCharacterSetName sets the CharacterSetName field's value.
+func (s *RestoreDBClusterFromS3Input) SetCharacterSetName(v string) *RestoreDBClusterFromS3Input {
+	s.CharacterSetName = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *RestoreDBClusterFromS3Input) SetDBClusterIdentifier(v string) *RestoreDBClusterFromS3Input {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
+func (s *RestoreDBClusterFromS3Input) SetDBClusterParameterGroupName(v string) *RestoreDBClusterFromS3Input {
+	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *RestoreDBClusterFromS3Input) SetDBSubnetGroupName(v string) *RestoreDBClusterFromS3Input {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *RestoreDBClusterFromS3Input) SetDatabaseName(v string) *RestoreDBClusterFromS3Input {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *RestoreDBClusterFromS3Input) SetEngine(v string) *RestoreDBClusterFromS3Input {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *RestoreDBClusterFromS3Input) SetEngineVersion(v string) *RestoreDBClusterFromS3Input {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RestoreDBClusterFromS3Input) SetKmsKeyId(v string) *RestoreDBClusterFromS3Input {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *RestoreDBClusterFromS3Input) SetMasterUserPassword(v string) *RestoreDBClusterFromS3Input {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *RestoreDBClusterFromS3Input) SetMasterUsername(v string) *RestoreDBClusterFromS3Input {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *RestoreDBClusterFromS3Input) SetOptionGroupName(v string) *RestoreDBClusterFromS3Input {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RestoreDBClusterFromS3Input) SetPort(v int64) *RestoreDBClusterFromS3Input {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredBackupWindow sets the PreferredBackupWindow field's value.
+func (s *RestoreDBClusterFromS3Input) SetPreferredBackupWindow(v string) *RestoreDBClusterFromS3Input {
+	s.PreferredBackupWindow = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *RestoreDBClusterFromS3Input) SetPreferredMaintenanceWindow(v string) *RestoreDBClusterFromS3Input {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *RestoreDBClusterFromS3Input) SetS3BucketName(v string) *RestoreDBClusterFromS3Input {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3IngestionRoleArn sets the S3IngestionRoleArn field's value.
+func (s *RestoreDBClusterFromS3Input) SetS3IngestionRoleArn(v string) *RestoreDBClusterFromS3Input {
+	s.S3IngestionRoleArn = &v
+	return s
+}
+
+// SetS3Prefix sets the S3Prefix field's value.
+func (s *RestoreDBClusterFromS3Input) SetS3Prefix(v string) *RestoreDBClusterFromS3Input {
+	s.S3Prefix = &v
+	return s
+}
+
+// SetSourceEngine sets the SourceEngine field's value.
+func (s *RestoreDBClusterFromS3Input) SetSourceEngine(v string) *RestoreDBClusterFromS3Input {
+	s.SourceEngine = &v
+	return s
+}
+
+// SetSourceEngineVersion sets the SourceEngineVersion field's value.
+func (s *RestoreDBClusterFromS3Input) SetSourceEngineVersion(v string) *RestoreDBClusterFromS3Input {
+	s.SourceEngineVersion = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *RestoreDBClusterFromS3Input) SetStorageEncrypted(v bool) *RestoreDBClusterFromS3Input {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RestoreDBClusterFromS3Input) SetTags(v []*Tag) *RestoreDBClusterFromS3Input {
+	s.Tags = v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *RestoreDBClusterFromS3Input) SetVpcSecurityGroupIds(v []*string) *RestoreDBClusterFromS3Input {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type RestoreDBClusterFromS3Output struct {
 	_ struct{} `type:"structure"`
 
@@ -17608,6 +22768,12 @@ func (s RestoreDBClusterFromS3Output) String() string {
 // GoString returns the string representation
 func (s RestoreDBClusterFromS3Output) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *RestoreDBClusterFromS3Output) SetDBCluster(v *DBCluster) *RestoreDBClusterFromS3Output {
+	s.DBCluster = v
+	return s
 }
 
 type RestoreDBClusterFromSnapshotInput struct {
@@ -17734,6 +22900,78 @@ func (s *RestoreDBClusterFromSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetAvailabilityZones(v []*string) *RestoreDBClusterFromSnapshotInput {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetDBClusterIdentifier(v string) *RestoreDBClusterFromSnapshotInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetDBSubnetGroupName(v string) *RestoreDBClusterFromSnapshotInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetDatabaseName(v string) *RestoreDBClusterFromSnapshotInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetEngine(v string) *RestoreDBClusterFromSnapshotInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetEngineVersion(v string) *RestoreDBClusterFromSnapshotInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetKmsKeyId(v string) *RestoreDBClusterFromSnapshotInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetOptionGroupName(v string) *RestoreDBClusterFromSnapshotInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetPort(v int64) *RestoreDBClusterFromSnapshotInput {
+	s.Port = &v
+	return s
+}
+
+// SetSnapshotIdentifier sets the SnapshotIdentifier field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetSnapshotIdentifier(v string) *RestoreDBClusterFromSnapshotInput {
+	s.SnapshotIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetTags(v []*Tag) *RestoreDBClusterFromSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetVpcSecurityGroupIds(v []*string) *RestoreDBClusterFromSnapshotInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type RestoreDBClusterFromSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17763,6 +23001,12 @@ func (s RestoreDBClusterFromSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s RestoreDBClusterFromSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *RestoreDBClusterFromSnapshotOutput) SetDBCluster(v *DBCluster) *RestoreDBClusterFromSnapshotOutput {
+	s.DBCluster = v
+	return s
 }
 
 type RestoreDBClusterToPointInTimeInput struct {
@@ -17894,6 +23138,66 @@ func (s *RestoreDBClusterToPointInTimeInput) Validate() error {
 	return nil
 }
 
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetDBClusterIdentifier(v string) *RestoreDBClusterToPointInTimeInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetDBSubnetGroupName(v string) *RestoreDBClusterToPointInTimeInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetKmsKeyId(v string) *RestoreDBClusterToPointInTimeInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetOptionGroupName(v string) *RestoreDBClusterToPointInTimeInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetPort(v int64) *RestoreDBClusterToPointInTimeInput {
+	s.Port = &v
+	return s
+}
+
+// SetRestoreToTime sets the RestoreToTime field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetRestoreToTime(v time.Time) *RestoreDBClusterToPointInTimeInput {
+	s.RestoreToTime = &v
+	return s
+}
+
+// SetSourceDBClusterIdentifier sets the SourceDBClusterIdentifier field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetSourceDBClusterIdentifier(v string) *RestoreDBClusterToPointInTimeInput {
+	s.SourceDBClusterIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetTags(v []*Tag) *RestoreDBClusterToPointInTimeInput {
+	s.Tags = v
+	return s
+}
+
+// SetUseLatestRestorableTime sets the UseLatestRestorableTime field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetUseLatestRestorableTime(v bool) *RestoreDBClusterToPointInTimeInput {
+	s.UseLatestRestorableTime = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetVpcSecurityGroupIds(v []*string) *RestoreDBClusterToPointInTimeInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type RestoreDBClusterToPointInTimeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17923,6 +23227,12 @@ func (s RestoreDBClusterToPointInTimeOutput) String() string {
 // GoString returns the string representation
 func (s RestoreDBClusterToPointInTimeOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *RestoreDBClusterToPointInTimeOutput) SetDBCluster(v *DBCluster) *RestoreDBClusterToPointInTimeOutput {
+	s.DBCluster = v
+	return s
 }
 
 type RestoreDBInstanceFromDBSnapshotInput struct {
@@ -18123,6 +23433,132 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetAutoMinorVersionUpgrade(v bool) *RestoreDBInstanceFromDBSnapshotInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetAvailabilityZone(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetCopyTagsToSnapshot(v bool) *RestoreDBInstanceFromDBSnapshotInput {
+	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBInstanceClass(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBInstanceIdentifier(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBInstanceIdentifier = &v
+	return s
+}
+
+// SetDBName sets the DBName field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBName(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBName = &v
+	return s
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBSnapshotIdentifier(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDBSubnetGroupName(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomain(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainIAMRoleName(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetEngine(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.Engine = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetIops(v int64) *RestoreDBInstanceFromDBSnapshotInput {
+	s.Iops = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetLicenseModel(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetMultiAZ(v bool) *RestoreDBInstanceFromDBSnapshotInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetOptionGroupName(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetPort(v int64) *RestoreDBInstanceFromDBSnapshotInput {
+	s.Port = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetPubliclyAccessible(v bool) *RestoreDBInstanceFromDBSnapshotInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetStorageType(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.StorageType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetTags(v []*Tag) *RestoreDBInstanceFromDBSnapshotInput {
+	s.Tags = v
+	return s
+}
+
+// SetTdeCredentialArn sets the TdeCredentialArn field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetTdeCredentialArn(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.TdeCredentialArn = &v
+	return s
+}
+
+// SetTdeCredentialPassword sets the TdeCredentialPassword field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetTdeCredentialPassword(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.TdeCredentialPassword = &v
+	return s
+}
+
 type RestoreDBInstanceFromDBSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18146,6 +23582,12 @@ func (s RestoreDBInstanceFromDBSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s RestoreDBInstanceFromDBSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *RestoreDBInstanceFromDBSnapshotOutput) SetDBInstance(v *DBInstance) *RestoreDBInstanceFromDBSnapshotOutput {
+	s.DBInstance = v
+	return s
 }
 
 type RestoreDBInstanceToPointInTimeInput struct {
@@ -18360,6 +23802,144 @@ func (s *RestoreDBInstanceToPointInTimeInput) Validate() error {
 	return nil
 }
 
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetAutoMinorVersionUpgrade(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetAvailabilityZone(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetCopyTagsToSnapshot(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetDBInstanceClass sets the DBInstanceClass field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDBInstanceClass(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DBInstanceClass = &v
+	return s
+}
+
+// SetDBName sets the DBName field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDBName(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DBName = &v
+	return s
+}
+
+// SetDBSubnetGroupName sets the DBSubnetGroupName field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDBSubnetGroupName(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DBSubnetGroupName = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDomain(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetDomainIAMRoleName(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetEngine(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.Engine = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetIops(v int64) *RestoreDBInstanceToPointInTimeInput {
+	s.Iops = &v
+	return s
+}
+
+// SetLicenseModel sets the LicenseModel field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetLicenseModel(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.LicenseModel = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetMultiAZ(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetOptionGroupName sets the OptionGroupName field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetOptionGroupName(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.OptionGroupName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetPort(v int64) *RestoreDBInstanceToPointInTimeInput {
+	s.Port = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetPubliclyAccessible(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetRestoreTime sets the RestoreTime field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetRestoreTime(v time.Time) *RestoreDBInstanceToPointInTimeInput {
+	s.RestoreTime = &v
+	return s
+}
+
+// SetSourceDBInstanceIdentifier sets the SourceDBInstanceIdentifier field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetSourceDBInstanceIdentifier(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.SourceDBInstanceIdentifier = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetStorageType(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.StorageType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetTags(v []*Tag) *RestoreDBInstanceToPointInTimeInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetDBInstanceIdentifier sets the TargetDBInstanceIdentifier field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetTargetDBInstanceIdentifier(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.TargetDBInstanceIdentifier = &v
+	return s
+}
+
+// SetTdeCredentialArn sets the TdeCredentialArn field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetTdeCredentialArn(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.TdeCredentialArn = &v
+	return s
+}
+
+// SetTdeCredentialPassword sets the TdeCredentialPassword field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetTdeCredentialPassword(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.TdeCredentialPassword = &v
+	return s
+}
+
+// SetUseLatestRestorableTime sets the UseLatestRestorableTime field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetUseLatestRestorableTime(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.UseLatestRestorableTime = &v
+	return s
+}
+
 type RestoreDBInstanceToPointInTimeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18383,6 +23963,12 @@ func (s RestoreDBInstanceToPointInTimeOutput) String() string {
 // GoString returns the string representation
 func (s RestoreDBInstanceToPointInTimeOutput) GoString() string {
 	return s.String()
+}
+
+// SetDBInstance sets the DBInstance field's value.
+func (s *RestoreDBInstanceToPointInTimeOutput) SetDBInstance(v *DBInstance) *RestoreDBInstanceToPointInTimeOutput {
+	s.DBInstance = v
+	return s
 }
 
 type RevokeDBSecurityGroupIngressInput struct {
@@ -18439,6 +24025,36 @@ func (s *RevokeDBSecurityGroupIngressInput) Validate() error {
 	return nil
 }
 
+// SetCIDRIP sets the CIDRIP field's value.
+func (s *RevokeDBSecurityGroupIngressInput) SetCIDRIP(v string) *RevokeDBSecurityGroupIngressInput {
+	s.CIDRIP = &v
+	return s
+}
+
+// SetDBSecurityGroupName sets the DBSecurityGroupName field's value.
+func (s *RevokeDBSecurityGroupIngressInput) SetDBSecurityGroupName(v string) *RevokeDBSecurityGroupIngressInput {
+	s.DBSecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupId sets the EC2SecurityGroupId field's value.
+func (s *RevokeDBSecurityGroupIngressInput) SetEC2SecurityGroupId(v string) *RevokeDBSecurityGroupIngressInput {
+	s.EC2SecurityGroupId = &v
+	return s
+}
+
+// SetEC2SecurityGroupName sets the EC2SecurityGroupName field's value.
+func (s *RevokeDBSecurityGroupIngressInput) SetEC2SecurityGroupName(v string) *RevokeDBSecurityGroupIngressInput {
+	s.EC2SecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupOwnerId sets the EC2SecurityGroupOwnerId field's value.
+func (s *RevokeDBSecurityGroupIngressInput) SetEC2SecurityGroupOwnerId(v string) *RevokeDBSecurityGroupIngressInput {
+	s.EC2SecurityGroupOwnerId = &v
+	return s
+}
+
 type RevokeDBSecurityGroupIngressOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18467,6 +24083,12 @@ func (s RevokeDBSecurityGroupIngressOutput) GoString() string {
 	return s.String()
 }
 
+// SetDBSecurityGroup sets the DBSecurityGroup field's value.
+func (s *RevokeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurityGroup) *RevokeDBSecurityGroupIngressOutput {
+	s.DBSecurityGroup = v
+	return s
+}
+
 // Contains an AWS Region name as the result of a successful call to the DescribeSourceRegions
 // action.
 type SourceRegion struct {
@@ -18490,6 +24112,24 @@ func (s SourceRegion) String() string {
 // GoString returns the string representation
 func (s SourceRegion) GoString() string {
 	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *SourceRegion) SetEndpoint(v string) *SourceRegion {
+	s.Endpoint = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *SourceRegion) SetRegionName(v string) *SourceRegion {
+	s.RegionName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SourceRegion) SetStatus(v string) *SourceRegion {
+	s.Status = &v
+	return s
 }
 
 // This data type is used as a response element in the DescribeDBSubnetGroups
@@ -18521,6 +24161,24 @@ func (s Subnet) GoString() string {
 	return s.String()
 }
 
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *Subnet) SetSubnetAvailabilityZone(v *AvailabilityZone) *Subnet {
+	s.SubnetAvailabilityZone = v
+	return s
+}
+
+// SetSubnetIdentifier sets the SubnetIdentifier field's value.
+func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
+	s.SubnetIdentifier = &v
+	return s
+}
+
+// SetSubnetStatus sets the SubnetStatus field's value.
+func (s *Subnet) SetSubnetStatus(v string) *Subnet {
+	s.SubnetStatus = &v
+	return s
+}
+
 // Metadata assigned to an Amazon RDS resource consisting of a key-value pair.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -18548,6 +24206,18 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
 // A time zone associated with a DBInstance or a DBSnapshot. This data type
 // is an element in the response to the DescribeDBInstances, the DescribeDBSnapshots,
 // and the DescribeDBEngineVersions actions.
@@ -18566,6 +24236,12 @@ func (s Timezone) String() string {
 // GoString returns the string representation
 func (s Timezone) GoString() string {
 	return s.String()
+}
+
+// SetTimezoneName sets the TimezoneName field's value.
+func (s *Timezone) SetTimezoneName(v string) *Timezone {
+	s.TimezoneName = &v
+	return s
 }
 
 // The version of the database engine that a DB instance can be upgraded to.
@@ -18600,6 +24276,36 @@ func (s UpgradeTarget) GoString() string {
 	return s.String()
 }
 
+// SetAutoUpgrade sets the AutoUpgrade field's value.
+func (s *UpgradeTarget) SetAutoUpgrade(v bool) *UpgradeTarget {
+	s.AutoUpgrade = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpgradeTarget) SetDescription(v string) *UpgradeTarget {
+	s.Description = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *UpgradeTarget) SetEngine(v string) *UpgradeTarget {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *UpgradeTarget) SetEngineVersion(v string) *UpgradeTarget {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIsMajorVersionUpgrade sets the IsMajorVersionUpgrade field's value.
+func (s *UpgradeTarget) SetIsMajorVersionUpgrade(v bool) *UpgradeTarget {
+	s.IsMajorVersionUpgrade = &v
+	return s
+}
+
 // This data type is used as a response element for queries on VPC security
 // group membership.
 type VpcSecurityGroupMembership struct {
@@ -18620,6 +24326,18 @@ func (s VpcSecurityGroupMembership) String() string {
 // GoString returns the string representation
 func (s VpcSecurityGroupMembership) GoString() string {
 	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcSecurityGroupMembership) SetStatus(v string) *VpcSecurityGroupMembership {
+	s.Status = &v
+	return s
+}
+
+// SetVpcSecurityGroupId sets the VpcSecurityGroupId field's value.
+func (s *VpcSecurityGroupMembership) SetVpcSecurityGroupId(v string) *VpcSecurityGroupMembership {
+	s.VpcSecurityGroupId = &v
+	return s
 }
 
 const (

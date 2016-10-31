@@ -2270,6 +2270,24 @@ func (s AccountQuota) GoString() string {
 	return s.String()
 }
 
+// SetAccountQuotaName sets the AccountQuotaName field's value.
+func (s *AccountQuota) SetAccountQuotaName(v string) *AccountQuota {
+	s.AccountQuotaName = &v
+	return s
+}
+
+// SetMax sets the Max field's value.
+func (s *AccountQuota) SetMax(v int64) *AccountQuota {
+	s.Max = &v
+	return s
+}
+
+// SetUsed sets the Used field's value.
+func (s *AccountQuota) SetUsed(v int64) *AccountQuota {
+	s.Used = &v
+	return s
+}
+
 type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2312,6 +2330,18 @@ func (s *AddTagsToResourceInput) Validate() error {
 	return nil
 }
 
+// SetResourceArn sets the ResourceArn field's value.
+func (s *AddTagsToResourceInput) SetResourceArn(v string) *AddTagsToResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsToResourceInput) SetTags(v []*Tag) *AddTagsToResourceInput {
+	s.Tags = v
+	return s
+}
+
 type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2341,6 +2371,12 @@ func (s AvailabilityZone) String() string {
 // GoString returns the string representation
 func (s AvailabilityZone) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
+	s.Name = &v
+	return s
 }
 
 // The SSL certificate that can be used to encrypt connections between the endpoints
@@ -2386,6 +2422,60 @@ func (s Certificate) GoString() string {
 	return s.String()
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *Certificate) SetCertificateArn(v string) *Certificate {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetCertificateCreationDate sets the CertificateCreationDate field's value.
+func (s *Certificate) SetCertificateCreationDate(v time.Time) *Certificate {
+	s.CertificateCreationDate = &v
+	return s
+}
+
+// SetCertificateIdentifier sets the CertificateIdentifier field's value.
+func (s *Certificate) SetCertificateIdentifier(v string) *Certificate {
+	s.CertificateIdentifier = &v
+	return s
+}
+
+// SetCertificateOwner sets the CertificateOwner field's value.
+func (s *Certificate) SetCertificateOwner(v string) *Certificate {
+	s.CertificateOwner = &v
+	return s
+}
+
+// SetCertificatePem sets the CertificatePem field's value.
+func (s *Certificate) SetCertificatePem(v string) *Certificate {
+	s.CertificatePem = &v
+	return s
+}
+
+// SetKeyLength sets the KeyLength field's value.
+func (s *Certificate) SetKeyLength(v int64) *Certificate {
+	s.KeyLength = &v
+	return s
+}
+
+// SetSigningAlgorithm sets the SigningAlgorithm field's value.
+func (s *Certificate) SetSigningAlgorithm(v string) *Certificate {
+	s.SigningAlgorithm = &v
+	return s
+}
+
+// SetValidFromDate sets the ValidFromDate field's value.
+func (s *Certificate) SetValidFromDate(v time.Time) *Certificate {
+	s.ValidFromDate = &v
+	return s
+}
+
+// SetValidToDate sets the ValidToDate field's value.
+func (s *Certificate) SetValidToDate(v time.Time) *Certificate {
+	s.ValidToDate = &v
+	return s
+}
+
 type Connection struct {
 	_ struct{} `type:"structure"`
 
@@ -2419,6 +2509,42 @@ func (s Connection) String() string {
 // GoString returns the string representation
 func (s Connection) GoString() string {
 	return s.String()
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *Connection) SetEndpointArn(v string) *Connection {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetEndpointIdentifier sets the EndpointIdentifier field's value.
+func (s *Connection) SetEndpointIdentifier(v string) *Connection {
+	s.EndpointIdentifier = &v
+	return s
+}
+
+// SetLastFailureMessage sets the LastFailureMessage field's value.
+func (s *Connection) SetLastFailureMessage(v string) *Connection {
+	s.LastFailureMessage = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *Connection) SetReplicationInstanceArn(v string) *Connection {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
+func (s *Connection) SetReplicationInstanceIdentifier(v string) *Connection {
+	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Connection) SetStatus(v string) *Connection {
+	s.Status = &v
+	return s
 }
 
 type CreateEndpointInput struct {
@@ -2530,6 +2656,84 @@ func (s *CreateEndpointInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *CreateEndpointInput) SetCertificateArn(v string) *CreateEndpointInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *CreateEndpointInput) SetDatabaseName(v string) *CreateEndpointInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEndpointIdentifier sets the EndpointIdentifier field's value.
+func (s *CreateEndpointInput) SetEndpointIdentifier(v string) *CreateEndpointInput {
+	s.EndpointIdentifier = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *CreateEndpointInput) SetEndpointType(v string) *CreateEndpointInput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *CreateEndpointInput) SetEngineName(v string) *CreateEndpointInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
+func (s *CreateEndpointInput) SetExtraConnectionAttributes(v string) *CreateEndpointInput {
+	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateEndpointInput) SetKmsKeyId(v string) *CreateEndpointInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *CreateEndpointInput) SetPassword(v string) *CreateEndpointInput {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateEndpointInput) SetPort(v int64) *CreateEndpointInput {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *CreateEndpointInput) SetServerName(v string) *CreateEndpointInput {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *CreateEndpointInput) SetSslMode(v string) *CreateEndpointInput {
+	s.SslMode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEndpointInput) SetTags(v []*Tag) *CreateEndpointInput {
+	s.Tags = v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *CreateEndpointInput) SetUsername(v string) *CreateEndpointInput {
+	s.Username = &v
+	return s
+}
+
 type CreateEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2545,6 +2749,12 @@ func (s CreateEndpointOutput) String() string {
 // GoString returns the string representation
 func (s CreateEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *CreateEndpointOutput) SetEndpoint(v *Endpoint) *CreateEndpointOutput {
+	s.Endpoint = v
+	return s
 }
 
 type CreateReplicationInstanceInput struct {
@@ -2662,6 +2872,84 @@ func (s *CreateReplicationInstanceInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *CreateReplicationInstanceInput) SetAllocatedStorage(v int64) *CreateReplicationInstanceInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CreateReplicationInstanceInput) SetAutoMinorVersionUpgrade(v bool) *CreateReplicationInstanceInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *CreateReplicationInstanceInput) SetAvailabilityZone(v string) *CreateReplicationInstanceInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateReplicationInstanceInput) SetEngineVersion(v string) *CreateReplicationInstanceInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateReplicationInstanceInput) SetKmsKeyId(v string) *CreateReplicationInstanceInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *CreateReplicationInstanceInput) SetMultiAZ(v bool) *CreateReplicationInstanceInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *CreateReplicationInstanceInput) SetPreferredMaintenanceWindow(v string) *CreateReplicationInstanceInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *CreateReplicationInstanceInput) SetPubliclyAccessible(v bool) *CreateReplicationInstanceInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
+func (s *CreateReplicationInstanceInput) SetReplicationInstanceClass(v string) *CreateReplicationInstanceInput {
+	s.ReplicationInstanceClass = &v
+	return s
+}
+
+// SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
+func (s *CreateReplicationInstanceInput) SetReplicationInstanceIdentifier(v string) *CreateReplicationInstanceInput {
+	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
+func (s *CreateReplicationInstanceInput) SetReplicationSubnetGroupIdentifier(v string) *CreateReplicationInstanceInput {
+	s.ReplicationSubnetGroupIdentifier = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateReplicationInstanceInput) SetTags(v []*Tag) *CreateReplicationInstanceInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *CreateReplicationInstanceInput) SetVpcSecurityGroupIds(v []*string) *CreateReplicationInstanceInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type CreateReplicationInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2677,6 +2965,12 @@ func (s CreateReplicationInstanceOutput) String() string {
 // GoString returns the string representation
 func (s CreateReplicationInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationInstance sets the ReplicationInstance field's value.
+func (s *CreateReplicationInstanceOutput) SetReplicationInstance(v *ReplicationInstance) *CreateReplicationInstanceOutput {
+	s.ReplicationInstance = v
+	return s
 }
 
 type CreateReplicationSubnetGroupInput struct {
@@ -2736,6 +3030,30 @@ func (s *CreateReplicationSubnetGroupInput) Validate() error {
 	return nil
 }
 
+// SetReplicationSubnetGroupDescription sets the ReplicationSubnetGroupDescription field's value.
+func (s *CreateReplicationSubnetGroupInput) SetReplicationSubnetGroupDescription(v string) *CreateReplicationSubnetGroupInput {
+	s.ReplicationSubnetGroupDescription = &v
+	return s
+}
+
+// SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
+func (s *CreateReplicationSubnetGroupInput) SetReplicationSubnetGroupIdentifier(v string) *CreateReplicationSubnetGroupInput {
+	s.ReplicationSubnetGroupIdentifier = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *CreateReplicationSubnetGroupInput) SetSubnetIds(v []*string) *CreateReplicationSubnetGroupInput {
+	s.SubnetIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateReplicationSubnetGroupInput) SetTags(v []*Tag) *CreateReplicationSubnetGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateReplicationSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2751,6 +3069,12 @@ func (s CreateReplicationSubnetGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateReplicationSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationSubnetGroup sets the ReplicationSubnetGroup field's value.
+func (s *CreateReplicationSubnetGroupOutput) SetReplicationSubnetGroup(v *ReplicationSubnetGroup) *CreateReplicationSubnetGroupOutput {
+	s.ReplicationSubnetGroup = v
+	return s
 }
 
 type CreateReplicationTaskInput struct {
@@ -2845,6 +3169,60 @@ func (s *CreateReplicationTaskInput) Validate() error {
 	return nil
 }
 
+// SetCdcStartTime sets the CdcStartTime field's value.
+func (s *CreateReplicationTaskInput) SetCdcStartTime(v time.Time) *CreateReplicationTaskInput {
+	s.CdcStartTime = &v
+	return s
+}
+
+// SetMigrationType sets the MigrationType field's value.
+func (s *CreateReplicationTaskInput) SetMigrationType(v string) *CreateReplicationTaskInput {
+	s.MigrationType = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *CreateReplicationTaskInput) SetReplicationInstanceArn(v string) *CreateReplicationTaskInput {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationTaskIdentifier sets the ReplicationTaskIdentifier field's value.
+func (s *CreateReplicationTaskInput) SetReplicationTaskIdentifier(v string) *CreateReplicationTaskInput {
+	s.ReplicationTaskIdentifier = &v
+	return s
+}
+
+// SetReplicationTaskSettings sets the ReplicationTaskSettings field's value.
+func (s *CreateReplicationTaskInput) SetReplicationTaskSettings(v string) *CreateReplicationTaskInput {
+	s.ReplicationTaskSettings = &v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *CreateReplicationTaskInput) SetSourceEndpointArn(v string) *CreateReplicationTaskInput {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *CreateReplicationTaskInput) SetTableMappings(v string) *CreateReplicationTaskInput {
+	s.TableMappings = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateReplicationTaskInput) SetTags(v []*Tag) *CreateReplicationTaskInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *CreateReplicationTaskInput) SetTargetEndpointArn(v string) *CreateReplicationTaskInput {
+	s.TargetEndpointArn = &v
+	return s
+}
+
 type CreateReplicationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2860,6 +3238,12 @@ func (s CreateReplicationTaskOutput) String() string {
 // GoString returns the string representation
 func (s CreateReplicationTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationTask sets the ReplicationTask field's value.
+func (s *CreateReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *CreateReplicationTaskOutput {
+	s.ReplicationTask = v
+	return s
 }
 
 type DeleteCertificateInput struct {
@@ -2894,6 +3278,12 @@ func (s *DeleteCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *DeleteCertificateInput) SetCertificateArn(v string) *DeleteCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
 type DeleteCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2909,6 +3299,12 @@ func (s DeleteCertificateOutput) String() string {
 // GoString returns the string representation
 func (s DeleteCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *DeleteCertificateOutput) SetCertificate(v *Certificate) *DeleteCertificateOutput {
+	s.Certificate = v
+	return s
 }
 
 type DeleteEndpointInput struct {
@@ -2943,6 +3339,12 @@ func (s *DeleteEndpointInput) Validate() error {
 	return nil
 }
 
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *DeleteEndpointInput) SetEndpointArn(v string) *DeleteEndpointInput {
+	s.EndpointArn = &v
+	return s
+}
+
 type DeleteEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2958,6 +3360,12 @@ func (s DeleteEndpointOutput) String() string {
 // GoString returns the string representation
 func (s DeleteEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DeleteEndpointOutput) SetEndpoint(v *Endpoint) *DeleteEndpointOutput {
+	s.Endpoint = v
+	return s
 }
 
 type DeleteReplicationInstanceInput struct {
@@ -2992,6 +3400,12 @@ func (s *DeleteReplicationInstanceInput) Validate() error {
 	return nil
 }
 
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *DeleteReplicationInstanceInput) SetReplicationInstanceArn(v string) *DeleteReplicationInstanceInput {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
 type DeleteReplicationInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3007,6 +3421,12 @@ func (s DeleteReplicationInstanceOutput) String() string {
 // GoString returns the string representation
 func (s DeleteReplicationInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationInstance sets the ReplicationInstance field's value.
+func (s *DeleteReplicationInstanceOutput) SetReplicationInstance(v *ReplicationInstance) *DeleteReplicationInstanceOutput {
+	s.ReplicationInstance = v
+	return s
 }
 
 type DeleteReplicationSubnetGroupInput struct {
@@ -3039,6 +3459,12 @@ func (s *DeleteReplicationSubnetGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
+func (s *DeleteReplicationSubnetGroupInput) SetReplicationSubnetGroupIdentifier(v string) *DeleteReplicationSubnetGroupInput {
+	s.ReplicationSubnetGroupIdentifier = &v
+	return s
 }
 
 type DeleteReplicationSubnetGroupOutput struct {
@@ -3087,6 +3513,12 @@ func (s *DeleteReplicationTaskInput) Validate() error {
 	return nil
 }
 
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *DeleteReplicationTaskInput) SetReplicationTaskArn(v string) *DeleteReplicationTaskInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
 type DeleteReplicationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3102,6 +3534,12 @@ func (s DeleteReplicationTaskOutput) String() string {
 // GoString returns the string representation
 func (s DeleteReplicationTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationTask sets the ReplicationTask field's value.
+func (s *DeleteReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *DeleteReplicationTaskOutput {
+	s.ReplicationTask = v
+	return s
 }
 
 type DescribeAccountAttributesInput struct {
@@ -3133,6 +3571,12 @@ func (s DescribeAccountAttributesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAccountAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountQuotas sets the AccountQuotas field's value.
+func (s *DescribeAccountAttributesOutput) SetAccountQuotas(v []*AccountQuota) *DescribeAccountAttributesOutput {
+	s.AccountQuotas = v
+	return s
 }
 
 type DescribeCertificatesInput struct {
@@ -3184,6 +3628,24 @@ func (s *DescribeCertificatesInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeCertificatesInput) SetFilters(v []*Filter) *DescribeCertificatesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCertificatesInput) SetMarker(v string) *DescribeCertificatesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCertificatesInput) SetMaxRecords(v int64) *DescribeCertificatesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3202,6 +3664,18 @@ func (s DescribeCertificatesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCertificatesOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificates sets the Certificates field's value.
+func (s *DescribeCertificatesOutput) SetCertificates(v []*Certificate) *DescribeCertificatesOutput {
+	s.Certificates = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCertificatesOutput) SetMarker(v string) *DescribeCertificatesOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeConnectionsInput struct {
@@ -3257,6 +3731,24 @@ func (s *DescribeConnectionsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeConnectionsInput) SetFilters(v []*Filter) *DescribeConnectionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeConnectionsInput) SetMarker(v string) *DescribeConnectionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeConnectionsInput) SetMaxRecords(v int64) *DescribeConnectionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3277,6 +3769,18 @@ func (s DescribeConnectionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeConnectionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetConnections sets the Connections field's value.
+func (s *DescribeConnectionsOutput) SetConnections(v []*Connection) *DescribeConnectionsOutput {
+	s.Connections = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeConnectionsOutput) SetMarker(v string) *DescribeConnectionsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeEndpointTypesInput struct {
@@ -3332,6 +3836,24 @@ func (s *DescribeEndpointTypesInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeEndpointTypesInput) SetFilters(v []*Filter) *DescribeEndpointTypesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointTypesInput) SetMarker(v string) *DescribeEndpointTypesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEndpointTypesInput) SetMaxRecords(v int64) *DescribeEndpointTypesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeEndpointTypesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3352,6 +3874,18 @@ func (s DescribeEndpointTypesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEndpointTypesOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointTypesOutput) SetMarker(v string) *DescribeEndpointTypesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSupportedEndpointTypes sets the SupportedEndpointTypes field's value.
+func (s *DescribeEndpointTypesOutput) SetSupportedEndpointTypes(v []*SupportedEndpointType) *DescribeEndpointTypesOutput {
+	s.SupportedEndpointTypes = v
+	return s
 }
 
 type DescribeEndpointsInput struct {
@@ -3407,6 +3941,24 @@ func (s *DescribeEndpointsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeEndpointsInput) SetFilters(v []*Filter) *DescribeEndpointsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointsInput) SetMarker(v string) *DescribeEndpointsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEndpointsInput) SetMaxRecords(v int64) *DescribeEndpointsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeEndpointsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3427,6 +3979,18 @@ func (s DescribeEndpointsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEndpointsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *DescribeEndpointsOutput) SetEndpoints(v []*Endpoint) *DescribeEndpointsOutput {
+	s.Endpoints = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointsOutput) SetMarker(v string) *DescribeEndpointsOutput {
+	s.Marker = &v
+	return s
 }
 
 type DescribeOrderableReplicationInstancesInput struct {
@@ -3457,6 +4021,18 @@ func (s DescribeOrderableReplicationInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *DescribeOrderableReplicationInstancesInput) SetMarker(v string) *DescribeOrderableReplicationInstancesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeOrderableReplicationInstancesInput) SetMaxRecords(v int64) *DescribeOrderableReplicationInstancesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeOrderableReplicationInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3477,6 +4053,18 @@ func (s DescribeOrderableReplicationInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeOrderableReplicationInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeOrderableReplicationInstancesOutput) SetMarker(v string) *DescribeOrderableReplicationInstancesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetOrderableReplicationInstances sets the OrderableReplicationInstances field's value.
+func (s *DescribeOrderableReplicationInstancesOutput) SetOrderableReplicationInstances(v []*OrderableReplicationInstance) *DescribeOrderableReplicationInstancesOutput {
+	s.OrderableReplicationInstances = v
+	return s
 }
 
 type DescribeRefreshSchemasStatusInput struct {
@@ -3511,6 +4099,12 @@ func (s *DescribeRefreshSchemasStatusInput) Validate() error {
 	return nil
 }
 
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *DescribeRefreshSchemasStatusInput) SetEndpointArn(v string) *DescribeRefreshSchemasStatusInput {
+	s.EndpointArn = &v
+	return s
+}
+
 type DescribeRefreshSchemasStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3526,6 +4120,12 @@ func (s DescribeRefreshSchemasStatusOutput) String() string {
 // GoString returns the string representation
 func (s DescribeRefreshSchemasStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetRefreshSchemasStatus sets the RefreshSchemasStatus field's value.
+func (s *DescribeRefreshSchemasStatusOutput) SetRefreshSchemasStatus(v *RefreshSchemasStatus) *DescribeRefreshSchemasStatusOutput {
+	s.RefreshSchemasStatus = v
+	return s
 }
 
 type DescribeReplicationInstancesInput struct {
@@ -3582,6 +4182,24 @@ func (s *DescribeReplicationInstancesInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationInstancesInput) SetFilters(v []*Filter) *DescribeReplicationInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationInstancesInput) SetMarker(v string) *DescribeReplicationInstancesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationInstancesInput) SetMaxRecords(v int64) *DescribeReplicationInstancesInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeReplicationInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3602,6 +4220,18 @@ func (s DescribeReplicationInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReplicationInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationInstancesOutput) SetMarker(v string) *DescribeReplicationInstancesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationInstances sets the ReplicationInstances field's value.
+func (s *DescribeReplicationInstancesOutput) SetReplicationInstances(v []*ReplicationInstance) *DescribeReplicationInstancesOutput {
+	s.ReplicationInstances = v
+	return s
 }
 
 type DescribeReplicationSubnetGroupsInput struct {
@@ -3655,6 +4285,24 @@ func (s *DescribeReplicationSubnetGroupsInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationSubnetGroupsInput) SetFilters(v []*Filter) *DescribeReplicationSubnetGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationSubnetGroupsInput) SetMarker(v string) *DescribeReplicationSubnetGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationSubnetGroupsInput) SetMaxRecords(v int64) *DescribeReplicationSubnetGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeReplicationSubnetGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3675,6 +4323,18 @@ func (s DescribeReplicationSubnetGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReplicationSubnetGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationSubnetGroupsOutput) SetMarker(v string) *DescribeReplicationSubnetGroupsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationSubnetGroups sets the ReplicationSubnetGroups field's value.
+func (s *DescribeReplicationSubnetGroupsOutput) SetReplicationSubnetGroups(v []*ReplicationSubnetGroup) *DescribeReplicationSubnetGroupsOutput {
+	s.ReplicationSubnetGroups = v
+	return s
 }
 
 type DescribeReplicationTasksInput struct {
@@ -3731,6 +4391,24 @@ func (s *DescribeReplicationTasksInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeReplicationTasksInput) SetFilters(v []*Filter) *DescribeReplicationTasksInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTasksInput) SetMarker(v string) *DescribeReplicationTasksInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationTasksInput) SetMaxRecords(v int64) *DescribeReplicationTasksInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeReplicationTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3751,6 +4429,18 @@ func (s DescribeReplicationTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReplicationTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationTasksOutput) SetMarker(v string) *DescribeReplicationTasksOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationTasks sets the ReplicationTasks field's value.
+func (s *DescribeReplicationTasksOutput) SetReplicationTasks(v []*ReplicationTask) *DescribeReplicationTasksOutput {
+	s.ReplicationTasks = v
+	return s
 }
 
 type DescribeSchemasInput struct {
@@ -3799,6 +4489,24 @@ func (s *DescribeSchemasInput) Validate() error {
 	return nil
 }
 
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *DescribeSchemasInput) SetEndpointArn(v string) *DescribeSchemasInput {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeSchemasInput) SetMarker(v string) *DescribeSchemasInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeSchemasInput) SetMaxRecords(v int64) *DescribeSchemasInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3819,6 +4527,18 @@ func (s DescribeSchemasOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSchemasOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeSchemasOutput) SetMarker(v string) *DescribeSchemasOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSchemas sets the Schemas field's value.
+func (s *DescribeSchemasOutput) SetSchemas(v []*string) *DescribeSchemasOutput {
+	s.Schemas = v
+	return s
 }
 
 type DescribeTableStatisticsInput struct {
@@ -3867,6 +4587,24 @@ func (s *DescribeTableStatisticsInput) Validate() error {
 	return nil
 }
 
+// SetMarker sets the Marker field's value.
+func (s *DescribeTableStatisticsInput) SetMarker(v string) *DescribeTableStatisticsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeTableStatisticsInput) SetMaxRecords(v int64) *DescribeTableStatisticsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *DescribeTableStatisticsInput) SetReplicationTaskArn(v string) *DescribeTableStatisticsInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
 type DescribeTableStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3890,6 +4628,24 @@ func (s DescribeTableStatisticsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTableStatisticsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeTableStatisticsOutput) SetMarker(v string) *DescribeTableStatisticsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *DescribeTableStatisticsOutput) SetReplicationTaskArn(v string) *DescribeTableStatisticsOutput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetTableStatistics sets the TableStatistics field's value.
+func (s *DescribeTableStatisticsOutput) SetTableStatistics(v []*TableStatistics) *DescribeTableStatisticsOutput {
+	s.TableStatistics = v
+	return s
 }
 
 type Endpoint struct {
@@ -3955,6 +4711,84 @@ func (s Endpoint) GoString() string {
 	return s.String()
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *Endpoint) SetCertificateArn(v string) *Endpoint {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *Endpoint) SetDatabaseName(v string) *Endpoint {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *Endpoint) SetEndpointArn(v string) *Endpoint {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetEndpointIdentifier sets the EndpointIdentifier field's value.
+func (s *Endpoint) SetEndpointIdentifier(v string) *Endpoint {
+	s.EndpointIdentifier = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *Endpoint) SetEndpointType(v string) *Endpoint {
+	s.EndpointType = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *Endpoint) SetEngineName(v string) *Endpoint {
+	s.EngineName = &v
+	return s
+}
+
+// SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
+func (s *Endpoint) SetExtraConnectionAttributes(v string) *Endpoint {
+	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *Endpoint) SetKmsKeyId(v string) *Endpoint {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *Endpoint) SetPort(v int64) *Endpoint {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *Endpoint) SetServerName(v string) *Endpoint {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *Endpoint) SetSslMode(v string) *Endpoint {
+	s.SslMode = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Endpoint) SetStatus(v string) *Endpoint {
+	s.Status = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *Endpoint) SetUsername(v string) *Endpoint {
+	s.Username = &v
+	return s
+}
+
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -3995,6 +4829,18 @@ func (s *Filter) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
+	return s
+}
+
 type ImportCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4030,6 +4876,18 @@ func (s *ImportCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificateIdentifier sets the CertificateIdentifier field's value.
+func (s *ImportCertificateInput) SetCertificateIdentifier(v string) *ImportCertificateInput {
+	s.CertificateIdentifier = &v
+	return s
+}
+
+// SetCertificatePem sets the CertificatePem field's value.
+func (s *ImportCertificateInput) SetCertificatePem(v string) *ImportCertificateInput {
+	s.CertificatePem = &v
+	return s
+}
+
 type ImportCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4045,6 +4903,12 @@ func (s ImportCertificateOutput) String() string {
 // GoString returns the string representation
 func (s ImportCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *ImportCertificateOutput) SetCertificate(v *Certificate) *ImportCertificateOutput {
+	s.Certificate = v
+	return s
 }
 
 type ListTagsForResourceInput struct {
@@ -4080,6 +4944,12 @@ func (s *ListTagsForResourceInput) Validate() error {
 	return nil
 }
 
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4095,6 +4965,12 @@ func (s ListTagsForResourceOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetTagList sets the TagList field's value.
+func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOutput {
+	s.TagList = v
+	return s
 }
 
 type ModifyEndpointInput struct {
@@ -4169,6 +5045,78 @@ func (s *ModifyEndpointInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *ModifyEndpointInput) SetCertificateArn(v string) *ModifyEndpointInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *ModifyEndpointInput) SetDatabaseName(v string) *ModifyEndpointInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *ModifyEndpointInput) SetEndpointArn(v string) *ModifyEndpointInput {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetEndpointIdentifier sets the EndpointIdentifier field's value.
+func (s *ModifyEndpointInput) SetEndpointIdentifier(v string) *ModifyEndpointInput {
+	s.EndpointIdentifier = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *ModifyEndpointInput) SetEndpointType(v string) *ModifyEndpointInput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *ModifyEndpointInput) SetEngineName(v string) *ModifyEndpointInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
+func (s *ModifyEndpointInput) SetExtraConnectionAttributes(v string) *ModifyEndpointInput {
+	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *ModifyEndpointInput) SetPassword(v string) *ModifyEndpointInput {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ModifyEndpointInput) SetPort(v int64) *ModifyEndpointInput {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *ModifyEndpointInput) SetServerName(v string) *ModifyEndpointInput {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslMode sets the SslMode field's value.
+func (s *ModifyEndpointInput) SetSslMode(v string) *ModifyEndpointInput {
+	s.SslMode = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *ModifyEndpointInput) SetUsername(v string) *ModifyEndpointInput {
+	s.Username = &v
+	return s
+}
+
 type ModifyEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4184,6 +5132,12 @@ func (s ModifyEndpointOutput) String() string {
 // GoString returns the string representation
 func (s ModifyEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *ModifyEndpointOutput) SetEndpoint(v *Endpoint) *ModifyEndpointOutput {
+	s.Endpoint = v
+	return s
 }
 
 type ModifyReplicationInstanceInput struct {
@@ -4282,6 +5236,72 @@ func (s *ModifyReplicationInstanceInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ModifyReplicationInstanceInput) SetAllocatedStorage(v int64) *ModifyReplicationInstanceInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
+func (s *ModifyReplicationInstanceInput) SetAllowMajorVersionUpgrade(v bool) *ModifyReplicationInstanceInput {
+	s.AllowMajorVersionUpgrade = &v
+	return s
+}
+
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *ModifyReplicationInstanceInput) SetApplyImmediately(v bool) *ModifyReplicationInstanceInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *ModifyReplicationInstanceInput) SetAutoMinorVersionUpgrade(v bool) *ModifyReplicationInstanceInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyReplicationInstanceInput) SetEngineVersion(v string) *ModifyReplicationInstanceInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ModifyReplicationInstanceInput) SetMultiAZ(v bool) *ModifyReplicationInstanceInput {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ModifyReplicationInstanceInput) SetPreferredMaintenanceWindow(v string) *ModifyReplicationInstanceInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *ModifyReplicationInstanceInput) SetReplicationInstanceArn(v string) *ModifyReplicationInstanceInput {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
+func (s *ModifyReplicationInstanceInput) SetReplicationInstanceClass(v string) *ModifyReplicationInstanceInput {
+	s.ReplicationInstanceClass = &v
+	return s
+}
+
+// SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
+func (s *ModifyReplicationInstanceInput) SetReplicationInstanceIdentifier(v string) *ModifyReplicationInstanceInput {
+	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *ModifyReplicationInstanceInput) SetVpcSecurityGroupIds(v []*string) *ModifyReplicationInstanceInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
 type ModifyReplicationInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4297,6 +5317,12 @@ func (s ModifyReplicationInstanceOutput) String() string {
 // GoString returns the string representation
 func (s ModifyReplicationInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationInstance sets the ReplicationInstance field's value.
+func (s *ModifyReplicationInstanceOutput) SetReplicationInstance(v *ReplicationInstance) *ModifyReplicationInstanceOutput {
+	s.ReplicationInstance = v
+	return s
 }
 
 type ModifyReplicationSubnetGroupInput struct {
@@ -4342,6 +5368,24 @@ func (s *ModifyReplicationSubnetGroupInput) Validate() error {
 	return nil
 }
 
+// SetReplicationSubnetGroupDescription sets the ReplicationSubnetGroupDescription field's value.
+func (s *ModifyReplicationSubnetGroupInput) SetReplicationSubnetGroupDescription(v string) *ModifyReplicationSubnetGroupInput {
+	s.ReplicationSubnetGroupDescription = &v
+	return s
+}
+
+// SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
+func (s *ModifyReplicationSubnetGroupInput) SetReplicationSubnetGroupIdentifier(v string) *ModifyReplicationSubnetGroupInput {
+	s.ReplicationSubnetGroupIdentifier = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *ModifyReplicationSubnetGroupInput) SetSubnetIds(v []*string) *ModifyReplicationSubnetGroupInput {
+	s.SubnetIds = v
+	return s
+}
+
 type ModifyReplicationSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4357,6 +5401,12 @@ func (s ModifyReplicationSubnetGroupOutput) String() string {
 // GoString returns the string representation
 func (s ModifyReplicationSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationSubnetGroup sets the ReplicationSubnetGroup field's value.
+func (s *ModifyReplicationSubnetGroupOutput) SetReplicationSubnetGroup(v *ReplicationSubnetGroup) *ModifyReplicationSubnetGroupOutput {
+	s.ReplicationSubnetGroup = v
+	return s
 }
 
 type OrderableReplicationInstance struct {
@@ -4401,6 +5451,48 @@ func (s OrderableReplicationInstance) GoString() string {
 	return s.String()
 }
 
+// SetDefaultAllocatedStorage sets the DefaultAllocatedStorage field's value.
+func (s *OrderableReplicationInstance) SetDefaultAllocatedStorage(v int64) *OrderableReplicationInstance {
+	s.DefaultAllocatedStorage = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *OrderableReplicationInstance) SetEngineVersion(v string) *OrderableReplicationInstance {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIncludedAllocatedStorage sets the IncludedAllocatedStorage field's value.
+func (s *OrderableReplicationInstance) SetIncludedAllocatedStorage(v int64) *OrderableReplicationInstance {
+	s.IncludedAllocatedStorage = &v
+	return s
+}
+
+// SetMaxAllocatedStorage sets the MaxAllocatedStorage field's value.
+func (s *OrderableReplicationInstance) SetMaxAllocatedStorage(v int64) *OrderableReplicationInstance {
+	s.MaxAllocatedStorage = &v
+	return s
+}
+
+// SetMinAllocatedStorage sets the MinAllocatedStorage field's value.
+func (s *OrderableReplicationInstance) SetMinAllocatedStorage(v int64) *OrderableReplicationInstance {
+	s.MinAllocatedStorage = &v
+	return s
+}
+
+// SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
+func (s *OrderableReplicationInstance) SetReplicationInstanceClass(v string) *OrderableReplicationInstance {
+	s.ReplicationInstanceClass = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *OrderableReplicationInstance) SetStorageType(v string) *OrderableReplicationInstance {
+	s.StorageType = &v
+	return s
+}
+
 type RefreshSchemasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4441,6 +5533,18 @@ func (s *RefreshSchemasInput) Validate() error {
 	return nil
 }
 
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *RefreshSchemasInput) SetEndpointArn(v string) *RefreshSchemasInput {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *RefreshSchemasInput) SetReplicationInstanceArn(v string) *RefreshSchemasInput {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
 type RefreshSchemasOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4456,6 +5560,12 @@ func (s RefreshSchemasOutput) String() string {
 // GoString returns the string representation
 func (s RefreshSchemasOutput) GoString() string {
 	return s.String()
+}
+
+// SetRefreshSchemasStatus sets the RefreshSchemasStatus field's value.
+func (s *RefreshSchemasOutput) SetRefreshSchemasStatus(v *RefreshSchemasStatus) *RefreshSchemasOutput {
+	s.RefreshSchemasStatus = v
+	return s
 }
 
 type RefreshSchemasStatus struct {
@@ -4485,6 +5595,36 @@ func (s RefreshSchemasStatus) String() string {
 // GoString returns the string representation
 func (s RefreshSchemasStatus) GoString() string {
 	return s.String()
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *RefreshSchemasStatus) SetEndpointArn(v string) *RefreshSchemasStatus {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetLastFailureMessage sets the LastFailureMessage field's value.
+func (s *RefreshSchemasStatus) SetLastFailureMessage(v string) *RefreshSchemasStatus {
+	s.LastFailureMessage = &v
+	return s
+}
+
+// SetLastRefreshDate sets the LastRefreshDate field's value.
+func (s *RefreshSchemasStatus) SetLastRefreshDate(v time.Time) *RefreshSchemasStatus {
+	s.LastRefreshDate = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *RefreshSchemasStatus) SetReplicationInstanceArn(v string) *RefreshSchemasStatus {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RefreshSchemasStatus) SetStatus(v string) *RefreshSchemasStatus {
+	s.Status = &v
+	return s
 }
 
 type RemoveTagsFromResourceInput struct {
@@ -4526,6 +5666,18 @@ func (s *RemoveTagsFromResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RemoveTagsFromResourceInput) SetResourceArn(v string) *RemoveTagsFromResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *RemoveTagsFromResourceInput) SetTagKeys(v []*string) *RemoveTagsFromResourceInput {
+	s.TagKeys = v
+	return s
 }
 
 type RemoveTagsFromResourceOutput struct {
@@ -4639,6 +5791,126 @@ func (s ReplicationInstance) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ReplicationInstance) SetAllocatedStorage(v int64) *ReplicationInstance {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *ReplicationInstance) SetAutoMinorVersionUpgrade(v bool) *ReplicationInstance {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ReplicationInstance) SetAvailabilityZone(v string) *ReplicationInstance {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ReplicationInstance) SetEngineVersion(v string) *ReplicationInstance {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetInstanceCreateTime sets the InstanceCreateTime field's value.
+func (s *ReplicationInstance) SetInstanceCreateTime(v time.Time) *ReplicationInstance {
+	s.InstanceCreateTime = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ReplicationInstance) SetKmsKeyId(v string) *ReplicationInstance {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ReplicationInstance) SetMultiAZ(v bool) *ReplicationInstance {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *ReplicationInstance) SetPendingModifiedValues(v *ReplicationPendingModifiedValues) *ReplicationInstance {
+	s.PendingModifiedValues = v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ReplicationInstance) SetPreferredMaintenanceWindow(v string) *ReplicationInstance {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *ReplicationInstance) SetPubliclyAccessible(v bool) *ReplicationInstance {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *ReplicationInstance) SetReplicationInstanceArn(v string) *ReplicationInstance {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
+func (s *ReplicationInstance) SetReplicationInstanceClass(v string) *ReplicationInstance {
+	s.ReplicationInstanceClass = &v
+	return s
+}
+
+// SetReplicationInstanceIdentifier sets the ReplicationInstanceIdentifier field's value.
+func (s *ReplicationInstance) SetReplicationInstanceIdentifier(v string) *ReplicationInstance {
+	s.ReplicationInstanceIdentifier = &v
+	return s
+}
+
+// SetReplicationInstancePrivateIpAddress sets the ReplicationInstancePrivateIpAddress field's value.
+func (s *ReplicationInstance) SetReplicationInstancePrivateIpAddress(v string) *ReplicationInstance {
+	s.ReplicationInstancePrivateIpAddress = &v
+	return s
+}
+
+// SetReplicationInstancePrivateIpAddresses sets the ReplicationInstancePrivateIpAddresses field's value.
+func (s *ReplicationInstance) SetReplicationInstancePrivateIpAddresses(v []*string) *ReplicationInstance {
+	s.ReplicationInstancePrivateIpAddresses = v
+	return s
+}
+
+// SetReplicationInstancePublicIpAddress sets the ReplicationInstancePublicIpAddress field's value.
+func (s *ReplicationInstance) SetReplicationInstancePublicIpAddress(v string) *ReplicationInstance {
+	s.ReplicationInstancePublicIpAddress = &v
+	return s
+}
+
+// SetReplicationInstancePublicIpAddresses sets the ReplicationInstancePublicIpAddresses field's value.
+func (s *ReplicationInstance) SetReplicationInstancePublicIpAddresses(v []*string) *ReplicationInstance {
+	s.ReplicationInstancePublicIpAddresses = v
+	return s
+}
+
+// SetReplicationInstanceStatus sets the ReplicationInstanceStatus field's value.
+func (s *ReplicationInstance) SetReplicationInstanceStatus(v string) *ReplicationInstance {
+	s.ReplicationInstanceStatus = &v
+	return s
+}
+
+// SetReplicationSubnetGroup sets the ReplicationSubnetGroup field's value.
+func (s *ReplicationInstance) SetReplicationSubnetGroup(v *ReplicationSubnetGroup) *ReplicationInstance {
+	s.ReplicationSubnetGroup = v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *ReplicationInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *ReplicationInstance {
+	s.VpcSecurityGroups = v
+	return s
+}
+
 type ReplicationPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -4670,6 +5942,30 @@ func (s ReplicationPendingModifiedValues) GoString() string {
 	return s.String()
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ReplicationPendingModifiedValues) SetAllocatedStorage(v int64) *ReplicationPendingModifiedValues {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ReplicationPendingModifiedValues) SetEngineVersion(v string) *ReplicationPendingModifiedValues {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetMultiAZ sets the MultiAZ field's value.
+func (s *ReplicationPendingModifiedValues) SetMultiAZ(v bool) *ReplicationPendingModifiedValues {
+	s.MultiAZ = &v
+	return s
+}
+
+// SetReplicationInstanceClass sets the ReplicationInstanceClass field's value.
+func (s *ReplicationPendingModifiedValues) SetReplicationInstanceClass(v string) *ReplicationPendingModifiedValues {
+	s.ReplicationInstanceClass = &v
+	return s
+}
+
 type ReplicationSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -4697,6 +5993,36 @@ func (s ReplicationSubnetGroup) String() string {
 // GoString returns the string representation
 func (s ReplicationSubnetGroup) GoString() string {
 	return s.String()
+}
+
+// SetReplicationSubnetGroupDescription sets the ReplicationSubnetGroupDescription field's value.
+func (s *ReplicationSubnetGroup) SetReplicationSubnetGroupDescription(v string) *ReplicationSubnetGroup {
+	s.ReplicationSubnetGroupDescription = &v
+	return s
+}
+
+// SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
+func (s *ReplicationSubnetGroup) SetReplicationSubnetGroupIdentifier(v string) *ReplicationSubnetGroup {
+	s.ReplicationSubnetGroupIdentifier = &v
+	return s
+}
+
+// SetSubnetGroupStatus sets the SubnetGroupStatus field's value.
+func (s *ReplicationSubnetGroup) SetSubnetGroupStatus(v string) *ReplicationSubnetGroup {
+	s.SubnetGroupStatus = &v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *ReplicationSubnetGroup) SetSubnets(v []*Subnet) *ReplicationSubnetGroup {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *ReplicationSubnetGroup) SetVpcId(v string) *ReplicationSubnetGroup {
+	s.VpcId = &v
+	return s
 }
 
 type ReplicationTask struct {
@@ -4761,6 +6087,84 @@ func (s ReplicationTask) GoString() string {
 	return s.String()
 }
 
+// SetLastFailureMessage sets the LastFailureMessage field's value.
+func (s *ReplicationTask) SetLastFailureMessage(v string) *ReplicationTask {
+	s.LastFailureMessage = &v
+	return s
+}
+
+// SetMigrationType sets the MigrationType field's value.
+func (s *ReplicationTask) SetMigrationType(v string) *ReplicationTask {
+	s.MigrationType = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *ReplicationTask) SetReplicationInstanceArn(v string) *ReplicationTask {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *ReplicationTask) SetReplicationTaskArn(v string) *ReplicationTask {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetReplicationTaskCreationDate sets the ReplicationTaskCreationDate field's value.
+func (s *ReplicationTask) SetReplicationTaskCreationDate(v time.Time) *ReplicationTask {
+	s.ReplicationTaskCreationDate = &v
+	return s
+}
+
+// SetReplicationTaskIdentifier sets the ReplicationTaskIdentifier field's value.
+func (s *ReplicationTask) SetReplicationTaskIdentifier(v string) *ReplicationTask {
+	s.ReplicationTaskIdentifier = &v
+	return s
+}
+
+// SetReplicationTaskSettings sets the ReplicationTaskSettings field's value.
+func (s *ReplicationTask) SetReplicationTaskSettings(v string) *ReplicationTask {
+	s.ReplicationTaskSettings = &v
+	return s
+}
+
+// SetReplicationTaskStartDate sets the ReplicationTaskStartDate field's value.
+func (s *ReplicationTask) SetReplicationTaskStartDate(v time.Time) *ReplicationTask {
+	s.ReplicationTaskStartDate = &v
+	return s
+}
+
+// SetReplicationTaskStats sets the ReplicationTaskStats field's value.
+func (s *ReplicationTask) SetReplicationTaskStats(v *ReplicationTaskStats) *ReplicationTask {
+	s.ReplicationTaskStats = v
+	return s
+}
+
+// SetSourceEndpointArn sets the SourceEndpointArn field's value.
+func (s *ReplicationTask) SetSourceEndpointArn(v string) *ReplicationTask {
+	s.SourceEndpointArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicationTask) SetStatus(v string) *ReplicationTask {
+	s.Status = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *ReplicationTask) SetTableMappings(v string) *ReplicationTask {
+	s.TableMappings = &v
+	return s
+}
+
+// SetTargetEndpointArn sets the TargetEndpointArn field's value.
+func (s *ReplicationTask) SetTargetEndpointArn(v string) *ReplicationTask {
+	s.TargetEndpointArn = &v
+	return s
+}
+
 type ReplicationTaskStats struct {
 	_ struct{} `type:"structure"`
 
@@ -4791,6 +6195,42 @@ func (s ReplicationTaskStats) String() string {
 // GoString returns the string representation
 func (s ReplicationTaskStats) GoString() string {
 	return s.String()
+}
+
+// SetElapsedTimeMillis sets the ElapsedTimeMillis field's value.
+func (s *ReplicationTaskStats) SetElapsedTimeMillis(v int64) *ReplicationTaskStats {
+	s.ElapsedTimeMillis = &v
+	return s
+}
+
+// SetFullLoadProgressPercent sets the FullLoadProgressPercent field's value.
+func (s *ReplicationTaskStats) SetFullLoadProgressPercent(v int64) *ReplicationTaskStats {
+	s.FullLoadProgressPercent = &v
+	return s
+}
+
+// SetTablesErrored sets the TablesErrored field's value.
+func (s *ReplicationTaskStats) SetTablesErrored(v int64) *ReplicationTaskStats {
+	s.TablesErrored = &v
+	return s
+}
+
+// SetTablesLoaded sets the TablesLoaded field's value.
+func (s *ReplicationTaskStats) SetTablesLoaded(v int64) *ReplicationTaskStats {
+	s.TablesLoaded = &v
+	return s
+}
+
+// SetTablesLoading sets the TablesLoading field's value.
+func (s *ReplicationTaskStats) SetTablesLoading(v int64) *ReplicationTaskStats {
+	s.TablesLoading = &v
+	return s
+}
+
+// SetTablesQueued sets the TablesQueued field's value.
+func (s *ReplicationTaskStats) SetTablesQueued(v int64) *ReplicationTaskStats {
+	s.TablesQueued = &v
+	return s
 }
 
 type StartReplicationTaskInput struct {
@@ -4836,6 +6276,24 @@ func (s *StartReplicationTaskInput) Validate() error {
 	return nil
 }
 
+// SetCdcStartTime sets the CdcStartTime field's value.
+func (s *StartReplicationTaskInput) SetCdcStartTime(v time.Time) *StartReplicationTaskInput {
+	s.CdcStartTime = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *StartReplicationTaskInput) SetReplicationTaskArn(v string) *StartReplicationTaskInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetStartReplicationTaskType sets the StartReplicationTaskType field's value.
+func (s *StartReplicationTaskInput) SetStartReplicationTaskType(v string) *StartReplicationTaskInput {
+	s.StartReplicationTaskType = &v
+	return s
+}
+
 type StartReplicationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4851,6 +6309,12 @@ func (s StartReplicationTaskOutput) String() string {
 // GoString returns the string representation
 func (s StartReplicationTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationTask sets the ReplicationTask field's value.
+func (s *StartReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *StartReplicationTaskOutput {
+	s.ReplicationTask = v
+	return s
 }
 
 type StopReplicationTaskInput struct {
@@ -4885,6 +6349,12 @@ func (s *StopReplicationTaskInput) Validate() error {
 	return nil
 }
 
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *StopReplicationTaskInput) SetReplicationTaskArn(v string) *StopReplicationTaskInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
 type StopReplicationTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4900,6 +6370,12 @@ func (s StopReplicationTaskOutput) String() string {
 // GoString returns the string representation
 func (s StopReplicationTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationTask sets the ReplicationTask field's value.
+func (s *StopReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *StopReplicationTaskOutput {
+	s.ReplicationTask = v
+	return s
 }
 
 type Subnet struct {
@@ -4925,6 +6401,24 @@ func (s Subnet) GoString() string {
 	return s.String()
 }
 
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *Subnet) SetSubnetAvailabilityZone(v *AvailabilityZone) *Subnet {
+	s.SubnetAvailabilityZone = v
+	return s
+}
+
+// SetSubnetIdentifier sets the SubnetIdentifier field's value.
+func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
+	s.SubnetIdentifier = &v
+	return s
+}
+
+// SetSubnetStatus sets the SubnetStatus field's value.
+func (s *Subnet) SetSubnetStatus(v string) *Subnet {
+	s.SubnetStatus = &v
+	return s
+}
+
 type SupportedEndpointType struct {
 	_ struct{} `type:"structure"`
 
@@ -4946,6 +6440,24 @@ func (s SupportedEndpointType) String() string {
 // GoString returns the string representation
 func (s SupportedEndpointType) GoString() string {
 	return s.String()
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *SupportedEndpointType) SetEndpointType(v string) *SupportedEndpointType {
+	s.EndpointType = &v
+	return s
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *SupportedEndpointType) SetEngineName(v string) *SupportedEndpointType {
+	s.EngineName = &v
+	return s
+}
+
+// SetSupportsCDC sets the SupportsCDC field's value.
+func (s *SupportedEndpointType) SetSupportsCDC(v bool) *SupportedEndpointType {
+	s.SupportsCDC = &v
+	return s
 }
 
 type TableStatistics struct {
@@ -4990,6 +6502,60 @@ func (s TableStatistics) GoString() string {
 	return s.String()
 }
 
+// SetDdls sets the Ddls field's value.
+func (s *TableStatistics) SetDdls(v int64) *TableStatistics {
+	s.Ddls = &v
+	return s
+}
+
+// SetDeletes sets the Deletes field's value.
+func (s *TableStatistics) SetDeletes(v int64) *TableStatistics {
+	s.Deletes = &v
+	return s
+}
+
+// SetFullLoadRows sets the FullLoadRows field's value.
+func (s *TableStatistics) SetFullLoadRows(v int64) *TableStatistics {
+	s.FullLoadRows = &v
+	return s
+}
+
+// SetInserts sets the Inserts field's value.
+func (s *TableStatistics) SetInserts(v int64) *TableStatistics {
+	s.Inserts = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *TableStatistics) SetLastUpdateTime(v time.Time) *TableStatistics {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *TableStatistics) SetSchemaName(v string) *TableStatistics {
+	s.SchemaName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *TableStatistics) SetTableName(v string) *TableStatistics {
+	s.TableName = &v
+	return s
+}
+
+// SetTableState sets the TableState field's value.
+func (s *TableStatistics) SetTableState(v string) *TableStatistics {
+	s.TableState = &v
+	return s
+}
+
+// SetUpdates sets the Updates field's value.
+func (s *TableStatistics) SetUpdates(v int64) *TableStatistics {
+	s.Updates = &v
+	return s
+}
+
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -5014,6 +6580,18 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 type TestConnectionInput struct {
@@ -5056,6 +6634,18 @@ func (s *TestConnectionInput) Validate() error {
 	return nil
 }
 
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *TestConnectionInput) SetEndpointArn(v string) *TestConnectionInput {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetReplicationInstanceArn sets the ReplicationInstanceArn field's value.
+func (s *TestConnectionInput) SetReplicationInstanceArn(v string) *TestConnectionInput {
+	s.ReplicationInstanceArn = &v
+	return s
+}
+
 type TestConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5071,6 +6661,12 @@ func (s TestConnectionOutput) String() string {
 // GoString returns the string representation
 func (s TestConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetConnection sets the Connection field's value.
+func (s *TestConnectionOutput) SetConnection(v *Connection) *TestConnectionOutput {
+	s.Connection = v
+	return s
 }
 
 type VpcSecurityGroupMembership struct {
@@ -5091,6 +6687,18 @@ func (s VpcSecurityGroupMembership) String() string {
 // GoString returns the string representation
 func (s VpcSecurityGroupMembership) GoString() string {
 	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcSecurityGroupMembership) SetStatus(v string) *VpcSecurityGroupMembership {
+	s.Status = &v
+	return s
+}
+
+// SetVpcSecurityGroupId sets the VpcSecurityGroupId field's value.
+func (s *VpcSecurityGroupMembership) SetVpcSecurityGroupId(v string) *VpcSecurityGroupMembership {
+	s.VpcSecurityGroupId = &v
+	return s
 }
 
 const (

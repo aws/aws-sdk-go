@@ -907,6 +907,18 @@ func (s *AddTagsToCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *AddTagsToCertificateInput) SetCertificateArn(v string) *AddTagsToCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsToCertificateInput) SetTags(v []*Tag) *AddTagsToCertificateInput {
+	s.Tags = v
+	return s
+}
+
 type AddTagsToCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1022,6 +1034,126 @@ func (s CertificateDetail) GoString() string {
 	return s.String()
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *CertificateDetail) SetCertificateArn(v string) *CertificateDetail {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CertificateDetail) SetCreatedAt(v time.Time) *CertificateDetail {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CertificateDetail) SetDomainName(v string) *CertificateDetail {
+	s.DomainName = &v
+	return s
+}
+
+// SetDomainValidationOptions sets the DomainValidationOptions field's value.
+func (s *CertificateDetail) SetDomainValidationOptions(v []*DomainValidation) *CertificateDetail {
+	s.DomainValidationOptions = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CertificateDetail) SetFailureReason(v string) *CertificateDetail {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImportedAt sets the ImportedAt field's value.
+func (s *CertificateDetail) SetImportedAt(v time.Time) *CertificateDetail {
+	s.ImportedAt = &v
+	return s
+}
+
+// SetInUseBy sets the InUseBy field's value.
+func (s *CertificateDetail) SetInUseBy(v []*string) *CertificateDetail {
+	s.InUseBy = v
+	return s
+}
+
+// SetIssuedAt sets the IssuedAt field's value.
+func (s *CertificateDetail) SetIssuedAt(v time.Time) *CertificateDetail {
+	s.IssuedAt = &v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *CertificateDetail) SetIssuer(v string) *CertificateDetail {
+	s.Issuer = &v
+	return s
+}
+
+// SetKeyAlgorithm sets the KeyAlgorithm field's value.
+func (s *CertificateDetail) SetKeyAlgorithm(v string) *CertificateDetail {
+	s.KeyAlgorithm = &v
+	return s
+}
+
+// SetNotAfter sets the NotAfter field's value.
+func (s *CertificateDetail) SetNotAfter(v time.Time) *CertificateDetail {
+	s.NotAfter = &v
+	return s
+}
+
+// SetNotBefore sets the NotBefore field's value.
+func (s *CertificateDetail) SetNotBefore(v time.Time) *CertificateDetail {
+	s.NotBefore = &v
+	return s
+}
+
+// SetRevocationReason sets the RevocationReason field's value.
+func (s *CertificateDetail) SetRevocationReason(v string) *CertificateDetail {
+	s.RevocationReason = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *CertificateDetail) SetRevokedAt(v time.Time) *CertificateDetail {
+	s.RevokedAt = &v
+	return s
+}
+
+// SetSerial sets the Serial field's value.
+func (s *CertificateDetail) SetSerial(v string) *CertificateDetail {
+	s.Serial = &v
+	return s
+}
+
+// SetSignatureAlgorithm sets the SignatureAlgorithm field's value.
+func (s *CertificateDetail) SetSignatureAlgorithm(v string) *CertificateDetail {
+	s.SignatureAlgorithm = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CertificateDetail) SetStatus(v string) *CertificateDetail {
+	s.Status = &v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *CertificateDetail) SetSubject(v string) *CertificateDetail {
+	s.Subject = &v
+	return s
+}
+
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *CertificateDetail) SetSubjectAlternativeNames(v []*string) *CertificateDetail {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CertificateDetail) SetType(v string) *CertificateDetail {
+	s.Type = &v
+	return s
+}
+
 // This structure is returned in the response object of ListCertificates action.
 type CertificateSummary struct {
 	_ struct{} `type:"structure"`
@@ -1047,6 +1179,18 @@ func (s CertificateSummary) String() string {
 // GoString returns the string representation
 func (s CertificateSummary) GoString() string {
 	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *CertificateSummary) SetCertificateArn(v string) *CertificateSummary {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CertificateSummary) SetDomainName(v string) *CertificateSummary {
+	s.DomainName = &v
+	return s
 }
 
 type DeleteCertificateInput struct {
@@ -1088,6 +1232,12 @@ func (s *DeleteCertificateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *DeleteCertificateInput) SetCertificateArn(v string) *DeleteCertificateInput {
+	s.CertificateArn = &v
+	return s
 }
 
 type DeleteCertificateOutput struct {
@@ -1144,6 +1294,12 @@ func (s *DescribeCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *DescribeCertificateInput) SetCertificateArn(v string) *DescribeCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
 type DescribeCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1159,6 +1315,12 @@ func (s DescribeCertificateOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *DescribeCertificateOutput) SetCertificate(v *CertificateDetail) *DescribeCertificateOutput {
+	s.Certificate = v
+	return s
 }
 
 // Structure that contains the domain name, the base validation domain to which
@@ -1188,6 +1350,24 @@ func (s DomainValidation) String() string {
 // GoString returns the string representation
 func (s DomainValidation) GoString() string {
 	return s.String()
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DomainValidation) SetDomainName(v string) *DomainValidation {
+	s.DomainName = &v
+	return s
+}
+
+// SetValidationDomain sets the ValidationDomain field's value.
+func (s *DomainValidation) SetValidationDomain(v string) *DomainValidation {
+	s.ValidationDomain = &v
+	return s
+}
+
+// SetValidationEmails sets the ValidationEmails field's value.
+func (s *DomainValidation) SetValidationEmails(v []*string) *DomainValidation {
+	s.ValidationEmails = v
+	return s
 }
 
 // This structure is used in the request object of the RequestCertificate action.
@@ -1253,6 +1433,18 @@ func (s *DomainValidationOption) Validate() error {
 	return nil
 }
 
+// SetDomainName sets the DomainName field's value.
+func (s *DomainValidationOption) SetDomainName(v string) *DomainValidationOption {
+	s.DomainName = &v
+	return s
+}
+
+// SetValidationDomain sets the ValidationDomain field's value.
+func (s *DomainValidationOption) SetValidationDomain(v string) *DomainValidationOption {
+	s.ValidationDomain = &v
+	return s
+}
+
 type GetCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1293,6 +1485,12 @@ func (s *GetCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *GetCertificateInput) SetCertificateArn(v string) *GetCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
 type GetCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1313,6 +1511,18 @@ func (s GetCertificateOutput) String() string {
 // GoString returns the string representation
 func (s GetCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *GetCertificateOutput) SetCertificate(v string) *GetCertificateOutput {
+	s.Certificate = &v
+	return s
+}
+
+// SetCertificateChain sets the CertificateChain field's value.
+func (s *GetCertificateOutput) SetCertificateChain(v string) *GetCertificateOutput {
+	s.CertificateChain = &v
+	return s
 }
 
 type ImportCertificateInput struct {
@@ -1395,6 +1605,30 @@ func (s *ImportCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificate sets the Certificate field's value.
+func (s *ImportCertificateInput) SetCertificate(v []byte) *ImportCertificateInput {
+	s.Certificate = v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *ImportCertificateInput) SetCertificateArn(v string) *ImportCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetCertificateChain sets the CertificateChain field's value.
+func (s *ImportCertificateInput) SetCertificateChain(v []byte) *ImportCertificateInput {
+	s.CertificateChain = v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *ImportCertificateInput) SetPrivateKey(v []byte) *ImportCertificateInput {
+	s.PrivateKey = v
+	return s
+}
+
 type ImportCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1411,6 +1645,12 @@ func (s ImportCertificateOutput) String() string {
 // GoString returns the string representation
 func (s ImportCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *ImportCertificateOutput) SetCertificateArn(v string) *ImportCertificateOutput {
+	s.CertificateArn = &v
+	return s
 }
 
 type ListCertificatesInput struct {
@@ -1457,6 +1697,24 @@ func (s *ListCertificatesInput) Validate() error {
 	return nil
 }
 
+// SetCertificateStatuses sets the CertificateStatuses field's value.
+func (s *ListCertificatesInput) SetCertificateStatuses(v []*string) *ListCertificatesInput {
+	s.CertificateStatuses = v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListCertificatesInput) SetMaxItems(v int64) *ListCertificatesInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCertificatesInput) SetNextToken(v string) *ListCertificatesInput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1476,6 +1734,18 @@ func (s ListCertificatesOutput) String() string {
 // GoString returns the string representation
 func (s ListCertificatesOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificateSummaryList sets the CertificateSummaryList field's value.
+func (s *ListCertificatesOutput) SetCertificateSummaryList(v []*CertificateSummary) *ListCertificatesOutput {
+	s.CertificateSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCertificatesOutput) SetNextToken(v string) *ListCertificatesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListTagsForCertificateInput struct {
@@ -1519,6 +1789,12 @@ func (s *ListTagsForCertificateInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *ListTagsForCertificateInput) SetCertificateArn(v string) *ListTagsForCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
 type ListTagsForCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1534,6 +1810,12 @@ func (s ListTagsForCertificateOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForCertificateOutput) SetTags(v []*Tag) *ListTagsForCertificateOutput {
+	s.Tags = v
+	return s
 }
 
 type RemoveTagsFromCertificateInput struct {
@@ -1596,6 +1878,18 @@ func (s *RemoveTagsFromCertificateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *RemoveTagsFromCertificateInput) SetCertificateArn(v string) *RemoveTagsFromCertificateInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RemoveTagsFromCertificateInput) SetTags(v []*Tag) *RemoveTagsFromCertificateInput {
+	s.Tags = v
+	return s
 }
 
 type RemoveTagsFromCertificateOutput struct {
@@ -1701,6 +1995,30 @@ func (s *RequestCertificateInput) Validate() error {
 	return nil
 }
 
+// SetDomainName sets the DomainName field's value.
+func (s *RequestCertificateInput) SetDomainName(v string) *RequestCertificateInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetDomainValidationOptions sets the DomainValidationOptions field's value.
+func (s *RequestCertificateInput) SetDomainValidationOptions(v []*DomainValidationOption) *RequestCertificateInput {
+	s.DomainValidationOptions = v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *RequestCertificateInput) SetIdempotencyToken(v string) *RequestCertificateInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *RequestCertificateInput) SetSubjectAlternativeNames(v []*string) *RequestCertificateInput {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
 type RequestCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1719,6 +2037,12 @@ func (s RequestCertificateOutput) String() string {
 // GoString returns the string representation
 func (s RequestCertificateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *RequestCertificateOutput) SetCertificateArn(v string) *RequestCertificateOutput {
+	s.CertificateArn = &v
+	return s
 }
 
 type ResendValidationEmailInput struct {
@@ -1801,6 +2125,24 @@ func (s *ResendValidationEmailInput) Validate() error {
 	return nil
 }
 
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *ResendValidationEmailInput) SetCertificateArn(v string) *ResendValidationEmailInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ResendValidationEmailInput) SetDomain(v string) *ResendValidationEmailInput {
+	s.Domain = &v
+	return s
+}
+
+// SetValidationDomain sets the ValidationDomain field's value.
+func (s *ResendValidationEmailInput) SetValidationDomain(v string) *ResendValidationEmailInput {
+	s.ValidationDomain = &v
+	return s
+}
+
 type ResendValidationEmailOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1852,6 +2194,18 @@ func (s *Tag) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 const (

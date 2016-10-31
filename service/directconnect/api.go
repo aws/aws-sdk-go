@@ -1653,6 +1653,36 @@ func (s *AllocateConnectionOnInterconnectInput) Validate() error {
 	return nil
 }
 
+// SetBandwidth sets the Bandwidth field's value.
+func (s *AllocateConnectionOnInterconnectInput) SetBandwidth(v string) *AllocateConnectionOnInterconnectInput {
+	s.Bandwidth = &v
+	return s
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *AllocateConnectionOnInterconnectInput) SetConnectionName(v string) *AllocateConnectionOnInterconnectInput {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetInterconnectId sets the InterconnectId field's value.
+func (s *AllocateConnectionOnInterconnectInput) SetInterconnectId(v string) *AllocateConnectionOnInterconnectInput {
+	s.InterconnectId = &v
+	return s
+}
+
+// SetOwnerAccount sets the OwnerAccount field's value.
+func (s *AllocateConnectionOnInterconnectInput) SetOwnerAccount(v string) *AllocateConnectionOnInterconnectInput {
+	s.OwnerAccount = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *AllocateConnectionOnInterconnectInput) SetVlan(v int64) *AllocateConnectionOnInterconnectInput {
+	s.Vlan = &v
+	return s
+}
+
 // Container for the parameters to the AllocatePrivateVirtualInterface operation.
 type AllocatePrivateVirtualInterfaceInput struct {
 	_ struct{} `type:"structure"`
@@ -1711,6 +1741,24 @@ func (s *AllocatePrivateVirtualInterfaceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *AllocatePrivateVirtualInterfaceInput) SetConnectionId(v string) *AllocatePrivateVirtualInterfaceInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetNewPrivateVirtualInterfaceAllocation sets the NewPrivateVirtualInterfaceAllocation field's value.
+func (s *AllocatePrivateVirtualInterfaceInput) SetNewPrivateVirtualInterfaceAllocation(v *NewPrivateVirtualInterfaceAllocation) *AllocatePrivateVirtualInterfaceInput {
+	s.NewPrivateVirtualInterfaceAllocation = v
+	return s
+}
+
+// SetOwnerAccount sets the OwnerAccount field's value.
+func (s *AllocatePrivateVirtualInterfaceInput) SetOwnerAccount(v string) *AllocatePrivateVirtualInterfaceInput {
+	s.OwnerAccount = &v
+	return s
 }
 
 // Container for the parameters to the AllocatePublicVirtualInterface operation.
@@ -1773,6 +1821,24 @@ func (s *AllocatePublicVirtualInterfaceInput) Validate() error {
 	return nil
 }
 
+// SetConnectionId sets the ConnectionId field's value.
+func (s *AllocatePublicVirtualInterfaceInput) SetConnectionId(v string) *AllocatePublicVirtualInterfaceInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetNewPublicVirtualInterfaceAllocation sets the NewPublicVirtualInterfaceAllocation field's value.
+func (s *AllocatePublicVirtualInterfaceInput) SetNewPublicVirtualInterfaceAllocation(v *NewPublicVirtualInterfaceAllocation) *AllocatePublicVirtualInterfaceInput {
+	s.NewPublicVirtualInterfaceAllocation = v
+	return s
+}
+
+// SetOwnerAccount sets the OwnerAccount field's value.
+func (s *AllocatePublicVirtualInterfaceInput) SetOwnerAccount(v string) *AllocatePublicVirtualInterfaceInput {
+	s.OwnerAccount = &v
+	return s
+}
+
 // Container for the parameters to the ConfirmConnection operation.
 type ConfirmConnectionInput struct {
 	_ struct{} `type:"structure"`
@@ -1808,6 +1874,12 @@ func (s *ConfirmConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *ConfirmConnectionInput) SetConnectionId(v string) *ConfirmConnectionInput {
+	s.ConnectionId = &v
+	return s
 }
 
 // The response received when ConfirmConnection is called.
@@ -1847,6 +1919,12 @@ func (s ConfirmConnectionOutput) String() string {
 // GoString returns the string representation
 func (s ConfirmConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetConnectionState sets the ConnectionState field's value.
+func (s *ConfirmConnectionOutput) SetConnectionState(v string) *ConfirmConnectionOutput {
+	s.ConnectionState = &v
+	return s
 }
 
 // Container for the parameters to the ConfirmPrivateVirtualInterface operation.
@@ -1900,6 +1978,18 @@ func (s *ConfirmPrivateVirtualInterfaceInput) Validate() error {
 	return nil
 }
 
+// SetVirtualGatewayId sets the VirtualGatewayId field's value.
+func (s *ConfirmPrivateVirtualInterfaceInput) SetVirtualGatewayId(v string) *ConfirmPrivateVirtualInterfaceInput {
+	s.VirtualGatewayId = &v
+	return s
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *ConfirmPrivateVirtualInterfaceInput) SetVirtualInterfaceId(v string) *ConfirmPrivateVirtualInterfaceInput {
+	s.VirtualInterfaceId = &v
+	return s
+}
+
 // The response received when ConfirmPrivateVirtualInterface is called.
 type ConfirmPrivateVirtualInterfaceOutput struct {
 	_ struct{} `type:"structure"`
@@ -1945,6 +2035,12 @@ func (s ConfirmPrivateVirtualInterfaceOutput) GoString() string {
 	return s.String()
 }
 
+// SetVirtualInterfaceState sets the VirtualInterfaceState field's value.
+func (s *ConfirmPrivateVirtualInterfaceOutput) SetVirtualInterfaceState(v string) *ConfirmPrivateVirtualInterfaceOutput {
+	s.VirtualInterfaceState = &v
+	return s
+}
+
 // Container for the parameters to the ConfirmPublicVirtualInterface operation.
 type ConfirmPublicVirtualInterfaceInput struct {
 	_ struct{} `type:"structure"`
@@ -1980,6 +2076,12 @@ func (s *ConfirmPublicVirtualInterfaceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *ConfirmPublicVirtualInterfaceInput) SetVirtualInterfaceId(v string) *ConfirmPublicVirtualInterfaceInput {
+	s.VirtualInterfaceId = &v
+	return s
 }
 
 // The response received when ConfirmPublicVirtualInterface is called.
@@ -2025,6 +2127,12 @@ func (s ConfirmPublicVirtualInterfaceOutput) String() string {
 // GoString returns the string representation
 func (s ConfirmPublicVirtualInterfaceOutput) GoString() string {
 	return s.String()
+}
+
+// SetVirtualInterfaceState sets the VirtualInterfaceState field's value.
+func (s *ConfirmPublicVirtualInterfaceOutput) SetVirtualInterfaceState(v string) *ConfirmPublicVirtualInterfaceOutput {
+	s.VirtualInterfaceState = &v
+	return s
 }
 
 // A connection represents the physical network connection between the AWS Direct
@@ -2116,6 +2224,66 @@ func (s Connection) GoString() string {
 	return s.String()
 }
 
+// SetBandwidth sets the Bandwidth field's value.
+func (s *Connection) SetBandwidth(v string) *Connection {
+	s.Bandwidth = &v
+	return s
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *Connection) SetConnectionId(v string) *Connection {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *Connection) SetConnectionName(v string) *Connection {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetConnectionState sets the ConnectionState field's value.
+func (s *Connection) SetConnectionState(v string) *Connection {
+	s.ConnectionState = &v
+	return s
+}
+
+// SetLoaIssueTime sets the LoaIssueTime field's value.
+func (s *Connection) SetLoaIssueTime(v time.Time) *Connection {
+	s.LoaIssueTime = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *Connection) SetLocation(v string) *Connection {
+	s.Location = &v
+	return s
+}
+
+// SetOwnerAccount sets the OwnerAccount field's value.
+func (s *Connection) SetOwnerAccount(v string) *Connection {
+	s.OwnerAccount = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *Connection) SetPartnerName(v string) *Connection {
+	s.PartnerName = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *Connection) SetRegion(v string) *Connection {
+	s.Region = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *Connection) SetVlan(v int64) *Connection {
+	s.Vlan = &v
+	return s
+}
+
 // A structure containing a list of connections.
 type Connections struct {
 	_ struct{} `type:"structure"`
@@ -2132,6 +2300,12 @@ func (s Connections) String() string {
 // GoString returns the string representation
 func (s Connections) GoString() string {
 	return s.String()
+}
+
+// SetConnections sets the Connections field's value.
+func (s *Connections) SetConnections(v []*Connection) *Connections {
+	s.Connections = v
+	return s
 }
 
 // Container for the parameters to the CreateConnection operation.
@@ -2193,6 +2367,24 @@ func (s *CreateConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBandwidth sets the Bandwidth field's value.
+func (s *CreateConnectionInput) SetBandwidth(v string) *CreateConnectionInput {
+	s.Bandwidth = &v
+	return s
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *CreateConnectionInput) SetConnectionName(v string) *CreateConnectionInput {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateConnectionInput) SetLocation(v string) *CreateConnectionInput {
+	s.Location = &v
+	return s
 }
 
 // Container for the parameters to the CreateInterconnect operation.
@@ -2258,6 +2450,24 @@ func (s *CreateInterconnectInput) Validate() error {
 	return nil
 }
 
+// SetBandwidth sets the Bandwidth field's value.
+func (s *CreateInterconnectInput) SetBandwidth(v string) *CreateInterconnectInput {
+	s.Bandwidth = &v
+	return s
+}
+
+// SetInterconnectName sets the InterconnectName field's value.
+func (s *CreateInterconnectInput) SetInterconnectName(v string) *CreateInterconnectInput {
+	s.InterconnectName = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateInterconnectInput) SetLocation(v string) *CreateInterconnectInput {
+	s.Location = &v
+	return s
+}
+
 // Container for the parameters to the CreatePrivateVirtualInterface operation.
 type CreatePrivateVirtualInterfaceInput struct {
 	_ struct{} `type:"structure"`
@@ -2308,6 +2518,18 @@ func (s *CreatePrivateVirtualInterfaceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *CreatePrivateVirtualInterfaceInput) SetConnectionId(v string) *CreatePrivateVirtualInterfaceInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetNewPrivateVirtualInterface sets the NewPrivateVirtualInterface field's value.
+func (s *CreatePrivateVirtualInterfaceInput) SetNewPrivateVirtualInterface(v *NewPrivateVirtualInterface) *CreatePrivateVirtualInterfaceInput {
+	s.NewPrivateVirtualInterface = v
+	return s
 }
 
 // Container for the parameters to the CreatePublicVirtualInterface operation.
@@ -2362,6 +2584,18 @@ func (s *CreatePublicVirtualInterfaceInput) Validate() error {
 	return nil
 }
 
+// SetConnectionId sets the ConnectionId field's value.
+func (s *CreatePublicVirtualInterfaceInput) SetConnectionId(v string) *CreatePublicVirtualInterfaceInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetNewPublicVirtualInterface sets the NewPublicVirtualInterface field's value.
+func (s *CreatePublicVirtualInterfaceInput) SetNewPublicVirtualInterface(v *NewPublicVirtualInterface) *CreatePublicVirtualInterfaceInput {
+	s.NewPublicVirtualInterface = v
+	return s
+}
+
 // Container for the parameters to the DeleteConnection operation.
 type DeleteConnectionInput struct {
 	_ struct{} `type:"structure"`
@@ -2399,6 +2633,12 @@ func (s *DeleteConnectionInput) Validate() error {
 	return nil
 }
 
+// SetConnectionId sets the ConnectionId field's value.
+func (s *DeleteConnectionInput) SetConnectionId(v string) *DeleteConnectionInput {
+	s.ConnectionId = &v
+	return s
+}
+
 // Container for the parameters to the DeleteInterconnect operation.
 type DeleteInterconnectInput struct {
 	_ struct{} `type:"structure"`
@@ -2434,6 +2674,12 @@ func (s *DeleteInterconnectInput) Validate() error {
 	return nil
 }
 
+// SetInterconnectId sets the InterconnectId field's value.
+func (s *DeleteInterconnectInput) SetInterconnectId(v string) *DeleteInterconnectInput {
+	s.InterconnectId = &v
+	return s
+}
+
 // The response received when DeleteInterconnect is called.
 type DeleteInterconnectOutput struct {
 	_ struct{} `type:"structure"`
@@ -2465,6 +2711,12 @@ func (s DeleteInterconnectOutput) String() string {
 // GoString returns the string representation
 func (s DeleteInterconnectOutput) GoString() string {
 	return s.String()
+}
+
+// SetInterconnectState sets the InterconnectState field's value.
+func (s *DeleteInterconnectOutput) SetInterconnectState(v string) *DeleteInterconnectOutput {
+	s.InterconnectState = &v
+	return s
 }
 
 // Container for the parameters to the DeleteVirtualInterface operation.
@@ -2502,6 +2754,12 @@ func (s *DeleteVirtualInterfaceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *DeleteVirtualInterfaceInput) SetVirtualInterfaceId(v string) *DeleteVirtualInterfaceInput {
+	s.VirtualInterfaceId = &v
+	return s
 }
 
 // The response received when DeleteVirtualInterface is called.
@@ -2547,6 +2805,12 @@ func (s DeleteVirtualInterfaceOutput) String() string {
 // GoString returns the string representation
 func (s DeleteVirtualInterfaceOutput) GoString() string {
 	return s.String()
+}
+
+// SetVirtualInterfaceState sets the VirtualInterfaceState field's value.
+func (s *DeleteVirtualInterfaceOutput) SetVirtualInterfaceState(v string) *DeleteVirtualInterfaceOutput {
+	s.VirtualInterfaceState = &v
+	return s
 }
 
 // Container for the parameters to the DescribeConnectionLoa operation.
@@ -2599,6 +2863,24 @@ func (s *DescribeConnectionLoaInput) Validate() error {
 	return nil
 }
 
+// SetConnectionId sets the ConnectionId field's value.
+func (s *DescribeConnectionLoaInput) SetConnectionId(v string) *DescribeConnectionLoaInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetLoaContentType sets the LoaContentType field's value.
+func (s *DescribeConnectionLoaInput) SetLoaContentType(v string) *DescribeConnectionLoaInput {
+	s.LoaContentType = &v
+	return s
+}
+
+// SetProviderName sets the ProviderName field's value.
+func (s *DescribeConnectionLoaInput) SetProviderName(v string) *DescribeConnectionLoaInput {
+	s.ProviderName = &v
+	return s
+}
+
 // The response received when DescribeConnectionLoa is called.
 type DescribeConnectionLoaOutput struct {
 	_ struct{} `type:"structure"`
@@ -2616,6 +2898,12 @@ func (s DescribeConnectionLoaOutput) String() string {
 // GoString returns the string representation
 func (s DescribeConnectionLoaOutput) GoString() string {
 	return s.String()
+}
+
+// SetLoa sets the Loa field's value.
+func (s *DescribeConnectionLoaOutput) SetLoa(v *Loa) *DescribeConnectionLoaOutput {
+	s.Loa = v
+	return s
 }
 
 // Container for the parameters to the DescribeConnections operation.
@@ -2638,6 +2926,12 @@ func (s DescribeConnectionsInput) String() string {
 // GoString returns the string representation
 func (s DescribeConnectionsInput) GoString() string {
 	return s.String()
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *DescribeConnectionsInput) SetConnectionId(v string) *DescribeConnectionsInput {
+	s.ConnectionId = &v
+	return s
 }
 
 // Container for the parameters to the DescribeConnectionsOnInterconnect operation.
@@ -2675,6 +2969,12 @@ func (s *DescribeConnectionsOnInterconnectInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInterconnectId sets the InterconnectId field's value.
+func (s *DescribeConnectionsOnInterconnectInput) SetInterconnectId(v string) *DescribeConnectionsOnInterconnectInput {
+	s.InterconnectId = &v
+	return s
 }
 
 // Container for the parameters to the DescribeInterconnectLoa operation.
@@ -2725,6 +3025,24 @@ func (s *DescribeInterconnectLoaInput) Validate() error {
 	return nil
 }
 
+// SetInterconnectId sets the InterconnectId field's value.
+func (s *DescribeInterconnectLoaInput) SetInterconnectId(v string) *DescribeInterconnectLoaInput {
+	s.InterconnectId = &v
+	return s
+}
+
+// SetLoaContentType sets the LoaContentType field's value.
+func (s *DescribeInterconnectLoaInput) SetLoaContentType(v string) *DescribeInterconnectLoaInput {
+	s.LoaContentType = &v
+	return s
+}
+
+// SetProviderName sets the ProviderName field's value.
+func (s *DescribeInterconnectLoaInput) SetProviderName(v string) *DescribeInterconnectLoaInput {
+	s.ProviderName = &v
+	return s
+}
+
 // The response received when DescribeInterconnectLoa is called.
 type DescribeInterconnectLoaOutput struct {
 	_ struct{} `type:"structure"`
@@ -2742,6 +3060,12 @@ func (s DescribeInterconnectLoaOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInterconnectLoaOutput) GoString() string {
 	return s.String()
+}
+
+// SetLoa sets the Loa field's value.
+func (s *DescribeInterconnectLoaOutput) SetLoa(v *Loa) *DescribeInterconnectLoaOutput {
+	s.Loa = v
+	return s
 }
 
 // Container for the parameters to the DescribeInterconnects operation.
@@ -2764,6 +3088,12 @@ func (s DescribeInterconnectsInput) GoString() string {
 	return s.String()
 }
 
+// SetInterconnectId sets the InterconnectId field's value.
+func (s *DescribeInterconnectsInput) SetInterconnectId(v string) *DescribeInterconnectsInput {
+	s.InterconnectId = &v
+	return s
+}
+
 // A structure containing a list of interconnects.
 type DescribeInterconnectsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2780,6 +3110,12 @@ func (s DescribeInterconnectsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInterconnectsOutput) GoString() string {
 	return s.String()
+}
+
+// SetInterconnects sets the Interconnects field's value.
+func (s *DescribeInterconnectsOutput) SetInterconnects(v []*Interconnect) *DescribeInterconnectsOutput {
+	s.Interconnects = v
+	return s
 }
 
 type DescribeLocationsInput struct {
@@ -2818,6 +3154,12 @@ func (s DescribeLocationsOutput) GoString() string {
 	return s.String()
 }
 
+// SetLocations sets the Locations field's value.
+func (s *DescribeLocationsOutput) SetLocations(v []*Location) *DescribeLocationsOutput {
+	s.Locations = v
+	return s
+}
+
 type DescribeVirtualGatewaysInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2850,6 +3192,12 @@ func (s DescribeVirtualGatewaysOutput) GoString() string {
 	return s.String()
 }
 
+// SetVirtualGateways sets the VirtualGateways field's value.
+func (s *DescribeVirtualGatewaysOutput) SetVirtualGateways(v []*VirtualGateway) *DescribeVirtualGatewaysOutput {
+	s.VirtualGateways = v
+	return s
+}
+
 // Container for the parameters to the DescribeVirtualInterfaces operation.
 type DescribeVirtualInterfacesInput struct {
 	_ struct{} `type:"structure"`
@@ -2879,6 +3227,18 @@ func (s DescribeVirtualInterfacesInput) GoString() string {
 	return s.String()
 }
 
+// SetConnectionId sets the ConnectionId field's value.
+func (s *DescribeVirtualInterfacesInput) SetConnectionId(v string) *DescribeVirtualInterfacesInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *DescribeVirtualInterfacesInput) SetVirtualInterfaceId(v string) *DescribeVirtualInterfacesInput {
+	s.VirtualInterfaceId = &v
+	return s
+}
+
 // A structure containing a list of virtual interfaces.
 type DescribeVirtualInterfacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2895,6 +3255,12 @@ func (s DescribeVirtualInterfacesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVirtualInterfacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetVirtualInterfaces sets the VirtualInterfaces field's value.
+func (s *DescribeVirtualInterfacesOutput) SetVirtualInterfaces(v []*VirtualInterface) *DescribeVirtualInterfacesOutput {
+	s.VirtualInterfaces = v
+	return s
 }
 
 // An interconnect is a connection that can host other connections.
@@ -2975,6 +3341,48 @@ func (s Interconnect) GoString() string {
 	return s.String()
 }
 
+// SetBandwidth sets the Bandwidth field's value.
+func (s *Interconnect) SetBandwidth(v string) *Interconnect {
+	s.Bandwidth = &v
+	return s
+}
+
+// SetInterconnectId sets the InterconnectId field's value.
+func (s *Interconnect) SetInterconnectId(v string) *Interconnect {
+	s.InterconnectId = &v
+	return s
+}
+
+// SetInterconnectName sets the InterconnectName field's value.
+func (s *Interconnect) SetInterconnectName(v string) *Interconnect {
+	s.InterconnectName = &v
+	return s
+}
+
+// SetInterconnectState sets the InterconnectState field's value.
+func (s *Interconnect) SetInterconnectState(v string) *Interconnect {
+	s.InterconnectState = &v
+	return s
+}
+
+// SetLoaIssueTime sets the LoaIssueTime field's value.
+func (s *Interconnect) SetLoaIssueTime(v time.Time) *Interconnect {
+	s.LoaIssueTime = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *Interconnect) SetLocation(v string) *Interconnect {
+	s.Location = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *Interconnect) SetRegion(v string) *Interconnect {
+	s.Region = &v
+	return s
+}
+
 // A structure containing the Letter of Authorization - Connecting Facility
 // Assignment (LOA-CFA) for a connection.
 type Loa struct {
@@ -3002,6 +3410,18 @@ func (s Loa) GoString() string {
 	return s.String()
 }
 
+// SetLoaContent sets the LoaContent field's value.
+func (s *Loa) SetLoaContent(v []byte) *Loa {
+	s.LoaContent = v
+	return s
+}
+
+// SetLoaContentType sets the LoaContentType field's value.
+func (s *Loa) SetLoaContentType(v string) *Loa {
+	s.LoaContentType = &v
+	return s
+}
+
 // An AWS Direct Connect location where connections and interconnects can be
 // requested.
 type Location struct {
@@ -3023,6 +3443,18 @@ func (s Location) String() string {
 // GoString returns the string representation
 func (s Location) GoString() string {
 	return s.String()
+}
+
+// SetLocationCode sets the LocationCode field's value.
+func (s *Location) SetLocationCode(v string) *Location {
+	s.LocationCode = &v
+	return s
+}
+
+// SetLocationName sets the LocationName field's value.
+func (s *Location) SetLocationName(v string) *Location {
+	s.LocationName = &v
+	return s
 }
 
 // A structure containing information about a new private virtual interface.
@@ -3106,6 +3538,48 @@ func (s *NewPrivateVirtualInterface) Validate() error {
 	return nil
 }
 
+// SetAmazonAddress sets the AmazonAddress field's value.
+func (s *NewPrivateVirtualInterface) SetAmazonAddress(v string) *NewPrivateVirtualInterface {
+	s.AmazonAddress = &v
+	return s
+}
+
+// SetAsn sets the Asn field's value.
+func (s *NewPrivateVirtualInterface) SetAsn(v int64) *NewPrivateVirtualInterface {
+	s.Asn = &v
+	return s
+}
+
+// SetAuthKey sets the AuthKey field's value.
+func (s *NewPrivateVirtualInterface) SetAuthKey(v string) *NewPrivateVirtualInterface {
+	s.AuthKey = &v
+	return s
+}
+
+// SetCustomerAddress sets the CustomerAddress field's value.
+func (s *NewPrivateVirtualInterface) SetCustomerAddress(v string) *NewPrivateVirtualInterface {
+	s.CustomerAddress = &v
+	return s
+}
+
+// SetVirtualGatewayId sets the VirtualGatewayId field's value.
+func (s *NewPrivateVirtualInterface) SetVirtualGatewayId(v string) *NewPrivateVirtualInterface {
+	s.VirtualGatewayId = &v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *NewPrivateVirtualInterface) SetVirtualInterfaceName(v string) *NewPrivateVirtualInterface {
+	s.VirtualInterfaceName = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *NewPrivateVirtualInterface) SetVlan(v int64) *NewPrivateVirtualInterface {
+	s.Vlan = &v
+	return s
+}
+
 // A structure containing information about a private virtual interface that
 // will be provisioned on a connection.
 type NewPrivateVirtualInterfaceAllocation struct {
@@ -3175,6 +3649,42 @@ func (s *NewPrivateVirtualInterfaceAllocation) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAmazonAddress sets the AmazonAddress field's value.
+func (s *NewPrivateVirtualInterfaceAllocation) SetAmazonAddress(v string) *NewPrivateVirtualInterfaceAllocation {
+	s.AmazonAddress = &v
+	return s
+}
+
+// SetAsn sets the Asn field's value.
+func (s *NewPrivateVirtualInterfaceAllocation) SetAsn(v int64) *NewPrivateVirtualInterfaceAllocation {
+	s.Asn = &v
+	return s
+}
+
+// SetAuthKey sets the AuthKey field's value.
+func (s *NewPrivateVirtualInterfaceAllocation) SetAuthKey(v string) *NewPrivateVirtualInterfaceAllocation {
+	s.AuthKey = &v
+	return s
+}
+
+// SetCustomerAddress sets the CustomerAddress field's value.
+func (s *NewPrivateVirtualInterfaceAllocation) SetCustomerAddress(v string) *NewPrivateVirtualInterfaceAllocation {
+	s.CustomerAddress = &v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *NewPrivateVirtualInterfaceAllocation) SetVirtualInterfaceName(v string) *NewPrivateVirtualInterfaceAllocation {
+	s.VirtualInterfaceName = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *NewPrivateVirtualInterfaceAllocation) SetVlan(v int64) *NewPrivateVirtualInterfaceAllocation {
+	s.Vlan = &v
+	return s
 }
 
 // A structure containing information about a new public virtual interface.
@@ -3264,6 +3774,48 @@ func (s *NewPublicVirtualInterface) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAmazonAddress sets the AmazonAddress field's value.
+func (s *NewPublicVirtualInterface) SetAmazonAddress(v string) *NewPublicVirtualInterface {
+	s.AmazonAddress = &v
+	return s
+}
+
+// SetAsn sets the Asn field's value.
+func (s *NewPublicVirtualInterface) SetAsn(v int64) *NewPublicVirtualInterface {
+	s.Asn = &v
+	return s
+}
+
+// SetAuthKey sets the AuthKey field's value.
+func (s *NewPublicVirtualInterface) SetAuthKey(v string) *NewPublicVirtualInterface {
+	s.AuthKey = &v
+	return s
+}
+
+// SetCustomerAddress sets the CustomerAddress field's value.
+func (s *NewPublicVirtualInterface) SetCustomerAddress(v string) *NewPublicVirtualInterface {
+	s.CustomerAddress = &v
+	return s
+}
+
+// SetRouteFilterPrefixes sets the RouteFilterPrefixes field's value.
+func (s *NewPublicVirtualInterface) SetRouteFilterPrefixes(v []*RouteFilterPrefix) *NewPublicVirtualInterface {
+	s.RouteFilterPrefixes = v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *NewPublicVirtualInterface) SetVirtualInterfaceName(v string) *NewPublicVirtualInterface {
+	s.VirtualInterfaceName = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *NewPublicVirtualInterface) SetVlan(v int64) *NewPublicVirtualInterface {
+	s.Vlan = &v
+	return s
 }
 
 // A structure containing information about a public virtual interface that
@@ -3356,6 +3908,48 @@ func (s *NewPublicVirtualInterfaceAllocation) Validate() error {
 	return nil
 }
 
+// SetAmazonAddress sets the AmazonAddress field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetAmazonAddress(v string) *NewPublicVirtualInterfaceAllocation {
+	s.AmazonAddress = &v
+	return s
+}
+
+// SetAsn sets the Asn field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetAsn(v int64) *NewPublicVirtualInterfaceAllocation {
+	s.Asn = &v
+	return s
+}
+
+// SetAuthKey sets the AuthKey field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetAuthKey(v string) *NewPublicVirtualInterfaceAllocation {
+	s.AuthKey = &v
+	return s
+}
+
+// SetCustomerAddress sets the CustomerAddress field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetCustomerAddress(v string) *NewPublicVirtualInterfaceAllocation {
+	s.CustomerAddress = &v
+	return s
+}
+
+// SetRouteFilterPrefixes sets the RouteFilterPrefixes field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetRouteFilterPrefixes(v []*RouteFilterPrefix) *NewPublicVirtualInterfaceAllocation {
+	s.RouteFilterPrefixes = v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetVirtualInterfaceName(v string) *NewPublicVirtualInterfaceAllocation {
+	s.VirtualInterfaceName = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *NewPublicVirtualInterfaceAllocation) SetVlan(v int64) *NewPublicVirtualInterfaceAllocation {
+	s.Vlan = &v
+	return s
+}
+
 // A route filter prefix that the customer can advertise through Border Gateway
 // Protocol (BGP) over a public virtual interface.
 type RouteFilterPrefix struct {
@@ -3376,6 +3970,12 @@ func (s RouteFilterPrefix) String() string {
 // GoString returns the string representation
 func (s RouteFilterPrefix) GoString() string {
 	return s.String()
+}
+
+// SetCidr sets the Cidr field's value.
+func (s *RouteFilterPrefix) SetCidr(v string) *RouteFilterPrefix {
+	s.Cidr = &v
+	return s
 }
 
 // You can create one or more AWS Direct Connect private virtual interfaces
@@ -3413,6 +4013,18 @@ func (s VirtualGateway) String() string {
 // GoString returns the string representation
 func (s VirtualGateway) GoString() string {
 	return s.String()
+}
+
+// SetVirtualGatewayId sets the VirtualGatewayId field's value.
+func (s *VirtualGateway) SetVirtualGatewayId(v string) *VirtualGateway {
+	s.VirtualGatewayId = &v
+	return s
+}
+
+// SetVirtualGatewayState sets the VirtualGatewayState field's value.
+func (s *VirtualGateway) SetVirtualGatewayState(v string) *VirtualGateway {
+	s.VirtualGatewayState = &v
+	return s
 }
 
 // A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
@@ -3532,6 +4144,96 @@ func (s VirtualInterface) String() string {
 // GoString returns the string representation
 func (s VirtualInterface) GoString() string {
 	return s.String()
+}
+
+// SetAmazonAddress sets the AmazonAddress field's value.
+func (s *VirtualInterface) SetAmazonAddress(v string) *VirtualInterface {
+	s.AmazonAddress = &v
+	return s
+}
+
+// SetAsn sets the Asn field's value.
+func (s *VirtualInterface) SetAsn(v int64) *VirtualInterface {
+	s.Asn = &v
+	return s
+}
+
+// SetAuthKey sets the AuthKey field's value.
+func (s *VirtualInterface) SetAuthKey(v string) *VirtualInterface {
+	s.AuthKey = &v
+	return s
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *VirtualInterface) SetConnectionId(v string) *VirtualInterface {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetCustomerAddress sets the CustomerAddress field's value.
+func (s *VirtualInterface) SetCustomerAddress(v string) *VirtualInterface {
+	s.CustomerAddress = &v
+	return s
+}
+
+// SetCustomerRouterConfig sets the CustomerRouterConfig field's value.
+func (s *VirtualInterface) SetCustomerRouterConfig(v string) *VirtualInterface {
+	s.CustomerRouterConfig = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *VirtualInterface) SetLocation(v string) *VirtualInterface {
+	s.Location = &v
+	return s
+}
+
+// SetOwnerAccount sets the OwnerAccount field's value.
+func (s *VirtualInterface) SetOwnerAccount(v string) *VirtualInterface {
+	s.OwnerAccount = &v
+	return s
+}
+
+// SetRouteFilterPrefixes sets the RouteFilterPrefixes field's value.
+func (s *VirtualInterface) SetRouteFilterPrefixes(v []*RouteFilterPrefix) *VirtualInterface {
+	s.RouteFilterPrefixes = v
+	return s
+}
+
+// SetVirtualGatewayId sets the VirtualGatewayId field's value.
+func (s *VirtualInterface) SetVirtualGatewayId(v string) *VirtualInterface {
+	s.VirtualGatewayId = &v
+	return s
+}
+
+// SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
+func (s *VirtualInterface) SetVirtualInterfaceId(v string) *VirtualInterface {
+	s.VirtualInterfaceId = &v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *VirtualInterface) SetVirtualInterfaceName(v string) *VirtualInterface {
+	s.VirtualInterfaceName = &v
+	return s
+}
+
+// SetVirtualInterfaceState sets the VirtualInterfaceState field's value.
+func (s *VirtualInterface) SetVirtualInterfaceState(v string) *VirtualInterface {
+	s.VirtualInterfaceState = &v
+	return s
+}
+
+// SetVirtualInterfaceType sets the VirtualInterfaceType field's value.
+func (s *VirtualInterface) SetVirtualInterfaceType(v string) *VirtualInterface {
+	s.VirtualInterfaceType = &v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *VirtualInterface) SetVlan(v int64) *VirtualInterface {
+	s.Vlan = &v
+	return s
 }
 
 // State of the connection.

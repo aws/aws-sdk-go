@@ -4326,6 +4326,18 @@ func (s *AlarmIdentifier) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *AlarmIdentifier) SetName(v string) *AlarmIdentifier {
+	s.Name = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *AlarmIdentifier) SetRegion(v string) *AlarmIdentifier {
+	s.Region = &v
+	return s
+}
+
 // Alias resource record sets only: Information about the CloudFront distribution,
 // Elastic Beanstalk environment, ELB load balancer, Amazon S3 bucket, or Amazon
 // Route 53 resource record set to which you are redirecting queries. The Elastic
@@ -4565,6 +4577,24 @@ func (s *AliasTarget) Validate() error {
 	return nil
 }
 
+// SetDNSName sets the DNSName field's value.
+func (s *AliasTarget) SetDNSName(v string) *AliasTarget {
+	s.DNSName = &v
+	return s
+}
+
+// SetEvaluateTargetHealth sets the EvaluateTargetHealth field's value.
+func (s *AliasTarget) SetEvaluateTargetHealth(v bool) *AliasTarget {
+	s.EvaluateTargetHealth = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *AliasTarget) SetHostedZoneId(v string) *AliasTarget {
+	s.HostedZoneId = &v
+	return s
+}
+
 // A complex type that contains information about the VPC and the hosted zone
 // that you want to associate.
 type AssociateVPCWithHostedZoneInput struct {
@@ -4619,6 +4649,24 @@ func (s *AssociateVPCWithHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetComment sets the Comment field's value.
+func (s *AssociateVPCWithHostedZoneInput) SetComment(v string) *AssociateVPCWithHostedZoneInput {
+	s.Comment = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *AssociateVPCWithHostedZoneInput) SetHostedZoneId(v string) *AssociateVPCWithHostedZoneInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *AssociateVPCWithHostedZoneInput) SetVPC(v *VPC) *AssociateVPCWithHostedZoneInput {
+	s.VPC = v
+	return s
+}
+
 // A complex type that contains the response information for the hosted zone.
 type AssociateVPCWithHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
@@ -4637,6 +4685,12 @@ func (s AssociateVPCWithHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s AssociateVPCWithHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeInfo sets the ChangeInfo field's value.
+func (s *AssociateVPCWithHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *AssociateVPCWithHostedZoneOutput {
+	s.ChangeInfo = v
+	return s
 }
 
 // The information for each resource record set that you want to change.
@@ -4707,6 +4761,18 @@ func (s *Change) Validate() error {
 	return nil
 }
 
+// SetAction sets the Action field's value.
+func (s *Change) SetAction(v string) *Change {
+	s.Action = &v
+	return s
+}
+
+// SetResourceRecordSet sets the ResourceRecordSet field's value.
+func (s *Change) SetResourceRecordSet(v *ResourceRecordSet) *Change {
+	s.ResourceRecordSet = v
+	return s
+}
+
 // The information for a change request.
 type ChangeBatch struct {
 	_ struct{} `type:"structure"`
@@ -4754,6 +4820,18 @@ func (s *ChangeBatch) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChanges sets the Changes field's value.
+func (s *ChangeBatch) SetChanges(v []*Change) *ChangeBatch {
+	s.Changes = v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *ChangeBatch) SetComment(v string) *ChangeBatch {
+	s.Comment = &v
+	return s
 }
 
 // A complex type that lists the changes and information for a ChangeBatch.
@@ -4804,6 +4882,42 @@ func (s ChangeBatchRecord) GoString() string {
 	return s.String()
 }
 
+// SetChanges sets the Changes field's value.
+func (s *ChangeBatchRecord) SetChanges(v []*Change) *ChangeBatchRecord {
+	s.Changes = v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *ChangeBatchRecord) SetComment(v string) *ChangeBatchRecord {
+	s.Comment = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ChangeBatchRecord) SetId(v string) *ChangeBatchRecord {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeBatchRecord) SetStatus(v string) *ChangeBatchRecord {
+	s.Status = &v
+	return s
+}
+
+// SetSubmittedAt sets the SubmittedAt field's value.
+func (s *ChangeBatchRecord) SetSubmittedAt(v time.Time) *ChangeBatchRecord {
+	s.SubmittedAt = &v
+	return s
+}
+
+// SetSubmitter sets the Submitter field's value.
+func (s *ChangeBatchRecord) SetSubmitter(v string) *ChangeBatchRecord {
+	s.Submitter = &v
+	return s
+}
+
 // A complex type that describes change information about changes made to your
 // hosted zone.
 type ChangeInfo struct {
@@ -4843,6 +4957,30 @@ func (s ChangeInfo) String() string {
 // GoString returns the string representation
 func (s ChangeInfo) GoString() string {
 	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *ChangeInfo) SetComment(v string) *ChangeInfo {
+	s.Comment = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ChangeInfo) SetId(v string) *ChangeInfo {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeInfo) SetStatus(v string) *ChangeInfo {
+	s.Status = &v
+	return s
+}
+
+// SetSubmittedAt sets the SubmittedAt field's value.
+func (s *ChangeInfo) SetSubmittedAt(v time.Time) *ChangeInfo {
+	s.SubmittedAt = &v
+	return s
 }
 
 // A complex type that contains change information for the resource record set.
@@ -4892,6 +5030,18 @@ func (s *ChangeResourceRecordSetsInput) Validate() error {
 	return nil
 }
 
+// SetChangeBatch sets the ChangeBatch field's value.
+func (s *ChangeResourceRecordSetsInput) SetChangeBatch(v *ChangeBatch) *ChangeResourceRecordSetsInput {
+	s.ChangeBatch = v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ChangeResourceRecordSetsInput) SetHostedZoneId(v string) *ChangeResourceRecordSetsInput {
+	s.HostedZoneId = &v
+	return s
+}
+
 // A complex type containing the response for the request.
 type ChangeResourceRecordSetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4914,6 +5064,12 @@ func (s ChangeResourceRecordSetsOutput) String() string {
 // GoString returns the string representation
 func (s ChangeResourceRecordSetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeInfo sets the ChangeInfo field's value.
+func (s *ChangeResourceRecordSetsOutput) SetChangeInfo(v *ChangeInfo) *ChangeResourceRecordSetsOutput {
+	s.ChangeInfo = v
+	return s
 }
 
 // A complex type that contains information about the tags that you want to
@@ -4977,6 +5133,30 @@ func (s *ChangeTagsForResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAddTags sets the AddTags field's value.
+func (s *ChangeTagsForResourceInput) SetAddTags(v []*Tag) *ChangeTagsForResourceInput {
+	s.AddTags = v
+	return s
+}
+
+// SetRemoveTagKeys sets the RemoveTagKeys field's value.
+func (s *ChangeTagsForResourceInput) SetRemoveTagKeys(v []*string) *ChangeTagsForResourceInput {
+	s.RemoveTagKeys = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ChangeTagsForResourceInput) SetResourceId(v string) *ChangeTagsForResourceInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ChangeTagsForResourceInput) SetResourceType(v string) *ChangeTagsForResourceInput {
+	s.ResourceType = &v
+	return s
 }
 
 // Empty response for the request.
@@ -5058,6 +5238,54 @@ func (s CloudWatchAlarmConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *CloudWatchAlarmConfiguration) SetComparisonOperator(v string) *CloudWatchAlarmConfiguration {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *CloudWatchAlarmConfiguration) SetDimensions(v []*Dimension) *CloudWatchAlarmConfiguration {
+	s.Dimensions = v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *CloudWatchAlarmConfiguration) SetEvaluationPeriods(v int64) *CloudWatchAlarmConfiguration {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CloudWatchAlarmConfiguration) SetMetricName(v string) *CloudWatchAlarmConfiguration {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *CloudWatchAlarmConfiguration) SetNamespace(v string) *CloudWatchAlarmConfiguration {
+	s.Namespace = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *CloudWatchAlarmConfiguration) SetPeriod(v int64) *CloudWatchAlarmConfiguration {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *CloudWatchAlarmConfiguration) SetStatistic(v string) *CloudWatchAlarmConfiguration {
+	s.Statistic = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *CloudWatchAlarmConfiguration) SetThreshold(v float64) *CloudWatchAlarmConfiguration {
+	s.Threshold = &v
+	return s
+}
+
 // A complex type that contains the health check request information.
 type CreateHealthCheckInput struct {
 	_ struct{} `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
@@ -5110,6 +5338,18 @@ func (s *CreateHealthCheckInput) Validate() error {
 	return nil
 }
 
+// SetCallerReference sets the CallerReference field's value.
+func (s *CreateHealthCheckInput) SetCallerReference(v string) *CreateHealthCheckInput {
+	s.CallerReference = &v
+	return s
+}
+
+// SetHealthCheckConfig sets the HealthCheckConfig field's value.
+func (s *CreateHealthCheckInput) SetHealthCheckConfig(v *HealthCheckConfig) *CreateHealthCheckInput {
+	s.HealthCheckConfig = v
+	return s
+}
+
 // A complex type containing the response information for the new health check.
 type CreateHealthCheckOutput struct {
 	_ struct{} `type:"structure"`
@@ -5133,6 +5373,18 @@ func (s CreateHealthCheckOutput) String() string {
 // GoString returns the string representation
 func (s CreateHealthCheckOutput) GoString() string {
 	return s.String()
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *CreateHealthCheckOutput) SetHealthCheck(v *HealthCheck) *CreateHealthCheckOutput {
+	s.HealthCheck = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateHealthCheckOutput) SetLocation(v string) *CreateHealthCheckOutput {
+	s.Location = &v
+	return s
 }
 
 // A complex type containing the hosted zone request information.
@@ -5219,6 +5471,36 @@ func (s *CreateHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetCallerReference sets the CallerReference field's value.
+func (s *CreateHostedZoneInput) SetCallerReference(v string) *CreateHostedZoneInput {
+	s.CallerReference = &v
+	return s
+}
+
+// SetDelegationSetId sets the DelegationSetId field's value.
+func (s *CreateHostedZoneInput) SetDelegationSetId(v string) *CreateHostedZoneInput {
+	s.DelegationSetId = &v
+	return s
+}
+
+// SetHostedZoneConfig sets the HostedZoneConfig field's value.
+func (s *CreateHostedZoneInput) SetHostedZoneConfig(v *HostedZoneConfig) *CreateHostedZoneInput {
+	s.HostedZoneConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateHostedZoneInput) SetName(v string) *CreateHostedZoneInput {
+	s.Name = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *CreateHostedZoneInput) SetVPC(v *VPC) *CreateHostedZoneInput {
+	s.VPC = v
+	return s
+}
+
 // A complex type containing the response information for the hosted zone.
 type CreateHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
@@ -5256,6 +5538,36 @@ func (s CreateHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s CreateHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeInfo sets the ChangeInfo field's value.
+func (s *CreateHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *CreateHostedZoneOutput {
+	s.ChangeInfo = v
+	return s
+}
+
+// SetDelegationSet sets the DelegationSet field's value.
+func (s *CreateHostedZoneOutput) SetDelegationSet(v *DelegationSet) *CreateHostedZoneOutput {
+	s.DelegationSet = v
+	return s
+}
+
+// SetHostedZone sets the HostedZone field's value.
+func (s *CreateHostedZoneOutput) SetHostedZone(v *HostedZone) *CreateHostedZoneOutput {
+	s.HostedZone = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateHostedZoneOutput) SetLocation(v string) *CreateHostedZoneOutput {
+	s.Location = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *CreateHostedZoneOutput) SetVPC(v *VPC) *CreateHostedZoneOutput {
+	s.VPC = v
+	return s
 }
 
 type CreateReusableDelegationSetInput struct {
@@ -5301,6 +5613,18 @@ func (s *CreateReusableDelegationSetInput) Validate() error {
 	return nil
 }
 
+// SetCallerReference sets the CallerReference field's value.
+func (s *CreateReusableDelegationSetInput) SetCallerReference(v string) *CreateReusableDelegationSetInput {
+	s.CallerReference = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *CreateReusableDelegationSetInput) SetHostedZoneId(v string) *CreateReusableDelegationSetInput {
+	s.HostedZoneId = &v
+	return s
+}
+
 type CreateReusableDelegationSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5323,6 +5647,18 @@ func (s CreateReusableDelegationSetOutput) String() string {
 // GoString returns the string representation
 func (s CreateReusableDelegationSetOutput) GoString() string {
 	return s.String()
+}
+
+// SetDelegationSet sets the DelegationSet field's value.
+func (s *CreateReusableDelegationSetOutput) SetDelegationSet(v *DelegationSet) *CreateReusableDelegationSetOutput {
+	s.DelegationSet = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateReusableDelegationSetOutput) SetLocation(v string) *CreateReusableDelegationSetOutput {
+	s.Location = &v
+	return s
 }
 
 // A complex type that contains information about the traffic policy that you
@@ -5370,6 +5706,24 @@ func (s *CreateTrafficPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *CreateTrafficPolicyInput) SetComment(v string) *CreateTrafficPolicyInput {
+	s.Comment = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *CreateTrafficPolicyInput) SetDocument(v string) *CreateTrafficPolicyInput {
+	s.Document = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateTrafficPolicyInput) SetName(v string) *CreateTrafficPolicyInput {
+	s.Name = &v
+	return s
 }
 
 // A complex type that contains information about the resource record sets that
@@ -5447,6 +5801,36 @@ func (s *CreateTrafficPolicyInstanceInput) Validate() error {
 	return nil
 }
 
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *CreateTrafficPolicyInstanceInput) SetHostedZoneId(v string) *CreateTrafficPolicyInstanceInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateTrafficPolicyInstanceInput) SetName(v string) *CreateTrafficPolicyInstanceInput {
+	s.Name = &v
+	return s
+}
+
+// SetTTL sets the TTL field's value.
+func (s *CreateTrafficPolicyInstanceInput) SetTTL(v int64) *CreateTrafficPolicyInstanceInput {
+	s.TTL = &v
+	return s
+}
+
+// SetTrafficPolicyId sets the TrafficPolicyId field's value.
+func (s *CreateTrafficPolicyInstanceInput) SetTrafficPolicyId(v string) *CreateTrafficPolicyInstanceInput {
+	s.TrafficPolicyId = &v
+	return s
+}
+
+// SetTrafficPolicyVersion sets the TrafficPolicyVersion field's value.
+func (s *CreateTrafficPolicyInstanceInput) SetTrafficPolicyVersion(v int64) *CreateTrafficPolicyInstanceInput {
+	s.TrafficPolicyVersion = &v
+	return s
+}
+
 // A complex type that contains the response information for the CreateTrafficPolicyInstance
 // request.
 type CreateTrafficPolicyInstanceOutput struct {
@@ -5473,6 +5857,18 @@ func (s CreateTrafficPolicyInstanceOutput) GoString() string {
 	return s.String()
 }
 
+// SetLocation sets the Location field's value.
+func (s *CreateTrafficPolicyInstanceOutput) SetLocation(v string) *CreateTrafficPolicyInstanceOutput {
+	s.Location = &v
+	return s
+}
+
+// SetTrafficPolicyInstance sets the TrafficPolicyInstance field's value.
+func (s *CreateTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficPolicyInstance) *CreateTrafficPolicyInstanceOutput {
+	s.TrafficPolicyInstance = v
+	return s
+}
+
 // A complex type that contains the response information for the CreateTrafficPolicy
 // request.
 type CreateTrafficPolicyOutput struct {
@@ -5497,6 +5893,18 @@ func (s CreateTrafficPolicyOutput) String() string {
 // GoString returns the string representation
 func (s CreateTrafficPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateTrafficPolicyOutput) SetLocation(v string) *CreateTrafficPolicyOutput {
+	s.Location = &v
+	return s
+}
+
+// SetTrafficPolicy sets the TrafficPolicy field's value.
+func (s *CreateTrafficPolicyOutput) SetTrafficPolicy(v *TrafficPolicy) *CreateTrafficPolicyOutput {
+	s.TrafficPolicy = v
+	return s
 }
 
 // A complex type that contains information about the traffic policy for which
@@ -5547,6 +5955,24 @@ func (s *CreateTrafficPolicyVersionInput) Validate() error {
 	return nil
 }
 
+// SetComment sets the Comment field's value.
+func (s *CreateTrafficPolicyVersionInput) SetComment(v string) *CreateTrafficPolicyVersionInput {
+	s.Comment = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *CreateTrafficPolicyVersionInput) SetDocument(v string) *CreateTrafficPolicyVersionInput {
+	s.Document = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateTrafficPolicyVersionInput) SetId(v string) *CreateTrafficPolicyVersionInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type that contains the response information for the CreateTrafficPolicyVersion
 // request.
 type CreateTrafficPolicyVersionOutput struct {
@@ -5572,6 +5998,18 @@ func (s CreateTrafficPolicyVersionOutput) String() string {
 // GoString returns the string representation
 func (s CreateTrafficPolicyVersionOutput) GoString() string {
 	return s.String()
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateTrafficPolicyVersionOutput) SetLocation(v string) *CreateTrafficPolicyVersionOutput {
+	s.Location = &v
+	return s
+}
+
+// SetTrafficPolicy sets the TrafficPolicy field's value.
+func (s *CreateTrafficPolicyVersionOutput) SetTrafficPolicy(v *TrafficPolicy) *CreateTrafficPolicyVersionOutput {
+	s.TrafficPolicy = v
+	return s
 }
 
 // A complex type that describes the name servers for this hosted zone.
@@ -5603,6 +6041,24 @@ func (s DelegationSet) String() string {
 // GoString returns the string representation
 func (s DelegationSet) GoString() string {
 	return s.String()
+}
+
+// SetCallerReference sets the CallerReference field's value.
+func (s *DelegationSet) SetCallerReference(v string) *DelegationSet {
+	s.CallerReference = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DelegationSet) SetId(v string) *DelegationSet {
+	s.Id = &v
+	return s
+}
+
+// SetNameServers sets the NameServers field's value.
+func (s *DelegationSet) SetNameServers(v []*string) *DelegationSet {
+	s.NameServers = v
+	return s
 }
 
 // This action deletes a health check. Send a DELETE request to the /2013-04-01/DeleteHealthCheckRequest
@@ -5637,6 +6093,12 @@ func (s *DeleteHealthCheckInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHealthCheckId sets the HealthCheckId field's value.
+func (s *DeleteHealthCheckInput) SetHealthCheckId(v string) *DeleteHealthCheckInput {
+	s.HealthCheckId = &v
+	return s
 }
 
 // An empty element.
@@ -5688,6 +6150,12 @@ func (s *DeleteHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *DeleteHostedZoneInput) SetId(v string) *DeleteHostedZoneInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type containing the response information for the request.
 type DeleteHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
@@ -5707,6 +6175,12 @@ func (s DeleteHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s DeleteHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeInfo sets the ChangeInfo field's value.
+func (s *DeleteHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *DeleteHostedZoneOutput {
+	s.ChangeInfo = v
+	return s
 }
 
 // A complex type containing the information for the delete request.
@@ -5740,6 +6214,12 @@ func (s *DeleteReusableDelegationSetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteReusableDelegationSetInput) SetId(v string) *DeleteReusableDelegationSetInput {
+	s.Id = &v
+	return s
 }
 
 // An empty element.
@@ -5801,6 +6281,18 @@ func (s *DeleteTrafficPolicyInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *DeleteTrafficPolicyInput) SetId(v string) *DeleteTrafficPolicyInput {
+	s.Id = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DeleteTrafficPolicyInput) SetVersion(v int64) *DeleteTrafficPolicyInput {
+	s.Version = &v
+	return s
+}
+
 // A complex type that contains information about the traffic policy instance
 // that you want to delete.
 type DeleteTrafficPolicyInstanceInput struct {
@@ -5837,6 +6329,12 @@ func (s *DeleteTrafficPolicyInstanceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteTrafficPolicyInstanceInput) SetId(v string) *DeleteTrafficPolicyInstanceInput {
+	s.Id = &v
+	return s
 }
 
 // An empty element.
@@ -5897,6 +6395,18 @@ func (s Dimension) GoString() string {
 	return s.String()
 }
 
+// SetName sets the Name field's value.
+func (s *Dimension) SetName(v string) *Dimension {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Dimension) SetValue(v string) *Dimension {
+	s.Value = &v
+	return s
+}
+
 // A complex type that contains information about the VPC and the hosted zone
 // that you want to disassociate.
 type DisassociateVPCFromHostedZoneInput struct {
@@ -5949,6 +6459,24 @@ func (s *DisassociateVPCFromHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetComment sets the Comment field's value.
+func (s *DisassociateVPCFromHostedZoneInput) SetComment(v string) *DisassociateVPCFromHostedZoneInput {
+	s.Comment = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *DisassociateVPCFromHostedZoneInput) SetHostedZoneId(v string) *DisassociateVPCFromHostedZoneInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *DisassociateVPCFromHostedZoneInput) SetVPC(v *VPC) *DisassociateVPCFromHostedZoneInput {
+	s.VPC = v
+	return s
+}
+
 // A complex type that contains the response information for the disassociate
 // request.
 type DisassociateVPCFromHostedZoneOutput struct {
@@ -5968,6 +6496,12 @@ func (s DisassociateVPCFromHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s DisassociateVPCFromHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeInfo sets the ChangeInfo field's value.
+func (s *DisassociateVPCFromHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *DisassociateVPCFromHostedZoneOutput {
+	s.ChangeInfo = v
+	return s
 }
 
 // A complex type that contains information about a geo location.
@@ -6019,6 +6553,24 @@ func (s *GeoLocation) Validate() error {
 	return nil
 }
 
+// SetContinentCode sets the ContinentCode field's value.
+func (s *GeoLocation) SetContinentCode(v string) *GeoLocation {
+	s.ContinentCode = &v
+	return s
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *GeoLocation) SetCountryCode(v string) *GeoLocation {
+	s.CountryCode = &v
+	return s
+}
+
+// SetSubdivisionCode sets the SubdivisionCode field's value.
+func (s *GeoLocation) SetSubdivisionCode(v string) *GeoLocation {
+	s.SubdivisionCode = &v
+	return s
+}
+
 // A complex type that contains the codes and full continent, country, and subdivision
 // names for the specified geolocation code.
 type GeoLocationDetails struct {
@@ -6055,6 +6607,42 @@ func (s GeoLocationDetails) GoString() string {
 	return s.String()
 }
 
+// SetContinentCode sets the ContinentCode field's value.
+func (s *GeoLocationDetails) SetContinentCode(v string) *GeoLocationDetails {
+	s.ContinentCode = &v
+	return s
+}
+
+// SetContinentName sets the ContinentName field's value.
+func (s *GeoLocationDetails) SetContinentName(v string) *GeoLocationDetails {
+	s.ContinentName = &v
+	return s
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *GeoLocationDetails) SetCountryCode(v string) *GeoLocationDetails {
+	s.CountryCode = &v
+	return s
+}
+
+// SetCountryName sets the CountryName field's value.
+func (s *GeoLocationDetails) SetCountryName(v string) *GeoLocationDetails {
+	s.CountryName = &v
+	return s
+}
+
+// SetSubdivisionCode sets the SubdivisionCode field's value.
+func (s *GeoLocationDetails) SetSubdivisionCode(v string) *GeoLocationDetails {
+	s.SubdivisionCode = &v
+	return s
+}
+
+// SetSubdivisionName sets the SubdivisionName field's value.
+func (s *GeoLocationDetails) SetSubdivisionName(v string) *GeoLocationDetails {
+	s.SubdivisionName = &v
+	return s
+}
+
 // The input for a GetChangeDetails request.
 type GetChangeDetailsInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
@@ -6089,6 +6677,12 @@ func (s *GetChangeDetailsInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetChangeDetailsInput) SetId(v string) *GetChangeDetailsInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type that contains the ChangeBatchRecord element.
 type GetChangeDetailsOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
@@ -6109,6 +6703,12 @@ func (s GetChangeDetailsOutput) String() string {
 // GoString returns the string representation
 func (s GetChangeDetailsOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeBatchRecord sets the ChangeBatchRecord field's value.
+func (s *GetChangeDetailsOutput) SetChangeBatchRecord(v *ChangeBatchRecord) *GetChangeDetailsOutput {
+	s.ChangeBatchRecord = v
+	return s
 }
 
 // The input for a GetChange request.
@@ -6146,6 +6746,12 @@ func (s *GetChangeInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetChangeInput) SetId(v string) *GetChangeInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type that contains the ChangeInfo element.
 type GetChangeOutput struct {
 	_ struct{} `type:"structure"`
@@ -6164,6 +6770,12 @@ func (s GetChangeOutput) String() string {
 // GoString returns the string representation
 func (s GetChangeOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeInfo sets the ChangeInfo field's value.
+func (s *GetChangeOutput) SetChangeInfo(v *ChangeInfo) *GetChangeOutput {
+	s.ChangeInfo = v
+	return s
 }
 
 // Empty request.
@@ -6200,6 +6812,12 @@ func (s GetCheckerIpRangesOutput) String() string {
 // GoString returns the string representation
 func (s GetCheckerIpRangesOutput) GoString() string {
 	return s.String()
+}
+
+// SetCheckerIpRanges sets the CheckerIpRanges field's value.
+func (s *GetCheckerIpRangesOutput) SetCheckerIpRanges(v []*string) *GetCheckerIpRangesOutput {
+	s.CheckerIpRanges = v
+	return s
 }
 
 // A complex type that contains information about the request to get a geo location.
@@ -6263,6 +6881,24 @@ func (s *GetGeoLocationInput) Validate() error {
 	return nil
 }
 
+// SetContinentCode sets the ContinentCode field's value.
+func (s *GetGeoLocationInput) SetContinentCode(v string) *GetGeoLocationInput {
+	s.ContinentCode = &v
+	return s
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *GetGeoLocationInput) SetCountryCode(v string) *GetGeoLocationInput {
+	s.CountryCode = &v
+	return s
+}
+
+// SetSubdivisionCode sets the SubdivisionCode field's value.
+func (s *GetGeoLocationInput) SetSubdivisionCode(v string) *GetGeoLocationInput {
+	s.SubdivisionCode = &v
+	return s
+}
+
 // A complex type that contains the response information for the specified geolocation
 // code.
 type GetGeoLocationOutput struct {
@@ -6283,6 +6919,12 @@ func (s GetGeoLocationOutput) String() string {
 // GoString returns the string representation
 func (s GetGeoLocationOutput) GoString() string {
 	return s.String()
+}
+
+// SetGeoLocationDetails sets the GeoLocationDetails field's value.
+func (s *GetGeoLocationOutput) SetGeoLocationDetails(v *GeoLocationDetails) *GetGeoLocationOutput {
+	s.GeoLocationDetails = v
+	return s
 }
 
 // To retrieve a count of all your health checks, send a GET request to the
@@ -6319,6 +6961,12 @@ func (s GetHealthCheckCountOutput) String() string {
 // GoString returns the string representation
 func (s GetHealthCheckCountOutput) GoString() string {
 	return s.String()
+}
+
+// SetHealthCheckCount sets the HealthCheckCount field's value.
+func (s *GetHealthCheckCountOutput) SetHealthCheckCount(v int64) *GetHealthCheckCountOutput {
+	s.HealthCheckCount = &v
+	return s
 }
 
 // This action gets information about a specified health check.
@@ -6365,6 +7013,12 @@ func (s *GetHealthCheckInput) Validate() error {
 	return nil
 }
 
+// SetHealthCheckId sets the HealthCheckId field's value.
+func (s *GetHealthCheckInput) SetHealthCheckId(v string) *GetHealthCheckInput {
+	s.HealthCheckId = &v
+	return s
+}
+
 // This action gets the reason that a specified health check failed most recently.
 //
 // To get the reason for the last failure of a health check, send a GET request
@@ -6408,6 +7062,12 @@ func (s *GetHealthCheckLastFailureReasonInput) Validate() error {
 	return nil
 }
 
+// SetHealthCheckId sets the HealthCheckId field's value.
+func (s *GetHealthCheckLastFailureReasonInput) SetHealthCheckId(v string) *GetHealthCheckLastFailureReasonInput {
+	s.HealthCheckId = &v
+	return s
+}
+
 // A complex type that contains the response to a GetHealthCheckLastFailureReason
 // request.
 type GetHealthCheckLastFailureReasonOutput struct {
@@ -6430,6 +7090,12 @@ func (s GetHealthCheckLastFailureReasonOutput) GoString() string {
 	return s.String()
 }
 
+// SetHealthCheckObservations sets the HealthCheckObservations field's value.
+func (s *GetHealthCheckLastFailureReasonOutput) SetHealthCheckObservations(v []*HealthCheckObservation) *GetHealthCheckLastFailureReasonOutput {
+	s.HealthCheckObservations = v
+	return s
+}
+
 // A complex type that contains the response to a GetHealthCheck request.
 type GetHealthCheckOutput struct {
 	_ struct{} `type:"structure"`
@@ -6449,6 +7115,12 @@ func (s GetHealthCheckOutput) String() string {
 // GoString returns the string representation
 func (s GetHealthCheckOutput) GoString() string {
 	return s.String()
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *GetHealthCheckOutput) SetHealthCheck(v *HealthCheck) *GetHealthCheckOutput {
+	s.HealthCheck = v
+	return s
 }
 
 // A complex type that contains information about the request to get health
@@ -6541,6 +7213,12 @@ func (s *GetHealthCheckStatusInput) Validate() error {
 	return nil
 }
 
+// SetHealthCheckId sets the HealthCheckId field's value.
+func (s *GetHealthCheckStatusInput) SetHealthCheckId(v string) *GetHealthCheckStatusInput {
+	s.HealthCheckId = &v
+	return s
+}
+
 // A complex type that contains the response to a GetHealthCheck request.
 type GetHealthCheckStatusOutput struct {
 	_ struct{} `type:"structure"`
@@ -6560,6 +7238,12 @@ func (s GetHealthCheckStatusOutput) String() string {
 // GoString returns the string representation
 func (s GetHealthCheckStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetHealthCheckObservations sets the HealthCheckObservations field's value.
+func (s *GetHealthCheckStatusOutput) SetHealthCheckObservations(v []*HealthCheckObservation) *GetHealthCheckStatusOutput {
+	s.HealthCheckObservations = v
+	return s
 }
 
 // To retrieve a count of all your hosted zones, send a GET request to the /2013-04-01/hostedzonecount
@@ -6599,6 +7283,12 @@ func (s GetHostedZoneCountOutput) GoString() string {
 	return s.String()
 }
 
+// SetHostedZoneCount sets the HostedZoneCount field's value.
+func (s *GetHostedZoneCountOutput) SetHostedZoneCount(v int64) *GetHostedZoneCountOutput {
+	s.HostedZoneCount = &v
+	return s
+}
+
 // The input for a GetHostedZone request.
 type GetHostedZoneInput struct {
 	_ struct{} `type:"structure"`
@@ -6633,6 +7323,12 @@ func (s *GetHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetHostedZoneInput) SetId(v string) *GetHostedZoneInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type containing the response information for the hosted zone.
 type GetHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
@@ -6658,6 +7354,24 @@ func (s GetHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s GetHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetDelegationSet sets the DelegationSet field's value.
+func (s *GetHostedZoneOutput) SetDelegationSet(v *DelegationSet) *GetHostedZoneOutput {
+	s.DelegationSet = v
+	return s
+}
+
+// SetHostedZone sets the HostedZone field's value.
+func (s *GetHostedZoneOutput) SetHostedZone(v *HostedZone) *GetHostedZoneOutput {
+	s.HostedZone = v
+	return s
+}
+
+// SetVPCs sets the VPCs field's value.
+func (s *GetHostedZoneOutput) SetVPCs(v []*VPC) *GetHostedZoneOutput {
+	s.VPCs = v
+	return s
 }
 
 // The input for a GetReusableDelegationSet request.
@@ -6694,6 +7408,12 @@ func (s *GetReusableDelegationSetInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetReusableDelegationSetInput) SetId(v string) *GetReusableDelegationSetInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type that contains the response to the GetReusableDelegationSet
 // request.
 type GetReusableDelegationSetOutput struct {
@@ -6713,6 +7433,12 @@ func (s GetReusableDelegationSetOutput) String() string {
 // GoString returns the string representation
 func (s GetReusableDelegationSetOutput) GoString() string {
 	return s.String()
+}
+
+// SetDelegationSet sets the DelegationSet field's value.
+func (s *GetReusableDelegationSetOutput) SetDelegationSet(v *DelegationSet) *GetReusableDelegationSetOutput {
+	s.DelegationSet = v
+	return s
 }
 
 // Gets information about a specific traffic policy version. To get the information,
@@ -6762,6 +7488,18 @@ func (s *GetTrafficPolicyInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetTrafficPolicyInput) SetId(v string) *GetTrafficPolicyInput {
+	s.Id = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetTrafficPolicyInput) SetVersion(v int64) *GetTrafficPolicyInput {
+	s.Version = &v
+	return s
+}
+
 // To retrieve a count of all your traffic policy instances, send a GET request
 // to the /2013-04-01/trafficpolicyinstancecount resource.
 type GetTrafficPolicyInstanceCountInput struct {
@@ -6800,6 +7538,12 @@ func (s GetTrafficPolicyInstanceCountOutput) GoString() string {
 	return s.String()
 }
 
+// SetTrafficPolicyInstanceCount sets the TrafficPolicyInstanceCount field's value.
+func (s *GetTrafficPolicyInstanceCountOutput) SetTrafficPolicyInstanceCount(v int64) *GetTrafficPolicyInstanceCountOutput {
+	s.TrafficPolicyInstanceCount = &v
+	return s
+}
+
 // Gets information about a specified traffic policy instance.
 //
 // To get information about a traffic policy instance, send a GET request to
@@ -6836,6 +7580,12 @@ func (s *GetTrafficPolicyInstanceInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetTrafficPolicyInstanceInput) SetId(v string) *GetTrafficPolicyInstanceInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type that contains information about the resource record sets that
 // Amazon Route 53 created based on a specified traffic policy.
 type GetTrafficPolicyInstanceOutput struct {
@@ -6857,6 +7607,12 @@ func (s GetTrafficPolicyInstanceOutput) GoString() string {
 	return s.String()
 }
 
+// SetTrafficPolicyInstance sets the TrafficPolicyInstance field's value.
+func (s *GetTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficPolicyInstance) *GetTrafficPolicyInstanceOutput {
+	s.TrafficPolicyInstance = v
+	return s
+}
+
 // A complex type that contains the response information for the request.
 type GetTrafficPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -6875,6 +7631,12 @@ func (s GetTrafficPolicyOutput) String() string {
 // GoString returns the string representation
 func (s GetTrafficPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetTrafficPolicy sets the TrafficPolicy field's value.
+func (s *GetTrafficPolicyOutput) SetTrafficPolicy(v *TrafficPolicy) *GetTrafficPolicyOutput {
+	s.TrafficPolicy = v
+	return s
 }
 
 // A complex type that contains information about one health check that is associated
@@ -6920,6 +7682,36 @@ func (s HealthCheck) String() string {
 // GoString returns the string representation
 func (s HealthCheck) GoString() string {
 	return s.String()
+}
+
+// SetCallerReference sets the CallerReference field's value.
+func (s *HealthCheck) SetCallerReference(v string) *HealthCheck {
+	s.CallerReference = &v
+	return s
+}
+
+// SetCloudWatchAlarmConfiguration sets the CloudWatchAlarmConfiguration field's value.
+func (s *HealthCheck) SetCloudWatchAlarmConfiguration(v *CloudWatchAlarmConfiguration) *HealthCheck {
+	s.CloudWatchAlarmConfiguration = v
+	return s
+}
+
+// SetHealthCheckConfig sets the HealthCheckConfig field's value.
+func (s *HealthCheck) SetHealthCheckConfig(v *HealthCheckConfig) *HealthCheck {
+	s.HealthCheckConfig = v
+	return s
+}
+
+// SetHealthCheckVersion sets the HealthCheckVersion field's value.
+func (s *HealthCheck) SetHealthCheckVersion(v int64) *HealthCheck {
+	s.HealthCheckVersion = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *HealthCheck) SetId(v string) *HealthCheck {
+	s.Id = &v
+	return s
 }
 
 // A complex type that contains information about the health check.
@@ -7199,6 +7991,102 @@ func (s *HealthCheckConfig) Validate() error {
 	return nil
 }
 
+// SetAlarmIdentifier sets the AlarmIdentifier field's value.
+func (s *HealthCheckConfig) SetAlarmIdentifier(v *AlarmIdentifier) *HealthCheckConfig {
+	s.AlarmIdentifier = v
+	return s
+}
+
+// SetChildHealthChecks sets the ChildHealthChecks field's value.
+func (s *HealthCheckConfig) SetChildHealthChecks(v []*string) *HealthCheckConfig {
+	s.ChildHealthChecks = v
+	return s
+}
+
+// SetEnableSNI sets the EnableSNI field's value.
+func (s *HealthCheckConfig) SetEnableSNI(v bool) *HealthCheckConfig {
+	s.EnableSNI = &v
+	return s
+}
+
+// SetFailureThreshold sets the FailureThreshold field's value.
+func (s *HealthCheckConfig) SetFailureThreshold(v int64) *HealthCheckConfig {
+	s.FailureThreshold = &v
+	return s
+}
+
+// SetFullyQualifiedDomainName sets the FullyQualifiedDomainName field's value.
+func (s *HealthCheckConfig) SetFullyQualifiedDomainName(v string) *HealthCheckConfig {
+	s.FullyQualifiedDomainName = &v
+	return s
+}
+
+// SetHealthThreshold sets the HealthThreshold field's value.
+func (s *HealthCheckConfig) SetHealthThreshold(v int64) *HealthCheckConfig {
+	s.HealthThreshold = &v
+	return s
+}
+
+// SetIPAddress sets the IPAddress field's value.
+func (s *HealthCheckConfig) SetIPAddress(v string) *HealthCheckConfig {
+	s.IPAddress = &v
+	return s
+}
+
+// SetInsufficientDataHealthStatus sets the InsufficientDataHealthStatus field's value.
+func (s *HealthCheckConfig) SetInsufficientDataHealthStatus(v string) *HealthCheckConfig {
+	s.InsufficientDataHealthStatus = &v
+	return s
+}
+
+// SetInverted sets the Inverted field's value.
+func (s *HealthCheckConfig) SetInverted(v bool) *HealthCheckConfig {
+	s.Inverted = &v
+	return s
+}
+
+// SetMeasureLatency sets the MeasureLatency field's value.
+func (s *HealthCheckConfig) SetMeasureLatency(v bool) *HealthCheckConfig {
+	s.MeasureLatency = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *HealthCheckConfig) SetPort(v int64) *HealthCheckConfig {
+	s.Port = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *HealthCheckConfig) SetRegions(v []*string) *HealthCheckConfig {
+	s.Regions = v
+	return s
+}
+
+// SetRequestInterval sets the RequestInterval field's value.
+func (s *HealthCheckConfig) SetRequestInterval(v int64) *HealthCheckConfig {
+	s.RequestInterval = &v
+	return s
+}
+
+// SetResourcePath sets the ResourcePath field's value.
+func (s *HealthCheckConfig) SetResourcePath(v string) *HealthCheckConfig {
+	s.ResourcePath = &v
+	return s
+}
+
+// SetSearchString sets the SearchString field's value.
+func (s *HealthCheckConfig) SetSearchString(v string) *HealthCheckConfig {
+	s.SearchString = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
+	s.Type = &v
+	return s
+}
+
 // A complex type that contains the last failure reason as reported by one Amazon
 // Route 53 health checker.
 type HealthCheckObservation struct {
@@ -7225,6 +8113,24 @@ func (s HealthCheckObservation) String() string {
 // GoString returns the string representation
 func (s HealthCheckObservation) GoString() string {
 	return s.String()
+}
+
+// SetIPAddress sets the IPAddress field's value.
+func (s *HealthCheckObservation) SetIPAddress(v string) *HealthCheckObservation {
+	s.IPAddress = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *HealthCheckObservation) SetRegion(v string) *HealthCheckObservation {
+	s.Region = &v
+	return s
+}
+
+// SetStatusReport sets the StatusReport field's value.
+func (s *HealthCheckObservation) SetStatusReport(v *StatusReport) *HealthCheckObservation {
+	s.StatusReport = v
+	return s
 }
 
 // A complex type that contains general information about the hosted zone.
@@ -7271,6 +8177,36 @@ func (s HostedZone) GoString() string {
 	return s.String()
 }
 
+// SetCallerReference sets the CallerReference field's value.
+func (s *HostedZone) SetCallerReference(v string) *HostedZone {
+	s.CallerReference = &v
+	return s
+}
+
+// SetConfig sets the Config field's value.
+func (s *HostedZone) SetConfig(v *HostedZoneConfig) *HostedZone {
+	s.Config = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *HostedZone) SetId(v string) *HostedZone {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *HostedZone) SetName(v string) *HostedZone {
+	s.Name = &v
+	return s
+}
+
+// SetResourceRecordSetCount sets the ResourceRecordSetCount field's value.
+func (s *HostedZone) SetResourceRecordSetCount(v int64) *HostedZone {
+	s.ResourceRecordSetCount = &v
+	return s
+}
+
 // A complex type that contains an optional comment about your hosted zone.
 // If you don't want to specify a comment, omit both the HostedZoneConfig and
 // Comment elements.
@@ -7292,6 +8228,18 @@ func (s HostedZoneConfig) String() string {
 // GoString returns the string representation
 func (s HostedZoneConfig) GoString() string {
 	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *HostedZoneConfig) SetComment(v string) *HostedZoneConfig {
+	s.Comment = &v
+	return s
+}
+
+// SetPrivateZone sets the PrivateZone field's value.
+func (s *HostedZoneConfig) SetPrivateZone(v bool) *HostedZoneConfig {
+	s.PrivateZone = &v
+	return s
 }
 
 // The input for a ListChangeBatchesByHostedZone request.
@@ -7349,6 +8297,36 @@ func (s *ListChangeBatchesByHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *ListChangeBatchesByHostedZoneInput) SetEndDate(v string) *ListChangeBatchesByHostedZoneInput {
+	s.EndDate = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ListChangeBatchesByHostedZoneInput) SetHostedZoneId(v string) *ListChangeBatchesByHostedZoneInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListChangeBatchesByHostedZoneInput) SetMarker(v string) *ListChangeBatchesByHostedZoneInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListChangeBatchesByHostedZoneInput) SetMaxItems(v string) *ListChangeBatchesByHostedZoneInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *ListChangeBatchesByHostedZoneInput) SetStartDate(v string) *ListChangeBatchesByHostedZoneInput {
+	s.StartDate = &v
+	return s
+}
+
 // A complex type containing the response information for the request.
 type ListChangeBatchesByHostedZoneOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
@@ -7386,6 +8364,36 @@ func (s ListChangeBatchesByHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s ListChangeBatchesByHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeBatchRecords sets the ChangeBatchRecords field's value.
+func (s *ListChangeBatchesByHostedZoneOutput) SetChangeBatchRecords(v []*ChangeBatchRecord) *ListChangeBatchesByHostedZoneOutput {
+	s.ChangeBatchRecords = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListChangeBatchesByHostedZoneOutput) SetIsTruncated(v bool) *ListChangeBatchesByHostedZoneOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListChangeBatchesByHostedZoneOutput) SetMarker(v string) *ListChangeBatchesByHostedZoneOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListChangeBatchesByHostedZoneOutput) SetMaxItems(v string) *ListChangeBatchesByHostedZoneOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListChangeBatchesByHostedZoneOutput) SetNextMarker(v string) *ListChangeBatchesByHostedZoneOutput {
+	s.NextMarker = &v
+	return s
 }
 
 // The input for a ListChangeBatchesByRRSet request.
@@ -7465,6 +8473,54 @@ func (s *ListChangeBatchesByRRSetInput) Validate() error {
 	return nil
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *ListChangeBatchesByRRSetInput) SetEndDate(v string) *ListChangeBatchesByRRSetInput {
+	s.EndDate = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ListChangeBatchesByRRSetInput) SetHostedZoneId(v string) *ListChangeBatchesByRRSetInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListChangeBatchesByRRSetInput) SetMarker(v string) *ListChangeBatchesByRRSetInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListChangeBatchesByRRSetInput) SetMaxItems(v string) *ListChangeBatchesByRRSetInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListChangeBatchesByRRSetInput) SetName(v string) *ListChangeBatchesByRRSetInput {
+	s.Name = &v
+	return s
+}
+
+// SetSetIdentifier sets the SetIdentifier field's value.
+func (s *ListChangeBatchesByRRSetInput) SetSetIdentifier(v string) *ListChangeBatchesByRRSetInput {
+	s.SetIdentifier = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *ListChangeBatchesByRRSetInput) SetStartDate(v string) *ListChangeBatchesByRRSetInput {
+	s.StartDate = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListChangeBatchesByRRSetInput) SetType(v string) *ListChangeBatchesByRRSetInput {
+	s.Type = &v
+	return s
+}
+
 // The input for a ListChangeBatchesByRRSet request.
 type ListChangeBatchesByRRSetOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
@@ -7499,6 +8555,36 @@ func (s ListChangeBatchesByRRSetOutput) String() string {
 // GoString returns the string representation
 func (s ListChangeBatchesByRRSetOutput) GoString() string {
 	return s.String()
+}
+
+// SetChangeBatchRecords sets the ChangeBatchRecords field's value.
+func (s *ListChangeBatchesByRRSetOutput) SetChangeBatchRecords(v []*ChangeBatchRecord) *ListChangeBatchesByRRSetOutput {
+	s.ChangeBatchRecords = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListChangeBatchesByRRSetOutput) SetIsTruncated(v bool) *ListChangeBatchesByRRSetOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListChangeBatchesByRRSetOutput) SetMarker(v string) *ListChangeBatchesByRRSetOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListChangeBatchesByRRSetOutput) SetMaxItems(v string) *ListChangeBatchesByRRSetOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListChangeBatchesByRRSetOutput) SetNextMarker(v string) *ListChangeBatchesByRRSetOutput {
+	s.NextMarker = &v
+	return s
 }
 
 // To get a list of geographic locations that Amazon Route 53 supports for geolocation,
@@ -7579,6 +8665,30 @@ func (s *ListGeoLocationsInput) Validate() error {
 	return nil
 }
 
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListGeoLocationsInput) SetMaxItems(v string) *ListGeoLocationsInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetStartContinentCode sets the StartContinentCode field's value.
+func (s *ListGeoLocationsInput) SetStartContinentCode(v string) *ListGeoLocationsInput {
+	s.StartContinentCode = &v
+	return s
+}
+
+// SetStartCountryCode sets the StartCountryCode field's value.
+func (s *ListGeoLocationsInput) SetStartCountryCode(v string) *ListGeoLocationsInput {
+	s.StartCountryCode = &v
+	return s
+}
+
+// SetStartSubdivisionCode sets the StartSubdivisionCode field's value.
+func (s *ListGeoLocationsInput) SetStartSubdivisionCode(v string) *ListGeoLocationsInput {
+	s.StartSubdivisionCode = &v
+	return s
+}
+
 // A complex type containing the response information for the request.
 type ListGeoLocationsOutput struct {
 	_ struct{} `type:"structure"`
@@ -7629,6 +8739,42 @@ func (s ListGeoLocationsOutput) GoString() string {
 	return s.String()
 }
 
+// SetGeoLocationDetailsList sets the GeoLocationDetailsList field's value.
+func (s *ListGeoLocationsOutput) SetGeoLocationDetailsList(v []*GeoLocationDetails) *ListGeoLocationsOutput {
+	s.GeoLocationDetailsList = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListGeoLocationsOutput) SetIsTruncated(v bool) *ListGeoLocationsOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListGeoLocationsOutput) SetMaxItems(v string) *ListGeoLocationsOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextContinentCode sets the NextContinentCode field's value.
+func (s *ListGeoLocationsOutput) SetNextContinentCode(v string) *ListGeoLocationsOutput {
+	s.NextContinentCode = &v
+	return s
+}
+
+// SetNextCountryCode sets the NextCountryCode field's value.
+func (s *ListGeoLocationsOutput) SetNextCountryCode(v string) *ListGeoLocationsOutput {
+	s.NextCountryCode = &v
+	return s
+}
+
+// SetNextSubdivisionCode sets the NextSubdivisionCode field's value.
+func (s *ListGeoLocationsOutput) SetNextSubdivisionCode(v string) *ListGeoLocationsOutput {
+	s.NextSubdivisionCode = &v
+	return s
+}
+
 // To retrieve a list of your health checks, send a GET request to the /2013-04-01/healthcheck
 // resource. The response to this request includes a HealthChecks element with
 // zero or more HealthCheck child elements. By default, the list of health checks
@@ -7674,6 +8820,18 @@ func (s ListHealthChecksInput) String() string {
 // GoString returns the string representation
 func (s ListHealthChecksInput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListHealthChecksInput) SetMarker(v string) *ListHealthChecksInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListHealthChecksInput) SetMaxItems(v string) *ListHealthChecksInput {
+	s.MaxItems = &v
+	return s
 }
 
 // A complex type that contains the response to a ListHealthChecks request.
@@ -7722,6 +8880,36 @@ func (s ListHealthChecksOutput) String() string {
 // GoString returns the string representation
 func (s ListHealthChecksOutput) GoString() string {
 	return s.String()
+}
+
+// SetHealthChecks sets the HealthChecks field's value.
+func (s *ListHealthChecksOutput) SetHealthChecks(v []*HealthCheck) *ListHealthChecksOutput {
+	s.HealthChecks = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListHealthChecksOutput) SetIsTruncated(v bool) *ListHealthChecksOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListHealthChecksOutput) SetMarker(v string) *ListHealthChecksOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListHealthChecksOutput) SetMaxItems(v string) *ListHealthChecksOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListHealthChecksOutput) SetNextMarker(v string) *ListHealthChecksOutput {
+	s.NextMarker = &v
+	return s
 }
 
 // To retrieve a list of your public and private hosted zones in ASCII order
@@ -7810,6 +8998,24 @@ func (s ListHostedZonesByNameInput) GoString() string {
 	return s.String()
 }
 
+// SetDNSName sets the DNSName field's value.
+func (s *ListHostedZonesByNameInput) SetDNSName(v string) *ListHostedZonesByNameInput {
+	s.DNSName = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ListHostedZonesByNameInput) SetHostedZoneId(v string) *ListHostedZonesByNameInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListHostedZonesByNameInput) SetMaxItems(v string) *ListHostedZonesByNameInput {
+	s.MaxItems = &v
+	return s
+}
+
 // A complex type that contains the response information for the request.
 type ListHostedZonesByNameOutput struct {
 	_ struct{} `type:"structure"`
@@ -7868,6 +9074,48 @@ func (s ListHostedZonesByNameOutput) String() string {
 // GoString returns the string representation
 func (s ListHostedZonesByNameOutput) GoString() string {
 	return s.String()
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *ListHostedZonesByNameOutput) SetDNSName(v string) *ListHostedZonesByNameOutput {
+	s.DNSName = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ListHostedZonesByNameOutput) SetHostedZoneId(v string) *ListHostedZonesByNameOutput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetHostedZones sets the HostedZones field's value.
+func (s *ListHostedZonesByNameOutput) SetHostedZones(v []*HostedZone) *ListHostedZonesByNameOutput {
+	s.HostedZones = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListHostedZonesByNameOutput) SetIsTruncated(v bool) *ListHostedZonesByNameOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListHostedZonesByNameOutput) SetMaxItems(v string) *ListHostedZonesByNameOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextDNSName sets the NextDNSName field's value.
+func (s *ListHostedZonesByNameOutput) SetNextDNSName(v string) *ListHostedZonesByNameOutput {
+	s.NextDNSName = &v
+	return s
+}
+
+// SetNextHostedZoneId sets the NextHostedZoneId field's value.
+func (s *ListHostedZonesByNameOutput) SetNextHostedZoneId(v string) *ListHostedZonesByNameOutput {
+	s.NextHostedZoneId = &v
+	return s
 }
 
 // To retrieve a list of your public and private hosted zones, send a GET request
@@ -7934,6 +9182,24 @@ func (s ListHostedZonesInput) GoString() string {
 	return s.String()
 }
 
+// SetDelegationSetId sets the DelegationSetId field's value.
+func (s *ListHostedZonesInput) SetDelegationSetId(v string) *ListHostedZonesInput {
+	s.DelegationSetId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListHostedZonesInput) SetMarker(v string) *ListHostedZonesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListHostedZonesInput) SetMaxItems(v string) *ListHostedZonesInput {
+	s.MaxItems = &v
+	return s
+}
+
 type ListHostedZonesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7979,6 +9245,36 @@ func (s ListHostedZonesOutput) String() string {
 // GoString returns the string representation
 func (s ListHostedZonesOutput) GoString() string {
 	return s.String()
+}
+
+// SetHostedZones sets the HostedZones field's value.
+func (s *ListHostedZonesOutput) SetHostedZones(v []*HostedZone) *ListHostedZonesOutput {
+	s.HostedZones = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListHostedZonesOutput) SetIsTruncated(v bool) *ListHostedZonesOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListHostedZonesOutput) SetMarker(v string) *ListHostedZonesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListHostedZonesOutput) SetMaxItems(v string) *ListHostedZonesOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListHostedZonesOutput) SetNextMarker(v string) *ListHostedZonesOutput {
+	s.NextMarker = &v
+	return s
 }
 
 // The input for a ListResourceRecordSets request.
@@ -8058,6 +9354,36 @@ func (s *ListResourceRecordSetsInput) Validate() error {
 	return nil
 }
 
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ListResourceRecordSetsInput) SetHostedZoneId(v string) *ListResourceRecordSetsInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListResourceRecordSetsInput) SetMaxItems(v string) *ListResourceRecordSetsInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetStartRecordIdentifier sets the StartRecordIdentifier field's value.
+func (s *ListResourceRecordSetsInput) SetStartRecordIdentifier(v string) *ListResourceRecordSetsInput {
+	s.StartRecordIdentifier = &v
+	return s
+}
+
+// SetStartRecordName sets the StartRecordName field's value.
+func (s *ListResourceRecordSetsInput) SetStartRecordName(v string) *ListResourceRecordSetsInput {
+	s.StartRecordName = &v
+	return s
+}
+
+// SetStartRecordType sets the StartRecordType field's value.
+func (s *ListResourceRecordSetsInput) SetStartRecordType(v string) *ListResourceRecordSetsInput {
+	s.StartRecordType = &v
+	return s
+}
+
 // A complex type that contains list information for the resource record set.
 type ListResourceRecordSetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -8105,6 +9431,42 @@ func (s ListResourceRecordSetsOutput) GoString() string {
 	return s.String()
 }
 
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListResourceRecordSetsOutput) SetIsTruncated(v bool) *ListResourceRecordSetsOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListResourceRecordSetsOutput) SetMaxItems(v string) *ListResourceRecordSetsOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextRecordIdentifier sets the NextRecordIdentifier field's value.
+func (s *ListResourceRecordSetsOutput) SetNextRecordIdentifier(v string) *ListResourceRecordSetsOutput {
+	s.NextRecordIdentifier = &v
+	return s
+}
+
+// SetNextRecordName sets the NextRecordName field's value.
+func (s *ListResourceRecordSetsOutput) SetNextRecordName(v string) *ListResourceRecordSetsOutput {
+	s.NextRecordName = &v
+	return s
+}
+
+// SetNextRecordType sets the NextRecordType field's value.
+func (s *ListResourceRecordSetsOutput) SetNextRecordType(v string) *ListResourceRecordSetsOutput {
+	s.NextRecordType = &v
+	return s
+}
+
+// SetResourceRecordSets sets the ResourceRecordSets field's value.
+func (s *ListResourceRecordSetsOutput) SetResourceRecordSets(v []*ResourceRecordSet) *ListResourceRecordSetsOutput {
+	s.ResourceRecordSets = v
+	return s
+}
+
 // To retrieve a list of your reusable delegation sets, send a GET request to
 // the /2013-04-01/delegationset resource. The response to this request includes
 // a DelegationSets element with zero or more DelegationSet child elements.
@@ -8136,6 +9498,18 @@ func (s ListReusableDelegationSetsInput) String() string {
 // GoString returns the string representation
 func (s ListReusableDelegationSetsInput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListReusableDelegationSetsInput) SetMarker(v string) *ListReusableDelegationSetsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListReusableDelegationSetsInput) SetMaxItems(v string) *ListReusableDelegationSetsInput {
+	s.MaxItems = &v
+	return s
 }
 
 // A complex type that contains information about the reusable delegation sets
@@ -8187,6 +9561,36 @@ func (s ListReusableDelegationSetsOutput) GoString() string {
 	return s.String()
 }
 
+// SetDelegationSets sets the DelegationSets field's value.
+func (s *ListReusableDelegationSetsOutput) SetDelegationSets(v []*DelegationSet) *ListReusableDelegationSetsOutput {
+	s.DelegationSets = v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListReusableDelegationSetsOutput) SetIsTruncated(v bool) *ListReusableDelegationSetsOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListReusableDelegationSetsOutput) SetMarker(v string) *ListReusableDelegationSetsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListReusableDelegationSetsOutput) SetMaxItems(v string) *ListReusableDelegationSetsOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListReusableDelegationSetsOutput) SetNextMarker(v string) *ListReusableDelegationSetsOutput {
+	s.NextMarker = &v
+	return s
+}
+
 // A complex type containing information about a request for a list of the tags
 // that are associated with an individual resource.
 type ListTagsForResourceInput struct {
@@ -8233,6 +9637,18 @@ func (s *ListTagsForResourceInput) Validate() error {
 	return nil
 }
 
+// SetResourceId sets the ResourceId field's value.
+func (s *ListTagsForResourceInput) SetResourceId(v string) *ListTagsForResourceInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListTagsForResourceInput) SetResourceType(v string) *ListTagsForResourceInput {
+	s.ResourceType = &v
+	return s
+}
+
 // A complex type that contains information about the health checks or hosted
 // zones for which you want to list tags.
 type ListTagsForResourceOutput struct {
@@ -8252,6 +9668,12 @@ func (s ListTagsForResourceOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetResourceTagSet sets the ResourceTagSet field's value.
+func (s *ListTagsForResourceOutput) SetResourceTagSet(v *ResourceTagSet) *ListTagsForResourceOutput {
+	s.ResourceTagSet = v
+	return s
 }
 
 // A complex type that contains information about the health checks or hosted
@@ -8304,6 +9726,18 @@ func (s *ListTagsForResourcesInput) Validate() error {
 	return nil
 }
 
+// SetResourceIds sets the ResourceIds field's value.
+func (s *ListTagsForResourcesInput) SetResourceIds(v []*string) *ListTagsForResourcesInput {
+	s.ResourceIds = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListTagsForResourcesInput) SetResourceType(v string) *ListTagsForResourcesInput {
+	s.ResourceType = &v
+	return s
+}
+
 // A complex type containing tags for the specified resources.
 type ListTagsForResourcesOutput struct {
 	_ struct{} `type:"structure"`
@@ -8322,6 +9756,12 @@ func (s ListTagsForResourcesOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourcesOutput) GoString() string {
 	return s.String()
+}
+
+// SetResourceTagSets sets the ResourceTagSets field's value.
+func (s *ListTagsForResourcesOutput) SetResourceTagSets(v []*ResourceTagSet) *ListTagsForResourcesOutput {
+	s.ResourceTagSets = v
+	return s
 }
 
 // A complex type that contains the information about the request to list the
@@ -8357,6 +9797,18 @@ func (s ListTrafficPoliciesInput) String() string {
 // GoString returns the string representation
 func (s ListTrafficPoliciesInput) GoString() string {
 	return s.String()
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPoliciesInput) SetMaxItems(v string) *ListTrafficPoliciesInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyIdMarker sets the TrafficPolicyIdMarker field's value.
+func (s *ListTrafficPoliciesInput) SetTrafficPolicyIdMarker(v string) *ListTrafficPoliciesInput {
+	s.TrafficPolicyIdMarker = &v
+	return s
 }
 
 // A complex type that contains the response information for the request.
@@ -8400,6 +9852,30 @@ func (s ListTrafficPoliciesOutput) String() string {
 // GoString returns the string representation
 func (s ListTrafficPoliciesOutput) GoString() string {
 	return s.String()
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListTrafficPoliciesOutput) SetIsTruncated(v bool) *ListTrafficPoliciesOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPoliciesOutput) SetMaxItems(v string) *ListTrafficPoliciesOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyIdMarker sets the TrafficPolicyIdMarker field's value.
+func (s *ListTrafficPoliciesOutput) SetTrafficPolicyIdMarker(v string) *ListTrafficPoliciesOutput {
+	s.TrafficPolicyIdMarker = &v
+	return s
+}
+
+// SetTrafficPolicySummaries sets the TrafficPolicySummaries field's value.
+func (s *ListTrafficPoliciesOutput) SetTrafficPolicySummaries(v []*TrafficPolicySummary) *ListTrafficPoliciesOutput {
+	s.TrafficPolicySummaries = v
+	return s
 }
 
 // A request for the traffic policy instances that you created in a specified
@@ -8469,6 +9945,30 @@ func (s *ListTrafficPolicyInstancesByHostedZoneInput) Validate() error {
 	return nil
 }
 
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneInput) SetHostedZoneId(v string) *ListTrafficPolicyInstancesByHostedZoneInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneInput) SetMaxItems(v string) *ListTrafficPolicyInstancesByHostedZoneInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceNameMarker sets the TrafficPolicyInstanceNameMarker field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneInput) SetTrafficPolicyInstanceNameMarker(v string) *ListTrafficPolicyInstancesByHostedZoneInput {
+	s.TrafficPolicyInstanceNameMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceTypeMarker sets the TrafficPolicyInstanceTypeMarker field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneInput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesByHostedZoneInput {
+	s.TrafficPolicyInstanceTypeMarker = &v
+	return s
+}
+
 // A complex type that contains the response information for the request.
 type ListTrafficPolicyInstancesByHostedZoneOutput struct {
 	_ struct{} `type:"structure"`
@@ -8514,6 +10014,36 @@ func (s ListTrafficPolicyInstancesByHostedZoneOutput) String() string {
 // GoString returns the string representation
 func (s ListTrafficPolicyInstancesByHostedZoneOutput) GoString() string {
 	return s.String()
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetIsTruncated(v bool) *ListTrafficPolicyInstancesByHostedZoneOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetMaxItems(v string) *ListTrafficPolicyInstancesByHostedZoneOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceNameMarker sets the TrafficPolicyInstanceNameMarker field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetTrafficPolicyInstanceNameMarker(v string) *ListTrafficPolicyInstancesByHostedZoneOutput {
+	s.TrafficPolicyInstanceNameMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceTypeMarker sets the TrafficPolicyInstanceTypeMarker field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesByHostedZoneOutput {
+	s.TrafficPolicyInstanceTypeMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstances sets the TrafficPolicyInstances field's value.
+func (s *ListTrafficPolicyInstancesByHostedZoneOutput) SetTrafficPolicyInstances(v []*TrafficPolicyInstance) *ListTrafficPolicyInstancesByHostedZoneOutput {
+	s.TrafficPolicyInstances = v
+	return s
 }
 
 // A complex type that contains the information about the request to list your
@@ -8607,6 +10137,42 @@ func (s *ListTrafficPolicyInstancesByPolicyInput) Validate() error {
 	return nil
 }
 
+// SetHostedZoneIdMarker sets the HostedZoneIdMarker field's value.
+func (s *ListTrafficPolicyInstancesByPolicyInput) SetHostedZoneIdMarker(v string) *ListTrafficPolicyInstancesByPolicyInput {
+	s.HostedZoneIdMarker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyInstancesByPolicyInput) SetMaxItems(v string) *ListTrafficPolicyInstancesByPolicyInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyId sets the TrafficPolicyId field's value.
+func (s *ListTrafficPolicyInstancesByPolicyInput) SetTrafficPolicyId(v string) *ListTrafficPolicyInstancesByPolicyInput {
+	s.TrafficPolicyId = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceNameMarker sets the TrafficPolicyInstanceNameMarker field's value.
+func (s *ListTrafficPolicyInstancesByPolicyInput) SetTrafficPolicyInstanceNameMarker(v string) *ListTrafficPolicyInstancesByPolicyInput {
+	s.TrafficPolicyInstanceNameMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceTypeMarker sets the TrafficPolicyInstanceTypeMarker field's value.
+func (s *ListTrafficPolicyInstancesByPolicyInput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesByPolicyInput {
+	s.TrafficPolicyInstanceTypeMarker = &v
+	return s
+}
+
+// SetTrafficPolicyVersion sets the TrafficPolicyVersion field's value.
+func (s *ListTrafficPolicyInstancesByPolicyInput) SetTrafficPolicyVersion(v int64) *ListTrafficPolicyInstancesByPolicyInput {
+	s.TrafficPolicyVersion = &v
+	return s
+}
+
 // A complex type that contains the response information for the request.
 type ListTrafficPolicyInstancesByPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -8657,6 +10223,42 @@ func (s ListTrafficPolicyInstancesByPolicyOutput) String() string {
 // GoString returns the string representation
 func (s ListTrafficPolicyInstancesByPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetHostedZoneIdMarker sets the HostedZoneIdMarker field's value.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) SetHostedZoneIdMarker(v string) *ListTrafficPolicyInstancesByPolicyOutput {
+	s.HostedZoneIdMarker = &v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) SetIsTruncated(v bool) *ListTrafficPolicyInstancesByPolicyOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) SetMaxItems(v string) *ListTrafficPolicyInstancesByPolicyOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceNameMarker sets the TrafficPolicyInstanceNameMarker field's value.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) SetTrafficPolicyInstanceNameMarker(v string) *ListTrafficPolicyInstancesByPolicyOutput {
+	s.TrafficPolicyInstanceNameMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceTypeMarker sets the TrafficPolicyInstanceTypeMarker field's value.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesByPolicyOutput {
+	s.TrafficPolicyInstanceTypeMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstances sets the TrafficPolicyInstances field's value.
+func (s *ListTrafficPolicyInstancesByPolicyOutput) SetTrafficPolicyInstances(v []*TrafficPolicyInstance) *ListTrafficPolicyInstancesByPolicyOutput {
+	s.TrafficPolicyInstances = v
+	return s
 }
 
 // A complex type that contains the information about the request to list your
@@ -8716,6 +10318,30 @@ func (s ListTrafficPolicyInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetHostedZoneIdMarker sets the HostedZoneIdMarker field's value.
+func (s *ListTrafficPolicyInstancesInput) SetHostedZoneIdMarker(v string) *ListTrafficPolicyInstancesInput {
+	s.HostedZoneIdMarker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyInstancesInput) SetMaxItems(v string) *ListTrafficPolicyInstancesInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceNameMarker sets the TrafficPolicyInstanceNameMarker field's value.
+func (s *ListTrafficPolicyInstancesInput) SetTrafficPolicyInstanceNameMarker(v string) *ListTrafficPolicyInstancesInput {
+	s.TrafficPolicyInstanceNameMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceTypeMarker sets the TrafficPolicyInstanceTypeMarker field's value.
+func (s *ListTrafficPolicyInstancesInput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesInput {
+	s.TrafficPolicyInstanceTypeMarker = &v
+	return s
+}
+
 // A complex type that contains the response information for the request.
 type ListTrafficPolicyInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -8766,6 +10392,42 @@ func (s ListTrafficPolicyInstancesOutput) String() string {
 // GoString returns the string representation
 func (s ListTrafficPolicyInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetHostedZoneIdMarker sets the HostedZoneIdMarker field's value.
+func (s *ListTrafficPolicyInstancesOutput) SetHostedZoneIdMarker(v string) *ListTrafficPolicyInstancesOutput {
+	s.HostedZoneIdMarker = &v
+	return s
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListTrafficPolicyInstancesOutput) SetIsTruncated(v bool) *ListTrafficPolicyInstancesOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyInstancesOutput) SetMaxItems(v string) *ListTrafficPolicyInstancesOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceNameMarker sets the TrafficPolicyInstanceNameMarker field's value.
+func (s *ListTrafficPolicyInstancesOutput) SetTrafficPolicyInstanceNameMarker(v string) *ListTrafficPolicyInstancesOutput {
+	s.TrafficPolicyInstanceNameMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceTypeMarker sets the TrafficPolicyInstanceTypeMarker field's value.
+func (s *ListTrafficPolicyInstancesOutput) SetTrafficPolicyInstanceTypeMarker(v string) *ListTrafficPolicyInstancesOutput {
+	s.TrafficPolicyInstanceTypeMarker = &v
+	return s
+}
+
+// SetTrafficPolicyInstances sets the TrafficPolicyInstances field's value.
+func (s *ListTrafficPolicyInstancesOutput) SetTrafficPolicyInstances(v []*TrafficPolicyInstance) *ListTrafficPolicyInstancesOutput {
+	s.TrafficPolicyInstances = v
+	return s
 }
 
 // A complex type that contains the information about the request to list your
@@ -8823,6 +10485,24 @@ func (s *ListTrafficPolicyVersionsInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *ListTrafficPolicyVersionsInput) SetId(v string) *ListTrafficPolicyVersionsInput {
+	s.Id = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyVersionsInput) SetMaxItems(v string) *ListTrafficPolicyVersionsInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicyVersionMarker sets the TrafficPolicyVersionMarker field's value.
+func (s *ListTrafficPolicyVersionsInput) SetTrafficPolicyVersionMarker(v string) *ListTrafficPolicyVersionsInput {
+	s.TrafficPolicyVersionMarker = &v
+	return s
+}
+
 // A complex type that contains the response information for the request.
 type ListTrafficPolicyVersionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -8868,6 +10548,30 @@ func (s ListTrafficPolicyVersionsOutput) GoString() string {
 	return s.String()
 }
 
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *ListTrafficPolicyVersionsOutput) SetIsTruncated(v bool) *ListTrafficPolicyVersionsOutput {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListTrafficPolicyVersionsOutput) SetMaxItems(v string) *ListTrafficPolicyVersionsOutput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetTrafficPolicies sets the TrafficPolicies field's value.
+func (s *ListTrafficPolicyVersionsOutput) SetTrafficPolicies(v []*TrafficPolicy) *ListTrafficPolicyVersionsOutput {
+	s.TrafficPolicies = v
+	return s
+}
+
+// SetTrafficPolicyVersionMarker sets the TrafficPolicyVersionMarker field's value.
+func (s *ListTrafficPolicyVersionsOutput) SetTrafficPolicyVersionMarker(v string) *ListTrafficPolicyVersionsOutput {
+	s.TrafficPolicyVersionMarker = &v
+	return s
+}
+
 // Information specific to the resource record.
 //
 // If you are creating an alias resource record set, omit ResourceRecord.
@@ -8910,6 +10614,12 @@ func (s *ResourceRecord) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetValue sets the Value field's value.
+func (s *ResourceRecord) SetValue(v string) *ResourceRecord {
+	s.Value = &v
+	return s
 }
 
 // Information about the resource record set to create or delete.
@@ -9329,6 +11039,78 @@ func (s *ResourceRecordSet) Validate() error {
 	return nil
 }
 
+// SetAliasTarget sets the AliasTarget field's value.
+func (s *ResourceRecordSet) SetAliasTarget(v *AliasTarget) *ResourceRecordSet {
+	s.AliasTarget = v
+	return s
+}
+
+// SetFailover sets the Failover field's value.
+func (s *ResourceRecordSet) SetFailover(v string) *ResourceRecordSet {
+	s.Failover = &v
+	return s
+}
+
+// SetGeoLocation sets the GeoLocation field's value.
+func (s *ResourceRecordSet) SetGeoLocation(v *GeoLocation) *ResourceRecordSet {
+	s.GeoLocation = v
+	return s
+}
+
+// SetHealthCheckId sets the HealthCheckId field's value.
+func (s *ResourceRecordSet) SetHealthCheckId(v string) *ResourceRecordSet {
+	s.HealthCheckId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceRecordSet) SetName(v string) *ResourceRecordSet {
+	s.Name = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *ResourceRecordSet) SetRegion(v string) *ResourceRecordSet {
+	s.Region = &v
+	return s
+}
+
+// SetResourceRecords sets the ResourceRecords field's value.
+func (s *ResourceRecordSet) SetResourceRecords(v []*ResourceRecord) *ResourceRecordSet {
+	s.ResourceRecords = v
+	return s
+}
+
+// SetSetIdentifier sets the SetIdentifier field's value.
+func (s *ResourceRecordSet) SetSetIdentifier(v string) *ResourceRecordSet {
+	s.SetIdentifier = &v
+	return s
+}
+
+// SetTTL sets the TTL field's value.
+func (s *ResourceRecordSet) SetTTL(v int64) *ResourceRecordSet {
+	s.TTL = &v
+	return s
+}
+
+// SetTrafficPolicyInstanceId sets the TrafficPolicyInstanceId field's value.
+func (s *ResourceRecordSet) SetTrafficPolicyInstanceId(v string) *ResourceRecordSet {
+	s.TrafficPolicyInstanceId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ResourceRecordSet) SetType(v string) *ResourceRecordSet {
+	s.Type = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *ResourceRecordSet) SetWeight(v int64) *ResourceRecordSet {
+	s.Weight = &v
+	return s
+}
+
 // A complex type containing a resource and its associated tags.
 type ResourceTagSet struct {
 	_ struct{} `type:"structure"`
@@ -9357,6 +11139,24 @@ func (s ResourceTagSet) GoString() string {
 	return s.String()
 }
 
+// SetResourceId sets the ResourceId field's value.
+func (s *ResourceTagSet) SetResourceId(v string) *ResourceTagSet {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceTagSet) SetResourceType(v string) *ResourceTagSet {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ResourceTagSet) SetTags(v []*Tag) *ResourceTagSet {
+	s.Tags = v
+	return s
+}
+
 // A complex type that contains the status that one Amazon Route 53 health checker
 // reports and the time of the health check.
 type StatusReport struct {
@@ -9381,6 +11181,18 @@ func (s StatusReport) String() string {
 // GoString returns the string representation
 func (s StatusReport) GoString() string {
 	return s.String()
+}
+
+// SetCheckedTime sets the CheckedTime field's value.
+func (s *StatusReport) SetCheckedTime(v time.Time) *StatusReport {
+	s.CheckedTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StatusReport) SetStatus(v string) *StatusReport {
+	s.Status = &v
+	return s
 }
 
 // A complex type that contains information about a tag that you want to add
@@ -9420,6 +11232,18 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // Gets the value that Amazon Route 53 returns in response to a DNS request
@@ -9515,6 +11339,42 @@ func (s *TestDNSAnswerInput) Validate() error {
 	return nil
 }
 
+// SetEDNS0ClientSubnetIP sets the EDNS0ClientSubnetIP field's value.
+func (s *TestDNSAnswerInput) SetEDNS0ClientSubnetIP(v string) *TestDNSAnswerInput {
+	s.EDNS0ClientSubnetIP = &v
+	return s
+}
+
+// SetEDNS0ClientSubnetMask sets the EDNS0ClientSubnetMask field's value.
+func (s *TestDNSAnswerInput) SetEDNS0ClientSubnetMask(v string) *TestDNSAnswerInput {
+	s.EDNS0ClientSubnetMask = &v
+	return s
+}
+
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *TestDNSAnswerInput) SetHostedZoneId(v string) *TestDNSAnswerInput {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetRecordName sets the RecordName field's value.
+func (s *TestDNSAnswerInput) SetRecordName(v string) *TestDNSAnswerInput {
+	s.RecordName = &v
+	return s
+}
+
+// SetRecordType sets the RecordType field's value.
+func (s *TestDNSAnswerInput) SetRecordType(v string) *TestDNSAnswerInput {
+	s.RecordType = &v
+	return s
+}
+
+// SetResolverIP sets the ResolverIP field's value.
+func (s *TestDNSAnswerInput) SetResolverIP(v string) *TestDNSAnswerInput {
+	s.ResolverIP = &v
+	return s
+}
+
 // A complex type that contains the response to a TestDNSAnswer request.
 type TestDNSAnswerOutput struct {
 	_ struct{} `type:"structure"`
@@ -9566,6 +11426,42 @@ func (s TestDNSAnswerOutput) GoString() string {
 	return s.String()
 }
 
+// SetNameserver sets the Nameserver field's value.
+func (s *TestDNSAnswerOutput) SetNameserver(v string) *TestDNSAnswerOutput {
+	s.Nameserver = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *TestDNSAnswerOutput) SetProtocol(v string) *TestDNSAnswerOutput {
+	s.Protocol = &v
+	return s
+}
+
+// SetRecordData sets the RecordData field's value.
+func (s *TestDNSAnswerOutput) SetRecordData(v []*string) *TestDNSAnswerOutput {
+	s.RecordData = v
+	return s
+}
+
+// SetRecordName sets the RecordName field's value.
+func (s *TestDNSAnswerOutput) SetRecordName(v string) *TestDNSAnswerOutput {
+	s.RecordName = &v
+	return s
+}
+
+// SetRecordType sets the RecordType field's value.
+func (s *TestDNSAnswerOutput) SetRecordType(v string) *TestDNSAnswerOutput {
+	s.RecordType = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *TestDNSAnswerOutput) SetResponseCode(v string) *TestDNSAnswerOutput {
+	s.ResponseCode = &v
+	return s
+}
+
 // A complex type that contains settings for a traffic policy.
 type TrafficPolicy struct {
 	_ struct{} `type:"structure"`
@@ -9612,6 +11508,42 @@ func (s TrafficPolicy) String() string {
 // GoString returns the string representation
 func (s TrafficPolicy) GoString() string {
 	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *TrafficPolicy) SetComment(v string) *TrafficPolicy {
+	s.Comment = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *TrafficPolicy) SetDocument(v string) *TrafficPolicy {
+	s.Document = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TrafficPolicy) SetId(v string) *TrafficPolicy {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TrafficPolicy) SetName(v string) *TrafficPolicy {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TrafficPolicy) SetType(v string) *TrafficPolicy {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *TrafficPolicy) SetVersion(v int64) *TrafficPolicy {
+	s.Version = &v
+	return s
 }
 
 // A complex type that contains settings for the new traffic policy instance.
@@ -9692,6 +11624,60 @@ func (s TrafficPolicyInstance) GoString() string {
 	return s.String()
 }
 
+// SetHostedZoneId sets the HostedZoneId field's value.
+func (s *TrafficPolicyInstance) SetHostedZoneId(v string) *TrafficPolicyInstance {
+	s.HostedZoneId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *TrafficPolicyInstance) SetId(v string) *TrafficPolicyInstance {
+	s.Id = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *TrafficPolicyInstance) SetMessage(v string) *TrafficPolicyInstance {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TrafficPolicyInstance) SetName(v string) *TrafficPolicyInstance {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *TrafficPolicyInstance) SetState(v string) *TrafficPolicyInstance {
+	s.State = &v
+	return s
+}
+
+// SetTTL sets the TTL field's value.
+func (s *TrafficPolicyInstance) SetTTL(v int64) *TrafficPolicyInstance {
+	s.TTL = &v
+	return s
+}
+
+// SetTrafficPolicyId sets the TrafficPolicyId field's value.
+func (s *TrafficPolicyInstance) SetTrafficPolicyId(v string) *TrafficPolicyInstance {
+	s.TrafficPolicyId = &v
+	return s
+}
+
+// SetTrafficPolicyType sets the TrafficPolicyType field's value.
+func (s *TrafficPolicyInstance) SetTrafficPolicyType(v string) *TrafficPolicyInstance {
+	s.TrafficPolicyType = &v
+	return s
+}
+
+// SetTrafficPolicyVersion sets the TrafficPolicyVersion field's value.
+func (s *TrafficPolicyInstance) SetTrafficPolicyVersion(v int64) *TrafficPolicyInstance {
+	s.TrafficPolicyVersion = &v
+	return s
+}
+
 // A complex type that contains information about the latest version of one
 // traffic policy that is associated with the current AWS account.
 type TrafficPolicySummary struct {
@@ -9733,6 +11719,36 @@ func (s TrafficPolicySummary) String() string {
 // GoString returns the string representation
 func (s TrafficPolicySummary) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *TrafficPolicySummary) SetId(v string) *TrafficPolicySummary {
+	s.Id = &v
+	return s
+}
+
+// SetLatestVersion sets the LatestVersion field's value.
+func (s *TrafficPolicySummary) SetLatestVersion(v int64) *TrafficPolicySummary {
+	s.LatestVersion = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TrafficPolicySummary) SetName(v string) *TrafficPolicySummary {
+	s.Name = &v
+	return s
+}
+
+// SetTrafficPolicyCount sets the TrafficPolicyCount field's value.
+func (s *TrafficPolicySummary) SetTrafficPolicyCount(v int64) *TrafficPolicySummary {
+	s.TrafficPolicyCount = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *TrafficPolicySummary) SetType(v string) *TrafficPolicySummary {
+	s.Type = &v
+	return s
 }
 
 // A complex type that contains the health check request information.
@@ -9975,6 +11991,96 @@ func (s *UpdateHealthCheckInput) Validate() error {
 	return nil
 }
 
+// SetAlarmIdentifier sets the AlarmIdentifier field's value.
+func (s *UpdateHealthCheckInput) SetAlarmIdentifier(v *AlarmIdentifier) *UpdateHealthCheckInput {
+	s.AlarmIdentifier = v
+	return s
+}
+
+// SetChildHealthChecks sets the ChildHealthChecks field's value.
+func (s *UpdateHealthCheckInput) SetChildHealthChecks(v []*string) *UpdateHealthCheckInput {
+	s.ChildHealthChecks = v
+	return s
+}
+
+// SetEnableSNI sets the EnableSNI field's value.
+func (s *UpdateHealthCheckInput) SetEnableSNI(v bool) *UpdateHealthCheckInput {
+	s.EnableSNI = &v
+	return s
+}
+
+// SetFailureThreshold sets the FailureThreshold field's value.
+func (s *UpdateHealthCheckInput) SetFailureThreshold(v int64) *UpdateHealthCheckInput {
+	s.FailureThreshold = &v
+	return s
+}
+
+// SetFullyQualifiedDomainName sets the FullyQualifiedDomainName field's value.
+func (s *UpdateHealthCheckInput) SetFullyQualifiedDomainName(v string) *UpdateHealthCheckInput {
+	s.FullyQualifiedDomainName = &v
+	return s
+}
+
+// SetHealthCheckId sets the HealthCheckId field's value.
+func (s *UpdateHealthCheckInput) SetHealthCheckId(v string) *UpdateHealthCheckInput {
+	s.HealthCheckId = &v
+	return s
+}
+
+// SetHealthCheckVersion sets the HealthCheckVersion field's value.
+func (s *UpdateHealthCheckInput) SetHealthCheckVersion(v int64) *UpdateHealthCheckInput {
+	s.HealthCheckVersion = &v
+	return s
+}
+
+// SetHealthThreshold sets the HealthThreshold field's value.
+func (s *UpdateHealthCheckInput) SetHealthThreshold(v int64) *UpdateHealthCheckInput {
+	s.HealthThreshold = &v
+	return s
+}
+
+// SetIPAddress sets the IPAddress field's value.
+func (s *UpdateHealthCheckInput) SetIPAddress(v string) *UpdateHealthCheckInput {
+	s.IPAddress = &v
+	return s
+}
+
+// SetInsufficientDataHealthStatus sets the InsufficientDataHealthStatus field's value.
+func (s *UpdateHealthCheckInput) SetInsufficientDataHealthStatus(v string) *UpdateHealthCheckInput {
+	s.InsufficientDataHealthStatus = &v
+	return s
+}
+
+// SetInverted sets the Inverted field's value.
+func (s *UpdateHealthCheckInput) SetInverted(v bool) *UpdateHealthCheckInput {
+	s.Inverted = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *UpdateHealthCheckInput) SetPort(v int64) *UpdateHealthCheckInput {
+	s.Port = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *UpdateHealthCheckInput) SetRegions(v []*string) *UpdateHealthCheckInput {
+	s.Regions = v
+	return s
+}
+
+// SetResourcePath sets the ResourcePath field's value.
+func (s *UpdateHealthCheckInput) SetResourcePath(v string) *UpdateHealthCheckInput {
+	s.ResourcePath = &v
+	return s
+}
+
+// SetSearchString sets the SearchString field's value.
+func (s *UpdateHealthCheckInput) SetSearchString(v string) *UpdateHealthCheckInput {
+	s.SearchString = &v
+	return s
+}
+
 type UpdateHealthCheckOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9993,6 +12099,12 @@ func (s UpdateHealthCheckOutput) String() string {
 // GoString returns the string representation
 func (s UpdateHealthCheckOutput) GoString() string {
 	return s.String()
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *UpdateHealthCheckOutput) SetHealthCheck(v *HealthCheck) *UpdateHealthCheckOutput {
+	s.HealthCheck = v
+	return s
 }
 
 // A complex type that contains the hosted zone request information.
@@ -10032,6 +12144,18 @@ func (s *UpdateHostedZoneCommentInput) Validate() error {
 	return nil
 }
 
+// SetComment sets the Comment field's value.
+func (s *UpdateHostedZoneCommentInput) SetComment(v string) *UpdateHostedZoneCommentInput {
+	s.Comment = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateHostedZoneCommentInput) SetId(v string) *UpdateHostedZoneCommentInput {
+	s.Id = &v
+	return s
+}
+
 // A complex type that contains the response to the UpdateHostedZoneCommentRequest.
 type UpdateHostedZoneCommentOutput struct {
 	_ struct{} `type:"structure"`
@@ -10050,6 +12174,12 @@ func (s UpdateHostedZoneCommentOutput) String() string {
 // GoString returns the string representation
 func (s UpdateHostedZoneCommentOutput) GoString() string {
 	return s.String()
+}
+
+// SetHostedZone sets the HostedZone field's value.
+func (s *UpdateHostedZoneCommentOutput) SetHostedZone(v *HostedZone) *UpdateHostedZoneCommentOutput {
+	s.HostedZone = v
+	return s
 }
 
 // A complex type that contains information about the traffic policy for which
@@ -10106,6 +12236,24 @@ func (s *UpdateTrafficPolicyCommentInput) Validate() error {
 	return nil
 }
 
+// SetComment sets the Comment field's value.
+func (s *UpdateTrafficPolicyCommentInput) SetComment(v string) *UpdateTrafficPolicyCommentInput {
+	s.Comment = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateTrafficPolicyCommentInput) SetId(v string) *UpdateTrafficPolicyCommentInput {
+	s.Id = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdateTrafficPolicyCommentInput) SetVersion(v int64) *UpdateTrafficPolicyCommentInput {
+	s.Version = &v
+	return s
+}
+
 // A complex type that contains the response information for the traffic policy.
 type UpdateTrafficPolicyCommentOutput struct {
 	_ struct{} `type:"structure"`
@@ -10124,6 +12272,12 @@ func (s UpdateTrafficPolicyCommentOutput) String() string {
 // GoString returns the string representation
 func (s UpdateTrafficPolicyCommentOutput) GoString() string {
 	return s.String()
+}
+
+// SetTrafficPolicy sets the TrafficPolicy field's value.
+func (s *UpdateTrafficPolicyCommentOutput) SetTrafficPolicy(v *TrafficPolicy) *UpdateTrafficPolicyCommentOutput {
+	s.TrafficPolicy = v
+	return s
 }
 
 // A complex type that contains information about the resource record sets that
@@ -10190,6 +12344,30 @@ func (s *UpdateTrafficPolicyInstanceInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *UpdateTrafficPolicyInstanceInput) SetId(v string) *UpdateTrafficPolicyInstanceInput {
+	s.Id = &v
+	return s
+}
+
+// SetTTL sets the TTL field's value.
+func (s *UpdateTrafficPolicyInstanceInput) SetTTL(v int64) *UpdateTrafficPolicyInstanceInput {
+	s.TTL = &v
+	return s
+}
+
+// SetTrafficPolicyId sets the TrafficPolicyId field's value.
+func (s *UpdateTrafficPolicyInstanceInput) SetTrafficPolicyId(v string) *UpdateTrafficPolicyInstanceInput {
+	s.TrafficPolicyId = &v
+	return s
+}
+
+// SetTrafficPolicyVersion sets the TrafficPolicyVersion field's value.
+func (s *UpdateTrafficPolicyInstanceInput) SetTrafficPolicyVersion(v int64) *UpdateTrafficPolicyInstanceInput {
+	s.TrafficPolicyVersion = &v
+	return s
+}
+
 // A complex type that contains information about the resource record sets that
 // Amazon Route 53 created based on a specified traffic policy.
 type UpdateTrafficPolicyInstanceOutput struct {
@@ -10209,6 +12387,12 @@ func (s UpdateTrafficPolicyInstanceOutput) String() string {
 // GoString returns the string representation
 func (s UpdateTrafficPolicyInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetTrafficPolicyInstance sets the TrafficPolicyInstance field's value.
+func (s *UpdateTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficPolicyInstance) *UpdateTrafficPolicyInstanceOutput {
+	s.TrafficPolicyInstance = v
+	return s
 }
 
 // A complex type that contains information about the Amazon VPC that you're
@@ -10245,6 +12429,18 @@ func (s *VPC) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetVPCId sets the VPCId field's value.
+func (s *VPC) SetVPCId(v string) *VPC {
+	s.VPCId = &v
+	return s
+}
+
+// SetVPCRegion sets the VPCRegion field's value.
+func (s *VPC) SetVPCRegion(v string) *VPC {
+	s.VPCRegion = &v
+	return s
 }
 
 const (

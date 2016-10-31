@@ -4125,6 +4125,66 @@ func (s Activity) GoString() string {
 	return s.String()
 }
 
+// SetActivityId sets the ActivityId field's value.
+func (s *Activity) SetActivityId(v string) *Activity {
+	s.ActivityId = &v
+	return s
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *Activity) SetAutoScalingGroupName(v string) *Activity {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetCause sets the Cause field's value.
+func (s *Activity) SetCause(v string) *Activity {
+	s.Cause = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Activity) SetDescription(v string) *Activity {
+	s.Description = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *Activity) SetDetails(v string) *Activity {
+	s.Details = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *Activity) SetEndTime(v time.Time) *Activity {
+	s.EndTime = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *Activity) SetProgress(v int64) *Activity {
+	s.Progress = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Activity) SetStartTime(v time.Time) *Activity {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *Activity) SetStatusCode(v string) *Activity {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *Activity) SetStatusMessage(v string) *Activity {
+	s.StatusMessage = &v
+	return s
+}
+
 // Describes a policy adjustment type.
 //
 // For more information, see Dynamic Scaling (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html)
@@ -4147,6 +4207,12 @@ func (s AdjustmentType) GoString() string {
 	return s.String()
 }
 
+// SetAdjustmentType sets the AdjustmentType field's value.
+func (s *AdjustmentType) SetAdjustmentType(v string) *AdjustmentType {
+	s.AdjustmentType = &v
+	return s
+}
+
 // Describes an alarm.
 type Alarm struct {
 	_ struct{} `type:"structure"`
@@ -4166,6 +4232,18 @@ func (s Alarm) String() string {
 // GoString returns the string representation
 func (s Alarm) GoString() string {
 	return s.String()
+}
+
+// SetAlarmARN sets the AlarmARN field's value.
+func (s *Alarm) SetAlarmARN(v string) *Alarm {
+	s.AlarmARN = &v
+	return s
+}
+
+// SetAlarmName sets the AlarmName field's value.
+func (s *Alarm) SetAlarmName(v string) *Alarm {
+	s.AlarmName = &v
+	return s
 }
 
 // Contains the parameters for AttachInstances.
@@ -4205,6 +4283,18 @@ func (s *AttachInstancesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *AttachInstancesInput) SetAutoScalingGroupName(v string) *AttachInstancesInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *AttachInstancesInput) SetInstanceIds(v []*string) *AttachInstancesInput {
+	s.InstanceIds = v
+	return s
 }
 
 type AttachInstancesOutput struct {
@@ -4265,6 +4355,18 @@ func (s *AttachLoadBalancerTargetGroupsInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *AttachLoadBalancerTargetGroupsInput) SetAutoScalingGroupName(v string) *AttachLoadBalancerTargetGroupsInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetTargetGroupARNs sets the TargetGroupARNs field's value.
+func (s *AttachLoadBalancerTargetGroupsInput) SetTargetGroupARNs(v []*string) *AttachLoadBalancerTargetGroupsInput {
+	s.TargetGroupARNs = v
+	return s
+}
+
 type AttachLoadBalancerTargetGroupsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4321,6 +4423,18 @@ func (s *AttachLoadBalancersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *AttachLoadBalancersInput) SetAutoScalingGroupName(v string) *AttachLoadBalancersInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetLoadBalancerNames sets the LoadBalancerNames field's value.
+func (s *AttachLoadBalancersInput) SetLoadBalancerNames(v []*string) *AttachLoadBalancersInput {
+	s.LoadBalancerNames = v
+	return s
 }
 
 // Contains the output of AttachLoadBalancers.
@@ -4395,6 +4509,30 @@ func (s *BlockDeviceMapping) Validate() error {
 	return nil
 }
 
+// SetDeviceName sets the DeviceName field's value.
+func (s *BlockDeviceMapping) SetDeviceName(v string) *BlockDeviceMapping {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *BlockDeviceMapping) SetEbs(v *Ebs) *BlockDeviceMapping {
+	s.Ebs = v
+	return s
+}
+
+// SetNoDevice sets the NoDevice field's value.
+func (s *BlockDeviceMapping) SetNoDevice(v bool) *BlockDeviceMapping {
+	s.NoDevice = &v
+	return s
+}
+
+// SetVirtualName sets the VirtualName field's value.
+func (s *BlockDeviceMapping) SetVirtualName(v string) *BlockDeviceMapping {
+	s.VirtualName = &v
+	return s
+}
+
 // Contains the parameters for CompleteLifecycleAction.
 type CompleteLifecycleActionInput struct {
 	_ struct{} `type:"structure"`
@@ -4463,6 +4601,36 @@ func (s *CompleteLifecycleActionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *CompleteLifecycleActionInput) SetAutoScalingGroupName(v string) *CompleteLifecycleActionInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CompleteLifecycleActionInput) SetInstanceId(v string) *CompleteLifecycleActionInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLifecycleActionResult sets the LifecycleActionResult field's value.
+func (s *CompleteLifecycleActionInput) SetLifecycleActionResult(v string) *CompleteLifecycleActionInput {
+	s.LifecycleActionResult = &v
+	return s
+}
+
+// SetLifecycleActionToken sets the LifecycleActionToken field's value.
+func (s *CompleteLifecycleActionInput) SetLifecycleActionToken(v string) *CompleteLifecycleActionInput {
+	s.LifecycleActionToken = &v
+	return s
+}
+
+// SetLifecycleHookName sets the LifecycleHookName field's value.
+func (s *CompleteLifecycleActionInput) SetLifecycleHookName(v string) *CompleteLifecycleActionInput {
+	s.LifecycleHookName = &v
+	return s
 }
 
 // Contains the output of CompleteLifecycleAction.
@@ -4654,6 +4822,108 @@ func (s *CreateAutoScalingGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *CreateAutoScalingGroupInput) SetAutoScalingGroupName(v string) *CreateAutoScalingGroupInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *CreateAutoScalingGroupInput) SetAvailabilityZones(v []*string) *CreateAutoScalingGroupInput {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetDefaultCooldown sets the DefaultCooldown field's value.
+func (s *CreateAutoScalingGroupInput) SetDefaultCooldown(v int64) *CreateAutoScalingGroupInput {
+	s.DefaultCooldown = &v
+	return s
+}
+
+// SetDesiredCapacity sets the DesiredCapacity field's value.
+func (s *CreateAutoScalingGroupInput) SetDesiredCapacity(v int64) *CreateAutoScalingGroupInput {
+	s.DesiredCapacity = &v
+	return s
+}
+
+// SetHealthCheckGracePeriod sets the HealthCheckGracePeriod field's value.
+func (s *CreateAutoScalingGroupInput) SetHealthCheckGracePeriod(v int64) *CreateAutoScalingGroupInput {
+	s.HealthCheckGracePeriod = &v
+	return s
+}
+
+// SetHealthCheckType sets the HealthCheckType field's value.
+func (s *CreateAutoScalingGroupInput) SetHealthCheckType(v string) *CreateAutoScalingGroupInput {
+	s.HealthCheckType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateAutoScalingGroupInput) SetInstanceId(v string) *CreateAutoScalingGroupInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *CreateAutoScalingGroupInput) SetLaunchConfigurationName(v string) *CreateAutoScalingGroupInput {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetLoadBalancerNames sets the LoadBalancerNames field's value.
+func (s *CreateAutoScalingGroupInput) SetLoadBalancerNames(v []*string) *CreateAutoScalingGroupInput {
+	s.LoadBalancerNames = v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *CreateAutoScalingGroupInput) SetMaxSize(v int64) *CreateAutoScalingGroupInput {
+	s.MaxSize = &v
+	return s
+}
+
+// SetMinSize sets the MinSize field's value.
+func (s *CreateAutoScalingGroupInput) SetMinSize(v int64) *CreateAutoScalingGroupInput {
+	s.MinSize = &v
+	return s
+}
+
+// SetNewInstancesProtectedFromScaleIn sets the NewInstancesProtectedFromScaleIn field's value.
+func (s *CreateAutoScalingGroupInput) SetNewInstancesProtectedFromScaleIn(v bool) *CreateAutoScalingGroupInput {
+	s.NewInstancesProtectedFromScaleIn = &v
+	return s
+}
+
+// SetPlacementGroup sets the PlacementGroup field's value.
+func (s *CreateAutoScalingGroupInput) SetPlacementGroup(v string) *CreateAutoScalingGroupInput {
+	s.PlacementGroup = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAutoScalingGroupInput) SetTags(v []*Tag) *CreateAutoScalingGroupInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetGroupARNs sets the TargetGroupARNs field's value.
+func (s *CreateAutoScalingGroupInput) SetTargetGroupARNs(v []*string) *CreateAutoScalingGroupInput {
+	s.TargetGroupARNs = v
+	return s
+}
+
+// SetTerminationPolicies sets the TerminationPolicies field's value.
+func (s *CreateAutoScalingGroupInput) SetTerminationPolicies(v []*string) *CreateAutoScalingGroupInput {
+	s.TerminationPolicies = v
+	return s
+}
+
+// SetVPCZoneIdentifier sets the VPCZoneIdentifier field's value.
+func (s *CreateAutoScalingGroupInput) SetVPCZoneIdentifier(v string) *CreateAutoScalingGroupInput {
+	s.VPCZoneIdentifier = &v
+	return s
 }
 
 type CreateAutoScalingGroupOutput struct {
@@ -4876,6 +5146,114 @@ func (s *CreateLaunchConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetAssociatePublicIpAddress sets the AssociatePublicIpAddress field's value.
+func (s *CreateLaunchConfigurationInput) SetAssociatePublicIpAddress(v bool) *CreateLaunchConfigurationInput {
+	s.AssociatePublicIpAddress = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *CreateLaunchConfigurationInput) SetBlockDeviceMappings(v []*BlockDeviceMapping) *CreateLaunchConfigurationInput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetClassicLinkVPCId sets the ClassicLinkVPCId field's value.
+func (s *CreateLaunchConfigurationInput) SetClassicLinkVPCId(v string) *CreateLaunchConfigurationInput {
+	s.ClassicLinkVPCId = &v
+	return s
+}
+
+// SetClassicLinkVPCSecurityGroups sets the ClassicLinkVPCSecurityGroups field's value.
+func (s *CreateLaunchConfigurationInput) SetClassicLinkVPCSecurityGroups(v []*string) *CreateLaunchConfigurationInput {
+	s.ClassicLinkVPCSecurityGroups = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *CreateLaunchConfigurationInput) SetEbsOptimized(v bool) *CreateLaunchConfigurationInput {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *CreateLaunchConfigurationInput) SetIamInstanceProfile(v string) *CreateLaunchConfigurationInput {
+	s.IamInstanceProfile = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CreateLaunchConfigurationInput) SetImageId(v string) *CreateLaunchConfigurationInput {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateLaunchConfigurationInput) SetInstanceId(v string) *CreateLaunchConfigurationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceMonitoring sets the InstanceMonitoring field's value.
+func (s *CreateLaunchConfigurationInput) SetInstanceMonitoring(v *InstanceMonitoring) *CreateLaunchConfigurationInput {
+	s.InstanceMonitoring = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *CreateLaunchConfigurationInput) SetInstanceType(v string) *CreateLaunchConfigurationInput {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *CreateLaunchConfigurationInput) SetKernelId(v string) *CreateLaunchConfigurationInput {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *CreateLaunchConfigurationInput) SetKeyName(v string) *CreateLaunchConfigurationInput {
+	s.KeyName = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *CreateLaunchConfigurationInput) SetLaunchConfigurationName(v string) *CreateLaunchConfigurationInput {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetPlacementTenancy sets the PlacementTenancy field's value.
+func (s *CreateLaunchConfigurationInput) SetPlacementTenancy(v string) *CreateLaunchConfigurationInput {
+	s.PlacementTenancy = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *CreateLaunchConfigurationInput) SetRamdiskId(v string) *CreateLaunchConfigurationInput {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *CreateLaunchConfigurationInput) SetSecurityGroups(v []*string) *CreateLaunchConfigurationInput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *CreateLaunchConfigurationInput) SetSpotPrice(v string) *CreateLaunchConfigurationInput {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *CreateLaunchConfigurationInput) SetUserData(v string) *CreateLaunchConfigurationInput {
+	s.UserData = &v
+	return s
+}
+
 type CreateLaunchConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4933,6 +5311,12 @@ func (s *CreateOrUpdateTagsInput) Validate() error {
 	return nil
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateOrUpdateTagsInput) SetTags(v []*Tag) *CreateOrUpdateTagsInput {
+	s.Tags = v
+	return s
+}
+
 type CreateOrUpdateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4988,6 +5372,18 @@ func (s *DeleteAutoScalingGroupInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DeleteAutoScalingGroupInput) SetAutoScalingGroupName(v string) *DeleteAutoScalingGroupInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetForceDelete sets the ForceDelete field's value.
+func (s *DeleteAutoScalingGroupInput) SetForceDelete(v bool) *DeleteAutoScalingGroupInput {
+	s.ForceDelete = &v
+	return s
+}
+
 type DeleteAutoScalingGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5036,6 +5432,12 @@ func (s *DeleteLaunchConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *DeleteLaunchConfigurationInput) SetLaunchConfigurationName(v string) *DeleteLaunchConfigurationInput {
+	s.LaunchConfigurationName = &v
+	return s
 }
 
 type DeleteLaunchConfigurationOutput struct {
@@ -5097,6 +5499,18 @@ func (s *DeleteLifecycleHookInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DeleteLifecycleHookInput) SetAutoScalingGroupName(v string) *DeleteLifecycleHookInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetLifecycleHookName sets the LifecycleHookName field's value.
+func (s *DeleteLifecycleHookInput) SetLifecycleHookName(v string) *DeleteLifecycleHookInput {
+	s.LifecycleHookName = &v
+	return s
 }
 
 // Contains the output of DeleteLifecycleHook.
@@ -5162,6 +5576,18 @@ func (s *DeleteNotificationConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DeleteNotificationConfigurationInput) SetAutoScalingGroupName(v string) *DeleteNotificationConfigurationInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetTopicARN sets the TopicARN field's value.
+func (s *DeleteNotificationConfigurationInput) SetTopicARN(v string) *DeleteNotificationConfigurationInput {
+	s.TopicARN = &v
+	return s
+}
+
 type DeleteNotificationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5216,6 +5642,18 @@ func (s *DeletePolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DeletePolicyInput) SetAutoScalingGroupName(v string) *DeletePolicyInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *DeletePolicyInput) SetPolicyName(v string) *DeletePolicyInput {
+	s.PolicyName = &v
+	return s
 }
 
 type DeletePolicyOutput struct {
@@ -5279,6 +5717,18 @@ func (s *DeleteScheduledActionInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DeleteScheduledActionInput) SetAutoScalingGroupName(v string) *DeleteScheduledActionInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetScheduledActionName sets the ScheduledActionName field's value.
+func (s *DeleteScheduledActionInput) SetScheduledActionName(v string) *DeleteScheduledActionInput {
+	s.ScheduledActionName = &v
+	return s
+}
+
 type DeleteScheduledActionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5334,6 +5784,12 @@ func (s *DeleteTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetTags sets the Tags field's value.
+func (s *DeleteTagsInput) SetTags(v []*Tag) *DeleteTagsInput {
+	s.Tags = v
+	return s
 }
 
 type DeleteTagsOutput struct {
@@ -5393,6 +5849,30 @@ func (s DescribeAccountLimitsOutput) GoString() string {
 	return s.String()
 }
 
+// SetMaxNumberOfAutoScalingGroups sets the MaxNumberOfAutoScalingGroups field's value.
+func (s *DescribeAccountLimitsOutput) SetMaxNumberOfAutoScalingGroups(v int64) *DescribeAccountLimitsOutput {
+	s.MaxNumberOfAutoScalingGroups = &v
+	return s
+}
+
+// SetMaxNumberOfLaunchConfigurations sets the MaxNumberOfLaunchConfigurations field's value.
+func (s *DescribeAccountLimitsOutput) SetMaxNumberOfLaunchConfigurations(v int64) *DescribeAccountLimitsOutput {
+	s.MaxNumberOfLaunchConfigurations = &v
+	return s
+}
+
+// SetNumberOfAutoScalingGroups sets the NumberOfAutoScalingGroups field's value.
+func (s *DescribeAccountLimitsOutput) SetNumberOfAutoScalingGroups(v int64) *DescribeAccountLimitsOutput {
+	s.NumberOfAutoScalingGroups = &v
+	return s
+}
+
+// SetNumberOfLaunchConfigurations sets the NumberOfLaunchConfigurations field's value.
+func (s *DescribeAccountLimitsOutput) SetNumberOfLaunchConfigurations(v int64) *DescribeAccountLimitsOutput {
+	s.NumberOfLaunchConfigurations = &v
+	return s
+}
+
 type DescribeAdjustmentTypesInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5425,6 +5905,12 @@ func (s DescribeAdjustmentTypesOutput) GoString() string {
 	return s.String()
 }
 
+// SetAdjustmentTypes sets the AdjustmentTypes field's value.
+func (s *DescribeAdjustmentTypesOutput) SetAdjustmentTypes(v []*AdjustmentType) *DescribeAdjustmentTypesOutput {
+	s.AdjustmentTypes = v
+	return s
+}
+
 // Contains the parameters for DescribeAutoScalingGroups.
 type DescribeAutoScalingGroupsInput struct {
 	_ struct{} `type:"structure"`
@@ -5451,6 +5937,24 @@ func (s DescribeAutoScalingGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroupNames sets the AutoScalingGroupNames field's value.
+func (s *DescribeAutoScalingGroupsInput) SetAutoScalingGroupNames(v []*string) *DescribeAutoScalingGroupsInput {
+	s.AutoScalingGroupNames = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeAutoScalingGroupsInput) SetMaxRecords(v int64) *DescribeAutoScalingGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAutoScalingGroupsInput) SetNextToken(v string) *DescribeAutoScalingGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output for DescribeAutoScalingGroups.
 type DescribeAutoScalingGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5473,6 +5977,18 @@ func (s DescribeAutoScalingGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAutoScalingGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAutoScalingGroups sets the AutoScalingGroups field's value.
+func (s *DescribeAutoScalingGroupsOutput) SetAutoScalingGroups(v []*Group) *DescribeAutoScalingGroupsOutput {
+	s.AutoScalingGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAutoScalingGroupsOutput) SetNextToken(v string) *DescribeAutoScalingGroupsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeAutoScalingInstances.
@@ -5502,6 +6018,24 @@ func (s DescribeAutoScalingInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *DescribeAutoScalingInstancesInput) SetInstanceIds(v []*string) *DescribeAutoScalingInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeAutoScalingInstancesInput) SetMaxRecords(v int64) *DescribeAutoScalingInstancesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAutoScalingInstancesInput) SetNextToken(v string) *DescribeAutoScalingInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeAutoScalingInstances.
 type DescribeAutoScalingInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -5522,6 +6056,18 @@ func (s DescribeAutoScalingInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAutoScalingInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAutoScalingInstances sets the AutoScalingInstances field's value.
+func (s *DescribeAutoScalingInstancesOutput) SetAutoScalingInstances(v []*InstanceDetails) *DescribeAutoScalingInstancesOutput {
+	s.AutoScalingInstances = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAutoScalingInstancesOutput) SetNextToken(v string) *DescribeAutoScalingInstancesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeAutoScalingNotificationTypesInput struct {
@@ -5556,6 +6102,12 @@ func (s DescribeAutoScalingNotificationTypesOutput) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingNotificationTypes sets the AutoScalingNotificationTypes field's value.
+func (s *DescribeAutoScalingNotificationTypesOutput) SetAutoScalingNotificationTypes(v []*string) *DescribeAutoScalingNotificationTypesOutput {
+	s.AutoScalingNotificationTypes = v
+	return s
+}
+
 // Contains the parameters for DescribeLaunchConfigurations.
 type DescribeLaunchConfigurationsInput struct {
 	_ struct{} `type:"structure"`
@@ -5582,6 +6134,24 @@ func (s DescribeLaunchConfigurationsInput) GoString() string {
 	return s.String()
 }
 
+// SetLaunchConfigurationNames sets the LaunchConfigurationNames field's value.
+func (s *DescribeLaunchConfigurationsInput) SetLaunchConfigurationNames(v []*string) *DescribeLaunchConfigurationsInput {
+	s.LaunchConfigurationNames = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeLaunchConfigurationsInput) SetMaxRecords(v int64) *DescribeLaunchConfigurationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLaunchConfigurationsInput) SetNextToken(v string) *DescribeLaunchConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeLaunchConfigurations.
 type DescribeLaunchConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5604,6 +6174,18 @@ func (s DescribeLaunchConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLaunchConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetLaunchConfigurations sets the LaunchConfigurations field's value.
+func (s *DescribeLaunchConfigurationsOutput) SetLaunchConfigurations(v []*LaunchConfiguration) *DescribeLaunchConfigurationsOutput {
+	s.LaunchConfigurations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLaunchConfigurationsOutput) SetNextToken(v string) *DescribeLaunchConfigurationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeLifecycleHookTypesInput struct {
@@ -5636,6 +6218,12 @@ func (s DescribeLifecycleHookTypesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLifecycleHookTypesOutput) GoString() string {
 	return s.String()
+}
+
+// SetLifecycleHookTypes sets the LifecycleHookTypes field's value.
+func (s *DescribeLifecycleHookTypesOutput) SetLifecycleHookTypes(v []*string) *DescribeLifecycleHookTypesOutput {
+	s.LifecycleHookTypes = v
+	return s
 }
 
 // Contains the parameters for DescribeLifecycleHooks.
@@ -5678,6 +6266,18 @@ func (s *DescribeLifecycleHooksInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DescribeLifecycleHooksInput) SetAutoScalingGroupName(v string) *DescribeLifecycleHooksInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetLifecycleHookNames sets the LifecycleHookNames field's value.
+func (s *DescribeLifecycleHooksInput) SetLifecycleHookNames(v []*string) *DescribeLifecycleHooksInput {
+	s.LifecycleHookNames = v
+	return s
+}
+
 // Contains the output of DescribeLifecycleHooks.
 type DescribeLifecycleHooksOutput struct {
 	_ struct{} `type:"structure"`
@@ -5694,6 +6294,12 @@ func (s DescribeLifecycleHooksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLifecycleHooksOutput) GoString() string {
 	return s.String()
+}
+
+// SetLifecycleHooks sets the LifecycleHooks field's value.
+func (s *DescribeLifecycleHooksOutput) SetLifecycleHooks(v []*LifecycleHook) *DescribeLifecycleHooksOutput {
+	s.LifecycleHooks = v
+	return s
 }
 
 // Contains the parameters for DescribeLoadBalancerTargetGroups.
@@ -5739,6 +6345,24 @@ func (s *DescribeLoadBalancerTargetGroupsInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DescribeLoadBalancerTargetGroupsInput) SetAutoScalingGroupName(v string) *DescribeLoadBalancerTargetGroupsInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeLoadBalancerTargetGroupsInput) SetMaxRecords(v int64) *DescribeLoadBalancerTargetGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLoadBalancerTargetGroupsInput) SetNextToken(v string) *DescribeLoadBalancerTargetGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeLoadBalancerTargetGroups.
 type DescribeLoadBalancerTargetGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5759,6 +6383,18 @@ func (s DescribeLoadBalancerTargetGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLoadBalancerTargetGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetLoadBalancerTargetGroups sets the LoadBalancerTargetGroups field's value.
+func (s *DescribeLoadBalancerTargetGroupsOutput) SetLoadBalancerTargetGroups(v []*LoadBalancerTargetGroupState) *DescribeLoadBalancerTargetGroupsOutput {
+	s.LoadBalancerTargetGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLoadBalancerTargetGroupsOutput) SetNextToken(v string) *DescribeLoadBalancerTargetGroupsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeLoadBalancers.
@@ -5804,6 +6440,24 @@ func (s *DescribeLoadBalancersInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DescribeLoadBalancersInput) SetAutoScalingGroupName(v string) *DescribeLoadBalancersInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeLoadBalancersInput) SetMaxRecords(v int64) *DescribeLoadBalancersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLoadBalancersInput) SetNextToken(v string) *DescribeLoadBalancersInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeLoadBalancers.
 type DescribeLoadBalancersOutput struct {
 	_ struct{} `type:"structure"`
@@ -5824,6 +6478,18 @@ func (s DescribeLoadBalancersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLoadBalancersOutput) GoString() string {
 	return s.String()
+}
+
+// SetLoadBalancers sets the LoadBalancers field's value.
+func (s *DescribeLoadBalancersOutput) SetLoadBalancers(v []*LoadBalancerState) *DescribeLoadBalancersOutput {
+	s.LoadBalancers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLoadBalancersOutput) SetNextToken(v string) *DescribeLoadBalancersOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeMetricCollectionTypesInput struct {
@@ -5861,6 +6527,18 @@ func (s DescribeMetricCollectionTypesOutput) GoString() string {
 	return s.String()
 }
 
+// SetGranularities sets the Granularities field's value.
+func (s *DescribeMetricCollectionTypesOutput) SetGranularities(v []*MetricGranularityType) *DescribeMetricCollectionTypesOutput {
+	s.Granularities = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *DescribeMetricCollectionTypesOutput) SetMetrics(v []*MetricCollectionType) *DescribeMetricCollectionTypesOutput {
+	s.Metrics = v
+	return s
+}
+
 // Contains the parameters for DescribeNotificationConfigurations.
 type DescribeNotificationConfigurationsInput struct {
 	_ struct{} `type:"structure"`
@@ -5886,6 +6564,24 @@ func (s DescribeNotificationConfigurationsInput) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroupNames sets the AutoScalingGroupNames field's value.
+func (s *DescribeNotificationConfigurationsInput) SetAutoScalingGroupNames(v []*string) *DescribeNotificationConfigurationsInput {
+	s.AutoScalingGroupNames = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeNotificationConfigurationsInput) SetMaxRecords(v int64) *DescribeNotificationConfigurationsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeNotificationConfigurationsInput) SetNextToken(v string) *DescribeNotificationConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output from DescribeNotificationConfigurations.
 type DescribeNotificationConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5908,6 +6604,18 @@ func (s DescribeNotificationConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeNotificationConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeNotificationConfigurationsOutput) SetNextToken(v string) *DescribeNotificationConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNotificationConfigurations sets the NotificationConfigurations field's value.
+func (s *DescribeNotificationConfigurationsOutput) SetNotificationConfigurations(v []*NotificationConfiguration) *DescribeNotificationConfigurationsOutput {
+	s.NotificationConfigurations = v
+	return s
 }
 
 // Contains the parameters for DescribePolicies.
@@ -5957,6 +6665,36 @@ func (s *DescribePoliciesInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DescribePoliciesInput) SetAutoScalingGroupName(v string) *DescribePoliciesInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribePoliciesInput) SetMaxRecords(v int64) *DescribePoliciesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribePoliciesInput) SetNextToken(v string) *DescribePoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPolicyNames sets the PolicyNames field's value.
+func (s *DescribePoliciesInput) SetPolicyNames(v []*string) *DescribePoliciesInput {
+	s.PolicyNames = v
+	return s
+}
+
+// SetPolicyTypes sets the PolicyTypes field's value.
+func (s *DescribePoliciesInput) SetPolicyTypes(v []*string) *DescribePoliciesInput {
+	s.PolicyTypes = v
+	return s
+}
+
 // Contains the output of DescribePolicies.
 type DescribePoliciesOutput struct {
 	_ struct{} `type:"structure"`
@@ -5977,6 +6715,18 @@ func (s DescribePoliciesOutput) String() string {
 // GoString returns the string representation
 func (s DescribePoliciesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribePoliciesOutput) SetNextToken(v string) *DescribePoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScalingPolicies sets the ScalingPolicies field's value.
+func (s *DescribePoliciesOutput) SetScalingPolicies(v []*ScalingPolicy) *DescribePoliciesOutput {
+	s.ScalingPolicies = v
+	return s
 }
 
 // Contains the parameters for DescribeScalingActivities.
@@ -6024,6 +6774,30 @@ func (s *DescribeScalingActivitiesInput) Validate() error {
 	return nil
 }
 
+// SetActivityIds sets the ActivityIds field's value.
+func (s *DescribeScalingActivitiesInput) SetActivityIds(v []*string) *DescribeScalingActivitiesInput {
+	s.ActivityIds = v
+	return s
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DescribeScalingActivitiesInput) SetAutoScalingGroupName(v string) *DescribeScalingActivitiesInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeScalingActivitiesInput) SetMaxRecords(v int64) *DescribeScalingActivitiesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingActivitiesInput) SetNextToken(v string) *DescribeScalingActivitiesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeScalingActivities.
 type DescribeScalingActivitiesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6047,6 +6821,18 @@ func (s DescribeScalingActivitiesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScalingActivitiesOutput) GoString() string {
 	return s.String()
+}
+
+// SetActivities sets the Activities field's value.
+func (s *DescribeScalingActivitiesOutput) SetActivities(v []*Activity) *DescribeScalingActivitiesOutput {
+	s.Activities = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingActivitiesOutput) SetNextToken(v string) *DescribeScalingActivitiesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeScalingProcessTypesInput struct {
@@ -6079,6 +6865,12 @@ func (s DescribeScalingProcessTypesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScalingProcessTypesOutput) GoString() string {
 	return s.String()
+}
+
+// SetProcesses sets the Processes field's value.
+func (s *DescribeScalingProcessTypesOutput) SetProcesses(v []*ProcessType) *DescribeScalingProcessTypesOutput {
+	s.Processes = v
+	return s
 }
 
 // Contains the parameters for DescribeScheduledActions.
@@ -6136,6 +6928,42 @@ func (s *DescribeScheduledActionsInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DescribeScheduledActionsInput) SetAutoScalingGroupName(v string) *DescribeScheduledActionsInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeScheduledActionsInput) SetEndTime(v time.Time) *DescribeScheduledActionsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeScheduledActionsInput) SetMaxRecords(v int64) *DescribeScheduledActionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScheduledActionsInput) SetNextToken(v string) *DescribeScheduledActionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledActionNames sets the ScheduledActionNames field's value.
+func (s *DescribeScheduledActionsInput) SetScheduledActionNames(v []*string) *DescribeScheduledActionsInput {
+	s.ScheduledActionNames = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeScheduledActionsInput) SetStartTime(v time.Time) *DescribeScheduledActionsInput {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the output of DescribeScheduledActions.
 type DescribeScheduledActionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6156,6 +6984,18 @@ func (s DescribeScheduledActionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScheduledActionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScheduledActionsOutput) SetNextToken(v string) *DescribeScheduledActionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledUpdateGroupActions sets the ScheduledUpdateGroupActions field's value.
+func (s *DescribeScheduledActionsOutput) SetScheduledUpdateGroupActions(v []*ScheduledUpdateGroupAction) *DescribeScheduledActionsOutput {
+	s.ScheduledUpdateGroupActions = v
+	return s
 }
 
 // Contains the parameters for DescribeTags.
@@ -6183,6 +7023,24 @@ func (s DescribeTagsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeTagsInput) SetFilters(v []*Filter) *DescribeTagsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeTagsInput) SetMaxRecords(v int64) *DescribeTagsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeTagsInput) SetNextToken(v string) *DescribeTagsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeTags.
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6203,6 +7061,18 @@ func (s DescribeTagsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeTagsOutput) SetNextToken(v string) *DescribeTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeTagsOutput) SetTags(v []*TagDescription) *DescribeTagsOutput {
+	s.Tags = v
+	return s
 }
 
 type DescribeTerminationPolicyTypesInput struct {
@@ -6236,6 +7106,12 @@ func (s DescribeTerminationPolicyTypesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTerminationPolicyTypesOutput) GoString() string {
 	return s.String()
+}
+
+// SetTerminationPolicyTypes sets the TerminationPolicyTypes field's value.
+func (s *DescribeTerminationPolicyTypesOutput) SetTerminationPolicyTypes(v []*string) *DescribeTerminationPolicyTypesOutput {
+	s.TerminationPolicyTypes = v
+	return s
 }
 
 // Contains the parameters for DetachInstances.
@@ -6286,6 +7162,24 @@ func (s *DetachInstancesInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DetachInstancesInput) SetAutoScalingGroupName(v string) *DetachInstancesInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *DetachInstancesInput) SetInstanceIds(v []*string) *DetachInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetShouldDecrementDesiredCapacity sets the ShouldDecrementDesiredCapacity field's value.
+func (s *DetachInstancesInput) SetShouldDecrementDesiredCapacity(v bool) *DetachInstancesInput {
+	s.ShouldDecrementDesiredCapacity = &v
+	return s
+}
+
 // Contains the output of DetachInstances.
 type DetachInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6302,6 +7196,12 @@ func (s DetachInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DetachInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetActivities sets the Activities field's value.
+func (s *DetachInstancesOutput) SetActivities(v []*Activity) *DetachInstancesOutput {
+	s.Activities = v
+	return s
 }
 
 type DetachLoadBalancerTargetGroupsInput struct {
@@ -6345,6 +7245,18 @@ func (s *DetachLoadBalancerTargetGroupsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DetachLoadBalancerTargetGroupsInput) SetAutoScalingGroupName(v string) *DetachLoadBalancerTargetGroupsInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetTargetGroupARNs sets the TargetGroupARNs field's value.
+func (s *DetachLoadBalancerTargetGroupsInput) SetTargetGroupARNs(v []*string) *DetachLoadBalancerTargetGroupsInput {
+	s.TargetGroupARNs = v
+	return s
 }
 
 type DetachLoadBalancerTargetGroupsOutput struct {
@@ -6403,6 +7315,18 @@ func (s *DetachLoadBalancersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DetachLoadBalancersInput) SetAutoScalingGroupName(v string) *DetachLoadBalancersInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetLoadBalancerNames sets the LoadBalancerNames field's value.
+func (s *DetachLoadBalancersInput) SetLoadBalancerNames(v []*string) *DetachLoadBalancersInput {
+	s.LoadBalancerNames = v
+	return s
 }
 
 // Contains the output for DetachLoadBalancers.
@@ -6474,6 +7398,18 @@ func (s *DisableMetricsCollectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *DisableMetricsCollectionInput) SetAutoScalingGroupName(v string) *DisableMetricsCollectionInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *DisableMetricsCollectionInput) SetMetrics(v []*string) *DisableMetricsCollectionInput {
+	s.Metrics = v
+	return s
 }
 
 type DisableMetricsCollectionOutput struct {
@@ -6566,6 +7502,42 @@ func (s *Ebs) Validate() error {
 	return nil
 }
 
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *Ebs) SetDeleteOnTermination(v bool) *Ebs {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *Ebs) SetEncrypted(v bool) *Ebs {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *Ebs) SetIops(v int64) *Ebs {
+	s.Iops = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *Ebs) SetSnapshotId(v string) *Ebs {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *Ebs) SetVolumeSize(v int64) *Ebs {
+	s.VolumeSize = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *Ebs) SetVolumeType(v string) *Ebs {
+	s.VolumeType = &v
+	return s
+}
+
 // Contains the parameters for EnableMetricsCollection.
 type EnableMetricsCollectionInput struct {
 	_ struct{} `type:"structure"`
@@ -6634,6 +7606,24 @@ func (s *EnableMetricsCollectionInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *EnableMetricsCollectionInput) SetAutoScalingGroupName(v string) *EnableMetricsCollectionInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *EnableMetricsCollectionInput) SetGranularity(v string) *EnableMetricsCollectionInput {
+	s.Granularity = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *EnableMetricsCollectionInput) SetMetrics(v []*string) *EnableMetricsCollectionInput {
+	s.Metrics = v
+	return s
+}
+
 type EnableMetricsCollectionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6683,6 +7673,18 @@ func (s EnabledMetric) String() string {
 // GoString returns the string representation
 func (s EnabledMetric) GoString() string {
 	return s.String()
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *EnabledMetric) SetGranularity(v string) *EnabledMetric {
+	s.Granularity = &v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *EnabledMetric) SetMetric(v string) *EnabledMetric {
+	s.Metric = &v
+	return s
 }
 
 // Contains the parameters for EnteStandby.
@@ -6736,6 +7738,24 @@ func (s *EnterStandbyInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *EnterStandbyInput) SetAutoScalingGroupName(v string) *EnterStandbyInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *EnterStandbyInput) SetInstanceIds(v []*string) *EnterStandbyInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetShouldDecrementDesiredCapacity sets the ShouldDecrementDesiredCapacity field's value.
+func (s *EnterStandbyInput) SetShouldDecrementDesiredCapacity(v bool) *EnterStandbyInput {
+	s.ShouldDecrementDesiredCapacity = &v
+	return s
+}
+
 // Contains the output of EnterStandby.
 type EnterStandbyOutput struct {
 	_ struct{} `type:"structure"`
@@ -6752,6 +7772,12 @@ func (s EnterStandbyOutput) String() string {
 // GoString returns the string representation
 func (s EnterStandbyOutput) GoString() string {
 	return s.String()
+}
+
+// SetActivities sets the Activities field's value.
+func (s *EnterStandbyOutput) SetActivities(v []*Activity) *EnterStandbyOutput {
+	s.Activities = v
+	return s
 }
 
 // Contains the parameters for ExecutePolicy.
@@ -6825,6 +7851,36 @@ func (s *ExecutePolicyInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *ExecutePolicyInput) SetAutoScalingGroupName(v string) *ExecutePolicyInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetBreachThreshold sets the BreachThreshold field's value.
+func (s *ExecutePolicyInput) SetBreachThreshold(v float64) *ExecutePolicyInput {
+	s.BreachThreshold = &v
+	return s
+}
+
+// SetHonorCooldown sets the HonorCooldown field's value.
+func (s *ExecutePolicyInput) SetHonorCooldown(v bool) *ExecutePolicyInput {
+	s.HonorCooldown = &v
+	return s
+}
+
+// SetMetricValue sets the MetricValue field's value.
+func (s *ExecutePolicyInput) SetMetricValue(v float64) *ExecutePolicyInput {
+	s.MetricValue = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *ExecutePolicyInput) SetPolicyName(v string) *ExecutePolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
 type ExecutePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6878,6 +7934,18 @@ func (s *ExitStandbyInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *ExitStandbyInput) SetAutoScalingGroupName(v string) *ExitStandbyInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *ExitStandbyInput) SetInstanceIds(v []*string) *ExitStandbyInput {
+	s.InstanceIds = v
+	return s
+}
+
 // Contains the parameters for ExitStandby.
 type ExitStandbyOutput struct {
 	_ struct{} `type:"structure"`
@@ -6894,6 +7962,12 @@ func (s ExitStandbyOutput) String() string {
 // GoString returns the string representation
 func (s ExitStandbyOutput) GoString() string {
 	return s.String()
+}
+
+// SetActivities sets the Activities field's value.
+func (s *ExitStandbyOutput) SetActivities(v []*Activity) *ExitStandbyOutput {
+	s.Activities = v
+	return s
 }
 
 // Describes a filter.
@@ -6916,6 +7990,18 @@ func (s Filter) String() string {
 // GoString returns the string representation
 func (s Filter) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
+	return s
 }
 
 // Describes an Auto Scaling group.
@@ -7023,6 +8109,138 @@ func (s Group) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroupARN sets the AutoScalingGroupARN field's value.
+func (s *Group) SetAutoScalingGroupARN(v string) *Group {
+	s.AutoScalingGroupARN = &v
+	return s
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *Group) SetAutoScalingGroupName(v string) *Group {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *Group) SetAvailabilityZones(v []*string) *Group {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Group) SetCreatedTime(v time.Time) *Group {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDefaultCooldown sets the DefaultCooldown field's value.
+func (s *Group) SetDefaultCooldown(v int64) *Group {
+	s.DefaultCooldown = &v
+	return s
+}
+
+// SetDesiredCapacity sets the DesiredCapacity field's value.
+func (s *Group) SetDesiredCapacity(v int64) *Group {
+	s.DesiredCapacity = &v
+	return s
+}
+
+// SetEnabledMetrics sets the EnabledMetrics field's value.
+func (s *Group) SetEnabledMetrics(v []*EnabledMetric) *Group {
+	s.EnabledMetrics = v
+	return s
+}
+
+// SetHealthCheckGracePeriod sets the HealthCheckGracePeriod field's value.
+func (s *Group) SetHealthCheckGracePeriod(v int64) *Group {
+	s.HealthCheckGracePeriod = &v
+	return s
+}
+
+// SetHealthCheckType sets the HealthCheckType field's value.
+func (s *Group) SetHealthCheckType(v string) *Group {
+	s.HealthCheckType = &v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *Group) SetInstances(v []*Instance) *Group {
+	s.Instances = v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *Group) SetLaunchConfigurationName(v string) *Group {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetLoadBalancerNames sets the LoadBalancerNames field's value.
+func (s *Group) SetLoadBalancerNames(v []*string) *Group {
+	s.LoadBalancerNames = v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *Group) SetMaxSize(v int64) *Group {
+	s.MaxSize = &v
+	return s
+}
+
+// SetMinSize sets the MinSize field's value.
+func (s *Group) SetMinSize(v int64) *Group {
+	s.MinSize = &v
+	return s
+}
+
+// SetNewInstancesProtectedFromScaleIn sets the NewInstancesProtectedFromScaleIn field's value.
+func (s *Group) SetNewInstancesProtectedFromScaleIn(v bool) *Group {
+	s.NewInstancesProtectedFromScaleIn = &v
+	return s
+}
+
+// SetPlacementGroup sets the PlacementGroup field's value.
+func (s *Group) SetPlacementGroup(v string) *Group {
+	s.PlacementGroup = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Group) SetStatus(v string) *Group {
+	s.Status = &v
+	return s
+}
+
+// SetSuspendedProcesses sets the SuspendedProcesses field's value.
+func (s *Group) SetSuspendedProcesses(v []*SuspendedProcess) *Group {
+	s.SuspendedProcesses = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Group) SetTags(v []*TagDescription) *Group {
+	s.Tags = v
+	return s
+}
+
+// SetTargetGroupARNs sets the TargetGroupARNs field's value.
+func (s *Group) SetTargetGroupARNs(v []*string) *Group {
+	s.TargetGroupARNs = v
+	return s
+}
+
+// SetTerminationPolicies sets the TerminationPolicies field's value.
+func (s *Group) SetTerminationPolicies(v []*string) *Group {
+	s.TerminationPolicies = v
+	return s
+}
+
+// SetVPCZoneIdentifier sets the VPCZoneIdentifier field's value.
+func (s *Group) SetVPCZoneIdentifier(v string) *Group {
+	s.VPCZoneIdentifier = &v
+	return s
+}
+
 // Describes an EC2 instance.
 type Instance struct {
 	_ struct{} `type:"structure"`
@@ -7070,6 +8288,42 @@ func (s Instance) String() string {
 // GoString returns the string representation
 func (s Instance) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *Instance) SetAvailabilityZone(v string) *Instance {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *Instance) SetHealthStatus(v string) *Instance {
+	s.HealthStatus = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *Instance) SetInstanceId(v string) *Instance {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *Instance) SetLaunchConfigurationName(v string) *Instance {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetLifecycleState sets the LifecycleState field's value.
+func (s *Instance) SetLifecycleState(v string) *Instance {
+	s.LifecycleState = &v
+	return s
+}
+
+// SetProtectedFromScaleIn sets the ProtectedFromScaleIn field's value.
+func (s *Instance) SetProtectedFromScaleIn(v bool) *Instance {
+	s.ProtectedFromScaleIn = &v
+	return s
 }
 
 // Describes an EC2 instance associated with an Auto Scaling group.
@@ -7127,6 +8381,48 @@ func (s InstanceDetails) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *InstanceDetails) SetAutoScalingGroupName(v string) *InstanceDetails {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *InstanceDetails) SetAvailabilityZone(v string) *InstanceDetails {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *InstanceDetails) SetHealthStatus(v string) *InstanceDetails {
+	s.HealthStatus = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *InstanceDetails) SetInstanceId(v string) *InstanceDetails {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *InstanceDetails) SetLaunchConfigurationName(v string) *InstanceDetails {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetLifecycleState sets the LifecycleState field's value.
+func (s *InstanceDetails) SetLifecycleState(v string) *InstanceDetails {
+	s.LifecycleState = &v
+	return s
+}
+
+// SetProtectedFromScaleIn sets the ProtectedFromScaleIn field's value.
+func (s *InstanceDetails) SetProtectedFromScaleIn(v bool) *InstanceDetails {
+	s.ProtectedFromScaleIn = &v
+	return s
+}
+
 // Describes whether instance monitoring is enabled.
 type InstanceMonitoring struct {
 	_ struct{} `type:"structure"`
@@ -7143,6 +8439,12 @@ func (s InstanceMonitoring) String() string {
 // GoString returns the string representation
 func (s InstanceMonitoring) GoString() string {
 	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *InstanceMonitoring) SetEnabled(v bool) *InstanceMonitoring {
+	s.Enabled = &v
+	return s
 }
 
 // Describes a launch configuration.
@@ -7235,6 +8537,120 @@ func (s LaunchConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetAssociatePublicIpAddress sets the AssociatePublicIpAddress field's value.
+func (s *LaunchConfiguration) SetAssociatePublicIpAddress(v bool) *LaunchConfiguration {
+	s.AssociatePublicIpAddress = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *LaunchConfiguration) SetBlockDeviceMappings(v []*BlockDeviceMapping) *LaunchConfiguration {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetClassicLinkVPCId sets the ClassicLinkVPCId field's value.
+func (s *LaunchConfiguration) SetClassicLinkVPCId(v string) *LaunchConfiguration {
+	s.ClassicLinkVPCId = &v
+	return s
+}
+
+// SetClassicLinkVPCSecurityGroups sets the ClassicLinkVPCSecurityGroups field's value.
+func (s *LaunchConfiguration) SetClassicLinkVPCSecurityGroups(v []*string) *LaunchConfiguration {
+	s.ClassicLinkVPCSecurityGroups = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *LaunchConfiguration) SetCreatedTime(v time.Time) *LaunchConfiguration {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *LaunchConfiguration) SetEbsOptimized(v bool) *LaunchConfiguration {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *LaunchConfiguration) SetIamInstanceProfile(v string) *LaunchConfiguration {
+	s.IamInstanceProfile = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *LaunchConfiguration) SetImageId(v string) *LaunchConfiguration {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceMonitoring sets the InstanceMonitoring field's value.
+func (s *LaunchConfiguration) SetInstanceMonitoring(v *InstanceMonitoring) *LaunchConfiguration {
+	s.InstanceMonitoring = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *LaunchConfiguration) SetInstanceType(v string) *LaunchConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *LaunchConfiguration) SetKernelId(v string) *LaunchConfiguration {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *LaunchConfiguration) SetKeyName(v string) *LaunchConfiguration {
+	s.KeyName = &v
+	return s
+}
+
+// SetLaunchConfigurationARN sets the LaunchConfigurationARN field's value.
+func (s *LaunchConfiguration) SetLaunchConfigurationARN(v string) *LaunchConfiguration {
+	s.LaunchConfigurationARN = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *LaunchConfiguration) SetLaunchConfigurationName(v string) *LaunchConfiguration {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetPlacementTenancy sets the PlacementTenancy field's value.
+func (s *LaunchConfiguration) SetPlacementTenancy(v string) *LaunchConfiguration {
+	s.PlacementTenancy = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *LaunchConfiguration) SetRamdiskId(v string) *LaunchConfiguration {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *LaunchConfiguration) SetSecurityGroups(v []*string) *LaunchConfiguration {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *LaunchConfiguration) SetSpotPrice(v string) *LaunchConfiguration {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *LaunchConfiguration) SetUserData(v string) *LaunchConfiguration {
+	s.UserData = &v
+	return s
+}
+
 // Describes a lifecycle hook, which tells Auto Scaling that you want to perform
 // an action when an instance launches or terminates. When you have a lifecycle
 // hook in place, the Auto Scaling group will either:
@@ -7313,6 +8729,60 @@ func (s LifecycleHook) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *LifecycleHook) SetAutoScalingGroupName(v string) *LifecycleHook {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetDefaultResult sets the DefaultResult field's value.
+func (s *LifecycleHook) SetDefaultResult(v string) *LifecycleHook {
+	s.DefaultResult = &v
+	return s
+}
+
+// SetGlobalTimeout sets the GlobalTimeout field's value.
+func (s *LifecycleHook) SetGlobalTimeout(v int64) *LifecycleHook {
+	s.GlobalTimeout = &v
+	return s
+}
+
+// SetHeartbeatTimeout sets the HeartbeatTimeout field's value.
+func (s *LifecycleHook) SetHeartbeatTimeout(v int64) *LifecycleHook {
+	s.HeartbeatTimeout = &v
+	return s
+}
+
+// SetLifecycleHookName sets the LifecycleHookName field's value.
+func (s *LifecycleHook) SetLifecycleHookName(v string) *LifecycleHook {
+	s.LifecycleHookName = &v
+	return s
+}
+
+// SetLifecycleTransition sets the LifecycleTransition field's value.
+func (s *LifecycleHook) SetLifecycleTransition(v string) *LifecycleHook {
+	s.LifecycleTransition = &v
+	return s
+}
+
+// SetNotificationMetadata sets the NotificationMetadata field's value.
+func (s *LifecycleHook) SetNotificationMetadata(v string) *LifecycleHook {
+	s.NotificationMetadata = &v
+	return s
+}
+
+// SetNotificationTargetARN sets the NotificationTargetARN field's value.
+func (s *LifecycleHook) SetNotificationTargetARN(v string) *LifecycleHook {
+	s.NotificationTargetARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *LifecycleHook) SetRoleARN(v string) *LifecycleHook {
+	s.RoleARN = &v
+	return s
+}
+
 // Describes the state of a Classic load balancer.
 //
 // If you specify a load balancer when creating the Auto Scaling group, the
@@ -7359,6 +8829,18 @@ func (s LoadBalancerState) GoString() string {
 	return s.String()
 }
 
+// SetLoadBalancerName sets the LoadBalancerName field's value.
+func (s *LoadBalancerState) SetLoadBalancerName(v string) *LoadBalancerState {
+	s.LoadBalancerName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *LoadBalancerState) SetState(v string) *LoadBalancerState {
+	s.State = &v
+	return s
+}
+
 // Describes the state of a target group.
 //
 // If you attach a target group to an existing Auto Scaling group, the initial
@@ -7402,6 +8884,18 @@ func (s LoadBalancerTargetGroupState) GoString() string {
 	return s.String()
 }
 
+// SetLoadBalancerTargetGroupARN sets the LoadBalancerTargetGroupARN field's value.
+func (s *LoadBalancerTargetGroupState) SetLoadBalancerTargetGroupARN(v string) *LoadBalancerTargetGroupState {
+	s.LoadBalancerTargetGroupARN = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *LoadBalancerTargetGroupState) SetState(v string) *LoadBalancerTargetGroupState {
+	s.State = &v
+	return s
+}
+
 // Describes a metric.
 type MetricCollectionType struct {
 	_ struct{} `type:"structure"`
@@ -7436,6 +8930,12 @@ func (s MetricCollectionType) GoString() string {
 	return s.String()
 }
 
+// SetMetric sets the Metric field's value.
+func (s *MetricCollectionType) SetMetric(v string) *MetricCollectionType {
+	s.Metric = &v
+	return s
+}
+
 // Describes a granularity of a metric.
 type MetricGranularityType struct {
 	_ struct{} `type:"structure"`
@@ -7452,6 +8952,12 @@ func (s MetricGranularityType) String() string {
 // GoString returns the string representation
 func (s MetricGranularityType) GoString() string {
 	return s.String()
+}
+
+// SetGranularity sets the Granularity field's value.
+func (s *MetricGranularityType) SetGranularity(v string) *MetricGranularityType {
+	s.Granularity = &v
+	return s
 }
 
 // Describes a notification.
@@ -7487,6 +8993,24 @@ func (s NotificationConfiguration) String() string {
 // GoString returns the string representation
 func (s NotificationConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *NotificationConfiguration) SetAutoScalingGroupName(v string) *NotificationConfiguration {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetNotificationType sets the NotificationType field's value.
+func (s *NotificationConfiguration) SetNotificationType(v string) *NotificationConfiguration {
+	s.NotificationType = &v
+	return s
+}
+
+// SetTopicARN sets the TopicARN field's value.
+func (s *NotificationConfiguration) SetTopicARN(v string) *NotificationConfiguration {
+	s.TopicARN = &v
+	return s
 }
 
 // Describes a process type.
@@ -7526,6 +9050,12 @@ func (s ProcessType) String() string {
 // GoString returns the string representation
 func (s ProcessType) GoString() string {
 	return s.String()
+}
+
+// SetProcessName sets the ProcessName field's value.
+func (s *ProcessType) SetProcessName(v string) *ProcessType {
+	s.ProcessName = &v
+	return s
 }
 
 // Contains the parameters for PutLifecycleHook.
@@ -7625,6 +9155,54 @@ func (s *PutLifecycleHookInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *PutLifecycleHookInput) SetAutoScalingGroupName(v string) *PutLifecycleHookInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetDefaultResult sets the DefaultResult field's value.
+func (s *PutLifecycleHookInput) SetDefaultResult(v string) *PutLifecycleHookInput {
+	s.DefaultResult = &v
+	return s
+}
+
+// SetHeartbeatTimeout sets the HeartbeatTimeout field's value.
+func (s *PutLifecycleHookInput) SetHeartbeatTimeout(v int64) *PutLifecycleHookInput {
+	s.HeartbeatTimeout = &v
+	return s
+}
+
+// SetLifecycleHookName sets the LifecycleHookName field's value.
+func (s *PutLifecycleHookInput) SetLifecycleHookName(v string) *PutLifecycleHookInput {
+	s.LifecycleHookName = &v
+	return s
+}
+
+// SetLifecycleTransition sets the LifecycleTransition field's value.
+func (s *PutLifecycleHookInput) SetLifecycleTransition(v string) *PutLifecycleHookInput {
+	s.LifecycleTransition = &v
+	return s
+}
+
+// SetNotificationMetadata sets the NotificationMetadata field's value.
+func (s *PutLifecycleHookInput) SetNotificationMetadata(v string) *PutLifecycleHookInput {
+	s.NotificationMetadata = &v
+	return s
+}
+
+// SetNotificationTargetARN sets the NotificationTargetARN field's value.
+func (s *PutLifecycleHookInput) SetNotificationTargetARN(v string) *PutLifecycleHookInput {
+	s.NotificationTargetARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *PutLifecycleHookInput) SetRoleARN(v string) *PutLifecycleHookInput {
+	s.RoleARN = &v
+	return s
+}
+
 // Contains the output of PutLifecycleHook.
 type PutLifecycleHookOutput struct {
 	_ struct{} `type:"structure"`
@@ -7695,6 +9273,24 @@ func (s *PutNotificationConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *PutNotificationConfigurationInput) SetAutoScalingGroupName(v string) *PutNotificationConfigurationInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetNotificationTypes sets the NotificationTypes field's value.
+func (s *PutNotificationConfigurationInput) SetNotificationTypes(v []*string) *PutNotificationConfigurationInput {
+	s.NotificationTypes = v
+	return s
+}
+
+// SetTopicARN sets the TopicARN field's value.
+func (s *PutNotificationConfigurationInput) SetTopicARN(v string) *PutNotificationConfigurationInput {
+	s.TopicARN = &v
+	return s
 }
 
 type PutNotificationConfigurationOutput struct {
@@ -7841,6 +9437,72 @@ func (s *PutScalingPolicyInput) Validate() error {
 	return nil
 }
 
+// SetAdjustmentType sets the AdjustmentType field's value.
+func (s *PutScalingPolicyInput) SetAdjustmentType(v string) *PutScalingPolicyInput {
+	s.AdjustmentType = &v
+	return s
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *PutScalingPolicyInput) SetAutoScalingGroupName(v string) *PutScalingPolicyInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetCooldown sets the Cooldown field's value.
+func (s *PutScalingPolicyInput) SetCooldown(v int64) *PutScalingPolicyInput {
+	s.Cooldown = &v
+	return s
+}
+
+// SetEstimatedInstanceWarmup sets the EstimatedInstanceWarmup field's value.
+func (s *PutScalingPolicyInput) SetEstimatedInstanceWarmup(v int64) *PutScalingPolicyInput {
+	s.EstimatedInstanceWarmup = &v
+	return s
+}
+
+// SetMetricAggregationType sets the MetricAggregationType field's value.
+func (s *PutScalingPolicyInput) SetMetricAggregationType(v string) *PutScalingPolicyInput {
+	s.MetricAggregationType = &v
+	return s
+}
+
+// SetMinAdjustmentMagnitude sets the MinAdjustmentMagnitude field's value.
+func (s *PutScalingPolicyInput) SetMinAdjustmentMagnitude(v int64) *PutScalingPolicyInput {
+	s.MinAdjustmentMagnitude = &v
+	return s
+}
+
+// SetMinAdjustmentStep sets the MinAdjustmentStep field's value.
+func (s *PutScalingPolicyInput) SetMinAdjustmentStep(v int64) *PutScalingPolicyInput {
+	s.MinAdjustmentStep = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *PutScalingPolicyInput) SetPolicyName(v string) *PutScalingPolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyType sets the PolicyType field's value.
+func (s *PutScalingPolicyInput) SetPolicyType(v string) *PutScalingPolicyInput {
+	s.PolicyType = &v
+	return s
+}
+
+// SetScalingAdjustment sets the ScalingAdjustment field's value.
+func (s *PutScalingPolicyInput) SetScalingAdjustment(v int64) *PutScalingPolicyInput {
+	s.ScalingAdjustment = &v
+	return s
+}
+
+// SetStepAdjustments sets the StepAdjustments field's value.
+func (s *PutScalingPolicyInput) SetStepAdjustments(v []*StepAdjustment) *PutScalingPolicyInput {
+	s.StepAdjustments = v
+	return s
+}
+
 // Contains the output of PutScalingPolicy.
 type PutScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -7857,6 +9519,12 @@ func (s PutScalingPolicyOutput) String() string {
 // GoString returns the string representation
 func (s PutScalingPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetPolicyARN sets the PolicyARN field's value.
+func (s *PutScalingPolicyOutput) SetPolicyARN(v string) *PutScalingPolicyOutput {
+	s.PolicyARN = &v
+	return s
 }
 
 // Contains the parameters for PutScheduledUpdateGroupAction.
@@ -7939,6 +9607,60 @@ func (s *PutScheduledUpdateGroupActionInput) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetAutoScalingGroupName(v string) *PutScheduledUpdateGroupActionInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetDesiredCapacity sets the DesiredCapacity field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetDesiredCapacity(v int64) *PutScheduledUpdateGroupActionInput {
+	s.DesiredCapacity = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetEndTime(v time.Time) *PutScheduledUpdateGroupActionInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetMaxSize(v int64) *PutScheduledUpdateGroupActionInput {
+	s.MaxSize = &v
+	return s
+}
+
+// SetMinSize sets the MinSize field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetMinSize(v int64) *PutScheduledUpdateGroupActionInput {
+	s.MinSize = &v
+	return s
+}
+
+// SetRecurrence sets the Recurrence field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetRecurrence(v string) *PutScheduledUpdateGroupActionInput {
+	s.Recurrence = &v
+	return s
+}
+
+// SetScheduledActionName sets the ScheduledActionName field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetScheduledActionName(v string) *PutScheduledUpdateGroupActionInput {
+	s.ScheduledActionName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetStartTime(v time.Time) *PutScheduledUpdateGroupActionInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetTime sets the Time field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetTime(v time.Time) *PutScheduledUpdateGroupActionInput {
+	s.Time = &v
+	return s
+}
+
 type PutScheduledUpdateGroupActionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8012,6 +9734,30 @@ func (s *RecordLifecycleActionHeartbeatInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *RecordLifecycleActionHeartbeatInput) SetAutoScalingGroupName(v string) *RecordLifecycleActionHeartbeatInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *RecordLifecycleActionHeartbeatInput) SetInstanceId(v string) *RecordLifecycleActionHeartbeatInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLifecycleActionToken sets the LifecycleActionToken field's value.
+func (s *RecordLifecycleActionHeartbeatInput) SetLifecycleActionToken(v string) *RecordLifecycleActionHeartbeatInput {
+	s.LifecycleActionToken = &v
+	return s
+}
+
+// SetLifecycleHookName sets the LifecycleHookName field's value.
+func (s *RecordLifecycleActionHeartbeatInput) SetLifecycleHookName(v string) *RecordLifecycleActionHeartbeatInput {
+	s.LifecycleHookName = &v
+	return s
 }
 
 // Contains the output of RecordLifecycleActionHeartBeat.
@@ -8107,6 +9853,84 @@ func (s ScalingPolicy) GoString() string {
 	return s.String()
 }
 
+// SetAdjustmentType sets the AdjustmentType field's value.
+func (s *ScalingPolicy) SetAdjustmentType(v string) *ScalingPolicy {
+	s.AdjustmentType = &v
+	return s
+}
+
+// SetAlarms sets the Alarms field's value.
+func (s *ScalingPolicy) SetAlarms(v []*Alarm) *ScalingPolicy {
+	s.Alarms = v
+	return s
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *ScalingPolicy) SetAutoScalingGroupName(v string) *ScalingPolicy {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetCooldown sets the Cooldown field's value.
+func (s *ScalingPolicy) SetCooldown(v int64) *ScalingPolicy {
+	s.Cooldown = &v
+	return s
+}
+
+// SetEstimatedInstanceWarmup sets the EstimatedInstanceWarmup field's value.
+func (s *ScalingPolicy) SetEstimatedInstanceWarmup(v int64) *ScalingPolicy {
+	s.EstimatedInstanceWarmup = &v
+	return s
+}
+
+// SetMetricAggregationType sets the MetricAggregationType field's value.
+func (s *ScalingPolicy) SetMetricAggregationType(v string) *ScalingPolicy {
+	s.MetricAggregationType = &v
+	return s
+}
+
+// SetMinAdjustmentMagnitude sets the MinAdjustmentMagnitude field's value.
+func (s *ScalingPolicy) SetMinAdjustmentMagnitude(v int64) *ScalingPolicy {
+	s.MinAdjustmentMagnitude = &v
+	return s
+}
+
+// SetMinAdjustmentStep sets the MinAdjustmentStep field's value.
+func (s *ScalingPolicy) SetMinAdjustmentStep(v int64) *ScalingPolicy {
+	s.MinAdjustmentStep = &v
+	return s
+}
+
+// SetPolicyARN sets the PolicyARN field's value.
+func (s *ScalingPolicy) SetPolicyARN(v string) *ScalingPolicy {
+	s.PolicyARN = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *ScalingPolicy) SetPolicyName(v string) *ScalingPolicy {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyType sets the PolicyType field's value.
+func (s *ScalingPolicy) SetPolicyType(v string) *ScalingPolicy {
+	s.PolicyType = &v
+	return s
+}
+
+// SetScalingAdjustment sets the ScalingAdjustment field's value.
+func (s *ScalingPolicy) SetScalingAdjustment(v int64) *ScalingPolicy {
+	s.ScalingAdjustment = &v
+	return s
+}
+
+// SetStepAdjustments sets the StepAdjustments field's value.
+func (s *ScalingPolicy) SetStepAdjustments(v []*StepAdjustment) *ScalingPolicy {
+	s.StepAdjustments = v
+	return s
+}
+
 // Contains the parameters for SuspendProcesses and ResumeProcesses.
 type ScalingProcessQuery struct {
 	_ struct{} `type:"structure"`
@@ -8163,6 +9987,18 @@ func (s *ScalingProcessQuery) Validate() error {
 	return nil
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *ScalingProcessQuery) SetAutoScalingGroupName(v string) *ScalingProcessQuery {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetScalingProcesses sets the ScalingProcesses field's value.
+func (s *ScalingProcessQuery) SetScalingProcesses(v []*string) *ScalingProcessQuery {
+	s.ScalingProcesses = v
+	return s
+}
+
 // Describes a scheduled update to an Auto Scaling group.
 type ScheduledUpdateGroupAction struct {
 	_ struct{} `type:"structure"`
@@ -8213,6 +10049,66 @@ func (s ScheduledUpdateGroupAction) GoString() string {
 	return s.String()
 }
 
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *ScheduledUpdateGroupAction) SetAutoScalingGroupName(v string) *ScheduledUpdateGroupAction {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetDesiredCapacity sets the DesiredCapacity field's value.
+func (s *ScheduledUpdateGroupAction) SetDesiredCapacity(v int64) *ScheduledUpdateGroupAction {
+	s.DesiredCapacity = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ScheduledUpdateGroupAction) SetEndTime(v time.Time) *ScheduledUpdateGroupAction {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *ScheduledUpdateGroupAction) SetMaxSize(v int64) *ScheduledUpdateGroupAction {
+	s.MaxSize = &v
+	return s
+}
+
+// SetMinSize sets the MinSize field's value.
+func (s *ScheduledUpdateGroupAction) SetMinSize(v int64) *ScheduledUpdateGroupAction {
+	s.MinSize = &v
+	return s
+}
+
+// SetRecurrence sets the Recurrence field's value.
+func (s *ScheduledUpdateGroupAction) SetRecurrence(v string) *ScheduledUpdateGroupAction {
+	s.Recurrence = &v
+	return s
+}
+
+// SetScheduledActionARN sets the ScheduledActionARN field's value.
+func (s *ScheduledUpdateGroupAction) SetScheduledActionARN(v string) *ScheduledUpdateGroupAction {
+	s.ScheduledActionARN = &v
+	return s
+}
+
+// SetScheduledActionName sets the ScheduledActionName field's value.
+func (s *ScheduledUpdateGroupAction) SetScheduledActionName(v string) *ScheduledUpdateGroupAction {
+	s.ScheduledActionName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ScheduledUpdateGroupAction) SetStartTime(v time.Time) *ScheduledUpdateGroupAction {
+	s.StartTime = &v
+	return s
+}
+
+// SetTime sets the Time field's value.
+func (s *ScheduledUpdateGroupAction) SetTime(v time.Time) *ScheduledUpdateGroupAction {
+	s.Time = &v
+	return s
+}
+
 // Contains the parameters for SetDesiredCapacity.
 type SetDesiredCapacityInput struct {
 	_ struct{} `type:"structure"`
@@ -8261,6 +10157,24 @@ func (s *SetDesiredCapacityInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *SetDesiredCapacityInput) SetAutoScalingGroupName(v string) *SetDesiredCapacityInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetDesiredCapacity sets the DesiredCapacity field's value.
+func (s *SetDesiredCapacityInput) SetDesiredCapacity(v int64) *SetDesiredCapacityInput {
+	s.DesiredCapacity = &v
+	return s
+}
+
+// SetHonorCooldown sets the HonorCooldown field's value.
+func (s *SetDesiredCapacityInput) SetHonorCooldown(v bool) *SetDesiredCapacityInput {
+	s.HonorCooldown = &v
+	return s
 }
 
 type SetDesiredCapacityOutput struct {
@@ -8335,6 +10249,24 @@ func (s *SetInstanceHealthInput) Validate() error {
 	return nil
 }
 
+// SetHealthStatus sets the HealthStatus field's value.
+func (s *SetInstanceHealthInput) SetHealthStatus(v string) *SetInstanceHealthInput {
+	s.HealthStatus = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SetInstanceHealthInput) SetInstanceId(v string) *SetInstanceHealthInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetShouldRespectGracePeriod sets the ShouldRespectGracePeriod field's value.
+func (s *SetInstanceHealthInput) SetShouldRespectGracePeriod(v bool) *SetInstanceHealthInput {
+	s.ShouldRespectGracePeriod = &v
+	return s
+}
+
 type SetInstanceHealthOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8400,6 +10332,24 @@ func (s *SetInstanceProtectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *SetInstanceProtectionInput) SetAutoScalingGroupName(v string) *SetInstanceProtectionInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *SetInstanceProtectionInput) SetInstanceIds(v []*string) *SetInstanceProtectionInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetProtectedFromScaleIn sets the ProtectedFromScaleIn field's value.
+func (s *SetInstanceProtectionInput) SetProtectedFromScaleIn(v bool) *SetInstanceProtectionInput {
+	s.ProtectedFromScaleIn = &v
+	return s
 }
 
 // Contains the output of SetInstanceProtection.
@@ -8496,6 +10446,24 @@ func (s *StepAdjustment) Validate() error {
 	return nil
 }
 
+// SetMetricIntervalLowerBound sets the MetricIntervalLowerBound field's value.
+func (s *StepAdjustment) SetMetricIntervalLowerBound(v float64) *StepAdjustment {
+	s.MetricIntervalLowerBound = &v
+	return s
+}
+
+// SetMetricIntervalUpperBound sets the MetricIntervalUpperBound field's value.
+func (s *StepAdjustment) SetMetricIntervalUpperBound(v float64) *StepAdjustment {
+	s.MetricIntervalUpperBound = &v
+	return s
+}
+
+// SetScalingAdjustment sets the ScalingAdjustment field's value.
+func (s *StepAdjustment) SetScalingAdjustment(v int64) *StepAdjustment {
+	s.ScalingAdjustment = &v
+	return s
+}
+
 type SuspendProcessesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8530,6 +10498,18 @@ func (s SuspendedProcess) String() string {
 // GoString returns the string representation
 func (s SuspendedProcess) GoString() string {
 	return s.String()
+}
+
+// SetProcessName sets the ProcessName field's value.
+func (s *SuspendedProcess) SetProcessName(v string) *SuspendedProcess {
+	s.ProcessName = &v
+	return s
+}
+
+// SetSuspensionReason sets the SuspensionReason field's value.
+func (s *SuspendedProcess) SetSuspensionReason(v string) *SuspendedProcess {
+	s.SuspensionReason = &v
+	return s
 }
 
 // Describes a tag for an Auto Scaling group.
@@ -8581,6 +10561,36 @@ func (s *Tag) Validate() error {
 	return nil
 }
 
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetPropagateAtLaunch sets the PropagateAtLaunch field's value.
+func (s *Tag) SetPropagateAtLaunch(v bool) *Tag {
+	s.PropagateAtLaunch = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *Tag) SetResourceId(v string) *Tag {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *Tag) SetResourceType(v string) *Tag {
+	s.ResourceType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
 // Describes a tag for an Auto Scaling group.
 type TagDescription struct {
 	_ struct{} `type:"structure"`
@@ -8610,6 +10620,36 @@ func (s TagDescription) String() string {
 // GoString returns the string representation
 func (s TagDescription) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *TagDescription) SetKey(v string) *TagDescription {
+	s.Key = &v
+	return s
+}
+
+// SetPropagateAtLaunch sets the PropagateAtLaunch field's value.
+func (s *TagDescription) SetPropagateAtLaunch(v bool) *TagDescription {
+	s.PropagateAtLaunch = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *TagDescription) SetResourceId(v string) *TagDescription {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TagDescription) SetResourceType(v string) *TagDescription {
+	s.ResourceType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TagDescription) SetValue(v string) *TagDescription {
+	s.Value = &v
+	return s
 }
 
 // Contains the parameters for TerminateInstanceInAutoScalingGroup.
@@ -8657,6 +10697,18 @@ func (s *TerminateInstanceInAutoScalingGroupInput) Validate() error {
 	return nil
 }
 
+// SetInstanceId sets the InstanceId field's value.
+func (s *TerminateInstanceInAutoScalingGroupInput) SetInstanceId(v string) *TerminateInstanceInAutoScalingGroupInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetShouldDecrementDesiredCapacity sets the ShouldDecrementDesiredCapacity field's value.
+func (s *TerminateInstanceInAutoScalingGroupInput) SetShouldDecrementDesiredCapacity(v bool) *TerminateInstanceInAutoScalingGroupInput {
+	s.ShouldDecrementDesiredCapacity = &v
+	return s
+}
+
 // Contains the output of TerminateInstancesInAutoScalingGroup.
 type TerminateInstanceInAutoScalingGroupOutput struct {
 	_ struct{} `type:"structure"`
@@ -8673,6 +10725,12 @@ func (s TerminateInstanceInAutoScalingGroupOutput) String() string {
 // GoString returns the string representation
 func (s TerminateInstanceInAutoScalingGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetActivity sets the Activity field's value.
+func (s *TerminateInstanceInAutoScalingGroupOutput) SetActivity(v *Activity) *TerminateInstanceInAutoScalingGroupOutput {
+	s.Activity = v
+	return s
 }
 
 // Contains the parameters for UpdateAutoScalingGroup.
@@ -8787,6 +10845,84 @@ func (s *UpdateAutoScalingGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoScalingGroupName sets the AutoScalingGroupName field's value.
+func (s *UpdateAutoScalingGroupInput) SetAutoScalingGroupName(v string) *UpdateAutoScalingGroupInput {
+	s.AutoScalingGroupName = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *UpdateAutoScalingGroupInput) SetAvailabilityZones(v []*string) *UpdateAutoScalingGroupInput {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetDefaultCooldown sets the DefaultCooldown field's value.
+func (s *UpdateAutoScalingGroupInput) SetDefaultCooldown(v int64) *UpdateAutoScalingGroupInput {
+	s.DefaultCooldown = &v
+	return s
+}
+
+// SetDesiredCapacity sets the DesiredCapacity field's value.
+func (s *UpdateAutoScalingGroupInput) SetDesiredCapacity(v int64) *UpdateAutoScalingGroupInput {
+	s.DesiredCapacity = &v
+	return s
+}
+
+// SetHealthCheckGracePeriod sets the HealthCheckGracePeriod field's value.
+func (s *UpdateAutoScalingGroupInput) SetHealthCheckGracePeriod(v int64) *UpdateAutoScalingGroupInput {
+	s.HealthCheckGracePeriod = &v
+	return s
+}
+
+// SetHealthCheckType sets the HealthCheckType field's value.
+func (s *UpdateAutoScalingGroupInput) SetHealthCheckType(v string) *UpdateAutoScalingGroupInput {
+	s.HealthCheckType = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *UpdateAutoScalingGroupInput) SetLaunchConfigurationName(v string) *UpdateAutoScalingGroupInput {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *UpdateAutoScalingGroupInput) SetMaxSize(v int64) *UpdateAutoScalingGroupInput {
+	s.MaxSize = &v
+	return s
+}
+
+// SetMinSize sets the MinSize field's value.
+func (s *UpdateAutoScalingGroupInput) SetMinSize(v int64) *UpdateAutoScalingGroupInput {
+	s.MinSize = &v
+	return s
+}
+
+// SetNewInstancesProtectedFromScaleIn sets the NewInstancesProtectedFromScaleIn field's value.
+func (s *UpdateAutoScalingGroupInput) SetNewInstancesProtectedFromScaleIn(v bool) *UpdateAutoScalingGroupInput {
+	s.NewInstancesProtectedFromScaleIn = &v
+	return s
+}
+
+// SetPlacementGroup sets the PlacementGroup field's value.
+func (s *UpdateAutoScalingGroupInput) SetPlacementGroup(v string) *UpdateAutoScalingGroupInput {
+	s.PlacementGroup = &v
+	return s
+}
+
+// SetTerminationPolicies sets the TerminationPolicies field's value.
+func (s *UpdateAutoScalingGroupInput) SetTerminationPolicies(v []*string) *UpdateAutoScalingGroupInput {
+	s.TerminationPolicies = v
+	return s
+}
+
+// SetVPCZoneIdentifier sets the VPCZoneIdentifier field's value.
+func (s *UpdateAutoScalingGroupInput) SetVPCZoneIdentifier(v string) *UpdateAutoScalingGroupInput {
+	s.VPCZoneIdentifier = &v
+	return s
 }
 
 type UpdateAutoScalingGroupOutput struct {

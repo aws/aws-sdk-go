@@ -3670,6 +3670,24 @@ func (s AccountSettings) GoString() string {
 	return s.String()
 }
 
+// SetAwsAccountNumber sets the AwsAccountNumber field's value.
+func (s *AccountSettings) SetAwsAccountNumber(v string) *AccountSettings {
+	s.AwsAccountNumber = &v
+	return s
+}
+
+// SetUnmeteredDevices sets the UnmeteredDevices field's value.
+func (s *AccountSettings) SetUnmeteredDevices(v map[string]*int64) *AccountSettings {
+	s.UnmeteredDevices = v
+	return s
+}
+
+// SetUnmeteredRemoteAccessDevices sets the UnmeteredRemoteAccessDevices field's value.
+func (s *AccountSettings) SetUnmeteredRemoteAccessDevices(v map[string]*int64) *AccountSettings {
+	s.UnmeteredRemoteAccessDevices = v
+	return s
+}
+
 // Represents the output of a test. Examples of artifacts include logs and screenshots.
 type Artifact struct {
 	_ struct{} `type:"structure"`
@@ -3750,6 +3768,36 @@ func (s Artifact) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Artifact) SetArn(v string) *Artifact {
+	s.Arn = &v
+	return s
+}
+
+// SetExtension sets the Extension field's value.
+func (s *Artifact) SetExtension(v string) *Artifact {
+	s.Extension = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Artifact) SetName(v string) *Artifact {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Artifact) SetType(v string) *Artifact {
+	s.Type = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *Artifact) SetUrl(v string) *Artifact {
+	s.Url = &v
+	return s
+}
+
 // Represents the amount of CPU that an app is using on a physical device.
 //
 // Note that this does not represent system-wide CPU usage.
@@ -3775,6 +3823,24 @@ func (s CPU) String() string {
 // GoString returns the string representation
 func (s CPU) GoString() string {
 	return s.String()
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *CPU) SetArchitecture(v string) *CPU {
+	s.Architecture = &v
+	return s
+}
+
+// SetClock sets the Clock field's value.
+func (s *CPU) SetClock(v float64) *CPU {
+	s.Clock = &v
+	return s
+}
+
+// SetFrequency sets the Frequency field's value.
+func (s *CPU) SetFrequency(v string) *CPU {
+	s.Frequency = &v
+	return s
 }
 
 // Represents entity counters.
@@ -3811,6 +3877,48 @@ func (s Counters) String() string {
 // GoString returns the string representation
 func (s Counters) GoString() string {
 	return s.String()
+}
+
+// SetErrored sets the Errored field's value.
+func (s *Counters) SetErrored(v int64) *Counters {
+	s.Errored = &v
+	return s
+}
+
+// SetFailed sets the Failed field's value.
+func (s *Counters) SetFailed(v int64) *Counters {
+	s.Failed = &v
+	return s
+}
+
+// SetPassed sets the Passed field's value.
+func (s *Counters) SetPassed(v int64) *Counters {
+	s.Passed = &v
+	return s
+}
+
+// SetSkipped sets the Skipped field's value.
+func (s *Counters) SetSkipped(v int64) *Counters {
+	s.Skipped = &v
+	return s
+}
+
+// SetStopped sets the Stopped field's value.
+func (s *Counters) SetStopped(v int64) *Counters {
+	s.Stopped = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *Counters) SetTotal(v int64) *Counters {
+	s.Total = &v
+	return s
+}
+
+// SetWarned sets the Warned field's value.
+func (s *Counters) SetWarned(v int64) *Counters {
+	s.Warned = &v
+	return s
 }
 
 // Represents a request to the create device pool operation.
@@ -3868,6 +3976,30 @@ func (s *CreateDevicePoolInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CreateDevicePoolInput) SetDescription(v string) *CreateDevicePoolInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDevicePoolInput) SetName(v string) *CreateDevicePoolInput {
+	s.Name = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *CreateDevicePoolInput) SetProjectArn(v string) *CreateDevicePoolInput {
+	s.ProjectArn = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *CreateDevicePoolInput) SetRules(v []*Rule) *CreateDevicePoolInput {
+	s.Rules = v
+	return s
+}
+
 // Represents the result of a create device pool request.
 type CreateDevicePoolOutput struct {
 	_ struct{} `type:"structure"`
@@ -3884,6 +4016,12 @@ func (s CreateDevicePoolOutput) String() string {
 // GoString returns the string representation
 func (s CreateDevicePoolOutput) GoString() string {
 	return s.String()
+}
+
+// SetDevicePool sets the DevicePool field's value.
+func (s *CreateDevicePoolOutput) SetDevicePool(v *DevicePool) *CreateDevicePoolOutput {
+	s.DevicePool = v
+	return s
 }
 
 // Represents a request to the create project operation.
@@ -3919,6 +4057,12 @@ func (s *CreateProjectInput) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *CreateProjectInput) SetName(v string) *CreateProjectInput {
+	s.Name = &v
+	return s
+}
+
 // Represents the result of a create project request.
 type CreateProjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -3935,6 +4079,12 @@ func (s CreateProjectOutput) String() string {
 // GoString returns the string representation
 func (s CreateProjectOutput) GoString() string {
 	return s.String()
+}
+
+// SetProject sets the Project field's value.
+func (s *CreateProjectOutput) SetProject(v *Project) *CreateProjectOutput {
+	s.Project = v
+	return s
 }
 
 // Creates the configuration settings for a remote access session, including
@@ -3954,6 +4104,12 @@ func (s CreateRemoteAccessSessionConfiguration) String() string {
 // GoString returns the string representation
 func (s CreateRemoteAccessSessionConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetBillingMethod sets the BillingMethod field's value.
+func (s *CreateRemoteAccessSessionConfiguration) SetBillingMethod(v string) *CreateRemoteAccessSessionConfiguration {
+	s.BillingMethod = &v
+	return s
 }
 
 // Creates and submits a request to start a remote access session.
@@ -4011,6 +4167,30 @@ func (s *CreateRemoteAccessSessionInput) Validate() error {
 	return nil
 }
 
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateRemoteAccessSessionInput) SetConfiguration(v *CreateRemoteAccessSessionConfiguration) *CreateRemoteAccessSessionInput {
+	s.Configuration = v
+	return s
+}
+
+// SetDeviceArn sets the DeviceArn field's value.
+func (s *CreateRemoteAccessSessionInput) SetDeviceArn(v string) *CreateRemoteAccessSessionInput {
+	s.DeviceArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRemoteAccessSessionInput) SetName(v string) *CreateRemoteAccessSessionInput {
+	s.Name = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *CreateRemoteAccessSessionInput) SetProjectArn(v string) *CreateRemoteAccessSessionInput {
+	s.ProjectArn = &v
+	return s
+}
+
 // Represents the server response from a request to create a remote access session.
 type CreateRemoteAccessSessionOutput struct {
 	_ struct{} `type:"structure"`
@@ -4028,6 +4208,12 @@ func (s CreateRemoteAccessSessionOutput) String() string {
 // GoString returns the string representation
 func (s CreateRemoteAccessSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetRemoteAccessSession sets the RemoteAccessSession field's value.
+func (s *CreateRemoteAccessSessionOutput) SetRemoteAccessSession(v *RemoteAccessSession) *CreateRemoteAccessSessionOutput {
+	s.RemoteAccessSession = v
+	return s
 }
 
 // Represents a request to the create upload operation.
@@ -4128,6 +4314,30 @@ func (s *CreateUploadInput) Validate() error {
 	return nil
 }
 
+// SetContentType sets the ContentType field's value.
+func (s *CreateUploadInput) SetContentType(v string) *CreateUploadInput {
+	s.ContentType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateUploadInput) SetName(v string) *CreateUploadInput {
+	s.Name = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *CreateUploadInput) SetProjectArn(v string) *CreateUploadInput {
+	s.ProjectArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateUploadInput) SetType(v string) *CreateUploadInput {
+	s.Type = &v
+	return s
+}
+
 // Represents the result of a create upload request.
 type CreateUploadOutput struct {
 	_ struct{} `type:"structure"`
@@ -4144,6 +4354,12 @@ func (s CreateUploadOutput) String() string {
 // GoString returns the string representation
 func (s CreateUploadOutput) GoString() string {
 	return s.String()
+}
+
+// SetUpload sets the Upload field's value.
+func (s *CreateUploadOutput) SetUpload(v *Upload) *CreateUploadOutput {
+	s.Upload = v
+	return s
 }
 
 // Represents a request to the delete device pool operation.
@@ -4181,6 +4397,12 @@ func (s *DeleteDevicePoolInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteDevicePoolInput) SetArn(v string) *DeleteDevicePoolInput {
+	s.Arn = &v
+	return s
 }
 
 // Represents the result of a delete device pool request.
@@ -4235,6 +4457,12 @@ func (s *DeleteProjectInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *DeleteProjectInput) SetArn(v string) *DeleteProjectInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a delete project request.
 type DeleteProjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -4285,6 +4513,12 @@ func (s *DeleteRemoteAccessSessionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteRemoteAccessSessionInput) SetArn(v string) *DeleteRemoteAccessSessionInput {
+	s.Arn = &v
+	return s
 }
 
 // The response from the server when a request is made to delete the remote
@@ -4339,6 +4573,12 @@ func (s *DeleteRunInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *DeleteRunInput) SetArn(v string) *DeleteRunInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a delete run request.
 type DeleteRunOutput struct {
 	_ struct{} `type:"structure"`
@@ -4389,6 +4629,12 @@ func (s *DeleteUploadInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteUploadInput) SetArn(v string) *DeleteUploadInput {
+	s.Arn = &v
+	return s
 }
 
 // Represents the result of a delete upload request.
@@ -4486,6 +4732,108 @@ func (s Device) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Device) SetArn(v string) *Device {
+	s.Arn = &v
+	return s
+}
+
+// SetCarrier sets the Carrier field's value.
+func (s *Device) SetCarrier(v string) *Device {
+	s.Carrier = &v
+	return s
+}
+
+// SetCpu sets the Cpu field's value.
+func (s *Device) SetCpu(v *CPU) *Device {
+	s.Cpu = v
+	return s
+}
+
+// SetFleetName sets the FleetName field's value.
+func (s *Device) SetFleetName(v string) *Device {
+	s.FleetName = &v
+	return s
+}
+
+// SetFleetType sets the FleetType field's value.
+func (s *Device) SetFleetType(v string) *Device {
+	s.FleetType = &v
+	return s
+}
+
+// SetFormFactor sets the FormFactor field's value.
+func (s *Device) SetFormFactor(v string) *Device {
+	s.FormFactor = &v
+	return s
+}
+
+// SetHeapSize sets the HeapSize field's value.
+func (s *Device) SetHeapSize(v int64) *Device {
+	s.HeapSize = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *Device) SetImage(v string) *Device {
+	s.Image = &v
+	return s
+}
+
+// SetManufacturer sets the Manufacturer field's value.
+func (s *Device) SetManufacturer(v string) *Device {
+	s.Manufacturer = &v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *Device) SetMemory(v int64) *Device {
+	s.Memory = &v
+	return s
+}
+
+// SetModel sets the Model field's value.
+func (s *Device) SetModel(v string) *Device {
+	s.Model = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Device) SetName(v string) *Device {
+	s.Name = &v
+	return s
+}
+
+// SetOs sets the Os field's value.
+func (s *Device) SetOs(v string) *Device {
+	s.Os = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *Device) SetPlatform(v string) *Device {
+	s.Platform = &v
+	return s
+}
+
+// SetRadio sets the Radio field's value.
+func (s *Device) SetRadio(v string) *Device {
+	s.Radio = &v
+	return s
+}
+
+// SetRemoteAccessEnabled sets the RemoteAccessEnabled field's value.
+func (s *Device) SetRemoteAccessEnabled(v bool) *Device {
+	s.RemoteAccessEnabled = &v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *Device) SetResolution(v *Resolution) *Device {
+	s.Resolution = v
+	return s
+}
+
 // Represents the total (metered or unmetered) minutes used by the resource
 // to run tests. Contains the sum of minutes consumed by all children.
 type DeviceMinutes struct {
@@ -4512,6 +4860,24 @@ func (s DeviceMinutes) String() string {
 // GoString returns the string representation
 func (s DeviceMinutes) GoString() string {
 	return s.String()
+}
+
+// SetMetered sets the Metered field's value.
+func (s *DeviceMinutes) SetMetered(v float64) *DeviceMinutes {
+	s.Metered = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *DeviceMinutes) SetTotal(v float64) *DeviceMinutes {
+	s.Total = &v
+	return s
+}
+
+// SetUnmetered sets the Unmetered field's value.
+func (s *DeviceMinutes) SetUnmetered(v float64) *DeviceMinutes {
+	s.Unmetered = &v
+	return s
 }
 
 // Represents a collection of device types.
@@ -4551,6 +4917,36 @@ func (s DevicePool) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *DevicePool) SetArn(v string) *DevicePool {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DevicePool) SetDescription(v string) *DevicePool {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DevicePool) SetName(v string) *DevicePool {
+	s.Name = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *DevicePool) SetRules(v []*Rule) *DevicePool {
+	s.Rules = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DevicePool) SetType(v string) *DevicePool {
+	s.Type = &v
+	return s
+}
+
 // Represents a device pool compatibility result.
 type DevicePoolCompatibilityResult struct {
 	_ struct{} `type:"structure"`
@@ -4573,6 +4969,24 @@ func (s DevicePoolCompatibilityResult) String() string {
 // GoString returns the string representation
 func (s DevicePoolCompatibilityResult) GoString() string {
 	return s.String()
+}
+
+// SetCompatible sets the Compatible field's value.
+func (s *DevicePoolCompatibilityResult) SetCompatible(v bool) *DevicePoolCompatibilityResult {
+	s.Compatible = &v
+	return s
+}
+
+// SetDevice sets the Device field's value.
+func (s *DevicePoolCompatibilityResult) SetDevice(v *Device) *DevicePoolCompatibilityResult {
+	s.Device = v
+	return s
+}
+
+// SetIncompatibilityMessages sets the IncompatibilityMessages field's value.
+func (s *DevicePoolCompatibilityResult) SetIncompatibilityMessages(v []*IncompatibilityMessage) *DevicePoolCompatibilityResult {
+	s.IncompatibilityMessages = v
+	return s
 }
 
 // Represents the request sent to retrieve the account settings.
@@ -4607,6 +5021,12 @@ func (s GetAccountSettingsOutput) String() string {
 // GoString returns the string representation
 func (s GetAccountSettingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountSettings sets the AccountSettings field's value.
+func (s *GetAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *GetAccountSettingsOutput {
+	s.AccountSettings = v
+	return s
 }
 
 // Represents a request to the get device request.
@@ -4645,6 +5065,12 @@ func (s *GetDeviceInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetDeviceInput) SetArn(v string) *GetDeviceInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get device request.
 type GetDeviceOutput struct {
 	_ struct{} `type:"structure"`
@@ -4661,6 +5087,12 @@ func (s GetDeviceOutput) String() string {
 // GoString returns the string representation
 func (s GetDeviceOutput) GoString() string {
 	return s.String()
+}
+
+// SetDevice sets the Device field's value.
+func (s *GetDeviceOutput) SetDevice(v *Device) *GetDeviceOutput {
+	s.Device = v
+	return s
 }
 
 // Represents a request to the get device pool compatibility operation.
@@ -4740,6 +5172,24 @@ func (s *GetDevicePoolCompatibilityInput) Validate() error {
 	return nil
 }
 
+// SetAppArn sets the AppArn field's value.
+func (s *GetDevicePoolCompatibilityInput) SetAppArn(v string) *GetDevicePoolCompatibilityInput {
+	s.AppArn = &v
+	return s
+}
+
+// SetDevicePoolArn sets the DevicePoolArn field's value.
+func (s *GetDevicePoolCompatibilityInput) SetDevicePoolArn(v string) *GetDevicePoolCompatibilityInput {
+	s.DevicePoolArn = &v
+	return s
+}
+
+// SetTestType sets the TestType field's value.
+func (s *GetDevicePoolCompatibilityInput) SetTestType(v string) *GetDevicePoolCompatibilityInput {
+	s.TestType = &v
+	return s
+}
+
 // Represents the result of describe device pool compatibility request.
 type GetDevicePoolCompatibilityOutput struct {
 	_ struct{} `type:"structure"`
@@ -4759,6 +5209,18 @@ func (s GetDevicePoolCompatibilityOutput) String() string {
 // GoString returns the string representation
 func (s GetDevicePoolCompatibilityOutput) GoString() string {
 	return s.String()
+}
+
+// SetCompatibleDevices sets the CompatibleDevices field's value.
+func (s *GetDevicePoolCompatibilityOutput) SetCompatibleDevices(v []*DevicePoolCompatibilityResult) *GetDevicePoolCompatibilityOutput {
+	s.CompatibleDevices = v
+	return s
+}
+
+// SetIncompatibleDevices sets the IncompatibleDevices field's value.
+func (s *GetDevicePoolCompatibilityOutput) SetIncompatibleDevices(v []*DevicePoolCompatibilityResult) *GetDevicePoolCompatibilityOutput {
+	s.IncompatibleDevices = v
+	return s
 }
 
 // Represents a request to the get device pool operation.
@@ -4797,6 +5259,12 @@ func (s *GetDevicePoolInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetDevicePoolInput) SetArn(v string) *GetDevicePoolInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get device pool request.
 type GetDevicePoolOutput struct {
 	_ struct{} `type:"structure"`
@@ -4813,6 +5281,12 @@ func (s GetDevicePoolOutput) String() string {
 // GoString returns the string representation
 func (s GetDevicePoolOutput) GoString() string {
 	return s.String()
+}
+
+// SetDevicePool sets the DevicePool field's value.
+func (s *GetDevicePoolOutput) SetDevicePool(v *DevicePool) *GetDevicePoolOutput {
+	s.DevicePool = v
+	return s
 }
 
 // Represents a request to the get job operation.
@@ -4851,6 +5325,12 @@ func (s *GetJobInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetJobInput) SetArn(v string) *GetJobInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get job request.
 type GetJobOutput struct {
 	_ struct{} `type:"structure"`
@@ -4867,6 +5347,12 @@ func (s GetJobOutput) String() string {
 // GoString returns the string representation
 func (s GetJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJob sets the Job field's value.
+func (s *GetJobOutput) SetJob(v *Job) *GetJobOutput {
+	s.Job = v
+	return s
 }
 
 // Represents the request to retrieve the offering status for the specified
@@ -4902,6 +5388,12 @@ func (s *GetOfferingStatusInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *GetOfferingStatusInput) SetNextToken(v string) *GetOfferingStatusInput {
+	s.NextToken = &v
+	return s
+}
+
 // Returns the status result for a device offering.
 type GetOfferingStatusOutput struct {
 	_ struct{} `type:"structure"`
@@ -4925,6 +5417,24 @@ func (s GetOfferingStatusOutput) String() string {
 // GoString returns the string representation
 func (s GetOfferingStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetCurrent sets the Current field's value.
+func (s *GetOfferingStatusOutput) SetCurrent(v map[string]*OfferingStatus) *GetOfferingStatusOutput {
+	s.Current = v
+	return s
+}
+
+// SetNextPeriod sets the NextPeriod field's value.
+func (s *GetOfferingStatusOutput) SetNextPeriod(v map[string]*OfferingStatus) *GetOfferingStatusOutput {
+	s.NextPeriod = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetOfferingStatusOutput) SetNextToken(v string) *GetOfferingStatusOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents a request to the get project operation.
@@ -4963,6 +5473,12 @@ func (s *GetProjectInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetProjectInput) SetArn(v string) *GetProjectInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get project request.
 type GetProjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -4980,6 +5496,12 @@ func (s GetProjectOutput) String() string {
 // GoString returns the string representation
 func (s GetProjectOutput) GoString() string {
 	return s.String()
+}
+
+// SetProject sets the Project field's value.
+func (s *GetProjectOutput) SetProject(v *Project) *GetProjectOutput {
+	s.Project = v
+	return s
 }
 
 // Represents the request to get information about the specified remote access
@@ -5020,6 +5542,12 @@ func (s *GetRemoteAccessSessionInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetRemoteAccessSessionInput) SetArn(v string) *GetRemoteAccessSessionInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the response from the server that lists detailed information about
 // the remote access session.
 type GetRemoteAccessSessionOutput struct {
@@ -5037,6 +5565,12 @@ func (s GetRemoteAccessSessionOutput) String() string {
 // GoString returns the string representation
 func (s GetRemoteAccessSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetRemoteAccessSession sets the RemoteAccessSession field's value.
+func (s *GetRemoteAccessSessionOutput) SetRemoteAccessSession(v *RemoteAccessSession) *GetRemoteAccessSessionOutput {
+	s.RemoteAccessSession = v
+	return s
 }
 
 // Represents a request to the get run operation.
@@ -5075,6 +5609,12 @@ func (s *GetRunInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetRunInput) SetArn(v string) *GetRunInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get run request.
 type GetRunOutput struct {
 	_ struct{} `type:"structure"`
@@ -5091,6 +5631,12 @@ func (s GetRunOutput) String() string {
 // GoString returns the string representation
 func (s GetRunOutput) GoString() string {
 	return s.String()
+}
+
+// SetRun sets the Run field's value.
+func (s *GetRunOutput) SetRun(v *Run) *GetRunOutput {
+	s.Run = v
+	return s
 }
 
 // Represents a request to the get suite operation.
@@ -5129,6 +5675,12 @@ func (s *GetSuiteInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetSuiteInput) SetArn(v string) *GetSuiteInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get suite request.
 type GetSuiteOutput struct {
 	_ struct{} `type:"structure"`
@@ -5145,6 +5697,12 @@ func (s GetSuiteOutput) String() string {
 // GoString returns the string representation
 func (s GetSuiteOutput) GoString() string {
 	return s.String()
+}
+
+// SetSuite sets the Suite field's value.
+func (s *GetSuiteOutput) SetSuite(v *Suite) *GetSuiteOutput {
+	s.Suite = v
+	return s
 }
 
 // Represents a request to the get test operation.
@@ -5183,6 +5741,12 @@ func (s *GetTestInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetTestInput) SetArn(v string) *GetTestInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get test request.
 type GetTestOutput struct {
 	_ struct{} `type:"structure"`
@@ -5199,6 +5763,12 @@ func (s GetTestOutput) String() string {
 // GoString returns the string representation
 func (s GetTestOutput) GoString() string {
 	return s.String()
+}
+
+// SetTest sets the Test field's value.
+func (s *GetTestOutput) SetTest(v *Test) *GetTestOutput {
+	s.Test = v
+	return s
 }
 
 // Represents a request to the get upload operation.
@@ -5237,6 +5807,12 @@ func (s *GetUploadInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *GetUploadInput) SetArn(v string) *GetUploadInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the result of a get upload request.
 type GetUploadOutput struct {
 	_ struct{} `type:"structure"`
@@ -5253,6 +5829,12 @@ func (s GetUploadOutput) String() string {
 // GoString returns the string representation
 func (s GetUploadOutput) GoString() string {
 	return s.String()
+}
+
+// SetUpload sets the Upload field's value.
+func (s *GetUploadOutput) SetUpload(v *Upload) *GetUploadOutput {
+	s.Upload = v
+	return s
 }
 
 // Represents information about incompatibility.
@@ -5284,6 +5866,18 @@ func (s IncompatibilityMessage) String() string {
 // GoString returns the string representation
 func (s IncompatibilityMessage) GoString() string {
 	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *IncompatibilityMessage) SetMessage(v string) *IncompatibilityMessage {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IncompatibilityMessage) SetType(v string) *IncompatibilityMessage {
+	s.Type = &v
+	return s
 }
 
 // Represents the request to install an Android application (in .apk format)
@@ -5336,6 +5930,18 @@ func (s *InstallToRemoteAccessSessionInput) Validate() error {
 	return nil
 }
 
+// SetAppArn sets the AppArn field's value.
+func (s *InstallToRemoteAccessSessionInput) SetAppArn(v string) *InstallToRemoteAccessSessionInput {
+	s.AppArn = &v
+	return s
+}
+
+// SetRemoteAccessSessionArn sets the RemoteAccessSessionArn field's value.
+func (s *InstallToRemoteAccessSessionInput) SetRemoteAccessSessionArn(v string) *InstallToRemoteAccessSessionInput {
+	s.RemoteAccessSessionArn = &v
+	return s
+}
+
 // Represents the response from the server after AWS Device Farm makes a request
 // to install to a remote access session.
 type InstallToRemoteAccessSessionOutput struct {
@@ -5353,6 +5959,12 @@ func (s InstallToRemoteAccessSessionOutput) String() string {
 // GoString returns the string representation
 func (s InstallToRemoteAccessSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetAppUpload sets the AppUpload field's value.
+func (s *InstallToRemoteAccessSessionOutput) SetAppUpload(v *Upload) *InstallToRemoteAccessSessionOutput {
+	s.AppUpload = v
+	return s
 }
 
 // Represents a device.
@@ -5474,6 +6086,78 @@ func (s Job) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Job) SetArn(v string) *Job {
+	s.Arn = &v
+	return s
+}
+
+// SetCounters sets the Counters field's value.
+func (s *Job) SetCounters(v *Counters) *Job {
+	s.Counters = v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *Job) SetCreated(v time.Time) *Job {
+	s.Created = &v
+	return s
+}
+
+// SetDevice sets the Device field's value.
+func (s *Job) SetDevice(v *Device) *Job {
+	s.Device = v
+	return s
+}
+
+// SetDeviceMinutes sets the DeviceMinutes field's value.
+func (s *Job) SetDeviceMinutes(v *DeviceMinutes) *Job {
+	s.DeviceMinutes = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Job) SetMessage(v string) *Job {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Job) SetName(v string) *Job {
+	s.Name = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *Job) SetResult(v string) *Job {
+	s.Result = &v
+	return s
+}
+
+// SetStarted sets the Started field's value.
+func (s *Job) SetStarted(v time.Time) *Job {
+	s.Started = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Job) SetStatus(v string) *Job {
+	s.Status = &v
+	return s
+}
+
+// SetStopped sets the Stopped field's value.
+func (s *Job) SetStopped(v time.Time) *Job {
+	s.Stopped = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Job) SetType(v string) *Job {
+	s.Type = &v
+	return s
+}
+
 // Represents a request to the list artifacts operation.
 type ListArtifactsInput struct {
 	_ struct{} `type:"structure"`
@@ -5533,6 +6217,24 @@ func (s *ListArtifactsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListArtifactsInput) SetArn(v string) *ListArtifactsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListArtifactsInput) SetNextToken(v string) *ListArtifactsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListArtifactsInput) SetType(v string) *ListArtifactsInput {
+	s.Type = &v
+	return s
+}
+
 // Represents the result of a list artifacts operation.
 type ListArtifactsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5554,6 +6256,18 @@ func (s ListArtifactsOutput) String() string {
 // GoString returns the string representation
 func (s ListArtifactsOutput) GoString() string {
 	return s.String()
+}
+
+// SetArtifacts sets the Artifacts field's value.
+func (s *ListArtifactsOutput) SetArtifacts(v []*Artifact) *ListArtifactsOutput {
+	s.Artifacts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListArtifactsOutput) SetNextToken(v string) *ListArtifactsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the result of a list device pools request.
@@ -5609,6 +6323,24 @@ func (s *ListDevicePoolsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListDevicePoolsInput) SetArn(v string) *ListDevicePoolsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicePoolsInput) SetNextToken(v string) *ListDevicePoolsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListDevicePoolsInput) SetType(v string) *ListDevicePoolsInput {
+	s.Type = &v
+	return s
+}
+
 // Represents the result of a list device pools request.
 type ListDevicePoolsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5630,6 +6362,18 @@ func (s ListDevicePoolsOutput) String() string {
 // GoString returns the string representation
 func (s ListDevicePoolsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDevicePools sets the DevicePools field's value.
+func (s *ListDevicePoolsOutput) SetDevicePools(v []*DevicePool) *ListDevicePoolsOutput {
+	s.DevicePools = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicePoolsOutput) SetNextToken(v string) *ListDevicePoolsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the result of a list devices request.
@@ -5670,6 +6414,18 @@ func (s *ListDevicesInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListDevicesInput) SetArn(v string) *ListDevicesInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicesInput) SetNextToken(v string) *ListDevicesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list devices operation.
 type ListDevicesOutput struct {
 	_ struct{} `type:"structure"`
@@ -5691,6 +6447,18 @@ func (s ListDevicesOutput) String() string {
 // GoString returns the string representation
 func (s ListDevicesOutput) GoString() string {
 	return s.String()
+}
+
+// SetDevices sets the Devices field's value.
+func (s *ListDevicesOutput) SetDevices(v []*Device) *ListDevicesOutput {
+	s.Devices = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicesOutput) SetNextToken(v string) *ListDevicesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents a request to the list jobs operation.
@@ -5736,6 +6504,18 @@ func (s *ListJobsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListJobsInput) SetArn(v string) *ListJobsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobsInput) SetNextToken(v string) *ListJobsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list jobs request.
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5757,6 +6537,18 @@ func (s ListJobsOutput) String() string {
 // GoString returns the string representation
 func (s ListJobsOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *ListJobsOutput) SetJobs(v []*Job) *ListJobsOutput {
+	s.Jobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the request to list the offering transaction history.
@@ -5791,6 +6583,12 @@ func (s *ListOfferingTransactionsInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingTransactionsInput) SetNextToken(v string) *ListOfferingTransactionsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Returns the transaction log of the specified offerings.
 type ListOfferingTransactionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5812,6 +6610,18 @@ func (s ListOfferingTransactionsOutput) String() string {
 // GoString returns the string representation
 func (s ListOfferingTransactionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingTransactionsOutput) SetNextToken(v string) *ListOfferingTransactionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferingTransactions sets the OfferingTransactions field's value.
+func (s *ListOfferingTransactionsOutput) SetOfferingTransactions(v []*OfferingTransaction) *ListOfferingTransactionsOutput {
+	s.OfferingTransactions = v
+	return s
 }
 
 // Represents the request to list all offerings.
@@ -5846,6 +6656,12 @@ func (s *ListOfferingsInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingsInput) SetNextToken(v string) *ListOfferingsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the return values of the list of offerings.
 type ListOfferingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5866,6 +6682,18 @@ func (s ListOfferingsOutput) String() string {
 // GoString returns the string representation
 func (s ListOfferingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingsOutput) SetNextToken(v string) *ListOfferingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferings sets the Offerings field's value.
+func (s *ListOfferingsOutput) SetOfferings(v []*Offering) *ListOfferingsOutput {
+	s.Offerings = v
+	return s
 }
 
 // Represents a request to the list projects operation.
@@ -5908,6 +6736,18 @@ func (s *ListProjectsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListProjectsInput) SetArn(v string) *ListProjectsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProjectsInput) SetNextToken(v string) *ListProjectsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list projects request.
 type ListProjectsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5929,6 +6769,18 @@ func (s ListProjectsOutput) String() string {
 // GoString returns the string representation
 func (s ListProjectsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProjectsOutput) SetNextToken(v string) *ListProjectsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProjects sets the Projects field's value.
+func (s *ListProjectsOutput) SetProjects(v []*Project) *ListProjectsOutput {
+	s.Projects = v
+	return s
 }
 
 // Represents the request to return information about the remote access session.
@@ -5975,6 +6827,18 @@ func (s *ListRemoteAccessSessionsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListRemoteAccessSessionsInput) SetArn(v string) *ListRemoteAccessSessionsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRemoteAccessSessionsInput) SetNextToken(v string) *ListRemoteAccessSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the response from the server after AWS Device Farm makes a request
 // to return information about the remote access session.
 type ListRemoteAccessSessionsOutput struct {
@@ -5997,6 +6861,18 @@ func (s ListRemoteAccessSessionsOutput) String() string {
 // GoString returns the string representation
 func (s ListRemoteAccessSessionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRemoteAccessSessionsOutput) SetNextToken(v string) *ListRemoteAccessSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRemoteAccessSessions sets the RemoteAccessSessions field's value.
+func (s *ListRemoteAccessSessionsOutput) SetRemoteAccessSessions(v []*RemoteAccessSession) *ListRemoteAccessSessionsOutput {
+	s.RemoteAccessSessions = v
+	return s
 }
 
 // Represents a request to the list runs operation.
@@ -6043,6 +6919,18 @@ func (s *ListRunsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListRunsInput) SetArn(v string) *ListRunsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRunsInput) SetNextToken(v string) *ListRunsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list runs request.
 type ListRunsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6064,6 +6952,18 @@ func (s ListRunsOutput) String() string {
 // GoString returns the string representation
 func (s ListRunsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRunsOutput) SetNextToken(v string) *ListRunsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRuns sets the Runs field's value.
+func (s *ListRunsOutput) SetRuns(v []*Run) *ListRunsOutput {
+	s.Runs = v
+	return s
 }
 
 // Represents a request to the list samples operation.
@@ -6110,6 +7010,18 @@ func (s *ListSamplesInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListSamplesInput) SetArn(v string) *ListSamplesInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSamplesInput) SetNextToken(v string) *ListSamplesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list samples request.
 type ListSamplesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6131,6 +7043,18 @@ func (s ListSamplesOutput) String() string {
 // GoString returns the string representation
 func (s ListSamplesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSamplesOutput) SetNextToken(v string) *ListSamplesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSamples sets the Samples field's value.
+func (s *ListSamplesOutput) SetSamples(v []*Sample) *ListSamplesOutput {
+	s.Samples = v
+	return s
 }
 
 // Represents a request to the list suites operation.
@@ -6176,6 +7100,18 @@ func (s *ListSuitesInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListSuitesInput) SetArn(v string) *ListSuitesInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSuitesInput) SetNextToken(v string) *ListSuitesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list suites request.
 type ListSuitesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6197,6 +7133,18 @@ func (s ListSuitesOutput) String() string {
 // GoString returns the string representation
 func (s ListSuitesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSuitesOutput) SetNextToken(v string) *ListSuitesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSuites sets the Suites field's value.
+func (s *ListSuitesOutput) SetSuites(v []*Suite) *ListSuitesOutput {
+	s.Suites = v
+	return s
 }
 
 // Represents a request to the list tests operation.
@@ -6242,6 +7190,18 @@ func (s *ListTestsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListTestsInput) SetArn(v string) *ListTestsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestsInput) SetNextToken(v string) *ListTestsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list tests request.
 type ListTestsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6263,6 +7223,18 @@ func (s ListTestsOutput) String() string {
 // GoString returns the string representation
 func (s ListTestsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTestsOutput) SetNextToken(v string) *ListTestsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTests sets the Tests field's value.
+func (s *ListTestsOutput) SetTests(v []*Test) *ListTestsOutput {
+	s.Tests = v
+	return s
 }
 
 // Represents a request to the list unique problems operation.
@@ -6308,6 +7280,18 @@ func (s *ListUniqueProblemsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListUniqueProblemsInput) SetArn(v string) *ListUniqueProblemsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUniqueProblemsInput) SetNextToken(v string) *ListUniqueProblemsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list unique problems request.
 type ListUniqueProblemsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6345,6 +7329,18 @@ func (s ListUniqueProblemsOutput) String() string {
 // GoString returns the string representation
 func (s ListUniqueProblemsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUniqueProblemsOutput) SetNextToken(v string) *ListUniqueProblemsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUniqueProblems sets the UniqueProblems field's value.
+func (s *ListUniqueProblemsOutput) SetUniqueProblems(v map[string][]*UniqueProblem) *ListUniqueProblemsOutput {
+	s.UniqueProblems = v
+	return s
 }
 
 // Represents a request to the list uploads operation.
@@ -6391,6 +7387,18 @@ func (s *ListUploadsInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *ListUploadsInput) SetArn(v string) *ListUploadsInput {
+	s.Arn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUploadsInput) SetNextToken(v string) *ListUploadsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the result of a list uploads request.
 type ListUploadsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6412,6 +7420,18 @@ func (s ListUploadsOutput) String() string {
 // GoString returns the string representation
 func (s ListUploadsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUploadsOutput) SetNextToken(v string) *ListUploadsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUploads sets the Uploads field's value.
+func (s *ListUploadsOutput) SetUploads(v []*Upload) *ListUploadsOutput {
+	s.Uploads = v
+	return s
 }
 
 // Represents a latitude and longitude pair, expressed in geographic coordinate
@@ -6458,6 +7478,18 @@ func (s *Location) Validate() error {
 	return nil
 }
 
+// SetLatitude sets the Latitude field's value.
+func (s *Location) SetLatitude(v float64) *Location {
+	s.Latitude = &v
+	return s
+}
+
+// SetLongitude sets the Longitude field's value.
+func (s *Location) SetLongitude(v float64) *Location {
+	s.Longitude = &v
+	return s
+}
+
 // A number representing the monetary amount for an offering or transaction.
 type MonetaryAmount struct {
 	_ struct{} `type:"structure"`
@@ -6477,6 +7509,18 @@ func (s MonetaryAmount) String() string {
 // GoString returns the string representation
 func (s MonetaryAmount) GoString() string {
 	return s.String()
+}
+
+// SetAmount sets the Amount field's value.
+func (s *MonetaryAmount) SetAmount(v float64) *MonetaryAmount {
+	s.Amount = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *MonetaryAmount) SetCurrencyCode(v string) *MonetaryAmount {
+	s.CurrencyCode = &v
+	return s
 }
 
 // Represents the metadata of a device offering.
@@ -6509,6 +7553,36 @@ func (s Offering) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *Offering) SetDescription(v string) *Offering {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Offering) SetId(v string) *Offering {
+	s.Id = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *Offering) SetPlatform(v string) *Offering {
+	s.Platform = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *Offering) SetRecurringCharges(v []*RecurringCharge) *Offering {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Offering) SetType(v string) *Offering {
+	s.Type = &v
+	return s
+}
+
 // The status of the offering.
 type OfferingStatus struct {
 	_ struct{} `type:"structure"`
@@ -6536,6 +7610,30 @@ func (s OfferingStatus) GoString() string {
 	return s.String()
 }
 
+// SetEffectiveOn sets the EffectiveOn field's value.
+func (s *OfferingStatus) SetEffectiveOn(v time.Time) *OfferingStatus {
+	s.EffectiveOn = &v
+	return s
+}
+
+// SetOffering sets the Offering field's value.
+func (s *OfferingStatus) SetOffering(v *Offering) *OfferingStatus {
+	s.Offering = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *OfferingStatus) SetQuantity(v int64) *OfferingStatus {
+	s.Quantity = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OfferingStatus) SetType(v string) *OfferingStatus {
+	s.Type = &v
+	return s
+}
+
 // Represents the metadata of an offering transaction.
 type OfferingTransaction struct {
 	_ struct{} `type:"structure"`
@@ -6561,6 +7659,30 @@ func (s OfferingTransaction) String() string {
 // GoString returns the string representation
 func (s OfferingTransaction) GoString() string {
 	return s.String()
+}
+
+// SetCost sets the Cost field's value.
+func (s *OfferingTransaction) SetCost(v *MonetaryAmount) *OfferingTransaction {
+	s.Cost = v
+	return s
+}
+
+// SetCreatedOn sets the CreatedOn field's value.
+func (s *OfferingTransaction) SetCreatedOn(v time.Time) *OfferingTransaction {
+	s.CreatedOn = &v
+	return s
+}
+
+// SetOfferingStatus sets the OfferingStatus field's value.
+func (s *OfferingTransaction) SetOfferingStatus(v *OfferingStatus) *OfferingTransaction {
+	s.OfferingStatus = v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *OfferingTransaction) SetTransactionId(v string) *OfferingTransaction {
+	s.TransactionId = &v
+	return s
 }
 
 // Represents a specific warning or failure.
@@ -6615,6 +7737,48 @@ func (s Problem) GoString() string {
 	return s.String()
 }
 
+// SetDevice sets the Device field's value.
+func (s *Problem) SetDevice(v *Device) *Problem {
+	s.Device = v
+	return s
+}
+
+// SetJob sets the Job field's value.
+func (s *Problem) SetJob(v *ProblemDetail) *Problem {
+	s.Job = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Problem) SetMessage(v string) *Problem {
+	s.Message = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *Problem) SetResult(v string) *Problem {
+	s.Result = &v
+	return s
+}
+
+// SetRun sets the Run field's value.
+func (s *Problem) SetRun(v *ProblemDetail) *Problem {
+	s.Run = v
+	return s
+}
+
+// SetSuite sets the Suite field's value.
+func (s *Problem) SetSuite(v *ProblemDetail) *Problem {
+	s.Suite = v
+	return s
+}
+
+// SetTest sets the Test field's value.
+func (s *Problem) SetTest(v *ProblemDetail) *Problem {
+	s.Test = v
+	return s
+}
+
 // Information about a problem detail.
 type ProblemDetail struct {
 	_ struct{} `type:"structure"`
@@ -6634,6 +7798,18 @@ func (s ProblemDetail) String() string {
 // GoString returns the string representation
 func (s ProblemDetail) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ProblemDetail) SetArn(v string) *ProblemDetail {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ProblemDetail) SetName(v string) *ProblemDetail {
+	s.Name = &v
+	return s
 }
 
 // Represents an operating-system neutral workspace for running and managing
@@ -6659,6 +7835,24 @@ func (s Project) String() string {
 // GoString returns the string representation
 func (s Project) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Project) SetArn(v string) *Project {
+	s.Arn = &v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *Project) SetCreated(v time.Time) *Project {
+	s.Created = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Project) SetName(v string) *Project {
+	s.Name = &v
+	return s
 }
 
 // Represents a request for a purchase offering.
@@ -6695,6 +7889,18 @@ func (s *PurchaseOfferingInput) Validate() error {
 	return nil
 }
 
+// SetOfferingId sets the OfferingId field's value.
+func (s *PurchaseOfferingInput) SetOfferingId(v string) *PurchaseOfferingInput {
+	s.OfferingId = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *PurchaseOfferingInput) SetQuantity(v int64) *PurchaseOfferingInput {
+	s.Quantity = &v
+	return s
+}
+
 // The result of the purchase offering (e.g., success or failure).
 type PurchaseOfferingOutput struct {
 	_ struct{} `type:"structure"`
@@ -6711,6 +7917,12 @@ func (s PurchaseOfferingOutput) String() string {
 // GoString returns the string representation
 func (s PurchaseOfferingOutput) GoString() string {
 	return s.String()
+}
+
+// SetOfferingTransaction sets the OfferingTransaction field's value.
+func (s *PurchaseOfferingOutput) SetOfferingTransaction(v *OfferingTransaction) *PurchaseOfferingOutput {
+	s.OfferingTransaction = v
+	return s
 }
 
 // Represents the set of radios and their states on a device. Examples of radios
@@ -6741,6 +7953,30 @@ func (s Radios) GoString() string {
 	return s.String()
 }
 
+// SetBluetooth sets the Bluetooth field's value.
+func (s *Radios) SetBluetooth(v bool) *Radios {
+	s.Bluetooth = &v
+	return s
+}
+
+// SetGps sets the Gps field's value.
+func (s *Radios) SetGps(v bool) *Radios {
+	s.Gps = &v
+	return s
+}
+
+// SetNfc sets the Nfc field's value.
+func (s *Radios) SetNfc(v bool) *Radios {
+	s.Nfc = &v
+	return s
+}
+
+// SetWifi sets the Wifi field's value.
+func (s *Radios) SetWifi(v bool) *Radios {
+	s.Wifi = &v
+	return s
+}
+
 // Specifies whether charges for devices will be recurring.
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
@@ -6760,6 +7996,18 @@ func (s RecurringCharge) String() string {
 // GoString returns the string representation
 func (s RecurringCharge) GoString() string {
 	return s.String()
+}
+
+// SetCost sets the Cost field's value.
+func (s *RecurringCharge) SetCost(v *MonetaryAmount) *RecurringCharge {
+	s.Cost = v
+	return s
+}
+
+// SetFrequency sets the Frequency field's value.
+func (s *RecurringCharge) SetFrequency(v string) *RecurringCharge {
+	s.Frequency = &v
+	return s
 }
 
 // Represents information about the remote access session.
@@ -6848,6 +8096,78 @@ func (s RemoteAccessSession) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *RemoteAccessSession) SetArn(v string) *RemoteAccessSession {
+	s.Arn = &v
+	return s
+}
+
+// SetBillingMethod sets the BillingMethod field's value.
+func (s *RemoteAccessSession) SetBillingMethod(v string) *RemoteAccessSession {
+	s.BillingMethod = &v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *RemoteAccessSession) SetCreated(v time.Time) *RemoteAccessSession {
+	s.Created = &v
+	return s
+}
+
+// SetDevice sets the Device field's value.
+func (s *RemoteAccessSession) SetDevice(v *Device) *RemoteAccessSession {
+	s.Device = v
+	return s
+}
+
+// SetDeviceMinutes sets the DeviceMinutes field's value.
+func (s *RemoteAccessSession) SetDeviceMinutes(v *DeviceMinutes) *RemoteAccessSession {
+	s.DeviceMinutes = v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *RemoteAccessSession) SetEndpoint(v string) *RemoteAccessSession {
+	s.Endpoint = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *RemoteAccessSession) SetMessage(v string) *RemoteAccessSession {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RemoteAccessSession) SetName(v string) *RemoteAccessSession {
+	s.Name = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *RemoteAccessSession) SetResult(v string) *RemoteAccessSession {
+	s.Result = &v
+	return s
+}
+
+// SetStarted sets the Started field's value.
+func (s *RemoteAccessSession) SetStarted(v time.Time) *RemoteAccessSession {
+	s.Started = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RemoteAccessSession) SetStatus(v string) *RemoteAccessSession {
+	s.Status = &v
+	return s
+}
+
+// SetStopped sets the Stopped field's value.
+func (s *RemoteAccessSession) SetStopped(v time.Time) *RemoteAccessSession {
+	s.Stopped = &v
+	return s
+}
+
 // A request representing an offering renewal.
 type RenewOfferingInput struct {
 	_ struct{} `type:"structure"`
@@ -6882,6 +8202,18 @@ func (s *RenewOfferingInput) Validate() error {
 	return nil
 }
 
+// SetOfferingId sets the OfferingId field's value.
+func (s *RenewOfferingInput) SetOfferingId(v string) *RenewOfferingInput {
+	s.OfferingId = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *RenewOfferingInput) SetQuantity(v int64) *RenewOfferingInput {
+	s.Quantity = &v
+	return s
+}
+
 // The result of a renewal offering.
 type RenewOfferingOutput struct {
 	_ struct{} `type:"structure"`
@@ -6898,6 +8230,12 @@ func (s RenewOfferingOutput) String() string {
 // GoString returns the string representation
 func (s RenewOfferingOutput) GoString() string {
 	return s.String()
+}
+
+// SetOfferingTransaction sets the OfferingTransaction field's value.
+func (s *RenewOfferingOutput) SetOfferingTransaction(v *OfferingTransaction) *RenewOfferingOutput {
+	s.OfferingTransaction = v
+	return s
 }
 
 // Represents the screen resolution of a device in height and width, expressed
@@ -6920,6 +8258,18 @@ func (s Resolution) String() string {
 // GoString returns the string representation
 func (s Resolution) GoString() string {
 	return s.String()
+}
+
+// SetHeight sets the Height field's value.
+func (s *Resolution) SetHeight(v int64) *Resolution {
+	s.Height = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *Resolution) SetWidth(v int64) *Resolution {
+	s.Width = &v
+	return s
 }
 
 // Represents a condition for a device pool.
@@ -6964,6 +8314,24 @@ func (s Rule) String() string {
 // GoString returns the string representation
 func (s Rule) GoString() string {
 	return s.String()
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *Rule) SetAttribute(v string) *Rule {
+	s.Attribute = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *Rule) SetOperator(v string) *Rule {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Rule) SetValue(v string) *Rule {
+	s.Value = &v
+	return s
 }
 
 // Represents an app on a set of devices with a specific test and configuration.
@@ -7101,6 +8469,96 @@ func (s Run) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Run) SetArn(v string) *Run {
+	s.Arn = &v
+	return s
+}
+
+// SetBillingMethod sets the BillingMethod field's value.
+func (s *Run) SetBillingMethod(v string) *Run {
+	s.BillingMethod = &v
+	return s
+}
+
+// SetCompletedJobs sets the CompletedJobs field's value.
+func (s *Run) SetCompletedJobs(v int64) *Run {
+	s.CompletedJobs = &v
+	return s
+}
+
+// SetCounters sets the Counters field's value.
+func (s *Run) SetCounters(v *Counters) *Run {
+	s.Counters = v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *Run) SetCreated(v time.Time) *Run {
+	s.Created = &v
+	return s
+}
+
+// SetDeviceMinutes sets the DeviceMinutes field's value.
+func (s *Run) SetDeviceMinutes(v *DeviceMinutes) *Run {
+	s.DeviceMinutes = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Run) SetMessage(v string) *Run {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Run) SetName(v string) *Run {
+	s.Name = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *Run) SetPlatform(v string) *Run {
+	s.Platform = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *Run) SetResult(v string) *Run {
+	s.Result = &v
+	return s
+}
+
+// SetStarted sets the Started field's value.
+func (s *Run) SetStarted(v time.Time) *Run {
+	s.Started = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Run) SetStatus(v string) *Run {
+	s.Status = &v
+	return s
+}
+
+// SetStopped sets the Stopped field's value.
+func (s *Run) SetStopped(v time.Time) *Run {
+	s.Stopped = &v
+	return s
+}
+
+// SetTotalJobs sets the TotalJobs field's value.
+func (s *Run) SetTotalJobs(v int64) *Run {
+	s.TotalJobs = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Run) SetType(v string) *Run {
+	s.Type = &v
+	return s
+}
+
 // Represents a sample of performance data.
 type Sample struct {
 	_ struct{} `type:"structure"`
@@ -7167,6 +8625,24 @@ func (s Sample) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Sample) SetArn(v string) *Sample {
+	s.Arn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Sample) SetType(v string) *Sample {
+	s.Type = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *Sample) SetUrl(v string) *Sample {
+	s.Url = &v
+	return s
+}
+
 // Represents the settings for a run. Includes things like location, radio states,
 // auxiliary apps, and network profiles.
 type ScheduleRunConfiguration struct {
@@ -7226,6 +8702,48 @@ func (s *ScheduleRunConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuxiliaryApps sets the AuxiliaryApps field's value.
+func (s *ScheduleRunConfiguration) SetAuxiliaryApps(v []*string) *ScheduleRunConfiguration {
+	s.AuxiliaryApps = v
+	return s
+}
+
+// SetBillingMethod sets the BillingMethod field's value.
+func (s *ScheduleRunConfiguration) SetBillingMethod(v string) *ScheduleRunConfiguration {
+	s.BillingMethod = &v
+	return s
+}
+
+// SetExtraDataPackageArn sets the ExtraDataPackageArn field's value.
+func (s *ScheduleRunConfiguration) SetExtraDataPackageArn(v string) *ScheduleRunConfiguration {
+	s.ExtraDataPackageArn = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *ScheduleRunConfiguration) SetLocale(v string) *ScheduleRunConfiguration {
+	s.Locale = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *ScheduleRunConfiguration) SetLocation(v *Location) *ScheduleRunConfiguration {
+	s.Location = v
+	return s
+}
+
+// SetNetworkProfileArn sets the NetworkProfileArn field's value.
+func (s *ScheduleRunConfiguration) SetNetworkProfileArn(v string) *ScheduleRunConfiguration {
+	s.NetworkProfileArn = &v
+	return s
+}
+
+// SetRadios sets the Radios field's value.
+func (s *ScheduleRunConfiguration) SetRadios(v *Radios) *ScheduleRunConfiguration {
+	s.Radios = v
+	return s
 }
 
 // Represents a request to the schedule run operation.
@@ -7305,6 +8823,42 @@ func (s *ScheduleRunInput) Validate() error {
 	return nil
 }
 
+// SetAppArn sets the AppArn field's value.
+func (s *ScheduleRunInput) SetAppArn(v string) *ScheduleRunInput {
+	s.AppArn = &v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *ScheduleRunInput) SetConfiguration(v *ScheduleRunConfiguration) *ScheduleRunInput {
+	s.Configuration = v
+	return s
+}
+
+// SetDevicePoolArn sets the DevicePoolArn field's value.
+func (s *ScheduleRunInput) SetDevicePoolArn(v string) *ScheduleRunInput {
+	s.DevicePoolArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ScheduleRunInput) SetName(v string) *ScheduleRunInput {
+	s.Name = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *ScheduleRunInput) SetProjectArn(v string) *ScheduleRunInput {
+	s.ProjectArn = &v
+	return s
+}
+
+// SetTest sets the Test field's value.
+func (s *ScheduleRunInput) SetTest(v *ScheduleRunTest) *ScheduleRunInput {
+	s.Test = v
+	return s
+}
+
 // Represents the result of a schedule run request.
 type ScheduleRunOutput struct {
 	_ struct{} `type:"structure"`
@@ -7321,6 +8875,12 @@ func (s ScheduleRunOutput) String() string {
 // GoString returns the string representation
 func (s ScheduleRunOutput) GoString() string {
 	return s.String()
+}
+
+// SetRun sets the Run field's value.
+func (s *ScheduleRunOutput) SetRun(v *Run) *ScheduleRunOutput {
+	s.Run = v
+	return s
 }
 
 // Represents additional test settings.
@@ -7400,6 +8960,30 @@ func (s *ScheduleRunTest) Validate() error {
 	return nil
 }
 
+// SetFilter sets the Filter field's value.
+func (s *ScheduleRunTest) SetFilter(v string) *ScheduleRunTest {
+	s.Filter = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ScheduleRunTest) SetParameters(v map[string]*string) *ScheduleRunTest {
+	s.Parameters = v
+	return s
+}
+
+// SetTestPackageArn sets the TestPackageArn field's value.
+func (s *ScheduleRunTest) SetTestPackageArn(v string) *ScheduleRunTest {
+	s.TestPackageArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ScheduleRunTest) SetType(v string) *ScheduleRunTest {
+	s.Type = &v
+	return s
+}
+
 // Represents the request to stop the remote access session.
 type StopRemoteAccessSessionInput struct {
 	_ struct{} `type:"structure"`
@@ -7436,6 +9020,12 @@ func (s *StopRemoteAccessSessionInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *StopRemoteAccessSessionInput) SetArn(v string) *StopRemoteAccessSessionInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the response from the server that describes the remote access
 // session when AWS Device Farm stops the session.
 type StopRemoteAccessSessionOutput struct {
@@ -7454,6 +9044,12 @@ func (s StopRemoteAccessSessionOutput) String() string {
 // GoString returns the string representation
 func (s StopRemoteAccessSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetRemoteAccessSession sets the RemoteAccessSession field's value.
+func (s *StopRemoteAccessSessionOutput) SetRemoteAccessSession(v *RemoteAccessSession) *StopRemoteAccessSessionOutput {
+	s.RemoteAccessSession = v
+	return s
 }
 
 // Represents the request to stop a specific run.
@@ -7493,6 +9089,12 @@ func (s *StopRunInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *StopRunInput) SetArn(v string) *StopRunInput {
+	s.Arn = &v
+	return s
+}
+
 // Represents the results of your stop run attempt.
 type StopRunOutput struct {
 	_ struct{} `type:"structure"`
@@ -7509,6 +9111,12 @@ func (s StopRunOutput) String() string {
 // GoString returns the string representation
 func (s StopRunOutput) GoString() string {
 	return s.String()
+}
+
+// SetRun sets the Run field's value.
+func (s *StopRunOutput) SetRun(v *Run) *StopRunOutput {
+	s.Run = v
+	return s
 }
 
 // Represents a collection of one or more tests.
@@ -7627,6 +9235,72 @@ func (s Suite) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Suite) SetArn(v string) *Suite {
+	s.Arn = &v
+	return s
+}
+
+// SetCounters sets the Counters field's value.
+func (s *Suite) SetCounters(v *Counters) *Suite {
+	s.Counters = v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *Suite) SetCreated(v time.Time) *Suite {
+	s.Created = &v
+	return s
+}
+
+// SetDeviceMinutes sets the DeviceMinutes field's value.
+func (s *Suite) SetDeviceMinutes(v *DeviceMinutes) *Suite {
+	s.DeviceMinutes = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Suite) SetMessage(v string) *Suite {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Suite) SetName(v string) *Suite {
+	s.Name = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *Suite) SetResult(v string) *Suite {
+	s.Result = &v
+	return s
+}
+
+// SetStarted sets the Started field's value.
+func (s *Suite) SetStarted(v time.Time) *Suite {
+	s.Started = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Suite) SetStatus(v string) *Suite {
+	s.Status = &v
+	return s
+}
+
+// SetStopped sets the Stopped field's value.
+func (s *Suite) SetStopped(v time.Time) *Suite {
+	s.Stopped = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Suite) SetType(v string) *Suite {
+	s.Type = &v
+	return s
+}
+
 // Represents a condition that is evaluated.
 type Test struct {
 	_ struct{} `type:"structure"`
@@ -7743,6 +9417,72 @@ func (s Test) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Test) SetArn(v string) *Test {
+	s.Arn = &v
+	return s
+}
+
+// SetCounters sets the Counters field's value.
+func (s *Test) SetCounters(v *Counters) *Test {
+	s.Counters = v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *Test) SetCreated(v time.Time) *Test {
+	s.Created = &v
+	return s
+}
+
+// SetDeviceMinutes sets the DeviceMinutes field's value.
+func (s *Test) SetDeviceMinutes(v *DeviceMinutes) *Test {
+	s.DeviceMinutes = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Test) SetMessage(v string) *Test {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Test) SetName(v string) *Test {
+	s.Name = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *Test) SetResult(v string) *Test {
+	s.Result = &v
+	return s
+}
+
+// SetStarted sets the Started field's value.
+func (s *Test) SetStarted(v time.Time) *Test {
+	s.Started = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Test) SetStatus(v string) *Test {
+	s.Status = &v
+	return s
+}
+
+// SetStopped sets the Stopped field's value.
+func (s *Test) SetStopped(v time.Time) *Test {
+	s.Stopped = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Test) SetType(v string) *Test {
+	s.Type = &v
+	return s
+}
+
 // A collection of one or more problems, grouped by their result.
 type UniqueProblem struct {
 	_ struct{} `type:"structure"`
@@ -7762,6 +9502,18 @@ func (s UniqueProblem) String() string {
 // GoString returns the string representation
 func (s UniqueProblem) GoString() string {
 	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *UniqueProblem) SetMessage(v string) *UniqueProblem {
+	s.Message = &v
+	return s
+}
+
+// SetProblems sets the Problems field's value.
+func (s *UniqueProblem) SetProblems(v []*Problem) *UniqueProblem {
+	s.Problems = v
+	return s
 }
 
 // Represents a request to the update device pool operation.
@@ -7812,6 +9564,30 @@ func (s *UpdateDevicePoolInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *UpdateDevicePoolInput) SetArn(v string) *UpdateDevicePoolInput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateDevicePoolInput) SetDescription(v string) *UpdateDevicePoolInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateDevicePoolInput) SetName(v string) *UpdateDevicePoolInput {
+	s.Name = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *UpdateDevicePoolInput) SetRules(v []*Rule) *UpdateDevicePoolInput {
+	s.Rules = v
+	return s
+}
+
 // Represents the result of an update device pool request.
 type UpdateDevicePoolOutput struct {
 	_ struct{} `type:"structure"`
@@ -7828,6 +9604,12 @@ func (s UpdateDevicePoolOutput) String() string {
 // GoString returns the string representation
 func (s UpdateDevicePoolOutput) GoString() string {
 	return s.String()
+}
+
+// SetDevicePool sets the DevicePool field's value.
+func (s *UpdateDevicePoolOutput) SetDevicePool(v *DevicePool) *UpdateDevicePoolOutput {
+	s.DevicePool = v
+	return s
 }
 
 // Represents a request to the update project operation.
@@ -7869,6 +9651,18 @@ func (s *UpdateProjectInput) Validate() error {
 	return nil
 }
 
+// SetArn sets the Arn field's value.
+func (s *UpdateProjectInput) SetArn(v string) *UpdateProjectInput {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateProjectInput) SetName(v string) *UpdateProjectInput {
+	s.Name = &v
+	return s
+}
+
 // Represents the result of an update project request.
 type UpdateProjectOutput struct {
 	_ struct{} `type:"structure"`
@@ -7886,6 +9680,12 @@ func (s UpdateProjectOutput) String() string {
 // GoString returns the string representation
 func (s UpdateProjectOutput) GoString() string {
 	return s.String()
+}
+
+// SetProject sets the Project field's value.
+func (s *UpdateProjectOutput) SetProject(v *Project) *UpdateProjectOutput {
+	s.Project = v
+	return s
 }
 
 // An app or a set of one or more tests to upload or that have been uploaded.
@@ -7978,6 +9778,60 @@ func (s Upload) String() string {
 // GoString returns the string representation
 func (s Upload) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Upload) SetArn(v string) *Upload {
+	s.Arn = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *Upload) SetContentType(v string) *Upload {
+	s.ContentType = &v
+	return s
+}
+
+// SetCreated sets the Created field's value.
+func (s *Upload) SetCreated(v time.Time) *Upload {
+	s.Created = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Upload) SetMessage(v string) *Upload {
+	s.Message = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *Upload) SetMetadata(v string) *Upload {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Upload) SetName(v string) *Upload {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Upload) SetStatus(v string) *Upload {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Upload) SetType(v string) *Upload {
+	s.Type = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *Upload) SetUrl(v string) *Upload {
+	s.Url = &v
+	return s
 }
 
 const (

@@ -1245,6 +1245,18 @@ func (s *AddTagsInput) Validate() error {
 	return nil
 }
 
+// SetResourceId sets the ResourceId field's value.
+func (s *AddTagsInput) SetResourceId(v string) *AddTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTagsList sets the TagsList field's value.
+func (s *AddTagsInput) SetTagsList(v []*Tag) *AddTagsInput {
+	s.TagsList = v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type AddTagsOutput struct {
@@ -1370,6 +1382,66 @@ func (s *CreateTrailInput) Validate() error {
 	return nil
 }
 
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *CreateTrailInput) SetCloudWatchLogsLogGroupArn(v string) *CreateTrailInput {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *CreateTrailInput) SetCloudWatchLogsRoleArn(v string) *CreateTrailInput {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetEnableLogFileValidation sets the EnableLogFileValidation field's value.
+func (s *CreateTrailInput) SetEnableLogFileValidation(v bool) *CreateTrailInput {
+	s.EnableLogFileValidation = &v
+	return s
+}
+
+// SetIncludeGlobalServiceEvents sets the IncludeGlobalServiceEvents field's value.
+func (s *CreateTrailInput) SetIncludeGlobalServiceEvents(v bool) *CreateTrailInput {
+	s.IncludeGlobalServiceEvents = &v
+	return s
+}
+
+// SetIsMultiRegionTrail sets the IsMultiRegionTrail field's value.
+func (s *CreateTrailInput) SetIsMultiRegionTrail(v bool) *CreateTrailInput {
+	s.IsMultiRegionTrail = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateTrailInput) SetKmsKeyId(v string) *CreateTrailInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateTrailInput) SetName(v string) *CreateTrailInput {
+	s.Name = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateTrailInput) SetS3BucketName(v string) *CreateTrailInput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *CreateTrailInput) SetS3KeyPrefix(v string) *CreateTrailInput {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// SetSnsTopicName sets the SnsTopicName field's value.
+func (s *CreateTrailInput) SetSnsTopicName(v string) *CreateTrailInput {
+	s.SnsTopicName = &v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type CreateTrailOutput struct {
@@ -1437,6 +1509,78 @@ func (s CreateTrailOutput) GoString() string {
 	return s.String()
 }
 
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *CreateTrailOutput) SetCloudWatchLogsLogGroupArn(v string) *CreateTrailOutput {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *CreateTrailOutput) SetCloudWatchLogsRoleArn(v string) *CreateTrailOutput {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetIncludeGlobalServiceEvents sets the IncludeGlobalServiceEvents field's value.
+func (s *CreateTrailOutput) SetIncludeGlobalServiceEvents(v bool) *CreateTrailOutput {
+	s.IncludeGlobalServiceEvents = &v
+	return s
+}
+
+// SetIsMultiRegionTrail sets the IsMultiRegionTrail field's value.
+func (s *CreateTrailOutput) SetIsMultiRegionTrail(v bool) *CreateTrailOutput {
+	s.IsMultiRegionTrail = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateTrailOutput) SetKmsKeyId(v string) *CreateTrailOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogFileValidationEnabled sets the LogFileValidationEnabled field's value.
+func (s *CreateTrailOutput) SetLogFileValidationEnabled(v bool) *CreateTrailOutput {
+	s.LogFileValidationEnabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateTrailOutput) SetName(v string) *CreateTrailOutput {
+	s.Name = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *CreateTrailOutput) SetS3BucketName(v string) *CreateTrailOutput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *CreateTrailOutput) SetS3KeyPrefix(v string) *CreateTrailOutput {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// SetSnsTopicARN sets the SnsTopicARN field's value.
+func (s *CreateTrailOutput) SetSnsTopicARN(v string) *CreateTrailOutput {
+	s.SnsTopicARN = &v
+	return s
+}
+
+// SetSnsTopicName sets the SnsTopicName field's value.
+func (s *CreateTrailOutput) SetSnsTopicName(v string) *CreateTrailOutput {
+	s.SnsTopicName = &v
+	return s
+}
+
+// SetTrailARN sets the TrailARN field's value.
+func (s *CreateTrailOutput) SetTrailARN(v string) *CreateTrailOutput {
+	s.TrailARN = &v
+	return s
+}
+
 // The request that specifies the name of a trail to delete.
 type DeleteTrailInput struct {
 	_ struct{} `type:"structure"`
@@ -1471,6 +1615,12 @@ func (s *DeleteTrailInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteTrailInput) SetName(v string) *DeleteTrailInput {
+	s.Name = &v
+	return s
 }
 
 // Returns the objects or data listed below if successful. Otherwise, returns
@@ -1530,6 +1680,18 @@ func (s DescribeTrailsInput) GoString() string {
 	return s.String()
 }
 
+// SetIncludeShadowTrails sets the IncludeShadowTrails field's value.
+func (s *DescribeTrailsInput) SetIncludeShadowTrails(v bool) *DescribeTrailsInput {
+	s.IncludeShadowTrails = &v
+	return s
+}
+
+// SetTrailNameList sets the TrailNameList field's value.
+func (s *DescribeTrailsInput) SetTrailNameList(v []*string) *DescribeTrailsInput {
+	s.TrailNameList = v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type DescribeTrailsOutput struct {
@@ -1547,6 +1709,12 @@ func (s DescribeTrailsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTrailsOutput) GoString() string {
 	return s.String()
+}
+
+// SetTrailList sets the TrailList field's value.
+func (s *DescribeTrailsOutput) SetTrailList(v []*Trail) *DescribeTrailsOutput {
+	s.TrailList = v
+	return s
 }
 
 // Contains information about an event that was returned by a lookup request.
@@ -1584,6 +1752,42 @@ func (s Event) GoString() string {
 	return s.String()
 }
 
+// SetCloudTrailEvent sets the CloudTrailEvent field's value.
+func (s *Event) SetCloudTrailEvent(v string) *Event {
+	s.CloudTrailEvent = &v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *Event) SetEventId(v string) *Event {
+	s.EventId = &v
+	return s
+}
+
+// SetEventName sets the EventName field's value.
+func (s *Event) SetEventName(v string) *Event {
+	s.EventName = &v
+	return s
+}
+
+// SetEventTime sets the EventTime field's value.
+func (s *Event) SetEventTime(v time.Time) *Event {
+	s.EventTime = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *Event) SetResources(v []*Resource) *Event {
+	s.Resources = v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *Event) SetUsername(v string) *Event {
+	s.Username = &v
+	return s
+}
+
 // The name of a trail about which you want the current status.
 type GetTrailStatusInput struct {
 	_ struct{} `type:"structure"`
@@ -1619,6 +1823,12 @@ func (s *GetTrailStatusInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetTrailStatusInput) SetName(v string) *GetTrailStatusInput {
+	s.Name = &v
+	return s
 }
 
 // Returns the objects or data listed below if successful. Otherwise, returns
@@ -1713,6 +1923,108 @@ func (s GetTrailStatusOutput) GoString() string {
 	return s.String()
 }
 
+// SetIsLogging sets the IsLogging field's value.
+func (s *GetTrailStatusOutput) SetIsLogging(v bool) *GetTrailStatusOutput {
+	s.IsLogging = &v
+	return s
+}
+
+// SetLatestCloudWatchLogsDeliveryError sets the LatestCloudWatchLogsDeliveryError field's value.
+func (s *GetTrailStatusOutput) SetLatestCloudWatchLogsDeliveryError(v string) *GetTrailStatusOutput {
+	s.LatestCloudWatchLogsDeliveryError = &v
+	return s
+}
+
+// SetLatestCloudWatchLogsDeliveryTime sets the LatestCloudWatchLogsDeliveryTime field's value.
+func (s *GetTrailStatusOutput) SetLatestCloudWatchLogsDeliveryTime(v time.Time) *GetTrailStatusOutput {
+	s.LatestCloudWatchLogsDeliveryTime = &v
+	return s
+}
+
+// SetLatestDeliveryAttemptSucceeded sets the LatestDeliveryAttemptSucceeded field's value.
+func (s *GetTrailStatusOutput) SetLatestDeliveryAttemptSucceeded(v string) *GetTrailStatusOutput {
+	s.LatestDeliveryAttemptSucceeded = &v
+	return s
+}
+
+// SetLatestDeliveryAttemptTime sets the LatestDeliveryAttemptTime field's value.
+func (s *GetTrailStatusOutput) SetLatestDeliveryAttemptTime(v string) *GetTrailStatusOutput {
+	s.LatestDeliveryAttemptTime = &v
+	return s
+}
+
+// SetLatestDeliveryError sets the LatestDeliveryError field's value.
+func (s *GetTrailStatusOutput) SetLatestDeliveryError(v string) *GetTrailStatusOutput {
+	s.LatestDeliveryError = &v
+	return s
+}
+
+// SetLatestDeliveryTime sets the LatestDeliveryTime field's value.
+func (s *GetTrailStatusOutput) SetLatestDeliveryTime(v time.Time) *GetTrailStatusOutput {
+	s.LatestDeliveryTime = &v
+	return s
+}
+
+// SetLatestDigestDeliveryError sets the LatestDigestDeliveryError field's value.
+func (s *GetTrailStatusOutput) SetLatestDigestDeliveryError(v string) *GetTrailStatusOutput {
+	s.LatestDigestDeliveryError = &v
+	return s
+}
+
+// SetLatestDigestDeliveryTime sets the LatestDigestDeliveryTime field's value.
+func (s *GetTrailStatusOutput) SetLatestDigestDeliveryTime(v time.Time) *GetTrailStatusOutput {
+	s.LatestDigestDeliveryTime = &v
+	return s
+}
+
+// SetLatestNotificationAttemptSucceeded sets the LatestNotificationAttemptSucceeded field's value.
+func (s *GetTrailStatusOutput) SetLatestNotificationAttemptSucceeded(v string) *GetTrailStatusOutput {
+	s.LatestNotificationAttemptSucceeded = &v
+	return s
+}
+
+// SetLatestNotificationAttemptTime sets the LatestNotificationAttemptTime field's value.
+func (s *GetTrailStatusOutput) SetLatestNotificationAttemptTime(v string) *GetTrailStatusOutput {
+	s.LatestNotificationAttemptTime = &v
+	return s
+}
+
+// SetLatestNotificationError sets the LatestNotificationError field's value.
+func (s *GetTrailStatusOutput) SetLatestNotificationError(v string) *GetTrailStatusOutput {
+	s.LatestNotificationError = &v
+	return s
+}
+
+// SetLatestNotificationTime sets the LatestNotificationTime field's value.
+func (s *GetTrailStatusOutput) SetLatestNotificationTime(v time.Time) *GetTrailStatusOutput {
+	s.LatestNotificationTime = &v
+	return s
+}
+
+// SetStartLoggingTime sets the StartLoggingTime field's value.
+func (s *GetTrailStatusOutput) SetStartLoggingTime(v time.Time) *GetTrailStatusOutput {
+	s.StartLoggingTime = &v
+	return s
+}
+
+// SetStopLoggingTime sets the StopLoggingTime field's value.
+func (s *GetTrailStatusOutput) SetStopLoggingTime(v time.Time) *GetTrailStatusOutput {
+	s.StopLoggingTime = &v
+	return s
+}
+
+// SetTimeLoggingStarted sets the TimeLoggingStarted field's value.
+func (s *GetTrailStatusOutput) SetTimeLoggingStarted(v string) *GetTrailStatusOutput {
+	s.TimeLoggingStarted = &v
+	return s
+}
+
+// SetTimeLoggingStopped sets the TimeLoggingStopped field's value.
+func (s *GetTrailStatusOutput) SetTimeLoggingStopped(v string) *GetTrailStatusOutput {
+	s.TimeLoggingStopped = &v
+	return s
+}
+
 // Requests the public keys for a specified time range.
 type ListPublicKeysInput struct {
 	_ struct{} `type:"structure"`
@@ -1740,6 +2052,24 @@ func (s ListPublicKeysInput) GoString() string {
 	return s.String()
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *ListPublicKeysInput) SetEndTime(v time.Time) *ListPublicKeysInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPublicKeysInput) SetNextToken(v string) *ListPublicKeysInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ListPublicKeysInput) SetStartTime(v time.Time) *ListPublicKeysInput {
+	s.StartTime = &v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type ListPublicKeysOutput struct {
@@ -1762,6 +2092,18 @@ func (s ListPublicKeysOutput) String() string {
 // GoString returns the string representation
 func (s ListPublicKeysOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPublicKeysOutput) SetNextToken(v string) *ListPublicKeysOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPublicKeyList sets the PublicKeyList field's value.
+func (s *ListPublicKeysOutput) SetPublicKeyList(v []*PublicKey) *ListPublicKeysOutput {
+	s.PublicKeyList = v
+	return s
 }
 
 // Specifies a list of trail tags to return.
@@ -1803,6 +2145,18 @@ func (s *ListTagsInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsInput) SetNextToken(v string) *ListTagsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIdList sets the ResourceIdList field's value.
+func (s *ListTagsInput) SetResourceIdList(v []*string) *ListTagsInput {
+	s.ResourceIdList = v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type ListTagsOutput struct {
@@ -1823,6 +2177,18 @@ func (s ListTagsOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTagsOutput) SetNextToken(v string) *ListTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceTagList sets the ResourceTagList field's value.
+func (s *ListTagsOutput) SetResourceTagList(v []*ResourceTag) *ListTagsOutput {
+	s.ResourceTagList = v
+	return s
 }
 
 // Specifies an attribute and value that filter the events returned.
@@ -1864,6 +2230,18 @@ func (s *LookupAttribute) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttributeKey sets the AttributeKey field's value.
+func (s *LookupAttribute) SetAttributeKey(v string) *LookupAttribute {
+	s.AttributeKey = &v
+	return s
+}
+
+// SetAttributeValue sets the AttributeValue field's value.
+func (s *LookupAttribute) SetAttributeValue(v string) *LookupAttribute {
+	s.AttributeValue = &v
+	return s
 }
 
 // Contains a request for LookupEvents.
@@ -1929,6 +2307,36 @@ func (s *LookupEventsInput) Validate() error {
 	return nil
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *LookupEventsInput) SetEndTime(v time.Time) *LookupEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetLookupAttributes sets the LookupAttributes field's value.
+func (s *LookupEventsInput) SetLookupAttributes(v []*LookupAttribute) *LookupEventsInput {
+	s.LookupAttributes = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *LookupEventsInput) SetMaxResults(v int64) *LookupEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *LookupEventsInput) SetNextToken(v string) *LookupEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LookupEventsInput) SetStartTime(v time.Time) *LookupEventsInput {
+	s.StartTime = &v
+	return s
+}
+
 // Contains a response to a LookupEvents action.
 type LookupEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1954,6 +2362,18 @@ func (s LookupEventsOutput) String() string {
 // GoString returns the string representation
 func (s LookupEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *LookupEventsOutput) SetEvents(v []*Event) *LookupEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *LookupEventsOutput) SetNextToken(v string) *LookupEventsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains information about a returned public key.
@@ -1983,6 +2403,30 @@ func (s PublicKey) String() string {
 // GoString returns the string representation
 func (s PublicKey) GoString() string {
 	return s.String()
+}
+
+// SetFingerprint sets the Fingerprint field's value.
+func (s *PublicKey) SetFingerprint(v string) *PublicKey {
+	s.Fingerprint = &v
+	return s
+}
+
+// SetValidityEndTime sets the ValidityEndTime field's value.
+func (s *PublicKey) SetValidityEndTime(v time.Time) *PublicKey {
+	s.ValidityEndTime = &v
+	return s
+}
+
+// SetValidityStartTime sets the ValidityStartTime field's value.
+func (s *PublicKey) SetValidityStartTime(v time.Time) *PublicKey {
+	s.ValidityStartTime = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *PublicKey) SetValue(v []byte) *PublicKey {
+	s.Value = v
+	return s
 }
 
 // Specifies the tags to remove from a trail.
@@ -2034,6 +2478,18 @@ func (s *RemoveTagsInput) Validate() error {
 	return nil
 }
 
+// SetResourceId sets the ResourceId field's value.
+func (s *RemoveTagsInput) SetResourceId(v string) *RemoveTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTagsList sets the TagsList field's value.
+func (s *RemoveTagsInput) SetTagsList(v []*Tag) *RemoveTagsInput {
+	s.TagsList = v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type RemoveTagsOutput struct {
@@ -2078,6 +2534,18 @@ func (s Resource) GoString() string {
 	return s.String()
 }
 
+// SetResourceName sets the ResourceName field's value.
+func (s *Resource) SetResourceName(v string) *Resource {
+	s.ResourceName = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *Resource) SetResourceType(v string) *Resource {
+	s.ResourceType = &v
+	return s
+}
+
 // A resource tag.
 type ResourceTag struct {
 	_ struct{} `type:"structure"`
@@ -2097,6 +2565,18 @@ func (s ResourceTag) String() string {
 // GoString returns the string representation
 func (s ResourceTag) GoString() string {
 	return s.String()
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ResourceTag) SetResourceId(v string) *ResourceTag {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTagsList sets the TagsList field's value.
+func (s *ResourceTag) SetTagsList(v []*Tag) *ResourceTag {
+	s.TagsList = v
+	return s
 }
 
 // The request to CloudTrail to start logging AWS API calls for an account.
@@ -2133,6 +2613,12 @@ func (s *StartLoggingInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *StartLoggingInput) SetName(v string) *StartLoggingInput {
+	s.Name = &v
+	return s
 }
 
 // Returns the objects or data listed below if successful. Otherwise, returns
@@ -2188,6 +2674,12 @@ func (s *StopLoggingInput) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *StopLoggingInput) SetName(v string) *StopLoggingInput {
+	s.Name = &v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type StopLoggingOutput struct {
@@ -2240,6 +2732,18 @@ func (s *Tag) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // The settings for a trail.
@@ -2309,6 +2813,84 @@ func (s Trail) String() string {
 // GoString returns the string representation
 func (s Trail) GoString() string {
 	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *Trail) SetCloudWatchLogsLogGroupArn(v string) *Trail {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *Trail) SetCloudWatchLogsRoleArn(v string) *Trail {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetHomeRegion sets the HomeRegion field's value.
+func (s *Trail) SetHomeRegion(v string) *Trail {
+	s.HomeRegion = &v
+	return s
+}
+
+// SetIncludeGlobalServiceEvents sets the IncludeGlobalServiceEvents field's value.
+func (s *Trail) SetIncludeGlobalServiceEvents(v bool) *Trail {
+	s.IncludeGlobalServiceEvents = &v
+	return s
+}
+
+// SetIsMultiRegionTrail sets the IsMultiRegionTrail field's value.
+func (s *Trail) SetIsMultiRegionTrail(v bool) *Trail {
+	s.IsMultiRegionTrail = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *Trail) SetKmsKeyId(v string) *Trail {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogFileValidationEnabled sets the LogFileValidationEnabled field's value.
+func (s *Trail) SetLogFileValidationEnabled(v bool) *Trail {
+	s.LogFileValidationEnabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Trail) SetName(v string) *Trail {
+	s.Name = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *Trail) SetS3BucketName(v string) *Trail {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *Trail) SetS3KeyPrefix(v string) *Trail {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// SetSnsTopicARN sets the SnsTopicARN field's value.
+func (s *Trail) SetSnsTopicARN(v string) *Trail {
+	s.SnsTopicARN = &v
+	return s
+}
+
+// SetSnsTopicName sets the SnsTopicName field's value.
+func (s *Trail) SetSnsTopicName(v string) *Trail {
+	s.SnsTopicName = &v
+	return s
+}
+
+// SetTrailARN sets the TrailARN field's value.
+func (s *Trail) SetTrailARN(v string) *Trail {
+	s.TrailARN = &v
+	return s
 }
 
 // Specifies settings to update for the trail.
@@ -2423,6 +3005,66 @@ func (s *UpdateTrailInput) Validate() error {
 	return nil
 }
 
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *UpdateTrailInput) SetCloudWatchLogsLogGroupArn(v string) *UpdateTrailInput {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *UpdateTrailInput) SetCloudWatchLogsRoleArn(v string) *UpdateTrailInput {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetEnableLogFileValidation sets the EnableLogFileValidation field's value.
+func (s *UpdateTrailInput) SetEnableLogFileValidation(v bool) *UpdateTrailInput {
+	s.EnableLogFileValidation = &v
+	return s
+}
+
+// SetIncludeGlobalServiceEvents sets the IncludeGlobalServiceEvents field's value.
+func (s *UpdateTrailInput) SetIncludeGlobalServiceEvents(v bool) *UpdateTrailInput {
+	s.IncludeGlobalServiceEvents = &v
+	return s
+}
+
+// SetIsMultiRegionTrail sets the IsMultiRegionTrail field's value.
+func (s *UpdateTrailInput) SetIsMultiRegionTrail(v bool) *UpdateTrailInput {
+	s.IsMultiRegionTrail = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateTrailInput) SetKmsKeyId(v string) *UpdateTrailInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateTrailInput) SetName(v string) *UpdateTrailInput {
+	s.Name = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *UpdateTrailInput) SetS3BucketName(v string) *UpdateTrailInput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *UpdateTrailInput) SetS3KeyPrefix(v string) *UpdateTrailInput {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// SetSnsTopicName sets the SnsTopicName field's value.
+func (s *UpdateTrailInput) SetSnsTopicName(v string) *UpdateTrailInput {
+	s.SnsTopicName = &v
+	return s
+}
+
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type UpdateTrailOutput struct {
@@ -2488,6 +3130,78 @@ func (s UpdateTrailOutput) String() string {
 // GoString returns the string representation
 func (s UpdateTrailOutput) GoString() string {
 	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *UpdateTrailOutput) SetCloudWatchLogsLogGroupArn(v string) *UpdateTrailOutput {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *UpdateTrailOutput) SetCloudWatchLogsRoleArn(v string) *UpdateTrailOutput {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetIncludeGlobalServiceEvents sets the IncludeGlobalServiceEvents field's value.
+func (s *UpdateTrailOutput) SetIncludeGlobalServiceEvents(v bool) *UpdateTrailOutput {
+	s.IncludeGlobalServiceEvents = &v
+	return s
+}
+
+// SetIsMultiRegionTrail sets the IsMultiRegionTrail field's value.
+func (s *UpdateTrailOutput) SetIsMultiRegionTrail(v bool) *UpdateTrailOutput {
+	s.IsMultiRegionTrail = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *UpdateTrailOutput) SetKmsKeyId(v string) *UpdateTrailOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogFileValidationEnabled sets the LogFileValidationEnabled field's value.
+func (s *UpdateTrailOutput) SetLogFileValidationEnabled(v bool) *UpdateTrailOutput {
+	s.LogFileValidationEnabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateTrailOutput) SetName(v string) *UpdateTrailOutput {
+	s.Name = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *UpdateTrailOutput) SetS3BucketName(v string) *UpdateTrailOutput {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *UpdateTrailOutput) SetS3KeyPrefix(v string) *UpdateTrailOutput {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// SetSnsTopicARN sets the SnsTopicARN field's value.
+func (s *UpdateTrailOutput) SetSnsTopicARN(v string) *UpdateTrailOutput {
+	s.SnsTopicARN = &v
+	return s
+}
+
+// SetSnsTopicName sets the SnsTopicName field's value.
+func (s *UpdateTrailOutput) SetSnsTopicName(v string) *UpdateTrailOutput {
+	s.SnsTopicName = &v
+	return s
+}
+
+// SetTrailARN sets the TrailARN field's value.
+func (s *UpdateTrailOutput) SetTrailARN(v string) *UpdateTrailOutput {
+	s.TrailARN = &v
+	return s
 }
 
 const (

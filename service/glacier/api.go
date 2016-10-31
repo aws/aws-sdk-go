@@ -3242,6 +3242,24 @@ func (s *AbortMultipartUploadInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *AbortMultipartUploadInput) SetAccountId(v string) *AbortMultipartUploadInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *AbortMultipartUploadInput) SetUploadId(v string) *AbortMultipartUploadInput {
+	s.UploadId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *AbortMultipartUploadInput) SetVaultName(v string) *AbortMultipartUploadInput {
+	s.VaultName = &v
+	return s
+}
+
 type AbortMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3300,6 +3318,18 @@ func (s *AbortVaultLockInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AbortVaultLockInput) SetAccountId(v string) *AbortVaultLockInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *AbortVaultLockInput) SetVaultName(v string) *AbortVaultLockInput {
+	s.VaultName = &v
+	return s
 }
 
 type AbortVaultLockOutput struct {
@@ -3365,6 +3395,24 @@ func (s *AddTagsToVaultInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *AddTagsToVaultInput) SetAccountId(v string) *AddTagsToVaultInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsToVaultInput) SetTags(v map[string]*string) *AddTagsToVaultInput {
+	s.Tags = v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *AddTagsToVaultInput) SetVaultName(v string) *AddTagsToVaultInput {
+	s.VaultName = &v
+	return s
+}
+
 type AddTagsToVaultOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3405,6 +3453,24 @@ func (s ArchiveCreationOutput) String() string {
 // GoString returns the string representation
 func (s ArchiveCreationOutput) GoString() string {
 	return s.String()
+}
+
+// SetArchiveId sets the ArchiveId field's value.
+func (s *ArchiveCreationOutput) SetArchiveId(v string) *ArchiveCreationOutput {
+	s.ArchiveId = &v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *ArchiveCreationOutput) SetChecksum(v string) *ArchiveCreationOutput {
+	s.Checksum = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *ArchiveCreationOutput) SetLocation(v string) *ArchiveCreationOutput {
+	s.Location = &v
+	return s
 }
 
 // Provides options to complete a multipart upload operation. This informs Amazon
@@ -3474,6 +3540,36 @@ func (s *CompleteMultipartUploadInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *CompleteMultipartUploadInput) SetAccountId(v string) *CompleteMultipartUploadInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetArchiveSize sets the ArchiveSize field's value.
+func (s *CompleteMultipartUploadInput) SetArchiveSize(v string) *CompleteMultipartUploadInput {
+	s.ArchiveSize = &v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *CompleteMultipartUploadInput) SetChecksum(v string) *CompleteMultipartUploadInput {
+	s.Checksum = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *CompleteMultipartUploadInput) SetUploadId(v string) *CompleteMultipartUploadInput {
+	s.UploadId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *CompleteMultipartUploadInput) SetVaultName(v string) *CompleteMultipartUploadInput {
+	s.VaultName = &v
+	return s
+}
+
 // The input values for CompleteVaultLock.
 type CompleteVaultLockInput struct {
 	_ struct{} `type:"structure"`
@@ -3526,6 +3622,24 @@ func (s *CompleteVaultLockInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CompleteVaultLockInput) SetAccountId(v string) *CompleteVaultLockInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetLockId sets the LockId field's value.
+func (s *CompleteVaultLockInput) SetLockId(v string) *CompleteVaultLockInput {
+	s.LockId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *CompleteVaultLockInput) SetVaultName(v string) *CompleteVaultLockInput {
+	s.VaultName = &v
+	return s
 }
 
 type CompleteVaultLockOutput struct {
@@ -3588,6 +3702,18 @@ func (s *CreateVaultInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *CreateVaultInput) SetAccountId(v string) *CreateVaultInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *CreateVaultInput) SetVaultName(v string) *CreateVaultInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type CreateVaultOutput struct {
 	_ struct{} `type:"structure"`
@@ -3604,6 +3730,12 @@ func (s CreateVaultOutput) String() string {
 // GoString returns the string representation
 func (s CreateVaultOutput) GoString() string {
 	return s.String()
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateVaultOutput) SetLocation(v string) *CreateVaultOutput {
+	s.Location = &v
+	return s
 }
 
 // Data retrieval policy.
@@ -3623,6 +3755,12 @@ func (s DataRetrievalPolicy) String() string {
 // GoString returns the string representation
 func (s DataRetrievalPolicy) GoString() string {
 	return s.String()
+}
+
+// SetRules sets the Rules field's value.
+func (s *DataRetrievalPolicy) SetRules(v []*DataRetrievalRule) *DataRetrievalPolicy {
+	s.Rules = v
+	return s
 }
 
 // Data retrieval policy rule.
@@ -3650,6 +3788,18 @@ func (s DataRetrievalRule) String() string {
 // GoString returns the string representation
 func (s DataRetrievalRule) GoString() string {
 	return s.String()
+}
+
+// SetBytesPerHour sets the BytesPerHour field's value.
+func (s *DataRetrievalRule) SetBytesPerHour(v int64) *DataRetrievalRule {
+	s.BytesPerHour = &v
+	return s
+}
+
+// SetStrategy sets the Strategy field's value.
+func (s *DataRetrievalRule) SetStrategy(v string) *DataRetrievalRule {
+	s.Strategy = &v
+	return s
 }
 
 // Provides options for deleting an archive from an Amazon Glacier vault.
@@ -3703,6 +3853,24 @@ func (s *DeleteArchiveInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteArchiveInput) SetAccountId(v string) *DeleteArchiveInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetArchiveId sets the ArchiveId field's value.
+func (s *DeleteArchiveInput) SetArchiveId(v string) *DeleteArchiveInput {
+	s.ArchiveId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DeleteArchiveInput) SetVaultName(v string) *DeleteArchiveInput {
+	s.VaultName = &v
+	return s
 }
 
 type DeleteArchiveOutput struct {
@@ -3764,6 +3932,18 @@ func (s *DeleteVaultAccessPolicyInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteVaultAccessPolicyInput) SetAccountId(v string) *DeleteVaultAccessPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DeleteVaultAccessPolicyInput) SetVaultName(v string) *DeleteVaultAccessPolicyInput {
+	s.VaultName = &v
+	return s
+}
+
 type DeleteVaultAccessPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3823,6 +4003,18 @@ func (s *DeleteVaultInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteVaultInput) SetAccountId(v string) *DeleteVaultInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DeleteVaultInput) SetVaultName(v string) *DeleteVaultInput {
+	s.VaultName = &v
+	return s
+}
+
 // Provides options for deleting a vault notification configuration from an
 // Amazon Glacier vault.
 type DeleteVaultNotificationsInput struct {
@@ -3867,6 +4059,18 @@ func (s *DeleteVaultNotificationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteVaultNotificationsInput) SetAccountId(v string) *DeleteVaultNotificationsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DeleteVaultNotificationsInput) SetVaultName(v string) *DeleteVaultNotificationsInput {
+	s.VaultName = &v
+	return s
 }
 
 type DeleteVaultNotificationsOutput struct {
@@ -3950,6 +4154,24 @@ func (s *DescribeJobInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeJobInput) SetAccountId(v string) *DescribeJobInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeJobInput) SetJobId(v string) *DescribeJobInput {
+	s.JobId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DescribeJobInput) SetVaultName(v string) *DescribeJobInput {
+	s.VaultName = &v
+	return s
+}
+
 // Provides options for retrieving metadata for a specific vault in Amazon Glacier.
 type DescribeVaultInput struct {
 	_ struct{} `type:"structure"`
@@ -3995,6 +4217,18 @@ func (s *DescribeVaultInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeVaultInput) SetAccountId(v string) *DescribeVaultInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DescribeVaultInput) SetVaultName(v string) *DescribeVaultInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type DescribeVaultOutput struct {
 	_ struct{} `type:"structure"`
@@ -4032,6 +4266,42 @@ func (s DescribeVaultOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVaultOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DescribeVaultOutput) SetCreationDate(v string) *DescribeVaultOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetLastInventoryDate sets the LastInventoryDate field's value.
+func (s *DescribeVaultOutput) SetLastInventoryDate(v string) *DescribeVaultOutput {
+	s.LastInventoryDate = &v
+	return s
+}
+
+// SetNumberOfArchives sets the NumberOfArchives field's value.
+func (s *DescribeVaultOutput) SetNumberOfArchives(v int64) *DescribeVaultOutput {
+	s.NumberOfArchives = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *DescribeVaultOutput) SetSizeInBytes(v int64) *DescribeVaultOutput {
+	s.SizeInBytes = &v
+	return s
+}
+
+// SetVaultARN sets the VaultARN field's value.
+func (s *DescribeVaultOutput) SetVaultARN(v string) *DescribeVaultOutput {
+	s.VaultARN = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *DescribeVaultOutput) SetVaultName(v string) *DescribeVaultOutput {
+	s.VaultName = &v
+	return s
 }
 
 // Input for GetDataRetrievalPolicy.
@@ -4072,6 +4342,12 @@ func (s *GetDataRetrievalPolicyInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *GetDataRetrievalPolicyInput) SetAccountId(v string) *GetDataRetrievalPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to the GetDataRetrievalPolicy request.
 type GetDataRetrievalPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -4088,6 +4364,12 @@ func (s GetDataRetrievalPolicyOutput) String() string {
 // GoString returns the string representation
 func (s GetDataRetrievalPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetDataRetrievalPolicyOutput) SetPolicy(v *DataRetrievalPolicy) *GetDataRetrievalPolicyOutput {
+	s.Policy = v
+	return s
 }
 
 // Provides options for downloading output of an Amazon Glacier job.
@@ -4148,6 +4430,30 @@ func (s *GetJobOutputInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *GetJobOutputInput) SetAccountId(v string) *GetJobOutputInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetJobOutputInput) SetJobId(v string) *GetJobOutputInput {
+	s.JobId = &v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *GetJobOutputInput) SetRange(v string) *GetJobOutputInput {
+	s.Range = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *GetJobOutputInput) SetVaultName(v string) *GetJobOutputInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type GetJobOutputOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
@@ -4203,6 +4509,48 @@ func (s GetJobOutputOutput) GoString() string {
 	return s.String()
 }
 
+// SetAcceptRanges sets the AcceptRanges field's value.
+func (s *GetJobOutputOutput) SetAcceptRanges(v string) *GetJobOutputOutput {
+	s.AcceptRanges = &v
+	return s
+}
+
+// SetArchiveDescription sets the ArchiveDescription field's value.
+func (s *GetJobOutputOutput) SetArchiveDescription(v string) *GetJobOutputOutput {
+	s.ArchiveDescription = &v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *GetJobOutputOutput) SetBody(v io.ReadCloser) *GetJobOutputOutput {
+	s.Body = v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *GetJobOutputOutput) SetChecksum(v string) *GetJobOutputOutput {
+	s.Checksum = &v
+	return s
+}
+
+// SetContentRange sets the ContentRange field's value.
+func (s *GetJobOutputOutput) SetContentRange(v string) *GetJobOutputOutput {
+	s.ContentRange = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *GetJobOutputOutput) SetContentType(v string) *GetJobOutputOutput {
+	s.ContentType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetJobOutputOutput) SetStatus(v int64) *GetJobOutputOutput {
+	s.Status = &v
+	return s
+}
+
 // Input for GetVaultAccessPolicy.
 type GetVaultAccessPolicyInput struct {
 	_ struct{} `type:"structure"`
@@ -4248,6 +4596,18 @@ func (s *GetVaultAccessPolicyInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *GetVaultAccessPolicyInput) SetAccountId(v string) *GetVaultAccessPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *GetVaultAccessPolicyInput) SetVaultName(v string) *GetVaultAccessPolicyInput {
+	s.VaultName = &v
+	return s
+}
+
 // Output for GetVaultAccessPolicy.
 type GetVaultAccessPolicyOutput struct {
 	_ struct{} `type:"structure" payload:"Policy"`
@@ -4264,6 +4624,12 @@ func (s GetVaultAccessPolicyOutput) String() string {
 // GoString returns the string representation
 func (s GetVaultAccessPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetVaultAccessPolicyOutput) SetPolicy(v *VaultAccessPolicy) *GetVaultAccessPolicyOutput {
+	s.Policy = v
+	return s
 }
 
 // The input values for GetVaultLock.
@@ -4311,6 +4677,18 @@ func (s *GetVaultLockInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *GetVaultLockInput) SetAccountId(v string) *GetVaultLockInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *GetVaultLockInput) SetVaultName(v string) *GetVaultLockInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type GetVaultLockOutput struct {
 	_ struct{} `type:"structure"`
@@ -4338,6 +4716,30 @@ func (s GetVaultLockOutput) String() string {
 // GoString returns the string representation
 func (s GetVaultLockOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetVaultLockOutput) SetCreationDate(v string) *GetVaultLockOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetExpirationDate sets the ExpirationDate field's value.
+func (s *GetVaultLockOutput) SetExpirationDate(v string) *GetVaultLockOutput {
+	s.ExpirationDate = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetVaultLockOutput) SetPolicy(v string) *GetVaultLockOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *GetVaultLockOutput) SetState(v string) *GetVaultLockOutput {
+	s.State = &v
+	return s
 }
 
 // Provides options for retrieving the notification configuration set on an
@@ -4386,6 +4788,18 @@ func (s *GetVaultNotificationsInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *GetVaultNotificationsInput) SetAccountId(v string) *GetVaultNotificationsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *GetVaultNotificationsInput) SetVaultName(v string) *GetVaultNotificationsInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type GetVaultNotificationsOutput struct {
 	_ struct{} `type:"structure" payload:"VaultNotificationConfig"`
@@ -4402,6 +4816,12 @@ func (s GetVaultNotificationsOutput) String() string {
 // GoString returns the string representation
 func (s GetVaultNotificationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetVaultNotificationConfig sets the VaultNotificationConfig field's value.
+func (s *GetVaultNotificationsOutput) SetVaultNotificationConfig(v *VaultNotificationConfig) *GetVaultNotificationsOutput {
+	s.VaultNotificationConfig = v
+	return s
 }
 
 // Provides options for initiating an Amazon Glacier job.
@@ -4452,6 +4872,24 @@ func (s *InitiateJobInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *InitiateJobInput) SetAccountId(v string) *InitiateJobInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetJobParameters sets the JobParameters field's value.
+func (s *InitiateJobInput) SetJobParameters(v *JobParameters) *InitiateJobInput {
+	s.JobParameters = v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *InitiateJobInput) SetVaultName(v string) *InitiateJobInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type InitiateJobOutput struct {
 	_ struct{} `type:"structure"`
@@ -4471,6 +4909,18 @@ func (s InitiateJobOutput) String() string {
 // GoString returns the string representation
 func (s InitiateJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *InitiateJobOutput) SetJobId(v string) *InitiateJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *InitiateJobOutput) SetLocation(v string) *InitiateJobOutput {
+	s.Location = &v
+	return s
 }
 
 // Provides options for initiating a multipart upload to an Amazon Glacier vault.
@@ -4530,6 +4980,30 @@ func (s *InitiateMultipartUploadInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *InitiateMultipartUploadInput) SetAccountId(v string) *InitiateMultipartUploadInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetArchiveDescription sets the ArchiveDescription field's value.
+func (s *InitiateMultipartUploadInput) SetArchiveDescription(v string) *InitiateMultipartUploadInput {
+	s.ArchiveDescription = &v
+	return s
+}
+
+// SetPartSize sets the PartSize field's value.
+func (s *InitiateMultipartUploadInput) SetPartSize(v string) *InitiateMultipartUploadInput {
+	s.PartSize = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *InitiateMultipartUploadInput) SetVaultName(v string) *InitiateMultipartUploadInput {
+	s.VaultName = &v
+	return s
+}
+
 // The Amazon Glacier response to your request.
 type InitiateMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
@@ -4550,6 +5024,18 @@ func (s InitiateMultipartUploadOutput) String() string {
 // GoString returns the string representation
 func (s InitiateMultipartUploadOutput) GoString() string {
 	return s.String()
+}
+
+// SetLocation sets the Location field's value.
+func (s *InitiateMultipartUploadOutput) SetLocation(v string) *InitiateMultipartUploadOutput {
+	s.Location = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *InitiateMultipartUploadOutput) SetUploadId(v string) *InitiateMultipartUploadOutput {
+	s.UploadId = &v
+	return s
 }
 
 // The input values for InitiateVaultLock.
@@ -4601,6 +5087,24 @@ func (s *InitiateVaultLockInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *InitiateVaultLockInput) SetAccountId(v string) *InitiateVaultLockInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *InitiateVaultLockInput) SetPolicy(v *VaultLockPolicy) *InitiateVaultLockInput {
+	s.Policy = v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *InitiateVaultLockInput) SetVaultName(v string) *InitiateVaultLockInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type InitiateVaultLockOutput struct {
 	_ struct{} `type:"structure"`
@@ -4617,6 +5121,12 @@ func (s InitiateVaultLockOutput) String() string {
 // GoString returns the string representation
 func (s InitiateVaultLockOutput) GoString() string {
 	return s.String()
+}
+
+// SetLockId sets the LockId field's value.
+func (s *InitiateVaultLockOutput) SetLockId(v string) *InitiateVaultLockOutput {
+	s.LockId = &v
+	return s
 }
 
 // Describes the options for a range inventory retrieval job.
@@ -4661,6 +5171,36 @@ func (s InventoryRetrievalJobDescription) GoString() string {
 	return s.String()
 }
 
+// SetEndDate sets the EndDate field's value.
+func (s *InventoryRetrievalJobDescription) SetEndDate(v string) *InventoryRetrievalJobDescription {
+	s.EndDate = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *InventoryRetrievalJobDescription) SetFormat(v string) *InventoryRetrievalJobDescription {
+	s.Format = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *InventoryRetrievalJobDescription) SetLimit(v string) *InventoryRetrievalJobDescription {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *InventoryRetrievalJobDescription) SetMarker(v string) *InventoryRetrievalJobDescription {
+	s.Marker = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *InventoryRetrievalJobDescription) SetStartDate(v string) *InventoryRetrievalJobDescription {
+	s.StartDate = &v
+	return s
+}
+
 // Provides options for specifying a range inventory retrieval job.
 type InventoryRetrievalJobInput struct {
 	_ struct{} `type:"structure"`
@@ -4694,6 +5234,30 @@ func (s InventoryRetrievalJobInput) String() string {
 // GoString returns the string representation
 func (s InventoryRetrievalJobInput) GoString() string {
 	return s.String()
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *InventoryRetrievalJobInput) SetEndDate(v string) *InventoryRetrievalJobInput {
+	s.EndDate = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *InventoryRetrievalJobInput) SetLimit(v string) *InventoryRetrievalJobInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *InventoryRetrievalJobInput) SetMarker(v string) *InventoryRetrievalJobInput {
+	s.Marker = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *InventoryRetrievalJobInput) SetStartDate(v string) *InventoryRetrievalJobInput {
+	s.StartDate = &v
+	return s
 }
 
 // Describes an Amazon Glacier job.
@@ -4789,6 +5353,108 @@ func (s JobDescription) GoString() string {
 	return s.String()
 }
 
+// SetAction sets the Action field's value.
+func (s *JobDescription) SetAction(v string) *JobDescription {
+	s.Action = &v
+	return s
+}
+
+// SetArchiveId sets the ArchiveId field's value.
+func (s *JobDescription) SetArchiveId(v string) *JobDescription {
+	s.ArchiveId = &v
+	return s
+}
+
+// SetArchiveSHA256TreeHash sets the ArchiveSHA256TreeHash field's value.
+func (s *JobDescription) SetArchiveSHA256TreeHash(v string) *JobDescription {
+	s.ArchiveSHA256TreeHash = &v
+	return s
+}
+
+// SetArchiveSizeInBytes sets the ArchiveSizeInBytes field's value.
+func (s *JobDescription) SetArchiveSizeInBytes(v int64) *JobDescription {
+	s.ArchiveSizeInBytes = &v
+	return s
+}
+
+// SetCompleted sets the Completed field's value.
+func (s *JobDescription) SetCompleted(v bool) *JobDescription {
+	s.Completed = &v
+	return s
+}
+
+// SetCompletionDate sets the CompletionDate field's value.
+func (s *JobDescription) SetCompletionDate(v string) *JobDescription {
+	s.CompletionDate = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *JobDescription) SetCreationDate(v string) *JobDescription {
+	s.CreationDate = &v
+	return s
+}
+
+// SetInventoryRetrievalParameters sets the InventoryRetrievalParameters field's value.
+func (s *JobDescription) SetInventoryRetrievalParameters(v *InventoryRetrievalJobDescription) *JobDescription {
+	s.InventoryRetrievalParameters = v
+	return s
+}
+
+// SetInventorySizeInBytes sets the InventorySizeInBytes field's value.
+func (s *JobDescription) SetInventorySizeInBytes(v int64) *JobDescription {
+	s.InventorySizeInBytes = &v
+	return s
+}
+
+// SetJobDescription sets the JobDescription field's value.
+func (s *JobDescription) SetJobDescription(v string) *JobDescription {
+	s.JobDescription = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *JobDescription) SetJobId(v string) *JobDescription {
+	s.JobId = &v
+	return s
+}
+
+// SetRetrievalByteRange sets the RetrievalByteRange field's value.
+func (s *JobDescription) SetRetrievalByteRange(v string) *JobDescription {
+	s.RetrievalByteRange = &v
+	return s
+}
+
+// SetSHA256TreeHash sets the SHA256TreeHash field's value.
+func (s *JobDescription) SetSHA256TreeHash(v string) *JobDescription {
+	s.SHA256TreeHash = &v
+	return s
+}
+
+// SetSNSTopic sets the SNSTopic field's value.
+func (s *JobDescription) SetSNSTopic(v string) *JobDescription {
+	s.SNSTopic = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *JobDescription) SetStatusCode(v string) *JobDescription {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *JobDescription) SetStatusMessage(v string) *JobDescription {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetVaultARN sets the VaultARN field's value.
+func (s *JobDescription) SetVaultARN(v string) *JobDescription {
+	s.VaultARN = &v
+	return s
+}
+
 // Provides options for defining a job.
 type JobParameters struct {
 	_ struct{} `type:"structure"`
@@ -4842,6 +5508,48 @@ func (s JobParameters) String() string {
 // GoString returns the string representation
 func (s JobParameters) GoString() string {
 	return s.String()
+}
+
+// SetArchiveId sets the ArchiveId field's value.
+func (s *JobParameters) SetArchiveId(v string) *JobParameters {
+	s.ArchiveId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *JobParameters) SetDescription(v string) *JobParameters {
+	s.Description = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *JobParameters) SetFormat(v string) *JobParameters {
+	s.Format = &v
+	return s
+}
+
+// SetInventoryRetrievalParameters sets the InventoryRetrievalParameters field's value.
+func (s *JobParameters) SetInventoryRetrievalParameters(v *InventoryRetrievalJobInput) *JobParameters {
+	s.InventoryRetrievalParameters = v
+	return s
+}
+
+// SetRetrievalByteRange sets the RetrievalByteRange field's value.
+func (s *JobParameters) SetRetrievalByteRange(v string) *JobParameters {
+	s.RetrievalByteRange = &v
+	return s
+}
+
+// SetSNSTopic sets the SNSTopic field's value.
+func (s *JobParameters) SetSNSTopic(v string) *JobParameters {
+	s.SNSTopic = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *JobParameters) SetType(v string) *JobParameters {
+	s.Type = &v
+	return s
 }
 
 // Provides options for retrieving a job list for an Amazon Glacier vault.
@@ -4906,6 +5614,42 @@ func (s *ListJobsInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *ListJobsInput) SetAccountId(v string) *ListJobsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetCompleted sets the Completed field's value.
+func (s *ListJobsInput) SetCompleted(v string) *ListJobsInput {
+	s.Completed = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListJobsInput) SetLimit(v string) *ListJobsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListJobsInput) SetMarker(v string) *ListJobsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetStatuscode sets the Statuscode field's value.
+func (s *ListJobsInput) SetStatuscode(v string) *ListJobsInput {
+	s.Statuscode = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *ListJobsInput) SetVaultName(v string) *ListJobsInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4927,6 +5671,18 @@ func (s ListJobsOutput) String() string {
 // GoString returns the string representation
 func (s ListJobsOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobList sets the JobList field's value.
+func (s *ListJobsOutput) SetJobList(v []*JobDescription) *ListJobsOutput {
+	s.JobList = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListJobsOutput) SetMarker(v string) *ListJobsOutput {
+	s.Marker = &v
+	return s
 }
 
 // Provides options for retrieving list of in-progress multipart uploads for
@@ -4986,6 +5742,30 @@ func (s *ListMultipartUploadsInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *ListMultipartUploadsInput) SetAccountId(v string) *ListMultipartUploadsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListMultipartUploadsInput) SetLimit(v string) *ListMultipartUploadsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListMultipartUploadsInput) SetMarker(v string) *ListMultipartUploadsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *ListMultipartUploadsInput) SetVaultName(v string) *ListMultipartUploadsInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListMultipartUploadsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5007,6 +5787,18 @@ func (s ListMultipartUploadsOutput) String() string {
 // GoString returns the string representation
 func (s ListMultipartUploadsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListMultipartUploadsOutput) SetMarker(v string) *ListMultipartUploadsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetUploadsList sets the UploadsList field's value.
+func (s *ListMultipartUploadsOutput) SetUploadsList(v []*UploadListElement) *ListMultipartUploadsOutput {
+	s.UploadsList = v
+	return s
 }
 
 // Provides options for retrieving a list of parts of an archive that have been
@@ -5074,6 +5866,36 @@ func (s *ListPartsInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *ListPartsInput) SetAccountId(v string) *ListPartsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListPartsInput) SetLimit(v string) *ListPartsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListPartsInput) SetMarker(v string) *ListPartsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *ListPartsInput) SetUploadId(v string) *ListPartsInput {
+	s.UploadId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *ListPartsInput) SetVaultName(v string) *ListPartsInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListPartsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5112,6 +5934,48 @@ func (s ListPartsOutput) String() string {
 // GoString returns the string representation
 func (s ListPartsOutput) GoString() string {
 	return s.String()
+}
+
+// SetArchiveDescription sets the ArchiveDescription field's value.
+func (s *ListPartsOutput) SetArchiveDescription(v string) *ListPartsOutput {
+	s.ArchiveDescription = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *ListPartsOutput) SetCreationDate(v string) *ListPartsOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListPartsOutput) SetMarker(v string) *ListPartsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMultipartUploadId sets the MultipartUploadId field's value.
+func (s *ListPartsOutput) SetMultipartUploadId(v string) *ListPartsOutput {
+	s.MultipartUploadId = &v
+	return s
+}
+
+// SetPartSizeInBytes sets the PartSizeInBytes field's value.
+func (s *ListPartsOutput) SetPartSizeInBytes(v int64) *ListPartsOutput {
+	s.PartSizeInBytes = &v
+	return s
+}
+
+// SetParts sets the Parts field's value.
+func (s *ListPartsOutput) SetParts(v []*PartListElement) *ListPartsOutput {
+	s.Parts = v
+	return s
+}
+
+// SetVaultARN sets the VaultARN field's value.
+func (s *ListPartsOutput) SetVaultARN(v string) *ListPartsOutput {
+	s.VaultARN = &v
+	return s
 }
 
 // The input value for ListTagsForVaultInput.
@@ -5159,6 +6023,18 @@ func (s *ListTagsForVaultInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *ListTagsForVaultInput) SetAccountId(v string) *ListTagsForVaultInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *ListTagsForVaultInput) SetVaultName(v string) *ListTagsForVaultInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListTagsForVaultOutput struct {
 	_ struct{} `type:"structure"`
@@ -5175,6 +6051,12 @@ func (s ListTagsForVaultOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForVaultOutput) GoString() string {
 	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForVaultOutput) SetTags(v map[string]*string) *ListTagsForVaultOutput {
+	s.Tags = v
+	return s
 }
 
 // Provides options to retrieve the vault list owned by the calling user's account.
@@ -5224,6 +6106,24 @@ func (s *ListVaultsInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *ListVaultsInput) SetAccountId(v string) *ListVaultsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListVaultsInput) SetLimit(v string) *ListVaultsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListVaultsInput) SetMarker(v string) *ListVaultsInput {
+	s.Marker = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListVaultsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5246,6 +6146,18 @@ func (s ListVaultsOutput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *ListVaultsOutput) SetMarker(v string) *ListVaultsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetVaultList sets the VaultList field's value.
+func (s *ListVaultsOutput) SetVaultList(v []*DescribeVaultOutput) *ListVaultsOutput {
+	s.VaultList = v
+	return s
+}
+
 // A list of the part sizes of the multipart upload.
 type PartListElement struct {
 	_ struct{} `type:"structure"`
@@ -5266,6 +6178,18 @@ func (s PartListElement) String() string {
 // GoString returns the string representation
 func (s PartListElement) GoString() string {
 	return s.String()
+}
+
+// SetRangeInBytes sets the RangeInBytes field's value.
+func (s *PartListElement) SetRangeInBytes(v string) *PartListElement {
+	s.RangeInBytes = &v
+	return s
+}
+
+// SetSHA256TreeHash sets the SHA256TreeHash field's value.
+func (s *PartListElement) SetSHA256TreeHash(v string) *PartListElement {
+	s.SHA256TreeHash = &v
+	return s
 }
 
 // The input value for RemoveTagsFromVaultInput.
@@ -5314,6 +6238,24 @@ func (s *RemoveTagsFromVaultInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RemoveTagsFromVaultInput) SetAccountId(v string) *RemoveTagsFromVaultInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *RemoveTagsFromVaultInput) SetTagKeys(v []*string) *RemoveTagsFromVaultInput {
+	s.TagKeys = v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *RemoveTagsFromVaultInput) SetVaultName(v string) *RemoveTagsFromVaultInput {
+	s.VaultName = &v
+	return s
 }
 
 type RemoveTagsFromVaultOutput struct {
@@ -5369,6 +6311,18 @@ func (s *SetDataRetrievalPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *SetDataRetrievalPolicyInput) SetAccountId(v string) *SetDataRetrievalPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *SetDataRetrievalPolicyInput) SetPolicy(v *DataRetrievalPolicy) *SetDataRetrievalPolicyInput {
+	s.Policy = v
+	return s
 }
 
 type SetDataRetrievalPolicyOutput struct {
@@ -5433,6 +6387,24 @@ func (s *SetVaultAccessPolicyInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *SetVaultAccessPolicyInput) SetAccountId(v string) *SetVaultAccessPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *SetVaultAccessPolicyInput) SetPolicy(v *VaultAccessPolicy) *SetVaultAccessPolicyInput {
+	s.Policy = v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *SetVaultAccessPolicyInput) SetVaultName(v string) *SetVaultAccessPolicyInput {
+	s.VaultName = &v
+	return s
+}
+
 type SetVaultAccessPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5494,6 +6466,24 @@ func (s *SetVaultNotificationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *SetVaultNotificationsInput) SetAccountId(v string) *SetVaultNotificationsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *SetVaultNotificationsInput) SetVaultName(v string) *SetVaultNotificationsInput {
+	s.VaultName = &v
+	return s
+}
+
+// SetVaultNotificationConfig sets the VaultNotificationConfig field's value.
+func (s *SetVaultNotificationsInput) SetVaultNotificationConfig(v *VaultNotificationConfig) *SetVaultNotificationsInput {
+	s.VaultNotificationConfig = v
+	return s
 }
 
 type SetVaultNotificationsOutput struct {
@@ -5564,6 +6554,36 @@ func (s *UploadArchiveInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *UploadArchiveInput) SetAccountId(v string) *UploadArchiveInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetArchiveDescription sets the ArchiveDescription field's value.
+func (s *UploadArchiveInput) SetArchiveDescription(v string) *UploadArchiveInput {
+	s.ArchiveDescription = &v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *UploadArchiveInput) SetBody(v io.ReadSeeker) *UploadArchiveInput {
+	s.Body = v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *UploadArchiveInput) SetChecksum(v string) *UploadArchiveInput {
+	s.Checksum = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *UploadArchiveInput) SetVaultName(v string) *UploadArchiveInput {
+	s.VaultName = &v
+	return s
+}
+
 // A list of in-progress multipart uploads for a vault.
 type UploadListElement struct {
 	_ struct{} `type:"structure"`
@@ -5595,6 +6615,36 @@ func (s UploadListElement) String() string {
 // GoString returns the string representation
 func (s UploadListElement) GoString() string {
 	return s.String()
+}
+
+// SetArchiveDescription sets the ArchiveDescription field's value.
+func (s *UploadListElement) SetArchiveDescription(v string) *UploadListElement {
+	s.ArchiveDescription = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *UploadListElement) SetCreationDate(v string) *UploadListElement {
+	s.CreationDate = &v
+	return s
+}
+
+// SetMultipartUploadId sets the MultipartUploadId field's value.
+func (s *UploadListElement) SetMultipartUploadId(v string) *UploadListElement {
+	s.MultipartUploadId = &v
+	return s
+}
+
+// SetPartSizeInBytes sets the PartSizeInBytes field's value.
+func (s *UploadListElement) SetPartSizeInBytes(v int64) *UploadListElement {
+	s.PartSizeInBytes = &v
+	return s
+}
+
+// SetVaultARN sets the VaultARN field's value.
+func (s *UploadListElement) SetVaultARN(v string) *UploadListElement {
+	s.VaultARN = &v
+	return s
 }
 
 // Provides options to upload a part of an archive in a multipart upload operation.
@@ -5662,6 +6712,42 @@ func (s *UploadMultipartPartInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *UploadMultipartPartInput) SetAccountId(v string) *UploadMultipartPartInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *UploadMultipartPartInput) SetBody(v io.ReadSeeker) *UploadMultipartPartInput {
+	s.Body = v
+	return s
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *UploadMultipartPartInput) SetChecksum(v string) *UploadMultipartPartInput {
+	s.Checksum = &v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *UploadMultipartPartInput) SetRange(v string) *UploadMultipartPartInput {
+	s.Range = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *UploadMultipartPartInput) SetUploadId(v string) *UploadMultipartPartInput {
+	s.UploadId = &v
+	return s
+}
+
+// SetVaultName sets the VaultName field's value.
+func (s *UploadMultipartPartInput) SetVaultName(v string) *UploadMultipartPartInput {
+	s.VaultName = &v
+	return s
+}
+
 // Contains the Amazon Glacier response to your request.
 type UploadMultipartPartOutput struct {
 	_ struct{} `type:"structure"`
@@ -5678,6 +6764,12 @@ func (s UploadMultipartPartOutput) String() string {
 // GoString returns the string representation
 func (s UploadMultipartPartOutput) GoString() string {
 	return s.String()
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *UploadMultipartPartOutput) SetChecksum(v string) *UploadMultipartPartOutput {
+	s.Checksum = &v
+	return s
 }
 
 // Contains the vault access policy.
@@ -5698,6 +6790,12 @@ func (s VaultAccessPolicy) GoString() string {
 	return s.String()
 }
 
+// SetPolicy sets the Policy field's value.
+func (s *VaultAccessPolicy) SetPolicy(v string) *VaultAccessPolicy {
+	s.Policy = &v
+	return s
+}
+
 // Contains the vault lock policy.
 type VaultLockPolicy struct {
 	_ struct{} `type:"structure"`
@@ -5714,6 +6812,12 @@ func (s VaultLockPolicy) String() string {
 // GoString returns the string representation
 func (s VaultLockPolicy) GoString() string {
 	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *VaultLockPolicy) SetPolicy(v string) *VaultLockPolicy {
+	s.Policy = &v
+	return s
 }
 
 // Represents a vault's notification configuration.
@@ -5737,6 +6841,18 @@ func (s VaultNotificationConfig) String() string {
 // GoString returns the string representation
 func (s VaultNotificationConfig) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *VaultNotificationConfig) SetEvents(v []*string) *VaultNotificationConfig {
+	s.Events = v
+	return s
+}
+
+// SetSNSTopic sets the SNSTopic field's value.
+func (s *VaultNotificationConfig) SetSNSTopic(v string) *VaultNotificationConfig {
+	s.SNSTopic = &v
+	return s
 }
 
 const (

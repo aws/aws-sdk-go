@@ -3615,6 +3615,18 @@ func (s *AddTagsToResourceInput) Validate() error {
 	return nil
 }
 
+// SetResourceName sets the ResourceName field's value.
+func (s *AddTagsToResourceInput) SetResourceName(v string) *AddTagsToResourceInput {
+	s.ResourceName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsToResourceInput) SetTags(v []*Tag) *AddTagsToResourceInput {
+	s.Tags = v
+	return s
+}
+
 // Represents the input of an AuthorizeCacheSecurityGroupIngress operation.
 type AuthorizeCacheSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
@@ -3667,6 +3679,24 @@ func (s *AuthorizeCacheSecurityGroupIngressInput) Validate() error {
 	return nil
 }
 
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *AuthorizeCacheSecurityGroupIngressInput) SetCacheSecurityGroupName(v string) *AuthorizeCacheSecurityGroupIngressInput {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupName sets the EC2SecurityGroupName field's value.
+func (s *AuthorizeCacheSecurityGroupIngressInput) SetEC2SecurityGroupName(v string) *AuthorizeCacheSecurityGroupIngressInput {
+	s.EC2SecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupOwnerId sets the EC2SecurityGroupOwnerId field's value.
+func (s *AuthorizeCacheSecurityGroupIngressInput) SetEC2SecurityGroupOwnerId(v string) *AuthorizeCacheSecurityGroupIngressInput {
+	s.EC2SecurityGroupOwnerId = &v
+	return s
+}
+
 type AuthorizeCacheSecurityGroupIngressOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3690,6 +3720,12 @@ func (s AuthorizeCacheSecurityGroupIngressOutput) GoString() string {
 	return s.String()
 }
 
+// SetCacheSecurityGroup sets the CacheSecurityGroup field's value.
+func (s *AuthorizeCacheSecurityGroupIngressOutput) SetCacheSecurityGroup(v *CacheSecurityGroup) *AuthorizeCacheSecurityGroupIngressOutput {
+	s.CacheSecurityGroup = v
+	return s
+}
+
 // Describes an Availability Zone in which the cache cluster is launched.
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
@@ -3706,6 +3742,12 @@ func (s AvailabilityZone) String() string {
 // GoString returns the string representation
 func (s AvailabilityZone) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
+	s.Name = &v
+	return s
 }
 
 // Contains all of the attributes of a specific cache cluster.
@@ -3869,6 +3911,138 @@ func (s CacheCluster) GoString() string {
 	return s.String()
 }
 
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CacheCluster) SetAutoMinorVersionUpgrade(v bool) *CacheCluster {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetCacheClusterCreateTime sets the CacheClusterCreateTime field's value.
+func (s *CacheCluster) SetCacheClusterCreateTime(v time.Time) *CacheCluster {
+	s.CacheClusterCreateTime = &v
+	return s
+}
+
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *CacheCluster) SetCacheClusterId(v string) *CacheCluster {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheClusterStatus sets the CacheClusterStatus field's value.
+func (s *CacheCluster) SetCacheClusterStatus(v string) *CacheCluster {
+	s.CacheClusterStatus = &v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *CacheCluster) SetCacheNodeType(v string) *CacheCluster {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheNodes sets the CacheNodes field's value.
+func (s *CacheCluster) SetCacheNodes(v []*CacheNode) *CacheCluster {
+	s.CacheNodes = v
+	return s
+}
+
+// SetCacheParameterGroup sets the CacheParameterGroup field's value.
+func (s *CacheCluster) SetCacheParameterGroup(v *CacheParameterGroupStatus) *CacheCluster {
+	s.CacheParameterGroup = v
+	return s
+}
+
+// SetCacheSecurityGroups sets the CacheSecurityGroups field's value.
+func (s *CacheCluster) SetCacheSecurityGroups(v []*CacheSecurityGroupMembership) *CacheCluster {
+	s.CacheSecurityGroups = v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *CacheCluster) SetCacheSubnetGroupName(v string) *CacheCluster {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetClientDownloadLandingPage sets the ClientDownloadLandingPage field's value.
+func (s *CacheCluster) SetClientDownloadLandingPage(v string) *CacheCluster {
+	s.ClientDownloadLandingPage = &v
+	return s
+}
+
+// SetConfigurationEndpoint sets the ConfigurationEndpoint field's value.
+func (s *CacheCluster) SetConfigurationEndpoint(v *Endpoint) *CacheCluster {
+	s.ConfigurationEndpoint = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CacheCluster) SetEngine(v string) *CacheCluster {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CacheCluster) SetEngineVersion(v string) *CacheCluster {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNotificationConfiguration sets the NotificationConfiguration field's value.
+func (s *CacheCluster) SetNotificationConfiguration(v *NotificationConfiguration) *CacheCluster {
+	s.NotificationConfiguration = v
+	return s
+}
+
+// SetNumCacheNodes sets the NumCacheNodes field's value.
+func (s *CacheCluster) SetNumCacheNodes(v int64) *CacheCluster {
+	s.NumCacheNodes = &v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *CacheCluster) SetPendingModifiedValues(v *PendingModifiedValues) *CacheCluster {
+	s.PendingModifiedValues = v
+	return s
+}
+
+// SetPreferredAvailabilityZone sets the PreferredAvailabilityZone field's value.
+func (s *CacheCluster) SetPreferredAvailabilityZone(v string) *CacheCluster {
+	s.PreferredAvailabilityZone = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *CacheCluster) SetPreferredMaintenanceWindow(v string) *CacheCluster {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *CacheCluster) SetReplicationGroupId(v string) *CacheCluster {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *CacheCluster) SetSecurityGroups(v []*SecurityGroupMembership) *CacheCluster {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *CacheCluster) SetSnapshotRetentionLimit(v int64) *CacheCluster {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *CacheCluster) SetSnapshotWindow(v string) *CacheCluster {
+	s.SnapshotWindow = &v
+	return s
+}
+
 // Provides all of the details about a particular cache engine version.
 type CacheEngineVersion struct {
 	_ struct{} `type:"structure"`
@@ -3899,6 +4073,36 @@ func (s CacheEngineVersion) String() string {
 // GoString returns the string representation
 func (s CacheEngineVersion) GoString() string {
 	return s.String()
+}
+
+// SetCacheEngineDescription sets the CacheEngineDescription field's value.
+func (s *CacheEngineVersion) SetCacheEngineDescription(v string) *CacheEngineVersion {
+	s.CacheEngineDescription = &v
+	return s
+}
+
+// SetCacheEngineVersionDescription sets the CacheEngineVersionDescription field's value.
+func (s *CacheEngineVersion) SetCacheEngineVersionDescription(v string) *CacheEngineVersion {
+	s.CacheEngineVersionDescription = &v
+	return s
+}
+
+// SetCacheParameterGroupFamily sets the CacheParameterGroupFamily field's value.
+func (s *CacheEngineVersion) SetCacheParameterGroupFamily(v string) *CacheEngineVersion {
+	s.CacheParameterGroupFamily = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CacheEngineVersion) SetEngine(v string) *CacheEngineVersion {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
+	s.EngineVersion = &v
+	return s
 }
 
 // Represents an individual cache node within a cache cluster. Each cache node
@@ -3980,6 +4184,48 @@ func (s CacheNode) GoString() string {
 	return s.String()
 }
 
+// SetCacheNodeCreateTime sets the CacheNodeCreateTime field's value.
+func (s *CacheNode) SetCacheNodeCreateTime(v time.Time) *CacheNode {
+	s.CacheNodeCreateTime = &v
+	return s
+}
+
+// SetCacheNodeId sets the CacheNodeId field's value.
+func (s *CacheNode) SetCacheNodeId(v string) *CacheNode {
+	s.CacheNodeId = &v
+	return s
+}
+
+// SetCacheNodeStatus sets the CacheNodeStatus field's value.
+func (s *CacheNode) SetCacheNodeStatus(v string) *CacheNode {
+	s.CacheNodeStatus = &v
+	return s
+}
+
+// SetCustomerAvailabilityZone sets the CustomerAvailabilityZone field's value.
+func (s *CacheNode) SetCustomerAvailabilityZone(v string) *CacheNode {
+	s.CustomerAvailabilityZone = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *CacheNode) SetEndpoint(v *Endpoint) *CacheNode {
+	s.Endpoint = v
+	return s
+}
+
+// SetParameterGroupStatus sets the ParameterGroupStatus field's value.
+func (s *CacheNode) SetParameterGroupStatus(v string) *CacheNode {
+	s.ParameterGroupStatus = &v
+	return s
+}
+
+// SetSourceCacheNodeId sets the SourceCacheNodeId field's value.
+func (s *CacheNode) SetSourceCacheNodeId(v string) *CacheNode {
+	s.SourceCacheNodeId = &v
+	return s
+}
+
 // A parameter that has a different value for each cache node type it is applied
 // to. For example, in a Redis cache cluster, a cache.m1.large cache node type
 // would have a larger maxmemory value than a cache.m1.small type.
@@ -4029,6 +4275,60 @@ func (s CacheNodeTypeSpecificParameter) GoString() string {
 	return s.String()
 }
 
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *CacheNodeTypeSpecificParameter) SetAllowedValues(v string) *CacheNodeTypeSpecificParameter {
+	s.AllowedValues = &v
+	return s
+}
+
+// SetCacheNodeTypeSpecificValues sets the CacheNodeTypeSpecificValues field's value.
+func (s *CacheNodeTypeSpecificParameter) SetCacheNodeTypeSpecificValues(v []*CacheNodeTypeSpecificValue) *CacheNodeTypeSpecificParameter {
+	s.CacheNodeTypeSpecificValues = v
+	return s
+}
+
+// SetChangeType sets the ChangeType field's value.
+func (s *CacheNodeTypeSpecificParameter) SetChangeType(v string) *CacheNodeTypeSpecificParameter {
+	s.ChangeType = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *CacheNodeTypeSpecificParameter) SetDataType(v string) *CacheNodeTypeSpecificParameter {
+	s.DataType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CacheNodeTypeSpecificParameter) SetDescription(v string) *CacheNodeTypeSpecificParameter {
+	s.Description = &v
+	return s
+}
+
+// SetIsModifiable sets the IsModifiable field's value.
+func (s *CacheNodeTypeSpecificParameter) SetIsModifiable(v bool) *CacheNodeTypeSpecificParameter {
+	s.IsModifiable = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *CacheNodeTypeSpecificParameter) SetMinimumEngineVersion(v string) *CacheNodeTypeSpecificParameter {
+	s.MinimumEngineVersion = &v
+	return s
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *CacheNodeTypeSpecificParameter) SetParameterName(v string) *CacheNodeTypeSpecificParameter {
+	s.ParameterName = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *CacheNodeTypeSpecificParameter) SetSource(v string) *CacheNodeTypeSpecificParameter {
+	s.Source = &v
+	return s
+}
+
 // A value that applies only to a certain cache node type.
 type CacheNodeTypeSpecificValue struct {
 	_ struct{} `type:"structure"`
@@ -4048,6 +4348,18 @@ func (s CacheNodeTypeSpecificValue) String() string {
 // GoString returns the string representation
 func (s CacheNodeTypeSpecificValue) GoString() string {
 	return s.String()
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *CacheNodeTypeSpecificValue) SetCacheNodeType(v string) *CacheNodeTypeSpecificValue {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CacheNodeTypeSpecificValue) SetValue(v string) *CacheNodeTypeSpecificValue {
+	s.Value = &v
+	return s
 }
 
 // Represents the output of a CreateCacheParameterGroup operation.
@@ -4077,6 +4389,24 @@ func (s CacheParameterGroup) GoString() string {
 	return s.String()
 }
 
+// SetCacheParameterGroupFamily sets the CacheParameterGroupFamily field's value.
+func (s *CacheParameterGroup) SetCacheParameterGroupFamily(v string) *CacheParameterGroup {
+	s.CacheParameterGroupFamily = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *CacheParameterGroup) SetCacheParameterGroupName(v string) *CacheParameterGroup {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CacheParameterGroup) SetDescription(v string) *CacheParameterGroup {
+	s.Description = &v
+	return s
+}
+
 // Represents the output of one of the following operations:
 //
 //    * ModifyCacheParameterGroup
@@ -4097,6 +4427,12 @@ func (s CacheParameterGroupNameMessage) String() string {
 // GoString returns the string representation
 func (s CacheParameterGroupNameMessage) GoString() string {
 	return s.String()
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *CacheParameterGroupNameMessage) SetCacheParameterGroupName(v string) *CacheParameterGroupNameMessage {
+	s.CacheParameterGroupName = &v
+	return s
 }
 
 // Status of the cache parameter group.
@@ -4122,6 +4458,24 @@ func (s CacheParameterGroupStatus) String() string {
 // GoString returns the string representation
 func (s CacheParameterGroupStatus) GoString() string {
 	return s.String()
+}
+
+// SetCacheNodeIdsToReboot sets the CacheNodeIdsToReboot field's value.
+func (s *CacheParameterGroupStatus) SetCacheNodeIdsToReboot(v []*string) *CacheParameterGroupStatus {
+	s.CacheNodeIdsToReboot = v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *CacheParameterGroupStatus) SetCacheParameterGroupName(v string) *CacheParameterGroupStatus {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetParameterApplyStatus sets the ParameterApplyStatus field's value.
+func (s *CacheParameterGroupStatus) SetParameterApplyStatus(v string) *CacheParameterGroupStatus {
+	s.ParameterApplyStatus = &v
+	return s
 }
 
 // Represents the output of one of the following operations:
@@ -4158,6 +4512,30 @@ func (s CacheSecurityGroup) GoString() string {
 	return s.String()
 }
 
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *CacheSecurityGroup) SetCacheSecurityGroupName(v string) *CacheSecurityGroup {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CacheSecurityGroup) SetDescription(v string) *CacheSecurityGroup {
+	s.Description = &v
+	return s
+}
+
+// SetEC2SecurityGroups sets the EC2SecurityGroups field's value.
+func (s *CacheSecurityGroup) SetEC2SecurityGroups(v []*EC2SecurityGroup) *CacheSecurityGroup {
+	s.EC2SecurityGroups = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *CacheSecurityGroup) SetOwnerId(v string) *CacheSecurityGroup {
+	s.OwnerId = &v
+	return s
+}
+
 // Represents a cache cluster's status within a particular cache security group.
 type CacheSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
@@ -4179,6 +4557,18 @@ func (s CacheSecurityGroupMembership) String() string {
 // GoString returns the string representation
 func (s CacheSecurityGroupMembership) GoString() string {
 	return s.String()
+}
+
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *CacheSecurityGroupMembership) SetCacheSecurityGroupName(v string) *CacheSecurityGroupMembership {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CacheSecurityGroupMembership) SetStatus(v string) *CacheSecurityGroupMembership {
+	s.Status = &v
+	return s
 }
 
 // Represents the output of one of the following operations:
@@ -4211,6 +4601,30 @@ func (s CacheSubnetGroup) String() string {
 // GoString returns the string representation
 func (s CacheSubnetGroup) GoString() string {
 	return s.String()
+}
+
+// SetCacheSubnetGroupDescription sets the CacheSubnetGroupDescription field's value.
+func (s *CacheSubnetGroup) SetCacheSubnetGroupDescription(v string) *CacheSubnetGroup {
+	s.CacheSubnetGroupDescription = &v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *CacheSubnetGroup) SetCacheSubnetGroupName(v string) *CacheSubnetGroup {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *CacheSubnetGroup) SetSubnets(v []*Subnet) *CacheSubnetGroup {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CacheSubnetGroup) SetVpcId(v string) *CacheSubnetGroup {
+	s.VpcId = &v
+	return s
 }
 
 // Represents the input of a CopySnapshotMessage operation.
@@ -4268,6 +4682,24 @@ func (s *CopySnapshotInput) Validate() error {
 	return nil
 }
 
+// SetSourceSnapshotName sets the SourceSnapshotName field's value.
+func (s *CopySnapshotInput) SetSourceSnapshotName(v string) *CopySnapshotInput {
+	s.SourceSnapshotName = &v
+	return s
+}
+
+// SetTargetBucket sets the TargetBucket field's value.
+func (s *CopySnapshotInput) SetTargetBucket(v string) *CopySnapshotInput {
+	s.TargetBucket = &v
+	return s
+}
+
+// SetTargetSnapshotName sets the TargetSnapshotName field's value.
+func (s *CopySnapshotInput) SetTargetSnapshotName(v string) *CopySnapshotInput {
+	s.TargetSnapshotName = &v
+	return s
+}
+
 type CopySnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4284,6 +4716,12 @@ func (s CopySnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CopySnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetSnapshot sets the Snapshot field's value.
+func (s *CopySnapshotOutput) SetSnapshot(v *Snapshot) *CopySnapshotOutput {
+	s.Snapshot = v
+	return s
 }
 
 // Represents the input of a CreateCacheCluster operation.
@@ -4555,6 +4993,138 @@ func (s *CreateCacheClusterInput) Validate() error {
 	return nil
 }
 
+// SetAZMode sets the AZMode field's value.
+func (s *CreateCacheClusterInput) SetAZMode(v string) *CreateCacheClusterInput {
+	s.AZMode = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CreateCacheClusterInput) SetAutoMinorVersionUpgrade(v bool) *CreateCacheClusterInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *CreateCacheClusterInput) SetCacheClusterId(v string) *CreateCacheClusterInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *CreateCacheClusterInput) SetCacheNodeType(v string) *CreateCacheClusterInput {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *CreateCacheClusterInput) SetCacheParameterGroupName(v string) *CreateCacheClusterInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetCacheSecurityGroupNames sets the CacheSecurityGroupNames field's value.
+func (s *CreateCacheClusterInput) SetCacheSecurityGroupNames(v []*string) *CreateCacheClusterInput {
+	s.CacheSecurityGroupNames = v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *CreateCacheClusterInput) SetCacheSubnetGroupName(v string) *CreateCacheClusterInput {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateCacheClusterInput) SetEngine(v string) *CreateCacheClusterInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateCacheClusterInput) SetEngineVersion(v string) *CreateCacheClusterInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNotificationTopicArn sets the NotificationTopicArn field's value.
+func (s *CreateCacheClusterInput) SetNotificationTopicArn(v string) *CreateCacheClusterInput {
+	s.NotificationTopicArn = &v
+	return s
+}
+
+// SetNumCacheNodes sets the NumCacheNodes field's value.
+func (s *CreateCacheClusterInput) SetNumCacheNodes(v int64) *CreateCacheClusterInput {
+	s.NumCacheNodes = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateCacheClusterInput) SetPort(v int64) *CreateCacheClusterInput {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredAvailabilityZone sets the PreferredAvailabilityZone field's value.
+func (s *CreateCacheClusterInput) SetPreferredAvailabilityZone(v string) *CreateCacheClusterInput {
+	s.PreferredAvailabilityZone = &v
+	return s
+}
+
+// SetPreferredAvailabilityZones sets the PreferredAvailabilityZones field's value.
+func (s *CreateCacheClusterInput) SetPreferredAvailabilityZones(v []*string) *CreateCacheClusterInput {
+	s.PreferredAvailabilityZones = v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *CreateCacheClusterInput) SetPreferredMaintenanceWindow(v string) *CreateCacheClusterInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *CreateCacheClusterInput) SetReplicationGroupId(v string) *CreateCacheClusterInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *CreateCacheClusterInput) SetSecurityGroupIds(v []*string) *CreateCacheClusterInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSnapshotArns sets the SnapshotArns field's value.
+func (s *CreateCacheClusterInput) SetSnapshotArns(v []*string) *CreateCacheClusterInput {
+	s.SnapshotArns = v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *CreateCacheClusterInput) SetSnapshotName(v string) *CreateCacheClusterInput {
+	s.SnapshotName = &v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *CreateCacheClusterInput) SetSnapshotRetentionLimit(v int64) *CreateCacheClusterInput {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *CreateCacheClusterInput) SetSnapshotWindow(v string) *CreateCacheClusterInput {
+	s.SnapshotWindow = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCacheClusterInput) SetTags(v []*Tag) *CreateCacheClusterInput {
+	s.Tags = v
+	return s
+}
+
 type CreateCacheClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4570,6 +5140,12 @@ func (s CreateCacheClusterOutput) String() string {
 // GoString returns the string representation
 func (s CreateCacheClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheCluster sets the CacheCluster field's value.
+func (s *CreateCacheClusterOutput) SetCacheCluster(v *CacheCluster) *CreateCacheClusterOutput {
+	s.CacheCluster = v
+	return s
 }
 
 // Represents the input of a CreateCacheParameterGroup operation.
@@ -4624,6 +5200,24 @@ func (s *CreateCacheParameterGroupInput) Validate() error {
 	return nil
 }
 
+// SetCacheParameterGroupFamily sets the CacheParameterGroupFamily field's value.
+func (s *CreateCacheParameterGroupInput) SetCacheParameterGroupFamily(v string) *CreateCacheParameterGroupInput {
+	s.CacheParameterGroupFamily = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *CreateCacheParameterGroupInput) SetCacheParameterGroupName(v string) *CreateCacheParameterGroupInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCacheParameterGroupInput) SetDescription(v string) *CreateCacheParameterGroupInput {
+	s.Description = &v
+	return s
+}
+
 type CreateCacheParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4639,6 +5233,12 @@ func (s CreateCacheParameterGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateCacheParameterGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheParameterGroup sets the CacheParameterGroup field's value.
+func (s *CreateCacheParameterGroupOutput) SetCacheParameterGroup(v *CacheParameterGroup) *CreateCacheParameterGroupOutput {
+	s.CacheParameterGroup = v
+	return s
 }
 
 // Represents the input of a CreateCacheSecurityGroup operation.
@@ -4688,6 +5288,18 @@ func (s *CreateCacheSecurityGroupInput) Validate() error {
 	return nil
 }
 
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *CreateCacheSecurityGroupInput) SetCacheSecurityGroupName(v string) *CreateCacheSecurityGroupInput {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCacheSecurityGroupInput) SetDescription(v string) *CreateCacheSecurityGroupInput {
+	s.Description = &v
+	return s
+}
+
 type CreateCacheSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4709,6 +5321,12 @@ func (s CreateCacheSecurityGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateCacheSecurityGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheSecurityGroup sets the CacheSecurityGroup field's value.
+func (s *CreateCacheSecurityGroupOutput) SetCacheSecurityGroup(v *CacheSecurityGroup) *CreateCacheSecurityGroupOutput {
+	s.CacheSecurityGroup = v
+	return s
 }
 
 // Represents the input of a CreateCacheSubnetGroup operation.
@@ -4764,6 +5382,24 @@ func (s *CreateCacheSubnetGroupInput) Validate() error {
 	return nil
 }
 
+// SetCacheSubnetGroupDescription sets the CacheSubnetGroupDescription field's value.
+func (s *CreateCacheSubnetGroupInput) SetCacheSubnetGroupDescription(v string) *CreateCacheSubnetGroupInput {
+	s.CacheSubnetGroupDescription = &v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *CreateCacheSubnetGroupInput) SetCacheSubnetGroupName(v string) *CreateCacheSubnetGroupInput {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *CreateCacheSubnetGroupInput) SetSubnetIds(v []*string) *CreateCacheSubnetGroupInput {
+	s.SubnetIds = v
+	return s
+}
+
 type CreateCacheSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4783,6 +5419,12 @@ func (s CreateCacheSubnetGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateCacheSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheSubnetGroup sets the CacheSubnetGroup field's value.
+func (s *CreateCacheSubnetGroupOutput) SetCacheSubnetGroup(v *CacheSubnetGroup) *CreateCacheSubnetGroupOutput {
+	s.CacheSubnetGroup = v
+	return s
 }
 
 // Represents the input of a CreateReplicationGroup operation.
@@ -5079,6 +5721,156 @@ func (s *CreateReplicationGroupInput) Validate() error {
 	return nil
 }
 
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CreateReplicationGroupInput) SetAutoMinorVersionUpgrade(v bool) *CreateReplicationGroupInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAutomaticFailoverEnabled sets the AutomaticFailoverEnabled field's value.
+func (s *CreateReplicationGroupInput) SetAutomaticFailoverEnabled(v bool) *CreateReplicationGroupInput {
+	s.AutomaticFailoverEnabled = &v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *CreateReplicationGroupInput) SetCacheNodeType(v string) *CreateReplicationGroupInput {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *CreateReplicationGroupInput) SetCacheParameterGroupName(v string) *CreateReplicationGroupInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetCacheSecurityGroupNames sets the CacheSecurityGroupNames field's value.
+func (s *CreateReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *CreateReplicationGroupInput {
+	s.CacheSecurityGroupNames = v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *CreateReplicationGroupInput) SetCacheSubnetGroupName(v string) *CreateReplicationGroupInput {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateReplicationGroupInput) SetEngine(v string) *CreateReplicationGroupInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateReplicationGroupInput) SetEngineVersion(v string) *CreateReplicationGroupInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNodeGroupConfiguration sets the NodeGroupConfiguration field's value.
+func (s *CreateReplicationGroupInput) SetNodeGroupConfiguration(v []*NodeGroupConfiguration) *CreateReplicationGroupInput {
+	s.NodeGroupConfiguration = v
+	return s
+}
+
+// SetNotificationTopicArn sets the NotificationTopicArn field's value.
+func (s *CreateReplicationGroupInput) SetNotificationTopicArn(v string) *CreateReplicationGroupInput {
+	s.NotificationTopicArn = &v
+	return s
+}
+
+// SetNumCacheClusters sets the NumCacheClusters field's value.
+func (s *CreateReplicationGroupInput) SetNumCacheClusters(v int64) *CreateReplicationGroupInput {
+	s.NumCacheClusters = &v
+	return s
+}
+
+// SetNumNodeGroups sets the NumNodeGroups field's value.
+func (s *CreateReplicationGroupInput) SetNumNodeGroups(v int64) *CreateReplicationGroupInput {
+	s.NumNodeGroups = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateReplicationGroupInput) SetPort(v int64) *CreateReplicationGroupInput {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredCacheClusterAZs sets the PreferredCacheClusterAZs field's value.
+func (s *CreateReplicationGroupInput) SetPreferredCacheClusterAZs(v []*string) *CreateReplicationGroupInput {
+	s.PreferredCacheClusterAZs = v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *CreateReplicationGroupInput) SetPreferredMaintenanceWindow(v string) *CreateReplicationGroupInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPrimaryClusterId sets the PrimaryClusterId field's value.
+func (s *CreateReplicationGroupInput) SetPrimaryClusterId(v string) *CreateReplicationGroupInput {
+	s.PrimaryClusterId = &v
+	return s
+}
+
+// SetReplicasPerNodeGroup sets the ReplicasPerNodeGroup field's value.
+func (s *CreateReplicationGroupInput) SetReplicasPerNodeGroup(v int64) *CreateReplicationGroupInput {
+	s.ReplicasPerNodeGroup = &v
+	return s
+}
+
+// SetReplicationGroupDescription sets the ReplicationGroupDescription field's value.
+func (s *CreateReplicationGroupInput) SetReplicationGroupDescription(v string) *CreateReplicationGroupInput {
+	s.ReplicationGroupDescription = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *CreateReplicationGroupInput) SetReplicationGroupId(v string) *CreateReplicationGroupInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *CreateReplicationGroupInput) SetSecurityGroupIds(v []*string) *CreateReplicationGroupInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSnapshotArns sets the SnapshotArns field's value.
+func (s *CreateReplicationGroupInput) SetSnapshotArns(v []*string) *CreateReplicationGroupInput {
+	s.SnapshotArns = v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *CreateReplicationGroupInput) SetSnapshotName(v string) *CreateReplicationGroupInput {
+	s.SnapshotName = &v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *CreateReplicationGroupInput) SetSnapshotRetentionLimit(v int64) *CreateReplicationGroupInput {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *CreateReplicationGroupInput) SetSnapshotWindow(v string) *CreateReplicationGroupInput {
+	s.SnapshotWindow = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateReplicationGroupInput) SetTags(v []*Tag) *CreateReplicationGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5094,6 +5886,12 @@ func (s CreateReplicationGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateReplicationGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationGroup sets the ReplicationGroup field's value.
+func (s *CreateReplicationGroupOutput) SetReplicationGroup(v *ReplicationGroup) *CreateReplicationGroupOutput {
+	s.ReplicationGroup = v
+	return s
 }
 
 // Represents the input of a CreateSnapshot operation.
@@ -5137,6 +5935,24 @@ func (s *CreateSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *CreateSnapshotInput) SetCacheClusterId(v string) *CreateSnapshotInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *CreateSnapshotInput) SetReplicationGroupId(v string) *CreateSnapshotInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *CreateSnapshotInput) SetSnapshotName(v string) *CreateSnapshotInput {
+	s.SnapshotName = &v
+	return s
+}
+
 type CreateSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5153,6 +5969,12 @@ func (s CreateSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CreateSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetSnapshot sets the Snapshot field's value.
+func (s *CreateSnapshotOutput) SetSnapshot(v *Snapshot) *CreateSnapshotOutput {
+	s.Snapshot = v
+	return s
 }
 
 // Represents the input of a DeleteCacheCluster operation.
@@ -5194,6 +6016,18 @@ func (s *DeleteCacheClusterInput) Validate() error {
 	return nil
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *DeleteCacheClusterInput) SetCacheClusterId(v string) *DeleteCacheClusterInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetFinalSnapshotIdentifier sets the FinalSnapshotIdentifier field's value.
+func (s *DeleteCacheClusterInput) SetFinalSnapshotIdentifier(v string) *DeleteCacheClusterInput {
+	s.FinalSnapshotIdentifier = &v
+	return s
+}
+
 type DeleteCacheClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5209,6 +6043,12 @@ func (s DeleteCacheClusterOutput) String() string {
 // GoString returns the string representation
 func (s DeleteCacheClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheCluster sets the CacheCluster field's value.
+func (s *DeleteCacheClusterOutput) SetCacheCluster(v *CacheCluster) *DeleteCacheClusterOutput {
+	s.CacheCluster = v
+	return s
 }
 
 // Represents the input of a DeleteCacheParameterGroup operation.
@@ -5245,6 +6085,12 @@ func (s *DeleteCacheParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *DeleteCacheParameterGroupInput) SetCacheParameterGroupName(v string) *DeleteCacheParameterGroupInput {
+	s.CacheParameterGroupName = &v
+	return s
 }
 
 type DeleteCacheParameterGroupOutput struct {
@@ -5296,6 +6142,12 @@ func (s *DeleteCacheSecurityGroupInput) Validate() error {
 	return nil
 }
 
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *DeleteCacheSecurityGroupInput) SetCacheSecurityGroupName(v string) *DeleteCacheSecurityGroupInput {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
 type DeleteCacheSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5343,6 +6195,12 @@ func (s *DeleteCacheSubnetGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *DeleteCacheSubnetGroupInput) SetCacheSubnetGroupName(v string) *DeleteCacheSubnetGroupInput {
+	s.CacheSubnetGroupName = &v
+	return s
 }
 
 type DeleteCacheSubnetGroupOutput struct {
@@ -5403,6 +6261,24 @@ func (s *DeleteReplicationGroupInput) Validate() error {
 	return nil
 }
 
+// SetFinalSnapshotIdentifier sets the FinalSnapshotIdentifier field's value.
+func (s *DeleteReplicationGroupInput) SetFinalSnapshotIdentifier(v string) *DeleteReplicationGroupInput {
+	s.FinalSnapshotIdentifier = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *DeleteReplicationGroupInput) SetReplicationGroupId(v string) *DeleteReplicationGroupInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetRetainPrimaryCluster sets the RetainPrimaryCluster field's value.
+func (s *DeleteReplicationGroupInput) SetRetainPrimaryCluster(v bool) *DeleteReplicationGroupInput {
+	s.RetainPrimaryCluster = &v
+	return s
+}
+
 type DeleteReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5418,6 +6294,12 @@ func (s DeleteReplicationGroupOutput) String() string {
 // GoString returns the string representation
 func (s DeleteReplicationGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationGroup sets the ReplicationGroup field's value.
+func (s *DeleteReplicationGroupOutput) SetReplicationGroup(v *ReplicationGroup) *DeleteReplicationGroupOutput {
+	s.ReplicationGroup = v
+	return s
 }
 
 // Represents the input of a DeleteSnapshot operation.
@@ -5453,6 +6335,12 @@ func (s *DeleteSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *DeleteSnapshotInput) SetSnapshotName(v string) *DeleteSnapshotInput {
+	s.SnapshotName = &v
+	return s
+}
+
 type DeleteSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5469,6 +6357,12 @@ func (s DeleteSnapshotOutput) String() string {
 // GoString returns the string representation
 func (s DeleteSnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetSnapshot sets the Snapshot field's value.
+func (s *DeleteSnapshotOutput) SetSnapshot(v *Snapshot) *DeleteSnapshotOutput {
+	s.Snapshot = v
+	return s
 }
 
 // Represents the input of a DescribeCacheClusters operation.
@@ -5509,6 +6403,30 @@ func (s DescribeCacheClustersInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *DescribeCacheClustersInput) SetCacheClusterId(v string) *DescribeCacheClustersInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheClustersInput) SetMarker(v string) *DescribeCacheClustersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCacheClustersInput) SetMaxRecords(v int64) *DescribeCacheClustersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetShowCacheNodeInfo sets the ShowCacheNodeInfo field's value.
+func (s *DescribeCacheClustersInput) SetShowCacheNodeInfo(v bool) *DescribeCacheClustersInput {
+	s.ShowCacheNodeInfo = &v
+	return s
+}
+
 // Represents the output of a DescribeCacheClusters operation.
 type DescribeCacheClustersOutput struct {
 	_ struct{} `type:"structure"`
@@ -5529,6 +6447,18 @@ func (s DescribeCacheClustersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheClustersOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheClusters sets the CacheClusters field's value.
+func (s *DescribeCacheClustersOutput) SetCacheClusters(v []*CacheCluster) *DescribeCacheClustersOutput {
+	s.CacheClusters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheClustersOutput) SetMarker(v string) *DescribeCacheClustersOutput {
+	s.Marker = &v
+	return s
 }
 
 // Represents the input of a DescribeCacheEngineVersions operation.
@@ -5585,6 +6515,42 @@ func (s DescribeCacheEngineVersionsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheParameterGroupFamily sets the CacheParameterGroupFamily field's value.
+func (s *DescribeCacheEngineVersionsInput) SetCacheParameterGroupFamily(v string) *DescribeCacheEngineVersionsInput {
+	s.CacheParameterGroupFamily = &v
+	return s
+}
+
+// SetDefaultOnly sets the DefaultOnly field's value.
+func (s *DescribeCacheEngineVersionsInput) SetDefaultOnly(v bool) *DescribeCacheEngineVersionsInput {
+	s.DefaultOnly = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DescribeCacheEngineVersionsInput) SetEngine(v string) *DescribeCacheEngineVersionsInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DescribeCacheEngineVersionsInput) SetEngineVersion(v string) *DescribeCacheEngineVersionsInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheEngineVersionsInput) SetMarker(v string) *DescribeCacheEngineVersionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCacheEngineVersionsInput) SetMaxRecords(v int64) *DescribeCacheEngineVersionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Represents the output of a DescribeCacheEngineVersions operation.
 type DescribeCacheEngineVersionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5605,6 +6571,18 @@ func (s DescribeCacheEngineVersionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheEngineVersionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheEngineVersions sets the CacheEngineVersions field's value.
+func (s *DescribeCacheEngineVersionsOutput) SetCacheEngineVersions(v []*CacheEngineVersion) *DescribeCacheEngineVersionsOutput {
+	s.CacheEngineVersions = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheEngineVersionsOutput) SetMarker(v string) *DescribeCacheEngineVersionsOutput {
+	s.Marker = &v
+	return s
 }
 
 // Represents the input of a DescribeCacheParameterGroups operation.
@@ -5639,6 +6617,24 @@ func (s DescribeCacheParameterGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *DescribeCacheParameterGroupsInput) SetCacheParameterGroupName(v string) *DescribeCacheParameterGroupsInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheParameterGroupsInput) SetMarker(v string) *DescribeCacheParameterGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCacheParameterGroupsInput) SetMaxRecords(v int64) *DescribeCacheParameterGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Represents the output of a DescribeCacheParameterGroups operation.
 type DescribeCacheParameterGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5659,6 +6655,18 @@ func (s DescribeCacheParameterGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheParameterGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheParameterGroups sets the CacheParameterGroups field's value.
+func (s *DescribeCacheParameterGroupsOutput) SetCacheParameterGroups(v []*CacheParameterGroup) *DescribeCacheParameterGroupsOutput {
+	s.CacheParameterGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheParameterGroupsOutput) SetMarker(v string) *DescribeCacheParameterGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 // Represents the input of a DescribeCacheParameters operation.
@@ -5713,6 +6721,30 @@ func (s *DescribeCacheParametersInput) Validate() error {
 	return nil
 }
 
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *DescribeCacheParametersInput) SetCacheParameterGroupName(v string) *DescribeCacheParametersInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheParametersInput) SetMarker(v string) *DescribeCacheParametersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCacheParametersInput) SetMaxRecords(v int64) *DescribeCacheParametersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *DescribeCacheParametersInput) SetSource(v string) *DescribeCacheParametersInput {
+	s.Source = &v
+	return s
+}
+
 // Represents the output of a DescribeCacheParameters operation.
 type DescribeCacheParametersOutput struct {
 	_ struct{} `type:"structure"`
@@ -5736,6 +6768,24 @@ func (s DescribeCacheParametersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheParametersOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheNodeTypeSpecificParameters sets the CacheNodeTypeSpecificParameters field's value.
+func (s *DescribeCacheParametersOutput) SetCacheNodeTypeSpecificParameters(v []*CacheNodeTypeSpecificParameter) *DescribeCacheParametersOutput {
+	s.CacheNodeTypeSpecificParameters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheParametersOutput) SetMarker(v string) *DescribeCacheParametersOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DescribeCacheParametersOutput) SetParameters(v []*Parameter) *DescribeCacheParametersOutput {
+	s.Parameters = v
+	return s
 }
 
 // Represents the input of a DescribeCacheSecurityGroups operation.
@@ -5770,6 +6820,24 @@ func (s DescribeCacheSecurityGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *DescribeCacheSecurityGroupsInput) SetCacheSecurityGroupName(v string) *DescribeCacheSecurityGroupsInput {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheSecurityGroupsInput) SetMarker(v string) *DescribeCacheSecurityGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCacheSecurityGroupsInput) SetMaxRecords(v int64) *DescribeCacheSecurityGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Represents the output of a DescribeCacheSecurityGroups operation.
 type DescribeCacheSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5790,6 +6858,18 @@ func (s DescribeCacheSecurityGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheSecurityGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheSecurityGroups sets the CacheSecurityGroups field's value.
+func (s *DescribeCacheSecurityGroupsOutput) SetCacheSecurityGroups(v []*CacheSecurityGroup) *DescribeCacheSecurityGroupsOutput {
+	s.CacheSecurityGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheSecurityGroupsOutput) SetMarker(v string) *DescribeCacheSecurityGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 // Represents the input of a DescribeCacheSubnetGroups operation.
@@ -5824,6 +6904,24 @@ func (s DescribeCacheSubnetGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *DescribeCacheSubnetGroupsInput) SetCacheSubnetGroupName(v string) *DescribeCacheSubnetGroupsInput {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheSubnetGroupsInput) SetMarker(v string) *DescribeCacheSubnetGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeCacheSubnetGroupsInput) SetMaxRecords(v int64) *DescribeCacheSubnetGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
 // Represents the output of a DescribeCacheSubnetGroups operation.
 type DescribeCacheSubnetGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5844,6 +6942,18 @@ func (s DescribeCacheSubnetGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCacheSubnetGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheSubnetGroups sets the CacheSubnetGroups field's value.
+func (s *DescribeCacheSubnetGroupsOutput) SetCacheSubnetGroups(v []*CacheSubnetGroup) *DescribeCacheSubnetGroupsOutput {
+	s.CacheSubnetGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeCacheSubnetGroupsOutput) SetMarker(v string) *DescribeCacheSubnetGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 // Represents the input of a DescribeEngineDefaultParameters operation.
@@ -5895,6 +7005,24 @@ func (s *DescribeEngineDefaultParametersInput) Validate() error {
 	return nil
 }
 
+// SetCacheParameterGroupFamily sets the CacheParameterGroupFamily field's value.
+func (s *DescribeEngineDefaultParametersInput) SetCacheParameterGroupFamily(v string) *DescribeEngineDefaultParametersInput {
+	s.CacheParameterGroupFamily = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEngineDefaultParametersInput) SetMarker(v string) *DescribeEngineDefaultParametersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEngineDefaultParametersInput) SetMaxRecords(v int64) *DescribeEngineDefaultParametersInput {
+	s.MaxRecords = &v
+	return s
+}
+
 type DescribeEngineDefaultParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5910,6 +7038,12 @@ func (s DescribeEngineDefaultParametersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEngineDefaultParametersOutput) GoString() string {
 	return s.String()
+}
+
+// SetEngineDefaults sets the EngineDefaults field's value.
+func (s *DescribeEngineDefaultParametersOutput) SetEngineDefaults(v *EngineDefaults) *DescribeEngineDefaultParametersOutput {
+	s.EngineDefaults = v
+	return s
 }
 
 // Represents the input of a DescribeEvents operation.
@@ -5960,6 +7094,48 @@ func (s DescribeEventsInput) GoString() string {
 	return s.String()
 }
 
+// SetDuration sets the Duration field's value.
+func (s *DescribeEventsInput) SetDuration(v int64) *DescribeEventsInput {
+	s.Duration = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeEventsInput) SetEndTime(v time.Time) *DescribeEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventsInput) SetMarker(v string) *DescribeEventsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEventsInput) SetMaxRecords(v int64) *DescribeEventsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *DescribeEventsInput) SetSourceIdentifier(v string) *DescribeEventsInput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *DescribeEventsInput) SetSourceType(v string) *DescribeEventsInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeEventsInput) SetStartTime(v time.Time) *DescribeEventsInput {
+	s.StartTime = &v
+	return s
+}
+
 // Represents the output of a DescribeEvents operation.
 type DescribeEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5980,6 +7156,18 @@ func (s DescribeEventsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *DescribeEventsOutput) SetEvents(v []*Event) *DescribeEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
+	s.Marker = &v
+	return s
 }
 
 // Represents the input of a DescribeReplicationGroups operation.
@@ -6018,6 +7206,24 @@ func (s DescribeReplicationGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationGroupsInput) SetMarker(v string) *DescribeReplicationGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReplicationGroupsInput) SetMaxRecords(v int64) *DescribeReplicationGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *DescribeReplicationGroupsInput) SetReplicationGroupId(v string) *DescribeReplicationGroupsInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
 // Represents the output of a DescribeReplicationGroups operation.
 type DescribeReplicationGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6038,6 +7244,18 @@ func (s DescribeReplicationGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReplicationGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReplicationGroupsOutput) SetMarker(v string) *DescribeReplicationGroupsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReplicationGroups sets the ReplicationGroups field's value.
+func (s *DescribeReplicationGroupsOutput) SetReplicationGroups(v []*ReplicationGroup) *DescribeReplicationGroupsOutput {
+	s.ReplicationGroups = v
+	return s
 }
 
 // Represents the input of a DescribeReservedCacheNodes operation.
@@ -6134,6 +7352,54 @@ func (s DescribeReservedCacheNodesInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *DescribeReservedCacheNodesInput) SetCacheNodeType(v string) *DescribeReservedCacheNodesInput {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *DescribeReservedCacheNodesInput) SetDuration(v string) *DescribeReservedCacheNodesInput {
+	s.Duration = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedCacheNodesInput) SetMarker(v string) *DescribeReservedCacheNodesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReservedCacheNodesInput) SetMaxRecords(v int64) *DescribeReservedCacheNodesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *DescribeReservedCacheNodesInput) SetOfferingType(v string) *DescribeReservedCacheNodesInput {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *DescribeReservedCacheNodesInput) SetProductDescription(v string) *DescribeReservedCacheNodesInput {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetReservedCacheNodeId sets the ReservedCacheNodeId field's value.
+func (s *DescribeReservedCacheNodesInput) SetReservedCacheNodeId(v string) *DescribeReservedCacheNodesInput {
+	s.ReservedCacheNodeId = &v
+	return s
+}
+
+// SetReservedCacheNodesOfferingId sets the ReservedCacheNodesOfferingId field's value.
+func (s *DescribeReservedCacheNodesInput) SetReservedCacheNodesOfferingId(v string) *DescribeReservedCacheNodesInput {
+	s.ReservedCacheNodesOfferingId = &v
+	return s
+}
+
 // Represents the input of a DescribeReservedCacheNodesOfferings operation.
 type DescribeReservedCacheNodesOfferingsInput struct {
 	_ struct{} `type:"structure"`
@@ -6226,6 +7492,48 @@ func (s DescribeReservedCacheNodesOfferingsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetCacheNodeType(v string) *DescribeReservedCacheNodesOfferingsInput {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetDuration(v string) *DescribeReservedCacheNodesOfferingsInput {
+	s.Duration = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetMarker(v string) *DescribeReservedCacheNodesOfferingsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetMaxRecords(v int64) *DescribeReservedCacheNodesOfferingsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetOfferingType(v string) *DescribeReservedCacheNodesOfferingsInput {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetProductDescription(v string) *DescribeReservedCacheNodesOfferingsInput {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetReservedCacheNodesOfferingId sets the ReservedCacheNodesOfferingId field's value.
+func (s *DescribeReservedCacheNodesOfferingsInput) SetReservedCacheNodesOfferingId(v string) *DescribeReservedCacheNodesOfferingsInput {
+	s.ReservedCacheNodesOfferingId = &v
+	return s
+}
+
 // Represents the output of a DescribeReservedCacheNodesOfferings operation.
 type DescribeReservedCacheNodesOfferingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6248,6 +7556,18 @@ func (s DescribeReservedCacheNodesOfferingsOutput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedCacheNodesOfferingsOutput) SetMarker(v string) *DescribeReservedCacheNodesOfferingsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReservedCacheNodesOfferings sets the ReservedCacheNodesOfferings field's value.
+func (s *DescribeReservedCacheNodesOfferingsOutput) SetReservedCacheNodesOfferings(v []*ReservedCacheNodesOffering) *DescribeReservedCacheNodesOfferingsOutput {
+	s.ReservedCacheNodesOfferings = v
+	return s
+}
+
 // Represents the output of a DescribeReservedCacheNodes operation.
 type DescribeReservedCacheNodesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6268,6 +7588,18 @@ func (s DescribeReservedCacheNodesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReservedCacheNodesOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedCacheNodesOutput) SetMarker(v string) *DescribeReservedCacheNodesOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReservedCacheNodes sets the ReservedCacheNodes field's value.
+func (s *DescribeReservedCacheNodesOutput) SetReservedCacheNodes(v []*ReservedCacheNode) *DescribeReservedCacheNodesOutput {
+	s.ReservedCacheNodes = v
+	return s
 }
 
 // Represents the input of a DescribeSnapshotsMessage operation.
@@ -6321,6 +7653,48 @@ func (s DescribeSnapshotsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *DescribeSnapshotsInput) SetCacheClusterId(v string) *DescribeSnapshotsInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeSnapshotsInput) SetMarker(v string) *DescribeSnapshotsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeSnapshotsInput) SetMaxRecords(v int64) *DescribeSnapshotsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *DescribeSnapshotsInput) SetReplicationGroupId(v string) *DescribeSnapshotsInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetShowNodeGroupConfig sets the ShowNodeGroupConfig field's value.
+func (s *DescribeSnapshotsInput) SetShowNodeGroupConfig(v bool) *DescribeSnapshotsInput {
+	s.ShowNodeGroupConfig = &v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *DescribeSnapshotsInput) SetSnapshotName(v string) *DescribeSnapshotsInput {
+	s.SnapshotName = &v
+	return s
+}
+
+// SetSnapshotSource sets the SnapshotSource field's value.
+func (s *DescribeSnapshotsInput) SetSnapshotSource(v string) *DescribeSnapshotsInput {
+	s.SnapshotSource = &v
+	return s
+}
+
 // Represents the output of a DescribeSnapshots operation.
 type DescribeSnapshotsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6343,6 +7717,18 @@ func (s DescribeSnapshotsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSnapshotsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeSnapshotsOutput) SetMarker(v string) *DescribeSnapshotsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSnapshots sets the Snapshots field's value.
+func (s *DescribeSnapshotsOutput) SetSnapshots(v []*Snapshot) *DescribeSnapshotsOutput {
+	s.Snapshots = v
+	return s
 }
 
 // Provides ownership and status information for an Amazon EC2 security group.
@@ -6369,6 +7755,24 @@ func (s EC2SecurityGroup) GoString() string {
 	return s.String()
 }
 
+// SetEC2SecurityGroupName sets the EC2SecurityGroupName field's value.
+func (s *EC2SecurityGroup) SetEC2SecurityGroupName(v string) *EC2SecurityGroup {
+	s.EC2SecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupOwnerId sets the EC2SecurityGroupOwnerId field's value.
+func (s *EC2SecurityGroup) SetEC2SecurityGroupOwnerId(v string) *EC2SecurityGroup {
+	s.EC2SecurityGroupOwnerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EC2SecurityGroup) SetStatus(v string) *EC2SecurityGroup {
+	s.Status = &v
+	return s
+}
+
 // Represents the information required for client programs to connect to a cache
 // node.
 type Endpoint struct {
@@ -6389,6 +7793,18 @@ func (s Endpoint) String() string {
 // GoString returns the string representation
 func (s Endpoint) GoString() string {
 	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *Endpoint) SetAddress(v string) *Endpoint {
+	s.Address = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *Endpoint) SetPort(v int64) *Endpoint {
+	s.Port = &v
+	return s
 }
 
 // Represents the output of a DescribeEngineDefaultParameters operation.
@@ -6420,6 +7836,30 @@ func (s EngineDefaults) String() string {
 // GoString returns the string representation
 func (s EngineDefaults) GoString() string {
 	return s.String()
+}
+
+// SetCacheNodeTypeSpecificParameters sets the CacheNodeTypeSpecificParameters field's value.
+func (s *EngineDefaults) SetCacheNodeTypeSpecificParameters(v []*CacheNodeTypeSpecificParameter) *EngineDefaults {
+	s.CacheNodeTypeSpecificParameters = v
+	return s
+}
+
+// SetCacheParameterGroupFamily sets the CacheParameterGroupFamily field's value.
+func (s *EngineDefaults) SetCacheParameterGroupFamily(v string) *EngineDefaults {
+	s.CacheParameterGroupFamily = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *EngineDefaults) SetMarker(v string) *EngineDefaults {
+	s.Marker = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *EngineDefaults) SetParameters(v []*Parameter) *EngineDefaults {
+	s.Parameters = v
+	return s
 }
 
 // Represents a single occurrence of something interesting within the system.
@@ -6454,6 +7894,30 @@ func (s Event) GoString() string {
 	return s.String()
 }
 
+// SetDate sets the Date field's value.
+func (s *Event) SetDate(v time.Time) *Event {
+	s.Date = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Event) SetMessage(v string) *Event {
+	s.Message = &v
+	return s
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *Event) SetSourceIdentifier(v string) *Event {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *Event) SetSourceType(v string) *Event {
+	s.SourceType = &v
+	return s
+}
+
 // The input parameters for the ListAllowedNodeTypeModifications operation.
 type ListAllowedNodeTypeModificationsInput struct {
 	_ struct{} `type:"structure"`
@@ -6485,6 +7949,18 @@ func (s ListAllowedNodeTypeModificationsInput) GoString() string {
 	return s.String()
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *ListAllowedNodeTypeModificationsInput) SetCacheClusterId(v string) *ListAllowedNodeTypeModificationsInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *ListAllowedNodeTypeModificationsInput) SetReplicationGroupId(v string) *ListAllowedNodeTypeModificationsInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
 type ListAllowedNodeTypeModificationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6499,6 +7975,12 @@ func (s ListAllowedNodeTypeModificationsOutput) String() string {
 // GoString returns the string representation
 func (s ListAllowedNodeTypeModificationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetScaleUpModifications sets the ScaleUpModifications field's value.
+func (s *ListAllowedNodeTypeModificationsOutput) SetScaleUpModifications(v []*string) *ListAllowedNodeTypeModificationsOutput {
+	s.ScaleUpModifications = v
+	return s
 }
 
 // The input parameters for the ListTagsForResource operation.
@@ -6537,6 +8019,12 @@ func (s *ListTagsForResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *ListTagsForResourceInput) SetResourceName(v string) *ListTagsForResourceInput {
+	s.ResourceName = &v
+	return s
 }
 
 // Represents the input of a ModifyCacheCluster operation.
@@ -6805,6 +8293,108 @@ func (s *ModifyCacheClusterInput) Validate() error {
 	return nil
 }
 
+// SetAZMode sets the AZMode field's value.
+func (s *ModifyCacheClusterInput) SetAZMode(v string) *ModifyCacheClusterInput {
+	s.AZMode = &v
+	return s
+}
+
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *ModifyCacheClusterInput) SetApplyImmediately(v bool) *ModifyCacheClusterInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *ModifyCacheClusterInput) SetAutoMinorVersionUpgrade(v bool) *ModifyCacheClusterInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *ModifyCacheClusterInput) SetCacheClusterId(v string) *ModifyCacheClusterInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheNodeIdsToRemove sets the CacheNodeIdsToRemove field's value.
+func (s *ModifyCacheClusterInput) SetCacheNodeIdsToRemove(v []*string) *ModifyCacheClusterInput {
+	s.CacheNodeIdsToRemove = v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *ModifyCacheClusterInput) SetCacheNodeType(v string) *ModifyCacheClusterInput {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *ModifyCacheClusterInput) SetCacheParameterGroupName(v string) *ModifyCacheClusterInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetCacheSecurityGroupNames sets the CacheSecurityGroupNames field's value.
+func (s *ModifyCacheClusterInput) SetCacheSecurityGroupNames(v []*string) *ModifyCacheClusterInput {
+	s.CacheSecurityGroupNames = v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyCacheClusterInput) SetEngineVersion(v string) *ModifyCacheClusterInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNewAvailabilityZones sets the NewAvailabilityZones field's value.
+func (s *ModifyCacheClusterInput) SetNewAvailabilityZones(v []*string) *ModifyCacheClusterInput {
+	s.NewAvailabilityZones = v
+	return s
+}
+
+// SetNotificationTopicArn sets the NotificationTopicArn field's value.
+func (s *ModifyCacheClusterInput) SetNotificationTopicArn(v string) *ModifyCacheClusterInput {
+	s.NotificationTopicArn = &v
+	return s
+}
+
+// SetNotificationTopicStatus sets the NotificationTopicStatus field's value.
+func (s *ModifyCacheClusterInput) SetNotificationTopicStatus(v string) *ModifyCacheClusterInput {
+	s.NotificationTopicStatus = &v
+	return s
+}
+
+// SetNumCacheNodes sets the NumCacheNodes field's value.
+func (s *ModifyCacheClusterInput) SetNumCacheNodes(v int64) *ModifyCacheClusterInput {
+	s.NumCacheNodes = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ModifyCacheClusterInput) SetPreferredMaintenanceWindow(v string) *ModifyCacheClusterInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *ModifyCacheClusterInput) SetSecurityGroupIds(v []*string) *ModifyCacheClusterInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *ModifyCacheClusterInput) SetSnapshotRetentionLimit(v int64) *ModifyCacheClusterInput {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *ModifyCacheClusterInput) SetSnapshotWindow(v string) *ModifyCacheClusterInput {
+	s.SnapshotWindow = &v
+	return s
+}
+
 type ModifyCacheClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6820,6 +8410,12 @@ func (s ModifyCacheClusterOutput) String() string {
 // GoString returns the string representation
 func (s ModifyCacheClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheCluster sets the CacheCluster field's value.
+func (s *ModifyCacheClusterOutput) SetCacheCluster(v *CacheCluster) *ModifyCacheClusterOutput {
+	s.CacheCluster = v
+	return s
 }
 
 // Represents the input of a ModifyCacheParameterGroup operation.
@@ -6863,6 +8459,18 @@ func (s *ModifyCacheParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *ModifyCacheParameterGroupInput) SetCacheParameterGroupName(v string) *ModifyCacheParameterGroupInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetParameterNameValues sets the ParameterNameValues field's value.
+func (s *ModifyCacheParameterGroupInput) SetParameterNameValues(v []*ParameterNameValue) *ModifyCacheParameterGroupInput {
+	s.ParameterNameValues = v
+	return s
 }
 
 // Represents the input of a ModifyCacheSubnetGroup operation.
@@ -6909,6 +8517,24 @@ func (s *ModifyCacheSubnetGroupInput) Validate() error {
 	return nil
 }
 
+// SetCacheSubnetGroupDescription sets the CacheSubnetGroupDescription field's value.
+func (s *ModifyCacheSubnetGroupInput) SetCacheSubnetGroupDescription(v string) *ModifyCacheSubnetGroupInput {
+	s.CacheSubnetGroupDescription = &v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *ModifyCacheSubnetGroupInput) SetCacheSubnetGroupName(v string) *ModifyCacheSubnetGroupInput {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *ModifyCacheSubnetGroupInput) SetSubnetIds(v []*string) *ModifyCacheSubnetGroupInput {
+	s.SubnetIds = v
+	return s
+}
+
 type ModifyCacheSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6928,6 +8554,12 @@ func (s ModifyCacheSubnetGroupOutput) String() string {
 // GoString returns the string representation
 func (s ModifyCacheSubnetGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheSubnetGroup sets the CacheSubnetGroup field's value.
+func (s *ModifyCacheSubnetGroupOutput) SetCacheSubnetGroup(v *CacheSubnetGroup) *ModifyCacheSubnetGroupOutput {
+	s.CacheSubnetGroup = v
+	return s
 }
 
 // Represents the input of a ModifyReplicationGroups operation.
@@ -7096,6 +8728,108 @@ func (s *ModifyReplicationGroupInput) Validate() error {
 	return nil
 }
 
+// SetApplyImmediately sets the ApplyImmediately field's value.
+func (s *ModifyReplicationGroupInput) SetApplyImmediately(v bool) *ModifyReplicationGroupInput {
+	s.ApplyImmediately = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *ModifyReplicationGroupInput) SetAutoMinorVersionUpgrade(v bool) *ModifyReplicationGroupInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAutomaticFailoverEnabled sets the AutomaticFailoverEnabled field's value.
+func (s *ModifyReplicationGroupInput) SetAutomaticFailoverEnabled(v bool) *ModifyReplicationGroupInput {
+	s.AutomaticFailoverEnabled = &v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *ModifyReplicationGroupInput) SetCacheNodeType(v string) *ModifyReplicationGroupInput {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *ModifyReplicationGroupInput) SetCacheParameterGroupName(v string) *ModifyReplicationGroupInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetCacheSecurityGroupNames sets the CacheSecurityGroupNames field's value.
+func (s *ModifyReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *ModifyReplicationGroupInput {
+	s.CacheSecurityGroupNames = v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyReplicationGroupInput) SetEngineVersion(v string) *ModifyReplicationGroupInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNotificationTopicArn sets the NotificationTopicArn field's value.
+func (s *ModifyReplicationGroupInput) SetNotificationTopicArn(v string) *ModifyReplicationGroupInput {
+	s.NotificationTopicArn = &v
+	return s
+}
+
+// SetNotificationTopicStatus sets the NotificationTopicStatus field's value.
+func (s *ModifyReplicationGroupInput) SetNotificationTopicStatus(v string) *ModifyReplicationGroupInput {
+	s.NotificationTopicStatus = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *ModifyReplicationGroupInput) SetPreferredMaintenanceWindow(v string) *ModifyReplicationGroupInput {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPrimaryClusterId sets the PrimaryClusterId field's value.
+func (s *ModifyReplicationGroupInput) SetPrimaryClusterId(v string) *ModifyReplicationGroupInput {
+	s.PrimaryClusterId = &v
+	return s
+}
+
+// SetReplicationGroupDescription sets the ReplicationGroupDescription field's value.
+func (s *ModifyReplicationGroupInput) SetReplicationGroupDescription(v string) *ModifyReplicationGroupInput {
+	s.ReplicationGroupDescription = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *ModifyReplicationGroupInput) SetReplicationGroupId(v string) *ModifyReplicationGroupInput {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *ModifyReplicationGroupInput) SetSecurityGroupIds(v []*string) *ModifyReplicationGroupInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *ModifyReplicationGroupInput) SetSnapshotRetentionLimit(v int64) *ModifyReplicationGroupInput {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *ModifyReplicationGroupInput) SetSnapshotWindow(v string) *ModifyReplicationGroupInput {
+	s.SnapshotWindow = &v
+	return s
+}
+
+// SetSnapshottingClusterId sets the SnapshottingClusterId field's value.
+func (s *ModifyReplicationGroupInput) SetSnapshottingClusterId(v string) *ModifyReplicationGroupInput {
+	s.SnapshottingClusterId = &v
+	return s
+}
+
 type ModifyReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7111,6 +8845,12 @@ func (s ModifyReplicationGroupOutput) String() string {
 // GoString returns the string representation
 func (s ModifyReplicationGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetReplicationGroup sets the ReplicationGroup field's value.
+func (s *ModifyReplicationGroupOutput) SetReplicationGroup(v *ReplicationGroup) *ModifyReplicationGroupOutput {
+	s.ReplicationGroup = v
+	return s
 }
 
 // Represents a collection of cache nodes in a replication group. One node in
@@ -7149,6 +8889,36 @@ func (s NodeGroup) GoString() string {
 	return s.String()
 }
 
+// SetNodeGroupId sets the NodeGroupId field's value.
+func (s *NodeGroup) SetNodeGroupId(v string) *NodeGroup {
+	s.NodeGroupId = &v
+	return s
+}
+
+// SetNodeGroupMembers sets the NodeGroupMembers field's value.
+func (s *NodeGroup) SetNodeGroupMembers(v []*NodeGroupMember) *NodeGroup {
+	s.NodeGroupMembers = v
+	return s
+}
+
+// SetPrimaryEndpoint sets the PrimaryEndpoint field's value.
+func (s *NodeGroup) SetPrimaryEndpoint(v *Endpoint) *NodeGroup {
+	s.PrimaryEndpoint = v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *NodeGroup) SetSlots(v string) *NodeGroup {
+	s.Slots = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NodeGroup) SetStatus(v string) *NodeGroup {
+	s.Status = &v
+	return s
+}
+
 // node group (shard) configuration options. Each node group (shard) configuration
 // has the following: Slots, PrimaryAvailabilityZone, ReplicaAvailabilityZones,
 // ReplicaCount.
@@ -7184,6 +8954,30 @@ func (s NodeGroupConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetPrimaryAvailabilityZone sets the PrimaryAvailabilityZone field's value.
+func (s *NodeGroupConfiguration) SetPrimaryAvailabilityZone(v string) *NodeGroupConfiguration {
+	s.PrimaryAvailabilityZone = &v
+	return s
+}
+
+// SetReplicaAvailabilityZones sets the ReplicaAvailabilityZones field's value.
+func (s *NodeGroupConfiguration) SetReplicaAvailabilityZones(v []*string) *NodeGroupConfiguration {
+	s.ReplicaAvailabilityZones = v
+	return s
+}
+
+// SetReplicaCount sets the ReplicaCount field's value.
+func (s *NodeGroupConfiguration) SetReplicaCount(v int64) *NodeGroupConfiguration {
+	s.ReplicaCount = &v
+	return s
+}
+
+// SetSlots sets the Slots field's value.
+func (s *NodeGroupConfiguration) SetSlots(v string) *NodeGroupConfiguration {
+	s.Slots = &v
+	return s
+}
+
 // Represents a single node within a node group (shard).
 type NodeGroupMember struct {
 	_ struct{} `type:"structure"`
@@ -7214,6 +9008,36 @@ func (s NodeGroupMember) String() string {
 // GoString returns the string representation
 func (s NodeGroupMember) GoString() string {
 	return s.String()
+}
+
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *NodeGroupMember) SetCacheClusterId(v string) *NodeGroupMember {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheNodeId sets the CacheNodeId field's value.
+func (s *NodeGroupMember) SetCacheNodeId(v string) *NodeGroupMember {
+	s.CacheNodeId = &v
+	return s
+}
+
+// SetCurrentRole sets the CurrentRole field's value.
+func (s *NodeGroupMember) SetCurrentRole(v string) *NodeGroupMember {
+	s.CurrentRole = &v
+	return s
+}
+
+// SetPreferredAvailabilityZone sets the PreferredAvailabilityZone field's value.
+func (s *NodeGroupMember) SetPreferredAvailabilityZone(v string) *NodeGroupMember {
+	s.PreferredAvailabilityZone = &v
+	return s
+}
+
+// SetReadEndpoint sets the ReadEndpoint field's value.
+func (s *NodeGroupMember) SetReadEndpoint(v *Endpoint) *NodeGroupMember {
+	s.ReadEndpoint = v
+	return s
 }
 
 // Represents an individual cache node in a snapshot of a cache cluster.
@@ -7253,6 +9077,48 @@ func (s NodeSnapshot) GoString() string {
 	return s.String()
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *NodeSnapshot) SetCacheClusterId(v string) *NodeSnapshot {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheNodeCreateTime sets the CacheNodeCreateTime field's value.
+func (s *NodeSnapshot) SetCacheNodeCreateTime(v time.Time) *NodeSnapshot {
+	s.CacheNodeCreateTime = &v
+	return s
+}
+
+// SetCacheNodeId sets the CacheNodeId field's value.
+func (s *NodeSnapshot) SetCacheNodeId(v string) *NodeSnapshot {
+	s.CacheNodeId = &v
+	return s
+}
+
+// SetCacheSize sets the CacheSize field's value.
+func (s *NodeSnapshot) SetCacheSize(v string) *NodeSnapshot {
+	s.CacheSize = &v
+	return s
+}
+
+// SetNodeGroupConfiguration sets the NodeGroupConfiguration field's value.
+func (s *NodeSnapshot) SetNodeGroupConfiguration(v *NodeGroupConfiguration) *NodeSnapshot {
+	s.NodeGroupConfiguration = v
+	return s
+}
+
+// SetNodeGroupId sets the NodeGroupId field's value.
+func (s *NodeSnapshot) SetNodeGroupId(v string) *NodeSnapshot {
+	s.NodeGroupId = &v
+	return s
+}
+
+// SetSnapshotCreateTime sets the SnapshotCreateTime field's value.
+func (s *NodeSnapshot) SetSnapshotCreateTime(v time.Time) *NodeSnapshot {
+	s.SnapshotCreateTime = &v
+	return s
+}
+
 // Describes a notification topic and its status. Notification topics are used
 // for publishing ElastiCache events to subscribers using Amazon Simple Notification
 // Service (SNS).
@@ -7274,6 +9140,18 @@ func (s NotificationConfiguration) String() string {
 // GoString returns the string representation
 func (s NotificationConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *NotificationConfiguration) SetTopicArn(v string) *NotificationConfiguration {
+	s.TopicArn = &v
+	return s
+}
+
+// SetTopicStatus sets the TopicStatus field's value.
+func (s *NotificationConfiguration) SetTopicStatus(v string) *NotificationConfiguration {
+	s.TopicStatus = &v
+	return s
 }
 
 // Describes an individual setting that controls some aspect of ElastiCache
@@ -7324,6 +9202,60 @@ func (s Parameter) GoString() string {
 	return s.String()
 }
 
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *Parameter) SetAllowedValues(v string) *Parameter {
+	s.AllowedValues = &v
+	return s
+}
+
+// SetChangeType sets the ChangeType field's value.
+func (s *Parameter) SetChangeType(v string) *Parameter {
+	s.ChangeType = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *Parameter) SetDataType(v string) *Parameter {
+	s.DataType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Parameter) SetDescription(v string) *Parameter {
+	s.Description = &v
+	return s
+}
+
+// SetIsModifiable sets the IsModifiable field's value.
+func (s *Parameter) SetIsModifiable(v bool) *Parameter {
+	s.IsModifiable = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *Parameter) SetMinimumEngineVersion(v string) *Parameter {
+	s.MinimumEngineVersion = &v
+	return s
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *Parameter) SetParameterName(v string) *Parameter {
+	s.ParameterName = &v
+	return s
+}
+
+// SetParameterValue sets the ParameterValue field's value.
+func (s *Parameter) SetParameterValue(v string) *Parameter {
+	s.ParameterValue = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *Parameter) SetSource(v string) *Parameter {
+	s.Source = &v
+	return s
+}
+
 // Describes a name-value pair that is used to update the value of a parameter.
 type ParameterNameValue struct {
 	_ struct{} `type:"structure"`
@@ -7343,6 +9275,18 @@ func (s ParameterNameValue) String() string {
 // GoString returns the string representation
 func (s ParameterNameValue) GoString() string {
 	return s.String()
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *ParameterNameValue) SetParameterName(v string) *ParameterNameValue {
+	s.ParameterName = &v
+	return s
+}
+
+// SetParameterValue sets the ParameterValue field's value.
+func (s *ParameterNameValue) SetParameterValue(v string) *ParameterNameValue {
+	s.ParameterValue = &v
+	return s
 }
 
 // A group of settings that are applied to the cache cluster in the future,
@@ -7376,6 +9320,30 @@ func (s PendingModifiedValues) String() string {
 // GoString returns the string representation
 func (s PendingModifiedValues) GoString() string {
 	return s.String()
+}
+
+// SetCacheNodeIdsToRemove sets the CacheNodeIdsToRemove field's value.
+func (s *PendingModifiedValues) SetCacheNodeIdsToRemove(v []*string) *PendingModifiedValues {
+	s.CacheNodeIdsToRemove = v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *PendingModifiedValues) SetCacheNodeType(v string) *PendingModifiedValues {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *PendingModifiedValues) SetEngineVersion(v string) *PendingModifiedValues {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNumCacheNodes sets the NumCacheNodes field's value.
+func (s *PendingModifiedValues) SetNumCacheNodes(v int64) *PendingModifiedValues {
+	s.NumCacheNodes = &v
+	return s
 }
 
 // Represents the input of a PurchaseReservedCacheNodesOffering operation.
@@ -7427,6 +9395,24 @@ func (s *PurchaseReservedCacheNodesOfferingInput) Validate() error {
 	return nil
 }
 
+// SetCacheNodeCount sets the CacheNodeCount field's value.
+func (s *PurchaseReservedCacheNodesOfferingInput) SetCacheNodeCount(v int64) *PurchaseReservedCacheNodesOfferingInput {
+	s.CacheNodeCount = &v
+	return s
+}
+
+// SetReservedCacheNodeId sets the ReservedCacheNodeId field's value.
+func (s *PurchaseReservedCacheNodesOfferingInput) SetReservedCacheNodeId(v string) *PurchaseReservedCacheNodesOfferingInput {
+	s.ReservedCacheNodeId = &v
+	return s
+}
+
+// SetReservedCacheNodesOfferingId sets the ReservedCacheNodesOfferingId field's value.
+func (s *PurchaseReservedCacheNodesOfferingInput) SetReservedCacheNodesOfferingId(v string) *PurchaseReservedCacheNodesOfferingInput {
+	s.ReservedCacheNodesOfferingId = &v
+	return s
+}
+
 type PurchaseReservedCacheNodesOfferingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7442,6 +9428,12 @@ func (s PurchaseReservedCacheNodesOfferingOutput) String() string {
 // GoString returns the string representation
 func (s PurchaseReservedCacheNodesOfferingOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedCacheNode sets the ReservedCacheNode field's value.
+func (s *PurchaseReservedCacheNodesOfferingOutput) SetReservedCacheNode(v *ReservedCacheNode) *PurchaseReservedCacheNodesOfferingOutput {
+	s.ReservedCacheNode = v
+	return s
 }
 
 // Represents the input of a RebootCacheCluster operation.
@@ -7487,6 +9479,18 @@ func (s *RebootCacheClusterInput) Validate() error {
 	return nil
 }
 
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *RebootCacheClusterInput) SetCacheClusterId(v string) *RebootCacheClusterInput {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheNodeIdsToReboot sets the CacheNodeIdsToReboot field's value.
+func (s *RebootCacheClusterInput) SetCacheNodeIdsToReboot(v []*string) *RebootCacheClusterInput {
+	s.CacheNodeIdsToReboot = v
+	return s
+}
+
 type RebootCacheClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7502,6 +9506,12 @@ func (s RebootCacheClusterOutput) String() string {
 // GoString returns the string representation
 func (s RebootCacheClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCacheCluster sets the CacheCluster field's value.
+func (s *RebootCacheClusterOutput) SetCacheCluster(v *CacheCluster) *RebootCacheClusterOutput {
+	s.CacheCluster = v
+	return s
 }
 
 // Contains the specific price and frequency of a recurring charges for a reserved
@@ -7524,6 +9534,18 @@ func (s RecurringCharge) String() string {
 // GoString returns the string representation
 func (s RecurringCharge) GoString() string {
 	return s.String()
+}
+
+// SetRecurringChargeAmount sets the RecurringChargeAmount field's value.
+func (s *RecurringCharge) SetRecurringChargeAmount(v float64) *RecurringCharge {
+	s.RecurringChargeAmount = &v
+	return s
+}
+
+// SetRecurringChargeFrequency sets the RecurringChargeFrequency field's value.
+func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge {
+	s.RecurringChargeFrequency = &v
+	return s
 }
 
 // Represents the input of a RemoveTagsFromResource operation.
@@ -7570,6 +9592,18 @@ func (s *RemoveTagsFromResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *RemoveTagsFromResourceInput) SetResourceName(v string) *RemoveTagsFromResourceInput {
+	s.ResourceName = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *RemoveTagsFromResourceInput) SetTagKeys(v []*string) *RemoveTagsFromResourceInput {
+	s.TagKeys = v
+	return s
 }
 
 // Contains all of the attributes of a specific Redis replication group.
@@ -7646,6 +9680,72 @@ func (s ReplicationGroup) GoString() string {
 	return s.String()
 }
 
+// SetAutomaticFailover sets the AutomaticFailover field's value.
+func (s *ReplicationGroup) SetAutomaticFailover(v string) *ReplicationGroup {
+	s.AutomaticFailover = &v
+	return s
+}
+
+// SetConfigurationEndpoint sets the ConfigurationEndpoint field's value.
+func (s *ReplicationGroup) SetConfigurationEndpoint(v *Endpoint) *ReplicationGroup {
+	s.ConfigurationEndpoint = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReplicationGroup) SetDescription(v string) *ReplicationGroup {
+	s.Description = &v
+	return s
+}
+
+// SetMemberClusters sets the MemberClusters field's value.
+func (s *ReplicationGroup) SetMemberClusters(v []*string) *ReplicationGroup {
+	s.MemberClusters = v
+	return s
+}
+
+// SetNodeGroups sets the NodeGroups field's value.
+func (s *ReplicationGroup) SetNodeGroups(v []*NodeGroup) *ReplicationGroup {
+	s.NodeGroups = v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *ReplicationGroup) SetPendingModifiedValues(v *ReplicationGroupPendingModifiedValues) *ReplicationGroup {
+	s.PendingModifiedValues = v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *ReplicationGroup) SetReplicationGroupId(v string) *ReplicationGroup {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *ReplicationGroup) SetSnapshotRetentionLimit(v int64) *ReplicationGroup {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *ReplicationGroup) SetSnapshotWindow(v string) *ReplicationGroup {
+	s.SnapshotWindow = &v
+	return s
+}
+
+// SetSnapshottingClusterId sets the SnapshottingClusterId field's value.
+func (s *ReplicationGroup) SetSnapshottingClusterId(v string) *ReplicationGroup {
+	s.SnapshottingClusterId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReplicationGroup) SetStatus(v string) *ReplicationGroup {
+	s.Status = &v
+	return s
+}
+
 // The settings to be applied to the Redis replication group, either immediately
 // or during the next maintenance window.
 type ReplicationGroupPendingModifiedValues struct {
@@ -7675,6 +9775,18 @@ func (s ReplicationGroupPendingModifiedValues) String() string {
 // GoString returns the string representation
 func (s ReplicationGroupPendingModifiedValues) GoString() string {
 	return s.String()
+}
+
+// SetAutomaticFailoverStatus sets the AutomaticFailoverStatus field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetAutomaticFailoverStatus(v string) *ReplicationGroupPendingModifiedValues {
+	s.AutomaticFailoverStatus = &v
+	return s
+}
+
+// SetPrimaryClusterId sets the PrimaryClusterId field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetPrimaryClusterId(v string) *ReplicationGroupPendingModifiedValues {
+	s.PrimaryClusterId = &v
+	return s
 }
 
 // Represents the output of a PurchaseReservedCacheNodesOffering operation.
@@ -7765,6 +9877,78 @@ func (s ReservedCacheNode) GoString() string {
 	return s.String()
 }
 
+// SetCacheNodeCount sets the CacheNodeCount field's value.
+func (s *ReservedCacheNode) SetCacheNodeCount(v int64) *ReservedCacheNode {
+	s.CacheNodeCount = &v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *ReservedCacheNode) SetCacheNodeType(v string) *ReservedCacheNode {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ReservedCacheNode) SetDuration(v int64) *ReservedCacheNode {
+	s.Duration = &v
+	return s
+}
+
+// SetFixedPrice sets the FixedPrice field's value.
+func (s *ReservedCacheNode) SetFixedPrice(v float64) *ReservedCacheNode {
+	s.FixedPrice = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *ReservedCacheNode) SetOfferingType(v string) *ReservedCacheNode {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ReservedCacheNode) SetProductDescription(v string) *ReservedCacheNode {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *ReservedCacheNode) SetRecurringCharges(v []*RecurringCharge) *ReservedCacheNode {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetReservedCacheNodeId sets the ReservedCacheNodeId field's value.
+func (s *ReservedCacheNode) SetReservedCacheNodeId(v string) *ReservedCacheNode {
+	s.ReservedCacheNodeId = &v
+	return s
+}
+
+// SetReservedCacheNodesOfferingId sets the ReservedCacheNodesOfferingId field's value.
+func (s *ReservedCacheNode) SetReservedCacheNodesOfferingId(v string) *ReservedCacheNode {
+	s.ReservedCacheNodesOfferingId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ReservedCacheNode) SetStartTime(v time.Time) *ReservedCacheNode {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ReservedCacheNode) SetState(v string) *ReservedCacheNode {
+	s.State = &v
+	return s
+}
+
+// SetUsagePrice sets the UsagePrice field's value.
+func (s *ReservedCacheNode) SetUsagePrice(v float64) *ReservedCacheNode {
+	s.UsagePrice = &v
+	return s
+}
+
 // Describes all of the attributes of a reserved cache node offering.
 type ReservedCacheNodesOffering struct {
 	_ struct{} `type:"structure"`
@@ -7841,6 +10025,54 @@ func (s ReservedCacheNodesOffering) GoString() string {
 	return s.String()
 }
 
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *ReservedCacheNodesOffering) SetCacheNodeType(v string) *ReservedCacheNodesOffering {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ReservedCacheNodesOffering) SetDuration(v int64) *ReservedCacheNodesOffering {
+	s.Duration = &v
+	return s
+}
+
+// SetFixedPrice sets the FixedPrice field's value.
+func (s *ReservedCacheNodesOffering) SetFixedPrice(v float64) *ReservedCacheNodesOffering {
+	s.FixedPrice = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *ReservedCacheNodesOffering) SetOfferingType(v string) *ReservedCacheNodesOffering {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ReservedCacheNodesOffering) SetProductDescription(v string) *ReservedCacheNodesOffering {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *ReservedCacheNodesOffering) SetRecurringCharges(v []*RecurringCharge) *ReservedCacheNodesOffering {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetReservedCacheNodesOfferingId sets the ReservedCacheNodesOfferingId field's value.
+func (s *ReservedCacheNodesOffering) SetReservedCacheNodesOfferingId(v string) *ReservedCacheNodesOffering {
+	s.ReservedCacheNodesOfferingId = &v
+	return s
+}
+
+// SetUsagePrice sets the UsagePrice field's value.
+func (s *ReservedCacheNodesOffering) SetUsagePrice(v float64) *ReservedCacheNodesOffering {
+	s.UsagePrice = &v
+	return s
+}
+
 // Represents the input of a ResetCacheParameterGroup operation.
 type ResetCacheParameterGroupInput struct {
 	_ struct{} `type:"structure"`
@@ -7884,6 +10116,24 @@ func (s *ResetCacheParameterGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *ResetCacheParameterGroupInput) SetCacheParameterGroupName(v string) *ResetCacheParameterGroupInput {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetParameterNameValues sets the ParameterNameValues field's value.
+func (s *ResetCacheParameterGroupInput) SetParameterNameValues(v []*ParameterNameValue) *ResetCacheParameterGroupInput {
+	s.ParameterNameValues = v
+	return s
+}
+
+// SetResetAllParameters sets the ResetAllParameters field's value.
+func (s *ResetCacheParameterGroupInput) SetResetAllParameters(v bool) *ResetCacheParameterGroupInput {
+	s.ResetAllParameters = &v
+	return s
 }
 
 // Represents the input of a RevokeCacheSecurityGroupIngress operation.
@@ -7937,6 +10187,24 @@ func (s *RevokeCacheSecurityGroupIngressInput) Validate() error {
 	return nil
 }
 
+// SetCacheSecurityGroupName sets the CacheSecurityGroupName field's value.
+func (s *RevokeCacheSecurityGroupIngressInput) SetCacheSecurityGroupName(v string) *RevokeCacheSecurityGroupIngressInput {
+	s.CacheSecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupName sets the EC2SecurityGroupName field's value.
+func (s *RevokeCacheSecurityGroupIngressInput) SetEC2SecurityGroupName(v string) *RevokeCacheSecurityGroupIngressInput {
+	s.EC2SecurityGroupName = &v
+	return s
+}
+
+// SetEC2SecurityGroupOwnerId sets the EC2SecurityGroupOwnerId field's value.
+func (s *RevokeCacheSecurityGroupIngressInput) SetEC2SecurityGroupOwnerId(v string) *RevokeCacheSecurityGroupIngressInput {
+	s.EC2SecurityGroupOwnerId = &v
+	return s
+}
+
 type RevokeCacheSecurityGroupIngressOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7960,6 +10228,12 @@ func (s RevokeCacheSecurityGroupIngressOutput) GoString() string {
 	return s.String()
 }
 
+// SetCacheSecurityGroup sets the CacheSecurityGroup field's value.
+func (s *RevokeCacheSecurityGroupIngressOutput) SetCacheSecurityGroup(v *CacheSecurityGroup) *RevokeCacheSecurityGroupIngressOutput {
+	s.CacheSecurityGroup = v
+	return s
+}
+
 // Represents a single cache security group and its status.
 type SecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
@@ -7981,6 +10255,18 @@ func (s SecurityGroupMembership) String() string {
 // GoString returns the string representation
 func (s SecurityGroupMembership) GoString() string {
 	return s.String()
+}
+
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *SecurityGroupMembership) SetSecurityGroupId(v string) *SecurityGroupMembership {
+	s.SecurityGroupId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SecurityGroupMembership) SetStatus(v string) *SecurityGroupMembership {
+	s.Status = &v
+	return s
 }
 
 // Represents a copy of an entire Redis cache cluster as of the time when the
@@ -8159,6 +10445,150 @@ func (s Snapshot) GoString() string {
 	return s.String()
 }
 
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *Snapshot) SetAutoMinorVersionUpgrade(v bool) *Snapshot {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAutomaticFailover sets the AutomaticFailover field's value.
+func (s *Snapshot) SetAutomaticFailover(v string) *Snapshot {
+	s.AutomaticFailover = &v
+	return s
+}
+
+// SetCacheClusterCreateTime sets the CacheClusterCreateTime field's value.
+func (s *Snapshot) SetCacheClusterCreateTime(v time.Time) *Snapshot {
+	s.CacheClusterCreateTime = &v
+	return s
+}
+
+// SetCacheClusterId sets the CacheClusterId field's value.
+func (s *Snapshot) SetCacheClusterId(v string) *Snapshot {
+	s.CacheClusterId = &v
+	return s
+}
+
+// SetCacheNodeType sets the CacheNodeType field's value.
+func (s *Snapshot) SetCacheNodeType(v string) *Snapshot {
+	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *Snapshot) SetCacheParameterGroupName(v string) *Snapshot {
+	s.CacheParameterGroupName = &v
+	return s
+}
+
+// SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
+func (s *Snapshot) SetCacheSubnetGroupName(v string) *Snapshot {
+	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *Snapshot) SetEngine(v string) *Snapshot {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *Snapshot) SetEngineVersion(v string) *Snapshot {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetNodeSnapshots sets the NodeSnapshots field's value.
+func (s *Snapshot) SetNodeSnapshots(v []*NodeSnapshot) *Snapshot {
+	s.NodeSnapshots = v
+	return s
+}
+
+// SetNumCacheNodes sets the NumCacheNodes field's value.
+func (s *Snapshot) SetNumCacheNodes(v int64) *Snapshot {
+	s.NumCacheNodes = &v
+	return s
+}
+
+// SetNumNodeGroups sets the NumNodeGroups field's value.
+func (s *Snapshot) SetNumNodeGroups(v int64) *Snapshot {
+	s.NumNodeGroups = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *Snapshot) SetPort(v int64) *Snapshot {
+	s.Port = &v
+	return s
+}
+
+// SetPreferredAvailabilityZone sets the PreferredAvailabilityZone field's value.
+func (s *Snapshot) SetPreferredAvailabilityZone(v string) *Snapshot {
+	s.PreferredAvailabilityZone = &v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *Snapshot) SetPreferredMaintenanceWindow(v string) *Snapshot {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetReplicationGroupDescription sets the ReplicationGroupDescription field's value.
+func (s *Snapshot) SetReplicationGroupDescription(v string) *Snapshot {
+	s.ReplicationGroupDescription = &v
+	return s
+}
+
+// SetReplicationGroupId sets the ReplicationGroupId field's value.
+func (s *Snapshot) SetReplicationGroupId(v string) *Snapshot {
+	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetSnapshotName sets the SnapshotName field's value.
+func (s *Snapshot) SetSnapshotName(v string) *Snapshot {
+	s.SnapshotName = &v
+	return s
+}
+
+// SetSnapshotRetentionLimit sets the SnapshotRetentionLimit field's value.
+func (s *Snapshot) SetSnapshotRetentionLimit(v int64) *Snapshot {
+	s.SnapshotRetentionLimit = &v
+	return s
+}
+
+// SetSnapshotSource sets the SnapshotSource field's value.
+func (s *Snapshot) SetSnapshotSource(v string) *Snapshot {
+	s.SnapshotSource = &v
+	return s
+}
+
+// SetSnapshotStatus sets the SnapshotStatus field's value.
+func (s *Snapshot) SetSnapshotStatus(v string) *Snapshot {
+	s.SnapshotStatus = &v
+	return s
+}
+
+// SetSnapshotWindow sets the SnapshotWindow field's value.
+func (s *Snapshot) SetSnapshotWindow(v string) *Snapshot {
+	s.SnapshotWindow = &v
+	return s
+}
+
+// SetTopicArn sets the TopicArn field's value.
+func (s *Snapshot) SetTopicArn(v string) *Snapshot {
+	s.TopicArn = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *Snapshot) SetVpcId(v string) *Snapshot {
+	s.VpcId = &v
+	return s
+}
+
 // Represents the subnet associated with a cache cluster. This parameter refers
 // to subnets defined in Amazon Virtual Private Cloud (Amazon VPC) and used
 // with ElastiCache.
@@ -8180,6 +10610,18 @@ func (s Subnet) String() string {
 // GoString returns the string representation
 func (s Subnet) GoString() string {
 	return s.String()
+}
+
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *Subnet) SetSubnetAvailabilityZone(v *AvailabilityZone) *Subnet {
+	s.SubnetAvailabilityZone = v
+	return s
+}
+
+// SetSubnetIdentifier sets the SubnetIdentifier field's value.
+func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
+	s.SubnetIdentifier = &v
+	return s
 }
 
 // A cost allocation Tag that can be added to an ElastiCache cluster or replication
@@ -8205,6 +10647,18 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
 // Represents the output from the AddTagsToResource, ListTagsOnResource, and
 // RemoveTagsFromResource operations.
 type TagListMessage struct {
@@ -8222,6 +10676,12 @@ func (s TagListMessage) String() string {
 // GoString returns the string representation
 func (s TagListMessage) GoString() string {
 	return s.String()
+}
+
+// SetTagList sets the TagList field's value.
+func (s *TagListMessage) SetTagList(v []*Tag) *TagListMessage {
+	s.TagList = v
+	return s
 }
 
 const (

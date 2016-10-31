@@ -977,6 +977,36 @@ func (s AlarmHistoryItem) GoString() string {
 	return s.String()
 }
 
+// SetAlarmName sets the AlarmName field's value.
+func (s *AlarmHistoryItem) SetAlarmName(v string) *AlarmHistoryItem {
+	s.AlarmName = &v
+	return s
+}
+
+// SetHistoryData sets the HistoryData field's value.
+func (s *AlarmHistoryItem) SetHistoryData(v string) *AlarmHistoryItem {
+	s.HistoryData = &v
+	return s
+}
+
+// SetHistoryItemType sets the HistoryItemType field's value.
+func (s *AlarmHistoryItem) SetHistoryItemType(v string) *AlarmHistoryItem {
+	s.HistoryItemType = &v
+	return s
+}
+
+// SetHistorySummary sets the HistorySummary field's value.
+func (s *AlarmHistoryItem) SetHistorySummary(v string) *AlarmHistoryItem {
+	s.HistorySummary = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *AlarmHistoryItem) SetTimestamp(v time.Time) *AlarmHistoryItem {
+	s.Timestamp = &v
+	return s
+}
+
 // The Datapoint data type encapsulates the statistical data that Amazon CloudWatch
 // computes from metric data.
 type Datapoint struct {
@@ -1015,6 +1045,48 @@ func (s Datapoint) GoString() string {
 	return s.String()
 }
 
+// SetAverage sets the Average field's value.
+func (s *Datapoint) SetAverage(v float64) *Datapoint {
+	s.Average = &v
+	return s
+}
+
+// SetMaximum sets the Maximum field's value.
+func (s *Datapoint) SetMaximum(v float64) *Datapoint {
+	s.Maximum = &v
+	return s
+}
+
+// SetMinimum sets the Minimum field's value.
+func (s *Datapoint) SetMinimum(v float64) *Datapoint {
+	s.Minimum = &v
+	return s
+}
+
+// SetSampleCount sets the SampleCount field's value.
+func (s *Datapoint) SetSampleCount(v float64) *Datapoint {
+	s.SampleCount = &v
+	return s
+}
+
+// SetSum sets the Sum field's value.
+func (s *Datapoint) SetSum(v float64) *Datapoint {
+	s.Sum = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *Datapoint) SetTimestamp(v time.Time) *Datapoint {
+	s.Timestamp = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *Datapoint) SetUnit(v string) *Datapoint {
+	s.Unit = &v
+	return s
+}
+
 // Describes the inputs for DeleteAlarms.
 type DeleteAlarmsInput struct {
 	_ struct{} `type:"structure"`
@@ -1046,6 +1118,12 @@ func (s *DeleteAlarmsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAlarmNames sets the AlarmNames field's value.
+func (s *DeleteAlarmsInput) SetAlarmNames(v []*string) *DeleteAlarmsInput {
+	s.AlarmNames = v
+	return s
 }
 
 type DeleteAlarmsOutput struct {
@@ -1112,6 +1190,42 @@ func (s *DescribeAlarmHistoryInput) Validate() error {
 	return nil
 }
 
+// SetAlarmName sets the AlarmName field's value.
+func (s *DescribeAlarmHistoryInput) SetAlarmName(v string) *DescribeAlarmHistoryInput {
+	s.AlarmName = &v
+	return s
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *DescribeAlarmHistoryInput) SetEndDate(v time.Time) *DescribeAlarmHistoryInput {
+	s.EndDate = &v
+	return s
+}
+
+// SetHistoryItemType sets the HistoryItemType field's value.
+func (s *DescribeAlarmHistoryInput) SetHistoryItemType(v string) *DescribeAlarmHistoryInput {
+	s.HistoryItemType = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeAlarmHistoryInput) SetMaxRecords(v int64) *DescribeAlarmHistoryInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAlarmHistoryInput) SetNextToken(v string) *DescribeAlarmHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *DescribeAlarmHistoryInput) SetStartDate(v time.Time) *DescribeAlarmHistoryInput {
+	s.StartDate = &v
+	return s
+}
+
 // The output for DescribeAlarmHistory.
 type DescribeAlarmHistoryOutput struct {
 	_ struct{} `type:"structure"`
@@ -1131,6 +1245,18 @@ func (s DescribeAlarmHistoryOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAlarmHistoryOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlarmHistoryItems sets the AlarmHistoryItems field's value.
+func (s *DescribeAlarmHistoryOutput) SetAlarmHistoryItems(v []*AlarmHistoryItem) *DescribeAlarmHistoryOutput {
+	s.AlarmHistoryItems = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAlarmHistoryOutput) SetNextToken(v string) *DescribeAlarmHistoryOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Describes the inputs for DescribeAlarmsForMetric.
@@ -1207,6 +1333,42 @@ func (s *DescribeAlarmsForMetricInput) Validate() error {
 	return nil
 }
 
+// SetDimensions sets the Dimensions field's value.
+func (s *DescribeAlarmsForMetricInput) SetDimensions(v []*Dimension) *DescribeAlarmsForMetricInput {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DescribeAlarmsForMetricInput) SetMetricName(v string) *DescribeAlarmsForMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *DescribeAlarmsForMetricInput) SetNamespace(v string) *DescribeAlarmsForMetricInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *DescribeAlarmsForMetricInput) SetPeriod(v int64) *DescribeAlarmsForMetricInput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *DescribeAlarmsForMetricInput) SetStatistic(v string) *DescribeAlarmsForMetricInput {
+	s.Statistic = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *DescribeAlarmsForMetricInput) SetUnit(v string) *DescribeAlarmsForMetricInput {
+	s.Unit = &v
+	return s
+}
+
 // The output for DescribeAlarmsForMetric.
 type DescribeAlarmsForMetricOutput struct {
 	_ struct{} `type:"structure"`
@@ -1223,6 +1385,12 @@ func (s DescribeAlarmsForMetricOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAlarmsForMetricOutput) GoString() string {
 	return s.String()
+}
+
+// SetMetricAlarms sets the MetricAlarms field's value.
+func (s *DescribeAlarmsForMetricOutput) SetMetricAlarms(v []*MetricAlarm) *DescribeAlarmsForMetricOutput {
+	s.MetricAlarms = v
+	return s
 }
 
 // Describes the inputs for DescribeAlarms.
@@ -1279,6 +1447,42 @@ func (s *DescribeAlarmsInput) Validate() error {
 	return nil
 }
 
+// SetActionPrefix sets the ActionPrefix field's value.
+func (s *DescribeAlarmsInput) SetActionPrefix(v string) *DescribeAlarmsInput {
+	s.ActionPrefix = &v
+	return s
+}
+
+// SetAlarmNamePrefix sets the AlarmNamePrefix field's value.
+func (s *DescribeAlarmsInput) SetAlarmNamePrefix(v string) *DescribeAlarmsInput {
+	s.AlarmNamePrefix = &v
+	return s
+}
+
+// SetAlarmNames sets the AlarmNames field's value.
+func (s *DescribeAlarmsInput) SetAlarmNames(v []*string) *DescribeAlarmsInput {
+	s.AlarmNames = v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeAlarmsInput) SetMaxRecords(v int64) *DescribeAlarmsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAlarmsInput) SetNextToken(v string) *DescribeAlarmsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStateValue sets the StateValue field's value.
+func (s *DescribeAlarmsInput) SetStateValue(v string) *DescribeAlarmsInput {
+	s.StateValue = &v
+	return s
+}
+
 // The output for DescribeAlarms.
 type DescribeAlarmsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1298,6 +1502,18 @@ func (s DescribeAlarmsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAlarmsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMetricAlarms sets the MetricAlarms field's value.
+func (s *DescribeAlarmsOutput) SetMetricAlarms(v []*MetricAlarm) *DescribeAlarmsOutput {
+	s.MetricAlarms = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAlarmsOutput) SetNextToken(v string) *DescribeAlarmsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // The Dimension data type further expands on the identity of a metric using
@@ -1350,6 +1566,18 @@ func (s *Dimension) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *Dimension) SetName(v string) *Dimension {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Dimension) SetValue(v string) *Dimension {
+	s.Value = &v
+	return s
+}
+
 // The DimensionFilter data type is used to filter ListMetrics results.
 type DimensionFilter struct {
 	_ struct{} `type:"structure"`
@@ -1395,6 +1623,18 @@ func (s *DimensionFilter) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *DimensionFilter) SetName(v string) *DimensionFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DimensionFilter) SetValue(v string) *DimensionFilter {
+	s.Value = &v
+	return s
+}
+
 type DisableAlarmActionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1425,6 +1665,12 @@ func (s *DisableAlarmActionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAlarmNames sets the AlarmNames field's value.
+func (s *DisableAlarmActionsInput) SetAlarmNames(v []*string) *DisableAlarmActionsInput {
+	s.AlarmNames = v
+	return s
 }
 
 type DisableAlarmActionsOutput struct {
@@ -1472,6 +1718,12 @@ func (s *EnableAlarmActionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAlarmNames sets the AlarmNames field's value.
+func (s *EnableAlarmActionsInput) SetAlarmNames(v []*string) *EnableAlarmActionsInput {
+	s.AlarmNames = v
+	return s
 }
 
 type EnableAlarmActionsOutput struct {
@@ -1607,6 +1859,54 @@ func (s *GetMetricStatisticsInput) Validate() error {
 	return nil
 }
 
+// SetDimensions sets the Dimensions field's value.
+func (s *GetMetricStatisticsInput) SetDimensions(v []*Dimension) *GetMetricStatisticsInput {
+	s.Dimensions = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetMetricStatisticsInput) SetEndTime(v time.Time) *GetMetricStatisticsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *GetMetricStatisticsInput) SetMetricName(v string) *GetMetricStatisticsInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *GetMetricStatisticsInput) SetNamespace(v string) *GetMetricStatisticsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *GetMetricStatisticsInput) SetPeriod(v int64) *GetMetricStatisticsInput {
+	s.Period = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetMetricStatisticsInput) SetStartTime(v time.Time) *GetMetricStatisticsInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetMetricStatisticsInput) SetStatistics(v []*string) *GetMetricStatisticsInput {
+	s.Statistics = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *GetMetricStatisticsInput) SetUnit(v string) *GetMetricStatisticsInput {
+	s.Unit = &v
+	return s
+}
+
 // The output for GetMetricStatistics.
 type GetMetricStatisticsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1626,6 +1926,18 @@ func (s GetMetricStatisticsOutput) String() string {
 // GoString returns the string representation
 func (s GetMetricStatisticsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDatapoints sets the Datapoints field's value.
+func (s *GetMetricStatisticsOutput) SetDatapoints(v []*Datapoint) *GetMetricStatisticsOutput {
+	s.Datapoints = v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *GetMetricStatisticsOutput) SetLabel(v string) *GetMetricStatisticsOutput {
+	s.Label = &v
+	return s
 }
 
 // Describes the inputs for ListMetrics.
@@ -1682,6 +1994,30 @@ func (s *ListMetricsInput) Validate() error {
 	return nil
 }
 
+// SetDimensions sets the Dimensions field's value.
+func (s *ListMetricsInput) SetDimensions(v []*DimensionFilter) *ListMetricsInput {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *ListMetricsInput) SetMetricName(v string) *ListMetricsInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *ListMetricsInput) SetNamespace(v string) *ListMetricsInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricsInput) SetNextToken(v string) *ListMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
 // The output for ListMetrics.
 type ListMetricsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1701,6 +2037,18 @@ func (s ListMetricsOutput) String() string {
 // GoString returns the string representation
 func (s ListMetricsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *ListMetricsOutput) SetMetrics(v []*Metric) *ListMetricsOutput {
+	s.Metrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricsOutput) SetNextToken(v string) *ListMetricsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // The Metric data type contains information about a specific metric. If you
@@ -1731,6 +2079,24 @@ func (s Metric) String() string {
 // GoString returns the string representation
 func (s Metric) GoString() string {
 	return s.String()
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *Metric) SetDimensions(v []*Dimension) *Metric {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *Metric) SetMetricName(v string) *Metric {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *Metric) SetNamespace(v string) *Metric {
+	s.Namespace = &v
+	return s
 }
 
 // The MetricAlarm data type represents an alarm. You can use PutMetricAlarm
@@ -1822,6 +2188,132 @@ func (s MetricAlarm) GoString() string {
 	return s.String()
 }
 
+// SetActionsEnabled sets the ActionsEnabled field's value.
+func (s *MetricAlarm) SetActionsEnabled(v bool) *MetricAlarm {
+	s.ActionsEnabled = &v
+	return s
+}
+
+// SetAlarmActions sets the AlarmActions field's value.
+func (s *MetricAlarm) SetAlarmActions(v []*string) *MetricAlarm {
+	s.AlarmActions = v
+	return s
+}
+
+// SetAlarmArn sets the AlarmArn field's value.
+func (s *MetricAlarm) SetAlarmArn(v string) *MetricAlarm {
+	s.AlarmArn = &v
+	return s
+}
+
+// SetAlarmConfigurationUpdatedTimestamp sets the AlarmConfigurationUpdatedTimestamp field's value.
+func (s *MetricAlarm) SetAlarmConfigurationUpdatedTimestamp(v time.Time) *MetricAlarm {
+	s.AlarmConfigurationUpdatedTimestamp = &v
+	return s
+}
+
+// SetAlarmDescription sets the AlarmDescription field's value.
+func (s *MetricAlarm) SetAlarmDescription(v string) *MetricAlarm {
+	s.AlarmDescription = &v
+	return s
+}
+
+// SetAlarmName sets the AlarmName field's value.
+func (s *MetricAlarm) SetAlarmName(v string) *MetricAlarm {
+	s.AlarmName = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *MetricAlarm) SetComparisonOperator(v string) *MetricAlarm {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *MetricAlarm) SetDimensions(v []*Dimension) *MetricAlarm {
+	s.Dimensions = v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *MetricAlarm) SetEvaluationPeriods(v int64) *MetricAlarm {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetInsufficientDataActions sets the InsufficientDataActions field's value.
+func (s *MetricAlarm) SetInsufficientDataActions(v []*string) *MetricAlarm {
+	s.InsufficientDataActions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricAlarm) SetMetricName(v string) *MetricAlarm {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *MetricAlarm) SetNamespace(v string) *MetricAlarm {
+	s.Namespace = &v
+	return s
+}
+
+// SetOKActions sets the OKActions field's value.
+func (s *MetricAlarm) SetOKActions(v []*string) *MetricAlarm {
+	s.OKActions = v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *MetricAlarm) SetPeriod(v int64) *MetricAlarm {
+	s.Period = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *MetricAlarm) SetStateReason(v string) *MetricAlarm {
+	s.StateReason = &v
+	return s
+}
+
+// SetStateReasonData sets the StateReasonData field's value.
+func (s *MetricAlarm) SetStateReasonData(v string) *MetricAlarm {
+	s.StateReasonData = &v
+	return s
+}
+
+// SetStateUpdatedTimestamp sets the StateUpdatedTimestamp field's value.
+func (s *MetricAlarm) SetStateUpdatedTimestamp(v time.Time) *MetricAlarm {
+	s.StateUpdatedTimestamp = &v
+	return s
+}
+
+// SetStateValue sets the StateValue field's value.
+func (s *MetricAlarm) SetStateValue(v string) *MetricAlarm {
+	s.StateValue = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *MetricAlarm) SetStatistic(v string) *MetricAlarm {
+	s.Statistic = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *MetricAlarm) SetThreshold(v float64) *MetricAlarm {
+	s.Threshold = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *MetricAlarm) SetUnit(v string) *MetricAlarm {
+	s.Unit = &v
+	return s
+}
+
 // The MetricDatum data type encapsulates the information sent with PutMetricData
 // to either create a new metric or add new values to be aggregated into an
 // existing metric.
@@ -1897,6 +2389,42 @@ func (s *MetricDatum) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *MetricDatum) SetDimensions(v []*Dimension) *MetricDatum {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricDatum) SetMetricName(v string) *MetricDatum {
+	s.MetricName = &v
+	return s
+}
+
+// SetStatisticValues sets the StatisticValues field's value.
+func (s *MetricDatum) SetStatisticValues(v *StatisticSet) *MetricDatum {
+	s.StatisticValues = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *MetricDatum) SetTimestamp(v time.Time) *MetricDatum {
+	s.Timestamp = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *MetricDatum) SetUnit(v string) *MetricDatum {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MetricDatum) SetValue(v float64) *MetricDatum {
+	s.Value = &v
+	return s
 }
 
 // Describes the inputs for PutMetricAlarm.
@@ -2088,6 +2616,96 @@ func (s *PutMetricAlarmInput) Validate() error {
 	return nil
 }
 
+// SetActionsEnabled sets the ActionsEnabled field's value.
+func (s *PutMetricAlarmInput) SetActionsEnabled(v bool) *PutMetricAlarmInput {
+	s.ActionsEnabled = &v
+	return s
+}
+
+// SetAlarmActions sets the AlarmActions field's value.
+func (s *PutMetricAlarmInput) SetAlarmActions(v []*string) *PutMetricAlarmInput {
+	s.AlarmActions = v
+	return s
+}
+
+// SetAlarmDescription sets the AlarmDescription field's value.
+func (s *PutMetricAlarmInput) SetAlarmDescription(v string) *PutMetricAlarmInput {
+	s.AlarmDescription = &v
+	return s
+}
+
+// SetAlarmName sets the AlarmName field's value.
+func (s *PutMetricAlarmInput) SetAlarmName(v string) *PutMetricAlarmInput {
+	s.AlarmName = &v
+	return s
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *PutMetricAlarmInput) SetComparisonOperator(v string) *PutMetricAlarmInput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *PutMetricAlarmInput) SetDimensions(v []*Dimension) *PutMetricAlarmInput {
+	s.Dimensions = v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *PutMetricAlarmInput) SetEvaluationPeriods(v int64) *PutMetricAlarmInput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetInsufficientDataActions sets the InsufficientDataActions field's value.
+func (s *PutMetricAlarmInput) SetInsufficientDataActions(v []*string) *PutMetricAlarmInput {
+	s.InsufficientDataActions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *PutMetricAlarmInput) SetMetricName(v string) *PutMetricAlarmInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PutMetricAlarmInput) SetNamespace(v string) *PutMetricAlarmInput {
+	s.Namespace = &v
+	return s
+}
+
+// SetOKActions sets the OKActions field's value.
+func (s *PutMetricAlarmInput) SetOKActions(v []*string) *PutMetricAlarmInput {
+	s.OKActions = v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *PutMetricAlarmInput) SetPeriod(v int64) *PutMetricAlarmInput {
+	s.Period = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *PutMetricAlarmInput) SetStatistic(v string) *PutMetricAlarmInput {
+	s.Statistic = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *PutMetricAlarmInput) SetThreshold(v float64) *PutMetricAlarmInput {
+	s.Threshold = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *PutMetricAlarmInput) SetUnit(v string) *PutMetricAlarmInput {
+	s.Unit = &v
+	return s
+}
+
 type PutMetricAlarmOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2158,6 +2776,18 @@ func (s *PutMetricDataInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMetricData sets the MetricData field's value.
+func (s *PutMetricDataInput) SetMetricData(v []*MetricDatum) *PutMetricDataInput {
+	s.MetricData = v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *PutMetricDataInput) SetNamespace(v string) *PutMetricDataInput {
+	s.Namespace = &v
+	return s
 }
 
 type PutMetricDataOutput struct {
@@ -2232,6 +2862,30 @@ func (s *SetAlarmStateInput) Validate() error {
 	return nil
 }
 
+// SetAlarmName sets the AlarmName field's value.
+func (s *SetAlarmStateInput) SetAlarmName(v string) *SetAlarmStateInput {
+	s.AlarmName = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *SetAlarmStateInput) SetStateReason(v string) *SetAlarmStateInput {
+	s.StateReason = &v
+	return s
+}
+
+// SetStateReasonData sets the StateReasonData field's value.
+func (s *SetAlarmStateInput) SetStateReasonData(v string) *SetAlarmStateInput {
+	s.StateReasonData = &v
+	return s
+}
+
+// SetStateValue sets the StateValue field's value.
+func (s *SetAlarmStateInput) SetStateValue(v string) *SetAlarmStateInput {
+	s.StateValue = &v
+	return s
+}
+
 type SetAlarmStateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2302,6 +2956,30 @@ func (s *StatisticSet) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMaximum sets the Maximum field's value.
+func (s *StatisticSet) SetMaximum(v float64) *StatisticSet {
+	s.Maximum = &v
+	return s
+}
+
+// SetMinimum sets the Minimum field's value.
+func (s *StatisticSet) SetMinimum(v float64) *StatisticSet {
+	s.Minimum = &v
+	return s
+}
+
+// SetSampleCount sets the SampleCount field's value.
+func (s *StatisticSet) SetSampleCount(v float64) *StatisticSet {
+	s.SampleCount = &v
+	return s
+}
+
+// SetSum sets the Sum field's value.
+func (s *StatisticSet) SetSum(v float64) *StatisticSet {
+	s.Sum = &v
+	return s
 }
 
 const (

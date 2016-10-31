@@ -1376,6 +1376,24 @@ func (s AuthorizationData) GoString() string {
 	return s.String()
 }
 
+// SetAuthorizationToken sets the AuthorizationToken field's value.
+func (s *AuthorizationData) SetAuthorizationToken(v string) *AuthorizationData {
+	s.AuthorizationToken = &v
+	return s
+}
+
+// SetExpiresAt sets the ExpiresAt field's value.
+func (s *AuthorizationData) SetExpiresAt(v time.Time) *AuthorizationData {
+	s.ExpiresAt = &v
+	return s
+}
+
+// SetProxyEndpoint sets the ProxyEndpoint field's value.
+func (s *AuthorizationData) SetProxyEndpoint(v string) *AuthorizationData {
+	s.ProxyEndpoint = &v
+	return s
+}
+
 type BatchCheckLayerAvailabilityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1426,6 +1444,24 @@ func (s *BatchCheckLayerAvailabilityInput) Validate() error {
 	return nil
 }
 
+// SetLayerDigests sets the LayerDigests field's value.
+func (s *BatchCheckLayerAvailabilityInput) SetLayerDigests(v []*string) *BatchCheckLayerAvailabilityInput {
+	s.LayerDigests = v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *BatchCheckLayerAvailabilityInput) SetRegistryId(v string) *BatchCheckLayerAvailabilityInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *BatchCheckLayerAvailabilityInput) SetRepositoryName(v string) *BatchCheckLayerAvailabilityInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type BatchCheckLayerAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1445,6 +1481,18 @@ func (s BatchCheckLayerAvailabilityOutput) String() string {
 // GoString returns the string representation
 func (s BatchCheckLayerAvailabilityOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *BatchCheckLayerAvailabilityOutput) SetFailures(v []*LayerFailure) *BatchCheckLayerAvailabilityOutput {
+	s.Failures = v
+	return s
+}
+
+// SetLayers sets the Layers field's value.
+func (s *BatchCheckLayerAvailabilityOutput) SetLayers(v []*Layer) *BatchCheckLayerAvailabilityOutput {
+	s.Layers = v
+	return s
 }
 
 // Deletes specified images within a specified repository. Images are specified
@@ -1500,6 +1548,24 @@ func (s *BatchDeleteImageInput) Validate() error {
 	return nil
 }
 
+// SetImageIds sets the ImageIds field's value.
+func (s *BatchDeleteImageInput) SetImageIds(v []*ImageIdentifier) *BatchDeleteImageInput {
+	s.ImageIds = v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *BatchDeleteImageInput) SetRegistryId(v string) *BatchDeleteImageInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *BatchDeleteImageInput) SetRepositoryName(v string) *BatchDeleteImageInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type BatchDeleteImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1518,6 +1584,18 @@ func (s BatchDeleteImageOutput) String() string {
 // GoString returns the string representation
 func (s BatchDeleteImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *BatchDeleteImageOutput) SetFailures(v []*ImageFailure) *BatchDeleteImageOutput {
+	s.Failures = v
+	return s
+}
+
+// SetImageIds sets the ImageIds field's value.
+func (s *BatchDeleteImageOutput) SetImageIds(v []*ImageIdentifier) *BatchDeleteImageOutput {
+	s.ImageIds = v
+	return s
 }
 
 type BatchGetImageInput struct {
@@ -1571,6 +1649,24 @@ func (s *BatchGetImageInput) Validate() error {
 	return nil
 }
 
+// SetImageIds sets the ImageIds field's value.
+func (s *BatchGetImageInput) SetImageIds(v []*ImageIdentifier) *BatchGetImageInput {
+	s.ImageIds = v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *BatchGetImageInput) SetRegistryId(v string) *BatchGetImageInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *BatchGetImageInput) SetRepositoryName(v string) *BatchGetImageInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type BatchGetImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1589,6 +1685,18 @@ func (s BatchGetImageOutput) String() string {
 // GoString returns the string representation
 func (s BatchGetImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *BatchGetImageOutput) SetFailures(v []*ImageFailure) *BatchGetImageOutput {
+	s.Failures = v
+	return s
+}
+
+// SetImages sets the Images field's value.
+func (s *BatchGetImageOutput) SetImages(v []*Image) *BatchGetImageOutput {
+	s.Images = v
+	return s
 }
 
 type CompleteLayerUploadInput struct {
@@ -1650,6 +1758,30 @@ func (s *CompleteLayerUploadInput) Validate() error {
 	return nil
 }
 
+// SetLayerDigests sets the LayerDigests field's value.
+func (s *CompleteLayerUploadInput) SetLayerDigests(v []*string) *CompleteLayerUploadInput {
+	s.LayerDigests = v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *CompleteLayerUploadInput) SetRegistryId(v string) *CompleteLayerUploadInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *CompleteLayerUploadInput) SetRepositoryName(v string) *CompleteLayerUploadInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *CompleteLayerUploadInput) SetUploadId(v string) *CompleteLayerUploadInput {
+	s.UploadId = &v
+	return s
+}
+
 type CompleteLayerUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1674,6 +1806,30 @@ func (s CompleteLayerUploadOutput) String() string {
 // GoString returns the string representation
 func (s CompleteLayerUploadOutput) GoString() string {
 	return s.String()
+}
+
+// SetLayerDigest sets the LayerDigest field's value.
+func (s *CompleteLayerUploadOutput) SetLayerDigest(v string) *CompleteLayerUploadOutput {
+	s.LayerDigest = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *CompleteLayerUploadOutput) SetRegistryId(v string) *CompleteLayerUploadOutput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *CompleteLayerUploadOutput) SetRepositoryName(v string) *CompleteLayerUploadOutput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *CompleteLayerUploadOutput) SetUploadId(v string) *CompleteLayerUploadOutput {
+	s.UploadId = &v
+	return s
 }
 
 type CreateRepositoryInput struct {
@@ -1713,6 +1869,12 @@ func (s *CreateRepositoryInput) Validate() error {
 	return nil
 }
 
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *CreateRepositoryInput) SetRepositoryName(v string) *CreateRepositoryInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type CreateRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1728,6 +1890,12 @@ func (s CreateRepositoryOutput) String() string {
 // GoString returns the string representation
 func (s CreateRepositoryOutput) GoString() string {
 	return s.String()
+}
+
+// SetRepository sets the Repository field's value.
+func (s *CreateRepositoryOutput) SetRepository(v *Repository) *CreateRepositoryOutput {
+	s.Repository = v
+	return s
 }
 
 type DeleteRepositoryInput struct {
@@ -1772,6 +1940,24 @@ func (s *DeleteRepositoryInput) Validate() error {
 	return nil
 }
 
+// SetForce sets the Force field's value.
+func (s *DeleteRepositoryInput) SetForce(v bool) *DeleteRepositoryInput {
+	s.Force = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *DeleteRepositoryInput) SetRegistryId(v string) *DeleteRepositoryInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *DeleteRepositoryInput) SetRepositoryName(v string) *DeleteRepositoryInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type DeleteRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1787,6 +1973,12 @@ func (s DeleteRepositoryOutput) String() string {
 // GoString returns the string representation
 func (s DeleteRepositoryOutput) GoString() string {
 	return s.String()
+}
+
+// SetRepository sets the Repository field's value.
+func (s *DeleteRepositoryOutput) SetRepository(v *Repository) *DeleteRepositoryOutput {
+	s.Repository = v
+	return s
 }
 
 type DeleteRepositoryPolicyInput struct {
@@ -1830,6 +2022,18 @@ func (s *DeleteRepositoryPolicyInput) Validate() error {
 	return nil
 }
 
+// SetRegistryId sets the RegistryId field's value.
+func (s *DeleteRepositoryPolicyInput) SetRegistryId(v string) *DeleteRepositoryPolicyInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *DeleteRepositoryPolicyInput) SetRepositoryName(v string) *DeleteRepositoryPolicyInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type DeleteRepositoryPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1853,6 +2057,24 @@ func (s DeleteRepositoryPolicyOutput) GoString() string {
 	return s.String()
 }
 
+// SetPolicyText sets the PolicyText field's value.
+func (s *DeleteRepositoryPolicyOutput) SetPolicyText(v string) *DeleteRepositoryPolicyOutput {
+	s.PolicyText = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *DeleteRepositoryPolicyOutput) SetRegistryId(v string) *DeleteRepositoryPolicyOutput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *DeleteRepositoryPolicyOutput) SetRepositoryName(v string) *DeleteRepositoryPolicyOutput {
+	s.RepositoryName = &v
+	return s
+}
+
 // An object representing a filter on a DescribeImages operation.
 type DescribeImagesFilter struct {
 	_ struct{} `type:"structure"`
@@ -1870,6 +2092,12 @@ func (s DescribeImagesFilter) String() string {
 // GoString returns the string representation
 func (s DescribeImagesFilter) GoString() string {
 	return s.String()
+}
+
+// SetTagStatus sets the TagStatus field's value.
+func (s *DescribeImagesFilter) SetTagStatus(v string) *DescribeImagesFilter {
+	s.TagStatus = &v
+	return s
 }
 
 type DescribeImagesInput struct {
@@ -1940,6 +2168,42 @@ func (s *DescribeImagesInput) Validate() error {
 	return nil
 }
 
+// SetFilter sets the Filter field's value.
+func (s *DescribeImagesInput) SetFilter(v *DescribeImagesFilter) *DescribeImagesInput {
+	s.Filter = v
+	return s
+}
+
+// SetImageIds sets the ImageIds field's value.
+func (s *DescribeImagesInput) SetImageIds(v []*ImageIdentifier) *DescribeImagesInput {
+	s.ImageIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeImagesInput) SetMaxResults(v int64) *DescribeImagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagesInput) SetNextToken(v string) *DescribeImagesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *DescribeImagesInput) SetRegistryId(v string) *DescribeImagesInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *DescribeImagesInput) SetRepositoryName(v string) *DescribeImagesInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type DescribeImagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1961,6 +2225,18 @@ func (s DescribeImagesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeImagesOutput) GoString() string {
 	return s.String()
+}
+
+// SetImageDetails sets the ImageDetails field's value.
+func (s *DescribeImagesOutput) SetImageDetails(v []*ImageDetail) *DescribeImagesOutput {
+	s.ImageDetails = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImagesOutput) SetNextToken(v string) *DescribeImagesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeRepositoriesInput struct {
@@ -2021,6 +2297,30 @@ func (s *DescribeRepositoriesInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeRepositoriesInput) SetMaxResults(v int64) *DescribeRepositoriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRepositoriesInput) SetNextToken(v string) *DescribeRepositoriesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *DescribeRepositoriesInput) SetRegistryId(v string) *DescribeRepositoriesInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryNames sets the RepositoryNames field's value.
+func (s *DescribeRepositoriesInput) SetRepositoryNames(v []*string) *DescribeRepositoriesInput {
+	s.RepositoryNames = v
+	return s
+}
+
 type DescribeRepositoriesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2042,6 +2342,18 @@ func (s DescribeRepositoriesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeRepositoriesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRepositoriesOutput) SetNextToken(v string) *DescribeRepositoriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRepositories sets the Repositories field's value.
+func (s *DescribeRepositoriesOutput) SetRepositories(v []*Repository) *DescribeRepositoriesOutput {
+	s.Repositories = v
+	return s
 }
 
 type GetAuthorizationTokenInput struct {
@@ -2076,6 +2388,12 @@ func (s *GetAuthorizationTokenInput) Validate() error {
 	return nil
 }
 
+// SetRegistryIds sets the RegistryIds field's value.
+func (s *GetAuthorizationTokenInput) SetRegistryIds(v []*string) *GetAuthorizationTokenInput {
+	s.RegistryIds = v
+	return s
+}
+
 type GetAuthorizationTokenOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2092,6 +2410,12 @@ func (s GetAuthorizationTokenOutput) String() string {
 // GoString returns the string representation
 func (s GetAuthorizationTokenOutput) GoString() string {
 	return s.String()
+}
+
+// SetAuthorizationData sets the AuthorizationData field's value.
+func (s *GetAuthorizationTokenOutput) SetAuthorizationData(v []*AuthorizationData) *GetAuthorizationTokenOutput {
+	s.AuthorizationData = v
+	return s
 }
 
 type GetDownloadUrlForLayerInput struct {
@@ -2141,6 +2465,24 @@ func (s *GetDownloadUrlForLayerInput) Validate() error {
 	return nil
 }
 
+// SetLayerDigest sets the LayerDigest field's value.
+func (s *GetDownloadUrlForLayerInput) SetLayerDigest(v string) *GetDownloadUrlForLayerInput {
+	s.LayerDigest = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *GetDownloadUrlForLayerInput) SetRegistryId(v string) *GetDownloadUrlForLayerInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *GetDownloadUrlForLayerInput) SetRepositoryName(v string) *GetDownloadUrlForLayerInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type GetDownloadUrlForLayerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2159,6 +2501,18 @@ func (s GetDownloadUrlForLayerOutput) String() string {
 // GoString returns the string representation
 func (s GetDownloadUrlForLayerOutput) GoString() string {
 	return s.String()
+}
+
+// SetDownloadUrl sets the DownloadUrl field's value.
+func (s *GetDownloadUrlForLayerOutput) SetDownloadUrl(v string) *GetDownloadUrlForLayerOutput {
+	s.DownloadUrl = &v
+	return s
+}
+
+// SetLayerDigest sets the LayerDigest field's value.
+func (s *GetDownloadUrlForLayerOutput) SetLayerDigest(v string) *GetDownloadUrlForLayerOutput {
+	s.LayerDigest = &v
+	return s
 }
 
 type GetRepositoryPolicyInput struct {
@@ -2200,6 +2554,18 @@ func (s *GetRepositoryPolicyInput) Validate() error {
 	return nil
 }
 
+// SetRegistryId sets the RegistryId field's value.
+func (s *GetRepositoryPolicyInput) SetRegistryId(v string) *GetRepositoryPolicyInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *GetRepositoryPolicyInput) SetRepositoryName(v string) *GetRepositoryPolicyInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type GetRepositoryPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2221,6 +2587,24 @@ func (s GetRepositoryPolicyOutput) String() string {
 // GoString returns the string representation
 func (s GetRepositoryPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetPolicyText sets the PolicyText field's value.
+func (s *GetRepositoryPolicyOutput) SetPolicyText(v string) *GetRepositoryPolicyOutput {
+	s.PolicyText = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *GetRepositoryPolicyOutput) SetRegistryId(v string) *GetRepositoryPolicyOutput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *GetRepositoryPolicyOutput) SetRepositoryName(v string) *GetRepositoryPolicyOutput {
+	s.RepositoryName = &v
+	return s
 }
 
 // An object representing an Amazon ECR image.
@@ -2248,6 +2632,30 @@ func (s Image) String() string {
 // GoString returns the string representation
 func (s Image) GoString() string {
 	return s.String()
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *Image) SetImageId(v *ImageIdentifier) *Image {
+	s.ImageId = v
+	return s
+}
+
+// SetImageManifest sets the ImageManifest field's value.
+func (s *Image) SetImageManifest(v string) *Image {
+	s.ImageManifest = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *Image) SetRegistryId(v string) *Image {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *Image) SetRepositoryName(v string) *Image {
+	s.RepositoryName = &v
+	return s
 }
 
 // An object that describes an image returned by a DescribeImages operation.
@@ -2289,6 +2697,42 @@ func (s ImageDetail) GoString() string {
 	return s.String()
 }
 
+// SetImageDigest sets the ImageDigest field's value.
+func (s *ImageDetail) SetImageDigest(v string) *ImageDetail {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetImagePushedAt sets the ImagePushedAt field's value.
+func (s *ImageDetail) SetImagePushedAt(v time.Time) *ImageDetail {
+	s.ImagePushedAt = &v
+	return s
+}
+
+// SetImageSizeInBytes sets the ImageSizeInBytes field's value.
+func (s *ImageDetail) SetImageSizeInBytes(v int64) *ImageDetail {
+	s.ImageSizeInBytes = &v
+	return s
+}
+
+// SetImageTags sets the ImageTags field's value.
+func (s *ImageDetail) SetImageTags(v []*string) *ImageDetail {
+	s.ImageTags = v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *ImageDetail) SetRegistryId(v string) *ImageDetail {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *ImageDetail) SetRepositoryName(v string) *ImageDetail {
+	s.RepositoryName = &v
+	return s
+}
+
 // An object representing an Amazon ECR image failure.
 type ImageFailure struct {
 	_ struct{} `type:"structure"`
@@ -2313,6 +2757,24 @@ func (s ImageFailure) GoString() string {
 	return s.String()
 }
 
+// SetFailureCode sets the FailureCode field's value.
+func (s *ImageFailure) SetFailureCode(v string) *ImageFailure {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *ImageFailure) SetFailureReason(v string) *ImageFailure {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ImageFailure) SetImageId(v *ImageIdentifier) *ImageFailure {
+	s.ImageId = v
+	return s
+}
+
 // An object with identifying information for an Amazon ECR image.
 type ImageIdentifier struct {
 	_ struct{} `type:"structure"`
@@ -2332,6 +2794,18 @@ func (s ImageIdentifier) String() string {
 // GoString returns the string representation
 func (s ImageIdentifier) GoString() string {
 	return s.String()
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *ImageIdentifier) SetImageDigest(v string) *ImageIdentifier {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetImageTag sets the ImageTag field's value.
+func (s *ImageIdentifier) SetImageTag(v string) *ImageIdentifier {
+	s.ImageTag = &v
+	return s
 }
 
 type InitiateLayerUploadInput struct {
@@ -2373,6 +2847,18 @@ func (s *InitiateLayerUploadInput) Validate() error {
 	return nil
 }
 
+// SetRegistryId sets the RegistryId field's value.
+func (s *InitiateLayerUploadInput) SetRegistryId(v string) *InitiateLayerUploadInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *InitiateLayerUploadInput) SetRepositoryName(v string) *InitiateLayerUploadInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type InitiateLayerUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2393,6 +2879,18 @@ func (s InitiateLayerUploadOutput) String() string {
 // GoString returns the string representation
 func (s InitiateLayerUploadOutput) GoString() string {
 	return s.String()
+}
+
+// SetPartSize sets the PartSize field's value.
+func (s *InitiateLayerUploadOutput) SetPartSize(v int64) *InitiateLayerUploadOutput {
+	s.PartSize = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *InitiateLayerUploadOutput) SetUploadId(v string) *InitiateLayerUploadOutput {
+	s.UploadId = &v
+	return s
 }
 
 // An object representing an Amazon ECR image layer.
@@ -2420,6 +2918,24 @@ func (s Layer) GoString() string {
 	return s.String()
 }
 
+// SetLayerAvailability sets the LayerAvailability field's value.
+func (s *Layer) SetLayerAvailability(v string) *Layer {
+	s.LayerAvailability = &v
+	return s
+}
+
+// SetLayerDigest sets the LayerDigest field's value.
+func (s *Layer) SetLayerDigest(v string) *Layer {
+	s.LayerDigest = &v
+	return s
+}
+
+// SetLayerSize sets the LayerSize field's value.
+func (s *Layer) SetLayerSize(v int64) *Layer {
+	s.LayerSize = &v
+	return s
+}
+
 // An object representing an Amazon ECR image layer failure.
 type LayerFailure struct {
 	_ struct{} `type:"structure"`
@@ -2444,6 +2960,24 @@ func (s LayerFailure) GoString() string {
 	return s.String()
 }
 
+// SetFailureCode sets the FailureCode field's value.
+func (s *LayerFailure) SetFailureCode(v string) *LayerFailure {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *LayerFailure) SetFailureReason(v string) *LayerFailure {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLayerDigest sets the LayerDigest field's value.
+func (s *LayerFailure) SetLayerDigest(v string) *LayerFailure {
+	s.LayerDigest = &v
+	return s
+}
+
 // An object representing a filter on a ListImages operation.
 type ListImagesFilter struct {
 	_ struct{} `type:"structure"`
@@ -2461,6 +2995,12 @@ func (s ListImagesFilter) String() string {
 // GoString returns the string representation
 func (s ListImagesFilter) GoString() string {
 	return s.String()
+}
+
+// SetTagStatus sets the TagStatus field's value.
+func (s *ListImagesFilter) SetTagStatus(v string) *ListImagesFilter {
+	s.TagStatus = &v
+	return s
 }
 
 type ListImagesInput struct {
@@ -2527,6 +3067,36 @@ func (s *ListImagesInput) Validate() error {
 	return nil
 }
 
+// SetFilter sets the Filter field's value.
+func (s *ListImagesInput) SetFilter(v *ListImagesFilter) *ListImagesInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImagesInput) SetMaxResults(v int64) *ListImagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImagesInput) SetNextToken(v string) *ListImagesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *ListImagesInput) SetRegistryId(v string) *ListImagesInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *ListImagesInput) SetRepositoryName(v string) *ListImagesInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type ListImagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2548,6 +3118,18 @@ func (s ListImagesOutput) String() string {
 // GoString returns the string representation
 func (s ListImagesOutput) GoString() string {
 	return s.String()
+}
+
+// SetImageIds sets the ImageIds field's value.
+func (s *ListImagesOutput) SetImageIds(v []*ImageIdentifier) *ListImagesOutput {
+	s.ImageIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImagesOutput) SetNextToken(v string) *ListImagesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type PutImageInput struct {
@@ -2598,6 +3180,24 @@ func (s *PutImageInput) Validate() error {
 	return nil
 }
 
+// SetImageManifest sets the ImageManifest field's value.
+func (s *PutImageInput) SetImageManifest(v string) *PutImageInput {
+	s.ImageManifest = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *PutImageInput) SetRegistryId(v string) *PutImageInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *PutImageInput) SetRepositoryName(v string) *PutImageInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type PutImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2613,6 +3213,12 @@ func (s PutImageOutput) String() string {
 // GoString returns the string representation
 func (s PutImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetImage sets the Image field's value.
+func (s *PutImageOutput) SetImage(v *Image) *PutImageOutput {
+	s.Image = v
+	return s
 }
 
 // An object representing a repository.
@@ -2648,6 +3254,36 @@ func (s Repository) String() string {
 // GoString returns the string representation
 func (s Repository) GoString() string {
 	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *Repository) SetCreatedAt(v time.Time) *Repository {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *Repository) SetRegistryId(v string) *Repository {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryArn sets the RepositoryArn field's value.
+func (s *Repository) SetRepositoryArn(v string) *Repository {
+	s.RepositoryArn = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *Repository) SetRepositoryName(v string) *Repository {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryUri sets the RepositoryUri field's value.
+func (s *Repository) SetRepositoryUri(v string) *Repository {
+	s.RepositoryUri = &v
+	return s
 }
 
 type SetRepositoryPolicyInput struct {
@@ -2702,6 +3338,30 @@ func (s *SetRepositoryPolicyInput) Validate() error {
 	return nil
 }
 
+// SetForce sets the Force field's value.
+func (s *SetRepositoryPolicyInput) SetForce(v bool) *SetRepositoryPolicyInput {
+	s.Force = &v
+	return s
+}
+
+// SetPolicyText sets the PolicyText field's value.
+func (s *SetRepositoryPolicyInput) SetPolicyText(v string) *SetRepositoryPolicyInput {
+	s.PolicyText = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *SetRepositoryPolicyInput) SetRegistryId(v string) *SetRepositoryPolicyInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *SetRepositoryPolicyInput) SetRepositoryName(v string) *SetRepositoryPolicyInput {
+	s.RepositoryName = &v
+	return s
+}
+
 type SetRepositoryPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2723,6 +3383,24 @@ func (s SetRepositoryPolicyOutput) String() string {
 // GoString returns the string representation
 func (s SetRepositoryPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetPolicyText sets the PolicyText field's value.
+func (s *SetRepositoryPolicyOutput) SetPolicyText(v string) *SetRepositoryPolicyOutput {
+	s.PolicyText = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *SetRepositoryPolicyOutput) SetRegistryId(v string) *SetRepositoryPolicyOutput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *SetRepositoryPolicyOutput) SetRepositoryName(v string) *SetRepositoryPolicyOutput {
+	s.RepositoryName = &v
+	return s
 }
 
 type UploadLayerPartInput struct {
@@ -2799,6 +3477,42 @@ func (s *UploadLayerPartInput) Validate() error {
 	return nil
 }
 
+// SetLayerPartBlob sets the LayerPartBlob field's value.
+func (s *UploadLayerPartInput) SetLayerPartBlob(v []byte) *UploadLayerPartInput {
+	s.LayerPartBlob = v
+	return s
+}
+
+// SetPartFirstByte sets the PartFirstByte field's value.
+func (s *UploadLayerPartInput) SetPartFirstByte(v int64) *UploadLayerPartInput {
+	s.PartFirstByte = &v
+	return s
+}
+
+// SetPartLastByte sets the PartLastByte field's value.
+func (s *UploadLayerPartInput) SetPartLastByte(v int64) *UploadLayerPartInput {
+	s.PartLastByte = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *UploadLayerPartInput) SetRegistryId(v string) *UploadLayerPartInput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *UploadLayerPartInput) SetRepositoryName(v string) *UploadLayerPartInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *UploadLayerPartInput) SetUploadId(v string) *UploadLayerPartInput {
+	s.UploadId = &v
+	return s
+}
+
 type UploadLayerPartOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2823,6 +3537,30 @@ func (s UploadLayerPartOutput) String() string {
 // GoString returns the string representation
 func (s UploadLayerPartOutput) GoString() string {
 	return s.String()
+}
+
+// SetLastByteReceived sets the LastByteReceived field's value.
+func (s *UploadLayerPartOutput) SetLastByteReceived(v int64) *UploadLayerPartOutput {
+	s.LastByteReceived = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *UploadLayerPartOutput) SetRegistryId(v string) *UploadLayerPartOutput {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *UploadLayerPartOutput) SetRepositoryName(v string) *UploadLayerPartOutput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetUploadId sets the UploadId field's value.
+func (s *UploadLayerPartOutput) SetUploadId(v string) *UploadLayerPartOutput {
+	s.UploadId = &v
+	return s
 }
 
 const (

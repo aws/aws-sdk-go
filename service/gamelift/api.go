@@ -3566,6 +3566,42 @@ func (s Alias) GoString() string {
 	return s.String()
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *Alias) SetAliasId(v string) *Alias {
+	s.AliasId = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Alias) SetCreationTime(v time.Time) *Alias {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Alias) SetDescription(v string) *Alias {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *Alias) SetLastUpdatedTime(v time.Time) *Alias {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Alias) SetName(v string) *Alias {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingStrategy sets the RoutingStrategy field's value.
+func (s *Alias) SetRoutingStrategy(v *RoutingStrategy) *Alias {
+	s.RoutingStrategy = v
+	return s
+}
+
 // AWS access credentials required to upload game build files to Amazon GameLift.
 // These credentials are generated with CreateBuild, and are valid for a limited
 // time. If they expire before you upload your game build, get a new set by
@@ -3591,6 +3627,24 @@ func (s AwsCredentials) String() string {
 // GoString returns the string representation
 func (s AwsCredentials) GoString() string {
 	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *AwsCredentials) SetAccessKeyId(v string) *AwsCredentials {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetSecretAccessKey sets the SecretAccessKey field's value.
+func (s *AwsCredentials) SetSecretAccessKey(v string) *AwsCredentials {
+	s.SecretAccessKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *AwsCredentials) SetSessionToken(v string) *AwsCredentials {
+	s.SessionToken = &v
+	return s
 }
 
 // Properties describing a game build.
@@ -3646,6 +3700,48 @@ func (s Build) GoString() string {
 	return s.String()
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *Build) SetBuildId(v string) *Build {
+	s.BuildId = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Build) SetCreationTime(v time.Time) *Build {
+	s.CreationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Build) SetName(v string) *Build {
+	s.Name = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *Build) SetOperatingSystem(v string) *Build {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetSizeOnDisk sets the SizeOnDisk field's value.
+func (s *Build) SetSizeOnDisk(v int64) *Build {
+	s.SizeOnDisk = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Build) SetStatus(v string) *Build {
+	s.Status = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *Build) SetVersion(v string) *Build {
+	s.Version = &v
+	return s
+}
+
 // Represents the input for a request action.
 type CreateAliasInput struct {
 	_ struct{} `type:"structure"`
@@ -3697,6 +3793,24 @@ func (s *CreateAliasInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CreateAliasInput) SetDescription(v string) *CreateAliasInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAliasInput) SetName(v string) *CreateAliasInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingStrategy sets the RoutingStrategy field's value.
+func (s *CreateAliasInput) SetRoutingStrategy(v *RoutingStrategy) *CreateAliasInput {
+	s.RoutingStrategy = v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type CreateAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -3713,6 +3827,12 @@ func (s CreateAliasOutput) String() string {
 // GoString returns the string representation
 func (s CreateAliasOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *CreateAliasOutput) SetAlias(v *Alias) *CreateAliasOutput {
+	s.Alias = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -3769,6 +3889,30 @@ func (s *CreateBuildInput) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *CreateBuildInput) SetName(v string) *CreateBuildInput {
+	s.Name = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *CreateBuildInput) SetOperatingSystem(v string) *CreateBuildInput {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *CreateBuildInput) SetStorageLocation(v *S3Location) *CreateBuildInput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *CreateBuildInput) SetVersion(v string) *CreateBuildInput {
+	s.Version = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type CreateBuildOutput struct {
 	_ struct{} `type:"structure"`
@@ -3793,6 +3937,24 @@ func (s CreateBuildOutput) String() string {
 // GoString returns the string representation
 func (s CreateBuildOutput) GoString() string {
 	return s.String()
+}
+
+// SetBuild sets the Build field's value.
+func (s *CreateBuildOutput) SetBuild(v *Build) *CreateBuildOutput {
+	s.Build = v
+	return s
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *CreateBuildOutput) SetStorageLocation(v *S3Location) *CreateBuildOutput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetUploadCredentials sets the UploadCredentials field's value.
+func (s *CreateBuildOutput) SetUploadCredentials(v *AwsCredentials) *CreateBuildOutput {
+	s.UploadCredentials = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -3939,6 +4101,72 @@ func (s *CreateFleetInput) Validate() error {
 	return nil
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *CreateFleetInput) SetBuildId(v string) *CreateFleetInput {
+	s.BuildId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFleetInput) SetDescription(v string) *CreateFleetInput {
+	s.Description = &v
+	return s
+}
+
+// SetEC2InboundPermissions sets the EC2InboundPermissions field's value.
+func (s *CreateFleetInput) SetEC2InboundPermissions(v []*IpPermission) *CreateFleetInput {
+	s.EC2InboundPermissions = v
+	return s
+}
+
+// SetEC2InstanceType sets the EC2InstanceType field's value.
+func (s *CreateFleetInput) SetEC2InstanceType(v string) *CreateFleetInput {
+	s.EC2InstanceType = &v
+	return s
+}
+
+// SetLogPaths sets the LogPaths field's value.
+func (s *CreateFleetInput) SetLogPaths(v []*string) *CreateFleetInput {
+	s.LogPaths = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFleetInput) SetName(v string) *CreateFleetInput {
+	s.Name = &v
+	return s
+}
+
+// SetNewGameSessionProtectionPolicy sets the NewGameSessionProtectionPolicy field's value.
+func (s *CreateFleetInput) SetNewGameSessionProtectionPolicy(v string) *CreateFleetInput {
+	s.NewGameSessionProtectionPolicy = &v
+	return s
+}
+
+// SetResourceCreationLimitPolicy sets the ResourceCreationLimitPolicy field's value.
+func (s *CreateFleetInput) SetResourceCreationLimitPolicy(v *ResourceCreationLimitPolicy) *CreateFleetInput {
+	s.ResourceCreationLimitPolicy = v
+	return s
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *CreateFleetInput) SetRuntimeConfiguration(v *RuntimeConfiguration) *CreateFleetInput {
+	s.RuntimeConfiguration = v
+	return s
+}
+
+// SetServerLaunchParameters sets the ServerLaunchParameters field's value.
+func (s *CreateFleetInput) SetServerLaunchParameters(v string) *CreateFleetInput {
+	s.ServerLaunchParameters = &v
+	return s
+}
+
+// SetServerLaunchPath sets the ServerLaunchPath field's value.
+func (s *CreateFleetInput) SetServerLaunchPath(v string) *CreateFleetInput {
+	s.ServerLaunchPath = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type CreateFleetOutput struct {
 	_ struct{} `type:"structure"`
@@ -3955,6 +4183,12 @@ func (s CreateFleetOutput) String() string {
 // GoString returns the string representation
 func (s CreateFleetOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetAttributes sets the FleetAttributes field's value.
+func (s *CreateFleetOutput) SetFleetAttributes(v *FleetAttributes) *CreateFleetOutput {
+	s.FleetAttributes = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4040,6 +4274,48 @@ func (s *CreateGameSessionInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *CreateGameSessionInput) SetAliasId(v string) *CreateGameSessionInput {
+	s.AliasId = &v
+	return s
+}
+
+// SetCreatorId sets the CreatorId field's value.
+func (s *CreateGameSessionInput) SetCreatorId(v string) *CreateGameSessionInput {
+	s.CreatorId = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *CreateGameSessionInput) SetFleetId(v string) *CreateGameSessionInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetGameProperties sets the GameProperties field's value.
+func (s *CreateGameSessionInput) SetGameProperties(v []*GameProperty) *CreateGameSessionInput {
+	s.GameProperties = v
+	return s
+}
+
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *CreateGameSessionInput) SetGameSessionId(v string) *CreateGameSessionInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetMaximumPlayerSessionCount sets the MaximumPlayerSessionCount field's value.
+func (s *CreateGameSessionInput) SetMaximumPlayerSessionCount(v int64) *CreateGameSessionInput {
+	s.MaximumPlayerSessionCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateGameSessionInput) SetName(v string) *CreateGameSessionInput {
+	s.Name = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type CreateGameSessionOutput struct {
 	_ struct{} `type:"structure"`
@@ -4056,6 +4332,12 @@ func (s CreateGameSessionOutput) String() string {
 // GoString returns the string representation
 func (s CreateGameSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetGameSession sets the GameSession field's value.
+func (s *CreateGameSessionOutput) SetGameSession(v *GameSession) *CreateGameSessionOutput {
+	s.GameSession = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4108,6 +4390,18 @@ func (s *CreatePlayerSessionInput) Validate() error {
 	return nil
 }
 
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *CreatePlayerSessionInput) SetGameSessionId(v string) *CreatePlayerSessionInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetPlayerId sets the PlayerId field's value.
+func (s *CreatePlayerSessionInput) SetPlayerId(v string) *CreatePlayerSessionInput {
+	s.PlayerId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type CreatePlayerSessionOutput struct {
 	_ struct{} `type:"structure"`
@@ -4124,6 +4418,12 @@ func (s CreatePlayerSessionOutput) String() string {
 // GoString returns the string representation
 func (s CreatePlayerSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetPlayerSession sets the PlayerSession field's value.
+func (s *CreatePlayerSessionOutput) SetPlayerSession(v *PlayerSession) *CreatePlayerSessionOutput {
+	s.PlayerSession = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4176,6 +4476,18 @@ func (s *CreatePlayerSessionsInput) Validate() error {
 	return nil
 }
 
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *CreatePlayerSessionsInput) SetGameSessionId(v string) *CreatePlayerSessionsInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetPlayerIds sets the PlayerIds field's value.
+func (s *CreatePlayerSessionsInput) SetPlayerIds(v []*string) *CreatePlayerSessionsInput {
+	s.PlayerIds = v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type CreatePlayerSessionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4192,6 +4504,12 @@ func (s CreatePlayerSessionsOutput) String() string {
 // GoString returns the string representation
 func (s CreatePlayerSessionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetPlayerSessions sets the PlayerSessions field's value.
+func (s *CreatePlayerSessionsOutput) SetPlayerSessions(v []*PlayerSession) *CreatePlayerSessionsOutput {
+	s.PlayerSessions = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4225,6 +4543,12 @@ func (s *DeleteAliasInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAliasId sets the AliasId field's value.
+func (s *DeleteAliasInput) SetAliasId(v string) *DeleteAliasInput {
+	s.AliasId = &v
+	return s
 }
 
 type DeleteAliasOutput struct {
@@ -4274,6 +4598,12 @@ func (s *DeleteBuildInput) Validate() error {
 	return nil
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *DeleteBuildInput) SetBuildId(v string) *DeleteBuildInput {
+	s.BuildId = &v
+	return s
+}
+
 type DeleteBuildOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4319,6 +4649,12 @@ func (s *DeleteFleetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *DeleteFleetInput) SetFleetId(v string) *DeleteFleetInput {
+	s.FleetId = &v
+	return s
 }
 
 type DeleteFleetOutput struct {
@@ -4380,6 +4716,18 @@ func (s *DeleteScalingPolicyInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *DeleteScalingPolicyInput) SetFleetId(v string) *DeleteScalingPolicyInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteScalingPolicyInput) SetName(v string) *DeleteScalingPolicyInput {
+	s.Name = &v
+	return s
+}
+
 type DeleteScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4427,6 +4775,12 @@ func (s *DescribeAliasInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *DescribeAliasInput) SetAliasId(v string) *DescribeAliasInput {
+	s.AliasId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -4443,6 +4797,12 @@ func (s DescribeAliasOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAliasOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *DescribeAliasOutput) SetAlias(v *Alias) *DescribeAliasOutput {
+	s.Alias = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4478,6 +4838,12 @@ func (s *DescribeBuildInput) Validate() error {
 	return nil
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *DescribeBuildInput) SetBuildId(v string) *DescribeBuildInput {
+	s.BuildId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeBuildOutput struct {
 	_ struct{} `type:"structure"`
@@ -4494,6 +4860,12 @@ func (s DescribeBuildOutput) String() string {
 // GoString returns the string representation
 func (s DescribeBuildOutput) GoString() string {
 	return s.String()
+}
+
+// SetBuild sets the Build field's value.
+func (s *DescribeBuildOutput) SetBuild(v *Build) *DescribeBuildOutput {
+	s.Build = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4519,6 +4891,12 @@ func (s DescribeEC2InstanceLimitsInput) GoString() string {
 	return s.String()
 }
 
+// SetEC2InstanceType sets the EC2InstanceType field's value.
+func (s *DescribeEC2InstanceLimitsInput) SetEC2InstanceType(v string) *DescribeEC2InstanceLimitsInput {
+	s.EC2InstanceType = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeEC2InstanceLimitsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4536,6 +4914,12 @@ func (s DescribeEC2InstanceLimitsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEC2InstanceLimitsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEC2InstanceLimits sets the EC2InstanceLimits field's value.
+func (s *DescribeEC2InstanceLimitsOutput) SetEC2InstanceLimits(v []*EC2InstanceLimit) *DescribeEC2InstanceLimitsOutput {
+	s.EC2InstanceLimits = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4587,6 +4971,24 @@ func (s *DescribeFleetAttributesInput) Validate() error {
 	return nil
 }
 
+// SetFleetIds sets the FleetIds field's value.
+func (s *DescribeFleetAttributesInput) SetFleetIds(v []*string) *DescribeFleetAttributesInput {
+	s.FleetIds = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeFleetAttributesInput) SetLimit(v int64) *DescribeFleetAttributesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAttributesInput) SetNextToken(v string) *DescribeFleetAttributesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -4608,6 +5010,18 @@ func (s DescribeFleetAttributesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetAttributes sets the FleetAttributes field's value.
+func (s *DescribeFleetAttributesOutput) SetFleetAttributes(v []*FleetAttributes) *DescribeFleetAttributesOutput {
+	s.FleetAttributes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetAttributesOutput) SetNextToken(v string) *DescribeFleetAttributesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4660,6 +5074,24 @@ func (s *DescribeFleetCapacityInput) Validate() error {
 	return nil
 }
 
+// SetFleetIds sets the FleetIds field's value.
+func (s *DescribeFleetCapacityInput) SetFleetIds(v []*string) *DescribeFleetCapacityInput {
+	s.FleetIds = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeFleetCapacityInput) SetLimit(v int64) *DescribeFleetCapacityInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetCapacityInput) SetNextToken(v string) *DescribeFleetCapacityInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetCapacityOutput struct {
 	_ struct{} `type:"structure"`
@@ -4682,6 +5114,18 @@ func (s DescribeFleetCapacityOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetCapacityOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetCapacity sets the FleetCapacity field's value.
+func (s *DescribeFleetCapacityOutput) SetFleetCapacity(v []*FleetCapacity) *DescribeFleetCapacityOutput {
+	s.FleetCapacity = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetCapacityOutput) SetNextToken(v string) *DescribeFleetCapacityOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4743,6 +5187,36 @@ func (s *DescribeFleetEventsInput) Validate() error {
 	return nil
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeFleetEventsInput) SetEndTime(v time.Time) *DescribeFleetEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeFleetEventsInput) SetFleetId(v string) *DescribeFleetEventsInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeFleetEventsInput) SetLimit(v int64) *DescribeFleetEventsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetEventsInput) SetNextToken(v string) *DescribeFleetEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeFleetEventsInput) SetStartTime(v time.Time) *DescribeFleetEventsInput {
+	s.StartTime = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4763,6 +5237,18 @@ func (s DescribeFleetEventsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *DescribeFleetEventsOutput) SetEvents(v []*Event) *DescribeFleetEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetEventsOutput) SetNextToken(v string) *DescribeFleetEventsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4798,6 +5284,12 @@ func (s *DescribeFleetPortSettingsInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeFleetPortSettingsInput) SetFleetId(v string) *DescribeFleetPortSettingsInput {
+	s.FleetId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetPortSettingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4814,6 +5306,12 @@ func (s DescribeFleetPortSettingsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetPortSettingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetInboundPermissions sets the InboundPermissions field's value.
+func (s *DescribeFleetPortSettingsOutput) SetInboundPermissions(v []*IpPermission) *DescribeFleetPortSettingsOutput {
+	s.InboundPermissions = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4865,6 +5363,24 @@ func (s *DescribeFleetUtilizationInput) Validate() error {
 	return nil
 }
 
+// SetFleetIds sets the FleetIds field's value.
+func (s *DescribeFleetUtilizationInput) SetFleetIds(v []*string) *DescribeFleetUtilizationInput {
+	s.FleetIds = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeFleetUtilizationInput) SetLimit(v int64) *DescribeFleetUtilizationInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetUtilizationInput) SetNextToken(v string) *DescribeFleetUtilizationInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeFleetUtilizationOutput struct {
 	_ struct{} `type:"structure"`
@@ -4886,6 +5402,18 @@ func (s DescribeFleetUtilizationOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFleetUtilizationOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetUtilization sets the FleetUtilization field's value.
+func (s *DescribeFleetUtilizationOutput) SetFleetUtilization(v []*FleetUtilization) *DescribeFleetUtilizationOutput {
+	s.FleetUtilization = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFleetUtilizationOutput) SetNextToken(v string) *DescribeFleetUtilizationOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -4953,6 +5481,42 @@ func (s *DescribeGameSessionDetailsInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *DescribeGameSessionDetailsInput) SetAliasId(v string) *DescribeGameSessionDetailsInput {
+	s.AliasId = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeGameSessionDetailsInput) SetFleetId(v string) *DescribeGameSessionDetailsInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *DescribeGameSessionDetailsInput) SetGameSessionId(v string) *DescribeGameSessionDetailsInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeGameSessionDetailsInput) SetLimit(v int64) *DescribeGameSessionDetailsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeGameSessionDetailsInput) SetNextToken(v string) *DescribeGameSessionDetailsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *DescribeGameSessionDetailsInput) SetStatusFilter(v string) *DescribeGameSessionDetailsInput {
+	s.StatusFilter = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeGameSessionDetailsOutput struct {
 	_ struct{} `type:"structure"`
@@ -4974,6 +5538,18 @@ func (s DescribeGameSessionDetailsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeGameSessionDetailsOutput) GoString() string {
 	return s.String()
+}
+
+// SetGameSessionDetails sets the GameSessionDetails field's value.
+func (s *DescribeGameSessionDetailsOutput) SetGameSessionDetails(v []*GameSessionDetail) *DescribeGameSessionDetailsOutput {
+	s.GameSessionDetails = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeGameSessionDetailsOutput) SetNextToken(v string) *DescribeGameSessionDetailsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -5041,6 +5617,42 @@ func (s *DescribeGameSessionsInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *DescribeGameSessionsInput) SetAliasId(v string) *DescribeGameSessionsInput {
+	s.AliasId = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeGameSessionsInput) SetFleetId(v string) *DescribeGameSessionsInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *DescribeGameSessionsInput) SetGameSessionId(v string) *DescribeGameSessionsInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeGameSessionsInput) SetLimit(v int64) *DescribeGameSessionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeGameSessionsInput) SetNextToken(v string) *DescribeGameSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *DescribeGameSessionsInput) SetStatusFilter(v string) *DescribeGameSessionsInput {
+	s.StatusFilter = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeGameSessionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5062,6 +5674,18 @@ func (s DescribeGameSessionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeGameSessionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetGameSessions sets the GameSessions field's value.
+func (s *DescribeGameSessionsOutput) SetGameSessions(v []*GameSession) *DescribeGameSessionsOutput {
+	s.GameSessions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeGameSessionsOutput) SetNextToken(v string) *DescribeGameSessionsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -5117,6 +5741,30 @@ func (s *DescribeInstancesInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeInstancesInput) SetFleetId(v string) *DescribeInstancesInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeInstancesInput) SetInstanceId(v string) *DescribeInstancesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeInstancesInput) SetLimit(v int64) *DescribeInstancesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancesInput) SetNextToken(v string) *DescribeInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -5137,6 +5785,18 @@ func (s DescribeInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstances sets the Instances field's value.
+func (s *DescribeInstancesOutput) SetInstances(v []*Instance) *DescribeInstancesOutput {
+	s.Instances = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancesOutput) SetNextToken(v string) *DescribeInstancesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -5218,6 +5878,42 @@ func (s *DescribePlayerSessionsInput) Validate() error {
 	return nil
 }
 
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *DescribePlayerSessionsInput) SetGameSessionId(v string) *DescribePlayerSessionsInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribePlayerSessionsInput) SetLimit(v int64) *DescribePlayerSessionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribePlayerSessionsInput) SetNextToken(v string) *DescribePlayerSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPlayerId sets the PlayerId field's value.
+func (s *DescribePlayerSessionsInput) SetPlayerId(v string) *DescribePlayerSessionsInput {
+	s.PlayerId = &v
+	return s
+}
+
+// SetPlayerSessionId sets the PlayerSessionId field's value.
+func (s *DescribePlayerSessionsInput) SetPlayerSessionId(v string) *DescribePlayerSessionsInput {
+	s.PlayerSessionId = &v
+	return s
+}
+
+// SetPlayerSessionStatusFilter sets the PlayerSessionStatusFilter field's value.
+func (s *DescribePlayerSessionsInput) SetPlayerSessionStatusFilter(v string) *DescribePlayerSessionsInput {
+	s.PlayerSessionStatusFilter = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribePlayerSessionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5239,6 +5935,18 @@ func (s DescribePlayerSessionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribePlayerSessionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribePlayerSessionsOutput) SetNextToken(v string) *DescribePlayerSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPlayerSessions sets the PlayerSessions field's value.
+func (s *DescribePlayerSessionsOutput) SetPlayerSessions(v []*PlayerSession) *DescribePlayerSessionsOutput {
+	s.PlayerSessions = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -5274,6 +5982,12 @@ func (s *DescribeRuntimeConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeRuntimeConfigurationInput) SetFleetId(v string) *DescribeRuntimeConfigurationInput {
+	s.FleetId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeRuntimeConfigurationOutput struct {
 	_ struct{} `type:"structure"`
@@ -5291,6 +6005,12 @@ func (s DescribeRuntimeConfigurationOutput) String() string {
 // GoString returns the string representation
 func (s DescribeRuntimeConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *DescribeRuntimeConfigurationOutput) SetRuntimeConfiguration(v *RuntimeConfiguration) *DescribeRuntimeConfigurationOutput {
+	s.RuntimeConfiguration = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -5361,6 +6081,30 @@ func (s *DescribeScalingPoliciesInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *DescribeScalingPoliciesInput) SetFleetId(v string) *DescribeScalingPoliciesInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeScalingPoliciesInput) SetLimit(v int64) *DescribeScalingPoliciesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingPoliciesInput) SetNextToken(v string) *DescribeScalingPoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *DescribeScalingPoliciesInput) SetStatusFilter(v string) *DescribeScalingPoliciesInput {
+	s.StatusFilter = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type DescribeScalingPoliciesOutput struct {
 	_ struct{} `type:"structure"`
@@ -5381,6 +6125,18 @@ func (s DescribeScalingPoliciesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScalingPoliciesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingPoliciesOutput) SetNextToken(v string) *DescribeScalingPoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScalingPolicies sets the ScalingPolicies field's value.
+func (s *DescribeScalingPoliciesOutput) SetScalingPolicies(v []*ScalingPolicy) *DescribeScalingPoliciesOutput {
+	s.ScalingPolicies = v
+	return s
 }
 
 // Current status of fleet capacity. The number of active instances should match
@@ -5425,6 +6181,48 @@ func (s EC2InstanceCounts) GoString() string {
 	return s.String()
 }
 
+// SetACTIVE sets the ACTIVE field's value.
+func (s *EC2InstanceCounts) SetACTIVE(v int64) *EC2InstanceCounts {
+	s.ACTIVE = &v
+	return s
+}
+
+// SetDESIRED sets the DESIRED field's value.
+func (s *EC2InstanceCounts) SetDESIRED(v int64) *EC2InstanceCounts {
+	s.DESIRED = &v
+	return s
+}
+
+// SetIDLE sets the IDLE field's value.
+func (s *EC2InstanceCounts) SetIDLE(v int64) *EC2InstanceCounts {
+	s.IDLE = &v
+	return s
+}
+
+// SetMAXIMUM sets the MAXIMUM field's value.
+func (s *EC2InstanceCounts) SetMAXIMUM(v int64) *EC2InstanceCounts {
+	s.MAXIMUM = &v
+	return s
+}
+
+// SetMINIMUM sets the MINIMUM field's value.
+func (s *EC2InstanceCounts) SetMINIMUM(v int64) *EC2InstanceCounts {
+	s.MINIMUM = &v
+	return s
+}
+
+// SetPENDING sets the PENDING field's value.
+func (s *EC2InstanceCounts) SetPENDING(v int64) *EC2InstanceCounts {
+	s.PENDING = &v
+	return s
+}
+
+// SetTERMINATING sets the TERMINATING field's value.
+func (s *EC2InstanceCounts) SetTERMINATING(v int64) *EC2InstanceCounts {
+	s.TERMINATING = &v
+	return s
+}
+
 // Maximum number of instances allowed based on the Amazon Elastic Compute Cloud
 // (Amazon EC2) instance type. Instance limits can be retrieved by calling DescribeEC2InstanceLimits.
 type EC2InstanceLimit struct {
@@ -5453,6 +6251,24 @@ func (s EC2InstanceLimit) String() string {
 // GoString returns the string representation
 func (s EC2InstanceLimit) GoString() string {
 	return s.String()
+}
+
+// SetCurrentInstances sets the CurrentInstances field's value.
+func (s *EC2InstanceLimit) SetCurrentInstances(v int64) *EC2InstanceLimit {
+	s.CurrentInstances = &v
+	return s
+}
+
+// SetEC2InstanceType sets the EC2InstanceType field's value.
+func (s *EC2InstanceLimit) SetEC2InstanceType(v string) *EC2InstanceLimit {
+	s.EC2InstanceType = &v
+	return s
+}
+
+// SetInstanceLimit sets the InstanceLimit field's value.
+func (s *EC2InstanceLimit) SetInstanceLimit(v int64) *EC2InstanceLimit {
+	s.InstanceLimit = &v
+	return s
 }
 
 // Log entry describing an event involving an Amazon GameLift resource (such
@@ -5485,6 +6301,36 @@ func (s Event) String() string {
 // GoString returns the string representation
 func (s Event) GoString() string {
 	return s.String()
+}
+
+// SetEventCode sets the EventCode field's value.
+func (s *Event) SetEventCode(v string) *Event {
+	s.EventCode = &v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *Event) SetEventId(v string) *Event {
+	s.EventId = &v
+	return s
+}
+
+// SetEventTime sets the EventTime field's value.
+func (s *Event) SetEventTime(v time.Time) *Event {
+	s.EventTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Event) SetMessage(v string) *Event {
+	s.Message = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *Event) SetResourceId(v string) *Event {
+	s.ResourceId = &v
+	return s
 }
 
 // General properties describing a fleet.
@@ -5582,6 +6428,84 @@ func (s FleetAttributes) GoString() string {
 	return s.String()
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *FleetAttributes) SetBuildId(v string) *FleetAttributes {
+	s.BuildId = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FleetAttributes) SetCreationTime(v time.Time) *FleetAttributes {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *FleetAttributes) SetDescription(v string) *FleetAttributes {
+	s.Description = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *FleetAttributes) SetFleetId(v string) *FleetAttributes {
+	s.FleetId = &v
+	return s
+}
+
+// SetLogPaths sets the LogPaths field's value.
+func (s *FleetAttributes) SetLogPaths(v []*string) *FleetAttributes {
+	s.LogPaths = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FleetAttributes) SetName(v string) *FleetAttributes {
+	s.Name = &v
+	return s
+}
+
+// SetNewGameSessionProtectionPolicy sets the NewGameSessionProtectionPolicy field's value.
+func (s *FleetAttributes) SetNewGameSessionProtectionPolicy(v string) *FleetAttributes {
+	s.NewGameSessionProtectionPolicy = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *FleetAttributes) SetOperatingSystem(v string) *FleetAttributes {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetResourceCreationLimitPolicy sets the ResourceCreationLimitPolicy field's value.
+func (s *FleetAttributes) SetResourceCreationLimitPolicy(v *ResourceCreationLimitPolicy) *FleetAttributes {
+	s.ResourceCreationLimitPolicy = v
+	return s
+}
+
+// SetServerLaunchParameters sets the ServerLaunchParameters field's value.
+func (s *FleetAttributes) SetServerLaunchParameters(v string) *FleetAttributes {
+	s.ServerLaunchParameters = &v
+	return s
+}
+
+// SetServerLaunchPath sets the ServerLaunchPath field's value.
+func (s *FleetAttributes) SetServerLaunchPath(v string) *FleetAttributes {
+	s.ServerLaunchPath = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FleetAttributes) SetStatus(v string) *FleetAttributes {
+	s.Status = &v
+	return s
+}
+
+// SetTerminationTime sets the TerminationTime field's value.
+func (s *FleetAttributes) SetTerminationTime(v time.Time) *FleetAttributes {
+	s.TerminationTime = &v
+	return s
+}
+
 // Information about the fleet's capacity. Fleet capacity is measured in EC2
 // instances. By default, new fleets have a capacity of one instance, but can
 // be updated as needed. The maximum number of instances for a fleet is determined
@@ -5611,6 +6535,24 @@ func (s FleetCapacity) String() string {
 // GoString returns the string representation
 func (s FleetCapacity) GoString() string {
 	return s.String()
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *FleetCapacity) SetFleetId(v string) *FleetCapacity {
+	s.FleetId = &v
+	return s
+}
+
+// SetInstanceCounts sets the InstanceCounts field's value.
+func (s *FleetCapacity) SetInstanceCounts(v *EC2InstanceCounts) *FleetCapacity {
+	s.InstanceCounts = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *FleetCapacity) SetInstanceType(v string) *FleetCapacity {
+	s.InstanceType = &v
+	return s
 }
 
 // Current status of fleet utilization, including the number of game and player
@@ -5646,6 +6588,36 @@ func (s FleetUtilization) String() string {
 // GoString returns the string representation
 func (s FleetUtilization) GoString() string {
 	return s.String()
+}
+
+// SetActiveGameSessionCount sets the ActiveGameSessionCount field's value.
+func (s *FleetUtilization) SetActiveGameSessionCount(v int64) *FleetUtilization {
+	s.ActiveGameSessionCount = &v
+	return s
+}
+
+// SetActiveServerProcessCount sets the ActiveServerProcessCount field's value.
+func (s *FleetUtilization) SetActiveServerProcessCount(v int64) *FleetUtilization {
+	s.ActiveServerProcessCount = &v
+	return s
+}
+
+// SetCurrentPlayerSessionCount sets the CurrentPlayerSessionCount field's value.
+func (s *FleetUtilization) SetCurrentPlayerSessionCount(v int64) *FleetUtilization {
+	s.CurrentPlayerSessionCount = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *FleetUtilization) SetFleetId(v string) *FleetUtilization {
+	s.FleetId = &v
+	return s
+}
+
+// SetMaximumPlayerSessionCount sets the MaximumPlayerSessionCount field's value.
+func (s *FleetUtilization) SetMaximumPlayerSessionCount(v int64) *FleetUtilization {
+	s.MaximumPlayerSessionCount = &v
+	return s
 }
 
 // Set of key-value pairs containing information a server process requires to
@@ -5690,6 +6662,18 @@ func (s *GameProperty) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *GameProperty) SetKey(v string) *GameProperty {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *GameProperty) SetValue(v string) *GameProperty {
+	s.Value = &v
+	return s
 }
 
 // Properties describing a game session.
@@ -5757,6 +6741,84 @@ func (s GameSession) GoString() string {
 	return s.String()
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *GameSession) SetCreationTime(v time.Time) *GameSession {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorId sets the CreatorId field's value.
+func (s *GameSession) SetCreatorId(v string) *GameSession {
+	s.CreatorId = &v
+	return s
+}
+
+// SetCurrentPlayerSessionCount sets the CurrentPlayerSessionCount field's value.
+func (s *GameSession) SetCurrentPlayerSessionCount(v int64) *GameSession {
+	s.CurrentPlayerSessionCount = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *GameSession) SetFleetId(v string) *GameSession {
+	s.FleetId = &v
+	return s
+}
+
+// SetGameProperties sets the GameProperties field's value.
+func (s *GameSession) SetGameProperties(v []*GameProperty) *GameSession {
+	s.GameProperties = v
+	return s
+}
+
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *GameSession) SetGameSessionId(v string) *GameSession {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *GameSession) SetIpAddress(v string) *GameSession {
+	s.IpAddress = &v
+	return s
+}
+
+// SetMaximumPlayerSessionCount sets the MaximumPlayerSessionCount field's value.
+func (s *GameSession) SetMaximumPlayerSessionCount(v int64) *GameSession {
+	s.MaximumPlayerSessionCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GameSession) SetName(v string) *GameSession {
+	s.Name = &v
+	return s
+}
+
+// SetPlayerSessionCreationPolicy sets the PlayerSessionCreationPolicy field's value.
+func (s *GameSession) SetPlayerSessionCreationPolicy(v string) *GameSession {
+	s.PlayerSessionCreationPolicy = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *GameSession) SetPort(v int64) *GameSession {
+	s.Port = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GameSession) SetStatus(v string) *GameSession {
+	s.Status = &v
+	return s
+}
+
+// SetTerminationTime sets the TerminationTime field's value.
+func (s *GameSession) SetTerminationTime(v time.Time) *GameSession {
+	s.TerminationTime = &v
+	return s
+}
+
 // A game session's properties and the protection policy currently in force.
 type GameSessionDetail struct {
 	_ struct{} `type:"structure"`
@@ -5782,6 +6844,18 @@ func (s GameSessionDetail) String() string {
 // GoString returns the string representation
 func (s GameSessionDetail) GoString() string {
 	return s.String()
+}
+
+// SetGameSession sets the GameSession field's value.
+func (s *GameSessionDetail) SetGameSession(v *GameSession) *GameSessionDetail {
+	s.GameSession = v
+	return s
+}
+
+// SetProtectionPolicy sets the ProtectionPolicy field's value.
+func (s *GameSessionDetail) SetProtectionPolicy(v string) *GameSessionDetail {
+	s.ProtectionPolicy = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -5823,6 +6897,12 @@ func (s *GetGameSessionLogUrlInput) Validate() error {
 	return nil
 }
 
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *GetGameSessionLogUrlInput) SetGameSessionId(v string) *GetGameSessionLogUrlInput {
+	s.GameSessionId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type GetGameSessionLogUrlOutput struct {
 	_ struct{} `type:"structure"`
@@ -5839,6 +6919,12 @@ func (s GetGameSessionLogUrlOutput) String() string {
 // GoString returns the string representation
 func (s GetGameSessionLogUrlOutput) GoString() string {
 	return s.String()
+}
+
+// SetPreSignedUrl sets the PreSignedUrl field's value.
+func (s *GetGameSessionLogUrlOutput) SetPreSignedUrl(v string) *GetGameSessionLogUrlOutput {
+	s.PreSignedUrl = &v
+	return s
 }
 
 // Properties describing an instance of a virtual computing resource that is
@@ -5889,6 +6975,48 @@ func (s Instance) String() string {
 // GoString returns the string representation
 func (s Instance) GoString() string {
 	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Instance) SetCreationTime(v time.Time) *Instance {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *Instance) SetFleetId(v string) *Instance {
+	s.FleetId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *Instance) SetInstanceId(v string) *Instance {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *Instance) SetIpAddress(v string) *Instance {
+	s.IpAddress = &v
+	return s
+}
+
+// SetOperatingSystem sets the OperatingSystem field's value.
+func (s *Instance) SetOperatingSystem(v string) *Instance {
+	s.OperatingSystem = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Instance) SetStatus(v string) *Instance {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Instance) SetType(v string) *Instance {
+	s.Type = &v
+	return s
 }
 
 // A range of IP addresses and port settings that allow inbound traffic to connect
@@ -5961,6 +7089,30 @@ func (s *IpPermission) Validate() error {
 	return nil
 }
 
+// SetFromPort sets the FromPort field's value.
+func (s *IpPermission) SetFromPort(v int64) *IpPermission {
+	s.FromPort = &v
+	return s
+}
+
+// SetIpRange sets the IpRange field's value.
+func (s *IpPermission) SetIpRange(v string) *IpPermission {
+	s.IpRange = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *IpPermission) SetProtocol(v string) *IpPermission {
+	s.Protocol = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *IpPermission) SetToPort(v int64) *IpPermission {
+	s.ToPort = &v
+	return s
+}
+
 // Represents the input for a request action.
 type ListAliasesInput struct {
 	_ struct{} `type:"structure"`
@@ -6022,6 +7174,30 @@ func (s *ListAliasesInput) Validate() error {
 	return nil
 }
 
+// SetLimit sets the Limit field's value.
+func (s *ListAliasesInput) SetLimit(v int64) *ListAliasesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListAliasesInput) SetName(v string) *ListAliasesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAliasesInput) SetNextToken(v string) *ListAliasesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRoutingStrategyType sets the RoutingStrategyType field's value.
+func (s *ListAliasesInput) SetRoutingStrategyType(v string) *ListAliasesInput {
+	s.RoutingStrategyType = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type ListAliasesOutput struct {
 	_ struct{} `type:"structure"`
@@ -6042,6 +7218,18 @@ func (s ListAliasesOutput) String() string {
 // GoString returns the string representation
 func (s ListAliasesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAliases sets the Aliases field's value.
+func (s *ListAliasesOutput) SetAliases(v []*Alias) *ListAliasesOutput {
+	s.Aliases = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAliasesOutput) SetNextToken(v string) *ListAliasesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -6100,6 +7288,24 @@ func (s *ListBuildsInput) Validate() error {
 	return nil
 }
 
+// SetLimit sets the Limit field's value.
+func (s *ListBuildsInput) SetLimit(v int64) *ListBuildsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBuildsInput) SetNextToken(v string) *ListBuildsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListBuildsInput) SetStatus(v string) *ListBuildsInput {
+	s.Status = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type ListBuildsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6120,6 +7326,18 @@ func (s ListBuildsOutput) String() string {
 // GoString returns the string representation
 func (s ListBuildsOutput) GoString() string {
 	return s.String()
+}
+
+// SetBuilds sets the Builds field's value.
+func (s *ListBuildsOutput) SetBuilds(v []*Build) *ListBuildsOutput {
+	s.Builds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBuildsOutput) SetNextToken(v string) *ListBuildsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -6167,6 +7385,24 @@ func (s *ListFleetsInput) Validate() error {
 	return nil
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *ListFleetsInput) SetBuildId(v string) *ListFleetsInput {
+	s.BuildId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListFleetsInput) SetLimit(v int64) *ListFleetsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFleetsInput) SetNextToken(v string) *ListFleetsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type ListFleetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6189,6 +7425,18 @@ func (s ListFleetsOutput) String() string {
 // GoString returns the string representation
 func (s ListFleetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetIds sets the FleetIds field's value.
+func (s *ListFleetsOutput) SetFleetIds(v []*string) *ListFleetsOutput {
+	s.FleetIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFleetsOutput) SetNextToken(v string) *ListFleetsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Properties describing a player session.
@@ -6248,6 +7496,60 @@ func (s PlayerSession) String() string {
 // GoString returns the string representation
 func (s PlayerSession) GoString() string {
 	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *PlayerSession) SetCreationTime(v time.Time) *PlayerSession {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *PlayerSession) SetFleetId(v string) *PlayerSession {
+	s.FleetId = &v
+	return s
+}
+
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *PlayerSession) SetGameSessionId(v string) *PlayerSession {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *PlayerSession) SetIpAddress(v string) *PlayerSession {
+	s.IpAddress = &v
+	return s
+}
+
+// SetPlayerId sets the PlayerId field's value.
+func (s *PlayerSession) SetPlayerId(v string) *PlayerSession {
+	s.PlayerId = &v
+	return s
+}
+
+// SetPlayerSessionId sets the PlayerSessionId field's value.
+func (s *PlayerSession) SetPlayerSessionId(v string) *PlayerSession {
+	s.PlayerSessionId = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *PlayerSession) SetPort(v int64) *PlayerSession {
+	s.Port = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PlayerSession) SetStatus(v string) *PlayerSession {
+	s.Status = &v
+	return s
+}
+
+// SetTerminationTime sets the TerminationTime field's value.
+func (s *PlayerSession) SetTerminationTime(v time.Time) *PlayerSession {
+	s.TerminationTime = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -6378,6 +7680,54 @@ func (s *PutScalingPolicyInput) Validate() error {
 	return nil
 }
 
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *PutScalingPolicyInput) SetComparisonOperator(v string) *PutScalingPolicyInput {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *PutScalingPolicyInput) SetEvaluationPeriods(v int64) *PutScalingPolicyInput {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *PutScalingPolicyInput) SetFleetId(v string) *PutScalingPolicyInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *PutScalingPolicyInput) SetMetricName(v string) *PutScalingPolicyInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutScalingPolicyInput) SetName(v string) *PutScalingPolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetScalingAdjustment sets the ScalingAdjustment field's value.
+func (s *PutScalingPolicyInput) SetScalingAdjustment(v int64) *PutScalingPolicyInput {
+	s.ScalingAdjustment = &v
+	return s
+}
+
+// SetScalingAdjustmentType sets the ScalingAdjustmentType field's value.
+func (s *PutScalingPolicyInput) SetScalingAdjustmentType(v string) *PutScalingPolicyInput {
+	s.ScalingAdjustmentType = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *PutScalingPolicyInput) SetThreshold(v float64) *PutScalingPolicyInput {
+	s.Threshold = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type PutScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -6395,6 +7745,12 @@ func (s PutScalingPolicyOutput) String() string {
 // GoString returns the string representation
 func (s PutScalingPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *PutScalingPolicyOutput) SetName(v string) *PutScalingPolicyOutput {
+	s.Name = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -6430,6 +7786,12 @@ func (s *RequestUploadCredentialsInput) Validate() error {
 	return nil
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *RequestUploadCredentialsInput) SetBuildId(v string) *RequestUploadCredentialsInput {
+	s.BuildId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type RequestUploadCredentialsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6451,6 +7813,18 @@ func (s RequestUploadCredentialsOutput) String() string {
 // GoString returns the string representation
 func (s RequestUploadCredentialsOutput) GoString() string {
 	return s.String()
+}
+
+// SetStorageLocation sets the StorageLocation field's value.
+func (s *RequestUploadCredentialsOutput) SetStorageLocation(v *S3Location) *RequestUploadCredentialsOutput {
+	s.StorageLocation = v
+	return s
+}
+
+// SetUploadCredentials sets the UploadCredentials field's value.
+func (s *RequestUploadCredentialsOutput) SetUploadCredentials(v *AwsCredentials) *RequestUploadCredentialsOutput {
+	s.UploadCredentials = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -6486,6 +7860,12 @@ func (s *ResolveAliasInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *ResolveAliasInput) SetAliasId(v string) *ResolveAliasInput {
+	s.AliasId = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type ResolveAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -6502,6 +7882,12 @@ func (s ResolveAliasOutput) String() string {
 // GoString returns the string representation
 func (s ResolveAliasOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *ResolveAliasOutput) SetFleetId(v string) *ResolveAliasOutput {
+	s.FleetId = &v
+	return s
 }
 
 // Policy that limits the number of game sessions a player can create on the
@@ -6536,6 +7922,18 @@ func (s ResourceCreationLimitPolicy) GoString() string {
 	return s.String()
 }
 
+// SetNewGameSessionsPerCreator sets the NewGameSessionsPerCreator field's value.
+func (s *ResourceCreationLimitPolicy) SetNewGameSessionsPerCreator(v int64) *ResourceCreationLimitPolicy {
+	s.NewGameSessionsPerCreator = &v
+	return s
+}
+
+// SetPolicyPeriodInMinutes sets the PolicyPeriodInMinutes field's value.
+func (s *ResourceCreationLimitPolicy) SetPolicyPeriodInMinutes(v int64) *ResourceCreationLimitPolicy {
+	s.PolicyPeriodInMinutes = &v
+	return s
+}
+
 // Routing configuration for a fleet alias.
 type RoutingStrategy struct {
 	_ struct{} `type:"structure"`
@@ -6567,6 +7965,24 @@ func (s RoutingStrategy) String() string {
 // GoString returns the string representation
 func (s RoutingStrategy) GoString() string {
 	return s.String()
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *RoutingStrategy) SetFleetId(v string) *RoutingStrategy {
+	s.FleetId = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *RoutingStrategy) SetMessage(v string) *RoutingStrategy {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RoutingStrategy) SetType(v string) *RoutingStrategy {
+	s.Type = &v
+	return s
 }
 
 // Collection of server process configurations that describe what processes
@@ -6628,6 +8044,12 @@ func (s *RuntimeConfiguration) Validate() error {
 	return nil
 }
 
+// SetServerProcesses sets the ServerProcesses field's value.
+func (s *RuntimeConfiguration) SetServerProcesses(v []*ServerProcess) *RuntimeConfiguration {
+	s.ServerProcesses = v
+	return s
+}
+
 // Location in Amazon Simple Storage Service (Amazon S3) where a build's files
 // are stored. This location is assigned in response to a CreateBuild call,
 // and is always in the same region as the service used to create the build.
@@ -6673,6 +8095,24 @@ func (s *S3Location) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3Location) SetBucket(v string) *S3Location {
+	s.Bucket = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *S3Location) SetKey(v string) *S3Location {
+	s.Key = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *S3Location) SetRoleArn(v string) *S3Location {
+	s.RoleArn = &v
+	return s
 }
 
 // Rule that controls how a fleet is scaled. Scaling policies are uniquely identified
@@ -6764,6 +8204,60 @@ func (s ScalingPolicy) String() string {
 // GoString returns the string representation
 func (s ScalingPolicy) GoString() string {
 	return s.String()
+}
+
+// SetComparisonOperator sets the ComparisonOperator field's value.
+func (s *ScalingPolicy) SetComparisonOperator(v string) *ScalingPolicy {
+	s.ComparisonOperator = &v
+	return s
+}
+
+// SetEvaluationPeriods sets the EvaluationPeriods field's value.
+func (s *ScalingPolicy) SetEvaluationPeriods(v int64) *ScalingPolicy {
+	s.EvaluationPeriods = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *ScalingPolicy) SetFleetId(v string) *ScalingPolicy {
+	s.FleetId = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *ScalingPolicy) SetMetricName(v string) *ScalingPolicy {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ScalingPolicy) SetName(v string) *ScalingPolicy {
+	s.Name = &v
+	return s
+}
+
+// SetScalingAdjustment sets the ScalingAdjustment field's value.
+func (s *ScalingPolicy) SetScalingAdjustment(v int64) *ScalingPolicy {
+	s.ScalingAdjustment = &v
+	return s
+}
+
+// SetScalingAdjustmentType sets the ScalingAdjustmentType field's value.
+func (s *ScalingPolicy) SetScalingAdjustmentType(v string) *ScalingPolicy {
+	s.ScalingAdjustmentType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ScalingPolicy) SetStatus(v string) *ScalingPolicy {
+	s.Status = &v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *ScalingPolicy) SetThreshold(v float64) *ScalingPolicy {
+	s.Threshold = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -6877,6 +8371,42 @@ func (s *SearchGameSessionsInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *SearchGameSessionsInput) SetAliasId(v string) *SearchGameSessionsInput {
+	s.AliasId = &v
+	return s
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *SearchGameSessionsInput) SetFilterExpression(v string) *SearchGameSessionsInput {
+	s.FilterExpression = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *SearchGameSessionsInput) SetFleetId(v string) *SearchGameSessionsInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *SearchGameSessionsInput) SetLimit(v int64) *SearchGameSessionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchGameSessionsInput) SetNextToken(v string) *SearchGameSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortExpression sets the SortExpression field's value.
+func (s *SearchGameSessionsInput) SetSortExpression(v string) *SearchGameSessionsInput {
+	s.SortExpression = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type SearchGameSessionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -6898,6 +8428,18 @@ func (s SearchGameSessionsOutput) String() string {
 // GoString returns the string representation
 func (s SearchGameSessionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetGameSessions sets the GameSessions field's value.
+func (s *SearchGameSessionsOutput) SetGameSessions(v []*GameSession) *SearchGameSessionsOutput {
+	s.GameSessions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchGameSessionsOutput) SetNextToken(v string) *SearchGameSessionsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // A set of instructions for launching server processes on each instance in
@@ -6960,6 +8502,24 @@ func (s *ServerProcess) Validate() error {
 	return nil
 }
 
+// SetConcurrentExecutions sets the ConcurrentExecutions field's value.
+func (s *ServerProcess) SetConcurrentExecutions(v int64) *ServerProcess {
+	s.ConcurrentExecutions = &v
+	return s
+}
+
+// SetLaunchPath sets the LaunchPath field's value.
+func (s *ServerProcess) SetLaunchPath(v string) *ServerProcess {
+	s.LaunchPath = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ServerProcess) SetParameters(v string) *ServerProcess {
+	s.Parameters = &v
+	return s
+}
+
 // Represents the input for a request action.
 type UpdateAliasInput struct {
 	_ struct{} `type:"structure"`
@@ -7009,6 +8569,30 @@ func (s *UpdateAliasInput) Validate() error {
 	return nil
 }
 
+// SetAliasId sets the AliasId field's value.
+func (s *UpdateAliasInput) SetAliasId(v string) *UpdateAliasInput {
+	s.AliasId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAliasInput) SetDescription(v string) *UpdateAliasInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAliasInput) SetName(v string) *UpdateAliasInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingStrategy sets the RoutingStrategy field's value.
+func (s *UpdateAliasInput) SetRoutingStrategy(v *RoutingStrategy) *UpdateAliasInput {
+	s.RoutingStrategy = v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateAliasOutput struct {
 	_ struct{} `type:"structure"`
@@ -7025,6 +8609,12 @@ func (s UpdateAliasOutput) String() string {
 // GoString returns the string representation
 func (s UpdateAliasOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *UpdateAliasOutput) SetAlias(v *Alias) *UpdateAliasOutput {
+	s.Alias = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -7074,6 +8664,24 @@ func (s *UpdateBuildInput) Validate() error {
 	return nil
 }
 
+// SetBuildId sets the BuildId field's value.
+func (s *UpdateBuildInput) SetBuildId(v string) *UpdateBuildInput {
+	s.BuildId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateBuildInput) SetName(v string) *UpdateBuildInput {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdateBuildInput) SetVersion(v string) *UpdateBuildInput {
+	s.Version = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateBuildOutput struct {
 	_ struct{} `type:"structure"`
@@ -7090,6 +8698,12 @@ func (s UpdateBuildOutput) String() string {
 // GoString returns the string representation
 func (s UpdateBuildOutput) GoString() string {
 	return s.String()
+}
+
+// SetBuild sets the Build field's value.
+func (s *UpdateBuildOutput) SetBuild(v *Build) *UpdateBuildOutput {
+	s.Build = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -7153,6 +8767,36 @@ func (s *UpdateFleetAttributesInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *UpdateFleetAttributesInput) SetDescription(v string) *UpdateFleetAttributesInput {
+	s.Description = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateFleetAttributesInput) SetFleetId(v string) *UpdateFleetAttributesInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFleetAttributesInput) SetName(v string) *UpdateFleetAttributesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNewGameSessionProtectionPolicy sets the NewGameSessionProtectionPolicy field's value.
+func (s *UpdateFleetAttributesInput) SetNewGameSessionProtectionPolicy(v string) *UpdateFleetAttributesInput {
+	s.NewGameSessionProtectionPolicy = &v
+	return s
+}
+
+// SetResourceCreationLimitPolicy sets the ResourceCreationLimitPolicy field's value.
+func (s *UpdateFleetAttributesInput) SetResourceCreationLimitPolicy(v *ResourceCreationLimitPolicy) *UpdateFleetAttributesInput {
+	s.ResourceCreationLimitPolicy = v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateFleetAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -7169,6 +8813,12 @@ func (s UpdateFleetAttributesOutput) String() string {
 // GoString returns the string representation
 func (s UpdateFleetAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateFleetAttributesOutput) SetFleetId(v string) *UpdateFleetAttributesOutput {
+	s.FleetId = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -7215,6 +8865,30 @@ func (s *UpdateFleetCapacityInput) Validate() error {
 	return nil
 }
 
+// SetDesiredInstances sets the DesiredInstances field's value.
+func (s *UpdateFleetCapacityInput) SetDesiredInstances(v int64) *UpdateFleetCapacityInput {
+	s.DesiredInstances = &v
+	return s
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateFleetCapacityInput) SetFleetId(v string) *UpdateFleetCapacityInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *UpdateFleetCapacityInput) SetMaxSize(v int64) *UpdateFleetCapacityInput {
+	s.MaxSize = &v
+	return s
+}
+
+// SetMinSize sets the MinSize field's value.
+func (s *UpdateFleetCapacityInput) SetMinSize(v int64) *UpdateFleetCapacityInput {
+	s.MinSize = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateFleetCapacityOutput struct {
 	_ struct{} `type:"structure"`
@@ -7231,6 +8905,12 @@ func (s UpdateFleetCapacityOutput) String() string {
 // GoString returns the string representation
 func (s UpdateFleetCapacityOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateFleetCapacityOutput) SetFleetId(v string) *UpdateFleetCapacityOutput {
+	s.FleetId = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -7292,6 +8972,24 @@ func (s *UpdateFleetPortSettingsInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateFleetPortSettingsInput) SetFleetId(v string) *UpdateFleetPortSettingsInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetInboundPermissionAuthorizations sets the InboundPermissionAuthorizations field's value.
+func (s *UpdateFleetPortSettingsInput) SetInboundPermissionAuthorizations(v []*IpPermission) *UpdateFleetPortSettingsInput {
+	s.InboundPermissionAuthorizations = v
+	return s
+}
+
+// SetInboundPermissionRevocations sets the InboundPermissionRevocations field's value.
+func (s *UpdateFleetPortSettingsInput) SetInboundPermissionRevocations(v []*IpPermission) *UpdateFleetPortSettingsInput {
+	s.InboundPermissionRevocations = v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateFleetPortSettingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -7308,6 +9006,12 @@ func (s UpdateFleetPortSettingsOutput) String() string {
 // GoString returns the string representation
 func (s UpdateFleetPortSettingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateFleetPortSettingsOutput) SetFleetId(v string) *UpdateFleetPortSettingsOutput {
+	s.FleetId = &v
+	return s
 }
 
 // Represents the input for a request action.
@@ -7372,6 +9076,36 @@ func (s *UpdateGameSessionInput) Validate() error {
 	return nil
 }
 
+// SetGameSessionId sets the GameSessionId field's value.
+func (s *UpdateGameSessionInput) SetGameSessionId(v string) *UpdateGameSessionInput {
+	s.GameSessionId = &v
+	return s
+}
+
+// SetMaximumPlayerSessionCount sets the MaximumPlayerSessionCount field's value.
+func (s *UpdateGameSessionInput) SetMaximumPlayerSessionCount(v int64) *UpdateGameSessionInput {
+	s.MaximumPlayerSessionCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateGameSessionInput) SetName(v string) *UpdateGameSessionInput {
+	s.Name = &v
+	return s
+}
+
+// SetPlayerSessionCreationPolicy sets the PlayerSessionCreationPolicy field's value.
+func (s *UpdateGameSessionInput) SetPlayerSessionCreationPolicy(v string) *UpdateGameSessionInput {
+	s.PlayerSessionCreationPolicy = &v
+	return s
+}
+
+// SetProtectionPolicy sets the ProtectionPolicy field's value.
+func (s *UpdateGameSessionInput) SetProtectionPolicy(v string) *UpdateGameSessionInput {
+	s.ProtectionPolicy = &v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateGameSessionOutput struct {
 	_ struct{} `type:"structure"`
@@ -7388,6 +9122,12 @@ func (s UpdateGameSessionOutput) String() string {
 // GoString returns the string representation
 func (s UpdateGameSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetGameSession sets the GameSession field's value.
+func (s *UpdateGameSessionOutput) SetGameSession(v *GameSession) *UpdateGameSessionOutput {
+	s.GameSession = v
+	return s
 }
 
 // Represents the input for a request action.
@@ -7441,6 +9181,18 @@ func (s *UpdateRuntimeConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetFleetId sets the FleetId field's value.
+func (s *UpdateRuntimeConfigurationInput) SetFleetId(v string) *UpdateRuntimeConfigurationInput {
+	s.FleetId = &v
+	return s
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *UpdateRuntimeConfigurationInput) SetRuntimeConfiguration(v *RuntimeConfiguration) *UpdateRuntimeConfigurationInput {
+	s.RuntimeConfiguration = v
+	return s
+}
+
 // Represents the returned data in response to a request action.
 type UpdateRuntimeConfigurationOutput struct {
 	_ struct{} `type:"structure"`
@@ -7458,6 +9210,12 @@ func (s UpdateRuntimeConfigurationOutput) String() string {
 // GoString returns the string representation
 func (s UpdateRuntimeConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetRuntimeConfiguration sets the RuntimeConfiguration field's value.
+func (s *UpdateRuntimeConfigurationOutput) SetRuntimeConfiguration(v *RuntimeConfiguration) *UpdateRuntimeConfigurationOutput {
+	s.RuntimeConfiguration = v
+	return s
 }
 
 const (

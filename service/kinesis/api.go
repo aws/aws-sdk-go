@@ -1811,6 +1811,18 @@ func (s *AddTagsToStreamInput) Validate() error {
 	return nil
 }
 
+// SetStreamName sets the StreamName field's value.
+func (s *AddTagsToStreamInput) SetStreamName(v string) *AddTagsToStreamInput {
+	s.StreamName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsToStreamInput) SetTags(v map[string]*string) *AddTagsToStreamInput {
+	s.Tags = v
+	return s
+}
+
 type AddTagsToStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1880,6 +1892,18 @@ func (s *CreateStreamInput) Validate() error {
 	return nil
 }
 
+// SetShardCount sets the ShardCount field's value.
+func (s *CreateStreamInput) SetShardCount(v int64) *CreateStreamInput {
+	s.ShardCount = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *CreateStreamInput) SetStreamName(v string) *CreateStreamInput {
+	s.StreamName = &v
+	return s
+}
+
 type CreateStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1942,6 +1966,18 @@ func (s *DecreaseStreamRetentionPeriodInput) Validate() error {
 	return nil
 }
 
+// SetRetentionPeriodHours sets the RetentionPeriodHours field's value.
+func (s *DecreaseStreamRetentionPeriodInput) SetRetentionPeriodHours(v int64) *DecreaseStreamRetentionPeriodInput {
+	s.RetentionPeriodHours = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DecreaseStreamRetentionPeriodInput) SetStreamName(v string) *DecreaseStreamRetentionPeriodInput {
+	s.StreamName = &v
+	return s
+}
+
 type DecreaseStreamRetentionPeriodOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1990,6 +2026,12 @@ func (s *DeleteStreamInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DeleteStreamInput) SetStreamName(v string) *DeleteStreamInput {
+	s.StreamName = &v
+	return s
 }
 
 type DeleteStreamOutput struct {
@@ -2054,6 +2096,24 @@ func (s *DescribeStreamInput) Validate() error {
 	return nil
 }
 
+// SetExclusiveStartShardId sets the ExclusiveStartShardId field's value.
+func (s *DescribeStreamInput) SetExclusiveStartShardId(v string) *DescribeStreamInput {
+	s.ExclusiveStartShardId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeStreamInput) SetLimit(v int64) *DescribeStreamInput {
+	s.Limit = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DescribeStreamInput) SetStreamName(v string) *DescribeStreamInput {
+	s.StreamName = &v
+	return s
+}
+
 // Represents the output for DescribeStream.
 type DescribeStreamOutput struct {
 	_ struct{} `type:"structure"`
@@ -2073,6 +2133,12 @@ func (s DescribeStreamOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStreamOutput) GoString() string {
 	return s.String()
+}
+
+// SetStreamDescription sets the StreamDescription field's value.
+func (s *DescribeStreamOutput) SetStreamDescription(v *StreamDescription) *DescribeStreamOutput {
+	s.StreamDescription = v
+	return s
 }
 
 // Represents the input for DisableEnhancedMonitoring.
@@ -2137,6 +2203,18 @@ func (s *DisableEnhancedMonitoringInput) Validate() error {
 	return nil
 }
 
+// SetShardLevelMetrics sets the ShardLevelMetrics field's value.
+func (s *DisableEnhancedMonitoringInput) SetShardLevelMetrics(v []*string) *DisableEnhancedMonitoringInput {
+	s.ShardLevelMetrics = v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *DisableEnhancedMonitoringInput) SetStreamName(v string) *DisableEnhancedMonitoringInput {
+	s.StreamName = &v
+	return s
+}
+
 // Represents the input for EnableEnhancedMonitoring.
 type EnableEnhancedMonitoringInput struct {
 	_ struct{} `type:"structure"`
@@ -2199,6 +2277,18 @@ func (s *EnableEnhancedMonitoringInput) Validate() error {
 	return nil
 }
 
+// SetShardLevelMetrics sets the ShardLevelMetrics field's value.
+func (s *EnableEnhancedMonitoringInput) SetShardLevelMetrics(v []*string) *EnableEnhancedMonitoringInput {
+	s.ShardLevelMetrics = v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *EnableEnhancedMonitoringInput) SetStreamName(v string) *EnableEnhancedMonitoringInput {
+	s.StreamName = &v
+	return s
+}
+
 // Represents enhanced metrics types.
 type EnhancedMetrics struct {
 	_ struct{} `type:"structure"`
@@ -2232,6 +2322,12 @@ func (s EnhancedMetrics) GoString() string {
 	return s.String()
 }
 
+// SetShardLevelMetrics sets the ShardLevelMetrics field's value.
+func (s *EnhancedMetrics) SetShardLevelMetrics(v []*string) *EnhancedMetrics {
+	s.ShardLevelMetrics = v
+	return s
+}
+
 // Represents the output for EnableEnhancedMonitoring and DisableEnhancedMonitoring.
 type EnhancedMonitoringOutput struct {
 	_ struct{} `type:"structure"`
@@ -2256,6 +2352,24 @@ func (s EnhancedMonitoringOutput) String() string {
 // GoString returns the string representation
 func (s EnhancedMonitoringOutput) GoString() string {
 	return s.String()
+}
+
+// SetCurrentShardLevelMetrics sets the CurrentShardLevelMetrics field's value.
+func (s *EnhancedMonitoringOutput) SetCurrentShardLevelMetrics(v []*string) *EnhancedMonitoringOutput {
+	s.CurrentShardLevelMetrics = v
+	return s
+}
+
+// SetDesiredShardLevelMetrics sets the DesiredShardLevelMetrics field's value.
+func (s *EnhancedMonitoringOutput) SetDesiredShardLevelMetrics(v []*string) *EnhancedMonitoringOutput {
+	s.DesiredShardLevelMetrics = v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *EnhancedMonitoringOutput) SetStreamName(v string) *EnhancedMonitoringOutput {
+	s.StreamName = &v
+	return s
 }
 
 // Represents the input for GetRecords.
@@ -2303,6 +2417,18 @@ func (s *GetRecordsInput) Validate() error {
 	return nil
 }
 
+// SetLimit sets the Limit field's value.
+func (s *GetRecordsInput) SetLimit(v int64) *GetRecordsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetShardIterator sets the ShardIterator field's value.
+func (s *GetRecordsInput) SetShardIterator(v string) *GetRecordsInput {
+	s.ShardIterator = &v
+	return s
+}
+
 // Represents the output for GetRecords.
 type GetRecordsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2332,6 +2458,24 @@ func (s GetRecordsOutput) String() string {
 // GoString returns the string representation
 func (s GetRecordsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMillisBehindLatest sets the MillisBehindLatest field's value.
+func (s *GetRecordsOutput) SetMillisBehindLatest(v int64) *GetRecordsOutput {
+	s.MillisBehindLatest = &v
+	return s
+}
+
+// SetNextShardIterator sets the NextShardIterator field's value.
+func (s *GetRecordsOutput) SetNextShardIterator(v string) *GetRecordsOutput {
+	s.NextShardIterator = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *GetRecordsOutput) SetRecords(v []*Record) *GetRecordsOutput {
+	s.Records = v
+	return s
 }
 
 // Represents the input for GetShardIterator.
@@ -2417,6 +2561,36 @@ func (s *GetShardIteratorInput) Validate() error {
 	return nil
 }
 
+// SetShardId sets the ShardId field's value.
+func (s *GetShardIteratorInput) SetShardId(v string) *GetShardIteratorInput {
+	s.ShardId = &v
+	return s
+}
+
+// SetShardIteratorType sets the ShardIteratorType field's value.
+func (s *GetShardIteratorInput) SetShardIteratorType(v string) *GetShardIteratorInput {
+	s.ShardIteratorType = &v
+	return s
+}
+
+// SetStartingSequenceNumber sets the StartingSequenceNumber field's value.
+func (s *GetShardIteratorInput) SetStartingSequenceNumber(v string) *GetShardIteratorInput {
+	s.StartingSequenceNumber = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *GetShardIteratorInput) SetStreamName(v string) *GetShardIteratorInput {
+	s.StreamName = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *GetShardIteratorInput) SetTimestamp(v time.Time) *GetShardIteratorInput {
+	s.Timestamp = &v
+	return s
+}
+
 // Represents the output for GetShardIterator.
 type GetShardIteratorOutput struct {
 	_ struct{} `type:"structure"`
@@ -2435,6 +2609,12 @@ func (s GetShardIteratorOutput) String() string {
 // GoString returns the string representation
 func (s GetShardIteratorOutput) GoString() string {
 	return s.String()
+}
+
+// SetShardIterator sets the ShardIterator field's value.
+func (s *GetShardIteratorOutput) SetShardIterator(v string) *GetShardIteratorOutput {
+	s.ShardIterator = &v
+	return s
 }
 
 // The range of possible hash key values for the shard, which is a set of ordered
@@ -2461,6 +2641,18 @@ func (s HashKeyRange) String() string {
 // GoString returns the string representation
 func (s HashKeyRange) GoString() string {
 	return s.String()
+}
+
+// SetEndingHashKey sets the EndingHashKey field's value.
+func (s *HashKeyRange) SetEndingHashKey(v string) *HashKeyRange {
+	s.EndingHashKey = &v
+	return s
+}
+
+// SetStartingHashKey sets the StartingHashKey field's value.
+func (s *HashKeyRange) SetStartingHashKey(v string) *HashKeyRange {
+	s.StartingHashKey = &v
+	return s
 }
 
 // Represents the input for IncreaseStreamRetentionPeriod.
@@ -2509,6 +2701,18 @@ func (s *IncreaseStreamRetentionPeriodInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRetentionPeriodHours sets the RetentionPeriodHours field's value.
+func (s *IncreaseStreamRetentionPeriodInput) SetRetentionPeriodHours(v int64) *IncreaseStreamRetentionPeriodInput {
+	s.RetentionPeriodHours = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *IncreaseStreamRetentionPeriodInput) SetStreamName(v string) *IncreaseStreamRetentionPeriodInput {
+	s.StreamName = &v
+	return s
 }
 
 type IncreaseStreamRetentionPeriodOutput struct {
@@ -2562,6 +2766,18 @@ func (s *ListStreamsInput) Validate() error {
 	return nil
 }
 
+// SetExclusiveStartStreamName sets the ExclusiveStartStreamName field's value.
+func (s *ListStreamsInput) SetExclusiveStartStreamName(v string) *ListStreamsInput {
+	s.ExclusiveStartStreamName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListStreamsInput) SetLimit(v int64) *ListStreamsInput {
+	s.Limit = &v
+	return s
+}
+
 // Represents the output for ListStreams.
 type ListStreamsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2586,6 +2802,18 @@ func (s ListStreamsOutput) String() string {
 // GoString returns the string representation
 func (s ListStreamsOutput) GoString() string {
 	return s.String()
+}
+
+// SetHasMoreStreams sets the HasMoreStreams field's value.
+func (s *ListStreamsOutput) SetHasMoreStreams(v bool) *ListStreamsOutput {
+	s.HasMoreStreams = &v
+	return s
+}
+
+// SetStreamNames sets the StreamNames field's value.
+func (s *ListStreamsOutput) SetStreamNames(v []*string) *ListStreamsOutput {
+	s.StreamNames = v
+	return s
 }
 
 // Represents the input for ListTagsForStream.
@@ -2639,6 +2867,24 @@ func (s *ListTagsForStreamInput) Validate() error {
 	return nil
 }
 
+// SetExclusiveStartTagKey sets the ExclusiveStartTagKey field's value.
+func (s *ListTagsForStreamInput) SetExclusiveStartTagKey(v string) *ListTagsForStreamInput {
+	s.ExclusiveStartTagKey = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListTagsForStreamInput) SetLimit(v int64) *ListTagsForStreamInput {
+	s.Limit = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *ListTagsForStreamInput) SetStreamName(v string) *ListTagsForStreamInput {
+	s.StreamName = &v
+	return s
+}
+
 // Represents the output for ListTagsForStream.
 type ListTagsForStreamOutput struct {
 	_ struct{} `type:"structure"`
@@ -2664,6 +2910,18 @@ func (s ListTagsForStreamOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForStreamOutput) GoString() string {
 	return s.String()
+}
+
+// SetHasMoreTags sets the HasMoreTags field's value.
+func (s *ListTagsForStreamOutput) SetHasMoreTags(v bool) *ListTagsForStreamOutput {
+	s.HasMoreTags = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForStreamOutput) SetTags(v []*Tag) *ListTagsForStreamOutput {
+	s.Tags = v
+	return s
 }
 
 // Represents the input for MergeShards.
@@ -2722,6 +2980,24 @@ func (s *MergeShardsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdjacentShardToMerge sets the AdjacentShardToMerge field's value.
+func (s *MergeShardsInput) SetAdjacentShardToMerge(v string) *MergeShardsInput {
+	s.AdjacentShardToMerge = &v
+	return s
+}
+
+// SetShardToMerge sets the ShardToMerge field's value.
+func (s *MergeShardsInput) SetShardToMerge(v string) *MergeShardsInput {
+	s.ShardToMerge = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *MergeShardsInput) SetStreamName(v string) *MergeShardsInput {
+	s.StreamName = &v
+	return s
 }
 
 type MergeShardsOutput struct {
@@ -2816,6 +3092,36 @@ func (s *PutRecordInput) Validate() error {
 	return nil
 }
 
+// SetData sets the Data field's value.
+func (s *PutRecordInput) SetData(v []byte) *PutRecordInput {
+	s.Data = v
+	return s
+}
+
+// SetExplicitHashKey sets the ExplicitHashKey field's value.
+func (s *PutRecordInput) SetExplicitHashKey(v string) *PutRecordInput {
+	s.ExplicitHashKey = &v
+	return s
+}
+
+// SetPartitionKey sets the PartitionKey field's value.
+func (s *PutRecordInput) SetPartitionKey(v string) *PutRecordInput {
+	s.PartitionKey = &v
+	return s
+}
+
+// SetSequenceNumberForOrdering sets the SequenceNumberForOrdering field's value.
+func (s *PutRecordInput) SetSequenceNumberForOrdering(v string) *PutRecordInput {
+	s.SequenceNumberForOrdering = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *PutRecordInput) SetStreamName(v string) *PutRecordInput {
+	s.StreamName = &v
+	return s
+}
+
 // Represents the output for PutRecord.
 type PutRecordOutput struct {
 	_ struct{} `type:"structure"`
@@ -2842,6 +3148,18 @@ func (s PutRecordOutput) String() string {
 // GoString returns the string representation
 func (s PutRecordOutput) GoString() string {
 	return s.String()
+}
+
+// SetSequenceNumber sets the SequenceNumber field's value.
+func (s *PutRecordOutput) SetSequenceNumber(v string) *PutRecordOutput {
+	s.SequenceNumber = &v
+	return s
+}
+
+// SetShardId sets the ShardId field's value.
+func (s *PutRecordOutput) SetShardId(v string) *PutRecordOutput {
+	s.ShardId = &v
+	return s
 }
 
 // A PutRecords request.
@@ -2901,6 +3219,18 @@ func (s *PutRecordsInput) Validate() error {
 	return nil
 }
 
+// SetRecords sets the Records field's value.
+func (s *PutRecordsInput) SetRecords(v []*PutRecordsRequestEntry) *PutRecordsInput {
+	s.Records = v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *PutRecordsInput) SetStreamName(v string) *PutRecordsInput {
+	s.StreamName = &v
+	return s
+}
+
 // PutRecords results.
 type PutRecordsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2926,6 +3256,18 @@ func (s PutRecordsOutput) String() string {
 // GoString returns the string representation
 func (s PutRecordsOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailedRecordCount sets the FailedRecordCount field's value.
+func (s *PutRecordsOutput) SetFailedRecordCount(v int64) *PutRecordsOutput {
+	s.FailedRecordCount = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *PutRecordsOutput) SetRecords(v []*PutRecordsResultEntry) *PutRecordsOutput {
+	s.Records = v
+	return s
 }
 
 // Represents the output for PutRecords.
@@ -2988,6 +3330,24 @@ func (s *PutRecordsRequestEntry) Validate() error {
 	return nil
 }
 
+// SetData sets the Data field's value.
+func (s *PutRecordsRequestEntry) SetData(v []byte) *PutRecordsRequestEntry {
+	s.Data = v
+	return s
+}
+
+// SetExplicitHashKey sets the ExplicitHashKey field's value.
+func (s *PutRecordsRequestEntry) SetExplicitHashKey(v string) *PutRecordsRequestEntry {
+	s.ExplicitHashKey = &v
+	return s
+}
+
+// SetPartitionKey sets the PartitionKey field's value.
+func (s *PutRecordsRequestEntry) SetPartitionKey(v string) *PutRecordsRequestEntry {
+	s.PartitionKey = &v
+	return s
+}
+
 // Represents the result of an individual record from a PutRecords request.
 // A record that is successfully added to a stream includes SequenceNumber and
 // ShardId in the result. A record that fails to be added to the stream includes
@@ -3020,6 +3380,30 @@ func (s PutRecordsResultEntry) String() string {
 // GoString returns the string representation
 func (s PutRecordsResultEntry) GoString() string {
 	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *PutRecordsResultEntry) SetErrorCode(v string) *PutRecordsResultEntry {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *PutRecordsResultEntry) SetErrorMessage(v string) *PutRecordsResultEntry {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetSequenceNumber sets the SequenceNumber field's value.
+func (s *PutRecordsResultEntry) SetSequenceNumber(v string) *PutRecordsResultEntry {
+	s.SequenceNumber = &v
+	return s
+}
+
+// SetShardId sets the ShardId field's value.
+func (s *PutRecordsResultEntry) SetShardId(v string) *PutRecordsResultEntry {
+	s.ShardId = &v
+	return s
 }
 
 // The unit of data of the Amazon Kinesis stream, which is composed of a sequence
@@ -3060,6 +3444,30 @@ func (s Record) String() string {
 // GoString returns the string representation
 func (s Record) GoString() string {
 	return s.String()
+}
+
+// SetApproximateArrivalTimestamp sets the ApproximateArrivalTimestamp field's value.
+func (s *Record) SetApproximateArrivalTimestamp(v time.Time) *Record {
+	s.ApproximateArrivalTimestamp = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *Record) SetData(v []byte) *Record {
+	s.Data = v
+	return s
+}
+
+// SetPartitionKey sets the PartitionKey field's value.
+func (s *Record) SetPartitionKey(v string) *Record {
+	s.PartitionKey = &v
+	return s
+}
+
+// SetSequenceNumber sets the SequenceNumber field's value.
+func (s *Record) SetSequenceNumber(v string) *Record {
+	s.SequenceNumber = &v
+	return s
 }
 
 // Represents the input for RemoveTagsFromStream.
@@ -3109,6 +3517,18 @@ func (s *RemoveTagsFromStreamInput) Validate() error {
 	return nil
 }
 
+// SetStreamName sets the StreamName field's value.
+func (s *RemoveTagsFromStreamInput) SetStreamName(v string) *RemoveTagsFromStreamInput {
+	s.StreamName = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *RemoveTagsFromStreamInput) SetTagKeys(v []*string) *RemoveTagsFromStreamInput {
+	s.TagKeys = v
+	return s
+}
+
 type RemoveTagsFromStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3147,6 +3567,18 @@ func (s SequenceNumberRange) GoString() string {
 	return s.String()
 }
 
+// SetEndingSequenceNumber sets the EndingSequenceNumber field's value.
+func (s *SequenceNumberRange) SetEndingSequenceNumber(v string) *SequenceNumberRange {
+	s.EndingSequenceNumber = &v
+	return s
+}
+
+// SetStartingSequenceNumber sets the StartingSequenceNumber field's value.
+func (s *SequenceNumberRange) SetStartingSequenceNumber(v string) *SequenceNumberRange {
+	s.StartingSequenceNumber = &v
+	return s
+}
+
 // A uniquely identified group of data records in an Amazon Kinesis stream.
 type Shard struct {
 	_ struct{} `type:"structure"`
@@ -3182,6 +3614,36 @@ func (s Shard) String() string {
 // GoString returns the string representation
 func (s Shard) GoString() string {
 	return s.String()
+}
+
+// SetAdjacentParentShardId sets the AdjacentParentShardId field's value.
+func (s *Shard) SetAdjacentParentShardId(v string) *Shard {
+	s.AdjacentParentShardId = &v
+	return s
+}
+
+// SetHashKeyRange sets the HashKeyRange field's value.
+func (s *Shard) SetHashKeyRange(v *HashKeyRange) *Shard {
+	s.HashKeyRange = v
+	return s
+}
+
+// SetParentShardId sets the ParentShardId field's value.
+func (s *Shard) SetParentShardId(v string) *Shard {
+	s.ParentShardId = &v
+	return s
+}
+
+// SetSequenceNumberRange sets the SequenceNumberRange field's value.
+func (s *Shard) SetSequenceNumberRange(v *SequenceNumberRange) *Shard {
+	s.SequenceNumberRange = v
+	return s
+}
+
+// SetShardId sets the ShardId field's value.
+func (s *Shard) SetShardId(v string) *Shard {
+	s.ShardId = &v
+	return s
 }
 
 // Represents the input for SplitShard.
@@ -3243,6 +3705,24 @@ func (s *SplitShardInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetNewStartingHashKey sets the NewStartingHashKey field's value.
+func (s *SplitShardInput) SetNewStartingHashKey(v string) *SplitShardInput {
+	s.NewStartingHashKey = &v
+	return s
+}
+
+// SetShardToSplit sets the ShardToSplit field's value.
+func (s *SplitShardInput) SetShardToSplit(v string) *SplitShardInput {
+	s.ShardToSplit = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *SplitShardInput) SetStreamName(v string) *SplitShardInput {
+	s.StreamName = &v
+	return s
 }
 
 type SplitShardOutput struct {
@@ -3321,6 +3801,48 @@ func (s StreamDescription) GoString() string {
 	return s.String()
 }
 
+// SetEnhancedMonitoring sets the EnhancedMonitoring field's value.
+func (s *StreamDescription) SetEnhancedMonitoring(v []*EnhancedMetrics) *StreamDescription {
+	s.EnhancedMonitoring = v
+	return s
+}
+
+// SetHasMoreShards sets the HasMoreShards field's value.
+func (s *StreamDescription) SetHasMoreShards(v bool) *StreamDescription {
+	s.HasMoreShards = &v
+	return s
+}
+
+// SetRetentionPeriodHours sets the RetentionPeriodHours field's value.
+func (s *StreamDescription) SetRetentionPeriodHours(v int64) *StreamDescription {
+	s.RetentionPeriodHours = &v
+	return s
+}
+
+// SetShards sets the Shards field's value.
+func (s *StreamDescription) SetShards(v []*Shard) *StreamDescription {
+	s.Shards = v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *StreamDescription) SetStreamARN(v string) *StreamDescription {
+	s.StreamARN = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *StreamDescription) SetStreamName(v string) *StreamDescription {
+	s.StreamName = &v
+	return s
+}
+
+// SetStreamStatus sets the StreamStatus field's value.
+func (s *StreamDescription) SetStreamStatus(v string) *StreamDescription {
+	s.StreamStatus = &v
+	return s
+}
+
 // Metadata assigned to the stream, consisting of a key-value pair.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -3345,6 +3867,18 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 const (

@@ -179,6 +179,54 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	TrueBool *bool `type:"boolean"`
 }
 
+// SetChar sets the Char field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetChar(v string) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Char = &v
+	return s
+}
+
+// SetDouble sets the Double field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetDouble(v float64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Double = &v
+	return s
+}
+
+// SetFalseBool sets the FalseBool field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetFalseBool(v bool) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.FalseBool = &v
+	return s
+}
+
+// SetFloat sets the Float field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetFloat(v float64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Float = &v
+	return s
+}
+
+// SetLong sets the Long field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetLong(v int64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Long = &v
+	return s
+}
+
+// SetNum sets the Num field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetNum(v int64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Num = &v
+	return s
+}
+
+// SetStr sets the Str field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetStr(v string) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Str = &v
+	return s
+}
+
+// SetTrueBool sets the TrueBool field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetTrueBool(v bool) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.TrueBool = &v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService2ProtocolTest struct {
@@ -298,6 +346,12 @@ type OutputService2TestShapeBlobContainer struct {
 	Foo []byte `locationName:"foo" type:"blob"`
 }
 
+// SetFoo sets the Foo field's value.
+func (s *OutputService2TestShapeBlobContainer) SetFoo(v []byte) *OutputService2TestShapeBlobContainer {
+	s.Foo = v
+	return s
+}
+
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 }
@@ -309,6 +363,18 @@ type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
 	BlobMember []byte `type:"blob"`
 
 	StructMember *OutputService2TestShapeBlobContainer `type:"structure"`
+}
+
+// SetBlobMember sets the BlobMember field's value.
+func (s *OutputService2TestShapeOutputService2TestCaseOperation1Output) SetBlobMember(v []byte) *OutputService2TestShapeOutputService2TestCaseOperation1Output {
+	s.BlobMember = v
+	return s
+}
+
+// SetStructMember sets the StructMember field's value.
+func (s *OutputService2TestShapeOutputService2TestCaseOperation1Output) SetStructMember(v *OutputService2TestShapeBlobContainer) *OutputService2TestShapeOutputService2TestCaseOperation1Output {
+	s.StructMember = v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -435,10 +501,28 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 	TimeMember *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
+// SetStructMember sets the StructMember field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetStructMember(v *OutputService3TestShapeTimeContainer) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+	s.StructMember = v
+	return s
+}
+
+// SetTimeMember sets the TimeMember field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetTimeMember(v time.Time) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+	s.TimeMember = &v
+	return s
+}
+
 type OutputService3TestShapeTimeContainer struct {
 	_ struct{} `type:"structure"`
 
 	Foo *time.Time `locationName:"foo" type:"timestamp" timestampFormat:"unix"`
+}
+
+// SetFoo sets the Foo field's value.
+func (s *OutputService3TestShapeTimeContainer) SetFoo(v time.Time) *OutputService3TestShapeTimeContainer {
+	s.Foo = &v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -627,6 +711,24 @@ type OutputService4TestShapeOutputShape struct {
 	ListMemberStruct []*OutputService4TestShapeStructType `type:"list"`
 }
 
+// SetListMember sets the ListMember field's value.
+func (s *OutputService4TestShapeOutputShape) SetListMember(v []*string) *OutputService4TestShapeOutputShape {
+	s.ListMember = v
+	return s
+}
+
+// SetListMemberMap sets the ListMemberMap field's value.
+func (s *OutputService4TestShapeOutputShape) SetListMemberMap(v []map[string]*string) *OutputService4TestShapeOutputShape {
+	s.ListMemberMap = v
+	return s
+}
+
+// SetListMemberStruct sets the ListMemberStruct field's value.
+func (s *OutputService4TestShapeOutputShape) SetListMemberStruct(v []*OutputService4TestShapeStructType) *OutputService4TestShapeOutputShape {
+	s.ListMemberStruct = v
+	return s
+}
+
 type OutputService4TestShapeStructType struct {
 	_ struct{} `type:"structure"`
 }
@@ -753,6 +855,12 @@ type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
 	MapMember map[string][]*int64 `type:"map"`
 }
 
+// SetMapMember sets the MapMember field's value.
+func (s *OutputService5TestShapeOutputService5TestCaseOperation1Output) SetMapMember(v map[string][]*int64) *OutputService5TestShapeOutputService5TestCaseOperation1Output {
+	s.MapMember = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService6ProtocolTest struct {
@@ -873,6 +981,12 @@ type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
 	StrType *string `type:"string"`
+}
+
+// SetStrType sets the StrType field's value.
+func (s *OutputService6TestShapeOutputService6TestCaseOperation1Output) SetStrType(v string) *OutputService6TestShapeOutputService6TestCaseOperation1Output {
+	s.StrType = &v
+	return s
 }
 
 //
