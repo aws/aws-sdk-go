@@ -391,6 +391,12 @@ func (s *DeleteThingShadowInput) Validate() error {
 	return nil
 }
 
+// SetThingName sets the ThingName field's value.
+func (s *DeleteThingShadowInput) SetThingName(v string) *DeleteThingShadowInput {
+	s.ThingName = &v
+	return s
+}
+
 // The output from the DeleteThingShadow operation.
 type DeleteThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
@@ -409,6 +415,12 @@ func (s DeleteThingShadowOutput) String() string {
 // GoString returns the string representation
 func (s DeleteThingShadowOutput) GoString() string {
 	return s.String()
+}
+
+// SetPayload sets the Payload field's value.
+func (s *DeleteThingShadowOutput) SetPayload(v []byte) *DeleteThingShadowOutput {
+	s.Payload = v
+	return s
 }
 
 // The input for the GetThingShadow operation.
@@ -447,6 +459,12 @@ func (s *GetThingShadowInput) Validate() error {
 	return nil
 }
 
+// SetThingName sets the ThingName field's value.
+func (s *GetThingShadowInput) SetThingName(v string) *GetThingShadowInput {
+	s.ThingName = &v
+	return s
+}
+
 // The output from the GetThingShadow operation.
 type GetThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
@@ -463,6 +481,12 @@ func (s GetThingShadowOutput) String() string {
 // GoString returns the string representation
 func (s GetThingShadowOutput) GoString() string {
 	return s.String()
+}
+
+// SetPayload sets the Payload field's value.
+func (s *GetThingShadowOutput) SetPayload(v []byte) *GetThingShadowOutput {
+	s.Payload = v
+	return s
 }
 
 // The input for the Publish operation.
@@ -502,6 +526,24 @@ func (s *PublishInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPayload sets the Payload field's value.
+func (s *PublishInput) SetPayload(v []byte) *PublishInput {
+	s.Payload = v
+	return s
+}
+
+// SetQos sets the Qos field's value.
+func (s *PublishInput) SetQos(v int64) *PublishInput {
+	s.Qos = &v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *PublishInput) SetTopic(v string) *PublishInput {
+	s.Topic = &v
+	return s
 }
 
 type PublishOutput struct {
@@ -562,6 +604,18 @@ func (s *UpdateThingShadowInput) Validate() error {
 	return nil
 }
 
+// SetPayload sets the Payload field's value.
+func (s *UpdateThingShadowInput) SetPayload(v []byte) *UpdateThingShadowInput {
+	s.Payload = v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *UpdateThingShadowInput) SetThingName(v string) *UpdateThingShadowInput {
+	s.ThingName = &v
+	return s
+}
+
 // The output from the UpdateThingShadow operation.
 type UpdateThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
@@ -578,4 +632,10 @@ func (s UpdateThingShadowOutput) String() string {
 // GoString returns the string representation
 func (s UpdateThingShadowOutput) GoString() string {
 	return s.String()
+}
+
+// SetPayload sets the Payload field's value.
+func (s *UpdateThingShadowOutput) SetPayload(v []byte) *UpdateThingShadowOutput {
+	s.Payload = v
+	return s
 }

@@ -1646,6 +1646,48 @@ func (s *Artwork) Validate() error {
 	return nil
 }
 
+// SetAlbumArtFormat sets the AlbumArtFormat field's value.
+func (s *Artwork) SetAlbumArtFormat(v string) *Artwork {
+	s.AlbumArtFormat = &v
+	return s
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *Artwork) SetEncryption(v *Encryption) *Artwork {
+	s.Encryption = v
+	return s
+}
+
+// SetInputKey sets the InputKey field's value.
+func (s *Artwork) SetInputKey(v string) *Artwork {
+	s.InputKey = &v
+	return s
+}
+
+// SetMaxHeight sets the MaxHeight field's value.
+func (s *Artwork) SetMaxHeight(v string) *Artwork {
+	s.MaxHeight = &v
+	return s
+}
+
+// SetMaxWidth sets the MaxWidth field's value.
+func (s *Artwork) SetMaxWidth(v string) *Artwork {
+	s.MaxWidth = &v
+	return s
+}
+
+// SetPaddingPolicy sets the PaddingPolicy field's value.
+func (s *Artwork) SetPaddingPolicy(v string) *Artwork {
+	s.PaddingPolicy = &v
+	return s
+}
+
+// SetSizingPolicy sets the SizingPolicy field's value.
+func (s *Artwork) SetSizingPolicy(v string) *Artwork {
+	s.SizingPolicy = &v
+	return s
+}
+
 // Options associated with your audio codec.
 type AudioCodecOptions struct {
 	_ struct{} `type:"structure"`
@@ -1709,6 +1751,30 @@ func (s AudioCodecOptions) String() string {
 // GoString returns the string representation
 func (s AudioCodecOptions) GoString() string {
 	return s.String()
+}
+
+// SetBitDepth sets the BitDepth field's value.
+func (s *AudioCodecOptions) SetBitDepth(v string) *AudioCodecOptions {
+	s.BitDepth = &v
+	return s
+}
+
+// SetBitOrder sets the BitOrder field's value.
+func (s *AudioCodecOptions) SetBitOrder(v string) *AudioCodecOptions {
+	s.BitOrder = &v
+	return s
+}
+
+// SetProfile sets the Profile field's value.
+func (s *AudioCodecOptions) SetProfile(v string) *AudioCodecOptions {
+	s.Profile = &v
+	return s
+}
+
+// SetSigned sets the Signed field's value.
+func (s *AudioCodecOptions) SetSigned(v string) *AudioCodecOptions {
+	s.Signed = &v
+	return s
 }
 
 // Parameters required for transcoding audio.
@@ -1862,6 +1928,42 @@ func (s AudioParameters) GoString() string {
 	return s.String()
 }
 
+// SetAudioPackingMode sets the AudioPackingMode field's value.
+func (s *AudioParameters) SetAudioPackingMode(v string) *AudioParameters {
+	s.AudioPackingMode = &v
+	return s
+}
+
+// SetBitRate sets the BitRate field's value.
+func (s *AudioParameters) SetBitRate(v string) *AudioParameters {
+	s.BitRate = &v
+	return s
+}
+
+// SetChannels sets the Channels field's value.
+func (s *AudioParameters) SetChannels(v string) *AudioParameters {
+	s.Channels = &v
+	return s
+}
+
+// SetCodec sets the Codec field's value.
+func (s *AudioParameters) SetCodec(v string) *AudioParameters {
+	s.Codec = &v
+	return s
+}
+
+// SetCodecOptions sets the CodecOptions field's value.
+func (s *AudioParameters) SetCodecOptions(v *AudioCodecOptions) *AudioParameters {
+	s.CodecOptions = v
+	return s
+}
+
+// SetSampleRate sets the SampleRate field's value.
+func (s *AudioParameters) SetSampleRate(v string) *AudioParameters {
+	s.SampleRate = &v
+	return s
+}
+
 // The CancelJobRequest structure.
 type CancelJobInput struct {
 	_ struct{} `type:"structure"`
@@ -1896,6 +1998,12 @@ func (s *CancelJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *CancelJobInput) SetId(v string) *CancelJobInput {
+	s.Id = &v
+	return s
 }
 
 // The response body contains a JSON object. If the job is successfully canceled,
@@ -1978,6 +2086,24 @@ func (s CaptionFormat) GoString() string {
 	return s.String()
 }
 
+// SetEncryption sets the Encryption field's value.
+func (s *CaptionFormat) SetEncryption(v *Encryption) *CaptionFormat {
+	s.Encryption = v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *CaptionFormat) SetFormat(v string) *CaptionFormat {
+	s.Format = &v
+	return s
+}
+
+// SetPattern sets the Pattern field's value.
+func (s *CaptionFormat) SetPattern(v string) *CaptionFormat {
+	s.Pattern = &v
+	return s
+}
+
 // A source file for the input sidecar captions used during the transcoding
 // process.
 type CaptionSource struct {
@@ -2044,6 +2170,36 @@ func (s *CaptionSource) Validate() error {
 	return nil
 }
 
+// SetEncryption sets the Encryption field's value.
+func (s *CaptionSource) SetEncryption(v *Encryption) *CaptionSource {
+	s.Encryption = v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *CaptionSource) SetKey(v string) *CaptionSource {
+	s.Key = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *CaptionSource) SetLabel(v string) *CaptionSource {
+	s.Label = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *CaptionSource) SetLanguage(v string) *CaptionSource {
+	s.Language = &v
+	return s
+}
+
+// SetTimeOffset sets the TimeOffset field's value.
+func (s *CaptionSource) SetTimeOffset(v string) *CaptionSource {
+	s.TimeOffset = &v
+	return s
+}
+
 // The captions to be created, if any.
 type Captions struct {
 	_ struct{} `type:"structure"`
@@ -2108,6 +2264,24 @@ func (s *Captions) Validate() error {
 	return nil
 }
 
+// SetCaptionFormats sets the CaptionFormats field's value.
+func (s *Captions) SetCaptionFormats(v []*CaptionFormat) *Captions {
+	s.CaptionFormats = v
+	return s
+}
+
+// SetCaptionSources sets the CaptionSources field's value.
+func (s *Captions) SetCaptionSources(v []*CaptionSource) *Captions {
+	s.CaptionSources = v
+	return s
+}
+
+// SetMergePolicy sets the MergePolicy field's value.
+func (s *Captions) SetMergePolicy(v string) *Captions {
+	s.MergePolicy = &v
+	return s
+}
+
 // Settings for one clip in a composition. All jobs in a playlist must have
 // the same clip settings.
 type Clip struct {
@@ -2125,6 +2299,12 @@ func (s Clip) String() string {
 // GoString returns the string representation
 func (s Clip) GoString() string {
 	return s.String()
+}
+
+// SetTimeSpan sets the TimeSpan field's value.
+func (s *Clip) SetTimeSpan(v *TimeSpan) *Clip {
+	s.TimeSpan = v
+	return s
 }
 
 // The CreateJobRequest structure.
@@ -2229,6 +2409,48 @@ func (s *CreateJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInput sets the Input field's value.
+func (s *CreateJobInput) SetInput(v *JobInput) *CreateJobInput {
+	s.Input = v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *CreateJobInput) SetOutput(v *CreateJobOutput) *CreateJobInput {
+	s.Output = v
+	return s
+}
+
+// SetOutputKeyPrefix sets the OutputKeyPrefix field's value.
+func (s *CreateJobInput) SetOutputKeyPrefix(v string) *CreateJobInput {
+	s.OutputKeyPrefix = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *CreateJobInput) SetOutputs(v []*CreateJobOutput) *CreateJobInput {
+	s.Outputs = v
+	return s
+}
+
+// SetPipelineId sets the PipelineId field's value.
+func (s *CreateJobInput) SetPipelineId(v string) *CreateJobInput {
+	s.PipelineId = &v
+	return s
+}
+
+// SetPlaylists sets the Playlists field's value.
+func (s *CreateJobInput) SetPlaylists(v []*CreateJobPlaylist) *CreateJobInput {
+	s.Playlists = v
+	return s
+}
+
+// SetUserMetadata sets the UserMetadata field's value.
+func (s *CreateJobInput) SetUserMetadata(v map[string]*string) *CreateJobInput {
+	s.UserMetadata = v
+	return s
 }
 
 // The CreateJobOutput structure.
@@ -2418,6 +2640,72 @@ func (s *CreateJobOutput) Validate() error {
 	return nil
 }
 
+// SetAlbumArt sets the AlbumArt field's value.
+func (s *CreateJobOutput) SetAlbumArt(v *JobAlbumArt) *CreateJobOutput {
+	s.AlbumArt = v
+	return s
+}
+
+// SetCaptions sets the Captions field's value.
+func (s *CreateJobOutput) SetCaptions(v *Captions) *CreateJobOutput {
+	s.Captions = v
+	return s
+}
+
+// SetComposition sets the Composition field's value.
+func (s *CreateJobOutput) SetComposition(v []*Clip) *CreateJobOutput {
+	s.Composition = v
+	return s
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *CreateJobOutput) SetEncryption(v *Encryption) *CreateJobOutput {
+	s.Encryption = v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *CreateJobOutput) SetKey(v string) *CreateJobOutput {
+	s.Key = &v
+	return s
+}
+
+// SetPresetId sets the PresetId field's value.
+func (s *CreateJobOutput) SetPresetId(v string) *CreateJobOutput {
+	s.PresetId = &v
+	return s
+}
+
+// SetRotate sets the Rotate field's value.
+func (s *CreateJobOutput) SetRotate(v string) *CreateJobOutput {
+	s.Rotate = &v
+	return s
+}
+
+// SetSegmentDuration sets the SegmentDuration field's value.
+func (s *CreateJobOutput) SetSegmentDuration(v string) *CreateJobOutput {
+	s.SegmentDuration = &v
+	return s
+}
+
+// SetThumbnailEncryption sets the ThumbnailEncryption field's value.
+func (s *CreateJobOutput) SetThumbnailEncryption(v *Encryption) *CreateJobOutput {
+	s.ThumbnailEncryption = v
+	return s
+}
+
+// SetThumbnailPattern sets the ThumbnailPattern field's value.
+func (s *CreateJobOutput) SetThumbnailPattern(v string) *CreateJobOutput {
+	s.ThumbnailPattern = &v
+	return s
+}
+
+// SetWatermarks sets the Watermarks field's value.
+func (s *CreateJobOutput) SetWatermarks(v []*JobWatermark) *CreateJobOutput {
+	s.Watermarks = v
+	return s
+}
+
 // Information about the master playlist.
 type CreateJobPlaylist struct {
 	_ struct{} `type:"structure"`
@@ -2513,6 +2801,36 @@ func (s *CreateJobPlaylist) Validate() error {
 	return nil
 }
 
+// SetFormat sets the Format field's value.
+func (s *CreateJobPlaylist) SetFormat(v string) *CreateJobPlaylist {
+	s.Format = &v
+	return s
+}
+
+// SetHlsContentProtection sets the HlsContentProtection field's value.
+func (s *CreateJobPlaylist) SetHlsContentProtection(v *HlsContentProtection) *CreateJobPlaylist {
+	s.HlsContentProtection = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateJobPlaylist) SetName(v string) *CreateJobPlaylist {
+	s.Name = &v
+	return s
+}
+
+// SetOutputKeys sets the OutputKeys field's value.
+func (s *CreateJobPlaylist) SetOutputKeys(v []*string) *CreateJobPlaylist {
+	s.OutputKeys = v
+	return s
+}
+
+// SetPlayReadyDrm sets the PlayReadyDrm field's value.
+func (s *CreateJobPlaylist) SetPlayReadyDrm(v *PlayReadyDrm) *CreateJobPlaylist {
+	s.PlayReadyDrm = v
+	return s
+}
+
 // The CreateJobResponse structure.
 type CreateJobResponse struct {
 	_ struct{} `type:"structure"`
@@ -2530,6 +2848,12 @@ func (s CreateJobResponse) String() string {
 // GoString returns the string representation
 func (s CreateJobResponse) GoString() string {
 	return s.String()
+}
+
+// SetJob sets the Job field's value.
+func (s *CreateJobResponse) SetJob(v *Job) *CreateJobResponse {
+	s.Job = v
+	return s
 }
 
 // The CreatePipelineRequest structure.
@@ -2756,6 +3080,54 @@ func (s *CreatePipelineInput) Validate() error {
 	return nil
 }
 
+// SetAwsKmsKeyArn sets the AwsKmsKeyArn field's value.
+func (s *CreatePipelineInput) SetAwsKmsKeyArn(v string) *CreatePipelineInput {
+	s.AwsKmsKeyArn = &v
+	return s
+}
+
+// SetContentConfig sets the ContentConfig field's value.
+func (s *CreatePipelineInput) SetContentConfig(v *PipelineOutputConfig) *CreatePipelineInput {
+	s.ContentConfig = v
+	return s
+}
+
+// SetInputBucket sets the InputBucket field's value.
+func (s *CreatePipelineInput) SetInputBucket(v string) *CreatePipelineInput {
+	s.InputBucket = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePipelineInput) SetName(v string) *CreatePipelineInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotifications sets the Notifications field's value.
+func (s *CreatePipelineInput) SetNotifications(v *Notifications) *CreatePipelineInput {
+	s.Notifications = v
+	return s
+}
+
+// SetOutputBucket sets the OutputBucket field's value.
+func (s *CreatePipelineInput) SetOutputBucket(v string) *CreatePipelineInput {
+	s.OutputBucket = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreatePipelineInput) SetRole(v string) *CreatePipelineInput {
+	s.Role = &v
+	return s
+}
+
+// SetThumbnailConfig sets the ThumbnailConfig field's value.
+func (s *CreatePipelineInput) SetThumbnailConfig(v *PipelineOutputConfig) *CreatePipelineInput {
+	s.ThumbnailConfig = v
+	return s
+}
+
 // When you create a pipeline, Elastic Transcoder returns the values that you
 // specified in the request.
 type CreatePipelineOutput struct {
@@ -2782,6 +3154,18 @@ func (s CreatePipelineOutput) String() string {
 // GoString returns the string representation
 func (s CreatePipelineOutput) GoString() string {
 	return s.String()
+}
+
+// SetPipeline sets the Pipeline field's value.
+func (s *CreatePipelineOutput) SetPipeline(v *Pipeline) *CreatePipelineOutput {
+	s.Pipeline = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *CreatePipelineOutput) SetWarnings(v []*Warning) *CreatePipelineOutput {
+	s.Warnings = v
+	return s
 }
 
 // The CreatePresetRequest structure.
@@ -2848,6 +3232,42 @@ func (s *CreatePresetInput) Validate() error {
 	return nil
 }
 
+// SetAudio sets the Audio field's value.
+func (s *CreatePresetInput) SetAudio(v *AudioParameters) *CreatePresetInput {
+	s.Audio = v
+	return s
+}
+
+// SetContainer sets the Container field's value.
+func (s *CreatePresetInput) SetContainer(v string) *CreatePresetInput {
+	s.Container = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePresetInput) SetDescription(v string) *CreatePresetInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePresetInput) SetName(v string) *CreatePresetInput {
+	s.Name = &v
+	return s
+}
+
+// SetThumbnails sets the Thumbnails field's value.
+func (s *CreatePresetInput) SetThumbnails(v *Thumbnails) *CreatePresetInput {
+	s.Thumbnails = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *CreatePresetInput) SetVideo(v *VideoParameters) *CreatePresetInput {
+	s.Video = v
+	return s
+}
+
 // The CreatePresetResponse structure.
 type CreatePresetOutput struct {
 	_ struct{} `type:"structure"`
@@ -2871,6 +3291,18 @@ func (s CreatePresetOutput) String() string {
 // GoString returns the string representation
 func (s CreatePresetOutput) GoString() string {
 	return s.String()
+}
+
+// SetPreset sets the Preset field's value.
+func (s *CreatePresetOutput) SetPreset(v *Preset) *CreatePresetOutput {
+	s.Preset = v
+	return s
+}
+
+// SetWarning sets the Warning field's value.
+func (s *CreatePresetOutput) SetWarning(v string) *CreatePresetOutput {
+	s.Warning = &v
+	return s
 }
 
 // The DeletePipelineRequest structure.
@@ -2904,6 +3336,12 @@ func (s *DeletePipelineInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeletePipelineInput) SetId(v string) *DeletePipelineInput {
+	s.Id = &v
+	return s
 }
 
 // The DeletePipelineResponse structure.
@@ -2954,6 +3392,12 @@ func (s *DeletePresetInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *DeletePresetInput) SetId(v string) *DeletePresetInput {
+	s.Id = &v
+	return s
+}
+
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
 	_ struct{} `type:"structure"`
@@ -2998,6 +3442,36 @@ func (s DetectedProperties) String() string {
 // GoString returns the string representation
 func (s DetectedProperties) GoString() string {
 	return s.String()
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *DetectedProperties) SetDurationMillis(v int64) *DetectedProperties {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetFileSize sets the FileSize field's value.
+func (s *DetectedProperties) SetFileSize(v int64) *DetectedProperties {
+	s.FileSize = &v
+	return s
+}
+
+// SetFrameRate sets the FrameRate field's value.
+func (s *DetectedProperties) SetFrameRate(v string) *DetectedProperties {
+	s.FrameRate = &v
+	return s
+}
+
+// SetHeight sets the Height field's value.
+func (s *DetectedProperties) SetHeight(v int64) *DetectedProperties {
+	s.Height = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *DetectedProperties) SetWidth(v int64) *DetectedProperties {
+	s.Width = &v
+	return s
 }
 
 // The encryption settings, if any, that are used for decrypting your input
@@ -3079,6 +3553,30 @@ func (s Encryption) GoString() string {
 	return s.String()
 }
 
+// SetInitializationVector sets the InitializationVector field's value.
+func (s *Encryption) SetInitializationVector(v string) *Encryption {
+	s.InitializationVector = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *Encryption) SetKey(v string) *Encryption {
+	s.Key = &v
+	return s
+}
+
+// SetKeyMd5 sets the KeyMd5 field's value.
+func (s *Encryption) SetKeyMd5(v string) *Encryption {
+	s.KeyMd5 = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *Encryption) SetMode(v string) *Encryption {
+	s.Mode = &v
+	return s
+}
+
 // The HLS content protection settings, if any, that you want Elastic Transcoder
 // to apply to your output files.
 type HlsContentProtection struct {
@@ -3138,6 +3636,42 @@ func (s HlsContentProtection) String() string {
 // GoString returns the string representation
 func (s HlsContentProtection) GoString() string {
 	return s.String()
+}
+
+// SetInitializationVector sets the InitializationVector field's value.
+func (s *HlsContentProtection) SetInitializationVector(v string) *HlsContentProtection {
+	s.InitializationVector = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *HlsContentProtection) SetKey(v string) *HlsContentProtection {
+	s.Key = &v
+	return s
+}
+
+// SetKeyMd5 sets the KeyMd5 field's value.
+func (s *HlsContentProtection) SetKeyMd5(v string) *HlsContentProtection {
+	s.KeyMd5 = &v
+	return s
+}
+
+// SetKeyStoragePolicy sets the KeyStoragePolicy field's value.
+func (s *HlsContentProtection) SetKeyStoragePolicy(v string) *HlsContentProtection {
+	s.KeyStoragePolicy = &v
+	return s
+}
+
+// SetLicenseAcquisitionUrl sets the LicenseAcquisitionUrl field's value.
+func (s *HlsContentProtection) SetLicenseAcquisitionUrl(v string) *HlsContentProtection {
+	s.LicenseAcquisitionUrl = &v
+	return s
+}
+
+// SetMethod sets the Method field's value.
+func (s *HlsContentProtection) SetMethod(v string) *HlsContentProtection {
+	s.Method = &v
+	return s
 }
 
 // A section of the response body that provides information about the job that
@@ -3227,6 +3761,72 @@ func (s Job) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Job) SetArn(v string) *Job {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Job) SetId(v string) *Job {
+	s.Id = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *Job) SetInput(v *JobInput) *Job {
+	s.Input = v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *Job) SetOutput(v *JobOutput) *Job {
+	s.Output = v
+	return s
+}
+
+// SetOutputKeyPrefix sets the OutputKeyPrefix field's value.
+func (s *Job) SetOutputKeyPrefix(v string) *Job {
+	s.OutputKeyPrefix = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *Job) SetOutputs(v []*JobOutput) *Job {
+	s.Outputs = v
+	return s
+}
+
+// SetPipelineId sets the PipelineId field's value.
+func (s *Job) SetPipelineId(v string) *Job {
+	s.PipelineId = &v
+	return s
+}
+
+// SetPlaylists sets the Playlists field's value.
+func (s *Job) SetPlaylists(v []*Playlist) *Job {
+	s.Playlists = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Job) SetStatus(v string) *Job {
+	s.Status = &v
+	return s
+}
+
+// SetTiming sets the Timing field's value.
+func (s *Job) SetTiming(v *Timing) *Job {
+	s.Timing = v
+	return s
+}
+
+// SetUserMetadata sets the UserMetadata field's value.
+func (s *Job) SetUserMetadata(v map[string]*string) *Job {
+	s.UserMetadata = v
+	return s
+}
+
 // The .jpg or .png file associated with an audio file.
 type JobAlbumArt struct {
 	_ struct{} `type:"structure"`
@@ -3277,6 +3877,18 @@ func (s *JobAlbumArt) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArtwork sets the Artwork field's value.
+func (s *JobAlbumArt) SetArtwork(v []*Artwork) *JobAlbumArt {
+	s.Artwork = v
+	return s
+}
+
+// SetMergePolicy sets the MergePolicy field's value.
+func (s *JobAlbumArt) SetMergePolicy(v string) *JobAlbumArt {
+	s.MergePolicy = &v
+	return s
 }
 
 // Information about the file that you're transcoding.
@@ -3367,6 +3979,54 @@ func (s *JobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAspectRatio sets the AspectRatio field's value.
+func (s *JobInput) SetAspectRatio(v string) *JobInput {
+	s.AspectRatio = &v
+	return s
+}
+
+// SetContainer sets the Container field's value.
+func (s *JobInput) SetContainer(v string) *JobInput {
+	s.Container = &v
+	return s
+}
+
+// SetDetectedProperties sets the DetectedProperties field's value.
+func (s *JobInput) SetDetectedProperties(v *DetectedProperties) *JobInput {
+	s.DetectedProperties = v
+	return s
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *JobInput) SetEncryption(v *Encryption) *JobInput {
+	s.Encryption = v
+	return s
+}
+
+// SetFrameRate sets the FrameRate field's value.
+func (s *JobInput) SetFrameRate(v string) *JobInput {
+	s.FrameRate = &v
+	return s
+}
+
+// SetInterlaced sets the Interlaced field's value.
+func (s *JobInput) SetInterlaced(v string) *JobInput {
+	s.Interlaced = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *JobInput) SetKey(v string) *JobInput {
+	s.Key = &v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *JobInput) SetResolution(v string) *JobInput {
+	s.Resolution = &v
+	return s
 }
 
 // Outputs recommended instead.If you specified one output for a job, information
@@ -3587,6 +4247,132 @@ func (s JobOutput) GoString() string {
 	return s.String()
 }
 
+// SetAlbumArt sets the AlbumArt field's value.
+func (s *JobOutput) SetAlbumArt(v *JobAlbumArt) *JobOutput {
+	s.AlbumArt = v
+	return s
+}
+
+// SetAppliedColorSpaceConversion sets the AppliedColorSpaceConversion field's value.
+func (s *JobOutput) SetAppliedColorSpaceConversion(v string) *JobOutput {
+	s.AppliedColorSpaceConversion = &v
+	return s
+}
+
+// SetCaptions sets the Captions field's value.
+func (s *JobOutput) SetCaptions(v *Captions) *JobOutput {
+	s.Captions = v
+	return s
+}
+
+// SetComposition sets the Composition field's value.
+func (s *JobOutput) SetComposition(v []*Clip) *JobOutput {
+	s.Composition = v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *JobOutput) SetDuration(v int64) *JobOutput {
+	s.Duration = &v
+	return s
+}
+
+// SetDurationMillis sets the DurationMillis field's value.
+func (s *JobOutput) SetDurationMillis(v int64) *JobOutput {
+	s.DurationMillis = &v
+	return s
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *JobOutput) SetEncryption(v *Encryption) *JobOutput {
+	s.Encryption = v
+	return s
+}
+
+// SetFileSize sets the FileSize field's value.
+func (s *JobOutput) SetFileSize(v int64) *JobOutput {
+	s.FileSize = &v
+	return s
+}
+
+// SetFrameRate sets the FrameRate field's value.
+func (s *JobOutput) SetFrameRate(v string) *JobOutput {
+	s.FrameRate = &v
+	return s
+}
+
+// SetHeight sets the Height field's value.
+func (s *JobOutput) SetHeight(v int64) *JobOutput {
+	s.Height = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *JobOutput) SetId(v string) *JobOutput {
+	s.Id = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *JobOutput) SetKey(v string) *JobOutput {
+	s.Key = &v
+	return s
+}
+
+// SetPresetId sets the PresetId field's value.
+func (s *JobOutput) SetPresetId(v string) *JobOutput {
+	s.PresetId = &v
+	return s
+}
+
+// SetRotate sets the Rotate field's value.
+func (s *JobOutput) SetRotate(v string) *JobOutput {
+	s.Rotate = &v
+	return s
+}
+
+// SetSegmentDuration sets the SegmentDuration field's value.
+func (s *JobOutput) SetSegmentDuration(v string) *JobOutput {
+	s.SegmentDuration = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *JobOutput) SetStatus(v string) *JobOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusDetail sets the StatusDetail field's value.
+func (s *JobOutput) SetStatusDetail(v string) *JobOutput {
+	s.StatusDetail = &v
+	return s
+}
+
+// SetThumbnailEncryption sets the ThumbnailEncryption field's value.
+func (s *JobOutput) SetThumbnailEncryption(v *Encryption) *JobOutput {
+	s.ThumbnailEncryption = v
+	return s
+}
+
+// SetThumbnailPattern sets the ThumbnailPattern field's value.
+func (s *JobOutput) SetThumbnailPattern(v string) *JobOutput {
+	s.ThumbnailPattern = &v
+	return s
+}
+
+// SetWatermarks sets the Watermarks field's value.
+func (s *JobOutput) SetWatermarks(v []*JobWatermark) *JobOutput {
+	s.Watermarks = v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *JobOutput) SetWidth(v int64) *JobOutput {
+	s.Width = &v
+	return s
+}
+
 // Watermarks can be in .png or .jpg format. If you want to display a watermark
 // that is not rectangular, use the .png format, which supports transparency.
 type JobWatermark struct {
@@ -3639,6 +4425,24 @@ func (s *JobWatermark) Validate() error {
 	return nil
 }
 
+// SetEncryption sets the Encryption field's value.
+func (s *JobWatermark) SetEncryption(v *Encryption) *JobWatermark {
+	s.Encryption = v
+	return s
+}
+
+// SetInputKey sets the InputKey field's value.
+func (s *JobWatermark) SetInputKey(v string) *JobWatermark {
+	s.InputKey = &v
+	return s
+}
+
+// SetPresetWatermarkId sets the PresetWatermarkId field's value.
+func (s *JobWatermark) SetPresetWatermarkId(v string) *JobWatermark {
+	s.PresetWatermarkId = &v
+	return s
+}
+
 // The ListJobsByPipelineRequest structure.
 type ListJobsByPipelineInput struct {
 	_ struct{} `type:"structure"`
@@ -3680,6 +4484,24 @@ func (s *ListJobsByPipelineInput) Validate() error {
 	return nil
 }
 
+// SetAscending sets the Ascending field's value.
+func (s *ListJobsByPipelineInput) SetAscending(v string) *ListJobsByPipelineInput {
+	s.Ascending = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *ListJobsByPipelineInput) SetPageToken(v string) *ListJobsByPipelineInput {
+	s.PageToken = &v
+	return s
+}
+
+// SetPipelineId sets the PipelineId field's value.
+func (s *ListJobsByPipelineInput) SetPipelineId(v string) *ListJobsByPipelineInput {
+	s.PipelineId = &v
+	return s
+}
+
 // The ListJobsByPipelineResponse structure.
 type ListJobsByPipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -3701,6 +4523,18 @@ func (s ListJobsByPipelineOutput) String() string {
 // GoString returns the string representation
 func (s ListJobsByPipelineOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *ListJobsByPipelineOutput) SetJobs(v []*Job) *ListJobsByPipelineOutput {
+	s.Jobs = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *ListJobsByPipelineOutput) SetNextPageToken(v string) *ListJobsByPipelineOutput {
+	s.NextPageToken = &v
+	return s
 }
 
 // The ListJobsByStatusRequest structure.
@@ -3746,6 +4580,24 @@ func (s *ListJobsByStatusInput) Validate() error {
 	return nil
 }
 
+// SetAscending sets the Ascending field's value.
+func (s *ListJobsByStatusInput) SetAscending(v string) *ListJobsByStatusInput {
+	s.Ascending = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *ListJobsByStatusInput) SetPageToken(v string) *ListJobsByStatusInput {
+	s.PageToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListJobsByStatusInput) SetStatus(v string) *ListJobsByStatusInput {
+	s.Status = &v
+	return s
+}
+
 // The ListJobsByStatusResponse structure.
 type ListJobsByStatusOutput struct {
 	_ struct{} `type:"structure"`
@@ -3767,6 +4619,18 @@ func (s ListJobsByStatusOutput) String() string {
 // GoString returns the string representation
 func (s ListJobsByStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobs sets the Jobs field's value.
+func (s *ListJobsByStatusOutput) SetJobs(v []*Job) *ListJobsByStatusOutput {
+	s.Jobs = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *ListJobsByStatusOutput) SetNextPageToken(v string) *ListJobsByStatusOutput {
+	s.NextPageToken = &v
+	return s
 }
 
 // The ListPipelineRequest structure.
@@ -3793,6 +4657,18 @@ func (s ListPipelinesInput) GoString() string {
 	return s.String()
 }
 
+// SetAscending sets the Ascending field's value.
+func (s *ListPipelinesInput) SetAscending(v string) *ListPipelinesInput {
+	s.Ascending = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *ListPipelinesInput) SetPageToken(v string) *ListPipelinesInput {
+	s.PageToken = &v
+	return s
+}
+
 // A list of the pipelines associated with the current AWS account.
 type ListPipelinesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3814,6 +4690,18 @@ func (s ListPipelinesOutput) String() string {
 // GoString returns the string representation
 func (s ListPipelinesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *ListPipelinesOutput) SetNextPageToken(v string) *ListPipelinesOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetPipelines sets the Pipelines field's value.
+func (s *ListPipelinesOutput) SetPipelines(v []*Pipeline) *ListPipelinesOutput {
+	s.Pipelines = v
+	return s
 }
 
 // The ListPresetsRequest structure.
@@ -3840,6 +4728,18 @@ func (s ListPresetsInput) GoString() string {
 	return s.String()
 }
 
+// SetAscending sets the Ascending field's value.
+func (s *ListPresetsInput) SetAscending(v string) *ListPresetsInput {
+	s.Ascending = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *ListPresetsInput) SetPageToken(v string) *ListPresetsInput {
+	s.PageToken = &v
+	return s
+}
+
 // The ListPresetsResponse structure.
 type ListPresetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3861,6 +4761,18 @@ func (s ListPresetsOutput) String() string {
 // GoString returns the string representation
 func (s ListPresetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *ListPresetsOutput) SetNextPageToken(v string) *ListPresetsOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetPresets sets the Presets field's value.
+func (s *ListPresetsOutput) SetPresets(v []*Preset) *ListPresetsOutput {
+	s.Presets = v
+	return s
 }
 
 // The Amazon Simple Notification Service (Amazon SNS) topic or topics to notify
@@ -3896,6 +4808,30 @@ func (s Notifications) String() string {
 // GoString returns the string representation
 func (s Notifications) GoString() string {
 	return s.String()
+}
+
+// SetCompleted sets the Completed field's value.
+func (s *Notifications) SetCompleted(v string) *Notifications {
+	s.Completed = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *Notifications) SetError(v string) *Notifications {
+	s.Error = &v
+	return s
+}
+
+// SetProgressing sets the Progressing field's value.
+func (s *Notifications) SetProgressing(v string) *Notifications {
+	s.Progressing = &v
+	return s
+}
+
+// SetWarning sets the Warning field's value.
+func (s *Notifications) SetWarning(v string) *Notifications {
+	s.Warning = &v
+	return s
 }
 
 // The Permission structure.
@@ -3951,6 +4887,24 @@ func (s *Permission) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccess sets the Access field's value.
+func (s *Permission) SetAccess(v []*string) *Permission {
+	s.Access = v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *Permission) SetGrantee(v string) *Permission {
+	s.Grantee = &v
+	return s
+}
+
+// SetGranteeType sets the GranteeType field's value.
+func (s *Permission) SetGranteeType(v string) *Permission {
+	s.GranteeType = &v
+	return s
 }
 
 // The pipeline (queue) that is used to manage jobs.
@@ -4094,6 +5048,72 @@ func (s Pipeline) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *Pipeline) SetArn(v string) *Pipeline {
+	s.Arn = &v
+	return s
+}
+
+// SetAwsKmsKeyArn sets the AwsKmsKeyArn field's value.
+func (s *Pipeline) SetAwsKmsKeyArn(v string) *Pipeline {
+	s.AwsKmsKeyArn = &v
+	return s
+}
+
+// SetContentConfig sets the ContentConfig field's value.
+func (s *Pipeline) SetContentConfig(v *PipelineOutputConfig) *Pipeline {
+	s.ContentConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Pipeline) SetId(v string) *Pipeline {
+	s.Id = &v
+	return s
+}
+
+// SetInputBucket sets the InputBucket field's value.
+func (s *Pipeline) SetInputBucket(v string) *Pipeline {
+	s.InputBucket = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Pipeline) SetName(v string) *Pipeline {
+	s.Name = &v
+	return s
+}
+
+// SetNotifications sets the Notifications field's value.
+func (s *Pipeline) SetNotifications(v *Notifications) *Pipeline {
+	s.Notifications = v
+	return s
+}
+
+// SetOutputBucket sets the OutputBucket field's value.
+func (s *Pipeline) SetOutputBucket(v string) *Pipeline {
+	s.OutputBucket = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *Pipeline) SetRole(v string) *Pipeline {
+	s.Role = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Pipeline) SetStatus(v string) *Pipeline {
+	s.Status = &v
+	return s
+}
+
+// SetThumbnailConfig sets the ThumbnailConfig field's value.
+func (s *Pipeline) SetThumbnailConfig(v *PipelineOutputConfig) *Pipeline {
+	s.ThumbnailConfig = v
+	return s
+}
+
 // The PipelineOutputConfig structure.
 type PipelineOutputConfig struct {
 	_ struct{} `type:"structure"`
@@ -4163,6 +5183,24 @@ func (s *PipelineOutputConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PipelineOutputConfig) SetBucket(v string) *PipelineOutputConfig {
+	s.Bucket = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *PipelineOutputConfig) SetPermissions(v []*Permission) *PipelineOutputConfig {
+	s.Permissions = v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *PipelineOutputConfig) SetStorageClass(v string) *PipelineOutputConfig {
+	s.StorageClass = &v
+	return s
 }
 
 // The PlayReady DRM settings, if any, that you want Elastic Transcoder to apply
@@ -4238,6 +5276,42 @@ func (s *PlayReadyDrm) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *PlayReadyDrm) SetFormat(v string) *PlayReadyDrm {
+	s.Format = &v
+	return s
+}
+
+// SetInitializationVector sets the InitializationVector field's value.
+func (s *PlayReadyDrm) SetInitializationVector(v string) *PlayReadyDrm {
+	s.InitializationVector = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *PlayReadyDrm) SetKey(v string) *PlayReadyDrm {
+	s.Key = &v
+	return s
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *PlayReadyDrm) SetKeyId(v string) *PlayReadyDrm {
+	s.KeyId = &v
+	return s
+}
+
+// SetKeyMd5 sets the KeyMd5 field's value.
+func (s *PlayReadyDrm) SetKeyMd5(v string) *PlayReadyDrm {
+	s.KeyMd5 = &v
+	return s
+}
+
+// SetLicenseAcquisitionUrl sets the LicenseAcquisitionUrl field's value.
+func (s *PlayReadyDrm) SetLicenseAcquisitionUrl(v string) *PlayReadyDrm {
+	s.LicenseAcquisitionUrl = &v
+	return s
 }
 
 // Use Only for Fragmented MP4 or MPEG-TS Outputs. If you specify a preset for
@@ -4327,6 +5401,48 @@ func (s Playlist) GoString() string {
 	return s.String()
 }
 
+// SetFormat sets the Format field's value.
+func (s *Playlist) SetFormat(v string) *Playlist {
+	s.Format = &v
+	return s
+}
+
+// SetHlsContentProtection sets the HlsContentProtection field's value.
+func (s *Playlist) SetHlsContentProtection(v *HlsContentProtection) *Playlist {
+	s.HlsContentProtection = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Playlist) SetName(v string) *Playlist {
+	s.Name = &v
+	return s
+}
+
+// SetOutputKeys sets the OutputKeys field's value.
+func (s *Playlist) SetOutputKeys(v []*string) *Playlist {
+	s.OutputKeys = v
+	return s
+}
+
+// SetPlayReadyDrm sets the PlayReadyDrm field's value.
+func (s *Playlist) SetPlayReadyDrm(v *PlayReadyDrm) *Playlist {
+	s.PlayReadyDrm = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Playlist) SetStatus(v string) *Playlist {
+	s.Status = &v
+	return s
+}
+
+// SetStatusDetail sets the StatusDetail field's value.
+func (s *Playlist) SetStatusDetail(v string) *Playlist {
+	s.StatusDetail = &v
+	return s
+}
+
 // Presets are templates that contain most of the settings for transcoding media
 // files from one format to another. Elastic Transcoder includes some default
 // presets for common formats, for example, several iPod and iPhone versions.
@@ -4378,6 +5494,60 @@ func (s Preset) String() string {
 // GoString returns the string representation
 func (s Preset) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Preset) SetArn(v string) *Preset {
+	s.Arn = &v
+	return s
+}
+
+// SetAudio sets the Audio field's value.
+func (s *Preset) SetAudio(v *AudioParameters) *Preset {
+	s.Audio = v
+	return s
+}
+
+// SetContainer sets the Container field's value.
+func (s *Preset) SetContainer(v string) *Preset {
+	s.Container = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Preset) SetDescription(v string) *Preset {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Preset) SetId(v string) *Preset {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Preset) SetName(v string) *Preset {
+	s.Name = &v
+	return s
+}
+
+// SetThumbnails sets the Thumbnails field's value.
+func (s *Preset) SetThumbnails(v *Thumbnails) *Preset {
+	s.Thumbnails = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Preset) SetType(v string) *Preset {
+	s.Type = &v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *Preset) SetVideo(v *VideoParameters) *Preset {
+	s.Video = v
+	return s
 }
 
 // Settings for the size, location, and opacity of graphics that you want Elastic
@@ -4540,6 +5710,66 @@ func (s *PresetWatermark) Validate() error {
 	return nil
 }
 
+// SetHorizontalAlign sets the HorizontalAlign field's value.
+func (s *PresetWatermark) SetHorizontalAlign(v string) *PresetWatermark {
+	s.HorizontalAlign = &v
+	return s
+}
+
+// SetHorizontalOffset sets the HorizontalOffset field's value.
+func (s *PresetWatermark) SetHorizontalOffset(v string) *PresetWatermark {
+	s.HorizontalOffset = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PresetWatermark) SetId(v string) *PresetWatermark {
+	s.Id = &v
+	return s
+}
+
+// SetMaxHeight sets the MaxHeight field's value.
+func (s *PresetWatermark) SetMaxHeight(v string) *PresetWatermark {
+	s.MaxHeight = &v
+	return s
+}
+
+// SetMaxWidth sets the MaxWidth field's value.
+func (s *PresetWatermark) SetMaxWidth(v string) *PresetWatermark {
+	s.MaxWidth = &v
+	return s
+}
+
+// SetOpacity sets the Opacity field's value.
+func (s *PresetWatermark) SetOpacity(v string) *PresetWatermark {
+	s.Opacity = &v
+	return s
+}
+
+// SetSizingPolicy sets the SizingPolicy field's value.
+func (s *PresetWatermark) SetSizingPolicy(v string) *PresetWatermark {
+	s.SizingPolicy = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *PresetWatermark) SetTarget(v string) *PresetWatermark {
+	s.Target = &v
+	return s
+}
+
+// SetVerticalAlign sets the VerticalAlign field's value.
+func (s *PresetWatermark) SetVerticalAlign(v string) *PresetWatermark {
+	s.VerticalAlign = &v
+	return s
+}
+
+// SetVerticalOffset sets the VerticalOffset field's value.
+func (s *PresetWatermark) SetVerticalOffset(v string) *PresetWatermark {
+	s.VerticalOffset = &v
+	return s
+}
+
 // The ReadJobRequest structure.
 type ReadJobInput struct {
 	_ struct{} `type:"structure"`
@@ -4573,6 +5803,12 @@ func (s *ReadJobInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *ReadJobInput) SetId(v string) *ReadJobInput {
+	s.Id = &v
+	return s
+}
+
 // The ReadJobResponse structure.
 type ReadJobOutput struct {
 	_ struct{} `type:"structure"`
@@ -4589,6 +5825,12 @@ func (s ReadJobOutput) String() string {
 // GoString returns the string representation
 func (s ReadJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJob sets the Job field's value.
+func (s *ReadJobOutput) SetJob(v *Job) *ReadJobOutput {
+	s.Job = v
+	return s
 }
 
 // The ReadPipelineRequest structure.
@@ -4624,6 +5866,12 @@ func (s *ReadPipelineInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *ReadPipelineInput) SetId(v string) *ReadPipelineInput {
+	s.Id = &v
+	return s
+}
+
 // The ReadPipelineResponse structure.
 type ReadPipelineOutput struct {
 	_ struct{} `type:"structure"`
@@ -4648,6 +5896,18 @@ func (s ReadPipelineOutput) String() string {
 // GoString returns the string representation
 func (s ReadPipelineOutput) GoString() string {
 	return s.String()
+}
+
+// SetPipeline sets the Pipeline field's value.
+func (s *ReadPipelineOutput) SetPipeline(v *Pipeline) *ReadPipelineOutput {
+	s.Pipeline = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *ReadPipelineOutput) SetWarnings(v []*Warning) *ReadPipelineOutput {
+	s.Warnings = v
+	return s
 }
 
 // The ReadPresetRequest structure.
@@ -4683,6 +5943,12 @@ func (s *ReadPresetInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *ReadPresetInput) SetId(v string) *ReadPresetInput {
+	s.Id = &v
+	return s
+}
+
 // The ReadPresetResponse structure.
 type ReadPresetOutput struct {
 	_ struct{} `type:"structure"`
@@ -4699,6 +5965,12 @@ func (s ReadPresetOutput) String() string {
 // GoString returns the string representation
 func (s ReadPresetOutput) GoString() string {
 	return s.String()
+}
+
+// SetPreset sets the Preset field's value.
+func (s *ReadPresetOutput) SetPreset(v *Preset) *ReadPresetOutput {
+	s.Preset = v
+	return s
 }
 
 // The TestRoleRequest structure.
@@ -4762,6 +6034,30 @@ func (s *TestRoleInput) Validate() error {
 	return nil
 }
 
+// SetInputBucket sets the InputBucket field's value.
+func (s *TestRoleInput) SetInputBucket(v string) *TestRoleInput {
+	s.InputBucket = &v
+	return s
+}
+
+// SetOutputBucket sets the OutputBucket field's value.
+func (s *TestRoleInput) SetOutputBucket(v string) *TestRoleInput {
+	s.OutputBucket = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *TestRoleInput) SetRole(v string) *TestRoleInput {
+	s.Role = &v
+	return s
+}
+
+// SetTopics sets the Topics field's value.
+func (s *TestRoleInput) SetTopics(v []*string) *TestRoleInput {
+	s.Topics = v
+	return s
+}
+
 // The TestRoleResponse structure.
 type TestRoleOutput struct {
 	_ struct{} `type:"structure"`
@@ -4783,6 +6079,18 @@ func (s TestRoleOutput) String() string {
 // GoString returns the string representation
 func (s TestRoleOutput) GoString() string {
 	return s.String()
+}
+
+// SetMessages sets the Messages field's value.
+func (s *TestRoleOutput) SetMessages(v []*string) *TestRoleOutput {
+	s.Messages = v
+	return s
+}
+
+// SetSuccess sets the Success field's value.
+func (s *TestRoleOutput) SetSuccess(v string) *TestRoleOutput {
+	s.Success = &v
+	return s
 }
 
 // Thumbnails for videos.
@@ -4875,6 +6183,54 @@ func (s Thumbnails) GoString() string {
 	return s.String()
 }
 
+// SetAspectRatio sets the AspectRatio field's value.
+func (s *Thumbnails) SetAspectRatio(v string) *Thumbnails {
+	s.AspectRatio = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *Thumbnails) SetFormat(v string) *Thumbnails {
+	s.Format = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *Thumbnails) SetInterval(v string) *Thumbnails {
+	s.Interval = &v
+	return s
+}
+
+// SetMaxHeight sets the MaxHeight field's value.
+func (s *Thumbnails) SetMaxHeight(v string) *Thumbnails {
+	s.MaxHeight = &v
+	return s
+}
+
+// SetMaxWidth sets the MaxWidth field's value.
+func (s *Thumbnails) SetMaxWidth(v string) *Thumbnails {
+	s.MaxWidth = &v
+	return s
+}
+
+// SetPaddingPolicy sets the PaddingPolicy field's value.
+func (s *Thumbnails) SetPaddingPolicy(v string) *Thumbnails {
+	s.PaddingPolicy = &v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *Thumbnails) SetResolution(v string) *Thumbnails {
+	s.Resolution = &v
+	return s
+}
+
+// SetSizingPolicy sets the SizingPolicy field's value.
+func (s *Thumbnails) SetSizingPolicy(v string) *Thumbnails {
+	s.SizingPolicy = &v
+	return s
+}
+
 // Settings that determine when a clip begins and how long it lasts.
 type TimeSpan struct {
 	_ struct{} `type:"structure"`
@@ -4905,6 +6261,18 @@ func (s TimeSpan) GoString() string {
 	return s.String()
 }
 
+// SetDuration sets the Duration field's value.
+func (s *TimeSpan) SetDuration(v string) *TimeSpan {
+	s.Duration = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *TimeSpan) SetStartTime(v string) *TimeSpan {
+	s.StartTime = &v
+	return s
+}
+
 // Details about the timing of a job.
 type Timing struct {
 	_ struct{} `type:"structure"`
@@ -4927,6 +6295,24 @@ func (s Timing) String() string {
 // GoString returns the string representation
 func (s Timing) GoString() string {
 	return s.String()
+}
+
+// SetFinishTimeMillis sets the FinishTimeMillis field's value.
+func (s *Timing) SetFinishTimeMillis(v int64) *Timing {
+	s.FinishTimeMillis = &v
+	return s
+}
+
+// SetStartTimeMillis sets the StartTimeMillis field's value.
+func (s *Timing) SetStartTimeMillis(v int64) *Timing {
+	s.StartTimeMillis = &v
+	return s
+}
+
+// SetSubmitTimeMillis sets the SubmitTimeMillis field's value.
+func (s *Timing) SetSubmitTimeMillis(v int64) *Timing {
+	s.SubmitTimeMillis = &v
+	return s
 }
 
 // The UpdatePipelineRequest structure.
@@ -5110,6 +6496,54 @@ func (s *UpdatePipelineInput) Validate() error {
 	return nil
 }
 
+// SetAwsKmsKeyArn sets the AwsKmsKeyArn field's value.
+func (s *UpdatePipelineInput) SetAwsKmsKeyArn(v string) *UpdatePipelineInput {
+	s.AwsKmsKeyArn = &v
+	return s
+}
+
+// SetContentConfig sets the ContentConfig field's value.
+func (s *UpdatePipelineInput) SetContentConfig(v *PipelineOutputConfig) *UpdatePipelineInput {
+	s.ContentConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdatePipelineInput) SetId(v string) *UpdatePipelineInput {
+	s.Id = &v
+	return s
+}
+
+// SetInputBucket sets the InputBucket field's value.
+func (s *UpdatePipelineInput) SetInputBucket(v string) *UpdatePipelineInput {
+	s.InputBucket = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdatePipelineInput) SetName(v string) *UpdatePipelineInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotifications sets the Notifications field's value.
+func (s *UpdatePipelineInput) SetNotifications(v *Notifications) *UpdatePipelineInput {
+	s.Notifications = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *UpdatePipelineInput) SetRole(v string) *UpdatePipelineInput {
+	s.Role = &v
+	return s
+}
+
+// SetThumbnailConfig sets the ThumbnailConfig field's value.
+func (s *UpdatePipelineInput) SetThumbnailConfig(v *PipelineOutputConfig) *UpdatePipelineInput {
+	s.ThumbnailConfig = v
+	return s
+}
+
 // The UpdatePipelineNotificationsRequest structure.
 type UpdatePipelineNotificationsInput struct {
 	_ struct{} `type:"structure"`
@@ -5168,6 +6602,18 @@ func (s *UpdatePipelineNotificationsInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *UpdatePipelineNotificationsInput) SetId(v string) *UpdatePipelineNotificationsInput {
+	s.Id = &v
+	return s
+}
+
+// SetNotifications sets the Notifications field's value.
+func (s *UpdatePipelineNotificationsInput) SetNotifications(v *Notifications) *UpdatePipelineNotificationsInput {
+	s.Notifications = v
+	return s
+}
+
 // The UpdatePipelineNotificationsResponse structure.
 type UpdatePipelineNotificationsOutput struct {
 	_ struct{} `type:"structure"`
@@ -5184,6 +6630,12 @@ func (s UpdatePipelineNotificationsOutput) String() string {
 // GoString returns the string representation
 func (s UpdatePipelineNotificationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetPipeline sets the Pipeline field's value.
+func (s *UpdatePipelineNotificationsOutput) SetPipeline(v *Pipeline) *UpdatePipelineNotificationsOutput {
+	s.Pipeline = v
+	return s
 }
 
 // When you update a pipeline, Elastic Transcoder returns the values that you
@@ -5211,6 +6663,18 @@ func (s UpdatePipelineOutput) String() string {
 // GoString returns the string representation
 func (s UpdatePipelineOutput) GoString() string {
 	return s.String()
+}
+
+// SetPipeline sets the Pipeline field's value.
+func (s *UpdatePipelineOutput) SetPipeline(v *Pipeline) *UpdatePipelineOutput {
+	s.Pipeline = v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *UpdatePipelineOutput) SetWarnings(v []*Warning) *UpdatePipelineOutput {
+	s.Warnings = v
+	return s
 }
 
 // The UpdatePipelineStatusRequest structure.
@@ -5257,6 +6721,18 @@ func (s *UpdatePipelineStatusInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *UpdatePipelineStatusInput) SetId(v string) *UpdatePipelineStatusInput {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdatePipelineStatusInput) SetStatus(v string) *UpdatePipelineStatusInput {
+	s.Status = &v
+	return s
+}
+
 // When you update status for a pipeline, Elastic Transcoder returns the values
 // that you specified in the request.
 type UpdatePipelineStatusOutput struct {
@@ -5274,6 +6750,12 @@ func (s UpdatePipelineStatusOutput) String() string {
 // GoString returns the string representation
 func (s UpdatePipelineStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetPipeline sets the Pipeline field's value.
+func (s *UpdatePipelineStatusOutput) SetPipeline(v *Pipeline) *UpdatePipelineStatusOutput {
+	s.Pipeline = v
+	return s
 }
 
 // The VideoParameters structure.
@@ -5658,6 +7140,96 @@ func (s *VideoParameters) Validate() error {
 	return nil
 }
 
+// SetAspectRatio sets the AspectRatio field's value.
+func (s *VideoParameters) SetAspectRatio(v string) *VideoParameters {
+	s.AspectRatio = &v
+	return s
+}
+
+// SetBitRate sets the BitRate field's value.
+func (s *VideoParameters) SetBitRate(v string) *VideoParameters {
+	s.BitRate = &v
+	return s
+}
+
+// SetCodec sets the Codec field's value.
+func (s *VideoParameters) SetCodec(v string) *VideoParameters {
+	s.Codec = &v
+	return s
+}
+
+// SetCodecOptions sets the CodecOptions field's value.
+func (s *VideoParameters) SetCodecOptions(v map[string]*string) *VideoParameters {
+	s.CodecOptions = v
+	return s
+}
+
+// SetDisplayAspectRatio sets the DisplayAspectRatio field's value.
+func (s *VideoParameters) SetDisplayAspectRatio(v string) *VideoParameters {
+	s.DisplayAspectRatio = &v
+	return s
+}
+
+// SetFixedGOP sets the FixedGOP field's value.
+func (s *VideoParameters) SetFixedGOP(v string) *VideoParameters {
+	s.FixedGOP = &v
+	return s
+}
+
+// SetFrameRate sets the FrameRate field's value.
+func (s *VideoParameters) SetFrameRate(v string) *VideoParameters {
+	s.FrameRate = &v
+	return s
+}
+
+// SetKeyframesMaxDist sets the KeyframesMaxDist field's value.
+func (s *VideoParameters) SetKeyframesMaxDist(v string) *VideoParameters {
+	s.KeyframesMaxDist = &v
+	return s
+}
+
+// SetMaxFrameRate sets the MaxFrameRate field's value.
+func (s *VideoParameters) SetMaxFrameRate(v string) *VideoParameters {
+	s.MaxFrameRate = &v
+	return s
+}
+
+// SetMaxHeight sets the MaxHeight field's value.
+func (s *VideoParameters) SetMaxHeight(v string) *VideoParameters {
+	s.MaxHeight = &v
+	return s
+}
+
+// SetMaxWidth sets the MaxWidth field's value.
+func (s *VideoParameters) SetMaxWidth(v string) *VideoParameters {
+	s.MaxWidth = &v
+	return s
+}
+
+// SetPaddingPolicy sets the PaddingPolicy field's value.
+func (s *VideoParameters) SetPaddingPolicy(v string) *VideoParameters {
+	s.PaddingPolicy = &v
+	return s
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *VideoParameters) SetResolution(v string) *VideoParameters {
+	s.Resolution = &v
+	return s
+}
+
+// SetSizingPolicy sets the SizingPolicy field's value.
+func (s *VideoParameters) SetSizingPolicy(v string) *VideoParameters {
+	s.SizingPolicy = &v
+	return s
+}
+
+// SetWatermarks sets the Watermarks field's value.
+func (s *VideoParameters) SetWatermarks(v []*PresetWatermark) *VideoParameters {
+	s.Watermarks = v
+	return s
+}
+
 // Elastic Transcoder returns a warning if the resources used by your pipeline
 // are not in the same region as the pipeline.
 //
@@ -5685,4 +7257,16 @@ func (s Warning) String() string {
 // GoString returns the string representation
 func (s Warning) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *Warning) SetCode(v string) *Warning {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *Warning) SetMessage(v string) *Warning {
+	s.Message = &v
+	return s
 }

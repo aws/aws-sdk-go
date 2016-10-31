@@ -1175,6 +1175,18 @@ func (s *CreateFileSystemInput) Validate() error {
 	return nil
 }
 
+// SetCreationToken sets the CreationToken field's value.
+func (s *CreateFileSystemInput) SetCreationToken(v string) *CreateFileSystemInput {
+	s.CreationToken = &v
+	return s
+}
+
+// SetPerformanceMode sets the PerformanceMode field's value.
+func (s *CreateFileSystemInput) SetPerformanceMode(v string) *CreateFileSystemInput {
+	s.PerformanceMode = &v
+	return s
+}
+
 type CreateMountTargetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1220,6 +1232,30 @@ func (s *CreateMountTargetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *CreateMountTargetInput) SetFileSystemId(v string) *CreateMountTargetInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *CreateMountTargetInput) SetIpAddress(v string) *CreateMountTargetInput {
+	s.IpAddress = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *CreateMountTargetInput) SetSecurityGroups(v []*string) *CreateMountTargetInput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *CreateMountTargetInput) SetSubnetId(v string) *CreateMountTargetInput {
+	s.SubnetId = &v
+	return s
 }
 
 type CreateTagsInput struct {
@@ -1273,6 +1309,18 @@ func (s *CreateTagsInput) Validate() error {
 	return nil
 }
 
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *CreateTagsInput) SetFileSystemId(v string) *CreateTagsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
+	s.Tags = v
+	return s
+}
+
 type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1319,6 +1367,12 @@ func (s *DeleteFileSystemInput) Validate() error {
 	return nil
 }
 
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DeleteFileSystemInput) SetFileSystemId(v string) *DeleteFileSystemInput {
+	s.FileSystemId = &v
+	return s
+}
+
 type DeleteFileSystemOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1363,6 +1417,12 @@ func (s *DeleteMountTargetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMountTargetId sets the MountTargetId field's value.
+func (s *DeleteMountTargetInput) SetMountTargetId(v string) *DeleteMountTargetInput {
+	s.MountTargetId = &v
+	return s
 }
 
 type DeleteMountTargetOutput struct {
@@ -1417,6 +1477,18 @@ func (s *DeleteTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DeleteTagsInput) SetFileSystemId(v string) *DeleteTagsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
+	s.TagKeys = v
+	return s
 }
 
 type DeleteTagsOutput struct {
@@ -1483,6 +1555,30 @@ func (s *DescribeFileSystemsInput) Validate() error {
 	return nil
 }
 
+// SetCreationToken sets the CreationToken field's value.
+func (s *DescribeFileSystemsInput) SetCreationToken(v string) *DescribeFileSystemsInput {
+	s.CreationToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DescribeFileSystemsInput) SetFileSystemId(v string) *DescribeFileSystemsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeFileSystemsInput) SetMarker(v string) *DescribeFileSystemsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *DescribeFileSystemsInput) SetMaxItems(v int64) *DescribeFileSystemsInput {
+	s.MaxItems = &v
+	return s
+}
+
 type DescribeFileSystemsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1505,6 +1601,24 @@ func (s DescribeFileSystemsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFileSystemsOutput) GoString() string {
 	return s.String()
+}
+
+// SetFileSystems sets the FileSystems field's value.
+func (s *DescribeFileSystemsOutput) SetFileSystems(v []*FileSystemDescription) *DescribeFileSystemsOutput {
+	s.FileSystems = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeFileSystemsOutput) SetMarker(v string) *DescribeFileSystemsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *DescribeFileSystemsOutput) SetNextMarker(v string) *DescribeFileSystemsOutput {
+	s.NextMarker = &v
+	return s
 }
 
 type DescribeMountTargetSecurityGroupsInput struct {
@@ -1539,6 +1653,12 @@ func (s *DescribeMountTargetSecurityGroupsInput) Validate() error {
 	return nil
 }
 
+// SetMountTargetId sets the MountTargetId field's value.
+func (s *DescribeMountTargetSecurityGroupsInput) SetMountTargetId(v string) *DescribeMountTargetSecurityGroupsInput {
+	s.MountTargetId = &v
+	return s
+}
+
 type DescribeMountTargetSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1556,6 +1676,12 @@ func (s DescribeMountTargetSecurityGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeMountTargetSecurityGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *DescribeMountTargetSecurityGroupsOutput) SetSecurityGroups(v []*string) *DescribeMountTargetSecurityGroupsOutput {
+	s.SecurityGroups = v
+	return s
 }
 
 type DescribeMountTargetsInput struct {
@@ -1602,6 +1728,30 @@ func (s *DescribeMountTargetsInput) Validate() error {
 	return nil
 }
 
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DescribeMountTargetsInput) SetFileSystemId(v string) *DescribeMountTargetsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeMountTargetsInput) SetMarker(v string) *DescribeMountTargetsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *DescribeMountTargetsInput) SetMaxItems(v int64) *DescribeMountTargetsInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetMountTargetId sets the MountTargetId field's value.
+func (s *DescribeMountTargetsInput) SetMountTargetId(v string) *DescribeMountTargetsInput {
+	s.MountTargetId = &v
+	return s
+}
+
 type DescribeMountTargetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1627,6 +1777,24 @@ func (s DescribeMountTargetsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeMountTargetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeMountTargetsOutput) SetMarker(v string) *DescribeMountTargetsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetMountTargets sets the MountTargets field's value.
+func (s *DescribeMountTargetsOutput) SetMountTargets(v []*MountTargetDescription) *DescribeMountTargetsOutput {
+	s.MountTargets = v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *DescribeMountTargetsOutput) SetNextMarker(v string) *DescribeMountTargetsOutput {
+	s.NextMarker = &v
+	return s
 }
 
 type DescribeTagsInput struct {
@@ -1673,6 +1841,24 @@ func (s *DescribeTagsInput) Validate() error {
 	return nil
 }
 
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *DescribeTagsInput) SetFileSystemId(v string) *DescribeTagsInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeTagsInput) SetMarker(v string) *DescribeTagsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *DescribeTagsInput) SetMaxItems(v int64) *DescribeTagsInput {
+	s.MaxItems = &v
+	return s
+}
+
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1699,6 +1885,24 @@ func (s DescribeTagsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeTagsOutput) SetMarker(v string) *DescribeTagsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *DescribeTagsOutput) SetNextMarker(v string) *DescribeTagsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
+	s.Tags = v
+	return s
 }
 
 // Description of the file system.
@@ -1771,6 +1975,60 @@ func (s FileSystemDescription) GoString() string {
 	return s.String()
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *FileSystemDescription) SetCreationTime(v time.Time) *FileSystemDescription {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreationToken sets the CreationToken field's value.
+func (s *FileSystemDescription) SetCreationToken(v string) *FileSystemDescription {
+	s.CreationToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *FileSystemDescription) SetFileSystemId(v string) *FileSystemDescription {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLifeCycleState sets the LifeCycleState field's value.
+func (s *FileSystemDescription) SetLifeCycleState(v string) *FileSystemDescription {
+	s.LifeCycleState = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FileSystemDescription) SetName(v string) *FileSystemDescription {
+	s.Name = &v
+	return s
+}
+
+// SetNumberOfMountTargets sets the NumberOfMountTargets field's value.
+func (s *FileSystemDescription) SetNumberOfMountTargets(v int64) *FileSystemDescription {
+	s.NumberOfMountTargets = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *FileSystemDescription) SetOwnerId(v string) *FileSystemDescription {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPerformanceMode sets the PerformanceMode field's value.
+func (s *FileSystemDescription) SetPerformanceMode(v string) *FileSystemDescription {
+	s.PerformanceMode = &v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *FileSystemDescription) SetSizeInBytes(v *FileSystemSize) *FileSystemDescription {
+	s.SizeInBytes = v
+	return s
+}
+
 // Latest known metered size (in bytes) of data stored in the file system, in
 // its Value field, and the time at which that size was determined in its Timestamp
 // field. Note that the value does not represent the size of a consistent snapshot
@@ -1800,6 +2058,18 @@ func (s FileSystemSize) String() string {
 // GoString returns the string representation
 func (s FileSystemSize) GoString() string {
 	return s.String()
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *FileSystemSize) SetTimestamp(v time.Time) *FileSystemSize {
+	s.Timestamp = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *FileSystemSize) SetValue(v int64) *FileSystemSize {
+	s.Value = &v
+	return s
 }
 
 type ModifyMountTargetSecurityGroupsInput struct {
@@ -1835,6 +2105,18 @@ func (s *ModifyMountTargetSecurityGroupsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMountTargetId sets the MountTargetId field's value.
+func (s *ModifyMountTargetSecurityGroupsInput) SetMountTargetId(v string) *ModifyMountTargetSecurityGroupsInput {
+	s.MountTargetId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *ModifyMountTargetSecurityGroupsInput) SetSecurityGroups(v []*string) *ModifyMountTargetSecurityGroupsInput {
+	s.SecurityGroups = v
+	return s
 }
 
 type ModifyMountTargetSecurityGroupsOutput struct {
@@ -1896,6 +2178,48 @@ func (s MountTargetDescription) GoString() string {
 	return s.String()
 }
 
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *MountTargetDescription) SetFileSystemId(v string) *MountTargetDescription {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *MountTargetDescription) SetIpAddress(v string) *MountTargetDescription {
+	s.IpAddress = &v
+	return s
+}
+
+// SetLifeCycleState sets the LifeCycleState field's value.
+func (s *MountTargetDescription) SetLifeCycleState(v string) *MountTargetDescription {
+	s.LifeCycleState = &v
+	return s
+}
+
+// SetMountTargetId sets the MountTargetId field's value.
+func (s *MountTargetDescription) SetMountTargetId(v string) *MountTargetDescription {
+	s.MountTargetId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *MountTargetDescription) SetNetworkInterfaceId(v string) *MountTargetDescription {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *MountTargetDescription) SetOwnerId(v string) *MountTargetDescription {
+	s.OwnerId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *MountTargetDescription) SetSubnetId(v string) *MountTargetDescription {
+	s.SubnetId = &v
+	return s
+}
+
 // A tag is a key-value pair. Allowed characters: letters, whitespace, and numbers,
 // representable in UTF-8, and the following characters: + - = . _ : /
 type Tag struct {
@@ -1939,6 +2263,18 @@ func (s *Tag) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 const (

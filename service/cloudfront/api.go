@@ -2607,6 +2607,24 @@ func (s ActiveTrustedSigners) GoString() string {
 	return s.String()
 }
 
+// SetEnabled sets the Enabled field's value.
+func (s *ActiveTrustedSigners) SetEnabled(v bool) *ActiveTrustedSigners {
+	s.Enabled = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *ActiveTrustedSigners) SetItems(v []*Signer) *ActiveTrustedSigners {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ActiveTrustedSigners) SetQuantity(v int64) *ActiveTrustedSigners {
+	s.Quantity = &v
+	return s
+}
+
 // A complex type that contains information about CNAMEs (alternate domain names),
 // if any, for this distribution.
 type Aliases struct {
@@ -2644,6 +2662,18 @@ func (s *Aliases) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *Aliases) SetItems(v []*string) *Aliases {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *Aliases) SetQuantity(v int64) *Aliases {
+	s.Quantity = &v
+	return s
 }
 
 // A complex type that controls which HTTP methods CloudFront processes and
@@ -2719,6 +2749,24 @@ func (s *AllowedMethods) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCachedMethods sets the CachedMethods field's value.
+func (s *AllowedMethods) SetCachedMethods(v *CachedMethods) *AllowedMethods {
+	s.CachedMethods = v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *AllowedMethods) SetItems(v []*string) *AllowedMethods {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *AllowedMethods) SetQuantity(v int64) *AllowedMethods {
+	s.Quantity = &v
+	return s
 }
 
 // A complex type that describes how CloudFront processes requests.
@@ -2946,6 +2994,72 @@ func (s *CacheBehavior) Validate() error {
 	return nil
 }
 
+// SetAllowedMethods sets the AllowedMethods field's value.
+func (s *CacheBehavior) SetAllowedMethods(v *AllowedMethods) *CacheBehavior {
+	s.AllowedMethods = v
+	return s
+}
+
+// SetCompress sets the Compress field's value.
+func (s *CacheBehavior) SetCompress(v bool) *CacheBehavior {
+	s.Compress = &v
+	return s
+}
+
+// SetDefaultTTL sets the DefaultTTL field's value.
+func (s *CacheBehavior) SetDefaultTTL(v int64) *CacheBehavior {
+	s.DefaultTTL = &v
+	return s
+}
+
+// SetForwardedValues sets the ForwardedValues field's value.
+func (s *CacheBehavior) SetForwardedValues(v *ForwardedValues) *CacheBehavior {
+	s.ForwardedValues = v
+	return s
+}
+
+// SetMaxTTL sets the MaxTTL field's value.
+func (s *CacheBehavior) SetMaxTTL(v int64) *CacheBehavior {
+	s.MaxTTL = &v
+	return s
+}
+
+// SetMinTTL sets the MinTTL field's value.
+func (s *CacheBehavior) SetMinTTL(v int64) *CacheBehavior {
+	s.MinTTL = &v
+	return s
+}
+
+// SetPathPattern sets the PathPattern field's value.
+func (s *CacheBehavior) SetPathPattern(v string) *CacheBehavior {
+	s.PathPattern = &v
+	return s
+}
+
+// SetSmoothStreaming sets the SmoothStreaming field's value.
+func (s *CacheBehavior) SetSmoothStreaming(v bool) *CacheBehavior {
+	s.SmoothStreaming = &v
+	return s
+}
+
+// SetTargetOriginId sets the TargetOriginId field's value.
+func (s *CacheBehavior) SetTargetOriginId(v string) *CacheBehavior {
+	s.TargetOriginId = &v
+	return s
+}
+
+// SetTrustedSigners sets the TrustedSigners field's value.
+func (s *CacheBehavior) SetTrustedSigners(v *TrustedSigners) *CacheBehavior {
+	s.TrustedSigners = v
+	return s
+}
+
+// SetViewerProtocolPolicy sets the ViewerProtocolPolicy field's value.
+func (s *CacheBehavior) SetViewerProtocolPolicy(v string) *CacheBehavior {
+	s.ViewerProtocolPolicy = &v
+	return s
+}
+
 // A complex type that contains zero or more CacheBehavior elements.
 type CacheBehaviors struct {
 	_ struct{} `type:"structure"`
@@ -2991,6 +3105,18 @@ func (s *CacheBehaviors) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *CacheBehaviors) SetItems(v []*CacheBehavior) *CacheBehaviors {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *CacheBehaviors) SetQuantity(v int64) *CacheBehaviors {
+	s.Quantity = &v
+	return s
 }
 
 // A complex type that controls whether CloudFront caches the response to requests
@@ -3046,6 +3172,18 @@ func (s *CachedMethods) Validate() error {
 	return nil
 }
 
+// SetItems sets the Items field's value.
+func (s *CachedMethods) SetItems(v []*string) *CachedMethods {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *CachedMethods) SetQuantity(v int64) *CachedMethods {
+	s.Quantity = &v
+	return s
+}
+
 // A complex type that specifies whether you want CloudFront to forward cookies
 // to the origin and, if so, which ones. For more information about forwarding
 // cookies to the origin, see How CloudFront Forwards, Caches, and Logs Cookies
@@ -3086,6 +3224,18 @@ func (s *CookieNames) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *CookieNames) SetItems(v []*string) *CookieNames {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *CookieNames) SetQuantity(v int64) *CookieNames {
+	s.Quantity = &v
+	return s
 }
 
 // A complex type that specifies whether you want CloudFront to forward cookies
@@ -3150,6 +3300,18 @@ func (s *CookiePreference) Validate() error {
 	return nil
 }
 
+// SetForward sets the Forward field's value.
+func (s *CookiePreference) SetForward(v string) *CookiePreference {
+	s.Forward = &v
+	return s
+}
+
+// SetWhitelistedNames sets the WhitelistedNames field's value.
+func (s *CookiePreference) SetWhitelistedNames(v *CookieNames) *CookiePreference {
+	s.WhitelistedNames = v
+	return s
+}
+
 // The request to create a new origin access identity.
 type CreateCloudFrontOriginAccessIdentityInput struct {
 	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
@@ -3188,6 +3350,12 @@ func (s *CreateCloudFrontOriginAccessIdentityInput) Validate() error {
 	return nil
 }
 
+// SetCloudFrontOriginAccessIdentityConfig sets the CloudFrontOriginAccessIdentityConfig field's value.
+func (s *CreateCloudFrontOriginAccessIdentityInput) SetCloudFrontOriginAccessIdentityConfig(v *OriginAccessIdentityConfig) *CreateCloudFrontOriginAccessIdentityInput {
+	s.CloudFrontOriginAccessIdentityConfig = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type CreateCloudFrontOriginAccessIdentityOutput struct {
 	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
@@ -3211,6 +3379,24 @@ func (s CreateCloudFrontOriginAccessIdentityOutput) String() string {
 // GoString returns the string representation
 func (s CreateCloudFrontOriginAccessIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetCloudFrontOriginAccessIdentity sets the CloudFrontOriginAccessIdentity field's value.
+func (s *CreateCloudFrontOriginAccessIdentityOutput) SetCloudFrontOriginAccessIdentity(v *OriginAccessIdentity) *CreateCloudFrontOriginAccessIdentityOutput {
+	s.CloudFrontOriginAccessIdentity = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateCloudFrontOriginAccessIdentityOutput) SetETag(v string) *CreateCloudFrontOriginAccessIdentityOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateCloudFrontOriginAccessIdentityOutput) SetLocation(v string) *CreateCloudFrontOriginAccessIdentityOutput {
+	s.Location = &v
+	return s
 }
 
 // The request to create a new distribution.
@@ -3251,6 +3437,12 @@ func (s *CreateDistributionInput) Validate() error {
 	return nil
 }
 
+// SetDistributionConfig sets the DistributionConfig field's value.
+func (s *CreateDistributionInput) SetDistributionConfig(v *DistributionConfig) *CreateDistributionInput {
+	s.DistributionConfig = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type CreateDistributionOutput struct {
 	_ struct{} `type:"structure" payload:"Distribution"`
@@ -3274,6 +3466,24 @@ func (s CreateDistributionOutput) String() string {
 // GoString returns the string representation
 func (s CreateDistributionOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistribution sets the Distribution field's value.
+func (s *CreateDistributionOutput) SetDistribution(v *Distribution) *CreateDistributionOutput {
+	s.Distribution = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateDistributionOutput) SetETag(v string) *CreateDistributionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateDistributionOutput) SetLocation(v string) *CreateDistributionOutput {
+	s.Location = &v
+	return s
 }
 
 // The request to create a new distribution with tags.
@@ -3314,6 +3524,12 @@ func (s *CreateDistributionWithTagsInput) Validate() error {
 	return nil
 }
 
+// SetDistributionConfigWithTags sets the DistributionConfigWithTags field's value.
+func (s *CreateDistributionWithTagsInput) SetDistributionConfigWithTags(v *DistributionConfigWithTags) *CreateDistributionWithTagsInput {
+	s.DistributionConfigWithTags = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type CreateDistributionWithTagsOutput struct {
 	_ struct{} `type:"structure" payload:"Distribution"`
@@ -3337,6 +3553,24 @@ func (s CreateDistributionWithTagsOutput) String() string {
 // GoString returns the string representation
 func (s CreateDistributionWithTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistribution sets the Distribution field's value.
+func (s *CreateDistributionWithTagsOutput) SetDistribution(v *Distribution) *CreateDistributionWithTagsOutput {
+	s.Distribution = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateDistributionWithTagsOutput) SetETag(v string) *CreateDistributionWithTagsOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateDistributionWithTagsOutput) SetLocation(v string) *CreateDistributionWithTagsOutput {
+	s.Location = &v
+	return s
 }
 
 // The request to create an invalidation.
@@ -3385,6 +3619,18 @@ func (s *CreateInvalidationInput) Validate() error {
 	return nil
 }
 
+// SetDistributionId sets the DistributionId field's value.
+func (s *CreateInvalidationInput) SetDistributionId(v string) *CreateInvalidationInput {
+	s.DistributionId = &v
+	return s
+}
+
+// SetInvalidationBatch sets the InvalidationBatch field's value.
+func (s *CreateInvalidationInput) SetInvalidationBatch(v *InvalidationBatch) *CreateInvalidationInput {
+	s.InvalidationBatch = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type CreateInvalidationOutput struct {
 	_ struct{} `type:"structure" payload:"Invalidation"`
@@ -3405,6 +3651,18 @@ func (s CreateInvalidationOutput) String() string {
 // GoString returns the string representation
 func (s CreateInvalidationOutput) GoString() string {
 	return s.String()
+}
+
+// SetInvalidation sets the Invalidation field's value.
+func (s *CreateInvalidationOutput) SetInvalidation(v *Invalidation) *CreateInvalidationOutput {
+	s.Invalidation = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateInvalidationOutput) SetLocation(v string) *CreateInvalidationOutput {
+	s.Location = &v
+	return s
 }
 
 // The request to create a new streaming distribution.
@@ -3445,6 +3703,12 @@ func (s *CreateStreamingDistributionInput) Validate() error {
 	return nil
 }
 
+// SetStreamingDistributionConfig sets the StreamingDistributionConfig field's value.
+func (s *CreateStreamingDistributionInput) SetStreamingDistributionConfig(v *StreamingDistributionConfig) *CreateStreamingDistributionInput {
+	s.StreamingDistributionConfig = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type CreateStreamingDistributionOutput struct {
 	_ struct{} `type:"structure" payload:"StreamingDistribution"`
@@ -3468,6 +3732,24 @@ func (s CreateStreamingDistributionOutput) String() string {
 // GoString returns the string representation
 func (s CreateStreamingDistributionOutput) GoString() string {
 	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateStreamingDistributionOutput) SetETag(v string) *CreateStreamingDistributionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateStreamingDistributionOutput) SetLocation(v string) *CreateStreamingDistributionOutput {
+	s.Location = &v
+	return s
+}
+
+// SetStreamingDistribution sets the StreamingDistribution field's value.
+func (s *CreateStreamingDistributionOutput) SetStreamingDistribution(v *StreamingDistribution) *CreateStreamingDistributionOutput {
+	s.StreamingDistribution = v
+	return s
 }
 
 // The request to create a new streaming distribution with tags.
@@ -3508,6 +3790,12 @@ func (s *CreateStreamingDistributionWithTagsInput) Validate() error {
 	return nil
 }
 
+// SetStreamingDistributionConfigWithTags sets the StreamingDistributionConfigWithTags field's value.
+func (s *CreateStreamingDistributionWithTagsInput) SetStreamingDistributionConfigWithTags(v *StreamingDistributionConfigWithTags) *CreateStreamingDistributionWithTagsInput {
+	s.StreamingDistributionConfigWithTags = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type CreateStreamingDistributionWithTagsOutput struct {
 	_ struct{} `type:"structure" payload:"StreamingDistribution"`
@@ -3530,6 +3818,24 @@ func (s CreateStreamingDistributionWithTagsOutput) String() string {
 // GoString returns the string representation
 func (s CreateStreamingDistributionWithTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateStreamingDistributionWithTagsOutput) SetETag(v string) *CreateStreamingDistributionWithTagsOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateStreamingDistributionWithTagsOutput) SetLocation(v string) *CreateStreamingDistributionWithTagsOutput {
+	s.Location = &v
+	return s
+}
+
+// SetStreamingDistribution sets the StreamingDistribution field's value.
+func (s *CreateStreamingDistributionWithTagsOutput) SetStreamingDistribution(v *StreamingDistribution) *CreateStreamingDistributionWithTagsOutput {
+	s.StreamingDistribution = v
+	return s
 }
 
 // A complex type that controls:
@@ -3636,6 +3942,30 @@ func (s *CustomErrorResponse) Validate() error {
 	return nil
 }
 
+// SetErrorCachingMinTTL sets the ErrorCachingMinTTL field's value.
+func (s *CustomErrorResponse) SetErrorCachingMinTTL(v int64) *CustomErrorResponse {
+	s.ErrorCachingMinTTL = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *CustomErrorResponse) SetErrorCode(v int64) *CustomErrorResponse {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *CustomErrorResponse) SetResponseCode(v string) *CustomErrorResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetResponsePagePath sets the ResponsePagePath field's value.
+func (s *CustomErrorResponse) SetResponsePagePath(v string) *CustomErrorResponse {
+	s.ResponsePagePath = &v
+	return s
+}
+
 // A complex type that controls:
 //
 //    * Whether CloudFront replaces HTTP status codes in the 4xx and 5xx range
@@ -3694,6 +4024,18 @@ func (s *CustomErrorResponses) Validate() error {
 	return nil
 }
 
+// SetItems sets the Items field's value.
+func (s *CustomErrorResponses) SetItems(v []*CustomErrorResponse) *CustomErrorResponses {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *CustomErrorResponses) SetQuantity(v int64) *CustomErrorResponses {
+	s.Quantity = &v
+	return s
+}
+
 // A complex type that contains the list of Custom Headers for each origin.
 type CustomHeaders struct {
 	_ struct{} `type:"structure"`
@@ -3740,6 +4082,18 @@ func (s *CustomHeaders) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *CustomHeaders) SetItems(v []*OriginCustomHeader) *CustomHeaders {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *CustomHeaders) SetQuantity(v int64) *CustomHeaders {
+	s.Quantity = &v
+	return s
 }
 
 // A customer origin.
@@ -3798,6 +4152,30 @@ func (s *CustomOriginConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHTTPPort sets the HTTPPort field's value.
+func (s *CustomOriginConfig) SetHTTPPort(v int64) *CustomOriginConfig {
+	s.HTTPPort = &v
+	return s
+}
+
+// SetHTTPSPort sets the HTTPSPort field's value.
+func (s *CustomOriginConfig) SetHTTPSPort(v int64) *CustomOriginConfig {
+	s.HTTPSPort = &v
+	return s
+}
+
+// SetOriginProtocolPolicy sets the OriginProtocolPolicy field's value.
+func (s *CustomOriginConfig) SetOriginProtocolPolicy(v string) *CustomOriginConfig {
+	s.OriginProtocolPolicy = &v
+	return s
+}
+
+// SetOriginSslProtocols sets the OriginSslProtocols field's value.
+func (s *CustomOriginConfig) SetOriginSslProtocols(v *OriginSslProtocols) *CustomOriginConfig {
+	s.OriginSslProtocols = v
+	return s
 }
 
 // A complex type that describes the default cache behavior if you do not specify
@@ -3972,6 +4350,66 @@ func (s *DefaultCacheBehavior) Validate() error {
 	return nil
 }
 
+// SetAllowedMethods sets the AllowedMethods field's value.
+func (s *DefaultCacheBehavior) SetAllowedMethods(v *AllowedMethods) *DefaultCacheBehavior {
+	s.AllowedMethods = v
+	return s
+}
+
+// SetCompress sets the Compress field's value.
+func (s *DefaultCacheBehavior) SetCompress(v bool) *DefaultCacheBehavior {
+	s.Compress = &v
+	return s
+}
+
+// SetDefaultTTL sets the DefaultTTL field's value.
+func (s *DefaultCacheBehavior) SetDefaultTTL(v int64) *DefaultCacheBehavior {
+	s.DefaultTTL = &v
+	return s
+}
+
+// SetForwardedValues sets the ForwardedValues field's value.
+func (s *DefaultCacheBehavior) SetForwardedValues(v *ForwardedValues) *DefaultCacheBehavior {
+	s.ForwardedValues = v
+	return s
+}
+
+// SetMaxTTL sets the MaxTTL field's value.
+func (s *DefaultCacheBehavior) SetMaxTTL(v int64) *DefaultCacheBehavior {
+	s.MaxTTL = &v
+	return s
+}
+
+// SetMinTTL sets the MinTTL field's value.
+func (s *DefaultCacheBehavior) SetMinTTL(v int64) *DefaultCacheBehavior {
+	s.MinTTL = &v
+	return s
+}
+
+// SetSmoothStreaming sets the SmoothStreaming field's value.
+func (s *DefaultCacheBehavior) SetSmoothStreaming(v bool) *DefaultCacheBehavior {
+	s.SmoothStreaming = &v
+	return s
+}
+
+// SetTargetOriginId sets the TargetOriginId field's value.
+func (s *DefaultCacheBehavior) SetTargetOriginId(v string) *DefaultCacheBehavior {
+	s.TargetOriginId = &v
+	return s
+}
+
+// SetTrustedSigners sets the TrustedSigners field's value.
+func (s *DefaultCacheBehavior) SetTrustedSigners(v *TrustedSigners) *DefaultCacheBehavior {
+	s.TrustedSigners = v
+	return s
+}
+
+// SetViewerProtocolPolicy sets the ViewerProtocolPolicy field's value.
+func (s *DefaultCacheBehavior) SetViewerProtocolPolicy(v string) *DefaultCacheBehavior {
+	s.ViewerProtocolPolicy = &v
+	return s
+}
+
 // Deletes a origin access identity.
 type DeleteCloudFrontOriginAccessIdentityInput struct {
 	_ struct{} `type:"structure"`
@@ -4007,6 +4445,18 @@ func (s *DeleteCloudFrontOriginAccessIdentityInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteCloudFrontOriginAccessIdentityInput) SetId(v string) *DeleteCloudFrontOriginAccessIdentityInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteCloudFrontOriginAccessIdentityInput) SetIfMatch(v string) *DeleteCloudFrontOriginAccessIdentityInput {
+	s.IfMatch = &v
+	return s
 }
 
 type DeleteCloudFrontOriginAccessIdentityOutput struct {
@@ -4094,6 +4544,18 @@ func (s *DeleteDistributionInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *DeleteDistributionInput) SetId(v string) *DeleteDistributionInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteDistributionInput) SetIfMatch(v string) *DeleteDistributionInput {
+	s.IfMatch = &v
+	return s
+}
+
 type DeleteDistributionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4143,6 +4605,18 @@ func (s *DeleteStreamingDistributionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteStreamingDistributionInput) SetId(v string) *DeleteStreamingDistributionInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteStreamingDistributionInput) SetIfMatch(v string) *DeleteStreamingDistributionInput {
+	s.IfMatch = &v
+	return s
 }
 
 type DeleteStreamingDistributionOutput struct {
@@ -4223,6 +4697,54 @@ func (s Distribution) String() string {
 // GoString returns the string representation
 func (s Distribution) GoString() string {
 	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *Distribution) SetARN(v string) *Distribution {
+	s.ARN = &v
+	return s
+}
+
+// SetActiveTrustedSigners sets the ActiveTrustedSigners field's value.
+func (s *Distribution) SetActiveTrustedSigners(v *ActiveTrustedSigners) *Distribution {
+	s.ActiveTrustedSigners = v
+	return s
+}
+
+// SetDistributionConfig sets the DistributionConfig field's value.
+func (s *Distribution) SetDistributionConfig(v *DistributionConfig) *Distribution {
+	s.DistributionConfig = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *Distribution) SetDomainName(v string) *Distribution {
+	s.DomainName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Distribution) SetId(v string) *Distribution {
+	s.Id = &v
+	return s
+}
+
+// SetInProgressInvalidationBatches sets the InProgressInvalidationBatches field's value.
+func (s *Distribution) SetInProgressInvalidationBatches(v int64) *Distribution {
+	s.InProgressInvalidationBatches = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Distribution) SetLastModifiedTime(v time.Time) *Distribution {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Distribution) SetStatus(v string) *Distribution {
+	s.Status = &v
+	return s
 }
 
 // A distribution configuration.
@@ -4500,6 +5022,102 @@ func (s *DistributionConfig) Validate() error {
 	return nil
 }
 
+// SetAliases sets the Aliases field's value.
+func (s *DistributionConfig) SetAliases(v *Aliases) *DistributionConfig {
+	s.Aliases = v
+	return s
+}
+
+// SetCacheBehaviors sets the CacheBehaviors field's value.
+func (s *DistributionConfig) SetCacheBehaviors(v *CacheBehaviors) *DistributionConfig {
+	s.CacheBehaviors = v
+	return s
+}
+
+// SetCallerReference sets the CallerReference field's value.
+func (s *DistributionConfig) SetCallerReference(v string) *DistributionConfig {
+	s.CallerReference = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *DistributionConfig) SetComment(v string) *DistributionConfig {
+	s.Comment = &v
+	return s
+}
+
+// SetCustomErrorResponses sets the CustomErrorResponses field's value.
+func (s *DistributionConfig) SetCustomErrorResponses(v *CustomErrorResponses) *DistributionConfig {
+	s.CustomErrorResponses = v
+	return s
+}
+
+// SetDefaultCacheBehavior sets the DefaultCacheBehavior field's value.
+func (s *DistributionConfig) SetDefaultCacheBehavior(v *DefaultCacheBehavior) *DistributionConfig {
+	s.DefaultCacheBehavior = v
+	return s
+}
+
+// SetDefaultRootObject sets the DefaultRootObject field's value.
+func (s *DistributionConfig) SetDefaultRootObject(v string) *DistributionConfig {
+	s.DefaultRootObject = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *DistributionConfig) SetEnabled(v bool) *DistributionConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetHttpVersion sets the HttpVersion field's value.
+func (s *DistributionConfig) SetHttpVersion(v string) *DistributionConfig {
+	s.HttpVersion = &v
+	return s
+}
+
+// SetIsIPV6Enabled sets the IsIPV6Enabled field's value.
+func (s *DistributionConfig) SetIsIPV6Enabled(v bool) *DistributionConfig {
+	s.IsIPV6Enabled = &v
+	return s
+}
+
+// SetLogging sets the Logging field's value.
+func (s *DistributionConfig) SetLogging(v *LoggingConfig) *DistributionConfig {
+	s.Logging = v
+	return s
+}
+
+// SetOrigins sets the Origins field's value.
+func (s *DistributionConfig) SetOrigins(v *Origins) *DistributionConfig {
+	s.Origins = v
+	return s
+}
+
+// SetPriceClass sets the PriceClass field's value.
+func (s *DistributionConfig) SetPriceClass(v string) *DistributionConfig {
+	s.PriceClass = &v
+	return s
+}
+
+// SetRestrictions sets the Restrictions field's value.
+func (s *DistributionConfig) SetRestrictions(v *Restrictions) *DistributionConfig {
+	s.Restrictions = v
+	return s
+}
+
+// SetViewerCertificate sets the ViewerCertificate field's value.
+func (s *DistributionConfig) SetViewerCertificate(v *ViewerCertificate) *DistributionConfig {
+	s.ViewerCertificate = v
+	return s
+}
+
+// SetWebACLId sets the WebACLId field's value.
+func (s *DistributionConfig) SetWebACLId(v string) *DistributionConfig {
+	s.WebACLId = &v
+	return s
+}
+
 // A distribution Configuration and a list of tags to be associated with the
 // distribution.
 type DistributionConfigWithTags struct {
@@ -4552,6 +5170,18 @@ func (s *DistributionConfigWithTags) Validate() error {
 	return nil
 }
 
+// SetDistributionConfig sets the DistributionConfig field's value.
+func (s *DistributionConfigWithTags) SetDistributionConfig(v *DistributionConfig) *DistributionConfigWithTags {
+	s.DistributionConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DistributionConfigWithTags) SetTags(v *Tags) *DistributionConfigWithTags {
+	s.Tags = v
+	return s
+}
+
 // A distribution list.
 type DistributionList struct {
 	_ struct{} `type:"structure"`
@@ -4597,6 +5227,42 @@ func (s DistributionList) String() string {
 // GoString returns the string representation
 func (s DistributionList) GoString() string {
 	return s.String()
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *DistributionList) SetIsTruncated(v bool) *DistributionList {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *DistributionList) SetItems(v []*DistributionSummary) *DistributionList {
+	s.Items = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DistributionList) SetMarker(v string) *DistributionList {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *DistributionList) SetMaxItems(v int64) *DistributionList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *DistributionList) SetNextMarker(v string) *DistributionList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *DistributionList) SetQuantity(v int64) *DistributionList {
+	s.Quantity = &v
+	return s
 }
 
 // A summary of the information about a CloudFront distribution.
@@ -4724,6 +5390,114 @@ func (s DistributionSummary) GoString() string {
 	return s.String()
 }
 
+// SetARN sets the ARN field's value.
+func (s *DistributionSummary) SetARN(v string) *DistributionSummary {
+	s.ARN = &v
+	return s
+}
+
+// SetAliases sets the Aliases field's value.
+func (s *DistributionSummary) SetAliases(v *Aliases) *DistributionSummary {
+	s.Aliases = v
+	return s
+}
+
+// SetCacheBehaviors sets the CacheBehaviors field's value.
+func (s *DistributionSummary) SetCacheBehaviors(v *CacheBehaviors) *DistributionSummary {
+	s.CacheBehaviors = v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *DistributionSummary) SetComment(v string) *DistributionSummary {
+	s.Comment = &v
+	return s
+}
+
+// SetCustomErrorResponses sets the CustomErrorResponses field's value.
+func (s *DistributionSummary) SetCustomErrorResponses(v *CustomErrorResponses) *DistributionSummary {
+	s.CustomErrorResponses = v
+	return s
+}
+
+// SetDefaultCacheBehavior sets the DefaultCacheBehavior field's value.
+func (s *DistributionSummary) SetDefaultCacheBehavior(v *DefaultCacheBehavior) *DistributionSummary {
+	s.DefaultCacheBehavior = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DistributionSummary) SetDomainName(v string) *DistributionSummary {
+	s.DomainName = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *DistributionSummary) SetEnabled(v bool) *DistributionSummary {
+	s.Enabled = &v
+	return s
+}
+
+// SetHttpVersion sets the HttpVersion field's value.
+func (s *DistributionSummary) SetHttpVersion(v string) *DistributionSummary {
+	s.HttpVersion = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DistributionSummary) SetId(v string) *DistributionSummary {
+	s.Id = &v
+	return s
+}
+
+// SetIsIPV6Enabled sets the IsIPV6Enabled field's value.
+func (s *DistributionSummary) SetIsIPV6Enabled(v bool) *DistributionSummary {
+	s.IsIPV6Enabled = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DistributionSummary) SetLastModifiedTime(v time.Time) *DistributionSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOrigins sets the Origins field's value.
+func (s *DistributionSummary) SetOrigins(v *Origins) *DistributionSummary {
+	s.Origins = v
+	return s
+}
+
+// SetPriceClass sets the PriceClass field's value.
+func (s *DistributionSummary) SetPriceClass(v string) *DistributionSummary {
+	s.PriceClass = &v
+	return s
+}
+
+// SetRestrictions sets the Restrictions field's value.
+func (s *DistributionSummary) SetRestrictions(v *Restrictions) *DistributionSummary {
+	s.Restrictions = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DistributionSummary) SetStatus(v string) *DistributionSummary {
+	s.Status = &v
+	return s
+}
+
+// SetViewerCertificate sets the ViewerCertificate field's value.
+func (s *DistributionSummary) SetViewerCertificate(v *ViewerCertificate) *DistributionSummary {
+	s.ViewerCertificate = v
+	return s
+}
+
+// SetWebACLId sets the WebACLId field's value.
+func (s *DistributionSummary) SetWebACLId(v string) *DistributionSummary {
+	s.WebACLId = &v
+	return s
+}
+
 // A complex type that specifies how CloudFront handles query strings and cookies.
 type ForwardedValues struct {
 	_ struct{} `type:"structure"`
@@ -4814,6 +5588,30 @@ func (s *ForwardedValues) Validate() error {
 	return nil
 }
 
+// SetCookies sets the Cookies field's value.
+func (s *ForwardedValues) SetCookies(v *CookiePreference) *ForwardedValues {
+	s.Cookies = v
+	return s
+}
+
+// SetHeaders sets the Headers field's value.
+func (s *ForwardedValues) SetHeaders(v *Headers) *ForwardedValues {
+	s.Headers = v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *ForwardedValues) SetQueryString(v bool) *ForwardedValues {
+	s.QueryString = &v
+	return s
+}
+
+// SetQueryStringCacheKeys sets the QueryStringCacheKeys field's value.
+func (s *ForwardedValues) SetQueryStringCacheKeys(v *QueryStringCacheKeys) *ForwardedValues {
+	s.QueryStringCacheKeys = v
+	return s
+}
+
 // A complex type that controls the countries in which your content is distributed.
 // CloudFront determines the location of your users using MaxMind GeoIP databases.
 type GeoRestriction struct {
@@ -4883,6 +5681,24 @@ func (s *GeoRestriction) Validate() error {
 	return nil
 }
 
+// SetItems sets the Items field's value.
+func (s *GeoRestriction) SetItems(v []*string) *GeoRestriction {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *GeoRestriction) SetQuantity(v int64) *GeoRestriction {
+	s.Quantity = &v
+	return s
+}
+
+// SetRestrictionType sets the RestrictionType field's value.
+func (s *GeoRestriction) SetRestrictionType(v string) *GeoRestriction {
+	s.RestrictionType = &v
+	return s
+}
+
 // The origin access identity's configuration information. For more information,
 // see CloudFrontOriginAccessIdentityConfigComplexType.
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
@@ -4917,6 +5733,12 @@ func (s *GetCloudFrontOriginAccessIdentityConfigInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetCloudFrontOriginAccessIdentityConfigInput) SetId(v string) *GetCloudFrontOriginAccessIdentityConfigInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityConfigOutput struct {
 	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
@@ -4936,6 +5758,18 @@ func (s GetCloudFrontOriginAccessIdentityConfigOutput) String() string {
 // GoString returns the string representation
 func (s GetCloudFrontOriginAccessIdentityConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetCloudFrontOriginAccessIdentityConfig sets the CloudFrontOriginAccessIdentityConfig field's value.
+func (s *GetCloudFrontOriginAccessIdentityConfigOutput) SetCloudFrontOriginAccessIdentityConfig(v *OriginAccessIdentityConfig) *GetCloudFrontOriginAccessIdentityConfigOutput {
+	s.CloudFrontOriginAccessIdentityConfig = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetCloudFrontOriginAccessIdentityConfigOutput) SetETag(v string) *GetCloudFrontOriginAccessIdentityConfigOutput {
+	s.ETag = &v
+	return s
 }
 
 // The request to get an origin access identity's information.
@@ -4971,6 +5805,12 @@ func (s *GetCloudFrontOriginAccessIdentityInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetCloudFrontOriginAccessIdentityInput) SetId(v string) *GetCloudFrontOriginAccessIdentityInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetCloudFrontOriginAccessIdentityOutput struct {
 	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
@@ -4991,6 +5831,18 @@ func (s GetCloudFrontOriginAccessIdentityOutput) String() string {
 // GoString returns the string representation
 func (s GetCloudFrontOriginAccessIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetCloudFrontOriginAccessIdentity sets the CloudFrontOriginAccessIdentity field's value.
+func (s *GetCloudFrontOriginAccessIdentityOutput) SetCloudFrontOriginAccessIdentity(v *OriginAccessIdentity) *GetCloudFrontOriginAccessIdentityOutput {
+	s.CloudFrontOriginAccessIdentity = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetCloudFrontOriginAccessIdentityOutput) SetETag(v string) *GetCloudFrontOriginAccessIdentityOutput {
+	s.ETag = &v
+	return s
 }
 
 // The request to get a distribution configuration.
@@ -5026,6 +5878,12 @@ func (s *GetDistributionConfigInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetDistributionConfigInput) SetId(v string) *GetDistributionConfigInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetDistributionConfigOutput struct {
 	_ struct{} `type:"structure" payload:"DistributionConfig"`
@@ -5045,6 +5903,18 @@ func (s GetDistributionConfigOutput) String() string {
 // GoString returns the string representation
 func (s GetDistributionConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistributionConfig sets the DistributionConfig field's value.
+func (s *GetDistributionConfigOutput) SetDistributionConfig(v *DistributionConfig) *GetDistributionConfigOutput {
+	s.DistributionConfig = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetDistributionConfigOutput) SetETag(v string) *GetDistributionConfigOutput {
+	s.ETag = &v
+	return s
 }
 
 // The request to get a distribution's information.
@@ -5080,6 +5950,12 @@ func (s *GetDistributionInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetDistributionInput) SetId(v string) *GetDistributionInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetDistributionOutput struct {
 	_ struct{} `type:"structure" payload:"Distribution"`
@@ -5099,6 +5975,18 @@ func (s GetDistributionOutput) String() string {
 // GoString returns the string representation
 func (s GetDistributionOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistribution sets the Distribution field's value.
+func (s *GetDistributionOutput) SetDistribution(v *Distribution) *GetDistributionOutput {
+	s.Distribution = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetDistributionOutput) SetETag(v string) *GetDistributionOutput {
+	s.ETag = &v
+	return s
 }
 
 // The request to get an invalidation's information.
@@ -5142,6 +6030,18 @@ func (s *GetInvalidationInput) Validate() error {
 	return nil
 }
 
+// SetDistributionId sets the DistributionId field's value.
+func (s *GetInvalidationInput) SetDistributionId(v string) *GetInvalidationInput {
+	s.DistributionId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetInvalidationInput) SetId(v string) *GetInvalidationInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetInvalidationOutput struct {
 	_ struct{} `type:"structure" payload:"Invalidation"`
@@ -5159,6 +6059,12 @@ func (s GetInvalidationOutput) String() string {
 // GoString returns the string representation
 func (s GetInvalidationOutput) GoString() string {
 	return s.String()
+}
+
+// SetInvalidation sets the Invalidation field's value.
+func (s *GetInvalidationOutput) SetInvalidation(v *Invalidation) *GetInvalidationOutput {
+	s.Invalidation = v
+	return s
 }
 
 // To request to get a streaming distribution configuration.
@@ -5194,6 +6100,12 @@ func (s *GetStreamingDistributionConfigInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetStreamingDistributionConfigInput) SetId(v string) *GetStreamingDistributionConfigInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetStreamingDistributionConfigOutput struct {
 	_ struct{} `type:"structure" payload:"StreamingDistributionConfig"`
@@ -5213,6 +6125,18 @@ func (s GetStreamingDistributionConfigOutput) String() string {
 // GoString returns the string representation
 func (s GetStreamingDistributionConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetStreamingDistributionConfigOutput) SetETag(v string) *GetStreamingDistributionConfigOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetStreamingDistributionConfig sets the StreamingDistributionConfig field's value.
+func (s *GetStreamingDistributionConfigOutput) SetStreamingDistributionConfig(v *StreamingDistributionConfig) *GetStreamingDistributionConfigOutput {
+	s.StreamingDistributionConfig = v
+	return s
 }
 
 // The request to get a streaming distribution's information.
@@ -5248,6 +6172,12 @@ func (s *GetStreamingDistributionInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *GetStreamingDistributionInput) SetId(v string) *GetStreamingDistributionInput {
+	s.Id = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type GetStreamingDistributionOutput struct {
 	_ struct{} `type:"structure" payload:"StreamingDistribution"`
@@ -5268,6 +6198,18 @@ func (s GetStreamingDistributionOutput) String() string {
 // GoString returns the string representation
 func (s GetStreamingDistributionOutput) GoString() string {
 	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetStreamingDistributionOutput) SetETag(v string) *GetStreamingDistributionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetStreamingDistribution sets the StreamingDistribution field's value.
+func (s *GetStreamingDistributionOutput) SetStreamingDistribution(v *StreamingDistribution) *GetStreamingDistributionOutput {
+	s.StreamingDistribution = v
+	return s
 }
 
 // A complex type that specifies the headers that you want CloudFront to forward
@@ -5339,6 +6281,18 @@ func (s *Headers) Validate() error {
 	return nil
 }
 
+// SetItems sets the Items field's value.
+func (s *Headers) SetItems(v []*string) *Headers {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *Headers) SetQuantity(v int64) *Headers {
+	s.Quantity = &v
+	return s
+}
+
 // An invalidation.
 type Invalidation struct {
 	_ struct{} `type:"structure"`
@@ -5373,6 +6327,30 @@ func (s Invalidation) String() string {
 // GoString returns the string representation
 func (s Invalidation) GoString() string {
 	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *Invalidation) SetCreateTime(v time.Time) *Invalidation {
+	s.CreateTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Invalidation) SetId(v string) *Invalidation {
+	s.Id = &v
+	return s
+}
+
+// SetInvalidationBatch sets the InvalidationBatch field's value.
+func (s *Invalidation) SetInvalidationBatch(v *InvalidationBatch) *Invalidation {
+	s.InvalidationBatch = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Invalidation) SetStatus(v string) *Invalidation {
+	s.Status = &v
+	return s
 }
 
 // An invalidation batch.
@@ -5438,6 +6416,18 @@ func (s *InvalidationBatch) Validate() error {
 	return nil
 }
 
+// SetCallerReference sets the CallerReference field's value.
+func (s *InvalidationBatch) SetCallerReference(v string) *InvalidationBatch {
+	s.CallerReference = &v
+	return s
+}
+
+// SetPaths sets the Paths field's value.
+func (s *InvalidationBatch) SetPaths(v *Paths) *InvalidationBatch {
+	s.Paths = v
+	return s
+}
+
 // The InvalidationList complex type describes the list of invalidation objects.
 // For more information about invalidation, see Invalidating Objects (Web Distributions
 // Only) (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html)
@@ -5488,6 +6478,42 @@ func (s InvalidationList) GoString() string {
 	return s.String()
 }
 
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *InvalidationList) SetIsTruncated(v bool) *InvalidationList {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *InvalidationList) SetItems(v []*InvalidationSummary) *InvalidationList {
+	s.Items = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *InvalidationList) SetMarker(v string) *InvalidationList {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *InvalidationList) SetMaxItems(v int64) *InvalidationList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *InvalidationList) SetNextMarker(v string) *InvalidationList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *InvalidationList) SetQuantity(v int64) *InvalidationList {
+	s.Quantity = &v
+	return s
+}
+
 // A summary of an invalidation request.
 type InvalidationSummary struct {
 	_ struct{} `type:"structure"`
@@ -5514,6 +6540,24 @@ func (s InvalidationSummary) String() string {
 // GoString returns the string representation
 func (s InvalidationSummary) GoString() string {
 	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *InvalidationSummary) SetCreateTime(v time.Time) *InvalidationSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *InvalidationSummary) SetId(v string) *InvalidationSummary {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InvalidationSummary) SetStatus(v string) *InvalidationSummary {
+	s.Status = &v
+	return s
 }
 
 // A complex type that lists the active CloudFront key pairs, if any, that are
@@ -5547,6 +6591,18 @@ func (s KeyPairIds) GoString() string {
 	return s.String()
 }
 
+// SetItems sets the Items field's value.
+func (s *KeyPairIds) SetItems(v []*string) *KeyPairIds {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *KeyPairIds) SetQuantity(v int64) *KeyPairIds {
+	s.Quantity = &v
+	return s
+}
+
 // The request to list origin access identities.
 type ListCloudFrontOriginAccessIdentitiesInput struct {
 	_ struct{} `type:"structure"`
@@ -5572,6 +6628,18 @@ func (s ListCloudFrontOriginAccessIdentitiesInput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *ListCloudFrontOriginAccessIdentitiesInput) SetMarker(v string) *ListCloudFrontOriginAccessIdentitiesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListCloudFrontOriginAccessIdentitiesInput) SetMaxItems(v int64) *ListCloudFrontOriginAccessIdentitiesInput {
+	s.MaxItems = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type ListCloudFrontOriginAccessIdentitiesOutput struct {
 	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentityList"`
@@ -5588,6 +6656,12 @@ func (s ListCloudFrontOriginAccessIdentitiesOutput) String() string {
 // GoString returns the string representation
 func (s ListCloudFrontOriginAccessIdentitiesOutput) GoString() string {
 	return s.String()
+}
+
+// SetCloudFrontOriginAccessIdentityList sets the CloudFrontOriginAccessIdentityList field's value.
+func (s *ListCloudFrontOriginAccessIdentitiesOutput) SetCloudFrontOriginAccessIdentityList(v *OriginAccessIdentityList) *ListCloudFrontOriginAccessIdentitiesOutput {
+	s.CloudFrontOriginAccessIdentityList = v
+	return s
 }
 
 // The request to list distributions that are associated with a specified AWS
@@ -5637,6 +6711,24 @@ func (s *ListDistributionsByWebACLIdInput) Validate() error {
 	return nil
 }
 
+// SetMarker sets the Marker field's value.
+func (s *ListDistributionsByWebACLIdInput) SetMarker(v string) *ListDistributionsByWebACLIdInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListDistributionsByWebACLIdInput) SetMaxItems(v int64) *ListDistributionsByWebACLIdInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetWebACLId sets the WebACLId field's value.
+func (s *ListDistributionsByWebACLIdInput) SetWebACLId(v string) *ListDistributionsByWebACLIdInput {
+	s.WebACLId = &v
+	return s
+}
+
 // The response to a request to list the distributions that are associated with
 // a specified AWS WAF web ACL.
 type ListDistributionsByWebACLIdOutput struct {
@@ -5654,6 +6746,12 @@ func (s ListDistributionsByWebACLIdOutput) String() string {
 // GoString returns the string representation
 func (s ListDistributionsByWebACLIdOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistributionList sets the DistributionList field's value.
+func (s *ListDistributionsByWebACLIdOutput) SetDistributionList(v *DistributionList) *ListDistributionsByWebACLIdOutput {
+	s.DistributionList = v
+	return s
 }
 
 // The request to list your distributions.
@@ -5681,6 +6779,18 @@ func (s ListDistributionsInput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *ListDistributionsInput) SetMarker(v string) *ListDistributionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListDistributionsInput) SetMaxItems(v int64) *ListDistributionsInput {
+	s.MaxItems = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type ListDistributionsOutput struct {
 	_ struct{} `type:"structure" payload:"DistributionList"`
@@ -5697,6 +6807,12 @@ func (s ListDistributionsOutput) String() string {
 // GoString returns the string representation
 func (s ListDistributionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistributionList sets the DistributionList field's value.
+func (s *ListDistributionsOutput) SetDistributionList(v *DistributionList) *ListDistributionsOutput {
+	s.DistributionList = v
+	return s
 }
 
 // The request to list invalidations.
@@ -5745,6 +6861,24 @@ func (s *ListInvalidationsInput) Validate() error {
 	return nil
 }
 
+// SetDistributionId sets the DistributionId field's value.
+func (s *ListInvalidationsInput) SetDistributionId(v string) *ListInvalidationsInput {
+	s.DistributionId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListInvalidationsInput) SetMarker(v string) *ListInvalidationsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListInvalidationsInput) SetMaxItems(v int64) *ListInvalidationsInput {
+	s.MaxItems = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type ListInvalidationsOutput struct {
 	_ struct{} `type:"structure" payload:"InvalidationList"`
@@ -5761,6 +6895,12 @@ func (s ListInvalidationsOutput) String() string {
 // GoString returns the string representation
 func (s ListInvalidationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetInvalidationList sets the InvalidationList field's value.
+func (s *ListInvalidationsOutput) SetInvalidationList(v *InvalidationList) *ListInvalidationsOutput {
+	s.InvalidationList = v
+	return s
 }
 
 // The request to list your streaming distributions.
@@ -5784,6 +6924,18 @@ func (s ListStreamingDistributionsInput) GoString() string {
 	return s.String()
 }
 
+// SetMarker sets the Marker field's value.
+func (s *ListStreamingDistributionsInput) SetMarker(v string) *ListStreamingDistributionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListStreamingDistributionsInput) SetMaxItems(v int64) *ListStreamingDistributionsInput {
+	s.MaxItems = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type ListStreamingDistributionsOutput struct {
 	_ struct{} `type:"structure" payload:"StreamingDistributionList"`
@@ -5800,6 +6952,12 @@ func (s ListStreamingDistributionsOutput) String() string {
 // GoString returns the string representation
 func (s ListStreamingDistributionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetStreamingDistributionList sets the StreamingDistributionList field's value.
+func (s *ListStreamingDistributionsOutput) SetStreamingDistributionList(v *StreamingDistributionList) *ListStreamingDistributionsOutput {
+	s.StreamingDistributionList = v
+	return s
 }
 
 // The request to list tags for a CloudFront resource.
@@ -5835,6 +6993,12 @@ func (s *ListTagsForResourceInput) Validate() error {
 	return nil
 }
 
+// SetResource sets the Resource field's value.
+func (s *ListTagsForResourceInput) SetResource(v string) *ListTagsForResourceInput {
+	s.Resource = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure" payload:"Tags"`
@@ -5853,6 +7017,12 @@ func (s ListTagsForResourceOutput) String() string {
 // GoString returns the string representation
 func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v *Tags) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
 }
 
 // A complex type that controls whether access logs are written for the distribution.
@@ -5923,6 +7093,30 @@ func (s *LoggingConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *LoggingConfig) SetBucket(v string) *LoggingConfig {
+	s.Bucket = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *LoggingConfig) SetEnabled(v bool) *LoggingConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetIncludeCookies sets the IncludeCookies field's value.
+func (s *LoggingConfig) SetIncludeCookies(v bool) *LoggingConfig {
+	s.IncludeCookies = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *LoggingConfig) SetPrefix(v string) *LoggingConfig {
+	s.Prefix = &v
+	return s
 }
 
 // A complex type that describes the Amazon S3 bucket or the HTTP server (for
@@ -6052,6 +7246,42 @@ func (s *Origin) Validate() error {
 	return nil
 }
 
+// SetCustomHeaders sets the CustomHeaders field's value.
+func (s *Origin) SetCustomHeaders(v *CustomHeaders) *Origin {
+	s.CustomHeaders = v
+	return s
+}
+
+// SetCustomOriginConfig sets the CustomOriginConfig field's value.
+func (s *Origin) SetCustomOriginConfig(v *CustomOriginConfig) *Origin {
+	s.CustomOriginConfig = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *Origin) SetDomainName(v string) *Origin {
+	s.DomainName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Origin) SetId(v string) *Origin {
+	s.Id = &v
+	return s
+}
+
+// SetOriginPath sets the OriginPath field's value.
+func (s *Origin) SetOriginPath(v string) *Origin {
+	s.OriginPath = &v
+	return s
+}
+
+// SetS3OriginConfig sets the S3OriginConfig field's value.
+func (s *Origin) SetS3OriginConfig(v *S3OriginConfig) *Origin {
+	s.S3OriginConfig = v
+	return s
+}
+
 // CloudFront origin access identity.
 type OriginAccessIdentity struct {
 	_ struct{} `type:"structure"`
@@ -6080,6 +7310,24 @@ func (s OriginAccessIdentity) String() string {
 // GoString returns the string representation
 func (s OriginAccessIdentity) GoString() string {
 	return s.String()
+}
+
+// SetCloudFrontOriginAccessIdentityConfig sets the CloudFrontOriginAccessIdentityConfig field's value.
+func (s *OriginAccessIdentity) SetCloudFrontOriginAccessIdentityConfig(v *OriginAccessIdentityConfig) *OriginAccessIdentity {
+	s.CloudFrontOriginAccessIdentityConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OriginAccessIdentity) SetId(v string) *OriginAccessIdentity {
+	s.Id = &v
+	return s
+}
+
+// SetS3CanonicalUserId sets the S3CanonicalUserId field's value.
+func (s *OriginAccessIdentity) SetS3CanonicalUserId(v string) *OriginAccessIdentity {
+	s.S3CanonicalUserId = &v
+	return s
 }
 
 // Origin access identity configuration. Send a GET request to the /CloudFront
@@ -6135,6 +7383,18 @@ func (s *OriginAccessIdentityConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCallerReference sets the CallerReference field's value.
+func (s *OriginAccessIdentityConfig) SetCallerReference(v string) *OriginAccessIdentityConfig {
+	s.CallerReference = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *OriginAccessIdentityConfig) SetComment(v string) *OriginAccessIdentityConfig {
+	s.Comment = &v
+	return s
 }
 
 // Lists the origin access identities for CloudFront.Send a GET request to the
@@ -6194,6 +7454,42 @@ func (s OriginAccessIdentityList) GoString() string {
 	return s.String()
 }
 
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *OriginAccessIdentityList) SetIsTruncated(v bool) *OriginAccessIdentityList {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *OriginAccessIdentityList) SetItems(v []*OriginAccessIdentitySummary) *OriginAccessIdentityList {
+	s.Items = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *OriginAccessIdentityList) SetMarker(v string) *OriginAccessIdentityList {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *OriginAccessIdentityList) SetMaxItems(v int64) *OriginAccessIdentityList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *OriginAccessIdentityList) SetNextMarker(v string) *OriginAccessIdentityList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *OriginAccessIdentityList) SetQuantity(v int64) *OriginAccessIdentityList {
+	s.Quantity = &v
+	return s
+}
+
 // Summary of the information about a CloudFront origin access identity.
 type OriginAccessIdentitySummary struct {
 	_ struct{} `type:"structure"`
@@ -6225,6 +7521,24 @@ func (s OriginAccessIdentitySummary) String() string {
 // GoString returns the string representation
 func (s OriginAccessIdentitySummary) GoString() string {
 	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *OriginAccessIdentitySummary) SetComment(v string) *OriginAccessIdentitySummary {
+	s.Comment = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OriginAccessIdentitySummary) SetId(v string) *OriginAccessIdentitySummary {
+	s.Id = &v
+	return s
+}
+
+// SetS3CanonicalUserId sets the S3CanonicalUserId field's value.
+func (s *OriginAccessIdentitySummary) SetS3CanonicalUserId(v string) *OriginAccessIdentitySummary {
+	s.S3CanonicalUserId = &v
+	return s
 }
 
 // A complex type that contains HeaderName and HeaderValue elements, if any,
@@ -6272,6 +7586,18 @@ func (s *OriginCustomHeader) Validate() error {
 	return nil
 }
 
+// SetHeaderName sets the HeaderName field's value.
+func (s *OriginCustomHeader) SetHeaderName(v string) *OriginCustomHeader {
+	s.HeaderName = &v
+	return s
+}
+
+// SetHeaderValue sets the HeaderValue field's value.
+func (s *OriginCustomHeader) SetHeaderValue(v string) *OriginCustomHeader {
+	s.HeaderValue = &v
+	return s
+}
+
 // A complex type that contains information about the SSL/TLS protocols that
 // CloudFront can use when establishing an HTTPS connection with your origin.
 type OriginSslProtocols struct {
@@ -6313,6 +7639,18 @@ func (s *OriginSslProtocols) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *OriginSslProtocols) SetItems(v []*string) *OriginSslProtocols {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *OriginSslProtocols) SetQuantity(v int64) *OriginSslProtocols {
+	s.Quantity = &v
+	return s
 }
 
 // A complex type that contains information about origins for this distribution.
@@ -6364,6 +7702,18 @@ func (s *Origins) Validate() error {
 	return nil
 }
 
+// SetItems sets the Items field's value.
+func (s *Origins) SetItems(v []*Origin) *Origins {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *Origins) SetQuantity(v int64) *Origins {
+	s.Quantity = &v
+	return s
+}
+
 // A complex type that contains information about the objects that you want
 // to invalidate. For more information, see Specifying the Objects to Invalidate
 // (http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#invalidation-specifying-objects)
@@ -6403,6 +7753,18 @@ func (s *Paths) Validate() error {
 	return nil
 }
 
+// SetItems sets the Items field's value.
+func (s *Paths) SetItems(v []*string) *Paths {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *Paths) SetQuantity(v int64) *Paths {
+	s.Quantity = &v
+	return s
+}
+
 type QueryStringCacheKeys struct {
 	_ struct{} `type:"structure"`
 
@@ -6438,6 +7800,18 @@ func (s *QueryStringCacheKeys) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *QueryStringCacheKeys) SetItems(v []*string) *QueryStringCacheKeys {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *QueryStringCacheKeys) SetQuantity(v int64) *QueryStringCacheKeys {
+	s.Quantity = &v
+	return s
 }
 
 // A complex type that identifies ways in which you want to restrict distribution
@@ -6478,6 +7852,12 @@ func (s *Restrictions) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGeoRestriction sets the GeoRestriction field's value.
+func (s *Restrictions) SetGeoRestriction(v *GeoRestriction) *Restrictions {
+	s.GeoRestriction = v
+	return s
 }
 
 // A complex type that contains information about the Amazon S3 bucket from
@@ -6538,6 +7918,18 @@ func (s *S3Origin) Validate() error {
 	return nil
 }
 
+// SetDomainName sets the DomainName field's value.
+func (s *S3Origin) SetDomainName(v string) *S3Origin {
+	s.DomainName = &v
+	return s
+}
+
+// SetOriginAccessIdentity sets the OriginAccessIdentity field's value.
+func (s *S3Origin) SetOriginAccessIdentity(v string) *S3Origin {
+	s.OriginAccessIdentity = &v
+	return s
+}
+
 // A complex type that contains information about the Amazon S3 origin. If the
 // origin is a custom origin, use the CustomOriginConfig element instead.
 type S3OriginConfig struct {
@@ -6594,6 +7986,12 @@ func (s *S3OriginConfig) Validate() error {
 	return nil
 }
 
+// SetOriginAccessIdentity sets the OriginAccessIdentity field's value.
+func (s *S3OriginConfig) SetOriginAccessIdentity(v string) *S3OriginConfig {
+	s.OriginAccessIdentity = &v
+	return s
+}
+
 // A complex type that lists the AWS accounts that were included in the TrustedSigners
 // complex type, as well as their active CloudFront key pair IDs, if any.
 type Signer struct {
@@ -6620,6 +8018,18 @@ func (s Signer) String() string {
 // GoString returns the string representation
 func (s Signer) GoString() string {
 	return s.String()
+}
+
+// SetAwsAccountNumber sets the AwsAccountNumber field's value.
+func (s *Signer) SetAwsAccountNumber(v string) *Signer {
+	s.AwsAccountNumber = &v
+	return s
+}
+
+// SetKeyPairIds sets the KeyPairIds field's value.
+func (s *Signer) SetKeyPairIds(v *KeyPairIds) *Signer {
+	s.KeyPairIds = v
+	return s
 }
 
 // A streaming distribution.
@@ -6679,6 +8089,48 @@ func (s StreamingDistribution) String() string {
 // GoString returns the string representation
 func (s StreamingDistribution) GoString() string {
 	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *StreamingDistribution) SetARN(v string) *StreamingDistribution {
+	s.ARN = &v
+	return s
+}
+
+// SetActiveTrustedSigners sets the ActiveTrustedSigners field's value.
+func (s *StreamingDistribution) SetActiveTrustedSigners(v *ActiveTrustedSigners) *StreamingDistribution {
+	s.ActiveTrustedSigners = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *StreamingDistribution) SetDomainName(v string) *StreamingDistribution {
+	s.DomainName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StreamingDistribution) SetId(v string) *StreamingDistribution {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *StreamingDistribution) SetLastModifiedTime(v time.Time) *StreamingDistribution {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StreamingDistribution) SetStatus(v string) *StreamingDistribution {
+	s.Status = &v
+	return s
+}
+
+// SetStreamingDistributionConfig sets the StreamingDistributionConfig field's value.
+func (s *StreamingDistribution) SetStreamingDistributionConfig(v *StreamingDistributionConfig) *StreamingDistribution {
+	s.StreamingDistributionConfig = v
+	return s
 }
 
 // The RTMP distribution's configuration information.
@@ -6794,6 +8246,54 @@ func (s *StreamingDistributionConfig) Validate() error {
 	return nil
 }
 
+// SetAliases sets the Aliases field's value.
+func (s *StreamingDistributionConfig) SetAliases(v *Aliases) *StreamingDistributionConfig {
+	s.Aliases = v
+	return s
+}
+
+// SetCallerReference sets the CallerReference field's value.
+func (s *StreamingDistributionConfig) SetCallerReference(v string) *StreamingDistributionConfig {
+	s.CallerReference = &v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *StreamingDistributionConfig) SetComment(v string) *StreamingDistributionConfig {
+	s.Comment = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *StreamingDistributionConfig) SetEnabled(v bool) *StreamingDistributionConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetLogging sets the Logging field's value.
+func (s *StreamingDistributionConfig) SetLogging(v *StreamingLoggingConfig) *StreamingDistributionConfig {
+	s.Logging = v
+	return s
+}
+
+// SetPriceClass sets the PriceClass field's value.
+func (s *StreamingDistributionConfig) SetPriceClass(v string) *StreamingDistributionConfig {
+	s.PriceClass = &v
+	return s
+}
+
+// SetS3Origin sets the S3Origin field's value.
+func (s *StreamingDistributionConfig) SetS3Origin(v *S3Origin) *StreamingDistributionConfig {
+	s.S3Origin = v
+	return s
+}
+
+// SetTrustedSigners sets the TrustedSigners field's value.
+func (s *StreamingDistributionConfig) SetTrustedSigners(v *TrustedSigners) *StreamingDistributionConfig {
+	s.TrustedSigners = v
+	return s
+}
+
 // A streaming distribution Configuration and a list of tags to be associated
 // with the streaming distribution.
 type StreamingDistributionConfigWithTags struct {
@@ -6846,6 +8346,18 @@ func (s *StreamingDistributionConfigWithTags) Validate() error {
 	return nil
 }
 
+// SetStreamingDistributionConfig sets the StreamingDistributionConfig field's value.
+func (s *StreamingDistributionConfigWithTags) SetStreamingDistributionConfig(v *StreamingDistributionConfig) *StreamingDistributionConfigWithTags {
+	s.StreamingDistributionConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StreamingDistributionConfigWithTags) SetTags(v *Tags) *StreamingDistributionConfigWithTags {
+	s.Tags = v
+	return s
+}
+
 // A streaming distribution list.
 type StreamingDistributionList struct {
 	_ struct{} `type:"structure"`
@@ -6892,6 +8404,42 @@ func (s StreamingDistributionList) String() string {
 // GoString returns the string representation
 func (s StreamingDistributionList) GoString() string {
 	return s.String()
+}
+
+// SetIsTruncated sets the IsTruncated field's value.
+func (s *StreamingDistributionList) SetIsTruncated(v bool) *StreamingDistributionList {
+	s.IsTruncated = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *StreamingDistributionList) SetItems(v []*StreamingDistributionSummary) *StreamingDistributionList {
+	s.Items = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *StreamingDistributionList) SetMarker(v string) *StreamingDistributionList {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *StreamingDistributionList) SetMaxItems(v int64) *StreamingDistributionList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *StreamingDistributionList) SetNextMarker(v string) *StreamingDistributionList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *StreamingDistributionList) SetQuantity(v int64) *StreamingDistributionList {
+	s.Quantity = &v
+	return s
 }
 
 // A summary of the information for an Amazon CloudFront streaming distribution.
@@ -6977,6 +8525,72 @@ func (s StreamingDistributionSummary) GoString() string {
 	return s.String()
 }
 
+// SetARN sets the ARN field's value.
+func (s *StreamingDistributionSummary) SetARN(v string) *StreamingDistributionSummary {
+	s.ARN = &v
+	return s
+}
+
+// SetAliases sets the Aliases field's value.
+func (s *StreamingDistributionSummary) SetAliases(v *Aliases) *StreamingDistributionSummary {
+	s.Aliases = v
+	return s
+}
+
+// SetComment sets the Comment field's value.
+func (s *StreamingDistributionSummary) SetComment(v string) *StreamingDistributionSummary {
+	s.Comment = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *StreamingDistributionSummary) SetDomainName(v string) *StreamingDistributionSummary {
+	s.DomainName = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *StreamingDistributionSummary) SetEnabled(v bool) *StreamingDistributionSummary {
+	s.Enabled = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StreamingDistributionSummary) SetId(v string) *StreamingDistributionSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *StreamingDistributionSummary) SetLastModifiedTime(v time.Time) *StreamingDistributionSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPriceClass sets the PriceClass field's value.
+func (s *StreamingDistributionSummary) SetPriceClass(v string) *StreamingDistributionSummary {
+	s.PriceClass = &v
+	return s
+}
+
+// SetS3Origin sets the S3Origin field's value.
+func (s *StreamingDistributionSummary) SetS3Origin(v *S3Origin) *StreamingDistributionSummary {
+	s.S3Origin = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StreamingDistributionSummary) SetStatus(v string) *StreamingDistributionSummary {
+	s.Status = &v
+	return s
+}
+
+// SetTrustedSigners sets the TrustedSigners field's value.
+func (s *StreamingDistributionSummary) SetTrustedSigners(v *TrustedSigners) *StreamingDistributionSummary {
+	s.TrustedSigners = v
+	return s
+}
+
 // A complex type that controls whether access logs are written for this streaming
 // distribution.
 type StreamingLoggingConfig struct {
@@ -7035,6 +8649,24 @@ func (s *StreamingLoggingConfig) Validate() error {
 	return nil
 }
 
+// SetBucket sets the Bucket field's value.
+func (s *StreamingLoggingConfig) SetBucket(v string) *StreamingLoggingConfig {
+	s.Bucket = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *StreamingLoggingConfig) SetEnabled(v bool) *StreamingLoggingConfig {
+	s.Enabled = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *StreamingLoggingConfig) SetPrefix(v string) *StreamingLoggingConfig {
+	s.Prefix = &v
+	return s
+}
+
 // A complex type that contains Tag key and Tag value.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -7080,6 +8712,18 @@ func (s *Tag) Validate() error {
 	return nil
 }
 
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
 // A complex type that contains zero or more Tag elements.
 type TagKeys struct {
 	_ struct{} `type:"structure"`
@@ -7096,6 +8740,12 @@ func (s TagKeys) String() string {
 // GoString returns the string representation
 func (s TagKeys) GoString() string {
 	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *TagKeys) SetItems(v []*string) *TagKeys {
+	s.Items = v
+	return s
 }
 
 // The request to add tags to a CloudFront resource.
@@ -7142,6 +8792,18 @@ func (s *TagResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResource sets the Resource field's value.
+func (s *TagResourceInput) SetResource(v string) *TagResourceInput {
+	s.Resource = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v *Tags) *TagResourceInput {
+	s.Tags = v
+	return s
 }
 
 type TagResourceOutput struct {
@@ -7194,6 +8856,12 @@ func (s *Tags) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *Tags) SetItems(v []*Tag) *Tags {
+	s.Items = v
+	return s
 }
 
 // A complex type that specifies the AWS accounts, if any, that you want to
@@ -7259,6 +8927,24 @@ func (s *TrustedSigners) Validate() error {
 	return nil
 }
 
+// SetEnabled sets the Enabled field's value.
+func (s *TrustedSigners) SetEnabled(v bool) *TrustedSigners {
+	s.Enabled = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *TrustedSigners) SetItems(v []*string) *TrustedSigners {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *TrustedSigners) SetQuantity(v int64) *TrustedSigners {
+	s.Quantity = &v
+	return s
+}
+
 // The request to remove tags from a CloudFront resource.
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" payload:"TagKeys"`
@@ -7298,6 +8984,18 @@ func (s *UntagResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResource sets the Resource field's value.
+func (s *UntagResourceInput) SetResource(v string) *UntagResourceInput {
+	s.Resource = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v *TagKeys) *UntagResourceInput {
+	s.TagKeys = v
+	return s
 }
 
 type UntagResourceOutput struct {
@@ -7364,6 +9062,24 @@ func (s *UpdateCloudFrontOriginAccessIdentityInput) Validate() error {
 	return nil
 }
 
+// SetCloudFrontOriginAccessIdentityConfig sets the CloudFrontOriginAccessIdentityConfig field's value.
+func (s *UpdateCloudFrontOriginAccessIdentityInput) SetCloudFrontOriginAccessIdentityConfig(v *OriginAccessIdentityConfig) *UpdateCloudFrontOriginAccessIdentityInput {
+	s.CloudFrontOriginAccessIdentityConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateCloudFrontOriginAccessIdentityInput) SetId(v string) *UpdateCloudFrontOriginAccessIdentityInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateCloudFrontOriginAccessIdentityInput) SetIfMatch(v string) *UpdateCloudFrontOriginAccessIdentityInput {
+	s.IfMatch = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	_ struct{} `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
@@ -7383,6 +9099,18 @@ func (s UpdateCloudFrontOriginAccessIdentityOutput) String() string {
 // GoString returns the string representation
 func (s UpdateCloudFrontOriginAccessIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetCloudFrontOriginAccessIdentity sets the CloudFrontOriginAccessIdentity field's value.
+func (s *UpdateCloudFrontOriginAccessIdentityOutput) SetCloudFrontOriginAccessIdentity(v *OriginAccessIdentity) *UpdateCloudFrontOriginAccessIdentityOutput {
+	s.CloudFrontOriginAccessIdentity = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateCloudFrontOriginAccessIdentityOutput) SetETag(v string) *UpdateCloudFrontOriginAccessIdentityOutput {
+	s.ETag = &v
+	return s
 }
 
 // The request to update a distribution.
@@ -7435,6 +9163,24 @@ func (s *UpdateDistributionInput) Validate() error {
 	return nil
 }
 
+// SetDistributionConfig sets the DistributionConfig field's value.
+func (s *UpdateDistributionInput) SetDistributionConfig(v *DistributionConfig) *UpdateDistributionInput {
+	s.DistributionConfig = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateDistributionInput) SetId(v string) *UpdateDistributionInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateDistributionInput) SetIfMatch(v string) *UpdateDistributionInput {
+	s.IfMatch = &v
+	return s
+}
+
 // The returned result of the corresponding request.
 type UpdateDistributionOutput struct {
 	_ struct{} `type:"structure" payload:"Distribution"`
@@ -7454,6 +9200,18 @@ func (s UpdateDistributionOutput) String() string {
 // GoString returns the string representation
 func (s UpdateDistributionOutput) GoString() string {
 	return s.String()
+}
+
+// SetDistribution sets the Distribution field's value.
+func (s *UpdateDistributionOutput) SetDistribution(v *Distribution) *UpdateDistributionOutput {
+	s.Distribution = v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateDistributionOutput) SetETag(v string) *UpdateDistributionOutput {
+	s.ETag = &v
+	return s
 }
 
 // The request to update a streaming distribution.
@@ -7506,6 +9264,24 @@ func (s *UpdateStreamingDistributionInput) Validate() error {
 	return nil
 }
 
+// SetId sets the Id field's value.
+func (s *UpdateStreamingDistributionInput) SetId(v string) *UpdateStreamingDistributionInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateStreamingDistributionInput) SetIfMatch(v string) *UpdateStreamingDistributionInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetStreamingDistributionConfig sets the StreamingDistributionConfig field's value.
+func (s *UpdateStreamingDistributionInput) SetStreamingDistributionConfig(v *StreamingDistributionConfig) *UpdateStreamingDistributionInput {
+	s.StreamingDistributionConfig = v
+	return s
+}
+
 // The returned result of the corresponding request.
 type UpdateStreamingDistributionOutput struct {
 	_ struct{} `type:"structure" payload:"StreamingDistribution"`
@@ -7525,6 +9301,18 @@ func (s UpdateStreamingDistributionOutput) String() string {
 // GoString returns the string representation
 func (s UpdateStreamingDistributionOutput) GoString() string {
 	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateStreamingDistributionOutput) SetETag(v string) *UpdateStreamingDistributionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetStreamingDistribution sets the StreamingDistribution field's value.
+func (s *UpdateStreamingDistributionOutput) SetStreamingDistribution(v *StreamingDistribution) *UpdateStreamingDistributionOutput {
+	s.StreamingDistribution = v
+	return s
 }
 
 // A complex type that specifies the following:
@@ -7701,6 +9489,48 @@ func (s ViewerCertificate) String() string {
 // GoString returns the string representation
 func (s ViewerCertificate) GoString() string {
 	return s.String()
+}
+
+// SetACMCertificateArn sets the ACMCertificateArn field's value.
+func (s *ViewerCertificate) SetACMCertificateArn(v string) *ViewerCertificate {
+	s.ACMCertificateArn = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *ViewerCertificate) SetCertificate(v string) *ViewerCertificate {
+	s.Certificate = &v
+	return s
+}
+
+// SetCertificateSource sets the CertificateSource field's value.
+func (s *ViewerCertificate) SetCertificateSource(v string) *ViewerCertificate {
+	s.CertificateSource = &v
+	return s
+}
+
+// SetCloudFrontDefaultCertificate sets the CloudFrontDefaultCertificate field's value.
+func (s *ViewerCertificate) SetCloudFrontDefaultCertificate(v bool) *ViewerCertificate {
+	s.CloudFrontDefaultCertificate = &v
+	return s
+}
+
+// SetIAMCertificateId sets the IAMCertificateId field's value.
+func (s *ViewerCertificate) SetIAMCertificateId(v string) *ViewerCertificate {
+	s.IAMCertificateId = &v
+	return s
+}
+
+// SetMinimumProtocolVersion sets the MinimumProtocolVersion field's value.
+func (s *ViewerCertificate) SetMinimumProtocolVersion(v string) *ViewerCertificate {
+	s.MinimumProtocolVersion = &v
+	return s
+}
+
+// SetSSLSupportMethod sets the SSLSupportMethod field's value.
+func (s *ViewerCertificate) SetSSLSupportMethod(v string) *ViewerCertificate {
+	s.SSLSupportMethod = &v
+	return s
 }
 
 const (

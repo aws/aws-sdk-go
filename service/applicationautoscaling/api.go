@@ -742,6 +742,18 @@ func (s Alarm) GoString() string {
 	return s.String()
 }
 
+// SetAlarmARN sets the AlarmARN field's value.
+func (s *Alarm) SetAlarmARN(v string) *Alarm {
+	s.AlarmARN = &v
+	return s
+}
+
+// SetAlarmName sets the AlarmName field's value.
+func (s *Alarm) SetAlarmName(v string) *Alarm {
+	s.AlarmName = &v
+	return s
+}
+
 type DeleteScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -812,6 +824,30 @@ func (s *DeleteScalingPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *DeleteScalingPolicyInput) SetPolicyName(v string) *DeleteScalingPolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DeleteScalingPolicyInput) SetResourceId(v string) *DeleteScalingPolicyInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *DeleteScalingPolicyInput) SetScalableDimension(v string) *DeleteScalingPolicyInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *DeleteScalingPolicyInput) SetServiceNamespace(v string) *DeleteScalingPolicyInput {
+	s.ServiceNamespace = &v
+	return s
 }
 
 type DeleteScalingPolicyOutput struct {
@@ -887,6 +923,24 @@ func (s *DeregisterScalableTargetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DeregisterScalableTargetInput) SetResourceId(v string) *DeregisterScalableTargetInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *DeregisterScalableTargetInput) SetScalableDimension(v string) *DeregisterScalableTargetInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *DeregisterScalableTargetInput) SetServiceNamespace(v string) *DeregisterScalableTargetInput {
+	s.ServiceNamespace = &v
+	return s
 }
 
 type DeregisterScalableTargetOutput struct {
@@ -969,6 +1023,36 @@ func (s *DescribeScalableTargetsInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeScalableTargetsInput) SetMaxResults(v int64) *DescribeScalableTargetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalableTargetsInput) SetNextToken(v string) *DescribeScalableTargetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *DescribeScalableTargetsInput) SetResourceIds(v []*string) *DescribeScalableTargetsInput {
+	s.ResourceIds = v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *DescribeScalableTargetsInput) SetScalableDimension(v string) *DescribeScalableTargetsInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *DescribeScalableTargetsInput) SetServiceNamespace(v string) *DescribeScalableTargetsInput {
+	s.ServiceNamespace = &v
+	return s
+}
+
 type DescribeScalableTargetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -990,6 +1074,18 @@ func (s DescribeScalableTargetsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScalableTargetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalableTargetsOutput) SetNextToken(v string) *DescribeScalableTargetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScalableTargets sets the ScalableTargets field's value.
+func (s *DescribeScalableTargetsOutput) SetScalableTargets(v []*ScalableTarget) *DescribeScalableTargetsOutput {
+	s.ScalableTargets = v
+	return s
 }
 
 type DescribeScalingActivitiesInput struct {
@@ -1062,6 +1158,36 @@ func (s *DescribeScalingActivitiesInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeScalingActivitiesInput) SetMaxResults(v int64) *DescribeScalingActivitiesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingActivitiesInput) SetNextToken(v string) *DescribeScalingActivitiesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeScalingActivitiesInput) SetResourceId(v string) *DescribeScalingActivitiesInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *DescribeScalingActivitiesInput) SetScalableDimension(v string) *DescribeScalingActivitiesInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *DescribeScalingActivitiesInput) SetServiceNamespace(v string) *DescribeScalingActivitiesInput {
+	s.ServiceNamespace = &v
+	return s
+}
+
 type DescribeScalingActivitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1083,6 +1209,18 @@ func (s DescribeScalingActivitiesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScalingActivitiesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingActivitiesOutput) SetNextToken(v string) *DescribeScalingActivitiesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScalingActivities sets the ScalingActivities field's value.
+func (s *DescribeScalingActivitiesOutput) SetScalingActivities(v []*ScalingActivity) *DescribeScalingActivitiesOutput {
+	s.ScalingActivities = v
+	return s
 }
 
 type DescribeScalingPoliciesInput struct {
@@ -1158,6 +1296,42 @@ func (s *DescribeScalingPoliciesInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeScalingPoliciesInput) SetMaxResults(v int64) *DescribeScalingPoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingPoliciesInput) SetNextToken(v string) *DescribeScalingPoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPolicyNames sets the PolicyNames field's value.
+func (s *DescribeScalingPoliciesInput) SetPolicyNames(v []*string) *DescribeScalingPoliciesInput {
+	s.PolicyNames = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeScalingPoliciesInput) SetResourceId(v string) *DescribeScalingPoliciesInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *DescribeScalingPoliciesInput) SetScalableDimension(v string) *DescribeScalingPoliciesInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *DescribeScalingPoliciesInput) SetServiceNamespace(v string) *DescribeScalingPoliciesInput {
+	s.ServiceNamespace = &v
+	return s
+}
+
 type DescribeScalingPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1179,6 +1353,18 @@ func (s DescribeScalingPoliciesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScalingPoliciesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScalingPoliciesOutput) SetNextToken(v string) *DescribeScalingPoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScalingPolicies sets the ScalingPolicies field's value.
+func (s *DescribeScalingPoliciesOutput) SetScalingPolicies(v []*ScalingPolicy) *DescribeScalingPoliciesOutput {
+	s.ScalingPolicies = v
+	return s
 }
 
 type PutScalingPolicyInput struct {
@@ -1268,6 +1454,42 @@ func (s *PutScalingPolicyInput) Validate() error {
 	return nil
 }
 
+// SetPolicyName sets the PolicyName field's value.
+func (s *PutScalingPolicyInput) SetPolicyName(v string) *PutScalingPolicyInput {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyType sets the PolicyType field's value.
+func (s *PutScalingPolicyInput) SetPolicyType(v string) *PutScalingPolicyInput {
+	s.PolicyType = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *PutScalingPolicyInput) SetResourceId(v string) *PutScalingPolicyInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *PutScalingPolicyInput) SetScalableDimension(v string) *PutScalingPolicyInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *PutScalingPolicyInput) SetServiceNamespace(v string) *PutScalingPolicyInput {
+	s.ServiceNamespace = &v
+	return s
+}
+
+// SetStepScalingPolicyConfiguration sets the StepScalingPolicyConfiguration field's value.
+func (s *PutScalingPolicyInput) SetStepScalingPolicyConfiguration(v *StepScalingPolicyConfiguration) *PutScalingPolicyInput {
+	s.StepScalingPolicyConfiguration = v
+	return s
+}
+
 type PutScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1285,6 +1507,12 @@ func (s PutScalingPolicyOutput) String() string {
 // GoString returns the string representation
 func (s PutScalingPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetPolicyARN sets the PolicyARN field's value.
+func (s *PutScalingPolicyOutput) SetPolicyARN(v string) *PutScalingPolicyOutput {
+	s.PolicyARN = &v
+	return s
 }
 
 type RegisterScalableTargetInput struct {
@@ -1368,6 +1596,42 @@ func (s *RegisterScalableTargetInput) Validate() error {
 	return nil
 }
 
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *RegisterScalableTargetInput) SetMaxCapacity(v int64) *RegisterScalableTargetInput {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetMinCapacity sets the MinCapacity field's value.
+func (s *RegisterScalableTargetInput) SetMinCapacity(v int64) *RegisterScalableTargetInput {
+	s.MinCapacity = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *RegisterScalableTargetInput) SetResourceId(v string) *RegisterScalableTargetInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *RegisterScalableTargetInput) SetRoleARN(v string) *RegisterScalableTargetInput {
+	s.RoleARN = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *RegisterScalableTargetInput) SetScalableDimension(v string) *RegisterScalableTargetInput {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *RegisterScalableTargetInput) SetServiceNamespace(v string) *RegisterScalableTargetInput {
+	s.ServiceNamespace = &v
+	return s
+}
+
 type RegisterScalableTargetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1445,6 +1709,48 @@ func (s ScalableTarget) GoString() string {
 	return s.String()
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *ScalableTarget) SetCreationTime(v time.Time) *ScalableTarget {
+	s.CreationTime = &v
+	return s
+}
+
+// SetMaxCapacity sets the MaxCapacity field's value.
+func (s *ScalableTarget) SetMaxCapacity(v int64) *ScalableTarget {
+	s.MaxCapacity = &v
+	return s
+}
+
+// SetMinCapacity sets the MinCapacity field's value.
+func (s *ScalableTarget) SetMinCapacity(v int64) *ScalableTarget {
+	s.MinCapacity = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ScalableTarget) SetResourceId(v string) *ScalableTarget {
+	s.ResourceId = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *ScalableTarget) SetRoleARN(v string) *ScalableTarget {
+	s.RoleARN = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *ScalableTarget) SetScalableDimension(v string) *ScalableTarget {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *ScalableTarget) SetServiceNamespace(v string) *ScalableTarget {
+	s.ServiceNamespace = &v
+	return s
+}
+
 // An object representing a scaling activity.
 type ScalingActivity struct {
 	_ struct{} `type:"structure"`
@@ -1520,6 +1826,72 @@ func (s ScalingActivity) GoString() string {
 	return s.String()
 }
 
+// SetActivityId sets the ActivityId field's value.
+func (s *ScalingActivity) SetActivityId(v string) *ScalingActivity {
+	s.ActivityId = &v
+	return s
+}
+
+// SetCause sets the Cause field's value.
+func (s *ScalingActivity) SetCause(v string) *ScalingActivity {
+	s.Cause = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ScalingActivity) SetDescription(v string) *ScalingActivity {
+	s.Description = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *ScalingActivity) SetDetails(v string) *ScalingActivity {
+	s.Details = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ScalingActivity) SetEndTime(v time.Time) *ScalingActivity {
+	s.EndTime = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ScalingActivity) SetResourceId(v string) *ScalingActivity {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *ScalingActivity) SetScalableDimension(v string) *ScalingActivity {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *ScalingActivity) SetServiceNamespace(v string) *ScalingActivity {
+	s.ServiceNamespace = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ScalingActivity) SetStartTime(v time.Time) *ScalingActivity {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *ScalingActivity) SetStatusCode(v string) *ScalingActivity {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ScalingActivity) SetStatusMessage(v string) *ScalingActivity {
+	s.StatusMessage = &v
+	return s
+}
+
 // An object representing a scaling policy.
 type ScalingPolicy struct {
 	_ struct{} `type:"structure"`
@@ -1584,6 +1956,60 @@ func (s ScalingPolicy) String() string {
 // GoString returns the string representation
 func (s ScalingPolicy) GoString() string {
 	return s.String()
+}
+
+// SetAlarms sets the Alarms field's value.
+func (s *ScalingPolicy) SetAlarms(v []*Alarm) *ScalingPolicy {
+	s.Alarms = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ScalingPolicy) SetCreationTime(v time.Time) *ScalingPolicy {
+	s.CreationTime = &v
+	return s
+}
+
+// SetPolicyARN sets the PolicyARN field's value.
+func (s *ScalingPolicy) SetPolicyARN(v string) *ScalingPolicy {
+	s.PolicyARN = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *ScalingPolicy) SetPolicyName(v string) *ScalingPolicy {
+	s.PolicyName = &v
+	return s
+}
+
+// SetPolicyType sets the PolicyType field's value.
+func (s *ScalingPolicy) SetPolicyType(v string) *ScalingPolicy {
+	s.PolicyType = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ScalingPolicy) SetResourceId(v string) *ScalingPolicy {
+	s.ResourceId = &v
+	return s
+}
+
+// SetScalableDimension sets the ScalableDimension field's value.
+func (s *ScalingPolicy) SetScalableDimension(v string) *ScalingPolicy {
+	s.ScalableDimension = &v
+	return s
+}
+
+// SetServiceNamespace sets the ServiceNamespace field's value.
+func (s *ScalingPolicy) SetServiceNamespace(v string) *ScalingPolicy {
+	s.ServiceNamespace = &v
+	return s
+}
+
+// SetStepScalingPolicyConfiguration sets the StepScalingPolicyConfiguration field's value.
+func (s *ScalingPolicy) SetStepScalingPolicyConfiguration(v *StepScalingPolicyConfiguration) *ScalingPolicy {
+	s.StepScalingPolicyConfiguration = v
+	return s
 }
 
 // An object representing a step adjustment for a StepScalingPolicyConfiguration.
@@ -1666,6 +2092,24 @@ func (s *StepAdjustment) Validate() error {
 	return nil
 }
 
+// SetMetricIntervalLowerBound sets the MetricIntervalLowerBound field's value.
+func (s *StepAdjustment) SetMetricIntervalLowerBound(v float64) *StepAdjustment {
+	s.MetricIntervalLowerBound = &v
+	return s
+}
+
+// SetMetricIntervalUpperBound sets the MetricIntervalUpperBound field's value.
+func (s *StepAdjustment) SetMetricIntervalUpperBound(v float64) *StepAdjustment {
+	s.MetricIntervalUpperBound = &v
+	return s
+}
+
+// SetScalingAdjustment sets the ScalingAdjustment field's value.
+func (s *StepAdjustment) SetScalingAdjustment(v int64) *StepAdjustment {
+	s.ScalingAdjustment = &v
+	return s
+}
+
 // An object representing a step scaling policy configuration.
 type StepScalingPolicyConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -1739,6 +2183,36 @@ func (s *StepScalingPolicyConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdjustmentType sets the AdjustmentType field's value.
+func (s *StepScalingPolicyConfiguration) SetAdjustmentType(v string) *StepScalingPolicyConfiguration {
+	s.AdjustmentType = &v
+	return s
+}
+
+// SetCooldown sets the Cooldown field's value.
+func (s *StepScalingPolicyConfiguration) SetCooldown(v int64) *StepScalingPolicyConfiguration {
+	s.Cooldown = &v
+	return s
+}
+
+// SetMetricAggregationType sets the MetricAggregationType field's value.
+func (s *StepScalingPolicyConfiguration) SetMetricAggregationType(v string) *StepScalingPolicyConfiguration {
+	s.MetricAggregationType = &v
+	return s
+}
+
+// SetMinAdjustmentMagnitude sets the MinAdjustmentMagnitude field's value.
+func (s *StepScalingPolicyConfiguration) SetMinAdjustmentMagnitude(v int64) *StepScalingPolicyConfiguration {
+	s.MinAdjustmentMagnitude = &v
+	return s
+}
+
+// SetStepAdjustments sets the StepAdjustments field's value.
+func (s *StepScalingPolicyConfiguration) SetStepAdjustments(v []*StepAdjustment) *StepScalingPolicyConfiguration {
+	s.StepAdjustments = v
+	return s
 }
 
 const (

@@ -2255,6 +2255,12 @@ func (s *CancelExportTaskInput) Validate() error {
 	return nil
 }
 
+// SetTaskId sets the TaskId field's value.
+func (s *CancelExportTaskInput) SetTaskId(v string) *CancelExportTaskInput {
+	s.TaskId = &v
+	return s
+}
+
 type CancelExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2354,6 +2360,48 @@ func (s *CreateExportTaskInput) Validate() error {
 	return nil
 }
 
+// SetDestination sets the Destination field's value.
+func (s *CreateExportTaskInput) SetDestination(v string) *CreateExportTaskInput {
+	s.Destination = &v
+	return s
+}
+
+// SetDestinationPrefix sets the DestinationPrefix field's value.
+func (s *CreateExportTaskInput) SetDestinationPrefix(v string) *CreateExportTaskInput {
+	s.DestinationPrefix = &v
+	return s
+}
+
+// SetFrom sets the From field's value.
+func (s *CreateExportTaskInput) SetFrom(v int64) *CreateExportTaskInput {
+	s.From = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *CreateExportTaskInput) SetLogGroupName(v string) *CreateExportTaskInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamNamePrefix sets the LogStreamNamePrefix field's value.
+func (s *CreateExportTaskInput) SetLogStreamNamePrefix(v string) *CreateExportTaskInput {
+	s.LogStreamNamePrefix = &v
+	return s
+}
+
+// SetTaskName sets the TaskName field's value.
+func (s *CreateExportTaskInput) SetTaskName(v string) *CreateExportTaskInput {
+	s.TaskName = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *CreateExportTaskInput) SetTo(v int64) *CreateExportTaskInput {
+	s.To = &v
+	return s
+}
+
 type CreateExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2369,6 +2417,12 @@ func (s CreateExportTaskOutput) String() string {
 // GoString returns the string representation
 func (s CreateExportTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *CreateExportTaskOutput) SetTaskId(v string) *CreateExportTaskOutput {
+	s.TaskId = &v
+	return s
 }
 
 type CreateLogGroupInput struct {
@@ -2404,6 +2458,12 @@ func (s *CreateLogGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *CreateLogGroupInput) SetLogGroupName(v string) *CreateLogGroupInput {
+	s.LogGroupName = &v
+	return s
 }
 
 type CreateLogGroupOutput struct {
@@ -2466,6 +2526,18 @@ func (s *CreateLogStreamInput) Validate() error {
 	return nil
 }
 
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *CreateLogStreamInput) SetLogGroupName(v string) *CreateLogStreamInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *CreateLogStreamInput) SetLogStreamName(v string) *CreateLogStreamInput {
+	s.LogStreamName = &v
+	return s
+}
+
 type CreateLogStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2515,6 +2587,12 @@ func (s *DeleteDestinationInput) Validate() error {
 	return nil
 }
 
+// SetDestinationName sets the DestinationName field's value.
+func (s *DeleteDestinationInput) SetDestinationName(v string) *DeleteDestinationInput {
+	s.DestinationName = &v
+	return s
+}
+
 type DeleteDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2562,6 +2640,12 @@ func (s *DeleteLogGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DeleteLogGroupInput) SetLogGroupName(v string) *DeleteLogGroupInput {
+	s.LogGroupName = &v
+	return s
 }
 
 type DeleteLogGroupOutput struct {
@@ -2624,6 +2708,18 @@ func (s *DeleteLogStreamInput) Validate() error {
 	return nil
 }
 
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DeleteLogStreamInput) SetLogGroupName(v string) *DeleteLogStreamInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *DeleteLogStreamInput) SetLogStreamName(v string) *DeleteLogStreamInput {
+	s.LogStreamName = &v
+	return s
+}
+
 type DeleteLogStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2684,6 +2780,18 @@ func (s *DeleteMetricFilterInput) Validate() error {
 	return nil
 }
 
+// SetFilterName sets the FilterName field's value.
+func (s *DeleteMetricFilterInput) SetFilterName(v string) *DeleteMetricFilterInput {
+	s.FilterName = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DeleteMetricFilterInput) SetLogGroupName(v string) *DeleteMetricFilterInput {
+	s.LogGroupName = &v
+	return s
+}
+
 type DeleteMetricFilterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2732,6 +2840,12 @@ func (s *DeleteRetentionPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DeleteRetentionPolicyInput) SetLogGroupName(v string) *DeleteRetentionPolicyInput {
+	s.LogGroupName = &v
+	return s
 }
 
 type DeleteRetentionPolicyOutput struct {
@@ -2795,6 +2909,18 @@ func (s *DeleteSubscriptionFilterInput) Validate() error {
 	return nil
 }
 
+// SetFilterName sets the FilterName field's value.
+func (s *DeleteSubscriptionFilterInput) SetFilterName(v string) *DeleteSubscriptionFilterInput {
+	s.FilterName = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DeleteSubscriptionFilterInput) SetLogGroupName(v string) *DeleteSubscriptionFilterInput {
+	s.LogGroupName = &v
+	return s
+}
+
 type DeleteSubscriptionFilterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2854,6 +2980,24 @@ func (s *DescribeDestinationsInput) Validate() error {
 	return nil
 }
 
+// SetDestinationNamePrefix sets the DestinationNamePrefix field's value.
+func (s *DescribeDestinationsInput) SetDestinationNamePrefix(v string) *DescribeDestinationsInput {
+	s.DestinationNamePrefix = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeDestinationsInput) SetLimit(v int64) *DescribeDestinationsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDestinationsInput) SetNextToken(v string) *DescribeDestinationsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeDestinationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2873,6 +3017,18 @@ func (s DescribeDestinationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDestinationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *DescribeDestinationsOutput) SetDestinations(v []*Destination) *DescribeDestinationsOutput {
+	s.Destinations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDestinationsOutput) SetNextToken(v string) *DescribeDestinationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeExportTasksInput struct {
@@ -2925,6 +3081,30 @@ func (s *DescribeExportTasksInput) Validate() error {
 	return nil
 }
 
+// SetLimit sets the Limit field's value.
+func (s *DescribeExportTasksInput) SetLimit(v int64) *DescribeExportTasksInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeExportTasksInput) SetNextToken(v string) *DescribeExportTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *DescribeExportTasksInput) SetStatusCode(v string) *DescribeExportTasksInput {
+	s.StatusCode = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *DescribeExportTasksInput) SetTaskId(v string) *DescribeExportTasksInput {
+	s.TaskId = &v
+	return s
+}
+
 type DescribeExportTasksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2945,6 +3125,18 @@ func (s DescribeExportTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeExportTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetExportTasks sets the ExportTasks field's value.
+func (s *DescribeExportTasksOutput) SetExportTasks(v []*ExportTask) *DescribeExportTasksOutput {
+	s.ExportTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeExportTasksOutput) SetNextToken(v string) *DescribeExportTasksOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeLogGroupsInput struct {
@@ -2993,6 +3185,24 @@ func (s *DescribeLogGroupsInput) Validate() error {
 	return nil
 }
 
+// SetLimit sets the Limit field's value.
+func (s *DescribeLogGroupsInput) SetLimit(v int64) *DescribeLogGroupsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetLogGroupNamePrefix sets the LogGroupNamePrefix field's value.
+func (s *DescribeLogGroupsInput) SetLogGroupNamePrefix(v string) *DescribeLogGroupsInput {
+	s.LogGroupNamePrefix = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLogGroupsInput) SetNextToken(v string) *DescribeLogGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeLogGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3013,6 +3223,18 @@ func (s DescribeLogGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLogGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetLogGroups sets the LogGroups field's value.
+func (s *DescribeLogGroupsOutput) SetLogGroups(v []*LogGroup) *DescribeLogGroupsOutput {
+	s.LogGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLogGroupsOutput) SetNextToken(v string) *DescribeLogGroupsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeLogStreamsInput struct {
@@ -3082,6 +3304,42 @@ func (s *DescribeLogStreamsInput) Validate() error {
 	return nil
 }
 
+// SetDescending sets the Descending field's value.
+func (s *DescribeLogStreamsInput) SetDescending(v bool) *DescribeLogStreamsInput {
+	s.Descending = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeLogStreamsInput) SetLimit(v int64) *DescribeLogStreamsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DescribeLogStreamsInput) SetLogGroupName(v string) *DescribeLogStreamsInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamNamePrefix sets the LogStreamNamePrefix field's value.
+func (s *DescribeLogStreamsInput) SetLogStreamNamePrefix(v string) *DescribeLogStreamsInput {
+	s.LogStreamNamePrefix = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLogStreamsInput) SetNextToken(v string) *DescribeLogStreamsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrderBy sets the OrderBy field's value.
+func (s *DescribeLogStreamsInput) SetOrderBy(v string) *DescribeLogStreamsInput {
+	s.OrderBy = &v
+	return s
+}
+
 type DescribeLogStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3102,6 +3360,18 @@ func (s DescribeLogStreamsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeLogStreamsOutput) GoString() string {
 	return s.String()
+}
+
+// SetLogStreams sets the LogStreams field's value.
+func (s *DescribeLogStreamsOutput) SetLogStreams(v []*LogStream) *DescribeLogStreamsOutput {
+	s.LogStreams = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeLogStreamsOutput) SetNextToken(v string) *DescribeLogStreamsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeMetricFiltersInput struct {
@@ -3161,6 +3431,30 @@ func (s *DescribeMetricFiltersInput) Validate() error {
 	return nil
 }
 
+// SetFilterNamePrefix sets the FilterNamePrefix field's value.
+func (s *DescribeMetricFiltersInput) SetFilterNamePrefix(v string) *DescribeMetricFiltersInput {
+	s.FilterNamePrefix = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeMetricFiltersInput) SetLimit(v int64) *DescribeMetricFiltersInput {
+	s.Limit = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DescribeMetricFiltersInput) SetLogGroupName(v string) *DescribeMetricFiltersInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMetricFiltersInput) SetNextToken(v string) *DescribeMetricFiltersInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeMetricFiltersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3180,6 +3474,18 @@ func (s DescribeMetricFiltersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeMetricFiltersOutput) GoString() string {
 	return s.String()
+}
+
+// SetMetricFilters sets the MetricFilters field's value.
+func (s *DescribeMetricFiltersOutput) SetMetricFilters(v []*MetricFilter) *DescribeMetricFiltersOutput {
+	s.MetricFilters = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMetricFiltersOutput) SetNextToken(v string) *DescribeMetricFiltersOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeSubscriptionFiltersInput struct {
@@ -3238,6 +3544,30 @@ func (s *DescribeSubscriptionFiltersInput) Validate() error {
 	return nil
 }
 
+// SetFilterNamePrefix sets the FilterNamePrefix field's value.
+func (s *DescribeSubscriptionFiltersInput) SetFilterNamePrefix(v string) *DescribeSubscriptionFiltersInput {
+	s.FilterNamePrefix = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeSubscriptionFiltersInput) SetLimit(v int64) *DescribeSubscriptionFiltersInput {
+	s.Limit = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DescribeSubscriptionFiltersInput) SetLogGroupName(v string) *DescribeSubscriptionFiltersInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSubscriptionFiltersInput) SetNextToken(v string) *DescribeSubscriptionFiltersInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeSubscriptionFiltersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3257,6 +3587,18 @@ func (s DescribeSubscriptionFiltersOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSubscriptionFiltersOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSubscriptionFiltersOutput) SetNextToken(v string) *DescribeSubscriptionFiltersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSubscriptionFilters sets the SubscriptionFilters field's value.
+func (s *DescribeSubscriptionFiltersOutput) SetSubscriptionFilters(v []*SubscriptionFilter) *DescribeSubscriptionFiltersOutput {
+	s.SubscriptionFilters = v
+	return s
 }
 
 // A cross account destination that is the recipient of subscription log events.
@@ -3293,6 +3635,42 @@ func (s Destination) String() string {
 // GoString returns the string representation
 func (s Destination) GoString() string {
 	return s.String()
+}
+
+// SetAccessPolicy sets the AccessPolicy field's value.
+func (s *Destination) SetAccessPolicy(v string) *Destination {
+	s.AccessPolicy = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *Destination) SetArn(v string) *Destination {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Destination) SetCreationTime(v int64) *Destination {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *Destination) SetDestinationName(v string) *Destination {
+	s.DestinationName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *Destination) SetRoleArn(v string) *Destination {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *Destination) SetTargetArn(v string) *Destination {
+	s.TargetArn = &v
+	return s
 }
 
 // Represents an export task.
@@ -3339,6 +3717,60 @@ func (s ExportTask) GoString() string {
 	return s.String()
 }
 
+// SetDestination sets the Destination field's value.
+func (s *ExportTask) SetDestination(v string) *ExportTask {
+	s.Destination = &v
+	return s
+}
+
+// SetDestinationPrefix sets the DestinationPrefix field's value.
+func (s *ExportTask) SetDestinationPrefix(v string) *ExportTask {
+	s.DestinationPrefix = &v
+	return s
+}
+
+// SetExecutionInfo sets the ExecutionInfo field's value.
+func (s *ExportTask) SetExecutionInfo(v *ExportTaskExecutionInfo) *ExportTask {
+	s.ExecutionInfo = v
+	return s
+}
+
+// SetFrom sets the From field's value.
+func (s *ExportTask) SetFrom(v int64) *ExportTask {
+	s.From = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *ExportTask) SetLogGroupName(v string) *ExportTask {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ExportTask) SetStatus(v *ExportTaskStatus) *ExportTask {
+	s.Status = v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *ExportTask) SetTaskId(v string) *ExportTask {
+	s.TaskId = &v
+	return s
+}
+
+// SetTaskName sets the TaskName field's value.
+func (s *ExportTask) SetTaskName(v string) *ExportTask {
+	s.TaskName = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *ExportTask) SetTo(v int64) *ExportTask {
+	s.To = &v
+	return s
+}
+
 // Represents the status of an export task.
 type ExportTaskExecutionInfo struct {
 	_ struct{} `type:"structure"`
@@ -3360,6 +3792,18 @@ func (s ExportTaskExecutionInfo) GoString() string {
 	return s.String()
 }
 
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *ExportTaskExecutionInfo) SetCompletionTime(v int64) *ExportTaskExecutionInfo {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ExportTaskExecutionInfo) SetCreationTime(v int64) *ExportTaskExecutionInfo {
+	s.CreationTime = &v
+	return s
+}
+
 // Represents the status of an export task.
 type ExportTaskStatus struct {
 	_ struct{} `type:"structure"`
@@ -3379,6 +3823,18 @@ func (s ExportTaskStatus) String() string {
 // GoString returns the string representation
 func (s ExportTaskStatus) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ExportTaskStatus) SetCode(v string) *ExportTaskStatus {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ExportTaskStatus) SetMessage(v string) *ExportTaskStatus {
+	s.Message = &v
+	return s
 }
 
 type FilterLogEventsInput struct {
@@ -3458,6 +3914,54 @@ func (s *FilterLogEventsInput) Validate() error {
 	return nil
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *FilterLogEventsInput) SetEndTime(v int64) *FilterLogEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *FilterLogEventsInput) SetFilterPattern(v string) *FilterLogEventsInput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetInterleaved sets the Interleaved field's value.
+func (s *FilterLogEventsInput) SetInterleaved(v bool) *FilterLogEventsInput {
+	s.Interleaved = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *FilterLogEventsInput) SetLimit(v int64) *FilterLogEventsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *FilterLogEventsInput) SetLogGroupName(v string) *FilterLogEventsInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamNames sets the LogStreamNames field's value.
+func (s *FilterLogEventsInput) SetLogStreamNames(v []*string) *FilterLogEventsInput {
+	s.LogStreamNames = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *FilterLogEventsInput) SetNextToken(v string) *FilterLogEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *FilterLogEventsInput) SetStartTime(v int64) *FilterLogEventsInput {
+	s.StartTime = &v
+	return s
+}
+
 type FilterLogEventsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3484,6 +3988,24 @@ func (s FilterLogEventsOutput) String() string {
 // GoString returns the string representation
 func (s FilterLogEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *FilterLogEventsOutput) SetEvents(v []*FilteredLogEvent) *FilterLogEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *FilterLogEventsOutput) SetNextToken(v string) *FilterLogEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchedLogStreams sets the SearchedLogStreams field's value.
+func (s *FilterLogEventsOutput) SetSearchedLogStreams(v []*SearchedLogStream) *FilterLogEventsOutput {
+	s.SearchedLogStreams = v
+	return s
 }
 
 // Represents a matched event from a FilterLogEvents request.
@@ -3516,6 +4038,36 @@ func (s FilteredLogEvent) String() string {
 // GoString returns the string representation
 func (s FilteredLogEvent) GoString() string {
 	return s.String()
+}
+
+// SetEventId sets the EventId field's value.
+func (s *FilteredLogEvent) SetEventId(v string) *FilteredLogEvent {
+	s.EventId = &v
+	return s
+}
+
+// SetIngestionTime sets the IngestionTime field's value.
+func (s *FilteredLogEvent) SetIngestionTime(v int64) *FilteredLogEvent {
+	s.IngestionTime = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *FilteredLogEvent) SetLogStreamName(v string) *FilteredLogEvent {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FilteredLogEvent) SetMessage(v string) *FilteredLogEvent {
+	s.Message = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *FilteredLogEvent) SetTimestamp(v int64) *FilteredLogEvent {
+	s.Timestamp = &v
+	return s
 }
 
 type GetLogEventsInput struct {
@@ -3592,6 +4144,48 @@ func (s *GetLogEventsInput) Validate() error {
 	return nil
 }
 
+// SetEndTime sets the EndTime field's value.
+func (s *GetLogEventsInput) SetEndTime(v int64) *GetLogEventsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *GetLogEventsInput) SetLimit(v int64) *GetLogEventsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *GetLogEventsInput) SetLogGroupName(v string) *GetLogEventsInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *GetLogEventsInput) SetLogStreamName(v string) *GetLogEventsInput {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLogEventsInput) SetNextToken(v string) *GetLogEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartFromHead sets the StartFromHead field's value.
+func (s *GetLogEventsInput) SetStartFromHead(v bool) *GetLogEventsInput {
+	s.StartFromHead = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetLogEventsInput) SetStartTime(v int64) *GetLogEventsInput {
+	s.StartTime = &v
+	return s
+}
+
 type GetLogEventsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3616,6 +4210,24 @@ func (s GetLogEventsOutput) String() string {
 // GoString returns the string representation
 func (s GetLogEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *GetLogEventsOutput) SetEvents(v []*OutputLogEvent) *GetLogEventsOutput {
+	s.Events = v
+	return s
+}
+
+// SetNextBackwardToken sets the NextBackwardToken field's value.
+func (s *GetLogEventsOutput) SetNextBackwardToken(v string) *GetLogEventsOutput {
+	s.NextBackwardToken = &v
+	return s
+}
+
+// SetNextForwardToken sets the NextForwardToken field's value.
+func (s *GetLogEventsOutput) SetNextForwardToken(v string) *GetLogEventsOutput {
+	s.NextForwardToken = &v
+	return s
 }
 
 // A log event is a record of some activity that was recorded by the application
@@ -3664,6 +4276,18 @@ func (s *InputLogEvent) Validate() error {
 	return nil
 }
 
+// SetMessage sets the Message field's value.
+func (s *InputLogEvent) SetMessage(v string) *InputLogEvent {
+	s.Message = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *InputLogEvent) SetTimestamp(v int64) *InputLogEvent {
+	s.Timestamp = &v
+	return s
+}
+
 type LogGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -3694,6 +4318,42 @@ func (s LogGroup) String() string {
 // GoString returns the string representation
 func (s LogGroup) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *LogGroup) SetArn(v string) *LogGroup {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *LogGroup) SetCreationTime(v int64) *LogGroup {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *LogGroup) SetLogGroupName(v string) *LogGroup {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetMetricFilterCount sets the MetricFilterCount field's value.
+func (s *LogGroup) SetMetricFilterCount(v int64) *LogGroup {
+	s.MetricFilterCount = &v
+	return s
+}
+
+// SetRetentionInDays sets the RetentionInDays field's value.
+func (s *LogGroup) SetRetentionInDays(v int64) *LogGroup {
+	s.RetentionInDays = &v
+	return s
+}
+
+// SetStoredBytes sets the StoredBytes field's value.
+func (s *LogGroup) SetStoredBytes(v int64) *LogGroup {
+	s.StoredBytes = &v
+	return s
 }
 
 // A log stream is sequence of log events from a single emitter of logs.
@@ -3738,6 +4398,54 @@ func (s LogStream) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *LogStream) SetArn(v string) *LogStream {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *LogStream) SetCreationTime(v int64) *LogStream {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFirstEventTimestamp sets the FirstEventTimestamp field's value.
+func (s *LogStream) SetFirstEventTimestamp(v int64) *LogStream {
+	s.FirstEventTimestamp = &v
+	return s
+}
+
+// SetLastEventTimestamp sets the LastEventTimestamp field's value.
+func (s *LogStream) SetLastEventTimestamp(v int64) *LogStream {
+	s.LastEventTimestamp = &v
+	return s
+}
+
+// SetLastIngestionTime sets the LastIngestionTime field's value.
+func (s *LogStream) SetLastIngestionTime(v int64) *LogStream {
+	s.LastIngestionTime = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *LogStream) SetLogStreamName(v string) *LogStream {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetStoredBytes sets the StoredBytes field's value.
+func (s *LogStream) SetStoredBytes(v int64) *LogStream {
+	s.StoredBytes = &v
+	return s
+}
+
+// SetUploadSequenceToken sets the UploadSequenceToken field's value.
+func (s *LogStream) SetUploadSequenceToken(v string) *LogStream {
+	s.UploadSequenceToken = &v
+	return s
+}
+
 // Metric filters can be used to express how CloudWatch Logs would extract metric
 // observations from ingested log events and transform them to metric data in
 // a CloudWatch metric.
@@ -3770,6 +4478,30 @@ func (s MetricFilter) GoString() string {
 	return s.String()
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *MetricFilter) SetCreationTime(v int64) *MetricFilter {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFilterName sets the FilterName field's value.
+func (s *MetricFilter) SetFilterName(v string) *MetricFilter {
+	s.FilterName = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *MetricFilter) SetFilterPattern(v string) *MetricFilter {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetMetricTransformations sets the MetricTransformations field's value.
+func (s *MetricFilter) SetMetricTransformations(v []*MetricTransformation) *MetricFilter {
+	s.MetricTransformations = v
+	return s
+}
+
 type MetricFilterMatchRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -3788,6 +4520,24 @@ func (s MetricFilterMatchRecord) String() string {
 // GoString returns the string representation
 func (s MetricFilterMatchRecord) GoString() string {
 	return s.String()
+}
+
+// SetEventMessage sets the EventMessage field's value.
+func (s *MetricFilterMatchRecord) SetEventMessage(v string) *MetricFilterMatchRecord {
+	s.EventMessage = &v
+	return s
+}
+
+// SetEventNumber sets the EventNumber field's value.
+func (s *MetricFilterMatchRecord) SetEventNumber(v int64) *MetricFilterMatchRecord {
+	s.EventNumber = &v
+	return s
+}
+
+// SetExtractedValues sets the ExtractedValues field's value.
+func (s *MetricFilterMatchRecord) SetExtractedValues(v map[string]*string) *MetricFilterMatchRecord {
+	s.ExtractedValues = v
+	return s
 }
 
 type MetricTransformation struct {
@@ -3843,6 +4593,30 @@ func (s *MetricTransformation) Validate() error {
 	return nil
 }
 
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *MetricTransformation) SetDefaultValue(v float64) *MetricTransformation {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricTransformation) SetMetricName(v string) *MetricTransformation {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricNamespace sets the MetricNamespace field's value.
+func (s *MetricTransformation) SetMetricNamespace(v string) *MetricTransformation {
+	s.MetricNamespace = &v
+	return s
+}
+
+// SetMetricValue sets the MetricValue field's value.
+func (s *MetricTransformation) SetMetricValue(v string) *MetricTransformation {
+	s.MetricValue = &v
+	return s
+}
+
 type OutputLogEvent struct {
 	_ struct{} `type:"structure"`
 
@@ -3865,6 +4639,24 @@ func (s OutputLogEvent) String() string {
 // GoString returns the string representation
 func (s OutputLogEvent) GoString() string {
 	return s.String()
+}
+
+// SetIngestionTime sets the IngestionTime field's value.
+func (s *OutputLogEvent) SetIngestionTime(v int64) *OutputLogEvent {
+	s.IngestionTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *OutputLogEvent) SetMessage(v string) *OutputLogEvent {
+	s.Message = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *OutputLogEvent) SetTimestamp(v int64) *OutputLogEvent {
+	s.Timestamp = &v
+	return s
 }
 
 type PutDestinationInput struct {
@@ -3925,6 +4717,24 @@ func (s *PutDestinationInput) Validate() error {
 	return nil
 }
 
+// SetDestinationName sets the DestinationName field's value.
+func (s *PutDestinationInput) SetDestinationName(v string) *PutDestinationInput {
+	s.DestinationName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PutDestinationInput) SetRoleArn(v string) *PutDestinationInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *PutDestinationInput) SetTargetArn(v string) *PutDestinationInput {
+	s.TargetArn = &v
+	return s
+}
+
 type PutDestinationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3940,6 +4750,12 @@ func (s PutDestinationOutput) String() string {
 // GoString returns the string representation
 func (s PutDestinationOutput) GoString() string {
 	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *PutDestinationOutput) SetDestination(v *Destination) *PutDestinationOutput {
+	s.Destination = v
+	return s
 }
 
 type PutDestinationPolicyInput struct {
@@ -3987,6 +4803,18 @@ func (s *PutDestinationPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccessPolicy sets the AccessPolicy field's value.
+func (s *PutDestinationPolicyInput) SetAccessPolicy(v string) *PutDestinationPolicyInput {
+	s.AccessPolicy = &v
+	return s
+}
+
+// SetDestinationName sets the DestinationName field's value.
+func (s *PutDestinationPolicyInput) SetDestinationName(v string) *PutDestinationPolicyInput {
+	s.DestinationName = &v
+	return s
 }
 
 type PutDestinationPolicyOutput struct {
@@ -4077,6 +4905,30 @@ func (s *PutLogEventsInput) Validate() error {
 	return nil
 }
 
+// SetLogEvents sets the LogEvents field's value.
+func (s *PutLogEventsInput) SetLogEvents(v []*InputLogEvent) *PutLogEventsInput {
+	s.LogEvents = v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *PutLogEventsInput) SetLogGroupName(v string) *PutLogEventsInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *PutLogEventsInput) SetLogStreamName(v string) *PutLogEventsInput {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetSequenceToken sets the SequenceToken field's value.
+func (s *PutLogEventsInput) SetSequenceToken(v string) *PutLogEventsInput {
+	s.SequenceToken = &v
+	return s
+}
+
 type PutLogEventsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4096,6 +4948,18 @@ func (s PutLogEventsOutput) String() string {
 // GoString returns the string representation
 func (s PutLogEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextSequenceToken sets the NextSequenceToken field's value.
+func (s *PutLogEventsOutput) SetNextSequenceToken(v string) *PutLogEventsOutput {
+	s.NextSequenceToken = &v
+	return s
+}
+
+// SetRejectedLogEventsInfo sets the RejectedLogEventsInfo field's value.
+func (s *PutLogEventsOutput) SetRejectedLogEventsInfo(v *RejectedLogEventsInfo) *PutLogEventsOutput {
+	s.RejectedLogEventsInfo = v
+	return s
 }
 
 type PutMetricFilterInput struct {
@@ -4174,6 +5038,30 @@ func (s *PutMetricFilterInput) Validate() error {
 	return nil
 }
 
+// SetFilterName sets the FilterName field's value.
+func (s *PutMetricFilterInput) SetFilterName(v string) *PutMetricFilterInput {
+	s.FilterName = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *PutMetricFilterInput) SetFilterPattern(v string) *PutMetricFilterInput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *PutMetricFilterInput) SetLogGroupName(v string) *PutMetricFilterInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetMetricTransformations sets the MetricTransformations field's value.
+func (s *PutMetricFilterInput) SetMetricTransformations(v []*MetricTransformation) *PutMetricFilterInput {
+	s.MetricTransformations = v
+	return s
+}
+
 type PutMetricFilterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4231,6 +5119,18 @@ func (s *PutRetentionPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *PutRetentionPolicyInput) SetLogGroupName(v string) *PutRetentionPolicyInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetRetentionInDays sets the RetentionInDays field's value.
+func (s *PutRetentionPolicyInput) SetRetentionInDays(v int64) *PutRetentionPolicyInput {
+	s.RetentionInDays = &v
+	return s
 }
 
 type PutRetentionPolicyOutput struct {
@@ -4335,6 +5235,36 @@ func (s *PutSubscriptionFilterInput) Validate() error {
 	return nil
 }
 
+// SetDestinationArn sets the DestinationArn field's value.
+func (s *PutSubscriptionFilterInput) SetDestinationArn(v string) *PutSubscriptionFilterInput {
+	s.DestinationArn = &v
+	return s
+}
+
+// SetFilterName sets the FilterName field's value.
+func (s *PutSubscriptionFilterInput) SetFilterName(v string) *PutSubscriptionFilterInput {
+	s.FilterName = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *PutSubscriptionFilterInput) SetFilterPattern(v string) *PutSubscriptionFilterInput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *PutSubscriptionFilterInput) SetLogGroupName(v string) *PutSubscriptionFilterInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PutSubscriptionFilterInput) SetRoleArn(v string) *PutSubscriptionFilterInput {
+	s.RoleArn = &v
+	return s
+}
+
 type PutSubscriptionFilterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4369,6 +5299,24 @@ func (s RejectedLogEventsInfo) GoString() string {
 	return s.String()
 }
 
+// SetExpiredLogEventEndIndex sets the ExpiredLogEventEndIndex field's value.
+func (s *RejectedLogEventsInfo) SetExpiredLogEventEndIndex(v int64) *RejectedLogEventsInfo {
+	s.ExpiredLogEventEndIndex = &v
+	return s
+}
+
+// SetTooNewLogEventStartIndex sets the TooNewLogEventStartIndex field's value.
+func (s *RejectedLogEventsInfo) SetTooNewLogEventStartIndex(v int64) *RejectedLogEventsInfo {
+	s.TooNewLogEventStartIndex = &v
+	return s
+}
+
+// SetTooOldLogEventEndIndex sets the TooOldLogEventEndIndex field's value.
+func (s *RejectedLogEventsInfo) SetTooOldLogEventEndIndex(v int64) *RejectedLogEventsInfo {
+	s.TooOldLogEventEndIndex = &v
+	return s
+}
+
 // An object indicating the search status of a log stream in a FilterLogEvents
 // request.
 type SearchedLogStream struct {
@@ -4390,6 +5338,18 @@ func (s SearchedLogStream) String() string {
 // GoString returns the string representation
 func (s SearchedLogStream) GoString() string {
 	return s.String()
+}
+
+// SetLogStreamName sets the LogStreamName field's value.
+func (s *SearchedLogStream) SetLogStreamName(v string) *SearchedLogStream {
+	s.LogStreamName = &v
+	return s
+}
+
+// SetSearchedCompletely sets the SearchedCompletely field's value.
+func (s *SearchedLogStream) SetSearchedCompletely(v bool) *SearchedLogStream {
+	s.SearchedCompletely = &v
+	return s
 }
 
 type SubscriptionFilter struct {
@@ -4423,6 +5383,42 @@ func (s SubscriptionFilter) String() string {
 // GoString returns the string representation
 func (s SubscriptionFilter) GoString() string {
 	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *SubscriptionFilter) SetCreationTime(v int64) *SubscriptionFilter {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDestinationArn sets the DestinationArn field's value.
+func (s *SubscriptionFilter) SetDestinationArn(v string) *SubscriptionFilter {
+	s.DestinationArn = &v
+	return s
+}
+
+// SetFilterName sets the FilterName field's value.
+func (s *SubscriptionFilter) SetFilterName(v string) *SubscriptionFilter {
+	s.FilterName = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *SubscriptionFilter) SetFilterPattern(v string) *SubscriptionFilter {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *SubscriptionFilter) SetLogGroupName(v string) *SubscriptionFilter {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *SubscriptionFilter) SetRoleArn(v string) *SubscriptionFilter {
+	s.RoleArn = &v
+	return s
 }
 
 type TestMetricFilterInput struct {
@@ -4471,6 +5467,18 @@ func (s *TestMetricFilterInput) Validate() error {
 	return nil
 }
 
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *TestMetricFilterInput) SetFilterPattern(v string) *TestMetricFilterInput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetLogEventMessages sets the LogEventMessages field's value.
+func (s *TestMetricFilterInput) SetLogEventMessages(v []*string) *TestMetricFilterInput {
+	s.LogEventMessages = v
+	return s
+}
+
 type TestMetricFilterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4485,6 +5493,12 @@ func (s TestMetricFilterOutput) String() string {
 // GoString returns the string representation
 func (s TestMetricFilterOutput) GoString() string {
 	return s.String()
+}
+
+// SetMatches sets the Matches field's value.
+func (s *TestMetricFilterOutput) SetMatches(v []*MetricFilterMatchRecord) *TestMetricFilterOutput {
+	s.Matches = v
+	return s
 }
 
 const (

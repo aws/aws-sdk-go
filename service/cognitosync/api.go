@@ -1454,6 +1454,12 @@ func (s *BulkPublishInput) Validate() error {
 	return nil
 }
 
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *BulkPublishInput) SetIdentityPoolId(v string) *BulkPublishInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // The output for the BulkPublish operation.
 type BulkPublishOutput struct {
 	_ struct{} `type:"structure"`
@@ -1471,6 +1477,12 @@ func (s BulkPublishOutput) String() string {
 // GoString returns the string representation
 func (s BulkPublishOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *BulkPublishOutput) SetIdentityPoolId(v string) *BulkPublishOutput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 // Configuration options for configure Cognito streams.
@@ -1520,6 +1532,24 @@ func (s *CognitoStreams) Validate() error {
 	return nil
 }
 
+// SetRoleArn sets the RoleArn field's value.
+func (s *CognitoStreams) SetRoleArn(v string) *CognitoStreams {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *CognitoStreams) SetStreamName(v string) *CognitoStreams {
+	s.StreamName = &v
+	return s
+}
+
+// SetStreamingStatus sets the StreamingStatus field's value.
+func (s *CognitoStreams) SetStreamingStatus(v string) *CognitoStreams {
+	s.StreamingStatus = &v
+	return s
+}
+
 // A collection of data for an identity pool. An identity pool can have multiple
 // datasets. A dataset is per identity and can be general or associated with
 // a particular entity in an application (like a saved game). Datasets are automatically
@@ -1560,6 +1590,48 @@ func (s Dataset) String() string {
 // GoString returns the string representation
 func (s Dataset) GoString() string {
 	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *Dataset) SetCreationDate(v time.Time) *Dataset {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDataStorage sets the DataStorage field's value.
+func (s *Dataset) SetDataStorage(v int64) *Dataset {
+	s.DataStorage = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *Dataset) SetDatasetName(v string) *Dataset {
+	s.DatasetName = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *Dataset) SetIdentityId(v string) *Dataset {
+	s.IdentityId = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *Dataset) SetLastModifiedBy(v string) *Dataset {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *Dataset) SetLastModifiedDate(v time.Time) *Dataset {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetNumRecords sets the NumRecords field's value.
+func (s *Dataset) SetNumRecords(v int64) *Dataset {
+	s.NumRecords = &v
+	return s
 }
 
 // A request to delete the specific dataset.
@@ -1623,6 +1695,24 @@ func (s *DeleteDatasetInput) Validate() error {
 	return nil
 }
 
+// SetDatasetName sets the DatasetName field's value.
+func (s *DeleteDatasetInput) SetDatasetName(v string) *DeleteDatasetInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *DeleteDatasetInput) SetIdentityId(v string) *DeleteDatasetInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *DeleteDatasetInput) SetIdentityPoolId(v string) *DeleteDatasetInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // Response to a successful DeleteDataset request.
 type DeleteDatasetOutput struct {
 	_ struct{} `type:"structure"`
@@ -1643,6 +1733,12 @@ func (s DeleteDatasetOutput) String() string {
 // GoString returns the string representation
 func (s DeleteDatasetOutput) GoString() string {
 	return s.String()
+}
+
+// SetDataset sets the Dataset field's value.
+func (s *DeleteDatasetOutput) SetDataset(v *Dataset) *DeleteDatasetOutput {
+	s.Dataset = v
+	return s
 }
 
 // A request for meta data about a dataset (creation date, number of records,
@@ -1707,6 +1803,24 @@ func (s *DescribeDatasetInput) Validate() error {
 	return nil
 }
 
+// SetDatasetName sets the DatasetName field's value.
+func (s *DescribeDatasetInput) SetDatasetName(v string) *DescribeDatasetInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *DescribeDatasetInput) SetIdentityId(v string) *DescribeDatasetInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *DescribeDatasetInput) SetIdentityPoolId(v string) *DescribeDatasetInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // Response to a successful DescribeDataset request.
 type DescribeDatasetOutput struct {
 	_ struct{} `type:"structure"`
@@ -1727,6 +1841,12 @@ func (s DescribeDatasetOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDatasetOutput) GoString() string {
 	return s.String()
+}
+
+// SetDataset sets the Dataset field's value.
+func (s *DescribeDatasetOutput) SetDataset(v *Dataset) *DescribeDatasetOutput {
+	s.Dataset = v
+	return s
 }
 
 // A request for usage information about the identity pool.
@@ -1766,6 +1886,12 @@ func (s *DescribeIdentityPoolUsageInput) Validate() error {
 	return nil
 }
 
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *DescribeIdentityPoolUsageInput) SetIdentityPoolId(v string) *DescribeIdentityPoolUsageInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // Response to a successful DescribeIdentityPoolUsage request.
 type DescribeIdentityPoolUsageOutput struct {
 	_ struct{} `type:"structure"`
@@ -1782,6 +1908,12 @@ func (s DescribeIdentityPoolUsageOutput) String() string {
 // GoString returns the string representation
 func (s DescribeIdentityPoolUsageOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityPoolUsage sets the IdentityPoolUsage field's value.
+func (s *DescribeIdentityPoolUsageOutput) SetIdentityPoolUsage(v *IdentityPoolUsage) *DescribeIdentityPoolUsageOutput {
+	s.IdentityPoolUsage = v
+	return s
 }
 
 // A request for information about the usage of an identity pool.
@@ -1833,6 +1965,18 @@ func (s *DescribeIdentityUsageInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *DescribeIdentityUsageInput) SetIdentityId(v string) *DescribeIdentityUsageInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *DescribeIdentityUsageInput) SetIdentityPoolId(v string) *DescribeIdentityUsageInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // The response to a successful DescribeIdentityUsage request.
 type DescribeIdentityUsageOutput struct {
 	_ struct{} `type:"structure"`
@@ -1849,6 +1993,12 @@ func (s DescribeIdentityUsageOutput) String() string {
 // GoString returns the string representation
 func (s DescribeIdentityUsageOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityUsage sets the IdentityUsage field's value.
+func (s *DescribeIdentityUsageOutput) SetIdentityUsage(v *IdentityUsage) *DescribeIdentityUsageOutput {
+	s.IdentityUsage = v
+	return s
 }
 
 // The input for the GetBulkPublishDetails operation.
@@ -1886,6 +2036,12 @@ func (s *GetBulkPublishDetailsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetBulkPublishDetailsInput) SetIdentityPoolId(v string) *GetBulkPublishDetailsInput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 // The output for the GetBulkPublishDetails operation.
@@ -1930,6 +2086,36 @@ func (s GetBulkPublishDetailsOutput) GoString() string {
 	return s.String()
 }
 
+// SetBulkPublishCompleteTime sets the BulkPublishCompleteTime field's value.
+func (s *GetBulkPublishDetailsOutput) SetBulkPublishCompleteTime(v time.Time) *GetBulkPublishDetailsOutput {
+	s.BulkPublishCompleteTime = &v
+	return s
+}
+
+// SetBulkPublishStartTime sets the BulkPublishStartTime field's value.
+func (s *GetBulkPublishDetailsOutput) SetBulkPublishStartTime(v time.Time) *GetBulkPublishDetailsOutput {
+	s.BulkPublishStartTime = &v
+	return s
+}
+
+// SetBulkPublishStatus sets the BulkPublishStatus field's value.
+func (s *GetBulkPublishDetailsOutput) SetBulkPublishStatus(v string) *GetBulkPublishDetailsOutput {
+	s.BulkPublishStatus = &v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *GetBulkPublishDetailsOutput) SetFailureMessage(v string) *GetBulkPublishDetailsOutput {
+	s.FailureMessage = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetBulkPublishDetailsOutput) SetIdentityPoolId(v string) *GetBulkPublishDetailsOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // A request for a list of the configured Cognito Events
 type GetCognitoEventsInput struct {
 	_ struct{} `type:"structure"`
@@ -1966,6 +2152,12 @@ func (s *GetCognitoEventsInput) Validate() error {
 	return nil
 }
 
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetCognitoEventsInput) SetIdentityPoolId(v string) *GetCognitoEventsInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // The response from the GetCognitoEvents request
 type GetCognitoEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1982,6 +2174,12 @@ func (s GetCognitoEventsOutput) String() string {
 // GoString returns the string representation
 func (s GetCognitoEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *GetCognitoEventsOutput) SetEvents(v map[string]*string) *GetCognitoEventsOutput {
+	s.Events = v
+	return s
 }
 
 // The input for the GetIdentityPoolConfiguration operation.
@@ -2022,6 +2220,12 @@ func (s *GetIdentityPoolConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetIdentityPoolConfigurationInput) SetIdentityPoolId(v string) *GetIdentityPoolConfigurationInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // The output for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationOutput struct {
 	_ struct{} `type:"structure"`
@@ -2045,6 +2249,24 @@ func (s GetIdentityPoolConfigurationOutput) String() string {
 // GoString returns the string representation
 func (s GetIdentityPoolConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetCognitoStreams sets the CognitoStreams field's value.
+func (s *GetIdentityPoolConfigurationOutput) SetCognitoStreams(v *CognitoStreams) *GetIdentityPoolConfigurationOutput {
+	s.CognitoStreams = v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetIdentityPoolConfigurationOutput) SetIdentityPoolId(v string) *GetIdentityPoolConfigurationOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetPushSync sets the PushSync field's value.
+func (s *GetIdentityPoolConfigurationOutput) SetPushSync(v *PushSync) *GetIdentityPoolConfigurationOutput {
+	s.PushSync = v
+	return s
 }
 
 // Usage information for the identity pool.
@@ -2073,6 +2295,30 @@ func (s IdentityPoolUsage) String() string {
 // GoString returns the string representation
 func (s IdentityPoolUsage) GoString() string {
 	return s.String()
+}
+
+// SetDataStorage sets the DataStorage field's value.
+func (s *IdentityPoolUsage) SetDataStorage(v int64) *IdentityPoolUsage {
+	s.DataStorage = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *IdentityPoolUsage) SetIdentityPoolId(v string) *IdentityPoolUsage {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *IdentityPoolUsage) SetLastModifiedDate(v time.Time) *IdentityPoolUsage {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetSyncSessionsCount sets the SyncSessionsCount field's value.
+func (s *IdentityPoolUsage) SetSyncSessionsCount(v int64) *IdentityPoolUsage {
+	s.SyncSessionsCount = &v
+	return s
 }
 
 // Usage information for the identity.
@@ -2105,6 +2351,36 @@ func (s IdentityUsage) String() string {
 // GoString returns the string representation
 func (s IdentityUsage) GoString() string {
 	return s.String()
+}
+
+// SetDataStorage sets the DataStorage field's value.
+func (s *IdentityUsage) SetDataStorage(v int64) *IdentityUsage {
+	s.DataStorage = &v
+	return s
+}
+
+// SetDatasetCount sets the DatasetCount field's value.
+func (s *IdentityUsage) SetDatasetCount(v int64) *IdentityUsage {
+	s.DatasetCount = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *IdentityUsage) SetIdentityId(v string) *IdentityUsage {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *IdentityUsage) SetIdentityPoolId(v string) *IdentityUsage {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *IdentityUsage) SetLastModifiedDate(v time.Time) *IdentityUsage {
+	s.LastModifiedDate = &v
+	return s
 }
 
 // Request for a list of datasets for an identity.
@@ -2162,6 +2438,30 @@ func (s *ListDatasetsInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *ListDatasetsInput) SetIdentityId(v string) *ListDatasetsInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *ListDatasetsInput) SetIdentityPoolId(v string) *ListDatasetsInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetsInput) SetMaxResults(v int64) *ListDatasetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetsInput) SetNextToken(v string) *ListDatasetsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Returned for a successful ListDatasets request.
 type ListDatasetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2186,6 +2486,24 @@ func (s ListDatasetsOutput) GoString() string {
 	return s.String()
 }
 
+// SetCount sets the Count field's value.
+func (s *ListDatasetsOutput) SetCount(v int64) *ListDatasetsOutput {
+	s.Count = &v
+	return s
+}
+
+// SetDatasets sets the Datasets field's value.
+func (s *ListDatasetsOutput) SetDatasets(v []*Dataset) *ListDatasetsOutput {
+	s.Datasets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // A request for usage information on an identity pool.
 type ListIdentityPoolUsageInput struct {
 	_ struct{} `type:"structure"`
@@ -2205,6 +2523,18 @@ func (s ListIdentityPoolUsageInput) String() string {
 // GoString returns the string representation
 func (s ListIdentityPoolUsageInput) GoString() string {
 	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdentityPoolUsageInput) SetMaxResults(v int64) *ListIdentityPoolUsageInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentityPoolUsageInput) SetNextToken(v string) *ListIdentityPoolUsageInput {
+	s.NextToken = &v
+	return s
 }
 
 // Returned for a successful ListIdentityPoolUsage request.
@@ -2232,6 +2562,30 @@ func (s ListIdentityPoolUsageOutput) String() string {
 // GoString returns the string representation
 func (s ListIdentityPoolUsageOutput) GoString() string {
 	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *ListIdentityPoolUsageOutput) SetCount(v int64) *ListIdentityPoolUsageOutput {
+	s.Count = &v
+	return s
+}
+
+// SetIdentityPoolUsages sets the IdentityPoolUsages field's value.
+func (s *ListIdentityPoolUsageOutput) SetIdentityPoolUsages(v []*IdentityPoolUsage) *ListIdentityPoolUsageOutput {
+	s.IdentityPoolUsages = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdentityPoolUsageOutput) SetMaxResults(v int64) *ListIdentityPoolUsageOutput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentityPoolUsageOutput) SetNextToken(v string) *ListIdentityPoolUsageOutput {
+	s.NextToken = &v
+	return s
 }
 
 // A request for a list of records.
@@ -2307,6 +2661,48 @@ func (s *ListRecordsInput) Validate() error {
 	return nil
 }
 
+// SetDatasetName sets the DatasetName field's value.
+func (s *ListRecordsInput) SetDatasetName(v string) *ListRecordsInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *ListRecordsInput) SetIdentityId(v string) *ListRecordsInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *ListRecordsInput) SetIdentityPoolId(v string) *ListRecordsInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetLastSyncCount sets the LastSyncCount field's value.
+func (s *ListRecordsInput) SetLastSyncCount(v int64) *ListRecordsInput {
+	s.LastSyncCount = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRecordsInput) SetMaxResults(v int64) *ListRecordsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecordsInput) SetNextToken(v string) *ListRecordsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSyncSessionToken sets the SyncSessionToken field's value.
+func (s *ListRecordsInput) SetSyncSessionToken(v string) *ListRecordsInput {
+	s.SyncSessionToken = &v
+	return s
+}
+
 // Returned for a successful ListRecordsRequest.
 type ListRecordsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2349,6 +2745,60 @@ func (s ListRecordsOutput) GoString() string {
 	return s.String()
 }
 
+// SetCount sets the Count field's value.
+func (s *ListRecordsOutput) SetCount(v int64) *ListRecordsOutput {
+	s.Count = &v
+	return s
+}
+
+// SetDatasetDeletedAfterRequestedSyncCount sets the DatasetDeletedAfterRequestedSyncCount field's value.
+func (s *ListRecordsOutput) SetDatasetDeletedAfterRequestedSyncCount(v bool) *ListRecordsOutput {
+	s.DatasetDeletedAfterRequestedSyncCount = &v
+	return s
+}
+
+// SetDatasetExists sets the DatasetExists field's value.
+func (s *ListRecordsOutput) SetDatasetExists(v bool) *ListRecordsOutput {
+	s.DatasetExists = &v
+	return s
+}
+
+// SetDatasetSyncCount sets the DatasetSyncCount field's value.
+func (s *ListRecordsOutput) SetDatasetSyncCount(v int64) *ListRecordsOutput {
+	s.DatasetSyncCount = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *ListRecordsOutput) SetLastModifiedBy(v string) *ListRecordsOutput {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetMergedDatasetNames sets the MergedDatasetNames field's value.
+func (s *ListRecordsOutput) SetMergedDatasetNames(v []*string) *ListRecordsOutput {
+	s.MergedDatasetNames = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecordsOutput) SetNextToken(v string) *ListRecordsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *ListRecordsOutput) SetRecords(v []*Record) *ListRecordsOutput {
+	s.Records = v
+	return s
+}
+
+// SetSyncSessionToken sets the SyncSessionToken field's value.
+func (s *ListRecordsOutput) SetSyncSessionToken(v string) *ListRecordsOutput {
+	s.SyncSessionToken = &v
+	return s
+}
+
 // Configuration options to be applied to the identity pool.
 type PushSync struct {
 	_ struct{} `type:"structure"`
@@ -2383,6 +2833,18 @@ func (s *PushSync) Validate() error {
 	return nil
 }
 
+// SetApplicationArns sets the ApplicationArns field's value.
+func (s *PushSync) SetApplicationArns(v []*string) *PushSync {
+	s.ApplicationArns = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PushSync) SetRoleArn(v string) *PushSync {
+	s.RoleArn = &v
+	return s
+}
+
 // The basic data structure of a dataset.
 type Record struct {
 	_ struct{} `type:"structure"`
@@ -2414,6 +2876,42 @@ func (s Record) String() string {
 // GoString returns the string representation
 func (s Record) GoString() string {
 	return s.String()
+}
+
+// SetDeviceLastModifiedDate sets the DeviceLastModifiedDate field's value.
+func (s *Record) SetDeviceLastModifiedDate(v time.Time) *Record {
+	s.DeviceLastModifiedDate = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *Record) SetKey(v string) *Record {
+	s.Key = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *Record) SetLastModifiedBy(v string) *Record {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *Record) SetLastModifiedDate(v time.Time) *Record {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetSyncCount sets the SyncCount field's value.
+func (s *Record) SetSyncCount(v int64) *Record {
+	s.SyncCount = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Record) SetValue(v string) *Record {
+	s.Value = &v
+	return s
 }
 
 // An update operation for a record.
@@ -2472,6 +2970,36 @@ func (s *RecordPatch) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeviceLastModifiedDate sets the DeviceLastModifiedDate field's value.
+func (s *RecordPatch) SetDeviceLastModifiedDate(v time.Time) *RecordPatch {
+	s.DeviceLastModifiedDate = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *RecordPatch) SetKey(v string) *RecordPatch {
+	s.Key = &v
+	return s
+}
+
+// SetOp sets the Op field's value.
+func (s *RecordPatch) SetOp(v string) *RecordPatch {
+	s.Op = &v
+	return s
+}
+
+// SetSyncCount sets the SyncCount field's value.
+func (s *RecordPatch) SetSyncCount(v int64) *RecordPatch {
+	s.SyncCount = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RecordPatch) SetValue(v string) *RecordPatch {
+	s.Value = &v
+	return s
 }
 
 // A request to RegisterDevice.
@@ -2539,6 +3067,30 @@ func (s *RegisterDeviceInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *RegisterDeviceInput) SetIdentityId(v string) *RegisterDeviceInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *RegisterDeviceInput) SetIdentityPoolId(v string) *RegisterDeviceInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *RegisterDeviceInput) SetPlatform(v string) *RegisterDeviceInput {
+	s.Platform = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *RegisterDeviceInput) SetToken(v string) *RegisterDeviceInput {
+	s.Token = &v
+	return s
+}
+
 // Response to a RegisterDevice request.
 type RegisterDeviceOutput struct {
 	_ struct{} `type:"structure"`
@@ -2555,6 +3107,12 @@ func (s RegisterDeviceOutput) String() string {
 // GoString returns the string representation
 func (s RegisterDeviceOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *RegisterDeviceOutput) SetDeviceId(v string) *RegisterDeviceOutput {
+	s.DeviceId = &v
+	return s
 }
 
 // A request to configure Cognito Events"
@@ -2599,6 +3157,18 @@ func (s *SetCognitoEventsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEvents sets the Events field's value.
+func (s *SetCognitoEventsInput) SetEvents(v map[string]*string) *SetCognitoEventsInput {
+	s.Events = v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SetCognitoEventsInput) SetIdentityPoolId(v string) *SetCognitoEventsInput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 type SetCognitoEventsOutput struct {
@@ -2668,6 +3238,24 @@ func (s *SetIdentityPoolConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetCognitoStreams sets the CognitoStreams field's value.
+func (s *SetIdentityPoolConfigurationInput) SetCognitoStreams(v *CognitoStreams) *SetIdentityPoolConfigurationInput {
+	s.CognitoStreams = v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SetIdentityPoolConfigurationInput) SetIdentityPoolId(v string) *SetIdentityPoolConfigurationInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetPushSync sets the PushSync field's value.
+func (s *SetIdentityPoolConfigurationInput) SetPushSync(v *PushSync) *SetIdentityPoolConfigurationInput {
+	s.PushSync = v
+	return s
+}
+
 // The output for the SetIdentityPoolConfiguration operation
 type SetIdentityPoolConfigurationOutput struct {
 	_ struct{} `type:"structure"`
@@ -2691,6 +3279,24 @@ func (s SetIdentityPoolConfigurationOutput) String() string {
 // GoString returns the string representation
 func (s SetIdentityPoolConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetCognitoStreams sets the CognitoStreams field's value.
+func (s *SetIdentityPoolConfigurationOutput) SetCognitoStreams(v *CognitoStreams) *SetIdentityPoolConfigurationOutput {
+	s.CognitoStreams = v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SetIdentityPoolConfigurationOutput) SetIdentityPoolId(v string) *SetIdentityPoolConfigurationOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetPushSync sets the PushSync field's value.
+func (s *SetIdentityPoolConfigurationOutput) SetPushSync(v *PushSync) *SetIdentityPoolConfigurationOutput {
+	s.PushSync = v
+	return s
 }
 
 // A request to SubscribeToDatasetRequest.
@@ -2761,6 +3367,30 @@ func (s *SubscribeToDatasetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *SubscribeToDatasetInput) SetDatasetName(v string) *SubscribeToDatasetInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *SubscribeToDatasetInput) SetDeviceId(v string) *SubscribeToDatasetInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *SubscribeToDatasetInput) SetIdentityId(v string) *SubscribeToDatasetInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SubscribeToDatasetInput) SetIdentityPoolId(v string) *SubscribeToDatasetInput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 // Response to a SubscribeToDataset request.
@@ -2846,6 +3476,30 @@ func (s *UnsubscribeFromDatasetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *UnsubscribeFromDatasetInput) SetDatasetName(v string) *UnsubscribeFromDatasetInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *UnsubscribeFromDatasetInput) SetDeviceId(v string) *UnsubscribeFromDatasetInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *UnsubscribeFromDatasetInput) SetIdentityId(v string) *UnsubscribeFromDatasetInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *UnsubscribeFromDatasetInput) SetIdentityPoolId(v string) *UnsubscribeFromDatasetInput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 // Response to an UnsubscribeFromDataset request.
@@ -2957,6 +3611,48 @@ func (s *UpdateRecordsInput) Validate() error {
 	return nil
 }
 
+// SetClientContext sets the ClientContext field's value.
+func (s *UpdateRecordsInput) SetClientContext(v string) *UpdateRecordsInput {
+	s.ClientContext = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *UpdateRecordsInput) SetDatasetName(v string) *UpdateRecordsInput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *UpdateRecordsInput) SetDeviceId(v string) *UpdateRecordsInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *UpdateRecordsInput) SetIdentityId(v string) *UpdateRecordsInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *UpdateRecordsInput) SetIdentityPoolId(v string) *UpdateRecordsInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetRecordPatches sets the RecordPatches field's value.
+func (s *UpdateRecordsInput) SetRecordPatches(v []*RecordPatch) *UpdateRecordsInput {
+	s.RecordPatches = v
+	return s
+}
+
+// SetSyncSessionToken sets the SyncSessionToken field's value.
+func (s *UpdateRecordsInput) SetSyncSessionToken(v string) *UpdateRecordsInput {
+	s.SyncSessionToken = &v
+	return s
+}
+
 // Returned for a successful UpdateRecordsRequest.
 type UpdateRecordsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2973,6 +3669,12 @@ func (s UpdateRecordsOutput) String() string {
 // GoString returns the string representation
 func (s UpdateRecordsOutput) GoString() string {
 	return s.String()
+}
+
+// SetRecords sets the Records field's value.
+func (s *UpdateRecordsOutput) SetRecords(v []*Record) *UpdateRecordsOutput {
+	s.Records = v
+	return s
 }
 
 const (

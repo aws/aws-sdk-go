@@ -1090,6 +1090,12 @@ func (s ComputeType) GoString() string {
 	return s.String()
 }
 
+// SetName sets the Name field's value.
+func (s *ComputeType) SetName(v string) *ComputeType {
+	s.Name = &v
+	return s
+}
+
 // The request of the CreateTags operation.
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
@@ -1142,6 +1148,18 @@ func (s *CreateTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *CreateTagsInput) SetResourceId(v string) *CreateTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
+	s.Tags = v
+	return s
 }
 
 // The result of the CreateTags operation.
@@ -1205,6 +1223,12 @@ func (s *CreateWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetWorkspaces sets the Workspaces field's value.
+func (s *CreateWorkspacesInput) SetWorkspaces(v []*WorkspaceRequest) *CreateWorkspacesInput {
+	s.Workspaces = v
+	return s
+}
+
 // Contains the result of the CreateWorkspaces operation.
 type CreateWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1228,6 +1252,18 @@ func (s CreateWorkspacesOutput) String() string {
 // GoString returns the string representation
 func (s CreateWorkspacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *CreateWorkspacesOutput) SetFailedRequests(v []*FailedCreateWorkspaceRequest) *CreateWorkspacesOutput {
+	s.FailedRequests = v
+	return s
+}
+
+// SetPendingRequests sets the PendingRequests field's value.
+func (s *CreateWorkspacesOutput) SetPendingRequests(v []*Workspace) *CreateWorkspacesOutput {
+	s.PendingRequests = v
+	return s
 }
 
 // Contains default WorkSpace creation information.
@@ -1261,6 +1297,36 @@ func (s DefaultWorkspaceCreationProperties) String() string {
 // GoString returns the string representation
 func (s DefaultWorkspaceCreationProperties) GoString() string {
 	return s.String()
+}
+
+// SetCustomSecurityGroupId sets the CustomSecurityGroupId field's value.
+func (s *DefaultWorkspaceCreationProperties) SetCustomSecurityGroupId(v string) *DefaultWorkspaceCreationProperties {
+	s.CustomSecurityGroupId = &v
+	return s
+}
+
+// SetDefaultOu sets the DefaultOu field's value.
+func (s *DefaultWorkspaceCreationProperties) SetDefaultOu(v string) *DefaultWorkspaceCreationProperties {
+	s.DefaultOu = &v
+	return s
+}
+
+// SetEnableInternetAccess sets the EnableInternetAccess field's value.
+func (s *DefaultWorkspaceCreationProperties) SetEnableInternetAccess(v bool) *DefaultWorkspaceCreationProperties {
+	s.EnableInternetAccess = &v
+	return s
+}
+
+// SetEnableWorkDocs sets the EnableWorkDocs field's value.
+func (s *DefaultWorkspaceCreationProperties) SetEnableWorkDocs(v bool) *DefaultWorkspaceCreationProperties {
+	s.EnableWorkDocs = &v
+	return s
+}
+
+// SetUserEnabledAsLocalAdministrator sets the UserEnabledAsLocalAdministrator field's value.
+func (s *DefaultWorkspaceCreationProperties) SetUserEnabledAsLocalAdministrator(v bool) *DefaultWorkspaceCreationProperties {
+	s.UserEnabledAsLocalAdministrator = &v
+	return s
 }
 
 // The request of the DeleteTags operation.
@@ -1305,6 +1371,18 @@ func (s *DeleteTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *DeleteTagsInput) SetResourceId(v string) *DeleteTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
+	s.TagKeys = v
+	return s
 }
 
 // The result of the DeleteTags operation.
@@ -1358,6 +1436,12 @@ func (s *DescribeTagsInput) Validate() error {
 	return nil
 }
 
+// SetResourceId sets the ResourceId field's value.
+func (s *DescribeTagsInput) SetResourceId(v string) *DescribeTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
 // The result of the DescribeTags operation.
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1374,6 +1458,12 @@ func (s DescribeTagsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DescribeTagsOutput) SetTagList(v []*Tag) *DescribeTagsOutput {
+	s.TagList = v
+	return s
 }
 
 // Contains the inputs for the DescribeWorkspaceBundles operation.
@@ -1425,6 +1515,24 @@ func (s *DescribeWorkspaceBundlesInput) Validate() error {
 	return nil
 }
 
+// SetBundleIds sets the BundleIds field's value.
+func (s *DescribeWorkspaceBundlesInput) SetBundleIds(v []*string) *DescribeWorkspaceBundlesInput {
+	s.BundleIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspaceBundlesInput) SetNextToken(v string) *DescribeWorkspaceBundlesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *DescribeWorkspaceBundlesInput) SetOwner(v string) *DescribeWorkspaceBundlesInput {
+	s.Owner = &v
+	return s
+}
+
 // Contains the results of the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1447,6 +1555,18 @@ func (s DescribeWorkspaceBundlesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkspaceBundlesOutput) GoString() string {
 	return s.String()
+}
+
+// SetBundles sets the Bundles field's value.
+func (s *DescribeWorkspaceBundlesOutput) SetBundles(v []*WorkspaceBundle) *DescribeWorkspaceBundlesOutput {
+	s.Bundles = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspaceBundlesOutput) SetNextToken(v string) *DescribeWorkspaceBundlesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the inputs for the DescribeWorkspaceDirectories operation.
@@ -1488,6 +1608,18 @@ func (s *DescribeWorkspaceDirectoriesInput) Validate() error {
 	return nil
 }
 
+// SetDirectoryIds sets the DirectoryIds field's value.
+func (s *DescribeWorkspaceDirectoriesInput) SetDirectoryIds(v []*string) *DescribeWorkspaceDirectoriesInput {
+	s.DirectoryIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspaceDirectoriesInput) SetNextToken(v string) *DescribeWorkspaceDirectoriesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the results of the DescribeWorkspaceDirectories operation.
 type DescribeWorkspaceDirectoriesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1510,6 +1642,18 @@ func (s DescribeWorkspaceDirectoriesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkspaceDirectoriesOutput) GoString() string {
 	return s.String()
+}
+
+// SetDirectories sets the Directories field's value.
+func (s *DescribeWorkspaceDirectoriesOutput) SetDirectories(v []*WorkspaceDirectory) *DescribeWorkspaceDirectoriesOutput {
+	s.Directories = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspaceDirectoriesOutput) SetNextToken(v string) *DescribeWorkspaceDirectoriesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeWorkspacesConnectionStatusInput struct {
@@ -1548,6 +1692,18 @@ func (s *DescribeWorkspacesConnectionStatusInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesConnectionStatusInput) SetNextToken(v string) *DescribeWorkspacesConnectionStatusInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspaceIds sets the WorkspaceIds field's value.
+func (s *DescribeWorkspacesConnectionStatusInput) SetWorkspaceIds(v []*string) *DescribeWorkspacesConnectionStatusInput {
+	s.WorkspaceIds = v
+	return s
+}
+
 type DescribeWorkspacesConnectionStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1566,6 +1722,18 @@ func (s DescribeWorkspacesConnectionStatusOutput) String() string {
 // GoString returns the string representation
 func (s DescribeWorkspacesConnectionStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesConnectionStatusOutput) SetNextToken(v string) *DescribeWorkspacesConnectionStatusOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspacesConnectionStatus sets the WorkspacesConnectionStatus field's value.
+func (s *DescribeWorkspacesConnectionStatusOutput) SetWorkspacesConnectionStatus(v []*WorkspaceConnectionStatus) *DescribeWorkspacesConnectionStatusOutput {
+	s.WorkspacesConnectionStatus = v
+	return s
 }
 
 // Contains the inputs for the DescribeWorkspaces operation.
@@ -1635,6 +1803,42 @@ func (s *DescribeWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetBundleId sets the BundleId field's value.
+func (s *DescribeWorkspacesInput) SetBundleId(v string) *DescribeWorkspacesInput {
+	s.BundleId = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *DescribeWorkspacesInput) SetDirectoryId(v string) *DescribeWorkspacesInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeWorkspacesInput) SetLimit(v int64) *DescribeWorkspacesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesInput) SetNextToken(v string) *DescribeWorkspacesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *DescribeWorkspacesInput) SetUserName(v string) *DescribeWorkspacesInput {
+	s.UserName = &v
+	return s
+}
+
+// SetWorkspaceIds sets the WorkspaceIds field's value.
+func (s *DescribeWorkspacesInput) SetWorkspaceIds(v []*string) *DescribeWorkspacesInput {
+	s.WorkspaceIds = v
+	return s
+}
+
 // Contains the results for the DescribeWorkspaces operation.
 type DescribeWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1662,6 +1866,18 @@ func (s DescribeWorkspacesOutput) GoString() string {
 	return s.String()
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeWorkspacesOutput) SetNextToken(v string) *DescribeWorkspacesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspaces sets the Workspaces field's value.
+func (s *DescribeWorkspacesOutput) SetWorkspaces(v []*Workspace) *DescribeWorkspacesOutput {
+	s.Workspaces = v
+	return s
+}
+
 // Contains information about a WorkSpace that could not be created.
 type FailedCreateWorkspaceRequest struct {
 	_ struct{} `type:"structure"`
@@ -1685,6 +1901,24 @@ func (s FailedCreateWorkspaceRequest) String() string {
 // GoString returns the string representation
 func (s FailedCreateWorkspaceRequest) GoString() string {
 	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FailedCreateWorkspaceRequest) SetErrorCode(v string) *FailedCreateWorkspaceRequest {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedCreateWorkspaceRequest) SetErrorMessage(v string) *FailedCreateWorkspaceRequest {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetWorkspaceRequest sets the WorkspaceRequest field's value.
+func (s *FailedCreateWorkspaceRequest) SetWorkspaceRequest(v *WorkspaceRequest) *FailedCreateWorkspaceRequest {
+	s.WorkspaceRequest = v
+	return s
 }
 
 // Contains information about a WorkSpace that could not be rebooted (RebootWorkspaces),
@@ -1711,6 +1945,24 @@ func (s FailedWorkspaceChangeRequest) String() string {
 // GoString returns the string representation
 func (s FailedWorkspaceChangeRequest) GoString() string {
 	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *FailedWorkspaceChangeRequest) SetErrorCode(v string) *FailedWorkspaceChangeRequest {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedWorkspaceChangeRequest) SetErrorMessage(v string) *FailedWorkspaceChangeRequest {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *FailedWorkspaceChangeRequest) SetWorkspaceId(v string) *FailedWorkspaceChangeRequest {
+	s.WorkspaceId = &v
+	return s
 }
 
 type ModifyWorkspacePropertiesInput struct {
@@ -1751,6 +2003,18 @@ func (s *ModifyWorkspacePropertiesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *ModifyWorkspacePropertiesInput) SetWorkspaceId(v string) *ModifyWorkspacePropertiesInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// SetWorkspaceProperties sets the WorkspaceProperties field's value.
+func (s *ModifyWorkspacePropertiesInput) SetWorkspaceProperties(v *WorkspaceProperties) *ModifyWorkspacePropertiesInput {
+	s.WorkspaceProperties = v
+	return s
 }
 
 type ModifyWorkspacePropertiesOutput struct {
@@ -1801,6 +2065,12 @@ func (s *RebootRequest) Validate() error {
 	return nil
 }
 
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *RebootRequest) SetWorkspaceId(v string) *RebootRequest {
+	s.WorkspaceId = &v
+	return s
+}
+
 // Contains the inputs for the RebootWorkspaces operation.
 type RebootWorkspacesInput struct {
 	_ struct{} `type:"structure"`
@@ -1847,6 +2117,12 @@ func (s *RebootWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetRebootWorkspaceRequests sets the RebootWorkspaceRequests field's value.
+func (s *RebootWorkspacesInput) SetRebootWorkspaceRequests(v []*RebootRequest) *RebootWorkspacesInput {
+	s.RebootWorkspaceRequests = v
+	return s
+}
+
 // Contains the results of the RebootWorkspaces operation.
 type RebootWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1863,6 +2139,12 @@ func (s RebootWorkspacesOutput) String() string {
 // GoString returns the string representation
 func (s RebootWorkspacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *RebootWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *RebootWorkspacesOutput {
+	s.FailedRequests = v
+	return s
 }
 
 // Contains information used with the RebuildWorkspaces operation to rebuild
@@ -1897,6 +2179,12 @@ func (s *RebuildRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *RebuildRequest) SetWorkspaceId(v string) *RebuildRequest {
+	s.WorkspaceId = &v
+	return s
 }
 
 // Contains the inputs for the RebuildWorkspaces operation.
@@ -1945,6 +2233,12 @@ func (s *RebuildWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetRebuildWorkspaceRequests sets the RebuildWorkspaceRequests field's value.
+func (s *RebuildWorkspacesInput) SetRebuildWorkspaceRequests(v []*RebuildRequest) *RebuildWorkspacesInput {
+	s.RebuildWorkspaceRequests = v
+	return s
+}
+
 // Contains the results of the RebuildWorkspaces operation.
 type RebuildWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1963,6 +2257,12 @@ func (s RebuildWorkspacesOutput) GoString() string {
 	return s.String()
 }
 
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *RebuildWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *RebuildWorkspacesOutput {
+	s.FailedRequests = v
+	return s
+}
+
 // Describes the start request.
 type StartRequest struct {
 	_ struct{} `type:"structure"`
@@ -1979,6 +2279,12 @@ func (s StartRequest) String() string {
 // GoString returns the string representation
 func (s StartRequest) GoString() string {
 	return s.String()
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *StartRequest) SetWorkspaceId(v string) *StartRequest {
+	s.WorkspaceId = &v
+	return s
 }
 
 type StartWorkspacesInput struct {
@@ -2016,6 +2322,12 @@ func (s *StartWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetStartWorkspaceRequests sets the StartWorkspaceRequests field's value.
+func (s *StartWorkspacesInput) SetStartWorkspaceRequests(v []*StartRequest) *StartWorkspacesInput {
+	s.StartWorkspaceRequests = v
+	return s
+}
+
 type StartWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2031,6 +2343,12 @@ func (s StartWorkspacesOutput) String() string {
 // GoString returns the string representation
 func (s StartWorkspacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *StartWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *StartWorkspacesOutput {
+	s.FailedRequests = v
+	return s
 }
 
 // Describes the stop request.
@@ -2049,6 +2367,12 @@ func (s StopRequest) String() string {
 // GoString returns the string representation
 func (s StopRequest) GoString() string {
 	return s.String()
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *StopRequest) SetWorkspaceId(v string) *StopRequest {
+	s.WorkspaceId = &v
+	return s
 }
 
 type StopWorkspacesInput struct {
@@ -2086,6 +2410,12 @@ func (s *StopWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetStopWorkspaceRequests sets the StopWorkspaceRequests field's value.
+func (s *StopWorkspacesInput) SetStopWorkspaceRequests(v []*StopRequest) *StopWorkspacesInput {
+	s.StopWorkspaceRequests = v
+	return s
+}
+
 type StopWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2101,6 +2431,12 @@ func (s StopWorkspacesOutput) String() string {
 // GoString returns the string representation
 func (s StopWorkspacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *StopWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *StopWorkspacesOutput {
+	s.FailedRequests = v
+	return s
 }
 
 // Describes the tag of the WorkSpace.
@@ -2142,6 +2478,18 @@ func (s *Tag) Validate() error {
 	return nil
 }
 
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
 // Contains information used with the TerminateWorkspaces operation to terminate
 // a WorkSpace.
 type TerminateRequest struct {
@@ -2174,6 +2522,12 @@ func (s *TerminateRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *TerminateRequest) SetWorkspaceId(v string) *TerminateRequest {
+	s.WorkspaceId = &v
+	return s
 }
 
 // Contains the inputs for the TerminateWorkspaces operation.
@@ -2222,6 +2576,12 @@ func (s *TerminateWorkspacesInput) Validate() error {
 	return nil
 }
 
+// SetTerminateWorkspaceRequests sets the TerminateWorkspaceRequests field's value.
+func (s *TerminateWorkspacesInput) SetTerminateWorkspaceRequests(v []*TerminateRequest) *TerminateWorkspacesInput {
+	s.TerminateWorkspaceRequests = v
+	return s
+}
+
 // Contains the results of the TerminateWorkspaces operation.
 type TerminateWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2240,6 +2600,12 @@ func (s TerminateWorkspacesOutput) GoString() string {
 	return s.String()
 }
 
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *TerminateWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChangeRequest) *TerminateWorkspacesOutput {
+	s.FailedRequests = v
+	return s
+}
+
 // Contains information about the user storage for a WorkSpace bundle.
 type UserStorage struct {
 	_ struct{} `type:"structure"`
@@ -2256,6 +2622,12 @@ func (s UserStorage) String() string {
 // GoString returns the string representation
 func (s UserStorage) GoString() string {
 	return s.String()
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *UserStorage) SetCapacity(v string) *UserStorage {
+	s.Capacity = &v
+	return s
 }
 
 // Contains information about a WorkSpace.
@@ -2317,6 +2689,90 @@ func (s Workspace) GoString() string {
 	return s.String()
 }
 
+// SetBundleId sets the BundleId field's value.
+func (s *Workspace) SetBundleId(v string) *Workspace {
+	s.BundleId = &v
+	return s
+}
+
+// SetComputerName sets the ComputerName field's value.
+func (s *Workspace) SetComputerName(v string) *Workspace {
+	s.ComputerName = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *Workspace) SetDirectoryId(v string) *Workspace {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *Workspace) SetErrorCode(v string) *Workspace {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *Workspace) SetErrorMessage(v string) *Workspace {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *Workspace) SetIpAddress(v string) *Workspace {
+	s.IpAddress = &v
+	return s
+}
+
+// SetRootVolumeEncryptionEnabled sets the RootVolumeEncryptionEnabled field's value.
+func (s *Workspace) SetRootVolumeEncryptionEnabled(v bool) *Workspace {
+	s.RootVolumeEncryptionEnabled = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Workspace) SetState(v string) *Workspace {
+	s.State = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *Workspace) SetSubnetId(v string) *Workspace {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *Workspace) SetUserName(v string) *Workspace {
+	s.UserName = &v
+	return s
+}
+
+// SetUserVolumeEncryptionEnabled sets the UserVolumeEncryptionEnabled field's value.
+func (s *Workspace) SetUserVolumeEncryptionEnabled(v bool) *Workspace {
+	s.UserVolumeEncryptionEnabled = &v
+	return s
+}
+
+// SetVolumeEncryptionKey sets the VolumeEncryptionKey field's value.
+func (s *Workspace) SetVolumeEncryptionKey(v string) *Workspace {
+	s.VolumeEncryptionKey = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *Workspace) SetWorkspaceId(v string) *Workspace {
+	s.WorkspaceId = &v
+	return s
+}
+
+// SetWorkspaceProperties sets the WorkspaceProperties field's value.
+func (s *Workspace) SetWorkspaceProperties(v *WorkspaceProperties) *Workspace {
+	s.WorkspaceProperties = v
+	return s
+}
+
 // Contains information about a WorkSpace bundle.
 type WorkspaceBundle struct {
 	_ struct{} `type:"structure"`
@@ -2352,6 +2808,42 @@ func (s WorkspaceBundle) GoString() string {
 	return s.String()
 }
 
+// SetBundleId sets the BundleId field's value.
+func (s *WorkspaceBundle) SetBundleId(v string) *WorkspaceBundle {
+	s.BundleId = &v
+	return s
+}
+
+// SetComputeType sets the ComputeType field's value.
+func (s *WorkspaceBundle) SetComputeType(v *ComputeType) *WorkspaceBundle {
+	s.ComputeType = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *WorkspaceBundle) SetDescription(v string) *WorkspaceBundle {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *WorkspaceBundle) SetName(v string) *WorkspaceBundle {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *WorkspaceBundle) SetOwner(v string) *WorkspaceBundle {
+	s.Owner = &v
+	return s
+}
+
+// SetUserStorage sets the UserStorage field's value.
+func (s *WorkspaceBundle) SetUserStorage(v *UserStorage) *WorkspaceBundle {
+	s.UserStorage = v
+	return s
+}
+
 // Describes the connection status of a WorkSpace.
 type WorkspaceConnectionStatus struct {
 	_ struct{} `type:"structure"`
@@ -2378,6 +2870,30 @@ func (s WorkspaceConnectionStatus) String() string {
 // GoString returns the string representation
 func (s WorkspaceConnectionStatus) GoString() string {
 	return s.String()
+}
+
+// SetConnectionState sets the ConnectionState field's value.
+func (s *WorkspaceConnectionStatus) SetConnectionState(v string) *WorkspaceConnectionStatus {
+	s.ConnectionState = &v
+	return s
+}
+
+// SetConnectionStateCheckTimestamp sets the ConnectionStateCheckTimestamp field's value.
+func (s *WorkspaceConnectionStatus) SetConnectionStateCheckTimestamp(v time.Time) *WorkspaceConnectionStatus {
+	s.ConnectionStateCheckTimestamp = &v
+	return s
+}
+
+// SetLastKnownUserConnectionTimestamp sets the LastKnownUserConnectionTimestamp field's value.
+func (s *WorkspaceConnectionStatus) SetLastKnownUserConnectionTimestamp(v time.Time) *WorkspaceConnectionStatus {
+	s.LastKnownUserConnectionTimestamp = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *WorkspaceConnectionStatus) SetWorkspaceId(v string) *WorkspaceConnectionStatus {
+	s.WorkspaceId = &v
+	return s
 }
 
 // Contains information about an AWS Directory Service directory for use with
@@ -2437,6 +2953,78 @@ func (s WorkspaceDirectory) GoString() string {
 	return s.String()
 }
 
+// SetAlias sets the Alias field's value.
+func (s *WorkspaceDirectory) SetAlias(v string) *WorkspaceDirectory {
+	s.Alias = &v
+	return s
+}
+
+// SetCustomerUserName sets the CustomerUserName field's value.
+func (s *WorkspaceDirectory) SetCustomerUserName(v string) *WorkspaceDirectory {
+	s.CustomerUserName = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *WorkspaceDirectory) SetDirectoryId(v string) *WorkspaceDirectory {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *WorkspaceDirectory) SetDirectoryName(v string) *WorkspaceDirectory {
+	s.DirectoryName = &v
+	return s
+}
+
+// SetDirectoryType sets the DirectoryType field's value.
+func (s *WorkspaceDirectory) SetDirectoryType(v string) *WorkspaceDirectory {
+	s.DirectoryType = &v
+	return s
+}
+
+// SetDnsIpAddresses sets the DnsIpAddresses field's value.
+func (s *WorkspaceDirectory) SetDnsIpAddresses(v []*string) *WorkspaceDirectory {
+	s.DnsIpAddresses = v
+	return s
+}
+
+// SetIamRoleId sets the IamRoleId field's value.
+func (s *WorkspaceDirectory) SetIamRoleId(v string) *WorkspaceDirectory {
+	s.IamRoleId = &v
+	return s
+}
+
+// SetRegistrationCode sets the RegistrationCode field's value.
+func (s *WorkspaceDirectory) SetRegistrationCode(v string) *WorkspaceDirectory {
+	s.RegistrationCode = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *WorkspaceDirectory) SetState(v string) *WorkspaceDirectory {
+	s.State = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *WorkspaceDirectory) SetSubnetIds(v []*string) *WorkspaceDirectory {
+	s.SubnetIds = v
+	return s
+}
+
+// SetWorkspaceCreationProperties sets the WorkspaceCreationProperties field's value.
+func (s *WorkspaceDirectory) SetWorkspaceCreationProperties(v *DefaultWorkspaceCreationProperties) *WorkspaceDirectory {
+	s.WorkspaceCreationProperties = v
+	return s
+}
+
+// SetWorkspaceSecurityGroupId sets the WorkspaceSecurityGroupId field's value.
+func (s *WorkspaceDirectory) SetWorkspaceSecurityGroupId(v string) *WorkspaceDirectory {
+	s.WorkspaceSecurityGroupId = &v
+	return s
+}
+
 // Describes the properties of a WorkSpace.
 type WorkspaceProperties struct {
 	_ struct{} `type:"structure"`
@@ -2459,6 +3047,18 @@ func (s WorkspaceProperties) String() string {
 // GoString returns the string representation
 func (s WorkspaceProperties) GoString() string {
 	return s.String()
+}
+
+// SetRunningMode sets the RunningMode field's value.
+func (s *WorkspaceProperties) SetRunningMode(v string) *WorkspaceProperties {
+	s.RunningMode = &v
+	return s
+}
+
+// SetRunningModeAutoStopTimeoutInMinutes sets the RunningModeAutoStopTimeoutInMinutes field's value.
+func (s *WorkspaceProperties) SetRunningModeAutoStopTimeoutInMinutes(v int64) *WorkspaceProperties {
+	s.RunningModeAutoStopTimeoutInMinutes = &v
+	return s
 }
 
 // Contains information about a WorkSpace creation request.
@@ -2541,6 +3141,54 @@ func (s *WorkspaceRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *WorkspaceRequest) SetBundleId(v string) *WorkspaceRequest {
+	s.BundleId = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *WorkspaceRequest) SetDirectoryId(v string) *WorkspaceRequest {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetRootVolumeEncryptionEnabled sets the RootVolumeEncryptionEnabled field's value.
+func (s *WorkspaceRequest) SetRootVolumeEncryptionEnabled(v bool) *WorkspaceRequest {
+	s.RootVolumeEncryptionEnabled = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *WorkspaceRequest) SetTags(v []*Tag) *WorkspaceRequest {
+	s.Tags = v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *WorkspaceRequest) SetUserName(v string) *WorkspaceRequest {
+	s.UserName = &v
+	return s
+}
+
+// SetUserVolumeEncryptionEnabled sets the UserVolumeEncryptionEnabled field's value.
+func (s *WorkspaceRequest) SetUserVolumeEncryptionEnabled(v bool) *WorkspaceRequest {
+	s.UserVolumeEncryptionEnabled = &v
+	return s
+}
+
+// SetVolumeEncryptionKey sets the VolumeEncryptionKey field's value.
+func (s *WorkspaceRequest) SetVolumeEncryptionKey(v string) *WorkspaceRequest {
+	s.VolumeEncryptionKey = &v
+	return s
+}
+
+// SetWorkspaceProperties sets the WorkspaceProperties field's value.
+func (s *WorkspaceRequest) SetWorkspaceProperties(v *WorkspaceProperties) *WorkspaceRequest {
+	s.WorkspaceProperties = v
+	return s
 }
 
 const (

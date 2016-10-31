@@ -1757,6 +1757,18 @@ func (s AccountLimit) GoString() string {
 	return s.String()
 }
 
+// SetName sets the Name field's value.
+func (s *AccountLimit) SetName(v string) *AccountLimit {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AccountLimit) SetValue(v int64) *AccountLimit {
+	s.Value = &v
+	return s
+}
+
 // The input for the CancelUpdateStack action.
 type CancelUpdateStackInput struct {
 	_ struct{} `type:"structure"`
@@ -1788,6 +1800,12 @@ func (s *CancelUpdateStackInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetStackName sets the StackName field's value.
+func (s *CancelUpdateStackInput) SetStackName(v string) *CancelUpdateStackInput {
+	s.StackName = &v
+	return s
 }
 
 type CancelUpdateStackOutput struct {
@@ -1826,6 +1844,18 @@ func (s Change) String() string {
 // GoString returns the string representation
 func (s Change) GoString() string {
 	return s.String()
+}
+
+// SetResourceChange sets the ResourceChange field's value.
+func (s *Change) SetResourceChange(v *ResourceChange) *Change {
+	s.ResourceChange = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Change) SetType(v string) *Change {
+	s.Type = &v
+	return s
 }
 
 // The ChangeSetSummary structure describes a change set, its status, and the
@@ -1875,6 +1905,60 @@ func (s ChangeSetSummary) String() string {
 // GoString returns the string representation
 func (s ChangeSetSummary) GoString() string {
 	return s.String()
+}
+
+// SetChangeSetId sets the ChangeSetId field's value.
+func (s *ChangeSetSummary) SetChangeSetId(v string) *ChangeSetSummary {
+	s.ChangeSetId = &v
+	return s
+}
+
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *ChangeSetSummary) SetChangeSetName(v string) *ChangeSetSummary {
+	s.ChangeSetName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ChangeSetSummary) SetCreationTime(v time.Time) *ChangeSetSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ChangeSetSummary) SetDescription(v string) *ChangeSetSummary {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionStatus sets the ExecutionStatus field's value.
+func (s *ChangeSetSummary) SetExecutionStatus(v string) *ChangeSetSummary {
+	s.ExecutionStatus = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *ChangeSetSummary) SetStackId(v string) *ChangeSetSummary {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ChangeSetSummary) SetStackName(v string) *ChangeSetSummary {
+	s.StackName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChangeSetSummary) SetStatus(v string) *ChangeSetSummary {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *ChangeSetSummary) SetStatusReason(v string) *ChangeSetSummary {
+	s.StatusReason = &v
+	return s
 }
 
 // The input for the ContinueUpdateRollback action.
@@ -1928,6 +2012,18 @@ func (s *ContinueUpdateRollbackInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *ContinueUpdateRollbackInput) SetRoleARN(v string) *ContinueUpdateRollbackInput {
+	s.RoleARN = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ContinueUpdateRollbackInput) SetStackName(v string) *ContinueUpdateRollbackInput {
+	s.StackName = &v
+	return s
 }
 
 // The output for a ContinueUpdateRollback action.
@@ -2110,6 +2206,84 @@ func (s *CreateChangeSetInput) Validate() error {
 	return nil
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *CreateChangeSetInput) SetCapabilities(v []*string) *CreateChangeSetInput {
+	s.Capabilities = v
+	return s
+}
+
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *CreateChangeSetInput) SetChangeSetName(v string) *CreateChangeSetInput {
+	s.ChangeSetName = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateChangeSetInput) SetClientToken(v string) *CreateChangeSetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateChangeSetInput) SetDescription(v string) *CreateChangeSetInput {
+	s.Description = &v
+	return s
+}
+
+// SetNotificationARNs sets the NotificationARNs field's value.
+func (s *CreateChangeSetInput) SetNotificationARNs(v []*string) *CreateChangeSetInput {
+	s.NotificationARNs = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateChangeSetInput) SetParameters(v []*Parameter) *CreateChangeSetInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *CreateChangeSetInput) SetResourceTypes(v []*string) *CreateChangeSetInput {
+	s.ResourceTypes = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *CreateChangeSetInput) SetRoleARN(v string) *CreateChangeSetInput {
+	s.RoleARN = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *CreateChangeSetInput) SetStackName(v string) *CreateChangeSetInput {
+	s.StackName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateChangeSetInput) SetTags(v []*Tag) *CreateChangeSetInput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *CreateChangeSetInput) SetTemplateBody(v string) *CreateChangeSetInput {
+	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateURL sets the TemplateURL field's value.
+func (s *CreateChangeSetInput) SetTemplateURL(v string) *CreateChangeSetInput {
+	s.TemplateURL = &v
+	return s
+}
+
+// SetUsePreviousTemplate sets the UsePreviousTemplate field's value.
+func (s *CreateChangeSetInput) SetUsePreviousTemplate(v bool) *CreateChangeSetInput {
+	s.UsePreviousTemplate = &v
+	return s
+}
+
 // The output for the CreateChangeSet action.
 type CreateChangeSetOutput struct {
 	_ struct{} `type:"structure"`
@@ -2126,6 +2300,12 @@ func (s CreateChangeSetOutput) String() string {
 // GoString returns the string representation
 func (s CreateChangeSetOutput) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *CreateChangeSetOutput) SetId(v string) *CreateChangeSetOutput {
+	s.Id = &v
+	return s
 }
 
 // The input for CreateStack action.
@@ -2302,6 +2482,90 @@ func (s *CreateStackInput) Validate() error {
 	return nil
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *CreateStackInput) SetCapabilities(v []*string) *CreateStackInput {
+	s.Capabilities = v
+	return s
+}
+
+// SetDisableRollback sets the DisableRollback field's value.
+func (s *CreateStackInput) SetDisableRollback(v bool) *CreateStackInput {
+	s.DisableRollback = &v
+	return s
+}
+
+// SetNotificationARNs sets the NotificationARNs field's value.
+func (s *CreateStackInput) SetNotificationARNs(v []*string) *CreateStackInput {
+	s.NotificationARNs = v
+	return s
+}
+
+// SetOnFailure sets the OnFailure field's value.
+func (s *CreateStackInput) SetOnFailure(v string) *CreateStackInput {
+	s.OnFailure = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CreateStackInput) SetParameters(v []*Parameter) *CreateStackInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *CreateStackInput) SetResourceTypes(v []*string) *CreateStackInput {
+	s.ResourceTypes = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *CreateStackInput) SetRoleARN(v string) *CreateStackInput {
+	s.RoleARN = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *CreateStackInput) SetStackName(v string) *CreateStackInput {
+	s.StackName = &v
+	return s
+}
+
+// SetStackPolicyBody sets the StackPolicyBody field's value.
+func (s *CreateStackInput) SetStackPolicyBody(v string) *CreateStackInput {
+	s.StackPolicyBody = &v
+	return s
+}
+
+// SetStackPolicyURL sets the StackPolicyURL field's value.
+func (s *CreateStackInput) SetStackPolicyURL(v string) *CreateStackInput {
+	s.StackPolicyURL = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStackInput) SetTags(v []*Tag) *CreateStackInput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *CreateStackInput) SetTemplateBody(v string) *CreateStackInput {
+	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateURL sets the TemplateURL field's value.
+func (s *CreateStackInput) SetTemplateURL(v string) *CreateStackInput {
+	s.TemplateURL = &v
+	return s
+}
+
+// SetTimeoutInMinutes sets the TimeoutInMinutes field's value.
+func (s *CreateStackInput) SetTimeoutInMinutes(v int64) *CreateStackInput {
+	s.TimeoutInMinutes = &v
+	return s
+}
+
 // The output for a CreateStack action.
 type CreateStackOutput struct {
 	_ struct{} `type:"structure"`
@@ -2318,6 +2582,12 @@ func (s CreateStackOutput) String() string {
 // GoString returns the string representation
 func (s CreateStackOutput) GoString() string {
 	return s.String()
+}
+
+// SetStackId sets the StackId field's value.
+func (s *CreateStackOutput) SetStackId(v string) *CreateStackOutput {
+	s.StackId = &v
+	return s
 }
 
 // The input for the DeleteChangeSet action.
@@ -2362,6 +2632,18 @@ func (s *DeleteChangeSetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *DeleteChangeSetInput) SetChangeSetName(v string) *DeleteChangeSetInput {
+	s.ChangeSetName = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DeleteChangeSetInput) SetStackName(v string) *DeleteChangeSetInput {
+	s.StackName = &v
+	return s
 }
 
 // The output for the DeleteChangeSet action.
@@ -2432,6 +2714,24 @@ func (s *DeleteStackInput) Validate() error {
 	return nil
 }
 
+// SetRetainResources sets the RetainResources field's value.
+func (s *DeleteStackInput) SetRetainResources(v []*string) *DeleteStackInput {
+	s.RetainResources = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *DeleteStackInput) SetRoleARN(v string) *DeleteStackInput {
+	s.RoleARN = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DeleteStackInput) SetStackName(v string) *DeleteStackInput {
+	s.StackName = &v
+	return s
+}
+
 type DeleteStackOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2477,6 +2777,12 @@ func (s *DescribeAccountLimitsInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAccountLimitsInput) SetNextToken(v string) *DescribeAccountLimitsInput {
+	s.NextToken = &v
+	return s
+}
+
 // The output for the DescribeAccountLimits action.
 type DescribeAccountLimitsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2498,6 +2804,18 @@ func (s DescribeAccountLimitsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAccountLimitsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountLimits sets the AccountLimits field's value.
+func (s *DescribeAccountLimitsOutput) SetAccountLimits(v []*AccountLimit) *DescribeAccountLimitsOutput {
+	s.AccountLimits = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAccountLimitsOutput) SetNextToken(v string) *DescribeAccountLimitsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // The input for the DescribeChangeSet action.
@@ -2549,6 +2867,24 @@ func (s *DescribeChangeSetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *DescribeChangeSetInput) SetChangeSetName(v string) *DescribeChangeSetInput {
+	s.ChangeSetName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeChangeSetInput) SetNextToken(v string) *DescribeChangeSetInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeChangeSetInput) SetStackName(v string) *DescribeChangeSetInput {
+	s.StackName = &v
+	return s
 }
 
 // The output for the DescribeChangeSet action.
@@ -2625,6 +2961,96 @@ func (s DescribeChangeSetOutput) GoString() string {
 	return s.String()
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *DescribeChangeSetOutput) SetCapabilities(v []*string) *DescribeChangeSetOutput {
+	s.Capabilities = v
+	return s
+}
+
+// SetChangeSetId sets the ChangeSetId field's value.
+func (s *DescribeChangeSetOutput) SetChangeSetId(v string) *DescribeChangeSetOutput {
+	s.ChangeSetId = &v
+	return s
+}
+
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *DescribeChangeSetOutput) SetChangeSetName(v string) *DescribeChangeSetOutput {
+	s.ChangeSetName = &v
+	return s
+}
+
+// SetChanges sets the Changes field's value.
+func (s *DescribeChangeSetOutput) SetChanges(v []*Change) *DescribeChangeSetOutput {
+	s.Changes = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeChangeSetOutput) SetCreationTime(v time.Time) *DescribeChangeSetOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeChangeSetOutput) SetDescription(v string) *DescribeChangeSetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetExecutionStatus sets the ExecutionStatus field's value.
+func (s *DescribeChangeSetOutput) SetExecutionStatus(v string) *DescribeChangeSetOutput {
+	s.ExecutionStatus = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeChangeSetOutput) SetNextToken(v string) *DescribeChangeSetOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNotificationARNs sets the NotificationARNs field's value.
+func (s *DescribeChangeSetOutput) SetNotificationARNs(v []*string) *DescribeChangeSetOutput {
+	s.NotificationARNs = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *DescribeChangeSetOutput) SetParameters(v []*Parameter) *DescribeChangeSetOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *DescribeChangeSetOutput) SetStackId(v string) *DescribeChangeSetOutput {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeChangeSetOutput) SetStackName(v string) *DescribeChangeSetOutput {
+	s.StackName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeChangeSetOutput) SetStatus(v string) *DescribeChangeSetOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *DescribeChangeSetOutput) SetStatusReason(v string) *DescribeChangeSetOutput {
+	s.StatusReason = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeChangeSetOutput) SetTags(v []*Tag) *DescribeChangeSetOutput {
+	s.Tags = v
+	return s
+}
+
 // The input for DescribeStackEvents action.
 type DescribeStackEventsInput struct {
 	_ struct{} `type:"structure"`
@@ -2667,6 +3093,18 @@ func (s *DescribeStackEventsInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStackEventsInput) SetNextToken(v string) *DescribeStackEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeStackEventsInput) SetStackName(v string) *DescribeStackEventsInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for a DescribeStackEvents action.
 type DescribeStackEventsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2687,6 +3125,18 @@ func (s DescribeStackEventsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStackEventsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStackEventsOutput) SetNextToken(v string) *DescribeStackEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackEvents sets the StackEvents field's value.
+func (s *DescribeStackEventsOutput) SetStackEvents(v []*StackEvent) *DescribeStackEventsOutput {
+	s.StackEvents = v
+	return s
 }
 
 // The input for DescribeStackResource action.
@@ -2740,6 +3190,18 @@ func (s *DescribeStackResourceInput) Validate() error {
 	return nil
 }
 
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *DescribeStackResourceInput) SetLogicalResourceId(v string) *DescribeStackResourceInput {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeStackResourceInput) SetStackName(v string) *DescribeStackResourceInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for a DescribeStackResource action.
 type DescribeStackResourceOutput struct {
 	_ struct{} `type:"structure"`
@@ -2757,6 +3219,12 @@ func (s DescribeStackResourceOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStackResourceOutput) GoString() string {
 	return s.String()
+}
+
+// SetStackResourceDetail sets the StackResourceDetail field's value.
+func (s *DescribeStackResourceOutput) SetStackResourceDetail(v *StackResourceDetail) *DescribeStackResourceOutput {
+	s.StackResourceDetail = v
+	return s
 }
 
 // The input for DescribeStackResources action.
@@ -2807,6 +3275,24 @@ func (s DescribeStackResourcesInput) GoString() string {
 	return s.String()
 }
 
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *DescribeStackResourcesInput) SetLogicalResourceId(v string) *DescribeStackResourcesInput {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *DescribeStackResourcesInput) SetPhysicalResourceId(v string) *DescribeStackResourcesInput {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeStackResourcesInput) SetStackName(v string) *DescribeStackResourcesInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for a DescribeStackResources action.
 type DescribeStackResourcesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2823,6 +3309,12 @@ func (s DescribeStackResourcesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStackResourcesOutput) GoString() string {
 	return s.String()
+}
+
+// SetStackResources sets the StackResources field's value.
+func (s *DescribeStackResourcesOutput) SetStackResources(v []*StackResource) *DescribeStackResourcesOutput {
+	s.StackResources = v
+	return s
 }
 
 // The input for DescribeStacks action.
@@ -2867,6 +3359,18 @@ func (s *DescribeStacksInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStacksInput) SetNextToken(v string) *DescribeStacksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *DescribeStacksInput) SetStackName(v string) *DescribeStacksInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for a DescribeStacks action.
 type DescribeStacksOutput struct {
 	_ struct{} `type:"structure"`
@@ -2887,6 +3391,18 @@ func (s DescribeStacksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStacksOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStacksOutput) SetNextToken(v string) *DescribeStacksOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStacks sets the Stacks field's value.
+func (s *DescribeStacksOutput) SetStacks(v []*Stack) *DescribeStacksOutput {
+	s.Stacks = v
+	return s
 }
 
 // The input for an EstimateTemplateCost action.
@@ -2941,6 +3457,24 @@ func (s *EstimateTemplateCostInput) Validate() error {
 	return nil
 }
 
+// SetParameters sets the Parameters field's value.
+func (s *EstimateTemplateCostInput) SetParameters(v []*Parameter) *EstimateTemplateCostInput {
+	s.Parameters = v
+	return s
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *EstimateTemplateCostInput) SetTemplateBody(v string) *EstimateTemplateCostInput {
+	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateURL sets the TemplateURL field's value.
+func (s *EstimateTemplateCostInput) SetTemplateURL(v string) *EstimateTemplateCostInput {
+	s.TemplateURL = &v
+	return s
+}
+
 // The output for a EstimateTemplateCost action.
 type EstimateTemplateCostOutput struct {
 	_ struct{} `type:"structure"`
@@ -2958,6 +3492,12 @@ func (s EstimateTemplateCostOutput) String() string {
 // GoString returns the string representation
 func (s EstimateTemplateCostOutput) GoString() string {
 	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *EstimateTemplateCostOutput) SetUrl(v string) *EstimateTemplateCostOutput {
+	s.Url = &v
+	return s
 }
 
 // The input for the ExecuteChangeSet action.
@@ -3002,6 +3542,18 @@ func (s *ExecuteChangeSetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *ExecuteChangeSetInput) SetChangeSetName(v string) *ExecuteChangeSetInput {
+	s.ChangeSetName = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ExecuteChangeSetInput) SetStackName(v string) *ExecuteChangeSetInput {
+	s.StackName = &v
+	return s
 }
 
 // The output for the ExecuteChangeSet action.
@@ -3053,6 +3605,12 @@ func (s *GetStackPolicyInput) Validate() error {
 	return nil
 }
 
+// SetStackName sets the StackName field's value.
+func (s *GetStackPolicyInput) SetStackName(v string) *GetStackPolicyInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for the GetStackPolicy action.
 type GetStackPolicyOutput struct {
 	_ struct{} `type:"structure"`
@@ -3071,6 +3629,12 @@ func (s GetStackPolicyOutput) String() string {
 // GoString returns the string representation
 func (s GetStackPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// SetStackPolicyBody sets the StackPolicyBody field's value.
+func (s *GetStackPolicyOutput) SetStackPolicyBody(v string) *GetStackPolicyOutput {
+	s.StackPolicyBody = &v
+	return s
 }
 
 // The input for a GetTemplate action.
@@ -3114,6 +3678,12 @@ func (s *GetTemplateInput) Validate() error {
 	return nil
 }
 
+// SetStackName sets the StackName field's value.
+func (s *GetTemplateInput) SetStackName(v string) *GetTemplateInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for GetTemplate action.
 type GetTemplateOutput struct {
 	_ struct{} `type:"structure"`
@@ -3135,6 +3705,12 @@ func (s GetTemplateOutput) String() string {
 // GoString returns the string representation
 func (s GetTemplateOutput) GoString() string {
 	return s.String()
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *GetTemplateOutput) SetTemplateBody(v string) *GetTemplateOutput {
+	s.TemplateBody = &v
+	return s
 }
 
 // The input for the GetTemplateSummary action.
@@ -3198,6 +3774,24 @@ func (s *GetTemplateSummaryInput) Validate() error {
 	return nil
 }
 
+// SetStackName sets the StackName field's value.
+func (s *GetTemplateSummaryInput) SetStackName(v string) *GetTemplateSummaryInput {
+	s.StackName = &v
+	return s
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *GetTemplateSummaryInput) SetTemplateBody(v string) *GetTemplateSummaryInput {
+	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateURL sets the TemplateURL field's value.
+func (s *GetTemplateSummaryInput) SetTemplateURL(v string) *GetTemplateSummaryInput {
+	s.TemplateURL = &v
+	return s
+}
+
 // The output for the GetTemplateSummary action.
 type GetTemplateSummaryOutput struct {
 	_ struct{} `type:"structure"`
@@ -3245,6 +3839,48 @@ func (s GetTemplateSummaryOutput) GoString() string {
 	return s.String()
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *GetTemplateSummaryOutput) SetCapabilities(v []*string) *GetTemplateSummaryOutput {
+	s.Capabilities = v
+	return s
+}
+
+// SetCapabilitiesReason sets the CapabilitiesReason field's value.
+func (s *GetTemplateSummaryOutput) SetCapabilitiesReason(v string) *GetTemplateSummaryOutput {
+	s.CapabilitiesReason = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetTemplateSummaryOutput) SetDescription(v string) *GetTemplateSummaryOutput {
+	s.Description = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GetTemplateSummaryOutput) SetMetadata(v string) *GetTemplateSummaryOutput {
+	s.Metadata = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *GetTemplateSummaryOutput) SetParameters(v []*ParameterDeclaration) *GetTemplateSummaryOutput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *GetTemplateSummaryOutput) SetResourceTypes(v []*string) *GetTemplateSummaryOutput {
+	s.ResourceTypes = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetTemplateSummaryOutput) SetVersion(v string) *GetTemplateSummaryOutput {
+	s.Version = &v
+	return s
+}
+
 // The input for the ListChangeSets action.
 type ListChangeSetsInput struct {
 	_ struct{} `type:"structure"`
@@ -3289,6 +3925,18 @@ func (s *ListChangeSetsInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListChangeSetsInput) SetNextToken(v string) *ListChangeSetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ListChangeSetsInput) SetStackName(v string) *ListChangeSetsInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for the ListChangeSets action.
 type ListChangeSetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3310,6 +3958,18 @@ func (s ListChangeSetsOutput) String() string {
 // GoString returns the string representation
 func (s ListChangeSetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChangeSetsOutput) SetNextToken(v string) *ListChangeSetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaries sets the Summaries field's value.
+func (s *ListChangeSetsOutput) SetSummaries(v []*ChangeSetSummary) *ListChangeSetsOutput {
+	s.Summaries = v
+	return s
 }
 
 // The input for the ListStackResource action.
@@ -3360,6 +4020,18 @@ func (s *ListStackResourcesInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListStackResourcesInput) SetNextToken(v string) *ListStackResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *ListStackResourcesInput) SetStackName(v string) *ListStackResourcesInput {
+	s.StackName = &v
+	return s
+}
+
 // The output for a ListStackResources action.
 type ListStackResourcesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3380,6 +4052,18 @@ func (s ListStackResourcesOutput) String() string {
 // GoString returns the string representation
 func (s ListStackResourcesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStackResourcesOutput) SetNextToken(v string) *ListStackResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackResourceSummaries sets the StackResourceSummaries field's value.
+func (s *ListStackResourcesOutput) SetStackResourceSummaries(v []*StackResourceSummary) *ListStackResourcesOutput {
+	s.StackResourceSummaries = v
+	return s
 }
 
 // The input for ListStacks action.
@@ -3418,6 +4102,18 @@ func (s *ListStacksInput) Validate() error {
 	return nil
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListStacksInput) SetNextToken(v string) *ListStacksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackStatusFilter sets the StackStatusFilter field's value.
+func (s *ListStacksInput) SetStackStatusFilter(v []*string) *ListStacksInput {
+	s.StackStatusFilter = v
+	return s
+}
+
 // The output for ListStacks action.
 type ListStacksOutput struct {
 	_ struct{} `type:"structure"`
@@ -3439,6 +4135,18 @@ func (s ListStacksOutput) String() string {
 // GoString returns the string representation
 func (s ListStacksOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStacksOutput) SetNextToken(v string) *ListStacksOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStackSummaries sets the StackSummaries field's value.
+func (s *ListStacksOutput) SetStackSummaries(v []*StackSummary) *ListStacksOutput {
+	s.StackSummaries = v
+	return s
 }
 
 // The Output data type.
@@ -3463,6 +4171,24 @@ func (s Output) String() string {
 // GoString returns the string representation
 func (s Output) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Output) SetDescription(v string) *Output {
+	s.Description = &v
+	return s
+}
+
+// SetOutputKey sets the OutputKey field's value.
+func (s *Output) SetOutputKey(v string) *Output {
+	s.OutputKey = &v
+	return s
+}
+
+// SetOutputValue sets the OutputValue field's value.
+func (s *Output) SetOutputValue(v string) *Output {
+	s.OutputValue = &v
+	return s
 }
 
 // The Parameter data type.
@@ -3493,6 +4219,24 @@ func (s Parameter) GoString() string {
 	return s.String()
 }
 
+// SetParameterKey sets the ParameterKey field's value.
+func (s *Parameter) SetParameterKey(v string) *Parameter {
+	s.ParameterKey = &v
+	return s
+}
+
+// SetParameterValue sets the ParameterValue field's value.
+func (s *Parameter) SetParameterValue(v string) *Parameter {
+	s.ParameterValue = &v
+	return s
+}
+
+// SetUsePreviousValue sets the UsePreviousValue field's value.
+func (s *Parameter) SetUsePreviousValue(v bool) *Parameter {
+	s.UsePreviousValue = &v
+	return s
+}
+
 // A set of criteria that AWS CloudFormation uses to validate parameter values.
 // Although other constraints might be defined in the stack template, AWS CloudFormation
 // returns only the AllowedValues property.
@@ -3511,6 +4255,12 @@ func (s ParameterConstraints) String() string {
 // GoString returns the string representation
 func (s ParameterConstraints) GoString() string {
 	return s.String()
+}
+
+// SetAllowedValues sets the AllowedValues field's value.
+func (s *ParameterConstraints) SetAllowedValues(v []*string) *ParameterConstraints {
+	s.AllowedValues = v
+	return s
 }
 
 // The ParameterDeclaration data type.
@@ -3545,6 +4295,42 @@ func (s ParameterDeclaration) String() string {
 // GoString returns the string representation
 func (s ParameterDeclaration) GoString() string {
 	return s.String()
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *ParameterDeclaration) SetDefaultValue(v string) *ParameterDeclaration {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ParameterDeclaration) SetDescription(v string) *ParameterDeclaration {
+	s.Description = &v
+	return s
+}
+
+// SetNoEcho sets the NoEcho field's value.
+func (s *ParameterDeclaration) SetNoEcho(v bool) *ParameterDeclaration {
+	s.NoEcho = &v
+	return s
+}
+
+// SetParameterConstraints sets the ParameterConstraints field's value.
+func (s *ParameterDeclaration) SetParameterConstraints(v *ParameterConstraints) *ParameterDeclaration {
+	s.ParameterConstraints = v
+	return s
+}
+
+// SetParameterKey sets the ParameterKey field's value.
+func (s *ParameterDeclaration) SetParameterKey(v string) *ParameterDeclaration {
+	s.ParameterKey = &v
+	return s
+}
+
+// SetParameterType sets the ParameterType field's value.
+func (s *ParameterDeclaration) SetParameterType(v string) *ParameterDeclaration {
+	s.ParameterType = &v
+	return s
 }
 
 // The ResourceChange structure describes the resource and the action that AWS
@@ -3597,6 +4383,48 @@ func (s ResourceChange) String() string {
 // GoString returns the string representation
 func (s ResourceChange) GoString() string {
 	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *ResourceChange) SetAction(v string) *ResourceChange {
+	s.Action = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *ResourceChange) SetDetails(v []*ResourceChangeDetail) *ResourceChange {
+	s.Details = v
+	return s
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *ResourceChange) SetLogicalResourceId(v string) *ResourceChange {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *ResourceChange) SetPhysicalResourceId(v string) *ResourceChange {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetReplacement sets the Replacement field's value.
+func (s *ResourceChange) SetReplacement(v string) *ResourceChange {
+	s.Replacement = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceChange) SetResourceType(v string) *ResourceChange {
+	s.ResourceType = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ResourceChange) SetScope(v []*string) *ResourceChange {
+	s.Scope = v
+	return s
 }
 
 // For a resource with Modify as the action, the ResourceChange structure describes
@@ -3668,6 +4496,30 @@ func (s ResourceChangeDetail) GoString() string {
 	return s.String()
 }
 
+// SetCausingEntity sets the CausingEntity field's value.
+func (s *ResourceChangeDetail) SetCausingEntity(v string) *ResourceChangeDetail {
+	s.CausingEntity = &v
+	return s
+}
+
+// SetChangeSource sets the ChangeSource field's value.
+func (s *ResourceChangeDetail) SetChangeSource(v string) *ResourceChangeDetail {
+	s.ChangeSource = &v
+	return s
+}
+
+// SetEvaluation sets the Evaluation field's value.
+func (s *ResourceChangeDetail) SetEvaluation(v string) *ResourceChangeDetail {
+	s.Evaluation = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *ResourceChangeDetail) SetTarget(v *ResourceTargetDefinition) *ResourceChangeDetail {
+	s.Target = v
+	return s
+}
+
 // The field that AWS CloudFormation will change, such as the name of a resource's
 // property, and whether the resource will be recreated.
 type ResourceTargetDefinition struct {
@@ -3697,6 +4549,24 @@ func (s ResourceTargetDefinition) String() string {
 // GoString returns the string representation
 func (s ResourceTargetDefinition) GoString() string {
 	return s.String()
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *ResourceTargetDefinition) SetAttribute(v string) *ResourceTargetDefinition {
+	s.Attribute = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceTargetDefinition) SetName(v string) *ResourceTargetDefinition {
+	s.Name = &v
+	return s
+}
+
+// SetRequiresRecreation sets the RequiresRecreation field's value.
+func (s *ResourceTargetDefinition) SetRequiresRecreation(v string) *ResourceTargetDefinition {
+	s.RequiresRecreation = &v
+	return s
 }
 
 // The input for the SetStackPolicy action.
@@ -3748,6 +4618,24 @@ func (s *SetStackPolicyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetStackName sets the StackName field's value.
+func (s *SetStackPolicyInput) SetStackName(v string) *SetStackPolicyInput {
+	s.StackName = &v
+	return s
+}
+
+// SetStackPolicyBody sets the StackPolicyBody field's value.
+func (s *SetStackPolicyInput) SetStackPolicyBody(v string) *SetStackPolicyInput {
+	s.StackPolicyBody = &v
+	return s
+}
+
+// SetStackPolicyURL sets the StackPolicyURL field's value.
+func (s *SetStackPolicyInput) SetStackPolicyURL(v string) *SetStackPolicyInput {
+	s.StackPolicyURL = &v
+	return s
 }
 
 type SetStackPolicyOutput struct {
@@ -3831,6 +4719,30 @@ func (s *SignalResourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *SignalResourceInput) SetLogicalResourceId(v string) *SignalResourceInput {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *SignalResourceInput) SetStackName(v string) *SignalResourceInput {
+	s.StackName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SignalResourceInput) SetStatus(v string) *SignalResourceInput {
+	s.Status = &v
+	return s
+}
+
+// SetUniqueId sets the UniqueId field's value.
+func (s *SignalResourceInput) SetUniqueId(v string) *SignalResourceInput {
+	s.UniqueId = &v
+	return s
 }
 
 type SignalResourceOutput struct {
@@ -3920,6 +4832,96 @@ func (s Stack) GoString() string {
 	return s.String()
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *Stack) SetCapabilities(v []*string) *Stack {
+	s.Capabilities = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Stack) SetCreationTime(v time.Time) *Stack {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Stack) SetDescription(v string) *Stack {
+	s.Description = &v
+	return s
+}
+
+// SetDisableRollback sets the DisableRollback field's value.
+func (s *Stack) SetDisableRollback(v bool) *Stack {
+	s.DisableRollback = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *Stack) SetLastUpdatedTime(v time.Time) *Stack {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetNotificationARNs sets the NotificationARNs field's value.
+func (s *Stack) SetNotificationARNs(v []*string) *Stack {
+	s.NotificationARNs = v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *Stack) SetOutputs(v []*Output) *Stack {
+	s.Outputs = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *Stack) SetParameters(v []*Parameter) *Stack {
+	s.Parameters = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *Stack) SetRoleARN(v string) *Stack {
+	s.RoleARN = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *Stack) SetStackId(v string) *Stack {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *Stack) SetStackName(v string) *Stack {
+	s.StackName = &v
+	return s
+}
+
+// SetStackStatus sets the StackStatus field's value.
+func (s *Stack) SetStackStatus(v string) *Stack {
+	s.StackStatus = &v
+	return s
+}
+
+// SetStackStatusReason sets the StackStatusReason field's value.
+func (s *Stack) SetStackStatusReason(v string) *Stack {
+	s.StackStatusReason = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Stack) SetTags(v []*Tag) *Stack {
+	s.Tags = v
+	return s
+}
+
+// SetTimeoutInMinutes sets the TimeoutInMinutes field's value.
+func (s *Stack) SetTimeoutInMinutes(v int64) *Stack {
+	s.TimeoutInMinutes = &v
+	return s
+}
+
 // The StackEvent data type.
 type StackEvent struct {
 	_ struct{} `type:"structure"`
@@ -3976,6 +4978,66 @@ func (s StackEvent) GoString() string {
 	return s.String()
 }
 
+// SetEventId sets the EventId field's value.
+func (s *StackEvent) SetEventId(v string) *StackEvent {
+	s.EventId = &v
+	return s
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *StackEvent) SetLogicalResourceId(v string) *StackEvent {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *StackEvent) SetPhysicalResourceId(v string) *StackEvent {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetResourceProperties sets the ResourceProperties field's value.
+func (s *StackEvent) SetResourceProperties(v string) *StackEvent {
+	s.ResourceProperties = &v
+	return s
+}
+
+// SetResourceStatus sets the ResourceStatus field's value.
+func (s *StackEvent) SetResourceStatus(v string) *StackEvent {
+	s.ResourceStatus = &v
+	return s
+}
+
+// SetResourceStatusReason sets the ResourceStatusReason field's value.
+func (s *StackEvent) SetResourceStatusReason(v string) *StackEvent {
+	s.ResourceStatusReason = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *StackEvent) SetResourceType(v string) *StackEvent {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *StackEvent) SetStackId(v string) *StackEvent {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *StackEvent) SetStackName(v string) *StackEvent {
+	s.StackName = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *StackEvent) SetTimestamp(v time.Time) *StackEvent {
+	s.Timestamp = &v
+	return s
+}
+
 // The StackResource data type.
 type StackResource struct {
 	_ struct{} `type:"structure"`
@@ -4027,6 +5089,60 @@ func (s StackResource) String() string {
 // GoString returns the string representation
 func (s StackResource) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *StackResource) SetDescription(v string) *StackResource {
+	s.Description = &v
+	return s
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *StackResource) SetLogicalResourceId(v string) *StackResource {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *StackResource) SetPhysicalResourceId(v string) *StackResource {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetResourceStatus sets the ResourceStatus field's value.
+func (s *StackResource) SetResourceStatus(v string) *StackResource {
+	s.ResourceStatus = &v
+	return s
+}
+
+// SetResourceStatusReason sets the ResourceStatusReason field's value.
+func (s *StackResource) SetResourceStatusReason(v string) *StackResource {
+	s.ResourceStatusReason = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *StackResource) SetResourceType(v string) *StackResource {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *StackResource) SetStackId(v string) *StackResource {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *StackResource) SetStackName(v string) *StackResource {
+	s.StackName = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *StackResource) SetTimestamp(v time.Time) *StackResource {
+	s.Timestamp = &v
+	return s
 }
 
 // Contains detailed information about the specified stack resource.
@@ -4087,6 +5203,66 @@ func (s StackResourceDetail) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *StackResourceDetail) SetDescription(v string) *StackResourceDetail {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *StackResourceDetail) SetLastUpdatedTimestamp(v time.Time) *StackResourceDetail {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *StackResourceDetail) SetLogicalResourceId(v string) *StackResourceDetail {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *StackResourceDetail) SetMetadata(v string) *StackResourceDetail {
+	s.Metadata = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *StackResourceDetail) SetPhysicalResourceId(v string) *StackResourceDetail {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetResourceStatus sets the ResourceStatus field's value.
+func (s *StackResourceDetail) SetResourceStatus(v string) *StackResourceDetail {
+	s.ResourceStatus = &v
+	return s
+}
+
+// SetResourceStatusReason sets the ResourceStatusReason field's value.
+func (s *StackResourceDetail) SetResourceStatusReason(v string) *StackResourceDetail {
+	s.ResourceStatusReason = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *StackResourceDetail) SetResourceType(v string) *StackResourceDetail {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *StackResourceDetail) SetStackId(v string) *StackResourceDetail {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *StackResourceDetail) SetStackName(v string) *StackResourceDetail {
+	s.StackName = &v
+	return s
+}
+
 // Contains high-level information about the specified stack resource.
 type StackResourceSummary struct {
 	_ struct{} `type:"structure"`
@@ -4129,6 +5305,42 @@ func (s StackResourceSummary) String() string {
 // GoString returns the string representation
 func (s StackResourceSummary) GoString() string {
 	return s.String()
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *StackResourceSummary) SetLastUpdatedTimestamp(v time.Time) *StackResourceSummary {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetLogicalResourceId sets the LogicalResourceId field's value.
+func (s *StackResourceSummary) SetLogicalResourceId(v string) *StackResourceSummary {
+	s.LogicalResourceId = &v
+	return s
+}
+
+// SetPhysicalResourceId sets the PhysicalResourceId field's value.
+func (s *StackResourceSummary) SetPhysicalResourceId(v string) *StackResourceSummary {
+	s.PhysicalResourceId = &v
+	return s
+}
+
+// SetResourceStatus sets the ResourceStatus field's value.
+func (s *StackResourceSummary) SetResourceStatus(v string) *StackResourceSummary {
+	s.ResourceStatus = &v
+	return s
+}
+
+// SetResourceStatusReason sets the ResourceStatusReason field's value.
+func (s *StackResourceSummary) SetResourceStatusReason(v string) *StackResourceSummary {
+	s.ResourceStatusReason = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *StackResourceSummary) SetResourceType(v string) *StackResourceSummary {
+	s.ResourceType = &v
+	return s
 }
 
 // The StackSummary Data Type
@@ -4177,6 +5389,54 @@ func (s StackSummary) GoString() string {
 	return s.String()
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *StackSummary) SetCreationTime(v time.Time) *StackSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeletionTime sets the DeletionTime field's value.
+func (s *StackSummary) SetDeletionTime(v time.Time) *StackSummary {
+	s.DeletionTime = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *StackSummary) SetLastUpdatedTime(v time.Time) *StackSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *StackSummary) SetStackId(v string) *StackSummary {
+	s.StackId = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *StackSummary) SetStackName(v string) *StackSummary {
+	s.StackName = &v
+	return s
+}
+
+// SetStackStatus sets the StackStatus field's value.
+func (s *StackSummary) SetStackStatus(v string) *StackSummary {
+	s.StackStatus = &v
+	return s
+}
+
+// SetStackStatusReason sets the StackStatusReason field's value.
+func (s *StackSummary) SetStackStatusReason(v string) *StackSummary {
+	s.StackStatusReason = &v
+	return s
+}
+
+// SetTemplateDescription sets the TemplateDescription field's value.
+func (s *StackSummary) SetTemplateDescription(v string) *StackSummary {
+	s.TemplateDescription = &v
+	return s
+}
+
 // The Tag type enables you to specify a key-value pair that can be used to
 // store information about an AWS CloudFormation stack.
 type Tag struct {
@@ -4200,6 +5460,18 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // The TemplateParameter data type.
@@ -4228,6 +5500,30 @@ func (s TemplateParameter) String() string {
 // GoString returns the string representation
 func (s TemplateParameter) GoString() string {
 	return s.String()
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *TemplateParameter) SetDefaultValue(v string) *TemplateParameter {
+	s.DefaultValue = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *TemplateParameter) SetDescription(v string) *TemplateParameter {
+	s.Description = &v
+	return s
+}
+
+// SetNoEcho sets the NoEcho field's value.
+func (s *TemplateParameter) SetNoEcho(v bool) *TemplateParameter {
+	s.NoEcho = &v
+	return s
+}
+
+// SetParameterKey sets the ParameterKey field's value.
+func (s *TemplateParameter) SetParameterKey(v string) *TemplateParameter {
+	s.ParameterKey = &v
+	return s
 }
 
 // The input for an UpdateStack action.
@@ -4412,6 +5708,90 @@ func (s *UpdateStackInput) Validate() error {
 	return nil
 }
 
+// SetCapabilities sets the Capabilities field's value.
+func (s *UpdateStackInput) SetCapabilities(v []*string) *UpdateStackInput {
+	s.Capabilities = v
+	return s
+}
+
+// SetNotificationARNs sets the NotificationARNs field's value.
+func (s *UpdateStackInput) SetNotificationARNs(v []*string) *UpdateStackInput {
+	s.NotificationARNs = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *UpdateStackInput) SetParameters(v []*Parameter) *UpdateStackInput {
+	s.Parameters = v
+	return s
+}
+
+// SetResourceTypes sets the ResourceTypes field's value.
+func (s *UpdateStackInput) SetResourceTypes(v []*string) *UpdateStackInput {
+	s.ResourceTypes = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *UpdateStackInput) SetRoleARN(v string) *UpdateStackInput {
+	s.RoleARN = &v
+	return s
+}
+
+// SetStackName sets the StackName field's value.
+func (s *UpdateStackInput) SetStackName(v string) *UpdateStackInput {
+	s.StackName = &v
+	return s
+}
+
+// SetStackPolicyBody sets the StackPolicyBody field's value.
+func (s *UpdateStackInput) SetStackPolicyBody(v string) *UpdateStackInput {
+	s.StackPolicyBody = &v
+	return s
+}
+
+// SetStackPolicyDuringUpdateBody sets the StackPolicyDuringUpdateBody field's value.
+func (s *UpdateStackInput) SetStackPolicyDuringUpdateBody(v string) *UpdateStackInput {
+	s.StackPolicyDuringUpdateBody = &v
+	return s
+}
+
+// SetStackPolicyDuringUpdateURL sets the StackPolicyDuringUpdateURL field's value.
+func (s *UpdateStackInput) SetStackPolicyDuringUpdateURL(v string) *UpdateStackInput {
+	s.StackPolicyDuringUpdateURL = &v
+	return s
+}
+
+// SetStackPolicyURL sets the StackPolicyURL field's value.
+func (s *UpdateStackInput) SetStackPolicyURL(v string) *UpdateStackInput {
+	s.StackPolicyURL = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateStackInput) SetTags(v []*Tag) *UpdateStackInput {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *UpdateStackInput) SetTemplateBody(v string) *UpdateStackInput {
+	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateURL sets the TemplateURL field's value.
+func (s *UpdateStackInput) SetTemplateURL(v string) *UpdateStackInput {
+	s.TemplateURL = &v
+	return s
+}
+
+// SetUsePreviousTemplate sets the UsePreviousTemplate field's value.
+func (s *UpdateStackInput) SetUsePreviousTemplate(v bool) *UpdateStackInput {
+	s.UsePreviousTemplate = &v
+	return s
+}
+
 // The output for an UpdateStack action.
 type UpdateStackOutput struct {
 	_ struct{} `type:"structure"`
@@ -4428,6 +5808,12 @@ func (s UpdateStackOutput) String() string {
 // GoString returns the string representation
 func (s UpdateStackOutput) GoString() string {
 	return s.String()
+}
+
+// SetStackId sets the StackId field's value.
+func (s *UpdateStackOutput) SetStackId(v string) *UpdateStackOutput {
+	s.StackId = &v
+	return s
 }
 
 // The input for ValidateTemplate action.
@@ -4479,6 +5865,18 @@ func (s *ValidateTemplateInput) Validate() error {
 	return nil
 }
 
+// SetTemplateBody sets the TemplateBody field's value.
+func (s *ValidateTemplateInput) SetTemplateBody(v string) *ValidateTemplateInput {
+	s.TemplateBody = &v
+	return s
+}
+
+// SetTemplateURL sets the TemplateURL field's value.
+func (s *ValidateTemplateInput) SetTemplateURL(v string) *ValidateTemplateInput {
+	s.TemplateURL = &v
+	return s
+}
+
 // The output for ValidateTemplate action.
 type ValidateTemplateOutput struct {
 	_ struct{} `type:"structure"`
@@ -4512,6 +5910,30 @@ func (s ValidateTemplateOutput) String() string {
 // GoString returns the string representation
 func (s ValidateTemplateOutput) GoString() string {
 	return s.String()
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *ValidateTemplateOutput) SetCapabilities(v []*string) *ValidateTemplateOutput {
+	s.Capabilities = v
+	return s
+}
+
+// SetCapabilitiesReason sets the CapabilitiesReason field's value.
+func (s *ValidateTemplateOutput) SetCapabilitiesReason(v string) *ValidateTemplateOutput {
+	s.CapabilitiesReason = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ValidateTemplateOutput) SetDescription(v string) *ValidateTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ValidateTemplateOutput) SetParameters(v []*TemplateParameter) *ValidateTemplateOutput {
+	s.Parameters = v
+	return s
 }
 
 const (

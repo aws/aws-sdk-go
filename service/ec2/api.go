@@ -14554,6 +14554,24 @@ func (s *AcceptReservedInstancesExchangeQuoteInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *AcceptReservedInstancesExchangeQuoteInput) SetDryRun(v bool) *AcceptReservedInstancesExchangeQuoteInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetReservedInstanceIds sets the ReservedInstanceIds field's value.
+func (s *AcceptReservedInstancesExchangeQuoteInput) SetReservedInstanceIds(v []*string) *AcceptReservedInstancesExchangeQuoteInput {
+	s.ReservedInstanceIds = v
+	return s
+}
+
+// SetTargetConfigurations sets the TargetConfigurations field's value.
+func (s *AcceptReservedInstancesExchangeQuoteInput) SetTargetConfigurations(v []*TargetConfigurationRequest) *AcceptReservedInstancesExchangeQuoteInput {
+	s.TargetConfigurations = v
+	return s
+}
+
 // The result of the exchange and whether it was successful.
 type AcceptReservedInstancesExchangeQuoteOutput struct {
 	_ struct{} `type:"structure"`
@@ -14570,6 +14588,12 @@ func (s AcceptReservedInstancesExchangeQuoteOutput) String() string {
 // GoString returns the string representation
 func (s AcceptReservedInstancesExchangeQuoteOutput) GoString() string {
 	return s.String()
+}
+
+// SetExchangeId sets the ExchangeId field's value.
+func (s *AcceptReservedInstancesExchangeQuoteOutput) SetExchangeId(v string) *AcceptReservedInstancesExchangeQuoteOutput {
+	s.ExchangeId = &v
+	return s
 }
 
 // Contains the parameters for AcceptVpcPeeringConnection.
@@ -14596,6 +14620,18 @@ func (s AcceptVpcPeeringConnectionInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *AcceptVpcPeeringConnectionInput) SetDryRun(v bool) *AcceptVpcPeeringConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *AcceptVpcPeeringConnectionInput) SetVpcPeeringConnectionId(v string) *AcceptVpcPeeringConnectionInput {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Contains the output of AcceptVpcPeeringConnection.
 type AcceptVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
@@ -14612,6 +14648,12 @@ func (s AcceptVpcPeeringConnectionOutput) String() string {
 // GoString returns the string representation
 func (s AcceptVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpcPeeringConnection sets the VpcPeeringConnection field's value.
+func (s *AcceptVpcPeeringConnectionOutput) SetVpcPeeringConnection(v *VpcPeeringConnection) *AcceptVpcPeeringConnectionOutput {
+	s.VpcPeeringConnection = v
+	return s
 }
 
 // Describes an account attribute.
@@ -14635,6 +14677,18 @@ func (s AccountAttribute) GoString() string {
 	return s.String()
 }
 
+// SetAttributeName sets the AttributeName field's value.
+func (s *AccountAttribute) SetAttributeName(v string) *AccountAttribute {
+	s.AttributeName = &v
+	return s
+}
+
+// SetAttributeValues sets the AttributeValues field's value.
+func (s *AccountAttribute) SetAttributeValues(v []*AccountAttributeValue) *AccountAttribute {
+	s.AttributeValues = v
+	return s
+}
+
 // Describes a value of an account attribute.
 type AccountAttributeValue struct {
 	_ struct{} `type:"structure"`
@@ -14651,6 +14705,12 @@ func (s AccountAttributeValue) String() string {
 // GoString returns the string representation
 func (s AccountAttributeValue) GoString() string {
 	return s.String()
+}
+
+// SetAttributeValue sets the AttributeValue field's value.
+func (s *AccountAttributeValue) SetAttributeValue(v string) *AccountAttributeValue {
+	s.AttributeValue = &v
+	return s
 }
 
 // Describes a running instance in a Spot fleet.
@@ -14675,6 +14735,24 @@ func (s ActiveInstance) String() string {
 // GoString returns the string representation
 func (s ActiveInstance) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ActiveInstance) SetInstanceId(v string) *ActiveInstance {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ActiveInstance) SetInstanceType(v string) *ActiveInstance {
+	s.InstanceType = &v
+	return s
+}
+
+// SetSpotInstanceRequestId sets the SpotInstanceRequestId field's value.
+func (s *ActiveInstance) SetSpotInstanceRequestId(v string) *ActiveInstance {
+	s.SpotInstanceRequestId = &v
+	return s
 }
 
 // Describes an Elastic IP address.
@@ -14718,6 +14796,54 @@ func (s Address) GoString() string {
 	return s.String()
 }
 
+// SetAllocationId sets the AllocationId field's value.
+func (s *Address) SetAllocationId(v string) *Address {
+	s.AllocationId = &v
+	return s
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *Address) SetAssociationId(v string) *Address {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *Address) SetDomain(v string) *Address {
+	s.Domain = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *Address) SetInstanceId(v string) *Address {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *Address) SetNetworkInterfaceId(v string) *Address {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetNetworkInterfaceOwnerId sets the NetworkInterfaceOwnerId field's value.
+func (s *Address) SetNetworkInterfaceOwnerId(v string) *Address {
+	s.NetworkInterfaceOwnerId = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *Address) SetPrivateIpAddress(v string) *Address {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *Address) SetPublicIp(v string) *Address {
+	s.PublicIp = &v
+	return s
+}
+
 // Contains the parameters for AllocateAddress.
 type AllocateAddressInput struct {
 	_ struct{} `type:"structure"`
@@ -14744,6 +14870,18 @@ func (s AllocateAddressInput) GoString() string {
 	return s.String()
 }
 
+// SetDomain sets the Domain field's value.
+func (s *AllocateAddressInput) SetDomain(v string) *AllocateAddressInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AllocateAddressInput) SetDryRun(v bool) *AllocateAddressInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output of AllocateAddress.
 type AllocateAddressOutput struct {
 	_ struct{} `type:"structure"`
@@ -14768,6 +14906,24 @@ func (s AllocateAddressOutput) String() string {
 // GoString returns the string representation
 func (s AllocateAddressOutput) GoString() string {
 	return s.String()
+}
+
+// SetAllocationId sets the AllocationId field's value.
+func (s *AllocateAddressOutput) SetAllocationId(v string) *AllocateAddressOutput {
+	s.AllocationId = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *AllocateAddressOutput) SetDomain(v string) *AllocateAddressOutput {
+	s.Domain = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *AllocateAddressOutput) SetPublicIp(v string) *AllocateAddressOutput {
+	s.PublicIp = &v
+	return s
 }
 
 // Contains the parameters for AllocateHosts.
@@ -14834,6 +14990,36 @@ func (s *AllocateHostsInput) Validate() error {
 	return nil
 }
 
+// SetAutoPlacement sets the AutoPlacement field's value.
+func (s *AllocateHostsInput) SetAutoPlacement(v string) *AllocateHostsInput {
+	s.AutoPlacement = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AllocateHostsInput) SetAvailabilityZone(v string) *AllocateHostsInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AllocateHostsInput) SetClientToken(v string) *AllocateHostsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *AllocateHostsInput) SetInstanceType(v string) *AllocateHostsInput {
+	s.InstanceType = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *AllocateHostsInput) SetQuantity(v int64) *AllocateHostsInput {
+	s.Quantity = &v
+	return s
+}
+
 // Contains the output of AllocateHosts.
 type AllocateHostsOutput struct {
 	_ struct{} `type:"structure"`
@@ -14851,6 +15037,12 @@ func (s AllocateHostsOutput) String() string {
 // GoString returns the string representation
 func (s AllocateHostsOutput) GoString() string {
 	return s.String()
+}
+
+// SetHostIds sets the HostIds field's value.
+func (s *AllocateHostsOutput) SetHostIds(v []*string) *AllocateHostsOutput {
+	s.HostIds = v
+	return s
 }
 
 // Contains the parameters for AssignPrivateIpAddresses.
@@ -14900,6 +15092,30 @@ func (s *AssignPrivateIpAddressesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAllowReassignment sets the AllowReassignment field's value.
+func (s *AssignPrivateIpAddressesInput) SetAllowReassignment(v bool) *AssignPrivateIpAddressesInput {
+	s.AllowReassignment = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *AssignPrivateIpAddressesInput) SetNetworkInterfaceId(v string) *AssignPrivateIpAddressesInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *AssignPrivateIpAddressesInput) SetPrivateIpAddresses(v []*string) *AssignPrivateIpAddressesInput {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetSecondaryPrivateIpAddressCount sets the SecondaryPrivateIpAddressCount field's value.
+func (s *AssignPrivateIpAddressesInput) SetSecondaryPrivateIpAddressCount(v int64) *AssignPrivateIpAddressesInput {
+	s.SecondaryPrivateIpAddressCount = &v
+	return s
 }
 
 type AssignPrivateIpAddressesOutput struct {
@@ -14966,6 +15182,48 @@ func (s AssociateAddressInput) GoString() string {
 	return s.String()
 }
 
+// SetAllocationId sets the AllocationId field's value.
+func (s *AssociateAddressInput) SetAllocationId(v string) *AssociateAddressInput {
+	s.AllocationId = &v
+	return s
+}
+
+// SetAllowReassociation sets the AllowReassociation field's value.
+func (s *AssociateAddressInput) SetAllowReassociation(v bool) *AssociateAddressInput {
+	s.AllowReassociation = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AssociateAddressInput) SetDryRun(v bool) *AssociateAddressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateAddressInput) SetInstanceId(v string) *AssociateAddressInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *AssociateAddressInput) SetNetworkInterfaceId(v string) *AssociateAddressInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *AssociateAddressInput) SetPrivateIpAddress(v string) *AssociateAddressInput {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *AssociateAddressInput) SetPublicIp(v string) *AssociateAddressInput {
+	s.PublicIp = &v
+	return s
+}
+
 // Contains the output of AssociateAddress.
 type AssociateAddressOutput struct {
 	_ struct{} `type:"structure"`
@@ -14983,6 +15241,12 @@ func (s AssociateAddressOutput) String() string {
 // GoString returns the string representation
 func (s AssociateAddressOutput) GoString() string {
 	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *AssociateAddressOutput) SetAssociationId(v string) *AssociateAddressOutput {
+	s.AssociationId = &v
+	return s
 }
 
 // Contains the parameters for AssociateDhcpOptions.
@@ -15031,6 +15295,24 @@ func (s *AssociateDhcpOptionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDhcpOptionsId sets the DhcpOptionsId field's value.
+func (s *AssociateDhcpOptionsInput) SetDhcpOptionsId(v string) *AssociateDhcpOptionsInput {
+	s.DhcpOptionsId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AssociateDhcpOptionsInput) SetDryRun(v bool) *AssociateDhcpOptionsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AssociateDhcpOptionsInput) SetVpcId(v string) *AssociateDhcpOptionsInput {
+	s.VpcId = &v
+	return s
 }
 
 type AssociateDhcpOptionsOutput struct {
@@ -15094,6 +15376,24 @@ func (s *AssociateRouteTableInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *AssociateRouteTableInput) SetDryRun(v bool) *AssociateRouteTableInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *AssociateRouteTableInput) SetRouteTableId(v string) *AssociateRouteTableInput {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *AssociateRouteTableInput) SetSubnetId(v string) *AssociateRouteTableInput {
+	s.SubnetId = &v
+	return s
+}
+
 // Contains the output of AssociateRouteTable.
 type AssociateRouteTableOutput struct {
 	_ struct{} `type:"structure"`
@@ -15110,6 +15410,12 @@ func (s AssociateRouteTableOutput) String() string {
 // GoString returns the string representation
 func (s AssociateRouteTableOutput) GoString() string {
 	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *AssociateRouteTableOutput) SetAssociationId(v string) *AssociateRouteTableOutput {
+	s.AssociationId = &v
+	return s
 }
 
 // Contains the parameters for AttachClassicLinkVpc.
@@ -15168,6 +15474,30 @@ func (s *AttachClassicLinkVpcInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *AttachClassicLinkVpcInput) SetDryRun(v bool) *AttachClassicLinkVpcInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *AttachClassicLinkVpcInput) SetGroups(v []*string) *AttachClassicLinkVpcInput {
+	s.Groups = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AttachClassicLinkVpcInput) SetInstanceId(v string) *AttachClassicLinkVpcInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AttachClassicLinkVpcInput) SetVpcId(v string) *AttachClassicLinkVpcInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of AttachClassicLinkVpc.
 type AttachClassicLinkVpcOutput struct {
 	_ struct{} `type:"structure"`
@@ -15184,6 +15514,12 @@ func (s AttachClassicLinkVpcOutput) String() string {
 // GoString returns the string representation
 func (s AttachClassicLinkVpcOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *AttachClassicLinkVpcOutput) SetReturn(v bool) *AttachClassicLinkVpcOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for AttachInternetGateway.
@@ -15231,6 +15567,24 @@ func (s *AttachInternetGatewayInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AttachInternetGatewayInput) SetDryRun(v bool) *AttachInternetGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *AttachInternetGatewayInput) SetInternetGatewayId(v string) *AttachInternetGatewayInput {
+	s.InternetGatewayId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AttachInternetGatewayInput) SetVpcId(v string) *AttachInternetGatewayInput {
+	s.VpcId = &v
+	return s
 }
 
 type AttachInternetGatewayOutput struct {
@@ -15302,6 +15656,30 @@ func (s *AttachNetworkInterfaceInput) Validate() error {
 	return nil
 }
 
+// SetDeviceIndex sets the DeviceIndex field's value.
+func (s *AttachNetworkInterfaceInput) SetDeviceIndex(v int64) *AttachNetworkInterfaceInput {
+	s.DeviceIndex = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AttachNetworkInterfaceInput) SetDryRun(v bool) *AttachNetworkInterfaceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AttachNetworkInterfaceInput) SetInstanceId(v string) *AttachNetworkInterfaceInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *AttachNetworkInterfaceInput) SetNetworkInterfaceId(v string) *AttachNetworkInterfaceInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
 // Contains the output of AttachNetworkInterface.
 type AttachNetworkInterfaceOutput struct {
 	_ struct{} `type:"structure"`
@@ -15318,6 +15696,12 @@ func (s AttachNetworkInterfaceOutput) String() string {
 // GoString returns the string representation
 func (s AttachNetworkInterfaceOutput) GoString() string {
 	return s.String()
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *AttachNetworkInterfaceOutput) SetAttachmentId(v string) *AttachNetworkInterfaceOutput {
+	s.AttachmentId = &v
+	return s
 }
 
 // Contains the parameters for AttachVolume.
@@ -15376,6 +15760,30 @@ func (s *AttachVolumeInput) Validate() error {
 	return nil
 }
 
+// SetDevice sets the Device field's value.
+func (s *AttachVolumeInput) SetDevice(v string) *AttachVolumeInput {
+	s.Device = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AttachVolumeInput) SetDryRun(v bool) *AttachVolumeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AttachVolumeInput) SetInstanceId(v string) *AttachVolumeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *AttachVolumeInput) SetVolumeId(v string) *AttachVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
 // Contains the parameters for AttachVpnGateway.
 type AttachVpnGatewayInput struct {
 	_ struct{} `type:"structure"`
@@ -15423,6 +15831,24 @@ func (s *AttachVpnGatewayInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *AttachVpnGatewayInput) SetDryRun(v bool) *AttachVpnGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AttachVpnGatewayInput) SetVpcId(v string) *AttachVpnGatewayInput {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *AttachVpnGatewayInput) SetVpnGatewayId(v string) *AttachVpnGatewayInput {
+	s.VpnGatewayId = &v
+	return s
+}
+
 // Contains the output of AttachVpnGateway.
 type AttachVpnGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -15439,6 +15865,12 @@ func (s AttachVpnGatewayOutput) String() string {
 // GoString returns the string representation
 func (s AttachVpnGatewayOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpcAttachment sets the VpcAttachment field's value.
+func (s *AttachVpnGatewayOutput) SetVpcAttachment(v *VpcAttachment) *AttachVpnGatewayOutput {
+	s.VpcAttachment = v
+	return s
 }
 
 // Describes a value for a resource attribute that is a Boolean value.
@@ -15459,6 +15891,12 @@ func (s AttributeBooleanValue) GoString() string {
 	return s.String()
 }
 
+// SetValue sets the Value field's value.
+func (s *AttributeBooleanValue) SetValue(v bool) *AttributeBooleanValue {
+	s.Value = &v
+	return s
+}
+
 // Describes a value for a resource attribute that is a String.
 type AttributeValue struct {
 	_ struct{} `type:"structure"`
@@ -15475,6 +15913,12 @@ func (s AttributeValue) String() string {
 // GoString returns the string representation
 func (s AttributeValue) GoString() string {
 	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *AttributeValue) SetValue(v string) *AttributeValue {
+	s.Value = &v
+	return s
 }
 
 // Contains the parameters for AuthorizeSecurityGroupEgress.
@@ -15544,6 +15988,60 @@ func (s *AuthorizeSecurityGroupEgressInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCidrIp sets the CidrIp field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetCidrIp(v string) *AuthorizeSecurityGroupEgressInput {
+	s.CidrIp = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetDryRun(v bool) *AuthorizeSecurityGroupEgressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetFromPort(v int64) *AuthorizeSecurityGroupEgressInput {
+	s.FromPort = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetGroupId(v string) *AuthorizeSecurityGroupEgressInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetIpPermissions sets the IpPermissions field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetIpPermissions(v []*IpPermission) *AuthorizeSecurityGroupEgressInput {
+	s.IpPermissions = v
+	return s
+}
+
+// SetIpProtocol sets the IpProtocol field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetIpProtocol(v string) *AuthorizeSecurityGroupEgressInput {
+	s.IpProtocol = &v
+	return s
+}
+
+// SetSourceSecurityGroupName sets the SourceSecurityGroupName field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetSourceSecurityGroupName(v string) *AuthorizeSecurityGroupEgressInput {
+	s.SourceSecurityGroupName = &v
+	return s
+}
+
+// SetSourceSecurityGroupOwnerId sets the SourceSecurityGroupOwnerId field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetSourceSecurityGroupOwnerId(v string) *AuthorizeSecurityGroupEgressInput {
+	s.SourceSecurityGroupOwnerId = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *AuthorizeSecurityGroupEgressInput) SetToPort(v int64) *AuthorizeSecurityGroupEgressInput {
+	s.ToPort = &v
+	return s
 }
 
 type AuthorizeSecurityGroupEgressOutput struct {
@@ -15625,6 +16123,66 @@ func (s AuthorizeSecurityGroupIngressInput) GoString() string {
 	return s.String()
 }
 
+// SetCidrIp sets the CidrIp field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetCidrIp(v string) *AuthorizeSecurityGroupIngressInput {
+	s.CidrIp = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetDryRun(v bool) *AuthorizeSecurityGroupIngressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetFromPort(v int64) *AuthorizeSecurityGroupIngressInput {
+	s.FromPort = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetGroupId(v string) *AuthorizeSecurityGroupIngressInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetGroupName(v string) *AuthorizeSecurityGroupIngressInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetIpPermissions sets the IpPermissions field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetIpPermissions(v []*IpPermission) *AuthorizeSecurityGroupIngressInput {
+	s.IpPermissions = v
+	return s
+}
+
+// SetIpProtocol sets the IpProtocol field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetIpProtocol(v string) *AuthorizeSecurityGroupIngressInput {
+	s.IpProtocol = &v
+	return s
+}
+
+// SetSourceSecurityGroupName sets the SourceSecurityGroupName field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetSourceSecurityGroupName(v string) *AuthorizeSecurityGroupIngressInput {
+	s.SourceSecurityGroupName = &v
+	return s
+}
+
+// SetSourceSecurityGroupOwnerId sets the SourceSecurityGroupOwnerId field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetSourceSecurityGroupOwnerId(v string) *AuthorizeSecurityGroupIngressInput {
+	s.SourceSecurityGroupOwnerId = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *AuthorizeSecurityGroupIngressInput) SetToPort(v int64) *AuthorizeSecurityGroupIngressInput {
+	s.ToPort = &v
+	return s
+}
+
 type AuthorizeSecurityGroupIngressOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -15666,6 +16224,30 @@ func (s AvailabilityZone) GoString() string {
 	return s.String()
 }
 
+// SetMessages sets the Messages field's value.
+func (s *AvailabilityZone) SetMessages(v []*AvailabilityZoneMessage) *AvailabilityZone {
+	s.Messages = v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *AvailabilityZone) SetRegionName(v string) *AvailabilityZone {
+	s.RegionName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AvailabilityZone) SetState(v string) *AvailabilityZone {
+	s.State = &v
+	return s
+}
+
+// SetZoneName sets the ZoneName field's value.
+func (s *AvailabilityZone) SetZoneName(v string) *AvailabilityZone {
+	s.ZoneName = &v
+	return s
+}
+
 // Describes a message about an Availability Zone.
 type AvailabilityZoneMessage struct {
 	_ struct{} `type:"structure"`
@@ -15682,6 +16264,12 @@ func (s AvailabilityZoneMessage) String() string {
 // GoString returns the string representation
 func (s AvailabilityZoneMessage) GoString() string {
 	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *AvailabilityZoneMessage) SetMessage(v string) *AvailabilityZoneMessage {
+	s.Message = &v
+	return s
 }
 
 // The capacity information for instances launched onto the Dedicated Host.
@@ -15705,6 +16293,18 @@ func (s AvailableCapacity) GoString() string {
 	return s.String()
 }
 
+// SetAvailableInstanceCapacity sets the AvailableInstanceCapacity field's value.
+func (s *AvailableCapacity) SetAvailableInstanceCapacity(v []*InstanceCapacity) *AvailableCapacity {
+	s.AvailableInstanceCapacity = v
+	return s
+}
+
+// SetAvailableVCpus sets the AvailableVCpus field's value.
+func (s *AvailableCapacity) SetAvailableVCpus(v int64) *AvailableCapacity {
+	s.AvailableVCpus = &v
+	return s
+}
+
 type BlobAttributeValue struct {
 	_ struct{} `type:"structure"`
 
@@ -15720,6 +16320,12 @@ func (s BlobAttributeValue) String() string {
 // GoString returns the string representation
 func (s BlobAttributeValue) GoString() string {
 	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *BlobAttributeValue) SetValue(v []byte) *BlobAttributeValue {
+	s.Value = v
+	return s
 }
 
 // Describes a block device mapping.
@@ -15758,6 +16364,30 @@ func (s BlockDeviceMapping) String() string {
 // GoString returns the string representation
 func (s BlockDeviceMapping) GoString() string {
 	return s.String()
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *BlockDeviceMapping) SetDeviceName(v string) *BlockDeviceMapping {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *BlockDeviceMapping) SetEbs(v *EbsBlockDevice) *BlockDeviceMapping {
+	s.Ebs = v
+	return s
+}
+
+// SetNoDevice sets the NoDevice field's value.
+func (s *BlockDeviceMapping) SetNoDevice(v string) *BlockDeviceMapping {
+	s.NoDevice = &v
+	return s
+}
+
+// SetVirtualName sets the VirtualName field's value.
+func (s *BlockDeviceMapping) SetVirtualName(v string) *BlockDeviceMapping {
+	s.VirtualName = &v
+	return s
 }
 
 // Contains the parameters for BundleInstance.
@@ -15815,6 +16445,24 @@ func (s *BundleInstanceInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *BundleInstanceInput) SetDryRun(v bool) *BundleInstanceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *BundleInstanceInput) SetInstanceId(v string) *BundleInstanceInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *BundleInstanceInput) SetStorage(v *Storage) *BundleInstanceInput {
+	s.Storage = v
+	return s
+}
+
 // Contains the output of BundleInstance.
 type BundleInstanceOutput struct {
 	_ struct{} `type:"structure"`
@@ -15831,6 +16479,12 @@ func (s BundleInstanceOutput) String() string {
 // GoString returns the string representation
 func (s BundleInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetBundleTask sets the BundleTask field's value.
+func (s *BundleInstanceOutput) SetBundleTask(v *BundleTask) *BundleInstanceOutput {
+	s.BundleTask = v
+	return s
 }
 
 // Describes a bundle task.
@@ -15872,6 +16526,54 @@ func (s BundleTask) GoString() string {
 	return s.String()
 }
 
+// SetBundleId sets the BundleId field's value.
+func (s *BundleTask) SetBundleId(v string) *BundleTask {
+	s.BundleId = &v
+	return s
+}
+
+// SetBundleTaskError sets the BundleTaskError field's value.
+func (s *BundleTask) SetBundleTaskError(v *BundleTaskError) *BundleTask {
+	s.BundleTaskError = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *BundleTask) SetInstanceId(v string) *BundleTask {
+	s.InstanceId = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *BundleTask) SetProgress(v string) *BundleTask {
+	s.Progress = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BundleTask) SetStartTime(v time.Time) *BundleTask {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *BundleTask) SetState(v string) *BundleTask {
+	s.State = &v
+	return s
+}
+
+// SetStorage sets the Storage field's value.
+func (s *BundleTask) SetStorage(v *Storage) *BundleTask {
+	s.Storage = v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *BundleTask) SetUpdateTime(v time.Time) *BundleTask {
+	s.UpdateTime = &v
+	return s
+}
+
 // Describes an error for BundleInstance.
 type BundleTaskError struct {
 	_ struct{} `type:"structure"`
@@ -15891,6 +16593,18 @@ func (s BundleTaskError) String() string {
 // GoString returns the string representation
 func (s BundleTaskError) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *BundleTaskError) SetCode(v string) *BundleTaskError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *BundleTaskError) SetMessage(v string) *BundleTaskError {
+	s.Message = &v
+	return s
 }
 
 // Contains the parameters for CancelBundleTask.
@@ -15932,6 +16646,18 @@ func (s *CancelBundleTaskInput) Validate() error {
 	return nil
 }
 
+// SetBundleId sets the BundleId field's value.
+func (s *CancelBundleTaskInput) SetBundleId(v string) *CancelBundleTaskInput {
+	s.BundleId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CancelBundleTaskInput) SetDryRun(v bool) *CancelBundleTaskInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output of CancelBundleTask.
 type CancelBundleTaskOutput struct {
 	_ struct{} `type:"structure"`
@@ -15948,6 +16674,12 @@ func (s CancelBundleTaskOutput) String() string {
 // GoString returns the string representation
 func (s CancelBundleTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetBundleTask sets the BundleTask field's value.
+func (s *CancelBundleTaskOutput) SetBundleTask(v *BundleTask) *CancelBundleTaskOutput {
+	s.BundleTask = v
+	return s
 }
 
 // Contains the parameters for CancelConversionTask.
@@ -15990,6 +16722,24 @@ func (s *CancelConversionTaskInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConversionTaskId sets the ConversionTaskId field's value.
+func (s *CancelConversionTaskInput) SetConversionTaskId(v string) *CancelConversionTaskInput {
+	s.ConversionTaskId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CancelConversionTaskInput) SetDryRun(v bool) *CancelConversionTaskInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetReasonMessage sets the ReasonMessage field's value.
+func (s *CancelConversionTaskInput) SetReasonMessage(v string) *CancelConversionTaskInput {
+	s.ReasonMessage = &v
+	return s
 }
 
 type CancelConversionTaskOutput struct {
@@ -16039,6 +16789,12 @@ func (s *CancelExportTaskInput) Validate() error {
 	return nil
 }
 
+// SetExportTaskId sets the ExportTaskId field's value.
+func (s *CancelExportTaskInput) SetExportTaskId(v string) *CancelExportTaskInput {
+	s.ExportTaskId = &v
+	return s
+}
+
 type CancelExportTaskOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -16080,6 +16836,24 @@ func (s CancelImportTaskInput) GoString() string {
 	return s.String()
 }
 
+// SetCancelReason sets the CancelReason field's value.
+func (s *CancelImportTaskInput) SetCancelReason(v string) *CancelImportTaskInput {
+	s.CancelReason = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CancelImportTaskInput) SetDryRun(v bool) *CancelImportTaskInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetImportTaskId sets the ImportTaskId field's value.
+func (s *CancelImportTaskInput) SetImportTaskId(v string) *CancelImportTaskInput {
+	s.ImportTaskId = &v
+	return s
+}
+
 // Contains the output for CancelImportTask.
 type CancelImportTaskOutput struct {
 	_ struct{} `type:"structure"`
@@ -16102,6 +16876,24 @@ func (s CancelImportTaskOutput) String() string {
 // GoString returns the string representation
 func (s CancelImportTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetImportTaskId sets the ImportTaskId field's value.
+func (s *CancelImportTaskOutput) SetImportTaskId(v string) *CancelImportTaskOutput {
+	s.ImportTaskId = &v
+	return s
+}
+
+// SetPreviousState sets the PreviousState field's value.
+func (s *CancelImportTaskOutput) SetPreviousState(v string) *CancelImportTaskOutput {
+	s.PreviousState = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CancelImportTaskOutput) SetState(v string) *CancelImportTaskOutput {
+	s.State = &v
+	return s
 }
 
 // Contains the parameters for CancelReservedInstancesListing.
@@ -16137,6 +16929,12 @@ func (s *CancelReservedInstancesListingInput) Validate() error {
 	return nil
 }
 
+// SetReservedInstancesListingId sets the ReservedInstancesListingId field's value.
+func (s *CancelReservedInstancesListingInput) SetReservedInstancesListingId(v string) *CancelReservedInstancesListingInput {
+	s.ReservedInstancesListingId = &v
+	return s
+}
+
 // Contains the output of CancelReservedInstancesListing.
 type CancelReservedInstancesListingOutput struct {
 	_ struct{} `type:"structure"`
@@ -16153,6 +16951,12 @@ func (s CancelReservedInstancesListingOutput) String() string {
 // GoString returns the string representation
 func (s CancelReservedInstancesListingOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesListings sets the ReservedInstancesListings field's value.
+func (s *CancelReservedInstancesListingOutput) SetReservedInstancesListings(v []*ReservedInstancesListing) *CancelReservedInstancesListingOutput {
+	s.ReservedInstancesListings = v
+	return s
 }
 
 // Describes a Spot fleet error.
@@ -16180,6 +16984,18 @@ func (s CancelSpotFleetRequestsError) GoString() string {
 	return s.String()
 }
 
+// SetCode sets the Code field's value.
+func (s *CancelSpotFleetRequestsError) SetCode(v string) *CancelSpotFleetRequestsError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *CancelSpotFleetRequestsError) SetMessage(v string) *CancelSpotFleetRequestsError {
+	s.Message = &v
+	return s
+}
+
 // Describes a Spot fleet request that was not successfully canceled.
 type CancelSpotFleetRequestsErrorItem struct {
 	_ struct{} `type:"structure"`
@@ -16203,6 +17019,18 @@ func (s CancelSpotFleetRequestsErrorItem) String() string {
 // GoString returns the string representation
 func (s CancelSpotFleetRequestsErrorItem) GoString() string {
 	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *CancelSpotFleetRequestsErrorItem) SetError(v *CancelSpotFleetRequestsError) *CancelSpotFleetRequestsErrorItem {
+	s.Error = v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *CancelSpotFleetRequestsErrorItem) SetSpotFleetRequestId(v string) *CancelSpotFleetRequestsErrorItem {
+	s.SpotFleetRequestId = &v
+	return s
 }
 
 // Contains the parameters for CancelSpotFleetRequests.
@@ -16253,6 +17081,24 @@ func (s *CancelSpotFleetRequestsInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CancelSpotFleetRequestsInput) SetDryRun(v bool) *CancelSpotFleetRequestsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSpotFleetRequestIds sets the SpotFleetRequestIds field's value.
+func (s *CancelSpotFleetRequestsInput) SetSpotFleetRequestIds(v []*string) *CancelSpotFleetRequestsInput {
+	s.SpotFleetRequestIds = v
+	return s
+}
+
+// SetTerminateInstances sets the TerminateInstances field's value.
+func (s *CancelSpotFleetRequestsInput) SetTerminateInstances(v bool) *CancelSpotFleetRequestsInput {
+	s.TerminateInstances = &v
+	return s
+}
+
 // Contains the output of CancelSpotFleetRequests.
 type CancelSpotFleetRequestsOutput struct {
 	_ struct{} `type:"structure"`
@@ -16272,6 +17118,18 @@ func (s CancelSpotFleetRequestsOutput) String() string {
 // GoString returns the string representation
 func (s CancelSpotFleetRequestsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSuccessfulFleetRequests sets the SuccessfulFleetRequests field's value.
+func (s *CancelSpotFleetRequestsOutput) SetSuccessfulFleetRequests(v []*CancelSpotFleetRequestsSuccessItem) *CancelSpotFleetRequestsOutput {
+	s.SuccessfulFleetRequests = v
+	return s
+}
+
+// SetUnsuccessfulFleetRequests sets the UnsuccessfulFleetRequests field's value.
+func (s *CancelSpotFleetRequestsOutput) SetUnsuccessfulFleetRequests(v []*CancelSpotFleetRequestsErrorItem) *CancelSpotFleetRequestsOutput {
+	s.UnsuccessfulFleetRequests = v
+	return s
 }
 
 // Describes a Spot fleet request that was successfully canceled.
@@ -16302,6 +17160,24 @@ func (s CancelSpotFleetRequestsSuccessItem) String() string {
 // GoString returns the string representation
 func (s CancelSpotFleetRequestsSuccessItem) GoString() string {
 	return s.String()
+}
+
+// SetCurrentSpotFleetRequestState sets the CurrentSpotFleetRequestState field's value.
+func (s *CancelSpotFleetRequestsSuccessItem) SetCurrentSpotFleetRequestState(v string) *CancelSpotFleetRequestsSuccessItem {
+	s.CurrentSpotFleetRequestState = &v
+	return s
+}
+
+// SetPreviousSpotFleetRequestState sets the PreviousSpotFleetRequestState field's value.
+func (s *CancelSpotFleetRequestsSuccessItem) SetPreviousSpotFleetRequestState(v string) *CancelSpotFleetRequestsSuccessItem {
+	s.PreviousSpotFleetRequestState = &v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *CancelSpotFleetRequestsSuccessItem) SetSpotFleetRequestId(v string) *CancelSpotFleetRequestsSuccessItem {
+	s.SpotFleetRequestId = &v
+	return s
 }
 
 // Contains the parameters for CancelSpotInstanceRequests.
@@ -16343,6 +17219,18 @@ func (s *CancelSpotInstanceRequestsInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CancelSpotInstanceRequestsInput) SetDryRun(v bool) *CancelSpotInstanceRequestsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSpotInstanceRequestIds sets the SpotInstanceRequestIds field's value.
+func (s *CancelSpotInstanceRequestsInput) SetSpotInstanceRequestIds(v []*string) *CancelSpotInstanceRequestsInput {
+	s.SpotInstanceRequestIds = v
+	return s
+}
+
 // Contains the output of CancelSpotInstanceRequests.
 type CancelSpotInstanceRequestsOutput struct {
 	_ struct{} `type:"structure"`
@@ -16359,6 +17247,12 @@ func (s CancelSpotInstanceRequestsOutput) String() string {
 // GoString returns the string representation
 func (s CancelSpotInstanceRequestsOutput) GoString() string {
 	return s.String()
+}
+
+// SetCancelledSpotInstanceRequests sets the CancelledSpotInstanceRequests field's value.
+func (s *CancelSpotInstanceRequestsOutput) SetCancelledSpotInstanceRequests(v []*CancelledSpotInstanceRequest) *CancelSpotInstanceRequestsOutput {
+	s.CancelledSpotInstanceRequests = v
+	return s
 }
 
 // Describes a request to cancel a Spot instance.
@@ -16382,6 +17276,18 @@ func (s CancelledSpotInstanceRequest) GoString() string {
 	return s.String()
 }
 
+// SetSpotInstanceRequestId sets the SpotInstanceRequestId field's value.
+func (s *CancelledSpotInstanceRequest) SetSpotInstanceRequestId(v string) *CancelledSpotInstanceRequest {
+	s.SpotInstanceRequestId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CancelledSpotInstanceRequest) SetState(v string) *CancelledSpotInstanceRequest {
+	s.State = &v
+	return s
+}
+
 // Describes the ClassicLink DNS support status of a VPC.
 type ClassicLinkDnsSupport struct {
 	_ struct{} `type:"structure"`
@@ -16401,6 +17307,18 @@ func (s ClassicLinkDnsSupport) String() string {
 // GoString returns the string representation
 func (s ClassicLinkDnsSupport) GoString() string {
 	return s.String()
+}
+
+// SetClassicLinkDnsSupported sets the ClassicLinkDnsSupported field's value.
+func (s *ClassicLinkDnsSupport) SetClassicLinkDnsSupported(v bool) *ClassicLinkDnsSupport {
+	s.ClassicLinkDnsSupported = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *ClassicLinkDnsSupport) SetVpcId(v string) *ClassicLinkDnsSupport {
+	s.VpcId = &v
+	return s
 }
 
 // Describes a linked EC2-Classic instance.
@@ -16430,6 +17348,30 @@ func (s ClassicLinkInstance) GoString() string {
 	return s.String()
 }
 
+// SetGroups sets the Groups field's value.
+func (s *ClassicLinkInstance) SetGroups(v []*GroupIdentifier) *ClassicLinkInstance {
+	s.Groups = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ClassicLinkInstance) SetInstanceId(v string) *ClassicLinkInstance {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ClassicLinkInstance) SetTags(v []*Tag) *ClassicLinkInstance {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *ClassicLinkInstance) SetVpcId(v string) *ClassicLinkInstance {
+	s.VpcId = &v
+	return s
+}
+
 // Describes the client-specific data.
 type ClientData struct {
 	_ struct{} `type:"structure"`
@@ -16455,6 +17397,30 @@ func (s ClientData) String() string {
 // GoString returns the string representation
 func (s ClientData) GoString() string {
 	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *ClientData) SetComment(v string) *ClientData {
+	s.Comment = &v
+	return s
+}
+
+// SetUploadEnd sets the UploadEnd field's value.
+func (s *ClientData) SetUploadEnd(v time.Time) *ClientData {
+	s.UploadEnd = &v
+	return s
+}
+
+// SetUploadSize sets the UploadSize field's value.
+func (s *ClientData) SetUploadSize(v float64) *ClientData {
+	s.UploadSize = &v
+	return s
+}
+
+// SetUploadStart sets the UploadStart field's value.
+func (s *ClientData) SetUploadStart(v time.Time) *ClientData {
+	s.UploadStart = &v
+	return s
 }
 
 // Contains the parameters for ConfirmProductInstance.
@@ -16504,6 +17470,24 @@ func (s *ConfirmProductInstanceInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *ConfirmProductInstanceInput) SetDryRun(v bool) *ConfirmProductInstanceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ConfirmProductInstanceInput) SetInstanceId(v string) *ConfirmProductInstanceInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetProductCode sets the ProductCode field's value.
+func (s *ConfirmProductInstanceInput) SetProductCode(v string) *ConfirmProductInstanceInput {
+	s.ProductCode = &v
+	return s
+}
+
 // Contains the output of ConfirmProductInstance.
 type ConfirmProductInstanceOutput struct {
 	_ struct{} `type:"structure"`
@@ -16525,6 +17509,18 @@ func (s ConfirmProductInstanceOutput) String() string {
 // GoString returns the string representation
 func (s ConfirmProductInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *ConfirmProductInstanceOutput) SetOwnerId(v string) *ConfirmProductInstanceOutput {
+	s.OwnerId = &v
+	return s
+}
+
+// SetReturn sets the Return field's value.
+func (s *ConfirmProductInstanceOutput) SetReturn(v bool) *ConfirmProductInstanceOutput {
+	s.Return = &v
+	return s
 }
 
 // Describes a conversion task.
@@ -16568,6 +17564,48 @@ func (s ConversionTask) String() string {
 // GoString returns the string representation
 func (s ConversionTask) GoString() string {
 	return s.String()
+}
+
+// SetConversionTaskId sets the ConversionTaskId field's value.
+func (s *ConversionTask) SetConversionTaskId(v string) *ConversionTask {
+	s.ConversionTaskId = &v
+	return s
+}
+
+// SetExpirationTime sets the ExpirationTime field's value.
+func (s *ConversionTask) SetExpirationTime(v string) *ConversionTask {
+	s.ExpirationTime = &v
+	return s
+}
+
+// SetImportInstance sets the ImportInstance field's value.
+func (s *ConversionTask) SetImportInstance(v *ImportInstanceTaskDetails) *ConversionTask {
+	s.ImportInstance = v
+	return s
+}
+
+// SetImportVolume sets the ImportVolume field's value.
+func (s *ConversionTask) SetImportVolume(v *ImportVolumeTaskDetails) *ConversionTask {
+	s.ImportVolume = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ConversionTask) SetState(v string) *ConversionTask {
+	s.State = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ConversionTask) SetStatusMessage(v string) *ConversionTask {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ConversionTask) SetTags(v []*Tag) *ConversionTask {
+	s.Tags = v
+	return s
 }
 
 // Contains the parameters for CopyImage.
@@ -16650,6 +17688,54 @@ func (s *CopyImageInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *CopyImageInput) SetClientToken(v string) *CopyImageInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CopyImageInput) SetDescription(v string) *CopyImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CopyImageInput) SetDryRun(v bool) *CopyImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *CopyImageInput) SetEncrypted(v bool) *CopyImageInput {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CopyImageInput) SetKmsKeyId(v string) *CopyImageInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CopyImageInput) SetName(v string) *CopyImageInput {
+	s.Name = &v
+	return s
+}
+
+// SetSourceImageId sets the SourceImageId field's value.
+func (s *CopyImageInput) SetSourceImageId(v string) *CopyImageInput {
+	s.SourceImageId = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CopyImageInput) SetSourceRegion(v string) *CopyImageInput {
+	s.SourceRegion = &v
+	return s
+}
+
 // Contains the output of CopyImage.
 type CopyImageOutput struct {
 	_ struct{} `type:"structure"`
@@ -16666,6 +17752,12 @@ func (s CopyImageOutput) String() string {
 // GoString returns the string representation
 func (s CopyImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CopyImageOutput) SetImageId(v string) *CopyImageOutput {
+	s.ImageId = &v
+	return s
 }
 
 // Contains the parameters for CopySnapshot.
@@ -16761,6 +17853,54 @@ func (s *CopySnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CopySnapshotInput) SetDescription(v string) *CopySnapshotInput {
+	s.Description = &v
+	return s
+}
+
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *CopySnapshotInput) SetDestinationRegion(v string) *CopySnapshotInput {
+	s.DestinationRegion = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CopySnapshotInput) SetDryRun(v bool) *CopySnapshotInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *CopySnapshotInput) SetEncrypted(v bool) *CopySnapshotInput {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CopySnapshotInput) SetKmsKeyId(v string) *CopySnapshotInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetPresignedUrl sets the PresignedUrl field's value.
+func (s *CopySnapshotInput) SetPresignedUrl(v string) *CopySnapshotInput {
+	s.PresignedUrl = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CopySnapshotInput) SetSourceRegion(v string) *CopySnapshotInput {
+	s.SourceRegion = &v
+	return s
+}
+
+// SetSourceSnapshotId sets the SourceSnapshotId field's value.
+func (s *CopySnapshotInput) SetSourceSnapshotId(v string) *CopySnapshotInput {
+	s.SourceSnapshotId = &v
+	return s
+}
+
 // Contains the output of CopySnapshot.
 type CopySnapshotOutput struct {
 	_ struct{} `type:"structure"`
@@ -16777,6 +17917,12 @@ func (s CopySnapshotOutput) String() string {
 // GoString returns the string representation
 func (s CopySnapshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *CopySnapshotOutput) SetSnapshotId(v string) *CopySnapshotOutput {
+	s.SnapshotId = &v
+	return s
 }
 
 // Contains the parameters for CreateCustomerGateway.
@@ -16837,6 +17983,30 @@ func (s *CreateCustomerGatewayInput) Validate() error {
 	return nil
 }
 
+// SetBgpAsn sets the BgpAsn field's value.
+func (s *CreateCustomerGatewayInput) SetBgpAsn(v int64) *CreateCustomerGatewayInput {
+	s.BgpAsn = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateCustomerGatewayInput) SetDryRun(v bool) *CreateCustomerGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *CreateCustomerGatewayInput) SetPublicIp(v string) *CreateCustomerGatewayInput {
+	s.PublicIp = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateCustomerGatewayInput) SetType(v string) *CreateCustomerGatewayInput {
+	s.Type = &v
+	return s
+}
+
 // Contains the output of CreateCustomerGateway.
 type CreateCustomerGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -16853,6 +18023,12 @@ func (s CreateCustomerGatewayOutput) String() string {
 // GoString returns the string representation
 func (s CreateCustomerGatewayOutput) GoString() string {
 	return s.String()
+}
+
+// SetCustomerGateway sets the CustomerGateway field's value.
+func (s *CreateCustomerGatewayOutput) SetCustomerGateway(v *CustomerGateway) *CreateCustomerGatewayOutput {
+	s.CustomerGateway = v
+	return s
 }
 
 // Contains the parameters for CreateDhcpOptions.
@@ -16894,6 +18070,18 @@ func (s *CreateDhcpOptionsInput) Validate() error {
 	return nil
 }
 
+// SetDhcpConfigurations sets the DhcpConfigurations field's value.
+func (s *CreateDhcpOptionsInput) SetDhcpConfigurations(v []*NewDhcpConfiguration) *CreateDhcpOptionsInput {
+	s.DhcpConfigurations = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateDhcpOptionsInput) SetDryRun(v bool) *CreateDhcpOptionsInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output of CreateDhcpOptions.
 type CreateDhcpOptionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -16910,6 +18098,12 @@ func (s CreateDhcpOptionsOutput) String() string {
 // GoString returns the string representation
 func (s CreateDhcpOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDhcpOptions sets the DhcpOptions field's value.
+func (s *CreateDhcpOptionsOutput) SetDhcpOptions(v *DhcpOptions) *CreateDhcpOptionsOutput {
+	s.DhcpOptions = v
+	return s
 }
 
 // Contains the parameters for CreateFlowLogs.
@@ -16984,6 +18178,42 @@ func (s *CreateFlowLogsInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFlowLogsInput) SetClientToken(v string) *CreateFlowLogsInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDeliverLogsPermissionArn sets the DeliverLogsPermissionArn field's value.
+func (s *CreateFlowLogsInput) SetDeliverLogsPermissionArn(v string) *CreateFlowLogsInput {
+	s.DeliverLogsPermissionArn = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *CreateFlowLogsInput) SetLogGroupName(v string) *CreateFlowLogsInput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetResourceIds sets the ResourceIds field's value.
+func (s *CreateFlowLogsInput) SetResourceIds(v []*string) *CreateFlowLogsInput {
+	s.ResourceIds = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *CreateFlowLogsInput) SetResourceType(v string) *CreateFlowLogsInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTrafficType sets the TrafficType field's value.
+func (s *CreateFlowLogsInput) SetTrafficType(v string) *CreateFlowLogsInput {
+	s.TrafficType = &v
+	return s
+}
+
 // Contains the output of CreateFlowLogs.
 type CreateFlowLogsOutput struct {
 	_ struct{} `type:"structure"`
@@ -17007,6 +18237,24 @@ func (s CreateFlowLogsOutput) String() string {
 // GoString returns the string representation
 func (s CreateFlowLogsOutput) GoString() string {
 	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFlowLogsOutput) SetClientToken(v string) *CreateFlowLogsOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetFlowLogIds sets the FlowLogIds field's value.
+func (s *CreateFlowLogsOutput) SetFlowLogIds(v []*string) *CreateFlowLogsOutput {
+	s.FlowLogIds = v
+	return s
+}
+
+// SetUnsuccessful sets the Unsuccessful field's value.
+func (s *CreateFlowLogsOutput) SetUnsuccessful(v []*UnsuccessfulItem) *CreateFlowLogsOutput {
+	s.Unsuccessful = v
+	return s
 }
 
 // Contains the parameters for CreateImage.
@@ -17072,6 +18320,42 @@ func (s *CreateImageInput) Validate() error {
 	return nil
 }
 
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *CreateImageInput) SetBlockDeviceMappings(v []*BlockDeviceMapping) *CreateImageInput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateImageInput) SetDescription(v string) *CreateImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateImageInput) SetDryRun(v bool) *CreateImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateImageInput) SetInstanceId(v string) *CreateImageInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateImageInput) SetName(v string) *CreateImageInput {
+	s.Name = &v
+	return s
+}
+
+// SetNoReboot sets the NoReboot field's value.
+func (s *CreateImageInput) SetNoReboot(v bool) *CreateImageInput {
+	s.NoReboot = &v
+	return s
+}
+
 // Contains the output of CreateImage.
 type CreateImageOutput struct {
 	_ struct{} `type:"structure"`
@@ -17088,6 +18372,12 @@ func (s CreateImageOutput) String() string {
 // GoString returns the string representation
 func (s CreateImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CreateImageOutput) SetImageId(v string) *CreateImageOutput {
+	s.ImageId = &v
+	return s
 }
 
 // Contains the parameters for CreateInstanceExportTask.
@@ -17133,6 +18423,30 @@ func (s *CreateInstanceExportTaskInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CreateInstanceExportTaskInput) SetDescription(v string) *CreateInstanceExportTaskInput {
+	s.Description = &v
+	return s
+}
+
+// SetExportToS3Task sets the ExportToS3Task field's value.
+func (s *CreateInstanceExportTaskInput) SetExportToS3Task(v *ExportToS3TaskSpecification) *CreateInstanceExportTaskInput {
+	s.ExportToS3Task = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateInstanceExportTaskInput) SetInstanceId(v string) *CreateInstanceExportTaskInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTargetEnvironment sets the TargetEnvironment field's value.
+func (s *CreateInstanceExportTaskInput) SetTargetEnvironment(v string) *CreateInstanceExportTaskInput {
+	s.TargetEnvironment = &v
+	return s
+}
+
 // Contains the output for CreateInstanceExportTask.
 type CreateInstanceExportTaskOutput struct {
 	_ struct{} `type:"structure"`
@@ -17149,6 +18463,12 @@ func (s CreateInstanceExportTaskOutput) String() string {
 // GoString returns the string representation
 func (s CreateInstanceExportTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetExportTask sets the ExportTask field's value.
+func (s *CreateInstanceExportTaskOutput) SetExportTask(v *ExportTask) *CreateInstanceExportTaskOutput {
+	s.ExportTask = v
+	return s
 }
 
 // Contains the parameters for CreateInternetGateway.
@@ -17172,6 +18492,12 @@ func (s CreateInternetGatewayInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateInternetGatewayInput) SetDryRun(v bool) *CreateInternetGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output of CreateInternetGateway.
 type CreateInternetGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -17188,6 +18514,12 @@ func (s CreateInternetGatewayOutput) String() string {
 // GoString returns the string representation
 func (s CreateInternetGatewayOutput) GoString() string {
 	return s.String()
+}
+
+// SetInternetGateway sets the InternetGateway field's value.
+func (s *CreateInternetGatewayOutput) SetInternetGateway(v *InternetGateway) *CreateInternetGatewayOutput {
+	s.InternetGateway = v
+	return s
 }
 
 // Contains the parameters for CreateKeyPair.
@@ -17231,6 +18563,18 @@ func (s *CreateKeyPairInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateKeyPairInput) SetDryRun(v bool) *CreateKeyPairInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *CreateKeyPairInput) SetKeyName(v string) *CreateKeyPairInput {
+	s.KeyName = &v
+	return s
+}
+
 // Describes a key pair.
 type CreateKeyPairOutput struct {
 	_ struct{} `type:"structure"`
@@ -17253,6 +18597,24 @@ func (s CreateKeyPairOutput) String() string {
 // GoString returns the string representation
 func (s CreateKeyPairOutput) GoString() string {
 	return s.String()
+}
+
+// SetKeyFingerprint sets the KeyFingerprint field's value.
+func (s *CreateKeyPairOutput) SetKeyFingerprint(v string) *CreateKeyPairOutput {
+	s.KeyFingerprint = &v
+	return s
+}
+
+// SetKeyMaterial sets the KeyMaterial field's value.
+func (s *CreateKeyPairOutput) SetKeyMaterial(v string) *CreateKeyPairOutput {
+	s.KeyMaterial = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *CreateKeyPairOutput) SetKeyName(v string) *CreateKeyPairOutput {
+	s.KeyName = &v
+	return s
 }
 
 // Contains the parameters for CreateNatGateway.
@@ -17304,6 +18666,24 @@ func (s *CreateNatGatewayInput) Validate() error {
 	return nil
 }
 
+// SetAllocationId sets the AllocationId field's value.
+func (s *CreateNatGatewayInput) SetAllocationId(v string) *CreateNatGatewayInput {
+	s.AllocationId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateNatGatewayInput) SetClientToken(v string) *CreateNatGatewayInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *CreateNatGatewayInput) SetSubnetId(v string) *CreateNatGatewayInput {
+	s.SubnetId = &v
+	return s
+}
+
 // Contains the output of CreateNatGateway.
 type CreateNatGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -17324,6 +18704,18 @@ func (s CreateNatGatewayOutput) String() string {
 // GoString returns the string representation
 func (s CreateNatGatewayOutput) GoString() string {
 	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateNatGatewayOutput) SetClientToken(v string) *CreateNatGatewayOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetNatGateway sets the NatGateway field's value.
+func (s *CreateNatGatewayOutput) SetNatGateway(v *NatGateway) *CreateNatGatewayOutput {
+	s.NatGateway = v
+	return s
 }
 
 // Contains the parameters for CreateNetworkAclEntry.
@@ -17417,6 +18809,60 @@ func (s *CreateNetworkAclEntryInput) Validate() error {
 	return nil
 }
 
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *CreateNetworkAclEntryInput) SetCidrBlock(v string) *CreateNetworkAclEntryInput {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateNetworkAclEntryInput) SetDryRun(v bool) *CreateNetworkAclEntryInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEgress sets the Egress field's value.
+func (s *CreateNetworkAclEntryInput) SetEgress(v bool) *CreateNetworkAclEntryInput {
+	s.Egress = &v
+	return s
+}
+
+// SetIcmpTypeCode sets the IcmpTypeCode field's value.
+func (s *CreateNetworkAclEntryInput) SetIcmpTypeCode(v *IcmpTypeCode) *CreateNetworkAclEntryInput {
+	s.IcmpTypeCode = v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *CreateNetworkAclEntryInput) SetNetworkAclId(v string) *CreateNetworkAclEntryInput {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetPortRange sets the PortRange field's value.
+func (s *CreateNetworkAclEntryInput) SetPortRange(v *PortRange) *CreateNetworkAclEntryInput {
+	s.PortRange = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *CreateNetworkAclEntryInput) SetProtocol(v string) *CreateNetworkAclEntryInput {
+	s.Protocol = &v
+	return s
+}
+
+// SetRuleAction sets the RuleAction field's value.
+func (s *CreateNetworkAclEntryInput) SetRuleAction(v string) *CreateNetworkAclEntryInput {
+	s.RuleAction = &v
+	return s
+}
+
+// SetRuleNumber sets the RuleNumber field's value.
+func (s *CreateNetworkAclEntryInput) SetRuleNumber(v int64) *CreateNetworkAclEntryInput {
+	s.RuleNumber = &v
+	return s
+}
+
 type CreateNetworkAclEntryOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -17470,6 +18916,18 @@ func (s *CreateNetworkAclInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateNetworkAclInput) SetDryRun(v bool) *CreateNetworkAclInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateNetworkAclInput) SetVpcId(v string) *CreateNetworkAclInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of CreateNetworkAcl.
 type CreateNetworkAclOutput struct {
 	_ struct{} `type:"structure"`
@@ -17486,6 +18944,12 @@ func (s CreateNetworkAclOutput) String() string {
 // GoString returns the string representation
 func (s CreateNetworkAclOutput) GoString() string {
 	return s.String()
+}
+
+// SetNetworkAcl sets the NetworkAcl field's value.
+func (s *CreateNetworkAclOutput) SetNetworkAcl(v *NetworkAcl) *CreateNetworkAclOutput {
+	s.NetworkAcl = v
+	return s
 }
 
 // Contains the parameters for CreateNetworkInterface.
@@ -17563,6 +19027,48 @@ func (s *CreateNetworkInterfaceInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CreateNetworkInterfaceInput) SetDescription(v string) *CreateNetworkInterfaceInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateNetworkInterfaceInput) SetDryRun(v bool) *CreateNetworkInterfaceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *CreateNetworkInterfaceInput) SetGroups(v []*string) *CreateNetworkInterfaceInput {
+	s.Groups = v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *CreateNetworkInterfaceInput) SetPrivateIpAddress(v string) *CreateNetworkInterfaceInput {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *CreateNetworkInterfaceInput) SetPrivateIpAddresses(v []*PrivateIpAddressSpecification) *CreateNetworkInterfaceInput {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetSecondaryPrivateIpAddressCount sets the SecondaryPrivateIpAddressCount field's value.
+func (s *CreateNetworkInterfaceInput) SetSecondaryPrivateIpAddressCount(v int64) *CreateNetworkInterfaceInput {
+	s.SecondaryPrivateIpAddressCount = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *CreateNetworkInterfaceInput) SetSubnetId(v string) *CreateNetworkInterfaceInput {
+	s.SubnetId = &v
+	return s
+}
+
 // Contains the output of CreateNetworkInterface.
 type CreateNetworkInterfaceOutput struct {
 	_ struct{} `type:"structure"`
@@ -17579,6 +19085,12 @@ func (s CreateNetworkInterfaceOutput) String() string {
 // GoString returns the string representation
 func (s CreateNetworkInterfaceOutput) GoString() string {
 	return s.String()
+}
+
+// SetNetworkInterface sets the NetworkInterface field's value.
+func (s *CreateNetworkInterfaceOutput) SetNetworkInterface(v *NetworkInterface) *CreateNetworkInterfaceOutput {
+	s.NetworkInterface = v
+	return s
 }
 
 // Contains the parameters for CreatePlacementGroup.
@@ -17628,6 +19140,24 @@ func (s *CreatePlacementGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreatePlacementGroupInput) SetDryRun(v bool) *CreatePlacementGroupInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *CreatePlacementGroupInput) SetGroupName(v string) *CreatePlacementGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetStrategy sets the Strategy field's value.
+func (s *CreatePlacementGroupInput) SetStrategy(v string) *CreatePlacementGroupInput {
+	s.Strategy = &v
+	return s
 }
 
 type CreatePlacementGroupOutput struct {
@@ -17707,6 +19237,30 @@ func (s *CreateReservedInstancesListingInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateReservedInstancesListingInput) SetClientToken(v string) *CreateReservedInstancesListingInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *CreateReservedInstancesListingInput) SetInstanceCount(v int64) *CreateReservedInstancesListingInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetPriceSchedules sets the PriceSchedules field's value.
+func (s *CreateReservedInstancesListingInput) SetPriceSchedules(v []*PriceScheduleSpecification) *CreateReservedInstancesListingInput {
+	s.PriceSchedules = v
+	return s
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *CreateReservedInstancesListingInput) SetReservedInstancesId(v string) *CreateReservedInstancesListingInput {
+	s.ReservedInstancesId = &v
+	return s
+}
+
 // Contains the output of CreateReservedInstancesListing.
 type CreateReservedInstancesListingOutput struct {
 	_ struct{} `type:"structure"`
@@ -17723,6 +19277,12 @@ func (s CreateReservedInstancesListingOutput) String() string {
 // GoString returns the string representation
 func (s CreateReservedInstancesListingOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesListings sets the ReservedInstancesListings field's value.
+func (s *CreateReservedInstancesListingOutput) SetReservedInstancesListings(v []*ReservedInstancesListing) *CreateReservedInstancesListingOutput {
+	s.ReservedInstancesListings = v
+	return s
 }
 
 // Contains the parameters for CreateRoute.
@@ -17790,6 +19350,54 @@ func (s *CreateRouteInput) Validate() error {
 	return nil
 }
 
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *CreateRouteInput) SetDestinationCidrBlock(v string) *CreateRouteInput {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateRouteInput) SetDryRun(v bool) *CreateRouteInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *CreateRouteInput) SetGatewayId(v string) *CreateRouteInput {
+	s.GatewayId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateRouteInput) SetInstanceId(v string) *CreateRouteInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *CreateRouteInput) SetNatGatewayId(v string) *CreateRouteInput {
+	s.NatGatewayId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *CreateRouteInput) SetNetworkInterfaceId(v string) *CreateRouteInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *CreateRouteInput) SetRouteTableId(v string) *CreateRouteInput {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *CreateRouteInput) SetVpcPeeringConnectionId(v string) *CreateRouteInput {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Contains the output of CreateRoute.
 type CreateRouteOutput struct {
 	_ struct{} `type:"structure"`
@@ -17806,6 +19414,12 @@ func (s CreateRouteOutput) String() string {
 // GoString returns the string representation
 func (s CreateRouteOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *CreateRouteOutput) SetReturn(v bool) *CreateRouteOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for CreateRouteTable.
@@ -17847,6 +19461,18 @@ func (s *CreateRouteTableInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateRouteTableInput) SetDryRun(v bool) *CreateRouteTableInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateRouteTableInput) SetVpcId(v string) *CreateRouteTableInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of CreateRouteTable.
 type CreateRouteTableOutput struct {
 	_ struct{} `type:"structure"`
@@ -17863,6 +19489,12 @@ func (s CreateRouteTableOutput) String() string {
 // GoString returns the string representation
 func (s CreateRouteTableOutput) GoString() string {
 	return s.String()
+}
+
+// SetRouteTable sets the RouteTable field's value.
+func (s *CreateRouteTableOutput) SetRouteTable(v *RouteTable) *CreateRouteTableOutput {
+	s.RouteTable = v
+	return s
 }
 
 // Contains the parameters for CreateSecurityGroup.
@@ -17927,6 +19559,30 @@ func (s *CreateSecurityGroupInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CreateSecurityGroupInput) SetDescription(v string) *CreateSecurityGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateSecurityGroupInput) SetDryRun(v bool) *CreateSecurityGroupInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *CreateSecurityGroupInput) SetGroupName(v string) *CreateSecurityGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateSecurityGroupInput) SetVpcId(v string) *CreateSecurityGroupInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of CreateSecurityGroup.
 type CreateSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
@@ -17943,6 +19599,12 @@ func (s CreateSecurityGroupOutput) String() string {
 // GoString returns the string representation
 func (s CreateSecurityGroupOutput) GoString() string {
 	return s.String()
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *CreateSecurityGroupOutput) SetGroupId(v string) *CreateSecurityGroupOutput {
+	s.GroupId = &v
+	return s
 }
 
 // Contains the parameters for CreateSnapshot.
@@ -17987,6 +19649,24 @@ func (s *CreateSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *CreateSnapshotInput) SetDescription(v string) *CreateSnapshotInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateSnapshotInput) SetDryRun(v bool) *CreateSnapshotInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *CreateSnapshotInput) SetVolumeId(v string) *CreateSnapshotInput {
+	s.VolumeId = &v
+	return s
+}
+
 // Contains the parameters for CreateSpotDatafeedSubscription.
 type CreateSpotDatafeedSubscriptionInput struct {
 	_ struct{} `type:"structure"`
@@ -18029,6 +19709,24 @@ func (s *CreateSpotDatafeedSubscriptionInput) Validate() error {
 	return nil
 }
 
+// SetBucket sets the Bucket field's value.
+func (s *CreateSpotDatafeedSubscriptionInput) SetBucket(v string) *CreateSpotDatafeedSubscriptionInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateSpotDatafeedSubscriptionInput) SetDryRun(v bool) *CreateSpotDatafeedSubscriptionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *CreateSpotDatafeedSubscriptionInput) SetPrefix(v string) *CreateSpotDatafeedSubscriptionInput {
+	s.Prefix = &v
+	return s
+}
+
 // Contains the output of CreateSpotDatafeedSubscription.
 type CreateSpotDatafeedSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
@@ -18045,6 +19743,12 @@ func (s CreateSpotDatafeedSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s CreateSpotDatafeedSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetSpotDatafeedSubscription sets the SpotDatafeedSubscription field's value.
+func (s *CreateSpotDatafeedSubscriptionOutput) SetSpotDatafeedSubscription(v *SpotDatafeedSubscription) *CreateSpotDatafeedSubscriptionOutput {
+	s.SpotDatafeedSubscription = v
+	return s
 }
 
 // Contains the parameters for CreateSubnet.
@@ -18100,6 +19804,30 @@ func (s *CreateSubnetInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *CreateSubnetInput) SetAvailabilityZone(v string) *CreateSubnetInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *CreateSubnetInput) SetCidrBlock(v string) *CreateSubnetInput {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateSubnetInput) SetDryRun(v bool) *CreateSubnetInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateSubnetInput) SetVpcId(v string) *CreateSubnetInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of CreateSubnet.
 type CreateSubnetOutput struct {
 	_ struct{} `type:"structure"`
@@ -18116,6 +19844,12 @@ func (s CreateSubnetOutput) String() string {
 // GoString returns the string representation
 func (s CreateSubnetOutput) GoString() string {
 	return s.String()
+}
+
+// SetSubnet sets the Subnet field's value.
+func (s *CreateSubnetOutput) SetSubnet(v *Subnet) *CreateSubnetOutput {
+	s.Subnet = v
+	return s
 }
 
 // Contains the parameters for CreateTags.
@@ -18165,6 +19899,24 @@ func (s *CreateTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateTagsInput) SetDryRun(v bool) *CreateTagsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *CreateTagsInput) SetResources(v []*string) *CreateTagsInput {
+	s.Resources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
+	s.Tags = v
+	return s
 }
 
 type CreateTagsOutput struct {
@@ -18266,6 +20018,54 @@ func (s *CreateVolumeInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *CreateVolumeInput) SetAvailabilityZone(v string) *CreateVolumeInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateVolumeInput) SetDryRun(v bool) *CreateVolumeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *CreateVolumeInput) SetEncrypted(v bool) *CreateVolumeInput {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *CreateVolumeInput) SetIops(v int64) *CreateVolumeInput {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateVolumeInput) SetKmsKeyId(v string) *CreateVolumeInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *CreateVolumeInput) SetSize(v int64) *CreateVolumeInput {
+	s.Size = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *CreateVolumeInput) SetSnapshotId(v string) *CreateVolumeInput {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *CreateVolumeInput) SetVolumeType(v string) *CreateVolumeInput {
+	s.VolumeType = &v
+	return s
+}
+
 // Describes the user or group to be added or removed from the permissions for
 // a volume.
 type CreateVolumePermission struct {
@@ -18290,6 +20090,18 @@ func (s CreateVolumePermission) GoString() string {
 	return s.String()
 }
 
+// SetGroup sets the Group field's value.
+func (s *CreateVolumePermission) SetGroup(v string) *CreateVolumePermission {
+	s.Group = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *CreateVolumePermission) SetUserId(v string) *CreateVolumePermission {
+	s.UserId = &v
+	return s
+}
+
 // Describes modifications to the permissions for a volume.
 type CreateVolumePermissionModifications struct {
 	_ struct{} `type:"structure"`
@@ -18311,6 +20123,18 @@ func (s CreateVolumePermissionModifications) String() string {
 // GoString returns the string representation
 func (s CreateVolumePermissionModifications) GoString() string {
 	return s.String()
+}
+
+// SetAdd sets the Add field's value.
+func (s *CreateVolumePermissionModifications) SetAdd(v []*CreateVolumePermission) *CreateVolumePermissionModifications {
+	s.Add = v
+	return s
+}
+
+// SetRemove sets the Remove field's value.
+func (s *CreateVolumePermissionModifications) SetRemove(v []*CreateVolumePermission) *CreateVolumePermissionModifications {
+	s.Remove = v
+	return s
 }
 
 // Contains the parameters for CreateVpcEndpoint.
@@ -18373,6 +20197,42 @@ func (s *CreateVpcEndpointInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateVpcEndpointInput) SetClientToken(v string) *CreateVpcEndpointInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateVpcEndpointInput) SetDryRun(v bool) *CreateVpcEndpointInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *CreateVpcEndpointInput) SetPolicyDocument(v string) *CreateVpcEndpointInput {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *CreateVpcEndpointInput) SetRouteTableIds(v []*string) *CreateVpcEndpointInput {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *CreateVpcEndpointInput) SetServiceName(v string) *CreateVpcEndpointInput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateVpcEndpointInput) SetVpcId(v string) *CreateVpcEndpointInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of CreateVpcEndpoint.
 type CreateVpcEndpointOutput struct {
 	_ struct{} `type:"structure"`
@@ -18393,6 +20253,18 @@ func (s CreateVpcEndpointOutput) String() string {
 // GoString returns the string representation
 func (s CreateVpcEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateVpcEndpointOutput) SetClientToken(v string) *CreateVpcEndpointOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *CreateVpcEndpointOutput) SetVpcEndpoint(v *VpcEndpoint) *CreateVpcEndpointOutput {
+	s.VpcEndpoint = v
+	return s
 }
 
 // Contains the parameters for CreateVpc.
@@ -18446,6 +20318,24 @@ func (s *CreateVpcInput) Validate() error {
 	return nil
 }
 
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *CreateVpcInput) SetCidrBlock(v string) *CreateVpcInput {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateVpcInput) SetDryRun(v bool) *CreateVpcInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceTenancy sets the InstanceTenancy field's value.
+func (s *CreateVpcInput) SetInstanceTenancy(v string) *CreateVpcInput {
+	s.InstanceTenancy = &v
+	return s
+}
+
 // Contains the output of CreateVpc.
 type CreateVpcOutput struct {
 	_ struct{} `type:"structure"`
@@ -18462,6 +20352,12 @@ func (s CreateVpcOutput) String() string {
 // GoString returns the string representation
 func (s CreateVpcOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *CreateVpcOutput) SetVpc(v *Vpc) *CreateVpcOutput {
+	s.Vpc = v
+	return s
 }
 
 // Contains the parameters for CreateVpcPeeringConnection.
@@ -18496,6 +20392,30 @@ func (s CreateVpcPeeringConnectionInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateVpcPeeringConnectionInput) SetDryRun(v bool) *CreateVpcPeeringConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPeerOwnerId sets the PeerOwnerId field's value.
+func (s *CreateVpcPeeringConnectionInput) SetPeerOwnerId(v string) *CreateVpcPeeringConnectionInput {
+	s.PeerOwnerId = &v
+	return s
+}
+
+// SetPeerVpcId sets the PeerVpcId field's value.
+func (s *CreateVpcPeeringConnectionInput) SetPeerVpcId(v string) *CreateVpcPeeringConnectionInput {
+	s.PeerVpcId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *CreateVpcPeeringConnectionInput) SetVpcId(v string) *CreateVpcPeeringConnectionInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of CreateVpcPeeringConnection.
 type CreateVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
@@ -18512,6 +20432,12 @@ func (s CreateVpcPeeringConnectionOutput) String() string {
 // GoString returns the string representation
 func (s CreateVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpcPeeringConnection sets the VpcPeeringConnection field's value.
+func (s *CreateVpcPeeringConnectionOutput) SetVpcPeeringConnection(v *VpcPeeringConnection) *CreateVpcPeeringConnectionOutput {
+	s.VpcPeeringConnection = v
+	return s
 }
 
 // Contains the parameters for CreateVpnConnection.
@@ -18576,6 +20502,36 @@ func (s *CreateVpnConnectionInput) Validate() error {
 	return nil
 }
 
+// SetCustomerGatewayId sets the CustomerGatewayId field's value.
+func (s *CreateVpnConnectionInput) SetCustomerGatewayId(v string) *CreateVpnConnectionInput {
+	s.CustomerGatewayId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateVpnConnectionInput) SetDryRun(v bool) *CreateVpnConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *CreateVpnConnectionInput) SetOptions(v *VpnConnectionOptionsSpecification) *CreateVpnConnectionInput {
+	s.Options = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateVpnConnectionInput) SetType(v string) *CreateVpnConnectionInput {
+	s.Type = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *CreateVpnConnectionInput) SetVpnGatewayId(v string) *CreateVpnConnectionInput {
+	s.VpnGatewayId = &v
+	return s
+}
+
 // Contains the output of CreateVpnConnection.
 type CreateVpnConnectionOutput struct {
 	_ struct{} `type:"structure"`
@@ -18592,6 +20548,12 @@ func (s CreateVpnConnectionOutput) String() string {
 // GoString returns the string representation
 func (s CreateVpnConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpnConnection sets the VpnConnection field's value.
+func (s *CreateVpnConnectionOutput) SetVpnConnection(v *VpnConnection) *CreateVpnConnectionOutput {
+	s.VpnConnection = v
+	return s
 }
 
 // Contains the parameters for CreateVpnConnectionRoute.
@@ -18633,6 +20595,18 @@ func (s *CreateVpnConnectionRouteInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *CreateVpnConnectionRouteInput) SetDestinationCidrBlock(v string) *CreateVpnConnectionRouteInput {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *CreateVpnConnectionRouteInput) SetVpnConnectionId(v string) *CreateVpnConnectionRouteInput {
+	s.VpnConnectionId = &v
+	return s
 }
 
 type CreateVpnConnectionRouteOutput struct {
@@ -18691,6 +20665,24 @@ func (s *CreateVpnGatewayInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *CreateVpnGatewayInput) SetAvailabilityZone(v string) *CreateVpnGatewayInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateVpnGatewayInput) SetDryRun(v bool) *CreateVpnGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateVpnGatewayInput) SetType(v string) *CreateVpnGatewayInput {
+	s.Type = &v
+	return s
+}
+
 // Contains the output of CreateVpnGateway.
 type CreateVpnGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -18707,6 +20699,12 @@ func (s CreateVpnGatewayOutput) String() string {
 // GoString returns the string representation
 func (s CreateVpnGatewayOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpnGateway sets the VpnGateway field's value.
+func (s *CreateVpnGatewayOutput) SetVpnGateway(v *VpnGateway) *CreateVpnGatewayOutput {
+	s.VpnGateway = v
+	return s
 }
 
 // Describes a customer gateway.
@@ -18742,6 +20740,42 @@ func (s CustomerGateway) String() string {
 // GoString returns the string representation
 func (s CustomerGateway) GoString() string {
 	return s.String()
+}
+
+// SetBgpAsn sets the BgpAsn field's value.
+func (s *CustomerGateway) SetBgpAsn(v string) *CustomerGateway {
+	s.BgpAsn = &v
+	return s
+}
+
+// SetCustomerGatewayId sets the CustomerGatewayId field's value.
+func (s *CustomerGateway) SetCustomerGatewayId(v string) *CustomerGateway {
+	s.CustomerGatewayId = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *CustomerGateway) SetIpAddress(v string) *CustomerGateway {
+	s.IpAddress = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CustomerGateway) SetState(v string) *CustomerGateway {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CustomerGateway) SetTags(v []*Tag) *CustomerGateway {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CustomerGateway) SetType(v string) *CustomerGateway {
+	s.Type = &v
+	return s
 }
 
 // Contains the parameters for DeleteCustomerGateway.
@@ -18781,6 +20815,18 @@ func (s *DeleteCustomerGatewayInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomerGatewayId sets the CustomerGatewayId field's value.
+func (s *DeleteCustomerGatewayInput) SetCustomerGatewayId(v string) *DeleteCustomerGatewayInput {
+	s.CustomerGatewayId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteCustomerGatewayInput) SetDryRun(v bool) *DeleteCustomerGatewayInput {
+	s.DryRun = &v
+	return s
 }
 
 type DeleteCustomerGatewayOutput struct {
@@ -18836,6 +20882,18 @@ func (s *DeleteDhcpOptionsInput) Validate() error {
 	return nil
 }
 
+// SetDhcpOptionsId sets the DhcpOptionsId field's value.
+func (s *DeleteDhcpOptionsInput) SetDhcpOptionsId(v string) *DeleteDhcpOptionsInput {
+	s.DhcpOptionsId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteDhcpOptionsInput) SetDryRun(v bool) *DeleteDhcpOptionsInput {
+	s.DryRun = &v
+	return s
+}
+
 type DeleteDhcpOptionsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -18883,6 +20941,12 @@ func (s *DeleteFlowLogsInput) Validate() error {
 	return nil
 }
 
+// SetFlowLogIds sets the FlowLogIds field's value.
+func (s *DeleteFlowLogsInput) SetFlowLogIds(v []*string) *DeleteFlowLogsInput {
+	s.FlowLogIds = v
+	return s
+}
+
 // Contains the output of DeleteFlowLogs.
 type DeleteFlowLogsOutput struct {
 	_ struct{} `type:"structure"`
@@ -18899,6 +20963,12 @@ func (s DeleteFlowLogsOutput) String() string {
 // GoString returns the string representation
 func (s DeleteFlowLogsOutput) GoString() string {
 	return s.String()
+}
+
+// SetUnsuccessful sets the Unsuccessful field's value.
+func (s *DeleteFlowLogsOutput) SetUnsuccessful(v []*UnsuccessfulItem) *DeleteFlowLogsOutput {
+	s.Unsuccessful = v
+	return s
 }
 
 // Contains the parameters for DeleteInternetGateway.
@@ -18938,6 +21008,18 @@ func (s *DeleteInternetGatewayInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteInternetGatewayInput) SetDryRun(v bool) *DeleteInternetGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *DeleteInternetGatewayInput) SetInternetGatewayId(v string) *DeleteInternetGatewayInput {
+	s.InternetGatewayId = &v
+	return s
 }
 
 type DeleteInternetGatewayOutput struct {
@@ -18993,6 +21075,18 @@ func (s *DeleteKeyPairInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteKeyPairInput) SetDryRun(v bool) *DeleteKeyPairInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *DeleteKeyPairInput) SetKeyName(v string) *DeleteKeyPairInput {
+	s.KeyName = &v
+	return s
+}
+
 type DeleteKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19040,6 +21134,12 @@ func (s *DeleteNatGatewayInput) Validate() error {
 	return nil
 }
 
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *DeleteNatGatewayInput) SetNatGatewayId(v string) *DeleteNatGatewayInput {
+	s.NatGatewayId = &v
+	return s
+}
+
 // Contains the output of DeleteNatGateway.
 type DeleteNatGatewayOutput struct {
 	_ struct{} `type:"structure"`
@@ -19056,6 +21156,12 @@ func (s DeleteNatGatewayOutput) String() string {
 // GoString returns the string representation
 func (s DeleteNatGatewayOutput) GoString() string {
 	return s.String()
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *DeleteNatGatewayOutput) SetNatGatewayId(v string) *DeleteNatGatewayOutput {
+	s.NatGatewayId = &v
+	return s
 }
 
 // Contains the parameters for DeleteNetworkAclEntry.
@@ -19113,6 +21219,30 @@ func (s *DeleteNetworkAclEntryInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteNetworkAclEntryInput) SetDryRun(v bool) *DeleteNetworkAclEntryInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEgress sets the Egress field's value.
+func (s *DeleteNetworkAclEntryInput) SetEgress(v bool) *DeleteNetworkAclEntryInput {
+	s.Egress = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *DeleteNetworkAclEntryInput) SetNetworkAclId(v string) *DeleteNetworkAclEntryInput {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetRuleNumber sets the RuleNumber field's value.
+func (s *DeleteNetworkAclEntryInput) SetRuleNumber(v int64) *DeleteNetworkAclEntryInput {
+	s.RuleNumber = &v
+	return s
+}
+
 type DeleteNetworkAclEntryOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19164,6 +21294,18 @@ func (s *DeleteNetworkAclInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteNetworkAclInput) SetDryRun(v bool) *DeleteNetworkAclInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *DeleteNetworkAclInput) SetNetworkAclId(v string) *DeleteNetworkAclInput {
+	s.NetworkAclId = &v
+	return s
 }
 
 type DeleteNetworkAclOutput struct {
@@ -19219,6 +21361,18 @@ func (s *DeleteNetworkInterfaceInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteNetworkInterfaceInput) SetDryRun(v bool) *DeleteNetworkInterfaceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *DeleteNetworkInterfaceInput) SetNetworkInterfaceId(v string) *DeleteNetworkInterfaceInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
 type DeleteNetworkInterfaceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19270,6 +21424,18 @@ func (s *DeletePlacementGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeletePlacementGroupInput) SetDryRun(v bool) *DeletePlacementGroupInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *DeletePlacementGroupInput) SetGroupName(v string) *DeletePlacementGroupInput {
+	s.GroupName = &v
+	return s
 }
 
 type DeletePlacementGroupOutput struct {
@@ -19334,6 +21500,24 @@ func (s *DeleteRouteInput) Validate() error {
 	return nil
 }
 
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *DeleteRouteInput) SetDestinationCidrBlock(v string) *DeleteRouteInput {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteRouteInput) SetDryRun(v bool) *DeleteRouteInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *DeleteRouteInput) SetRouteTableId(v string) *DeleteRouteInput {
+	s.RouteTableId = &v
+	return s
+}
+
 type DeleteRouteOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19387,6 +21571,18 @@ func (s *DeleteRouteTableInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteRouteTableInput) SetDryRun(v bool) *DeleteRouteTableInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *DeleteRouteTableInput) SetRouteTableId(v string) *DeleteRouteTableInput {
+	s.RouteTableId = &v
+	return s
+}
+
 type DeleteRouteTableOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19427,6 +21623,24 @@ func (s DeleteSecurityGroupInput) String() string {
 // GoString returns the string representation
 func (s DeleteSecurityGroupInput) GoString() string {
 	return s.String()
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteSecurityGroupInput) SetDryRun(v bool) *DeleteSecurityGroupInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *DeleteSecurityGroupInput) SetGroupId(v string) *DeleteSecurityGroupInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *DeleteSecurityGroupInput) SetGroupName(v string) *DeleteSecurityGroupInput {
+	s.GroupName = &v
+	return s
 }
 
 type DeleteSecurityGroupOutput struct {
@@ -19482,6 +21696,18 @@ func (s *DeleteSnapshotInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteSnapshotInput) SetDryRun(v bool) *DeleteSnapshotInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *DeleteSnapshotInput) SetSnapshotId(v string) *DeleteSnapshotInput {
+	s.SnapshotId = &v
+	return s
+}
+
 type DeleteSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19515,6 +21741,12 @@ func (s DeleteSpotDatafeedSubscriptionInput) String() string {
 // GoString returns the string representation
 func (s DeleteSpotDatafeedSubscriptionInput) GoString() string {
 	return s.String()
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteSpotDatafeedSubscriptionInput) SetDryRun(v bool) *DeleteSpotDatafeedSubscriptionInput {
+	s.DryRun = &v
+	return s
 }
 
 type DeleteSpotDatafeedSubscriptionOutput struct {
@@ -19568,6 +21800,18 @@ func (s *DeleteSubnetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteSubnetInput) SetDryRun(v bool) *DeleteSubnetInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *DeleteSubnetInput) SetSubnetId(v string) *DeleteSubnetInput {
+	s.SubnetId = &v
+	return s
 }
 
 type DeleteSubnetOutput struct {
@@ -19629,6 +21873,24 @@ func (s *DeleteTagsInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteTagsInput) SetDryRun(v bool) *DeleteTagsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *DeleteTagsInput) SetResources(v []*string) *DeleteTagsInput {
+	s.Resources = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DeleteTagsInput) SetTags(v []*Tag) *DeleteTagsInput {
+	s.Tags = v
+	return s
+}
+
 type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19680,6 +21942,18 @@ func (s *DeleteVolumeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteVolumeInput) SetDryRun(v bool) *DeleteVolumeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DeleteVolumeInput) SetVolumeId(v string) *DeleteVolumeInput {
+	s.VolumeId = &v
+	return s
 }
 
 type DeleteVolumeOutput struct {
@@ -19735,6 +22009,18 @@ func (s *DeleteVpcEndpointsInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteVpcEndpointsInput) SetDryRun(v bool) *DeleteVpcEndpointsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcEndpointIds sets the VpcEndpointIds field's value.
+func (s *DeleteVpcEndpointsInput) SetVpcEndpointIds(v []*string) *DeleteVpcEndpointsInput {
+	s.VpcEndpointIds = v
+	return s
+}
+
 // Contains the output of DeleteVpcEndpoints.
 type DeleteVpcEndpointsOutput struct {
 	_ struct{} `type:"structure"`
@@ -19751,6 +22037,12 @@ func (s DeleteVpcEndpointsOutput) String() string {
 // GoString returns the string representation
 func (s DeleteVpcEndpointsOutput) GoString() string {
 	return s.String()
+}
+
+// SetUnsuccessful sets the Unsuccessful field's value.
+func (s *DeleteVpcEndpointsOutput) SetUnsuccessful(v []*UnsuccessfulItem) *DeleteVpcEndpointsOutput {
+	s.Unsuccessful = v
+	return s
 }
 
 // Contains the parameters for DeleteVpc.
@@ -19790,6 +22082,18 @@ func (s *DeleteVpcInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteVpcInput) SetDryRun(v bool) *DeleteVpcInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DeleteVpcInput) SetVpcId(v string) *DeleteVpcInput {
+	s.VpcId = &v
+	return s
 }
 
 type DeleteVpcOutput struct {
@@ -19845,6 +22149,18 @@ func (s *DeleteVpcPeeringConnectionInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteVpcPeeringConnectionInput) SetDryRun(v bool) *DeleteVpcPeeringConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *DeleteVpcPeeringConnectionInput) SetVpcPeeringConnectionId(v string) *DeleteVpcPeeringConnectionInput {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Contains the output of DeleteVpcPeeringConnection.
 type DeleteVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
@@ -19861,6 +22177,12 @@ func (s DeleteVpcPeeringConnectionOutput) String() string {
 // GoString returns the string representation
 func (s DeleteVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *DeleteVpcPeeringConnectionOutput) SetReturn(v bool) *DeleteVpcPeeringConnectionOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for DeleteVpnConnection.
@@ -19900,6 +22222,18 @@ func (s *DeleteVpnConnectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteVpnConnectionInput) SetDryRun(v bool) *DeleteVpnConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *DeleteVpnConnectionInput) SetVpnConnectionId(v string) *DeleteVpnConnectionInput {
+	s.VpnConnectionId = &v
+	return s
 }
 
 type DeleteVpnConnectionOutput struct {
@@ -19957,6 +22291,18 @@ func (s *DeleteVpnConnectionRouteInput) Validate() error {
 	return nil
 }
 
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *DeleteVpnConnectionRouteInput) SetDestinationCidrBlock(v string) *DeleteVpnConnectionRouteInput {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *DeleteVpnConnectionRouteInput) SetVpnConnectionId(v string) *DeleteVpnConnectionRouteInput {
+	s.VpnConnectionId = &v
+	return s
+}
+
 type DeleteVpnConnectionRouteOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20008,6 +22354,18 @@ func (s *DeleteVpnGatewayInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteVpnGatewayInput) SetDryRun(v bool) *DeleteVpnGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *DeleteVpnGatewayInput) SetVpnGatewayId(v string) *DeleteVpnGatewayInput {
+	s.VpnGatewayId = &v
+	return s
 }
 
 type DeleteVpnGatewayOutput struct {
@@ -20063,6 +22421,18 @@ func (s *DeregisterImageInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DeregisterImageInput) SetDryRun(v bool) *DeregisterImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *DeregisterImageInput) SetImageId(v string) *DeregisterImageInput {
+	s.ImageId = &v
+	return s
+}
+
 type DeregisterImageOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20101,6 +22471,18 @@ func (s DescribeAccountAttributesInput) GoString() string {
 	return s.String()
 }
 
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *DescribeAccountAttributesInput) SetAttributeNames(v []*string) *DescribeAccountAttributesInput {
+	s.AttributeNames = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeAccountAttributesInput) SetDryRun(v bool) *DescribeAccountAttributesInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output of DescribeAccountAttributes.
 type DescribeAccountAttributesOutput struct {
 	_ struct{} `type:"structure"`
@@ -20117,6 +22499,12 @@ func (s DescribeAccountAttributesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAccountAttributesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccountAttributes sets the AccountAttributes field's value.
+func (s *DescribeAccountAttributesOutput) SetAccountAttributes(v []*AccountAttribute) *DescribeAccountAttributesOutput {
+	s.AccountAttributes = v
+	return s
 }
 
 // Contains the parameters for DescribeAddresses.
@@ -20173,6 +22561,30 @@ func (s DescribeAddressesInput) GoString() string {
 	return s.String()
 }
 
+// SetAllocationIds sets the AllocationIds field's value.
+func (s *DescribeAddressesInput) SetAllocationIds(v []*string) *DescribeAddressesInput {
+	s.AllocationIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeAddressesInput) SetDryRun(v bool) *DescribeAddressesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeAddressesInput) SetFilters(v []*Filter) *DescribeAddressesInput {
+	s.Filters = v
+	return s
+}
+
+// SetPublicIps sets the PublicIps field's value.
+func (s *DescribeAddressesInput) SetPublicIps(v []*string) *DescribeAddressesInput {
+	s.PublicIps = v
+	return s
+}
+
 // Contains the output of DescribeAddresses.
 type DescribeAddressesOutput struct {
 	_ struct{} `type:"structure"`
@@ -20189,6 +22601,12 @@ func (s DescribeAddressesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAddressesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAddresses sets the Addresses field's value.
+func (s *DescribeAddressesOutput) SetAddresses(v []*Address) *DescribeAddressesOutput {
+	s.Addresses = v
+	return s
 }
 
 // Contains the parameters for DescribeAvailabilityZones.
@@ -20228,6 +22646,24 @@ func (s DescribeAvailabilityZonesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeAvailabilityZonesInput) SetDryRun(v bool) *DescribeAvailabilityZonesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeAvailabilityZonesInput) SetFilters(v []*Filter) *DescribeAvailabilityZonesInput {
+	s.Filters = v
+	return s
+}
+
+// SetZoneNames sets the ZoneNames field's value.
+func (s *DescribeAvailabilityZonesInput) SetZoneNames(v []*string) *DescribeAvailabilityZonesInput {
+	s.ZoneNames = v
+	return s
+}
+
 // Contains the output of DescribeAvailabiltyZones.
 type DescribeAvailabilityZonesOutput struct {
 	_ struct{} `type:"structure"`
@@ -20244,6 +22680,12 @@ func (s DescribeAvailabilityZonesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeAvailabilityZonesOutput) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *DescribeAvailabilityZonesOutput) SetAvailabilityZones(v []*AvailabilityZone) *DescribeAvailabilityZonesOutput {
+	s.AvailabilityZones = v
+	return s
 }
 
 // Contains the parameters for DescribeBundleTasks.
@@ -20297,6 +22739,24 @@ func (s DescribeBundleTasksInput) GoString() string {
 	return s.String()
 }
 
+// SetBundleIds sets the BundleIds field's value.
+func (s *DescribeBundleTasksInput) SetBundleIds(v []*string) *DescribeBundleTasksInput {
+	s.BundleIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeBundleTasksInput) SetDryRun(v bool) *DescribeBundleTasksInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeBundleTasksInput) SetFilters(v []*Filter) *DescribeBundleTasksInput {
+	s.Filters = v
+	return s
+}
+
 // Contains the output of DescribeBundleTasks.
 type DescribeBundleTasksOutput struct {
 	_ struct{} `type:"structure"`
@@ -20313,6 +22773,12 @@ func (s DescribeBundleTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeBundleTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetBundleTasks sets the BundleTasks field's value.
+func (s *DescribeBundleTasksOutput) SetBundleTasks(v []*BundleTask) *DescribeBundleTasksOutput {
+	s.BundleTasks = v
+	return s
 }
 
 // Contains the parameters for DescribeClassicLinkInstances.
@@ -20375,6 +22841,36 @@ func (s DescribeClassicLinkInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeClassicLinkInstancesInput) SetDryRun(v bool) *DescribeClassicLinkInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeClassicLinkInstancesInput) SetFilters(v []*Filter) *DescribeClassicLinkInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *DescribeClassicLinkInstancesInput) SetInstanceIds(v []*string) *DescribeClassicLinkInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeClassicLinkInstancesInput) SetMaxResults(v int64) *DescribeClassicLinkInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeClassicLinkInstancesInput) SetNextToken(v string) *DescribeClassicLinkInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeClassicLinkInstances.
 type DescribeClassicLinkInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -20395,6 +22891,18 @@ func (s DescribeClassicLinkInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeClassicLinkInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstances sets the Instances field's value.
+func (s *DescribeClassicLinkInstancesOutput) SetInstances(v []*ClassicLinkInstance) *DescribeClassicLinkInstancesOutput {
+	s.Instances = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeClassicLinkInstancesOutput) SetNextToken(v string) *DescribeClassicLinkInstancesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeConversionTasks.
@@ -20421,6 +22929,18 @@ func (s DescribeConversionTasksInput) GoString() string {
 	return s.String()
 }
 
+// SetConversionTaskIds sets the ConversionTaskIds field's value.
+func (s *DescribeConversionTasksInput) SetConversionTaskIds(v []*string) *DescribeConversionTasksInput {
+	s.ConversionTaskIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeConversionTasksInput) SetDryRun(v bool) *DescribeConversionTasksInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output for DescribeConversionTasks.
 type DescribeConversionTasksOutput struct {
 	_ struct{} `type:"structure"`
@@ -20437,6 +22957,12 @@ func (s DescribeConversionTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeConversionTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetConversionTasks sets the ConversionTasks field's value.
+func (s *DescribeConversionTasksOutput) SetConversionTasks(v []*ConversionTask) *DescribeConversionTasksOutput {
+	s.ConversionTasks = v
+	return s
 }
 
 // Contains the parameters for DescribeCustomerGateways.
@@ -20495,6 +23021,24 @@ func (s DescribeCustomerGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// SetCustomerGatewayIds sets the CustomerGatewayIds field's value.
+func (s *DescribeCustomerGatewaysInput) SetCustomerGatewayIds(v []*string) *DescribeCustomerGatewaysInput {
+	s.CustomerGatewayIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeCustomerGatewaysInput) SetDryRun(v bool) *DescribeCustomerGatewaysInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeCustomerGatewaysInput) SetFilters(v []*Filter) *DescribeCustomerGatewaysInput {
+	s.Filters = v
+	return s
+}
+
 // Contains the output of DescribeCustomerGateways.
 type DescribeCustomerGatewaysOutput struct {
 	_ struct{} `type:"structure"`
@@ -20511,6 +23055,12 @@ func (s DescribeCustomerGatewaysOutput) String() string {
 // GoString returns the string representation
 func (s DescribeCustomerGatewaysOutput) GoString() string {
 	return s.String()
+}
+
+// SetCustomerGateways sets the CustomerGateways field's value.
+func (s *DescribeCustomerGatewaysOutput) SetCustomerGateways(v []*CustomerGateway) *DescribeCustomerGatewaysOutput {
+	s.CustomerGateways = v
+	return s
 }
 
 // Contains the parameters for DescribeDhcpOptions.
@@ -20561,6 +23111,24 @@ func (s DescribeDhcpOptionsInput) GoString() string {
 	return s.String()
 }
 
+// SetDhcpOptionsIds sets the DhcpOptionsIds field's value.
+func (s *DescribeDhcpOptionsInput) SetDhcpOptionsIds(v []*string) *DescribeDhcpOptionsInput {
+	s.DhcpOptionsIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeDhcpOptionsInput) SetDryRun(v bool) *DescribeDhcpOptionsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDhcpOptionsInput) SetFilters(v []*Filter) *DescribeDhcpOptionsInput {
+	s.Filters = v
+	return s
+}
+
 // Contains the output of DescribeDhcpOptions.
 type DescribeDhcpOptionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -20577,6 +23145,12 @@ func (s DescribeDhcpOptionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDhcpOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetDhcpOptions sets the DhcpOptions field's value.
+func (s *DescribeDhcpOptionsOutput) SetDhcpOptions(v []*DhcpOptions) *DescribeDhcpOptionsOutput {
+	s.DhcpOptions = v
+	return s
 }
 
 // Contains the parameters for DescribeExportTasks.
@@ -20597,6 +23171,12 @@ func (s DescribeExportTasksInput) GoString() string {
 	return s.String()
 }
 
+// SetExportTaskIds sets the ExportTaskIds field's value.
+func (s *DescribeExportTasksInput) SetExportTaskIds(v []*string) *DescribeExportTasksInput {
+	s.ExportTaskIds = v
+	return s
+}
+
 // Contains the output for DescribeExportTasks.
 type DescribeExportTasksOutput struct {
 	_ struct{} `type:"structure"`
@@ -20613,6 +23193,12 @@ func (s DescribeExportTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeExportTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetExportTasks sets the ExportTasks field's value.
+func (s *DescribeExportTasksOutput) SetExportTasks(v []*ExportTask) *DescribeExportTasksOutput {
+	s.ExportTasks = v
+	return s
 }
 
 // Contains the parameters for DescribeFlowLogs.
@@ -20656,6 +23242,30 @@ func (s DescribeFlowLogsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilter sets the Filter field's value.
+func (s *DescribeFlowLogsInput) SetFilter(v []*Filter) *DescribeFlowLogsInput {
+	s.Filter = v
+	return s
+}
+
+// SetFlowLogIds sets the FlowLogIds field's value.
+func (s *DescribeFlowLogsInput) SetFlowLogIds(v []*string) *DescribeFlowLogsInput {
+	s.FlowLogIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeFlowLogsInput) SetMaxResults(v int64) *DescribeFlowLogsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFlowLogsInput) SetNextToken(v string) *DescribeFlowLogsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeFlowLogs.
 type DescribeFlowLogsOutput struct {
 	_ struct{} `type:"structure"`
@@ -20676,6 +23286,18 @@ func (s DescribeFlowLogsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeFlowLogsOutput) GoString() string {
 	return s.String()
+}
+
+// SetFlowLogs sets the FlowLogs field's value.
+func (s *DescribeFlowLogsOutput) SetFlowLogs(v []*FlowLog) *DescribeFlowLogsOutput {
+	s.FlowLogs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeFlowLogsOutput) SetNextToken(v string) *DescribeFlowLogsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type DescribeHostReservationOfferingsInput struct {
@@ -20726,6 +23348,42 @@ func (s DescribeHostReservationOfferingsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilter sets the Filter field's value.
+func (s *DescribeHostReservationOfferingsInput) SetFilter(v []*Filter) *DescribeHostReservationOfferingsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxDuration sets the MaxDuration field's value.
+func (s *DescribeHostReservationOfferingsInput) SetMaxDuration(v int64) *DescribeHostReservationOfferingsInput {
+	s.MaxDuration = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeHostReservationOfferingsInput) SetMaxResults(v int64) *DescribeHostReservationOfferingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMinDuration sets the MinDuration field's value.
+func (s *DescribeHostReservationOfferingsInput) SetMinDuration(v int64) *DescribeHostReservationOfferingsInput {
+	s.MinDuration = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeHostReservationOfferingsInput) SetNextToken(v string) *DescribeHostReservationOfferingsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *DescribeHostReservationOfferingsInput) SetOfferingId(v string) *DescribeHostReservationOfferingsInput {
+	s.OfferingId = &v
+	return s
+}
+
 type DescribeHostReservationOfferingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20745,6 +23403,18 @@ func (s DescribeHostReservationOfferingsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeHostReservationOfferingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeHostReservationOfferingsOutput) SetNextToken(v string) *DescribeHostReservationOfferingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferingSet sets the OfferingSet field's value.
+func (s *DescribeHostReservationOfferingsOutput) SetOfferingSet(v []*HostOffering) *DescribeHostReservationOfferingsOutput {
+	s.OfferingSet = v
+	return s
 }
 
 type DescribeHostReservationsInput struct {
@@ -20784,6 +23454,30 @@ func (s DescribeHostReservationsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilter sets the Filter field's value.
+func (s *DescribeHostReservationsInput) SetFilter(v []*Filter) *DescribeHostReservationsInput {
+	s.Filter = v
+	return s
+}
+
+// SetHostReservationIdSet sets the HostReservationIdSet field's value.
+func (s *DescribeHostReservationsInput) SetHostReservationIdSet(v []*string) *DescribeHostReservationsInput {
+	s.HostReservationIdSet = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeHostReservationsInput) SetMaxResults(v int64) *DescribeHostReservationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeHostReservationsInput) SetNextToken(v string) *DescribeHostReservationsInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeHostReservationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -20803,6 +23497,18 @@ func (s DescribeHostReservationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeHostReservationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetHostReservationSet sets the HostReservationSet field's value.
+func (s *DescribeHostReservationsOutput) SetHostReservationSet(v []*HostReservation) *DescribeHostReservationsOutput {
+	s.HostReservationSet = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeHostReservationsOutput) SetNextToken(v string) *DescribeHostReservationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeHosts.
@@ -20852,6 +23558,30 @@ func (s DescribeHostsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilter sets the Filter field's value.
+func (s *DescribeHostsInput) SetFilter(v []*Filter) *DescribeHostsInput {
+	s.Filter = v
+	return s
+}
+
+// SetHostIds sets the HostIds field's value.
+func (s *DescribeHostsInput) SetHostIds(v []*string) *DescribeHostsInput {
+	s.HostIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeHostsInput) SetMaxResults(v int64) *DescribeHostsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeHostsInput) SetNextToken(v string) *DescribeHostsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeHosts.
 type DescribeHostsOutput struct {
 	_ struct{} `type:"structure"`
@@ -20874,6 +23604,18 @@ func (s DescribeHostsOutput) GoString() string {
 	return s.String()
 }
 
+// SetHosts sets the Hosts field's value.
+func (s *DescribeHostsOutput) SetHosts(v []*Host) *DescribeHostsOutput {
+	s.Hosts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeHostsOutput) SetNextToken(v string) *DescribeHostsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the parameters for DescribeIdFormat.
 type DescribeIdFormatInput struct {
 	_ struct{} `type:"structure"`
@@ -20892,6 +23634,12 @@ func (s DescribeIdFormatInput) GoString() string {
 	return s.String()
 }
 
+// SetResource sets the Resource field's value.
+func (s *DescribeIdFormatInput) SetResource(v string) *DescribeIdFormatInput {
+	s.Resource = &v
+	return s
+}
+
 // Contains the output of DescribeIdFormat.
 type DescribeIdFormatOutput struct {
 	_ struct{} `type:"structure"`
@@ -20908,6 +23656,12 @@ func (s DescribeIdFormatOutput) String() string {
 // GoString returns the string representation
 func (s DescribeIdFormatOutput) GoString() string {
 	return s.String()
+}
+
+// SetStatuses sets the Statuses field's value.
+func (s *DescribeIdFormatOutput) SetStatuses(v []*IdFormat) *DescribeIdFormatOutput {
+	s.Statuses = v
+	return s
 }
 
 // Contains the parameters for DescribeIdentityIdFormat.
@@ -20947,6 +23701,18 @@ func (s *DescribeIdentityIdFormatInput) Validate() error {
 	return nil
 }
 
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *DescribeIdentityIdFormatInput) SetPrincipalArn(v string) *DescribeIdentityIdFormatInput {
+	s.PrincipalArn = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *DescribeIdentityIdFormatInput) SetResource(v string) *DescribeIdentityIdFormatInput {
+	s.Resource = &v
+	return s
+}
+
 // Contains the output of DescribeIdentityIdFormat.
 type DescribeIdentityIdFormatOutput struct {
 	_ struct{} `type:"structure"`
@@ -20963,6 +23729,12 @@ func (s DescribeIdentityIdFormatOutput) String() string {
 // GoString returns the string representation
 func (s DescribeIdentityIdFormatOutput) GoString() string {
 	return s.String()
+}
+
+// SetStatuses sets the Statuses field's value.
+func (s *DescribeIdentityIdFormatOutput) SetStatuses(v []*IdFormat) *DescribeIdentityIdFormatOutput {
+	s.Statuses = v
+	return s
 }
 
 // Contains the parameters for DescribeImageAttribute.
@@ -21016,6 +23788,24 @@ func (s *DescribeImageAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeImageAttributeInput) SetAttribute(v string) *DescribeImageAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeImageAttributeInput) SetDryRun(v bool) *DescribeImageAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *DescribeImageAttributeInput) SetImageId(v string) *DescribeImageAttributeInput {
+	s.ImageId = &v
+	return s
+}
+
 // Describes an image attribute.
 type DescribeImageAttributeOutput struct {
 	_ struct{} `type:"structure"`
@@ -21054,6 +23844,54 @@ func (s DescribeImageAttributeOutput) String() string {
 // GoString returns the string representation
 func (s DescribeImageAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *DescribeImageAttributeOutput) SetBlockDeviceMappings(v []*BlockDeviceMapping) *DescribeImageAttributeOutput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeImageAttributeOutput) SetDescription(v *AttributeValue) *DescribeImageAttributeOutput {
+	s.Description = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *DescribeImageAttributeOutput) SetImageId(v string) *DescribeImageAttributeOutput {
+	s.ImageId = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *DescribeImageAttributeOutput) SetKernelId(v *AttributeValue) *DescribeImageAttributeOutput {
+	s.KernelId = v
+	return s
+}
+
+// SetLaunchPermissions sets the LaunchPermissions field's value.
+func (s *DescribeImageAttributeOutput) SetLaunchPermissions(v []*LaunchPermission) *DescribeImageAttributeOutput {
+	s.LaunchPermissions = v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *DescribeImageAttributeOutput) SetProductCodes(v []*ProductCode) *DescribeImageAttributeOutput {
+	s.ProductCodes = v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *DescribeImageAttributeOutput) SetRamdiskId(v *AttributeValue) *DescribeImageAttributeOutput {
+	s.RamdiskId = v
+	return s
+}
+
+// SetSriovNetSupport sets the SriovNetSupport field's value.
+func (s *DescribeImageAttributeOutput) SetSriovNetSupport(v *AttributeValue) *DescribeImageAttributeOutput {
+	s.SriovNetSupport = v
+	return s
 }
 
 // Contains the parameters for DescribeImages.
@@ -21168,6 +24006,36 @@ func (s DescribeImagesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeImagesInput) SetDryRun(v bool) *DescribeImagesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetExecutableUsers sets the ExecutableUsers field's value.
+func (s *DescribeImagesInput) SetExecutableUsers(v []*string) *DescribeImagesInput {
+	s.ExecutableUsers = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeImagesInput) SetFilters(v []*Filter) *DescribeImagesInput {
+	s.Filters = v
+	return s
+}
+
+// SetImageIds sets the ImageIds field's value.
+func (s *DescribeImagesInput) SetImageIds(v []*string) *DescribeImagesInput {
+	s.ImageIds = v
+	return s
+}
+
+// SetOwners sets the Owners field's value.
+func (s *DescribeImagesInput) SetOwners(v []*string) *DescribeImagesInput {
+	s.Owners = v
+	return s
+}
+
 // Contains the output of DescribeImages.
 type DescribeImagesOutput struct {
 	_ struct{} `type:"structure"`
@@ -21184,6 +24052,12 @@ func (s DescribeImagesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeImagesOutput) GoString() string {
 	return s.String()
+}
+
+// SetImages sets the Images field's value.
+func (s *DescribeImagesOutput) SetImages(v []*Image) *DescribeImagesOutput {
+	s.Images = v
+	return s
 }
 
 // Contains the parameters for DescribeImportImageTasks.
@@ -21221,6 +24095,36 @@ func (s DescribeImportImageTasksInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeImportImageTasksInput) SetDryRun(v bool) *DescribeImportImageTasksInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeImportImageTasksInput) SetFilters(v []*Filter) *DescribeImportImageTasksInput {
+	s.Filters = v
+	return s
+}
+
+// SetImportTaskIds sets the ImportTaskIds field's value.
+func (s *DescribeImportImageTasksInput) SetImportTaskIds(v []*string) *DescribeImportImageTasksInput {
+	s.ImportTaskIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeImportImageTasksInput) SetMaxResults(v int64) *DescribeImportImageTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImportImageTasksInput) SetNextToken(v string) *DescribeImportImageTasksInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output for DescribeImportImageTasks.
 type DescribeImportImageTasksOutput struct {
 	_ struct{} `type:"structure"`
@@ -21242,6 +24146,18 @@ func (s DescribeImportImageTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeImportImageTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetImportImageTasks sets the ImportImageTasks field's value.
+func (s *DescribeImportImageTasksOutput) SetImportImageTasks(v []*ImportImageTask) *DescribeImportImageTasksOutput {
+	s.ImportImageTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImportImageTasksOutput) SetNextToken(v string) *DescribeImportImageTasksOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeImportSnapshotTasks.
@@ -21278,6 +24194,36 @@ func (s DescribeImportSnapshotTasksInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeImportSnapshotTasksInput) SetDryRun(v bool) *DescribeImportSnapshotTasksInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeImportSnapshotTasksInput) SetFilters(v []*Filter) *DescribeImportSnapshotTasksInput {
+	s.Filters = v
+	return s
+}
+
+// SetImportTaskIds sets the ImportTaskIds field's value.
+func (s *DescribeImportSnapshotTasksInput) SetImportTaskIds(v []*string) *DescribeImportSnapshotTasksInput {
+	s.ImportTaskIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeImportSnapshotTasksInput) SetMaxResults(v int64) *DescribeImportSnapshotTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImportSnapshotTasksInput) SetNextToken(v string) *DescribeImportSnapshotTasksInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output for DescribeImportSnapshotTasks.
 type DescribeImportSnapshotTasksOutput struct {
 	_ struct{} `type:"structure"`
@@ -21299,6 +24245,18 @@ func (s DescribeImportSnapshotTasksOutput) String() string {
 // GoString returns the string representation
 func (s DescribeImportSnapshotTasksOutput) GoString() string {
 	return s.String()
+}
+
+// SetImportSnapshotTasks sets the ImportSnapshotTasks field's value.
+func (s *DescribeImportSnapshotTasksOutput) SetImportSnapshotTasks(v []*ImportSnapshotTask) *DescribeImportSnapshotTasksOutput {
+	s.ImportSnapshotTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeImportSnapshotTasksOutput) SetNextToken(v string) *DescribeImportSnapshotTasksOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeInstanceAttribute.
@@ -21348,6 +24306,24 @@ func (s *DescribeInstanceAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeInstanceAttributeInput) SetAttribute(v string) *DescribeInstanceAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeInstanceAttributeInput) SetDryRun(v bool) *DescribeInstanceAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeInstanceAttributeInput) SetInstanceId(v string) *DescribeInstanceAttributeInput {
+	s.InstanceId = &v
+	return s
 }
 
 // Describes an instance attribute.
@@ -21413,6 +24389,96 @@ func (s DescribeInstanceAttributeOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInstanceAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *DescribeInstanceAttributeOutput) SetBlockDeviceMappings(v []*InstanceBlockDeviceMapping) *DescribeInstanceAttributeOutput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetDisableApiTermination sets the DisableApiTermination field's value.
+func (s *DescribeInstanceAttributeOutput) SetDisableApiTermination(v *AttributeBooleanValue) *DescribeInstanceAttributeOutput {
+	s.DisableApiTermination = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *DescribeInstanceAttributeOutput) SetEbsOptimized(v *AttributeBooleanValue) *DescribeInstanceAttributeOutput {
+	s.EbsOptimized = v
+	return s
+}
+
+// SetEnaSupport sets the EnaSupport field's value.
+func (s *DescribeInstanceAttributeOutput) SetEnaSupport(v *AttributeBooleanValue) *DescribeInstanceAttributeOutput {
+	s.EnaSupport = v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *DescribeInstanceAttributeOutput) SetGroups(v []*GroupIdentifier) *DescribeInstanceAttributeOutput {
+	s.Groups = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeInstanceAttributeOutput) SetInstanceId(v string) *DescribeInstanceAttributeOutput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceInitiatedShutdownBehavior sets the InstanceInitiatedShutdownBehavior field's value.
+func (s *DescribeInstanceAttributeOutput) SetInstanceInitiatedShutdownBehavior(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.InstanceInitiatedShutdownBehavior = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *DescribeInstanceAttributeOutput) SetInstanceType(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.InstanceType = v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *DescribeInstanceAttributeOutput) SetKernelId(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.KernelId = v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *DescribeInstanceAttributeOutput) SetProductCodes(v []*ProductCode) *DescribeInstanceAttributeOutput {
+	s.ProductCodes = v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *DescribeInstanceAttributeOutput) SetRamdiskId(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.RamdiskId = v
+	return s
+}
+
+// SetRootDeviceName sets the RootDeviceName field's value.
+func (s *DescribeInstanceAttributeOutput) SetRootDeviceName(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.RootDeviceName = v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *DescribeInstanceAttributeOutput) SetSourceDestCheck(v *AttributeBooleanValue) *DescribeInstanceAttributeOutput {
+	s.SourceDestCheck = v
+	return s
+}
+
+// SetSriovNetSupport sets the SriovNetSupport field's value.
+func (s *DescribeInstanceAttributeOutput) SetSriovNetSupport(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.SriovNetSupport = v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *DescribeInstanceAttributeOutput) SetUserData(v *AttributeValue) *DescribeInstanceAttributeOutput {
+	s.UserData = v
+	return s
 }
 
 // Contains the parameters for DescribeInstanceStatus.
@@ -21495,6 +24561,42 @@ func (s DescribeInstanceStatusInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeInstanceStatusInput) SetDryRun(v bool) *DescribeInstanceStatusInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeInstanceStatusInput) SetFilters(v []*Filter) *DescribeInstanceStatusInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeAllInstances sets the IncludeAllInstances field's value.
+func (s *DescribeInstanceStatusInput) SetIncludeAllInstances(v bool) *DescribeInstanceStatusInput {
+	s.IncludeAllInstances = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *DescribeInstanceStatusInput) SetInstanceIds(v []*string) *DescribeInstanceStatusInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeInstanceStatusInput) SetMaxResults(v int64) *DescribeInstanceStatusInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstanceStatusInput) SetNextToken(v string) *DescribeInstanceStatusInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeInstanceStatus.
 type DescribeInstanceStatusOutput struct {
 	_ struct{} `type:"structure"`
@@ -21515,6 +24617,18 @@ func (s DescribeInstanceStatusOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInstanceStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceStatuses sets the InstanceStatuses field's value.
+func (s *DescribeInstanceStatusOutput) SetInstanceStatuses(v []*InstanceStatus) *DescribeInstanceStatusOutput {
+	s.InstanceStatuses = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstanceStatusOutput) SetNextToken(v string) *DescribeInstanceStatusOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeInstances.
@@ -21789,6 +24903,36 @@ func (s DescribeInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeInstancesInput) SetDryRun(v bool) *DescribeInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeInstancesInput) SetFilters(v []*Filter) *DescribeInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *DescribeInstancesInput) SetInstanceIds(v []*string) *DescribeInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeInstancesInput) SetMaxResults(v int64) *DescribeInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancesInput) SetNextToken(v string) *DescribeInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeInstances.
 type DescribeInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -21809,6 +24953,18 @@ func (s DescribeInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstancesOutput) SetNextToken(v string) *DescribeInstancesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReservations sets the Reservations field's value.
+func (s *DescribeInstancesOutput) SetReservations(v []*Reservation) *DescribeInstancesOutput {
+	s.Reservations = v
+	return s
 }
 
 // Contains the parameters for DescribeInternetGateways.
@@ -21860,6 +25016,24 @@ func (s DescribeInternetGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeInternetGatewaysInput) SetDryRun(v bool) *DescribeInternetGatewaysInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeInternetGatewaysInput) SetFilters(v []*Filter) *DescribeInternetGatewaysInput {
+	s.Filters = v
+	return s
+}
+
+// SetInternetGatewayIds sets the InternetGatewayIds field's value.
+func (s *DescribeInternetGatewaysInput) SetInternetGatewayIds(v []*string) *DescribeInternetGatewaysInput {
+	s.InternetGatewayIds = v
+	return s
+}
+
 // Contains the output of DescribeInternetGateways.
 type DescribeInternetGatewaysOutput struct {
 	_ struct{} `type:"structure"`
@@ -21876,6 +25050,12 @@ func (s DescribeInternetGatewaysOutput) String() string {
 // GoString returns the string representation
 func (s DescribeInternetGatewaysOutput) GoString() string {
 	return s.String()
+}
+
+// SetInternetGateways sets the InternetGateways field's value.
+func (s *DescribeInternetGatewaysOutput) SetInternetGateways(v []*InternetGateway) *DescribeInternetGatewaysOutput {
+	s.InternetGateways = v
+	return s
 }
 
 // Contains the parameters for DescribeKeyPairs.
@@ -21911,6 +25091,24 @@ func (s DescribeKeyPairsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeKeyPairsInput) SetDryRun(v bool) *DescribeKeyPairsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeKeyPairsInput) SetFilters(v []*Filter) *DescribeKeyPairsInput {
+	s.Filters = v
+	return s
+}
+
+// SetKeyNames sets the KeyNames field's value.
+func (s *DescribeKeyPairsInput) SetKeyNames(v []*string) *DescribeKeyPairsInput {
+	s.KeyNames = v
+	return s
+}
+
 // Contains the output of DescribeKeyPairs.
 type DescribeKeyPairsOutput struct {
 	_ struct{} `type:"structure"`
@@ -21927,6 +25125,12 @@ func (s DescribeKeyPairsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeKeyPairsOutput) GoString() string {
 	return s.String()
+}
+
+// SetKeyPairs sets the KeyPairs field's value.
+func (s *DescribeKeyPairsOutput) SetKeyPairs(v []*KeyPairInfo) *DescribeKeyPairsOutput {
+	s.KeyPairs = v
+	return s
 }
 
 // Contains the parameters for DescribeMovingAddresses.
@@ -21970,6 +25174,36 @@ func (s DescribeMovingAddressesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeMovingAddressesInput) SetDryRun(v bool) *DescribeMovingAddressesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeMovingAddressesInput) SetFilters(v []*Filter) *DescribeMovingAddressesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeMovingAddressesInput) SetMaxResults(v int64) *DescribeMovingAddressesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMovingAddressesInput) SetNextToken(v string) *DescribeMovingAddressesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPublicIps sets the PublicIps field's value.
+func (s *DescribeMovingAddressesInput) SetPublicIps(v []*string) *DescribeMovingAddressesInput {
+	s.PublicIps = v
+	return s
+}
+
 // Contains the output of DescribeMovingAddresses.
 type DescribeMovingAddressesOutput struct {
 	_ struct{} `type:"structure"`
@@ -21990,6 +25224,18 @@ func (s DescribeMovingAddressesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeMovingAddressesOutput) GoString() string {
 	return s.String()
+}
+
+// SetMovingAddressStatuses sets the MovingAddressStatuses field's value.
+func (s *DescribeMovingAddressesOutput) SetMovingAddressStatuses(v []*MovingAddressStatus) *DescribeMovingAddressesOutput {
+	s.MovingAddressStatuses = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeMovingAddressesOutput) SetNextToken(v string) *DescribeMovingAddressesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeNatGateways.
@@ -22033,6 +25279,30 @@ func (s DescribeNatGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// SetFilter sets the Filter field's value.
+func (s *DescribeNatGatewaysInput) SetFilter(v []*Filter) *DescribeNatGatewaysInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeNatGatewaysInput) SetMaxResults(v int64) *DescribeNatGatewaysInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNatGatewayIds sets the NatGatewayIds field's value.
+func (s *DescribeNatGatewaysInput) SetNatGatewayIds(v []*string) *DescribeNatGatewaysInput {
+	s.NatGatewayIds = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeNatGatewaysInput) SetNextToken(v string) *DescribeNatGatewaysInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeNatGateways.
 type DescribeNatGatewaysOutput struct {
 	_ struct{} `type:"structure"`
@@ -22053,6 +25323,18 @@ func (s DescribeNatGatewaysOutput) String() string {
 // GoString returns the string representation
 func (s DescribeNatGatewaysOutput) GoString() string {
 	return s.String()
+}
+
+// SetNatGateways sets the NatGateways field's value.
+func (s *DescribeNatGatewaysOutput) SetNatGateways(v []*NatGateway) *DescribeNatGatewaysOutput {
+	s.NatGateways = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeNatGatewaysOutput) SetNextToken(v string) *DescribeNatGatewaysOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Contains the parameters for DescribeNetworkAcls.
@@ -22133,6 +25415,24 @@ func (s DescribeNetworkAclsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeNetworkAclsInput) SetDryRun(v bool) *DescribeNetworkAclsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeNetworkAclsInput) SetFilters(v []*Filter) *DescribeNetworkAclsInput {
+	s.Filters = v
+	return s
+}
+
+// SetNetworkAclIds sets the NetworkAclIds field's value.
+func (s *DescribeNetworkAclsInput) SetNetworkAclIds(v []*string) *DescribeNetworkAclsInput {
+	s.NetworkAclIds = v
+	return s
+}
+
 // Contains the output of DescribeNetworkAcls.
 type DescribeNetworkAclsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22149,6 +25449,12 @@ func (s DescribeNetworkAclsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeNetworkAclsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNetworkAcls sets the NetworkAcls field's value.
+func (s *DescribeNetworkAclsOutput) SetNetworkAcls(v []*NetworkAcl) *DescribeNetworkAclsOutput {
+	s.NetworkAcls = v
+	return s
 }
 
 // Contains the parameters for DescribeNetworkInterfaceAttribute.
@@ -22193,6 +25499,24 @@ func (s *DescribeNetworkInterfaceAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeNetworkInterfaceAttributeInput) SetAttribute(v string) *DescribeNetworkInterfaceAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeNetworkInterfaceAttributeInput) SetDryRun(v bool) *DescribeNetworkInterfaceAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *DescribeNetworkInterfaceAttributeInput) SetNetworkInterfaceId(v string) *DescribeNetworkInterfaceAttributeInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
 // Contains the output of DescribeNetworkInterfaceAttribute.
 type DescribeNetworkInterfaceAttributeOutput struct {
 	_ struct{} `type:"structure"`
@@ -22221,6 +25545,36 @@ func (s DescribeNetworkInterfaceAttributeOutput) String() string {
 // GoString returns the string representation
 func (s DescribeNetworkInterfaceAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetAttachment sets the Attachment field's value.
+func (s *DescribeNetworkInterfaceAttributeOutput) SetAttachment(v *NetworkInterfaceAttachment) *DescribeNetworkInterfaceAttributeOutput {
+	s.Attachment = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeNetworkInterfaceAttributeOutput) SetDescription(v *AttributeValue) *DescribeNetworkInterfaceAttributeOutput {
+	s.Description = v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *DescribeNetworkInterfaceAttributeOutput) SetGroups(v []*GroupIdentifier) *DescribeNetworkInterfaceAttributeOutput {
+	s.Groups = v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *DescribeNetworkInterfaceAttributeOutput) SetNetworkInterfaceId(v string) *DescribeNetworkInterfaceAttributeOutput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *DescribeNetworkInterfaceAttributeOutput) SetSourceDestCheck(v *AttributeBooleanValue) *DescribeNetworkInterfaceAttributeOutput {
+	s.SourceDestCheck = v
+	return s
 }
 
 // Contains the parameters for DescribeNetworkInterfaces.
@@ -22355,6 +25709,24 @@ func (s DescribeNetworkInterfacesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeNetworkInterfacesInput) SetDryRun(v bool) *DescribeNetworkInterfacesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeNetworkInterfacesInput) SetFilters(v []*Filter) *DescribeNetworkInterfacesInput {
+	s.Filters = v
+	return s
+}
+
+// SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
+func (s *DescribeNetworkInterfacesInput) SetNetworkInterfaceIds(v []*string) *DescribeNetworkInterfacesInput {
+	s.NetworkInterfaceIds = v
+	return s
+}
+
 // Contains the output of DescribeNetworkInterfaces.
 type DescribeNetworkInterfacesOutput struct {
 	_ struct{} `type:"structure"`
@@ -22371,6 +25743,12 @@ func (s DescribeNetworkInterfacesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeNetworkInterfacesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *DescribeNetworkInterfacesOutput) SetNetworkInterfaces(v []*NetworkInterface) *DescribeNetworkInterfacesOutput {
+	s.NetworkInterfaces = v
+	return s
 }
 
 // Contains the parameters for DescribePlacementGroups.
@@ -22409,6 +25787,24 @@ func (s DescribePlacementGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribePlacementGroupsInput) SetDryRun(v bool) *DescribePlacementGroupsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribePlacementGroupsInput) SetFilters(v []*Filter) *DescribePlacementGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupNames sets the GroupNames field's value.
+func (s *DescribePlacementGroupsInput) SetGroupNames(v []*string) *DescribePlacementGroupsInput {
+	s.GroupNames = v
+	return s
+}
+
 // Contains the output of DescribePlacementGroups.
 type DescribePlacementGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22425,6 +25821,12 @@ func (s DescribePlacementGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribePlacementGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetPlacementGroups sets the PlacementGroups field's value.
+func (s *DescribePlacementGroupsOutput) SetPlacementGroups(v []*PlacementGroup) *DescribePlacementGroupsOutput {
+	s.PlacementGroups = v
+	return s
 }
 
 // Contains the parameters for DescribePrefixLists.
@@ -22470,6 +25872,36 @@ func (s DescribePrefixListsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribePrefixListsInput) SetDryRun(v bool) *DescribePrefixListsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribePrefixListsInput) SetFilters(v []*Filter) *DescribePrefixListsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribePrefixListsInput) SetMaxResults(v int64) *DescribePrefixListsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribePrefixListsInput) SetNextToken(v string) *DescribePrefixListsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrefixListIds sets the PrefixListIds field's value.
+func (s *DescribePrefixListsInput) SetPrefixListIds(v []*string) *DescribePrefixListsInput {
+	s.PrefixListIds = v
+	return s
+}
+
 // Contains the output of DescribePrefixLists.
 type DescribePrefixListsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22490,6 +25922,18 @@ func (s DescribePrefixListsOutput) String() string {
 // GoString returns the string representation
 func (s DescribePrefixListsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribePrefixListsOutput) SetNextToken(v string) *DescribePrefixListsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrefixLists sets the PrefixLists field's value.
+func (s *DescribePrefixListsOutput) SetPrefixLists(v []*PrefixList) *DescribePrefixListsOutput {
+	s.PrefixLists = v
+	return s
 }
 
 // Contains the parameters for DescribeRegions.
@@ -22523,6 +25967,24 @@ func (s DescribeRegionsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeRegionsInput) SetDryRun(v bool) *DescribeRegionsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeRegionsInput) SetFilters(v []*Filter) *DescribeRegionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetRegionNames sets the RegionNames field's value.
+func (s *DescribeRegionsInput) SetRegionNames(v []*string) *DescribeRegionsInput {
+	s.RegionNames = v
+	return s
+}
+
 // Contains the output of DescribeRegions.
 type DescribeRegionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22539,6 +26001,12 @@ func (s DescribeRegionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeRegionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetRegions sets the Regions field's value.
+func (s *DescribeRegionsOutput) SetRegions(v []*Region) *DescribeRegionsOutput {
+	s.Regions = v
+	return s
 }
 
 // Contains the parameters for DescribeReservedInstances.
@@ -22627,6 +26095,36 @@ func (s DescribeReservedInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeReservedInstancesInput) SetDryRun(v bool) *DescribeReservedInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReservedInstancesInput) SetFilters(v []*Filter) *DescribeReservedInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetOfferingClass sets the OfferingClass field's value.
+func (s *DescribeReservedInstancesInput) SetOfferingClass(v string) *DescribeReservedInstancesInput {
+	s.OfferingClass = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *DescribeReservedInstancesInput) SetOfferingType(v string) *DescribeReservedInstancesInput {
+	s.OfferingType = &v
+	return s
+}
+
+// SetReservedInstancesIds sets the ReservedInstancesIds field's value.
+func (s *DescribeReservedInstancesInput) SetReservedInstancesIds(v []*string) *DescribeReservedInstancesInput {
+	s.ReservedInstancesIds = v
+	return s
+}
+
 // Contains the parameters for DescribeReservedInstancesListings.
 type DescribeReservedInstancesListingsInput struct {
 	_ struct{} `type:"structure"`
@@ -22660,6 +26158,24 @@ func (s DescribeReservedInstancesListingsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeReservedInstancesListingsInput) SetFilters(v []*Filter) *DescribeReservedInstancesListingsInput {
+	s.Filters = v
+	return s
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *DescribeReservedInstancesListingsInput) SetReservedInstancesId(v string) *DescribeReservedInstancesListingsInput {
+	s.ReservedInstancesId = &v
+	return s
+}
+
+// SetReservedInstancesListingId sets the ReservedInstancesListingId field's value.
+func (s *DescribeReservedInstancesListingsInput) SetReservedInstancesListingId(v string) *DescribeReservedInstancesListingsInput {
+	s.ReservedInstancesListingId = &v
+	return s
+}
+
 // Contains the output of DescribeReservedInstancesListings.
 type DescribeReservedInstancesListingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22676,6 +26192,12 @@ func (s DescribeReservedInstancesListingsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReservedInstancesListingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesListings sets the ReservedInstancesListings field's value.
+func (s *DescribeReservedInstancesListingsOutput) SetReservedInstancesListings(v []*ReservedInstancesListing) *DescribeReservedInstancesListingsOutput {
+	s.ReservedInstancesListings = v
+	return s
 }
 
 // Contains the parameters for DescribeReservedInstancesModifications.
@@ -22735,6 +26257,24 @@ func (s DescribeReservedInstancesModificationsInput) GoString() string {
 	return s.String()
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DescribeReservedInstancesModificationsInput) SetFilters(v []*Filter) *DescribeReservedInstancesModificationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReservedInstancesModificationsInput) SetNextToken(v string) *DescribeReservedInstancesModificationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReservedInstancesModificationIds sets the ReservedInstancesModificationIds field's value.
+func (s *DescribeReservedInstancesModificationsInput) SetReservedInstancesModificationIds(v []*string) *DescribeReservedInstancesModificationsInput {
+	s.ReservedInstancesModificationIds = v
+	return s
+}
+
 // Contains the output of DescribeReservedInstancesModifications.
 type DescribeReservedInstancesModificationsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22755,6 +26295,18 @@ func (s DescribeReservedInstancesModificationsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReservedInstancesModificationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReservedInstancesModificationsOutput) SetNextToken(v string) *DescribeReservedInstancesModificationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReservedInstancesModifications sets the ReservedInstancesModifications field's value.
+func (s *DescribeReservedInstancesModificationsOutput) SetReservedInstancesModifications(v []*ReservedInstancesModification) *DescribeReservedInstancesModificationsOutput {
+	s.ReservedInstancesModifications = v
+	return s
 }
 
 // Contains the parameters for DescribeReservedInstancesOfferings.
@@ -22873,6 +26425,96 @@ func (s DescribeReservedInstancesOfferingsInput) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetAvailabilityZone(v string) *DescribeReservedInstancesOfferingsInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetDryRun(v bool) *DescribeReservedInstancesOfferingsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetFilters(v []*Filter) *DescribeReservedInstancesOfferingsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMarketplace sets the IncludeMarketplace field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetIncludeMarketplace(v bool) *DescribeReservedInstancesOfferingsInput {
+	s.IncludeMarketplace = &v
+	return s
+}
+
+// SetInstanceTenancy sets the InstanceTenancy field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetInstanceTenancy(v string) *DescribeReservedInstancesOfferingsInput {
+	s.InstanceTenancy = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetInstanceType(v string) *DescribeReservedInstancesOfferingsInput {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMaxDuration sets the MaxDuration field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetMaxDuration(v int64) *DescribeReservedInstancesOfferingsInput {
+	s.MaxDuration = &v
+	return s
+}
+
+// SetMaxInstanceCount sets the MaxInstanceCount field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetMaxInstanceCount(v int64) *DescribeReservedInstancesOfferingsInput {
+	s.MaxInstanceCount = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetMaxResults(v int64) *DescribeReservedInstancesOfferingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMinDuration sets the MinDuration field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetMinDuration(v int64) *DescribeReservedInstancesOfferingsInput {
+	s.MinDuration = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetNextToken(v string) *DescribeReservedInstancesOfferingsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferingClass sets the OfferingClass field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetOfferingClass(v string) *DescribeReservedInstancesOfferingsInput {
+	s.OfferingClass = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetOfferingType(v string) *DescribeReservedInstancesOfferingsInput {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetProductDescription(v string) *DescribeReservedInstancesOfferingsInput {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetReservedInstancesOfferingIds sets the ReservedInstancesOfferingIds field's value.
+func (s *DescribeReservedInstancesOfferingsInput) SetReservedInstancesOfferingIds(v []*string) *DescribeReservedInstancesOfferingsInput {
+	s.ReservedInstancesOfferingIds = v
+	return s
+}
+
 // Contains the output of DescribeReservedInstancesOfferings.
 type DescribeReservedInstancesOfferingsOutput struct {
 	_ struct{} `type:"structure"`
@@ -22895,6 +26537,18 @@ func (s DescribeReservedInstancesOfferingsOutput) GoString() string {
 	return s.String()
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeReservedInstancesOfferingsOutput) SetNextToken(v string) *DescribeReservedInstancesOfferingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReservedInstancesOfferings sets the ReservedInstancesOfferings field's value.
+func (s *DescribeReservedInstancesOfferingsOutput) SetReservedInstancesOfferings(v []*ReservedInstancesOffering) *DescribeReservedInstancesOfferingsOutput {
+	s.ReservedInstancesOfferings = v
+	return s
+}
+
 // Contains the output for DescribeReservedInstances.
 type DescribeReservedInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -22911,6 +26565,12 @@ func (s DescribeReservedInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeReservedInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstances sets the ReservedInstances field's value.
+func (s *DescribeReservedInstancesOutput) SetReservedInstances(v []*ReservedInstances) *DescribeReservedInstancesOutput {
+	s.ReservedInstances = v
+	return s
 }
 
 // Contains the parameters for DescribeRouteTables.
@@ -22997,6 +26657,24 @@ func (s DescribeRouteTablesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeRouteTablesInput) SetDryRun(v bool) *DescribeRouteTablesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeRouteTablesInput) SetFilters(v []*Filter) *DescribeRouteTablesInput {
+	s.Filters = v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *DescribeRouteTablesInput) SetRouteTableIds(v []*string) *DescribeRouteTablesInput {
+	s.RouteTableIds = v
+	return s
+}
+
 // Contains the output of DescribeRouteTables.
 type DescribeRouteTablesOutput struct {
 	_ struct{} `type:"structure"`
@@ -23013,6 +26691,12 @@ func (s DescribeRouteTablesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeRouteTablesOutput) GoString() string {
 	return s.String()
+}
+
+// SetRouteTables sets the RouteTables field's value.
+func (s *DescribeRouteTablesOutput) SetRouteTables(v []*RouteTable) *DescribeRouteTablesOutput {
+	s.RouteTables = v
+	return s
 }
 
 // Contains the parameters for DescribeScheduledInstanceAvailability.
@@ -23096,6 +26780,54 @@ func (s *DescribeScheduledInstanceAvailabilityInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetDryRun(v bool) *DescribeScheduledInstanceAvailabilityInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetFilters(v []*Filter) *DescribeScheduledInstanceAvailabilityInput {
+	s.Filters = v
+	return s
+}
+
+// SetFirstSlotStartTimeRange sets the FirstSlotStartTimeRange field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetFirstSlotStartTimeRange(v *SlotDateTimeRangeRequest) *DescribeScheduledInstanceAvailabilityInput {
+	s.FirstSlotStartTimeRange = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetMaxResults(v int64) *DescribeScheduledInstanceAvailabilityInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMaxSlotDurationInHours sets the MaxSlotDurationInHours field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetMaxSlotDurationInHours(v int64) *DescribeScheduledInstanceAvailabilityInput {
+	s.MaxSlotDurationInHours = &v
+	return s
+}
+
+// SetMinSlotDurationInHours sets the MinSlotDurationInHours field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetMinSlotDurationInHours(v int64) *DescribeScheduledInstanceAvailabilityInput {
+	s.MinSlotDurationInHours = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetNextToken(v string) *DescribeScheduledInstanceAvailabilityInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecurrence sets the Recurrence field's value.
+func (s *DescribeScheduledInstanceAvailabilityInput) SetRecurrence(v *ScheduledInstanceRecurrenceRequest) *DescribeScheduledInstanceAvailabilityInput {
+	s.Recurrence = v
+	return s
+}
+
 // Contains the output of DescribeScheduledInstanceAvailability.
 type DescribeScheduledInstanceAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
@@ -23116,6 +26848,18 @@ func (s DescribeScheduledInstanceAvailabilityOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScheduledInstanceAvailabilityOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScheduledInstanceAvailabilityOutput) SetNextToken(v string) *DescribeScheduledInstanceAvailabilityOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledInstanceAvailabilitySet sets the ScheduledInstanceAvailabilitySet field's value.
+func (s *DescribeScheduledInstanceAvailabilityOutput) SetScheduledInstanceAvailabilitySet(v []*ScheduledInstanceAvailability) *DescribeScheduledInstanceAvailabilityOutput {
+	s.ScheduledInstanceAvailabilitySet = v
+	return s
 }
 
 // Contains the parameters for DescribeScheduledInstances.
@@ -23164,6 +26908,42 @@ func (s DescribeScheduledInstancesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeScheduledInstancesInput) SetDryRun(v bool) *DescribeScheduledInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeScheduledInstancesInput) SetFilters(v []*Filter) *DescribeScheduledInstancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeScheduledInstancesInput) SetMaxResults(v int64) *DescribeScheduledInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScheduledInstancesInput) SetNextToken(v string) *DescribeScheduledInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledInstanceIds sets the ScheduledInstanceIds field's value.
+func (s *DescribeScheduledInstancesInput) SetScheduledInstanceIds(v []*string) *DescribeScheduledInstancesInput {
+	s.ScheduledInstanceIds = v
+	return s
+}
+
+// SetSlotStartTimeRange sets the SlotStartTimeRange field's value.
+func (s *DescribeScheduledInstancesInput) SetSlotStartTimeRange(v *SlotStartTimeRangeRequest) *DescribeScheduledInstancesInput {
+	s.SlotStartTimeRange = v
+	return s
+}
+
 // Contains the output of DescribeScheduledInstances.
 type DescribeScheduledInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -23184,6 +26964,18 @@ func (s DescribeScheduledInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeScheduledInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeScheduledInstancesOutput) SetNextToken(v string) *DescribeScheduledInstancesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetScheduledInstanceSet sets the ScheduledInstanceSet field's value.
+func (s *DescribeScheduledInstancesOutput) SetScheduledInstanceSet(v []*ScheduledInstance) *DescribeScheduledInstancesOutput {
+	s.ScheduledInstanceSet = v
+	return s
 }
 
 type DescribeSecurityGroupReferencesInput struct {
@@ -23224,6 +27016,18 @@ func (s *DescribeSecurityGroupReferencesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSecurityGroupReferencesInput) SetDryRun(v bool) *DescribeSecurityGroupReferencesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *DescribeSecurityGroupReferencesInput) SetGroupId(v []*string) *DescribeSecurityGroupReferencesInput {
+	s.GroupId = v
+	return s
+}
+
 type DescribeSecurityGroupReferencesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -23239,6 +27043,12 @@ func (s DescribeSecurityGroupReferencesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSecurityGroupReferencesOutput) GoString() string {
 	return s.String()
+}
+
+// SetSecurityGroupReferenceSet sets the SecurityGroupReferenceSet field's value.
+func (s *DescribeSecurityGroupReferencesOutput) SetSecurityGroupReferenceSet(v []*SecurityGroupReference) *DescribeSecurityGroupReferencesOutput {
+	s.SecurityGroupReferenceSet = v
+	return s
 }
 
 // Contains the parameters for DescribeSecurityGroups.
@@ -23318,6 +27128,30 @@ func (s DescribeSecurityGroupsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSecurityGroupsInput) SetDryRun(v bool) *DescribeSecurityGroupsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSecurityGroupsInput) SetFilters(v []*Filter) *DescribeSecurityGroupsInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupIds sets the GroupIds field's value.
+func (s *DescribeSecurityGroupsInput) SetGroupIds(v []*string) *DescribeSecurityGroupsInput {
+	s.GroupIds = v
+	return s
+}
+
+// SetGroupNames sets the GroupNames field's value.
+func (s *DescribeSecurityGroupsInput) SetGroupNames(v []*string) *DescribeSecurityGroupsInput {
+	s.GroupNames = v
+	return s
+}
+
 // Contains the output of DescribeSecurityGroups.
 type DescribeSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -23334,6 +27168,12 @@ func (s DescribeSecurityGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSecurityGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *DescribeSecurityGroupsOutput) SetSecurityGroups(v []*SecurityGroup) *DescribeSecurityGroupsOutput {
+	s.SecurityGroups = v
+	return s
 }
 
 // Contains the parameters for DescribeSnapshotAttribute.
@@ -23383,6 +27223,24 @@ func (s *DescribeSnapshotAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeSnapshotAttributeInput) SetAttribute(v string) *DescribeSnapshotAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSnapshotAttributeInput) SetDryRun(v bool) *DescribeSnapshotAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *DescribeSnapshotAttributeInput) SetSnapshotId(v string) *DescribeSnapshotAttributeInput {
+	s.SnapshotId = &v
+	return s
+}
+
 // Contains the output of DescribeSnapshotAttribute.
 type DescribeSnapshotAttributeOutput struct {
 	_ struct{} `type:"structure"`
@@ -23405,6 +27263,24 @@ func (s DescribeSnapshotAttributeOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSnapshotAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreateVolumePermissions sets the CreateVolumePermissions field's value.
+func (s *DescribeSnapshotAttributeOutput) SetCreateVolumePermissions(v []*CreateVolumePermission) *DescribeSnapshotAttributeOutput {
+	s.CreateVolumePermissions = v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *DescribeSnapshotAttributeOutput) SetProductCodes(v []*ProductCode) *DescribeSnapshotAttributeOutput {
+	s.ProductCodes = v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *DescribeSnapshotAttributeOutput) SetSnapshotId(v string) *DescribeSnapshotAttributeOutput {
+	s.SnapshotId = &v
+	return s
 }
 
 // Contains the parameters for DescribeSnapshots.
@@ -23495,6 +27371,48 @@ func (s DescribeSnapshotsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSnapshotsInput) SetDryRun(v bool) *DescribeSnapshotsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSnapshotsInput) SetFilters(v []*Filter) *DescribeSnapshotsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSnapshotsInput) SetMaxResults(v int64) *DescribeSnapshotsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSnapshotsInput) SetNextToken(v string) *DescribeSnapshotsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOwnerIds sets the OwnerIds field's value.
+func (s *DescribeSnapshotsInput) SetOwnerIds(v []*string) *DescribeSnapshotsInput {
+	s.OwnerIds = v
+	return s
+}
+
+// SetRestorableByUserIds sets the RestorableByUserIds field's value.
+func (s *DescribeSnapshotsInput) SetRestorableByUserIds(v []*string) *DescribeSnapshotsInput {
+	s.RestorableByUserIds = v
+	return s
+}
+
+// SetSnapshotIds sets the SnapshotIds field's value.
+func (s *DescribeSnapshotsInput) SetSnapshotIds(v []*string) *DescribeSnapshotsInput {
+	s.SnapshotIds = v
+	return s
+}
+
 // Contains the output of DescribeSnapshots.
 type DescribeSnapshotsOutput struct {
 	_ struct{} `type:"structure"`
@@ -23519,6 +27437,18 @@ func (s DescribeSnapshotsOutput) GoString() string {
 	return s.String()
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSnapshotsOutput) SetNextToken(v string) *DescribeSnapshotsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSnapshots sets the Snapshots field's value.
+func (s *DescribeSnapshotsOutput) SetSnapshots(v []*Snapshot) *DescribeSnapshotsOutput {
+	s.Snapshots = v
+	return s
+}
+
 // Contains the parameters for DescribeSpotDatafeedSubscription.
 type DescribeSpotDatafeedSubscriptionInput struct {
 	_ struct{} `type:"structure"`
@@ -23540,6 +27470,12 @@ func (s DescribeSpotDatafeedSubscriptionInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSpotDatafeedSubscriptionInput) SetDryRun(v bool) *DescribeSpotDatafeedSubscriptionInput {
+	s.DryRun = &v
+	return s
+}
+
 // Contains the output of DescribeSpotDatafeedSubscription.
 type DescribeSpotDatafeedSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
@@ -23556,6 +27492,12 @@ func (s DescribeSpotDatafeedSubscriptionOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSpotDatafeedSubscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetSpotDatafeedSubscription sets the SpotDatafeedSubscription field's value.
+func (s *DescribeSpotDatafeedSubscriptionOutput) SetSpotDatafeedSubscription(v *SpotDatafeedSubscription) *DescribeSpotDatafeedSubscriptionOutput {
+	s.SpotDatafeedSubscription = v
+	return s
 }
 
 // Contains the parameters for DescribeSpotFleetInstances.
@@ -23605,6 +27547,30 @@ func (s *DescribeSpotFleetInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSpotFleetInstancesInput) SetDryRun(v bool) *DescribeSpotFleetInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSpotFleetInstancesInput) SetMaxResults(v int64) *DescribeSpotFleetInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotFleetInstancesInput) SetNextToken(v string) *DescribeSpotFleetInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *DescribeSpotFleetInstancesInput) SetSpotFleetRequestId(v string) *DescribeSpotFleetInstancesInput {
+	s.SpotFleetRequestId = &v
+	return s
+}
+
 // Contains the output of DescribeSpotFleetInstances.
 type DescribeSpotFleetInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -23633,6 +27599,24 @@ func (s DescribeSpotFleetInstancesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSpotFleetInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveInstances sets the ActiveInstances field's value.
+func (s *DescribeSpotFleetInstancesOutput) SetActiveInstances(v []*ActiveInstance) *DescribeSpotFleetInstancesOutput {
+	s.ActiveInstances = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotFleetInstancesOutput) SetNextToken(v string) *DescribeSpotFleetInstancesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *DescribeSpotFleetInstancesOutput) SetSpotFleetRequestId(v string) *DescribeSpotFleetInstancesOutput {
+	s.SpotFleetRequestId = &v
+	return s
 }
 
 // Contains the parameters for DescribeSpotFleetRequestHistory.
@@ -23693,6 +27677,42 @@ func (s *DescribeSpotFleetRequestHistoryInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSpotFleetRequestHistoryInput) SetDryRun(v bool) *DescribeSpotFleetRequestHistoryInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *DescribeSpotFleetRequestHistoryInput) SetEventType(v string) *DescribeSpotFleetRequestHistoryInput {
+	s.EventType = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSpotFleetRequestHistoryInput) SetMaxResults(v int64) *DescribeSpotFleetRequestHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotFleetRequestHistoryInput) SetNextToken(v string) *DescribeSpotFleetRequestHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *DescribeSpotFleetRequestHistoryInput) SetSpotFleetRequestId(v string) *DescribeSpotFleetRequestHistoryInput {
+	s.SpotFleetRequestId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeSpotFleetRequestHistoryInput) SetStartTime(v time.Time) *DescribeSpotFleetRequestHistoryInput {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the output of DescribeSpotFleetRequestHistory.
 type DescribeSpotFleetRequestHistoryOutput struct {
 	_ struct{} `type:"structure"`
@@ -23735,6 +27755,36 @@ func (s DescribeSpotFleetRequestHistoryOutput) GoString() string {
 	return s.String()
 }
 
+// SetHistoryRecords sets the HistoryRecords field's value.
+func (s *DescribeSpotFleetRequestHistoryOutput) SetHistoryRecords(v []*HistoryRecord) *DescribeSpotFleetRequestHistoryOutput {
+	s.HistoryRecords = v
+	return s
+}
+
+// SetLastEvaluatedTime sets the LastEvaluatedTime field's value.
+func (s *DescribeSpotFleetRequestHistoryOutput) SetLastEvaluatedTime(v time.Time) *DescribeSpotFleetRequestHistoryOutput {
+	s.LastEvaluatedTime = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotFleetRequestHistoryOutput) SetNextToken(v string) *DescribeSpotFleetRequestHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *DescribeSpotFleetRequestHistoryOutput) SetSpotFleetRequestId(v string) *DescribeSpotFleetRequestHistoryOutput {
+	s.SpotFleetRequestId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeSpotFleetRequestHistoryOutput) SetStartTime(v time.Time) *DescribeSpotFleetRequestHistoryOutput {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the parameters for DescribeSpotFleetRequests.
 type DescribeSpotFleetRequestsInput struct {
 	_ struct{} `type:"structure"`
@@ -23767,6 +27817,30 @@ func (s DescribeSpotFleetRequestsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSpotFleetRequestsInput) SetDryRun(v bool) *DescribeSpotFleetRequestsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSpotFleetRequestsInput) SetMaxResults(v int64) *DescribeSpotFleetRequestsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotFleetRequestsInput) SetNextToken(v string) *DescribeSpotFleetRequestsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotFleetRequestIds sets the SpotFleetRequestIds field's value.
+func (s *DescribeSpotFleetRequestsInput) SetSpotFleetRequestIds(v []*string) *DescribeSpotFleetRequestsInput {
+	s.SpotFleetRequestIds = v
+	return s
+}
+
 // Contains the output of DescribeSpotFleetRequests.
 type DescribeSpotFleetRequestsOutput struct {
 	_ struct{} `type:"structure"`
@@ -23789,6 +27863,18 @@ func (s DescribeSpotFleetRequestsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSpotFleetRequestsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotFleetRequestsOutput) SetNextToken(v string) *DescribeSpotFleetRequestsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotFleetRequestConfigs sets the SpotFleetRequestConfigs field's value.
+func (s *DescribeSpotFleetRequestsOutput) SetSpotFleetRequestConfigs(v []*SpotFleetRequestConfig) *DescribeSpotFleetRequestsOutput {
+	s.SpotFleetRequestConfigs = v
+	return s
 }
 
 // Contains the parameters for DescribeSpotInstanceRequests.
@@ -23927,6 +28013,24 @@ func (s DescribeSpotInstanceRequestsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSpotInstanceRequestsInput) SetDryRun(v bool) *DescribeSpotInstanceRequestsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSpotInstanceRequestsInput) SetFilters(v []*Filter) *DescribeSpotInstanceRequestsInput {
+	s.Filters = v
+	return s
+}
+
+// SetSpotInstanceRequestIds sets the SpotInstanceRequestIds field's value.
+func (s *DescribeSpotInstanceRequestsInput) SetSpotInstanceRequestIds(v []*string) *DescribeSpotInstanceRequestsInput {
+	s.SpotInstanceRequestIds = v
+	return s
+}
+
 // Contains the output of DescribeSpotInstanceRequests.
 type DescribeSpotInstanceRequestsOutput struct {
 	_ struct{} `type:"structure"`
@@ -23943,6 +28047,12 @@ func (s DescribeSpotInstanceRequestsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSpotInstanceRequestsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSpotInstanceRequests sets the SpotInstanceRequests field's value.
+func (s *DescribeSpotInstanceRequestsOutput) SetSpotInstanceRequests(v []*SpotInstanceRequest) *DescribeSpotInstanceRequestsOutput {
+	s.SpotInstanceRequests = v
+	return s
 }
 
 // Contains the parameters for DescribeSpotPriceHistory.
@@ -24010,6 +28120,60 @@ func (s DescribeSpotPriceHistoryInput) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *DescribeSpotPriceHistoryInput) SetAvailabilityZone(v string) *DescribeSpotPriceHistoryInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSpotPriceHistoryInput) SetDryRun(v bool) *DescribeSpotPriceHistoryInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *DescribeSpotPriceHistoryInput) SetEndTime(v time.Time) *DescribeSpotPriceHistoryInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSpotPriceHistoryInput) SetFilters(v []*Filter) *DescribeSpotPriceHistoryInput {
+	s.Filters = v
+	return s
+}
+
+// SetInstanceTypes sets the InstanceTypes field's value.
+func (s *DescribeSpotPriceHistoryInput) SetInstanceTypes(v []*string) *DescribeSpotPriceHistoryInput {
+	s.InstanceTypes = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeSpotPriceHistoryInput) SetMaxResults(v int64) *DescribeSpotPriceHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotPriceHistoryInput) SetNextToken(v string) *DescribeSpotPriceHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProductDescriptions sets the ProductDescriptions field's value.
+func (s *DescribeSpotPriceHistoryInput) SetProductDescriptions(v []*string) *DescribeSpotPriceHistoryInput {
+	s.ProductDescriptions = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *DescribeSpotPriceHistoryInput) SetStartTime(v time.Time) *DescribeSpotPriceHistoryInput {
+	s.StartTime = &v
+	return s
+}
+
 // Contains the output of DescribeSpotPriceHistory.
 type DescribeSpotPriceHistoryOutput struct {
 	_ struct{} `type:"structure"`
@@ -24030,6 +28194,18 @@ func (s DescribeSpotPriceHistoryOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSpotPriceHistoryOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeSpotPriceHistoryOutput) SetNextToken(v string) *DescribeSpotPriceHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSpotPriceHistory sets the SpotPriceHistory field's value.
+func (s *DescribeSpotPriceHistoryOutput) SetSpotPriceHistory(v []*SpotPrice) *DescribeSpotPriceHistoryOutput {
+	s.SpotPriceHistory = v
+	return s
 }
 
 type DescribeStaleSecurityGroupsInput struct {
@@ -24085,6 +28261,30 @@ func (s *DescribeStaleSecurityGroupsInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeStaleSecurityGroupsInput) SetDryRun(v bool) *DescribeStaleSecurityGroupsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStaleSecurityGroupsInput) SetMaxResults(v int64) *DescribeStaleSecurityGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStaleSecurityGroupsInput) SetNextToken(v string) *DescribeStaleSecurityGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DescribeStaleSecurityGroupsInput) SetVpcId(v string) *DescribeStaleSecurityGroupsInput {
+	s.VpcId = &v
+	return s
+}
+
 type DescribeStaleSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -24104,6 +28304,18 @@ func (s DescribeStaleSecurityGroupsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStaleSecurityGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStaleSecurityGroupsOutput) SetNextToken(v string) *DescribeStaleSecurityGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStaleSecurityGroupSet sets the StaleSecurityGroupSet field's value.
+func (s *DescribeStaleSecurityGroupsOutput) SetStaleSecurityGroupSet(v []*StaleSecurityGroup) *DescribeStaleSecurityGroupsOutput {
+	s.StaleSecurityGroupSet = v
+	return s
 }
 
 // Contains the parameters for DescribeSubnets.
@@ -24167,6 +28379,24 @@ func (s DescribeSubnetsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeSubnetsInput) SetDryRun(v bool) *DescribeSubnetsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeSubnetsInput) SetFilters(v []*Filter) *DescribeSubnetsInput {
+	s.Filters = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *DescribeSubnetsInput) SetSubnetIds(v []*string) *DescribeSubnetsInput {
+	s.SubnetIds = v
+	return s
+}
+
 // Contains the output of DescribeSubnets.
 type DescribeSubnetsOutput struct {
 	_ struct{} `type:"structure"`
@@ -24183,6 +28413,12 @@ func (s DescribeSubnetsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSubnetsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *DescribeSubnetsOutput) SetSubnets(v []*Subnet) *DescribeSubnetsOutput {
+	s.Subnets = v
+	return s
 }
 
 // Contains the parameters for DescribeTags.
@@ -24228,6 +28464,30 @@ func (s DescribeTagsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeTagsInput) SetDryRun(v bool) *DescribeTagsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeTagsInput) SetFilters(v []*Filter) *DescribeTagsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeTagsInput) SetMaxResults(v int64) *DescribeTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeTagsInput) SetNextToken(v string) *DescribeTagsInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeTags.
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
@@ -24248,6 +28508,18 @@ func (s DescribeTagsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeTagsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeTagsOutput) SetNextToken(v string) *DescribeTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeTagsOutput) SetTags(v []*TagDescription) *DescribeTagsOutput {
+	s.Tags = v
+	return s
 }
 
 // Contains the parameters for DescribeVolumeAttribute.
@@ -24292,6 +28564,24 @@ func (s *DescribeVolumeAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeVolumeAttributeInput) SetAttribute(v string) *DescribeVolumeAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVolumeAttributeInput) SetDryRun(v bool) *DescribeVolumeAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DescribeVolumeAttributeInput) SetVolumeId(v string) *DescribeVolumeAttributeInput {
+	s.VolumeId = &v
+	return s
+}
+
 // Contains the output of DescribeVolumeAttribute.
 type DescribeVolumeAttributeOutput struct {
 	_ struct{} `type:"structure"`
@@ -24314,6 +28604,24 @@ func (s DescribeVolumeAttributeOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVolumeAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetAutoEnableIO sets the AutoEnableIO field's value.
+func (s *DescribeVolumeAttributeOutput) SetAutoEnableIO(v *AttributeBooleanValue) *DescribeVolumeAttributeOutput {
+	s.AutoEnableIO = v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *DescribeVolumeAttributeOutput) SetProductCodes(v []*ProductCode) *DescribeVolumeAttributeOutput {
+	s.ProductCodes = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DescribeVolumeAttributeOutput) SetVolumeId(v string) *DescribeVolumeAttributeOutput {
+	s.VolumeId = &v
+	return s
 }
 
 // Contains the parameters for DescribeVolumeStatus.
@@ -24391,6 +28699,36 @@ func (s DescribeVolumeStatusInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVolumeStatusInput) SetDryRun(v bool) *DescribeVolumeStatusInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVolumeStatusInput) SetFilters(v []*Filter) *DescribeVolumeStatusInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVolumeStatusInput) SetMaxResults(v int64) *DescribeVolumeStatusInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumeStatusInput) SetNextToken(v string) *DescribeVolumeStatusInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumeIds sets the VolumeIds field's value.
+func (s *DescribeVolumeStatusInput) SetVolumeIds(v []*string) *DescribeVolumeStatusInput {
+	s.VolumeIds = v
+	return s
+}
+
 // Contains the output of DescribeVolumeStatus.
 type DescribeVolumeStatusOutput struct {
 	_ struct{} `type:"structure"`
@@ -24411,6 +28749,18 @@ func (s DescribeVolumeStatusOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVolumeStatusOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumeStatusOutput) SetNextToken(v string) *DescribeVolumeStatusOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumeStatuses sets the VolumeStatuses field's value.
+func (s *DescribeVolumeStatusOutput) SetVolumeStatuses(v []*VolumeStatusItem) *DescribeVolumeStatusOutput {
+	s.VolumeStatuses = v
+	return s
 }
 
 // Contains the parameters for DescribeVolumes.
@@ -24503,6 +28853,36 @@ func (s DescribeVolumesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVolumesInput) SetDryRun(v bool) *DescribeVolumesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVolumesInput) SetFilters(v []*Filter) *DescribeVolumesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVolumesInput) SetMaxResults(v int64) *DescribeVolumesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumesInput) SetNextToken(v string) *DescribeVolumesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumeIds sets the VolumeIds field's value.
+func (s *DescribeVolumesInput) SetVolumeIds(v []*string) *DescribeVolumesInput {
+	s.VolumeIds = v
+	return s
+}
+
 // Contains the output of DescribeVolumes.
 type DescribeVolumesOutput struct {
 	_ struct{} `type:"structure"`
@@ -24525,6 +28905,18 @@ func (s DescribeVolumesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVolumesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumesOutput) SetNextToken(v string) *DescribeVolumesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *DescribeVolumesOutput) SetVolumes(v []*Volume) *DescribeVolumesOutput {
+	s.Volumes = v
+	return s
 }
 
 // Contains the parameters for DescribeVpcAttribute.
@@ -24574,6 +28966,24 @@ func (s *DescribeVpcAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeVpcAttributeInput) SetAttribute(v string) *DescribeVpcAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpcAttributeInput) SetDryRun(v bool) *DescribeVpcAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DescribeVpcAttributeInput) SetVpcId(v string) *DescribeVpcAttributeInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of DescribeVpcAttribute.
 type DescribeVpcAttributeOutput struct {
 	_ struct{} `type:"structure"`
@@ -24600,6 +29010,24 @@ func (s DescribeVpcAttributeOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcAttributeOutput) GoString() string {
 	return s.String()
+}
+
+// SetEnableDnsHostnames sets the EnableDnsHostnames field's value.
+func (s *DescribeVpcAttributeOutput) SetEnableDnsHostnames(v *AttributeBooleanValue) *DescribeVpcAttributeOutput {
+	s.EnableDnsHostnames = v
+	return s
+}
+
+// SetEnableDnsSupport sets the EnableDnsSupport field's value.
+func (s *DescribeVpcAttributeOutput) SetEnableDnsSupport(v *AttributeBooleanValue) *DescribeVpcAttributeOutput {
+	s.EnableDnsSupport = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DescribeVpcAttributeOutput) SetVpcId(v string) *DescribeVpcAttributeOutput {
+	s.VpcId = &v
+	return s
 }
 
 // Contains the parameters for DescribeVpcClassicLinkDnsSupport.
@@ -24645,6 +29073,24 @@ func (s *DescribeVpcClassicLinkDnsSupportInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVpcClassicLinkDnsSupportInput) SetMaxResults(v int64) *DescribeVpcClassicLinkDnsSupportInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcClassicLinkDnsSupportInput) SetNextToken(v string) *DescribeVpcClassicLinkDnsSupportInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcIds sets the VpcIds field's value.
+func (s *DescribeVpcClassicLinkDnsSupportInput) SetVpcIds(v []*string) *DescribeVpcClassicLinkDnsSupportInput {
+	s.VpcIds = v
+	return s
+}
+
 // Contains the output of DescribeVpcClassicLinkDnsSupport.
 type DescribeVpcClassicLinkDnsSupportOutput struct {
 	_ struct{} `type:"structure"`
@@ -24664,6 +29110,18 @@ func (s DescribeVpcClassicLinkDnsSupportOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcClassicLinkDnsSupportOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcClassicLinkDnsSupportOutput) SetNextToken(v string) *DescribeVpcClassicLinkDnsSupportOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcs sets the Vpcs field's value.
+func (s *DescribeVpcClassicLinkDnsSupportOutput) SetVpcs(v []*ClassicLinkDnsSupport) *DescribeVpcClassicLinkDnsSupportOutput {
+	s.Vpcs = v
+	return s
 }
 
 // Contains the parameters for DescribeVpcClassicLink.
@@ -24709,6 +29167,24 @@ func (s DescribeVpcClassicLinkInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpcClassicLinkInput) SetDryRun(v bool) *DescribeVpcClassicLinkInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpcClassicLinkInput) SetFilters(v []*Filter) *DescribeVpcClassicLinkInput {
+	s.Filters = v
+	return s
+}
+
+// SetVpcIds sets the VpcIds field's value.
+func (s *DescribeVpcClassicLinkInput) SetVpcIds(v []*string) *DescribeVpcClassicLinkInput {
+	s.VpcIds = v
+	return s
+}
+
 // Contains the output of DescribeVpcClassicLink.
 type DescribeVpcClassicLinkOutput struct {
 	_ struct{} `type:"structure"`
@@ -24725,6 +29201,12 @@ func (s DescribeVpcClassicLinkOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcClassicLinkOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpcs sets the Vpcs field's value.
+func (s *DescribeVpcClassicLinkOutput) SetVpcs(v []*VpcClassicLink) *DescribeVpcClassicLinkOutput {
+	s.Vpcs = v
+	return s
 }
 
 // Contains the parameters for DescribeVpcEndpointServices.
@@ -24759,6 +29241,24 @@ func (s DescribeVpcEndpointServicesInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpcEndpointServicesInput) SetDryRun(v bool) *DescribeVpcEndpointServicesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVpcEndpointServicesInput) SetMaxResults(v int64) *DescribeVpcEndpointServicesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcEndpointServicesInput) SetNextToken(v string) *DescribeVpcEndpointServicesInput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains the output of DescribeVpcEndpointServices.
 type DescribeVpcEndpointServicesOutput struct {
 	_ struct{} `type:"structure"`
@@ -24779,6 +29279,18 @@ func (s DescribeVpcEndpointServicesOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcEndpointServicesOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcEndpointServicesOutput) SetNextToken(v string) *DescribeVpcEndpointServicesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceNames sets the ServiceNames field's value.
+func (s *DescribeVpcEndpointServicesOutput) SetServiceNames(v []*string) *DescribeVpcEndpointServicesOutput {
+	s.ServiceNames = v
+	return s
 }
 
 // Contains the parameters for DescribeVpcEndpoints.
@@ -24828,6 +29340,36 @@ func (s DescribeVpcEndpointsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpcEndpointsInput) SetDryRun(v bool) *DescribeVpcEndpointsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpcEndpointsInput) SetFilters(v []*Filter) *DescribeVpcEndpointsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVpcEndpointsInput) SetMaxResults(v int64) *DescribeVpcEndpointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcEndpointsInput) SetNextToken(v string) *DescribeVpcEndpointsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcEndpointIds sets the VpcEndpointIds field's value.
+func (s *DescribeVpcEndpointsInput) SetVpcEndpointIds(v []*string) *DescribeVpcEndpointsInput {
+	s.VpcEndpointIds = v
+	return s
+}
+
 // Contains the output of DescribeVpcEndpoints.
 type DescribeVpcEndpointsOutput struct {
 	_ struct{} `type:"structure"`
@@ -24848,6 +29390,18 @@ func (s DescribeVpcEndpointsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcEndpointsOutput) GoString() string {
 	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVpcEndpointsOutput) SetNextToken(v string) *DescribeVpcEndpointsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVpcEndpoints sets the VpcEndpoints field's value.
+func (s *DescribeVpcEndpointsOutput) SetVpcEndpoints(v []*VpcEndpoint) *DescribeVpcEndpointsOutput {
+	s.VpcEndpoints = v
+	return s
 }
 
 // Contains the parameters for DescribeVpcPeeringConnections.
@@ -24916,6 +29470,24 @@ func (s DescribeVpcPeeringConnectionsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpcPeeringConnectionsInput) SetDryRun(v bool) *DescribeVpcPeeringConnectionsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpcPeeringConnectionsInput) SetFilters(v []*Filter) *DescribeVpcPeeringConnectionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetVpcPeeringConnectionIds sets the VpcPeeringConnectionIds field's value.
+func (s *DescribeVpcPeeringConnectionsInput) SetVpcPeeringConnectionIds(v []*string) *DescribeVpcPeeringConnectionsInput {
+	s.VpcPeeringConnectionIds = v
+	return s
+}
+
 // Contains the output of DescribeVpcPeeringConnections.
 type DescribeVpcPeeringConnectionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -24932,6 +29504,12 @@ func (s DescribeVpcPeeringConnectionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcPeeringConnectionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpcPeeringConnections sets the VpcPeeringConnections field's value.
+func (s *DescribeVpcPeeringConnectionsOutput) SetVpcPeeringConnections(v []*VpcPeeringConnection) *DescribeVpcPeeringConnectionsOutput {
+	s.VpcPeeringConnections = v
+	return s
 }
 
 // Contains the parameters for DescribeVpcs.
@@ -24988,6 +29566,24 @@ func (s DescribeVpcsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpcsInput) SetDryRun(v bool) *DescribeVpcsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpcsInput) SetFilters(v []*Filter) *DescribeVpcsInput {
+	s.Filters = v
+	return s
+}
+
+// SetVpcIds sets the VpcIds field's value.
+func (s *DescribeVpcsInput) SetVpcIds(v []*string) *DescribeVpcsInput {
+	s.VpcIds = v
+	return s
+}
+
 // Contains the output of DescribeVpcs.
 type DescribeVpcsOutput struct {
 	_ struct{} `type:"structure"`
@@ -25004,6 +29600,12 @@ func (s DescribeVpcsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpcsOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpcs sets the Vpcs field's value.
+func (s *DescribeVpcsOutput) SetVpcs(v []*Vpc) *DescribeVpcsOutput {
+	s.Vpcs = v
+	return s
 }
 
 // Contains the parameters for DescribeVpnConnections.
@@ -25075,6 +29677,24 @@ func (s DescribeVpnConnectionsInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpnConnectionsInput) SetDryRun(v bool) *DescribeVpnConnectionsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpnConnectionsInput) SetFilters(v []*Filter) *DescribeVpnConnectionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetVpnConnectionIds sets the VpnConnectionIds field's value.
+func (s *DescribeVpnConnectionsInput) SetVpnConnectionIds(v []*string) *DescribeVpnConnectionsInput {
+	s.VpnConnectionIds = v
+	return s
+}
+
 // Contains the output of DescribeVpnConnections.
 type DescribeVpnConnectionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -25091,6 +29711,12 @@ func (s DescribeVpnConnectionsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpnConnectionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpnConnections sets the VpnConnections field's value.
+func (s *DescribeVpnConnectionsOutput) SetVpnConnections(v []*VpnConnection) *DescribeVpnConnectionsOutput {
+	s.VpnConnections = v
+	return s
 }
 
 // Contains the parameters for DescribeVpnGateways.
@@ -25151,6 +29777,24 @@ func (s DescribeVpnGatewaysInput) GoString() string {
 	return s.String()
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeVpnGatewaysInput) SetDryRun(v bool) *DescribeVpnGatewaysInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVpnGatewaysInput) SetFilters(v []*Filter) *DescribeVpnGatewaysInput {
+	s.Filters = v
+	return s
+}
+
+// SetVpnGatewayIds sets the VpnGatewayIds field's value.
+func (s *DescribeVpnGatewaysInput) SetVpnGatewayIds(v []*string) *DescribeVpnGatewaysInput {
+	s.VpnGatewayIds = v
+	return s
+}
+
 // Contains the output of DescribeVpnGateways.
 type DescribeVpnGatewaysOutput struct {
 	_ struct{} `type:"structure"`
@@ -25167,6 +29811,12 @@ func (s DescribeVpnGatewaysOutput) String() string {
 // GoString returns the string representation
 func (s DescribeVpnGatewaysOutput) GoString() string {
 	return s.String()
+}
+
+// SetVpnGateways sets the VpnGateways field's value.
+func (s *DescribeVpnGatewaysOutput) SetVpnGateways(v []*VpnGateway) *DescribeVpnGatewaysOutput {
+	s.VpnGateways = v
+	return s
 }
 
 // Contains the parameters for DetachClassicLinkVpc.
@@ -25216,6 +29866,24 @@ func (s *DetachClassicLinkVpcInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DetachClassicLinkVpcInput) SetDryRun(v bool) *DetachClassicLinkVpcInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DetachClassicLinkVpcInput) SetInstanceId(v string) *DetachClassicLinkVpcInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DetachClassicLinkVpcInput) SetVpcId(v string) *DetachClassicLinkVpcInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of DetachClassicLinkVpc.
 type DetachClassicLinkVpcOutput struct {
 	_ struct{} `type:"structure"`
@@ -25232,6 +29900,12 @@ func (s DetachClassicLinkVpcOutput) String() string {
 // GoString returns the string representation
 func (s DetachClassicLinkVpcOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *DetachClassicLinkVpcOutput) SetReturn(v bool) *DetachClassicLinkVpcOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for DetachInternetGateway.
@@ -25279,6 +29953,24 @@ func (s *DetachInternetGatewayInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DetachInternetGatewayInput) SetDryRun(v bool) *DetachInternetGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *DetachInternetGatewayInput) SetInternetGatewayId(v string) *DetachInternetGatewayInput {
+	s.InternetGatewayId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DetachInternetGatewayInput) SetVpcId(v string) *DetachInternetGatewayInput {
+	s.VpcId = &v
+	return s
 }
 
 type DetachInternetGatewayOutput struct {
@@ -25335,6 +30027,24 @@ func (s *DetachNetworkInterfaceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *DetachNetworkInterfaceInput) SetAttachmentId(v string) *DetachNetworkInterfaceInput {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DetachNetworkInterfaceInput) SetDryRun(v bool) *DetachNetworkInterfaceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *DetachNetworkInterfaceInput) SetForce(v bool) *DetachNetworkInterfaceInput {
+	s.Force = &v
+	return s
 }
 
 type DetachNetworkInterfaceOutput struct {
@@ -25405,6 +30115,36 @@ func (s *DetachVolumeInput) Validate() error {
 	return nil
 }
 
+// SetDevice sets the Device field's value.
+func (s *DetachVolumeInput) SetDevice(v string) *DetachVolumeInput {
+	s.Device = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DetachVolumeInput) SetDryRun(v bool) *DetachVolumeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *DetachVolumeInput) SetForce(v bool) *DetachVolumeInput {
+	s.Force = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DetachVolumeInput) SetInstanceId(v string) *DetachVolumeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DetachVolumeInput) SetVolumeId(v string) *DetachVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
 // Contains the parameters for DetachVpnGateway.
 type DetachVpnGatewayInput struct {
 	_ struct{} `type:"structure"`
@@ -25452,6 +30192,24 @@ func (s *DetachVpnGatewayInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DetachVpnGatewayInput) SetDryRun(v bool) *DetachVpnGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DetachVpnGatewayInput) SetVpcId(v string) *DetachVpnGatewayInput {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *DetachVpnGatewayInput) SetVpnGatewayId(v string) *DetachVpnGatewayInput {
+	s.VpnGatewayId = &v
+	return s
+}
+
 type DetachVpnGatewayOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25487,6 +30245,18 @@ func (s DhcpConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetKey sets the Key field's value.
+func (s *DhcpConfiguration) SetKey(v string) *DhcpConfiguration {
+	s.Key = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *DhcpConfiguration) SetValues(v []*AttributeValue) *DhcpConfiguration {
+	s.Values = v
+	return s
+}
+
 // Describes a set of DHCP options.
 type DhcpOptions struct {
 	_ struct{} `type:"structure"`
@@ -25509,6 +30279,24 @@ func (s DhcpOptions) String() string {
 // GoString returns the string representation
 func (s DhcpOptions) GoString() string {
 	return s.String()
+}
+
+// SetDhcpConfigurations sets the DhcpConfigurations field's value.
+func (s *DhcpOptions) SetDhcpConfigurations(v []*DhcpConfiguration) *DhcpOptions {
+	s.DhcpConfigurations = v
+	return s
+}
+
+// SetDhcpOptionsId sets the DhcpOptionsId field's value.
+func (s *DhcpOptions) SetDhcpOptionsId(v string) *DhcpOptions {
+	s.DhcpOptionsId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DhcpOptions) SetTags(v []*Tag) *DhcpOptions {
+	s.Tags = v
+	return s
 }
 
 // Contains the parameters for DisableVgwRoutePropagation.
@@ -25552,6 +30340,18 @@ func (s *DisableVgwRoutePropagationInput) Validate() error {
 	return nil
 }
 
+// SetGatewayId sets the GatewayId field's value.
+func (s *DisableVgwRoutePropagationInput) SetGatewayId(v string) *DisableVgwRoutePropagationInput {
+	s.GatewayId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *DisableVgwRoutePropagationInput) SetRouteTableId(v string) *DisableVgwRoutePropagationInput {
+	s.RouteTableId = &v
+	return s
+}
+
 type DisableVgwRoutePropagationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25584,6 +30384,12 @@ func (s DisableVpcClassicLinkDnsSupportInput) GoString() string {
 	return s.String()
 }
 
+// SetVpcId sets the VpcId field's value.
+func (s *DisableVpcClassicLinkDnsSupportInput) SetVpcId(v string) *DisableVpcClassicLinkDnsSupportInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of DisableVpcClassicLinkDnsSupport.
 type DisableVpcClassicLinkDnsSupportOutput struct {
 	_ struct{} `type:"structure"`
@@ -25600,6 +30406,12 @@ func (s DisableVpcClassicLinkDnsSupportOutput) String() string {
 // GoString returns the string representation
 func (s DisableVpcClassicLinkDnsSupportOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *DisableVpcClassicLinkDnsSupportOutput) SetReturn(v bool) *DisableVpcClassicLinkDnsSupportOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for DisableVpcClassicLink.
@@ -25641,6 +30453,18 @@ func (s *DisableVpcClassicLinkInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *DisableVpcClassicLinkInput) SetDryRun(v bool) *DisableVpcClassicLinkInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DisableVpcClassicLinkInput) SetVpcId(v string) *DisableVpcClassicLinkInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of DisableVpcClassicLink.
 type DisableVpcClassicLinkOutput struct {
 	_ struct{} `type:"structure"`
@@ -25657,6 +30481,12 @@ func (s DisableVpcClassicLinkOutput) String() string {
 // GoString returns the string representation
 func (s DisableVpcClassicLinkOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *DisableVpcClassicLinkOutput) SetReturn(v bool) *DisableVpcClassicLinkOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for DisassociateAddress.
@@ -25684,6 +30514,24 @@ func (s DisassociateAddressInput) String() string {
 // GoString returns the string representation
 func (s DisassociateAddressInput) GoString() string {
 	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateAddressInput) SetAssociationId(v string) *DisassociateAddressInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DisassociateAddressInput) SetDryRun(v bool) *DisassociateAddressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *DisassociateAddressInput) SetPublicIp(v string) *DisassociateAddressInput {
+	s.PublicIp = &v
+	return s
 }
 
 type DisassociateAddressOutput struct {
@@ -25738,6 +30586,18 @@ func (s *DisassociateRouteTableInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateRouteTableInput) SetAssociationId(v string) *DisassociateRouteTableInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DisassociateRouteTableInput) SetDryRun(v bool) *DisassociateRouteTableInput {
+	s.DryRun = &v
+	return s
 }
 
 type DisassociateRouteTableOutput struct {
@@ -25798,6 +30658,24 @@ func (s *DiskImage) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *DiskImage) SetDescription(v string) *DiskImage {
+	s.Description = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *DiskImage) SetImage(v *DiskImageDetail) *DiskImage {
+	s.Image = v
+	return s
+}
+
+// SetVolume sets the Volume field's value.
+func (s *DiskImage) SetVolume(v *VolumeDetail) *DiskImage {
+	s.Volume = v
+	return s
+}
+
 // Describes a disk image.
 type DiskImageDescription struct {
 	_ struct{} `type:"structure"`
@@ -25836,6 +30714,30 @@ func (s DiskImageDescription) String() string {
 // GoString returns the string representation
 func (s DiskImageDescription) GoString() string {
 	return s.String()
+}
+
+// SetChecksum sets the Checksum field's value.
+func (s *DiskImageDescription) SetChecksum(v string) *DiskImageDescription {
+	s.Checksum = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *DiskImageDescription) SetFormat(v string) *DiskImageDescription {
+	s.Format = &v
+	return s
+}
+
+// SetImportManifestUrl sets the ImportManifestUrl field's value.
+func (s *DiskImageDescription) SetImportManifestUrl(v string) *DiskImageDescription {
+	s.ImportManifestUrl = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *DiskImageDescription) SetSize(v int64) *DiskImageDescription {
+	s.Size = &v
+	return s
 }
 
 // Describes a disk image.
@@ -25894,6 +30796,24 @@ func (s *DiskImageDetail) Validate() error {
 	return nil
 }
 
+// SetBytes sets the Bytes field's value.
+func (s *DiskImageDetail) SetBytes(v int64) *DiskImageDetail {
+	s.Bytes = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *DiskImageDetail) SetFormat(v string) *DiskImageDetail {
+	s.Format = &v
+	return s
+}
+
+// SetImportManifestUrl sets the ImportManifestUrl field's value.
+func (s *DiskImageDetail) SetImportManifestUrl(v string) *DiskImageDetail {
+	s.ImportManifestUrl = &v
+	return s
+}
+
 // Describes a disk image volume.
 type DiskImageVolumeDescription struct {
 	_ struct{} `type:"structure"`
@@ -25915,6 +30835,18 @@ func (s DiskImageVolumeDescription) String() string {
 // GoString returns the string representation
 func (s DiskImageVolumeDescription) GoString() string {
 	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *DiskImageVolumeDescription) SetId(v string) *DiskImageVolumeDescription {
+	s.Id = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *DiskImageVolumeDescription) SetSize(v int64) *DiskImageVolumeDescription {
+	s.Size = &v
+	return s
 }
 
 // Describes a block device for an EBS volume.
@@ -25974,6 +30906,42 @@ func (s EbsBlockDevice) GoString() string {
 	return s.String()
 }
 
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *EbsBlockDevice) SetDeleteOnTermination(v bool) *EbsBlockDevice {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *EbsBlockDevice) SetEncrypted(v bool) *EbsBlockDevice {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *EbsBlockDevice) SetIops(v int64) *EbsBlockDevice {
+	s.Iops = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *EbsBlockDevice) SetSnapshotId(v string) *EbsBlockDevice {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *EbsBlockDevice) SetVolumeSize(v int64) *EbsBlockDevice {
+	s.VolumeSize = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *EbsBlockDevice) SetVolumeType(v string) *EbsBlockDevice {
+	s.VolumeType = &v
+	return s
+}
+
 // Describes a parameter used to set up an EBS volume in a block device mapping.
 type EbsInstanceBlockDevice struct {
 	_ struct{} `type:"structure"`
@@ -26001,6 +30969,30 @@ func (s EbsInstanceBlockDevice) GoString() string {
 	return s.String()
 }
 
+// SetAttachTime sets the AttachTime field's value.
+func (s *EbsInstanceBlockDevice) SetAttachTime(v time.Time) *EbsInstanceBlockDevice {
+	s.AttachTime = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *EbsInstanceBlockDevice) SetDeleteOnTermination(v bool) *EbsInstanceBlockDevice {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EbsInstanceBlockDevice) SetStatus(v string) *EbsInstanceBlockDevice {
+	s.Status = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *EbsInstanceBlockDevice) SetVolumeId(v string) *EbsInstanceBlockDevice {
+	s.VolumeId = &v
+	return s
+}
+
 // Describes information used to set up an EBS volume specified in a block device
 // mapping.
 type EbsInstanceBlockDeviceSpecification struct {
@@ -26021,6 +31013,18 @@ func (s EbsInstanceBlockDeviceSpecification) String() string {
 // GoString returns the string representation
 func (s EbsInstanceBlockDeviceSpecification) GoString() string {
 	return s.String()
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *EbsInstanceBlockDeviceSpecification) SetDeleteOnTermination(v bool) *EbsInstanceBlockDeviceSpecification {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *EbsInstanceBlockDeviceSpecification) SetVolumeId(v string) *EbsInstanceBlockDeviceSpecification {
+	s.VolumeId = &v
+	return s
 }
 
 // Contains the parameters for EnableVgwRoutePropagation.
@@ -26062,6 +31066,18 @@ func (s *EnableVgwRoutePropagationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *EnableVgwRoutePropagationInput) SetGatewayId(v string) *EnableVgwRoutePropagationInput {
+	s.GatewayId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EnableVgwRoutePropagationInput) SetRouteTableId(v string) *EnableVgwRoutePropagationInput {
+	s.RouteTableId = &v
+	return s
 }
 
 type EnableVgwRoutePropagationOutput struct {
@@ -26117,6 +31133,18 @@ func (s *EnableVolumeIOInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *EnableVolumeIOInput) SetDryRun(v bool) *EnableVolumeIOInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *EnableVolumeIOInput) SetVolumeId(v string) *EnableVolumeIOInput {
+	s.VolumeId = &v
+	return s
+}
+
 type EnableVolumeIOOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26149,6 +31177,12 @@ func (s EnableVpcClassicLinkDnsSupportInput) GoString() string {
 	return s.String()
 }
 
+// SetVpcId sets the VpcId field's value.
+func (s *EnableVpcClassicLinkDnsSupportInput) SetVpcId(v string) *EnableVpcClassicLinkDnsSupportInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of EnableVpcClassicLinkDnsSupport.
 type EnableVpcClassicLinkDnsSupportOutput struct {
 	_ struct{} `type:"structure"`
@@ -26165,6 +31199,12 @@ func (s EnableVpcClassicLinkDnsSupportOutput) String() string {
 // GoString returns the string representation
 func (s EnableVpcClassicLinkDnsSupportOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *EnableVpcClassicLinkDnsSupportOutput) SetReturn(v bool) *EnableVpcClassicLinkDnsSupportOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for EnableVpcClassicLink.
@@ -26206,6 +31246,18 @@ func (s *EnableVpcClassicLinkInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *EnableVpcClassicLinkInput) SetDryRun(v bool) *EnableVpcClassicLinkInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *EnableVpcClassicLinkInput) SetVpcId(v string) *EnableVpcClassicLinkInput {
+	s.VpcId = &v
+	return s
+}
+
 // Contains the output of EnableVpcClassicLink.
 type EnableVpcClassicLinkOutput struct {
 	_ struct{} `type:"structure"`
@@ -26222,6 +31274,12 @@ func (s EnableVpcClassicLinkOutput) String() string {
 // GoString returns the string representation
 func (s EnableVpcClassicLinkOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *EnableVpcClassicLinkOutput) SetReturn(v bool) *EnableVpcClassicLinkOutput {
+	s.Return = &v
+	return s
 }
 
 // Describes a Spot fleet event.
@@ -26300,6 +31358,24 @@ func (s EventInformation) GoString() string {
 	return s.String()
 }
 
+// SetEventDescription sets the EventDescription field's value.
+func (s *EventInformation) SetEventDescription(v string) *EventInformation {
+	s.EventDescription = &v
+	return s
+}
+
+// SetEventSubType sets the EventSubType field's value.
+func (s *EventInformation) SetEventSubType(v string) *EventInformation {
+	s.EventSubType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *EventInformation) SetInstanceId(v string) *EventInformation {
+	s.InstanceId = &v
+	return s
+}
+
 // Describes an instance export task.
 type ExportTask struct {
 	_ struct{} `type:"structure"`
@@ -26333,6 +31409,42 @@ func (s ExportTask) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *ExportTask) SetDescription(v string) *ExportTask {
+	s.Description = &v
+	return s
+}
+
+// SetExportTaskId sets the ExportTaskId field's value.
+func (s *ExportTask) SetExportTaskId(v string) *ExportTask {
+	s.ExportTaskId = &v
+	return s
+}
+
+// SetExportToS3Task sets the ExportToS3Task field's value.
+func (s *ExportTask) SetExportToS3Task(v *ExportToS3Task) *ExportTask {
+	s.ExportToS3Task = v
+	return s
+}
+
+// SetInstanceExportDetails sets the InstanceExportDetails field's value.
+func (s *ExportTask) SetInstanceExportDetails(v *InstanceExportDetails) *ExportTask {
+	s.InstanceExportDetails = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ExportTask) SetState(v string) *ExportTask {
+	s.State = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ExportTask) SetStatusMessage(v string) *ExportTask {
+	s.StatusMessage = &v
+	return s
+}
+
 // Describes the format and location for an instance export task.
 type ExportToS3Task struct {
 	_ struct{} `type:"structure"`
@@ -26360,6 +31472,30 @@ func (s ExportToS3Task) String() string {
 // GoString returns the string representation
 func (s ExportToS3Task) GoString() string {
 	return s.String()
+}
+
+// SetContainerFormat sets the ContainerFormat field's value.
+func (s *ExportToS3Task) SetContainerFormat(v string) *ExportToS3Task {
+	s.ContainerFormat = &v
+	return s
+}
+
+// SetDiskImageFormat sets the DiskImageFormat field's value.
+func (s *ExportToS3Task) SetDiskImageFormat(v string) *ExportToS3Task {
+	s.DiskImageFormat = &v
+	return s
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *ExportToS3Task) SetS3Bucket(v string) *ExportToS3Task {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *ExportToS3Task) SetS3Key(v string) *ExportToS3Task {
+	s.S3Key = &v
+	return s
 }
 
 // Describes an instance export task.
@@ -26392,6 +31528,30 @@ func (s ExportToS3TaskSpecification) GoString() string {
 	return s.String()
 }
 
+// SetContainerFormat sets the ContainerFormat field's value.
+func (s *ExportToS3TaskSpecification) SetContainerFormat(v string) *ExportToS3TaskSpecification {
+	s.ContainerFormat = &v
+	return s
+}
+
+// SetDiskImageFormat sets the DiskImageFormat field's value.
+func (s *ExportToS3TaskSpecification) SetDiskImageFormat(v string) *ExportToS3TaskSpecification {
+	s.DiskImageFormat = &v
+	return s
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *ExportToS3TaskSpecification) SetS3Bucket(v string) *ExportToS3TaskSpecification {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3Prefix sets the S3Prefix field's value.
+func (s *ExportToS3TaskSpecification) SetS3Prefix(v string) *ExportToS3TaskSpecification {
+	s.S3Prefix = &v
+	return s
+}
+
 // A filter name and value pair that is used to return a more specific list
 // of results. Filters can be used to match a set of resources by various criteria,
 // such as tags, attributes, or IDs.
@@ -26413,6 +31573,18 @@ func (s Filter) String() string {
 // GoString returns the string representation
 func (s Filter) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
+	return s
 }
 
 // Describes a flow log.
@@ -26462,6 +31634,60 @@ func (s FlowLog) GoString() string {
 	return s.String()
 }
 
+// SetCreationTime sets the CreationTime field's value.
+func (s *FlowLog) SetCreationTime(v time.Time) *FlowLog {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeliverLogsErrorMessage sets the DeliverLogsErrorMessage field's value.
+func (s *FlowLog) SetDeliverLogsErrorMessage(v string) *FlowLog {
+	s.DeliverLogsErrorMessage = &v
+	return s
+}
+
+// SetDeliverLogsPermissionArn sets the DeliverLogsPermissionArn field's value.
+func (s *FlowLog) SetDeliverLogsPermissionArn(v string) *FlowLog {
+	s.DeliverLogsPermissionArn = &v
+	return s
+}
+
+// SetDeliverLogsStatus sets the DeliverLogsStatus field's value.
+func (s *FlowLog) SetDeliverLogsStatus(v string) *FlowLog {
+	s.DeliverLogsStatus = &v
+	return s
+}
+
+// SetFlowLogId sets the FlowLogId field's value.
+func (s *FlowLog) SetFlowLogId(v string) *FlowLog {
+	s.FlowLogId = &v
+	return s
+}
+
+// SetFlowLogStatus sets the FlowLogStatus field's value.
+func (s *FlowLog) SetFlowLogStatus(v string) *FlowLog {
+	s.FlowLogStatus = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *FlowLog) SetLogGroupName(v string) *FlowLog {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *FlowLog) SetResourceId(v string) *FlowLog {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTrafficType sets the TrafficType field's value.
+func (s *FlowLog) SetTrafficType(v string) *FlowLog {
+	s.TrafficType = &v
+	return s
+}
+
 // Contains the parameters for GetConsoleOutput.
 type GetConsoleOutputInput struct {
 	_ struct{} `type:"structure"`
@@ -26501,6 +31727,18 @@ func (s *GetConsoleOutputInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *GetConsoleOutputInput) SetDryRun(v bool) *GetConsoleOutputInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetConsoleOutputInput) SetInstanceId(v string) *GetConsoleOutputInput {
+	s.InstanceId = &v
+	return s
+}
+
 // Contains the output of GetConsoleOutput.
 type GetConsoleOutputOutput struct {
 	_ struct{} `type:"structure"`
@@ -26524,6 +31762,24 @@ func (s GetConsoleOutputOutput) String() string {
 // GoString returns the string representation
 func (s GetConsoleOutputOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetConsoleOutputOutput) SetInstanceId(v string) *GetConsoleOutputOutput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *GetConsoleOutputOutput) SetOutput(v string) *GetConsoleOutputOutput {
+	s.Output = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *GetConsoleOutputOutput) SetTimestamp(v time.Time) *GetConsoleOutputOutput {
+	s.Timestamp = &v
+	return s
 }
 
 // Contains the parameters for the request.
@@ -26569,6 +31825,24 @@ func (s *GetConsoleScreenshotInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *GetConsoleScreenshotInput) SetDryRun(v bool) *GetConsoleScreenshotInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetConsoleScreenshotInput) SetInstanceId(v string) *GetConsoleScreenshotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetWakeUp sets the WakeUp field's value.
+func (s *GetConsoleScreenshotInput) SetWakeUp(v bool) *GetConsoleScreenshotInput {
+	s.WakeUp = &v
+	return s
+}
+
 // Contains the output of the request.
 type GetConsoleScreenshotOutput struct {
 	_ struct{} `type:"structure"`
@@ -26588,6 +31862,18 @@ func (s GetConsoleScreenshotOutput) String() string {
 // GoString returns the string representation
 func (s GetConsoleScreenshotOutput) GoString() string {
 	return s.String()
+}
+
+// SetImageData sets the ImageData field's value.
+func (s *GetConsoleScreenshotOutput) SetImageData(v string) *GetConsoleScreenshotOutput {
+	s.ImageData = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetConsoleScreenshotOutput) SetInstanceId(v string) *GetConsoleScreenshotOutput {
+	s.InstanceId = &v
+	return s
 }
 
 type GetHostReservationPurchasePreviewInput struct {
@@ -26631,6 +31917,18 @@ func (s *GetHostReservationPurchasePreviewInput) Validate() error {
 	return nil
 }
 
+// SetHostIdSet sets the HostIdSet field's value.
+func (s *GetHostReservationPurchasePreviewInput) SetHostIdSet(v []*string) *GetHostReservationPurchasePreviewInput {
+	s.HostIdSet = v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *GetHostReservationPurchasePreviewInput) SetOfferingId(v string) *GetHostReservationPurchasePreviewInput {
+	s.OfferingId = &v
+	return s
+}
+
 type GetHostReservationPurchasePreviewOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -26657,6 +31955,30 @@ func (s GetHostReservationPurchasePreviewOutput) String() string {
 // GoString returns the string representation
 func (s GetHostReservationPurchasePreviewOutput) GoString() string {
 	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *GetHostReservationPurchasePreviewOutput) SetCurrencyCode(v string) *GetHostReservationPurchasePreviewOutput {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetPurchase sets the Purchase field's value.
+func (s *GetHostReservationPurchasePreviewOutput) SetPurchase(v []*Purchase) *GetHostReservationPurchasePreviewOutput {
+	s.Purchase = v
+	return s
+}
+
+// SetTotalHourlyPrice sets the TotalHourlyPrice field's value.
+func (s *GetHostReservationPurchasePreviewOutput) SetTotalHourlyPrice(v string) *GetHostReservationPurchasePreviewOutput {
+	s.TotalHourlyPrice = &v
+	return s
+}
+
+// SetTotalUpfrontPrice sets the TotalUpfrontPrice field's value.
+func (s *GetHostReservationPurchasePreviewOutput) SetTotalUpfrontPrice(v string) *GetHostReservationPurchasePreviewOutput {
+	s.TotalUpfrontPrice = &v
+	return s
 }
 
 // Contains the parameters for GetPasswordData.
@@ -26698,6 +32020,18 @@ func (s *GetPasswordDataInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *GetPasswordDataInput) SetDryRun(v bool) *GetPasswordDataInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetPasswordDataInput) SetInstanceId(v string) *GetPasswordDataInput {
+	s.InstanceId = &v
+	return s
+}
+
 // Contains the output of GetPasswordData.
 type GetPasswordDataOutput struct {
 	_ struct{} `type:"structure"`
@@ -26720,6 +32054,24 @@ func (s GetPasswordDataOutput) String() string {
 // GoString returns the string representation
 func (s GetPasswordDataOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *GetPasswordDataOutput) SetInstanceId(v string) *GetPasswordDataOutput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPasswordData sets the PasswordData field's value.
+func (s *GetPasswordDataOutput) SetPasswordData(v string) *GetPasswordDataOutput {
+	s.PasswordData = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *GetPasswordDataOutput) SetTimestamp(v time.Time) *GetPasswordDataOutput {
+	s.Timestamp = &v
+	return s
 }
 
 // Contains the parameters for GetReservedInstanceExchangeQuote.
@@ -26775,6 +32127,24 @@ func (s *GetReservedInstancesExchangeQuoteInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *GetReservedInstancesExchangeQuoteInput) SetDryRun(v bool) *GetReservedInstancesExchangeQuoteInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetReservedInstanceIds sets the ReservedInstanceIds field's value.
+func (s *GetReservedInstancesExchangeQuoteInput) SetReservedInstanceIds(v []*string) *GetReservedInstancesExchangeQuoteInput {
+	s.ReservedInstanceIds = v
+	return s
+}
+
+// SetTargetConfigurations sets the TargetConfigurations field's value.
+func (s *GetReservedInstancesExchangeQuoteInput) SetTargetConfigurations(v []*TargetConfigurationRequest) *GetReservedInstancesExchangeQuoteInput {
+	s.TargetConfigurations = v
+	return s
+}
+
 // Contains the output of GetReservedInstancesExchangeQuote.
 type GetReservedInstancesExchangeQuoteOutput struct {
 	_ struct{} `type:"structure"`
@@ -26817,6 +32187,60 @@ func (s GetReservedInstancesExchangeQuoteOutput) GoString() string {
 	return s.String()
 }
 
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetCurrencyCode(v string) *GetReservedInstancesExchangeQuoteOutput {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetIsValidExchange sets the IsValidExchange field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetIsValidExchange(v bool) *GetReservedInstancesExchangeQuoteOutput {
+	s.IsValidExchange = &v
+	return s
+}
+
+// SetOutputReservedInstancesWillExpireAt sets the OutputReservedInstancesWillExpireAt field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetOutputReservedInstancesWillExpireAt(v time.Time) *GetReservedInstancesExchangeQuoteOutput {
+	s.OutputReservedInstancesWillExpireAt = &v
+	return s
+}
+
+// SetPaymentDue sets the PaymentDue field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetPaymentDue(v string) *GetReservedInstancesExchangeQuoteOutput {
+	s.PaymentDue = &v
+	return s
+}
+
+// SetReservedInstanceValueRollup sets the ReservedInstanceValueRollup field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetReservedInstanceValueRollup(v *ReservationValue) *GetReservedInstancesExchangeQuoteOutput {
+	s.ReservedInstanceValueRollup = v
+	return s
+}
+
+// SetReservedInstanceValueSet sets the ReservedInstanceValueSet field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetReservedInstanceValueSet(v []*ReservedInstanceReservationValue) *GetReservedInstancesExchangeQuoteOutput {
+	s.ReservedInstanceValueSet = v
+	return s
+}
+
+// SetTargetConfigurationValueRollup sets the TargetConfigurationValueRollup field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetTargetConfigurationValueRollup(v *ReservationValue) *GetReservedInstancesExchangeQuoteOutput {
+	s.TargetConfigurationValueRollup = v
+	return s
+}
+
+// SetTargetConfigurationValueSet sets the TargetConfigurationValueSet field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetTargetConfigurationValueSet(v []*TargetReservationValue) *GetReservedInstancesExchangeQuoteOutput {
+	s.TargetConfigurationValueSet = v
+	return s
+}
+
+// SetValidationFailureReason sets the ValidationFailureReason field's value.
+func (s *GetReservedInstancesExchangeQuoteOutput) SetValidationFailureReason(v string) *GetReservedInstancesExchangeQuoteOutput {
+	s.ValidationFailureReason = &v
+	return s
+}
+
 // Describes a security group.
 type GroupIdentifier struct {
 	_ struct{} `type:"structure"`
@@ -26836,6 +32260,18 @@ func (s GroupIdentifier) String() string {
 // GoString returns the string representation
 func (s GroupIdentifier) GoString() string {
 	return s.String()
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *GroupIdentifier) SetGroupId(v string) *GroupIdentifier {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GroupIdentifier) SetGroupName(v string) *GroupIdentifier {
+	s.GroupName = &v
+	return s
 }
 
 // Describes an event in the history of the Spot fleet request.
@@ -26873,6 +32309,24 @@ func (s HistoryRecord) String() string {
 // GoString returns the string representation
 func (s HistoryRecord) GoString() string {
 	return s.String()
+}
+
+// SetEventInformation sets the EventInformation field's value.
+func (s *HistoryRecord) SetEventInformation(v *EventInformation) *HistoryRecord {
+	s.EventInformation = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *HistoryRecord) SetEventType(v string) *HistoryRecord {
+	s.EventType = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *HistoryRecord) SetTimestamp(v time.Time) *HistoryRecord {
+	s.Timestamp = &v
+	return s
 }
 
 // Describes the properties of the Dedicated Host.
@@ -26920,6 +32374,60 @@ func (s Host) GoString() string {
 	return s.String()
 }
 
+// SetAutoPlacement sets the AutoPlacement field's value.
+func (s *Host) SetAutoPlacement(v string) *Host {
+	s.AutoPlacement = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *Host) SetAvailabilityZone(v string) *Host {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailableCapacity sets the AvailableCapacity field's value.
+func (s *Host) SetAvailableCapacity(v *AvailableCapacity) *Host {
+	s.AvailableCapacity = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *Host) SetClientToken(v string) *Host {
+	s.ClientToken = &v
+	return s
+}
+
+// SetHostId sets the HostId field's value.
+func (s *Host) SetHostId(v string) *Host {
+	s.HostId = &v
+	return s
+}
+
+// SetHostProperties sets the HostProperties field's value.
+func (s *Host) SetHostProperties(v *HostProperties) *Host {
+	s.HostProperties = v
+	return s
+}
+
+// SetHostReservationId sets the HostReservationId field's value.
+func (s *Host) SetHostReservationId(v string) *Host {
+	s.HostReservationId = &v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *Host) SetInstances(v []*HostInstance) *Host {
+	s.Instances = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Host) SetState(v string) *Host {
+	s.State = &v
+	return s
+}
+
 // Describes an instance running on a Dedicated Host.
 type HostInstance struct {
 	_ struct{} `type:"structure"`
@@ -26939,6 +32447,18 @@ func (s HostInstance) String() string {
 // GoString returns the string representation
 func (s HostInstance) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *HostInstance) SetInstanceId(v string) *HostInstance {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *HostInstance) SetInstanceType(v string) *HostInstance {
+	s.InstanceType = &v
+	return s
 }
 
 // Details about the Dedicated Host Reservation offering.
@@ -26977,6 +32497,48 @@ func (s HostOffering) GoString() string {
 	return s.String()
 }
 
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *HostOffering) SetCurrencyCode(v string) *HostOffering {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *HostOffering) SetDuration(v int64) *HostOffering {
+	s.Duration = &v
+	return s
+}
+
+// SetHourlyPrice sets the HourlyPrice field's value.
+func (s *HostOffering) SetHourlyPrice(v string) *HostOffering {
+	s.HourlyPrice = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *HostOffering) SetInstanceFamily(v string) *HostOffering {
+	s.InstanceFamily = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *HostOffering) SetOfferingId(v string) *HostOffering {
+	s.OfferingId = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *HostOffering) SetPaymentOption(v string) *HostOffering {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetUpfrontPrice sets the UpfrontPrice field's value.
+func (s *HostOffering) SetUpfrontPrice(v string) *HostOffering {
+	s.UpfrontPrice = &v
+	return s
+}
+
 // Describes properties of a Dedicated Host.
 type HostProperties struct {
 	_ struct{} `type:"structure"`
@@ -27002,6 +32564,30 @@ func (s HostProperties) String() string {
 // GoString returns the string representation
 func (s HostProperties) GoString() string {
 	return s.String()
+}
+
+// SetCores sets the Cores field's value.
+func (s *HostProperties) SetCores(v int64) *HostProperties {
+	s.Cores = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *HostProperties) SetInstanceType(v string) *HostProperties {
+	s.InstanceType = &v
+	return s
+}
+
+// SetSockets sets the Sockets field's value.
+func (s *HostProperties) SetSockets(v int64) *HostProperties {
+	s.Sockets = &v
+	return s
+}
+
+// SetTotalVCpus sets the TotalVCpus field's value.
+func (s *HostProperties) SetTotalVCpus(v int64) *HostProperties {
+	s.TotalVCpus = &v
+	return s
 }
 
 // Details about the Dedicated Host Reservation and associated Dedicated Hosts.
@@ -27063,6 +32649,84 @@ func (s HostReservation) GoString() string {
 	return s.String()
 }
 
+// SetCount sets the Count field's value.
+func (s *HostReservation) SetCount(v int64) *HostReservation {
+	s.Count = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *HostReservation) SetCurrencyCode(v string) *HostReservation {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *HostReservation) SetDuration(v int64) *HostReservation {
+	s.Duration = &v
+	return s
+}
+
+// SetEnd sets the End field's value.
+func (s *HostReservation) SetEnd(v time.Time) *HostReservation {
+	s.End = &v
+	return s
+}
+
+// SetHostIdSet sets the HostIdSet field's value.
+func (s *HostReservation) SetHostIdSet(v []*string) *HostReservation {
+	s.HostIdSet = v
+	return s
+}
+
+// SetHostReservationId sets the HostReservationId field's value.
+func (s *HostReservation) SetHostReservationId(v string) *HostReservation {
+	s.HostReservationId = &v
+	return s
+}
+
+// SetHourlyPrice sets the HourlyPrice field's value.
+func (s *HostReservation) SetHourlyPrice(v string) *HostReservation {
+	s.HourlyPrice = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *HostReservation) SetInstanceFamily(v string) *HostReservation {
+	s.InstanceFamily = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *HostReservation) SetOfferingId(v string) *HostReservation {
+	s.OfferingId = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *HostReservation) SetPaymentOption(v string) *HostReservation {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *HostReservation) SetStart(v time.Time) *HostReservation {
+	s.Start = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *HostReservation) SetState(v string) *HostReservation {
+	s.State = &v
+	return s
+}
+
+// SetUpfrontPrice sets the UpfrontPrice field's value.
+func (s *HostReservation) SetUpfrontPrice(v string) *HostReservation {
+	s.UpfrontPrice = &v
+	return s
+}
+
 // Describes an IAM instance profile.
 type IamInstanceProfile struct {
 	_ struct{} `type:"structure"`
@@ -27082,6 +32746,18 @@ func (s IamInstanceProfile) String() string {
 // GoString returns the string representation
 func (s IamInstanceProfile) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *IamInstanceProfile) SetArn(v string) *IamInstanceProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *IamInstanceProfile) SetId(v string) *IamInstanceProfile {
+	s.Id = &v
+	return s
 }
 
 // Describes an IAM instance profile.
@@ -27105,6 +32781,18 @@ func (s IamInstanceProfileSpecification) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *IamInstanceProfileSpecification) SetArn(v string) *IamInstanceProfileSpecification {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *IamInstanceProfileSpecification) SetName(v string) *IamInstanceProfileSpecification {
+	s.Name = &v
+	return s
+}
+
 // Describes the ICMP type and code.
 type IcmpTypeCode struct {
 	_ struct{} `type:"structure"`
@@ -27124,6 +32812,18 @@ func (s IcmpTypeCode) String() string {
 // GoString returns the string representation
 func (s IcmpTypeCode) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *IcmpTypeCode) SetCode(v int64) *IcmpTypeCode {
+	s.Code = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IcmpTypeCode) SetType(v int64) *IcmpTypeCode {
+	s.Type = &v
+	return s
 }
 
 // Describes the ID format for a resource.
@@ -27150,6 +32850,24 @@ func (s IdFormat) String() string {
 // GoString returns the string representation
 func (s IdFormat) GoString() string {
 	return s.String()
+}
+
+// SetDeadline sets the Deadline field's value.
+func (s *IdFormat) SetDeadline(v time.Time) *IdFormat {
+	s.Deadline = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *IdFormat) SetResource(v string) *IdFormat {
+	s.Resource = &v
+	return s
+}
+
+// SetUseLongIds sets the UseLongIds field's value.
+func (s *IdFormat) SetUseLongIds(v bool) *IdFormat {
+	s.UseLongIds = &v
+	return s
 }
 
 // Describes an image.
@@ -27247,6 +32965,150 @@ func (s Image) GoString() string {
 	return s.String()
 }
 
+// SetArchitecture sets the Architecture field's value.
+func (s *Image) SetArchitecture(v string) *Image {
+	s.Architecture = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *Image) SetBlockDeviceMappings(v []*BlockDeviceMapping) *Image {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *Image) SetCreationDate(v string) *Image {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Image) SetDescription(v string) *Image {
+	s.Description = &v
+	return s
+}
+
+// SetEnaSupport sets the EnaSupport field's value.
+func (s *Image) SetEnaSupport(v bool) *Image {
+	s.EnaSupport = &v
+	return s
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *Image) SetHypervisor(v string) *Image {
+	s.Hypervisor = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *Image) SetImageId(v string) *Image {
+	s.ImageId = &v
+	return s
+}
+
+// SetImageLocation sets the ImageLocation field's value.
+func (s *Image) SetImageLocation(v string) *Image {
+	s.ImageLocation = &v
+	return s
+}
+
+// SetImageOwnerAlias sets the ImageOwnerAlias field's value.
+func (s *Image) SetImageOwnerAlias(v string) *Image {
+	s.ImageOwnerAlias = &v
+	return s
+}
+
+// SetImageType sets the ImageType field's value.
+func (s *Image) SetImageType(v string) *Image {
+	s.ImageType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *Image) SetKernelId(v string) *Image {
+	s.KernelId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Image) SetName(v string) *Image {
+	s.Name = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *Image) SetOwnerId(v string) *Image {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *Image) SetPlatform(v string) *Image {
+	s.Platform = &v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *Image) SetProductCodes(v []*ProductCode) *Image {
+	s.ProductCodes = v
+	return s
+}
+
+// SetPublic sets the Public field's value.
+func (s *Image) SetPublic(v bool) *Image {
+	s.Public = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *Image) SetRamdiskId(v string) *Image {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetRootDeviceName sets the RootDeviceName field's value.
+func (s *Image) SetRootDeviceName(v string) *Image {
+	s.RootDeviceName = &v
+	return s
+}
+
+// SetRootDeviceType sets the RootDeviceType field's value.
+func (s *Image) SetRootDeviceType(v string) *Image {
+	s.RootDeviceType = &v
+	return s
+}
+
+// SetSriovNetSupport sets the SriovNetSupport field's value.
+func (s *Image) SetSriovNetSupport(v string) *Image {
+	s.SriovNetSupport = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Image) SetState(v string) *Image {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *Image) SetStateReason(v *StateReason) *Image {
+	s.StateReason = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Image) SetTags(v []*Tag) *Image {
+	s.Tags = v
+	return s
+}
+
+// SetVirtualizationType sets the VirtualizationType field's value.
+func (s *Image) SetVirtualizationType(v string) *Image {
+	s.VirtualizationType = &v
+	return s
+}
+
 // Describes the disk container object for an import image task.
 type ImageDiskContainer struct {
 	_ struct{} `type:"structure"`
@@ -27281,6 +33143,42 @@ func (s ImageDiskContainer) String() string {
 // GoString returns the string representation
 func (s ImageDiskContainer) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImageDiskContainer) SetDescription(v string) *ImageDiskContainer {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *ImageDiskContainer) SetDeviceName(v string) *ImageDiskContainer {
+	s.DeviceName = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *ImageDiskContainer) SetFormat(v string) *ImageDiskContainer {
+	s.Format = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *ImageDiskContainer) SetSnapshotId(v string) *ImageDiskContainer {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *ImageDiskContainer) SetUrl(v string) *ImageDiskContainer {
+	s.Url = &v
+	return s
+}
+
+// SetUserBucket sets the UserBucket field's value.
+func (s *ImageDiskContainer) SetUserBucket(v *UserBucket) *ImageDiskContainer {
+	s.UserBucket = v
+	return s
 }
 
 // Contains the parameters for ImportImage.
@@ -27344,6 +33242,66 @@ func (s ImportImageInput) GoString() string {
 	return s.String()
 }
 
+// SetArchitecture sets the Architecture field's value.
+func (s *ImportImageInput) SetArchitecture(v string) *ImportImageInput {
+	s.Architecture = &v
+	return s
+}
+
+// SetClientData sets the ClientData field's value.
+func (s *ImportImageInput) SetClientData(v *ClientData) *ImportImageInput {
+	s.ClientData = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ImportImageInput) SetClientToken(v string) *ImportImageInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportImageInput) SetDescription(v string) *ImportImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetDiskContainers sets the DiskContainers field's value.
+func (s *ImportImageInput) SetDiskContainers(v []*ImageDiskContainer) *ImportImageInput {
+	s.DiskContainers = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ImportImageInput) SetDryRun(v bool) *ImportImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *ImportImageInput) SetHypervisor(v string) *ImportImageInput {
+	s.Hypervisor = &v
+	return s
+}
+
+// SetLicenseType sets the LicenseType field's value.
+func (s *ImportImageInput) SetLicenseType(v string) *ImportImageInput {
+	s.LicenseType = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ImportImageInput) SetPlatform(v string) *ImportImageInput {
+	s.Platform = &v
+	return s
+}
+
+// SetRoleName sets the RoleName field's value.
+func (s *ImportImageInput) SetRoleName(v string) *ImportImageInput {
+	s.RoleName = &v
+	return s
+}
+
 // Contains the output for ImportImage.
 type ImportImageOutput struct {
 	_ struct{} `type:"structure"`
@@ -27390,6 +33348,72 @@ func (s ImportImageOutput) String() string {
 // GoString returns the string representation
 func (s ImportImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *ImportImageOutput) SetArchitecture(v string) *ImportImageOutput {
+	s.Architecture = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportImageOutput) SetDescription(v string) *ImportImageOutput {
+	s.Description = &v
+	return s
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *ImportImageOutput) SetHypervisor(v string) *ImportImageOutput {
+	s.Hypervisor = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ImportImageOutput) SetImageId(v string) *ImportImageOutput {
+	s.ImageId = &v
+	return s
+}
+
+// SetImportTaskId sets the ImportTaskId field's value.
+func (s *ImportImageOutput) SetImportTaskId(v string) *ImportImageOutput {
+	s.ImportTaskId = &v
+	return s
+}
+
+// SetLicenseType sets the LicenseType field's value.
+func (s *ImportImageOutput) SetLicenseType(v string) *ImportImageOutput {
+	s.LicenseType = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ImportImageOutput) SetPlatform(v string) *ImportImageOutput {
+	s.Platform = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *ImportImageOutput) SetProgress(v string) *ImportImageOutput {
+	s.Progress = &v
+	return s
+}
+
+// SetSnapshotDetails sets the SnapshotDetails field's value.
+func (s *ImportImageOutput) SetSnapshotDetails(v []*SnapshotDetail) *ImportImageOutput {
+	s.SnapshotDetails = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportImageOutput) SetStatus(v string) *ImportImageOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ImportImageOutput) SetStatusMessage(v string) *ImportImageOutput {
+	s.StatusMessage = &v
+	return s
 }
 
 // Describes an import image task.
@@ -27442,6 +33466,72 @@ func (s ImportImageTask) String() string {
 // GoString returns the string representation
 func (s ImportImageTask) GoString() string {
 	return s.String()
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *ImportImageTask) SetArchitecture(v string) *ImportImageTask {
+	s.Architecture = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportImageTask) SetDescription(v string) *ImportImageTask {
+	s.Description = &v
+	return s
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *ImportImageTask) SetHypervisor(v string) *ImportImageTask {
+	s.Hypervisor = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ImportImageTask) SetImageId(v string) *ImportImageTask {
+	s.ImageId = &v
+	return s
+}
+
+// SetImportTaskId sets the ImportTaskId field's value.
+func (s *ImportImageTask) SetImportTaskId(v string) *ImportImageTask {
+	s.ImportTaskId = &v
+	return s
+}
+
+// SetLicenseType sets the LicenseType field's value.
+func (s *ImportImageTask) SetLicenseType(v string) *ImportImageTask {
+	s.LicenseType = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ImportImageTask) SetPlatform(v string) *ImportImageTask {
+	s.Platform = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *ImportImageTask) SetProgress(v string) *ImportImageTask {
+	s.Progress = &v
+	return s
+}
+
+// SetSnapshotDetails sets the SnapshotDetails field's value.
+func (s *ImportImageTask) SetSnapshotDetails(v []*SnapshotDetail) *ImportImageTask {
+	s.SnapshotDetails = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportImageTask) SetStatus(v string) *ImportImageTask {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ImportImageTask) SetStatusMessage(v string) *ImportImageTask {
+	s.StatusMessage = &v
+	return s
 }
 
 // Contains the parameters for ImportInstance.
@@ -27502,6 +33592,36 @@ func (s *ImportInstanceInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *ImportInstanceInput) SetDescription(v string) *ImportInstanceInput {
+	s.Description = &v
+	return s
+}
+
+// SetDiskImages sets the DiskImages field's value.
+func (s *ImportInstanceInput) SetDiskImages(v []*DiskImage) *ImportInstanceInput {
+	s.DiskImages = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ImportInstanceInput) SetDryRun(v bool) *ImportInstanceInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetLaunchSpecification sets the LaunchSpecification field's value.
+func (s *ImportInstanceInput) SetLaunchSpecification(v *ImportInstanceLaunchSpecification) *ImportInstanceInput {
+	s.LaunchSpecification = v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ImportInstanceInput) SetPlatform(v string) *ImportInstanceInput {
+	s.Platform = &v
+	return s
+}
+
 // Describes the launch specification for VM import.
 type ImportInstanceLaunchSpecification struct {
 	_ struct{} `type:"structure"`
@@ -27555,6 +33675,72 @@ func (s ImportInstanceLaunchSpecification) GoString() string {
 	return s.String()
 }
 
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *ImportInstanceLaunchSpecification) SetAdditionalInfo(v string) *ImportInstanceLaunchSpecification {
+	s.AdditionalInfo = &v
+	return s
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *ImportInstanceLaunchSpecification) SetArchitecture(v string) *ImportInstanceLaunchSpecification {
+	s.Architecture = &v
+	return s
+}
+
+// SetGroupIds sets the GroupIds field's value.
+func (s *ImportInstanceLaunchSpecification) SetGroupIds(v []*string) *ImportInstanceLaunchSpecification {
+	s.GroupIds = v
+	return s
+}
+
+// SetGroupNames sets the GroupNames field's value.
+func (s *ImportInstanceLaunchSpecification) SetGroupNames(v []*string) *ImportInstanceLaunchSpecification {
+	s.GroupNames = v
+	return s
+}
+
+// SetInstanceInitiatedShutdownBehavior sets the InstanceInitiatedShutdownBehavior field's value.
+func (s *ImportInstanceLaunchSpecification) SetInstanceInitiatedShutdownBehavior(v string) *ImportInstanceLaunchSpecification {
+	s.InstanceInitiatedShutdownBehavior = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ImportInstanceLaunchSpecification) SetInstanceType(v string) *ImportInstanceLaunchSpecification {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *ImportInstanceLaunchSpecification) SetMonitoring(v bool) *ImportInstanceLaunchSpecification {
+	s.Monitoring = &v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *ImportInstanceLaunchSpecification) SetPlacement(v *Placement) *ImportInstanceLaunchSpecification {
+	s.Placement = v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *ImportInstanceLaunchSpecification) SetPrivateIpAddress(v string) *ImportInstanceLaunchSpecification {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *ImportInstanceLaunchSpecification) SetSubnetId(v string) *ImportInstanceLaunchSpecification {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *ImportInstanceLaunchSpecification) SetUserData(v *UserData) *ImportInstanceLaunchSpecification {
+	s.UserData = v
+	return s
+}
+
 // Contains the output for ImportInstance.
 type ImportInstanceOutput struct {
 	_ struct{} `type:"structure"`
@@ -27571,6 +33757,12 @@ func (s ImportInstanceOutput) String() string {
 // GoString returns the string representation
 func (s ImportInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// SetConversionTask sets the ConversionTask field's value.
+func (s *ImportInstanceOutput) SetConversionTask(v *ConversionTask) *ImportInstanceOutput {
+	s.ConversionTask = v
+	return s
 }
 
 // Describes an import instance task.
@@ -27600,6 +33792,30 @@ func (s ImportInstanceTaskDetails) String() string {
 // GoString returns the string representation
 func (s ImportInstanceTaskDetails) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportInstanceTaskDetails) SetDescription(v string) *ImportInstanceTaskDetails {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ImportInstanceTaskDetails) SetInstanceId(v string) *ImportInstanceTaskDetails {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ImportInstanceTaskDetails) SetPlatform(v string) *ImportInstanceTaskDetails {
+	s.Platform = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *ImportInstanceTaskDetails) SetVolumes(v []*ImportInstanceVolumeDetailItem) *ImportInstanceTaskDetails {
+	s.Volumes = v
+	return s
 }
 
 // Describes an import volume task.
@@ -27646,6 +33862,48 @@ func (s ImportInstanceVolumeDetailItem) String() string {
 // GoString returns the string representation
 func (s ImportInstanceVolumeDetailItem) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ImportInstanceVolumeDetailItem) SetAvailabilityZone(v string) *ImportInstanceVolumeDetailItem {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetBytesConverted sets the BytesConverted field's value.
+func (s *ImportInstanceVolumeDetailItem) SetBytesConverted(v int64) *ImportInstanceVolumeDetailItem {
+	s.BytesConverted = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportInstanceVolumeDetailItem) SetDescription(v string) *ImportInstanceVolumeDetailItem {
+	s.Description = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *ImportInstanceVolumeDetailItem) SetImage(v *DiskImageDescription) *ImportInstanceVolumeDetailItem {
+	s.Image = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportInstanceVolumeDetailItem) SetStatus(v string) *ImportInstanceVolumeDetailItem {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ImportInstanceVolumeDetailItem) SetStatusMessage(v string) *ImportInstanceVolumeDetailItem {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetVolume sets the Volume field's value.
+func (s *ImportInstanceVolumeDetailItem) SetVolume(v *DiskImageVolumeDescription) *ImportInstanceVolumeDetailItem {
+	s.Volume = v
+	return s
 }
 
 // Contains the parameters for ImportKeyPair.
@@ -27698,6 +33956,24 @@ func (s *ImportKeyPairInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *ImportKeyPairInput) SetDryRun(v bool) *ImportKeyPairInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *ImportKeyPairInput) SetKeyName(v string) *ImportKeyPairInput {
+	s.KeyName = &v
+	return s
+}
+
+// SetPublicKeyMaterial sets the PublicKeyMaterial field's value.
+func (s *ImportKeyPairInput) SetPublicKeyMaterial(v []byte) *ImportKeyPairInput {
+	s.PublicKeyMaterial = v
+	return s
+}
+
 // Contains the output of ImportKeyPair.
 type ImportKeyPairOutput struct {
 	_ struct{} `type:"structure"`
@@ -27717,6 +33993,18 @@ func (s ImportKeyPairOutput) String() string {
 // GoString returns the string representation
 func (s ImportKeyPairOutput) GoString() string {
 	return s.String()
+}
+
+// SetKeyFingerprint sets the KeyFingerprint field's value.
+func (s *ImportKeyPairOutput) SetKeyFingerprint(v string) *ImportKeyPairOutput {
+	s.KeyFingerprint = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *ImportKeyPairOutput) SetKeyName(v string) *ImportKeyPairOutput {
+	s.KeyName = &v
+	return s
 }
 
 // Contains the parameters for ImportSnapshot.
@@ -27755,6 +34043,42 @@ func (s ImportSnapshotInput) GoString() string {
 	return s.String()
 }
 
+// SetClientData sets the ClientData field's value.
+func (s *ImportSnapshotInput) SetClientData(v *ClientData) *ImportSnapshotInput {
+	s.ClientData = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ImportSnapshotInput) SetClientToken(v string) *ImportSnapshotInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportSnapshotInput) SetDescription(v string) *ImportSnapshotInput {
+	s.Description = &v
+	return s
+}
+
+// SetDiskContainer sets the DiskContainer field's value.
+func (s *ImportSnapshotInput) SetDiskContainer(v *SnapshotDiskContainer) *ImportSnapshotInput {
+	s.DiskContainer = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ImportSnapshotInput) SetDryRun(v bool) *ImportSnapshotInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetRoleName sets the RoleName field's value.
+func (s *ImportSnapshotInput) SetRoleName(v string) *ImportSnapshotInput {
+	s.RoleName = &v
+	return s
+}
+
 // Contains the output for ImportSnapshot.
 type ImportSnapshotOutput struct {
 	_ struct{} `type:"structure"`
@@ -27779,6 +34103,24 @@ func (s ImportSnapshotOutput) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *ImportSnapshotOutput) SetDescription(v string) *ImportSnapshotOutput {
+	s.Description = &v
+	return s
+}
+
+// SetImportTaskId sets the ImportTaskId field's value.
+func (s *ImportSnapshotOutput) SetImportTaskId(v string) *ImportSnapshotOutput {
+	s.ImportTaskId = &v
+	return s
+}
+
+// SetSnapshotTaskDetail sets the SnapshotTaskDetail field's value.
+func (s *ImportSnapshotOutput) SetSnapshotTaskDetail(v *SnapshotTaskDetail) *ImportSnapshotOutput {
+	s.SnapshotTaskDetail = v
+	return s
+}
+
 // Describes an import snapshot task.
 type ImportSnapshotTask struct {
 	_ struct{} `type:"structure"`
@@ -27801,6 +34143,24 @@ func (s ImportSnapshotTask) String() string {
 // GoString returns the string representation
 func (s ImportSnapshotTask) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportSnapshotTask) SetDescription(v string) *ImportSnapshotTask {
+	s.Description = &v
+	return s
+}
+
+// SetImportTaskId sets the ImportTaskId field's value.
+func (s *ImportSnapshotTask) SetImportTaskId(v string) *ImportSnapshotTask {
+	s.ImportTaskId = &v
+	return s
+}
+
+// SetSnapshotTaskDetail sets the SnapshotTaskDetail field's value.
+func (s *ImportSnapshotTask) SetSnapshotTaskDetail(v *SnapshotTaskDetail) *ImportSnapshotTask {
+	s.SnapshotTaskDetail = v
+	return s
 }
 
 // Contains the parameters for ImportVolume.
@@ -27871,6 +34231,36 @@ func (s *ImportVolumeInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ImportVolumeInput) SetAvailabilityZone(v string) *ImportVolumeInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportVolumeInput) SetDescription(v string) *ImportVolumeInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ImportVolumeInput) SetDryRun(v bool) *ImportVolumeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *ImportVolumeInput) SetImage(v *DiskImageDetail) *ImportVolumeInput {
+	s.Image = v
+	return s
+}
+
+// SetVolume sets the Volume field's value.
+func (s *ImportVolumeInput) SetVolume(v *VolumeDetail) *ImportVolumeInput {
+	s.Volume = v
+	return s
+}
+
 // Contains the output for ImportVolume.
 type ImportVolumeOutput struct {
 	_ struct{} `type:"structure"`
@@ -27887,6 +34277,12 @@ func (s ImportVolumeOutput) String() string {
 // GoString returns the string representation
 func (s ImportVolumeOutput) GoString() string {
 	return s.String()
+}
+
+// SetConversionTask sets the ConversionTask field's value.
+func (s *ImportVolumeOutput) SetConversionTask(v *ConversionTask) *ImportVolumeOutput {
+	s.ConversionTask = v
+	return s
 }
 
 // Describes an import volume task.
@@ -27925,6 +34321,36 @@ func (s ImportVolumeTaskDetails) String() string {
 // GoString returns the string representation
 func (s ImportVolumeTaskDetails) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ImportVolumeTaskDetails) SetAvailabilityZone(v string) *ImportVolumeTaskDetails {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetBytesConverted sets the BytesConverted field's value.
+func (s *ImportVolumeTaskDetails) SetBytesConverted(v int64) *ImportVolumeTaskDetails {
+	s.BytesConverted = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ImportVolumeTaskDetails) SetDescription(v string) *ImportVolumeTaskDetails {
+	s.Description = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *ImportVolumeTaskDetails) SetImage(v *DiskImageDescription) *ImportVolumeTaskDetails {
+	s.Image = v
+	return s
+}
+
+// SetVolume sets the Volume field's value.
+func (s *ImportVolumeTaskDetails) SetVolume(v *DiskImageVolumeDescription) *ImportVolumeTaskDetails {
+	s.Volume = v
+	return s
 }
 
 // Describes an instance.
@@ -28074,6 +34500,234 @@ func (s Instance) GoString() string {
 	return s.String()
 }
 
+// SetAmiLaunchIndex sets the AmiLaunchIndex field's value.
+func (s *Instance) SetAmiLaunchIndex(v int64) *Instance {
+	s.AmiLaunchIndex = &v
+	return s
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *Instance) SetArchitecture(v string) *Instance {
+	s.Architecture = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *Instance) SetBlockDeviceMappings(v []*InstanceBlockDeviceMapping) *Instance {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *Instance) SetClientToken(v string) *Instance {
+	s.ClientToken = &v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *Instance) SetEbsOptimized(v bool) *Instance {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetEnaSupport sets the EnaSupport field's value.
+func (s *Instance) SetEnaSupport(v bool) *Instance {
+	s.EnaSupport = &v
+	return s
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *Instance) SetHypervisor(v string) *Instance {
+	s.Hypervisor = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *Instance) SetIamInstanceProfile(v *IamInstanceProfile) *Instance {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *Instance) SetImageId(v string) *Instance {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *Instance) SetInstanceId(v string) *Instance {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceLifecycle sets the InstanceLifecycle field's value.
+func (s *Instance) SetInstanceLifecycle(v string) *Instance {
+	s.InstanceLifecycle = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *Instance) SetInstanceType(v string) *Instance {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *Instance) SetKernelId(v string) *Instance {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *Instance) SetKeyName(v string) *Instance {
+	s.KeyName = &v
+	return s
+}
+
+// SetLaunchTime sets the LaunchTime field's value.
+func (s *Instance) SetLaunchTime(v time.Time) *Instance {
+	s.LaunchTime = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *Instance) SetMonitoring(v *Monitoring) *Instance {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *Instance) SetNetworkInterfaces(v []*InstanceNetworkInterface) *Instance {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *Instance) SetPlacement(v *Placement) *Instance {
+	s.Placement = v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *Instance) SetPlatform(v string) *Instance {
+	s.Platform = &v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *Instance) SetPrivateDnsName(v string) *Instance {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *Instance) SetPrivateIpAddress(v string) *Instance {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *Instance) SetProductCodes(v []*ProductCode) *Instance {
+	s.ProductCodes = v
+	return s
+}
+
+// SetPublicDnsName sets the PublicDnsName field's value.
+func (s *Instance) SetPublicDnsName(v string) *Instance {
+	s.PublicDnsName = &v
+	return s
+}
+
+// SetPublicIpAddress sets the PublicIpAddress field's value.
+func (s *Instance) SetPublicIpAddress(v string) *Instance {
+	s.PublicIpAddress = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *Instance) SetRamdiskId(v string) *Instance {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetRootDeviceName sets the RootDeviceName field's value.
+func (s *Instance) SetRootDeviceName(v string) *Instance {
+	s.RootDeviceName = &v
+	return s
+}
+
+// SetRootDeviceType sets the RootDeviceType field's value.
+func (s *Instance) SetRootDeviceType(v string) *Instance {
+	s.RootDeviceType = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *Instance) SetSecurityGroups(v []*GroupIdentifier) *Instance {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *Instance) SetSourceDestCheck(v bool) *Instance {
+	s.SourceDestCheck = &v
+	return s
+}
+
+// SetSpotInstanceRequestId sets the SpotInstanceRequestId field's value.
+func (s *Instance) SetSpotInstanceRequestId(v string) *Instance {
+	s.SpotInstanceRequestId = &v
+	return s
+}
+
+// SetSriovNetSupport sets the SriovNetSupport field's value.
+func (s *Instance) SetSriovNetSupport(v string) *Instance {
+	s.SriovNetSupport = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Instance) SetState(v *InstanceState) *Instance {
+	s.State = v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *Instance) SetStateReason(v *StateReason) *Instance {
+	s.StateReason = v
+	return s
+}
+
+// SetStateTransitionReason sets the StateTransitionReason field's value.
+func (s *Instance) SetStateTransitionReason(v string) *Instance {
+	s.StateTransitionReason = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *Instance) SetSubnetId(v string) *Instance {
+	s.SubnetId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Instance) SetTags(v []*Tag) *Instance {
+	s.Tags = v
+	return s
+}
+
+// SetVirtualizationType sets the VirtualizationType field's value.
+func (s *Instance) SetVirtualizationType(v string) *Instance {
+	s.VirtualizationType = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *Instance) SetVpcId(v string) *Instance {
+	s.VpcId = &v
+	return s
+}
+
 // Describes a block device mapping.
 type InstanceBlockDeviceMapping struct {
 	_ struct{} `type:"structure"`
@@ -28094,6 +34748,18 @@ func (s InstanceBlockDeviceMapping) String() string {
 // GoString returns the string representation
 func (s InstanceBlockDeviceMapping) GoString() string {
 	return s.String()
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *InstanceBlockDeviceMapping) SetDeviceName(v string) *InstanceBlockDeviceMapping {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *InstanceBlockDeviceMapping) SetEbs(v *EbsInstanceBlockDevice) *InstanceBlockDeviceMapping {
+	s.Ebs = v
+	return s
 }
 
 // Describes a block device mapping entry.
@@ -28124,6 +34790,30 @@ func (s InstanceBlockDeviceMappingSpecification) GoString() string {
 	return s.String()
 }
 
+// SetDeviceName sets the DeviceName field's value.
+func (s *InstanceBlockDeviceMappingSpecification) SetDeviceName(v string) *InstanceBlockDeviceMappingSpecification {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *InstanceBlockDeviceMappingSpecification) SetEbs(v *EbsInstanceBlockDeviceSpecification) *InstanceBlockDeviceMappingSpecification {
+	s.Ebs = v
+	return s
+}
+
+// SetNoDevice sets the NoDevice field's value.
+func (s *InstanceBlockDeviceMappingSpecification) SetNoDevice(v string) *InstanceBlockDeviceMappingSpecification {
+	s.NoDevice = &v
+	return s
+}
+
+// SetVirtualName sets the VirtualName field's value.
+func (s *InstanceBlockDeviceMappingSpecification) SetVirtualName(v string) *InstanceBlockDeviceMappingSpecification {
+	s.VirtualName = &v
+	return s
+}
+
 // Information about the instance type that the Dedicated Host supports.
 type InstanceCapacity struct {
 	_ struct{} `type:"structure"`
@@ -28148,6 +34838,24 @@ func (s InstanceCapacity) GoString() string {
 	return s.String()
 }
 
+// SetAvailableCapacity sets the AvailableCapacity field's value.
+func (s *InstanceCapacity) SetAvailableCapacity(v int64) *InstanceCapacity {
+	s.AvailableCapacity = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceCapacity) SetInstanceType(v string) *InstanceCapacity {
+	s.InstanceType = &v
+	return s
+}
+
+// SetTotalCapacity sets the TotalCapacity field's value.
+func (s *InstanceCapacity) SetTotalCapacity(v int64) *InstanceCapacity {
+	s.TotalCapacity = &v
+	return s
+}
+
 // Describes a Reserved Instance listing state.
 type InstanceCount struct {
 	_ struct{} `type:"structure"`
@@ -28167,6 +34875,18 @@ func (s InstanceCount) String() string {
 // GoString returns the string representation
 func (s InstanceCount) GoString() string {
 	return s.String()
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *InstanceCount) SetInstanceCount(v int64) *InstanceCount {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *InstanceCount) SetState(v string) *InstanceCount {
+	s.State = &v
+	return s
 }
 
 // Describes an instance to export.
@@ -28190,6 +34910,18 @@ func (s InstanceExportDetails) GoString() string {
 	return s.String()
 }
 
+// SetInstanceId sets the InstanceId field's value.
+func (s *InstanceExportDetails) SetInstanceId(v string) *InstanceExportDetails {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTargetEnvironment sets the TargetEnvironment field's value.
+func (s *InstanceExportDetails) SetTargetEnvironment(v string) *InstanceExportDetails {
+	s.TargetEnvironment = &v
+	return s
+}
+
 // Describes the monitoring information of the instance.
 type InstanceMonitoring struct {
 	_ struct{} `type:"structure"`
@@ -28209,6 +34941,18 @@ func (s InstanceMonitoring) String() string {
 // GoString returns the string representation
 func (s InstanceMonitoring) GoString() string {
 	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *InstanceMonitoring) SetInstanceId(v string) *InstanceMonitoring {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *InstanceMonitoring) SetMonitoring(v *Monitoring) *InstanceMonitoring {
+	s.Monitoring = v
+	return s
 }
 
 // Describes a network interface.
@@ -28269,6 +35013,90 @@ func (s InstanceNetworkInterface) GoString() string {
 	return s.String()
 }
 
+// SetAssociation sets the Association field's value.
+func (s *InstanceNetworkInterface) SetAssociation(v *InstanceNetworkInterfaceAssociation) *InstanceNetworkInterface {
+	s.Association = v
+	return s
+}
+
+// SetAttachment sets the Attachment field's value.
+func (s *InstanceNetworkInterface) SetAttachment(v *InstanceNetworkInterfaceAttachment) *InstanceNetworkInterface {
+	s.Attachment = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *InstanceNetworkInterface) SetDescription(v string) *InstanceNetworkInterface {
+	s.Description = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *InstanceNetworkInterface) SetGroups(v []*GroupIdentifier) *InstanceNetworkInterface {
+	s.Groups = v
+	return s
+}
+
+// SetMacAddress sets the MacAddress field's value.
+func (s *InstanceNetworkInterface) SetMacAddress(v string) *InstanceNetworkInterface {
+	s.MacAddress = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *InstanceNetworkInterface) SetNetworkInterfaceId(v string) *InstanceNetworkInterface {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *InstanceNetworkInterface) SetOwnerId(v string) *InstanceNetworkInterface {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *InstanceNetworkInterface) SetPrivateDnsName(v string) *InstanceNetworkInterface {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *InstanceNetworkInterface) SetPrivateIpAddress(v string) *InstanceNetworkInterface {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *InstanceNetworkInterface) SetPrivateIpAddresses(v []*InstancePrivateIpAddress) *InstanceNetworkInterface {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *InstanceNetworkInterface) SetSourceDestCheck(v bool) *InstanceNetworkInterface {
+	s.SourceDestCheck = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InstanceNetworkInterface) SetStatus(v string) *InstanceNetworkInterface {
+	s.Status = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *InstanceNetworkInterface) SetSubnetId(v string) *InstanceNetworkInterface {
+	s.SubnetId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *InstanceNetworkInterface) SetVpcId(v string) *InstanceNetworkInterface {
+	s.VpcId = &v
+	return s
+}
+
 // Describes association information for an Elastic IP address.
 type InstanceNetworkInterfaceAssociation struct {
 	_ struct{} `type:"structure"`
@@ -28291,6 +35119,24 @@ func (s InstanceNetworkInterfaceAssociation) String() string {
 // GoString returns the string representation
 func (s InstanceNetworkInterfaceAssociation) GoString() string {
 	return s.String()
+}
+
+// SetIpOwnerId sets the IpOwnerId field's value.
+func (s *InstanceNetworkInterfaceAssociation) SetIpOwnerId(v string) *InstanceNetworkInterfaceAssociation {
+	s.IpOwnerId = &v
+	return s
+}
+
+// SetPublicDnsName sets the PublicDnsName field's value.
+func (s *InstanceNetworkInterfaceAssociation) SetPublicDnsName(v string) *InstanceNetworkInterfaceAssociation {
+	s.PublicDnsName = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *InstanceNetworkInterfaceAssociation) SetPublicIp(v string) *InstanceNetworkInterfaceAssociation {
+	s.PublicIp = &v
+	return s
 }
 
 // Describes a network interface attachment.
@@ -28321,6 +35167,36 @@ func (s InstanceNetworkInterfaceAttachment) String() string {
 // GoString returns the string representation
 func (s InstanceNetworkInterfaceAttachment) GoString() string {
 	return s.String()
+}
+
+// SetAttachTime sets the AttachTime field's value.
+func (s *InstanceNetworkInterfaceAttachment) SetAttachTime(v time.Time) *InstanceNetworkInterfaceAttachment {
+	s.AttachTime = &v
+	return s
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *InstanceNetworkInterfaceAttachment) SetAttachmentId(v string) *InstanceNetworkInterfaceAttachment {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *InstanceNetworkInterfaceAttachment) SetDeleteOnTermination(v bool) *InstanceNetworkInterfaceAttachment {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetDeviceIndex sets the DeviceIndex field's value.
+func (s *InstanceNetworkInterfaceAttachment) SetDeviceIndex(v int64) *InstanceNetworkInterfaceAttachment {
+	s.DeviceIndex = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InstanceNetworkInterfaceAttachment) SetStatus(v string) *InstanceNetworkInterfaceAttachment {
+	s.Status = &v
+	return s
 }
 
 // Describes a network interface.
@@ -28406,6 +35282,66 @@ func (s *InstanceNetworkInterfaceSpecification) Validate() error {
 	return nil
 }
 
+// SetAssociatePublicIpAddress sets the AssociatePublicIpAddress field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetAssociatePublicIpAddress(v bool) *InstanceNetworkInterfaceSpecification {
+	s.AssociatePublicIpAddress = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetDeleteOnTermination(v bool) *InstanceNetworkInterfaceSpecification {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetDescription(v string) *InstanceNetworkInterfaceSpecification {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceIndex sets the DeviceIndex field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetDeviceIndex(v int64) *InstanceNetworkInterfaceSpecification {
+	s.DeviceIndex = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetGroups(v []*string) *InstanceNetworkInterfaceSpecification {
+	s.Groups = v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetNetworkInterfaceId(v string) *InstanceNetworkInterfaceSpecification {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetPrivateIpAddress(v string) *InstanceNetworkInterfaceSpecification {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetPrivateIpAddresses(v []*PrivateIpAddressSpecification) *InstanceNetworkInterfaceSpecification {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetSecondaryPrivateIpAddressCount sets the SecondaryPrivateIpAddressCount field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetSecondaryPrivateIpAddressCount(v int64) *InstanceNetworkInterfaceSpecification {
+	s.SecondaryPrivateIpAddressCount = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *InstanceNetworkInterfaceSpecification) SetSubnetId(v string) *InstanceNetworkInterfaceSpecification {
+	s.SubnetId = &v
+	return s
+}
+
 // Describes a private IP address.
 type InstancePrivateIpAddress struct {
 	_ struct{} `type:"structure"`
@@ -28432,6 +35368,30 @@ func (s InstancePrivateIpAddress) String() string {
 // GoString returns the string representation
 func (s InstancePrivateIpAddress) GoString() string {
 	return s.String()
+}
+
+// SetAssociation sets the Association field's value.
+func (s *InstancePrivateIpAddress) SetAssociation(v *InstanceNetworkInterfaceAssociation) *InstancePrivateIpAddress {
+	s.Association = v
+	return s
+}
+
+// SetPrimary sets the Primary field's value.
+func (s *InstancePrivateIpAddress) SetPrimary(v bool) *InstancePrivateIpAddress {
+	s.Primary = &v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *InstancePrivateIpAddress) SetPrivateDnsName(v string) *InstancePrivateIpAddress {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *InstancePrivateIpAddress) SetPrivateIpAddress(v string) *InstancePrivateIpAddress {
+	s.PrivateIpAddress = &v
+	return s
 }
 
 // Describes the current state of the instance.
@@ -28468,6 +35428,18 @@ func (s InstanceState) GoString() string {
 	return s.String()
 }
 
+// SetCode sets the Code field's value.
+func (s *InstanceState) SetCode(v int64) *InstanceState {
+	s.Code = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceState) SetName(v string) *InstanceState {
+	s.Name = &v
+	return s
+}
+
 // Describes an instance state change.
 type InstanceStateChange struct {
 	_ struct{} `type:"structure"`
@@ -28490,6 +35462,24 @@ func (s InstanceStateChange) String() string {
 // GoString returns the string representation
 func (s InstanceStateChange) GoString() string {
 	return s.String()
+}
+
+// SetCurrentState sets the CurrentState field's value.
+func (s *InstanceStateChange) SetCurrentState(v *InstanceState) *InstanceStateChange {
+	s.CurrentState = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *InstanceStateChange) SetInstanceId(v string) *InstanceStateChange {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPreviousState sets the PreviousState field's value.
+func (s *InstanceStateChange) SetPreviousState(v *InstanceState) *InstanceStateChange {
+	s.PreviousState = v
+	return s
 }
 
 // Describes the status of an instance.
@@ -28529,6 +35519,42 @@ func (s InstanceStatus) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *InstanceStatus) SetAvailabilityZone(v string) *InstanceStatus {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *InstanceStatus) SetEvents(v []*InstanceStatusEvent) *InstanceStatus {
+	s.Events = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *InstanceStatus) SetInstanceId(v string) *InstanceStatus {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceState sets the InstanceState field's value.
+func (s *InstanceStatus) SetInstanceState(v *InstanceState) *InstanceStatus {
+	s.InstanceState = v
+	return s
+}
+
+// SetInstanceStatus sets the InstanceStatus field's value.
+func (s *InstanceStatus) SetInstanceStatus(v *InstanceStatusSummary) *InstanceStatus {
+	s.InstanceStatus = v
+	return s
+}
+
+// SetSystemStatus sets the SystemStatus field's value.
+func (s *InstanceStatus) SetSystemStatus(v *InstanceStatusSummary) *InstanceStatus {
+	s.SystemStatus = v
+	return s
+}
+
 // Describes the instance status.
 type InstanceStatusDetails struct {
 	_ struct{} `type:"structure"`
@@ -28552,6 +35578,24 @@ func (s InstanceStatusDetails) String() string {
 // GoString returns the string representation
 func (s InstanceStatusDetails) GoString() string {
 	return s.String()
+}
+
+// SetImpairedSince sets the ImpairedSince field's value.
+func (s *InstanceStatusDetails) SetImpairedSince(v time.Time) *InstanceStatusDetails {
+	s.ImpairedSince = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceStatusDetails) SetName(v string) *InstanceStatusDetails {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InstanceStatusDetails) SetStatus(v string) *InstanceStatusDetails {
+	s.Status = &v
+	return s
 }
 
 // Describes a scheduled event for an instance.
@@ -28585,6 +35629,30 @@ func (s InstanceStatusEvent) GoString() string {
 	return s.String()
 }
 
+// SetCode sets the Code field's value.
+func (s *InstanceStatusEvent) SetCode(v string) *InstanceStatusEvent {
+	s.Code = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *InstanceStatusEvent) SetDescription(v string) *InstanceStatusEvent {
+	s.Description = &v
+	return s
+}
+
+// SetNotAfter sets the NotAfter field's value.
+func (s *InstanceStatusEvent) SetNotAfter(v time.Time) *InstanceStatusEvent {
+	s.NotAfter = &v
+	return s
+}
+
+// SetNotBefore sets the NotBefore field's value.
+func (s *InstanceStatusEvent) SetNotBefore(v time.Time) *InstanceStatusEvent {
+	s.NotBefore = &v
+	return s
+}
+
 // Describes the status of an instance.
 type InstanceStatusSummary struct {
 	_ struct{} `type:"structure"`
@@ -28604,6 +35672,18 @@ func (s InstanceStatusSummary) String() string {
 // GoString returns the string representation
 func (s InstanceStatusSummary) GoString() string {
 	return s.String()
+}
+
+// SetDetails sets the Details field's value.
+func (s *InstanceStatusSummary) SetDetails(v []*InstanceStatusDetails) *InstanceStatusSummary {
+	s.Details = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InstanceStatusSummary) SetStatus(v string) *InstanceStatusSummary {
+	s.Status = &v
+	return s
 }
 
 // Describes an Internet gateway.
@@ -28630,6 +35710,24 @@ func (s InternetGateway) GoString() string {
 	return s.String()
 }
 
+// SetAttachments sets the Attachments field's value.
+func (s *InternetGateway) SetAttachments(v []*InternetGatewayAttachment) *InternetGateway {
+	s.Attachments = v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *InternetGateway) SetInternetGatewayId(v string) *InternetGateway {
+	s.InternetGatewayId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *InternetGateway) SetTags(v []*Tag) *InternetGateway {
+	s.Tags = v
+	return s
+}
+
 // Describes the attachment of a VPC to an Internet gateway.
 type InternetGatewayAttachment struct {
 	_ struct{} `type:"structure"`
@@ -28649,6 +35747,18 @@ func (s InternetGatewayAttachment) String() string {
 // GoString returns the string representation
 func (s InternetGatewayAttachment) GoString() string {
 	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *InternetGatewayAttachment) SetState(v string) *InternetGatewayAttachment {
+	s.State = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *InternetGatewayAttachment) SetVpcId(v string) *InternetGatewayAttachment {
+	s.VpcId = &v
+	return s
 }
 
 // Describes a security group rule.
@@ -28693,6 +35803,42 @@ func (s IpPermission) GoString() string {
 	return s.String()
 }
 
+// SetFromPort sets the FromPort field's value.
+func (s *IpPermission) SetFromPort(v int64) *IpPermission {
+	s.FromPort = &v
+	return s
+}
+
+// SetIpProtocol sets the IpProtocol field's value.
+func (s *IpPermission) SetIpProtocol(v string) *IpPermission {
+	s.IpProtocol = &v
+	return s
+}
+
+// SetIpRanges sets the IpRanges field's value.
+func (s *IpPermission) SetIpRanges(v []*IpRange) *IpPermission {
+	s.IpRanges = v
+	return s
+}
+
+// SetPrefixListIds sets the PrefixListIds field's value.
+func (s *IpPermission) SetPrefixListIds(v []*PrefixListId) *IpPermission {
+	s.PrefixListIds = v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *IpPermission) SetToPort(v int64) *IpPermission {
+	s.ToPort = &v
+	return s
+}
+
+// SetUserIdGroupPairs sets the UserIdGroupPairs field's value.
+func (s *IpPermission) SetUserIdGroupPairs(v []*UserIdGroupPair) *IpPermission {
+	s.UserIdGroupPairs = v
+	return s
+}
+
 // Describes an IP range.
 type IpRange struct {
 	_ struct{} `type:"structure"`
@@ -28710,6 +35856,12 @@ func (s IpRange) String() string {
 // GoString returns the string representation
 func (s IpRange) GoString() string {
 	return s.String()
+}
+
+// SetCidrIp sets the CidrIp field's value.
+func (s *IpRange) SetCidrIp(v string) *IpRange {
+	s.CidrIp = &v
+	return s
 }
 
 // Describes a key pair.
@@ -28736,6 +35888,18 @@ func (s KeyPairInfo) GoString() string {
 	return s.String()
 }
 
+// SetKeyFingerprint sets the KeyFingerprint field's value.
+func (s *KeyPairInfo) SetKeyFingerprint(v string) *KeyPairInfo {
+	s.KeyFingerprint = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *KeyPairInfo) SetKeyName(v string) *KeyPairInfo {
+	s.KeyName = &v
+	return s
+}
+
 // Describes a launch permission.
 type LaunchPermission struct {
 	_ struct{} `type:"structure"`
@@ -28755,6 +35919,18 @@ func (s LaunchPermission) String() string {
 // GoString returns the string representation
 func (s LaunchPermission) GoString() string {
 	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *LaunchPermission) SetGroup(v string) *LaunchPermission {
+	s.Group = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *LaunchPermission) SetUserId(v string) *LaunchPermission {
+	s.UserId = &v
+	return s
 }
 
 // Describes a launch permission modification.
@@ -28777,6 +35953,18 @@ func (s LaunchPermissionModifications) String() string {
 // GoString returns the string representation
 func (s LaunchPermissionModifications) GoString() string {
 	return s.String()
+}
+
+// SetAdd sets the Add field's value.
+func (s *LaunchPermissionModifications) SetAdd(v []*LaunchPermission) *LaunchPermissionModifications {
+	s.Add = v
+	return s
+}
+
+// SetRemove sets the Remove field's value.
+func (s *LaunchPermissionModifications) SetRemove(v []*LaunchPermission) *LaunchPermissionModifications {
+	s.Remove = v
+	return s
 }
 
 // Describes the launch specification for an instance.
@@ -28852,6 +36040,96 @@ func (s LaunchSpecification) GoString() string {
 	return s.String()
 }
 
+// SetAddressingType sets the AddressingType field's value.
+func (s *LaunchSpecification) SetAddressingType(v string) *LaunchSpecification {
+	s.AddressingType = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *LaunchSpecification) SetBlockDeviceMappings(v []*BlockDeviceMapping) *LaunchSpecification {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *LaunchSpecification) SetEbsOptimized(v bool) *LaunchSpecification {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *LaunchSpecification) SetIamInstanceProfile(v *IamInstanceProfileSpecification) *LaunchSpecification {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *LaunchSpecification) SetImageId(v string) *LaunchSpecification {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *LaunchSpecification) SetInstanceType(v string) *LaunchSpecification {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *LaunchSpecification) SetKernelId(v string) *LaunchSpecification {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *LaunchSpecification) SetKeyName(v string) *LaunchSpecification {
+	s.KeyName = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *LaunchSpecification) SetMonitoring(v *RunInstancesMonitoringEnabled) *LaunchSpecification {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *LaunchSpecification) SetNetworkInterfaces(v []*InstanceNetworkInterfaceSpecification) *LaunchSpecification {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *LaunchSpecification) SetPlacement(v *SpotPlacement) *LaunchSpecification {
+	s.Placement = v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *LaunchSpecification) SetRamdiskId(v string) *LaunchSpecification {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *LaunchSpecification) SetSecurityGroups(v []*GroupIdentifier) *LaunchSpecification {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *LaunchSpecification) SetSubnetId(v string) *LaunchSpecification {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *LaunchSpecification) SetUserData(v string) *LaunchSpecification {
+	s.UserData = &v
+	return s
+}
+
 // Contains the parameters for ModifyHosts.
 type ModifyHostsInput struct {
 	_ struct{} `type:"structure"`
@@ -28893,6 +36171,18 @@ func (s *ModifyHostsInput) Validate() error {
 	return nil
 }
 
+// SetAutoPlacement sets the AutoPlacement field's value.
+func (s *ModifyHostsInput) SetAutoPlacement(v string) *ModifyHostsInput {
+	s.AutoPlacement = &v
+	return s
+}
+
+// SetHostIds sets the HostIds field's value.
+func (s *ModifyHostsInput) SetHostIds(v []*string) *ModifyHostsInput {
+	s.HostIds = v
+	return s
+}
+
 // Contains the output of ModifyHosts.
 type ModifyHostsOutput struct {
 	_ struct{} `type:"structure"`
@@ -28913,6 +36203,18 @@ func (s ModifyHostsOutput) String() string {
 // GoString returns the string representation
 func (s ModifyHostsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSuccessful sets the Successful field's value.
+func (s *ModifyHostsOutput) SetSuccessful(v []*string) *ModifyHostsOutput {
+	s.Successful = v
+	return s
+}
+
+// SetUnsuccessful sets the Unsuccessful field's value.
+func (s *ModifyHostsOutput) SetUnsuccessful(v []*UnsuccessfulItem) *ModifyHostsOutput {
+	s.Unsuccessful = v
+	return s
 }
 
 // Contains the parameters of ModifyIdFormat.
@@ -28954,6 +36256,18 @@ func (s *ModifyIdFormatInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResource sets the Resource field's value.
+func (s *ModifyIdFormatInput) SetResource(v string) *ModifyIdFormatInput {
+	s.Resource = &v
+	return s
+}
+
+// SetUseLongIds sets the UseLongIds field's value.
+func (s *ModifyIdFormatInput) SetUseLongIds(v bool) *ModifyIdFormatInput {
+	s.UseLongIds = &v
+	return s
 }
 
 type ModifyIdFormatOutput struct {
@@ -29019,6 +36333,24 @@ func (s *ModifyIdentityIdFormatInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *ModifyIdentityIdFormatInput) SetPrincipalArn(v string) *ModifyIdentityIdFormatInput {
+	s.PrincipalArn = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *ModifyIdentityIdFormatInput) SetResource(v string) *ModifyIdentityIdFormatInput {
+	s.Resource = &v
+	return s
+}
+
+// SetUseLongIds sets the UseLongIds field's value.
+func (s *ModifyIdentityIdFormatInput) SetUseLongIds(v bool) *ModifyIdentityIdFormatInput {
+	s.UseLongIds = &v
+	return s
 }
 
 type ModifyIdentityIdFormatOutput struct {
@@ -29100,6 +36432,66 @@ func (s *ModifyImageAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *ModifyImageAttributeInput) SetAttribute(v string) *ModifyImageAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ModifyImageAttributeInput) SetDescription(v *AttributeValue) *ModifyImageAttributeInput {
+	s.Description = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyImageAttributeInput) SetDryRun(v bool) *ModifyImageAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ModifyImageAttributeInput) SetImageId(v string) *ModifyImageAttributeInput {
+	s.ImageId = &v
+	return s
+}
+
+// SetLaunchPermission sets the LaunchPermission field's value.
+func (s *ModifyImageAttributeInput) SetLaunchPermission(v *LaunchPermissionModifications) *ModifyImageAttributeInput {
+	s.LaunchPermission = v
+	return s
+}
+
+// SetOperationType sets the OperationType field's value.
+func (s *ModifyImageAttributeInput) SetOperationType(v string) *ModifyImageAttributeInput {
+	s.OperationType = &v
+	return s
+}
+
+// SetProductCodes sets the ProductCodes field's value.
+func (s *ModifyImageAttributeInput) SetProductCodes(v []*string) *ModifyImageAttributeInput {
+	s.ProductCodes = v
+	return s
+}
+
+// SetUserGroups sets the UserGroups field's value.
+func (s *ModifyImageAttributeInput) SetUserGroups(v []*string) *ModifyImageAttributeInput {
+	s.UserGroups = v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *ModifyImageAttributeInput) SetUserIds(v []*string) *ModifyImageAttributeInput {
+	s.UserIds = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ModifyImageAttributeInput) SetValue(v string) *ModifyImageAttributeInput {
+	s.Value = &v
+	return s
 }
 
 type ModifyImageAttributeOutput struct {
@@ -29236,6 +36628,102 @@ func (s *ModifyInstanceAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *ModifyInstanceAttributeInput) SetAttribute(v string) *ModifyInstanceAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *ModifyInstanceAttributeInput) SetBlockDeviceMappings(v []*InstanceBlockDeviceMappingSpecification) *ModifyInstanceAttributeInput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetDisableApiTermination sets the DisableApiTermination field's value.
+func (s *ModifyInstanceAttributeInput) SetDisableApiTermination(v *AttributeBooleanValue) *ModifyInstanceAttributeInput {
+	s.DisableApiTermination = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyInstanceAttributeInput) SetDryRun(v bool) *ModifyInstanceAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *ModifyInstanceAttributeInput) SetEbsOptimized(v *AttributeBooleanValue) *ModifyInstanceAttributeInput {
+	s.EbsOptimized = v
+	return s
+}
+
+// SetEnaSupport sets the EnaSupport field's value.
+func (s *ModifyInstanceAttributeInput) SetEnaSupport(v *AttributeBooleanValue) *ModifyInstanceAttributeInput {
+	s.EnaSupport = v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ModifyInstanceAttributeInput) SetGroups(v []*string) *ModifyInstanceAttributeInput {
+	s.Groups = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ModifyInstanceAttributeInput) SetInstanceId(v string) *ModifyInstanceAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceInitiatedShutdownBehavior sets the InstanceInitiatedShutdownBehavior field's value.
+func (s *ModifyInstanceAttributeInput) SetInstanceInitiatedShutdownBehavior(v *AttributeValue) *ModifyInstanceAttributeInput {
+	s.InstanceInitiatedShutdownBehavior = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ModifyInstanceAttributeInput) SetInstanceType(v *AttributeValue) *ModifyInstanceAttributeInput {
+	s.InstanceType = v
+	return s
+}
+
+// SetKernel sets the Kernel field's value.
+func (s *ModifyInstanceAttributeInput) SetKernel(v *AttributeValue) *ModifyInstanceAttributeInput {
+	s.Kernel = v
+	return s
+}
+
+// SetRamdisk sets the Ramdisk field's value.
+func (s *ModifyInstanceAttributeInput) SetRamdisk(v *AttributeValue) *ModifyInstanceAttributeInput {
+	s.Ramdisk = v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *ModifyInstanceAttributeInput) SetSourceDestCheck(v *AttributeBooleanValue) *ModifyInstanceAttributeInput {
+	s.SourceDestCheck = v
+	return s
+}
+
+// SetSriovNetSupport sets the SriovNetSupport field's value.
+func (s *ModifyInstanceAttributeInput) SetSriovNetSupport(v *AttributeValue) *ModifyInstanceAttributeInput {
+	s.SriovNetSupport = v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *ModifyInstanceAttributeInput) SetUserData(v *BlobAttributeValue) *ModifyInstanceAttributeInput {
+	s.UserData = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ModifyInstanceAttributeInput) SetValue(v string) *ModifyInstanceAttributeInput {
+	s.Value = &v
+	return s
+}
+
 type ModifyInstanceAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -29292,6 +36780,30 @@ func (s *ModifyInstancePlacementInput) Validate() error {
 	return nil
 }
 
+// SetAffinity sets the Affinity field's value.
+func (s *ModifyInstancePlacementInput) SetAffinity(v string) *ModifyInstancePlacementInput {
+	s.Affinity = &v
+	return s
+}
+
+// SetHostId sets the HostId field's value.
+func (s *ModifyInstancePlacementInput) SetHostId(v string) *ModifyInstancePlacementInput {
+	s.HostId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ModifyInstancePlacementInput) SetInstanceId(v string) *ModifyInstancePlacementInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetTenancy sets the Tenancy field's value.
+func (s *ModifyInstancePlacementInput) SetTenancy(v string) *ModifyInstancePlacementInput {
+	s.Tenancy = &v
+	return s
+}
+
 // Contains the output of ModifyInstancePlacement.
 type ModifyInstancePlacementOutput struct {
 	_ struct{} `type:"structure"`
@@ -29308,6 +36820,12 @@ func (s ModifyInstancePlacementOutput) String() string {
 // GoString returns the string representation
 func (s ModifyInstancePlacementOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *ModifyInstancePlacementOutput) SetReturn(v bool) *ModifyInstancePlacementOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for ModifyNetworkInterfaceAttribute.
@@ -29369,6 +36887,42 @@ func (s *ModifyNetworkInterfaceAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttachment sets the Attachment field's value.
+func (s *ModifyNetworkInterfaceAttributeInput) SetAttachment(v *NetworkInterfaceAttachmentChanges) *ModifyNetworkInterfaceAttributeInput {
+	s.Attachment = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ModifyNetworkInterfaceAttributeInput) SetDescription(v *AttributeValue) *ModifyNetworkInterfaceAttributeInput {
+	s.Description = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyNetworkInterfaceAttributeInput) SetDryRun(v bool) *ModifyNetworkInterfaceAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ModifyNetworkInterfaceAttributeInput) SetGroups(v []*string) *ModifyNetworkInterfaceAttributeInput {
+	s.Groups = v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *ModifyNetworkInterfaceAttributeInput) SetNetworkInterfaceId(v string) *ModifyNetworkInterfaceAttributeInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *ModifyNetworkInterfaceAttributeInput) SetSourceDestCheck(v *AttributeBooleanValue) *ModifyNetworkInterfaceAttributeInput {
+	s.SourceDestCheck = v
+	return s
+}
+
 type ModifyNetworkInterfaceAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -29428,6 +36982,24 @@ func (s *ModifyReservedInstancesInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *ModifyReservedInstancesInput) SetClientToken(v string) *ModifyReservedInstancesInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetReservedInstancesIds sets the ReservedInstancesIds field's value.
+func (s *ModifyReservedInstancesInput) SetReservedInstancesIds(v []*string) *ModifyReservedInstancesInput {
+	s.ReservedInstancesIds = v
+	return s
+}
+
+// SetTargetConfigurations sets the TargetConfigurations field's value.
+func (s *ModifyReservedInstancesInput) SetTargetConfigurations(v []*ReservedInstancesConfiguration) *ModifyReservedInstancesInput {
+	s.TargetConfigurations = v
+	return s
+}
+
 // Contains the output of ModifyReservedInstances.
 type ModifyReservedInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -29444,6 +37016,12 @@ func (s ModifyReservedInstancesOutput) String() string {
 // GoString returns the string representation
 func (s ModifyReservedInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesModificationId sets the ReservedInstancesModificationId field's value.
+func (s *ModifyReservedInstancesOutput) SetReservedInstancesModificationId(v string) *ModifyReservedInstancesOutput {
+	s.ReservedInstancesModificationId = &v
+	return s
 }
 
 // Contains the parameters for ModifySnapshotAttribute.
@@ -29502,6 +37080,48 @@ func (s *ModifySnapshotAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *ModifySnapshotAttributeInput) SetAttribute(v string) *ModifySnapshotAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetCreateVolumePermission sets the CreateVolumePermission field's value.
+func (s *ModifySnapshotAttributeInput) SetCreateVolumePermission(v *CreateVolumePermissionModifications) *ModifySnapshotAttributeInput {
+	s.CreateVolumePermission = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifySnapshotAttributeInput) SetDryRun(v bool) *ModifySnapshotAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGroupNames sets the GroupNames field's value.
+func (s *ModifySnapshotAttributeInput) SetGroupNames(v []*string) *ModifySnapshotAttributeInput {
+	s.GroupNames = v
+	return s
+}
+
+// SetOperationType sets the OperationType field's value.
+func (s *ModifySnapshotAttributeInput) SetOperationType(v string) *ModifySnapshotAttributeInput {
+	s.OperationType = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *ModifySnapshotAttributeInput) SetSnapshotId(v string) *ModifySnapshotAttributeInput {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *ModifySnapshotAttributeInput) SetUserIds(v []*string) *ModifySnapshotAttributeInput {
+	s.UserIds = v
+	return s
+}
+
 type ModifySnapshotAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -29557,6 +37177,24 @@ func (s *ModifySpotFleetRequestInput) Validate() error {
 	return nil
 }
 
+// SetExcessCapacityTerminationPolicy sets the ExcessCapacityTerminationPolicy field's value.
+func (s *ModifySpotFleetRequestInput) SetExcessCapacityTerminationPolicy(v string) *ModifySpotFleetRequestInput {
+	s.ExcessCapacityTerminationPolicy = &v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *ModifySpotFleetRequestInput) SetSpotFleetRequestId(v string) *ModifySpotFleetRequestInput {
+	s.SpotFleetRequestId = &v
+	return s
+}
+
+// SetTargetCapacity sets the TargetCapacity field's value.
+func (s *ModifySpotFleetRequestInput) SetTargetCapacity(v int64) *ModifySpotFleetRequestInput {
+	s.TargetCapacity = &v
+	return s
+}
+
 // Contains the output of ModifySpotFleetRequest.
 type ModifySpotFleetRequestOutput struct {
 	_ struct{} `type:"structure"`
@@ -29573,6 +37211,12 @@ func (s ModifySpotFleetRequestOutput) String() string {
 // GoString returns the string representation
 func (s ModifySpotFleetRequestOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *ModifySpotFleetRequestOutput) SetReturn(v bool) *ModifySpotFleetRequestOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for ModifySubnetAttribute.
@@ -29610,6 +37254,18 @@ func (s *ModifySubnetAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMapPublicIpOnLaunch sets the MapPublicIpOnLaunch field's value.
+func (s *ModifySubnetAttributeInput) SetMapPublicIpOnLaunch(v *AttributeBooleanValue) *ModifySubnetAttributeInput {
+	s.MapPublicIpOnLaunch = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *ModifySubnetAttributeInput) SetSubnetId(v string) *ModifySubnetAttributeInput {
+	s.SubnetId = &v
+	return s
 }
 
 type ModifySubnetAttributeOutput struct {
@@ -29666,6 +37322,24 @@ func (s *ModifyVolumeAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoEnableIO sets the AutoEnableIO field's value.
+func (s *ModifyVolumeAttributeInput) SetAutoEnableIO(v *AttributeBooleanValue) *ModifyVolumeAttributeInput {
+	s.AutoEnableIO = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyVolumeAttributeInput) SetDryRun(v bool) *ModifyVolumeAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *ModifyVolumeAttributeInput) SetVolumeId(v string) *ModifyVolumeAttributeInput {
+	s.VolumeId = &v
+	return s
 }
 
 type ModifyVolumeAttributeOutput struct {
@@ -29731,6 +37405,24 @@ func (s *ModifyVpcAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableDnsHostnames sets the EnableDnsHostnames field's value.
+func (s *ModifyVpcAttributeInput) SetEnableDnsHostnames(v *AttributeBooleanValue) *ModifyVpcAttributeInput {
+	s.EnableDnsHostnames = v
+	return s
+}
+
+// SetEnableDnsSupport sets the EnableDnsSupport field's value.
+func (s *ModifyVpcAttributeInput) SetEnableDnsSupport(v *AttributeBooleanValue) *ModifyVpcAttributeInput {
+	s.EnableDnsSupport = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *ModifyVpcAttributeInput) SetVpcId(v string) *ModifyVpcAttributeInput {
+	s.VpcId = &v
+	return s
 }
 
 type ModifyVpcAttributeOutput struct {
@@ -29800,6 +37492,42 @@ func (s *ModifyVpcEndpointInput) Validate() error {
 	return nil
 }
 
+// SetAddRouteTableIds sets the AddRouteTableIds field's value.
+func (s *ModifyVpcEndpointInput) SetAddRouteTableIds(v []*string) *ModifyVpcEndpointInput {
+	s.AddRouteTableIds = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyVpcEndpointInput) SetDryRun(v bool) *ModifyVpcEndpointInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *ModifyVpcEndpointInput) SetPolicyDocument(v string) *ModifyVpcEndpointInput {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetRemoveRouteTableIds sets the RemoveRouteTableIds field's value.
+func (s *ModifyVpcEndpointInput) SetRemoveRouteTableIds(v []*string) *ModifyVpcEndpointInput {
+	s.RemoveRouteTableIds = v
+	return s
+}
+
+// SetResetPolicy sets the ResetPolicy field's value.
+func (s *ModifyVpcEndpointInput) SetResetPolicy(v bool) *ModifyVpcEndpointInput {
+	s.ResetPolicy = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *ModifyVpcEndpointInput) SetVpcEndpointId(v string) *ModifyVpcEndpointInput {
+	s.VpcEndpointId = &v
+	return s
+}
+
 // Contains the output of ModifyVpcEndpoint.
 type ModifyVpcEndpointOutput struct {
 	_ struct{} `type:"structure"`
@@ -29816,6 +37544,12 @@ func (s ModifyVpcEndpointOutput) String() string {
 // GoString returns the string representation
 func (s ModifyVpcEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *ModifyVpcEndpointOutput) SetReturn(v bool) *ModifyVpcEndpointOutput {
+	s.Return = &v
+	return s
 }
 
 type ModifyVpcPeeringConnectionOptionsInput struct {
@@ -29862,6 +37596,30 @@ func (s *ModifyVpcPeeringConnectionOptionsInput) Validate() error {
 	return nil
 }
 
+// SetAccepterPeeringConnectionOptions sets the AccepterPeeringConnectionOptions field's value.
+func (s *ModifyVpcPeeringConnectionOptionsInput) SetAccepterPeeringConnectionOptions(v *PeeringConnectionOptionsRequest) *ModifyVpcPeeringConnectionOptionsInput {
+	s.AccepterPeeringConnectionOptions = v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyVpcPeeringConnectionOptionsInput) SetDryRun(v bool) *ModifyVpcPeeringConnectionOptionsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetRequesterPeeringConnectionOptions sets the RequesterPeeringConnectionOptions field's value.
+func (s *ModifyVpcPeeringConnectionOptionsInput) SetRequesterPeeringConnectionOptions(v *PeeringConnectionOptionsRequest) *ModifyVpcPeeringConnectionOptionsInput {
+	s.RequesterPeeringConnectionOptions = v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *ModifyVpcPeeringConnectionOptionsInput) SetVpcPeeringConnectionId(v string) *ModifyVpcPeeringConnectionOptionsInput {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 type ModifyVpcPeeringConnectionOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -29880,6 +37638,18 @@ func (s ModifyVpcPeeringConnectionOptionsOutput) String() string {
 // GoString returns the string representation
 func (s ModifyVpcPeeringConnectionOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAccepterPeeringConnectionOptions sets the AccepterPeeringConnectionOptions field's value.
+func (s *ModifyVpcPeeringConnectionOptionsOutput) SetAccepterPeeringConnectionOptions(v *PeeringConnectionOptions) *ModifyVpcPeeringConnectionOptionsOutput {
+	s.AccepterPeeringConnectionOptions = v
+	return s
+}
+
+// SetRequesterPeeringConnectionOptions sets the RequesterPeeringConnectionOptions field's value.
+func (s *ModifyVpcPeeringConnectionOptionsOutput) SetRequesterPeeringConnectionOptions(v *PeeringConnectionOptions) *ModifyVpcPeeringConnectionOptionsOutput {
+	s.RequesterPeeringConnectionOptions = v
+	return s
 }
 
 // Contains the parameters for MonitorInstances.
@@ -29921,6 +37691,18 @@ func (s *MonitorInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *MonitorInstancesInput) SetDryRun(v bool) *MonitorInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *MonitorInstancesInput) SetInstanceIds(v []*string) *MonitorInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
 // Contains the output of MonitorInstances.
 type MonitorInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -29939,6 +37721,12 @@ func (s MonitorInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// SetInstanceMonitorings sets the InstanceMonitorings field's value.
+func (s *MonitorInstancesOutput) SetInstanceMonitorings(v []*InstanceMonitoring) *MonitorInstancesOutput {
+	s.InstanceMonitorings = v
+	return s
+}
+
 // Describes the monitoring for the instance.
 type Monitoring struct {
 	_ struct{} `type:"structure"`
@@ -29955,6 +37743,12 @@ func (s Monitoring) String() string {
 // GoString returns the string representation
 func (s Monitoring) GoString() string {
 	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *Monitoring) SetState(v string) *Monitoring {
+	s.State = &v
+	return s
 }
 
 // Contains the parameters for MoveAddressToVpc.
@@ -29996,6 +37790,18 @@ func (s *MoveAddressToVpcInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *MoveAddressToVpcInput) SetDryRun(v bool) *MoveAddressToVpcInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *MoveAddressToVpcInput) SetPublicIp(v string) *MoveAddressToVpcInput {
+	s.PublicIp = &v
+	return s
+}
+
 // Contains the output of MoveAddressToVpc.
 type MoveAddressToVpcOutput struct {
 	_ struct{} `type:"structure"`
@@ -30015,6 +37821,18 @@ func (s MoveAddressToVpcOutput) String() string {
 // GoString returns the string representation
 func (s MoveAddressToVpcOutput) GoString() string {
 	return s.String()
+}
+
+// SetAllocationId sets the AllocationId field's value.
+func (s *MoveAddressToVpcOutput) SetAllocationId(v string) *MoveAddressToVpcOutput {
+	s.AllocationId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MoveAddressToVpcOutput) SetStatus(v string) *MoveAddressToVpcOutput {
+	s.Status = &v
+	return s
 }
 
 // Describes the status of a moving Elastic IP address.
@@ -30037,6 +37855,18 @@ func (s MovingAddressStatus) String() string {
 // GoString returns the string representation
 func (s MovingAddressStatus) GoString() string {
 	return s.String()
+}
+
+// SetMoveStatus sets the MoveStatus field's value.
+func (s *MovingAddressStatus) SetMoveStatus(v string) *MovingAddressStatus {
+	s.MoveStatus = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *MovingAddressStatus) SetPublicIp(v string) *MovingAddressStatus {
+	s.PublicIp = &v
+	return s
 }
 
 // Describes a NAT gateway.
@@ -30124,6 +37954,66 @@ func (s NatGateway) GoString() string {
 	return s.String()
 }
 
+// SetCreateTime sets the CreateTime field's value.
+func (s *NatGateway) SetCreateTime(v time.Time) *NatGateway {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDeleteTime sets the DeleteTime field's value.
+func (s *NatGateway) SetDeleteTime(v time.Time) *NatGateway {
+	s.DeleteTime = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *NatGateway) SetFailureCode(v string) *NatGateway {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *NatGateway) SetFailureMessage(v string) *NatGateway {
+	s.FailureMessage = &v
+	return s
+}
+
+// SetNatGatewayAddresses sets the NatGatewayAddresses field's value.
+func (s *NatGateway) SetNatGatewayAddresses(v []*NatGatewayAddress) *NatGateway {
+	s.NatGatewayAddresses = v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *NatGateway) SetNatGatewayId(v string) *NatGateway {
+	s.NatGatewayId = &v
+	return s
+}
+
+// SetProvisionedBandwidth sets the ProvisionedBandwidth field's value.
+func (s *NatGateway) SetProvisionedBandwidth(v *ProvisionedBandwidth) *NatGateway {
+	s.ProvisionedBandwidth = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *NatGateway) SetState(v string) *NatGateway {
+	s.State = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *NatGateway) SetSubnetId(v string) *NatGateway {
+	s.SubnetId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NatGateway) SetVpcId(v string) *NatGateway {
+	s.VpcId = &v
+	return s
+}
+
 // Describes the IP addresses and network interface associated with a NAT gateway.
 type NatGatewayAddress struct {
 	_ struct{} `type:"structure"`
@@ -30150,6 +38040,30 @@ func (s NatGatewayAddress) String() string {
 // GoString returns the string representation
 func (s NatGatewayAddress) GoString() string {
 	return s.String()
+}
+
+// SetAllocationId sets the AllocationId field's value.
+func (s *NatGatewayAddress) SetAllocationId(v string) *NatGatewayAddress {
+	s.AllocationId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *NatGatewayAddress) SetNetworkInterfaceId(v string) *NatGatewayAddress {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIp sets the PrivateIp field's value.
+func (s *NatGatewayAddress) SetPrivateIp(v string) *NatGatewayAddress {
+	s.PrivateIp = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *NatGatewayAddress) SetPublicIp(v string) *NatGatewayAddress {
+	s.PublicIp = &v
+	return s
 }
 
 // Describes a network ACL.
@@ -30185,6 +38099,42 @@ func (s NetworkAcl) GoString() string {
 	return s.String()
 }
 
+// SetAssociations sets the Associations field's value.
+func (s *NetworkAcl) SetAssociations(v []*NetworkAclAssociation) *NetworkAcl {
+	s.Associations = v
+	return s
+}
+
+// SetEntries sets the Entries field's value.
+func (s *NetworkAcl) SetEntries(v []*NetworkAclEntry) *NetworkAcl {
+	s.Entries = v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *NetworkAcl) SetIsDefault(v bool) *NetworkAcl {
+	s.IsDefault = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *NetworkAcl) SetNetworkAclId(v string) *NetworkAcl {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *NetworkAcl) SetTags(v []*Tag) *NetworkAcl {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkAcl) SetVpcId(v string) *NetworkAcl {
+	s.VpcId = &v
+	return s
+}
+
 // Describes an association between a network ACL and a subnet.
 type NetworkAclAssociation struct {
 	_ struct{} `type:"structure"`
@@ -30207,6 +38157,24 @@ func (s NetworkAclAssociation) String() string {
 // GoString returns the string representation
 func (s NetworkAclAssociation) GoString() string {
 	return s.String()
+}
+
+// SetNetworkAclAssociationId sets the NetworkAclAssociationId field's value.
+func (s *NetworkAclAssociation) SetNetworkAclAssociationId(v string) *NetworkAclAssociation {
+	s.NetworkAclAssociationId = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *NetworkAclAssociation) SetNetworkAclId(v string) *NetworkAclAssociation {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *NetworkAclAssociation) SetSubnetId(v string) *NetworkAclAssociation {
+	s.SubnetId = &v
+	return s
 }
 
 // Describes an entry in a network ACL.
@@ -30245,6 +38213,48 @@ func (s NetworkAclEntry) String() string {
 // GoString returns the string representation
 func (s NetworkAclEntry) GoString() string {
 	return s.String()
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *NetworkAclEntry) SetCidrBlock(v string) *NetworkAclEntry {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetEgress sets the Egress field's value.
+func (s *NetworkAclEntry) SetEgress(v bool) *NetworkAclEntry {
+	s.Egress = &v
+	return s
+}
+
+// SetIcmpTypeCode sets the IcmpTypeCode field's value.
+func (s *NetworkAclEntry) SetIcmpTypeCode(v *IcmpTypeCode) *NetworkAclEntry {
+	s.IcmpTypeCode = v
+	return s
+}
+
+// SetPortRange sets the PortRange field's value.
+func (s *NetworkAclEntry) SetPortRange(v *PortRange) *NetworkAclEntry {
+	s.PortRange = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *NetworkAclEntry) SetProtocol(v string) *NetworkAclEntry {
+	s.Protocol = &v
+	return s
+}
+
+// SetRuleAction sets the RuleAction field's value.
+func (s *NetworkAclEntry) SetRuleAction(v string) *NetworkAclEntry {
+	s.RuleAction = &v
+	return s
+}
+
+// SetRuleNumber sets the RuleNumber field's value.
+func (s *NetworkAclEntry) SetRuleNumber(v int64) *NetworkAclEntry {
+	s.RuleNumber = &v
+	return s
 }
 
 // Describes a network interface.
@@ -30321,6 +38331,120 @@ func (s NetworkInterface) GoString() string {
 	return s.String()
 }
 
+// SetAssociation sets the Association field's value.
+func (s *NetworkInterface) SetAssociation(v *NetworkInterfaceAssociation) *NetworkInterface {
+	s.Association = v
+	return s
+}
+
+// SetAttachment sets the Attachment field's value.
+func (s *NetworkInterface) SetAttachment(v *NetworkInterfaceAttachment) *NetworkInterface {
+	s.Attachment = v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NetworkInterface) SetAvailabilityZone(v string) *NetworkInterface {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *NetworkInterface) SetDescription(v string) *NetworkInterface {
+	s.Description = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *NetworkInterface) SetGroups(v []*GroupIdentifier) *NetworkInterface {
+	s.Groups = v
+	return s
+}
+
+// SetInterfaceType sets the InterfaceType field's value.
+func (s *NetworkInterface) SetInterfaceType(v string) *NetworkInterface {
+	s.InterfaceType = &v
+	return s
+}
+
+// SetMacAddress sets the MacAddress field's value.
+func (s *NetworkInterface) SetMacAddress(v string) *NetworkInterface {
+	s.MacAddress = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *NetworkInterface) SetNetworkInterfaceId(v string) *NetworkInterface {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *NetworkInterface) SetOwnerId(v string) *NetworkInterface {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *NetworkInterface) SetPrivateDnsName(v string) *NetworkInterface {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *NetworkInterface) SetPrivateIpAddress(v string) *NetworkInterface {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *NetworkInterface) SetPrivateIpAddresses(v []*NetworkInterfacePrivateIpAddress) *NetworkInterface {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetRequesterId sets the RequesterId field's value.
+func (s *NetworkInterface) SetRequesterId(v string) *NetworkInterface {
+	s.RequesterId = &v
+	return s
+}
+
+// SetRequesterManaged sets the RequesterManaged field's value.
+func (s *NetworkInterface) SetRequesterManaged(v bool) *NetworkInterface {
+	s.RequesterManaged = &v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *NetworkInterface) SetSourceDestCheck(v bool) *NetworkInterface {
+	s.SourceDestCheck = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NetworkInterface) SetStatus(v string) *NetworkInterface {
+	s.Status = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *NetworkInterface) SetSubnetId(v string) *NetworkInterface {
+	s.SubnetId = &v
+	return s
+}
+
+// SetTagSet sets the TagSet field's value.
+func (s *NetworkInterface) SetTagSet(v []*Tag) *NetworkInterface {
+	s.TagSet = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkInterface) SetVpcId(v string) *NetworkInterface {
+	s.VpcId = &v
+	return s
+}
+
 // Describes association information for an Elastic IP address.
 type NetworkInterfaceAssociation struct {
 	_ struct{} `type:"structure"`
@@ -30349,6 +38473,36 @@ func (s NetworkInterfaceAssociation) String() string {
 // GoString returns the string representation
 func (s NetworkInterfaceAssociation) GoString() string {
 	return s.String()
+}
+
+// SetAllocationId sets the AllocationId field's value.
+func (s *NetworkInterfaceAssociation) SetAllocationId(v string) *NetworkInterfaceAssociation {
+	s.AllocationId = &v
+	return s
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *NetworkInterfaceAssociation) SetAssociationId(v string) *NetworkInterfaceAssociation {
+	s.AssociationId = &v
+	return s
+}
+
+// SetIpOwnerId sets the IpOwnerId field's value.
+func (s *NetworkInterfaceAssociation) SetIpOwnerId(v string) *NetworkInterfaceAssociation {
+	s.IpOwnerId = &v
+	return s
+}
+
+// SetPublicDnsName sets the PublicDnsName field's value.
+func (s *NetworkInterfaceAssociation) SetPublicDnsName(v string) *NetworkInterfaceAssociation {
+	s.PublicDnsName = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *NetworkInterfaceAssociation) SetPublicIp(v string) *NetworkInterfaceAssociation {
+	s.PublicIp = &v
+	return s
 }
 
 // Describes a network interface attachment.
@@ -30387,6 +38541,48 @@ func (s NetworkInterfaceAttachment) GoString() string {
 	return s.String()
 }
 
+// SetAttachTime sets the AttachTime field's value.
+func (s *NetworkInterfaceAttachment) SetAttachTime(v time.Time) *NetworkInterfaceAttachment {
+	s.AttachTime = &v
+	return s
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *NetworkInterfaceAttachment) SetAttachmentId(v string) *NetworkInterfaceAttachment {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *NetworkInterfaceAttachment) SetDeleteOnTermination(v bool) *NetworkInterfaceAttachment {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetDeviceIndex sets the DeviceIndex field's value.
+func (s *NetworkInterfaceAttachment) SetDeviceIndex(v int64) *NetworkInterfaceAttachment {
+	s.DeviceIndex = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *NetworkInterfaceAttachment) SetInstanceId(v string) *NetworkInterfaceAttachment {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceOwnerId sets the InstanceOwnerId field's value.
+func (s *NetworkInterfaceAttachment) SetInstanceOwnerId(v string) *NetworkInterfaceAttachment {
+	s.InstanceOwnerId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NetworkInterfaceAttachment) SetStatus(v string) *NetworkInterfaceAttachment {
+	s.Status = &v
+	return s
+}
+
 // Describes an attachment change.
 type NetworkInterfaceAttachmentChanges struct {
 	_ struct{} `type:"structure"`
@@ -30406,6 +38602,18 @@ func (s NetworkInterfaceAttachmentChanges) String() string {
 // GoString returns the string representation
 func (s NetworkInterfaceAttachmentChanges) GoString() string {
 	return s.String()
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *NetworkInterfaceAttachmentChanges) SetAttachmentId(v string) *NetworkInterfaceAttachmentChanges {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *NetworkInterfaceAttachmentChanges) SetDeleteOnTermination(v bool) *NetworkInterfaceAttachmentChanges {
+	s.DeleteOnTermination = &v
+	return s
 }
 
 // Describes the private IP address of a network interface.
@@ -30437,6 +38645,30 @@ func (s NetworkInterfacePrivateIpAddress) GoString() string {
 	return s.String()
 }
 
+// SetAssociation sets the Association field's value.
+func (s *NetworkInterfacePrivateIpAddress) SetAssociation(v *NetworkInterfaceAssociation) *NetworkInterfacePrivateIpAddress {
+	s.Association = v
+	return s
+}
+
+// SetPrimary sets the Primary field's value.
+func (s *NetworkInterfacePrivateIpAddress) SetPrimary(v bool) *NetworkInterfacePrivateIpAddress {
+	s.Primary = &v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *NetworkInterfacePrivateIpAddress) SetPrivateDnsName(v string) *NetworkInterfacePrivateIpAddress {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *NetworkInterfacePrivateIpAddress) SetPrivateIpAddress(v string) *NetworkInterfacePrivateIpAddress {
+	s.PrivateIpAddress = &v
+	return s
+}
+
 type NewDhcpConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -30453,6 +38685,18 @@ func (s NewDhcpConfiguration) String() string {
 // GoString returns the string representation
 func (s NewDhcpConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *NewDhcpConfiguration) SetKey(v string) *NewDhcpConfiguration {
+	s.Key = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *NewDhcpConfiguration) SetValues(v []*string) *NewDhcpConfiguration {
+	s.Values = v
+	return s
 }
 
 // Describes the VPC peering connection options.
@@ -30482,6 +38726,24 @@ func (s PeeringConnectionOptions) GoString() string {
 	return s.String()
 }
 
+// SetAllowDnsResolutionFromRemoteVpc sets the AllowDnsResolutionFromRemoteVpc field's value.
+func (s *PeeringConnectionOptions) SetAllowDnsResolutionFromRemoteVpc(v bool) *PeeringConnectionOptions {
+	s.AllowDnsResolutionFromRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalClassicLinkToRemoteVpc sets the AllowEgressFromLocalClassicLinkToRemoteVpc field's value.
+func (s *PeeringConnectionOptions) SetAllowEgressFromLocalClassicLinkToRemoteVpc(v bool) *PeeringConnectionOptions {
+	s.AllowEgressFromLocalClassicLinkToRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalVpcToRemoteClassicLink sets the AllowEgressFromLocalVpcToRemoteClassicLink field's value.
+func (s *PeeringConnectionOptions) SetAllowEgressFromLocalVpcToRemoteClassicLink(v bool) *PeeringConnectionOptions {
+	s.AllowEgressFromLocalVpcToRemoteClassicLink = &v
+	return s
+}
+
 // The VPC peering connection options.
 type PeeringConnectionOptionsRequest struct {
 	_ struct{} `type:"structure"`
@@ -30507,6 +38769,24 @@ func (s PeeringConnectionOptionsRequest) String() string {
 // GoString returns the string representation
 func (s PeeringConnectionOptionsRequest) GoString() string {
 	return s.String()
+}
+
+// SetAllowDnsResolutionFromRemoteVpc sets the AllowDnsResolutionFromRemoteVpc field's value.
+func (s *PeeringConnectionOptionsRequest) SetAllowDnsResolutionFromRemoteVpc(v bool) *PeeringConnectionOptionsRequest {
+	s.AllowDnsResolutionFromRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalClassicLinkToRemoteVpc sets the AllowEgressFromLocalClassicLinkToRemoteVpc field's value.
+func (s *PeeringConnectionOptionsRequest) SetAllowEgressFromLocalClassicLinkToRemoteVpc(v bool) *PeeringConnectionOptionsRequest {
+	s.AllowEgressFromLocalClassicLinkToRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalVpcToRemoteClassicLink sets the AllowEgressFromLocalVpcToRemoteClassicLink field's value.
+func (s *PeeringConnectionOptionsRequest) SetAllowEgressFromLocalVpcToRemoteClassicLink(v bool) *PeeringConnectionOptionsRequest {
+	s.AllowEgressFromLocalVpcToRemoteClassicLink = &v
+	return s
 }
 
 // Describes the placement for the instance.
@@ -30543,6 +38823,36 @@ func (s Placement) GoString() string {
 	return s.String()
 }
 
+// SetAffinity sets the Affinity field's value.
+func (s *Placement) SetAffinity(v string) *Placement {
+	s.Affinity = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *Placement) SetAvailabilityZone(v string) *Placement {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *Placement) SetGroupName(v string) *Placement {
+	s.GroupName = &v
+	return s
+}
+
+// SetHostId sets the HostId field's value.
+func (s *Placement) SetHostId(v string) *Placement {
+	s.HostId = &v
+	return s
+}
+
+// SetTenancy sets the Tenancy field's value.
+func (s *Placement) SetTenancy(v string) *Placement {
+	s.Tenancy = &v
+	return s
+}
+
 // Describes a placement group.
 type PlacementGroup struct {
 	_ struct{} `type:"structure"`
@@ -30567,6 +38877,24 @@ func (s PlacementGroup) GoString() string {
 	return s.String()
 }
 
+// SetGroupName sets the GroupName field's value.
+func (s *PlacementGroup) SetGroupName(v string) *PlacementGroup {
+	s.GroupName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *PlacementGroup) SetState(v string) *PlacementGroup {
+	s.State = &v
+	return s
+}
+
+// SetStrategy sets the Strategy field's value.
+func (s *PlacementGroup) SetStrategy(v string) *PlacementGroup {
+	s.Strategy = &v
+	return s
+}
+
 // Describes a range of ports.
 type PortRange struct {
 	_ struct{} `type:"structure"`
@@ -30586,6 +38914,18 @@ func (s PortRange) String() string {
 // GoString returns the string representation
 func (s PortRange) GoString() string {
 	return s.String()
+}
+
+// SetFrom sets the From field's value.
+func (s *PortRange) SetFrom(v int64) *PortRange {
+	s.From = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *PortRange) SetTo(v int64) *PortRange {
+	s.To = &v
+	return s
 }
 
 // Describes prefixes for AWS services.
@@ -30612,6 +38952,24 @@ func (s PrefixList) GoString() string {
 	return s.String()
 }
 
+// SetCidrs sets the Cidrs field's value.
+func (s *PrefixList) SetCidrs(v []*string) *PrefixList {
+	s.Cidrs = v
+	return s
+}
+
+// SetPrefixListId sets the PrefixListId field's value.
+func (s *PrefixList) SetPrefixListId(v string) *PrefixList {
+	s.PrefixListId = &v
+	return s
+}
+
+// SetPrefixListName sets the PrefixListName field's value.
+func (s *PrefixList) SetPrefixListName(v string) *PrefixList {
+	s.PrefixListName = &v
+	return s
+}
+
 // The ID of the prefix.
 type PrefixListId struct {
 	_ struct{} `type:"structure"`
@@ -30628,6 +38986,12 @@ func (s PrefixListId) String() string {
 // GoString returns the string representation
 func (s PrefixListId) GoString() string {
 	return s.String()
+}
+
+// SetPrefixListId sets the PrefixListId field's value.
+func (s *PrefixListId) SetPrefixListId(v string) *PrefixListId {
+	s.PrefixListId = &v
+	return s
 }
 
 // Describes the price for a Reserved Instance.
@@ -30668,6 +39032,30 @@ func (s PriceSchedule) GoString() string {
 	return s.String()
 }
 
+// SetActive sets the Active field's value.
+func (s *PriceSchedule) SetActive(v bool) *PriceSchedule {
+	s.Active = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *PriceSchedule) SetCurrencyCode(v string) *PriceSchedule {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetPrice sets the Price field's value.
+func (s *PriceSchedule) SetPrice(v float64) *PriceSchedule {
+	s.Price = &v
+	return s
+}
+
+// SetTerm sets the Term field's value.
+func (s *PriceSchedule) SetTerm(v int64) *PriceSchedule {
+	s.Term = &v
+	return s
+}
+
 // Describes the price for a Reserved Instance.
 type PriceScheduleSpecification struct {
 	_ struct{} `type:"structure"`
@@ -30694,6 +39082,24 @@ func (s PriceScheduleSpecification) GoString() string {
 	return s.String()
 }
 
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *PriceScheduleSpecification) SetCurrencyCode(v string) *PriceScheduleSpecification {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetPrice sets the Price field's value.
+func (s *PriceScheduleSpecification) SetPrice(v float64) *PriceScheduleSpecification {
+	s.Price = &v
+	return s
+}
+
+// SetTerm sets the Term field's value.
+func (s *PriceScheduleSpecification) SetTerm(v int64) *PriceScheduleSpecification {
+	s.Term = &v
+	return s
+}
+
 // Describes a Reserved Instance offering.
 type PricingDetail struct {
 	_ struct{} `type:"structure"`
@@ -30713,6 +39119,18 @@ func (s PricingDetail) String() string {
 // GoString returns the string representation
 func (s PricingDetail) GoString() string {
 	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *PricingDetail) SetCount(v int64) *PricingDetail {
+	s.Count = &v
+	return s
+}
+
+// SetPrice sets the Price field's value.
+func (s *PricingDetail) SetPrice(v float64) *PricingDetail {
+	s.Price = &v
+	return s
 }
 
 // Describes a secondary private IP address for a network interface.
@@ -30752,6 +39170,18 @@ func (s *PrivateIpAddressSpecification) Validate() error {
 	return nil
 }
 
+// SetPrimary sets the Primary field's value.
+func (s *PrivateIpAddressSpecification) SetPrimary(v bool) *PrivateIpAddressSpecification {
+	s.Primary = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *PrivateIpAddressSpecification) SetPrivateIpAddress(v string) *PrivateIpAddressSpecification {
+	s.PrivateIpAddress = &v
+	return s
+}
+
 // Describes a product code.
 type ProductCode struct {
 	_ struct{} `type:"structure"`
@@ -30773,6 +39203,18 @@ func (s ProductCode) GoString() string {
 	return s.String()
 }
 
+// SetProductCodeId sets the ProductCodeId field's value.
+func (s *ProductCode) SetProductCodeId(v string) *ProductCode {
+	s.ProductCodeId = &v
+	return s
+}
+
+// SetProductCodeType sets the ProductCodeType field's value.
+func (s *ProductCode) SetProductCodeType(v string) *ProductCode {
+	s.ProductCodeType = &v
+	return s
+}
+
 // Describes a virtual private gateway propagating route.
 type PropagatingVgw struct {
 	_ struct{} `type:"structure"`
@@ -30789,6 +39231,12 @@ func (s PropagatingVgw) String() string {
 // GoString returns the string representation
 func (s PropagatingVgw) GoString() string {
 	return s.String()
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *PropagatingVgw) SetGatewayId(v string) *PropagatingVgw {
+	s.GatewayId = &v
+	return s
 }
 
 // Reserved. If you need to sustain traffic greater than the documented limits
@@ -30833,6 +39281,36 @@ func (s ProvisionedBandwidth) GoString() string {
 	return s.String()
 }
 
+// SetProvisionTime sets the ProvisionTime field's value.
+func (s *ProvisionedBandwidth) SetProvisionTime(v time.Time) *ProvisionedBandwidth {
+	s.ProvisionTime = &v
+	return s
+}
+
+// SetProvisioned sets the Provisioned field's value.
+func (s *ProvisionedBandwidth) SetProvisioned(v string) *ProvisionedBandwidth {
+	s.Provisioned = &v
+	return s
+}
+
+// SetRequestTime sets the RequestTime field's value.
+func (s *ProvisionedBandwidth) SetRequestTime(v time.Time) *ProvisionedBandwidth {
+	s.RequestTime = &v
+	return s
+}
+
+// SetRequested sets the Requested field's value.
+func (s *ProvisionedBandwidth) SetRequested(v string) *ProvisionedBandwidth {
+	s.Requested = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ProvisionedBandwidth) SetStatus(v string) *ProvisionedBandwidth {
+	s.Status = &v
+	return s
+}
+
 // Describes the result of the purchase.
 type Purchase struct {
 	_ struct{} `type:"structure"`
@@ -30872,6 +39350,54 @@ func (s Purchase) String() string {
 // GoString returns the string representation
 func (s Purchase) GoString() string {
 	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *Purchase) SetCurrencyCode(v string) *Purchase {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *Purchase) SetDuration(v int64) *Purchase {
+	s.Duration = &v
+	return s
+}
+
+// SetHostIdSet sets the HostIdSet field's value.
+func (s *Purchase) SetHostIdSet(v []*string) *Purchase {
+	s.HostIdSet = v
+	return s
+}
+
+// SetHostReservationId sets the HostReservationId field's value.
+func (s *Purchase) SetHostReservationId(v string) *Purchase {
+	s.HostReservationId = &v
+	return s
+}
+
+// SetHourlyPrice sets the HourlyPrice field's value.
+func (s *Purchase) SetHourlyPrice(v string) *Purchase {
+	s.HourlyPrice = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *Purchase) SetInstanceFamily(v string) *Purchase {
+	s.InstanceFamily = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *Purchase) SetPaymentOption(v string) *Purchase {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetUpfrontPrice sets the UpfrontPrice field's value.
+func (s *Purchase) SetUpfrontPrice(v string) *Purchase {
+	s.UpfrontPrice = &v
+	return s
 }
 
 type PurchaseHostReservationInput struct {
@@ -30933,6 +39459,36 @@ func (s *PurchaseHostReservationInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *PurchaseHostReservationInput) SetClientToken(v string) *PurchaseHostReservationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *PurchaseHostReservationInput) SetCurrencyCode(v string) *PurchaseHostReservationInput {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetHostIdSet sets the HostIdSet field's value.
+func (s *PurchaseHostReservationInput) SetHostIdSet(v []*string) *PurchaseHostReservationInput {
+	s.HostIdSet = v
+	return s
+}
+
+// SetLimitPrice sets the LimitPrice field's value.
+func (s *PurchaseHostReservationInput) SetLimitPrice(v string) *PurchaseHostReservationInput {
+	s.LimitPrice = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *PurchaseHostReservationInput) SetOfferingId(v string) *PurchaseHostReservationInput {
+	s.OfferingId = &v
+	return s
+}
+
 type PurchaseHostReservationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -30964,6 +39520,36 @@ func (s PurchaseHostReservationOutput) String() string {
 // GoString returns the string representation
 func (s PurchaseHostReservationOutput) GoString() string {
 	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PurchaseHostReservationOutput) SetClientToken(v string) *PurchaseHostReservationOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *PurchaseHostReservationOutput) SetCurrencyCode(v string) *PurchaseHostReservationOutput {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetPurchase sets the Purchase field's value.
+func (s *PurchaseHostReservationOutput) SetPurchase(v []*Purchase) *PurchaseHostReservationOutput {
+	s.Purchase = v
+	return s
+}
+
+// SetTotalHourlyPrice sets the TotalHourlyPrice field's value.
+func (s *PurchaseHostReservationOutput) SetTotalHourlyPrice(v string) *PurchaseHostReservationOutput {
+	s.TotalHourlyPrice = &v
+	return s
+}
+
+// SetTotalUpfrontPrice sets the TotalUpfrontPrice field's value.
+func (s *PurchaseHostReservationOutput) SetTotalUpfrontPrice(v string) *PurchaseHostReservationOutput {
+	s.TotalUpfrontPrice = &v
+	return s
 }
 
 // Describes a request to purchase Scheduled Instances.
@@ -31005,6 +39591,18 @@ func (s *PurchaseRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *PurchaseRequest) SetInstanceCount(v int64) *PurchaseRequest {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetPurchaseToken sets the PurchaseToken field's value.
+func (s *PurchaseRequest) SetPurchaseToken(v string) *PurchaseRequest {
+	s.PurchaseToken = &v
+	return s
 }
 
 // Contains the parameters for PurchaseReservedInstancesOffering.
@@ -31059,6 +39657,30 @@ func (s *PurchaseReservedInstancesOfferingInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *PurchaseReservedInstancesOfferingInput) SetDryRun(v bool) *PurchaseReservedInstancesOfferingInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *PurchaseReservedInstancesOfferingInput) SetInstanceCount(v int64) *PurchaseReservedInstancesOfferingInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetLimitPrice sets the LimitPrice field's value.
+func (s *PurchaseReservedInstancesOfferingInput) SetLimitPrice(v *ReservedInstanceLimitPrice) *PurchaseReservedInstancesOfferingInput {
+	s.LimitPrice = v
+	return s
+}
+
+// SetReservedInstancesOfferingId sets the ReservedInstancesOfferingId field's value.
+func (s *PurchaseReservedInstancesOfferingInput) SetReservedInstancesOfferingId(v string) *PurchaseReservedInstancesOfferingInput {
+	s.ReservedInstancesOfferingId = &v
+	return s
+}
+
 // Contains the output of PurchaseReservedInstancesOffering.
 type PurchaseReservedInstancesOfferingOutput struct {
 	_ struct{} `type:"structure"`
@@ -31075,6 +39697,12 @@ func (s PurchaseReservedInstancesOfferingOutput) String() string {
 // GoString returns the string representation
 func (s PurchaseReservedInstancesOfferingOutput) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *PurchaseReservedInstancesOfferingOutput) SetReservedInstancesId(v string) *PurchaseReservedInstancesOfferingOutput {
+	s.ReservedInstancesId = &v
+	return s
 }
 
 // Contains the parameters for PurchaseScheduledInstances.
@@ -31133,6 +39761,24 @@ func (s *PurchaseScheduledInstancesInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *PurchaseScheduledInstancesInput) SetClientToken(v string) *PurchaseScheduledInstancesInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *PurchaseScheduledInstancesInput) SetDryRun(v bool) *PurchaseScheduledInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPurchaseRequests sets the PurchaseRequests field's value.
+func (s *PurchaseScheduledInstancesInput) SetPurchaseRequests(v []*PurchaseRequest) *PurchaseScheduledInstancesInput {
+	s.PurchaseRequests = v
+	return s
+}
+
 // Contains the output of PurchaseScheduledInstances.
 type PurchaseScheduledInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -31149,6 +39795,12 @@ func (s PurchaseScheduledInstancesOutput) String() string {
 // GoString returns the string representation
 func (s PurchaseScheduledInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetScheduledInstanceSet sets the ScheduledInstanceSet field's value.
+func (s *PurchaseScheduledInstancesOutput) SetScheduledInstanceSet(v []*ScheduledInstance) *PurchaseScheduledInstancesOutput {
+	s.ScheduledInstanceSet = v
+	return s
 }
 
 // Contains the parameters for RebootInstances.
@@ -31190,6 +39842,18 @@ func (s *RebootInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *RebootInstancesInput) SetDryRun(v bool) *RebootInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *RebootInstancesInput) SetInstanceIds(v []*string) *RebootInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
 type RebootInstancesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -31225,6 +39889,18 @@ func (s RecurringCharge) GoString() string {
 	return s.String()
 }
 
+// SetAmount sets the Amount field's value.
+func (s *RecurringCharge) SetAmount(v float64) *RecurringCharge {
+	s.Amount = &v
+	return s
+}
+
+// SetFrequency sets the Frequency field's value.
+func (s *RecurringCharge) SetFrequency(v string) *RecurringCharge {
+	s.Frequency = &v
+	return s
+}
+
 // Describes a region.
 type Region struct {
 	_ struct{} `type:"structure"`
@@ -31244,6 +39920,18 @@ func (s Region) String() string {
 // GoString returns the string representation
 func (s Region) GoString() string {
 	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *Region) SetEndpoint(v string) *Region {
+	s.Endpoint = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *Region) SetRegionName(v string) *Region {
+	s.RegionName = &v
+	return s
 }
 
 // Contains the parameters for RegisterImage.
@@ -31335,6 +40023,78 @@ func (s *RegisterImageInput) Validate() error {
 	return nil
 }
 
+// SetArchitecture sets the Architecture field's value.
+func (s *RegisterImageInput) SetArchitecture(v string) *RegisterImageInput {
+	s.Architecture = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *RegisterImageInput) SetBlockDeviceMappings(v []*BlockDeviceMapping) *RegisterImageInput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *RegisterImageInput) SetDescription(v string) *RegisterImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *RegisterImageInput) SetDryRun(v bool) *RegisterImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEnaSupport sets the EnaSupport field's value.
+func (s *RegisterImageInput) SetEnaSupport(v bool) *RegisterImageInput {
+	s.EnaSupport = &v
+	return s
+}
+
+// SetImageLocation sets the ImageLocation field's value.
+func (s *RegisterImageInput) SetImageLocation(v string) *RegisterImageInput {
+	s.ImageLocation = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *RegisterImageInput) SetKernelId(v string) *RegisterImageInput {
+	s.KernelId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RegisterImageInput) SetName(v string) *RegisterImageInput {
+	s.Name = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *RegisterImageInput) SetRamdiskId(v string) *RegisterImageInput {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetRootDeviceName sets the RootDeviceName field's value.
+func (s *RegisterImageInput) SetRootDeviceName(v string) *RegisterImageInput {
+	s.RootDeviceName = &v
+	return s
+}
+
+// SetSriovNetSupport sets the SriovNetSupport field's value.
+func (s *RegisterImageInput) SetSriovNetSupport(v string) *RegisterImageInput {
+	s.SriovNetSupport = &v
+	return s
+}
+
+// SetVirtualizationType sets the VirtualizationType field's value.
+func (s *RegisterImageInput) SetVirtualizationType(v string) *RegisterImageInput {
+	s.VirtualizationType = &v
+	return s
+}
+
 // Contains the output of RegisterImage.
 type RegisterImageOutput struct {
 	_ struct{} `type:"structure"`
@@ -31351,6 +40111,12 @@ func (s RegisterImageOutput) String() string {
 // GoString returns the string representation
 func (s RegisterImageOutput) GoString() string {
 	return s.String()
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *RegisterImageOutput) SetImageId(v string) *RegisterImageOutput {
+	s.ImageId = &v
+	return s
 }
 
 // Contains the parameters for RejectVpcPeeringConnection.
@@ -31392,6 +40158,18 @@ func (s *RejectVpcPeeringConnectionInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *RejectVpcPeeringConnectionInput) SetDryRun(v bool) *RejectVpcPeeringConnectionInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *RejectVpcPeeringConnectionInput) SetVpcPeeringConnectionId(v string) *RejectVpcPeeringConnectionInput {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Contains the output of RejectVpcPeeringConnection.
 type RejectVpcPeeringConnectionOutput struct {
 	_ struct{} `type:"structure"`
@@ -31408,6 +40186,12 @@ func (s RejectVpcPeeringConnectionOutput) String() string {
 // GoString returns the string representation
 func (s RejectVpcPeeringConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// SetReturn sets the Return field's value.
+func (s *RejectVpcPeeringConnectionOutput) SetReturn(v bool) *RejectVpcPeeringConnectionOutput {
+	s.Return = &v
+	return s
 }
 
 // Contains the parameters for ReleaseAddress.
@@ -31435,6 +40219,24 @@ func (s ReleaseAddressInput) String() string {
 // GoString returns the string representation
 func (s ReleaseAddressInput) GoString() string {
 	return s.String()
+}
+
+// SetAllocationId sets the AllocationId field's value.
+func (s *ReleaseAddressInput) SetAllocationId(v string) *ReleaseAddressInput {
+	s.AllocationId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ReleaseAddressInput) SetDryRun(v bool) *ReleaseAddressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *ReleaseAddressInput) SetPublicIp(v string) *ReleaseAddressInput {
+	s.PublicIp = &v
+	return s
 }
 
 type ReleaseAddressOutput struct {
@@ -31484,6 +40286,12 @@ func (s *ReleaseHostsInput) Validate() error {
 	return nil
 }
 
+// SetHostIds sets the HostIds field's value.
+func (s *ReleaseHostsInput) SetHostIds(v []*string) *ReleaseHostsInput {
+	s.HostIds = v
+	return s
+}
+
 // Contains the output of ReleaseHosts.
 type ReleaseHostsOutput struct {
 	_ struct{} `type:"structure"`
@@ -31504,6 +40312,18 @@ func (s ReleaseHostsOutput) String() string {
 // GoString returns the string representation
 func (s ReleaseHostsOutput) GoString() string {
 	return s.String()
+}
+
+// SetSuccessful sets the Successful field's value.
+func (s *ReleaseHostsOutput) SetSuccessful(v []*string) *ReleaseHostsOutput {
+	s.Successful = v
+	return s
+}
+
+// SetUnsuccessful sets the Unsuccessful field's value.
+func (s *ReleaseHostsOutput) SetUnsuccessful(v []*UnsuccessfulItem) *ReleaseHostsOutput {
+	s.Unsuccessful = v
+	return s
 }
 
 // Contains the parameters for ReplaceNetworkAclAssociation.
@@ -31554,6 +40374,24 @@ func (s *ReplaceNetworkAclAssociationInput) Validate() error {
 	return nil
 }
 
+// SetAssociationId sets the AssociationId field's value.
+func (s *ReplaceNetworkAclAssociationInput) SetAssociationId(v string) *ReplaceNetworkAclAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ReplaceNetworkAclAssociationInput) SetDryRun(v bool) *ReplaceNetworkAclAssociationInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *ReplaceNetworkAclAssociationInput) SetNetworkAclId(v string) *ReplaceNetworkAclAssociationInput {
+	s.NetworkAclId = &v
+	return s
+}
+
 // Contains the output of ReplaceNetworkAclAssociation.
 type ReplaceNetworkAclAssociationOutput struct {
 	_ struct{} `type:"structure"`
@@ -31570,6 +40408,12 @@ func (s ReplaceNetworkAclAssociationOutput) String() string {
 // GoString returns the string representation
 func (s ReplaceNetworkAclAssociationOutput) GoString() string {
 	return s.String()
+}
+
+// SetNewAssociationId sets the NewAssociationId field's value.
+func (s *ReplaceNetworkAclAssociationOutput) SetNewAssociationId(v string) *ReplaceNetworkAclAssociationOutput {
+	s.NewAssociationId = &v
+	return s
 }
 
 // Contains the parameters for ReplaceNetworkAclEntry.
@@ -31661,6 +40505,60 @@ func (s *ReplaceNetworkAclEntryInput) Validate() error {
 	return nil
 }
 
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *ReplaceNetworkAclEntryInput) SetCidrBlock(v string) *ReplaceNetworkAclEntryInput {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ReplaceNetworkAclEntryInput) SetDryRun(v bool) *ReplaceNetworkAclEntryInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEgress sets the Egress field's value.
+func (s *ReplaceNetworkAclEntryInput) SetEgress(v bool) *ReplaceNetworkAclEntryInput {
+	s.Egress = &v
+	return s
+}
+
+// SetIcmpTypeCode sets the IcmpTypeCode field's value.
+func (s *ReplaceNetworkAclEntryInput) SetIcmpTypeCode(v *IcmpTypeCode) *ReplaceNetworkAclEntryInput {
+	s.IcmpTypeCode = v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *ReplaceNetworkAclEntryInput) SetNetworkAclId(v string) *ReplaceNetworkAclEntryInput {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetPortRange sets the PortRange field's value.
+func (s *ReplaceNetworkAclEntryInput) SetPortRange(v *PortRange) *ReplaceNetworkAclEntryInput {
+	s.PortRange = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *ReplaceNetworkAclEntryInput) SetProtocol(v string) *ReplaceNetworkAclEntryInput {
+	s.Protocol = &v
+	return s
+}
+
+// SetRuleAction sets the RuleAction field's value.
+func (s *ReplaceNetworkAclEntryInput) SetRuleAction(v string) *ReplaceNetworkAclEntryInput {
+	s.RuleAction = &v
+	return s
+}
+
+// SetRuleNumber sets the RuleNumber field's value.
+func (s *ReplaceNetworkAclEntryInput) SetRuleNumber(v int64) *ReplaceNetworkAclEntryInput {
+	s.RuleNumber = &v
+	return s
+}
+
 type ReplaceNetworkAclEntryOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -31738,6 +40636,54 @@ func (s *ReplaceRouteInput) Validate() error {
 	return nil
 }
 
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *ReplaceRouteInput) SetDestinationCidrBlock(v string) *ReplaceRouteInput {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ReplaceRouteInput) SetDryRun(v bool) *ReplaceRouteInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *ReplaceRouteInput) SetGatewayId(v string) *ReplaceRouteInput {
+	s.GatewayId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ReplaceRouteInput) SetInstanceId(v string) *ReplaceRouteInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *ReplaceRouteInput) SetNatGatewayId(v string) *ReplaceRouteInput {
+	s.NatGatewayId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *ReplaceRouteInput) SetNetworkInterfaceId(v string) *ReplaceRouteInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *ReplaceRouteInput) SetRouteTableId(v string) *ReplaceRouteInput {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *ReplaceRouteInput) SetVpcPeeringConnectionId(v string) *ReplaceRouteInput {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 type ReplaceRouteOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -31799,6 +40745,24 @@ func (s *ReplaceRouteTableAssociationInput) Validate() error {
 	return nil
 }
 
+// SetAssociationId sets the AssociationId field's value.
+func (s *ReplaceRouteTableAssociationInput) SetAssociationId(v string) *ReplaceRouteTableAssociationInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ReplaceRouteTableAssociationInput) SetDryRun(v bool) *ReplaceRouteTableAssociationInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *ReplaceRouteTableAssociationInput) SetRouteTableId(v string) *ReplaceRouteTableAssociationInput {
+	s.RouteTableId = &v
+	return s
+}
+
 // Contains the output of ReplaceRouteTableAssociation.
 type ReplaceRouteTableAssociationOutput struct {
 	_ struct{} `type:"structure"`
@@ -31815,6 +40779,12 @@ func (s ReplaceRouteTableAssociationOutput) String() string {
 // GoString returns the string representation
 func (s ReplaceRouteTableAssociationOutput) GoString() string {
 	return s.String()
+}
+
+// SetNewAssociationId sets the NewAssociationId field's value.
+func (s *ReplaceRouteTableAssociationOutput) SetNewAssociationId(v string) *ReplaceRouteTableAssociationOutput {
+	s.NewAssociationId = &v
+	return s
 }
 
 // Contains the parameters for ReportInstanceStatus.
@@ -31902,6 +40872,48 @@ func (s *ReportInstanceStatusInput) Validate() error {
 	return nil
 }
 
+// SetDescription sets the Description field's value.
+func (s *ReportInstanceStatusInput) SetDescription(v string) *ReportInstanceStatusInput {
+	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ReportInstanceStatusInput) SetDryRun(v bool) *ReportInstanceStatusInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ReportInstanceStatusInput) SetEndTime(v time.Time) *ReportInstanceStatusInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *ReportInstanceStatusInput) SetInstances(v []*string) *ReportInstanceStatusInput {
+	s.Instances = v
+	return s
+}
+
+// SetReasonCodes sets the ReasonCodes field's value.
+func (s *ReportInstanceStatusInput) SetReasonCodes(v []*string) *ReportInstanceStatusInput {
+	s.ReasonCodes = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ReportInstanceStatusInput) SetStartTime(v time.Time) *ReportInstanceStatusInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReportInstanceStatusInput) SetStatus(v string) *ReportInstanceStatusInput {
+	s.Status = &v
+	return s
+}
+
 type ReportInstanceStatusOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -31960,6 +40972,18 @@ func (s *RequestSpotFleetInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *RequestSpotFleetInput) SetDryRun(v bool) *RequestSpotFleetInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSpotFleetRequestConfig sets the SpotFleetRequestConfig field's value.
+func (s *RequestSpotFleetInput) SetSpotFleetRequestConfig(v *SpotFleetRequestConfigData) *RequestSpotFleetInput {
+	s.SpotFleetRequestConfig = v
+	return s
+}
+
 // Contains the output of RequestSpotFleet.
 type RequestSpotFleetOutput struct {
 	_ struct{} `type:"structure"`
@@ -31978,6 +41002,12 @@ func (s RequestSpotFleetOutput) String() string {
 // GoString returns the string representation
 func (s RequestSpotFleetOutput) GoString() string {
 	return s.String()
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *RequestSpotFleetOutput) SetSpotFleetRequestId(v string) *RequestSpotFleetOutput {
+	s.SpotFleetRequestId = &v
+	return s
 }
 
 // Contains the parameters for RequestSpotInstances.
@@ -32100,6 +41130,72 @@ func (s *RequestSpotInstancesInput) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZoneGroup sets the AvailabilityZoneGroup field's value.
+func (s *RequestSpotInstancesInput) SetAvailabilityZoneGroup(v string) *RequestSpotInstancesInput {
+	s.AvailabilityZoneGroup = &v
+	return s
+}
+
+// SetBlockDurationMinutes sets the BlockDurationMinutes field's value.
+func (s *RequestSpotInstancesInput) SetBlockDurationMinutes(v int64) *RequestSpotInstancesInput {
+	s.BlockDurationMinutes = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RequestSpotInstancesInput) SetClientToken(v string) *RequestSpotInstancesInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *RequestSpotInstancesInput) SetDryRun(v bool) *RequestSpotInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *RequestSpotInstancesInput) SetInstanceCount(v int64) *RequestSpotInstancesInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetLaunchGroup sets the LaunchGroup field's value.
+func (s *RequestSpotInstancesInput) SetLaunchGroup(v string) *RequestSpotInstancesInput {
+	s.LaunchGroup = &v
+	return s
+}
+
+// SetLaunchSpecification sets the LaunchSpecification field's value.
+func (s *RequestSpotInstancesInput) SetLaunchSpecification(v *RequestSpotLaunchSpecification) *RequestSpotInstancesInput {
+	s.LaunchSpecification = v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *RequestSpotInstancesInput) SetSpotPrice(v string) *RequestSpotInstancesInput {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RequestSpotInstancesInput) SetType(v string) *RequestSpotInstancesInput {
+	s.Type = &v
+	return s
+}
+
+// SetValidFrom sets the ValidFrom field's value.
+func (s *RequestSpotInstancesInput) SetValidFrom(v time.Time) *RequestSpotInstancesInput {
+	s.ValidFrom = &v
+	return s
+}
+
+// SetValidUntil sets the ValidUntil field's value.
+func (s *RequestSpotInstancesInput) SetValidUntil(v time.Time) *RequestSpotInstancesInput {
+	s.ValidUntil = &v
+	return s
+}
+
 // Contains the output of RequestSpotInstances.
 type RequestSpotInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -32116,6 +41212,12 @@ func (s RequestSpotInstancesOutput) String() string {
 // GoString returns the string representation
 func (s RequestSpotInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetSpotInstanceRequests sets the SpotInstanceRequests field's value.
+func (s *RequestSpotInstancesOutput) SetSpotInstanceRequests(v []*SpotInstanceRequest) *RequestSpotInstancesOutput {
+	s.SpotInstanceRequests = v
+	return s
 }
 
 // Describes the launch specification for an instance.
@@ -32215,6 +41317,102 @@ func (s *RequestSpotLaunchSpecification) Validate() error {
 	return nil
 }
 
+// SetAddressingType sets the AddressingType field's value.
+func (s *RequestSpotLaunchSpecification) SetAddressingType(v string) *RequestSpotLaunchSpecification {
+	s.AddressingType = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *RequestSpotLaunchSpecification) SetBlockDeviceMappings(v []*BlockDeviceMapping) *RequestSpotLaunchSpecification {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *RequestSpotLaunchSpecification) SetEbsOptimized(v bool) *RequestSpotLaunchSpecification {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *RequestSpotLaunchSpecification) SetIamInstanceProfile(v *IamInstanceProfileSpecification) *RequestSpotLaunchSpecification {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *RequestSpotLaunchSpecification) SetImageId(v string) *RequestSpotLaunchSpecification {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *RequestSpotLaunchSpecification) SetInstanceType(v string) *RequestSpotLaunchSpecification {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *RequestSpotLaunchSpecification) SetKernelId(v string) *RequestSpotLaunchSpecification {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *RequestSpotLaunchSpecification) SetKeyName(v string) *RequestSpotLaunchSpecification {
+	s.KeyName = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *RequestSpotLaunchSpecification) SetMonitoring(v *RunInstancesMonitoringEnabled) *RequestSpotLaunchSpecification {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *RequestSpotLaunchSpecification) SetNetworkInterfaces(v []*InstanceNetworkInterfaceSpecification) *RequestSpotLaunchSpecification {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *RequestSpotLaunchSpecification) SetPlacement(v *SpotPlacement) *RequestSpotLaunchSpecification {
+	s.Placement = v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *RequestSpotLaunchSpecification) SetRamdiskId(v string) *RequestSpotLaunchSpecification {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *RequestSpotLaunchSpecification) SetSecurityGroupIds(v []*string) *RequestSpotLaunchSpecification {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *RequestSpotLaunchSpecification) SetSecurityGroups(v []*string) *RequestSpotLaunchSpecification {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *RequestSpotLaunchSpecification) SetSubnetId(v string) *RequestSpotLaunchSpecification {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *RequestSpotLaunchSpecification) SetUserData(v string) *RequestSpotLaunchSpecification {
+	s.UserData = &v
+	return s
+}
+
 // Describes a reservation.
 type Reservation struct {
 	_ struct{} `type:"structure"`
@@ -32246,6 +41444,36 @@ func (s Reservation) GoString() string {
 	return s.String()
 }
 
+// SetGroups sets the Groups field's value.
+func (s *Reservation) SetGroups(v []*GroupIdentifier) *Reservation {
+	s.Groups = v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *Reservation) SetInstances(v []*Instance) *Reservation {
+	s.Instances = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *Reservation) SetOwnerId(v string) *Reservation {
+	s.OwnerId = &v
+	return s
+}
+
+// SetRequesterId sets the RequesterId field's value.
+func (s *Reservation) SetRequesterId(v string) *Reservation {
+	s.RequesterId = &v
+	return s
+}
+
+// SetReservationId sets the ReservationId field's value.
+func (s *Reservation) SetReservationId(v string) *Reservation {
+	s.ReservationId = &v
+	return s
+}
+
 // The cost associated with the Reserved Instance.
 type ReservationValue struct {
 	_ struct{} `type:"structure"`
@@ -32271,6 +41499,24 @@ func (s ReservationValue) GoString() string {
 	return s.String()
 }
 
+// SetHourlyPrice sets the HourlyPrice field's value.
+func (s *ReservationValue) SetHourlyPrice(v string) *ReservationValue {
+	s.HourlyPrice = &v
+	return s
+}
+
+// SetRemainingTotalValue sets the RemainingTotalValue field's value.
+func (s *ReservationValue) SetRemainingTotalValue(v string) *ReservationValue {
+	s.RemainingTotalValue = &v
+	return s
+}
+
+// SetRemainingUpfrontValue sets the RemainingUpfrontValue field's value.
+func (s *ReservationValue) SetRemainingUpfrontValue(v string) *ReservationValue {
+	s.RemainingUpfrontValue = &v
+	return s
+}
+
 // Describes the limit price of a Reserved Instance offering.
 type ReservedInstanceLimitPrice struct {
 	_ struct{} `type:"structure"`
@@ -32294,6 +41540,18 @@ func (s ReservedInstanceLimitPrice) GoString() string {
 	return s.String()
 }
 
+// SetAmount sets the Amount field's value.
+func (s *ReservedInstanceLimitPrice) SetAmount(v float64) *ReservedInstanceLimitPrice {
+	s.Amount = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *ReservedInstanceLimitPrice) SetCurrencyCode(v string) *ReservedInstanceLimitPrice {
+	s.CurrencyCode = &v
+	return s
+}
+
 // The total value of the Convertible Reserved Instance.
 type ReservedInstanceReservationValue struct {
 	_ struct{} `type:"structure"`
@@ -32313,6 +41571,18 @@ func (s ReservedInstanceReservationValue) String() string {
 // GoString returns the string representation
 func (s ReservedInstanceReservationValue) GoString() string {
 	return s.String()
+}
+
+// SetReservationValue sets the ReservationValue field's value.
+func (s *ReservedInstanceReservationValue) SetReservationValue(v *ReservationValue) *ReservedInstanceReservationValue {
+	s.ReservationValue = v
+	return s
+}
+
+// SetReservedInstanceId sets the ReservedInstanceId field's value.
+func (s *ReservedInstanceReservationValue) SetReservedInstanceId(v string) *ReservedInstanceReservationValue {
+	s.ReservedInstanceId = &v
+	return s
 }
 
 // Describes a Reserved Instance.
@@ -32385,6 +41655,114 @@ func (s ReservedInstances) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ReservedInstances) SetAvailabilityZone(v string) *ReservedInstances {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *ReservedInstances) SetCurrencyCode(v string) *ReservedInstances {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ReservedInstances) SetDuration(v int64) *ReservedInstances {
+	s.Duration = &v
+	return s
+}
+
+// SetEnd sets the End field's value.
+func (s *ReservedInstances) SetEnd(v time.Time) *ReservedInstances {
+	s.End = &v
+	return s
+}
+
+// SetFixedPrice sets the FixedPrice field's value.
+func (s *ReservedInstances) SetFixedPrice(v float64) *ReservedInstances {
+	s.FixedPrice = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *ReservedInstances) SetInstanceCount(v int64) *ReservedInstances {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceTenancy sets the InstanceTenancy field's value.
+func (s *ReservedInstances) SetInstanceTenancy(v string) *ReservedInstances {
+	s.InstanceTenancy = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ReservedInstances) SetInstanceType(v string) *ReservedInstances {
+	s.InstanceType = &v
+	return s
+}
+
+// SetOfferingClass sets the OfferingClass field's value.
+func (s *ReservedInstances) SetOfferingClass(v string) *ReservedInstances {
+	s.OfferingClass = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *ReservedInstances) SetOfferingType(v string) *ReservedInstances {
+	s.OfferingType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ReservedInstances) SetProductDescription(v string) *ReservedInstances {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *ReservedInstances) SetRecurringCharges(v []*RecurringCharge) *ReservedInstances {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *ReservedInstances) SetReservedInstancesId(v string) *ReservedInstances {
+	s.ReservedInstancesId = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ReservedInstances) SetScope(v string) *ReservedInstances {
+	s.Scope = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *ReservedInstances) SetStart(v time.Time) *ReservedInstances {
+	s.Start = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ReservedInstances) SetState(v string) *ReservedInstances {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ReservedInstances) SetTags(v []*Tag) *ReservedInstances {
+	s.Tags = v
+	return s
+}
+
+// SetUsagePrice sets the UsagePrice field's value.
+func (s *ReservedInstances) SetUsagePrice(v float64) *ReservedInstances {
+	s.UsagePrice = &v
+	return s
+}
+
 // Describes the configuration settings for the modified Reserved Instances.
 type ReservedInstancesConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -32416,6 +41794,36 @@ func (s ReservedInstancesConfiguration) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ReservedInstancesConfiguration) SetAvailabilityZone(v string) *ReservedInstancesConfiguration {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *ReservedInstancesConfiguration) SetInstanceCount(v int64) *ReservedInstancesConfiguration {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ReservedInstancesConfiguration) SetInstanceType(v string) *ReservedInstancesConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ReservedInstancesConfiguration) SetPlatform(v string) *ReservedInstancesConfiguration {
+	s.Platform = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ReservedInstancesConfiguration) SetScope(v string) *ReservedInstancesConfiguration {
+	s.Scope = &v
+	return s
+}
+
 // Describes the ID of a Reserved Instance.
 type ReservedInstancesId struct {
 	_ struct{} `type:"structure"`
@@ -32432,6 +41840,12 @@ func (s ReservedInstancesId) String() string {
 // GoString returns the string representation
 func (s ReservedInstancesId) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *ReservedInstancesId) SetReservedInstancesId(v string) *ReservedInstancesId {
+	s.ReservedInstancesId = &v
+	return s
 }
 
 // Describes a Reserved Instance listing.
@@ -32481,6 +41895,66 @@ func (s ReservedInstancesListing) GoString() string {
 	return s.String()
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *ReservedInstancesListing) SetClientToken(v string) *ReservedInstancesListing {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *ReservedInstancesListing) SetCreateDate(v time.Time) *ReservedInstancesListing {
+	s.CreateDate = &v
+	return s
+}
+
+// SetInstanceCounts sets the InstanceCounts field's value.
+func (s *ReservedInstancesListing) SetInstanceCounts(v []*InstanceCount) *ReservedInstancesListing {
+	s.InstanceCounts = v
+	return s
+}
+
+// SetPriceSchedules sets the PriceSchedules field's value.
+func (s *ReservedInstancesListing) SetPriceSchedules(v []*PriceSchedule) *ReservedInstancesListing {
+	s.PriceSchedules = v
+	return s
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *ReservedInstancesListing) SetReservedInstancesId(v string) *ReservedInstancesListing {
+	s.ReservedInstancesId = &v
+	return s
+}
+
+// SetReservedInstancesListingId sets the ReservedInstancesListingId field's value.
+func (s *ReservedInstancesListing) SetReservedInstancesListingId(v string) *ReservedInstancesListing {
+	s.ReservedInstancesListingId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReservedInstancesListing) SetStatus(v string) *ReservedInstancesListing {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ReservedInstancesListing) SetStatusMessage(v string) *ReservedInstancesListing {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ReservedInstancesListing) SetTags(v []*Tag) *ReservedInstancesListing {
+	s.Tags = v
+	return s
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *ReservedInstancesListing) SetUpdateDate(v time.Time) *ReservedInstancesListing {
+	s.UpdateDate = &v
+	return s
+}
+
 // Describes a Reserved Instance modification.
 type ReservedInstancesModification struct {
 	_ struct{} `type:"structure"`
@@ -32525,6 +41999,60 @@ func (s ReservedInstancesModification) GoString() string {
 	return s.String()
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *ReservedInstancesModification) SetClientToken(v string) *ReservedInstancesModification {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *ReservedInstancesModification) SetCreateDate(v time.Time) *ReservedInstancesModification {
+	s.CreateDate = &v
+	return s
+}
+
+// SetEffectiveDate sets the EffectiveDate field's value.
+func (s *ReservedInstancesModification) SetEffectiveDate(v time.Time) *ReservedInstancesModification {
+	s.EffectiveDate = &v
+	return s
+}
+
+// SetModificationResults sets the ModificationResults field's value.
+func (s *ReservedInstancesModification) SetModificationResults(v []*ReservedInstancesModificationResult) *ReservedInstancesModification {
+	s.ModificationResults = v
+	return s
+}
+
+// SetReservedInstancesIds sets the ReservedInstancesIds field's value.
+func (s *ReservedInstancesModification) SetReservedInstancesIds(v []*ReservedInstancesId) *ReservedInstancesModification {
+	s.ReservedInstancesIds = v
+	return s
+}
+
+// SetReservedInstancesModificationId sets the ReservedInstancesModificationId field's value.
+func (s *ReservedInstancesModification) SetReservedInstancesModificationId(v string) *ReservedInstancesModification {
+	s.ReservedInstancesModificationId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReservedInstancesModification) SetStatus(v string) *ReservedInstancesModification {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ReservedInstancesModification) SetStatusMessage(v string) *ReservedInstancesModification {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *ReservedInstancesModification) SetUpdateDate(v time.Time) *ReservedInstancesModification {
+	s.UpdateDate = &v
+	return s
+}
+
 // Describes the modification request/s.
 type ReservedInstancesModificationResult struct {
 	_ struct{} `type:"structure"`
@@ -32546,6 +42074,18 @@ func (s ReservedInstancesModificationResult) String() string {
 // GoString returns the string representation
 func (s ReservedInstancesModificationResult) GoString() string {
 	return s.String()
+}
+
+// SetReservedInstancesId sets the ReservedInstancesId field's value.
+func (s *ReservedInstancesModificationResult) SetReservedInstancesId(v string) *ReservedInstancesModificationResult {
+	s.ReservedInstancesId = &v
+	return s
+}
+
+// SetTargetConfiguration sets the TargetConfiguration field's value.
+func (s *ReservedInstancesModificationResult) SetTargetConfiguration(v *ReservedInstancesConfiguration) *ReservedInstancesModificationResult {
+	s.TargetConfiguration = v
+	return s
 }
 
 // Describes a Reserved Instance offering.
@@ -32616,6 +42156,96 @@ func (s ReservedInstancesOffering) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ReservedInstancesOffering) SetAvailabilityZone(v string) *ReservedInstancesOffering {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *ReservedInstancesOffering) SetCurrencyCode(v string) *ReservedInstancesOffering {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *ReservedInstancesOffering) SetDuration(v int64) *ReservedInstancesOffering {
+	s.Duration = &v
+	return s
+}
+
+// SetFixedPrice sets the FixedPrice field's value.
+func (s *ReservedInstancesOffering) SetFixedPrice(v float64) *ReservedInstancesOffering {
+	s.FixedPrice = &v
+	return s
+}
+
+// SetInstanceTenancy sets the InstanceTenancy field's value.
+func (s *ReservedInstancesOffering) SetInstanceTenancy(v string) *ReservedInstancesOffering {
+	s.InstanceTenancy = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ReservedInstancesOffering) SetInstanceType(v string) *ReservedInstancesOffering {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMarketplace sets the Marketplace field's value.
+func (s *ReservedInstancesOffering) SetMarketplace(v bool) *ReservedInstancesOffering {
+	s.Marketplace = &v
+	return s
+}
+
+// SetOfferingClass sets the OfferingClass field's value.
+func (s *ReservedInstancesOffering) SetOfferingClass(v string) *ReservedInstancesOffering {
+	s.OfferingClass = &v
+	return s
+}
+
+// SetOfferingType sets the OfferingType field's value.
+func (s *ReservedInstancesOffering) SetOfferingType(v string) *ReservedInstancesOffering {
+	s.OfferingType = &v
+	return s
+}
+
+// SetPricingDetails sets the PricingDetails field's value.
+func (s *ReservedInstancesOffering) SetPricingDetails(v []*PricingDetail) *ReservedInstancesOffering {
+	s.PricingDetails = v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *ReservedInstancesOffering) SetProductDescription(v string) *ReservedInstancesOffering {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetRecurringCharges sets the RecurringCharges field's value.
+func (s *ReservedInstancesOffering) SetRecurringCharges(v []*RecurringCharge) *ReservedInstancesOffering {
+	s.RecurringCharges = v
+	return s
+}
+
+// SetReservedInstancesOfferingId sets the ReservedInstancesOfferingId field's value.
+func (s *ReservedInstancesOffering) SetReservedInstancesOfferingId(v string) *ReservedInstancesOffering {
+	s.ReservedInstancesOfferingId = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ReservedInstancesOffering) SetScope(v string) *ReservedInstancesOffering {
+	s.Scope = &v
+	return s
+}
+
+// SetUsagePrice sets the UsagePrice field's value.
+func (s *ReservedInstancesOffering) SetUsagePrice(v float64) *ReservedInstancesOffering {
+	s.UsagePrice = &v
+	return s
+}
+
 // Contains the parameters for ResetImageAttribute.
 type ResetImageAttributeInput struct {
 	_ struct{} `type:"structure"`
@@ -32662,6 +42292,24 @@ func (s *ResetImageAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *ResetImageAttributeInput) SetAttribute(v string) *ResetImageAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ResetImageAttributeInput) SetDryRun(v bool) *ResetImageAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ResetImageAttributeInput) SetImageId(v string) *ResetImageAttributeInput {
+	s.ImageId = &v
+	return s
 }
 
 type ResetImageAttributeOutput struct {
@@ -32728,6 +42376,24 @@ func (s *ResetInstanceAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *ResetInstanceAttributeInput) SetAttribute(v string) *ResetInstanceAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ResetInstanceAttributeInput) SetDryRun(v bool) *ResetInstanceAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ResetInstanceAttributeInput) SetInstanceId(v string) *ResetInstanceAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
 type ResetInstanceAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -32782,6 +42448,24 @@ func (s *ResetNetworkInterfaceAttributeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ResetNetworkInterfaceAttributeInput) SetDryRun(v bool) *ResetNetworkInterfaceAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *ResetNetworkInterfaceAttributeInput) SetNetworkInterfaceId(v string) *ResetNetworkInterfaceAttributeInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetSourceDestCheck sets the SourceDestCheck field's value.
+func (s *ResetNetworkInterfaceAttributeInput) SetSourceDestCheck(v string) *ResetNetworkInterfaceAttributeInput {
+	s.SourceDestCheck = &v
+	return s
 }
 
 type ResetNetworkInterfaceAttributeOutput struct {
@@ -32846,6 +42530,24 @@ func (s *ResetSnapshotAttributeInput) Validate() error {
 	return nil
 }
 
+// SetAttribute sets the Attribute field's value.
+func (s *ResetSnapshotAttributeInput) SetAttribute(v string) *ResetSnapshotAttributeInput {
+	s.Attribute = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ResetSnapshotAttributeInput) SetDryRun(v bool) *ResetSnapshotAttributeInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *ResetSnapshotAttributeInput) SetSnapshotId(v string) *ResetSnapshotAttributeInput {
+	s.SnapshotId = &v
+	return s
+}
+
 type ResetSnapshotAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -32899,6 +42601,18 @@ func (s *RestoreAddressToClassicInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *RestoreAddressToClassicInput) SetDryRun(v bool) *RestoreAddressToClassicInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *RestoreAddressToClassicInput) SetPublicIp(v string) *RestoreAddressToClassicInput {
+	s.PublicIp = &v
+	return s
+}
+
 // Contains the output of RestoreAddressToClassic.
 type RestoreAddressToClassicOutput struct {
 	_ struct{} `type:"structure"`
@@ -32918,6 +42632,18 @@ func (s RestoreAddressToClassicOutput) String() string {
 // GoString returns the string representation
 func (s RestoreAddressToClassicOutput) GoString() string {
 	return s.String()
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *RestoreAddressToClassicOutput) SetPublicIp(v string) *RestoreAddressToClassicOutput {
+	s.PublicIp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RestoreAddressToClassicOutput) SetStatus(v string) *RestoreAddressToClassicOutput {
+	s.Status = &v
+	return s
 }
 
 // Contains the parameters for RevokeSecurityGroupEgress.
@@ -32987,6 +42713,60 @@ func (s *RevokeSecurityGroupEgressInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCidrIp sets the CidrIp field's value.
+func (s *RevokeSecurityGroupEgressInput) SetCidrIp(v string) *RevokeSecurityGroupEgressInput {
+	s.CidrIp = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *RevokeSecurityGroupEgressInput) SetDryRun(v bool) *RevokeSecurityGroupEgressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *RevokeSecurityGroupEgressInput) SetFromPort(v int64) *RevokeSecurityGroupEgressInput {
+	s.FromPort = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *RevokeSecurityGroupEgressInput) SetGroupId(v string) *RevokeSecurityGroupEgressInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetIpPermissions sets the IpPermissions field's value.
+func (s *RevokeSecurityGroupEgressInput) SetIpPermissions(v []*IpPermission) *RevokeSecurityGroupEgressInput {
+	s.IpPermissions = v
+	return s
+}
+
+// SetIpProtocol sets the IpProtocol field's value.
+func (s *RevokeSecurityGroupEgressInput) SetIpProtocol(v string) *RevokeSecurityGroupEgressInput {
+	s.IpProtocol = &v
+	return s
+}
+
+// SetSourceSecurityGroupName sets the SourceSecurityGroupName field's value.
+func (s *RevokeSecurityGroupEgressInput) SetSourceSecurityGroupName(v string) *RevokeSecurityGroupEgressInput {
+	s.SourceSecurityGroupName = &v
+	return s
+}
+
+// SetSourceSecurityGroupOwnerId sets the SourceSecurityGroupOwnerId field's value.
+func (s *RevokeSecurityGroupEgressInput) SetSourceSecurityGroupOwnerId(v string) *RevokeSecurityGroupEgressInput {
+	s.SourceSecurityGroupOwnerId = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *RevokeSecurityGroupEgressInput) SetToPort(v int64) *RevokeSecurityGroupEgressInput {
+	s.ToPort = &v
+	return s
 }
 
 type RevokeSecurityGroupEgressOutput struct {
@@ -33067,6 +42847,66 @@ func (s RevokeSecurityGroupIngressInput) GoString() string {
 	return s.String()
 }
 
+// SetCidrIp sets the CidrIp field's value.
+func (s *RevokeSecurityGroupIngressInput) SetCidrIp(v string) *RevokeSecurityGroupIngressInput {
+	s.CidrIp = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *RevokeSecurityGroupIngressInput) SetDryRun(v bool) *RevokeSecurityGroupIngressInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *RevokeSecurityGroupIngressInput) SetFromPort(v int64) *RevokeSecurityGroupIngressInput {
+	s.FromPort = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *RevokeSecurityGroupIngressInput) SetGroupId(v string) *RevokeSecurityGroupIngressInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *RevokeSecurityGroupIngressInput) SetGroupName(v string) *RevokeSecurityGroupIngressInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetIpPermissions sets the IpPermissions field's value.
+func (s *RevokeSecurityGroupIngressInput) SetIpPermissions(v []*IpPermission) *RevokeSecurityGroupIngressInput {
+	s.IpPermissions = v
+	return s
+}
+
+// SetIpProtocol sets the IpProtocol field's value.
+func (s *RevokeSecurityGroupIngressInput) SetIpProtocol(v string) *RevokeSecurityGroupIngressInput {
+	s.IpProtocol = &v
+	return s
+}
+
+// SetSourceSecurityGroupName sets the SourceSecurityGroupName field's value.
+func (s *RevokeSecurityGroupIngressInput) SetSourceSecurityGroupName(v string) *RevokeSecurityGroupIngressInput {
+	s.SourceSecurityGroupName = &v
+	return s
+}
+
+// SetSourceSecurityGroupOwnerId sets the SourceSecurityGroupOwnerId field's value.
+func (s *RevokeSecurityGroupIngressInput) SetSourceSecurityGroupOwnerId(v string) *RevokeSecurityGroupIngressInput {
+	s.SourceSecurityGroupOwnerId = &v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *RevokeSecurityGroupIngressInput) SetToPort(v int64) *RevokeSecurityGroupIngressInput {
+	s.ToPort = &v
+	return s
+}
+
 type RevokeSecurityGroupIngressOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -33135,6 +42975,66 @@ func (s Route) GoString() string {
 	return s.String()
 }
 
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *Route) SetDestinationCidrBlock(v string) *Route {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDestinationPrefixListId sets the DestinationPrefixListId field's value.
+func (s *Route) SetDestinationPrefixListId(v string) *Route {
+	s.DestinationPrefixListId = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *Route) SetGatewayId(v string) *Route {
+	s.GatewayId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *Route) SetInstanceId(v string) *Route {
+	s.InstanceId = &v
+	return s
+}
+
+// SetInstanceOwnerId sets the InstanceOwnerId field's value.
+func (s *Route) SetInstanceOwnerId(v string) *Route {
+	s.InstanceOwnerId = &v
+	return s
+}
+
+// SetNatGatewayId sets the NatGatewayId field's value.
+func (s *Route) SetNatGatewayId(v string) *Route {
+	s.NatGatewayId = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *Route) SetNetworkInterfaceId(v string) *Route {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetOrigin sets the Origin field's value.
+func (s *Route) SetOrigin(v string) *Route {
+	s.Origin = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Route) SetState(v string) *Route {
+	s.State = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *Route) SetVpcPeeringConnectionId(v string) *Route {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Describes a route table.
 type RouteTable struct {
 	_ struct{} `type:"structure"`
@@ -33168,6 +43068,42 @@ func (s RouteTable) GoString() string {
 	return s.String()
 }
 
+// SetAssociations sets the Associations field's value.
+func (s *RouteTable) SetAssociations(v []*RouteTableAssociation) *RouteTable {
+	s.Associations = v
+	return s
+}
+
+// SetPropagatingVgws sets the PropagatingVgws field's value.
+func (s *RouteTable) SetPropagatingVgws(v []*PropagatingVgw) *RouteTable {
+	s.PropagatingVgws = v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *RouteTable) SetRouteTableId(v string) *RouteTable {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetRoutes sets the Routes field's value.
+func (s *RouteTable) SetRoutes(v []*Route) *RouteTable {
+	s.Routes = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RouteTable) SetTags(v []*Tag) *RouteTable {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *RouteTable) SetVpcId(v string) *RouteTable {
+	s.VpcId = &v
+	return s
+}
+
 // Describes an association between a route table and a subnet.
 type RouteTableAssociation struct {
 	_ struct{} `type:"structure"`
@@ -33193,6 +43129,30 @@ func (s RouteTableAssociation) String() string {
 // GoString returns the string representation
 func (s RouteTableAssociation) GoString() string {
 	return s.String()
+}
+
+// SetMain sets the Main field's value.
+func (s *RouteTableAssociation) SetMain(v bool) *RouteTableAssociation {
+	s.Main = &v
+	return s
+}
+
+// SetRouteTableAssociationId sets the RouteTableAssociationId field's value.
+func (s *RouteTableAssociation) SetRouteTableAssociationId(v string) *RouteTableAssociation {
+	s.RouteTableAssociationId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *RouteTableAssociation) SetRouteTableId(v string) *RouteTableAssociation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *RouteTableAssociation) SetSubnetId(v string) *RouteTableAssociation {
+	s.SubnetId = &v
+	return s
 }
 
 // Contains the parameters for RunInstances.
@@ -33397,6 +43357,144 @@ func (s *RunInstancesInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *RunInstancesInput) SetAdditionalInfo(v string) *RunInstancesInput {
+	s.AdditionalInfo = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *RunInstancesInput) SetBlockDeviceMappings(v []*BlockDeviceMapping) *RunInstancesInput {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RunInstancesInput) SetClientToken(v string) *RunInstancesInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDisableApiTermination sets the DisableApiTermination field's value.
+func (s *RunInstancesInput) SetDisableApiTermination(v bool) *RunInstancesInput {
+	s.DisableApiTermination = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *RunInstancesInput) SetDryRun(v bool) *RunInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *RunInstancesInput) SetEbsOptimized(v bool) *RunInstancesInput {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *RunInstancesInput) SetIamInstanceProfile(v *IamInstanceProfileSpecification) *RunInstancesInput {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *RunInstancesInput) SetImageId(v string) *RunInstancesInput {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceInitiatedShutdownBehavior sets the InstanceInitiatedShutdownBehavior field's value.
+func (s *RunInstancesInput) SetInstanceInitiatedShutdownBehavior(v string) *RunInstancesInput {
+	s.InstanceInitiatedShutdownBehavior = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *RunInstancesInput) SetInstanceType(v string) *RunInstancesInput {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *RunInstancesInput) SetKernelId(v string) *RunInstancesInput {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *RunInstancesInput) SetKeyName(v string) *RunInstancesInput {
+	s.KeyName = &v
+	return s
+}
+
+// SetMaxCount sets the MaxCount field's value.
+func (s *RunInstancesInput) SetMaxCount(v int64) *RunInstancesInput {
+	s.MaxCount = &v
+	return s
+}
+
+// SetMinCount sets the MinCount field's value.
+func (s *RunInstancesInput) SetMinCount(v int64) *RunInstancesInput {
+	s.MinCount = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *RunInstancesInput) SetMonitoring(v *RunInstancesMonitoringEnabled) *RunInstancesInput {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *RunInstancesInput) SetNetworkInterfaces(v []*InstanceNetworkInterfaceSpecification) *RunInstancesInput {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *RunInstancesInput) SetPlacement(v *Placement) *RunInstancesInput {
+	s.Placement = v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *RunInstancesInput) SetPrivateIpAddress(v string) *RunInstancesInput {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *RunInstancesInput) SetRamdiskId(v string) *RunInstancesInput {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *RunInstancesInput) SetSecurityGroupIds(v []*string) *RunInstancesInput {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *RunInstancesInput) SetSecurityGroups(v []*string) *RunInstancesInput {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *RunInstancesInput) SetSubnetId(v string) *RunInstancesInput {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *RunInstancesInput) SetUserData(v string) *RunInstancesInput {
+	s.UserData = &v
+	return s
+}
+
 // Describes the monitoring for the instance.
 type RunInstancesMonitoringEnabled struct {
 	_ struct{} `type:"structure"`
@@ -33428,6 +43526,12 @@ func (s *RunInstancesMonitoringEnabled) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *RunInstancesMonitoringEnabled) SetEnabled(v bool) *RunInstancesMonitoringEnabled {
+	s.Enabled = &v
+	return s
 }
 
 // Contains the parameters for RunScheduledInstances.
@@ -33492,6 +43596,36 @@ func (s *RunScheduledInstancesInput) Validate() error {
 	return nil
 }
 
+// SetClientToken sets the ClientToken field's value.
+func (s *RunScheduledInstancesInput) SetClientToken(v string) *RunScheduledInstancesInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *RunScheduledInstancesInput) SetDryRun(v bool) *RunScheduledInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *RunScheduledInstancesInput) SetInstanceCount(v int64) *RunScheduledInstancesInput {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetLaunchSpecification sets the LaunchSpecification field's value.
+func (s *RunScheduledInstancesInput) SetLaunchSpecification(v *ScheduledInstancesLaunchSpecification) *RunScheduledInstancesInput {
+	s.LaunchSpecification = v
+	return s
+}
+
+// SetScheduledInstanceId sets the ScheduledInstanceId field's value.
+func (s *RunScheduledInstancesInput) SetScheduledInstanceId(v string) *RunScheduledInstancesInput {
+	s.ScheduledInstanceId = &v
+	return s
+}
+
 // Contains the output of RunScheduledInstances.
 type RunScheduledInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -33508,6 +43642,12 @@ func (s RunScheduledInstancesOutput) String() string {
 // GoString returns the string representation
 func (s RunScheduledInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceIdSet sets the InstanceIdSet field's value.
+func (s *RunScheduledInstancesOutput) SetInstanceIdSet(v []*string) *RunScheduledInstancesOutput {
+	s.InstanceIdSet = v
+	return s
 }
 
 // Describes the storage parameters for S3 and S3 buckets for an instance store-backed
@@ -33546,6 +43686,36 @@ func (s S3Storage) String() string {
 // GoString returns the string representation
 func (s S3Storage) GoString() string {
 	return s.String()
+}
+
+// SetAWSAccessKeyId sets the AWSAccessKeyId field's value.
+func (s *S3Storage) SetAWSAccessKeyId(v string) *S3Storage {
+	s.AWSAccessKeyId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3Storage) SetBucket(v string) *S3Storage {
+	s.Bucket = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *S3Storage) SetPrefix(v string) *S3Storage {
+	s.Prefix = &v
+	return s
+}
+
+// SetUploadPolicy sets the UploadPolicy field's value.
+func (s *S3Storage) SetUploadPolicy(v []byte) *S3Storage {
+	s.UploadPolicy = v
+	return s
+}
+
+// SetUploadPolicySignature sets the UploadPolicySignature field's value.
+func (s *S3Storage) SetUploadPolicySignature(v string) *S3Storage {
+	s.UploadPolicySignature = &v
+	return s
 }
 
 // Describes a Scheduled Instance.
@@ -33608,6 +43778,96 @@ func (s ScheduledInstance) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ScheduledInstance) SetAvailabilityZone(v string) *ScheduledInstance {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *ScheduledInstance) SetCreateDate(v time.Time) *ScheduledInstance {
+	s.CreateDate = &v
+	return s
+}
+
+// SetHourlyPrice sets the HourlyPrice field's value.
+func (s *ScheduledInstance) SetHourlyPrice(v string) *ScheduledInstance {
+	s.HourlyPrice = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *ScheduledInstance) SetInstanceCount(v int64) *ScheduledInstance {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ScheduledInstance) SetInstanceType(v string) *ScheduledInstance {
+	s.InstanceType = &v
+	return s
+}
+
+// SetNetworkPlatform sets the NetworkPlatform field's value.
+func (s *ScheduledInstance) SetNetworkPlatform(v string) *ScheduledInstance {
+	s.NetworkPlatform = &v
+	return s
+}
+
+// SetNextSlotStartTime sets the NextSlotStartTime field's value.
+func (s *ScheduledInstance) SetNextSlotStartTime(v time.Time) *ScheduledInstance {
+	s.NextSlotStartTime = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ScheduledInstance) SetPlatform(v string) *ScheduledInstance {
+	s.Platform = &v
+	return s
+}
+
+// SetPreviousSlotEndTime sets the PreviousSlotEndTime field's value.
+func (s *ScheduledInstance) SetPreviousSlotEndTime(v time.Time) *ScheduledInstance {
+	s.PreviousSlotEndTime = &v
+	return s
+}
+
+// SetRecurrence sets the Recurrence field's value.
+func (s *ScheduledInstance) SetRecurrence(v *ScheduledInstanceRecurrence) *ScheduledInstance {
+	s.Recurrence = v
+	return s
+}
+
+// SetScheduledInstanceId sets the ScheduledInstanceId field's value.
+func (s *ScheduledInstance) SetScheduledInstanceId(v string) *ScheduledInstance {
+	s.ScheduledInstanceId = &v
+	return s
+}
+
+// SetSlotDurationInHours sets the SlotDurationInHours field's value.
+func (s *ScheduledInstance) SetSlotDurationInHours(v int64) *ScheduledInstance {
+	s.SlotDurationInHours = &v
+	return s
+}
+
+// SetTermEndDate sets the TermEndDate field's value.
+func (s *ScheduledInstance) SetTermEndDate(v time.Time) *ScheduledInstance {
+	s.TermEndDate = &v
+	return s
+}
+
+// SetTermStartDate sets the TermStartDate field's value.
+func (s *ScheduledInstance) SetTermStartDate(v time.Time) *ScheduledInstance {
+	s.TermStartDate = &v
+	return s
+}
+
+// SetTotalScheduledInstanceHours sets the TotalScheduledInstanceHours field's value.
+func (s *ScheduledInstance) SetTotalScheduledInstanceHours(v int64) *ScheduledInstance {
+	s.TotalScheduledInstanceHours = &v
+	return s
+}
+
 // Describes a schedule that is available for your Scheduled Instances.
 type ScheduledInstanceAvailability struct {
 	_ struct{} `type:"structure"`
@@ -33663,6 +43923,84 @@ func (s ScheduledInstanceAvailability) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ScheduledInstanceAvailability) SetAvailabilityZone(v string) *ScheduledInstanceAvailability {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailableInstanceCount sets the AvailableInstanceCount field's value.
+func (s *ScheduledInstanceAvailability) SetAvailableInstanceCount(v int64) *ScheduledInstanceAvailability {
+	s.AvailableInstanceCount = &v
+	return s
+}
+
+// SetFirstSlotStartTime sets the FirstSlotStartTime field's value.
+func (s *ScheduledInstanceAvailability) SetFirstSlotStartTime(v time.Time) *ScheduledInstanceAvailability {
+	s.FirstSlotStartTime = &v
+	return s
+}
+
+// SetHourlyPrice sets the HourlyPrice field's value.
+func (s *ScheduledInstanceAvailability) SetHourlyPrice(v string) *ScheduledInstanceAvailability {
+	s.HourlyPrice = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ScheduledInstanceAvailability) SetInstanceType(v string) *ScheduledInstanceAvailability {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMaxTermDurationInDays sets the MaxTermDurationInDays field's value.
+func (s *ScheduledInstanceAvailability) SetMaxTermDurationInDays(v int64) *ScheduledInstanceAvailability {
+	s.MaxTermDurationInDays = &v
+	return s
+}
+
+// SetMinTermDurationInDays sets the MinTermDurationInDays field's value.
+func (s *ScheduledInstanceAvailability) SetMinTermDurationInDays(v int64) *ScheduledInstanceAvailability {
+	s.MinTermDurationInDays = &v
+	return s
+}
+
+// SetNetworkPlatform sets the NetworkPlatform field's value.
+func (s *ScheduledInstanceAvailability) SetNetworkPlatform(v string) *ScheduledInstanceAvailability {
+	s.NetworkPlatform = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ScheduledInstanceAvailability) SetPlatform(v string) *ScheduledInstanceAvailability {
+	s.Platform = &v
+	return s
+}
+
+// SetPurchaseToken sets the PurchaseToken field's value.
+func (s *ScheduledInstanceAvailability) SetPurchaseToken(v string) *ScheduledInstanceAvailability {
+	s.PurchaseToken = &v
+	return s
+}
+
+// SetRecurrence sets the Recurrence field's value.
+func (s *ScheduledInstanceAvailability) SetRecurrence(v *ScheduledInstanceRecurrence) *ScheduledInstanceAvailability {
+	s.Recurrence = v
+	return s
+}
+
+// SetSlotDurationInHours sets the SlotDurationInHours field's value.
+func (s *ScheduledInstanceAvailability) SetSlotDurationInHours(v int64) *ScheduledInstanceAvailability {
+	s.SlotDurationInHours = &v
+	return s
+}
+
+// SetTotalScheduledInstanceHours sets the TotalScheduledInstanceHours field's value.
+func (s *ScheduledInstanceAvailability) SetTotalScheduledInstanceHours(v int64) *ScheduledInstanceAvailability {
+	s.TotalScheduledInstanceHours = &v
+	return s
+}
+
 // Describes the recurring schedule for a Scheduled Instance.
 type ScheduledInstanceRecurrence struct {
 	_ struct{} `type:"structure"`
@@ -33695,6 +44033,36 @@ func (s ScheduledInstanceRecurrence) String() string {
 // GoString returns the string representation
 func (s ScheduledInstanceRecurrence) GoString() string {
 	return s.String()
+}
+
+// SetFrequency sets the Frequency field's value.
+func (s *ScheduledInstanceRecurrence) SetFrequency(v string) *ScheduledInstanceRecurrence {
+	s.Frequency = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *ScheduledInstanceRecurrence) SetInterval(v int64) *ScheduledInstanceRecurrence {
+	s.Interval = &v
+	return s
+}
+
+// SetOccurrenceDaySet sets the OccurrenceDaySet field's value.
+func (s *ScheduledInstanceRecurrence) SetOccurrenceDaySet(v []*int64) *ScheduledInstanceRecurrence {
+	s.OccurrenceDaySet = v
+	return s
+}
+
+// SetOccurrenceRelativeToEnd sets the OccurrenceRelativeToEnd field's value.
+func (s *ScheduledInstanceRecurrence) SetOccurrenceRelativeToEnd(v bool) *ScheduledInstanceRecurrence {
+	s.OccurrenceRelativeToEnd = &v
+	return s
+}
+
+// SetOccurrenceUnit sets the OccurrenceUnit field's value.
+func (s *ScheduledInstanceRecurrence) SetOccurrenceUnit(v string) *ScheduledInstanceRecurrence {
+	s.OccurrenceUnit = &v
+	return s
 }
 
 // Describes the recurring schedule for a Scheduled Instance.
@@ -33734,6 +44102,36 @@ func (s ScheduledInstanceRecurrenceRequest) GoString() string {
 	return s.String()
 }
 
+// SetFrequency sets the Frequency field's value.
+func (s *ScheduledInstanceRecurrenceRequest) SetFrequency(v string) *ScheduledInstanceRecurrenceRequest {
+	s.Frequency = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *ScheduledInstanceRecurrenceRequest) SetInterval(v int64) *ScheduledInstanceRecurrenceRequest {
+	s.Interval = &v
+	return s
+}
+
+// SetOccurrenceDays sets the OccurrenceDays field's value.
+func (s *ScheduledInstanceRecurrenceRequest) SetOccurrenceDays(v []*int64) *ScheduledInstanceRecurrenceRequest {
+	s.OccurrenceDays = v
+	return s
+}
+
+// SetOccurrenceRelativeToEnd sets the OccurrenceRelativeToEnd field's value.
+func (s *ScheduledInstanceRecurrenceRequest) SetOccurrenceRelativeToEnd(v bool) *ScheduledInstanceRecurrenceRequest {
+	s.OccurrenceRelativeToEnd = &v
+	return s
+}
+
+// SetOccurrenceUnit sets the OccurrenceUnit field's value.
+func (s *ScheduledInstanceRecurrenceRequest) SetOccurrenceUnit(v string) *ScheduledInstanceRecurrenceRequest {
+	s.OccurrenceUnit = &v
+	return s
+}
+
 // Describes a block device mapping for a Scheduled Instance.
 type ScheduledInstancesBlockDeviceMapping struct {
 	_ struct{} `type:"structure"`
@@ -33770,6 +44168,30 @@ func (s ScheduledInstancesBlockDeviceMapping) String() string {
 // GoString returns the string representation
 func (s ScheduledInstancesBlockDeviceMapping) GoString() string {
 	return s.String()
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *ScheduledInstancesBlockDeviceMapping) SetDeviceName(v string) *ScheduledInstancesBlockDeviceMapping {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *ScheduledInstancesBlockDeviceMapping) SetEbs(v *ScheduledInstancesEbs) *ScheduledInstancesBlockDeviceMapping {
+	s.Ebs = v
+	return s
+}
+
+// SetNoDevice sets the NoDevice field's value.
+func (s *ScheduledInstancesBlockDeviceMapping) SetNoDevice(v string) *ScheduledInstancesBlockDeviceMapping {
+	s.NoDevice = &v
+	return s
+}
+
+// SetVirtualName sets the VirtualName field's value.
+func (s *ScheduledInstancesBlockDeviceMapping) SetVirtualName(v string) *ScheduledInstancesBlockDeviceMapping {
+	s.VirtualName = &v
+	return s
 }
 
 // Describes an EBS volume for a Scheduled Instance.
@@ -33824,6 +44246,42 @@ func (s ScheduledInstancesEbs) GoString() string {
 	return s.String()
 }
 
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *ScheduledInstancesEbs) SetDeleteOnTermination(v bool) *ScheduledInstancesEbs {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *ScheduledInstancesEbs) SetEncrypted(v bool) *ScheduledInstancesEbs {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *ScheduledInstancesEbs) SetIops(v int64) *ScheduledInstancesEbs {
+	s.Iops = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *ScheduledInstancesEbs) SetSnapshotId(v string) *ScheduledInstancesEbs {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *ScheduledInstancesEbs) SetVolumeSize(v int64) *ScheduledInstancesEbs {
+	s.VolumeSize = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *ScheduledInstancesEbs) SetVolumeType(v string) *ScheduledInstancesEbs {
+	s.VolumeType = &v
+	return s
+}
+
 // Describes an IAM instance profile for a Scheduled Instance.
 type ScheduledInstancesIamInstanceProfile struct {
 	_ struct{} `type:"structure"`
@@ -33843,6 +44301,18 @@ func (s ScheduledInstancesIamInstanceProfile) String() string {
 // GoString returns the string representation
 func (s ScheduledInstancesIamInstanceProfile) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ScheduledInstancesIamInstanceProfile) SetArn(v string) *ScheduledInstancesIamInstanceProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ScheduledInstancesIamInstanceProfile) SetName(v string) *ScheduledInstancesIamInstanceProfile {
+	s.Name = &v
+	return s
 }
 
 // Describes the launch specification for a Scheduled Instance.
@@ -33927,6 +44397,90 @@ func (s *ScheduledInstancesLaunchSpecification) Validate() error {
 	return nil
 }
 
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetBlockDeviceMappings(v []*ScheduledInstancesBlockDeviceMapping) *ScheduledInstancesLaunchSpecification {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetEbsOptimized(v bool) *ScheduledInstancesLaunchSpecification {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetIamInstanceProfile(v *ScheduledInstancesIamInstanceProfile) *ScheduledInstancesLaunchSpecification {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetImageId(v string) *ScheduledInstancesLaunchSpecification {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetInstanceType(v string) *ScheduledInstancesLaunchSpecification {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetKernelId(v string) *ScheduledInstancesLaunchSpecification {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetKeyName(v string) *ScheduledInstancesLaunchSpecification {
+	s.KeyName = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetMonitoring(v *ScheduledInstancesMonitoring) *ScheduledInstancesLaunchSpecification {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetNetworkInterfaces(v []*ScheduledInstancesNetworkInterface) *ScheduledInstancesLaunchSpecification {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetPlacement(v *ScheduledInstancesPlacement) *ScheduledInstancesLaunchSpecification {
+	s.Placement = v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetRamdiskId(v string) *ScheduledInstancesLaunchSpecification {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetSecurityGroupIds(v []*string) *ScheduledInstancesLaunchSpecification {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetSubnetId(v string) *ScheduledInstancesLaunchSpecification {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *ScheduledInstancesLaunchSpecification) SetUserData(v string) *ScheduledInstancesLaunchSpecification {
+	s.UserData = &v
+	return s
+}
+
 // Describes whether monitoring is enabled for a Scheduled Instance.
 type ScheduledInstancesMonitoring struct {
 	_ struct{} `type:"structure"`
@@ -33943,6 +44497,12 @@ func (s ScheduledInstancesMonitoring) String() string {
 // GoString returns the string representation
 func (s ScheduledInstancesMonitoring) GoString() string {
 	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ScheduledInstancesMonitoring) SetEnabled(v bool) *ScheduledInstancesMonitoring {
+	s.Enabled = &v
+	return s
 }
 
 // Describes a network interface for a Scheduled Instance.
@@ -33994,6 +44554,66 @@ func (s ScheduledInstancesNetworkInterface) GoString() string {
 	return s.String()
 }
 
+// SetAssociatePublicIpAddress sets the AssociatePublicIpAddress field's value.
+func (s *ScheduledInstancesNetworkInterface) SetAssociatePublicIpAddress(v bool) *ScheduledInstancesNetworkInterface {
+	s.AssociatePublicIpAddress = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *ScheduledInstancesNetworkInterface) SetDeleteOnTermination(v bool) *ScheduledInstancesNetworkInterface {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ScheduledInstancesNetworkInterface) SetDescription(v string) *ScheduledInstancesNetworkInterface {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceIndex sets the DeviceIndex field's value.
+func (s *ScheduledInstancesNetworkInterface) SetDeviceIndex(v int64) *ScheduledInstancesNetworkInterface {
+	s.DeviceIndex = &v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ScheduledInstancesNetworkInterface) SetGroups(v []*string) *ScheduledInstancesNetworkInterface {
+	s.Groups = v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *ScheduledInstancesNetworkInterface) SetNetworkInterfaceId(v string) *ScheduledInstancesNetworkInterface {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *ScheduledInstancesNetworkInterface) SetPrivateIpAddress(v string) *ScheduledInstancesNetworkInterface {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPrivateIpAddressConfigs sets the PrivateIpAddressConfigs field's value.
+func (s *ScheduledInstancesNetworkInterface) SetPrivateIpAddressConfigs(v []*ScheduledInstancesPrivateIpAddressConfig) *ScheduledInstancesNetworkInterface {
+	s.PrivateIpAddressConfigs = v
+	return s
+}
+
+// SetSecondaryPrivateIpAddressCount sets the SecondaryPrivateIpAddressCount field's value.
+func (s *ScheduledInstancesNetworkInterface) SetSecondaryPrivateIpAddressCount(v int64) *ScheduledInstancesNetworkInterface {
+	s.SecondaryPrivateIpAddressCount = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *ScheduledInstancesNetworkInterface) SetSubnetId(v string) *ScheduledInstancesNetworkInterface {
+	s.SubnetId = &v
+	return s
+}
+
 // Describes the placement for a Scheduled Instance.
 type ScheduledInstancesPlacement struct {
 	_ struct{} `type:"structure"`
@@ -34013,6 +44633,18 @@ func (s ScheduledInstancesPlacement) String() string {
 // GoString returns the string representation
 func (s ScheduledInstancesPlacement) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ScheduledInstancesPlacement) SetAvailabilityZone(v string) *ScheduledInstancesPlacement {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *ScheduledInstancesPlacement) SetGroupName(v string) *ScheduledInstancesPlacement {
+	s.GroupName = &v
+	return s
 }
 
 // Describes a private IP address for a Scheduled Instance.
@@ -34035,6 +44667,18 @@ func (s ScheduledInstancesPrivateIpAddressConfig) String() string {
 // GoString returns the string representation
 func (s ScheduledInstancesPrivateIpAddressConfig) GoString() string {
 	return s.String()
+}
+
+// SetPrimary sets the Primary field's value.
+func (s *ScheduledInstancesPrivateIpAddressConfig) SetPrimary(v bool) *ScheduledInstancesPrivateIpAddressConfig {
+	s.Primary = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *ScheduledInstancesPrivateIpAddressConfig) SetPrivateIpAddress(v string) *ScheduledInstancesPrivateIpAddressConfig {
+	s.PrivateIpAddress = &v
+	return s
 }
 
 // Describes a security group
@@ -34076,6 +44720,54 @@ func (s SecurityGroup) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *SecurityGroup) SetDescription(v string) *SecurityGroup {
+	s.Description = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *SecurityGroup) SetGroupId(v string) *SecurityGroup {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *SecurityGroup) SetGroupName(v string) *SecurityGroup {
+	s.GroupName = &v
+	return s
+}
+
+// SetIpPermissions sets the IpPermissions field's value.
+func (s *SecurityGroup) SetIpPermissions(v []*IpPermission) *SecurityGroup {
+	s.IpPermissions = v
+	return s
+}
+
+// SetIpPermissionsEgress sets the IpPermissionsEgress field's value.
+func (s *SecurityGroup) SetIpPermissionsEgress(v []*IpPermission) *SecurityGroup {
+	s.IpPermissionsEgress = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *SecurityGroup) SetOwnerId(v string) *SecurityGroup {
+	s.OwnerId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SecurityGroup) SetTags(v []*Tag) *SecurityGroup {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *SecurityGroup) SetVpcId(v string) *SecurityGroup {
+	s.VpcId = &v
+	return s
+}
+
 // Describes a VPC with a security group that references your security group.
 type SecurityGroupReference struct {
 	_ struct{} `type:"structure"`
@@ -34102,6 +44794,24 @@ func (s SecurityGroupReference) String() string {
 // GoString returns the string representation
 func (s SecurityGroupReference) GoString() string {
 	return s.String()
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *SecurityGroupReference) SetGroupId(v string) *SecurityGroupReference {
+	s.GroupId = &v
+	return s
+}
+
+// SetReferencingVpcId sets the ReferencingVpcId field's value.
+func (s *SecurityGroupReference) SetReferencingVpcId(v string) *SecurityGroupReference {
+	s.ReferencingVpcId = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *SecurityGroupReference) SetVpcPeeringConnectionId(v string) *SecurityGroupReference {
+	s.VpcPeeringConnectionId = &v
+	return s
 }
 
 // Describes the time period for a Scheduled Instance to start its first schedule.
@@ -34148,6 +44858,18 @@ func (s *SlotDateTimeRangeRequest) Validate() error {
 	return nil
 }
 
+// SetEarliestTime sets the EarliestTime field's value.
+func (s *SlotDateTimeRangeRequest) SetEarliestTime(v time.Time) *SlotDateTimeRangeRequest {
+	s.EarliestTime = &v
+	return s
+}
+
+// SetLatestTime sets the LatestTime field's value.
+func (s *SlotDateTimeRangeRequest) SetLatestTime(v time.Time) *SlotDateTimeRangeRequest {
+	s.LatestTime = &v
+	return s
+}
+
 // Describes the time period for a Scheduled Instance to start its first schedule.
 type SlotStartTimeRangeRequest struct {
 	_ struct{} `type:"structure"`
@@ -34167,6 +44889,18 @@ func (s SlotStartTimeRangeRequest) String() string {
 // GoString returns the string representation
 func (s SlotStartTimeRangeRequest) GoString() string {
 	return s.String()
+}
+
+// SetEarliestTime sets the EarliestTime field's value.
+func (s *SlotStartTimeRangeRequest) SetEarliestTime(v time.Time) *SlotStartTimeRangeRequest {
+	s.EarliestTime = &v
+	return s
+}
+
+// SetLatestTime sets the LatestTime field's value.
+func (s *SlotStartTimeRangeRequest) SetLatestTime(v time.Time) *SlotStartTimeRangeRequest {
+	s.LatestTime = &v
+	return s
 }
 
 // Describes a snapshot.
@@ -34242,6 +44976,90 @@ func (s Snapshot) GoString() string {
 	return s.String()
 }
 
+// SetDataEncryptionKeyId sets the DataEncryptionKeyId field's value.
+func (s *Snapshot) SetDataEncryptionKeyId(v string) *Snapshot {
+	s.DataEncryptionKeyId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Snapshot) SetDescription(v string) *Snapshot {
+	s.Description = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *Snapshot) SetEncrypted(v bool) *Snapshot {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *Snapshot) SetKmsKeyId(v string) *Snapshot {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetOwnerAlias sets the OwnerAlias field's value.
+func (s *Snapshot) SetOwnerAlias(v string) *Snapshot {
+	s.OwnerAlias = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *Snapshot) SetOwnerId(v string) *Snapshot {
+	s.OwnerId = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *Snapshot) SetProgress(v string) *Snapshot {
+	s.Progress = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *Snapshot) SetSnapshotId(v string) *Snapshot {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Snapshot) SetStartTime(v time.Time) *Snapshot {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Snapshot) SetState(v string) *Snapshot {
+	s.State = &v
+	return s
+}
+
+// SetStateMessage sets the StateMessage field's value.
+func (s *Snapshot) SetStateMessage(v string) *Snapshot {
+	s.StateMessage = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Snapshot) SetTags(v []*Tag) *Snapshot {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *Snapshot) SetVolumeId(v string) *Snapshot {
+	s.VolumeId = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *Snapshot) SetVolumeSize(v int64) *Snapshot {
+	s.VolumeSize = &v
+	return s
+}
+
 // Describes the snapshot created from the imported disk.
 type SnapshotDetail struct {
 	_ struct{} `type:"structure"`
@@ -34287,6 +45105,66 @@ func (s SnapshotDetail) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *SnapshotDetail) SetDescription(v string) *SnapshotDetail {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *SnapshotDetail) SetDeviceName(v string) *SnapshotDetail {
+	s.DeviceName = &v
+	return s
+}
+
+// SetDiskImageSize sets the DiskImageSize field's value.
+func (s *SnapshotDetail) SetDiskImageSize(v float64) *SnapshotDetail {
+	s.DiskImageSize = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *SnapshotDetail) SetFormat(v string) *SnapshotDetail {
+	s.Format = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *SnapshotDetail) SetProgress(v string) *SnapshotDetail {
+	s.Progress = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *SnapshotDetail) SetSnapshotId(v string) *SnapshotDetail {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SnapshotDetail) SetStatus(v string) *SnapshotDetail {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *SnapshotDetail) SetStatusMessage(v string) *SnapshotDetail {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *SnapshotDetail) SetUrl(v string) *SnapshotDetail {
+	s.Url = &v
+	return s
+}
+
+// SetUserBucket sets the UserBucket field's value.
+func (s *SnapshotDetail) SetUserBucket(v *UserBucketDetails) *SnapshotDetail {
+	s.UserBucket = v
+	return s
+}
+
 // The disk container object for the import snapshot request.
 type SnapshotDiskContainer struct {
 	_ struct{} `type:"structure"`
@@ -34315,6 +45193,30 @@ func (s SnapshotDiskContainer) String() string {
 // GoString returns the string representation
 func (s SnapshotDiskContainer) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *SnapshotDiskContainer) SetDescription(v string) *SnapshotDiskContainer {
+	s.Description = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *SnapshotDiskContainer) SetFormat(v string) *SnapshotDiskContainer {
+	s.Format = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *SnapshotDiskContainer) SetUrl(v string) *SnapshotDiskContainer {
+	s.Url = &v
+	return s
+}
+
+// SetUserBucket sets the UserBucket field's value.
+func (s *SnapshotDiskContainer) SetUserBucket(v *UserBucket) *SnapshotDiskContainer {
+	s.UserBucket = v
+	return s
 }
 
 // Details about the import snapshot task.
@@ -34359,6 +45261,60 @@ func (s SnapshotTaskDetail) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *SnapshotTaskDetail) SetDescription(v string) *SnapshotTaskDetail {
+	s.Description = &v
+	return s
+}
+
+// SetDiskImageSize sets the DiskImageSize field's value.
+func (s *SnapshotTaskDetail) SetDiskImageSize(v float64) *SnapshotTaskDetail {
+	s.DiskImageSize = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *SnapshotTaskDetail) SetFormat(v string) *SnapshotTaskDetail {
+	s.Format = &v
+	return s
+}
+
+// SetProgress sets the Progress field's value.
+func (s *SnapshotTaskDetail) SetProgress(v string) *SnapshotTaskDetail {
+	s.Progress = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *SnapshotTaskDetail) SetSnapshotId(v string) *SnapshotTaskDetail {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SnapshotTaskDetail) SetStatus(v string) *SnapshotTaskDetail {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *SnapshotTaskDetail) SetStatusMessage(v string) *SnapshotTaskDetail {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *SnapshotTaskDetail) SetUrl(v string) *SnapshotTaskDetail {
+	s.Url = &v
+	return s
+}
+
+// SetUserBucket sets the UserBucket field's value.
+func (s *SnapshotTaskDetail) SetUserBucket(v *UserBucketDetails) *SnapshotTaskDetail {
+	s.UserBucket = v
+	return s
+}
+
 // Describes the data feed for a Spot instance.
 type SpotDatafeedSubscription struct {
 	_ struct{} `type:"structure"`
@@ -34387,6 +45343,36 @@ func (s SpotDatafeedSubscription) String() string {
 // GoString returns the string representation
 func (s SpotDatafeedSubscription) GoString() string {
 	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *SpotDatafeedSubscription) SetBucket(v string) *SpotDatafeedSubscription {
+	s.Bucket = &v
+	return s
+}
+
+// SetFault sets the Fault field's value.
+func (s *SpotDatafeedSubscription) SetFault(v *SpotInstanceStateFault) *SpotDatafeedSubscription {
+	s.Fault = v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *SpotDatafeedSubscription) SetOwnerId(v string) *SpotDatafeedSubscription {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *SpotDatafeedSubscription) SetPrefix(v string) *SpotDatafeedSubscription {
+	s.Prefix = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SpotDatafeedSubscription) SetState(v string) *SpotDatafeedSubscription {
+	s.State = &v
+	return s
 }
 
 // Describes the launch specification for one or more Spot instances.
@@ -34495,6 +45481,108 @@ func (s *SpotFleetLaunchSpecification) Validate() error {
 	return nil
 }
 
+// SetAddressingType sets the AddressingType field's value.
+func (s *SpotFleetLaunchSpecification) SetAddressingType(v string) *SpotFleetLaunchSpecification {
+	s.AddressingType = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *SpotFleetLaunchSpecification) SetBlockDeviceMappings(v []*BlockDeviceMapping) *SpotFleetLaunchSpecification {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *SpotFleetLaunchSpecification) SetEbsOptimized(v bool) *SpotFleetLaunchSpecification {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *SpotFleetLaunchSpecification) SetIamInstanceProfile(v *IamInstanceProfileSpecification) *SpotFleetLaunchSpecification {
+	s.IamInstanceProfile = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *SpotFleetLaunchSpecification) SetImageId(v string) *SpotFleetLaunchSpecification {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *SpotFleetLaunchSpecification) SetInstanceType(v string) *SpotFleetLaunchSpecification {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *SpotFleetLaunchSpecification) SetKernelId(v string) *SpotFleetLaunchSpecification {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *SpotFleetLaunchSpecification) SetKeyName(v string) *SpotFleetLaunchSpecification {
+	s.KeyName = &v
+	return s
+}
+
+// SetMonitoring sets the Monitoring field's value.
+func (s *SpotFleetLaunchSpecification) SetMonitoring(v *SpotFleetMonitoring) *SpotFleetLaunchSpecification {
+	s.Monitoring = v
+	return s
+}
+
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *SpotFleetLaunchSpecification) SetNetworkInterfaces(v []*InstanceNetworkInterfaceSpecification) *SpotFleetLaunchSpecification {
+	s.NetworkInterfaces = v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *SpotFleetLaunchSpecification) SetPlacement(v *SpotPlacement) *SpotFleetLaunchSpecification {
+	s.Placement = v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *SpotFleetLaunchSpecification) SetRamdiskId(v string) *SpotFleetLaunchSpecification {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *SpotFleetLaunchSpecification) SetSecurityGroups(v []*GroupIdentifier) *SpotFleetLaunchSpecification {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *SpotFleetLaunchSpecification) SetSpotPrice(v string) *SpotFleetLaunchSpecification {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *SpotFleetLaunchSpecification) SetSubnetId(v string) *SpotFleetLaunchSpecification {
+	s.SubnetId = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *SpotFleetLaunchSpecification) SetUserData(v string) *SpotFleetLaunchSpecification {
+	s.UserData = &v
+	return s
+}
+
+// SetWeightedCapacity sets the WeightedCapacity field's value.
+func (s *SpotFleetLaunchSpecification) SetWeightedCapacity(v float64) *SpotFleetLaunchSpecification {
+	s.WeightedCapacity = &v
+	return s
+}
+
 // Describes whether monitoring is enabled.
 type SpotFleetMonitoring struct {
 	_ struct{} `type:"structure"`
@@ -34513,6 +45601,12 @@ func (s SpotFleetMonitoring) String() string {
 // GoString returns the string representation
 func (s SpotFleetMonitoring) GoString() string {
 	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *SpotFleetMonitoring) SetEnabled(v bool) *SpotFleetMonitoring {
+	s.Enabled = &v
+	return s
 }
 
 // Describes a Spot fleet request.
@@ -34555,6 +45649,36 @@ func (s SpotFleetRequestConfig) String() string {
 // GoString returns the string representation
 func (s SpotFleetRequestConfig) GoString() string {
 	return s.String()
+}
+
+// SetActivityStatus sets the ActivityStatus field's value.
+func (s *SpotFleetRequestConfig) SetActivityStatus(v string) *SpotFleetRequestConfig {
+	s.ActivityStatus = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *SpotFleetRequestConfig) SetCreateTime(v time.Time) *SpotFleetRequestConfig {
+	s.CreateTime = &v
+	return s
+}
+
+// SetSpotFleetRequestConfig sets the SpotFleetRequestConfig field's value.
+func (s *SpotFleetRequestConfig) SetSpotFleetRequestConfig(v *SpotFleetRequestConfigData) *SpotFleetRequestConfig {
+	s.SpotFleetRequestConfig = v
+	return s
+}
+
+// SetSpotFleetRequestId sets the SpotFleetRequestId field's value.
+func (s *SpotFleetRequestConfig) SetSpotFleetRequestId(v string) *SpotFleetRequestConfig {
+	s.SpotFleetRequestId = &v
+	return s
+}
+
+// SetSpotFleetRequestState sets the SpotFleetRequestState field's value.
+func (s *SpotFleetRequestConfig) SetSpotFleetRequestState(v string) *SpotFleetRequestConfig {
+	s.SpotFleetRequestState = &v
+	return s
 }
 
 // Describes the configuration of a Spot fleet request.
@@ -34672,6 +45796,78 @@ func (s *SpotFleetRequestConfigData) Validate() error {
 	return nil
 }
 
+// SetAllocationStrategy sets the AllocationStrategy field's value.
+func (s *SpotFleetRequestConfigData) SetAllocationStrategy(v string) *SpotFleetRequestConfigData {
+	s.AllocationStrategy = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *SpotFleetRequestConfigData) SetClientToken(v string) *SpotFleetRequestConfigData {
+	s.ClientToken = &v
+	return s
+}
+
+// SetExcessCapacityTerminationPolicy sets the ExcessCapacityTerminationPolicy field's value.
+func (s *SpotFleetRequestConfigData) SetExcessCapacityTerminationPolicy(v string) *SpotFleetRequestConfigData {
+	s.ExcessCapacityTerminationPolicy = &v
+	return s
+}
+
+// SetFulfilledCapacity sets the FulfilledCapacity field's value.
+func (s *SpotFleetRequestConfigData) SetFulfilledCapacity(v float64) *SpotFleetRequestConfigData {
+	s.FulfilledCapacity = &v
+	return s
+}
+
+// SetIamFleetRole sets the IamFleetRole field's value.
+func (s *SpotFleetRequestConfigData) SetIamFleetRole(v string) *SpotFleetRequestConfigData {
+	s.IamFleetRole = &v
+	return s
+}
+
+// SetLaunchSpecifications sets the LaunchSpecifications field's value.
+func (s *SpotFleetRequestConfigData) SetLaunchSpecifications(v []*SpotFleetLaunchSpecification) *SpotFleetRequestConfigData {
+	s.LaunchSpecifications = v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *SpotFleetRequestConfigData) SetSpotPrice(v string) *SpotFleetRequestConfigData {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetTargetCapacity sets the TargetCapacity field's value.
+func (s *SpotFleetRequestConfigData) SetTargetCapacity(v int64) *SpotFleetRequestConfigData {
+	s.TargetCapacity = &v
+	return s
+}
+
+// SetTerminateInstancesWithExpiration sets the TerminateInstancesWithExpiration field's value.
+func (s *SpotFleetRequestConfigData) SetTerminateInstancesWithExpiration(v bool) *SpotFleetRequestConfigData {
+	s.TerminateInstancesWithExpiration = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SpotFleetRequestConfigData) SetType(v string) *SpotFleetRequestConfigData {
+	s.Type = &v
+	return s
+}
+
+// SetValidFrom sets the ValidFrom field's value.
+func (s *SpotFleetRequestConfigData) SetValidFrom(v time.Time) *SpotFleetRequestConfigData {
+	s.ValidFrom = &v
+	return s
+}
+
+// SetValidUntil sets the ValidUntil field's value.
+func (s *SpotFleetRequestConfigData) SetValidUntil(v time.Time) *SpotFleetRequestConfigData {
+	s.ValidUntil = &v
+	return s
+}
+
 // Describes a Spot instance request.
 type SpotInstanceRequest struct {
 	_ struct{} `type:"structure"`
@@ -34755,6 +45951,114 @@ func (s SpotInstanceRequest) GoString() string {
 	return s.String()
 }
 
+// SetActualBlockHourlyPrice sets the ActualBlockHourlyPrice field's value.
+func (s *SpotInstanceRequest) SetActualBlockHourlyPrice(v string) *SpotInstanceRequest {
+	s.ActualBlockHourlyPrice = &v
+	return s
+}
+
+// SetAvailabilityZoneGroup sets the AvailabilityZoneGroup field's value.
+func (s *SpotInstanceRequest) SetAvailabilityZoneGroup(v string) *SpotInstanceRequest {
+	s.AvailabilityZoneGroup = &v
+	return s
+}
+
+// SetBlockDurationMinutes sets the BlockDurationMinutes field's value.
+func (s *SpotInstanceRequest) SetBlockDurationMinutes(v int64) *SpotInstanceRequest {
+	s.BlockDurationMinutes = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *SpotInstanceRequest) SetCreateTime(v time.Time) *SpotInstanceRequest {
+	s.CreateTime = &v
+	return s
+}
+
+// SetFault sets the Fault field's value.
+func (s *SpotInstanceRequest) SetFault(v *SpotInstanceStateFault) *SpotInstanceRequest {
+	s.Fault = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *SpotInstanceRequest) SetInstanceId(v string) *SpotInstanceRequest {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLaunchGroup sets the LaunchGroup field's value.
+func (s *SpotInstanceRequest) SetLaunchGroup(v string) *SpotInstanceRequest {
+	s.LaunchGroup = &v
+	return s
+}
+
+// SetLaunchSpecification sets the LaunchSpecification field's value.
+func (s *SpotInstanceRequest) SetLaunchSpecification(v *LaunchSpecification) *SpotInstanceRequest {
+	s.LaunchSpecification = v
+	return s
+}
+
+// SetLaunchedAvailabilityZone sets the LaunchedAvailabilityZone field's value.
+func (s *SpotInstanceRequest) SetLaunchedAvailabilityZone(v string) *SpotInstanceRequest {
+	s.LaunchedAvailabilityZone = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *SpotInstanceRequest) SetProductDescription(v string) *SpotInstanceRequest {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetSpotInstanceRequestId sets the SpotInstanceRequestId field's value.
+func (s *SpotInstanceRequest) SetSpotInstanceRequestId(v string) *SpotInstanceRequest {
+	s.SpotInstanceRequestId = &v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *SpotInstanceRequest) SetSpotPrice(v string) *SpotInstanceRequest {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *SpotInstanceRequest) SetState(v string) *SpotInstanceRequest {
+	s.State = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SpotInstanceRequest) SetStatus(v *SpotInstanceStatus) *SpotInstanceRequest {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SpotInstanceRequest) SetTags(v []*Tag) *SpotInstanceRequest {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SpotInstanceRequest) SetType(v string) *SpotInstanceRequest {
+	s.Type = &v
+	return s
+}
+
+// SetValidFrom sets the ValidFrom field's value.
+func (s *SpotInstanceRequest) SetValidFrom(v time.Time) *SpotInstanceRequest {
+	s.ValidFrom = &v
+	return s
+}
+
+// SetValidUntil sets the ValidUntil field's value.
+func (s *SpotInstanceRequest) SetValidUntil(v time.Time) *SpotInstanceRequest {
+	s.ValidUntil = &v
+	return s
+}
+
 // Describes a Spot instance state change.
 type SpotInstanceStateFault struct {
 	_ struct{} `type:"structure"`
@@ -34774,6 +46078,18 @@ func (s SpotInstanceStateFault) String() string {
 // GoString returns the string representation
 func (s SpotInstanceStateFault) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *SpotInstanceStateFault) SetCode(v string) *SpotInstanceStateFault {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *SpotInstanceStateFault) SetMessage(v string) *SpotInstanceStateFault {
+	s.Message = &v
+	return s
 }
 
 // Describes the status of a Spot instance request.
@@ -34802,6 +46118,24 @@ func (s SpotInstanceStatus) GoString() string {
 	return s.String()
 }
 
+// SetCode sets the Code field's value.
+func (s *SpotInstanceStatus) SetCode(v string) *SpotInstanceStatus {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *SpotInstanceStatus) SetMessage(v string) *SpotInstanceStatus {
+	s.Message = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *SpotInstanceStatus) SetUpdateTime(v time.Time) *SpotInstanceStatus {
+	s.UpdateTime = &v
+	return s
+}
+
 // Describes Spot instance placement.
 type SpotPlacement struct {
 	_ struct{} `type:"structure"`
@@ -34824,6 +46158,18 @@ func (s SpotPlacement) String() string {
 // GoString returns the string representation
 func (s SpotPlacement) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *SpotPlacement) SetAvailabilityZone(v string) *SpotPlacement {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *SpotPlacement) SetGroupName(v string) *SpotPlacement {
+	s.GroupName = &v
+	return s
 }
 
 // Describes the maximum hourly price (bid) for any Spot instance launched to
@@ -34855,6 +46201,36 @@ func (s SpotPrice) String() string {
 // GoString returns the string representation
 func (s SpotPrice) GoString() string {
 	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *SpotPrice) SetAvailabilityZone(v string) *SpotPrice {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *SpotPrice) SetInstanceType(v string) *SpotPrice {
+	s.InstanceType = &v
+	return s
+}
+
+// SetProductDescription sets the ProductDescription field's value.
+func (s *SpotPrice) SetProductDescription(v string) *SpotPrice {
+	s.ProductDescription = &v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *SpotPrice) SetSpotPrice(v string) *SpotPrice {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *SpotPrice) SetTimestamp(v time.Time) *SpotPrice {
+	s.Timestamp = &v
+	return s
 }
 
 // Describes a stale rule in a security group.
@@ -34895,6 +46271,42 @@ func (s StaleIpPermission) GoString() string {
 	return s.String()
 }
 
+// SetFromPort sets the FromPort field's value.
+func (s *StaleIpPermission) SetFromPort(v int64) *StaleIpPermission {
+	s.FromPort = &v
+	return s
+}
+
+// SetIpProtocol sets the IpProtocol field's value.
+func (s *StaleIpPermission) SetIpProtocol(v string) *StaleIpPermission {
+	s.IpProtocol = &v
+	return s
+}
+
+// SetIpRanges sets the IpRanges field's value.
+func (s *StaleIpPermission) SetIpRanges(v []*string) *StaleIpPermission {
+	s.IpRanges = v
+	return s
+}
+
+// SetPrefixListIds sets the PrefixListIds field's value.
+func (s *StaleIpPermission) SetPrefixListIds(v []*string) *StaleIpPermission {
+	s.PrefixListIds = v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *StaleIpPermission) SetToPort(v int64) *StaleIpPermission {
+	s.ToPort = &v
+	return s
+}
+
+// SetUserIdGroupPairs sets the UserIdGroupPairs field's value.
+func (s *StaleIpPermission) SetUserIdGroupPairs(v []*UserIdGroupPair) *StaleIpPermission {
+	s.UserIdGroupPairs = v
+	return s
+}
+
 // Describes a stale security group (a security group that contains stale rules).
 type StaleSecurityGroup struct {
 	_ struct{} `type:"structure"`
@@ -34928,6 +46340,42 @@ func (s StaleSecurityGroup) String() string {
 // GoString returns the string representation
 func (s StaleSecurityGroup) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *StaleSecurityGroup) SetDescription(v string) *StaleSecurityGroup {
+	s.Description = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *StaleSecurityGroup) SetGroupId(v string) *StaleSecurityGroup {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *StaleSecurityGroup) SetGroupName(v string) *StaleSecurityGroup {
+	s.GroupName = &v
+	return s
+}
+
+// SetStaleIpPermissions sets the StaleIpPermissions field's value.
+func (s *StaleSecurityGroup) SetStaleIpPermissions(v []*StaleIpPermission) *StaleSecurityGroup {
+	s.StaleIpPermissions = v
+	return s
+}
+
+// SetStaleIpPermissionsEgress sets the StaleIpPermissionsEgress field's value.
+func (s *StaleSecurityGroup) SetStaleIpPermissionsEgress(v []*StaleIpPermission) *StaleSecurityGroup {
+	s.StaleIpPermissionsEgress = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *StaleSecurityGroup) SetVpcId(v string) *StaleSecurityGroup {
+	s.VpcId = &v
+	return s
 }
 
 // Contains the parameters for StartInstances.
@@ -34972,6 +46420,24 @@ func (s *StartInstancesInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *StartInstancesInput) SetAdditionalInfo(v string) *StartInstancesInput {
+	s.AdditionalInfo = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *StartInstancesInput) SetDryRun(v bool) *StartInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *StartInstancesInput) SetInstanceIds(v []*string) *StartInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
 // Contains the output of StartInstances.
 type StartInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -34988,6 +46454,12 @@ func (s StartInstancesOutput) String() string {
 // GoString returns the string representation
 func (s StartInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetStartingInstances sets the StartingInstances field's value.
+func (s *StartInstancesOutput) SetStartingInstances(v []*InstanceStateChange) *StartInstancesOutput {
+	s.StartingInstances = v
+	return s
 }
 
 // Describes a state change.
@@ -35033,6 +46505,18 @@ func (s StateReason) String() string {
 // GoString returns the string representation
 func (s StateReason) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *StateReason) SetCode(v string) *StateReason {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *StateReason) SetMessage(v string) *StateReason {
+	s.Message = &v
+	return s
 }
 
 // Contains the parameters for StopInstances.
@@ -35082,6 +46566,24 @@ func (s *StopInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *StopInstancesInput) SetDryRun(v bool) *StopInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *StopInstancesInput) SetForce(v bool) *StopInstancesInput {
+	s.Force = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *StopInstancesInput) SetInstanceIds(v []*string) *StopInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
 // Contains the output of StopInstances.
 type StopInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -35100,6 +46602,12 @@ func (s StopInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// SetStoppingInstances sets the StoppingInstances field's value.
+func (s *StopInstancesOutput) SetStoppingInstances(v []*InstanceStateChange) *StopInstancesOutput {
+	s.StoppingInstances = v
+	return s
+}
+
 // Describes the storage location for an instance store-backed AMI.
 type Storage struct {
 	_ struct{} `type:"structure"`
@@ -35116,6 +46624,12 @@ func (s Storage) String() string {
 // GoString returns the string representation
 func (s Storage) GoString() string {
 	return s.String()
+}
+
+// SetS3 sets the S3 field's value.
+func (s *Storage) SetS3(v *S3Storage) *Storage {
+	s.S3 = v
+	return s
 }
 
 // Describes a subnet.
@@ -35161,6 +46675,60 @@ func (s Subnet) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *Subnet) SetAvailabilityZone(v string) *Subnet {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailableIpAddressCount sets the AvailableIpAddressCount field's value.
+func (s *Subnet) SetAvailableIpAddressCount(v int64) *Subnet {
+	s.AvailableIpAddressCount = &v
+	return s
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *Subnet) SetCidrBlock(v string) *Subnet {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDefaultForAz sets the DefaultForAz field's value.
+func (s *Subnet) SetDefaultForAz(v bool) *Subnet {
+	s.DefaultForAz = &v
+	return s
+}
+
+// SetMapPublicIpOnLaunch sets the MapPublicIpOnLaunch field's value.
+func (s *Subnet) SetMapPublicIpOnLaunch(v bool) *Subnet {
+	s.MapPublicIpOnLaunch = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Subnet) SetState(v string) *Subnet {
+	s.State = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *Subnet) SetSubnetId(v string) *Subnet {
+	s.SubnetId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Subnet) SetTags(v []*Tag) *Subnet {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *Subnet) SetVpcId(v string) *Subnet {
+	s.VpcId = &v
+	return s
+}
+
 // Describes a tag.
 type Tag struct {
 	_ struct{} `type:"structure"`
@@ -35186,6 +46754,18 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // Describes a tag.
@@ -35215,6 +46795,30 @@ func (s TagDescription) GoString() string {
 	return s.String()
 }
 
+// SetKey sets the Key field's value.
+func (s *TagDescription) SetKey(v string) *TagDescription {
+	s.Key = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *TagDescription) SetResourceId(v string) *TagDescription {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *TagDescription) SetResourceType(v string) *TagDescription {
+	s.ResourceType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TagDescription) SetValue(v string) *TagDescription {
+	s.Value = &v
+	return s
+}
+
 // Information about the Convertible Reserved Instance offering.
 type TargetConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -35235,6 +46839,18 @@ func (s TargetConfiguration) String() string {
 // GoString returns the string representation
 func (s TargetConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *TargetConfiguration) SetInstanceCount(v int64) *TargetConfiguration {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *TargetConfiguration) SetOfferingId(v string) *TargetConfiguration {
+	s.OfferingId = &v
+	return s
 }
 
 // Details about the target configuration.
@@ -35276,6 +46892,18 @@ func (s *TargetConfigurationRequest) Validate() error {
 	return nil
 }
 
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *TargetConfigurationRequest) SetInstanceCount(v int64) *TargetConfigurationRequest {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetOfferingId sets the OfferingId field's value.
+func (s *TargetConfigurationRequest) SetOfferingId(v string) *TargetConfigurationRequest {
+	s.OfferingId = &v
+	return s
+}
+
 // The total value of the new Convertible Reserved Instances.
 type TargetReservationValue struct {
 	_ struct{} `type:"structure"`
@@ -35298,6 +46926,18 @@ func (s TargetReservationValue) String() string {
 // GoString returns the string representation
 func (s TargetReservationValue) GoString() string {
 	return s.String()
+}
+
+// SetReservationValue sets the ReservationValue field's value.
+func (s *TargetReservationValue) SetReservationValue(v *ReservationValue) *TargetReservationValue {
+	s.ReservationValue = v
+	return s
+}
+
+// SetTargetConfiguration sets the TargetConfiguration field's value.
+func (s *TargetReservationValue) SetTargetConfiguration(v *TargetConfiguration) *TargetReservationValue {
+	s.TargetConfiguration = v
+	return s
 }
 
 // Contains the parameters for TerminateInstances.
@@ -35342,6 +46982,18 @@ func (s *TerminateInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *TerminateInstancesInput) SetDryRun(v bool) *TerminateInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *TerminateInstancesInput) SetInstanceIds(v []*string) *TerminateInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
 // Contains the output of TerminateInstances.
 type TerminateInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -35358,6 +47010,12 @@ func (s TerminateInstancesOutput) String() string {
 // GoString returns the string representation
 func (s TerminateInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetTerminatingInstances sets the TerminatingInstances field's value.
+func (s *TerminateInstancesOutput) SetTerminatingInstances(v []*InstanceStateChange) *TerminateInstancesOutput {
+	s.TerminatingInstances = v
+	return s
 }
 
 // Contains the parameters for UnassignPrivateIpAddresses.
@@ -35400,6 +47058,18 @@ func (s *UnassignPrivateIpAddressesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *UnassignPrivateIpAddressesInput) SetNetworkInterfaceId(v string) *UnassignPrivateIpAddressesInput {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *UnassignPrivateIpAddressesInput) SetPrivateIpAddresses(v []*string) *UnassignPrivateIpAddressesInput {
+	s.PrivateIpAddresses = v
+	return s
 }
 
 type UnassignPrivateIpAddressesOutput struct {
@@ -35455,6 +47125,18 @@ func (s *UnmonitorInstancesInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *UnmonitorInstancesInput) SetDryRun(v bool) *UnmonitorInstancesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceIds sets the InstanceIds field's value.
+func (s *UnmonitorInstancesInput) SetInstanceIds(v []*string) *UnmonitorInstancesInput {
+	s.InstanceIds = v
+	return s
+}
+
 // Contains the output of UnmonitorInstances.
 type UnmonitorInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -35471,6 +47153,12 @@ func (s UnmonitorInstancesOutput) String() string {
 // GoString returns the string representation
 func (s UnmonitorInstancesOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceMonitorings sets the InstanceMonitorings field's value.
+func (s *UnmonitorInstancesOutput) SetInstanceMonitorings(v []*InstanceMonitoring) *UnmonitorInstancesOutput {
+	s.InstanceMonitorings = v
+	return s
 }
 
 // Information about items that were not successfully processed in a batch call.
@@ -35494,6 +47182,18 @@ func (s UnsuccessfulItem) String() string {
 // GoString returns the string representation
 func (s UnsuccessfulItem) GoString() string {
 	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *UnsuccessfulItem) SetError(v *UnsuccessfulItemError) *UnsuccessfulItem {
+	s.Error = v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UnsuccessfulItem) SetResourceId(v string) *UnsuccessfulItem {
+	s.ResourceId = &v
+	return s
 }
 
 // Information about the error that occurred. For more information about errors,
@@ -35522,6 +47222,18 @@ func (s UnsuccessfulItemError) GoString() string {
 	return s.String()
 }
 
+// SetCode sets the Code field's value.
+func (s *UnsuccessfulItemError) SetCode(v string) *UnsuccessfulItemError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *UnsuccessfulItemError) SetMessage(v string) *UnsuccessfulItemError {
+	s.Message = &v
+	return s
+}
+
 // Describes the S3 bucket for the disk image.
 type UserBucket struct {
 	_ struct{} `type:"structure"`
@@ -35541,6 +47253,18 @@ func (s UserBucket) String() string {
 // GoString returns the string representation
 func (s UserBucket) GoString() string {
 	return s.String()
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *UserBucket) SetS3Bucket(v string) *UserBucket {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *UserBucket) SetS3Key(v string) *UserBucket {
+	s.S3Key = &v
+	return s
 }
 
 // Describes the S3 bucket for the disk image.
@@ -35564,6 +47288,18 @@ func (s UserBucketDetails) GoString() string {
 	return s.String()
 }
 
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *UserBucketDetails) SetS3Bucket(v string) *UserBucketDetails {
+	s.S3Bucket = &v
+	return s
+}
+
+// SetS3Key sets the S3Key field's value.
+func (s *UserBucketDetails) SetS3Key(v string) *UserBucketDetails {
+	s.S3Key = &v
+	return s
+}
+
 // Describes the user data for an instance.
 type UserData struct {
 	_ struct{} `type:"structure"`
@@ -35582,6 +47318,12 @@ func (s UserData) String() string {
 // GoString returns the string representation
 func (s UserData) GoString() string {
 	return s.String()
+}
+
+// SetData sets the Data field's value.
+func (s *UserData) SetData(v string) *UserData {
+	s.Data = &v
+	return s
 }
 
 // Describes a security group and AWS account ID pair.
@@ -35623,6 +47365,42 @@ func (s UserIdGroupPair) GoString() string {
 	return s.String()
 }
 
+// SetGroupId sets the GroupId field's value.
+func (s *UserIdGroupPair) SetGroupId(v string) *UserIdGroupPair {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *UserIdGroupPair) SetGroupName(v string) *UserIdGroupPair {
+	s.GroupName = &v
+	return s
+}
+
+// SetPeeringStatus sets the PeeringStatus field's value.
+func (s *UserIdGroupPair) SetPeeringStatus(v string) *UserIdGroupPair {
+	s.PeeringStatus = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UserIdGroupPair) SetUserId(v string) *UserIdGroupPair {
+	s.UserId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *UserIdGroupPair) SetVpcId(v string) *UserIdGroupPair {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *UserIdGroupPair) SetVpcPeeringConnectionId(v string) *UserIdGroupPair {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Describes telemetry for a VPN tunnel.
 type VgwTelemetry struct {
 	_ struct{} `type:"structure"`
@@ -35652,6 +47430,36 @@ func (s VgwTelemetry) String() string {
 // GoString returns the string representation
 func (s VgwTelemetry) GoString() string {
 	return s.String()
+}
+
+// SetAcceptedRouteCount sets the AcceptedRouteCount field's value.
+func (s *VgwTelemetry) SetAcceptedRouteCount(v int64) *VgwTelemetry {
+	s.AcceptedRouteCount = &v
+	return s
+}
+
+// SetLastStatusChange sets the LastStatusChange field's value.
+func (s *VgwTelemetry) SetLastStatusChange(v time.Time) *VgwTelemetry {
+	s.LastStatusChange = &v
+	return s
+}
+
+// SetOutsideIpAddress sets the OutsideIpAddress field's value.
+func (s *VgwTelemetry) SetOutsideIpAddress(v string) *VgwTelemetry {
+	s.OutsideIpAddress = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VgwTelemetry) SetStatus(v string) *VgwTelemetry {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *VgwTelemetry) SetStatusMessage(v string) *VgwTelemetry {
+	s.StatusMessage = &v
+	return s
 }
 
 // Describes a volume.
@@ -35720,6 +47528,78 @@ func (s Volume) GoString() string {
 	return s.String()
 }
 
+// SetAttachments sets the Attachments field's value.
+func (s *Volume) SetAttachments(v []*VolumeAttachment) *Volume {
+	s.Attachments = v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *Volume) SetAvailabilityZone(v string) *Volume {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *Volume) SetCreateTime(v time.Time) *Volume {
+	s.CreateTime = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *Volume) SetEncrypted(v bool) *Volume {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *Volume) SetIops(v int64) *Volume {
+	s.Iops = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *Volume) SetKmsKeyId(v string) *Volume {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *Volume) SetSize(v int64) *Volume {
+	s.Size = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *Volume) SetSnapshotId(v string) *Volume {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Volume) SetState(v string) *Volume {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Volume) SetTags(v []*Tag) *Volume {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *Volume) SetVolumeId(v string) *Volume {
+	s.VolumeId = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *Volume) SetVolumeType(v string) *Volume {
+	s.VolumeType = &v
+	return s
+}
+
 // Describes volume attachment details.
 type VolumeAttachment struct {
 	_ struct{} `type:"structure"`
@@ -35751,6 +47631,42 @@ func (s VolumeAttachment) String() string {
 // GoString returns the string representation
 func (s VolumeAttachment) GoString() string {
 	return s.String()
+}
+
+// SetAttachTime sets the AttachTime field's value.
+func (s *VolumeAttachment) SetAttachTime(v time.Time) *VolumeAttachment {
+	s.AttachTime = &v
+	return s
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *VolumeAttachment) SetDeleteOnTermination(v bool) *VolumeAttachment {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetDevice sets the Device field's value.
+func (s *VolumeAttachment) SetDevice(v string) *VolumeAttachment {
+	s.Device = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *VolumeAttachment) SetInstanceId(v string) *VolumeAttachment {
+	s.InstanceId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VolumeAttachment) SetState(v string) *VolumeAttachment {
+	s.State = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *VolumeAttachment) SetVolumeId(v string) *VolumeAttachment {
+	s.VolumeId = &v
+	return s
 }
 
 // Describes an EBS volume.
@@ -35786,6 +47702,12 @@ func (s *VolumeDetail) Validate() error {
 	return nil
 }
 
+// SetSize sets the Size field's value.
+func (s *VolumeDetail) SetSize(v int64) *VolumeDetail {
+	s.Size = &v
+	return s
+}
+
 // Describes a volume status operation code.
 type VolumeStatusAction struct {
 	_ struct{} `type:"structure"`
@@ -35813,6 +47735,30 @@ func (s VolumeStatusAction) GoString() string {
 	return s.String()
 }
 
+// SetCode sets the Code field's value.
+func (s *VolumeStatusAction) SetCode(v string) *VolumeStatusAction {
+	s.Code = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *VolumeStatusAction) SetDescription(v string) *VolumeStatusAction {
+	s.Description = &v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *VolumeStatusAction) SetEventId(v string) *VolumeStatusAction {
+	s.EventId = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *VolumeStatusAction) SetEventType(v string) *VolumeStatusAction {
+	s.EventType = &v
+	return s
+}
+
 // Describes a volume status.
 type VolumeStatusDetails struct {
 	_ struct{} `type:"structure"`
@@ -35832,6 +47778,18 @@ func (s VolumeStatusDetails) String() string {
 // GoString returns the string representation
 func (s VolumeStatusDetails) GoString() string {
 	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *VolumeStatusDetails) SetName(v string) *VolumeStatusDetails {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VolumeStatusDetails) SetStatus(v string) *VolumeStatusDetails {
+	s.Status = &v
+	return s
 }
 
 // Describes a volume status event.
@@ -35864,6 +47822,36 @@ func (s VolumeStatusEvent) GoString() string {
 	return s.String()
 }
 
+// SetDescription sets the Description field's value.
+func (s *VolumeStatusEvent) SetDescription(v string) *VolumeStatusEvent {
+	s.Description = &v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *VolumeStatusEvent) SetEventId(v string) *VolumeStatusEvent {
+	s.EventId = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *VolumeStatusEvent) SetEventType(v string) *VolumeStatusEvent {
+	s.EventType = &v
+	return s
+}
+
+// SetNotAfter sets the NotAfter field's value.
+func (s *VolumeStatusEvent) SetNotAfter(v time.Time) *VolumeStatusEvent {
+	s.NotAfter = &v
+	return s
+}
+
+// SetNotBefore sets the NotBefore field's value.
+func (s *VolumeStatusEvent) SetNotBefore(v time.Time) *VolumeStatusEvent {
+	s.NotBefore = &v
+	return s
+}
+
 // Describes the status of a volume.
 type VolumeStatusInfo struct {
 	_ struct{} `type:"structure"`
@@ -35883,6 +47871,18 @@ func (s VolumeStatusInfo) String() string {
 // GoString returns the string representation
 func (s VolumeStatusInfo) GoString() string {
 	return s.String()
+}
+
+// SetDetails sets the Details field's value.
+func (s *VolumeStatusInfo) SetDetails(v []*VolumeStatusDetails) *VolumeStatusInfo {
+	s.Details = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VolumeStatusInfo) SetStatus(v string) *VolumeStatusInfo {
+	s.Status = &v
+	return s
 }
 
 // Describes the volume status.
@@ -35913,6 +47913,36 @@ func (s VolumeStatusItem) String() string {
 // GoString returns the string representation
 func (s VolumeStatusItem) GoString() string {
 	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *VolumeStatusItem) SetActions(v []*VolumeStatusAction) *VolumeStatusItem {
+	s.Actions = v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *VolumeStatusItem) SetAvailabilityZone(v string) *VolumeStatusItem {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *VolumeStatusItem) SetEvents(v []*VolumeStatusEvent) *VolumeStatusItem {
+	s.Events = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *VolumeStatusItem) SetVolumeId(v string) *VolumeStatusItem {
+	s.VolumeId = &v
+	return s
+}
+
+// SetVolumeStatus sets the VolumeStatus field's value.
+func (s *VolumeStatusItem) SetVolumeStatus(v *VolumeStatusInfo) *VolumeStatusItem {
+	s.VolumeStatus = v
+	return s
 }
 
 // Describes a VPC.
@@ -35952,6 +47982,48 @@ func (s Vpc) GoString() string {
 	return s.String()
 }
 
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *Vpc) SetCidrBlock(v string) *Vpc {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDhcpOptionsId sets the DhcpOptionsId field's value.
+func (s *Vpc) SetDhcpOptionsId(v string) *Vpc {
+	s.DhcpOptionsId = &v
+	return s
+}
+
+// SetInstanceTenancy sets the InstanceTenancy field's value.
+func (s *Vpc) SetInstanceTenancy(v string) *Vpc {
+	s.InstanceTenancy = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *Vpc) SetIsDefault(v bool) *Vpc {
+	s.IsDefault = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Vpc) SetState(v string) *Vpc {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Vpc) SetTags(v []*Tag) *Vpc {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *Vpc) SetVpcId(v string) *Vpc {
+	s.VpcId = &v
+	return s
+}
+
 // Describes an attachment between a virtual private gateway and a VPC.
 type VpcAttachment struct {
 	_ struct{} `type:"structure"`
@@ -35971,6 +48043,18 @@ func (s VpcAttachment) String() string {
 // GoString returns the string representation
 func (s VpcAttachment) GoString() string {
 	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *VpcAttachment) SetState(v string) *VpcAttachment {
+	s.State = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcAttachment) SetVpcId(v string) *VpcAttachment {
+	s.VpcId = &v
+	return s
 }
 
 // Describes whether a VPC is enabled for ClassicLink.
@@ -35995,6 +48079,24 @@ func (s VpcClassicLink) String() string {
 // GoString returns the string representation
 func (s VpcClassicLink) GoString() string {
 	return s.String()
+}
+
+// SetClassicLinkEnabled sets the ClassicLinkEnabled field's value.
+func (s *VpcClassicLink) SetClassicLinkEnabled(v bool) *VpcClassicLink {
+	s.ClassicLinkEnabled = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VpcClassicLink) SetTags(v []*Tag) *VpcClassicLink {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcClassicLink) SetVpcId(v string) *VpcClassicLink {
+	s.VpcId = &v
+	return s
 }
 
 // Describes a VPC endpoint.
@@ -36033,6 +48135,48 @@ func (s VpcEndpoint) GoString() string {
 	return s.String()
 }
 
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *VpcEndpoint) SetCreationTimestamp(v time.Time) *VpcEndpoint {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *VpcEndpoint) SetPolicyDocument(v string) *VpcEndpoint {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *VpcEndpoint) SetRouteTableIds(v []*string) *VpcEndpoint {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *VpcEndpoint) SetServiceName(v string) *VpcEndpoint {
+	s.ServiceName = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VpcEndpoint) SetState(v string) *VpcEndpoint {
+	s.State = &v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *VpcEndpoint) SetVpcEndpointId(v string) *VpcEndpoint {
+	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcEndpoint) SetVpcId(v string) *VpcEndpoint {
+	s.VpcId = &v
+	return s
+}
+
 // Describes a VPC peering connection.
 type VpcPeeringConnection struct {
 	_ struct{} `type:"structure"`
@@ -36068,6 +48212,42 @@ func (s VpcPeeringConnection) GoString() string {
 	return s.String()
 }
 
+// SetAccepterVpcInfo sets the AccepterVpcInfo field's value.
+func (s *VpcPeeringConnection) SetAccepterVpcInfo(v *VpcPeeringConnectionVpcInfo) *VpcPeeringConnection {
+	s.AccepterVpcInfo = v
+	return s
+}
+
+// SetExpirationTime sets the ExpirationTime field's value.
+func (s *VpcPeeringConnection) SetExpirationTime(v time.Time) *VpcPeeringConnection {
+	s.ExpirationTime = &v
+	return s
+}
+
+// SetRequesterVpcInfo sets the RequesterVpcInfo field's value.
+func (s *VpcPeeringConnection) SetRequesterVpcInfo(v *VpcPeeringConnectionVpcInfo) *VpcPeeringConnection {
+	s.RequesterVpcInfo = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *VpcPeeringConnection) SetStatus(v *VpcPeeringConnectionStateReason) *VpcPeeringConnection {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VpcPeeringConnection) SetTags(v []*Tag) *VpcPeeringConnection {
+	s.Tags = v
+	return s
+}
+
+// SetVpcPeeringConnectionId sets the VpcPeeringConnectionId field's value.
+func (s *VpcPeeringConnection) SetVpcPeeringConnectionId(v string) *VpcPeeringConnection {
+	s.VpcPeeringConnectionId = &v
+	return s
+}
+
 // Describes the VPC peering connection options.
 type VpcPeeringConnectionOptionsDescription struct {
 	_ struct{} `type:"structure"`
@@ -36095,6 +48275,24 @@ func (s VpcPeeringConnectionOptionsDescription) GoString() string {
 	return s.String()
 }
 
+// SetAllowDnsResolutionFromRemoteVpc sets the AllowDnsResolutionFromRemoteVpc field's value.
+func (s *VpcPeeringConnectionOptionsDescription) SetAllowDnsResolutionFromRemoteVpc(v bool) *VpcPeeringConnectionOptionsDescription {
+	s.AllowDnsResolutionFromRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalClassicLinkToRemoteVpc sets the AllowEgressFromLocalClassicLinkToRemoteVpc field's value.
+func (s *VpcPeeringConnectionOptionsDescription) SetAllowEgressFromLocalClassicLinkToRemoteVpc(v bool) *VpcPeeringConnectionOptionsDescription {
+	s.AllowEgressFromLocalClassicLinkToRemoteVpc = &v
+	return s
+}
+
+// SetAllowEgressFromLocalVpcToRemoteClassicLink sets the AllowEgressFromLocalVpcToRemoteClassicLink field's value.
+func (s *VpcPeeringConnectionOptionsDescription) SetAllowEgressFromLocalVpcToRemoteClassicLink(v bool) *VpcPeeringConnectionOptionsDescription {
+	s.AllowEgressFromLocalVpcToRemoteClassicLink = &v
+	return s
+}
+
 // Describes the status of a VPC peering connection.
 type VpcPeeringConnectionStateReason struct {
 	_ struct{} `type:"structure"`
@@ -36114,6 +48312,18 @@ func (s VpcPeeringConnectionStateReason) String() string {
 // GoString returns the string representation
 func (s VpcPeeringConnectionStateReason) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *VpcPeeringConnectionStateReason) SetCode(v string) *VpcPeeringConnectionStateReason {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *VpcPeeringConnectionStateReason) SetMessage(v string) *VpcPeeringConnectionStateReason {
+	s.Message = &v
+	return s
 }
 
 // Describes a VPC in a VPC peering connection.
@@ -36142,6 +48352,30 @@ func (s VpcPeeringConnectionVpcInfo) String() string {
 // GoString returns the string representation
 func (s VpcPeeringConnectionVpcInfo) GoString() string {
 	return s.String()
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *VpcPeeringConnectionVpcInfo) SetCidrBlock(v string) *VpcPeeringConnectionVpcInfo {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *VpcPeeringConnectionVpcInfo) SetOwnerId(v string) *VpcPeeringConnectionVpcInfo {
+	s.OwnerId = &v
+	return s
+}
+
+// SetPeeringOptions sets the PeeringOptions field's value.
+func (s *VpcPeeringConnectionVpcInfo) SetPeeringOptions(v *VpcPeeringConnectionOptionsDescription) *VpcPeeringConnectionVpcInfo {
+	s.PeeringOptions = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcPeeringConnectionVpcInfo) SetVpcId(v string) *VpcPeeringConnectionVpcInfo {
+	s.VpcId = &v
+	return s
 }
 
 // Describes a VPN connection.
@@ -36192,6 +48426,66 @@ func (s VpnConnection) GoString() string {
 	return s.String()
 }
 
+// SetCustomerGatewayConfiguration sets the CustomerGatewayConfiguration field's value.
+func (s *VpnConnection) SetCustomerGatewayConfiguration(v string) *VpnConnection {
+	s.CustomerGatewayConfiguration = &v
+	return s
+}
+
+// SetCustomerGatewayId sets the CustomerGatewayId field's value.
+func (s *VpnConnection) SetCustomerGatewayId(v string) *VpnConnection {
+	s.CustomerGatewayId = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *VpnConnection) SetOptions(v *VpnConnectionOptions) *VpnConnection {
+	s.Options = v
+	return s
+}
+
+// SetRoutes sets the Routes field's value.
+func (s *VpnConnection) SetRoutes(v []*VpnStaticRoute) *VpnConnection {
+	s.Routes = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VpnConnection) SetState(v string) *VpnConnection {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VpnConnection) SetTags(v []*Tag) *VpnConnection {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *VpnConnection) SetType(v string) *VpnConnection {
+	s.Type = &v
+	return s
+}
+
+// SetVgwTelemetry sets the VgwTelemetry field's value.
+func (s *VpnConnection) SetVgwTelemetry(v []*VgwTelemetry) *VpnConnection {
+	s.VgwTelemetry = v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *VpnConnection) SetVpnConnectionId(v string) *VpnConnection {
+	s.VpnConnectionId = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *VpnConnection) SetVpnGatewayId(v string) *VpnConnection {
+	s.VpnGatewayId = &v
+	return s
+}
+
 // Describes VPN connection options.
 type VpnConnectionOptions struct {
 	_ struct{} `type:"structure"`
@@ -36211,6 +48505,12 @@ func (s VpnConnectionOptions) GoString() string {
 	return s.String()
 }
 
+// SetStaticRoutesOnly sets the StaticRoutesOnly field's value.
+func (s *VpnConnectionOptions) SetStaticRoutesOnly(v bool) *VpnConnectionOptions {
+	s.StaticRoutesOnly = &v
+	return s
+}
+
 // Describes VPN connection options.
 type VpnConnectionOptionsSpecification struct {
 	_ struct{} `type:"structure"`
@@ -36228,6 +48528,12 @@ func (s VpnConnectionOptionsSpecification) String() string {
 // GoString returns the string representation
 func (s VpnConnectionOptionsSpecification) GoString() string {
 	return s.String()
+}
+
+// SetStaticRoutesOnly sets the StaticRoutesOnly field's value.
+func (s *VpnConnectionOptionsSpecification) SetStaticRoutesOnly(v bool) *VpnConnectionOptionsSpecification {
+	s.StaticRoutesOnly = &v
+	return s
 }
 
 // Describes a virtual private gateway.
@@ -36264,6 +48570,42 @@ func (s VpnGateway) GoString() string {
 	return s.String()
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *VpnGateway) SetAvailabilityZone(v string) *VpnGateway {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VpnGateway) SetState(v string) *VpnGateway {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VpnGateway) SetTags(v []*Tag) *VpnGateway {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *VpnGateway) SetType(v string) *VpnGateway {
+	s.Type = &v
+	return s
+}
+
+// SetVpcAttachments sets the VpcAttachments field's value.
+func (s *VpnGateway) SetVpcAttachments(v []*VpcAttachment) *VpnGateway {
+	s.VpcAttachments = v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *VpnGateway) SetVpnGatewayId(v string) *VpnGateway {
+	s.VpnGatewayId = &v
+	return s
+}
+
 // Describes a static route for a VPN connection.
 type VpnStaticRoute struct {
 	_ struct{} `type:"structure"`
@@ -36286,6 +48628,24 @@ func (s VpnStaticRoute) String() string {
 // GoString returns the string representation
 func (s VpnStaticRoute) GoString() string {
 	return s.String()
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *VpnStaticRoute) SetDestinationCidrBlock(v string) *VpnStaticRoute {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *VpnStaticRoute) SetSource(v string) *VpnStaticRoute {
+	s.Source = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VpnStaticRoute) SetState(v string) *VpnStaticRoute {
+	s.State = &v
+	return s
 }
 
 const (

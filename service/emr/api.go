@@ -1740,6 +1740,18 @@ func (s *AddInstanceGroupsInput) Validate() error {
 	return nil
 }
 
+// SetInstanceGroups sets the InstanceGroups field's value.
+func (s *AddInstanceGroupsInput) SetInstanceGroups(v []*InstanceGroupConfig) *AddInstanceGroupsInput {
+	s.InstanceGroups = v
+	return s
+}
+
+// SetJobFlowId sets the JobFlowId field's value.
+func (s *AddInstanceGroupsInput) SetJobFlowId(v string) *AddInstanceGroupsInput {
+	s.JobFlowId = &v
+	return s
+}
+
 // Output from an AddInstanceGroups call.
 type AddInstanceGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1759,6 +1771,18 @@ func (s AddInstanceGroupsOutput) String() string {
 // GoString returns the string representation
 func (s AddInstanceGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceGroupIds sets the InstanceGroupIds field's value.
+func (s *AddInstanceGroupsOutput) SetInstanceGroupIds(v []*string) *AddInstanceGroupsOutput {
+	s.InstanceGroupIds = v
+	return s
+}
+
+// SetJobFlowId sets the JobFlowId field's value.
+func (s *AddInstanceGroupsOutput) SetJobFlowId(v string) *AddInstanceGroupsOutput {
+	s.JobFlowId = &v
+	return s
 }
 
 // The input argument to the AddJobFlowSteps operation.
@@ -1813,6 +1837,18 @@ func (s *AddJobFlowStepsInput) Validate() error {
 	return nil
 }
 
+// SetJobFlowId sets the JobFlowId field's value.
+func (s *AddJobFlowStepsInput) SetJobFlowId(v string) *AddJobFlowStepsInput {
+	s.JobFlowId = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *AddJobFlowStepsInput) SetSteps(v []*StepConfig) *AddJobFlowStepsInput {
+	s.Steps = v
+	return s
+}
+
 // The output for the AddJobFlowSteps operation.
 type AddJobFlowStepsOutput struct {
 	_ struct{} `type:"structure"`
@@ -1829,6 +1865,12 @@ func (s AddJobFlowStepsOutput) String() string {
 // GoString returns the string representation
 func (s AddJobFlowStepsOutput) GoString() string {
 	return s.String()
+}
+
+// SetStepIds sets the StepIds field's value.
+func (s *AddJobFlowStepsOutput) SetStepIds(v []*string) *AddJobFlowStepsOutput {
+	s.StepIds = v
+	return s
 }
 
 // This input identifies a cluster and a list of tags to attach.
@@ -1874,6 +1916,18 @@ func (s *AddTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *AddTagsInput) SetResourceId(v string) *AddTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AddTagsInput) SetTags(v []*Tag) *AddTagsInput {
+	s.Tags = v
+	return s
 }
 
 // This output indicates the result of adding tags to a resource.
@@ -1936,6 +1990,30 @@ func (s Application) GoString() string {
 	return s.String()
 }
 
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *Application) SetAdditionalInfo(v map[string]*string) *Application {
+	s.AdditionalInfo = v
+	return s
+}
+
+// SetArgs sets the Args field's value.
+func (s *Application) SetArgs(v []*string) *Application {
+	s.Args = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Application) SetName(v string) *Application {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *Application) SetVersion(v string) *Application {
+	s.Version = &v
+	return s
+}
+
 type BootstrapActionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -1977,6 +2055,18 @@ func (s *BootstrapActionConfig) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *BootstrapActionConfig) SetName(v string) *BootstrapActionConfig {
+	s.Name = &v
+	return s
+}
+
+// SetScriptBootstrapAction sets the ScriptBootstrapAction field's value.
+func (s *BootstrapActionConfig) SetScriptBootstrapAction(v *ScriptBootstrapActionConfig) *BootstrapActionConfig {
+	s.ScriptBootstrapAction = v
+	return s
+}
+
 // Reports the configuration of a bootstrap action in a job flow.
 type BootstrapActionDetail struct {
 	_ struct{} `type:"structure"`
@@ -1993,6 +2083,12 @@ func (s BootstrapActionDetail) String() string {
 // GoString returns the string representation
 func (s BootstrapActionDetail) GoString() string {
 	return s.String()
+}
+
+// SetBootstrapActionConfig sets the BootstrapActionConfig field's value.
+func (s *BootstrapActionDetail) SetBootstrapActionConfig(v *BootstrapActionConfig) *BootstrapActionDetail {
+	s.BootstrapActionConfig = v
+	return s
 }
 
 // The detailed description of the cluster.
@@ -2081,6 +2177,114 @@ func (s Cluster) GoString() string {
 	return s.String()
 }
 
+// SetApplications sets the Applications field's value.
+func (s *Cluster) SetApplications(v []*Application) *Cluster {
+	s.Applications = v
+	return s
+}
+
+// SetAutoTerminate sets the AutoTerminate field's value.
+func (s *Cluster) SetAutoTerminate(v bool) *Cluster {
+	s.AutoTerminate = &v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *Cluster) SetConfigurations(v []*Configuration) *Cluster {
+	s.Configurations = v
+	return s
+}
+
+// SetEc2InstanceAttributes sets the Ec2InstanceAttributes field's value.
+func (s *Cluster) SetEc2InstanceAttributes(v *Ec2InstanceAttributes) *Cluster {
+	s.Ec2InstanceAttributes = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Cluster) SetId(v string) *Cluster {
+	s.Id = &v
+	return s
+}
+
+// SetLogUri sets the LogUri field's value.
+func (s *Cluster) SetLogUri(v string) *Cluster {
+	s.LogUri = &v
+	return s
+}
+
+// SetMasterPublicDnsName sets the MasterPublicDnsName field's value.
+func (s *Cluster) SetMasterPublicDnsName(v string) *Cluster {
+	s.MasterPublicDnsName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Cluster) SetName(v string) *Cluster {
+	s.Name = &v
+	return s
+}
+
+// SetNormalizedInstanceHours sets the NormalizedInstanceHours field's value.
+func (s *Cluster) SetNormalizedInstanceHours(v int64) *Cluster {
+	s.NormalizedInstanceHours = &v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *Cluster) SetReleaseLabel(v string) *Cluster {
+	s.ReleaseLabel = &v
+	return s
+}
+
+// SetRequestedAmiVersion sets the RequestedAmiVersion field's value.
+func (s *Cluster) SetRequestedAmiVersion(v string) *Cluster {
+	s.RequestedAmiVersion = &v
+	return s
+}
+
+// SetRunningAmiVersion sets the RunningAmiVersion field's value.
+func (s *Cluster) SetRunningAmiVersion(v string) *Cluster {
+	s.RunningAmiVersion = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *Cluster) SetSecurityConfiguration(v string) *Cluster {
+	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *Cluster) SetServiceRole(v string) *Cluster {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Cluster) SetStatus(v *ClusterStatus) *Cluster {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Cluster) SetTags(v []*Tag) *Cluster {
+	s.Tags = v
+	return s
+}
+
+// SetTerminationProtected sets the TerminationProtected field's value.
+func (s *Cluster) SetTerminationProtected(v bool) *Cluster {
+	s.TerminationProtected = &v
+	return s
+}
+
+// SetVisibleToAllUsers sets the VisibleToAllUsers field's value.
+func (s *Cluster) SetVisibleToAllUsers(v bool) *Cluster {
+	s.VisibleToAllUsers = &v
+	return s
+}
+
 // The reason that the cluster changed to its current state.
 type ClusterStateChangeReason struct {
 	_ struct{} `type:"structure"`
@@ -2100,6 +2304,18 @@ func (s ClusterStateChangeReason) String() string {
 // GoString returns the string representation
 func (s ClusterStateChangeReason) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ClusterStateChangeReason) SetCode(v string) *ClusterStateChangeReason {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ClusterStateChangeReason) SetMessage(v string) *ClusterStateChangeReason {
+	s.Message = &v
+	return s
 }
 
 // The detailed status of the cluster.
@@ -2125,6 +2341,24 @@ func (s ClusterStatus) String() string {
 // GoString returns the string representation
 func (s ClusterStatus) GoString() string {
 	return s.String()
+}
+
+// SetState sets the State field's value.
+func (s *ClusterStatus) SetState(v string) *ClusterStatus {
+	s.State = &v
+	return s
+}
+
+// SetStateChangeReason sets the StateChangeReason field's value.
+func (s *ClusterStatus) SetStateChangeReason(v *ClusterStateChangeReason) *ClusterStatus {
+	s.StateChangeReason = v
+	return s
+}
+
+// SetTimeline sets the Timeline field's value.
+func (s *ClusterStatus) SetTimeline(v *ClusterTimeline) *ClusterStatus {
+	s.Timeline = v
+	return s
 }
 
 // The summary description of the cluster.
@@ -2159,6 +2393,30 @@ func (s ClusterSummary) GoString() string {
 	return s.String()
 }
 
+// SetId sets the Id field's value.
+func (s *ClusterSummary) SetId(v string) *ClusterSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ClusterSummary) SetName(v string) *ClusterSummary {
+	s.Name = &v
+	return s
+}
+
+// SetNormalizedInstanceHours sets the NormalizedInstanceHours field's value.
+func (s *ClusterSummary) SetNormalizedInstanceHours(v int64) *ClusterSummary {
+	s.NormalizedInstanceHours = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ClusterSummary) SetStatus(v *ClusterStatus) *ClusterSummary {
+	s.Status = v
+	return s
+}
+
 // Represents the timeline of the cluster's lifecycle.
 type ClusterTimeline struct {
 	_ struct{} `type:"structure"`
@@ -2183,6 +2441,24 @@ func (s ClusterTimeline) GoString() string {
 	return s.String()
 }
 
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *ClusterTimeline) SetCreationDateTime(v time.Time) *ClusterTimeline {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *ClusterTimeline) SetEndDateTime(v time.Time) *ClusterTimeline {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetReadyDateTime sets the ReadyDateTime field's value.
+func (s *ClusterTimeline) SetReadyDateTime(v time.Time) *ClusterTimeline {
+	s.ReadyDateTime = &v
+	return s
+}
+
 // An entity describing an executable that runs on a cluster.
 type Command struct {
 	_ struct{} `type:"structure"`
@@ -2205,6 +2481,24 @@ func (s Command) String() string {
 // GoString returns the string representation
 func (s Command) GoString() string {
 	return s.String()
+}
+
+// SetArgs sets the Args field's value.
+func (s *Command) SetArgs(v []*string) *Command {
+	s.Args = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Command) SetName(v string) *Command {
+	s.Name = &v
+	return s
+}
+
+// SetScriptPath sets the ScriptPath field's value.
+func (s *Command) SetScriptPath(v string) *Command {
+	s.ScriptPath = &v
+	return s
 }
 
 // Amazon EMR releases 4.x or later.
@@ -2236,6 +2530,24 @@ func (s Configuration) String() string {
 // GoString returns the string representation
 func (s Configuration) GoString() string {
 	return s.String()
+}
+
+// SetClassification sets the Classification field's value.
+func (s *Configuration) SetClassification(v string) *Configuration {
+	s.Classification = &v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *Configuration) SetConfigurations(v []*Configuration) *Configuration {
+	s.Configurations = v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *Configuration) SetProperties(v map[string]*string) *Configuration {
+	s.Properties = v
+	return s
 }
 
 type CreateSecurityConfigurationInput struct {
@@ -2278,6 +2590,18 @@ func (s *CreateSecurityConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *CreateSecurityConfigurationInput) SetName(v string) *CreateSecurityConfigurationInput {
+	s.Name = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *CreateSecurityConfigurationInput) SetSecurityConfiguration(v string) *CreateSecurityConfigurationInput {
+	s.SecurityConfiguration = &v
+	return s
+}
+
 type CreateSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2300,6 +2624,18 @@ func (s CreateSecurityConfigurationOutput) String() string {
 // GoString returns the string representation
 func (s CreateSecurityConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *CreateSecurityConfigurationOutput) SetCreationDateTime(v time.Time) *CreateSecurityConfigurationOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityConfigurationOutput {
+	s.Name = &v
+	return s
 }
 
 type DeleteSecurityConfigurationInput struct {
@@ -2332,6 +2668,12 @@ func (s *DeleteSecurityConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteSecurityConfigurationInput) SetName(v string) *DeleteSecurityConfigurationInput {
+	s.Name = &v
+	return s
 }
 
 type DeleteSecurityConfigurationOutput struct {
@@ -2381,6 +2723,12 @@ func (s *DescribeClusterInput) Validate() error {
 	return nil
 }
 
+// SetClusterId sets the ClusterId field's value.
+func (s *DescribeClusterInput) SetClusterId(v string) *DescribeClusterInput {
+	s.ClusterId = &v
+	return s
+}
+
 // This output contains the description of the cluster.
 type DescribeClusterOutput struct {
 	_ struct{} `type:"structure"`
@@ -2397,6 +2745,12 @@ func (s DescribeClusterOutput) String() string {
 // GoString returns the string representation
 func (s DescribeClusterOutput) GoString() string {
 	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *DescribeClusterOutput) SetCluster(v *Cluster) *DescribeClusterOutput {
+	s.Cluster = v
+	return s
 }
 
 // The input for the DescribeJobFlows operation.
@@ -2426,6 +2780,30 @@ func (s DescribeJobFlowsInput) GoString() string {
 	return s.String()
 }
 
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *DescribeJobFlowsInput) SetCreatedAfter(v time.Time) *DescribeJobFlowsInput {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *DescribeJobFlowsInput) SetCreatedBefore(v time.Time) *DescribeJobFlowsInput {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetJobFlowIds sets the JobFlowIds field's value.
+func (s *DescribeJobFlowsInput) SetJobFlowIds(v []*string) *DescribeJobFlowsInput {
+	s.JobFlowIds = v
+	return s
+}
+
+// SetJobFlowStates sets the JobFlowStates field's value.
+func (s *DescribeJobFlowsInput) SetJobFlowStates(v []*string) *DescribeJobFlowsInput {
+	s.JobFlowStates = v
+	return s
+}
+
 // The output for the DescribeJobFlows operation.
 type DescribeJobFlowsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2442,6 +2820,12 @@ func (s DescribeJobFlowsOutput) String() string {
 // GoString returns the string representation
 func (s DescribeJobFlowsOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobFlows sets the JobFlows field's value.
+func (s *DescribeJobFlowsOutput) SetJobFlows(v []*JobFlowDetail) *DescribeJobFlowsOutput {
+	s.JobFlows = v
+	return s
 }
 
 type DescribeSecurityConfigurationInput struct {
@@ -2476,6 +2860,12 @@ func (s *DescribeSecurityConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetName sets the Name field's value.
+func (s *DescribeSecurityConfigurationInput) SetName(v string) *DescribeSecurityConfigurationInput {
+	s.Name = &v
+	return s
+}
+
 type DescribeSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2497,6 +2887,24 @@ func (s DescribeSecurityConfigurationOutput) String() string {
 // GoString returns the string representation
 func (s DescribeSecurityConfigurationOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeSecurityConfigurationOutput) SetCreationDateTime(v time.Time) *DescribeSecurityConfigurationOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeSecurityConfigurationOutput) SetName(v string) *DescribeSecurityConfigurationOutput {
+	s.Name = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *DescribeSecurityConfigurationOutput) SetSecurityConfiguration(v string) *DescribeSecurityConfigurationOutput {
+	s.SecurityConfiguration = &v
+	return s
 }
 
 // This input determines which step to describe.
@@ -2540,6 +2948,18 @@ func (s *DescribeStepInput) Validate() error {
 	return nil
 }
 
+// SetClusterId sets the ClusterId field's value.
+func (s *DescribeStepInput) SetClusterId(v string) *DescribeStepInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetStepId sets the StepId field's value.
+func (s *DescribeStepInput) SetStepId(v string) *DescribeStepInput {
+	s.StepId = &v
+	return s
+}
+
 // This output contains the description of the cluster step.
 type DescribeStepOutput struct {
 	_ struct{} `type:"structure"`
@@ -2556,6 +2976,12 @@ func (s DescribeStepOutput) String() string {
 // GoString returns the string representation
 func (s DescribeStepOutput) GoString() string {
 	return s.String()
+}
+
+// SetStep sets the Step field's value.
+func (s *DescribeStepOutput) SetStep(v *Step) *DescribeStepOutput {
+	s.Step = v
+	return s
 }
 
 // Configuration of requested EBS block device associated with the instance
@@ -2579,6 +3005,18 @@ func (s EbsBlockDevice) String() string {
 // GoString returns the string representation
 func (s EbsBlockDevice) GoString() string {
 	return s.String()
+}
+
+// SetDevice sets the Device field's value.
+func (s *EbsBlockDevice) SetDevice(v string) *EbsBlockDevice {
+	s.Device = &v
+	return s
+}
+
+// SetVolumeSpecification sets the VolumeSpecification field's value.
+func (s *EbsBlockDevice) SetVolumeSpecification(v *VolumeSpecification) *EbsBlockDevice {
+	s.VolumeSpecification = v
+	return s
 }
 
 // Configuration of requested EBS block device associated with the instance
@@ -2625,6 +3063,18 @@ func (s *EbsBlockDeviceConfig) Validate() error {
 	return nil
 }
 
+// SetVolumeSpecification sets the VolumeSpecification field's value.
+func (s *EbsBlockDeviceConfig) SetVolumeSpecification(v *VolumeSpecification) *EbsBlockDeviceConfig {
+	s.VolumeSpecification = v
+	return s
+}
+
+// SetVolumesPerInstance sets the VolumesPerInstance field's value.
+func (s *EbsBlockDeviceConfig) SetVolumesPerInstance(v int64) *EbsBlockDeviceConfig {
+	s.VolumesPerInstance = &v
+	return s
+}
+
 type EbsConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2663,6 +3113,18 @@ func (s *EbsConfiguration) Validate() error {
 	return nil
 }
 
+// SetEbsBlockDeviceConfigs sets the EbsBlockDeviceConfigs field's value.
+func (s *EbsConfiguration) SetEbsBlockDeviceConfigs(v []*EbsBlockDeviceConfig) *EbsConfiguration {
+	s.EbsBlockDeviceConfigs = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *EbsConfiguration) SetEbsOptimized(v bool) *EbsConfiguration {
+	s.EbsOptimized = &v
+	return s
+}
+
 // EBS block device that's attached to an EC2 instance.
 type EbsVolume struct {
 	_ struct{} `type:"structure"`
@@ -2682,6 +3144,18 @@ func (s EbsVolume) String() string {
 // GoString returns the string representation
 func (s EbsVolume) GoString() string {
 	return s.String()
+}
+
+// SetDevice sets the Device field's value.
+func (s *EbsVolume) SetDevice(v string) *EbsVolume {
+	s.Device = &v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *EbsVolume) SetVolumeId(v string) *EbsVolume {
+	s.VolumeId = &v
+	return s
 }
 
 // Provides information about the EC2 instances in a cluster grouped by category.
@@ -2737,6 +3211,60 @@ func (s Ec2InstanceAttributes) GoString() string {
 	return s.String()
 }
 
+// SetAdditionalMasterSecurityGroups sets the AdditionalMasterSecurityGroups field's value.
+func (s *Ec2InstanceAttributes) SetAdditionalMasterSecurityGroups(v []*string) *Ec2InstanceAttributes {
+	s.AdditionalMasterSecurityGroups = v
+	return s
+}
+
+// SetAdditionalSlaveSecurityGroups sets the AdditionalSlaveSecurityGroups field's value.
+func (s *Ec2InstanceAttributes) SetAdditionalSlaveSecurityGroups(v []*string) *Ec2InstanceAttributes {
+	s.AdditionalSlaveSecurityGroups = v
+	return s
+}
+
+// SetEc2AvailabilityZone sets the Ec2AvailabilityZone field's value.
+func (s *Ec2InstanceAttributes) SetEc2AvailabilityZone(v string) *Ec2InstanceAttributes {
+	s.Ec2AvailabilityZone = &v
+	return s
+}
+
+// SetEc2KeyName sets the Ec2KeyName field's value.
+func (s *Ec2InstanceAttributes) SetEc2KeyName(v string) *Ec2InstanceAttributes {
+	s.Ec2KeyName = &v
+	return s
+}
+
+// SetEc2SubnetId sets the Ec2SubnetId field's value.
+func (s *Ec2InstanceAttributes) SetEc2SubnetId(v string) *Ec2InstanceAttributes {
+	s.Ec2SubnetId = &v
+	return s
+}
+
+// SetEmrManagedMasterSecurityGroup sets the EmrManagedMasterSecurityGroup field's value.
+func (s *Ec2InstanceAttributes) SetEmrManagedMasterSecurityGroup(v string) *Ec2InstanceAttributes {
+	s.EmrManagedMasterSecurityGroup = &v
+	return s
+}
+
+// SetEmrManagedSlaveSecurityGroup sets the EmrManagedSlaveSecurityGroup field's value.
+func (s *Ec2InstanceAttributes) SetEmrManagedSlaveSecurityGroup(v string) *Ec2InstanceAttributes {
+	s.EmrManagedSlaveSecurityGroup = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *Ec2InstanceAttributes) SetIamInstanceProfile(v string) *Ec2InstanceAttributes {
+	s.IamInstanceProfile = &v
+	return s
+}
+
+// SetServiceAccessSecurityGroup sets the ServiceAccessSecurityGroup field's value.
+func (s *Ec2InstanceAttributes) SetServiceAccessSecurityGroup(v string) *Ec2InstanceAttributes {
+	s.ServiceAccessSecurityGroup = &v
+	return s
+}
+
 // The details of the step failure. The service attempts to detect the root
 // cause for many common failures.
 type FailureDetails struct {
@@ -2765,6 +3293,24 @@ func (s FailureDetails) String() string {
 // GoString returns the string representation
 func (s FailureDetails) GoString() string {
 	return s.String()
+}
+
+// SetLogFile sets the LogFile field's value.
+func (s *FailureDetails) SetLogFile(v string) *FailureDetails {
+	s.LogFile = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *FailureDetails) SetMessage(v string) *FailureDetails {
+	s.Message = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *FailureDetails) SetReason(v string) *FailureDetails {
+	s.Reason = &v
+	return s
 }
 
 // A job flow step consisting of a JAR file whose main function will be executed.
@@ -2814,6 +3360,30 @@ func (s *HadoopJarStepConfig) Validate() error {
 	return nil
 }
 
+// SetArgs sets the Args field's value.
+func (s *HadoopJarStepConfig) SetArgs(v []*string) *HadoopJarStepConfig {
+	s.Args = v
+	return s
+}
+
+// SetJar sets the Jar field's value.
+func (s *HadoopJarStepConfig) SetJar(v string) *HadoopJarStepConfig {
+	s.Jar = &v
+	return s
+}
+
+// SetMainClass sets the MainClass field's value.
+func (s *HadoopJarStepConfig) SetMainClass(v string) *HadoopJarStepConfig {
+	s.MainClass = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *HadoopJarStepConfig) SetProperties(v []*KeyValue) *HadoopJarStepConfig {
+	s.Properties = v
+	return s
+}
+
 // A cluster step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
@@ -2844,6 +3414,30 @@ func (s HadoopStepConfig) String() string {
 // GoString returns the string representation
 func (s HadoopStepConfig) GoString() string {
 	return s.String()
+}
+
+// SetArgs sets the Args field's value.
+func (s *HadoopStepConfig) SetArgs(v []*string) *HadoopStepConfig {
+	s.Args = v
+	return s
+}
+
+// SetJar sets the Jar field's value.
+func (s *HadoopStepConfig) SetJar(v string) *HadoopStepConfig {
+	s.Jar = &v
+	return s
+}
+
+// SetMainClass sets the MainClass field's value.
+func (s *HadoopStepConfig) SetMainClass(v string) *HadoopStepConfig {
+	s.MainClass = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *HadoopStepConfig) SetProperties(v map[string]*string) *HadoopStepConfig {
+	s.Properties = v
+	return s
 }
 
 // Represents an EC2 instance provisioned as part of cluster.
@@ -2886,6 +3480,60 @@ func (s Instance) String() string {
 // GoString returns the string representation
 func (s Instance) GoString() string {
 	return s.String()
+}
+
+// SetEbsVolumes sets the EbsVolumes field's value.
+func (s *Instance) SetEbsVolumes(v []*EbsVolume) *Instance {
+	s.EbsVolumes = v
+	return s
+}
+
+// SetEc2InstanceId sets the Ec2InstanceId field's value.
+func (s *Instance) SetEc2InstanceId(v string) *Instance {
+	s.Ec2InstanceId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Instance) SetId(v string) *Instance {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceGroupId sets the InstanceGroupId field's value.
+func (s *Instance) SetInstanceGroupId(v string) *Instance {
+	s.InstanceGroupId = &v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *Instance) SetPrivateDnsName(v string) *Instance {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *Instance) SetPrivateIpAddress(v string) *Instance {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPublicDnsName sets the PublicDnsName field's value.
+func (s *Instance) SetPublicDnsName(v string) *Instance {
+	s.PublicDnsName = &v
+	return s
+}
+
+// SetPublicIpAddress sets the PublicIpAddress field's value.
+func (s *Instance) SetPublicIpAddress(v string) *Instance {
+	s.PublicIpAddress = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Instance) SetStatus(v *InstanceStatus) *Instance {
+	s.Status = v
+	return s
 }
 
 // This entity represents an instance group, which is a group of instances that
@@ -2949,6 +3597,84 @@ func (s InstanceGroup) String() string {
 // GoString returns the string representation
 func (s InstanceGroup) GoString() string {
 	return s.String()
+}
+
+// SetBidPrice sets the BidPrice field's value.
+func (s *InstanceGroup) SetBidPrice(v string) *InstanceGroup {
+	s.BidPrice = &v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *InstanceGroup) SetConfigurations(v []*Configuration) *InstanceGroup {
+	s.Configurations = v
+	return s
+}
+
+// SetEbsBlockDevices sets the EbsBlockDevices field's value.
+func (s *InstanceGroup) SetEbsBlockDevices(v []*EbsBlockDevice) *InstanceGroup {
+	s.EbsBlockDevices = v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *InstanceGroup) SetEbsOptimized(v bool) *InstanceGroup {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *InstanceGroup) SetId(v string) *InstanceGroup {
+	s.Id = &v
+	return s
+}
+
+// SetInstanceGroupType sets the InstanceGroupType field's value.
+func (s *InstanceGroup) SetInstanceGroupType(v string) *InstanceGroup {
+	s.InstanceGroupType = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceGroup) SetInstanceType(v string) *InstanceGroup {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMarket sets the Market field's value.
+func (s *InstanceGroup) SetMarket(v string) *InstanceGroup {
+	s.Market = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceGroup) SetName(v string) *InstanceGroup {
+	s.Name = &v
+	return s
+}
+
+// SetRequestedInstanceCount sets the RequestedInstanceCount field's value.
+func (s *InstanceGroup) SetRequestedInstanceCount(v int64) *InstanceGroup {
+	s.RequestedInstanceCount = &v
+	return s
+}
+
+// SetRunningInstanceCount sets the RunningInstanceCount field's value.
+func (s *InstanceGroup) SetRunningInstanceCount(v int64) *InstanceGroup {
+	s.RunningInstanceCount = &v
+	return s
+}
+
+// SetShrinkPolicy sets the ShrinkPolicy field's value.
+func (s *InstanceGroup) SetShrinkPolicy(v *ShrinkPolicy) *InstanceGroup {
+	s.ShrinkPolicy = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InstanceGroup) SetStatus(v *InstanceGroupStatus) *InstanceGroup {
+	s.Status = v
+	return s
 }
 
 // Configuration defining a new instance group.
@@ -3029,6 +3755,54 @@ func (s *InstanceGroupConfig) Validate() error {
 	return nil
 }
 
+// SetBidPrice sets the BidPrice field's value.
+func (s *InstanceGroupConfig) SetBidPrice(v string) *InstanceGroupConfig {
+	s.BidPrice = &v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *InstanceGroupConfig) SetConfigurations(v []*Configuration) *InstanceGroupConfig {
+	s.Configurations = v
+	return s
+}
+
+// SetEbsConfiguration sets the EbsConfiguration field's value.
+func (s *InstanceGroupConfig) SetEbsConfiguration(v *EbsConfiguration) *InstanceGroupConfig {
+	s.EbsConfiguration = v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *InstanceGroupConfig) SetInstanceCount(v int64) *InstanceGroupConfig {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceRole sets the InstanceRole field's value.
+func (s *InstanceGroupConfig) SetInstanceRole(v string) *InstanceGroupConfig {
+	s.InstanceRole = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceGroupConfig) SetInstanceType(v string) *InstanceGroupConfig {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMarket sets the Market field's value.
+func (s *InstanceGroupConfig) SetMarket(v string) *InstanceGroupConfig {
+	s.Market = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceGroupConfig) SetName(v string) *InstanceGroupConfig {
+	s.Name = &v
+	return s
+}
+
 // Detailed information about an instance group.
 type InstanceGroupDetail struct {
 	_ struct{} `type:"structure"`
@@ -3102,6 +3876,90 @@ func (s InstanceGroupDetail) GoString() string {
 	return s.String()
 }
 
+// SetBidPrice sets the BidPrice field's value.
+func (s *InstanceGroupDetail) SetBidPrice(v string) *InstanceGroupDetail {
+	s.BidPrice = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *InstanceGroupDetail) SetCreationDateTime(v time.Time) *InstanceGroupDetail {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *InstanceGroupDetail) SetEndDateTime(v time.Time) *InstanceGroupDetail {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetInstanceGroupId sets the InstanceGroupId field's value.
+func (s *InstanceGroupDetail) SetInstanceGroupId(v string) *InstanceGroupDetail {
+	s.InstanceGroupId = &v
+	return s
+}
+
+// SetInstanceRequestCount sets the InstanceRequestCount field's value.
+func (s *InstanceGroupDetail) SetInstanceRequestCount(v int64) *InstanceGroupDetail {
+	s.InstanceRequestCount = &v
+	return s
+}
+
+// SetInstanceRole sets the InstanceRole field's value.
+func (s *InstanceGroupDetail) SetInstanceRole(v string) *InstanceGroupDetail {
+	s.InstanceRole = &v
+	return s
+}
+
+// SetInstanceRunningCount sets the InstanceRunningCount field's value.
+func (s *InstanceGroupDetail) SetInstanceRunningCount(v int64) *InstanceGroupDetail {
+	s.InstanceRunningCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceGroupDetail) SetInstanceType(v string) *InstanceGroupDetail {
+	s.InstanceType = &v
+	return s
+}
+
+// SetLastStateChangeReason sets the LastStateChangeReason field's value.
+func (s *InstanceGroupDetail) SetLastStateChangeReason(v string) *InstanceGroupDetail {
+	s.LastStateChangeReason = &v
+	return s
+}
+
+// SetMarket sets the Market field's value.
+func (s *InstanceGroupDetail) SetMarket(v string) *InstanceGroupDetail {
+	s.Market = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InstanceGroupDetail) SetName(v string) *InstanceGroupDetail {
+	s.Name = &v
+	return s
+}
+
+// SetReadyDateTime sets the ReadyDateTime field's value.
+func (s *InstanceGroupDetail) SetReadyDateTime(v time.Time) *InstanceGroupDetail {
+	s.ReadyDateTime = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *InstanceGroupDetail) SetStartDateTime(v time.Time) *InstanceGroupDetail {
+	s.StartDateTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *InstanceGroupDetail) SetState(v string) *InstanceGroupDetail {
+	s.State = &v
+	return s
+}
+
 // Modify an instance group size.
 type InstanceGroupModifyConfig struct {
 	_ struct{} `type:"structure"`
@@ -3145,6 +4003,30 @@ func (s *InstanceGroupModifyConfig) Validate() error {
 	return nil
 }
 
+// SetEC2InstanceIdsToTerminate sets the EC2InstanceIdsToTerminate field's value.
+func (s *InstanceGroupModifyConfig) SetEC2InstanceIdsToTerminate(v []*string) *InstanceGroupModifyConfig {
+	s.EC2InstanceIdsToTerminate = v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *InstanceGroupModifyConfig) SetInstanceCount(v int64) *InstanceGroupModifyConfig {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceGroupId sets the InstanceGroupId field's value.
+func (s *InstanceGroupModifyConfig) SetInstanceGroupId(v string) *InstanceGroupModifyConfig {
+	s.InstanceGroupId = &v
+	return s
+}
+
+// SetShrinkPolicy sets the ShrinkPolicy field's value.
+func (s *InstanceGroupModifyConfig) SetShrinkPolicy(v *ShrinkPolicy) *InstanceGroupModifyConfig {
+	s.ShrinkPolicy = v
+	return s
+}
+
 // The status change reason details for the instance group.
 type InstanceGroupStateChangeReason struct {
 	_ struct{} `type:"structure"`
@@ -3164,6 +4046,18 @@ func (s InstanceGroupStateChangeReason) String() string {
 // GoString returns the string representation
 func (s InstanceGroupStateChangeReason) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *InstanceGroupStateChangeReason) SetCode(v string) *InstanceGroupStateChangeReason {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *InstanceGroupStateChangeReason) SetMessage(v string) *InstanceGroupStateChangeReason {
+	s.Message = &v
+	return s
 }
 
 // The details of the instance group status.
@@ -3190,6 +4084,24 @@ func (s InstanceGroupStatus) GoString() string {
 	return s.String()
 }
 
+// SetState sets the State field's value.
+func (s *InstanceGroupStatus) SetState(v string) *InstanceGroupStatus {
+	s.State = &v
+	return s
+}
+
+// SetStateChangeReason sets the StateChangeReason field's value.
+func (s *InstanceGroupStatus) SetStateChangeReason(v *InstanceGroupStateChangeReason) *InstanceGroupStatus {
+	s.StateChangeReason = v
+	return s
+}
+
+// SetTimeline sets the Timeline field's value.
+func (s *InstanceGroupStatus) SetTimeline(v *InstanceGroupTimeline) *InstanceGroupStatus {
+	s.Timeline = v
+	return s
+}
+
 // The timeline of the instance group lifecycle.
 type InstanceGroupTimeline struct {
 	_ struct{} `type:"structure"`
@@ -3212,6 +4124,24 @@ func (s InstanceGroupTimeline) String() string {
 // GoString returns the string representation
 func (s InstanceGroupTimeline) GoString() string {
 	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *InstanceGroupTimeline) SetCreationDateTime(v time.Time) *InstanceGroupTimeline {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *InstanceGroupTimeline) SetEndDateTime(v time.Time) *InstanceGroupTimeline {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetReadyDateTime sets the ReadyDateTime field's value.
+func (s *InstanceGroupTimeline) SetReadyDateTime(v time.Time) *InstanceGroupTimeline {
+	s.ReadyDateTime = &v
+	return s
 }
 
 // Custom policy for requesting termination protection or termination of specific
@@ -3240,6 +4170,24 @@ func (s InstanceResizePolicy) GoString() string {
 	return s.String()
 }
 
+// SetInstanceTerminationTimeout sets the InstanceTerminationTimeout field's value.
+func (s *InstanceResizePolicy) SetInstanceTerminationTimeout(v int64) *InstanceResizePolicy {
+	s.InstanceTerminationTimeout = &v
+	return s
+}
+
+// SetInstancesToProtect sets the InstancesToProtect field's value.
+func (s *InstanceResizePolicy) SetInstancesToProtect(v []*string) *InstanceResizePolicy {
+	s.InstancesToProtect = v
+	return s
+}
+
+// SetInstancesToTerminate sets the InstancesToTerminate field's value.
+func (s *InstanceResizePolicy) SetInstancesToTerminate(v []*string) *InstanceResizePolicy {
+	s.InstancesToTerminate = v
+	return s
+}
+
 // The details of the status change reason for the instance.
 type InstanceStateChangeReason struct {
 	_ struct{} `type:"structure"`
@@ -3259,6 +4207,18 @@ func (s InstanceStateChangeReason) String() string {
 // GoString returns the string representation
 func (s InstanceStateChangeReason) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *InstanceStateChangeReason) SetCode(v string) *InstanceStateChangeReason {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *InstanceStateChangeReason) SetMessage(v string) *InstanceStateChangeReason {
+	s.Message = &v
+	return s
 }
 
 // The instance status details.
@@ -3285,6 +4245,24 @@ func (s InstanceStatus) GoString() string {
 	return s.String()
 }
 
+// SetState sets the State field's value.
+func (s *InstanceStatus) SetState(v string) *InstanceStatus {
+	s.State = &v
+	return s
+}
+
+// SetStateChangeReason sets the StateChangeReason field's value.
+func (s *InstanceStatus) SetStateChangeReason(v *InstanceStateChangeReason) *InstanceStatus {
+	s.StateChangeReason = v
+	return s
+}
+
+// SetTimeline sets the Timeline field's value.
+func (s *InstanceStatus) SetTimeline(v *InstanceTimeline) *InstanceStatus {
+	s.Timeline = v
+	return s
+}
+
 // The timeline of the instance lifecycle.
 type InstanceTimeline struct {
 	_ struct{} `type:"structure"`
@@ -3307,6 +4285,24 @@ func (s InstanceTimeline) String() string {
 // GoString returns the string representation
 func (s InstanceTimeline) GoString() string {
 	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *InstanceTimeline) SetCreationDateTime(v time.Time) *InstanceTimeline {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *InstanceTimeline) SetEndDateTime(v time.Time) *InstanceTimeline {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetReadyDateTime sets the ReadyDateTime field's value.
+func (s *InstanceTimeline) SetReadyDateTime(v time.Time) *InstanceTimeline {
+	s.ReadyDateTime = &v
+	return s
 }
 
 // A description of a job flow.
@@ -3380,6 +4376,78 @@ func (s JobFlowDetail) GoString() string {
 	return s.String()
 }
 
+// SetAmiVersion sets the AmiVersion field's value.
+func (s *JobFlowDetail) SetAmiVersion(v string) *JobFlowDetail {
+	s.AmiVersion = &v
+	return s
+}
+
+// SetBootstrapActions sets the BootstrapActions field's value.
+func (s *JobFlowDetail) SetBootstrapActions(v []*BootstrapActionDetail) *JobFlowDetail {
+	s.BootstrapActions = v
+	return s
+}
+
+// SetExecutionStatusDetail sets the ExecutionStatusDetail field's value.
+func (s *JobFlowDetail) SetExecutionStatusDetail(v *JobFlowExecutionStatusDetail) *JobFlowDetail {
+	s.ExecutionStatusDetail = v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *JobFlowDetail) SetInstances(v *JobFlowInstancesDetail) *JobFlowDetail {
+	s.Instances = v
+	return s
+}
+
+// SetJobFlowId sets the JobFlowId field's value.
+func (s *JobFlowDetail) SetJobFlowId(v string) *JobFlowDetail {
+	s.JobFlowId = &v
+	return s
+}
+
+// SetJobFlowRole sets the JobFlowRole field's value.
+func (s *JobFlowDetail) SetJobFlowRole(v string) *JobFlowDetail {
+	s.JobFlowRole = &v
+	return s
+}
+
+// SetLogUri sets the LogUri field's value.
+func (s *JobFlowDetail) SetLogUri(v string) *JobFlowDetail {
+	s.LogUri = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *JobFlowDetail) SetName(v string) *JobFlowDetail {
+	s.Name = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *JobFlowDetail) SetServiceRole(v string) *JobFlowDetail {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *JobFlowDetail) SetSteps(v []*StepDetail) *JobFlowDetail {
+	s.Steps = v
+	return s
+}
+
+// SetSupportedProducts sets the SupportedProducts field's value.
+func (s *JobFlowDetail) SetSupportedProducts(v []*string) *JobFlowDetail {
+	s.SupportedProducts = v
+	return s
+}
+
+// SetVisibleToAllUsers sets the VisibleToAllUsers field's value.
+func (s *JobFlowDetail) SetVisibleToAllUsers(v bool) *JobFlowDetail {
+	s.VisibleToAllUsers = &v
+	return s
+}
+
 // Describes the status of the job flow.
 type JobFlowExecutionStatusDetail struct {
 	_ struct{} `type:"structure"`
@@ -3416,6 +4484,42 @@ func (s JobFlowExecutionStatusDetail) String() string {
 // GoString returns the string representation
 func (s JobFlowExecutionStatusDetail) GoString() string {
 	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *JobFlowExecutionStatusDetail) SetCreationDateTime(v time.Time) *JobFlowExecutionStatusDetail {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *JobFlowExecutionStatusDetail) SetEndDateTime(v time.Time) *JobFlowExecutionStatusDetail {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetLastStateChangeReason sets the LastStateChangeReason field's value.
+func (s *JobFlowExecutionStatusDetail) SetLastStateChangeReason(v string) *JobFlowExecutionStatusDetail {
+	s.LastStateChangeReason = &v
+	return s
+}
+
+// SetReadyDateTime sets the ReadyDateTime field's value.
+func (s *JobFlowExecutionStatusDetail) SetReadyDateTime(v time.Time) *JobFlowExecutionStatusDetail {
+	s.ReadyDateTime = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *JobFlowExecutionStatusDetail) SetStartDateTime(v time.Time) *JobFlowExecutionStatusDetail {
+	s.StartDateTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *JobFlowExecutionStatusDetail) SetState(v string) *JobFlowExecutionStatusDetail {
+	s.State = &v
+	return s
 }
 
 // A description of the Amazon EC2 instance running the job flow. A valid JobFlowInstancesConfig
@@ -3528,6 +4632,96 @@ func (s *JobFlowInstancesConfig) Validate() error {
 	return nil
 }
 
+// SetAdditionalMasterSecurityGroups sets the AdditionalMasterSecurityGroups field's value.
+func (s *JobFlowInstancesConfig) SetAdditionalMasterSecurityGroups(v []*string) *JobFlowInstancesConfig {
+	s.AdditionalMasterSecurityGroups = v
+	return s
+}
+
+// SetAdditionalSlaveSecurityGroups sets the AdditionalSlaveSecurityGroups field's value.
+func (s *JobFlowInstancesConfig) SetAdditionalSlaveSecurityGroups(v []*string) *JobFlowInstancesConfig {
+	s.AdditionalSlaveSecurityGroups = v
+	return s
+}
+
+// SetEc2KeyName sets the Ec2KeyName field's value.
+func (s *JobFlowInstancesConfig) SetEc2KeyName(v string) *JobFlowInstancesConfig {
+	s.Ec2KeyName = &v
+	return s
+}
+
+// SetEc2SubnetId sets the Ec2SubnetId field's value.
+func (s *JobFlowInstancesConfig) SetEc2SubnetId(v string) *JobFlowInstancesConfig {
+	s.Ec2SubnetId = &v
+	return s
+}
+
+// SetEmrManagedMasterSecurityGroup sets the EmrManagedMasterSecurityGroup field's value.
+func (s *JobFlowInstancesConfig) SetEmrManagedMasterSecurityGroup(v string) *JobFlowInstancesConfig {
+	s.EmrManagedMasterSecurityGroup = &v
+	return s
+}
+
+// SetEmrManagedSlaveSecurityGroup sets the EmrManagedSlaveSecurityGroup field's value.
+func (s *JobFlowInstancesConfig) SetEmrManagedSlaveSecurityGroup(v string) *JobFlowInstancesConfig {
+	s.EmrManagedSlaveSecurityGroup = &v
+	return s
+}
+
+// SetHadoopVersion sets the HadoopVersion field's value.
+func (s *JobFlowInstancesConfig) SetHadoopVersion(v string) *JobFlowInstancesConfig {
+	s.HadoopVersion = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *JobFlowInstancesConfig) SetInstanceCount(v int64) *JobFlowInstancesConfig {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceGroups sets the InstanceGroups field's value.
+func (s *JobFlowInstancesConfig) SetInstanceGroups(v []*InstanceGroupConfig) *JobFlowInstancesConfig {
+	s.InstanceGroups = v
+	return s
+}
+
+// SetKeepJobFlowAliveWhenNoSteps sets the KeepJobFlowAliveWhenNoSteps field's value.
+func (s *JobFlowInstancesConfig) SetKeepJobFlowAliveWhenNoSteps(v bool) *JobFlowInstancesConfig {
+	s.KeepJobFlowAliveWhenNoSteps = &v
+	return s
+}
+
+// SetMasterInstanceType sets the MasterInstanceType field's value.
+func (s *JobFlowInstancesConfig) SetMasterInstanceType(v string) *JobFlowInstancesConfig {
+	s.MasterInstanceType = &v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *JobFlowInstancesConfig) SetPlacement(v *PlacementType) *JobFlowInstancesConfig {
+	s.Placement = v
+	return s
+}
+
+// SetServiceAccessSecurityGroup sets the ServiceAccessSecurityGroup field's value.
+func (s *JobFlowInstancesConfig) SetServiceAccessSecurityGroup(v string) *JobFlowInstancesConfig {
+	s.ServiceAccessSecurityGroup = &v
+	return s
+}
+
+// SetSlaveInstanceType sets the SlaveInstanceType field's value.
+func (s *JobFlowInstancesConfig) SetSlaveInstanceType(v string) *JobFlowInstancesConfig {
+	s.SlaveInstanceType = &v
+	return s
+}
+
+// SetTerminationProtected sets the TerminationProtected field's value.
+func (s *JobFlowInstancesConfig) SetTerminationProtected(v bool) *JobFlowInstancesConfig {
+	s.TerminationProtected = &v
+	return s
+}
+
 // Specify the type of Amazon EC2 instances to run the job flow on.
 type JobFlowInstancesDetail struct {
 	_ struct{} `type:"structure"`
@@ -3599,6 +4793,84 @@ func (s JobFlowInstancesDetail) GoString() string {
 	return s.String()
 }
 
+// SetEc2KeyName sets the Ec2KeyName field's value.
+func (s *JobFlowInstancesDetail) SetEc2KeyName(v string) *JobFlowInstancesDetail {
+	s.Ec2KeyName = &v
+	return s
+}
+
+// SetEc2SubnetId sets the Ec2SubnetId field's value.
+func (s *JobFlowInstancesDetail) SetEc2SubnetId(v string) *JobFlowInstancesDetail {
+	s.Ec2SubnetId = &v
+	return s
+}
+
+// SetHadoopVersion sets the HadoopVersion field's value.
+func (s *JobFlowInstancesDetail) SetHadoopVersion(v string) *JobFlowInstancesDetail {
+	s.HadoopVersion = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *JobFlowInstancesDetail) SetInstanceCount(v int64) *JobFlowInstancesDetail {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceGroups sets the InstanceGroups field's value.
+func (s *JobFlowInstancesDetail) SetInstanceGroups(v []*InstanceGroupDetail) *JobFlowInstancesDetail {
+	s.InstanceGroups = v
+	return s
+}
+
+// SetKeepJobFlowAliveWhenNoSteps sets the KeepJobFlowAliveWhenNoSteps field's value.
+func (s *JobFlowInstancesDetail) SetKeepJobFlowAliveWhenNoSteps(v bool) *JobFlowInstancesDetail {
+	s.KeepJobFlowAliveWhenNoSteps = &v
+	return s
+}
+
+// SetMasterInstanceId sets the MasterInstanceId field's value.
+func (s *JobFlowInstancesDetail) SetMasterInstanceId(v string) *JobFlowInstancesDetail {
+	s.MasterInstanceId = &v
+	return s
+}
+
+// SetMasterInstanceType sets the MasterInstanceType field's value.
+func (s *JobFlowInstancesDetail) SetMasterInstanceType(v string) *JobFlowInstancesDetail {
+	s.MasterInstanceType = &v
+	return s
+}
+
+// SetMasterPublicDnsName sets the MasterPublicDnsName field's value.
+func (s *JobFlowInstancesDetail) SetMasterPublicDnsName(v string) *JobFlowInstancesDetail {
+	s.MasterPublicDnsName = &v
+	return s
+}
+
+// SetNormalizedInstanceHours sets the NormalizedInstanceHours field's value.
+func (s *JobFlowInstancesDetail) SetNormalizedInstanceHours(v int64) *JobFlowInstancesDetail {
+	s.NormalizedInstanceHours = &v
+	return s
+}
+
+// SetPlacement sets the Placement field's value.
+func (s *JobFlowInstancesDetail) SetPlacement(v *PlacementType) *JobFlowInstancesDetail {
+	s.Placement = v
+	return s
+}
+
+// SetSlaveInstanceType sets the SlaveInstanceType field's value.
+func (s *JobFlowInstancesDetail) SetSlaveInstanceType(v string) *JobFlowInstancesDetail {
+	s.SlaveInstanceType = &v
+	return s
+}
+
+// SetTerminationProtected sets the TerminationProtected field's value.
+func (s *JobFlowInstancesDetail) SetTerminationProtected(v bool) *JobFlowInstancesDetail {
+	s.TerminationProtected = &v
+	return s
+}
+
 // A key value pair.
 type KeyValue struct {
 	_ struct{} `type:"structure"`
@@ -3618,6 +4890,18 @@ func (s KeyValue) String() string {
 // GoString returns the string representation
 func (s KeyValue) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *KeyValue) SetKey(v string) *KeyValue {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *KeyValue) SetValue(v string) *KeyValue {
+	s.Value = &v
+	return s
 }
 
 // This input determines which bootstrap actions to retrieve.
@@ -3656,6 +4940,18 @@ func (s *ListBootstrapActionsInput) Validate() error {
 	return nil
 }
 
+// SetClusterId sets the ClusterId field's value.
+func (s *ListBootstrapActionsInput) SetClusterId(v string) *ListBootstrapActionsInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListBootstrapActionsInput) SetMarker(v string) *ListBootstrapActionsInput {
+	s.Marker = &v
+	return s
+}
+
 // This output contains the boostrap actions detail .
 type ListBootstrapActionsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3675,6 +4971,18 @@ func (s ListBootstrapActionsOutput) String() string {
 // GoString returns the string representation
 func (s ListBootstrapActionsOutput) GoString() string {
 	return s.String()
+}
+
+// SetBootstrapActions sets the BootstrapActions field's value.
+func (s *ListBootstrapActionsOutput) SetBootstrapActions(v []*Command) *ListBootstrapActionsOutput {
+	s.BootstrapActions = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListBootstrapActionsOutput) SetMarker(v string) *ListBootstrapActionsOutput {
+	s.Marker = &v
+	return s
 }
 
 // This input determines how the ListClusters action filters the list of clusters
@@ -3705,6 +5013,30 @@ func (s ListClustersInput) GoString() string {
 	return s.String()
 }
 
+// SetClusterStates sets the ClusterStates field's value.
+func (s *ListClustersInput) SetClusterStates(v []*string) *ListClustersInput {
+	s.ClusterStates = v
+	return s
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *ListClustersInput) SetCreatedAfter(v time.Time) *ListClustersInput {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *ListClustersInput) SetCreatedBefore(v time.Time) *ListClustersInput {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListClustersInput) SetMarker(v string) *ListClustersInput {
+	s.Marker = &v
+	return s
+}
+
 // This contains a ClusterSummaryList with the cluster details; for example,
 // the cluster IDs, names, and status.
 type ListClustersOutput struct {
@@ -3725,6 +5057,18 @@ func (s ListClustersOutput) String() string {
 // GoString returns the string representation
 func (s ListClustersOutput) GoString() string {
 	return s.String()
+}
+
+// SetClusters sets the Clusters field's value.
+func (s *ListClustersOutput) SetClusters(v []*ClusterSummary) *ListClustersOutput {
+	s.Clusters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListClustersOutput) SetMarker(v string) *ListClustersOutput {
+	s.Marker = &v
+	return s
 }
 
 // This input determines which instance groups to retrieve.
@@ -3763,6 +5107,18 @@ func (s *ListInstanceGroupsInput) Validate() error {
 	return nil
 }
 
+// SetClusterId sets the ClusterId field's value.
+func (s *ListInstanceGroupsInput) SetClusterId(v string) *ListInstanceGroupsInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListInstanceGroupsInput) SetMarker(v string) *ListInstanceGroupsInput {
+	s.Marker = &v
+	return s
+}
+
 // This input determines which instance groups to retrieve.
 type ListInstanceGroupsOutput struct {
 	_ struct{} `type:"structure"`
@@ -3782,6 +5138,18 @@ func (s ListInstanceGroupsOutput) String() string {
 // GoString returns the string representation
 func (s ListInstanceGroupsOutput) GoString() string {
 	return s.String()
+}
+
+// SetInstanceGroups sets the InstanceGroups field's value.
+func (s *ListInstanceGroupsOutput) SetInstanceGroups(v []*InstanceGroup) *ListInstanceGroupsOutput {
+	s.InstanceGroups = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListInstanceGroupsOutput) SetMarker(v string) *ListInstanceGroupsOutput {
+	s.Marker = &v
+	return s
 }
 
 // This input determines which instances to list.
@@ -3830,6 +5198,36 @@ func (s *ListInstancesInput) Validate() error {
 	return nil
 }
 
+// SetClusterId sets the ClusterId field's value.
+func (s *ListInstancesInput) SetClusterId(v string) *ListInstancesInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetInstanceGroupId sets the InstanceGroupId field's value.
+func (s *ListInstancesInput) SetInstanceGroupId(v string) *ListInstancesInput {
+	s.InstanceGroupId = &v
+	return s
+}
+
+// SetInstanceGroupTypes sets the InstanceGroupTypes field's value.
+func (s *ListInstancesInput) SetInstanceGroupTypes(v []*string) *ListInstancesInput {
+	s.InstanceGroupTypes = v
+	return s
+}
+
+// SetInstanceStates sets the InstanceStates field's value.
+func (s *ListInstancesInput) SetInstanceStates(v []*string) *ListInstancesInput {
+	s.InstanceStates = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListInstancesInput) SetMarker(v string) *ListInstancesInput {
+	s.Marker = &v
+	return s
+}
+
 // This output contains the list of instances.
 type ListInstancesOutput struct {
 	_ struct{} `type:"structure"`
@@ -3851,6 +5249,18 @@ func (s ListInstancesOutput) GoString() string {
 	return s.String()
 }
 
+// SetInstances sets the Instances field's value.
+func (s *ListInstancesOutput) SetInstances(v []*Instance) *ListInstancesOutput {
+	s.Instances = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListInstancesOutput) SetMarker(v string) *ListInstancesOutput {
+	s.Marker = &v
+	return s
+}
+
 type ListSecurityConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3866,6 +5276,12 @@ func (s ListSecurityConfigurationsInput) String() string {
 // GoString returns the string representation
 func (s ListSecurityConfigurationsInput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListSecurityConfigurationsInput) SetMarker(v string) *ListSecurityConfigurationsInput {
+	s.Marker = &v
+	return s
 }
 
 type ListSecurityConfigurationsOutput struct {
@@ -3888,6 +5304,18 @@ func (s ListSecurityConfigurationsOutput) String() string {
 // GoString returns the string representation
 func (s ListSecurityConfigurationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListSecurityConfigurationsOutput) SetMarker(v string) *ListSecurityConfigurationsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSecurityConfigurations sets the SecurityConfigurations field's value.
+func (s *ListSecurityConfigurationsOutput) SetSecurityConfigurations(v []*SecurityConfigurationSummary) *ListSecurityConfigurationsOutput {
+	s.SecurityConfigurations = v
+	return s
 }
 
 // This input determines which steps to list.
@@ -3932,6 +5360,30 @@ func (s *ListStepsInput) Validate() error {
 	return nil
 }
 
+// SetClusterId sets the ClusterId field's value.
+func (s *ListStepsInput) SetClusterId(v string) *ListStepsInput {
+	s.ClusterId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListStepsInput) SetMarker(v string) *ListStepsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetStepIds sets the StepIds field's value.
+func (s *ListStepsInput) SetStepIds(v []*string) *ListStepsInput {
+	s.StepIds = v
+	return s
+}
+
+// SetStepStates sets the StepStates field's value.
+func (s *ListStepsInput) SetStepStates(v []*string) *ListStepsInput {
+	s.StepStates = v
+	return s
+}
+
 // This output contains the list of steps returned in reverse order. This means
 // that the last step is the first element in the list.
 type ListStepsOutput struct {
@@ -3952,6 +5404,18 @@ func (s ListStepsOutput) String() string {
 // GoString returns the string representation
 func (s ListStepsOutput) GoString() string {
 	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListStepsOutput) SetMarker(v string) *ListStepsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *ListStepsOutput) SetSteps(v []*StepSummary) *ListStepsOutput {
+	s.Steps = v
+	return s
 }
 
 // Change the size of some instance groups.
@@ -3990,6 +5454,12 @@ func (s *ModifyInstanceGroupsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInstanceGroups sets the InstanceGroups field's value.
+func (s *ModifyInstanceGroupsInput) SetInstanceGroups(v []*InstanceGroupModifyConfig) *ModifyInstanceGroupsInput {
+	s.InstanceGroups = v
+	return s
 }
 
 type ModifyInstanceGroupsOutput struct {
@@ -4039,6 +5509,12 @@ func (s *PlacementType) Validate() error {
 	return nil
 }
 
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *PlacementType) SetAvailabilityZone(v string) *PlacementType {
+	s.AvailabilityZone = &v
+	return s
+}
+
 // This input identifies a cluster and a list of tags to remove.
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
@@ -4079,6 +5555,18 @@ func (s *RemoveTagsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *RemoveTagsInput) SetResourceId(v string) *RemoveTagsInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
+	s.TagKeys = v
+	return s
 }
 
 // This output indicates the result of removing tags from a resource.
@@ -4275,6 +5763,108 @@ func (s *RunJobFlowInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalInfo sets the AdditionalInfo field's value.
+func (s *RunJobFlowInput) SetAdditionalInfo(v string) *RunJobFlowInput {
+	s.AdditionalInfo = &v
+	return s
+}
+
+// SetAmiVersion sets the AmiVersion field's value.
+func (s *RunJobFlowInput) SetAmiVersion(v string) *RunJobFlowInput {
+	s.AmiVersion = &v
+	return s
+}
+
+// SetApplications sets the Applications field's value.
+func (s *RunJobFlowInput) SetApplications(v []*Application) *RunJobFlowInput {
+	s.Applications = v
+	return s
+}
+
+// SetBootstrapActions sets the BootstrapActions field's value.
+func (s *RunJobFlowInput) SetBootstrapActions(v []*BootstrapActionConfig) *RunJobFlowInput {
+	s.BootstrapActions = v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *RunJobFlowInput) SetConfigurations(v []*Configuration) *RunJobFlowInput {
+	s.Configurations = v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *RunJobFlowInput) SetInstances(v *JobFlowInstancesConfig) *RunJobFlowInput {
+	s.Instances = v
+	return s
+}
+
+// SetJobFlowRole sets the JobFlowRole field's value.
+func (s *RunJobFlowInput) SetJobFlowRole(v string) *RunJobFlowInput {
+	s.JobFlowRole = &v
+	return s
+}
+
+// SetLogUri sets the LogUri field's value.
+func (s *RunJobFlowInput) SetLogUri(v string) *RunJobFlowInput {
+	s.LogUri = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RunJobFlowInput) SetName(v string) *RunJobFlowInput {
+	s.Name = &v
+	return s
+}
+
+// SetNewSupportedProducts sets the NewSupportedProducts field's value.
+func (s *RunJobFlowInput) SetNewSupportedProducts(v []*SupportedProductConfig) *RunJobFlowInput {
+	s.NewSupportedProducts = v
+	return s
+}
+
+// SetReleaseLabel sets the ReleaseLabel field's value.
+func (s *RunJobFlowInput) SetReleaseLabel(v string) *RunJobFlowInput {
+	s.ReleaseLabel = &v
+	return s
+}
+
+// SetSecurityConfiguration sets the SecurityConfiguration field's value.
+func (s *RunJobFlowInput) SetSecurityConfiguration(v string) *RunJobFlowInput {
+	s.SecurityConfiguration = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *RunJobFlowInput) SetServiceRole(v string) *RunJobFlowInput {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *RunJobFlowInput) SetSteps(v []*StepConfig) *RunJobFlowInput {
+	s.Steps = v
+	return s
+}
+
+// SetSupportedProducts sets the SupportedProducts field's value.
+func (s *RunJobFlowInput) SetSupportedProducts(v []*string) *RunJobFlowInput {
+	s.SupportedProducts = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RunJobFlowInput) SetTags(v []*Tag) *RunJobFlowInput {
+	s.Tags = v
+	return s
+}
+
+// SetVisibleToAllUsers sets the VisibleToAllUsers field's value.
+func (s *RunJobFlowInput) SetVisibleToAllUsers(v bool) *RunJobFlowInput {
+	s.VisibleToAllUsers = &v
+	return s
+}
+
 // The result of the RunJobFlow operation.
 type RunJobFlowOutput struct {
 	_ struct{} `type:"structure"`
@@ -4291,6 +5881,12 @@ func (s RunJobFlowOutput) String() string {
 // GoString returns the string representation
 func (s RunJobFlowOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobFlowId sets the JobFlowId field's value.
+func (s *RunJobFlowOutput) SetJobFlowId(v string) *RunJobFlowOutput {
+	s.JobFlowId = &v
+	return s
 }
 
 type ScriptBootstrapActionConfig struct {
@@ -4325,6 +5921,18 @@ func (s *ScriptBootstrapActionConfig) Validate() error {
 	return nil
 }
 
+// SetArgs sets the Args field's value.
+func (s *ScriptBootstrapActionConfig) SetArgs(v []*string) *ScriptBootstrapActionConfig {
+	s.Args = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *ScriptBootstrapActionConfig) SetPath(v string) *ScriptBootstrapActionConfig {
+	s.Path = &v
+	return s
+}
+
 // The creation date and time, and name, of a security configuration.
 type SecurityConfigurationSummary struct {
 	_ struct{} `type:"structure"`
@@ -4344,6 +5952,18 @@ func (s SecurityConfigurationSummary) String() string {
 // GoString returns the string representation
 func (s SecurityConfigurationSummary) GoString() string {
 	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *SecurityConfigurationSummary) SetCreationDateTime(v time.Time) *SecurityConfigurationSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SecurityConfigurationSummary) SetName(v string) *SecurityConfigurationSummary {
+	s.Name = &v
+	return s
 }
 
 // The input argument to the TerminationProtection operation.
@@ -4389,6 +6009,18 @@ func (s *SetTerminationProtectionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetJobFlowIds sets the JobFlowIds field's value.
+func (s *SetTerminationProtectionInput) SetJobFlowIds(v []*string) *SetTerminationProtectionInput {
+	s.JobFlowIds = v
+	return s
+}
+
+// SetTerminationProtected sets the TerminationProtected field's value.
+func (s *SetTerminationProtectionInput) SetTerminationProtected(v bool) *SetTerminationProtectionInput {
+	s.TerminationProtected = &v
+	return s
 }
 
 type SetTerminationProtectionOutput struct {
@@ -4450,6 +6082,18 @@ func (s *SetVisibleToAllUsersInput) Validate() error {
 	return nil
 }
 
+// SetJobFlowIds sets the JobFlowIds field's value.
+func (s *SetVisibleToAllUsersInput) SetJobFlowIds(v []*string) *SetVisibleToAllUsersInput {
+	s.JobFlowIds = v
+	return s
+}
+
+// SetVisibleToAllUsers sets the VisibleToAllUsers field's value.
+func (s *SetVisibleToAllUsersInput) SetVisibleToAllUsers(v bool) *SetVisibleToAllUsersInput {
+	s.VisibleToAllUsers = &v
+	return s
+}
+
 type SetVisibleToAllUsersOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4488,6 +6132,18 @@ func (s ShrinkPolicy) GoString() string {
 	return s.String()
 }
 
+// SetDecommissionTimeout sets the DecommissionTimeout field's value.
+func (s *ShrinkPolicy) SetDecommissionTimeout(v int64) *ShrinkPolicy {
+	s.DecommissionTimeout = &v
+	return s
+}
+
+// SetInstanceResizePolicy sets the InstanceResizePolicy field's value.
+func (s *ShrinkPolicy) SetInstanceResizePolicy(v *InstanceResizePolicy) *ShrinkPolicy {
+	s.InstanceResizePolicy = v
+	return s
+}
+
 // This represents a step in a cluster.
 type Step struct {
 	_ struct{} `type:"structure"`
@@ -4517,6 +6173,36 @@ func (s Step) String() string {
 // GoString returns the string representation
 func (s Step) GoString() string {
 	return s.String()
+}
+
+// SetActionOnFailure sets the ActionOnFailure field's value.
+func (s *Step) SetActionOnFailure(v string) *Step {
+	s.ActionOnFailure = &v
+	return s
+}
+
+// SetConfig sets the Config field's value.
+func (s *Step) SetConfig(v *HadoopStepConfig) *Step {
+	s.Config = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Step) SetId(v string) *Step {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Step) SetName(v string) *Step {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Step) SetStatus(v *StepStatus) *Step {
+	s.Status = v
+	return s
 }
 
 // Specification of a job flow step.
@@ -4568,6 +6254,24 @@ func (s *StepConfig) Validate() error {
 	return nil
 }
 
+// SetActionOnFailure sets the ActionOnFailure field's value.
+func (s *StepConfig) SetActionOnFailure(v string) *StepConfig {
+	s.ActionOnFailure = &v
+	return s
+}
+
+// SetHadoopJarStep sets the HadoopJarStep field's value.
+func (s *StepConfig) SetHadoopJarStep(v *HadoopJarStepConfig) *StepConfig {
+	s.HadoopJarStep = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StepConfig) SetName(v string) *StepConfig {
+	s.Name = &v
+	return s
+}
+
 // Combines the execution state and configuration of a step.
 type StepDetail struct {
 	_ struct{} `type:"structure"`
@@ -4591,6 +6295,18 @@ func (s StepDetail) String() string {
 // GoString returns the string representation
 func (s StepDetail) GoString() string {
 	return s.String()
+}
+
+// SetExecutionStatusDetail sets the ExecutionStatusDetail field's value.
+func (s *StepDetail) SetExecutionStatusDetail(v *StepExecutionStatusDetail) *StepDetail {
+	s.ExecutionStatusDetail = v
+	return s
+}
+
+// SetStepConfig sets the StepConfig field's value.
+func (s *StepDetail) SetStepConfig(v *StepConfig) *StepDetail {
+	s.StepConfig = v
+	return s
 }
 
 // The execution state of a step.
@@ -4627,6 +6343,36 @@ func (s StepExecutionStatusDetail) GoString() string {
 	return s.String()
 }
 
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *StepExecutionStatusDetail) SetCreationDateTime(v time.Time) *StepExecutionStatusDetail {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *StepExecutionStatusDetail) SetEndDateTime(v time.Time) *StepExecutionStatusDetail {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetLastStateChangeReason sets the LastStateChangeReason field's value.
+func (s *StepExecutionStatusDetail) SetLastStateChangeReason(v string) *StepExecutionStatusDetail {
+	s.LastStateChangeReason = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *StepExecutionStatusDetail) SetStartDateTime(v time.Time) *StepExecutionStatusDetail {
+	s.StartDateTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *StepExecutionStatusDetail) SetState(v string) *StepExecutionStatusDetail {
+	s.State = &v
+	return s
+}
+
 // The details of the step state change reason.
 type StepStateChangeReason struct {
 	_ struct{} `type:"structure"`
@@ -4647,6 +6393,18 @@ func (s StepStateChangeReason) String() string {
 // GoString returns the string representation
 func (s StepStateChangeReason) GoString() string {
 	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *StepStateChangeReason) SetCode(v string) *StepStateChangeReason {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *StepStateChangeReason) SetMessage(v string) *StepStateChangeReason {
+	s.Message = &v
+	return s
 }
 
 // The execution status details of the cluster step.
@@ -4675,6 +6433,30 @@ func (s StepStatus) String() string {
 // GoString returns the string representation
 func (s StepStatus) GoString() string {
 	return s.String()
+}
+
+// SetFailureDetails sets the FailureDetails field's value.
+func (s *StepStatus) SetFailureDetails(v *FailureDetails) *StepStatus {
+	s.FailureDetails = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *StepStatus) SetState(v string) *StepStatus {
+	s.State = &v
+	return s
+}
+
+// SetStateChangeReason sets the StateChangeReason field's value.
+func (s *StepStatus) SetStateChangeReason(v *StepStateChangeReason) *StepStatus {
+	s.StateChangeReason = v
+	return s
+}
+
+// SetTimeline sets the Timeline field's value.
+func (s *StepStatus) SetTimeline(v *StepTimeline) *StepStatus {
+	s.Timeline = v
+	return s
 }
 
 // The summary of the cluster step.
@@ -4708,6 +6490,36 @@ func (s StepSummary) GoString() string {
 	return s.String()
 }
 
+// SetActionOnFailure sets the ActionOnFailure field's value.
+func (s *StepSummary) SetActionOnFailure(v string) *StepSummary {
+	s.ActionOnFailure = &v
+	return s
+}
+
+// SetConfig sets the Config field's value.
+func (s *StepSummary) SetConfig(v *HadoopStepConfig) *StepSummary {
+	s.Config = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StepSummary) SetId(v string) *StepSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StepSummary) SetName(v string) *StepSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StepSummary) SetStatus(v *StepStatus) *StepSummary {
+	s.Status = v
+	return s
+}
+
 // The timeline of the cluster step lifecycle.
 type StepTimeline struct {
 	_ struct{} `type:"structure"`
@@ -4732,6 +6544,24 @@ func (s StepTimeline) GoString() string {
 	return s.String()
 }
 
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *StepTimeline) SetCreationDateTime(v time.Time) *StepTimeline {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetEndDateTime sets the EndDateTime field's value.
+func (s *StepTimeline) SetEndDateTime(v time.Time) *StepTimeline {
+	s.EndDateTime = &v
+	return s
+}
+
+// SetStartDateTime sets the StartDateTime field's value.
+func (s *StepTimeline) SetStartDateTime(v time.Time) *StepTimeline {
+	s.StartDateTime = &v
+	return s
+}
+
 // The list of supported product configurations which allow user-supplied arguments.
 // EMR accepts these arguments and forwards them to the corresponding installation
 // script as bootstrap action arguments.
@@ -4753,6 +6583,18 @@ func (s SupportedProductConfig) String() string {
 // GoString returns the string representation
 func (s SupportedProductConfig) GoString() string {
 	return s.String()
+}
+
+// SetArgs sets the Args field's value.
+func (s *SupportedProductConfig) SetArgs(v []*string) *SupportedProductConfig {
+	s.Args = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SupportedProductConfig) SetName(v string) *SupportedProductConfig {
+	s.Name = &v
+	return s
 }
 
 // A key/value pair containing user-defined metadata that you can associate
@@ -4780,6 +6622,18 @@ func (s Tag) String() string {
 // GoString returns the string representation
 func (s Tag) GoString() string {
 	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
 }
 
 // Input to the TerminateJobFlows operation.
@@ -4813,6 +6667,12 @@ func (s *TerminateJobFlowsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetJobFlowIds sets the JobFlowIds field's value.
+func (s *TerminateJobFlowsInput) SetJobFlowIds(v []*string) *TerminateJobFlowsInput {
+	s.JobFlowIds = v
+	return s
 }
 
 type TerminateJobFlowsOutput struct {
@@ -4873,6 +6733,24 @@ func (s *VolumeSpecification) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIops sets the Iops field's value.
+func (s *VolumeSpecification) SetIops(v int64) *VolumeSpecification {
+	s.Iops = &v
+	return s
+}
+
+// SetSizeInGB sets the SizeInGB field's value.
+func (s *VolumeSpecification) SetSizeInGB(v int64) *VolumeSpecification {
+	s.SizeInGB = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *VolumeSpecification) SetVolumeType(v string) *VolumeSpecification {
+	s.VolumeType = &v
+	return s
 }
 
 const (

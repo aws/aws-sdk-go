@@ -1644,6 +1644,48 @@ func (s *CreateIdentityPoolInput) Validate() error {
 	return nil
 }
 
+// SetAllowUnauthenticatedIdentities sets the AllowUnauthenticatedIdentities field's value.
+func (s *CreateIdentityPoolInput) SetAllowUnauthenticatedIdentities(v bool) *CreateIdentityPoolInput {
+	s.AllowUnauthenticatedIdentities = &v
+	return s
+}
+
+// SetCognitoIdentityProviders sets the CognitoIdentityProviders field's value.
+func (s *CreateIdentityPoolInput) SetCognitoIdentityProviders(v []*Provider) *CreateIdentityPoolInput {
+	s.CognitoIdentityProviders = v
+	return s
+}
+
+// SetDeveloperProviderName sets the DeveloperProviderName field's value.
+func (s *CreateIdentityPoolInput) SetDeveloperProviderName(v string) *CreateIdentityPoolInput {
+	s.DeveloperProviderName = &v
+	return s
+}
+
+// SetIdentityPoolName sets the IdentityPoolName field's value.
+func (s *CreateIdentityPoolInput) SetIdentityPoolName(v string) *CreateIdentityPoolInput {
+	s.IdentityPoolName = &v
+	return s
+}
+
+// SetOpenIdConnectProviderARNs sets the OpenIdConnectProviderARNs field's value.
+func (s *CreateIdentityPoolInput) SetOpenIdConnectProviderARNs(v []*string) *CreateIdentityPoolInput {
+	s.OpenIdConnectProviderARNs = v
+	return s
+}
+
+// SetSamlProviderARNs sets the SamlProviderARNs field's value.
+func (s *CreateIdentityPoolInput) SetSamlProviderARNs(v []*string) *CreateIdentityPoolInput {
+	s.SamlProviderARNs = v
+	return s
+}
+
+// SetSupportedLoginProviders sets the SupportedLoginProviders field's value.
+func (s *CreateIdentityPoolInput) SetSupportedLoginProviders(v map[string]*string) *CreateIdentityPoolInput {
+	s.SupportedLoginProviders = v
+	return s
+}
+
 // Credentials for the provided identity ID.
 type Credentials struct {
 	_ struct{} `type:"structure"`
@@ -1669,6 +1711,30 @@ func (s Credentials) String() string {
 // GoString returns the string representation
 func (s Credentials) GoString() string {
 	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *Credentials) SetAccessKeyId(v string) *Credentials {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *Credentials) SetExpiration(v time.Time) *Credentials {
+	s.Expiration = &v
+	return s
+}
+
+// SetSecretKey sets the SecretKey field's value.
+func (s *Credentials) SetSecretKey(v string) *Credentials {
+	s.SecretKey = &v
+	return s
+}
+
+// SetSessionToken sets the SessionToken field's value.
+func (s *Credentials) SetSessionToken(v string) *Credentials {
+	s.SessionToken = &v
+	return s
 }
 
 // Input to the DeleteIdentities action.
@@ -1707,6 +1773,12 @@ func (s *DeleteIdentitiesInput) Validate() error {
 	return nil
 }
 
+// SetIdentityIdsToDelete sets the IdentityIdsToDelete field's value.
+func (s *DeleteIdentitiesInput) SetIdentityIdsToDelete(v []*string) *DeleteIdentitiesInput {
+	s.IdentityIdsToDelete = v
+	return s
+}
+
 // Returned in response to a successful DeleteIdentities operation.
 type DeleteIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
@@ -1724,6 +1796,12 @@ func (s DeleteIdentitiesOutput) String() string {
 // GoString returns the string representation
 func (s DeleteIdentitiesOutput) GoString() string {
 	return s.String()
+}
+
+// SetUnprocessedIdentityIds sets the UnprocessedIdentityIds field's value.
+func (s *DeleteIdentitiesOutput) SetUnprocessedIdentityIds(v []*UnprocessedIdentityId) *DeleteIdentitiesOutput {
+	s.UnprocessedIdentityIds = v
+	return s
 }
 
 // Input to the DeleteIdentityPool action.
@@ -1760,6 +1838,12 @@ func (s *DeleteIdentityPoolInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *DeleteIdentityPoolInput) SetIdentityPoolId(v string) *DeleteIdentityPoolInput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 type DeleteIdentityPoolOutput struct {
@@ -1812,6 +1896,12 @@ func (s *DescribeIdentityInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *DescribeIdentityInput) SetIdentityId(v string) *DescribeIdentityInput {
+	s.IdentityId = &v
+	return s
+}
+
 // Input to the DescribeIdentityPool action.
 type DescribeIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
@@ -1846,6 +1936,12 @@ func (s *DescribeIdentityPoolInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *DescribeIdentityPoolInput) SetIdentityPoolId(v string) *DescribeIdentityPoolInput {
+	s.IdentityPoolId = &v
+	return s
 }
 
 // Input to the GetCredentialsForIdentity action.
@@ -1896,6 +1992,24 @@ func (s *GetCredentialsForIdentityInput) Validate() error {
 	return nil
 }
 
+// SetCustomRoleArn sets the CustomRoleArn field's value.
+func (s *GetCredentialsForIdentityInput) SetCustomRoleArn(v string) *GetCredentialsForIdentityInput {
+	s.CustomRoleArn = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetCredentialsForIdentityInput) SetIdentityId(v string) *GetCredentialsForIdentityInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetLogins sets the Logins field's value.
+func (s *GetCredentialsForIdentityInput) SetLogins(v map[string]*string) *GetCredentialsForIdentityInput {
+	s.Logins = v
+	return s
+}
+
 // Returned in response to a successful GetCredentialsForIdentity operation.
 type GetCredentialsForIdentityOutput struct {
 	_ struct{} `type:"structure"`
@@ -1915,6 +2029,18 @@ func (s GetCredentialsForIdentityOutput) String() string {
 // GoString returns the string representation
 func (s GetCredentialsForIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *GetCredentialsForIdentityOutput) SetCredentials(v *Credentials) *GetCredentialsForIdentityOutput {
+	s.Credentials = v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetCredentialsForIdentityOutput) SetIdentityId(v string) *GetCredentialsForIdentityOutput {
+	s.IdentityId = &v
+	return s
 }
 
 // Input to the GetId action.
@@ -1969,6 +2095,24 @@ func (s *GetIdInput) Validate() error {
 	return nil
 }
 
+// SetAccountId sets the AccountId field's value.
+func (s *GetIdInput) SetAccountId(v string) *GetIdInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetIdInput) SetIdentityPoolId(v string) *GetIdInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetLogins sets the Logins field's value.
+func (s *GetIdInput) SetLogins(v map[string]*string) *GetIdInput {
+	s.Logins = v
+	return s
+}
+
 // Returned in response to a GetId request.
 type GetIdOutput struct {
 	_ struct{} `type:"structure"`
@@ -1985,6 +2129,12 @@ func (s GetIdOutput) String() string {
 // GoString returns the string representation
 func (s GetIdOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetIdOutput) SetIdentityId(v string) *GetIdOutput {
+	s.IdentityId = &v
+	return s
 }
 
 // Input to the GetIdentityPoolRoles action.
@@ -2023,6 +2173,12 @@ func (s *GetIdentityPoolRolesInput) Validate() error {
 	return nil
 }
 
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetIdentityPoolRolesInput) SetIdentityPoolId(v string) *GetIdentityPoolRolesInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 // Returned in response to a successful GetIdentityPoolRoles operation.
 type GetIdentityPoolRolesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2043,6 +2199,18 @@ func (s GetIdentityPoolRolesOutput) String() string {
 // GoString returns the string representation
 func (s GetIdentityPoolRolesOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetIdentityPoolRolesOutput) SetIdentityPoolId(v string) *GetIdentityPoolRolesOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetRoles sets the Roles field's value.
+func (s *GetIdentityPoolRolesOutput) SetRoles(v map[string]*string) *GetIdentityPoolRolesOutput {
+	s.Roles = v
+	return s
 }
 
 // Input to the GetOpenIdTokenForDeveloperIdentity action.
@@ -2116,6 +2284,30 @@ func (s *GetOpenIdTokenForDeveloperIdentityInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityInput) SetIdentityId(v string) *GetOpenIdTokenForDeveloperIdentityInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityInput) SetIdentityPoolId(v string) *GetOpenIdTokenForDeveloperIdentityInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetLogins sets the Logins field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityInput) SetLogins(v map[string]*string) *GetOpenIdTokenForDeveloperIdentityInput {
+	s.Logins = v
+	return s
+}
+
+// SetTokenDuration sets the TokenDuration field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityInput) SetTokenDuration(v int64) *GetOpenIdTokenForDeveloperIdentityInput {
+	s.TokenDuration = &v
+	return s
+}
+
 // Returned in response to a successful GetOpenIdTokenForDeveloperIdentity request.
 type GetOpenIdTokenForDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
@@ -2135,6 +2327,18 @@ func (s GetOpenIdTokenForDeveloperIdentityOutput) String() string {
 // GoString returns the string representation
 func (s GetOpenIdTokenForDeveloperIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityOutput) SetIdentityId(v string) *GetOpenIdTokenForDeveloperIdentityOutput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityOutput) SetToken(v string) *GetOpenIdTokenForDeveloperIdentityOutput {
+	s.Token = &v
+	return s
 }
 
 // Input to the GetOpenIdToken action.
@@ -2179,6 +2383,18 @@ func (s *GetOpenIdTokenInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetOpenIdTokenInput) SetIdentityId(v string) *GetOpenIdTokenInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetLogins sets the Logins field's value.
+func (s *GetOpenIdTokenInput) SetLogins(v map[string]*string) *GetOpenIdTokenInput {
+	s.Logins = v
+	return s
+}
+
 // Returned in response to a successful GetOpenIdToken request.
 type GetOpenIdTokenOutput struct {
 	_ struct{} `type:"structure"`
@@ -2199,6 +2415,18 @@ func (s GetOpenIdTokenOutput) String() string {
 // GoString returns the string representation
 func (s GetOpenIdTokenOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *GetOpenIdTokenOutput) SetIdentityId(v string) *GetOpenIdTokenOutput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *GetOpenIdTokenOutput) SetToken(v string) *GetOpenIdTokenOutput {
+	s.Token = &v
+	return s
 }
 
 // A description of the identity.
@@ -2226,6 +2454,30 @@ func (s IdentityDescription) String() string {
 // GoString returns the string representation
 func (s IdentityDescription) GoString() string {
 	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *IdentityDescription) SetCreationDate(v time.Time) *IdentityDescription {
+	s.CreationDate = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *IdentityDescription) SetIdentityId(v string) *IdentityDescription {
+	s.IdentityId = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *IdentityDescription) SetLastModifiedDate(v time.Time) *IdentityDescription {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetLogins sets the Logins field's value.
+func (s *IdentityDescription) SetLogins(v []*string) *IdentityDescription {
+	s.Logins = v
+	return s
 }
 
 // An object representing a Cognito identity pool.
@@ -2312,6 +2564,54 @@ func (s *IdentityPool) Validate() error {
 	return nil
 }
 
+// SetAllowUnauthenticatedIdentities sets the AllowUnauthenticatedIdentities field's value.
+func (s *IdentityPool) SetAllowUnauthenticatedIdentities(v bool) *IdentityPool {
+	s.AllowUnauthenticatedIdentities = &v
+	return s
+}
+
+// SetCognitoIdentityProviders sets the CognitoIdentityProviders field's value.
+func (s *IdentityPool) SetCognitoIdentityProviders(v []*Provider) *IdentityPool {
+	s.CognitoIdentityProviders = v
+	return s
+}
+
+// SetDeveloperProviderName sets the DeveloperProviderName field's value.
+func (s *IdentityPool) SetDeveloperProviderName(v string) *IdentityPool {
+	s.DeveloperProviderName = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *IdentityPool) SetIdentityPoolId(v string) *IdentityPool {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetIdentityPoolName sets the IdentityPoolName field's value.
+func (s *IdentityPool) SetIdentityPoolName(v string) *IdentityPool {
+	s.IdentityPoolName = &v
+	return s
+}
+
+// SetOpenIdConnectProviderARNs sets the OpenIdConnectProviderARNs field's value.
+func (s *IdentityPool) SetOpenIdConnectProviderARNs(v []*string) *IdentityPool {
+	s.OpenIdConnectProviderARNs = v
+	return s
+}
+
+// SetSamlProviderARNs sets the SamlProviderARNs field's value.
+func (s *IdentityPool) SetSamlProviderARNs(v []*string) *IdentityPool {
+	s.SamlProviderARNs = v
+	return s
+}
+
+// SetSupportedLoginProviders sets the SupportedLoginProviders field's value.
+func (s *IdentityPool) SetSupportedLoginProviders(v map[string]*string) *IdentityPool {
+	s.SupportedLoginProviders = v
+	return s
+}
+
 // A description of the identity pool.
 type IdentityPoolShortDescription struct {
 	_ struct{} `type:"structure"`
@@ -2331,6 +2631,18 @@ func (s IdentityPoolShortDescription) String() string {
 // GoString returns the string representation
 func (s IdentityPoolShortDescription) GoString() string {
 	return s.String()
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *IdentityPoolShortDescription) SetIdentityPoolId(v string) *IdentityPoolShortDescription {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetIdentityPoolName sets the IdentityPoolName field's value.
+func (s *IdentityPoolShortDescription) SetIdentityPoolName(v string) *IdentityPoolShortDescription {
+	s.IdentityPoolName = &v
+	return s
 }
 
 // Input to the ListIdentities action.
@@ -2391,6 +2703,30 @@ func (s *ListIdentitiesInput) Validate() error {
 	return nil
 }
 
+// SetHideDisabled sets the HideDisabled field's value.
+func (s *ListIdentitiesInput) SetHideDisabled(v bool) *ListIdentitiesInput {
+	s.HideDisabled = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *ListIdentitiesInput) SetIdentityPoolId(v string) *ListIdentitiesInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdentitiesInput) SetMaxResults(v int64) *ListIdentitiesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentitiesInput) SetNextToken(v string) *ListIdentitiesInput {
+	s.NextToken = &v
+	return s
+}
+
 // The response to a ListIdentities request.
 type ListIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2413,6 +2749,24 @@ func (s ListIdentitiesOutput) String() string {
 // GoString returns the string representation
 func (s ListIdentitiesOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentities sets the Identities field's value.
+func (s *ListIdentitiesOutput) SetIdentities(v []*IdentityDescription) *ListIdentitiesOutput {
+	s.Identities = v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *ListIdentitiesOutput) SetIdentityPoolId(v string) *ListIdentitiesOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentitiesOutput) SetNextToken(v string) *ListIdentitiesOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Input to the ListIdentityPools action.
@@ -2457,6 +2811,18 @@ func (s *ListIdentityPoolsInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIdentityPoolsInput) SetMaxResults(v int64) *ListIdentityPoolsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentityPoolsInput) SetNextToken(v string) *ListIdentityPoolsInput {
+	s.NextToken = &v
+	return s
+}
+
 // The result of a successful ListIdentityPools action.
 type ListIdentityPoolsOutput struct {
 	_ struct{} `type:"structure"`
@@ -2476,6 +2842,18 @@ func (s ListIdentityPoolsOutput) String() string {
 // GoString returns the string representation
 func (s ListIdentityPoolsOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityPools sets the IdentityPools field's value.
+func (s *ListIdentityPoolsOutput) SetIdentityPools(v []*IdentityPoolShortDescription) *ListIdentityPoolsOutput {
+	s.IdentityPools = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIdentityPoolsOutput) SetNextToken(v string) *ListIdentityPoolsOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Input to the LookupDeveloperIdentityInput action.
@@ -2545,6 +2923,36 @@ func (s *LookupDeveloperIdentityInput) Validate() error {
 	return nil
 }
 
+// SetDeveloperUserIdentifier sets the DeveloperUserIdentifier field's value.
+func (s *LookupDeveloperIdentityInput) SetDeveloperUserIdentifier(v string) *LookupDeveloperIdentityInput {
+	s.DeveloperUserIdentifier = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *LookupDeveloperIdentityInput) SetIdentityId(v string) *LookupDeveloperIdentityInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *LookupDeveloperIdentityInput) SetIdentityPoolId(v string) *LookupDeveloperIdentityInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *LookupDeveloperIdentityInput) SetMaxResults(v int64) *LookupDeveloperIdentityInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *LookupDeveloperIdentityInput) SetNextToken(v string) *LookupDeveloperIdentityInput {
+	s.NextToken = &v
+	return s
+}
+
 // Returned in response to a successful LookupDeveloperIdentity action.
 type LookupDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
@@ -2574,6 +2982,24 @@ func (s LookupDeveloperIdentityOutput) String() string {
 // GoString returns the string representation
 func (s LookupDeveloperIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetDeveloperUserIdentifierList sets the DeveloperUserIdentifierList field's value.
+func (s *LookupDeveloperIdentityOutput) SetDeveloperUserIdentifierList(v []*string) *LookupDeveloperIdentityOutput {
+	s.DeveloperUserIdentifierList = v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *LookupDeveloperIdentityOutput) SetIdentityId(v string) *LookupDeveloperIdentityOutput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *LookupDeveloperIdentityOutput) SetNextToken(v string) *LookupDeveloperIdentityOutput {
+	s.NextToken = &v
+	return s
 }
 
 // Input to the MergeDeveloperIdentities action.
@@ -2649,6 +3075,30 @@ func (s *MergeDeveloperIdentitiesInput) Validate() error {
 	return nil
 }
 
+// SetDestinationUserIdentifier sets the DestinationUserIdentifier field's value.
+func (s *MergeDeveloperIdentitiesInput) SetDestinationUserIdentifier(v string) *MergeDeveloperIdentitiesInput {
+	s.DestinationUserIdentifier = &v
+	return s
+}
+
+// SetDeveloperProviderName sets the DeveloperProviderName field's value.
+func (s *MergeDeveloperIdentitiesInput) SetDeveloperProviderName(v string) *MergeDeveloperIdentitiesInput {
+	s.DeveloperProviderName = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *MergeDeveloperIdentitiesInput) SetIdentityPoolId(v string) *MergeDeveloperIdentitiesInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetSourceUserIdentifier sets the SourceUserIdentifier field's value.
+func (s *MergeDeveloperIdentitiesInput) SetSourceUserIdentifier(v string) *MergeDeveloperIdentitiesInput {
+	s.SourceUserIdentifier = &v
+	return s
+}
+
 // Returned in response to a successful MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
@@ -2665,6 +3115,12 @@ func (s MergeDeveloperIdentitiesOutput) String() string {
 // GoString returns the string representation
 func (s MergeDeveloperIdentitiesOutput) GoString() string {
 	return s.String()
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *MergeDeveloperIdentitiesOutput) SetIdentityId(v string) *MergeDeveloperIdentitiesOutput {
+	s.IdentityId = &v
+	return s
 }
 
 // A provider representing an Amazon Cognito Identity User Pool and its client
@@ -2704,6 +3160,18 @@ func (s *Provider) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *Provider) SetClientId(v string) *Provider {
+	s.ClientId = &v
+	return s
+}
+
+// SetProviderName sets the ProviderName field's value.
+func (s *Provider) SetProviderName(v string) *Provider {
+	s.ProviderName = &v
+	return s
 }
 
 // Input to the SetIdentityPoolRoles action.
@@ -2750,6 +3218,18 @@ func (s *SetIdentityPoolRolesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SetIdentityPoolRolesInput) SetIdentityPoolId(v string) *SetIdentityPoolRolesInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetRoles sets the Roles field's value.
+func (s *SetIdentityPoolRolesInput) SetRoles(v map[string]*string) *SetIdentityPoolRolesInput {
+	s.Roles = v
+	return s
 }
 
 type SetIdentityPoolRolesOutput struct {
@@ -2835,6 +3315,30 @@ func (s *UnlinkDeveloperIdentityInput) Validate() error {
 	return nil
 }
 
+// SetDeveloperProviderName sets the DeveloperProviderName field's value.
+func (s *UnlinkDeveloperIdentityInput) SetDeveloperProviderName(v string) *UnlinkDeveloperIdentityInput {
+	s.DeveloperProviderName = &v
+	return s
+}
+
+// SetDeveloperUserIdentifier sets the DeveloperUserIdentifier field's value.
+func (s *UnlinkDeveloperIdentityInput) SetDeveloperUserIdentifier(v string) *UnlinkDeveloperIdentityInput {
+	s.DeveloperUserIdentifier = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *UnlinkDeveloperIdentityInput) SetIdentityId(v string) *UnlinkDeveloperIdentityInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *UnlinkDeveloperIdentityInput) SetIdentityPoolId(v string) *UnlinkDeveloperIdentityInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
 type UnlinkDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2901,6 +3405,24 @@ func (s *UnlinkIdentityInput) Validate() error {
 	return nil
 }
 
+// SetIdentityId sets the IdentityId field's value.
+func (s *UnlinkIdentityInput) SetIdentityId(v string) *UnlinkIdentityInput {
+	s.IdentityId = &v
+	return s
+}
+
+// SetLogins sets the Logins field's value.
+func (s *UnlinkIdentityInput) SetLogins(v map[string]*string) *UnlinkIdentityInput {
+	s.Logins = v
+	return s
+}
+
+// SetLoginsToRemove sets the LoginsToRemove field's value.
+func (s *UnlinkIdentityInput) SetLoginsToRemove(v []*string) *UnlinkIdentityInput {
+	s.LoginsToRemove = v
+	return s
+}
+
 type UnlinkIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2935,6 +3457,18 @@ func (s UnprocessedIdentityId) String() string {
 // GoString returns the string representation
 func (s UnprocessedIdentityId) GoString() string {
 	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *UnprocessedIdentityId) SetErrorCode(v string) *UnprocessedIdentityId {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetIdentityId sets the IdentityId field's value.
+func (s *UnprocessedIdentityId) SetIdentityId(v string) *UnprocessedIdentityId {
+	s.IdentityId = &v
+	return s
 }
 
 const (

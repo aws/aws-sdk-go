@@ -152,6 +152,42 @@ func (s *Event) Validate() error {
 	return nil
 }
 
+// SetAttributes sets the Attributes field's value.
+func (s *Event) SetAttributes(v map[string]*string) *Event {
+	s.Attributes = v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *Event) SetEventType(v string) *Event {
+	s.EventType = &v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *Event) SetMetrics(v map[string]*float64) *Event {
+	s.Metrics = v
+	return s
+}
+
+// SetSession sets the Session field's value.
+func (s *Event) SetSession(v *Session) *Event {
+	s.Session = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *Event) SetTimestamp(v string) *Event {
+	s.Timestamp = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *Event) SetVersion(v string) *Event {
+	s.Version = &v
+	return s
+}
+
 // A container for the data needed for a PutEvent operation
 type PutEventsInput struct {
 	_ struct{} `type:"structure"`
@@ -205,6 +241,24 @@ func (s *PutEventsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientContext sets the ClientContext field's value.
+func (s *PutEventsInput) SetClientContext(v string) *PutEventsInput {
+	s.ClientContext = &v
+	return s
+}
+
+// SetClientContextEncoding sets the ClientContextEncoding field's value.
+func (s *PutEventsInput) SetClientContextEncoding(v string) *PutEventsInput {
+	s.ClientContextEncoding = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *PutEventsInput) SetEvents(v []*Event) *PutEventsInput {
+	s.Events = v
+	return s
 }
 
 type PutEventsOutput struct {
@@ -261,4 +315,28 @@ func (s *Session) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDuration sets the Duration field's value.
+func (s *Session) SetDuration(v int64) *Session {
+	s.Duration = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Session) SetId(v string) *Session {
+	s.Id = &v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *Session) SetStartTimestamp(v string) *Session {
+	s.StartTimestamp = &v
+	return s
+}
+
+// SetStopTimestamp sets the StopTimestamp field's value.
+func (s *Session) SetStopTimestamp(v string) *Session {
+	s.StopTimestamp = &v
+	return s
 }

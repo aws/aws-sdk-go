@@ -175,6 +175,36 @@ func (s *MeterUsageInput) Validate() error {
 	return nil
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *MeterUsageInput) SetDryRun(v bool) *MeterUsageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetProductCode sets the ProductCode field's value.
+func (s *MeterUsageInput) SetProductCode(v string) *MeterUsageInput {
+	s.ProductCode = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *MeterUsageInput) SetTimestamp(v time.Time) *MeterUsageInput {
+	s.Timestamp = &v
+	return s
+}
+
+// SetUsageDimension sets the UsageDimension field's value.
+func (s *MeterUsageInput) SetUsageDimension(v string) *MeterUsageInput {
+	s.UsageDimension = &v
+	return s
+}
+
+// SetUsageQuantity sets the UsageQuantity field's value.
+func (s *MeterUsageInput) SetUsageQuantity(v int64) *MeterUsageInput {
+	s.UsageQuantity = &v
+	return s
+}
+
 type MeterUsageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -189,4 +219,10 @@ func (s MeterUsageOutput) String() string {
 // GoString returns the string representation
 func (s MeterUsageOutput) GoString() string {
 	return s.String()
+}
+
+// SetMeteringRecordId sets the MeteringRecordId field's value.
+func (s *MeterUsageOutput) SetMeteringRecordId(v string) *MeterUsageOutput {
+	s.MeteringRecordId = &v
+	return s
 }

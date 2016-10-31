@@ -1156,6 +1156,24 @@ func (s *AddApplicationInputInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *AddApplicationInputInput) SetApplicationName(v string) *AddApplicationInputInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *AddApplicationInputInput) SetCurrentApplicationVersionId(v int64) *AddApplicationInputInput {
+	s.CurrentApplicationVersionId = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *AddApplicationInputInput) SetInput(v *Input) *AddApplicationInputInput {
+	s.Input = v
+	return s
+}
+
 type AddApplicationInputOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1233,6 +1251,24 @@ func (s *AddApplicationOutputInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *AddApplicationOutputInput) SetApplicationName(v string) *AddApplicationOutputInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *AddApplicationOutputInput) SetCurrentApplicationVersionId(v int64) *AddApplicationOutputInput {
+	s.CurrentApplicationVersionId = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *AddApplicationOutputInput) SetOutput(v *Output) *AddApplicationOutputInput {
+	s.Output = v
+	return s
 }
 
 type AddApplicationOutputOutput struct {
@@ -1316,6 +1352,24 @@ func (s *AddApplicationReferenceDataSourceInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *AddApplicationReferenceDataSourceInput) SetApplicationName(v string) *AddApplicationReferenceDataSourceInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *AddApplicationReferenceDataSourceInput) SetCurrentApplicationVersionId(v int64) *AddApplicationReferenceDataSourceInput {
+	s.CurrentApplicationVersionId = &v
+	return s
+}
+
+// SetReferenceDataSource sets the ReferenceDataSource field's value.
+func (s *AddApplicationReferenceDataSourceInput) SetReferenceDataSource(v *ReferenceDataSource) *AddApplicationReferenceDataSourceInput {
+	s.ReferenceDataSource = v
+	return s
+}
+
 type AddApplicationReferenceDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1391,6 +1445,72 @@ func (s ApplicationDetail) GoString() string {
 	return s.String()
 }
 
+// SetApplicationARN sets the ApplicationARN field's value.
+func (s *ApplicationDetail) SetApplicationARN(v string) *ApplicationDetail {
+	s.ApplicationARN = &v
+	return s
+}
+
+// SetApplicationCode sets the ApplicationCode field's value.
+func (s *ApplicationDetail) SetApplicationCode(v string) *ApplicationDetail {
+	s.ApplicationCode = &v
+	return s
+}
+
+// SetApplicationDescription sets the ApplicationDescription field's value.
+func (s *ApplicationDetail) SetApplicationDescription(v string) *ApplicationDetail {
+	s.ApplicationDescription = &v
+	return s
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ApplicationDetail) SetApplicationName(v string) *ApplicationDetail {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetApplicationStatus sets the ApplicationStatus field's value.
+func (s *ApplicationDetail) SetApplicationStatus(v string) *ApplicationDetail {
+	s.ApplicationStatus = &v
+	return s
+}
+
+// SetApplicationVersionId sets the ApplicationVersionId field's value.
+func (s *ApplicationDetail) SetApplicationVersionId(v int64) *ApplicationDetail {
+	s.ApplicationVersionId = &v
+	return s
+}
+
+// SetCreateTimestamp sets the CreateTimestamp field's value.
+func (s *ApplicationDetail) SetCreateTimestamp(v time.Time) *ApplicationDetail {
+	s.CreateTimestamp = &v
+	return s
+}
+
+// SetInputDescriptions sets the InputDescriptions field's value.
+func (s *ApplicationDetail) SetInputDescriptions(v []*InputDescription) *ApplicationDetail {
+	s.InputDescriptions = v
+	return s
+}
+
+// SetLastUpdateTimestamp sets the LastUpdateTimestamp field's value.
+func (s *ApplicationDetail) SetLastUpdateTimestamp(v time.Time) *ApplicationDetail {
+	s.LastUpdateTimestamp = &v
+	return s
+}
+
+// SetOutputDescriptions sets the OutputDescriptions field's value.
+func (s *ApplicationDetail) SetOutputDescriptions(v []*OutputDescription) *ApplicationDetail {
+	s.OutputDescriptions = v
+	return s
+}
+
+// SetReferenceDataSourceDescriptions sets the ReferenceDataSourceDescriptions field's value.
+func (s *ApplicationDetail) SetReferenceDataSourceDescriptions(v []*ReferenceDataSourceDescription) *ApplicationDetail {
+	s.ReferenceDataSourceDescriptions = v
+	return s
+}
+
 // Provides application summary information, including the application Amazon
 // Resource Name (ARN), name, and status.
 type ApplicationSummary struct {
@@ -1420,6 +1540,24 @@ func (s ApplicationSummary) String() string {
 // GoString returns the string representation
 func (s ApplicationSummary) GoString() string {
 	return s.String()
+}
+
+// SetApplicationARN sets the ApplicationARN field's value.
+func (s *ApplicationSummary) SetApplicationARN(v string) *ApplicationSummary {
+	s.ApplicationARN = &v
+	return s
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ApplicationSummary) SetApplicationName(v string) *ApplicationSummary {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetApplicationStatus sets the ApplicationStatus field's value.
+func (s *ApplicationSummary) SetApplicationStatus(v string) *ApplicationSummary {
+	s.ApplicationStatus = &v
+	return s
 }
 
 // Describes updates to apply to an existing Kinesis Analytics application.
@@ -1489,6 +1627,30 @@ func (s *ApplicationUpdate) Validate() error {
 	return nil
 }
 
+// SetApplicationCodeUpdate sets the ApplicationCodeUpdate field's value.
+func (s *ApplicationUpdate) SetApplicationCodeUpdate(v string) *ApplicationUpdate {
+	s.ApplicationCodeUpdate = &v
+	return s
+}
+
+// SetInputUpdates sets the InputUpdates field's value.
+func (s *ApplicationUpdate) SetInputUpdates(v []*InputUpdate) *ApplicationUpdate {
+	s.InputUpdates = v
+	return s
+}
+
+// SetOutputUpdates sets the OutputUpdates field's value.
+func (s *ApplicationUpdate) SetOutputUpdates(v []*OutputUpdate) *ApplicationUpdate {
+	s.OutputUpdates = v
+	return s
+}
+
+// SetReferenceDataSourceUpdates sets the ReferenceDataSourceUpdates field's value.
+func (s *ApplicationUpdate) SetReferenceDataSourceUpdates(v []*ReferenceDataSourceUpdate) *ApplicationUpdate {
+	s.ReferenceDataSourceUpdates = v
+	return s
+}
+
 // Provides additional mapping information when the record format uses delimiters,
 // such as CSV. For example, the following sample records use CSV format, where
 // the records use the '\n' as the row delimiter and a comma (",") as the column
@@ -1536,6 +1698,18 @@ func (s *CSVMappingParameters) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRecordColumnDelimiter sets the RecordColumnDelimiter field's value.
+func (s *CSVMappingParameters) SetRecordColumnDelimiter(v string) *CSVMappingParameters {
+	s.RecordColumnDelimiter = &v
+	return s
+}
+
+// SetRecordRowDelimiter sets the RecordRowDelimiter field's value.
+func (s *CSVMappingParameters) SetRecordRowDelimiter(v string) *CSVMappingParameters {
+	s.RecordRowDelimiter = &v
+	return s
 }
 
 // TBD
@@ -1646,6 +1820,36 @@ func (s *CreateApplicationInput) Validate() error {
 	return nil
 }
 
+// SetApplicationCode sets the ApplicationCode field's value.
+func (s *CreateApplicationInput) SetApplicationCode(v string) *CreateApplicationInput {
+	s.ApplicationCode = &v
+	return s
+}
+
+// SetApplicationDescription sets the ApplicationDescription field's value.
+func (s *CreateApplicationInput) SetApplicationDescription(v string) *CreateApplicationInput {
+	s.ApplicationDescription = &v
+	return s
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *CreateApplicationInput) SetApplicationName(v string) *CreateApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetInputs sets the Inputs field's value.
+func (s *CreateApplicationInput) SetInputs(v []*Input) *CreateApplicationInput {
+	s.Inputs = v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *CreateApplicationInput) SetOutputs(v []*Output) *CreateApplicationInput {
+	s.Outputs = v
+	return s
+}
+
 // TBD
 type CreateApplicationOutput struct {
 	_ struct{} `type:"structure"`
@@ -1666,6 +1870,12 @@ func (s CreateApplicationOutput) String() string {
 // GoString returns the string representation
 func (s CreateApplicationOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationSummary sets the ApplicationSummary field's value.
+func (s *CreateApplicationOutput) SetApplicationSummary(v *ApplicationSummary) *CreateApplicationOutput {
+	s.ApplicationSummary = v
+	return s
 }
 
 type DeleteApplicationInput struct {
@@ -1709,6 +1919,18 @@ func (s *DeleteApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteApplicationInput) SetApplicationName(v string) *DeleteApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCreateTimestamp sets the CreateTimestamp field's value.
+func (s *DeleteApplicationInput) SetCreateTimestamp(v time.Time) *DeleteApplicationInput {
+	s.CreateTimestamp = &v
+	return s
 }
 
 type DeleteApplicationOutput struct {
@@ -1789,6 +2011,24 @@ func (s *DeleteApplicationOutputInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteApplicationOutputInput) SetApplicationName(v string) *DeleteApplicationOutputInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *DeleteApplicationOutputInput) SetCurrentApplicationVersionId(v int64) *DeleteApplicationOutputInput {
+	s.CurrentApplicationVersionId = &v
+	return s
+}
+
+// SetOutputId sets the OutputId field's value.
+func (s *DeleteApplicationOutputInput) SetOutputId(v string) *DeleteApplicationOutputInput {
+	s.OutputId = &v
+	return s
+}
+
 type DeleteApplicationOutputOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1865,6 +2105,24 @@ func (s *DeleteApplicationReferenceDataSourceInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DeleteApplicationReferenceDataSourceInput) SetApplicationName(v string) *DeleteApplicationReferenceDataSourceInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *DeleteApplicationReferenceDataSourceInput) SetCurrentApplicationVersionId(v int64) *DeleteApplicationReferenceDataSourceInput {
+	s.CurrentApplicationVersionId = &v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *DeleteApplicationReferenceDataSourceInput) SetReferenceId(v string) *DeleteApplicationReferenceDataSourceInput {
+	s.ReferenceId = &v
+	return s
+}
+
 type DeleteApplicationReferenceDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1914,6 +2172,12 @@ func (s *DescribeApplicationInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeApplicationInput) SetApplicationName(v string) *DescribeApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
 type DescribeApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1935,6 +2199,12 @@ func (s DescribeApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// SetApplicationDetail sets the ApplicationDetail field's value.
+func (s *DescribeApplicationOutput) SetApplicationDetail(v *ApplicationDetail) *DescribeApplicationOutput {
+	s.ApplicationDetail = v
+	return s
+}
+
 // Describes the data format when records are written to the destination. For
 // more information, see Configuring Application Output (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-output.html).
 type DestinationSchema struct {
@@ -1952,6 +2222,12 @@ func (s DestinationSchema) String() string {
 // GoString returns the string representation
 func (s DestinationSchema) GoString() string {
 	return s.String()
+}
+
+// SetRecordFormatType sets the RecordFormatType field's value.
+func (s *DestinationSchema) SetRecordFormatType(v string) *DestinationSchema {
+	s.RecordFormatType = &v
+	return s
 }
 
 type DiscoverInputSchemaInput struct {
@@ -2010,6 +2286,24 @@ func (s *DiscoverInputSchemaInput) Validate() error {
 	return nil
 }
 
+// SetInputStartingPositionConfiguration sets the InputStartingPositionConfiguration field's value.
+func (s *DiscoverInputSchemaInput) SetInputStartingPositionConfiguration(v *InputStartingPositionConfiguration) *DiscoverInputSchemaInput {
+	s.InputStartingPositionConfiguration = v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *DiscoverInputSchemaInput) SetResourceARN(v string) *DiscoverInputSchemaInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *DiscoverInputSchemaInput) SetRoleARN(v string) *DiscoverInputSchemaInput {
+	s.RoleARN = &v
+	return s
+}
+
 type DiscoverInputSchemaOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2034,6 +2328,24 @@ func (s DiscoverInputSchemaOutput) String() string {
 // GoString returns the string representation
 func (s DiscoverInputSchemaOutput) GoString() string {
 	return s.String()
+}
+
+// SetInputSchema sets the InputSchema field's value.
+func (s *DiscoverInputSchemaOutput) SetInputSchema(v *SourceSchema) *DiscoverInputSchemaOutput {
+	s.InputSchema = v
+	return s
+}
+
+// SetParsedInputRecords sets the ParsedInputRecords field's value.
+func (s *DiscoverInputSchemaOutput) SetParsedInputRecords(v [][]*string) *DiscoverInputSchemaOutput {
+	s.ParsedInputRecords = v
+	return s
+}
+
+// SetRawInputRecords sets the RawInputRecords field's value.
+func (s *DiscoverInputSchemaOutput) SetRawInputRecords(v []*string) *DiscoverInputSchemaOutput {
+	s.RawInputRecords = v
+	return s
 }
 
 // When you configure the application input, you specify the streaming source,
@@ -2127,6 +2439,36 @@ func (s *Input) Validate() error {
 	return nil
 }
 
+// SetInputParallelism sets the InputParallelism field's value.
+func (s *Input) SetInputParallelism(v *InputParallelism) *Input {
+	s.InputParallelism = v
+	return s
+}
+
+// SetInputSchema sets the InputSchema field's value.
+func (s *Input) SetInputSchema(v *SourceSchema) *Input {
+	s.InputSchema = v
+	return s
+}
+
+// SetKinesisFirehoseInput sets the KinesisFirehoseInput field's value.
+func (s *Input) SetKinesisFirehoseInput(v *KinesisFirehoseInput) *Input {
+	s.KinesisFirehoseInput = v
+	return s
+}
+
+// SetKinesisStreamsInput sets the KinesisStreamsInput field's value.
+func (s *Input) SetKinesisStreamsInput(v *KinesisStreamsInput) *Input {
+	s.KinesisStreamsInput = v
+	return s
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *Input) SetNamePrefix(v string) *Input {
+	s.NamePrefix = &v
+	return s
+}
+
 // When you start your application, you provide this configuration, which identifies
 // the input source and the point in the input source at which you want the
 // application to start processing records.
@@ -2172,6 +2514,18 @@ func (s *InputConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *InputConfiguration) SetId(v string) *InputConfiguration {
+	s.Id = &v
+	return s
+}
+
+// SetInputStartingPositionConfiguration sets the InputStartingPositionConfiguration field's value.
+func (s *InputConfiguration) SetInputStartingPositionConfiguration(v *InputStartingPositionConfiguration) *InputConfiguration {
+	s.InputStartingPositionConfiguration = v
+	return s
 }
 
 // Describes the application input configuration. For more information, see
@@ -2222,6 +2576,54 @@ func (s InputDescription) GoString() string {
 	return s.String()
 }
 
+// SetInAppStreamNames sets the InAppStreamNames field's value.
+func (s *InputDescription) SetInAppStreamNames(v []*string) *InputDescription {
+	s.InAppStreamNames = v
+	return s
+}
+
+// SetInputId sets the InputId field's value.
+func (s *InputDescription) SetInputId(v string) *InputDescription {
+	s.InputId = &v
+	return s
+}
+
+// SetInputParallelism sets the InputParallelism field's value.
+func (s *InputDescription) SetInputParallelism(v *InputParallelism) *InputDescription {
+	s.InputParallelism = v
+	return s
+}
+
+// SetInputSchema sets the InputSchema field's value.
+func (s *InputDescription) SetInputSchema(v *SourceSchema) *InputDescription {
+	s.InputSchema = v
+	return s
+}
+
+// SetInputStartingPositionConfiguration sets the InputStartingPositionConfiguration field's value.
+func (s *InputDescription) SetInputStartingPositionConfiguration(v *InputStartingPositionConfiguration) *InputDescription {
+	s.InputStartingPositionConfiguration = v
+	return s
+}
+
+// SetKinesisFirehoseInputDescription sets the KinesisFirehoseInputDescription field's value.
+func (s *InputDescription) SetKinesisFirehoseInputDescription(v *KinesisFirehoseInputDescription) *InputDescription {
+	s.KinesisFirehoseInputDescription = v
+	return s
+}
+
+// SetKinesisStreamsInputDescription sets the KinesisStreamsInputDescription field's value.
+func (s *InputDescription) SetKinesisStreamsInputDescription(v *KinesisStreamsInputDescription) *InputDescription {
+	s.KinesisStreamsInputDescription = v
+	return s
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *InputDescription) SetNamePrefix(v string) *InputDescription {
+	s.NamePrefix = &v
+	return s
+}
+
 // Describes the number of in-application streams to create for a given streaming
 // source. For information about parallellism, see Configuring Application Input
 // (http://docs.aws.amazon.com/kinesisanalytics/latest/dev/how-it-works-input.html).
@@ -2256,6 +2658,12 @@ func (s *InputParallelism) Validate() error {
 	return nil
 }
 
+// SetCount sets the Count field's value.
+func (s *InputParallelism) SetCount(v int64) *InputParallelism {
+	s.Count = &v
+	return s
+}
+
 // Provides updates to the parallelism count.
 type InputParallelismUpdate struct {
 	_ struct{} `type:"structure"`
@@ -2285,6 +2693,12 @@ func (s *InputParallelismUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCountUpdate sets the CountUpdate field's value.
+func (s *InputParallelismUpdate) SetCountUpdate(v int64) *InputParallelismUpdate {
+	s.CountUpdate = &v
+	return s
 }
 
 // Describes updates for the application's input schema.
@@ -2342,6 +2756,24 @@ func (s *InputSchemaUpdate) Validate() error {
 	return nil
 }
 
+// SetRecordColumnUpdates sets the RecordColumnUpdates field's value.
+func (s *InputSchemaUpdate) SetRecordColumnUpdates(v []*RecordColumn) *InputSchemaUpdate {
+	s.RecordColumnUpdates = v
+	return s
+}
+
+// SetRecordEncodingUpdate sets the RecordEncodingUpdate field's value.
+func (s *InputSchemaUpdate) SetRecordEncodingUpdate(v string) *InputSchemaUpdate {
+	s.RecordEncodingUpdate = &v
+	return s
+}
+
+// SetRecordFormatUpdate sets the RecordFormatUpdate field's value.
+func (s *InputSchemaUpdate) SetRecordFormatUpdate(v *RecordFormat) *InputSchemaUpdate {
+	s.RecordFormatUpdate = v
+	return s
+}
+
 // Describes the point at which the application reads from the streaming source.
 type InputStartingPositionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -2367,6 +2799,12 @@ func (s InputStartingPositionConfiguration) String() string {
 // GoString returns the string representation
 func (s InputStartingPositionConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetInputStartingPosition sets the InputStartingPosition field's value.
+func (s *InputStartingPositionConfiguration) SetInputStartingPosition(v string) *InputStartingPositionConfiguration {
+	s.InputStartingPosition = &v
+	return s
 }
 
 // Describes updates to a specific input configuration (identified by the InputId
@@ -2451,6 +2889,42 @@ func (s *InputUpdate) Validate() error {
 	return nil
 }
 
+// SetInputId sets the InputId field's value.
+func (s *InputUpdate) SetInputId(v string) *InputUpdate {
+	s.InputId = &v
+	return s
+}
+
+// SetInputParallelismUpdate sets the InputParallelismUpdate field's value.
+func (s *InputUpdate) SetInputParallelismUpdate(v *InputParallelismUpdate) *InputUpdate {
+	s.InputParallelismUpdate = v
+	return s
+}
+
+// SetInputSchemaUpdate sets the InputSchemaUpdate field's value.
+func (s *InputUpdate) SetInputSchemaUpdate(v *InputSchemaUpdate) *InputUpdate {
+	s.InputSchemaUpdate = v
+	return s
+}
+
+// SetKinesisFirehoseInputUpdate sets the KinesisFirehoseInputUpdate field's value.
+func (s *InputUpdate) SetKinesisFirehoseInputUpdate(v *KinesisFirehoseInputUpdate) *InputUpdate {
+	s.KinesisFirehoseInputUpdate = v
+	return s
+}
+
+// SetKinesisStreamsInputUpdate sets the KinesisStreamsInputUpdate field's value.
+func (s *InputUpdate) SetKinesisStreamsInputUpdate(v *KinesisStreamsInputUpdate) *InputUpdate {
+	s.KinesisStreamsInputUpdate = v
+	return s
+}
+
+// SetNamePrefixUpdate sets the NamePrefixUpdate field's value.
+func (s *InputUpdate) SetNamePrefixUpdate(v string) *InputUpdate {
+	s.NamePrefixUpdate = &v
+	return s
+}
+
 // Provides additional mapping information when JSON is the record format on
 // the streaming source.
 type JSONMappingParameters struct {
@@ -2488,6 +2962,12 @@ func (s *JSONMappingParameters) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRecordRowPath sets the RecordRowPath field's value.
+func (s *JSONMappingParameters) SetRecordRowPath(v string) *JSONMappingParameters {
+	s.RecordRowPath = &v
+	return s
 }
 
 // Identifies an Amazon Kinesis Firehose delivery stream as the streaming source.
@@ -2542,6 +3022,18 @@ func (s *KinesisFirehoseInput) Validate() error {
 	return nil
 }
 
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisFirehoseInput) SetResourceARN(v string) *KinesisFirehoseInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisFirehoseInput) SetRoleARN(v string) *KinesisFirehoseInput {
+	s.RoleARN = &v
+	return s
+}
+
 // Describes the Amazon Kinesis Firehose delivery stream that is configured
 // as the streaming source in the application input configuration.
 type KinesisFirehoseInputDescription struct {
@@ -2562,6 +3054,18 @@ func (s KinesisFirehoseInputDescription) String() string {
 // GoString returns the string representation
 func (s KinesisFirehoseInputDescription) GoString() string {
 	return s.String()
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisFirehoseInputDescription) SetResourceARN(v string) *KinesisFirehoseInputDescription {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisFirehoseInputDescription) SetRoleARN(v string) *KinesisFirehoseInputDescription {
+	s.RoleARN = &v
+	return s
 }
 
 // When updating application input configuration, provides information about
@@ -2602,6 +3106,18 @@ func (s *KinesisFirehoseInputUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceARNUpdate sets the ResourceARNUpdate field's value.
+func (s *KinesisFirehoseInputUpdate) SetResourceARNUpdate(v string) *KinesisFirehoseInputUpdate {
+	s.ResourceARNUpdate = &v
+	return s
+}
+
+// SetRoleARNUpdate sets the RoleARNUpdate field's value.
+func (s *KinesisFirehoseInputUpdate) SetRoleARNUpdate(v string) *KinesisFirehoseInputUpdate {
+	s.RoleARNUpdate = &v
+	return s
 }
 
 // When configuring application output, identifies an Amazon Kinesis Firehose
@@ -2656,6 +3172,18 @@ func (s *KinesisFirehoseOutput) Validate() error {
 	return nil
 }
 
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisFirehoseOutput) SetResourceARN(v string) *KinesisFirehoseOutput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisFirehoseOutput) SetRoleARN(v string) *KinesisFirehoseOutput {
+	s.RoleARN = &v
+	return s
+}
+
 // For an application output, describes the Amazon Kinesis Firehose delivery
 // stream configured as its destination.
 type KinesisFirehoseOutputDescription struct {
@@ -2677,6 +3205,18 @@ func (s KinesisFirehoseOutputDescription) String() string {
 // GoString returns the string representation
 func (s KinesisFirehoseOutputDescription) GoString() string {
 	return s.String()
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisFirehoseOutputDescription) SetResourceARN(v string) *KinesisFirehoseOutputDescription {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisFirehoseOutputDescription) SetRoleARN(v string) *KinesisFirehoseOutputDescription {
+	s.RoleARN = &v
+	return s
 }
 
 // When updating an output configuration using the UpdateApplication operation,
@@ -2718,6 +3258,18 @@ func (s *KinesisFirehoseOutputUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceARNUpdate sets the ResourceARNUpdate field's value.
+func (s *KinesisFirehoseOutputUpdate) SetResourceARNUpdate(v string) *KinesisFirehoseOutputUpdate {
+	s.ResourceARNUpdate = &v
+	return s
+}
+
+// SetRoleARNUpdate sets the RoleARNUpdate field's value.
+func (s *KinesisFirehoseOutputUpdate) SetRoleARNUpdate(v string) *KinesisFirehoseOutputUpdate {
+	s.RoleARNUpdate = &v
+	return s
 }
 
 // Identifies an Amazon Kinesis stream as the streaming source. You provide
@@ -2771,6 +3323,18 @@ func (s *KinesisStreamsInput) Validate() error {
 	return nil
 }
 
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisStreamsInput) SetResourceARN(v string) *KinesisStreamsInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisStreamsInput) SetRoleARN(v string) *KinesisStreamsInput {
+	s.RoleARN = &v
+	return s
+}
+
 // Describes the Amazon Kinesis stream that is configured as the streaming source
 // in the application input configuration.
 type KinesisStreamsInputDescription struct {
@@ -2792,6 +3356,18 @@ func (s KinesisStreamsInputDescription) String() string {
 // GoString returns the string representation
 func (s KinesisStreamsInputDescription) GoString() string {
 	return s.String()
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisStreamsInputDescription) SetResourceARN(v string) *KinesisStreamsInputDescription {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisStreamsInputDescription) SetRoleARN(v string) *KinesisStreamsInputDescription {
+	s.RoleARN = &v
+	return s
 }
 
 // When updating application input configuration, provides information about
@@ -2832,6 +3408,18 @@ func (s *KinesisStreamsInputUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourceARNUpdate sets the ResourceARNUpdate field's value.
+func (s *KinesisStreamsInputUpdate) SetResourceARNUpdate(v string) *KinesisStreamsInputUpdate {
+	s.ResourceARNUpdate = &v
+	return s
+}
+
+// SetRoleARNUpdate sets the RoleARNUpdate field's value.
+func (s *KinesisStreamsInputUpdate) SetRoleARNUpdate(v string) *KinesisStreamsInputUpdate {
+	s.RoleARNUpdate = &v
+	return s
 }
 
 // When configuring application output, identifies a Amazon Kinesis stream as
@@ -2886,6 +3474,18 @@ func (s *KinesisStreamsOutput) Validate() error {
 	return nil
 }
 
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisStreamsOutput) SetResourceARN(v string) *KinesisStreamsOutput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisStreamsOutput) SetRoleARN(v string) *KinesisStreamsOutput {
+	s.RoleARN = &v
+	return s
+}
+
 // For an application output, describes the Amazon Kinesis stream configured
 // as its destination.
 type KinesisStreamsOutputDescription struct {
@@ -2907,6 +3507,18 @@ func (s KinesisStreamsOutputDescription) String() string {
 // GoString returns the string representation
 func (s KinesisStreamsOutputDescription) GoString() string {
 	return s.String()
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *KinesisStreamsOutputDescription) SetResourceARN(v string) *KinesisStreamsOutputDescription {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *KinesisStreamsOutputDescription) SetRoleARN(v string) *KinesisStreamsOutputDescription {
+	s.RoleARN = &v
+	return s
 }
 
 // When updating an output configuration using the UpdateApplication operation,
@@ -2950,6 +3562,18 @@ func (s *KinesisStreamsOutputUpdate) Validate() error {
 	return nil
 }
 
+// SetResourceARNUpdate sets the ResourceARNUpdate field's value.
+func (s *KinesisStreamsOutputUpdate) SetResourceARNUpdate(v string) *KinesisStreamsOutputUpdate {
+	s.ResourceARNUpdate = &v
+	return s
+}
+
+// SetRoleARNUpdate sets the RoleARNUpdate field's value.
+func (s *KinesisStreamsOutputUpdate) SetRoleARNUpdate(v string) *KinesisStreamsOutputUpdate {
+	s.RoleARNUpdate = &v
+	return s
+}
+
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2989,6 +3613,18 @@ func (s *ListApplicationsInput) Validate() error {
 	return nil
 }
 
+// SetExclusiveStartApplicationName sets the ExclusiveStartApplicationName field's value.
+func (s *ListApplicationsInput) SetExclusiveStartApplicationName(v string) *ListApplicationsInput {
+	s.ExclusiveStartApplicationName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListApplicationsInput) SetLimit(v int64) *ListApplicationsInput {
+	s.Limit = &v
+	return s
+}
+
 type ListApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3011,6 +3647,18 @@ func (s ListApplicationsOutput) String() string {
 // GoString returns the string representation
 func (s ListApplicationsOutput) GoString() string {
 	return s.String()
+}
+
+// SetApplicationSummaries sets the ApplicationSummaries field's value.
+func (s *ListApplicationsOutput) SetApplicationSummaries(v []*ApplicationSummary) *ListApplicationsOutput {
+	s.ApplicationSummaries = v
+	return s
+}
+
+// SetHasMoreApplications sets the HasMoreApplications field's value.
+func (s *ListApplicationsOutput) SetHasMoreApplications(v bool) *ListApplicationsOutput {
+	s.HasMoreApplications = &v
+	return s
 }
 
 // When configuring application input at the time of creating or updating an
@@ -3057,6 +3705,18 @@ func (s *MappingParameters) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCSVMappingParameters sets the CSVMappingParameters field's value.
+func (s *MappingParameters) SetCSVMappingParameters(v *CSVMappingParameters) *MappingParameters {
+	s.CSVMappingParameters = v
+	return s
+}
+
+// SetJSONMappingParameters sets the JSONMappingParameters field's value.
+func (s *MappingParameters) SetJSONMappingParameters(v *JSONMappingParameters) *MappingParameters {
+	s.JSONMappingParameters = v
+	return s
 }
 
 // Describes application output configuration in which you identify an in-application
@@ -3123,6 +3783,30 @@ func (s *Output) Validate() error {
 	return nil
 }
 
+// SetDestinationSchema sets the DestinationSchema field's value.
+func (s *Output) SetDestinationSchema(v *DestinationSchema) *Output {
+	s.DestinationSchema = v
+	return s
+}
+
+// SetKinesisFirehoseOutput sets the KinesisFirehoseOutput field's value.
+func (s *Output) SetKinesisFirehoseOutput(v *KinesisFirehoseOutput) *Output {
+	s.KinesisFirehoseOutput = v
+	return s
+}
+
+// SetKinesisStreamsOutput sets the KinesisStreamsOutput field's value.
+func (s *Output) SetKinesisStreamsOutput(v *KinesisStreamsOutput) *Output {
+	s.KinesisStreamsOutput = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Output) SetName(v string) *Output {
+	s.Name = &v
+	return s
+}
+
 // Describes the application output configuration, which includes the in-application
 // stream name and the destination where the stream data is written. The destination
 // can be an Amazon Kinesis stream or an Amazon Kinesis Firehose delivery stream.
@@ -3155,6 +3839,36 @@ func (s OutputDescription) String() string {
 // GoString returns the string representation
 func (s OutputDescription) GoString() string {
 	return s.String()
+}
+
+// SetDestinationSchema sets the DestinationSchema field's value.
+func (s *OutputDescription) SetDestinationSchema(v *DestinationSchema) *OutputDescription {
+	s.DestinationSchema = v
+	return s
+}
+
+// SetKinesisFirehoseOutputDescription sets the KinesisFirehoseOutputDescription field's value.
+func (s *OutputDescription) SetKinesisFirehoseOutputDescription(v *KinesisFirehoseOutputDescription) *OutputDescription {
+	s.KinesisFirehoseOutputDescription = v
+	return s
+}
+
+// SetKinesisStreamsOutputDescription sets the KinesisStreamsOutputDescription field's value.
+func (s *OutputDescription) SetKinesisStreamsOutputDescription(v *KinesisStreamsOutputDescription) *OutputDescription {
+	s.KinesisStreamsOutputDescription = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *OutputDescription) SetName(v string) *OutputDescription {
+	s.Name = &v
+	return s
+}
+
+// SetOutputId sets the OutputId field's value.
+func (s *OutputDescription) SetOutputId(v string) *OutputDescription {
+	s.OutputId = &v
+	return s
 }
 
 // Describes updates to the output configuration identified by the OutputId.
@@ -3221,6 +3935,36 @@ func (s *OutputUpdate) Validate() error {
 	return nil
 }
 
+// SetDestinationSchemaUpdate sets the DestinationSchemaUpdate field's value.
+func (s *OutputUpdate) SetDestinationSchemaUpdate(v *DestinationSchema) *OutputUpdate {
+	s.DestinationSchemaUpdate = v
+	return s
+}
+
+// SetKinesisFirehoseOutputUpdate sets the KinesisFirehoseOutputUpdate field's value.
+func (s *OutputUpdate) SetKinesisFirehoseOutputUpdate(v *KinesisFirehoseOutputUpdate) *OutputUpdate {
+	s.KinesisFirehoseOutputUpdate = v
+	return s
+}
+
+// SetKinesisStreamsOutputUpdate sets the KinesisStreamsOutputUpdate field's value.
+func (s *OutputUpdate) SetKinesisStreamsOutputUpdate(v *KinesisStreamsOutputUpdate) *OutputUpdate {
+	s.KinesisStreamsOutputUpdate = v
+	return s
+}
+
+// SetNameUpdate sets the NameUpdate field's value.
+func (s *OutputUpdate) SetNameUpdate(v string) *OutputUpdate {
+	s.NameUpdate = &v
+	return s
+}
+
+// SetOutputId sets the OutputId field's value.
+func (s *OutputUpdate) SetOutputId(v string) *OutputUpdate {
+	s.OutputId = &v
+	return s
+}
+
 // Describes the mapping of each data element in the streaming source to the
 // corresponding column in the in-application stream.
 //
@@ -3270,6 +4014,24 @@ func (s *RecordColumn) Validate() error {
 	return nil
 }
 
+// SetMapping sets the Mapping field's value.
+func (s *RecordColumn) SetMapping(v string) *RecordColumn {
+	s.Mapping = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RecordColumn) SetName(v string) *RecordColumn {
+	s.Name = &v
+	return s
+}
+
+// SetSqlType sets the SqlType field's value.
+func (s *RecordColumn) SetSqlType(v string) *RecordColumn {
+	s.SqlType = &v
+	return s
+}
+
 // Describes the record format and relevant mapping information that should
 // be applied to schematize the records on the stream.
 type RecordFormat struct {
@@ -3313,6 +4075,18 @@ func (s *RecordFormat) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMappingParameters sets the MappingParameters field's value.
+func (s *RecordFormat) SetMappingParameters(v *MappingParameters) *RecordFormat {
+	s.MappingParameters = v
+	return s
+}
+
+// SetRecordFormatType sets the RecordFormatType field's value.
+func (s *RecordFormat) SetRecordFormatType(v string) *RecordFormat {
+	s.RecordFormatType = &v
+	return s
 }
 
 // Describes the reference data source by providing the source information (S3
@@ -3382,6 +4156,24 @@ func (s *ReferenceDataSource) Validate() error {
 	return nil
 }
 
+// SetReferenceSchema sets the ReferenceSchema field's value.
+func (s *ReferenceDataSource) SetReferenceSchema(v *SourceSchema) *ReferenceDataSource {
+	s.ReferenceSchema = v
+	return s
+}
+
+// SetS3ReferenceDataSource sets the S3ReferenceDataSource field's value.
+func (s *ReferenceDataSource) SetS3ReferenceDataSource(v *S3ReferenceDataSource) *ReferenceDataSource {
+	s.S3ReferenceDataSource = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ReferenceDataSource) SetTableName(v string) *ReferenceDataSource {
+	s.TableName = &v
+	return s
+}
+
 // Describes the reference data source configured for an application.
 type ReferenceDataSourceDescription struct {
 	_ struct{} `type:"structure"`
@@ -3420,6 +4212,30 @@ func (s ReferenceDataSourceDescription) String() string {
 // GoString returns the string representation
 func (s ReferenceDataSourceDescription) GoString() string {
 	return s.String()
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *ReferenceDataSourceDescription) SetReferenceId(v string) *ReferenceDataSourceDescription {
+	s.ReferenceId = &v
+	return s
+}
+
+// SetReferenceSchema sets the ReferenceSchema field's value.
+func (s *ReferenceDataSourceDescription) SetReferenceSchema(v *SourceSchema) *ReferenceDataSourceDescription {
+	s.ReferenceSchema = v
+	return s
+}
+
+// SetS3ReferenceDataSourceDescription sets the S3ReferenceDataSourceDescription field's value.
+func (s *ReferenceDataSourceDescription) SetS3ReferenceDataSourceDescription(v *S3ReferenceDataSourceDescription) *ReferenceDataSourceDescription {
+	s.S3ReferenceDataSourceDescription = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ReferenceDataSourceDescription) SetTableName(v string) *ReferenceDataSourceDescription {
+	s.TableName = &v
+	return s
 }
 
 // When you update a reference data source configuration for an application,
@@ -3488,6 +4304,30 @@ func (s *ReferenceDataSourceUpdate) Validate() error {
 	return nil
 }
 
+// SetReferenceId sets the ReferenceId field's value.
+func (s *ReferenceDataSourceUpdate) SetReferenceId(v string) *ReferenceDataSourceUpdate {
+	s.ReferenceId = &v
+	return s
+}
+
+// SetReferenceSchemaUpdate sets the ReferenceSchemaUpdate field's value.
+func (s *ReferenceDataSourceUpdate) SetReferenceSchemaUpdate(v *SourceSchema) *ReferenceDataSourceUpdate {
+	s.ReferenceSchemaUpdate = v
+	return s
+}
+
+// SetS3ReferenceDataSourceUpdate sets the S3ReferenceDataSourceUpdate field's value.
+func (s *ReferenceDataSourceUpdate) SetS3ReferenceDataSourceUpdate(v *S3ReferenceDataSourceUpdate) *ReferenceDataSourceUpdate {
+	s.S3ReferenceDataSourceUpdate = v
+	return s
+}
+
+// SetTableNameUpdate sets the TableNameUpdate field's value.
+func (s *ReferenceDataSourceUpdate) SetTableNameUpdate(v string) *ReferenceDataSourceUpdate {
+	s.TableNameUpdate = &v
+	return s
+}
+
 // Identifies the S3 bucket and object that contains the reference data. Also
 // identifies the IAM role Amazon Kinesis Analytics can assume to read this
 // object on your behalf.
@@ -3552,6 +4392,24 @@ func (s *S3ReferenceDataSource) Validate() error {
 	return nil
 }
 
+// SetBucketARN sets the BucketARN field's value.
+func (s *S3ReferenceDataSource) SetBucketARN(v string) *S3ReferenceDataSource {
+	s.BucketARN = &v
+	return s
+}
+
+// SetFileKey sets the FileKey field's value.
+func (s *S3ReferenceDataSource) SetFileKey(v string) *S3ReferenceDataSource {
+	s.FileKey = &v
+	return s
+}
+
+// SetReferenceRoleARN sets the ReferenceRoleARN field's value.
+func (s *S3ReferenceDataSource) SetReferenceRoleARN(v string) *S3ReferenceDataSource {
+	s.ReferenceRoleARN = &v
+	return s
+}
+
 // Provides the bucket name and object key name that stores the reference data.
 type S3ReferenceDataSourceDescription struct {
 	_ struct{} `type:"structure"`
@@ -3582,6 +4440,24 @@ func (s S3ReferenceDataSourceDescription) String() string {
 // GoString returns the string representation
 func (s S3ReferenceDataSourceDescription) GoString() string {
 	return s.String()
+}
+
+// SetBucketARN sets the BucketARN field's value.
+func (s *S3ReferenceDataSourceDescription) SetBucketARN(v string) *S3ReferenceDataSourceDescription {
+	s.BucketARN = &v
+	return s
+}
+
+// SetFileKey sets the FileKey field's value.
+func (s *S3ReferenceDataSourceDescription) SetFileKey(v string) *S3ReferenceDataSourceDescription {
+	s.FileKey = &v
+	return s
+}
+
+// SetReferenceRoleARN sets the ReferenceRoleARN field's value.
+func (s *S3ReferenceDataSourceDescription) SetReferenceRoleARN(v string) *S3ReferenceDataSourceDescription {
+	s.ReferenceRoleARN = &v
+	return s
 }
 
 // Describes the S3 bucket name, object key name, and IAM role that Amazon Kinesis
@@ -3625,6 +4501,24 @@ func (s *S3ReferenceDataSourceUpdate) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBucketARNUpdate sets the BucketARNUpdate field's value.
+func (s *S3ReferenceDataSourceUpdate) SetBucketARNUpdate(v string) *S3ReferenceDataSourceUpdate {
+	s.BucketARNUpdate = &v
+	return s
+}
+
+// SetFileKeyUpdate sets the FileKeyUpdate field's value.
+func (s *S3ReferenceDataSourceUpdate) SetFileKeyUpdate(v string) *S3ReferenceDataSourceUpdate {
+	s.FileKeyUpdate = &v
+	return s
+}
+
+// SetReferenceRoleARNUpdate sets the ReferenceRoleARNUpdate field's value.
+func (s *S3ReferenceDataSourceUpdate) SetReferenceRoleARNUpdate(v string) *S3ReferenceDataSourceUpdate {
+	s.ReferenceRoleARNUpdate = &v
+	return s
 }
 
 // Describes the format of the data in the streaming source, and how each data
@@ -3691,6 +4585,24 @@ func (s *SourceSchema) Validate() error {
 	return nil
 }
 
+// SetRecordColumns sets the RecordColumns field's value.
+func (s *SourceSchema) SetRecordColumns(v []*RecordColumn) *SourceSchema {
+	s.RecordColumns = v
+	return s
+}
+
+// SetRecordEncoding sets the RecordEncoding field's value.
+func (s *SourceSchema) SetRecordEncoding(v string) *SourceSchema {
+	s.RecordEncoding = &v
+	return s
+}
+
+// SetRecordFormat sets the RecordFormat field's value.
+func (s *SourceSchema) SetRecordFormat(v *RecordFormat) *SourceSchema {
+	s.RecordFormat = v
+	return s
+}
+
 type StartApplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3747,6 +4659,18 @@ func (s *StartApplicationInput) Validate() error {
 	return nil
 }
 
+// SetApplicationName sets the ApplicationName field's value.
+func (s *StartApplicationInput) SetApplicationName(v string) *StartApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetInputConfigurations sets the InputConfigurations field's value.
+func (s *StartApplicationInput) SetInputConfigurations(v []*InputConfiguration) *StartApplicationInput {
+	s.InputConfigurations = v
+	return s
+}
+
 type StartApplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3794,6 +4718,12 @@ func (s *StopApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *StopApplicationInput) SetApplicationName(v string) *StopApplicationInput {
+	s.ApplicationName = &v
+	return s
 }
 
 type StopApplicationOutput struct {
@@ -3868,6 +4798,24 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *UpdateApplicationInput) SetApplicationName(v string) *UpdateApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetApplicationUpdate sets the ApplicationUpdate field's value.
+func (s *UpdateApplicationInput) SetApplicationUpdate(v *ApplicationUpdate) *UpdateApplicationInput {
+	s.ApplicationUpdate = v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *UpdateApplicationInput) SetCurrentApplicationVersionId(v int64) *UpdateApplicationInput {
+	s.CurrentApplicationVersionId = &v
+	return s
 }
 
 type UpdateApplicationOutput struct {

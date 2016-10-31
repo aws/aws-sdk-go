@@ -163,6 +163,18 @@ type InputService1TestShapeInputService1TestCaseOperation1Input struct {
 	Foo *string `type:"string"`
 }
 
+// SetBar sets the Bar field's value.
+func (s *InputService1TestShapeInputService1TestCaseOperation1Input) SetBar(v string) *InputService1TestShapeInputService1TestCaseOperation1Input {
+	s.Bar = &v
+	return s
+}
+
+// SetFoo sets the Foo field's value.
+func (s *InputService1TestShapeInputService1TestCaseOperation1Input) SetFoo(v string) *InputService1TestShapeInputService1TestCaseOperation1Input {
+	s.Foo = &v
+	return s
+}
+
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
@@ -289,6 +301,24 @@ type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 	Yuck *string `locationName:"yuckLocationName" queryName:"yuckQueryName" type:"string"`
 }
 
+// SetBar sets the Bar field's value.
+func (s *InputService2TestShapeInputService2TestCaseOperation1Input) SetBar(v string) *InputService2TestShapeInputService2TestCaseOperation1Input {
+	s.Bar = &v
+	return s
+}
+
+// SetFoo sets the Foo field's value.
+func (s *InputService2TestShapeInputService2TestCaseOperation1Input) SetFoo(v string) *InputService2TestShapeInputService2TestCaseOperation1Input {
+	s.Foo = &v
+	return s
+}
+
+// SetYuck sets the Yuck field's value.
+func (s *InputService2TestShapeInputService2TestCaseOperation1Input) SetYuck(v string) *InputService2TestShapeInputService2TestCaseOperation1Input {
+	s.Yuck = &v
+	return s
+}
+
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
@@ -411,6 +441,12 @@ type InputService3TestShapeInputService3TestCaseOperation1Input struct {
 	StructArg *InputService3TestShapeStructType `locationName:"Struct" type:"structure"`
 }
 
+// SetStructArg sets the StructArg field's value.
+func (s *InputService3TestShapeInputService3TestCaseOperation1Input) SetStructArg(v *InputService3TestShapeStructType) *InputService3TestShapeInputService3TestCaseOperation1Input {
+	s.StructArg = v
+	return s
+}
+
 type InputService3TestShapeInputService3TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
@@ -419,6 +455,12 @@ type InputService3TestShapeStructType struct {
 	_ struct{} `type:"structure"`
 
 	ScalarArg *string `locationName:"Scalar" type:"string"`
+}
+
+// SetScalarArg sets the ScalarArg field's value.
+func (s *InputService3TestShapeStructType) SetScalarArg(v string) *InputService3TestShapeStructType {
+	s.ScalarArg = &v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -537,6 +579,12 @@ type InputService4TestShapeInputService4TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
 	ListArg []*string `type:"list"`
+}
+
+// SetListArg sets the ListArg field's value.
+func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListArg(v []*string) *InputService4TestShapeInputService4TestCaseOperation1Input {
+	s.ListArg = v
+	return s
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
@@ -661,6 +709,12 @@ type InputService5TestShapeInputService5TestCaseOperation1Input struct {
 	ListArg []*string `locationName:"ListMemberName" locationNameList:"item" type:"list"`
 }
 
+// SetListArg sets the ListArg field's value.
+func (s *InputService5TestShapeInputService5TestCaseOperation1Input) SetListArg(v []*string) *InputService5TestShapeInputService5TestCaseOperation1Input {
+	s.ListArg = v
+	return s
+}
+
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
@@ -781,6 +835,12 @@ type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
 	ListArg []*string `locationName:"ListMemberName" queryName:"ListQueryName" locationNameList:"item" type:"list"`
+}
+
+// SetListArg sets the ListArg field's value.
+func (s *InputService6TestShapeInputService6TestCaseOperation1Input) SetListArg(v []*string) *InputService6TestShapeInputService6TestCaseOperation1Input {
+	s.ListArg = v
+	return s
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
@@ -906,6 +966,12 @@ type InputService7TestShapeInputService7TestCaseOperation1Input struct {
 	BlobArg []byte `type:"blob"`
 }
 
+// SetBlobArg sets the BlobArg field's value.
+func (s *InputService7TestShapeInputService7TestCaseOperation1Input) SetBlobArg(v []byte) *InputService7TestShapeInputService7TestCaseOperation1Input {
+	s.BlobArg = v
+	return s
+}
+
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
@@ -1026,6 +1092,12 @@ type InputService8TestShapeInputService8TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
 	TimeArg *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// SetTimeArg sets the TimeArg field's value.
+func (s *InputService8TestShapeInputService8TestCaseOperation1Input) SetTimeArg(v time.Time) *InputService8TestShapeInputService8TestCaseOperation1Input {
+	s.TimeArg = &v
+	return s
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
@@ -1216,6 +1288,12 @@ type InputService9TestShapeInputShape struct {
 	_ struct{} `type:"structure"`
 
 	Token *string `type:"string" idempotencyToken:"true"`
+}
+
+// SetToken sets the Token field's value.
+func (s *InputService9TestShapeInputShape) SetToken(v string) *InputService9TestShapeInputShape {
+	s.Token = &v
+	return s
 }
 
 //

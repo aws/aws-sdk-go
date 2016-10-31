@@ -179,6 +179,60 @@ type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
 	TrueBool *bool `type:"boolean"`
 }
 
+// SetChar sets the Char field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetChar(v string) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Char = &v
+	return s
+}
+
+// SetDouble sets the Double field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetDouble(v float64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Double = &v
+	return s
+}
+
+// SetFalseBool sets the FalseBool field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetFalseBool(v bool) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.FalseBool = &v
+	return s
+}
+
+// SetFloat sets the Float field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetFloat(v float64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Float = &v
+	return s
+}
+
+// SetLong sets the Long field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetLong(v int64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Long = &v
+	return s
+}
+
+// SetNum sets the Num field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetNum(v int64) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Num = &v
+	return s
+}
+
+// SetStr sets the Str field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetStr(v string) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Str = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetTimestamp(v time.Time) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.Timestamp = &v
+	return s
+}
+
+// SetTrueBool sets the TrueBool field's value.
+func (s *OutputService1TestShapeOutputService1TestCaseOperation1Output) SetTrueBool(v bool) *OutputService1TestShapeOutputService1TestCaseOperation1Output {
+	s.TrueBool = &v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService2ProtocolTest struct {
@@ -299,6 +353,18 @@ type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
 	Num *int64 `type:"integer"`
 
 	Str *string `type:"string"`
+}
+
+// SetNum sets the Num field's value.
+func (s *OutputService2TestShapeOutputService2TestCaseOperation1Output) SetNum(v int64) *OutputService2TestShapeOutputService2TestCaseOperation1Output {
+	s.Num = &v
+	return s
+}
+
+// SetStr sets the Str field's value.
+func (s *OutputService2TestShapeOutputService2TestCaseOperation1Output) SetStr(v string) *OutputService2TestShapeOutputService2TestCaseOperation1Output {
+	s.Str = &v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -422,6 +488,12 @@ type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
 	Blob []byte `type:"blob"`
 }
 
+// SetBlob sets the Blob field's value.
+func (s *OutputService3TestShapeOutputService3TestCaseOperation1Output) SetBlob(v []byte) *OutputService3TestShapeOutputService3TestCaseOperation1Output {
+	s.Blob = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService4ProtocolTest struct {
@@ -540,6 +612,12 @@ type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
 	ListMember []*string `type:"list"`
+}
+
+// SetListMember sets the ListMember field's value.
+func (s *OutputService4TestShapeOutputService4TestCaseOperation1Output) SetListMember(v []*string) *OutputService4TestShapeOutputService4TestCaseOperation1Output {
+	s.ListMember = v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -662,6 +740,12 @@ type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
 	ListMember []*string `locationNameList:"item" type:"list"`
 }
 
+// SetListMember sets the ListMember field's value.
+func (s *OutputService5TestShapeOutputService5TestCaseOperation1Output) SetListMember(v []*string) *OutputService5TestShapeOutputService5TestCaseOperation1Output {
+	s.ListMember = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService6ProtocolTest struct {
@@ -780,6 +864,12 @@ type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
 	ListMember []*string `type:"list" flattened:"true"`
+}
+
+// SetListMember sets the ListMember field's value.
+func (s *OutputService6TestShapeOutputService6TestCaseOperation1Output) SetListMember(v []*string) *OutputService6TestShapeOutputService6TestCaseOperation1Output {
+	s.ListMember = v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -902,6 +992,12 @@ type OutputService7TestShapeOutputService7TestCaseOperation1Output struct {
 	ListMember []*string `type:"list" flattened:"true"`
 }
 
+// SetListMember sets the ListMember field's value.
+func (s *OutputService7TestShapeOutputService7TestCaseOperation1Output) SetListMember(v []*string) *OutputService7TestShapeOutputService7TestCaseOperation1Output {
+	s.ListMember = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService8ProtocolTest struct {
@@ -1022,6 +1118,12 @@ type OutputService8TestShapeOutputService8TestCaseOperation1Output struct {
 	List []*OutputService8TestShapeStructureShape `type:"list"`
 }
 
+// SetList sets the List field's value.
+func (s *OutputService8TestShapeOutputService8TestCaseOperation1Output) SetList(v []*OutputService8TestShapeStructureShape) *OutputService8TestShapeOutputService8TestCaseOperation1Output {
+	s.List = v
+	return s
+}
+
 type OutputService8TestShapeStructureShape struct {
 	_ struct{} `type:"structure"`
 
@@ -1030,6 +1132,24 @@ type OutputService8TestShapeStructureShape struct {
 	Baz *string `type:"string"`
 
 	Foo *string `type:"string"`
+}
+
+// SetBar sets the Bar field's value.
+func (s *OutputService8TestShapeStructureShape) SetBar(v string) *OutputService8TestShapeStructureShape {
+	s.Bar = &v
+	return s
+}
+
+// SetBaz sets the Baz field's value.
+func (s *OutputService8TestShapeStructureShape) SetBaz(v string) *OutputService8TestShapeStructureShape {
+	s.Baz = &v
+	return s
+}
+
+// SetFoo sets the Foo field's value.
+func (s *OutputService8TestShapeStructureShape) SetFoo(v string) *OutputService8TestShapeStructureShape {
+	s.Foo = &v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1152,6 +1272,12 @@ type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
 	List []*OutputService9TestShapeStructureShape `type:"list" flattened:"true"`
 }
 
+// SetList sets the List field's value.
+func (s *OutputService9TestShapeOutputService9TestCaseOperation1Output) SetList(v []*OutputService9TestShapeStructureShape) *OutputService9TestShapeOutputService9TestCaseOperation1Output {
+	s.List = v
+	return s
+}
+
 type OutputService9TestShapeStructureShape struct {
 	_ struct{} `type:"structure"`
 
@@ -1160,6 +1286,24 @@ type OutputService9TestShapeStructureShape struct {
 	Baz *string `type:"string"`
 
 	Foo *string `type:"string"`
+}
+
+// SetBar sets the Bar field's value.
+func (s *OutputService9TestShapeStructureShape) SetBar(v string) *OutputService9TestShapeStructureShape {
+	s.Bar = &v
+	return s
+}
+
+// SetBaz sets the Baz field's value.
+func (s *OutputService9TestShapeStructureShape) SetBaz(v string) *OutputService9TestShapeStructureShape {
+	s.Baz = &v
+	return s
+}
+
+// SetFoo sets the Foo field's value.
+func (s *OutputService9TestShapeStructureShape) SetFoo(v string) *OutputService9TestShapeStructureShape {
+	s.Foo = &v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1282,6 +1426,12 @@ type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
 	List []*string `locationNameList:"NamedList" type:"list" flattened:"true"`
 }
 
+// SetList sets the List field's value.
+func (s *OutputService10TestShapeOutputService10TestCaseOperation1Output) SetList(v []*string) *OutputService10TestShapeOutputService10TestCaseOperation1Output {
+	s.List = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService11ProtocolTest struct {
@@ -1402,10 +1552,22 @@ type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
 	Map map[string]*OutputService11TestShapeStructType `type:"map"`
 }
 
+// SetMap sets the Map field's value.
+func (s *OutputService11TestShapeOutputService11TestCaseOperation1Output) SetMap(v map[string]*OutputService11TestShapeStructType) *OutputService11TestShapeOutputService11TestCaseOperation1Output {
+	s.Map = v
+	return s
+}
+
 type OutputService11TestShapeStructType struct {
 	_ struct{} `type:"structure"`
 
 	Foo *string `locationName:"foo" type:"string"`
+}
+
+// SetFoo sets the Foo field's value.
+func (s *OutputService11TestShapeStructType) SetFoo(v string) *OutputService11TestShapeStructType {
+	s.Foo = &v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1528,6 +1690,12 @@ type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
 	Map map[string]*string `type:"map" flattened:"true"`
 }
 
+// SetMap sets the Map field's value.
+func (s *OutputService12TestShapeOutputService12TestCaseOperation1Output) SetMap(v map[string]*string) *OutputService12TestShapeOutputService12TestCaseOperation1Output {
+	s.Map = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService13ProtocolTest struct {
@@ -1646,6 +1814,12 @@ type OutputService13TestShapeOutputService13TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
 	Map map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
+}
+
+// SetMap sets the Map field's value.
+func (s *OutputService13TestShapeOutputService13TestCaseOperation1Output) SetMap(v map[string]*string) *OutputService13TestShapeOutputService13TestCaseOperation1Output {
+	s.Map = v
+	return s
 }
 
 //The service client's operations are safe to be used concurrently.
@@ -1768,6 +1942,12 @@ type OutputService14TestShapeOutputService14TestCaseOperation1Output struct {
 	Map map[string]*string `locationNameKey:"foo" locationNameValue:"bar" type:"map" flattened:"true"`
 }
 
+// SetMap sets the Map field's value.
+func (s *OutputService14TestShapeOutputService14TestCaseOperation1Output) SetMap(v map[string]*string) *OutputService14TestShapeOutputService14TestCaseOperation1Output {
+	s.Map = v
+	return s
+}
+
 //The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type OutputService15ProtocolTest struct {
@@ -1886,6 +2066,12 @@ type OutputService15TestShapeOutputService15TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
 	Foo *string `type:"string"`
+}
+
+// SetFoo sets the Foo field's value.
+func (s *OutputService15TestShapeOutputService15TestCaseOperation1Output) SetFoo(v string) *OutputService15TestShapeOutputService15TestCaseOperation1Output {
+	s.Foo = &v
+	return s
 }
 
 //
