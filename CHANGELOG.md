@@ -1,4 +1,4 @@
-Release v1.5.0 (2016-11-11)
+Release v1.5.0 (2016-11-01)
 ===
 
 Service Client Updates
