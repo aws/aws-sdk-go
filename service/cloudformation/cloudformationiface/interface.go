@@ -135,6 +135,10 @@ type CloudFormationAPI interface {
 
 	ListChangeSets(*cloudformation.ListChangeSetsInput) (*cloudformation.ListChangeSetsOutput, error)
 
+	ListExportsRequest(*cloudformation.ListExportsInput) (*request.Request, *cloudformation.ListExportsOutput)
+
+	ListExports(*cloudformation.ListExportsInput) (*cloudformation.ListExportsOutput, error)
+
 	ListStackResourcesRequest(*cloudformation.ListStackResourcesInput) (*request.Request, *cloudformation.ListStackResourcesOutput)
 
 	ListStackResources(*cloudformation.ListStackResourcesInput) (*cloudformation.ListStackResourcesOutput, error)

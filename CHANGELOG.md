@@ -1,3 +1,16 @@
+Release v1.5.0 (2016-11-11)
+===
+
+Service Client Updates
+---
+`service/cloudformation`: Updates service API and documentation
+`service/ecr`: Updates service paginators
+
+SDK Feature Updates
+---
+* `private/model/api`: Add generated setters for API parameters (#918)
+  * Adds setters to the SDK's API parameter types, and are a convenience method that reduce the need to use `aws.String` and like utility. 
+
 Release v1.4.22 (2016-10-25)
 ===
 

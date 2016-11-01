@@ -587,6 +587,12 @@ func (c *ECR) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Re
 		Name:       opDescribeImages,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -637,6 +643,31 @@ func (c *ECR) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput,
 	return out, err
 }
 
+// DescribeImagesPages iterates over the pages of a DescribeImages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeImages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeImages operation.
+//    pageNum := 0
+//    err := client.DescribeImagesPages(params,
+//        func(page *DescribeImagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ECR) DescribeImagesPages(input *DescribeImagesInput, fn func(p *DescribeImagesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeImagesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeImagesOutput), lastPage)
+	})
+}
+
 const opDescribeRepositories = "DescribeRepositories"
 
 // DescribeRepositoriesRequest generates a "aws/request.Request" representing the
@@ -668,6 +699,12 @@ func (c *ECR) DescribeRepositoriesRequest(input *DescribeRepositoriesInput) (req
 		Name:       opDescribeRepositories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -707,6 +744,31 @@ func (c *ECR) DescribeRepositories(input *DescribeRepositoriesInput) (*DescribeR
 	req, out := c.DescribeRepositoriesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// DescribeRepositoriesPages iterates over the pages of a DescribeRepositories operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeRepositories method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeRepositories operation.
+//    pageNum := 0
+//    err := client.DescribeRepositoriesPages(params,
+//        func(page *DescribeRepositoriesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ECR) DescribeRepositoriesPages(input *DescribeRepositoriesInput, fn func(p *DescribeRepositoriesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeRepositoriesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeRepositoriesOutput), lastPage)
+	})
 }
 
 const opGetAuthorizationToken = "GetAuthorizationToken"
@@ -1050,6 +1112,12 @@ func (c *ECR) ListImagesRequest(input *ListImagesInput) (req *request.Request, o
 		Name:       opListImages,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1095,6 +1163,31 @@ func (c *ECR) ListImages(input *ListImagesInput) (*ListImagesOutput, error) {
 	req, out := c.ListImagesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// ListImagesPages iterates over the pages of a ListImages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListImages operation.
+//    pageNum := 0
+//    err := client.ListImagesPages(params,
+//        func(page *ListImagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ECR) ListImagesPages(input *ListImagesInput, fn func(p *ListImagesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListImagesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListImagesOutput), lastPage)
+	})
 }
 
 const opPutImage = "PutImage"
