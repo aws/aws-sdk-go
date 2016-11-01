@@ -193,10 +193,10 @@ func (c *CloudFormation) CreateChangeSetRequest(input *CreateChangeSetInput) (re
 // CreateChangeSet API operation for AWS CloudFormation.
 //
 // Creates a list of changes for a stack. AWS CloudFormation generates the change
-// set by comparing the stack's information with the information that you submit.
-// A change set can help you understand which resources AWS CloudFormation will
-// change and how it will change them before you update your stack. Change sets
-// allow you to check before you make a change so that you don't delete or replace
+// set by comparing the template's information with the information that you
+// submit. A change set can help you understand which resources AWS CloudFormation
+// will change, and how it will change them, before you update your stack. Change
+// sets allow you to check before making a change to avoid deleting or replacing
 // critical resources.
 //
 // AWS CloudFormation doesn't make any changes to the stack when you create
@@ -1287,6 +1287,71 @@ func (c *CloudFormation) ListChangeSets(input *ListChangeSetsInput) (*ListChange
 	return out, err
 }
 
+const opListExports = "ListExports"
+
+// ListExportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExports operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ListExports for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListExports method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListExportsRequest method.
+//    req, resp := client.ListExportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CloudFormation) ListExportsRequest(input *ListExportsInput) (req *request.Request, output *ListExportsOutput) {
+	op := &request.Operation{
+		Name:       opListExports,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListExportsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListExportsOutput{}
+	req.Data = output
+	return
+}
+
+// ListExports API operation for AWS CloudFormation.
+//
+// Lists all exported output values in the account and region in which you call
+// this action. Use this action to see the exported output values that you can
+// import into other stacks. To import values, use the Fn::ImportValue (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html)
+// function.
+//
+// For more information, see  AWS CloudFormation Export Stack Output Values
+// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CloudFormation's
+// API operation ListExports for usage and error information.
+func (c *CloudFormation) ListExports(input *ListExportsInput) (*ListExportsOutput, error) {
+	req, out := c.ListExportsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListStackResources = "ListStackResources"
 
 // ListStackResourcesRequest generates a "aws/request.Request" representing the
@@ -1965,6 +2030,34 @@ func (s *ChangeSetSummary) SetStatusReason(v string) *ChangeSetSummary {
 type ContinueUpdateRollbackInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of the logical IDs of the resources that AWS CloudFormation skips
+	// during the continue update rollback operation. You can specify only resources
+	// that are in the UPDATE_FAILED state because a rollback failed. You can't
+	// specify resources that are in the UPDATE_FAILED state for other reasons,
+	// for example, because an update was canceled. To check why a resource update
+	// failed, use the DescribeStackResources action, and view the resource status
+	// reason.
+	//
+	// Specify this property to skip rolling back resources that AWS CloudFormation
+	// can't successfully roll back. We recommend that you  troubleshoot (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html#troubleshooting-errors-update-rollback-failed)
+	// resources before skipping them. AWS CloudFormation sets the status of the
+	// specified resources to UPDATE_COMPLETE and continues to roll back the stack.
+	// After the rollback is complete, the state of the skipped resources will be
+	// inconsistent with the state of the resources in the stack template. Before
+	// performing another stack update, you must update the stack or resources to
+	// be consistent with each other. If you don't, subsequent stack updates might
+	// fail, and the stack will become unrecoverable.
+	//
+	// Specify the minimum number of resources required to successfully roll back
+	// your stack. For example, a failed resource update might cause dependent resources
+	// to fail. In this case, it might not be necessary to skip the dependent resources.
+	//
+	// To specify resources in a nested stack, use the following format: NestedStackName.ResourceLogicalID.
+	// You can specify a nested stack resource (the logical ID of an AWS::CloudFormation::Stack
+	// resource) only if it's in one of the following states: DELETE_IN_PROGRESS,
+	// DELETE_COMPLETE, or DELETE_FAILED.
+	ResourcesToSkip []*string `type:"list"`
+
 	// The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM)
 	// role that AWS CloudFormation assumes to roll back the stack. AWS CloudFormation
 	// uses the role's credentials to make calls on your behalf. AWS CloudFormation
@@ -1980,6 +2073,11 @@ type ContinueUpdateRollbackInput struct {
 
 	// The name or the unique ID of the stack that you want to continue rolling
 	// back.
+	//
+	// Don't specify the name of a nested stack (a stack that was created by using
+	// the AWS::CloudFormation::Stack resource). Instead, use this operation on
+	// the parent stack (the stack that contains the AWS::CloudFormation::Stack
+	// resource).
 	//
 	// StackName is a required field
 	StackName *string `min:"1" type:"string" required:"true"`
@@ -2012,6 +2110,12 @@ func (s *ContinueUpdateRollbackInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetResourcesToSkip sets the ResourcesToSkip field's value.
+func (s *ContinueUpdateRollbackInput) SetResourcesToSkip(v []*string) *ContinueUpdateRollbackInput {
+	s.ResourcesToSkip = v
+	return s
 }
 
 // SetRoleARN sets the RoleARN field's value.
@@ -2080,6 +2184,15 @@ type CreateChangeSetInput struct {
 	//
 	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
+
+	// The type of change set operation. Valid values are CREATE and UPDATE:
+	//
+	//    * CREATE - Specify for a change set for a stack that does not yet exist.
+	//    The stack has an expected unique ID, but no template or resources. It
+	//    can include multiple change sets.
+	//
+	//    * UPDATE - Specify for a change set for an existing stack.
+	ChangeSetType *string `type:"string" enum:"ChangeSetType"`
 
 	// A unique identifier for this CreateChangeSet request. Specify this token
 	// if you plan to retry requests so that AWS CloudFormation knows that you're
@@ -2218,6 +2331,12 @@ func (s *CreateChangeSetInput) SetChangeSetName(v string) *CreateChangeSetInput 
 	return s
 }
 
+// SetChangeSetType sets the ChangeSetType field's value.
+func (s *CreateChangeSetInput) SetChangeSetType(v string) *CreateChangeSetInput {
+	s.ChangeSetType = &v
+	return s
+}
+
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateChangeSetInput) SetClientToken(v string) *CreateChangeSetInput {
 	s.ClientToken = &v
@@ -2290,6 +2409,9 @@ type CreateChangeSetOutput struct {
 
 	// The Amazon Resource Name (ARN) of the change set.
 	Id *string `min:"1" type:"string"`
+
+	// The unique ID of the stack.
+	StackId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -2305,6 +2427,12 @@ func (s CreateChangeSetOutput) GoString() string {
 // SetId sets the Id field's value.
 func (s *CreateChangeSetOutput) SetId(v string) *CreateChangeSetOutput {
 	s.Id = &v
+	return s
+}
+
+// SetStackId sets the StackId field's value.
+func (s *CreateChangeSetOutput) SetStackId(v string) *CreateChangeSetOutput {
+	s.StackId = &v
 	return s
 }
 
@@ -3571,6 +3699,51 @@ func (s ExecuteChangeSetOutput) GoString() string {
 	return s.String()
 }
 
+// The Export structure describes the exported output values for a stack.
+type Export struct {
+	_ struct{} `type:"structure"`
+
+	// The stack that contains the exported output name and value.
+	ExportingStackId *string `type:"string"`
+
+	// The name of exported output value. Use this name and the Fn::ImportValue
+	// function to import the associated value into other stacks. The name is defined
+	// in the Export field in the associated stack's Outputs section.
+	Name *string `type:"string"`
+
+	// The value of the exported output, such as a resource physical ID. This value
+	// is defined in the Export field in the associated stack's Outputs section.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Export) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Export) GoString() string {
+	return s.String()
+}
+
+// SetExportingStackId sets the ExportingStackId field's value.
+func (s *Export) SetExportingStackId(v string) *Export {
+	s.ExportingStackId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Export) SetName(v string) *Export {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Export) SetValue(v string) *Export {
+	s.Value = &v
+	return s
+}
+
 // The input for the GetStackPolicy action.
 type GetStackPolicyInput struct {
 	_ struct{} `type:"structure"`
@@ -3641,6 +3814,11 @@ func (s *GetStackPolicyOutput) SetStackPolicyBody(v string) *GetStackPolicyOutpu
 type GetTemplateInput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the template for a change set using the Amazon Resource Name (ARN)
+	// or name of the change set. If you specify a name, you must also specify the
+	// StackName.
+	ChangeSetName *string `min:"1" type:"string"`
+
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
 	//
@@ -3650,9 +3828,16 @@ type GetTemplateInput struct {
 	//    * Deleted stacks: You must specify the unique stack ID.
 	//
 	// Default: There is no default value.
+	StackName *string `type:"string"`
+
+	// The stage of the template that is returned. Valid values are Original and
+	// Processed:
 	//
-	// StackName is a required field
-	StackName *string `type:"string" required:"true"`
+	//    * Original - Use to return the specified pre-transform template.
+	//
+	//    * Processed - Use to return the template after all transforms have been
+	//    processed.
+	TemplateStage *string `type:"string" enum:"TemplateStage"`
 }
 
 // String returns the string representation
@@ -3668,8 +3853,8 @@ func (s GetTemplateInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetTemplateInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTemplateInput"}
-	if s.StackName == nil {
-		invalidParams.Add(request.NewErrParamRequired("StackName"))
+	if s.ChangeSetName != nil && len(*s.ChangeSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangeSetName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3678,15 +3863,33 @@ func (s *GetTemplateInput) Validate() error {
 	return nil
 }
 
+// SetChangeSetName sets the ChangeSetName field's value.
+func (s *GetTemplateInput) SetChangeSetName(v string) *GetTemplateInput {
+	s.ChangeSetName = &v
+	return s
+}
+
 // SetStackName sets the StackName field's value.
 func (s *GetTemplateInput) SetStackName(v string) *GetTemplateInput {
 	s.StackName = &v
 	return s
 }
 
+// SetTemplateStage sets the TemplateStage field's value.
+func (s *GetTemplateInput) SetTemplateStage(v string) *GetTemplateInput {
+	s.TemplateStage = &v
+	return s
+}
+
 // The output for GetTemplate action.
 type GetTemplateOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The available template type. For stacks, both the Original and Processed
+	// template types are always available. For change sets, the Original template
+	// is always available. After the transforms are processed, the Processed template
+	// becomes available.
+	StagesAvailable []*string `type:"list"`
 
 	// Structure containing the template body. (For more information, go to Template
 	// Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
@@ -3705,6 +3908,12 @@ func (s GetTemplateOutput) String() string {
 // GoString returns the string representation
 func (s GetTemplateOutput) GoString() string {
 	return s.String()
+}
+
+// SetStagesAvailable sets the StagesAvailable field's value.
+func (s *GetTemplateOutput) SetStagesAvailable(v []*string) *GetTemplateOutput {
+	s.StagesAvailable = v
+	return s
 }
 
 // SetTemplateBody sets the TemplateBody field's value.
@@ -3810,6 +4019,9 @@ type GetTemplateSummaryOutput struct {
 	// element.
 	CapabilitiesReason *string `type:"string"`
 
+	// A list of the transforms that have been declared in the template.
+	DeclaredTransforms []*string `type:"list"`
+
 	// The value that is defined in the Description property of the template.
 	Description *string `min:"1" type:"string"`
 
@@ -3848,6 +4060,12 @@ func (s *GetTemplateSummaryOutput) SetCapabilities(v []*string) *GetTemplateSumm
 // SetCapabilitiesReason sets the CapabilitiesReason field's value.
 func (s *GetTemplateSummaryOutput) SetCapabilitiesReason(v string) *GetTemplateSummaryOutput {
 	s.CapabilitiesReason = &v
+	return s
+}
+
+// SetDeclaredTransforms sets the DeclaredTransforms field's value.
+func (s *GetTemplateSummaryOutput) SetDeclaredTransforms(v []*string) *GetTemplateSummaryOutput {
+	s.DeclaredTransforms = v
 	return s
 }
 
@@ -3969,6 +4187,76 @@ func (s *ListChangeSetsOutput) SetNextToken(v string) *ListChangeSetsOutput {
 // SetSummaries sets the Summaries field's value.
 func (s *ListChangeSetsOutput) SetSummaries(v []*ChangeSetSummary) *ListChangeSetsOutput {
 	s.Summaries = v
+	return s
+}
+
+type ListExportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string (provided by the ListExports response output) that identifies the
+	// next page of exported output values that you asked to retrieve.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListExportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListExportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExportsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportsInput) SetNextToken(v string) *ListExportsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The output for the ListExports action.
+	Exports []*Export `type:"list"`
+
+	// If the output exceeds 100 exported output values, a string that identifies
+	// the next page of exports. If there is no additional page, this value is null.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListExportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListExportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetExports sets the Exports field's value.
+func (s *ListExportsOutput) SetExports(v []*Export) *ListExportsOutput {
+	s.Exports = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportsOutput) SetNextToken(v string) *ListExportsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4766,6 +5054,9 @@ type Stack struct {
 	// The capabilities allowed in the stack.
 	Capabilities []*string `type:"list"`
 
+	// The unique ID of the change set.
+	ChangeSetId *string `min:"1" type:"string"`
+
 	// The time at which the stack was created.
 	//
 	// CreationTime is a required field
@@ -4835,6 +5126,12 @@ func (s Stack) GoString() string {
 // SetCapabilities sets the Capabilities field's value.
 func (s *Stack) SetCapabilities(v []*string) *Stack {
 	s.Capabilities = v
+	return s
+}
+
+// SetChangeSetId sets the ChangeSetId field's value.
+func (s *Stack) SetChangeSetId(v string) *Stack {
+	s.ChangeSetId = &v
 	return s
 }
 
@@ -5895,6 +6192,9 @@ type ValidateTemplateOutput struct {
 	// element.
 	CapabilitiesReason *string `type:"string"`
 
+	// A list of the transforms that have been declared in the template.
+	DeclaredTransforms []*string `type:"list"`
+
 	// The description found within the template.
 	Description *string `min:"1" type:"string"`
 
@@ -5921,6 +6221,12 @@ func (s *ValidateTemplateOutput) SetCapabilities(v []*string) *ValidateTemplateO
 // SetCapabilitiesReason sets the CapabilitiesReason field's value.
 func (s *ValidateTemplateOutput) SetCapabilitiesReason(v string) *ValidateTemplateOutput {
 	s.CapabilitiesReason = &v
+	return s
+}
+
+// SetDeclaredTransforms sets the DeclaredTransforms field's value.
+func (s *ValidateTemplateOutput) SetDeclaredTransforms(v []*string) *ValidateTemplateOutput {
+	s.DeclaredTransforms = v
 	return s
 }
 
@@ -5970,6 +6276,14 @@ const (
 
 	// ChangeSetStatusFailed is a ChangeSetStatus enum value
 	ChangeSetStatusFailed = "FAILED"
+)
+
+const (
+	// ChangeSetTypeCreate is a ChangeSetType enum value
+	ChangeSetTypeCreate = "CREATE"
+
+	// ChangeSetTypeUpdate is a ChangeSetType enum value
+	ChangeSetTypeUpdate = "UPDATE"
 )
 
 const (
@@ -6163,4 +6477,15 @@ const (
 
 	// StackStatusUpdateRollbackComplete is a StackStatus enum value
 	StackStatusUpdateRollbackComplete = "UPDATE_ROLLBACK_COMPLETE"
+
+	// StackStatusReviewInProgress is a StackStatus enum value
+	StackStatusReviewInProgress = "REVIEW_IN_PROGRESS"
+)
+
+const (
+	// TemplateStageOriginal is a TemplateStage enum value
+	TemplateStageOriginal = "Original"
+
+	// TemplateStageProcessed is a TemplateStage enum value
+	TemplateStageProcessed = "Processed"
 )
