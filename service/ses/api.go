@@ -79,14 +79,182 @@ func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *
 //   Indicates that the provided receipt rule set does not exist.
 //
 //   * AlreadyExists
-//   Indicates that a resource could not be created due to a naming conflict.
+//   Indicates that a resource could not be created because of a naming conflict.
 //
 //   * LimitExceeded
-//   Indicates that a resource could not be created due to service limits. For
-//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 func (c *SES) CloneReceiptRuleSet(input *CloneReceiptRuleSetInput) (*CloneReceiptRuleSetOutput, error) {
 	req, out := c.CloneReceiptRuleSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateConfigurationSet = "CreateConfigurationSet"
+
+// CreateConfigurationSetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConfigurationSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See CreateConfigurationSet for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateConfigurationSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateConfigurationSetRequest method.
+//    req, resp := client.CreateConfigurationSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) CreateConfigurationSetRequest(input *CreateConfigurationSetInput) (req *request.Request, output *CreateConfigurationSetOutput) {
+	op := &request.Operation{
+		Name:       opCreateConfigurationSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateConfigurationSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateConfigurationSetOutput{}
+	req.Data = output
+	return
+}
+
+// CreateConfigurationSet API operation for Amazon Simple Email Service.
+//
+// Creates a configuration set.
+//
+// Configuration sets enable you to publish email sending events. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateConfigurationSet for usage and error information.
+//
+// Returned Error Codes:
+//   * ConfigurationSetAlreadyExists
+//   Indicates that the configuration set could not be created because of a naming
+//   conflict.
+//
+//   * InvalidConfigurationSet
+//   Indicates that the configuration set is invalid. See the error message for
+//   details.
+//
+//   * LimitExceeded
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
+func (c *SES) CreateConfigurationSet(input *CreateConfigurationSetInput) (*CreateConfigurationSetOutput, error) {
+	req, out := c.CreateConfigurationSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateConfigurationSetEventDestination = "CreateConfigurationSetEventDestination"
+
+// CreateConfigurationSetEventDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateConfigurationSetEventDestination operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See CreateConfigurationSetEventDestination for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateConfigurationSetEventDestination method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateConfigurationSetEventDestinationRequest method.
+//    req, resp := client.CreateConfigurationSetEventDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) CreateConfigurationSetEventDestinationRequest(input *CreateConfigurationSetEventDestinationInput) (req *request.Request, output *CreateConfigurationSetEventDestinationOutput) {
+	op := &request.Operation{
+		Name:       opCreateConfigurationSetEventDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateConfigurationSetEventDestinationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateConfigurationSetEventDestinationOutput{}
+	req.Data = output
+	return
+}
+
+// CreateConfigurationSetEventDestination API operation for Amazon Simple Email Service.
+//
+// Creates a configuration set event destination.
+//
+// When you create or update an event destination, you must provide one, and
+// only one, destination. The destination can be either Amazon CloudWatch or
+// Amazon Kinesis Firehose.
+//
+// An event destination is the AWS service to which Amazon SES publishes the
+// email sending events associated with a configuration set. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateConfigurationSetEventDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
+//
+//   * EventDestinationAlreadyExists
+//   Indicates that the event destination could not be created because of a naming
+//   conflict.
+//
+//   * InvalidCloudWatchDestination
+//   Indicates that the Amazon CloudWatch destination is invalid. See the error
+//   message for details.
+//
+//   * InvalidFirehoseDestination
+//   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
+//   error message for details.
+//
+//   * LimitExceeded
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//
+func (c *SES) CreateConfigurationSetEventDestination(input *CreateConfigurationSetEventDestinationInput) (*CreateConfigurationSetEventDestinationOutput, error) {
+	req, out := c.CreateConfigurationSetEventDestinationRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -152,11 +320,11 @@ func (c *SES) CreateReceiptFilterRequest(input *CreateReceiptFilterInput) (req *
 //
 // Returned Error Codes:
 //   * LimitExceeded
-//   Indicates that a resource could not be created due to service limits. For
-//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 //   * AlreadyExists
-//   Indicates that a resource could not be created due to a naming conflict.
+//   Indicates that a resource could not be created because of a naming conflict.
 //
 func (c *SES) CreateReceiptFilter(input *CreateReceiptFilterInput) (*CreateReceiptFilterOutput, error) {
 	req, out := c.CreateReceiptFilterRequest(input)
@@ -242,7 +410,7 @@ func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *requ
 //   Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html).
 //
 //   * AlreadyExists
-//   Indicates that a resource could not be created due to a naming conflict.
+//   Indicates that a resource could not be created because of a naming conflict.
 //
 //   * RuleDoesNotExist
 //   Indicates that the provided receipt rule does not exist.
@@ -251,8 +419,8 @@ func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *requ
 //   Indicates that the provided receipt rule set does not exist.
 //
 //   * LimitExceeded
-//   Indicates that a resource could not be created due to service limits. For
-//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 func (c *SES) CreateReceiptRule(input *CreateReceiptRuleInput) (*CreateReceiptRuleOutput, error) {
 	req, out := c.CreateReceiptRuleRequest(input)
@@ -321,14 +489,156 @@ func (c *SES) CreateReceiptRuleSetRequest(input *CreateReceiptRuleSetInput) (req
 //
 // Returned Error Codes:
 //   * AlreadyExists
-//   Indicates that a resource could not be created due to a naming conflict.
+//   Indicates that a resource could not be created because of a naming conflict.
 //
 //   * LimitExceeded
-//   Indicates that a resource could not be created due to service limits. For
-//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 func (c *SES) CreateReceiptRuleSet(input *CreateReceiptRuleSetInput) (*CreateReceiptRuleSetOutput, error) {
 	req, out := c.CreateReceiptRuleSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteConfigurationSet = "DeleteConfigurationSet"
+
+// DeleteConfigurationSetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfigurationSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DeleteConfigurationSet for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteConfigurationSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteConfigurationSetRequest method.
+//    req, resp := client.DeleteConfigurationSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) DeleteConfigurationSetRequest(input *DeleteConfigurationSetInput) (req *request.Request, output *DeleteConfigurationSetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfigurationSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConfigurationSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteConfigurationSetOutput{}
+	req.Data = output
+	return
+}
+
+// DeleteConfigurationSet API operation for Amazon Simple Email Service.
+//
+// Deletes a configuration set.
+//
+// Configuration sets enable you to publish email sending events. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteConfigurationSet for usage and error information.
+//
+// Returned Error Codes:
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
+//
+func (c *SES) DeleteConfigurationSet(input *DeleteConfigurationSetInput) (*DeleteConfigurationSetOutput, error) {
+	req, out := c.DeleteConfigurationSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteConfigurationSetEventDestination = "DeleteConfigurationSetEventDestination"
+
+// DeleteConfigurationSetEventDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteConfigurationSetEventDestination operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DeleteConfigurationSetEventDestination for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteConfigurationSetEventDestination method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteConfigurationSetEventDestinationRequest method.
+//    req, resp := client.DeleteConfigurationSetEventDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfigurationSetEventDestinationInput) (req *request.Request, output *DeleteConfigurationSetEventDestinationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfigurationSetEventDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConfigurationSetEventDestinationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteConfigurationSetEventDestinationOutput{}
+	req.Data = output
+	return
+}
+
+// DeleteConfigurationSetEventDestination API operation for Amazon Simple Email Service.
+//
+// Deletes a configuration set event destination.
+//
+// Configuration set event destinations are associated with configuration sets,
+// which enable you to publish email sending events. For information about using
+// configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteConfigurationSetEventDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
+//
+//   * EventDestinationDoesNotExist
+//   Indicates that the event destination does not exist.
+//
+func (c *SES) DeleteConfigurationSetEventDestination(input *DeleteConfigurationSetEventDestinationInput) (*DeleteConfigurationSetEventDestinationOutput, error) {
+	req, out := c.DeleteConfigurationSetEventDestinationRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -796,6 +1106,75 @@ func (c *SES) DescribeActiveReceiptRuleSetRequest(input *DescribeActiveReceiptRu
 // API operation DescribeActiveReceiptRuleSet for usage and error information.
 func (c *SES) DescribeActiveReceiptRuleSet(input *DescribeActiveReceiptRuleSetInput) (*DescribeActiveReceiptRuleSetOutput, error) {
 	req, out := c.DescribeActiveReceiptRuleSetRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeConfigurationSet = "DescribeConfigurationSet"
+
+// DescribeConfigurationSetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeConfigurationSet operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DescribeConfigurationSet for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DescribeConfigurationSet method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DescribeConfigurationSetRequest method.
+//    req, resp := client.DescribeConfigurationSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) DescribeConfigurationSetRequest(input *DescribeConfigurationSetInput) (req *request.Request, output *DescribeConfigurationSetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConfigurationSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConfigurationSetInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeConfigurationSetOutput{}
+	req.Data = output
+	return
+}
+
+// DescribeConfigurationSet API operation for Amazon Simple Email Service.
+//
+// Returns the details of the specified configuration set.
+//
+// Configuration sets enable you to publish email sending events. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DescribeConfigurationSet for usage and error information.
+//
+// Returned Error Codes:
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
+//
+func (c *SES) DescribeConfigurationSet(input *DescribeConfigurationSetInput) (*DescribeConfigurationSetOutput, error) {
+	req, out := c.DescribeConfigurationSetRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1406,6 +1785,71 @@ func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *requ
 // API operation GetSendStatistics for usage and error information.
 func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (*GetSendStatisticsOutput, error) {
 	req, out := c.GetSendStatisticsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListConfigurationSets = "ListConfigurationSets"
+
+// ListConfigurationSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListConfigurationSets operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ListConfigurationSets for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListConfigurationSets method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListConfigurationSetsRequest method.
+//    req, resp := client.ListConfigurationSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) ListConfigurationSetsRequest(input *ListConfigurationSetsInput) (req *request.Request, output *ListConfigurationSetsOutput) {
+	op := &request.Operation{
+		Name:       opListConfigurationSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListConfigurationSetsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListConfigurationSetsOutput{}
+	req.Data = output
+	return
+}
+
+// ListConfigurationSets API operation for Amazon Simple Email Service.
+//
+// Lists the configuration sets associated with your AWS account.
+//
+// Configuration sets enable you to publish email sending events. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second and can return up to 50
+// configuration sets at a time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListConfigurationSets for usage and error information.
+func (c *SES) ListConfigurationSets(input *ListConfigurationSetsInput) (*ListConfigurationSetsOutput, error) {
+	req, out := c.ListConfigurationSetsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -2083,6 +2527,9 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 //   about editing the custom MAIL FROM domain settings for an identity, see the
 //   Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
 //
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
+//
 func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
 	req, out := c.SendEmailRequest(input)
 	err := req.Send()
@@ -2209,6 +2656,9 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 //   read the MX record required to use the specified MAIL FROM domain. For information
 //   about editing the custom MAIL FROM domain settings for an identity, see the
 //   Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mail-from-edit.html).
+//
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
 //
 func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error) {
 	req, out := c.SendRawEmailRequest(input)
@@ -2708,6 +3158,92 @@ func (c *SES) SetReceiptRulePosition(input *SetReceiptRulePositionInput) (*SetRe
 	return out, err
 }
 
+const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDestination"
+
+// UpdateConfigurationSetEventDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConfigurationSetEventDestination operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See UpdateConfigurationSetEventDestination for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateConfigurationSetEventDestination method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateConfigurationSetEventDestinationRequest method.
+//    req, resp := client.UpdateConfigurationSetEventDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *SES) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigurationSetEventDestinationInput) (req *request.Request, output *UpdateConfigurationSetEventDestinationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConfigurationSetEventDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateConfigurationSetEventDestinationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateConfigurationSetEventDestinationOutput{}
+	req.Data = output
+	return
+}
+
+// UpdateConfigurationSetEventDestination API operation for Amazon Simple Email Service.
+//
+// Updates the event destination of a configuration set.
+//
+// When you create or update an event destination, you must provide one, and
+// only one, destination. The destination can be either Amazon CloudWatch or
+// Amazon Kinesis Firehose.
+//
+// Event destinations are associated with configuration sets, which enable you
+// to publish email sending events to Amazon CloudWatch or Amazon Kinesis Firehose.
+// For information about using configuration sets, see the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+//
+// This action is throttled at one request per second.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation UpdateConfigurationSetEventDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * ConfigurationSetDoesNotExist
+//   Indicates that the configuration set does not exist.
+//
+//   * EventDestinationDoesNotExist
+//   Indicates that the event destination does not exist.
+//
+//   * InvalidCloudWatchDestination
+//   Indicates that the Amazon CloudWatch destination is invalid. See the error
+//   message for details.
+//
+//   * InvalidFirehoseDestination
+//   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
+//   error message for details.
+//
+func (c *SES) UpdateConfigurationSetEventDestination(input *UpdateConfigurationSetEventDestinationInput) (*UpdateConfigurationSetEventDestinationOutput, error) {
+	req, out := c.UpdateConfigurationSetEventDestinationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opUpdateReceiptRule = "UpdateReceiptRule"
 
 // UpdateReceiptRuleRequest generates a "aws/request.Request" representing the
@@ -2792,8 +3328,8 @@ func (c *SES) UpdateReceiptRuleRequest(input *UpdateReceiptRuleInput) (req *requ
 //   Indicates that the provided receipt rule does not exist.
 //
 //   * LimitExceeded
-//   Indicates that a resource could not be created due to service limits. For
-//   a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
+//   Indicates that a resource could not be created because of service limits.
+//   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
 func (c *SES) UpdateReceiptRule(input *UpdateReceiptRuleInput) (*UpdateReceiptRuleOutput, error) {
 	req, out := c.UpdateReceiptRuleRequest(input)
@@ -3432,6 +3968,196 @@ func (s CloneReceiptRuleSetOutput) GoString() string {
 	return s.String()
 }
 
+// Contains information associated with an Amazon CloudWatch event destination
+// to which email sending events are published.
+//
+// Event destinations, such as Amazon CloudWatch, are associated with configuration
+// sets, which enable you to publish email sending events. For information about
+// using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type CloudWatchDestination struct {
+	_ struct{} `type:"structure"`
+
+	// A list of dimensions upon which to categorize your emails when you publish
+	// email sending events to Amazon CloudWatch.
+	//
+	// DimensionConfigurations is a required field
+	DimensionConfigurations []*CloudWatchDimensionConfiguration `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CloudWatchDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudWatchDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudWatchDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudWatchDestination"}
+	if s.DimensionConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionConfigurations"))
+	}
+	if s.DimensionConfigurations != nil {
+		for i, v := range s.DimensionConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DimensionConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionConfigurations sets the DimensionConfigurations field's value.
+func (s *CloudWatchDestination) SetDimensionConfigurations(v []*CloudWatchDimensionConfiguration) *CloudWatchDestination {
+	s.DimensionConfigurations = v
+	return s
+}
+
+// Contains the dimension configuration to use when you publish email sending
+// events to Amazon CloudWatch.
+//
+// For information about publishing email sending events to Amazon CloudWatch,
+// see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type CloudWatchDimensionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The default value of the dimension that is published to Amazon CloudWatch
+	// if you do not provide the value of the dimension when you send an email.
+	// The default value must:
+	//
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+	//    or dashes (-).
+	//
+	//    * Contain less than 256 characters.
+	//
+	// DefaultDimensionValue is a required field
+	DefaultDimensionValue *string `type:"string" required:"true"`
+
+	// The name of an Amazon CloudWatch dimension associated with an email sending
+	// metric. The name must:
+	//
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+	//    or dashes (-).
+	//
+	//    * Contain less than 256 characters.
+	//
+	// DimensionName is a required field
+	DimensionName *string `type:"string" required:"true"`
+
+	// The place where Amazon SES finds the value of a dimension to publish to Amazon
+	// CloudWatch. If you want Amazon SES to use the message tags that you specify
+	// using an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail/SendRawEmail
+	// API, choose messageTag. If you want Amazon SES to use your own email headers,
+	// choose emailHeader.
+	//
+	// DimensionValueSource is a required field
+	DimensionValueSource *string `type:"string" required:"true" enum:"DimensionValueSource"`
+}
+
+// String returns the string representation
+func (s CloudWatchDimensionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudWatchDimensionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudWatchDimensionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudWatchDimensionConfiguration"}
+	if s.DefaultDimensionValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultDimensionValue"))
+	}
+	if s.DimensionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionName"))
+	}
+	if s.DimensionValueSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionValueSource"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultDimensionValue sets the DefaultDimensionValue field's value.
+func (s *CloudWatchDimensionConfiguration) SetDefaultDimensionValue(v string) *CloudWatchDimensionConfiguration {
+	s.DefaultDimensionValue = &v
+	return s
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *CloudWatchDimensionConfiguration) SetDimensionName(v string) *CloudWatchDimensionConfiguration {
+	s.DimensionName = &v
+	return s
+}
+
+// SetDimensionValueSource sets the DimensionValueSource field's value.
+func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *CloudWatchDimensionConfiguration {
+	s.DimensionValueSource = &v
+	return s
+}
+
+// The name of the configuration set.
+//
+// Configuration sets enable you to publish email sending events. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type ConfigurationSet struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set. The name must:
+	//
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+	//    or dashes (-).
+	//
+	//    * Contain less than 64 characters.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ConfigurationSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationSet) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigurationSet) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigurationSet"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ConfigurationSet) SetName(v string) *ConfigurationSet {
+	s.Name = &v
+	return s
+}
+
 // Represents textual data, plus an optional character set specification.
 //
 // By default, the text must be 7-bit ASCII, due to the constraints of the SMTP
@@ -3482,6 +4208,145 @@ func (s *Content) SetCharset(v string) *Content {
 func (s *Content) SetData(v string) *Content {
 	s.Data = &v
 	return s
+}
+
+// Represents a request to create a configuration set event destination. A configuration
+// set event destination, which can be either Amazon CloudWatch or Amazon Kinesis
+// Firehose, describes an AWS service in which Amazon SES publishes the email
+// sending events associated with a configuration set. For information about
+// using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type CreateConfigurationSetEventDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set to which to apply the event destination.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `type:"string" required:"true"`
+
+	// An object that describes the AWS service to which Amazon SES will publish
+	// the email sending events associated with the specified configuration set.
+	//
+	// EventDestination is a required field
+	EventDestination *EventDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateConfigurationSetEventDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConfigurationSetEventDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConfigurationSetEventDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConfigurationSetEventDestinationInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.EventDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventDestination"))
+	}
+	if s.EventDestination != nil {
+		if err := s.EventDestination.Validate(); err != nil {
+			invalidParams.AddNested("EventDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *CreateConfigurationSetEventDestinationInput) SetConfigurationSetName(v string) *CreateConfigurationSetEventDestinationInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetEventDestination sets the EventDestination field's value.
+func (s *CreateConfigurationSetEventDestinationInput) SetEventDestination(v *EventDestination) *CreateConfigurationSetEventDestinationInput {
+	s.EventDestination = v
+	return s
+}
+
+// An empty element returned on a successful request.
+type CreateConfigurationSetEventDestinationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateConfigurationSetEventDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConfigurationSetEventDestinationOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to create a configuration set. Configuration sets enable
+// you to publish email sending events. For information about using configuration
+// sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type CreateConfigurationSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A data structure that contains the name of the configuration set.
+	//
+	// ConfigurationSet is a required field
+	ConfigurationSet *ConfigurationSet `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateConfigurationSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConfigurationSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConfigurationSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConfigurationSetInput"}
+	if s.ConfigurationSet == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSet"))
+	}
+	if s.ConfigurationSet != nil {
+		if err := s.ConfigurationSet.Validate(); err != nil {
+			invalidParams.AddNested("ConfigurationSet", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSet sets the ConfigurationSet field's value.
+func (s *CreateConfigurationSetInput) SetConfigurationSet(v *ConfigurationSet) *CreateConfigurationSetInput {
+	s.ConfigurationSet = v
+	return s
+}
+
+// An empty element returned on a successful request.
+type CreateConfigurationSetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateConfigurationSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateConfigurationSetOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request to create a new IP address filter. You use IP address
@@ -3693,6 +4558,133 @@ func (s CreateReceiptRuleSetOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateReceiptRuleSetOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to delete a configuration set event destination. Configuration
+// set event destinations are associated with configuration sets, which enable
+// you to publish email sending events. For information about using configuration
+// sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type DeleteConfigurationSetEventDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set from which to delete the event destination.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `type:"string" required:"true"`
+
+	// The name of the event destination to delete.
+	//
+	// EventDestinationName is a required field
+	EventDestinationName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationSetEventDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationSetEventDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfigurationSetEventDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigurationSetEventDestinationInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.EventDestinationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventDestinationName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *DeleteConfigurationSetEventDestinationInput) SetConfigurationSetName(v string) *DeleteConfigurationSetEventDestinationInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetEventDestinationName sets the EventDestinationName field's value.
+func (s *DeleteConfigurationSetEventDestinationInput) SetEventDestinationName(v string) *DeleteConfigurationSetEventDestinationInput {
+	s.EventDestinationName = &v
+	return s
+}
+
+// An empty element returned on a successful request.
+type DeleteConfigurationSetEventDestinationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationSetEventDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationSetEventDestinationOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to delete a configuration set. Configuration sets enable
+// you to publish email sending events. For information about using configuration
+// sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type DeleteConfigurationSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set to delete.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteConfigurationSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteConfigurationSetInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *DeleteConfigurationSetInput) SetConfigurationSetName(v string) *DeleteConfigurationSetInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// An empty element returned on a successful request.
+type DeleteConfigurationSetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConfigurationSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigurationSetOutput) GoString() string {
 	return s.String()
 }
 
@@ -4118,6 +5110,92 @@ func (s *DescribeActiveReceiptRuleSetOutput) SetRules(v []*ReceiptRule) *Describ
 	return s
 }
 
+// Represents a request to return the details of a configuration set. Configuration
+// sets enable you to publish email sending events. For information about using
+// configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type DescribeConfigurationSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of configuration set attributes to return.
+	ConfigurationSetAttributeNames []*string `type:"list"`
+
+	// The name of the configuration set to describe.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeConfigurationSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeConfigurationSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeConfigurationSetInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetAttributeNames sets the ConfigurationSetAttributeNames field's value.
+func (s *DescribeConfigurationSetInput) SetConfigurationSetAttributeNames(v []*string) *DescribeConfigurationSetInput {
+	s.ConfigurationSetAttributeNames = v
+	return s
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *DescribeConfigurationSetInput) SetConfigurationSetName(v string) *DescribeConfigurationSetInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// Represents the details of a configuration set. Configuration sets enable
+// you to publish email sending events. For information about using configuration
+// sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type DescribeConfigurationSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration set object associated with the specified configuration
+	// set.
+	ConfigurationSet *ConfigurationSet `type:"structure"`
+
+	// A list of event destinations associated with the configuration set.
+	EventDestinations []*EventDestination `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeConfigurationSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationSet sets the ConfigurationSet field's value.
+func (s *DescribeConfigurationSetOutput) SetConfigurationSet(v *ConfigurationSet) *DescribeConfigurationSetOutput {
+	s.ConfigurationSet = v
+	return s
+}
+
+// SetEventDestinations sets the EventDestinations field's value.
+func (s *DescribeConfigurationSetOutput) SetEventDestinations(v []*EventDestination) *DescribeConfigurationSetOutput {
+	s.EventDestinations = v
+	return s
+}
+
 // Represents a request to return the details of a receipt rule. You use receipt
 // rules to receive email with Amazon SES. For more information, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html).
@@ -4319,6 +5397,116 @@ func (s *Destination) SetCcAddresses(v []*string) *Destination {
 // SetToAddresses sets the ToAddresses field's value.
 func (s *Destination) SetToAddresses(v []*string) *Destination {
 	s.ToAddresses = v
+	return s
+}
+
+// Contains information about the event destination to which the specified email
+// sending events are published.
+//
+// When you create or update an event destination, you must provide one, and
+// only one, destination. The destination can be either Amazon CloudWatch or
+// Amazon Kinesis Firehose.
+//
+// Event destinations are associated with configuration sets, which enable you
+// to publish email sending events to Amazon CloudWatch or Amazon Kinesis Firehose.
+// For information about using configuration sets, see the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type EventDestination struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the names, default values, and sources of the dimensions
+	// associated with an Amazon CloudWatch event destination.
+	CloudWatchDestination *CloudWatchDestination `type:"structure"`
+
+	// Sets whether Amazon SES publishes events to this destination when you send
+	// an email with the associated configuration set. Set to true to enable publishing
+	// to this destination; set to false to prevent publishing to this destination.
+	// The default value is false.
+	Enabled *bool `type:"boolean"`
+
+	// An object that contains the delivery stream ARN and the IAM role ARN associated
+	// with an Amazon Kinesis Firehose event destination.
+	KinesisFirehoseDestination *KinesisFirehoseDestination `type:"structure"`
+
+	// The type of email sending events to publish to the event destination.
+	//
+	// MatchingEventTypes is a required field
+	MatchingEventTypes []*string `type:"list" required:"true"`
+
+	// The name of the event destination. The name must:
+	//
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+	//    or dashes (-).
+	//
+	//    * Contain less than 64 characters.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EventDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventDestination"}
+	if s.MatchingEventTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchingEventTypes"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.CloudWatchDestination != nil {
+		if err := s.CloudWatchDestination.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchDestination", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.KinesisFirehoseDestination != nil {
+		if err := s.KinesisFirehoseDestination.Validate(); err != nil {
+			invalidParams.AddNested("KinesisFirehoseDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudWatchDestination sets the CloudWatchDestination field's value.
+func (s *EventDestination) SetCloudWatchDestination(v *CloudWatchDestination) *EventDestination {
+	s.CloudWatchDestination = v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *EventDestination) SetEnabled(v bool) *EventDestination {
+	s.Enabled = &v
+	return s
+}
+
+// SetKinesisFirehoseDestination sets the KinesisFirehoseDestination field's value.
+func (s *EventDestination) SetKinesisFirehoseDestination(v *KinesisFirehoseDestination) *EventDestination {
+	s.KinesisFirehoseDestination = v
+	return s
+}
+
+// SetMatchingEventTypes sets the MatchingEventTypes field's value.
+func (s *EventDestination) SetMatchingEventTypes(v []*string) *EventDestination {
+	s.MatchingEventTypes = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EventDestination) SetName(v string) *EventDestination {
+	s.Name = &v
 	return s
 }
 
@@ -4853,6 +6041,7 @@ type IdentityDkimAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// True if DKIM signing is enabled for email sent from the identity; false otherwise.
+	// The default value is true.
 	//
 	// DkimEnabled is a required field
 	DkimEnabled *bool `type:"boolean" required:"true"`
@@ -5106,6 +6295,67 @@ func (s *IdentityVerificationAttributes) SetVerificationToken(v string) *Identit
 	return s
 }
 
+// Contains the delivery stream ARN and the IAM role ARN associated with an
+// Amazon Kinesis Firehose event destination.
+//
+// Event destinations, such as Amazon Kinesis Firehose, are associated with
+// configuration sets, which enable you to publish email sending events. For
+// information about using configuration sets, see the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type KinesisFirehoseDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Amazon Kinesis Firehose stream to which to publish email sending
+	// events.
+	//
+	// DeliveryStreamARN is a required field
+	DeliveryStreamARN *string `type:"string" required:"true"`
+
+	// The ARN of the IAM role under which Amazon SES publishes email sending events
+	// to the Amazon Kinesis Firehose stream.
+	//
+	// IAMRoleARN is a required field
+	IAMRoleARN *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s KinesisFirehoseDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KinesisFirehoseDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisFirehoseDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisFirehoseDestination"}
+	if s.DeliveryStreamARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeliveryStreamARN"))
+	}
+	if s.IAMRoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("IAMRoleARN"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeliveryStreamARN sets the DeliveryStreamARN field's value.
+func (s *KinesisFirehoseDestination) SetDeliveryStreamARN(v string) *KinesisFirehoseDestination {
+	s.DeliveryStreamARN = &v
+	return s
+}
+
+// SetIAMRoleARN sets the IAMRoleARN field's value.
+func (s *KinesisFirehoseDestination) SetIAMRoleARN(v string) *KinesisFirehoseDestination {
+	s.IAMRoleARN = &v
+	return s
+}
+
 // When included in a receipt rule, this action calls an AWS Lambda function
 // and, optionally, publishes a notification to Amazon Simple Notification Service
 // (Amazon SNS).
@@ -5185,6 +6435,79 @@ func (s *LambdaAction) SetInvocationType(v string) *LambdaAction {
 // SetTopicArn sets the TopicArn field's value.
 func (s *LambdaAction) SetTopicArn(v string) *LambdaAction {
 	s.TopicArn = &v
+	return s
+}
+
+// Represents a request to list the configuration sets associated with your
+// AWS account. Configuration sets enable you to publish email sending events.
+// For information about using configuration sets, see the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type ListConfigurationSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of configuration sets to return.
+	MaxItems *int64 `type:"integer"`
+
+	// A token returned from a previous call to ListConfigurationSets to indicate
+	// the position of the configuration set in the configuration set list.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListConfigurationSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConfigurationSetsInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListConfigurationSetsInput) SetMaxItems(v int64) *ListConfigurationSetsInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationSetsInput) SetNextToken(v string) *ListConfigurationSetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// A list of configuration sets associated with your AWS account. Configuration
+// sets enable you to publish email sending events. For information about using
+// configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type ListConfigurationSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of configuration sets.
+	ConfigurationSets []*ConfigurationSet `type:"list"`
+
+	// A token indicating that there are additional configuration sets available
+	// to be listed. Pass this token to successive calls of ListConfigurationSets.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListConfigurationSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConfigurationSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationSets sets the ConfigurationSets field's value.
+func (s *ListConfigurationSetsOutput) SetConfigurationSets(v []*ConfigurationSet) *ListConfigurationSetsOutput {
+	s.ConfigurationSets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListConfigurationSetsOutput) SetNextToken(v string) *ListConfigurationSetsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -5341,7 +6664,7 @@ func (s *ListIdentityPoliciesOutput) SetPolicyNames(v []*string) *ListIdentityPo
 	return s
 }
 
-// : Represents a request to list the IP address filters that exist under your
+// Represents a request to list the IP address filters that exist under your
 // AWS account. You use IP address filters when you receive email with Amazon
 // SES. For more information, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html).
 type ListReceiptFiltersInput struct {
@@ -5620,6 +6943,74 @@ func (s *MessageDsn) SetExtensionFields(v []*ExtensionField) *MessageDsn {
 // SetReportingMta sets the ReportingMta field's value.
 func (s *MessageDsn) SetReportingMta(v string) *MessageDsn {
 	s.ReportingMta = &v
+	return s
+}
+
+// Contains the name and value of a tag that you can provide to SendEmail or
+// SendRawEmail to apply to an email.
+//
+// Message tags, which you use with configuration sets, enable you to publish
+// email sending events. For information about using configuration sets, see
+// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type MessageTag struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the tag. The name must:
+	//
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+	//    or dashes (-).
+	//
+	//    * Contain less than 256 characters.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The value of the tag. The value must:
+	//
+	//    * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+	//    or dashes (-).
+	//
+	//    * Contain less than 256 characters.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MessageTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MessageTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageTag"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *MessageTag) SetName(v string) *MessageTag {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MessageTag) SetValue(v string) *MessageTag {
+	s.Value = &v
 	return s
 }
 
@@ -6742,7 +8133,7 @@ type SendDataPoint struct {
 	// Number of unwanted emails that were rejected by recipients.
 	Complaints *int64 `type:"long"`
 
-	// Number of emails that have been enqueued for sending.
+	// Number of emails that have been sent.
 	DeliveryAttempts *int64 `type:"long"`
 
 	// Number of emails rejected by Amazon SES.
@@ -6796,6 +8187,9 @@ func (s *SendDataPoint) SetTimestamp(v time.Time) *SendDataPoint {
 // more information, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-formatted.html).
 type SendEmailInput struct {
 	_ struct{} `type:"structure"`
+
+	// The name of the configuration set to use when you send an email using SendEmail.
+	ConfigurationSetName *string `type:"string"`
 
 	// The destination for this email, composed of To:, CC:, and BCC: fields.
 	//
@@ -6864,6 +8258,11 @@ type SendEmailInput struct {
 	// For more information about sending authorization, see the Amazon SES Developer
 	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 	SourceArn *string `type:"string"`
+
+	// A list of tags, in the form of name/value pairs, to apply to an email that
+	// you send using SendEmail. Tags correspond to characteristics of the email
+	// that you define, so that you can publish email sending events.
+	Tags []*MessageTag `type:"list"`
 }
 
 // String returns the string representation
@@ -6893,11 +8292,27 @@ func (s *SendEmailInput) Validate() error {
 			invalidParams.AddNested("Message", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *SendEmailInput) SetConfigurationSetName(v string) *SendEmailInput {
+	s.ConfigurationSetName = &v
+	return s
 }
 
 // SetDestination sets the Destination field's value.
@@ -6942,6 +8357,12 @@ func (s *SendEmailInput) SetSourceArn(v string) *SendEmailInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *SendEmailInput) SetTags(v []*MessageTag) *SendEmailInput {
+	s.Tags = v
+	return s
+}
+
 // Represents a unique message ID.
 type SendEmailOutput struct {
 	_ struct{} `type:"structure"`
@@ -6972,6 +8393,9 @@ func (s *SendEmailOutput) SetMessageId(v string) *SendEmailOutput {
 // information, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
 type SendRawEmailInput struct {
 	_ struct{} `type:"structure"`
+
+	// The name of the configuration set to use when you send an email using SendRawEmail.
+	ConfigurationSetName *string `type:"string"`
 
 	// A list of destinations for the message, consisting of To:, CC:, and BCC:
 	// addresses.
@@ -7055,6 +8479,11 @@ type SendRawEmailInput struct {
 	// For information about when to use this parameter, see the description of
 	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
 	SourceArn *string `type:"string"`
+
+	// A list of tags, in the form of name/value pairs, to apply to an email that
+	// you send using SendRawEmail. Tags correspond to characteristics of the email
+	// that you define, so that you can publish email sending events.
+	Tags []*MessageTag `type:"list"`
 }
 
 // String returns the string representation
@@ -7078,11 +8507,27 @@ func (s *SendRawEmailInput) Validate() error {
 			invalidParams.AddNested("RawMessage", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *SendRawEmailInput) SetConfigurationSetName(v string) *SendRawEmailInput {
+	s.ConfigurationSetName = &v
+	return s
 }
 
 // SetDestinations sets the Destinations field's value.
@@ -7118,6 +8563,12 @@ func (s *SendRawEmailInput) SetSource(v string) *SendRawEmailInput {
 // SetSourceArn sets the SourceArn field's value.
 func (s *SendRawEmailInput) SetSourceArn(v string) *SendRawEmailInput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SendRawEmailInput) SetTags(v []*MessageTag) *SendRawEmailInput {
+	s.Tags = v
 	return s
 }
 
@@ -7735,6 +9186,82 @@ func (s *StopAction) SetTopicArn(v string) *StopAction {
 	return s
 }
 
+// Represents a request to update the event destination of a configuration set.
+// Configuration sets enable you to publish email sending events. For information
+// about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+type UpdateConfigurationSetEventDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set that you want to update.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `type:"string" required:"true"`
+
+	// The event destination object that you want to apply to the specified configuration
+	// set.
+	//
+	// EventDestination is a required field
+	EventDestination *EventDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateConfigurationSetEventDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConfigurationSetEventDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConfigurationSetEventDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConfigurationSetEventDestinationInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.EventDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventDestination"))
+	}
+	if s.EventDestination != nil {
+		if err := s.EventDestination.Validate(); err != nil {
+			invalidParams.AddNested("EventDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *UpdateConfigurationSetEventDestinationInput) SetConfigurationSetName(v string) *UpdateConfigurationSetEventDestinationInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetEventDestination sets the EventDestination field's value.
+func (s *UpdateConfigurationSetEventDestinationInput) SetEventDestination(v *EventDestination) *UpdateConfigurationSetEventDestinationInput {
+	s.EventDestination = v
+	return s
+}
+
+// An empty element returned on a successful request.
+type UpdateConfigurationSetEventDestinationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateConfigurationSetEventDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConfigurationSetEventDestinationOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request to update a receipt rule. You use receipt rules to receive
 // email with Amazon SES. For more information, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-concepts.html).
@@ -8158,6 +9685,11 @@ const (
 )
 
 const (
+	// ConfigurationSetAttributeEventDestinations is a ConfigurationSetAttribute enum value
+	ConfigurationSetAttributeEventDestinations = "eventDestinations"
+)
+
+const (
 	// CustomMailFromStatusPending is a CustomMailFromStatus enum value
 	CustomMailFromStatusPending = "Pending"
 
@@ -8169,6 +9701,14 @@ const (
 
 	// CustomMailFromStatusTemporaryFailure is a CustomMailFromStatus enum value
 	CustomMailFromStatusTemporaryFailure = "TemporaryFailure"
+)
+
+const (
+	// DimensionValueSourceMessageTag is a DimensionValueSource enum value
+	DimensionValueSourceMessageTag = "messageTag"
+
+	// DimensionValueSourceEmailHeader is a DimensionValueSource enum value
+	DimensionValueSourceEmailHeader = "emailHeader"
 )
 
 const (
@@ -8186,6 +9726,23 @@ const (
 
 	// DsnActionExpanded is a DsnAction enum value
 	DsnActionExpanded = "expanded"
+)
+
+const (
+	// EventTypeSend is a EventType enum value
+	EventTypeSend = "send"
+
+	// EventTypeReject is a EventType enum value
+	EventTypeReject = "reject"
+
+	// EventTypeBounce is a EventType enum value
+	EventTypeBounce = "bounce"
+
+	// EventTypeComplaint is a EventType enum value
+	EventTypeComplaint = "complaint"
+
+	// EventTypeDelivery is a EventType enum value
+	EventTypeDelivery = "delivery"
 )
 
 const (
