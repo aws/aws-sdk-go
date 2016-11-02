@@ -1,3 +1,10 @@
+Release v1.5.1 (2016-11-02)
+===
+
+Service Client Updates
+---
+`service/email`: Updates service API and documentation
+
 Release v1.5.0 (2016-11-01)
 ===
 
