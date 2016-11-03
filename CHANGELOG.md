@@ -1,3 +1,10 @@
+Release v1.5.2 (2016-11-03)
+===
+
+Service Client Updates
+---
+`service/directconnect`: Updates service API and documentation
+
 Release v1.5.1 (2016-11-02)
 ===
 
