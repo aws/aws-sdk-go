@@ -548,6 +548,34 @@ func ExampleDirectConnect_DescribeLocations() {
 	fmt.Println(resp)
 }
 
+func ExampleDirectConnect_DescribeTags() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := directconnect.New(sess)
+
+	params := &directconnect.DescribeTagsInput{
+		ResourceArns: []*string{ // Required
+			aws.String("ResourceArn"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDirectConnect_DescribeVirtualGateways() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -585,6 +613,67 @@ func ExampleDirectConnect_DescribeVirtualInterfaces() {
 		VirtualInterfaceId: aws.String("VirtualInterfaceId"),
 	}
 	resp, err := svc.DescribeVirtualInterfaces(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectConnect_TagResource() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := directconnect.New(sess)
+
+	params := &directconnect.TagResourceInput{
+		ResourceArn: aws.String("ResourceArn"), // Required
+		Tags: []*directconnect.Tag{ // Required
+			{ // Required
+				Key:   aws.String("TagKey"), // Required
+				Value: aws.String("TagValue"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.TagResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDirectConnect_UntagResource() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := directconnect.New(sess)
+
+	params := &directconnect.UntagResourceInput{
+		ResourceArn: aws.String("ResourceArn"), // Required
+		TagKeys: []*string{ // Required
+			aws.String("TagKey"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.UntagResource(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
