@@ -36,17 +36,21 @@ func main() {
 	}
 }
 
+// Queue provides the ability to handle SQS messages.
 type Queue struct {
 	Client sqsiface.SQSAPI
 	URL    string
 }
 
+// Message is a concrete representation of the SQS message
 type Message struct {
 	From string `json:"from"`
 	To   string `json:"to"`
 	Msg  string `json:"msg"`
 }
 
+// GetMessages returns the parsed messages from SQS if any. If an error
+// occurs that error will be returned.
 func (q *Queue) GetMessages(waitTimeout int64) ([]Message, error) {
 	params := sqs.ReceiveMessageInput{
 		QueueUrl: aws.String(q.URL),
