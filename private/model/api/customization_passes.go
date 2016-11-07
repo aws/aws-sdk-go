@@ -121,7 +121,7 @@ func rdsCustomizations(a *API) {
 				Ignore:        true,
 			}
 			ref.MemberRefs["DestinationRegion"] = &ShapeRef{
-				Documentation: docstring(`// DestinationRegion is used for presigning the request to a given region.`),
+				Documentation: docstring(`DestinationRegion is used for presigning the request to a given region.`),
 				ShapeName:     "String",
 				Shape:         a.Shapes["String"],
 			}
