@@ -49,7 +49,7 @@ func TestQueueGetMessage(t *testing.T) {
 		}
 		msgs, err := q.GetMessages(20)
 		if err != nil {
-			t.Fatalf("%d, unexpected error", err)
+			t.Fatalf("%d, unexpected error, %v", i, err)
 		}
 		if a, e := len(msgs), len(c.Expected); a != e {
 			t.Fatalf("%d, expected %d messages, got %d", i, e, a)

@@ -13,7 +13,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Fprintf(os.Stderr, "Queue URL required.")
+		fmt.Fprintln(os.Stderr, "Queue URL required.")
 		os.Exit(1)
 	}
 
@@ -26,13 +26,13 @@ func main() {
 
 	msgs, err := q.GetMessages(20)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, err.Error())
+		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
 	fmt.Println("Messages:")
 	for _, msg := range msgs {
-		fmt.Println("%s>%s: %s", msg.From, msg.To, msg.Msg)
+		fmt.Printf("%s>%s: %s\n", msg.From, msg.To, msg.Msg)
 	}
 }
 
