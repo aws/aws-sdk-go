@@ -1,8 +1,7 @@
-// Package unitTest demonstrates how to unit test, without needing to pass a
-// connector to every function, code that uses DynamoDB.
-
 // +build example
 
+// Package unitTest demonstrates how to unit test, without needing to pass a
+// connector to every function, code that uses DynamoDB.
 package unitTest
 
 import (
