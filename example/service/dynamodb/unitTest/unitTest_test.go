@@ -1,3 +1,4 @@
+// +build example
 // Unit tests for package unitTest.
 package unitTest
 
@@ -19,39 +20,39 @@ type fakeDynamoDB struct {
 }
 
 // Mock GetItem such that the output returned carries values identical to input.
-func (self *fakeDynamoDB) GetItem(input *dynamodb.GetItemInput) (*dynamodb.GetItemOutput, error) {
-    output := new(dynamodb.GetItemOutput)
+func (fd *fakeDynamoDB) GetItem(input *dynamodb.GetItemInput) (*dynamodb.GetItemOutput, error) {
+	output := new(dynamodb.GetItemOutput)
 	output.Item = make(map[string]*dynamodb.AttributeValue)
-	for key, value := range self.payload {
+	for key, value := range fd.payload {
 		output.Item[key] = &dynamodb.AttributeValue{
 			S: aws.String(value),
 		}
 	}
-	return output, self.err
+	return output, fd.err
 }
 
 func TestItemGetterGet(t *testing.T) {
-    expected_key := "expected key"
-    expected_value := "expected value"
-    getter := new(ItemGetter)
+	expectedKey := "expected key"
+	expectedValue := "expected value"
+	getter := new(ItemGetter)
 	getter.DynamoDB = &fakeDynamoDB{
-        payload: map[string]string{"id": expected_key, "value": expected_value},
+		payload: map[string]string{"id": expectedKey, "value": expectedValue},
 	}
-    if actual_value := getter.Get(expected_key); actual_value != expected_value {
-		t.Errorf("Expected %q but got %q", expected_value, actual_value)
+	if actualValue := getter.Get(expectedKey); actualValue != expectedValue {
+		t.Errorf("Expected %q but got %q", expectedValue, actualValue)
 	}
 }
 
 // When DynamoDB.GetItem returns a non-nil error, expect an empty string.
 func TestItemGetterGetFail(t *testing.T) {
-    expected_key := "expected key"
-    expected_value := "expected value"
-    getter := new(ItemGetter)
+	expectedKey := "expected key"
+	expectedValue := "expected value"
+	getter := new(ItemGetter)
 	getter.DynamoDB = &fakeDynamoDB{
-        payload: map[string]string{"id": expected_key, "value": expected_value},
+		payload: map[string]string{"id": expectedKey, "value": expectedValue},
 		err:     errors.New("any error"),
 	}
-    if actual_value := getter.Get(expected_key); len(actual_value) > 0 {
-		t.Errorf("Expected %q but got %q", expected_value, actual_value)
+	if actualValue := getter.Get(expectedKey); len(actualValue) > 0 {
+		t.Errorf("Expected %q but got %q", expectedValue, actualValue)
 	}
 }

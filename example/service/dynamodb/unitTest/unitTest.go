@@ -1,5 +1,6 @@
-// Example of how to unit test your code that uses DynamoDB without needing to
-// pass a connector to every function that interacts with the database.
+// +build example
+// Package unitTest demonstrates how to unit test, without needing to pass a
+// connector to every function, code that uses DynamoDB.
 package unitTest
 
 import (
@@ -9,16 +10,16 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 )
 
-// After instantiating ItemGetter, assign the DynamoDB connector like:
+// ItemGetter can be assigned a DynamoDB connector like:
 //	svc := dynamodb.DynamoDB(sess)
 //	getter.DynamoDB = dynamodbiface.DynamoDBAPI(svc)
 type ItemGetter struct {
 	DynamoDB dynamodbiface.DynamoDBAPI
 }
 
-// Retrieve values from DynamoDB with a table containing entries like:
+// Get a value from a DynamoDB table containing entries like:
 // {"id": "my primary key", "value": "valuable value"}
-func (self *ItemGetter) Get(id string) (value string) {
+func (ig *ItemGetter) Get(id string) (value string) {
 	var input = &dynamodb.GetItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
 			"id": {
@@ -30,7 +31,7 @@ func (self *ItemGetter) Get(id string) (value string) {
 			aws.String("value"),
 		},
 	}
-	if output, err := self.DynamoDB.GetItem(input); err == nil {
+	if output, err := ig.DynamoDB.GetItem(input); err == nil {
 		if _, ok := output.Item["value"]; ok {
 			dynamodbattribute.Unmarshal(output.Item["value"], &value)
 		}
