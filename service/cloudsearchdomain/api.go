@@ -39,8 +39,8 @@ const opSearch = "Search"
 func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Request, output *SearchOutput) {
 	op := &request.Operation{
 		Name:       opSearch,
-		HTTPMethod: "GET",
-		HTTPPath:   "/2013-01-01/search?format=sdk&pretty=true",
+		HTTPMethod: "POST",
+		HTTPPath:   "/2013-01-01/search",
 	}
 
 	if input == nil {

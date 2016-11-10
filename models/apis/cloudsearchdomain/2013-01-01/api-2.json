@@ -13,8 +13,8 @@
     "Search":{
       "name":"Search",
       "http":{
-        "method":"GET",
-        "requestUri":"/2013-01-01/search?format=sdk&pretty=true"
+        "method":"POST",
+        "requestUri":"/2013-01-01/search"
       },
       "input":{"shape":"SearchRequest"},
       "output":{"shape":"SearchResponse"},
