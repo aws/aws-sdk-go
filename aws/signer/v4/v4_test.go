@@ -384,6 +384,24 @@ func TestSignWithRequestBody_Overwrite(t *testing.T) {
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 }
 
+func TestBuildCanonicalRequest(t *testing.T) {
+	req, body := buildRequest("dynamodb", "us-east-1", "{}")
+	req.URL.RawQuery = "Foo=z&Foo=o&Foo=m&Foo=a"
+	ctx := &signingCtx{
+		ServiceName: "dynamodb",
+		Region:      "us-east-1",
+		Request:     req,
+		Body:        body,
+		Query:       req.URL.Query(),
+		Time:        time.Now(),
+		ExpireTime:  5 * time.Second,
+	}
+
+	ctx.buildCanonicalString()
+	expected := "https://example.org/bucket/key-._~,!@#$%^&*()?Foo=a&Foo=m&Foo=o&Foo=z"
+	assert.Equal(t, expected, ctx.Request.URL.String())
+}
+
 func BenchmarkPresignRequest(b *testing.B) {
 	signer := buildSigner()
 	req, body := buildRequest("dynamodb", "us-east-1", "{}")
