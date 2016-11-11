@@ -8,12 +8,12 @@ The `Item` time will be used by the example to unmarshal the DynamoDB table's it
 
 ```go
 type Item struct {
-	Key  int `dynamodb:"Key"`
-	Desc string `dynamodb:"Desc"`
-	Data map[string]interface{} `dynamodb:"Data"`
+	Key  int
+	Desc string
+	Data map[string]interface{} `dynamodbav:"Data,omitempty"`
 }
 ```
-Use Go tags to define what the name is of the attribute in your DynamoDB table.
+Use Go tags to define what the name is of the attribute in your DynamoDB table. See https://godoc.org/github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute#Marshal for more information.
 
 In DynamoDB the structure of the item to be returned will be:
 ```json
