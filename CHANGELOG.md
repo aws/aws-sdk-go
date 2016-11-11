@@ -1,3 +1,11 @@
+Release v1.5.3 (2016-11-11)
+===
+
+Service Client Updates
+---
+`service/cloudformation`: Updates service documentation and examples
+`service/logs`: Updates service API and documentation
+
 Release v1.5.2 (2016-11-03)
 ===
 
