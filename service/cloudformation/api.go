@@ -1338,7 +1338,7 @@ func (c *CloudFormation) ListExportsRequest(input *ListExportsInput) (req *reque
 // function.
 //
 // For more information, see  AWS CloudFormation Export Stack Output Values
-// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html).
+// (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2185,13 +2185,18 @@ type CreateChangeSetInput struct {
 	// ChangeSetName is a required field
 	ChangeSetName *string `min:"1" type:"string" required:"true"`
 
-	// The type of change set operation. Valid values are CREATE and UPDATE:
+	// The type of change set operation.
 	//
-	//    * CREATE - Specify for a change set for a stack that does not yet exist.
-	//    The stack has an expected unique ID, but no template or resources. It
-	//    can include multiple change sets.
+	// Valid values are CREATE and UPDATE. The default value is UPDATE.
 	//
-	//    * UPDATE - Specify for a change set for an existing stack.
+	//    * CREATE - Specify to use the change set to create a new stack. While
+	//    AWS CloudFormation creates the stack, the stack has the REVIEW_IN_PROGRESS
+	//    (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-describing-stacks.html#d0e11995)
+	//    status and an expected StackId, but no template or resources. Except for
+	//    its StackId, the stack is completely empty until you execute the change
+	//    set. You can apply multiple change sets to a stack.
+	//
+	//    * UPDATE - Specify to create a change set for an existing stack.
 	ChangeSetType *string `type:"string" enum:"ChangeSetType"`
 
 	// A unique identifier for this CreateChangeSet request. Specify this token
@@ -2229,10 +2234,10 @@ type CreateChangeSetInput struct {
 	// The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM)
 	// role that AWS CloudFormation assumes when executing the change set. AWS CloudFormation
 	// uses the role's credentials to make calls on your behalf. AWS CloudFormation
-	// always uses this role for all future operations on the stack. As long as
-	// users have permission to operate on the stack, AWS CloudFormation uses this
-	// role even if the users don't have permission to pass it. Ensure that the
-	// role grants least privilege.
+	// uses this role for all future operations on the stack. As long as users have
+	// permission to operate on the stack, AWS CloudFormation uses this role even
+	// if the users don't have permission to pass it. Ensure that the role grants
+	// least privilege.
 	//
 	// If you don't specify a value, AWS CloudFormation uses the role that was previously
 	// associated with the stack. If no role is available, AWS CloudFormation uses
@@ -3830,13 +3835,14 @@ type GetTemplateInput struct {
 	// Default: There is no default value.
 	StackName *string `type:"string"`
 
-	// The stage of the template that is returned. Valid values are Original and
-	// Processed:
+	// The stage of the template that is returned.
 	//
-	//    * Original - Use to return the specified pre-transform template.
+	// Valid values are Original and Processed. The default value is Original.
 	//
-	//    * Processed - Use to return the template after all transforms have been
-	//    processed.
+	//    * Original - Use this value to return the user-submitted template.
+	//
+	//    * Processed - Use this value to return the template after all transforms
+	//    have been processed.
 	TemplateStage *string `type:"string" enum:"TemplateStage"`
 }
 
@@ -3885,10 +3891,16 @@ func (s *GetTemplateInput) SetTemplateStage(v string) *GetTemplateInput {
 type GetTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The available template type. For stacks, both the Original and Processed
-	// template types are always available. For change sets, the Original template
-	// is always available. After the transforms are processed, the Processed template
-	// becomes available.
+	// The template type.
+	//
+	//    * For stacks, you can use either the Original or the Processed template
+	//    type.
+	//
+	//    * For change sets, you can use only the Original template type. After
+	//    the transforms are processed, you can use the Processed template type.
+	//
+	// If you create a change set for a new stack, you must select the template
+	// type.
 	StagesAvailable []*string `type:"list"`
 
 	// Structure containing the template body. (For more information, go to Template
@@ -4019,7 +4031,7 @@ type GetTemplateSummaryOutput struct {
 	// element.
 	CapabilitiesReason *string `type:"string"`
 
-	// A list of the transforms that have been declared in the template.
+	// A list of the transforms that are declared in the template.
 	DeclaredTransforms []*string `type:"list"`
 
 	// The value that is defined in the Description property of the template.
@@ -6192,7 +6204,7 @@ type ValidateTemplateOutput struct {
 	// element.
 	CapabilitiesReason *string `type:"string"`
 
-	// A list of the transforms that have been declared in the template.
+	// A list of the transforms that are declared in the template.
 	DeclaredTransforms []*string `type:"list"`
 
 	// The description found within the template.
