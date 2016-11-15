@@ -1,3 +1,12 @@
+Release v1.5.5 (2016-11-15)
+===
+
+Service Client Updates
+---
+`service/ds`: Updates service API and documentation
+`service/elasticache`: Updates service API and documentation
+`service/kinesis`: Updates service API and documentation
+
 Release v1.5.4 (2016-11-15)
 ===
 
