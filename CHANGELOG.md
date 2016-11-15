@@ -1,3 +1,10 @@
+Release v1.5.4 (2016-11-15)
+===
+
+Service Client Updates
+---
+`service/cognito-idp`: Updates service API and documentation
+
 Release v1.5.3 (2016-11-11)
 ===
 
