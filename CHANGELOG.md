@@ -1,3 +1,11 @@
+Release v1.5.6 (2016-11-16)
+===
+
+Service Client Updates
+---
+`service/route53`: Updates service API and documentation
+`service/servicecatalog`: Updates service API and documentation
+
 Release v1.5.5 (2016-11-15)
 ===
 
