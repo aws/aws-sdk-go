@@ -1,19 +1,21 @@
-package rds_test
+package rds
 
 import (
+	"fmt"
 	"io/ioutil"
 	"net/url"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
-	"github.com/aws/aws-sdk-go/service/rds"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCopyDBSnapshotWithPresignNotSet(t *testing.T) {
-	svc := rds.New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
+func TestPresignWithPresignNotSet(t *testing.T) {
+	reqs := map[string]*request.Request{}
+	svc := New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
 
 	assert.NotPanics(t, func() {
 		// Doesn't panic on nil input
@@ -21,22 +23,27 @@ func TestCopyDBSnapshotWithPresignNotSet(t *testing.T) {
 		req.Sign()
 	})
 
-	req, _ := svc.CopyDBSnapshotRequest(&rds.CopyDBSnapshotInput{
+	req, _ := svc.CopyDBSnapshotRequest(&CopyDBSnapshotInput{
 		SourceRegion:               aws.String("us-west-1"),
 		SourceDBSnapshotIdentifier: aws.String("foo"),
 		TargetDBSnapshotIdentifier: aws.String("bar"),
 	})
-	req.Sign()
 
-	b, _ := ioutil.ReadAll(req.HTTPRequest.Body)
-	q, _ := url.ParseQuery(string(b))
+	reqs[opCopyDBSnapshot] = req
 
-	u, _ := url.QueryUnescape(q.Get("PreSignedUrl"))
-	assert.Regexp(t, `^https://rds.us-west-1\.amazonaws\.com/.+`, u)
+	for op, req := range reqs {
+		req.Sign()
+		b, _ := ioutil.ReadAll(req.HTTPRequest.Body)
+		q, _ := url.ParseQuery(string(b))
+
+		u, _ := url.QueryUnescape(q.Get("PreSignedUrl"))
+		assert.Regexp(t, fmt.Sprintf(`^https://rds.us-west-1\.amazonaws\.com/\?Action=%s.+?DestinationRegion=us-west-2.+`, op), u)
+	}
 }
 
-func TestCopyDBSnapshotWithPresignSet(t *testing.T) {
-	svc := rds.New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
+func TestPresignWithPresignSet(t *testing.T) {
+	reqs := map[string]*request.Request{}
+	svc := New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
 
 	assert.NotPanics(t, func() {
 		// Doesn't panic on nil input
@@ -44,17 +51,22 @@ func TestCopyDBSnapshotWithPresignSet(t *testing.T) {
 		req.Sign()
 	})
 
-	req, _ := svc.CopyDBSnapshotRequest(&rds.CopyDBSnapshotInput{
+	req, _ := svc.CopyDBSnapshotRequest(&CopyDBSnapshotInput{
 		SourceRegion:               aws.String("us-west-1"),
 		SourceDBSnapshotIdentifier: aws.String("foo"),
 		TargetDBSnapshotIdentifier: aws.String("bar"),
 		PreSignedUrl:               aws.String("presignedURL"),
 	})
-	req.Sign()
 
-	b, _ := ioutil.ReadAll(req.HTTPRequest.Body)
-	q, _ := url.ParseQuery(string(b))
+	reqs[opCopyDBSnapshot] = req
 
-	u, _ := url.QueryUnescape(q.Get("PreSignedUrl"))
-	assert.Regexp(t, `presignedURL`, u)
+	for _, req := range reqs {
+		req.Sign()
+
+		b, _ := ioutil.ReadAll(req.HTTPRequest.Body)
+		q, _ := url.ParseQuery(string(b))
+
+		u, _ := url.QueryUnescape(q.Get("PreSignedUrl"))
+		assert.Regexp(t, `presignedURL`, u)
+	}
 }

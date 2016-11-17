@@ -4,12 +4,15 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/endpoints"
 )
 
 func init() {
-	ops := []string{}
+	ops := []string{
+		opCopyDBSnapshot,
+	}
 	initRequest = func(r *request.Request) {
 		for _, operation := range ops {
 			if r.Operation.Name == operation {
@@ -20,13 +23,27 @@ func init() {
 }
 
 func fillPresignedURL(r *request.Request) {
-	fns := map[string]func(r *request.Request){}
+	fns := map[string]func(r *request.Request){
+		opCopyDBSnapshot: copyDBSnapshotPresign,
+	}
 	if !r.ParamsFilled() {
 		return
 	}
 	if f, ok := fns[r.Operation.Name]; ok {
 		f(r)
 	}
+}
+
+func copyDBSnapshotPresign(r *request.Request) {
+	originParams := r.Params.(*CopyDBSnapshotInput)
+
+	if originParams.PreSignedUrl != nil || originParams.DestinationRegion != nil {
+		return
+	}
+
+	originParams.DestinationRegion = r.Config.Region
+	newParams := awsutil.CopyOf(r.Params).(*CopyDBSnapshotInput)
+	originParams.PreSignedUrl = presignURL(r, originParams.SourceRegion, newParams)
 }
 
 // presignURL will presign the request by using SoureRegion to sign with. SourceRegion is not
