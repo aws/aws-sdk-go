@@ -72,6 +72,9 @@ func buildLocationElements(r *request.Request, v reflect.Value) {
 			if !m.IsValid() {
 				continue
 			}
+			if field.Tag.Get("ignore") != "" {
+				continue
+			}
 
 			var err error
 			switch field.Tag.Get("location") {

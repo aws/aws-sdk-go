@@ -14,16 +14,18 @@ import (
 
 // A ShapeRef defines the usage of a shape within the API.
 type ShapeRef struct {
-	API              *API   `json:"-"`
-	Shape            *Shape `json:"-"`
-	Documentation    string
-	ShapeName        string `json:"shape"`
-	Location         string
-	LocationName     string
-	QueryName        string
-	Flattened        bool
-	Streaming        bool
-	XMLAttribute     bool
+	API           *API   `json:"-"`
+	Shape         *Shape `json:"-"`
+	Documentation string
+	ShapeName     string `json:"shape"`
+	Location      string
+	LocationName  string
+	QueryName     string
+	Flattened     bool
+	Streaming     bool
+	XMLAttribute  bool
+	// Ignore, if set, will not be sent over the wire
+	Ignore           bool
 	XMLNamespace     XMLInfo
 	Payload          string
 	IdempotencyToken bool `json:"idempotencyToken"`
@@ -381,6 +383,10 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 
 	if ref.IdempotencyToken || ref.Shape.IdempotencyToken {
 		tags = append(tags, ShapeTag{"idempotencyToken", "true"})
+	}
+
+	if ref.Ignore {
+		tags = append(tags, ShapeTag{"ignore", "true"})
 	}
 
 	return fmt.Sprintf("`%s`", tags)
