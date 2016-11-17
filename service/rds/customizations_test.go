@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestPresignWithPresignNotSet(t *testing.T) {
+func TestCopyDBSnapshotWithPresignNotSet(t *testing.T) {
 	svc := rds.New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
 
 	assert.NotPanics(t, func() {
@@ -35,7 +35,7 @@ func TestPresignWithPresignNotSet(t *testing.T) {
 	assert.Regexp(t, `^https://rds.us-west-1\.amazonaws\.com/.+`, u)
 }
 
-func TestPresignWithPresignSet(t *testing.T) {
+func TestCopyDBSnapshotWithPresignSet(t *testing.T) {
 	svc := rds.New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
 
 	assert.NotPanics(t, func() {

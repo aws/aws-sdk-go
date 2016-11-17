@@ -110,7 +110,6 @@ func dynamodbstreamsCustomizations(a *API) {
 func rdsCustomizations(a *API) {
 	inputs := []string{
 		"CopyDBSnapshotInput",
-		"CreateDBInstanceReadReplicaInput",
 	}
 	for _, input := range inputs {
 		if ref, ok := a.Shapes[input]; ok {
