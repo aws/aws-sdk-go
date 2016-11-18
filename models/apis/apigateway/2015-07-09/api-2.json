@@ -179,7 +179,8 @@
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "CreateUsagePlanKey":{
@@ -963,7 +964,8 @@
         {"shape":"BadRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "ImportApiKeys":{
@@ -1553,6 +1555,13 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ContentHandlingStrategy":{
+      "type":"string",
+      "enum":[
+        "CONVERT_TO_BINARY",
+        "CONVERT_TO_TEXT"
+      ]
+    },
     "CreateApiKeyRequest":{
       "type":"structure",
       "members":{
@@ -1608,10 +1617,7 @@
     },
     "CreateDeploymentRequest":{
       "type":"structure",
-      "required":[
-        "restApiId",
-        "stageName"
-      ],
+      "required":["restApiId"],
       "members":{
         "restApiId":{
           "shape":"String",
@@ -1689,7 +1695,8 @@
       "members":{
         "name":{"shape":"String"},
         "description":{"shape":"String"},
-        "cloneFrom":{"shape":"String"}
+        "cloneFrom":{"shape":"String"},
+        "binaryMediaTypes":{"shape":"ListOfString"}
       }
     },
     "CreateStageRequest":{
@@ -2156,7 +2163,7 @@
           "locationName":"api_Key"
         },
         "includeValue":{
-          "shape":"Boolean",
+          "shape":"NullableBoolean",
           "location":"querystring",
           "locationName":"includeValue"
         }
@@ -2180,8 +2187,13 @@
           "location":"querystring",
           "locationName":"name"
         },
+        "customerId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"customerId"
+        },
         "includeValues":{
-          "shape":"Boolean",
+          "shape":"NullableBoolean",
           "location":"querystring",
           "locationName":"includeValues"
         }
@@ -2864,6 +2876,7 @@
         "requestParameters":{"shape":"MapOfStringToString"},
         "requestTemplates":{"shape":"MapOfStringToString"},
         "passthroughBehavior":{"shape":"String"},
+        "contentHandling":{"shape":"ContentHandlingStrategy"},
         "cacheNamespace":{"shape":"String"},
         "cacheKeyParameters":{"shape":"ListOfString"},
         "integrationResponses":{"shape":"MapOfIntegrationResponse"}
@@ -2875,7 +2888,8 @@
         "statusCode":{"shape":"StatusCode"},
         "selectionPattern":{"shape":"String"},
         "responseParameters":{"shape":"MapOfStringToString"},
-        "responseTemplates":{"shape":"MapOfStringToString"}
+        "responseTemplates":{"shape":"MapOfStringToString"},
+        "contentHandling":{"shape":"ContentHandlingStrategy"}
       }
     },
     "IntegrationType":{
@@ -3162,7 +3176,8 @@
         "requestTemplates":{"shape":"MapOfStringToString"},
         "passthroughBehavior":{"shape":"String"},
         "cacheNamespace":{"shape":"String"},
-        "cacheKeyParameters":{"shape":"ListOfString"}
+        "cacheKeyParameters":{"shape":"ListOfString"},
+        "contentHandling":{"shape":"ContentHandlingStrategy"}
       }
     },
     "PutIntegrationResponseRequest":{
@@ -3196,7 +3211,8 @@
         },
         "selectionPattern":{"shape":"String"},
         "responseParameters":{"shape":"MapOfStringToString"},
-        "responseTemplates":{"shape":"MapOfStringToString"}
+        "responseTemplates":{"shape":"MapOfStringToString"},
+        "contentHandling":{"shape":"ContentHandlingStrategy"}
       }
     },
     "PutMethodRequest":{
@@ -3343,7 +3359,8 @@
         "name":{"shape":"String"},
         "description":{"shape":"String"},
         "createdDate":{"shape":"Timestamp"},
-        "warnings":{"shape":"ListOfString"}
+        "warnings":{"shape":"ListOfString"},
+        "binaryMediaTypes":{"shape":"ListOfString"}
       }
     },
     "RestApis":{

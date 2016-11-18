@@ -785,6 +785,9 @@ func (c *APIGateway) CreateUsagePlanRequest(input *CreateUsagePlanInput) (req *r
 //   * ConflictException
 
 //
+//   * NotFoundException
+
+//
 func (c *APIGateway) CreateUsagePlan(input *CreateUsagePlanInput) (*UsagePlan, error) {
 	req, out := c.CreateUsagePlanRequest(input)
 	err := req.Send()
@@ -4969,6 +4972,9 @@ func (c *APIGateway) GetUsagePlansRequest(input *GetUsagePlansInput) (req *reque
 //   * ConflictException
 
 //
+//   * NotFoundException
+
+//
 func (c *APIGateway) GetUsagePlans(input *GetUsagePlansInput) (*GetUsagePlansOutput, error) {
 	req, out := c.GetUsagePlansRequest(input)
 	err := req.Send()
@@ -7222,22 +7228,24 @@ type Authorizer struct {
 	AuthorizerResultTtlInSeconds *int64 `locationName:"authorizerResultTtlInSeconds" type:"integer"`
 
 	// [Required] Specifies the authorizer's Uniform Resource Identifier (URI).
-	// For TOKEN authorizers, this must be a well-formed Lambda function URI. The
-	// URI should be of the form arn:aws:apigateway:{region}:lambda:path/{service_api}.
-	// Region is used to determine the right endpoint. In this case, path is used
-	// to indicate that the remaining substring in the URI should be treated as
-	// the path to the resource, including the initial /. For Lambda functions,
-	// this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations
+	// For TOKEN authorizers, this must be a well-formed Lambda function URI, for
+	// example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations.
+	// In general, the URI has this form arn:aws:apigateway:{region}:lambda:path/{service_api},
+	// where {region} is the same as the region hosting the Lambda function, path
+	// indicates that the remaining substring in the URI should be treated as the
+	// path to the resource, including the initial /. For Lambda functions, this
+	// is usually of the form /2015-03-31/functions/[FunctionARN]/invocations.
 	AuthorizerUri *string `locationName:"authorizerUri" type:"string"`
 
 	// The identifier for the authorizer resource.
 	Id *string `locationName:"id" type:"string"`
 
-	// [Required] The source of the identity in an incoming request. For TOKEN authorizers,
-	// this value is a mapping expression with the same syntax as integration parameter
-	// mappings. The only valid source for tokens is 'header', so the expression
-	// should match 'method.request.header.[headerName]'. The value of the header
-	// '[headerName]' will be interpreted as the incoming token.
+	// [Required] The source of the identity in an incoming request. For a TOKEN
+	// authorizer, this value is a mapping expression with the same syntax as integration
+	// parameter mappings. The only valid source for tokens is 'header', so the
+	// expression should match 'method.request.header.[headerName]'. The value of
+	// the header '[headerName]' will be interpreted as the incoming token. For
+	// COGNITO_USER_POOLS authorizers, this property is used.
 	IdentitySource *string `locationName:"identitySource" type:"string"`
 
 	// A validation expression for the incoming identity. For TOKEN authorizers,
@@ -7249,11 +7257,13 @@ type Authorizer struct {
 	// [Required] The name of the authorizer.
 	Name *string `locationName:"name" type:"string"`
 
-	// A list of the provider ARNs of the authorizer.
+	// A list of the provider ARNs of the authorizer. For an TOKEN authorizer, this
+	// is not defined. For authorizers of the COGNITO_USER_POOLS type, each element
+	// corresponds to a user pool ARN of this format: arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}.
 	ProviderARNs []*string `locationName:"providerARNs" type:"list"`
 
-	// [Required] The type of the authorizer. Currently, the only valid type is
-	// TOKEN.
+	// [Required] The type of the authorizer. Currently, the valid type is TOKEN
+	// for a Lambda function or COGNITO_USER_POOLS for an Amazon Cognito user pool.
 	Type *string `locationName:"type" type:"string" enum:"AuthorizerType"`
 }
 
@@ -7746,9 +7756,7 @@ type CreateDeploymentInput struct {
 	StageDescription *string `locationName:"stageDescription" type:"string"`
 
 	// The name of the Stage resource for the Deployment resource to create.
-	//
-	// StageName is a required field
-	StageName *string `locationName:"stageName" type:"string" required:"true"`
+	StageName *string `locationName:"stageName" type:"string"`
 
 	// A map that defines the stage variables for the Stage resource that is associated
 	// with the new deployment. Variable names can have alphanumeric and underscore
@@ -7771,9 +7779,6 @@ func (s *CreateDeploymentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDeploymentInput"}
 	if s.RestApiId == nil {
 		invalidParams.Add(request.NewErrParamRequired("RestApiId"))
-	}
-	if s.StageName == nil {
-		invalidParams.Add(request.NewErrParamRequired("StageName"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8081,6 +8086,10 @@ func (s *CreateResourceInput) SetRestApiId(v string) *CreateResourceInput {
 type CreateRestApiInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of binary media types supported by the RestApi. By default, the
+	// RestApi supports only UTF-8-encoded text payloads.
+	BinaryMediaTypes []*string `locationName:"binaryMediaTypes" type:"list"`
+
 	// The ID of the RestApi that you want to clone from.
 	CloneFrom *string `locationName:"cloneFrom" type:"string"`
 
@@ -8114,6 +8123,12 @@ func (s *CreateRestApiInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBinaryMediaTypes sets the BinaryMediaTypes field's value.
+func (s *CreateRestApiInput) SetBinaryMediaTypes(v []*string) *CreateRestApiInput {
+	s.BinaryMediaTypes = v
+	return s
 }
 
 // SetCloneFrom sets the CloneFrom field's value.
@@ -9816,6 +9831,8 @@ func (s *GetApiKeyInput) SetIncludeValue(v bool) *GetApiKeyInput {
 type GetApiKeysInput struct {
 	_ struct{} `type:"structure"`
 
+	CustomerId *string `location:"querystring" locationName:"customerId" type:"string"`
+
 	// A boolean flag to specify whether (true) or not (false) the result contains
 	// key values.
 	IncludeValues *bool `location:"querystring" locationName:"includeValues" type:"boolean"`
@@ -9838,6 +9855,12 @@ func (s GetApiKeysInput) String() string {
 // GoString returns the string representation
 func (s GetApiKeysInput) GoString() string {
 	return s.String()
+}
+
+// SetCustomerId sets the CustomerId field's value.
+func (s *GetApiKeysInput) SetCustomerId(v string) *GetApiKeysInput {
+	s.CustomerId = &v
+	return s
 }
 
 // SetIncludeValues sets the IncludeValues field's value.
@@ -12284,11 +12307,11 @@ func (s *ImportRestApiInput) SetParameters(v map[string]*string) *ImportRestApiI
 	return s
 }
 
-// Represents an HTTP, AWS, or Mock integration.
+// Represents an HTTP, HTTP_PROXY, AWS, AWS_PROXY, or Mock integration.
 //
 // In the API Gateway console, the built-in Lambda integration is an AWS integration.
 //
-// Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+// Creating an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html),
 type Integration struct {
 	_ struct{} `type:"structure"`
 
@@ -12297,6 +12320,20 @@ type Integration struct {
 
 	// Specifies the integration's cache namespace.
 	CacheNamespace *string `locationName:"cacheNamespace" type:"string"`
+
+	// Specifies how to handle request payload content type conversions. Supported
+	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
+	//
+	//    * CONVERT_TO_BINARY: Converts a request payload from a Base64-encoded
+	//    string to the corresponding binary blob.
+	//
+	//    * CONVERT_TO_TEXT: Converts a request payload from a binary blob to a
+	//    Base64-encoded string.
+	//
+	// If this property is not defined, the request payload will be passed through
+	// from the method request to integration request without modification, provided
+	// that the passthroughBehaviors is configured to support payload pass-through.
+	ContentHandling *string `locationName:"contentHandling" type:"string" enum:"ContentHandlingStrategy"`
 
 	// Specifies the credentials required for the integration, if any. For AWS integrations,
 	// three options are available. To specify an IAM Role for Amazon API Gateway
@@ -12411,6 +12448,12 @@ func (s *Integration) SetCacheNamespace(v string) *Integration {
 	return s
 }
 
+// SetContentHandling sets the ContentHandling field's value.
+func (s *Integration) SetContentHandling(v string) *Integration {
+	s.ContentHandling = &v
+	return s
+}
+
 // SetCredentials sets the Credentials field's value.
 func (s *Integration) SetCredentials(v string) *Integration {
 	s.Credentials = &v
@@ -12467,6 +12510,19 @@ func (s *Integration) SetUri(v string) *Integration {
 type IntegrationResponse struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how to handle response payload content type conversions. Supported
+	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
+	//
+	//    * CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded
+	//    string to the corresponding binary blob.
+	//
+	//    * CONVERT_TO_TEXT: Converts a response payload from a binary blob to a
+	//    Base64-encoded string.
+	//
+	// If this property is not defined, the response payload will be passed through
+	// from the integration response to the method response without modification.
+	ContentHandling *string `locationName:"contentHandling" type:"string" enum:"ContentHandlingStrategy"`
+
 	// A key-value map specifying response parameters that are passed to the method
 	// response from the back end. The key is a method response header parameter
 	// name and the mapped value is an integration response header value, a static
@@ -12507,6 +12563,12 @@ func (s IntegrationResponse) String() string {
 // GoString returns the string representation
 func (s IntegrationResponse) GoString() string {
 	return s.String()
+}
+
+// SetContentHandling sets the ContentHandling field's value.
+func (s *IntegrationResponse) SetContentHandling(v string) *IntegrationResponse {
+	s.ContentHandling = &v
+	return s
 }
 
 // SetResponseParameters sets the ResponseParameters field's value.
@@ -13154,6 +13216,20 @@ type PutIntegrationInput struct {
 	// Specifies a put integration input's cache namespace.
 	CacheNamespace *string `locationName:"cacheNamespace" type:"string"`
 
+	// Specifies how to handle request payload content type conversions. Supported
+	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
+	//
+	//    * CONVERT_TO_BINARY: Converts a request payload from a Base64-encoded
+	//    string to the corresponding binary blob.
+	//
+	//    * CONVERT_TO_TEXT: Converts a request payload from a binary blob to a
+	//    Base64-encoded string.
+	//
+	// If this property is not defined, the request payload will be passed through
+	// from the method request to integration request without modification, provided
+	// that the passthroughBehaviors is configured to support payload pass-through.
+	ContentHandling *string `locationName:"contentHandling" type:"string" enum:"ContentHandlingStrategy"`
+
 	// Specifies whether credentials are required for a put integration.
 	Credentials *string `locationName:"credentials" type:"string"`
 
@@ -13263,6 +13339,12 @@ func (s *PutIntegrationInput) SetCacheNamespace(v string) *PutIntegrationInput {
 	return s
 }
 
+// SetContentHandling sets the ContentHandling field's value.
+func (s *PutIntegrationInput) SetContentHandling(v string) *PutIntegrationInput {
+	s.ContentHandling = &v
+	return s
+}
+
 // SetCredentials sets the Credentials field's value.
 func (s *PutIntegrationInput) SetCredentials(v string) *PutIntegrationInput {
 	s.Credentials = &v
@@ -13326,6 +13408,19 @@ func (s *PutIntegrationInput) SetUri(v string) *PutIntegrationInput {
 // Represents a put integration response request.
 type PutIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies how to handle response payload content type conversions. Supported
+	// values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:
+	//
+	//    * CONVERT_TO_BINARY: Converts a response payload from a Base64-encoded
+	//    string to the corresponding binary blob.
+	//
+	//    * CONVERT_TO_TEXT: Converts a response payload from a binary blob to a
+	//    Base64-encoded string.
+	//
+	// If this property is not defined, the response payload will be passed through
+	// from the integration response to the method response without modification.
+	ContentHandling *string `locationName:"contentHandling" type:"string" enum:"ContentHandlingStrategy"`
 
 	// Specifies a put integration response request's HTTP method.
 	//
@@ -13397,6 +13492,12 @@ func (s *PutIntegrationResponseInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetContentHandling sets the ContentHandling field's value.
+func (s *PutIntegrationResponseInput) SetContentHandling(v string) *PutIntegrationResponseInput {
+	s.ContentHandling = &v
+	return s
 }
 
 // SetHttpMethod sets the HttpMethod field's value.
@@ -13931,6 +14032,10 @@ func (s *Resource) SetResourceMethods(v map[string]*Method) *Resource {
 type RestApi struct {
 	_ struct{} `type:"structure"`
 
+	// The list of binary media types supported by the RestApi. By default, the
+	// RestApi supports only UTF-8-encoded text payloads.
+	BinaryMediaTypes []*string `locationName:"binaryMediaTypes" type:"list"`
+
 	// The date when the API was created, in ISO 8601 format (http://www.iso.org/iso/home/standards/iso8601.htm).
 	CreatedDate *time.Time `locationName:"createdDate" type:"timestamp" timestampFormat:"unix"`
 
@@ -13957,6 +14062,12 @@ func (s RestApi) String() string {
 // GoString returns the string representation
 func (s RestApi) GoString() string {
 	return s.String()
+}
+
+// SetBinaryMediaTypes sets the BinaryMediaTypes field's value.
+func (s *RestApi) SetBinaryMediaTypes(v []*string) *RestApi {
+	s.BinaryMediaTypes = v
+	return s
 }
 
 // SetCreatedDate sets the CreatedDate field's value.
@@ -15796,7 +15907,8 @@ const (
 	ApiKeysFormatCsv = "csv"
 )
 
-// The authorizer type. the only current value is TOKEN.
+// The authorizer type. the current value is TOKEN for a Lambda function or
+// COGNITO_USER_POOLS for an Amazon Cognito Your User Pool.
 const (
 	// AuthorizerTypeToken is a AuthorizerType enum value
 	AuthorizerTypeToken = "TOKEN"
@@ -15848,6 +15960,14 @@ const (
 
 	// CacheClusterStatusFlushInProgress is a CacheClusterStatus enum value
 	CacheClusterStatusFlushInProgress = "FLUSH_IN_PROGRESS"
+)
+
+const (
+	// ContentHandlingStrategyConvertToBinary is a ContentHandlingStrategy enum value
+	ContentHandlingStrategyConvertToBinary = "CONVERT_TO_BINARY"
+
+	// ContentHandlingStrategyConvertToText is a ContentHandlingStrategy enum value
+	ContentHandlingStrategyConvertToText = "CONVERT_TO_TEXT"
 )
 
 // The integration type. The valid value is HTTP for integrating with an HTTP

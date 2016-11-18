@@ -127,11 +127,11 @@ func ExampleAPIGateway_CreateDeployment() {
 
 	params := &apigateway.CreateDeploymentInput{
 		RestApiId:           aws.String("String"), // Required
-		StageName:           aws.String("String"), // Required
 		CacheClusterEnabled: aws.Bool(true),
 		CacheClusterSize:    aws.String("CacheClusterSize"),
 		Description:         aws.String("String"),
 		StageDescription:    aws.String("String"),
+		StageName:           aws.String("String"),
 		Variables: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
@@ -245,7 +245,11 @@ func ExampleAPIGateway_CreateRestApi() {
 	svc := apigateway.New(sess)
 
 	params := &apigateway.CreateRestApiInput{
-		Name:        aws.String("String"), // Required
+		Name: aws.String("String"), // Required
+		BinaryMediaTypes: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
 		CloneFrom:   aws.String("String"),
 		Description: aws.String("String"),
 	}
@@ -918,6 +922,7 @@ func ExampleAPIGateway_GetApiKeys() {
 	svc := apigateway.New(sess)
 
 	params := &apigateway.GetApiKeysInput{
+		CustomerId:    aws.String("String"),
 		IncludeValues: aws.Bool(true),
 		Limit:         aws.Int64(1),
 		NameQuery:     aws.String("String"),
@@ -1818,6 +1823,7 @@ func ExampleAPIGateway_PutIntegration() {
 			// More values...
 		},
 		CacheNamespace:        aws.String("String"),
+		ContentHandling:       aws.String("ContentHandlingStrategy"),
 		Credentials:           aws.String("String"),
 		IntegrationHttpMethod: aws.String("String"),
 		PassthroughBehavior:   aws.String("String"),
@@ -1854,10 +1860,11 @@ func ExampleAPIGateway_PutIntegrationResponse() {
 	svc := apigateway.New(sess)
 
 	params := &apigateway.PutIntegrationResponseInput{
-		HttpMethod: aws.String("String"),     // Required
-		ResourceId: aws.String("String"),     // Required
-		RestApiId:  aws.String("String"),     // Required
-		StatusCode: aws.String("StatusCode"), // Required
+		HttpMethod:      aws.String("String"),     // Required
+		ResourceId:      aws.String("String"),     // Required
+		RestApiId:       aws.String("String"),     // Required
+		StatusCode:      aws.String("StatusCode"), // Required
+		ContentHandling: aws.String("ContentHandlingStrategy"),
 		ResponseParameters: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
