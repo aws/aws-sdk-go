@@ -1,3 +1,14 @@
+Release v1.5.8 (2016-11-18)
+===
+
+Service Client Updates
+---
+`service/application-autoscaling`: Updates service API and documentation
+`service/elasticmapreduce`: Updates service API and documentation
+`service/elastictranscoder`: Updates service API, documentation, and examples
+`service/gamelift`: Updates service API and documentation
+`service/lambda`: Updates service API and documentation
+
 Release v1.5.7 (2016-11-18)
 ===
 
