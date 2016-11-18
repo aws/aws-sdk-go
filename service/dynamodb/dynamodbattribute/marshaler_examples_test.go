@@ -33,7 +33,7 @@ func ExampleMarshal() {
 	// Output:
 	// err <nil>
 	// Bytes {
-	//   B: <binary>
+	//   B: <binary> len 2
 	// }
 	// MyField {
 	//   S: "MyFieldValue"
