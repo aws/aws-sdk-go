@@ -227,7 +227,11 @@
         {"shape":"EC2AccessDeniedException"},
         {"shape":"InvalidSubnetIDException"},
         {"shape":"InvalidSecurityGroupIDException"},
-        {"shape":"InvalidZipFileException"}
+        {"shape":"InvalidZipFileException"},
+        {"shape":"KMSDisabledException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSAccessDeniedException"},
+        {"shape":"KMSNotFoundException"}
       ]
     },
     "InvokeAsync":{
@@ -540,7 +544,9 @@
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"},
         "Publish":{"shape":"Boolean"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Environment":{"shape":"Environment"},
+        "KMSKeyArn":{"shape":"KMSKeyArn"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -633,6 +639,39 @@
       "exception":true
     },
     "Enabled":{"type":"boolean"},
+    "Environment":{
+      "type":"structure",
+      "members":{
+        "Variables":{"shape":"EnvironmentVariables"}
+      }
+    },
+    "EnvironmentError":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "EnvironmentResponse":{
+      "type":"structure",
+      "members":{
+        "Variables":{"shape":"EnvironmentVariables"},
+        "Error":{"shape":"EnvironmentError"}
+      }
+    },
+    "EnvironmentVariableName":{
+      "type":"string",
+      "pattern":"[a-zA-Z]([a-zA-Z0-9_])+"
+    },
+    "EnvironmentVariableValue":{
+      "type":"string",
+      "pattern":"[^,]*"
+    },
+    "EnvironmentVariables":{
+      "type":"map",
+      "key":{"shape":"EnvironmentVariableName"},
+      "value":{"shape":"EnvironmentVariableValue"}
+    },
     "EventSourceMappingConfiguration":{
       "type":"structure",
       "members":{
@@ -698,7 +737,9 @@
         "LastModified":{"shape":"Timestamp"},
         "CodeSha256":{"shape":"String"},
         "Version":{"shape":"Version"},
-        "VpcConfig":{"shape":"VpcConfigResponse"}
+        "VpcConfig":{"shape":"VpcConfigResponse"},
+        "Environment":{"shape":"EnvironmentResponse"},
+        "KMSKeyArn":{"shape":"KMSKeyArn"}
       }
     },
     "FunctionList":{
@@ -942,6 +983,46 @@
         }
       },
       "deprecated":true
+    },
+    "KMSAccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "KMSDisabledException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "KMSInvalidStateException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
+    },
+    "KMSKeyArn":{
+      "type":"string",
+      "pattern":"(arn:aws:[a-z0-9-.]+:.*)|()"
+    },
+    "KMSNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":502},
+      "exception":true
     },
     "ListAliasesRequest":{
       "type":"structure",
@@ -1332,6 +1413,8 @@
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"},
         "VpcConfig":{"shape":"VpcConfig"},
+        "Environment":{"shape":"Environment"},
+        "KMSKeyArn":{"shape":"KMSKeyArn"},
         "Runtime":{"shape":"Runtime"}
       }
     },

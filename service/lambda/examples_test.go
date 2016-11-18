@@ -125,9 +125,16 @@ func ExampleLambda_CreateFunction() {
 		Role:         aws.String("RoleArn"),      // Required
 		Runtime:      aws.String("Runtime"),      // Required
 		Description:  aws.String("Description"),
-		MemorySize:   aws.Int64(1),
-		Publish:      aws.Bool(true),
-		Timeout:      aws.Int64(1),
+		Environment: &lambda.Environment{
+			Variables: map[string]*string{
+				"Key": aws.String("EnvironmentVariableValue"), // Required
+				// More values...
+			},
+		},
+		KMSKeyArn:  aws.String("KMSKeyArn"),
+		MemorySize: aws.Int64(1),
+		Publish:    aws.Bool(true),
+		Timeout:    aws.Int64(1),
 		VpcConfig: &lambda.VpcConfig{
 			SecurityGroupIds: []*string{
 				aws.String("SecurityGroupId"), // Required
@@ -675,11 +682,18 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 	params := &lambda.UpdateFunctionConfigurationInput{
 		FunctionName: aws.String("FunctionName"), // Required
 		Description:  aws.String("Description"),
-		Handler:      aws.String("Handler"),
-		MemorySize:   aws.Int64(1),
-		Role:         aws.String("RoleArn"),
-		Runtime:      aws.String("Runtime"),
-		Timeout:      aws.Int64(1),
+		Environment: &lambda.Environment{
+			Variables: map[string]*string{
+				"Key": aws.String("EnvironmentVariableValue"), // Required
+				// More values...
+			},
+		},
+		Handler:    aws.String("Handler"),
+		KMSKeyArn:  aws.String("KMSKeyArn"),
+		MemorySize: aws.Int64(1),
+		Role:       aws.String("RoleArn"),
+		Runtime:    aws.String("Runtime"),
+		Timeout:    aws.Int64(1),
 		VpcConfig: &lambda.VpcConfig{
 			SecurityGroupIds: []*string{
 				aws.String("SecurityGroupId"), // Required

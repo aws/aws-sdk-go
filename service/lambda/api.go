@@ -1101,7 +1101,8 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 
 // Invoke API operation for AWS Lambda.
 //
-// Invokes a specific Lambda function.
+// Invokes a specific Lambda function. For an example, see Create the Lambda
+// Function and Test It Manually (http://docs.aws.amazon.com/lambda/latest/dg/with-dynamodb-create-function.html#with-dbb-invoke-manually).
 //
 // If you are using the versioning feature, you can invoke the specific function
 // version by providing function version or alias name that is pointing to the
@@ -1175,6 +1176,23 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //
 //   * InvalidZipFileException
 //   AWS Lambda could not unzip the function zip file.
+//
+//   * KMSDisabledException
+//   Lambda was unable to decrypt the environment variables because the KMS key
+//   used is disabled. Please check the Lambda function's KMS key settings.
+//
+//   * KMSInvalidStateException
+//   Lambda was unable to decrypt the environment variables because the KMS key
+//   used is in an invalid state for Decrypt. Please check the function's KMS
+//   key settings.
+//
+//   * KMSAccessDeniedException
+//   Lambda was unable to decrypt the environment variables becauses KMS access
+//   was denied. Please check the Lambda function's KMS permissions.
+//
+//   * KMSNotFoundException
+//   Lambda was unable to decrypt the environment variables because the KMS key
+//   was not found. Please check the function's KMS key settings.
 //
 func (c *Lambda) Invoke(input *InvokeInput) (*InvokeOutput, error) {
 	req, out := c.InvokeRequest(input)
@@ -2222,13 +2240,14 @@ type AddPermissionInput struct {
 	// arn:aws:lambda:aws-region:acct-id:function:function-name
 	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
 
-	// This parameter is used for S3 and SES only. The AWS account ID (without a
-	// hyphen) of the source owner. For example, if the SourceArn identifies a bucket,
-	// then this is the bucket owner's account ID. You can use this additional condition
-	// to ensure the bucket you specify is owned by a specific account (it is possible
-	// the bucket owner deleted the bucket and some other AWS account created the
-	// bucket). You can also use this condition to specify all sources (that is,
-	// you don't specify the SourceArn) owned by a specific account.
+	// This parameter is used for S3, SES, CloudWatch Logs and CloudWatch Rules
+	// only. The AWS account ID (without a hyphen) of the source owner. For example,
+	// if the SourceArn identifies a bucket, then this is the bucket owner's account
+	// ID. You can use this additional condition to ensure the bucket you specify
+	// is owned by a specific account (it is possible the bucket owner deleted the
+	// bucket and some other AWS account created the bucket). You can also use this
+	// condition to specify all sources (that is, you don't specify the SourceArn)
+	// owned by a specific account.
 	SourceAccount *string `type:"string"`
 
 	// This is optional; however, when granting Amazon S3 permission to invoke your
@@ -2623,6 +2642,9 @@ type CreateFunctionInput struct {
 	// Assign a meaningful description as you see fit.
 	Description *string `type:"string"`
 
+	// The parent object that contains your environment's configuration settings.
+	Environment *Environment `type:"structure"`
+
 	// The name you want to assign to the function you are uploading. The function
 	// names appear in the console and are returned in the ListFunctions API. Function
 	// names are used to specify functions to other AWS Lambda APIs, such as Invoke.
@@ -2637,6 +2659,11 @@ type CreateFunctionInput struct {
 	//
 	// Handler is a required field
 	Handler *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the KMS key used to encrypt your function's
+	// environment variables. If not provided, AWS Lambda will use a default service
+	// key.
+	KMSKeyArn *string `type:"string"`
 
 	// The amount of memory, in MB, your Lambda function is given. Lambda uses this
 	// memory size to infer the amount of CPU and memory allocated to your function.
@@ -2738,6 +2765,12 @@ func (s *CreateFunctionInput) SetDescription(v string) *CreateFunctionInput {
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *CreateFunctionInput) SetEnvironment(v *Environment) *CreateFunctionInput {
+	s.Environment = v
+	return s
+}
+
 // SetFunctionName sets the FunctionName field's value.
 func (s *CreateFunctionInput) SetFunctionName(v string) *CreateFunctionInput {
 	s.FunctionName = &v
@@ -2747,6 +2780,12 @@ func (s *CreateFunctionInput) SetFunctionName(v string) *CreateFunctionInput {
 // SetHandler sets the Handler field's value.
 func (s *CreateFunctionInput) SetHandler(v string) *CreateFunctionInput {
 	s.Handler = &v
+	return s
+}
+
+// SetKMSKeyArn sets the KMSKeyArn field's value.
+func (s *CreateFunctionInput) SetKMSKeyArn(v string) *CreateFunctionInput {
+	s.KMSKeyArn = &v
 	return s
 }
 
@@ -2985,6 +3024,101 @@ func (s DeleteFunctionOutput) GoString() string {
 	return s.String()
 }
 
+// The parent object that contains your environment's configuration settings.
+type Environment struct {
+	_ struct{} `type:"structure"`
+
+	// The key-value pairs that represent your environment's configuration settings.
+	// The value you specify cannot contain a ",".
+	Variables map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s Environment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Environment) GoString() string {
+	return s.String()
+}
+
+// SetVariables sets the Variables field's value.
+func (s *Environment) SetVariables(v map[string]*string) *Environment {
+	s.Variables = v
+	return s
+}
+
+// The parent object that contains error information associated with your configuration
+// settings.
+type EnvironmentError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code returned by the environment error object.
+	ErrorCode *string `type:"string"`
+
+	// The message returned by the environment error object.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EnvironmentError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnvironmentError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *EnvironmentError) SetErrorCode(v string) *EnvironmentError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EnvironmentError) SetMessage(v string) *EnvironmentError {
+	s.Message = &v
+	return s
+}
+
+// The parent object returned that contains your environment's configuration
+// settings or any error information associated with your configuration settings.
+type EnvironmentResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The parent object that contains error information associated with your configuration
+	// settings.
+	Error *EnvironmentError `type:"structure"`
+
+	// The key-value pairs returned that represent your environment's configuration
+	// settings or error information.
+	Variables map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s EnvironmentResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnvironmentResponse) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *EnvironmentResponse) SetError(v *EnvironmentError) *EnvironmentResponse {
+	s.Error = v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentResponse {
+	s.Variables = v
+	return s
+}
+
 // Describes mapping between an Amazon Kinesis stream and a Lambda function.
 type EventSourceMappingConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -3203,6 +3337,9 @@ type FunctionConfiguration struct {
 	// The user-provided description.
 	Description *string `type:"string"`
 
+	// The parent object that contains your environment's configuration settings.
+	Environment *EnvironmentResponse `type:"structure"`
+
 	// The Amazon Resource Name (ARN) assigned to the function.
 	FunctionArn *string `type:"string"`
 
@@ -3211,6 +3348,11 @@ type FunctionConfiguration struct {
 
 	// The function Lambda calls to begin executing your function.
 	Handler *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the KMS key used to encrypt your function's
+	// environment variables. If empty, it means you are using the AWS Lambda default
+	// service key.
+	KMSKeyArn *string `type:"string"`
 
 	// The time stamp of the last time you updated the function.
 	LastModified *string `type:"string"`
@@ -3269,6 +3411,12 @@ func (s *FunctionConfiguration) SetDescription(v string) *FunctionConfiguration 
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *FunctionConfiguration) SetEnvironment(v *EnvironmentResponse) *FunctionConfiguration {
+	s.Environment = v
+	return s
+}
+
 // SetFunctionArn sets the FunctionArn field's value.
 func (s *FunctionConfiguration) SetFunctionArn(v string) *FunctionConfiguration {
 	s.FunctionArn = &v
@@ -3284,6 +3432,12 @@ func (s *FunctionConfiguration) SetFunctionName(v string) *FunctionConfiguration
 // SetHandler sets the Handler field's value.
 func (s *FunctionConfiguration) SetHandler(v string) *FunctionConfiguration {
 	s.Handler = &v
+	return s
+}
+
+// SetKMSKeyArn sets the KMSKeyArn field's value.
+func (s *FunctionConfiguration) SetKMSKeyArn(v string) *FunctionConfiguration {
+	s.KMSKeyArn = &v
 	return s
 }
 
@@ -3559,7 +3713,7 @@ func (s *GetFunctionInput) SetQualifier(v string) *GetFunctionInput {
 	return s
 }
 
-// This response contains the object for the Lambda function location (see .
+// This response contains the object for the Lambda function location (see FunctionCodeLocation.
 type GetFunctionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3896,7 +4050,7 @@ type InvokeOutput struct {
 	LogResult *string `location:"header" locationName:"X-Amz-Log-Result" type:"string"`
 
 	// It is the JSON representation of the object returned by the Lambda function.
-	// In This is present only if the invocation type is RequestResponse.
+	// This is present only if the invocation type is RequestResponse.
 	//
 	// In the event of a function error this field contains a message describing
 	// the error. For the Handled errors the Lambda function will report this message.
@@ -4133,7 +4287,7 @@ func (s *ListEventSourceMappingsInput) SetMaxItems(v int64) *ListEventSourceMapp
 	return s
 }
 
-// Contains a list of event sources (see )
+// Contains a list of event sources (see EventSourceMappingConfiguration)
 type ListEventSourceMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4791,6 +4945,9 @@ type UpdateFunctionConfigurationInput struct {
 	// Assign a meaningful description as you see fit.
 	Description *string `type:"string"`
 
+	// The parent object that contains your environment's configuration settings.
+	Environment *Environment `type:"structure"`
+
 	// The name of the Lambda function.
 	//
 	// You can specify a function name (for example, Thumbnail) or you can specify
@@ -4805,6 +4962,11 @@ type UpdateFunctionConfigurationInput struct {
 	// The function that Lambda calls to begin executing your function. For Node.js,
 	// it is the module-name.export value in your function.
 	Handler *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the KMS key used to encrypt your function's
+	// environment variables. If you elect to use the AWS Lambda default service
+	// key, pass in an empty string ("") for this parameter.
+	KMSKeyArn *string `type:"string"`
 
 	// The amount of memory, in MB, your Lambda function is given. AWS Lambda uses
 	// this memory size to infer the amount of CPU allocated to your function. Your
@@ -4874,6 +5036,12 @@ func (s *UpdateFunctionConfigurationInput) SetDescription(v string) *UpdateFunct
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateFunctionConfigurationInput) SetEnvironment(v *Environment) *UpdateFunctionConfigurationInput {
+	s.Environment = v
+	return s
+}
+
 // SetFunctionName sets the FunctionName field's value.
 func (s *UpdateFunctionConfigurationInput) SetFunctionName(v string) *UpdateFunctionConfigurationInput {
 	s.FunctionName = &v
@@ -4883,6 +5051,12 @@ func (s *UpdateFunctionConfigurationInput) SetFunctionName(v string) *UpdateFunc
 // SetHandler sets the Handler field's value.
 func (s *UpdateFunctionConfigurationInput) SetHandler(v string) *UpdateFunctionConfigurationInput {
 	s.Handler = &v
+	return s
+}
+
+// SetKMSKeyArn sets the KMSKeyArn field's value.
+func (s *UpdateFunctionConfigurationInput) SetKMSKeyArn(v string) *UpdateFunctionConfigurationInput {
+	s.KMSKeyArn = &v
 	return s
 }
 
