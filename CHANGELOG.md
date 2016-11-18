@@ -1,3 +1,13 @@
+Release v1.5.7 (2016-11-18)
+===
+
+Service Client Updates
+---
+`service/apigateway`: Updates service API and documentation
+`service/meteringmarketplace`: Updates service API and documentation
+`service/monitoring`: Updates service API and documentation
+`service/sqs`: Updates service API, documentation, and examples
+
 Release v1.5.6 (2016-11-16)
 ===
 

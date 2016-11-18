@@ -133,9 +133,9 @@
       }
     },
     "AuthorizerType": {
-      "base": "<p>The authorizer type. the only current value is TOKEN.</p>",
+      "base": "<p>The authorizer type. the current value is <code>TOKEN</code> for a Lambda function or <code>COGNITO_USER_POOLS</code> for an Amazon Cognito Your User Pool.</p>",
       "refs": {
-        "Authorizer$type": "<p>[Required] The type of the authorizer. Currently, the only valid type is TOKEN.</p>",
+        "Authorizer$type": "<p>[Required] The type of the authorizer. Currently, the valid type is <code>TOKEN</code> for a Lambda function or <code>COGNITO_USER_POOLS</code> for an Amazon Cognito user pool.</p>",
         "CreateAuthorizerRequest$type": "<p>[Required] The type of the authorizer.</p>"
       }
     },
@@ -177,8 +177,6 @@
         "CreateApiKeyRequest$enabled": "<p>Specifies whether the <a>ApiKey</a> can be used by callers.</p>",
         "CreateApiKeyRequest$generateDistinctId": "<p>Specifies whether (<code>true</code>) or not (<code>false</code>) the key identifier is distinct from the created API key value.</p>",
         "CreateStageRequest$cacheClusterEnabled": "<p>Whether cache clustering is enabled for the stage.</p>",
-        "GetApiKeyRequest$includeValue": "<p>A boolean flag to specify whether (<code>true</code>) or not (<code>false</code>) the result contains the key value.</p>",
-        "GetApiKeysRequest$includeValues": "<p>A boolean flag to specify whether (<code>true</code>) or not (<code>false</code>) the result contains key values.</p>",
         "GetModelRequest$flatten": "<p>A query parameter of a Boolean value to resolve (<code>true</code>) all external model references and returns a flattened model schema or not (<code>false</code>) The default is <code>false</code>.</p>",
         "ImportApiKeysRequest$failOnWarnings": "<p>A query parameter to indicate whether to rollback <a>ApiKey</a> importation (<code>true</code>) or not (<code>false</code>) when error is encountered.</p>",
         "ImportRestApiRequest$failOnWarnings": "<p>A query parameter to indicate whether to rollback the API creation (<code>true</code>) or not (<code>false</code>) when a warning is encountered. The default value is <code>false</code>.</p>",
@@ -221,6 +219,15 @@
     "ConflictException": {
       "base": null,
       "refs": {
+      }
+    },
+    "ContentHandlingStrategy": {
+      "base": null,
+      "refs": {
+        "Integration$contentHandling": "<p>Specifies how to handle request payload content type conversions. Supported values are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following behaviors:</p> <ul> <li><p><code>CONVERT_TO_BINARY</code>: Converts a request payload from a Base64-encoded string to the corresponding binary blob.</p></li> <li><p><code>CONVERT_TO_TEXT</code>: Converts a request payload from a binary blob to a Base64-encoded string.</p></li> </ul> <p>If this property is not defined, the request payload will be passed through from the method request to integration request without modification, provided that the <code>passthroughBehaviors</code> is configured to support payload pass-through.</p>",
+        "IntegrationResponse$contentHandling": "<p>Specifies how to handle response payload content type conversions. Supported values are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following behaviors:</p> <ul> <li><p><code>CONVERT_TO_BINARY</code>: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p></li> <li><p><code>CONVERT_TO_TEXT</code>: Converts a response payload from a binary blob to a Base64-encoded string.</p></li> </ul> <p>If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.</p>",
+        "PutIntegrationRequest$contentHandling": "<p>Specifies how to handle request payload content type conversions. Supported values are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following behaviors:</p> <ul> <li><p><code>CONVERT_TO_BINARY</code>: Converts a request payload from a Base64-encoded string to the corresponding binary blob.</p></li> <li><p><code>CONVERT_TO_TEXT</code>: Converts a request payload from a binary blob to a Base64-encoded string.</p></li> </ul> <p>If this property is not defined, the request payload will be passed through from the method request to integration request without modification, provided that the <code>passthroughBehaviors</code> is configured to support payload pass-through.</p>",
+        "PutIntegrationResponseRequest$contentHandling": "<p>Specifies how to handle response payload content type conversions. Supported values are <code>CONVERT_TO_BINARY</code> and <code>CONVERT_TO_TEXT</code>, with the following behaviors:</p> <ul> <li><p><code>CONVERT_TO_BINARY</code>: Converts a response payload from a Base64-encoded string to the corresponding binary blob.</p></li> <li><p><code>CONVERT_TO_TEXT</code>: Converts a response payload from a binary blob to a Base64-encoded string.</p></li> </ul> <p>If this property is not defined, the response payload will be passed through from the integration response to the method response without modification.</p>"
       }
     },
     "CreateApiKeyRequest": {
@@ -595,7 +602,7 @@
       }
     },
     "Integration": {
-      "base": "<p>Represents an HTTP, AWS, or Mock integration.</p> <div class=\"remarks\">In the API Gateway console, the built-in Lambda integration is an AWS integration.</div> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html\">Creating an API</a> </div>",
+      "base": "<p>Represents an HTTP, HTTP_PROXY, AWS, AWS_PROXY, or Mock integration.</p> <div class=\"remarks\">In the API Gateway console, the built-in Lambda integration is an AWS integration.</div> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html\">Creating an API</a>, <a href=\"http://docs.aws.amazon.com/apigateway/latest/developerguide/.html\"/> </div>",
       "refs": {
         "Method$methodIntegration": "<p>Gets the method's integration responsible for passing the client-submitted request to the back end and performing necessary transformations to make the request compliant with the back end.</p> <div class=\"remarks\"> <p/> <h4>Example: </h4> <h5>Request</h5> <p/> <pre><code>GET /restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration HTTP/1.1 Content-Type: application/json Host: apigateway.us-east-1.amazonaws.com Content-Length: 117 X-Amz-Date: 20160613T213210Z Authorization: AWS4-HMAC-SHA256 Credential={access_key_ID}/20160613/us-east-1/apigateway/aws4_request, SignedHeaders=content-type;host;x-amz-date, Signature={sig4_hash}</code></pre> <h5>Response</h5> <p>The successful response returns a <code>200 OK</code> status code and a payload similar to the following:</p> <pre><code>{ \"_links\": { \"curies\": [ { \"href\": \"http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-{rel}.html\", \"name\": \"integration\", \"templated\": true }, { \"href\": \"http://docs.aws.amazon.com/apigateway/latest/developerguide/restapi-integration-response-{rel}.html\", \"name\": \"integrationresponse\", \"templated\": true } ], \"self\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration\" }, \"integration:delete\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration\" }, \"integration:responses\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200\", \"name\": \"200\", \"title\": \"200\" }, \"integration:update\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration\" }, \"integrationresponse:put\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/{status_code}\", \"templated\": true } }, \"cacheKeyParameters\": [], \"cacheNamespace\": \"0cjtch\", \"credentials\": \"arn:aws:iam::123456789012:role/apigAwsProxyRole\", \"httpMethod\": \"POST\", \"passthroughBehavior\": \"WHEN_NO_MATCH\", \"requestTemplates\": { \"application/json\": \"{\\n \\\"a\\\": \\\"$input.params('operand1')\\\",\\n \\\"b\\\": \\\"$input.params('operand2')\\\", \\n \\\"op\\\": \\\"$input.params('operator')\\\" \\n}\" }, \"type\": \"AWS\", \"uri\": \"arn:aws:apigateway:us-west-2:lambda:path//2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:Calc/invocations\", \"_embedded\": { \"integration:responses\": { \"_links\": { \"self\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200\", \"name\": \"200\", \"title\": \"200\" }, \"integrationresponse:delete\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200\" }, \"integrationresponse:update\": { \"href\": \"/restapis/uojnr9hd57/resources/0cjtch/methods/GET/integration/responses/200\" } }, \"responseParameters\": { \"method.response.header.operator\": \"integration.response.body.op\", \"method.response.header.operand_2\": \"integration.response.body.b\", \"method.response.header.operand_1\": \"integration.response.body.a\" }, \"responseTemplates\": { \"application/json\": \"#set($res = $input.path('$'))\\n{\\n \\\"result\\\": \\\"$res.a, $res.b, $res.op => $res.c\\\",\\n \\\"a\\\" : \\\"$res.a\\\",\\n \\\"b\\\" : \\\"$res.b\\\",\\n \\\"op\\\" : \\\"$res.op\\\",\\n \\\"c\\\" : \\\"$res.c\\\"\\n}\" }, \"selectionPattern\": \"\", \"statusCode\": \"200\" } } }</code></pre> <p/> </div> <div class=\"seeAlso\"> <a href=\"http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-integration.html\">AWS CLI</a> </div>"
       }
@@ -621,7 +628,7 @@
     "ListOfARNs": {
       "base": null,
       "refs": {
-        "Authorizer$providerARNs": "<p>A list of the provider ARNs of the authorizer.</p>",
+        "Authorizer$providerARNs": "<p>A list of the provider ARNs of the authorizer. For an <code>TOKEN</code> authorizer, this is not defined. For authorizers of the <code>COGNITO_USER_POOLS</code> type, each element corresponds to a user pool ARN of this format: <code>arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}</code>. </p>",
         "CreateAuthorizerRequest$providerARNs": "<p>A list of the Cognito Your User Pool authorizer's provider ARNs.</p>"
       }
     },
@@ -734,10 +741,12 @@
         "ApiKeyIds$ids": "<p>A list of all the <a>ApiKey</a> identifiers.</p>",
         "ApiKeyIds$warnings": "<p>A list of warning messages.</p>",
         "ApiKeys$warnings": "<p>A list of warning messages logged during the import of API keys when the <code>failOnWarnings</code> option is set to true.</p>",
+        "CreateRestApiRequest$binaryMediaTypes": "<p>The list of binary media types supported by the <a>RestApi</a>. By default, the <a>RestApi</a> supports only UTF-8-encoded text payloads.</p>",
         "Integration$cacheKeyParameters": "<p>Specifies the integration's cache key parameters.</p>",
         "MapOfStringToList$value": null,
         "PutIntegrationRequest$cacheKeyParameters": "<p>Specifies a put integration input's cache key parameters.</p>",
-        "RestApi$warnings": "<p>The warning messages reported when <code>failonwarnings</code> is turned on during API import.</p>"
+        "RestApi$warnings": "<p>The warning messages reported when <code>failonwarnings</code> is turned on during API import.</p>",
+        "RestApi$binaryMediaTypes": "<p>The list of binary media types supported by the <a>RestApi</a>. By default, the <a>RestApi</a> supports only UTF-8-encoded text payloads.</p>"
       }
     },
     "ListOfUsage": {
@@ -897,6 +906,8 @@
       "base": null,
       "refs": {
         "CreateDeploymentRequest$cacheClusterEnabled": "<p>Enables a cache cluster for the <a>Stage</a> resource specified in the input.</p>",
+        "GetApiKeyRequest$includeValue": "<p>A boolean flag to specify whether (<code>true</code>) or not (<code>false</code>) the result contains the key value.</p>",
+        "GetApiKeysRequest$includeValues": "<p>A boolean flag to specify whether (<code>true</code>) or not (<code>false</code>) the result contains key values.</p>",
         "MapOfStringToBoolean$value": null,
         "Method$apiKeyRequired": "<p>A boolean flag specifying whether a valid <a>ApiKey</a> is required to invoke this method.</p>"
       }
@@ -1067,10 +1078,10 @@
         "Authorizer$id": "<p>The identifier for the authorizer resource.</p>",
         "Authorizer$name": "<p>[Required] The name of the authorizer.</p>",
         "Authorizer$authType": "<p>Optional customer-defined field, used in Swagger imports/exports. Has no functional impact.</p>",
-        "Authorizer$authorizerUri": "<p>[Required] Specifies the authorizer's Uniform Resource Identifier (URI). For TOKEN authorizers, this must be a well-formed Lambda function URI. The URI should be of the form <code>arn:aws:apigateway:{region}:lambda:path/{service_api}</code>. <code>Region</code> is used to determine the right endpoint. In this case, <code>path</code> is used to indicate that the remaining substring in the URI should be treated as the path to the resource, including the initial <code>/</code>. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations</p>",
+        "Authorizer$authorizerUri": "<p>[Required] Specifies the authorizer's Uniform Resource Identifier (URI). For <code>TOKEN</code> authorizers, this must be a well-formed Lambda function URI, for example, <code>arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations</code>. In general, the URI has this form <code>arn:aws:apigateway:{region}:lambda:path/{service_api}</code>, where <code>{region}</code> is the same as the region hosting the Lambda function, <code>path</code> indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial <code>/</code>. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations.</p>",
         "Authorizer$authorizerCredentials": "<p>Specifies the credentials required for the authorizer, if any. Two options are available. To specify an IAM role for Amazon API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null.</p>",
-        "Authorizer$identitySource": "<p>[Required] The source of the identity in an incoming request. For TOKEN authorizers, this value is a mapping expression with the same syntax as integration parameter mappings. The only valid source for tokens is 'header', so the expression should match 'method.request.header.[headerName]'. The value of the header '[headerName]' will be interpreted as the incoming token.</p>",
-        "Authorizer$identityValidationExpression": "<p>A validation expression for the incoming identity. For TOKEN authorizers, this value should be a regular expression. The incoming token from the client is matched against this expression, and will proceed if the token matches. If the token doesn't match, the client receives a 401 Unauthorized response.</p>",
+        "Authorizer$identitySource": "<p>[Required] The source of the identity in an incoming request. For a <code>TOKEN</code> authorizer, this value is a mapping expression with the same syntax as integration parameter mappings. The only valid source for tokens is 'header', so the expression should match 'method.request.header.[headerName]'. The value of the header '[headerName]' will be interpreted as the incoming token. For <code>COGNITO_USER_POOLS</code> authorizers, this property is used.</p>",
+        "Authorizer$identityValidationExpression": "<p>A validation expression for the incoming identity. For <code>TOKEN</code> authorizers, this value should be a regular expression. The incoming token from the client is matched against this expression, and will proceed if the token matches. If the token doesn't match, the client receives a 401 Unauthorized response.</p>",
         "Authorizers$position": null,
         "BadRequestException$message": null,
         "BasePathMapping$basePath": "<p>The base path name that callers of the API must provide as part of the URL after the domain name.</p>",
@@ -1173,6 +1184,7 @@
         "GetApiKeyRequest$apiKey": "<p>The identifier of the <a>ApiKey</a> resource.</p>",
         "GetApiKeysRequest$position": "<p>The position of the current <a>ApiKeys</a> resource to get information about.</p>",
         "GetApiKeysRequest$nameQuery": "<p>The name of queried API keys.</p>",
+        "GetApiKeysRequest$customerId": null,
         "GetAuthorizerRequest$restApiId": "<p>The <a>RestApi</a> identifier for the <a>Authorizer</a> resource.</p>",
         "GetAuthorizerRequest$authorizerId": "<p>The identifier of the <a>Authorizer</a> resource.</p>",
         "GetAuthorizersRequest$restApiId": "<p>The <a>RestApi</a> identifier for the <a>Authorizers</a> resource.</p>",
