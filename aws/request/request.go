@@ -49,12 +49,23 @@ type Request struct {
 	safeBody *offsetReader
 }
 
+func (r *Request) copy() *Request {
+	req := &Request{}
+	*req = *r
+	req.Handlers = r.Handlers.Copy()
+	op := *r.Operation
+	req.Operation = &op
+	return req
+}
+
 // An Operation is the service API operation to be made.
 type Operation struct {
 	Name       string
 	HTTPMethod string
 	HTTPPath   string
 	*Paginator
+
+	PresignStrategy func(r *Request) error
 }
 
 // Paginator keeps track of pagination configuration for an API operation.
@@ -149,6 +160,15 @@ func (r *Request) SetReaderBody(reader io.ReadSeeker) {
 func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.NotHoist = false
+
+	if r.Operation.PresignStrategy != nil {
+		r = r.copy()
+		err := r.Operation.PresignStrategy(r)
+		if err != nil {
+			return "", err
+		}
+	}
+
 	r.Sign()
 	if r.Error != nil {
 		return "", r.Error
