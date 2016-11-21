@@ -8,14 +8,14 @@ import (
 func init() {
 	initRequest = func(r *request.Request) {
 		if r.Operation.Name == opSynthesizeSpeech {
-			r.Operation.PresignStrategy = restGETStrategy
+			r.Operation.PresignStrategy = restGETPresignStrategy
 		}
 	}
 }
 
-// restGETStrategy will prepare the request from a POST to a GET request.
+// restGETPresignStrategy will prepare the request from a POST to a GET request.
 // Enabling the presigner to sign the request as a GET.
-func restGETStrategy(r *request.Request) error {
+func restGETPresignStrategy(r *request.Request) error {
 	r.Handlers.Build.Clear()
 	r.Handlers.Build.PushBack(rest.BuildAsGET)
 	r.Operation.HTTPMethod = "GET"
