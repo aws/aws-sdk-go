@@ -49,15 +49,6 @@ type Request struct {
 	safeBody *offsetReader
 }
 
-func (r *Request) copy() *Request {
-	req := &Request{}
-	*req = *r
-	req.Handlers = r.Handlers.Copy()
-	op := *r.Operation
-	req.Operation = &op
-	return req
-}
-
 // An Operation is the service API operation to be made.
 type Operation struct {
 	Name       string
@@ -352,6 +343,17 @@ func (r *Request) Send() error {
 	}
 
 	return nil
+}
+
+// copy will copy a request which will allow for local manipulation of the
+// request.
+func (r *Request) copy() *Request {
+	req := &Request{}
+	*req = *r
+	req.Handlers = r.Handlers.Copy()
+	op := *r.Operation
+	req.Operation = &op
+	return req
 }
 
 // AddToUserAgent adds the string to the end of the request's current user agent.
