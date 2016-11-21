@@ -16,4 +16,5 @@ func TestCopy(t *testing.T) {
 
 	r := req.copy()
 	assert.NotEqual(t, req, r)
+	assert.Equal(t, req.Operation.HTTPMethod, r.Operation.HTTPMethod)
 }
