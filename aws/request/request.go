@@ -56,7 +56,7 @@ type Operation struct {
 	HTTPPath   string
 	*Paginator
 
-	PresignStrategy func(r *Request) error
+	BeforePresignFn func(r *Request) error
 }
 
 // Paginator keeps track of pagination configuration for an API operation.
@@ -152,9 +152,9 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.NotHoist = false
 
-	if r.Operation.PresignStrategy != nil {
+	if r.Operation.BeforePresignFn != nil {
 		r = r.copy()
-		err := r.Operation.PresignStrategy(r)
+		err := r.Operation.BeforePresignFn(r)
 		if err != nil {
 			return "", err
 		}

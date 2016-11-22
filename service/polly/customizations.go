@@ -8,7 +8,7 @@ import (
 func init() {
 	initRequest = func(r *request.Request) {
 		if r.Operation.Name == opSynthesizeSpeech {
-			r.Operation.PresignStrategy = restGETPresignStrategy
+			r.Operation.BeforePresignFn = restGETPresignStrategy
 		}
 	}
 }

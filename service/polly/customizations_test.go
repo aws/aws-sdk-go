@@ -16,7 +16,7 @@ func TestRestGETStrategy(t *testing.T) {
 	err := restGETPresignStrategy(r)
 	assert.NoError(t, err)
 	assert.Equal(t, "GET", r.HTTPRequest.Method)
-	assert.NotEqual(t, nil, r.Operation.PresignStrategy)
+	assert.NotEqual(t, nil, r.Operation.BeforePresignFn)
 }
 
 func TestPresign(t *testing.T) {
