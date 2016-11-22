@@ -8081,6 +8081,44 @@ func (s *GetObjectTorrentOutput) SetRequestCharged(v string) *GetObjectTorrentOu
 	return s
 }
 
+type GlacierJobParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Glacier retrieval tier at which the restore will be processed.
+	//
+	// Tier is a required field
+	Tier *string `type:"string" required:"true" enum:"Tier"`
+}
+
+// String returns the string representation
+func (s GlacierJobParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlacierJobParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GlacierJobParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GlacierJobParameters"}
+	if s.Tier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTier sets the Tier field's value.
+func (s *GlacierJobParameters) SetTier(v string) *GlacierJobParameters {
+	s.Tier = &v
+	return s
+}
+
 type Grant struct {
 	_ struct{} `type:"structure"`
 
@@ -12906,6 +12944,9 @@ type RestoreRequest struct {
 	//
 	// Days is a required field
 	Days *int64 `type:"integer" required:"true"`
+
+	// Glacier related prameters pertaining to this job.
+	GlacierJobParameters *GlacierJobParameters `type:"structure"`
 }
 
 // String returns the string representation
@@ -12924,6 +12965,11 @@ func (s *RestoreRequest) Validate() error {
 	if s.Days == nil {
 		invalidParams.Add(request.NewErrParamRequired("Days"))
 	}
+	if s.GlacierJobParameters != nil {
+		if err := s.GlacierJobParameters.Validate(); err != nil {
+			invalidParams.AddNested("GlacierJobParameters", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12934,6 +12980,12 @@ func (s *RestoreRequest) Validate() error {
 // SetDays sets the Days field's value.
 func (s *RestoreRequest) SetDays(v int64) *RestoreRequest {
 	s.Days = &v
+	return s
+}
+
+// SetGlacierJobParameters sets the GlacierJobParameters field's value.
+func (s *RestoreRequest) SetGlacierJobParameters(v *GlacierJobParameters) *RestoreRequest {
+	s.GlacierJobParameters = v
 	return s
 }
 
@@ -14346,6 +14398,17 @@ const (
 
 	// StorageClassStandardIa is a StorageClass enum value
 	StorageClassStandardIa = "STANDARD_IA"
+)
+
+const (
+	// TierStandard is a Tier enum value
+	TierStandard = "Standard"
+
+	// TierBulk is a Tier enum value
+	TierBulk = "Bulk"
+
+	// TierExpedited is a Tier enum value
+	TierExpedited = "Expedited"
 )
 
 const (
