@@ -1,3 +1,11 @@
+Release v1.5.9 (2016-11-22)
+===
+
+Service Client Updates
+---
+`service/cloudtrail`: Updates service API and documentation
+`service/ecs`: Updates service API and documentation
+
 Release v1.5.8 (2016-11-18)
 ===
 
