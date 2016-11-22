@@ -92,9 +92,8 @@ func TestLoadEnvConfig(t *testing.T) {
 	defer popEnv(env)
 
 	cases := []struct {
-		Env                 map[string]string
-		Region, Profile     string
-		UseSharedConfigCall bool
+		Env             map[string]string
+		Region, Profile string
 	}{
 		{
 			Env: map[string]string{
@@ -114,19 +113,34 @@ func TestLoadEnvConfig(t *testing.T) {
 		},
 		{
 			Env: map[string]string{
-				"AWS_REGION":          "region",
-				"AWS_DEFAULT_REGION":  "default_region",
-				"AWS_PROFILE":         "profile",
-				"AWS_DEFAULT_PROFILE": "default_profile",
-				"AWS_SDK_LOAD_CONFIG": "1",
+				"AWS_REGION":             "region",
+				"AWS_DEFAULT_REGION":     "default_region",
+				"AWS_PROFILE":            "profile",
+				"AWS_DEFAULT_PROFILE":    "default_profile",
+				"AWS_SDK_CONFIG_OPT_OUT": "1",
 			},
 			Region: "region", Profile: "profile",
+		},
+		{
+			Env: map[string]string{
+				"AWS_DEFAULT_REGION":     "default_region",
+				"AWS_DEFAULT_PROFILE":    "default_profile",
+				"AWS_SDK_CONFIG_OPT_OUT": "1",
+			},
 		},
 		{
 			Env: map[string]string{
 				"AWS_DEFAULT_REGION":  "default_region",
 				"AWS_DEFAULT_PROFILE": "default_profile",
 			},
+		},
+		{
+			Env: map[string]string{
+				"AWS_DEFAULT_REGION":                  "default_region",
+				"AWS_DEFAULT_PROFILE":                 "default_profile",
+				"AWS_SDK_ENABLE_CLI_ENV_VAR_FALLBACK": "1",
+			},
+			Region: "default_region", Profile: "default_profile",
 		},
 		{
 			Env: map[string]string{
@@ -135,71 +149,20 @@ func TestLoadEnvConfig(t *testing.T) {
 				"AWS_SDK_LOAD_CONFIG": "1",
 			},
 			Region: "default_region", Profile: "default_profile",
-		},
-		{
-			Env: map[string]string{
-				"AWS_REGION":  "region",
-				"AWS_PROFILE": "profile",
-			},
-			Region: "region", Profile: "profile",
-			UseSharedConfigCall: true,
-		},
-		{
-			Env: map[string]string{
-				"AWS_REGION":          "region",
-				"AWS_DEFAULT_REGION":  "default_region",
-				"AWS_PROFILE":         "profile",
-				"AWS_DEFAULT_PROFILE": "default_profile",
-			},
-			Region: "region", Profile: "profile",
-			UseSharedConfigCall: true,
-		},
-		{
-			Env: map[string]string{
-				"AWS_REGION":          "region",
-				"AWS_DEFAULT_REGION":  "default_region",
-				"AWS_PROFILE":         "profile",
-				"AWS_DEFAULT_PROFILE": "default_profile",
-				"AWS_SDK_LOAD_CONFIG": "1",
-			},
-			Region: "region", Profile: "profile",
-			UseSharedConfigCall: true,
-		},
-		{
-			Env: map[string]string{
-				"AWS_DEFAULT_REGION":  "default_region",
-				"AWS_DEFAULT_PROFILE": "default_profile",
-			},
-			Region: "default_region", Profile: "default_profile",
-			UseSharedConfigCall: true,
-		},
-		{
-			Env: map[string]string{
-				"AWS_DEFAULT_REGION":  "default_region",
-				"AWS_DEFAULT_PROFILE": "default_profile",
-				"AWS_SDK_LOAD_CONFIG": "1",
-			},
-			Region: "default_region", Profile: "default_profile",
-			UseSharedConfigCall: true,
 		},
 	}
 
-	for _, c := range cases {
+	for i, c := range cases {
 		os.Clearenv()
 
 		for k, v := range c.Env {
 			os.Setenv(k, v)
 		}
 
-		var cfg envConfig
-		if c.UseSharedConfigCall {
-			cfg = loadSharedEnvConfig()
-		} else {
-			cfg = loadEnvConfig()
-		}
+		cfg := loadEnvConfig()
 
-		assert.Equal(t, c.Region, cfg.Region)
-		assert.Equal(t, c.Profile, cfg.Profile)
+		assert.Equal(t, c.Region, cfg.Region, "case %d", i)
+		assert.Equal(t, c.Profile, cfg.Profile, "case %d", i)
 	}
 }
 
@@ -251,12 +214,11 @@ func TestSetEnvValue(t *testing.T) {
 	os.Setenv("second_key", "2")
 	os.Setenv("third_key", "3")
 
-	var dst string
-	setFromEnvVal(&dst, []string{
+	val := stringFromEnv([]string{
 		"empty_key", "first_key", "second_key", "third_key",
 	})
 
-	assert.Equal(t, "2", dst)
+	assert.Equal(t, "2", val)
 }
 
 func stashEnv() []string {
