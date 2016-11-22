@@ -1941,6 +1941,9 @@ func ExampleS3_RestoreObject() {
 		RequestPayer: aws.String("RequestPayer"),
 		RestoreRequest: &s3.RestoreRequest{
 			Days: aws.Int64(1), // Required
+			GlacierJobParameters: &s3.GlacierJobParameters{
+				Tier: aws.String("Tier"), // Required
+			},
 		},
 		VersionId: aws.String("ObjectVersionId"),
 	}

@@ -2338,6 +2338,13 @@
         }
       }
     },
+    "GlacierJobParameters":{
+      "type":"structure",
+      "required":["Tier"],
+      "members":{
+        "Tier":{"shape":"Tier"}
+      }
+    },
     "Grant":{
       "type":"structure",
       "members":{
@@ -4097,7 +4104,8 @@
       "type":"structure",
       "required":["Days"],
       "members":{
-        "Days":{"shape":"Days"}
+        "Days":{"shape":"Days"},
+        "GlacierJobParameters":{"shape":"GlacierJobParameters"}
       }
     },
     "Role":{"type":"string"},
@@ -4216,6 +4224,14 @@
       }
     },
     "TargetPrefix":{"type":"string"},
+    "Tier":{
+      "type":"string",
+      "enum":[
+        "Standard",
+        "Bulk",
+        "Expedited"
+      ]
+    },
     "Token":{"type":"string"},
     "TopicArn":{"type":"string"},
     "TopicConfiguration":{

@@ -1061,6 +1061,12 @@
       "refs": {
       }
     },
+    "GlacierJobParameters": {
+      "base": null,
+      "refs": {
+        "RestoreRequest$GlacierJobParameters": "Glacier related prameters pertaining to this job."
+      }
+    },
     "Grant": {
       "base": null,
       "refs": {
@@ -2324,6 +2330,12 @@
       "base": null,
       "refs": {
         "LoggingEnabled$TargetPrefix": "This element lets you specify a prefix for the keys that the log files will be stored under."
+      }
+    },
+    "Tier": {
+      "base": null,
+      "refs": {
+        "GlacierJobParameters$Tier": "Glacier retrieval tier at which the restore will be processed."
       }
     },
     "Token": {
