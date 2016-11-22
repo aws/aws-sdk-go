@@ -45,7 +45,7 @@ gen-protocol-test:
 	go generate ./private/protocol/...
 
 gen-endpoints:
-	go generate ./private/endpoints
+	go generate ./models/endpoints/
 
 build:
 	@echo "go build SDK and vendor packages"
