@@ -1,3 +1,10 @@
+Release v1.5.11 (2016-11-29)
+===
+
+Service Client Updates
+---
+`service/s3`: Updates service API and documentation
+
 Release v1.5.10 (2016-11-22)
 ===
 
