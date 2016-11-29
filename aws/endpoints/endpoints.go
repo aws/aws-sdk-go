@@ -7,6 +7,7 @@ package endpoints
 
 import (
 	"fmt"
+	"regexp"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -72,6 +73,25 @@ type ResolverFunc func(service, region string, opts ...func(*Options)) (Resolved
 // EndpointFor wraps the ResolverFunc function to satisfy the Resolver interface.
 func (fn ResolverFunc) EndpointFor(service, region string, opts ...func(*Options)) (ResolvedEndpoint, error) {
 	return fn(service, region, opts...)
+}
+
+var schemeRE = regexp.MustCompile("^([^:]+)://")
+
+// AddScheme adds the HTTP or HTTPS schemes to a endpoint URL if there is no
+// scheme. If disableSSL is true HTTP will set HTTP instead of the default HTTPS.
+//
+// If disableSSL is set, it will only set the URL's scheme if the URL does not
+// contain a scheme.
+func AddScheme(endpoint string, disableSSL bool) string {
+	if endpoint != "" && !schemeRE.MatchString(endpoint) {
+		scheme := "https"
+		if disableSSL {
+			scheme = "http"
+		}
+		endpoint = fmt.Sprintf("%s://%s", scheme, endpoint)
+	}
+
+	return endpoint
 }
 
 // EnumPartitions a provides a way to retrieve the underlying partitions that

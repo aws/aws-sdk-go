@@ -396,7 +396,7 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 	region := aws.StringValue(s.Config.Region)
 
 	if endpoint := aws.StringValue(s.Config.Endpoint); len(endpoint) != 0 {
-		resolved.URL = endpoint
+		resolved.URL = endpoints.AddScheme(endpoint, aws.BoolValue(s.Config.DisableSSL))
 		resolved.SigningRegion = region
 	} else {
 		resolved, err = s.Config.EndpointResolver.EndpointFor(
