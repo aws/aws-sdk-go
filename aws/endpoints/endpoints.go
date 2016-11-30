@@ -1,8 +1,3 @@
-// Package endpoints provides the types and functionality for defining regions
-// and endpoints, as well as querying those definitions.
-//
-// TODO need more description how to use the endpoints.
-//
 package endpoints
 
 import (
