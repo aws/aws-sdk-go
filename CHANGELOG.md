@@ -1,3 +1,13 @@
+Release v1.5.12 (2016-11-30)
+===
+
+Service Client Updates
+---
+`service/lightsail`: Adds new service
+`service/polly`: Adds new service
+`service/rekognition`: Adds new service
+`service/snowball`: Updates service API and documentation
+
 Release v1.5.11 (2016-11-29)
 ===
 
