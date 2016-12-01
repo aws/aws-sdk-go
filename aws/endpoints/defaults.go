@@ -6,30 +6,117 @@ import (
 	"regexp"
 )
 
-// AWS Standard regions.
+// Partition identifiers
 const (
-	ApNortheast1 = "ap-northeast-1" // Asia Pacific (Tokyo).
-	ApNortheast2 = "ap-northeast-2" // Asia Pacific (Seoul).
-	ApSouth1     = "ap-south-1"     // Asia Pacific (Mumbai).
-	ApSoutheast1 = "ap-southeast-1" // Asia Pacific (Singapore).
-	ApSoutheast2 = "ap-southeast-2" // Asia Pacific (Sydney).
-	EuCentral1   = "eu-central-1"   // EU (Frankfurt).
-	EuWest1      = "eu-west-1"      // EU (Ireland).
-	SaEast1      = "sa-east-1"      // South America (Sao Paulo).
-	UsEast1      = "us-east-1"      // US East (N. Virginia).
-	UsEast2      = "us-east-2"      // US East (Ohio).
-	UsWest1      = "us-west-1"      // US West (N. California).
-	UsWest2      = "us-west-2"      // US West (Oregon).
+	AwsPartitionID      = "aws"        // AWS Standard partition.
+	AwsUsGovPartitionID = "aws-us-gov" // AWS GovCloud (US) partition.
+	AwsCnPartitionID    = "aws-cn"     // AWS China partition.
 )
 
-// AWS GovCloud (US) regions.
+// AWS Standard partition's regions.
 const (
-	UsGovWest1 = "us-gov-west-1" // AWS GovCloud (US).
+	ApNortheast1RegionID = "ap-northeast-1" // Asia Pacific (Tokyo).
+	ApNortheast2RegionID = "ap-northeast-2" // Asia Pacific (Seoul).
+	ApSouth1RegionID     = "ap-south-1"     // Asia Pacific (Mumbai).
+	ApSoutheast1RegionID = "ap-southeast-1" // Asia Pacific (Singapore).
+	ApSoutheast2RegionID = "ap-southeast-2" // Asia Pacific (Sydney).
+	EuCentral1RegionID   = "eu-central-1"   // EU (Frankfurt).
+	EuWest1RegionID      = "eu-west-1"      // EU (Ireland).
+	SaEast1RegionID      = "sa-east-1"      // South America (Sao Paulo).
+	UsEast1RegionID      = "us-east-1"      // US East (N. Virginia).
+	UsEast2RegionID      = "us-east-2"      // US East (Ohio).
+	UsWest1RegionID      = "us-west-1"      // US West (N. California).
+	UsWest2RegionID      = "us-west-2"      // US West (Oregon).
 )
 
-// AWS China regions.
+// AWS GovCloud (US) partition's regions.
 const (
-	CnNorth1 = "cn-north-1" // China (Beijing).
+	UsGovWest1RegionID = "us-gov-west-1" // AWS GovCloud (US).
+)
+
+// AWS China partition's regions.
+const (
+	CnNorth1RegionID = "cn-north-1" // China (Beijing).
+)
+
+// Service identifiers
+const (
+	AcmServiceID                          = "acm"                          // Acm.
+	ApigatewayServiceID                   = "apigateway"                   // Apigateway.
+	ApplicationAutoscalingServiceID       = "application-autoscaling"      // ApplicationAutoscaling.
+	AppstreamServiceID                    = "appstream"                    // Appstream.
+	AutoscalingServiceID                  = "autoscaling"                  // Autoscaling.
+	BudgetsServiceID                      = "budgets"                      // Budgets.
+	CloudformationServiceID               = "cloudformation"               // Cloudformation.
+	CloudfrontServiceID                   = "cloudfront"                   // Cloudfront.
+	CloudhsmServiceID                     = "cloudhsm"                     // Cloudhsm.
+	CloudsearchServiceID                  = "cloudsearch"                  // Cloudsearch.
+	CloudtrailServiceID                   = "cloudtrail"                   // Cloudtrail.
+	CodecommitServiceID                   = "codecommit"                   // Codecommit.
+	CodedeployServiceID                   = "codedeploy"                   // Codedeploy.
+	CodepipelineServiceID                 = "codepipeline"                 // Codepipeline.
+	CognitoIdentityServiceID              = "cognito-identity"             // CognitoIdentity.
+	CognitoIdpServiceID                   = "cognito-idp"                  // CognitoIdp.
+	CognitoSyncServiceID                  = "cognito-sync"                 // CognitoSync.
+	ConfigServiceID                       = "config"                       // Config.
+	DatapipelineServiceID                 = "datapipeline"                 // Datapipeline.
+	DevicefarmServiceID                   = "devicefarm"                   // Devicefarm.
+	DirectconnectServiceID                = "directconnect"                // Directconnect.
+	DiscoveryServiceID                    = "discovery"                    // Discovery.
+	DmsServiceID                          = "dms"                          // Dms.
+	DsServiceID                           = "ds"                           // Ds.
+	DynamodbServiceID                     = "dynamodb"                     // Dynamodb.
+	Ec2ServiceID                          = "ec2"                          // Ec2.
+	Ec2metadataServiceID                  = "ec2metadata"                  // Ec2metadata.
+	EcrServiceID                          = "ecr"                          // Ecr.
+	EcsServiceID                          = "ecs"                          // Ecs.
+	ElasticacheServiceID                  = "elasticache"                  // Elasticache.
+	ElasticbeanstalkServiceID             = "elasticbeanstalk"             // Elasticbeanstalk.
+	ElasticfilesystemServiceID            = "elasticfilesystem"            // Elasticfilesystem.
+	ElasticloadbalancingServiceID         = "elasticloadbalancing"         // Elasticloadbalancing.
+	ElasticmapreduceServiceID             = "elasticmapreduce"             // Elasticmapreduce.
+	ElastictranscoderServiceID            = "elastictranscoder"            // Elastictranscoder.
+	EmailServiceID                        = "email"                        // Email.
+	EsServiceID                           = "es"                           // Es.
+	EventsServiceID                       = "events"                       // Events.
+	FirehoseServiceID                     = "firehose"                     // Firehose.
+	GameliftServiceID                     = "gamelift"                     // Gamelift.
+	GlacierServiceID                      = "glacier"                      // Glacier.
+	IamServiceID                          = "iam"                          // Iam.
+	ImportexportServiceID                 = "importexport"                 // Importexport.
+	InspectorServiceID                    = "inspector"                    // Inspector.
+	IotServiceID                          = "iot"                          // Iot.
+	KinesisServiceID                      = "kinesis"                      // Kinesis.
+	KinesisanalyticsServiceID             = "kinesisanalytics"             // Kinesisanalytics.
+	KmsServiceID                          = "kms"                          // Kms.
+	LambdaServiceID                       = "lambda"                       // Lambda.
+	LogsServiceID                         = "logs"                         // Logs.
+	MachinelearningServiceID              = "machinelearning"              // Machinelearning.
+	MarketplacecommerceanalyticsServiceID = "marketplacecommerceanalytics" // Marketplacecommerceanalytics.
+	MeteringMarketplaceServiceID          = "metering.marketplace"         // MeteringMarketplace.
+	MobileanalyticsServiceID              = "mobileanalytics"              // Mobileanalytics.
+	MonitoringServiceID                   = "monitoring"                   // Monitoring.
+	OpsworksServiceID                     = "opsworks"                     // Opsworks.
+	RdsServiceID                          = "rds"                          // Rds.
+	RedshiftServiceID                     = "redshift"                     // Redshift.
+	Route53ServiceID                      = "route53"                      // Route53.
+	Route53domainsServiceID               = "route53domains"               // Route53domains.
+	S3ServiceID                           = "s3"                           // S3.
+	SdbServiceID                          = "sdb"                          // Sdb.
+	ServicecatalogServiceID               = "servicecatalog"               // Servicecatalog.
+	SmsServiceID                          = "sms"                          // Sms.
+	SnowballServiceID                     = "snowball"                     // Snowball.
+	SnsServiceID                          = "sns"                          // Sns.
+	SqsServiceID                          = "sqs"                          // Sqs.
+	SsmServiceID                          = "ssm"                          // Ssm.
+	StoragegatewayServiceID               = "storagegateway"               // Storagegateway.
+	StreamsDynamodbServiceID              = "streams.dynamodb"             // StreamsDynamodb.
+	StsServiceID                          = "sts"                          // Sts.
+	SupportServiceID                      = "support"                      // Support.
+	SwfServiceID                          = "swf"                          // Swf.
+	WafServiceID                          = "waf"                          // Waf.
+	WorkdocsServiceID                     = "workdocs"                     // Workdocs.
+	WorkspacesServiceID                   = "workspaces"                   // Workspaces.
 )
 
 // DefaultResolver returns an Endpoint resolver that will be able

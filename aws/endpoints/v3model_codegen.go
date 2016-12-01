@@ -8,6 +8,7 @@ import (
 	"reflect"
 	"strings"
 	"text/template"
+	"unicode"
 )
 
 // A CodeGenOptions are the options for code generating the endpoints into
@@ -46,8 +47,17 @@ func CodeGenModel(modelFile io.Reader, outFile io.Writer, optFns ...func(*CodeGe
 	return nil
 }
 
-func camelCase(v string) string {
-	return strings.Replace(strings.Title(v), "-", "", -1)
+func toSymbol(v string) string {
+	out := []rune{}
+	for _, c := range strings.Title(v) {
+		if !(unicode.IsNumber(c) || unicode.IsLetter(c)) {
+			continue
+		}
+
+		out = append(out, c)
+	}
+
+	return string(out)
 }
 
 func quoteString(v string) string {
@@ -55,15 +65,15 @@ func quoteString(v string) string {
 }
 
 func regionConstName(p, r string) string {
-	return camelCase(p) + camelCase(r)
+	return toSymbol(p) + toSymbol(r)
 }
 
 func partitionGetter(id string) string {
-	return fmt.Sprintf("%sPartition", camelCase(id))
+	return fmt.Sprintf("%sPartition", toSymbol(id))
 }
 
 func partitionVarName(id string) string {
-	return fmt.Sprintf("%sPartition", strings.ToLower(camelCase(id)))
+	return fmt.Sprintf("%sPartition", strings.ToLower(toSymbol(id)))
 }
 
 func listPartitionNames(ps partitions) string {
@@ -114,8 +124,19 @@ func endpointIsSet(v endpoint) bool {
 	return !reflect.DeepEqual(v, endpoint{})
 }
 
+func serviceSet(ps partitions) map[string]struct{} {
+	set := map[string]struct{}{}
+	for _, p := range ps {
+		for id := range p.Services {
+			set[id] = struct{}{}
+		}
+	}
+
+	return set
+}
+
 var funcMap = template.FuncMap{
-	"CamelCase":          camelCase,
+	"ToSymbol":           toSymbol,
 	"QuoteString":        quoteString,
 	"RegionConst":        regionConstName,
 	"PartitionGetter":    partitionGetter,
@@ -125,6 +146,7 @@ var funcMap = template.FuncMap{
 	"StringIfSet":        stringIfSet,
 	"StringSliceIfSet":   stringSliceIfSet,
 	"EndpointIsSet":      endpointIsSet,
+	"ServicesSet":        serviceSet,
 }
 
 const v3Tmpl = `
@@ -137,20 +159,41 @@ import (
 	"regexp"
 )
 
+	{{ template "partition consts" . }}
+
 	{{ range $_, $partition := . }}
-		{{ template "partition regions consts" $partition }}
+		{{ template "partition region consts" $partition }}
 	{{ end }}
+
+	{{ template "service consts" . }}
 	
 	{{ template "endpoint resolvers" . }}
-{{ end }}
+{{- end }}
 
-{{ define "partition regions consts" }}
-	{{ $context := . }}
-
-	// {{ $context.Name }} regions.
+{{ define "partition consts" }}
+	// Partition identifiers
 	const (
-		{{ range $name, $region := $context.Regions -}}
-			{{ CamelCase $name }} = {{ QuoteString $name }} // {{ $region.Description }}.
+		{{ range $_, $p := . -}}
+			{{ ToSymbol $p.ID }}PartitionID = {{ QuoteString $p.ID }} // {{ $p.Name }} partition.
+		{{ end -}}
+	)
+{{- end }}
+
+{{ define "partition region consts" }}
+	// {{ .Name }} partition's regions.
+	const (
+		{{ range $id, $region := .Regions -}}
+			{{ ToSymbol $id }}RegionID = {{ QuoteString $id }} // {{ $region.Description }}.
+		{{ end -}}
+	)
+{{- end }}
+
+{{ define "service consts" }}
+	// Service identifiers
+	const (
+		{{ $serviceSet := ServicesSet . -}}
+		{{ range $id, $_ := $serviceSet -}}
+			{{ ToSymbol $id }}ServiceID = {{ QuoteString $id }} // {{ ToSymbol $id }}.
 		{{ end -}}
 	)
 {{- end }}
@@ -192,7 +235,7 @@ import (
 	func DefaultPartitions() []Partition {
 		return []partition{
 			{{ range $_, $partition := . -}}
-			// {{ CamelCase $partition.ID}}Partition(),
+			// {{ ToSymbol $partition.ID}}Partition(),
 			{{ end }}
 		}
 	}
