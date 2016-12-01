@@ -98,7 +98,7 @@ func updateEndpointForAccelerate(r *request.Request) {
 	if parts[0] == "s3" || strings.HasPrefix(parts[0], "s3-") {
 		parts[0] = "s3-accelerate"
 	}
-	for i := 1; i < len(parts); i++ {
+	for i := 1; i+1 < len(parts); i++ {
 		if parts[i] == aws.StringValue(r.Config.Region) {
 			parts = append(parts[:i], parts[i+1:]...)
 			break
