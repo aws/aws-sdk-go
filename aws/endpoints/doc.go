@@ -5,8 +5,9 @@
 // package, and is accessible via the DefaultResolver function. This function
 // returns a endpoint Resolver will search the metadata and build an associated
 // endpoint if one is found. The default resolver will search all partitions
-// known by the SDK. e.g AWS Standard (aws), AWS GovCloud (US) (aws-us-gov), and
-// AWS China (aws-cn). In that order.
+// known by the SDK. e.g AWS Standard (aws), AWS China (aws-cn), and
+// AWS GovCloud (US) (aws-us-gov).
+// .
 //
 // Enumerating Regions and Endpoint Metadata
 //

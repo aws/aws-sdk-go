@@ -60,7 +60,7 @@ func DecodeModel(r io.Reader, optFns ...func(*DecodeModelOptions)) (Resolver, er
 	}
 
 	return nil, newDecodeModelError(
-		fmt.Sprintf("endpoints version %d, not supported", version), nil)
+		fmt.Sprintf("endpoints version %s, not supported", version), nil)
 }
 
 func decodeV3Endpoints(modelDef modelDefinition, opts DecodeModelOptions) (Resolver, error) {
