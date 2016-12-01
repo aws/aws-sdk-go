@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
@@ -49,20 +48,14 @@ func DecodeModel(r io.Reader, optFns ...func(*DecodeModelOptions)) (Resolver, er
 		return nil, newDecodeModelError("failed to decode endpoints model", err)
 	}
 
-	var verStr string
-	if ver, ok := modelDef["version"]; ok {
-		verStr = string(ver)
+	var version string
+	if b, ok := modelDef["version"]; ok {
+		version = string(b)
 	} else {
 		return nil, newDecodeModelError("endpoints version not found in model", nil)
 	}
 
-	version, err := strconv.Atoi(verStr)
-	if err != nil {
-		return nil, newDecodeModelError(
-			fmt.Sprintf("failed to parse endpoints version, %q", verStr), nil)
-	}
-
-	if version == 3 {
+	if version == "3" {
 		return decodeV3Endpoints(modelDef, opts)
 	}
 
