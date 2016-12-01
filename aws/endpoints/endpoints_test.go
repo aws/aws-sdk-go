@@ -35,9 +35,6 @@ func TestEnumPartitionServices(t *testing.T) {
 	if a, e := partEnum.ID(), "part-id"; a != e {
 		t.Errorf("expect %q partition ID, got %q", e, a)
 	}
-	if a, e := partEnum.Name(), "partitionName"; a != e {
-		t.Errorf("expect %q partition name, got %q", e, a)
-	}
 
 	svcEnum := partEnum.Services()
 
@@ -66,9 +63,6 @@ func TestEnumRegionServices(t *testing.T) {
 
 	if a, e := r.ID(), "us-east-1"; a != e {
 		t.Errorf("expect %q region ID, got %q", e, a)
-	}
-	if a, e := r.Desc(), "region description"; a != e {
-		t.Errorf("expect %q region description, got %q", e, a)
 	}
 
 	ss := r.Services()

@@ -15,12 +15,12 @@ func ExampleEnumPartitions() {
 	partitions := resolver.(endpoints.EnumPartitions).Partitions()
 
 	for _, p := range partitions {
-		fmt.Println("Regions for", p.Name())
+		fmt.Println("Regions for", p.ID())
 		for id := range p.Regions() {
 			fmt.Println("*", id)
 		}
 
-		fmt.Println("Services for", p.Name())
+		fmt.Println("Services for", p.ID())
 		for id := range p.Services() {
 			fmt.Println("*", id)
 		}

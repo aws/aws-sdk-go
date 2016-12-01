@@ -71,7 +71,7 @@ func main() {
 func printPartitions(ps []endpoints.Partition) {
 	fmt.Println("Partitions:")
 	for _, p := range ps {
-		fmt.Printf("%s: %s\n", p.ID(), p.Name())
+		fmt.Println(p.ID())
 	}
 }
 
@@ -93,7 +93,7 @@ func printRegions(p endpoints.Partition, serviceID string) {
 		rs := p.Regions()
 		fmt.Printf("Regions in %s:\n", p.ID())
 		for _, r := range rs {
-			fmt.Printf("%s: %s\n", r.ID(), r.Desc())
+			fmt.Println(r.ID())
 		}
 	}
 }

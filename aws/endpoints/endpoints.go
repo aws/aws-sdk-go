@@ -102,15 +102,12 @@ type EnumPartitions interface {
 // A Partition provides the ability to enumerate the partition's regions
 // and services.
 type Partition struct {
-	id, name string
-	p        *partition
+	id string
+	p  *partition
 }
 
 // ID returns the identifier of the partition.
 func (p *Partition) ID() string { return p.id }
-
-// Name returns the friendly name of the partition
-func (p *Partition) Name() string { return p.name }
 
 // EndpointFor attempts to resolve the endpoint based on service and region.
 // See Options for information on configuring how the endpoint is resolved.
@@ -134,23 +131,22 @@ func (p *Partition) EndpointFor(service, region string, opts ...func(*Options)) 
 	return p.p.EndpointFor(service, region, opts...)
 }
 
-// Regions returns a map of name to Region. This is useful for enumerating
-// over the regions in a partition.
+// Regions returns a map of Regions indexed by their ID. This is useful for
+// enumerating over the regions in a partition.
 func (p *Partition) Regions() map[string]Region {
 	rs := map[string]Region{}
-	for id, r := range p.p.Regions {
+	for id := range p.p.Regions {
 		rs[id] = Region{
-			id:   id,
-			desc: r.Description,
-			p:    p.p,
+			id: id,
+			p:  p.p,
 		}
 	}
 
 	return rs
 }
 
-// Services returns a map of name and Service. This is useful for enumerating
-// over the services in a partition.
+// Services returns a map of Service indexed by their ID. This is useful for
+// enumerating over the services in a partition.
 func (p *Partition) Services() map[string]Service {
 	ss := map[string]Service{}
 	for id := range p.p.Services {
@@ -172,9 +168,6 @@ type Region struct {
 
 // ID returns the region's identifier.
 func (r *Region) ID() string { return r.id }
-
-// Desc returns the region's friendly description.
-func (r *Region) Desc() string { return r.desc }
 
 // ResolveEndpoint resolves an endpoint from the context of the region given
 // a service. See Partition.EndpointFor for usage and errors that can be returned.
@@ -213,7 +206,8 @@ func (s *Service) ResolveEndpoint(region string, opts ...func(*Options)) (Resolv
 	return s.p.EndpointFor(s.id, region, opts...)
 }
 
-// Endpoints returns a map of name to Endpoints for all known endpoints for a service.
+// Endpoints returns a map of Endpoints indexed by their ID for all known
+// endpoints for a service.
 func (s *Service) Endpoints() map[string]Endpoint {
 	es := map[string]Endpoint{}
 	for id := range s.p.Services[s.id].Endpoints {
