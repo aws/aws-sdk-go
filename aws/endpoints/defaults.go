@@ -9,8 +9,8 @@ import (
 // Partition identifiers
 const (
 	AwsPartitionID      = "aws"        // AWS Standard partition.
-	AwsUsGovPartitionID = "aws-us-gov" // AWS GovCloud (US) partition.
 	AwsCnPartitionID    = "aws-cn"     // AWS China partition.
+	AwsUsGovPartitionID = "aws-us-gov" // AWS GovCloud (US) partition.
 )
 
 // AWS Standard partition's regions.
@@ -29,14 +29,14 @@ const (
 	UsWest2RegionID      = "us-west-2"      // US West (Oregon).
 )
 
-// AWS GovCloud (US) partition's regions.
-const (
-	UsGovWest1RegionID = "us-gov-west-1" // AWS GovCloud (US).
-)
-
 // AWS China partition's regions.
 const (
 	CnNorth1RegionID = "cn-north-1" // China (Beijing).
+)
+
+// AWS GovCloud (US) partition's regions.
+const (
+	UsGovWest1RegionID = "us-gov-west-1" // AWS GovCloud (US).
 )
 
 // Service identifiers
@@ -45,6 +45,7 @@ const (
 	ApigatewayServiceID                   = "apigateway"                   // Apigateway.
 	ApplicationAutoscalingServiceID       = "application-autoscaling"      // ApplicationAutoscaling.
 	AppstreamServiceID                    = "appstream"                    // Appstream.
+	Appstream2ServiceID                   = "appstream2"                   // Appstream2.
 	AutoscalingServiceID                  = "autoscaling"                  // Autoscaling.
 	BudgetsServiceID                      = "budgets"                      // Budgets.
 	CloudformationServiceID               = "cloudformation"               // Cloudformation.
@@ -52,6 +53,7 @@ const (
 	CloudhsmServiceID                     = "cloudhsm"                     // Cloudhsm.
 	CloudsearchServiceID                  = "cloudsearch"                  // Cloudsearch.
 	CloudtrailServiceID                   = "cloudtrail"                   // Cloudtrail.
+	CodebuildServiceID                    = "codebuild"                    // Codebuild.
 	CodecommitServiceID                   = "codecommit"                   // Codecommit.
 	CodedeployServiceID                   = "codedeploy"                   // Codedeploy.
 	CodepipelineServiceID                 = "codepipeline"                 // Codepipeline.
@@ -82,6 +84,7 @@ const (
 	FirehoseServiceID                     = "firehose"                     // Firehose.
 	GameliftServiceID                     = "gamelift"                     // Gamelift.
 	GlacierServiceID                      = "glacier"                      // Glacier.
+	HealthServiceID                       = "health"                       // Health.
 	IamServiceID                          = "iam"                          // Iam.
 	ImportexportServiceID                 = "importexport"                 // Importexport.
 	InspectorServiceID                    = "inspector"                    // Inspector.
@@ -90,6 +93,7 @@ const (
 	KinesisanalyticsServiceID             = "kinesisanalytics"             // Kinesisanalytics.
 	KmsServiceID                          = "kms"                          // Kms.
 	LambdaServiceID                       = "lambda"                       // Lambda.
+	LightsailServiceID                    = "lightsail"                    // Lightsail.
 	LogsServiceID                         = "logs"                         // Logs.
 	MachinelearningServiceID              = "machinelearning"              // Machinelearning.
 	MarketplacecommerceanalyticsServiceID = "marketplacecommerceanalytics" // Marketplacecommerceanalytics.
@@ -97,30 +101,36 @@ const (
 	MobileanalyticsServiceID              = "mobileanalytics"              // Mobileanalytics.
 	MonitoringServiceID                   = "monitoring"                   // Monitoring.
 	OpsworksServiceID                     = "opsworks"                     // Opsworks.
+	OpsworksCmServiceID                   = "opsworks-cm"                  // OpsworksCm.
+	PinpointServiceID                     = "pinpoint"                     // Pinpoint.
+	PollyServiceID                        = "polly"                        // Polly.
 	RdsServiceID                          = "rds"                          // Rds.
 	RedshiftServiceID                     = "redshift"                     // Redshift.
+	RekognitionServiceID                  = "rekognition"                  // Rekognition.
 	Route53ServiceID                      = "route53"                      // Route53.
 	Route53domainsServiceID               = "route53domains"               // Route53domains.
 	S3ServiceID                           = "s3"                           // S3.
 	SdbServiceID                          = "sdb"                          // Sdb.
 	ServicecatalogServiceID               = "servicecatalog"               // Servicecatalog.
+	ShieldServiceID                       = "shield"                       // Shield.
 	SmsServiceID                          = "sms"                          // Sms.
 	SnowballServiceID                     = "snowball"                     // Snowball.
 	SnsServiceID                          = "sns"                          // Sns.
 	SqsServiceID                          = "sqs"                          // Sqs.
 	SsmServiceID                          = "ssm"                          // Ssm.
+	StatesServiceID                       = "states"                       // States.
 	StoragegatewayServiceID               = "storagegateway"               // Storagegateway.
 	StreamsDynamodbServiceID              = "streams.dynamodb"             // StreamsDynamodb.
 	StsServiceID                          = "sts"                          // Sts.
 	SupportServiceID                      = "support"                      // Support.
 	SwfServiceID                          = "swf"                          // Swf.
 	WafServiceID                          = "waf"                          // Waf.
-	WorkdocsServiceID                     = "workdocs"                     // Workdocs.
 	WorkspacesServiceID                   = "workspaces"                   // Workspaces.
+	XrayServiceID                         = "xray"                         // Xray.
 )
 
 // DefaultResolver returns an Endpoint resolver that will be able
-// to resolve endpoints for: AWS Standard, AWS GovCloud (US), and AWS China.
+// to resolve endpoints for: AWS Standard, AWS China, and AWS GovCloud (US).
 //
 // Casting the return value of this func to a EnumPartitions will
 // allow you to get a list of the partitions in the order the endpoints
@@ -137,8 +147,8 @@ func DefaultResolver() Resolver {
 
 var defaultPartitions = partitions{
 	awsPartition,
-	awsusgovPartition,
 	awscnPartition,
+	awsusgovPartition,
 }
 
 // AwsPartition returns the Resolver for AWS Standard.
@@ -241,10 +251,13 @@ var awsPartition = partition{
 			},
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
+				"ap-south-1":     endpoint{},
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
+				"sa-east-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
 				"us-west-1":      endpoint{},
@@ -256,6 +269,20 @@ var awsPartition = partition{
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
 				"us-east-1":      endpoint{},
+			},
+		},
+		"appstream2": service{
+			Defaults: endpoint{
+				Protocols: []string{"https"},
+				CredentialScope: credentialScope{
+					Service: "appstream",
+				},
+			},
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"eu-west-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-west-2":      endpoint{},
 			},
 		},
 		"autoscaling": service{
@@ -367,11 +394,21 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"codebuild": service{
+
+			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-west-2": endpoint{},
+			},
+		},
 		"codecommit": service{
 
 			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
 				"us-east-1": endpoint{},
 				"us-east-2": endpoint{},
+				"us-west-2": endpoint{},
 			},
 		},
 		"codedeploy": service{
@@ -396,6 +433,7 @@ var awsPartition = partition{
 			Endpoints: endpoints{
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
+				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
@@ -779,6 +817,12 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"health": service{
+
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
+			},
+		},
 		"iam": service{
 			PartitionEndpoint: "aws-global",
 			IsRegionalized:    boxedFalse,
@@ -889,7 +933,14 @@ var awsPartition = partition{
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
+				"us-west-1":      endpoint{},
 				"us-west-2":      endpoint{},
+			},
+		},
+		"lightsail": service{
+
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
 			},
 		},
 		"logs": service{
@@ -971,6 +1022,33 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"opsworks-cm": service{
+
+			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-west-2": endpoint{},
+			},
+		},
+		"pinpoint": service{
+			Defaults: endpoint{
+				CredentialScope: credentialScope{
+					Service: "mobiletargeting",
+				},
+			},
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
+			},
+		},
+		"polly": service{
+
+			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-east-2": endpoint{},
+				"us-west-2": endpoint{},
+			},
+		},
 		"rds": service{
 
 			Endpoints: endpoints{
@@ -1005,6 +1083,14 @@ var awsPartition = partition{
 				"us-east-2":      endpoint{},
 				"us-west-1":      endpoint{},
 				"us-west-2":      endpoint{},
+			},
+		},
+		"rekognition": service{
+
+			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-west-2": endpoint{},
 			},
 		},
 		"route53": service{
@@ -1113,6 +1199,16 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"shield": service{
+			IsRegionalized: boxedFalse,
+			Defaults: endpoint{
+				SSLCommonName: "Shield.us-east-1.amazonaws.com",
+				Protocols:     []string{"https"},
+			},
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
+			},
+		},
 		"sms": service{
 
 			Endpoints: endpoints{
@@ -1187,6 +1283,16 @@ var awsPartition = partition{
 				"sa-east-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-west-1":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
+		"states": service{
+
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"eu-west-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
 				"us-west-2":      endpoint{},
 			},
 		},
@@ -1293,17 +1399,6 @@ var awsPartition = partition{
 				},
 			},
 		},
-		"workdocs": service{
-
-			Endpoints: endpoints{
-				"ap-northeast-1": endpoint{},
-				"ap-southeast-1": endpoint{},
-				"ap-southeast-2": endpoint{},
-				"eu-west-1":      endpoint{},
-				"us-east-1":      endpoint{},
-				"us-west-2":      endpoint{},
-			},
-		},
 		"workspaces": service{
 
 			Endpoints: endpoints{
@@ -1314,6 +1409,253 @@ var awsPartition = partition{
 				"eu-west-1":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-west-2":      endpoint{},
+			},
+		},
+		"xray": service{
+
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
+				"ap-south-1":     endpoint{},
+				"ap-southeast-1": endpoint{},
+				"ap-southeast-2": endpoint{},
+				"eu-central-1":   endpoint{},
+				"eu-west-1":      endpoint{},
+				"sa-east-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
+				"us-west-1":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
+	},
+}
+
+// AwsCnPartition returns the Resolver for AWS China.
+func AwsCnPartition() Partition {
+	return awscnPartition.Partition()
+}
+
+var awscnPartition = partition{
+	ID:        "aws-cn",
+	Name:      "AWS China",
+	DNSSuffix: "amazonaws.com.cn",
+	RegionRegex: regionRegex{
+		Regexp: func() *regexp.Regexp {
+			reg, _ := regexp.Compile("^cn\\-\\w+\\-\\d+$")
+			return reg
+		}(),
+	},
+	Defaults: endpoint{
+		Hostname:          "{service}.{region}.{dnsSuffix}",
+		Protocols:         []string{"https"},
+		SignatureVersions: []string{"v4"},
+	},
+	Regions: regions{
+		"cn-north-1": region{
+			Description: "China (Beijing)",
+		},
+	},
+	Services: services{
+		"autoscaling": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"cloudformation": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"cloudtrail": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"config": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"directconnect": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"dynamodb": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"ec2": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"ec2metadata": service{
+			PartitionEndpoint: "aws-global",
+			IsRegionalized:    boxedFalse,
+
+			Endpoints: endpoints{
+				"aws-global": endpoint{
+					Hostname:  "169.254.169.254/latest",
+					Protocols: []string{"http"},
+				},
+			},
+		},
+		"elasticache": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"elasticbeanstalk": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"elasticloadbalancing": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"elasticmapreduce": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"events": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"glacier": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"iam": service{
+			PartitionEndpoint: "aws-cn-global",
+			IsRegionalized:    boxedFalse,
+
+			Endpoints: endpoints{
+				"aws-cn-global": endpoint{
+					Hostname: "iam.cn-north-1.amazonaws.com.cn",
+					CredentialScope: credentialScope{
+						Region: "cn-north-1",
+					},
+				},
+			},
+		},
+		"kinesis": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"logs": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"monitoring": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"rds": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"redshift": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"s3": service{
+			Defaults: endpoint{
+				Protocols:         []string{"http", "https"},
+				SignatureVersions: []string{"s3v4"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"sns": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"sqs": service{
+			Defaults: endpoint{
+				SSLCommonName: "{region}.queue.{dnsSuffix}",
+				Protocols:     []string{"http", "https"},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"storagegateway": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"streams.dynamodb": service{
+			Defaults: endpoint{
+				Protocols: []string{"http", "https"},
+				CredentialScope: credentialScope{
+					Service: "dynamodb",
+				},
+			},
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"sts": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
+		"swf": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
 			},
 		},
 	},
@@ -1539,224 +1881,6 @@ var awsusgovPartition = partition{
 
 			Endpoints: endpoints{
 				"us-gov-west-1": endpoint{},
-			},
-		},
-	},
-}
-
-// AwsCnPartition returns the Resolver for AWS China.
-func AwsCnPartition() Partition {
-	return awscnPartition.Partition()
-}
-
-var awscnPartition = partition{
-	ID:        "aws-cn",
-	Name:      "AWS China",
-	DNSSuffix: "amazonaws.com.cn",
-	RegionRegex: regionRegex{
-		Regexp: func() *regexp.Regexp {
-			reg, _ := regexp.Compile("^cn\\-\\w+\\-\\d+$")
-			return reg
-		}(),
-	},
-	Defaults: endpoint{
-		Hostname:          "{service}.{region}.{dnsSuffix}",
-		Protocols:         []string{"https"},
-		SignatureVersions: []string{"v4"},
-	},
-	Regions: regions{
-		"cn-north-1": region{
-			Description: "China (Beijing)",
-		},
-	},
-	Services: services{
-		"autoscaling": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"cloudformation": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"cloudtrail": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"directconnect": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"dynamodb": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"ec2": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"ec2metadata": service{
-			PartitionEndpoint: "aws-global",
-			IsRegionalized:    boxedFalse,
-
-			Endpoints: endpoints{
-				"aws-global": endpoint{
-					Hostname:  "169.254.169.254/latest",
-					Protocols: []string{"http"},
-				},
-			},
-		},
-		"elasticache": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"elasticbeanstalk": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"elasticloadbalancing": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"elasticmapreduce": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"glacier": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"iam": service{
-			PartitionEndpoint: "aws-cn-global",
-			IsRegionalized:    boxedFalse,
-
-			Endpoints: endpoints{
-				"aws-cn-global": endpoint{
-					Hostname: "iam.cn-north-1.amazonaws.com.cn",
-					CredentialScope: credentialScope{
-						Region: "cn-north-1",
-					},
-				},
-			},
-		},
-		"kinesis": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"logs": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"monitoring": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"rds": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"redshift": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"s3": service{
-			Defaults: endpoint{
-				Protocols:         []string{"http", "https"},
-				SignatureVersions: []string{"s3v4"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"sns": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"sqs": service{
-			Defaults: endpoint{
-				SSLCommonName: "{region}.queue.{dnsSuffix}",
-				Protocols:     []string{"http", "https"},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"storagegateway": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"streams.dynamodb": service{
-			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
-				CredentialScope: credentialScope{
-					Service: "dynamodb",
-				},
-			},
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"sts": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
-			},
-		},
-		"swf": service{
-
-			Endpoints: endpoints{
-				"cn-north-1": endpoint{},
 			},
 		},
 	},
