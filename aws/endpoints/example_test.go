@@ -16,12 +16,12 @@ func ExampleEnumPartitions() {
 
 	for _, p := range partitions {
 		fmt.Println("Regions for", p.Name)
-		for id, _ := range p.Regions() {
+		for id := range p.Regions() {
 			fmt.Println("*", id)
 		}
 
 		fmt.Println("Services for", p.Name)
-		for id, _ := range p.Services() {
+		for id := range p.Services() {
 			fmt.Println("*", id)
 		}
 	}

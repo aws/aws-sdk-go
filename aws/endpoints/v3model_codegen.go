@@ -78,14 +78,21 @@ func partitionVarName(id string) string {
 
 func listPartitionNames(ps partitions) string {
 	names := []string{}
-	for i, p := range ps {
-		if i == len(ps)-1 {
-			names = append(names, "and "+p.Name)
-		} else {
-			names = append(names, p.Name)
+	switch len(ps) {
+	case 1:
+		return ps[0].Name
+	case 2:
+		return fmt.Sprintf("%s and %s", ps[0].Name, ps[1].Name)
+	default:
+		for i, p := range ps {
+			if i == len(ps)-1 {
+				names = append(names, "and "+p.Name)
+			} else {
+				names = append(names, p.Name)
+			}
 		}
+		return strings.Join(names, ", ")
 	}
-	return strings.Join(names, ", ")
 }
 
 func boxedBoolIfSet(msg string, v boxedBool) string {
