@@ -78,7 +78,7 @@ var schemeRE = regexp.MustCompile("^([^:]+)://")
 // If disableSSL is set, it will only set the URL's scheme if the URL does not
 // contain a scheme.
 func AddScheme(endpoint string, disableSSL bool) string {
-	if endpoint != "" && !schemeRE.MatchString(endpoint) {
+	if !schemeRE.MatchString(endpoint) {
 		scheme := "https"
 		if disableSSL {
 			scheme = "http"
