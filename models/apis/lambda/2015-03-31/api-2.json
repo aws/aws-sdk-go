@@ -5,7 +5,8 @@
     "endpointPrefix":"lambda",
     "protocol":"rest-json",
     "serviceFullName":"AWS Lambda",
-    "signatureVersion":"v4"
+    "signatureVersion":"v4",
+    "uid":"lambda-2015-03-31"
   },
   "operations":{
     "AddPermission":{
@@ -122,6 +123,20 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceConflictException"}
+      ]
+    },
+    "GetAccountSettings":{
+      "name":"GetAccountSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2016-08-19/account-settings/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAccountSettingsRequest"},
+      "output":{"shape":"GetAccountSettingsResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"}
       ]
     },
     "GetAlias":{
@@ -412,6 +427,22 @@
     }
   },
   "shapes":{
+    "AccountLimit":{
+      "type":"structure",
+      "members":{
+        "TotalCodeSize":{"shape":"Long"},
+        "CodeSizeUnzipped":{"shape":"Long"},
+        "CodeSizeZipped":{"shape":"Long"},
+        "ConcurrentExecutions":{"shape":"Integer"}
+      }
+    },
+    "AccountUsage":{
+      "type":"structure",
+      "members":{
+        "TotalCodeSize":{"shape":"Long"},
+        "FunctionCount":{"shape":"Long"}
+      }
+    },
     "Action":{
       "type":"string",
       "pattern":"(lambda:[*]|lambda:[a-zA-Z]+|[*])"
@@ -477,7 +508,10 @@
       "max":10000,
       "min":1
     },
-    "Blob":{"type":"blob"},
+    "Blob":{
+      "type":"blob",
+      "sensitive":true
+    },
     "BlobStream":{
       "type":"blob",
       "streaming":true
@@ -522,7 +556,8 @@
         "FunctionName":{"shape":"FunctionName"},
         "Enabled":{"shape":"Enabled"},
         "BatchSize":{"shape":"BatchSize"},
-        "StartingPosition":{"shape":"EventSourcePosition"}
+        "StartingPosition":{"shape":"EventSourcePosition"},
+        "StartingPositionTimestamp":{"shape":"Date"}
       }
     },
     "CreateFunctionRequest":{
@@ -545,11 +580,18 @@
         "MemorySize":{"shape":"MemorySize"},
         "Publish":{"shape":"Boolean"},
         "VpcConfig":{"shape":"VpcConfig"},
+        "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "Environment":{"shape":"Environment"},
         "KMSKeyArn":{"shape":"KMSKeyArn"}
       }
     },
     "Date":{"type":"timestamp"},
+    "DeadLetterConfig":{
+      "type":"structure",
+      "members":{
+        "TargetArn":{"shape":"ResourceArn"}
+      }
+    },
     "DeleteAliasRequest":{
       "type":"structure",
       "required":[
@@ -649,7 +691,7 @@
       "type":"structure",
       "members":{
         "ErrorCode":{"shape":"String"},
-        "Message":{"shape":"String"}
+        "Message":{"shape":"SensitiveString"}
       }
     },
     "EnvironmentResponse":{
@@ -661,16 +703,19 @@
     },
     "EnvironmentVariableName":{
       "type":"string",
-      "pattern":"[a-zA-Z]([a-zA-Z0-9_])+"
+      "pattern":"[a-zA-Z]([a-zA-Z0-9_])+",
+      "sensitive":true
     },
     "EnvironmentVariableValue":{
       "type":"string",
-      "pattern":"[^,]*"
+      "pattern":"[^,]*",
+      "sensitive":true
     },
     "EnvironmentVariables":{
       "type":"map",
       "key":{"shape":"EnvironmentVariableName"},
-      "value":{"shape":"EnvironmentVariableValue"}
+      "value":{"shape":"EnvironmentVariableValue"},
+      "sensitive":true
     },
     "EventSourceMappingConfiguration":{
       "type":"structure",
@@ -693,7 +738,8 @@
       "type":"string",
       "enum":[
         "TRIM_HORIZON",
-        "LATEST"
+        "LATEST",
+        "AT_TIMESTAMP"
       ]
     },
     "EventSourceToken":{
@@ -738,6 +784,7 @@
         "CodeSha256":{"shape":"String"},
         "Version":{"shape":"Version"},
         "VpcConfig":{"shape":"VpcConfigResponse"},
+        "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "Environment":{"shape":"EnvironmentResponse"},
         "KMSKeyArn":{"shape":"KMSKeyArn"}
       }
@@ -751,6 +798,18 @@
       "max":140,
       "min":1,
       "pattern":"(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+    },
+    "GetAccountSettingsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetAccountSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "AccountLimit":{"shape":"AccountLimit"},
+        "AccountUsage":{"shape":"AccountUsage"}
+      }
     },
     "GetAliasRequest":{
       "type":"structure",
@@ -1222,6 +1281,10 @@
       "error":{"httpStatusCode":413},
       "exception":true
     },
+    "ResourceArn":{
+      "type":"string",
+      "pattern":"(arn:aws:[a-z0-9-.]+:.*)|()"
+    },
     "ResourceConflictException":{
       "type":"structure",
       "members":{
@@ -1250,7 +1313,9 @@
         "nodejs",
         "nodejs4.3",
         "java8",
-        "python2.7"
+        "python2.7",
+        "dotnetcore1.0",
+        "nodejs4.3-edge"
       ]
     },
     "S3Bucket":{
@@ -1274,6 +1339,10 @@
       "type":"list",
       "member":{"shape":"SecurityGroupId"},
       "max":5
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
     },
     "ServiceException":{
       "type":"structure",
@@ -1414,8 +1483,9 @@
         "MemorySize":{"shape":"MemorySize"},
         "VpcConfig":{"shape":"VpcConfig"},
         "Environment":{"shape":"Environment"},
-        "KMSKeyArn":{"shape":"KMSKeyArn"},
-        "Runtime":{"shape":"Runtime"}
+        "Runtime":{"shape":"Runtime"},
+        "DeadLetterConfig":{"shape":"DeadLetterConfig"},
+        "KMSKeyArn":{"shape":"KMSKeyArn"}
       }
     },
     "Version":{
