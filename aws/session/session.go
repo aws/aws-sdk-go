@@ -413,5 +413,6 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 		Handlers:      s.Handlers,
 		Endpoint:      resolved.URL,
 		SigningRegion: resolved.SigningRegion,
+		SigningName:   resolved.SigningName,
 	}, err
 }

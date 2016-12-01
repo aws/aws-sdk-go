@@ -59,17 +59,20 @@ const ServiceName = "metering.marketplace"
 //     svc := marketplacemetering.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *MarketplaceMetering {
 	c := p.ClientConfig(ServiceName, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *MarketplaceMetering {
+func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *MarketplaceMetering {
+	if len(signingName) == 0 {
+		signingName = "aws-marketplace"
+	}
 	svc := &MarketplaceMetering{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
 				ServiceName:   ServiceName,
-				SigningName:   "aws-marketplace",
+				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
 				APIVersion:    "2016-01-14",

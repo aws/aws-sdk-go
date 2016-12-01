@@ -46,17 +46,20 @@ const ServiceName = "iot"
 //     svc := iot.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *IoT {
 	c := p.ClientConfig(ServiceName, cfgs...)
-	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *IoT {
+func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion, signingName string) *IoT {
+	if len(signingName) == 0 {
+		signingName = "execute-api"
+	}
 	svc := &IoT{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
 				ServiceName:   ServiceName,
-				SigningName:   "execute-api",
+				SigningName:   signingName,
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
 				APIVersion:    "2015-05-28",
