@@ -9,6 +9,7 @@
     "DeleteAlias": "<p>Deletes the specified Lambda function alias. For more information, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/aliases-intro.html\">Introduction to AWS Lambda Aliases</a>.</p> <p>This requires permission for the lambda:DeleteAlias action.</p>",
     "DeleteEventSourceMapping": "<p>Removes an event source mapping. This means AWS Lambda will no longer invoke the function for events in the associated source.</p> <p>This operation requires permission for the <code>lambda:DeleteEventSourceMapping</code> action.</p>",
     "DeleteFunction": "<p>Deletes the specified Lambda function code and configuration.</p> <p>If you are using the versioning feature and you don't specify a function version in your <code>DeleteFunction</code> request, AWS Lambda will delete the function, including all its versions, and any aliases pointing to the function versions. To delete a specific function version, you must provide the function version via the <code>Qualifier</code> parameter. For information about function versioning, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">AWS Lambda Function Versioning and Aliases</a>. </p> <p>When you delete a function the associated resource policy is also deleted. You will need to delete the event source mappings explicitly.</p> <p>This operation requires permission for the <code>lambda:DeleteFunction</code> action.</p>",
+    "GetAccountSettings": "<p>Returns a customer's account settings.</p> <p>You can use this operation to retrieve Lambda limit information such as code size and concurrency limits. For more information on limits, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/limits.html\">AWS Lambda Limits</a>. You can also retrieve resource usage statistics such as code storage usage and function count.</p>",
     "GetAlias": "<p>Returns the specified alias information such as the alias ARN, description, and function version it is pointing to. For more information, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/aliases-intro.html\">Introduction to AWS Lambda Aliases</a>.</p> <p>This requires permission for the <code>lambda:GetAlias</code> action.</p>",
     "GetEventSourceMapping": "<p>Returns configuration information for the specified event source mapping (see <a>CreateEventSourceMapping</a>).</p> <p>This operation requires permission for the <code>lambda:GetEventSourceMapping</code> action.</p>",
     "GetFunction": "<p>Returns the configuration information of the Lambda function and a presigned URL link to the .zip file you uploaded with <a>CreateFunction</a> so you can download the .zip file. Note that the URL is valid for up to 10 minutes. The configuration information is the same information you provided as parameters when uploading the function.</p> <p>Using the optional <code>Qualifier</code> parameter, you can specify a specific function version for which you want this information. If you don't specify this parameter, the API uses unqualified function ARN which return information about the <code>$LATEST</code> version of the Lambda function. For more information, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">AWS Lambda Function Versioning and Aliases</a>.</p> <p>This operation requires permission for the <code>lambda:GetFunction</code> action.</p>",
@@ -28,6 +29,18 @@
     "UpdateFunctionConfiguration": "<p>Updates the configuration parameters for the specified Lambda function by using the values provided in the request. You provide only the parameters you want to change. This operation must only be used on an existing Lambda function and cannot be used to update the function's code.</p> <p>If you are using the versioning feature, note this API will always update the $LATEST version of your Lambda function. For information about the versioning feature, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">AWS Lambda Function Versioning and Aliases</a>. </p> <p>This operation requires permission for the <code>lambda:UpdateFunctionConfiguration</code> action.</p>"
   },
   "shapes": {
+    "AccountLimit": {
+      "base": "<p>Provides limits of code size and concurrency associated with the current account and region.</p>",
+      "refs": {
+        "GetAccountSettingsResponse$AccountLimit": null
+      }
+    },
+    "AccountUsage": {
+      "base": "<p>Provides code size usage and function count associated with the current account and region.</p>",
+      "refs": {
+        "GetAccountSettingsResponse$AccountUsage": null
+      }
+    },
     "Action": {
       "base": null,
       "refs": {
@@ -128,7 +141,16 @@
     "Date": {
       "base": null,
       "refs": {
+        "CreateEventSourceMappingRequest$StartingPositionTimestamp": "<p>The timestamp of the data record from which to start reading. Used with <a href=\"http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType\">shard iterator type</a> AT_TIMESTAMP. If a record with this exact timestamp does not exist, the iterator returned is for the next (later) record. If the timestamp is older than the current trim horizon, the iterator returned is for the oldest untrimmed data record (TRIM_HORIZON). Valid only for Kinesis streams. </p>",
         "EventSourceMappingConfiguration$LastModified": "<p>The UTC time string indicating the last time the event mapping was updated.</p>"
+      }
+    },
+    "DeadLetterConfig": {
+      "base": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic.</p>",
+      "refs": {
+        "CreateFunctionRequest$DeadLetterConfig": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic. </p>",
+        "FunctionConfiguration$DeadLetterConfig": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic.</p>",
+        "UpdateFunctionConfigurationRequest$DeadLetterConfig": "<p>The parent object that contains the target ARN (Amazon Resource Name) of an Amazon SQS queue or Amazon SNS topic.</p>"
       }
     },
     "DeleteAliasRequest": {
@@ -238,7 +260,7 @@
     "EventSourcePosition": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$StartingPosition": "<p>The position in the stream where AWS Lambda should start reading. For more information, go to <a href=\"http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType\">ShardIteratorType</a> in the <i>Amazon Kinesis API Reference</i>. </p>"
+        "CreateEventSourceMappingRequest$StartingPosition": "<p>The position in the stream where AWS Lambda should start reading. Valid only for Kinesis streams. For more information, go to <a href=\"http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType\">ShardIteratorType</a> in the <i>Amazon Kinesis API Reference</i>. </p>"
       }
     },
     "EventSourceToken": {
@@ -308,6 +330,16 @@
         "UpdateFunctionConfigurationRequest$FunctionName": "<p>The name of the Lambda function.</p> <p> You can specify a function name (for example, <code>Thumbnail</code>) or you can specify Amazon Resource Name (ARN) of the function (for example, <code>arn:aws:lambda:us-west-2:account-id:function:ThumbNail</code>). AWS Lambda also allows you to specify a partial ARN (for example, <code>account-id:Thumbnail</code>). Note that the length constraint applies only to the ARN. If you specify only the function name, it is limited to 64 character in length. </p>"
       }
     },
+    "GetAccountSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccountSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetAliasRequest": {
       "base": null,
       "refs": {
@@ -360,6 +392,7 @@
     "Integer": {
       "base": null,
       "refs": {
+        "AccountLimit$ConcurrentExecutions": "<p>Number of simultaneous executions of your function per region. For more information or to request a limit increase for concurrent executions, see <a href=\"http://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html\">Lambda Function Concurrent Executions</a>. The default limit is 100.</p>",
         "InvocationResponse$StatusCode": "<p>The HTTP status code will be in the 200 range for successful request. For the <code>RequestResonse</code> invocation type this status code will be 200. For the <code>Event</code> invocation type this status code will be 202. For the <code>DryRun</code> invocation type the status code will be 204. </p>"
       }
     },
@@ -415,7 +448,7 @@
       }
     },
     "KMSAccessDeniedException": {
-      "base": "<p>Lambda was unable to decrypt the environment variables becauses KMS access was denied. Please check the Lambda function's KMS permissions.</p>",
+      "base": "<p>Lambda was unable to decrypt the environment variables because KMS access was denied. Please check the Lambda function's KMS permissions.</p>",
       "refs": {
       }
     },
@@ -491,6 +524,11 @@
     "Long": {
       "base": null,
       "refs": {
+        "AccountLimit$TotalCodeSize": "<p>Maximum size, in megabytes, of a code package you can upload per region. The default size is 75 GB. </p>",
+        "AccountLimit$CodeSizeUnzipped": "<p>Size, in bytes, of code/dependencies that you can zip into a deployment package (uncompressed zip/jar size) for uploading. The default limit is 250 MB.</p>",
+        "AccountLimit$CodeSizeZipped": "<p>Size, in bytes, of a single zipped code/dependencies package you can upload for your Lambda function(.zip/.jar file). Try using AWS S3 for uploading larger files. Default limit is 50 MB.</p>",
+        "AccountUsage$TotalCodeSize": "<p>Total size, in megabytes, of the account's deployment packages per region.</p>",
+        "AccountUsage$FunctionCount": "<p>The number of your account's existing functions per region.</p>",
         "FunctionConfiguration$CodeSize": "<p>The size, in bytes, of the function .zip file you uploaded.</p>"
       }
     },
@@ -549,6 +587,12 @@
       "refs": {
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "DeadLetterConfig$TargetArn": "<p>The ARN (Amazon Resource Value) of an Amazon SQS queue or Amazon SNS topic you specify as your Dead Letter Queue (DLQ).</p>"
+      }
+    },
     "ResourceConflictException": {
       "base": "<p>The resource already exists.</p>",
       "refs": {
@@ -570,9 +614,9 @@
     "Runtime": {
       "base": null,
       "refs": {
-        "CreateFunctionRequest$Runtime": "<p>The runtime environment for the Lambda function you are uploading.</p> <p>To use the Node.js runtime v4.3, set the value to \"nodejs4.3\". To use earlier runtime (v0.10.42), set the value to \"nodejs\".</p>",
+        "CreateFunctionRequest$Runtime": "<p>The runtime environment for the Lambda function you are uploading.</p> <p>To use the Node.js runtime v4.3, set the value to \"nodejs4.3\". To use earlier runtime (v0.10.42), set the value to \"nodejs\".</p> <note> <p>You can no longer create functions using the v0.10.42 runtime version as of November, 2016. Existing functions will be supported until early 2017 but we recommend you migrate them to nodejs4.3 runtime version as soon as possible.</p> </note>",
         "FunctionConfiguration$Runtime": "<p>The runtime environment for the Lambda function.</p> <p>To use the Node.js runtime v4.3, set the value to \"nodejs4.3\". To use earlier runtime (v0.10.42), set the value to \"nodejs\".</p>",
-        "UpdateFunctionConfigurationRequest$Runtime": "<p>The runtime environment for the Lambda function.</p> <p>To use the Node.js runtime v4.3, set the value to \"nodejs4.3\". To use earlier runtime (v0.10.42), set the value to \"nodejs\".</p>"
+        "UpdateFunctionConfigurationRequest$Runtime": "<p>The runtime environment for the Lambda function.</p> <p>To use the Node.js runtime v4.3, set the value to \"nodejs4.3\". To use earlier runtime (v0.10.42), set the value to \"nodejs\".</p> <note> <p>You can no longer downgrade to the v0.10.42 runtime version. This version will no longer be supported as of early 2017.</p> </note>"
       }
     },
     "S3Bucket": {
@@ -607,6 +651,12 @@
       "refs": {
         "VpcConfig$SecurityGroupIds": "<p>A list of one or more security groups IDs in your VPC.</p>",
         "VpcConfigResponse$SecurityGroupIds": "<p>A list of security group IDs associated with the Lambda function.</p>"
+      }
+    },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "EnvironmentError$Message": "<p>The message returned by the environment error object.</p>"
       }
     },
     "ServiceException": {
@@ -644,7 +694,6 @@
         "ENILimitReachedException$Type": null,
         "ENILimitReachedException$Message": null,
         "EnvironmentError$ErrorCode": "<p>The error code returned by the environment error object.</p>",
-        "EnvironmentError$Message": "<p>The message returned by the environment error object.</p>",
         "EventSourceMappingConfiguration$UUID": "<p>The AWS Lambda assigned opaque identifier for the mapping.</p>",
         "EventSourceMappingConfiguration$LastProcessingResult": "<p>The result of the last AWS Lambda invocation of your Lambda function.</p>",
         "EventSourceMappingConfiguration$State": "<p>The state of the event source mapping. It can be <code>Creating</code>, <code>Enabled</code>, <code>Disabled</code>, <code>Enabling</code>, <code>Disabling</code>, <code>Updating</code>, or <code>Deleting</code>.</p>",
