@@ -126,8 +126,9 @@ func ec2RoleProvider(cfg aws.Config, handlers request.Handlers) credentials.Prov
 		resolver = endpoints.DefaultResolver()
 	}
 
+	e, _ := resolver.EndpointFor(endpoints.Ec2metadataServiceID, "")
 	return &ec2rolecreds.EC2RoleProvider{
-		Client:       ec2metadata.NewClient(cfg, handlers, "", ""),
+		Client:       ec2metadata.NewClient(cfg, handlers, e.URL, e.SigningRegion),
 		ExpiryWindow: 5 * time.Minute,
 	}
 }
