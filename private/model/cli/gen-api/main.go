@@ -103,6 +103,7 @@ func main() {
 	flag.StringVar(&sessionPath, "sessionPath", filepath.Join("aws", "session"), "generate session service client factories")
 	flag.StringVar(&svcImportPath, "svc-import-path", "github.com/aws/aws-sdk-go/service", "namespace to generate service client Go code import path under")
 	flag.Parse()
+	api.Bootstrap()
 
 	files := []string{}
 	for i := 0; i < flag.NArg(); i++ {
