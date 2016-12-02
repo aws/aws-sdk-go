@@ -5,8 +5,11 @@ package api
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"path"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
@@ -63,6 +66,17 @@ type Metadata struct {
 	Protocol            string
 }
 
+var serviceAliases map[string]string
+
+func Bootstrap() error {
+	b, err := ioutil.ReadFile(filepath.Join("..", "models", "customizations", "service-aliases.json"))
+	if err != nil {
+		return err
+	}
+
+	return json.Unmarshal(b, &serviceAliases)
+}
+
 // PackageName name of the API package
 func (a *API) PackageName() string {
 	return strings.ToLower(a.StructName())
@@ -84,14 +98,9 @@ func (a *API) StructName() string {
 		}
 
 		name = nameRegex.ReplaceAllString(name, "")
-		switch strings.ToLower(name) {
-		case "elasticloadbalancing":
-			a.name = "ELB"
-		case "elasticloadbalancingv2":
-			a.name = "ELBV2"
-		case "config":
-			a.name = "ConfigService"
-		default:
+
+		a.name = name
+		if name, ok := serviceAliases[strings.ToLower(name)]; ok {
 			a.name = name
 		}
 	}
