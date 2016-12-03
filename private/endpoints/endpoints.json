@@ -46,6 +46,10 @@
       "endpoint": "iam.amazonaws.com",
       "signingRegion": "us-east-1"
     },
+    "*/opsworks": {
+      "endpoint": "opsworks.us-east-1.amazonaws.com",
+      "signingRegion": "us-east-1"
+    },
     "*/importexport": {
       "endpoint": "importexport.amazonaws.com",
       "signingRegion": "us-east-1"
