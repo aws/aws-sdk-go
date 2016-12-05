@@ -44,7 +44,7 @@ type Session struct {
 // shared config, and shared credentials will be taken from the shared
 // credentials file.
 //
-// Deprecated: Use NewSession functiions to create sessions instead. NewSession
+// Deprecated: Use NewSession functions to create sessions instead. NewSession
 // has the same functionality as New except an error can be returned when the
 // func is called instead of waiting to receive an error until a request is made.
 func New(cfgs ...*aws.Config) *Session {
