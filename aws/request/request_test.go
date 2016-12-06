@@ -351,7 +351,6 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 		nil,
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
-
 	errors := []error{
 		errTimeout,
 		nil,
