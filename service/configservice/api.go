@@ -636,6 +636,10 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 //   One or more AWS Config rules in the request are invalid. Verify that the
 //   rule names are correct and try again.
 //
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
 func (c *ConfigService) DescribeConfigRuleEvaluationStatus(input *DescribeConfigRuleEvaluationStatusInput) (*DescribeConfigRuleEvaluationStatusOutput, error) {
 	req, out := c.DescribeConfigRuleEvaluationStatusRequest(input)
 	err := req.Send()
@@ -1536,7 +1540,11 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 // rule by ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule
 // data type that you use in this request.
 //
-// The maximum number of rules that AWS Config supports is 25.
+// The maximum number of rules that AWS Config supports is 50.
+//
+// For more information about requesting a rule limit increase, see AWS Config
+// Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
+// in the AWS General Reference Guide.
 //
 // For more information about developing and using AWS Config rules, see Evaluating
 // AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
@@ -1556,7 +1564,7 @@ func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *re
 //
 //   * MaxNumberOfConfigRulesExceededException
 //   Failed to add the AWS Config rule because the account already contains the
-//   maximum number of 25 rules. Consider deleting any deactivated rules before
+//   maximum number of 50 rules. Consider deleting any deactivated rules before
 //   adding new rules.
 //
 //   * ResourceInUseException
@@ -1828,7 +1836,7 @@ func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *
 //   are valid and try again.
 //
 //   * InvalidResultTokenException
-//   The result token is invalid.
+//   The speNexcified token is invalid.
 //
 //   * NoSuchConfigRuleException
 //   One or more AWS Config rules in the request are invalid. Verify that the
@@ -1885,8 +1893,13 @@ func (c *ConfigService) StartConfigRulesEvaluationRequest(input *StartConfigRule
 
 // StartConfigRulesEvaluation API operation for AWS Config.
 //
-// Evaluates your resources against the specified Config rules. You can specify
-// up to 25 Config rules per request.
+// Runs an on-demand evaluation for the specified Config rules against the last
+// known configuration state of the resources. Use StartConfigRulesEvaluation
+// when you want to test a rule that you updated is working as expected. StartConfigRulesEvaluation
+// does not re-record the latest configuration state for your resources; it
+// re-runs an evaluation against the last known state of your resources.
+//
+// You can specify up to 25 Config rules per request.
 //
 // An existing StartConfigRulesEvaluation call must complete for the specified
 // rules before you can call the API again. If you chose to have AWS Config
@@ -2246,8 +2259,7 @@ func (s *ComplianceContributorCount) SetCappedCount(v int64) *ComplianceContribu
 	return s
 }
 
-// The number of AWS Config rules or AWS resources that are compliant and noncompliant,
-// up to a maximum.
+// The number of AWS Config rules or AWS resources that are compliant and noncompliant.
 type ComplianceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3831,6 +3843,20 @@ type DescribeConfigRuleEvaluationStatusInput struct {
 	// If you do not specify any names, AWS Config returns status information for
 	// all AWS managed Config rules that you use.
 	ConfigRuleNames []*string `type:"list"`
+
+	// The number of rule evaluation results that you want returned.
+	//
+	// This parameter is required if the rule limit for your account is more than
+	// the default of 50 rules.
+	//
+	// For more information about requesting a rule limit increase, see AWS Config
+	// Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config)
+	// in the AWS General Reference Guide.
+	Limit *int64 `type:"integer"`
+
+	// The NextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
 }
 
 // String returns the string representation
@@ -3849,11 +3875,27 @@ func (s *DescribeConfigRuleEvaluationStatusInput) SetConfigRuleNames(v []*string
 	return s
 }
 
+// SetLimit sets the Limit field's value.
+func (s *DescribeConfigRuleEvaluationStatusInput) SetLimit(v int64) *DescribeConfigRuleEvaluationStatusInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeConfigRuleEvaluationStatusInput) SetNextToken(v string) *DescribeConfigRuleEvaluationStatusInput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeConfigRuleEvaluationStatusOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Status information about your AWS managed Config rules.
 	ConfigRulesEvaluationStatus []*ConfigRuleEvaluationStatus `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
 }
 
 // String returns the string representation
@@ -3869,6 +3911,12 @@ func (s DescribeConfigRuleEvaluationStatusOutput) GoString() string {
 // SetConfigRulesEvaluationStatus sets the ConfigRulesEvaluationStatus field's value.
 func (s *DescribeConfigRuleEvaluationStatusOutput) SetConfigRulesEvaluationStatus(v []*ConfigRuleEvaluationStatus) *DescribeConfigRuleEvaluationStatusOutput {
 	s.ConfigRulesEvaluationStatus = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeConfigRuleEvaluationStatusOutput) SetNextToken(v string) *DescribeConfigRuleEvaluationStatusOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4169,7 +4217,8 @@ type Evaluation struct {
 	// The time of the event in AWS Config that triggered the evaluation. For event-based
 	// evaluations, the time indicates when AWS Config created the configuration
 	// item that triggered the evaluation. For periodic evaluations, the time indicates
-	// when AWS Config delivered the configuration snapshot that triggered the evaluation.
+	// when AWS Config triggered the evaluation at the frequency that you specified
+	// (for example, every 24 hours).
 	//
 	// OrderingTimestamp is a required field
 	OrderingTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
@@ -5541,7 +5590,9 @@ type Source struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates whether AWS or the customer owns and manages the AWS Config rule.
-	Owner *string `type:"string" enum:"Owner"`
+	//
+	// Owner is a required field
+	Owner *string `type:"string" required:"true" enum:"Owner"`
 
 	// Provides the source and type of the event that causes AWS Config to evaluate
 	// your AWS resources.
@@ -5553,7 +5604,9 @@ type Source struct {
 	//
 	// For custom rules, the identifier is the Amazon Resource Name (ARN) of the
 	// rule's AWS Lambda function, such as arn:aws:lambda:us-east-1:123456789012:function:custom_rule_name.
-	SourceIdentifier *string `min:"1" type:"string"`
+	//
+	// SourceIdentifier is a required field
+	SourceIdentifier *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -5569,6 +5622,12 @@ func (s Source) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Source) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Source"}
+	if s.Owner == nil {
+		invalidParams.Add(request.NewErrParamRequired("Owner"))
+	}
+	if s.SourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceIdentifier"))
+	}
 	if s.SourceIdentifier != nil && len(*s.SourceIdentifier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceIdentifier", 1))
 	}
@@ -6015,4 +6074,7 @@ const (
 
 	// ResourceTypeAwsS3Bucket is a ResourceType enum value
 	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
+
+	// ResourceTypeAwsSsmManagedInstanceInventory is a ResourceType enum value
+	ResourceTypeAwsSsmManagedInstanceInventory = "AWS::SSM::ManagedInstanceInventory"
 )
