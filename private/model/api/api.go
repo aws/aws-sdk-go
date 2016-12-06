@@ -274,7 +274,14 @@ func (a *API) APIGoCode() string {
 }
 
 // A tplService defines the template for the service generated code.
-var tplService = template.Must(template.New("service").Parse(`
+var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
+	"ServiceNameValue": func(a *API) string {
+		if a.NoConstServiceNames {
+			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+		}
+		return "ServiceName"
+	},
+}).Parse(`
 {{ .Documentation }}//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type {{ .StructName }} struct {
@@ -289,14 +296,10 @@ var initRequest func(*request.Request)
 {{ end }}
 
 {{ if not .NoConstServiceNames }}
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "{{ .Metadata.EndpointPrefix }}"
+	// A ServiceName is the name of the service the client will make API calls to.
+	const ServiceName = "{{ .Metadata.EndpointPrefix }}"
 {{ end }}
-
-{{ $serviceName := "ServiceName" }}
-{{ if not .NoConstServiceNames }}
-	{{ $serviceName :=  printf "%q" .Metadata.EndpointPrefix }}
-{{ end }}
+{{ $serviceName := ServiceNameValue . -}}
 
 // New creates a new instance of the {{ .StructName }} client with a session.
 // If additional configuration is needed for the client instance use the optional
