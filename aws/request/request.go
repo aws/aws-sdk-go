@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"net"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -364,19 +363,4 @@ func AddToUserAgent(r *Request, s string) {
 		s = curUA + " " + s
 	}
 	r.HTTPRequest.Header.Set("User-Agent", s)
-}
-
-func shouldRetryCancel(r *Request) bool {
-	awsErr, ok := r.Error.(awserr.Error)
-	timeoutErr := false
-	if ok {
-		netErr, netOK := awsErr.OrigErr().(net.Error)
-		timeoutErr = netOK && netErr.Timeout()
-	}
-
-	// There can be two types of canceled errors here.
-	// The first being a net.Error and the other being an error.
-	// If the request was timed out, we want to continue the retry
-	// process. Otherwise, return the canceled error.
-	return timeoutErr || !strings.Contains(r.Error.Error(), "net/http: request canceled")
 }
