@@ -1,3 +1,13 @@
+Release v1.6.0 (2016-12-06)
+===
+
+Service Client Updates
+---
+`service/config`: Updates service API and documentation
+`service/ec2`: Updates service API
+`service/endpoints.json`: Adds new service
+`service/sts`: Updates service API, documentation, and examples
+
 Release v1.5.13 (2016-12-01)
 ===
 
