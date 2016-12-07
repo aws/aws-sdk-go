@@ -1320,7 +1320,7 @@ var awsPartition = partition{
 		},
 		"streams.dynamodb": service{
 			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
+				Protocols: []string{"http", "http", "https", "https"},
 				CredentialScope: credentialScope{
 					Service: "dynamodb",
 				},
@@ -1333,11 +1333,18 @@ var awsPartition = partition{
 				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-west-1":      endpoint{},
-				"sa-east-1":      endpoint{},
-				"us-east-1":      endpoint{},
-				"us-east-2":      endpoint{},
-				"us-west-1":      endpoint{},
-				"us-west-2":      endpoint{},
+				"local": endpoint{
+					Hostname:  "localhost:8000",
+					Protocols: []string{"http"},
+					CredentialScope: credentialScope{
+						Region: "us-east-1",
+					},
+				},
+				"sa-east-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-east-2": endpoint{},
+				"us-west-1": endpoint{},
+				"us-west-2": endpoint{},
 			},
 		},
 		"sts": service{
@@ -1643,7 +1650,7 @@ var awscnPartition = partition{
 		},
 		"streams.dynamodb": service{
 			Defaults: endpoint{
-				Protocols: []string{"http", "https"},
+				Protocols: []string{"http", "http", "https", "https"},
 				CredentialScope: credentialScope{
 					Service: "dynamodb",
 				},

@@ -1,3 +1,12 @@
+Release v1.6.1 (2016-12-07)
+===
+
+Service Client Updates
+---
+`service/config`: Updates service API
+`service/s3`: Updates service API
+`service/sqs`: Updates service API and documentation
+
 Release v1.6.0 (2016-12-06)
 ===
 
