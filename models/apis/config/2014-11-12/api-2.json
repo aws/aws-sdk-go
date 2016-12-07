@@ -1283,7 +1283,13 @@
         "AWS::RDS::EventSubscription",
         "AWS::ElasticLoadBalancingV2::LoadBalancer",
         "AWS::S3::Bucket",
-        "AWS::SSM::ManagedInstanceInventory"
+        "AWS::SSM::ManagedInstanceInventory",
+        "AWS::Redshift::Cluster",
+        "AWS::Redshift::ClusterSnapshot",
+        "AWS::Redshift::ClusterParameterGroup",
+        "AWS::Redshift::ClusterSecurityGroup",
+        "AWS::Redshift::ClusterSubnetGroup",
+        "AWS::Redshift::EventSubscription"
       ]
     },
     "ResourceTypeList":{

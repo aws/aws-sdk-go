@@ -1191,6 +1191,8 @@
             },
             "protocols": [
               "http",
+              "http",
+              "https",
               "https"
             ]
           },
@@ -1202,6 +1204,15 @@
             "ap-southeast-2": {},
             "eu-central-1": {},
             "eu-west-1": {},
+            "local": {
+              "credentialScope": {
+                "region": "us-east-1"
+              },
+              "hostname": "localhost:8000",
+              "protocols": [
+                "http"
+              ]
+            },
             "sa-east-1": {},
             "us-east-1": {},
             "us-east-2": {},
@@ -1513,6 +1524,8 @@
             },
             "protocols": [
               "http",
+              "http",
+              "https",
               "https"
             ]
           },

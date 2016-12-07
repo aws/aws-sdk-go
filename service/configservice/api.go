@@ -6077,4 +6077,22 @@ const (
 
 	// ResourceTypeAwsSsmManagedInstanceInventory is a ResourceType enum value
 	ResourceTypeAwsSsmManagedInstanceInventory = "AWS::SSM::ManagedInstanceInventory"
+
+	// ResourceTypeAwsRedshiftCluster is a ResourceType enum value
+	ResourceTypeAwsRedshiftCluster = "AWS::Redshift::Cluster"
+
+	// ResourceTypeAwsRedshiftClusterSnapshot is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterSnapshot = "AWS::Redshift::ClusterSnapshot"
+
+	// ResourceTypeAwsRedshiftClusterParameterGroup is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterParameterGroup = "AWS::Redshift::ClusterParameterGroup"
+
+	// ResourceTypeAwsRedshiftClusterSecurityGroup is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterSecurityGroup = "AWS::Redshift::ClusterSecurityGroup"
+
+	// ResourceTypeAwsRedshiftClusterSubnetGroup is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterSubnetGroup = "AWS::Redshift::ClusterSubnetGroup"
+
+	// ResourceTypeAwsRedshiftEventSubscription is a ResourceType enum value
+	ResourceTypeAwsRedshiftEventSubscription = "AWS::Redshift::EventSubscription"
 )

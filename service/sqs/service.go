@@ -20,25 +20,15 @@ import (
 // between distributed components of your applications that perform different
 // tasks without losing messages or requiring each component to be always available.
 //
-// Topics
-//
-//    *
-//
-//    *
-//
-//    * CommonParameters
-//
-//    * CommonErrors
-//
 // Helpful Links
 //
 //    * Making API Requests (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html)
 //
 //    * Amazon SQS product page (http://aws.amazon.com/sqs/)
 //
-//    * Using Amazon SQS Message Attributes (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html)
+//    * Using Amazon SQS Message Attributes (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html)
 //
-//    * Using Amazon SQS Dead Letter Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html)
+//    * Using Amazon SQS Dead Letter Queues (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
 //
 //    * Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region)
 //
