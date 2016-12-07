@@ -47,5 +47,5 @@ func (e *timeoutErr) Timeout() bool {
 }
 
 func (e *timeoutErr) Temporary() bool {
-	return false
+	return true
 }

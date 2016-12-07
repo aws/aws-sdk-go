@@ -7,7 +7,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"net/http/httptest"
 	"runtime"
 	"testing"
 	"time"
@@ -16,9 +15,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/client"
-	"github.com/aws/aws-sdk-go/aws/client/metadata"
-	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
@@ -380,41 +376,4 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 	assert.Nil(t, err)
 	assert.Equal(t, 1, int(r.RetryCount))
 	assert.Equal(t, "valid", out.Data)
-}
-
-func TestRequestRetryClientTimeout(t *testing.T) {
-	ts := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
-		time.Sleep(2 * time.Millisecond)
-	}))
-
-	var handlers request.Handlers
-	handlers.Send.PushBackNamed(corehandlers.SendHandler)
-	handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
-
-	sendCount := 0
-	handlers.Send.PushFront(func(r *request.Request) {
-		sendCount++
-	})
-
-	numMaxRetries := 2
-	op := &request.Operation{
-		Name:       "Test",
-		HTTPMethod: "GET",
-		HTTPPath:   "/",
-	}
-	c := &http.Client{
-		Timeout: time.Millisecond,
-	}
-
-	config := aws.NewConfig().
-		WithHTTPClient(c).
-		WithSleepDelay(time.Sleep)
-	clientInfo := metadata.ClientInfo{Endpoint: ts.URL}
-	retryer := client.DefaultRetryer{NumMaxRetries: numMaxRetries}
-	req := request.New(*config, clientInfo, handlers, retryer, op, nil, nil)
-
-	err := req.Send()
-	assert.Error(t, err)
-	expectedSendCount := numMaxRetries + 1
-	assert.Equal(t, expectedSendCount, sendCount)
 }
