@@ -14,8 +14,17 @@ Service Client Updates
 ---
 * `service/config`: Updates service API and documentation
 * `service/ec2`: Updates service API
-* `service/endpoints.json`: Adds new service
 * `service/sts`: Updates service API, documentation, and examples
+
+SDK Bug Fixes
+---
+* private/protocol/xml/xmlutil: Fix SDK XML unmarshaler #975
+  * Fixes GetBucketACL Grantee required type always nil. #916
+
+SDK Feature
+---
+* aws/endpoints: Add endpoint metadata to SDK #961
+  * Adds Region and Endpoint metadata to the SDK. This allows you to enumerate regions and endpoint metadata based on a defined model embedded in the SDK.
 
 Release v1.5.13 (2016-12-01)
 ===
