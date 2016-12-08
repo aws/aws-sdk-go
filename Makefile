@@ -86,11 +86,11 @@ sandbox-go15: sandbox-build-go15
 sandbox-test-go15: sandbox-build-go15
 	docker run -t aws-sdk-go-1.5
 
-sandbox-build-gog15-novendorexp:
+sandbox-build-go15-novendorexp:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5-novendorexp -t "aws-sdk-go-1.5-novendorexp" .
-sandbox-gog15-novendorexp: sandbox-build-gog15-novendorexp
+sandbox-go15-novendorexp: sandbox-build-go15-novendorexp
 	docker run -i -t aws-sdk-go-1.5-novendorexp bash
-sandbox-test-gog15-novendorexp: sandbox-build-gog15-novendorexp
+sandbox-test-go15-novendorexp: sandbox-build-go15-novendorexp
 	docker run -t aws-sdk-go-1.5-novendorexp
 
 sandbox-build-go16:
