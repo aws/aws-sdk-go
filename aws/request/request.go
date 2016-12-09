@@ -244,8 +244,11 @@ func (r *Request) ResetBody() {
 		r.safeBody.Close()
 	}
 
-	r.safeBody = newOffsetReader(r.Body, r.BodyStart)
-	r.HTTPRequest.Body = r.safeBody
+	// Resets the body with the offset reader. For Go +1.8 the
+	// body is only wrapped if it is no empty. Otherwise the
+	// http.NoBody value will be written to the http.Request.Body
+	// field.
+	resetBody(r)
 }
 
 // GetBody will return an io.ReadSeeker of the Request's underlying
