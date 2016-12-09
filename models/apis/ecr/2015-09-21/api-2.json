@@ -1,6 +1,7 @@
 {
   "version":"2.0",
   "metadata":{
+    "uid":"ecr-2015-09-21",
     "apiVersion":"2015-09-21",
     "endpointPrefix":"ecr",
     "jsonVersion":"1.1",

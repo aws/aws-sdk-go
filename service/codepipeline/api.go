@@ -1973,8 +1973,8 @@ type AcknowledgeJobInput struct {
 	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. This number must be returned
-	// in the response.
+	// the job is being worked on by only one job worker. Get this number from the
+	// response of the PollForJobs request that returned this job.
 	//
 	// Nonce is a required field
 	Nonce *string `locationName:"nonce" type:"string" required:"true"`
@@ -2058,8 +2058,8 @@ type AcknowledgeThirdPartyJobInput struct {
 	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. This number must be returned
-	// in the response.
+	// the job is being worked on by only one job worker. Get this number from the
+	// response to a GetThirdPartyJobDetails request.
 	//
 	// Nonce is a required field
 	Nonce *string `locationName:"nonce" type:"string" required:"true"`
@@ -4683,8 +4683,8 @@ type Job struct {
 	Id *string `locationName:"id" type:"string"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. This number must be returned
-	// in the response.
+	// the job is being worked on by only one job worker. Use this number in an
+	// AcknowledgeJob request.
 	Nonce *string `locationName:"nonce" type:"string"`
 }
 
@@ -6694,8 +6694,8 @@ type ThirdPartyJobDetails struct {
 	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
-	// the job is being worked on by only one job worker. This number must be returned
-	// in the response.
+	// the job is being worked on by only one job worker. Use this number in an
+	// AcknowledgeThirdPartyJob request.
 	Nonce *string `locationName:"nonce" type:"string"`
 }
 

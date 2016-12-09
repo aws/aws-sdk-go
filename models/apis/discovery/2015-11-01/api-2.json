@@ -7,7 +7,8 @@
     "protocol":"json",
     "serviceFullName":"AWS Application Discovery Service",
     "signatureVersion":"v4",
-    "targetPrefix":"AWSPoseidonService_V2015_11_01"
+    "targetPrefix":"AWSPoseidonService_V2015_11_01",
+    "uid":"discovery-2015-11-01"
   },
   "operations":{
     "CreateTags":{

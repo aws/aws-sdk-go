@@ -24,6 +24,7 @@ type Operation struct {
 	Paginator     *Paginator
 	Deprecated    bool   `json:"deprecated"`
 	AuthType      string `json:"authtype"`
+	imports       map[string]bool
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -235,6 +236,10 @@ func (o *Operation) Example() string {
 // ExampleInput return a string of the rendered Go code for an example's input parameters
 func (o *Operation) ExampleInput() string {
 	if len(o.InputRef.Shape.MemberRefs) == 0 {
+		if strings.Contains(o.InputRef.GoTypeElem(), ".") {
+			o.imports["github.com/aws/aws-sdk-go/service/"+strings.Split(o.InputRef.GoTypeElem(), ".")[0]] = true
+			return fmt.Sprintf("var params *%s", o.InputRef.GoTypeElem())
+		}
 		return fmt.Sprintf("var params *%s.%s",
 			o.API.PackageName(), o.InputRef.GoTypeElem())
 	}
@@ -274,7 +279,14 @@ var reType = regexp.MustCompile(`\b([A-Z])`)
 // traverseStruct returns rendered Go code for a structure type shape.
 func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
-	buf.WriteString("&" + s.API.PackageName() + "." + s.GoTypeElem() + "{")
+
+	if s.resolvePkg != "" {
+		e.imports[s.resolvePkg] = true
+		buf.WriteString("&" + s.GoTypeElem() + "{")
+	} else {
+		buf.WriteString("&" + s.API.PackageName() + "." + s.GoTypeElem() + "{")
+	}
+
 	if required {
 		buf.WriteString(" // Required")
 	}
@@ -314,7 +326,14 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 // traverseMap returns rendered Go code for a map type shape.
 func (e *example) traverseMap(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
-	t := reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
+
+	t := ""
+	if s.resolvePkg != "" {
+		e.imports[s.resolvePkg] = true
+		t = s.GoTypeElem()
+	} else {
+		t = reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
+	}
 	buf.WriteString(t + "{")
 	if required {
 		buf.WriteString(" // Required")
@@ -339,7 +358,14 @@ func (e *example) traverseMap(s *Shape, required, payload bool) string {
 // traverseList returns rendered Go code for a list type shape.
 func (e *example) traverseList(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
-	t := reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
+	t := ""
+	if s.resolvePkg != "" {
+		e.imports[s.resolvePkg] = true
+		t = s.GoTypeElem()
+	} else {
+		t = reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
+	}
+
 	buf.WriteString(t + "{")
 	if required {
 		buf.WriteString(" // Required")
