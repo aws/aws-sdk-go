@@ -5,6 +5,9 @@ package request
 import (
 	"io"
 	"net/http"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 // Go 1.8 tightened and clarified the rules code needs to use when building
@@ -21,15 +24,53 @@ import (
 //
 // Related golang/go#18257
 func resetBody(r *Request) {
-	curOffset, _ := r.Body.Seek(0, io.SeekCurrent)
-	endOffset, _ := r.Body.Seek(0, io.SeekEnd)
-	r.Body.Seek(r.BodyStart, io.SeekStart)
-
 	r.safeBody = newOffsetReader(r.Body, r.BodyStart)
 
-	if endOffset-curOffset == 0 {
-		r.HTTPRequest.Body = http.NoBody
+	seekable := false
+	// Determine if the seeker is actually seekable. ReaderSeekerCloser
+	// hides the fact that a io.Readers might not actually be seekable.
+	switch v := r.Body.(type) {
+	case aws.ReaderSeekerCloser:
+		seekable = v.IsSeeker()
+	case *aws.ReaderSeekerCloser:
+		seekable = v.IsSeeker()
+	default:
+		seekable = true
+	}
+
+	if seekable {
+		curOffset, err := r.Body.Seek(0, io.SeekCurrent)
+		if err != nil {
+			r.Error = awserr.New("SerializationError", "failed to seek request body", err)
+			return
+		}
+		endOffset, err := r.Body.Seek(0, io.SeekEnd)
+		if err != nil {
+			r.Error = awserr.New("SerializationError", "failed to seek request body", err)
+			return
+		}
+		_, err = r.Body.Seek(r.BodyStart, io.SeekStart)
+		if err != nil {
+			r.Error = awserr.New("SerializationError", "failed to seek request body", err)
+			return
+		}
+
+		if endOffset-curOffset == 0 {
+			r.HTTPRequest.Body = http.NoBody
+		} else {
+			r.HTTPRequest.Body = r.safeBody
+		}
 	} else {
-		r.HTTPRequest.Body = r.safeBody
+		// Hack to prevent sending bodies for methods where the body
+		// should be ignored by the server. Sending bodies on these
+		// methods without an associated ContentLength will cause the
+		// request to socket timeout because the server does not handle
+		// Transfer-Encoding: chunked bodies for these methods.
+		switch r.Operation.HTTPMethod {
+		case "GET", "HEAD", "DELETE":
+			r.HTTPRequest.Body = http.NoBody
+		default:
+			r.HTTPRequest.Body = r.safeBody
+		}
 	}
 }

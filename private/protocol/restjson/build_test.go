@@ -3590,7 +3590,7 @@ func TestInputService9ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBod
 func TestInputService10ProtocolTestStreamingPayloadCase1(t *testing.T) {
 	svc := NewInputService10ProtocolTest(unit.Session, &aws.Config{Endpoint: aws.String("https://test")})
 	input := &InputService10TestShapeInputService10TestCaseOperation1Input{
-		Body:      aws.ReadSeekCloser(bytes.NewBufferString("contents")),
+		Body:      bytes.NewReader([]byte("contents")),
 		Checksum:  aws.String("foo"),
 		VaultName: aws.String("name"),
 	}

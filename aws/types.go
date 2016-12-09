@@ -6,6 +6,8 @@ import (
 )
 
 // ReadSeekCloser wraps a io.Reader returning a ReaderSeekerCloser
+//
+// Deprecated: Masking reader without valid seeker hides errors. If using for S3 PutObject use s3manager.Uploader instead.
 func ReadSeekCloser(r io.Reader) ReaderSeekerCloser {
 	return ReaderSeekerCloser{r}
 }
@@ -42,6 +44,12 @@ func (r ReaderSeekerCloser) Seek(offset int64, whence int) (int64, error) {
 		return t.Seek(offset, whence)
 	}
 	return int64(0), nil
+}
+
+// IsSeeker returns if the underlying reader is also a seeker.
+func (r ReaderSeekerCloser) IsSeeker() bool {
+	_, ok := r.r.(io.Seeker)
+	return ok
 }
 
 // Close closes the ReaderSeekerCloser.
