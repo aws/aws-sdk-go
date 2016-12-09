@@ -1,6 +1,7 @@
 {
   "version":"2.0",
   "metadata":{
+    "uid":"marketplacecommerceanalytics-2015-07-01",
     "apiVersion":"2015-07-01",
     "endpointPrefix":"marketplacecommerceanalytics",
     "jsonVersion":"1.1",

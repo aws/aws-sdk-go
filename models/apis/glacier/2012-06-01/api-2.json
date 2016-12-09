@@ -1,6 +1,7 @@
 {
   "version":"2.0",
   "metadata":{
+    "uid":"glacier-2012-06-01",
     "apiVersion":"2012-06-01",
     "checksumFormat":"sha256",
     "endpointPrefix":"glacier",

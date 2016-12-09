@@ -402,20 +402,29 @@ func (a *API) ServiceGoCode() string {
 // ExampleGoCode renders service example code. Returning it as a string.
 func (a *API) ExampleGoCode() string {
 	exs := []string{}
+	imports := map[string]bool{}
 	for _, o := range a.OperationList() {
+		o.imports = map[string]bool{}
 		exs = append(exs, o.Example())
+		for k, v := range o.imports {
+			imports[k] = v
+		}
 	}
 
-	code := fmt.Sprintf("import (\n%q\n%q\n%q\n\n%q\n%q\n%q\n)\n\n"+
-		"var _ time.Duration\nvar _ bytes.Buffer\n\n%s",
+	code := fmt.Sprintf("import (\n%q\n%q\n%q\n\n%q\n%q\n%q\n",
 		"bytes",
 		"fmt",
 		"time",
 		"github.com/aws/aws-sdk-go/aws",
 		"github.com/aws/aws-sdk-go/aws/session",
 		path.Join(a.SvcClientImportPath, a.PackageName()),
-		strings.Join(exs, "\n\n"),
 	)
+	for k, _ := range imports {
+		code += fmt.Sprintf("%q\n", k)
+	}
+	code += ")\n\n"
+	code += "var _ time.Duration\nvar _ bytes.Buffer\n\n"
+	code += strings.Join(exs, "\n\n")
 	return code
 }
 

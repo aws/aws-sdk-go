@@ -1,3 +1,13 @@
+Release v1.6.2 (2016-12-08)
+===
+
+Service Client Updates
+---
+* `service/cloudfront`: Add lambda function associations to cache behaviors
+* `service/codepipeline`: This is a doc-only update request to incorporate some recent minor revisions to the doc content.
+* `service/rds`: Updates service API and documentation
+* `service/wafregional`: With this new feature, customers can use AWS WAF directly on Application Load Balancers in a VPC within available regions to protect their websites and web services from malicious attacks such as SQL injection, Cross Site Scripting, bad bots, etc.
+
 Release v1.6.1 (2016-12-07)
 ===
 

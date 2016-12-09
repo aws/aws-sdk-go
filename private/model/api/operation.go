@@ -24,6 +24,7 @@ type Operation struct {
 	Paginator     *Paginator
 	Deprecated    bool   `json:"deprecated"`
 	AuthType      string `json:"authtype"`
+	imports       map[string]bool
 }
 
 // A HTTPInfo defines the method of HTTP request for the Operation.
@@ -236,6 +237,7 @@ func (o *Operation) Example() string {
 func (o *Operation) ExampleInput() string {
 	if len(o.InputRef.Shape.MemberRefs) == 0 {
 		if strings.Contains(o.InputRef.GoTypeElem(), ".") {
+			o.imports["github.com/aws/aws-sdk-go/service/"+strings.Split(o.InputRef.GoTypeElem(), ".")[0]] = true
 			return fmt.Sprintf("var params *%s", o.InputRef.GoTypeElem())
 		}
 		return fmt.Sprintf("var params *%s.%s",
@@ -279,6 +281,7 @@ func (e *example) traverseStruct(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 
 	if s.resolvePkg != "" {
+		e.imports[s.resolvePkg] = true
 		buf.WriteString("&" + s.GoTypeElem() + "{")
 	} else {
 		buf.WriteString("&" + s.API.PackageName() + "." + s.GoTypeElem() + "{")
@@ -326,6 +329,7 @@ func (e *example) traverseMap(s *Shape, required, payload bool) string {
 
 	t := ""
 	if s.resolvePkg != "" {
+		e.imports[s.resolvePkg] = true
 		t = s.GoTypeElem()
 	} else {
 		t = reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")
@@ -356,6 +360,7 @@ func (e *example) traverseList(s *Shape, required, payload bool) string {
 	var buf bytes.Buffer
 	t := ""
 	if s.resolvePkg != "" {
+		e.imports[s.resolvePkg] = true
 		t = s.GoTypeElem()
 	} else {
 		t = reType.ReplaceAllString(s.GoTypeElem(), s.API.PackageName()+".$1")

@@ -7,7 +7,8 @@
     "protocol":"json",
     "serviceFullName":"Amazon Cognito Identity",
     "signatureVersion":"v4",
-    "targetPrefix":"AWSCognitoIdentityService"
+    "targetPrefix":"AWSCognitoIdentityService",
+    "uid":"cognito-identity-2014-06-30"
   },
   "operations":{
     "CreateIdentityPool":{
