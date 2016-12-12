@@ -302,17 +302,17 @@ func computeBodyLength(r io.ReadSeeker) (int64, error) {
 		return -1, nil
 	}
 
-	curOffset, err := r.Seek(0, io.SeekCurrent)
+	curOffset, err := r.Seek(0, 1)
 	if err != nil {
 		return 0, err
 	}
 
-	endOffset, err := r.Seek(0, io.SeekEnd)
+	endOffset, err := r.Seek(0, 2)
 	if err != nil {
 		return 0, err
 	}
 
-	_, err = r.Seek(curOffset, io.SeekStart)
+	_, err = r.Seek(curOffset, 0)
 	if err != nil {
 		return 0, err
 	}
