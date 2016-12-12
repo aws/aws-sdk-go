@@ -3,7 +3,6 @@ package request_test
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -313,7 +312,7 @@ func TestRequestRecoverTimeoutWithNilBody(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 	errors := []error{
-		errors.New("timeout"), nil,
+		errTimeout, nil,
 	}
 
 	s := awstesting.NewClient(aws.NewConfig().WithMaxRetries(10))
@@ -349,7 +348,7 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 		{StatusCode: 200, Body: body(`{"data":"valid"}`)},
 	}
 	errors := []error{
-		errors.New("timeout"),
+		errTimeout,
 		nil,
 	}
 
