@@ -367,7 +367,6 @@ func AddToUserAgent(r *Request, s string) {
 }
 
 func shouldRetryCancel(r *Request) bool {
-	fmt.Println("ERROR", r.Error.Error())
 	awsErr, ok := r.Error.(awserr.Error)
 	timeoutErr := false
 	errStr := r.Error.Error()
