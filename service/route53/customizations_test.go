@@ -1,6 +1,7 @@
 package route53_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,6 +18,8 @@ func TestBuildCorrectURI(t *testing.T) {
 	})
 
 	req.Build()
+
+	fmt.Println(req.HTTPRequest.URL.Path, req.HTTPRequest.URL.RawPath)
 
 	awstesting.Match(t, `\/hostedzone\/ABCDEFG$`, req.HTTPRequest.URL.String())
 }
