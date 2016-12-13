@@ -331,7 +331,7 @@ func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, regi
 	// If the request is not presigned the body should be attached to it. This
 	// prevents the confusion of wanting to send a signed request without
 	// the body the request was signed for attached.
-	if !v4.DisableRequestBodyOverwrite && !ctx.isPresign {
+	if !(v4.DisableRequestBodyOverwrite || ctx.isPresign) {
 		var reader io.ReadCloser
 		if body != nil {
 			var ok bool
