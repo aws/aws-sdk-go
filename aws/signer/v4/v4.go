@@ -432,6 +432,9 @@ func signSDKRequestWithCurrTime(req *request.Request, curTimeFn func() time.Time
 		return
 	}
 
+	// Reset the body so that it will be in a good state after signing.
+	req.ResetBody()
+
 	req.SignedHeaderVals = signedHeaders
 	req.LastSignedAt = curTimeFn()
 }
