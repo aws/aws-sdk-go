@@ -383,46 +383,59 @@ func TestRequestRecoverTimeoutWithNilResponse(t *testing.T) {
 }
 
 func TestRequest_NoBody(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if v, ok := r.Header[http.CanonicalHeaderKey("Transfer-Encoding")]; ok {
-			t.Errorf("expect no body sent with Transfer-Encoding, %q", v)
-		}
-
-		outMsg := []byte(`{"Value": "abc"}`)
-
-		w.Header().Set("Content-Length", strconv.Itoa(len(outMsg)))
-		if _, err := w.Write(outMsg); err != nil {
-			t.Fatalf("expect no error writing server response, got %v", err)
-		}
-	}))
-
-	s := awstesting.NewClient(&aws.Config{
-		Region:     aws.String("mock-region"),
-		MaxRetries: aws.Int(0),
-		Endpoint:   aws.String(server.URL),
-		DisableSSL: aws.Bool(true),
-	})
-	s.Handlers.Build.PushBack(rest.Build)
-	s.Handlers.Validate.Clear()
-	s.Handlers.Unmarshal.PushBack(unmarshal)
-	s.Handlers.UnmarshalError.PushBack(unmarshalError)
-
-	in := struct {
-		Bucket *string `location:"uri" locationName:"bucket"`
-		Key    *string `location:"uri" locationName:"key"`
-	}{
-		Bucket: aws.String("mybucket"), Key: aws.String("myKey"),
+	cases := []string{
+		"GET", "HEAD", "DELETE",
+		"PUT", "POST", "PATCH",
 	}
 
-	out := struct {
-		Value *string
-	}{}
+	for i, c := range cases {
+		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if v := r.TransferEncoding; len(v) > 0 {
+				t.Errorf("%d, expect no body sent with Transfer-Encoding, %v", i, v)
+			}
 
-	r := s.NewRequest(&request.Operation{
-		Name: "OpName", HTTPMethod: "GET", HTTPPath: "/{bucket}/{key+}",
-	}, &in, &out)
+			outMsg := []byte(`{"Value": "abc"}`)
 
-	if err := r.Send(); err != nil {
-		t.Fatalf("expect no error sending request, got %v", err)
+			if b, err := ioutil.ReadAll(r.Body); err != nil {
+				t.Fatalf("%d, expect no error reading request body, got %v", i, err)
+			} else if n := len(b); n > 0 {
+				t.Errorf("%d, expect no request body, got %d bytes", i, n)
+			}
+
+			w.Header().Set("Content-Length", strconv.Itoa(len(outMsg)))
+			if _, err := w.Write(outMsg); err != nil {
+				t.Fatalf("%d, expect no error writing server response, got %v", i, err)
+			}
+		}))
+
+		s := awstesting.NewClient(&aws.Config{
+			Region:     aws.String("mock-region"),
+			MaxRetries: aws.Int(0),
+			Endpoint:   aws.String(server.URL),
+			DisableSSL: aws.Bool(true),
+		})
+		s.Handlers.Build.PushBack(rest.Build)
+		s.Handlers.Validate.Clear()
+		s.Handlers.Unmarshal.PushBack(unmarshal)
+		s.Handlers.UnmarshalError.PushBack(unmarshalError)
+
+		in := struct {
+			Bucket *string `location:"uri" locationName:"bucket"`
+			Key    *string `location:"uri" locationName:"key"`
+		}{
+			Bucket: aws.String("mybucket"), Key: aws.String("myKey"),
+		}
+
+		out := struct {
+			Value *string
+		}{}
+
+		r := s.NewRequest(&request.Operation{
+			Name: "OpName", HTTPMethod: c, HTTPPath: "/{bucket}/{key+}",
+		}, &in, &out)
+
+		if err := r.Send(); err != nil {
+			t.Fatalf("%d, expect no error sending request, got %v", i, err)
+		}
 	}
 }
