@@ -275,6 +275,9 @@ func (r *Request) ResetBody() {
 		// methods without an associated ContentLength will cause the
 		// request to socket timeout because the server does not handle
 		// Transfer-Encoding: chunked bodies for these methods.
+		//
+		// This would only happen if a aws.ReaderSeekerCloser was used with
+		// a io.Reader that was not also an io.Seeker.
 		switch r.Operation.HTTPMethod {
 		case "GET", "HEAD", "DELETE":
 			r.HTTPRequest.Body = noBodyReader

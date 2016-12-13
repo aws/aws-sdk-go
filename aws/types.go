@@ -5,9 +5,13 @@ import (
 	"sync"
 )
 
-// ReadSeekCloser wraps a io.Reader returning a ReaderSeekerCloser
+// ReadSeekCloser wraps a io.Reader returning a ReaderSeekerCloser. Should
+// only be used with an io.Reader that is also an io.Seeker. Doing so may
+// cause request signature errors, or request body's not sent for GET, HEAD
+// and DELETE HTTP methods.
 //
-// Deprecated: Masking reader without valid seeker hides errors. If using for S3 PutObject use s3manager.Uploader instead.
+// Deprecated: Should only be used with io.ReadSeeker. If using for
+// S3 PutObject to stream content use s3manager.Uploader instead.
 func ReadSeekCloser(r io.Reader) ReaderSeekerCloser {
 	return ReaderSeekerCloser{r}
 }
