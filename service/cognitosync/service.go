@@ -70,6 +70,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
 				APIVersion:    "2014-06-30",
+				JSONVersion:   "1.1",
 			},
 			handlers,
 		),
