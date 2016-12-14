@@ -93,7 +93,9 @@ func buildLocationElements(r *request.Request, v reflect.Value) {
 	}
 
 	r.HTTPRequest.URL.RawQuery = query.Encode()
-	updatePath(r.HTTPRequest.URL, r.HTTPRequest.URL.Path, aws.BoolValue(r.Config.DisableRestProtocolURICleaning))
+	updatePath(r.HTTPRequest.URL, r.HTTPRequest.URL.Path,
+		aws.BoolValue(r.Config.DisableRestProtocolURICleaning),
+		aws.BoolValue(r.Config.DisableAbsoluteURL))
 }
 
 func buildBody(r *request.Request, v reflect.Value) {
@@ -194,7 +196,7 @@ func buildQueryString(query url.Values, v reflect.Value, name string) error {
 	return nil
 }
 
-func updatePath(url *url.URL, urlPath string, disableRestProtocolURICleaning bool) {
+func updatePath(url *url.URL, urlPath string, disableRestProtocolURICleaning bool, disableAbsoluteURL bool) {
 	scheme, query := url.Scheme, url.RawQuery
 
 	hasSlash := strings.HasSuffix(urlPath, "/")
@@ -213,8 +215,13 @@ func updatePath(url *url.URL, urlPath string, disableRestProtocolURICleaning boo
 	url.Scheme = scheme
 	url.RawQuery = query
 
-	// build opaque URI
-	url.Opaque = s + urlPath
+	if !disableAbsoluteURL {
+		// build opaque URI
+		url.Opaque = s + urlPath
+	} else {
+		url.Path = urlPath
+		url.RawPath = urlPath
+	}
 }
 
 // EscapePath escapes part of a URL path in Amazon style

@@ -195,6 +195,19 @@ type Config struct {
 	//    	Key: aws.String("//foo//bar//moo"),
 	//    })
 	DisableRestProtocolURICleaning *bool
+
+	// DisableAbsoluteURL will not put full URL path when making rest protocol requests.
+	// Will default to false.
+	//
+	// Example:
+	//    sess, err := session.NewSession(&aws.Config{DisableAbsoluteURL: aws.Bool(true))
+	//
+	//    svc := s3.New(sess)
+	//    out, err := svc.GetObject(&s3.GetObjectInput {
+	//    	Bucket: aws.String("bucketname"),
+	//    	Key: aws.String("//foo//bar//moo"),
+	//    })
+	DisableAbsoluteURL *bool
 }
 
 // NewConfig returns a new Config pointer that can be chained with builder
@@ -297,6 +310,14 @@ func (c *Config) WithS3ForcePathStyle(force bool) *Config {
 	c.S3ForcePathStyle = &force
 	return c
 }
+
+// WithDisableAbsoluteURL sets a config S3ForcePathStyle value returning a Config
+// pointer for chaining.
+func (c *Config) WithDisableAbsoluteURL(disable bool) *Config {
+	c.DisableAbsoluteURL = &disable
+	return c
+}
+
 
 // WithS3Disable100Continue sets a config S3Disable100Continue value returning
 // a Config pointer for chaining.
@@ -419,6 +440,10 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.DisableRestProtocolURICleaning != nil {
 		dst.DisableRestProtocolURICleaning = other.DisableRestProtocolURICleaning
+	}
+
+	if other.DisableAbsoluteURL != nil {
+		dst.DisableAbsoluteURL = other.DisableAbsoluteURL
 	}
 }
 

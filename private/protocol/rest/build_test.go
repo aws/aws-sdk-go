@@ -12,7 +12,7 @@ func TestUpdatePathWithRaw(t *testing.T) {
 		Scheme: "https",
 		Host:   "host",
 	}
-	updatePath(uri, "//foo//bar", true)
+	updatePath(uri, "//foo//bar", true, false)
 
 	expected := "https://host//foo//bar"
 	assert.Equal(t, expected, uri.String())
@@ -23,7 +23,7 @@ func TestUpdatePathNoRaw(t *testing.T) {
 		Scheme: "https",
 		Host:   "host",
 	}
-	updatePath(uri, "//foo//bar", false)
+	updatePath(uri, "//foo//bar", false, false)
 
 	expected := "https://host/foo/bar"
 	assert.Equal(t, expected, uri.String())
