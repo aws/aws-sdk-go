@@ -136,6 +136,9 @@ var requiredSignedHeaders = rules{
 var allowedQueryHoisting = inclusiveRules{
 	blacklist{requiredSignedHeaders},
 	patterns{"X-Amz-"},
+	blacklist{
+		mapRule{"X-Amzn-Trace-Id": struct{}{}},
+	},
 }
 
 // Signer applies AWS v4 signing to given request. Use this to sign requests
