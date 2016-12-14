@@ -332,8 +332,10 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 			SigningRegion: signingRegion,
 			Endpoint:     endpoint,
 			APIVersion:   "{{ .Metadata.APIVersion }}",
-			{{ if eq .Metadata.Protocol "json" -}}
+			{{ if .Metadata.JSONVersion -}}
 				JSONVersion:  "{{ .Metadata.JSONVersion }}",
+			{{- end }}
+			{{ if .Metadata.TargetPrefix -}}
 				TargetPrefix: "{{ .Metadata.TargetPrefix }}",
 			{{- end }}
     		},
