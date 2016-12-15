@@ -17,6 +17,8 @@ func TestBuildCorrectURI(t *testing.T) {
 		Id: aws.String("/hostedzone/ABCDEFG"),
 	})
 
+	req.HTTPRequest.URL.RawQuery = "abc=123"
+
 	req.Build()
 
 	if a, e := req.HTTPRequest.URL.Path, expectPath; a != e {
@@ -25,5 +27,9 @@ func TestBuildCorrectURI(t *testing.T) {
 
 	if a, e := req.HTTPRequest.URL.RawPath, expectPath; a != e {
 		t.Errorf("expect raw path %q, got %q", e, a)
+	}
+
+	if a, e := req.HTTPRequest.URL.RawQuery, "abc=123"; a != e {
+		t.Errorf("expect query to be %q, got %q", e, a)
 	}
 }

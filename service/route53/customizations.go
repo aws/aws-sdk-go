@@ -1,6 +1,7 @@
 package route53
 
 import (
+	"net/url"
 	"regexp"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -29,17 +30,13 @@ func sanitizeURL(r *request.Request) {
 	r.HTTPRequest.URL.RawPath = reSanitizeURL.ReplaceAllString(
 		r.HTTPRequest.URL.RawPath, "/")
 
-	// Save off the raw path so that it can be reset to the new URL. Parse
-	// will not set RawPath.
-	rawPath := r.HTTPRequest.URL.RawPath
-
 	// Update Path so that it reflects the cleaned RawPath
-	u, err := r.HTTPRequest.URL.Parse(rawPath)
+	updated, err := url.Parse(r.HTTPRequest.URL.RawPath)
 	if err != nil {
 		r.Error = awserr.New("SerializationError", "failed to clean Route53 URL", err)
 		return
 	}
 
-	r.HTTPRequest.URL = u
-	r.HTTPRequest.URL.RawPath = rawPath
+	// Take the updated path so the requests's URL Path has parity with RawPath.
+	r.HTTPRequest.URL.Path = updated.Path
 }
