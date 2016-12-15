@@ -216,6 +216,8 @@ type GenerateDataSetInput struct {
 	// 2015-10-01.
 	// customer_profile_by_geography - Available daily by 5:00 PM Pacific Time since
 	// 2015-10-01.
+	// sales_compensation_billed_revenue - Available monthly on the 4th day of the
+	// month by 5:00 PM Pacific Time since 2016-12.
 	//
 	// DataSetType is a required field
 	DataSetType *string `locationName:"dataSetType" min:"1" type:"string" required:"true" enum:"DataSetType"`
@@ -374,11 +376,10 @@ type StartSupportDataExportInput struct {
 
 	// Specifies the data set type to be written to the output csv file. The data
 	// set types customer_support_contacts_data and test_customer_support_contacts_data
-	// both result in a csv file containing the following fields: Product Id, Customer
-	// Guid, Subscription Guid, Subscription Start Date, Organization, AWS Account
-	// Id, Given Name, Surname, Telephone Number, Email, Title, Country Code, ZIP
-	// Code, Operation Type, and Operation Time. Currently, only the test_customer_support_contacts_data
-	// value is supported
+	// both result in a csv file containing the following fields: Product Id, Product
+	// Code, Customer Guid, Subscription Guid, Subscription Start Date, Organization,
+	// AWS Account Id, Given Name, Surname, Telephone Number, Email, Title, Country
+	// Code, ZIP Code, Operation Type, and Operation Time.
 	//
 	// customer_support_contacts_data Customer support contact data. The data set
 	// will contain all changes (Creates, Updates, and Deletes) to customer support
@@ -402,8 +403,8 @@ type StartSupportDataExportInput struct {
 	// prefix is provided, the data set will be published to the S3 bucket root.
 	DestinationS3Prefix *string `locationName:"destinationS3Prefix" type:"string"`
 
-	// The start date from which to retrieve the data set. This parameter only affects
-	// the customer_support_contacts_data data set type.
+	// The start date from which to retrieve the data set in UTC. This parameter
+	// only affects the customer_support_contacts_data data set type.
 	//
 	// FromDate is a required field
 	FromDate *time.Time `locationName:"fromDate" type:"timestamp" timestampFormat:"unix" required:"true"`
@@ -593,6 +594,9 @@ const (
 
 	// DataSetTypeCustomerProfileByGeography is a DataSetType enum value
 	DataSetTypeCustomerProfileByGeography = "customer_profile_by_geography"
+
+	// DataSetTypeSalesCompensationBilledRevenue is a DataSetType enum value
+	DataSetTypeSalesCompensationBilledRevenue = "sales_compensation_billed_revenue"
 )
 
 const (
