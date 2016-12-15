@@ -149,6 +149,9 @@ func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointIn
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+//   * AccessDeniedFault
+//   AWS DMS was denied access to the endpoint.
+//
 func (c *DatabaseMigrationService) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
 	req, out := c.CreateEndpointRequest(input)
 	err := req.Send()
@@ -1895,6 +1898,83 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyRep
 	return out, err
 }
 
+const opModifyReplicationTask = "ModifyReplicationTask"
+
+// ModifyReplicationTaskRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyReplicationTask operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ModifyReplicationTask for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyReplicationTask method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyReplicationTaskRequest method.
+//    req, resp := client.ModifyReplicationTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyReplicationTaskInput) (req *request.Request, output *ModifyReplicationTaskOutput) {
+	op := &request.Operation{
+		Name:       opModifyReplicationTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyReplicationTaskInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ModifyReplicationTaskOutput{}
+	req.Data = output
+	return
+}
+
+// ModifyReplicationTask API operation for AWS Database Migration Service.
+//
+// Modifies the specified replication task.
+//
+// You can't modify the task endpoints. The task must be stopped before you
+// can modify it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation ModifyReplicationTask for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidResourceStateFault
+//   The resource is in a state that prevents it from being used for database
+//   migration.
+//
+//   * ResourceNotFoundFault
+//   The resource could not be found.
+//
+//   * ResourceAlreadyExistsFault
+//   The resource you are attempting to create already exists.
+//
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the KMS key.
+//
+func (c *DatabaseMigrationService) ModifyReplicationTask(input *ModifyReplicationTaskInput) (*ModifyReplicationTaskOutput, error) {
+	req, out := c.ModifyReplicationTaskRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opRefreshSchemas = "RefreshSchemas"
 
 // RefreshSchemasRequest generates a "aws/request.Request" representing the
@@ -2387,17 +2467,23 @@ type Certificate struct {
 	// The Amazon Resource Name (ARN) for the certificate.
 	CertificateArn *string `type:"string"`
 
-	// the date the certificate was created.
+	// The date that the certificate was created.
 	CertificateCreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The customer-assigned name of the certificate. Valid characters are [A-z_0-9].
+	// The customer-assigned name of the certificate. Valid characters are A-z and
+	// 0-9.
 	CertificateIdentifier *string `type:"string"`
 
 	// The owner of the certificate.
 	CertificateOwner *string `type:"string"`
 
-	// The contents of the .pem X.509 certificate file.
+	// The contents of the .pem X.509 certificate file for the certificate.
 	CertificatePem *string `type:"string"`
+
+	// The location of the imported Oracle Wallet certificate for use with SSL.
+	//
+	// CertificateWallet is automatically base64 encoded/decoded by the SDK.
+	CertificateWallet []byte `type:"blob"`
 
 	// The key length of the cryptographic algorithm being used.
 	KeyLength *int64 `type:"integer"`
@@ -2405,10 +2491,10 @@ type Certificate struct {
 	// The signing algorithm for the certificate.
 	SigningAlgorithm *string `type:"string"`
 
-	// The beginning date the certificate is valid.
+	// The beginning date that the certificate is valid.
 	ValidFromDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// the final date the certificate is valid.
+	// The final date that the certificate is valid.
 	ValidToDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 }
 
@@ -2449,6 +2535,12 @@ func (s *Certificate) SetCertificateOwner(v string) *Certificate {
 // SetCertificatePem sets the CertificatePem field's value.
 func (s *Certificate) SetCertificatePem(v string) *Certificate {
 	s.CertificatePem = &v
+	return s
+}
+
+// SetCertificateWallet sets the CertificateWallet field's value.
+func (s *Certificate) SetCertificateWallet(v []byte) *Certificate {
+	s.CertificateWallet = v
 	return s
 }
 
@@ -2569,7 +2661,7 @@ type CreateEndpointInput struct {
 	EndpointType *string `type:"string" required:"true" enum:"ReplicationEndpointTypeValue"`
 
 	// The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-	// POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.
+	// POSTGRES, MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -2585,19 +2677,13 @@ type CreateEndpointInput struct {
 	KmsKeyId *string `type:"string"`
 
 	// The password to be used to login to the endpoint database.
-	//
-	// Password is a required field
-	Password *string `type:"string" required:"true"`
+	Password *string `type:"string"`
 
 	// The port used by the endpoint database.
-	//
-	// Port is a required field
-	Port *int64 `type:"integer" required:"true"`
+	Port *int64 `type:"integer"`
 
 	// The name of the server where the endpoint database resides.
-	//
-	// ServerName is a required field
-	ServerName *string `type:"string" required:"true"`
+	ServerName *string `type:"string"`
 
 	// The SSL mode to use for the SSL connection.
 	//
@@ -2610,9 +2696,7 @@ type CreateEndpointInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The user name to be used to login to the endpoint database.
-	//
-	// Username is a required field
-	Username *string `type:"string" required:"true"`
+	Username *string `type:"string"`
 }
 
 // String returns the string representation
@@ -2636,18 +2720,6 @@ func (s *CreateEndpointInput) Validate() error {
 	}
 	if s.EngineName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EngineName"))
-	}
-	if s.Password == nil {
-		invalidParams.Add(request.NewErrParamRequired("Password"))
-	}
-	if s.Port == nil {
-		invalidParams.Add(request.NewErrParamRequired("Port"))
-	}
-	if s.ServerName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ServerName"))
-	}
-	if s.Username == nil {
-		invalidParams.Add(request.NewErrParamRequired("Username"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3106,7 +3178,9 @@ type CreateReplicationTaskInput struct {
 	// ReplicationTaskIdentifier is a required field
 	ReplicationTaskIdentifier *string `type:"string" required:"true"`
 
-	// Settings for the task, such as target metadata settings.
+	// Settings for the task, such as target metadata settings. For a complete list
+	// of task settings, see Task Settings for AWS Database Migration Service Tasks
+	// (http://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TaskSettings.html).
 	ReplicationTaskSettings *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
@@ -3249,7 +3323,7 @@ func (s *CreateReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Cr
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
-	// the Amazon Resource Name (ARN) of the deleted certificate.
+	// The Amazon Resource Name (ARN) of the deleted certificate.
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `type:"string" required:"true"`
@@ -3287,7 +3361,7 @@ func (s *DeleteCertificateInput) SetCertificateArn(v string) *DeleteCertificateI
 type DeleteCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The SSL certificate.
+	// The Secure Sockets Layer (SSL) certificate.
 	Certificate *Certificate `type:"structure"`
 }
 
@@ -3649,7 +3723,8 @@ func (s *DescribeCertificatesInput) SetMaxRecords(v int64) *DescribeCertificates
 type DescribeCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The SSL certificates associated with the replication instance.
+	// The Secure Sockets Layer (SSL) certificates associated with the replication
+	// instance.
 	Certificates []*Certificate `locationNameList:"Certificate" type:"list"`
 
 	// The pagination token.
@@ -4668,7 +4743,8 @@ type Endpoint struct {
 	// The type of endpoint.
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
-	// The database engine name.
+	// The database engine name. Valid values include MYSQL, ORACLE, POSTGRES, MARIADB,
+	// AURORA, REDSHIFT, SYBASE, and SQLSERVER.
 	EngineName *string `type:"string"`
 
 	// Additional connection attributes used to connect to the endpoint.
@@ -4844,13 +4920,19 @@ func (s *Filter) SetValues(v []*string) *Filter {
 type ImportCertificateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The customer-assigned name of the certificate. Valid characters are [A-z_0-9].
+	// The customer-assigned name of the certificate. Valid characters are A-z and
+	// 0-9.
 	//
 	// CertificateIdentifier is a required field
 	CertificateIdentifier *string `type:"string" required:"true"`
 
-	// The contents of the .pem X.509 certificate file.
+	// The contents of the .pem X.509 certificate file for the certificate.
 	CertificatePem *string `type:"string"`
+
+	// The location of the imported Oracle Wallet certificate for use with SSL.
+	//
+	// CertificateWallet is automatically base64 encoded/decoded by the SDK.
+	CertificateWallet []byte `type:"blob"`
 }
 
 // String returns the string representation
@@ -4885,6 +4967,12 @@ func (s *ImportCertificateInput) SetCertificateIdentifier(v string) *ImportCerti
 // SetCertificatePem sets the CertificatePem field's value.
 func (s *ImportCertificateInput) SetCertificatePem(v string) *ImportCertificateInput {
 	s.CertificatePem = &v
+	return s
+}
+
+// SetCertificateWallet sets the CertificateWallet field's value.
+func (s *ImportCertificateInput) SetCertificateWallet(v []byte) *ImportCertificateInput {
+	s.CertificateWallet = v
 	return s
 }
 
@@ -4996,7 +5084,7 @@ type ModifyEndpointInput struct {
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
 	// The type of engine for the endpoint. Valid values include MYSQL, ORACLE,
-	// POSTGRES, MARIADB, AURORA, REDSHIFT, and SQLSERVER.
+	// POSTGRES, MARIADB, AURORA, REDSHIFT, SYBASE, and SQLSERVER.
 	EngineName *string `type:"string"`
 
 	// Additional attributes associated with the connection.
@@ -5409,6 +5497,125 @@ func (s *ModifyReplicationSubnetGroupOutput) SetReplicationSubnetGroup(v *Replic
 	return s
 }
 
+type ModifyReplicationTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The start time for the Change Data Capture (CDC) operation.
+	CdcStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The migration type.
+	//
+	// Valid values: full-load | cdc | full-load-and-cdc
+	MigrationType *string `type:"string" enum:"MigrationTypeValue"`
+
+	// The Amazon Resource Name (ARN) of the replication task.
+	//
+	// ReplicationTaskArn is a required field
+	ReplicationTaskArn *string `type:"string" required:"true"`
+
+	// The replication task identifier.
+	//
+	// Constraints:
+	//
+	//    * Must contain from 1 to 63 alphanumeric characters or hyphens.
+	//
+	//    * First character must be a letter.
+	//
+	//    * Cannot end with a hyphen or contain two consecutive hyphens.
+	ReplicationTaskIdentifier *string `type:"string"`
+
+	// JSON file that contains settings for the task, such as target metadata settings.
+	ReplicationTaskSettings *string `type:"string"`
+
+	// The path of the JSON file that contains the table mappings. Preceed the path
+	// with "file://".
+	//
+	// For example, --table-mappings file://mappingfile.json
+	TableMappings *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModifyReplicationTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyReplicationTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyReplicationTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyReplicationTaskInput"}
+	if s.ReplicationTaskArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationTaskArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdcStartTime sets the CdcStartTime field's value.
+func (s *ModifyReplicationTaskInput) SetCdcStartTime(v time.Time) *ModifyReplicationTaskInput {
+	s.CdcStartTime = &v
+	return s
+}
+
+// SetMigrationType sets the MigrationType field's value.
+func (s *ModifyReplicationTaskInput) SetMigrationType(v string) *ModifyReplicationTaskInput {
+	s.MigrationType = &v
+	return s
+}
+
+// SetReplicationTaskArn sets the ReplicationTaskArn field's value.
+func (s *ModifyReplicationTaskInput) SetReplicationTaskArn(v string) *ModifyReplicationTaskInput {
+	s.ReplicationTaskArn = &v
+	return s
+}
+
+// SetReplicationTaskIdentifier sets the ReplicationTaskIdentifier field's value.
+func (s *ModifyReplicationTaskInput) SetReplicationTaskIdentifier(v string) *ModifyReplicationTaskInput {
+	s.ReplicationTaskIdentifier = &v
+	return s
+}
+
+// SetReplicationTaskSettings sets the ReplicationTaskSettings field's value.
+func (s *ModifyReplicationTaskInput) SetReplicationTaskSettings(v string) *ModifyReplicationTaskInput {
+	s.ReplicationTaskSettings = &v
+	return s
+}
+
+// SetTableMappings sets the TableMappings field's value.
+func (s *ModifyReplicationTaskInput) SetTableMappings(v string) *ModifyReplicationTaskInput {
+	s.TableMappings = &v
+	return s
+}
+
+type ModifyReplicationTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The replication task that was modified.
+	ReplicationTask *ReplicationTask `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyReplicationTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyReplicationTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplicationTask sets the ReplicationTask field's value.
+func (s *ModifyReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *ModifyReplicationTaskOutput {
+	s.ReplicationTask = v
+	return s
+}
+
 type OrderableReplicationInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -5777,6 +5984,9 @@ type ReplicationInstance struct {
 	// The subnet group for the replication instance.
 	ReplicationSubnetGroup *ReplicationSubnetGroup `type:"structure"`
 
+	// The availability zone of the standby replication instance in a Multi-AZ deployment.
+	SecondaryAvailabilityZone *string `type:"string"`
+
 	// The VPC security group for the instance.
 	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 }
@@ -5902,6 +6112,12 @@ func (s *ReplicationInstance) SetReplicationInstanceStatus(v string) *Replicatio
 // SetReplicationSubnetGroup sets the ReplicationSubnetGroup field's value.
 func (s *ReplicationInstance) SetReplicationSubnetGroup(v *ReplicationSubnetGroup) *ReplicationInstance {
 	s.ReplicationSubnetGroup = v
+	return s
+}
+
+// SetSecondaryAvailabilityZone sets the SecondaryAvailabilityZone field's value.
+func (s *ReplicationInstance) SetSecondaryAvailabilityZone(v string) *ReplicationInstance {
+	s.SecondaryAvailabilityZone = &v
 	return s
 }
 
@@ -6070,6 +6286,9 @@ type ReplicationTask struct {
 	// The status of the replication task.
 	Status *string `type:"string"`
 
+	// The reason the replication task was stopped.
+	StopReason *string `type:"string"`
+
 	// Table mappings specified in the task.
 	TableMappings *string `type:"string"`
 
@@ -6150,6 +6369,12 @@ func (s *ReplicationTask) SetSourceEndpointArn(v string) *ReplicationTask {
 // SetStatus sets the Status field's value.
 func (s *ReplicationTask) SetStatus(v string) *ReplicationTask {
 	s.Status = &v
+	return s
+}
+
+// SetStopReason sets the StopReason field's value.
+func (s *ReplicationTask) SetStopReason(v string) *ReplicationTask {
+	s.StopReason = &v
 	return s
 }
 
@@ -6425,7 +6650,8 @@ type SupportedEndpointType struct {
 	// The type of endpoint.
 	EndpointType *string `type:"string" enum:"ReplicationEndpointTypeValue"`
 
-	// The database engine name.
+	// The database engine name. Valid values include MYSQL, ORACLE, POSTGRES, MARIADB,
+	// AURORA, REDSHIFT, SYBASE, and SQLSERVER.
 	EngineName *string `type:"string"`
 
 	// Indicates if Change Data Capture (CDC) is supported.

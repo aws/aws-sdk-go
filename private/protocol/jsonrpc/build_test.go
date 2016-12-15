@@ -1281,8 +1281,6 @@ func newInputService7ProtocolTestClient(cfg aws.Config, handlers request.Handler
 				SigningRegion: signingRegion,
 				Endpoint:      endpoint,
 				APIVersion:    "2014-01-01",
-				JSONVersion:   "",
-				TargetPrefix:  "",
 			},
 			handlers,
 		),
