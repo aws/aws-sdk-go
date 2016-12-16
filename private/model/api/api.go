@@ -282,7 +282,7 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
-	"EndpointsIDValue": func(a *API) string {
+	"EndpointsIDConstValue": func(a *API) string {
 		if a.NoConstServiceNames {
 			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
 		}
@@ -290,6 +290,13 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 			return "ServiceName"
 		}
 		return fmt.Sprintf("%q", a.Metadata.EndpointsID)
+	},
+	"EndpointsIDValue": func(a *API) string {
+		if a.NoConstServiceNames {
+			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+		}
+
+		return "EndpointsID"
 	},
 }).Parse(`
 {{ .Documentation }}//The service client's operations are safe to be used concurrently.
@@ -305,14 +312,12 @@ var initClient func(*client.Client)
 var initRequest func(*request.Request)
 {{ end }}
 
-{{ $serviceName := ServiceNameValue . -}}
-{{ $endpointID := EndpointsIDValue . -}}
 
 {{ if not .NoConstServiceNames -}}
 // Service information constants
 const (
 	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
-	EndpointsServiceID = {{ $endpointID }} // Service ID for Regions and Endpoints metadata.
+	EndpointsID = {{ EndpointsIDConstValue . }} // Service ID for Regions and Endpoints metadata.
 )
 {{- end }}
 
@@ -327,7 +332,7 @@ const (
 //     // Create a {{ .StructName }} client with additional configuration
 //     svc := {{ .PackageName }}.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
-	c := p.ClientConfig({{ $endpointID }}, cfgs...)
+	c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -342,7 +347,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     	Client: client.New(
     		cfg,
     		metadata.ClientInfo{
-			ServiceName: {{ $serviceName }},
+			ServiceName: {{ ServiceNameValue . }},
 			SigningName: signingName,
 			SigningRegion: signingRegion,
 			Endpoint:     endpoint,

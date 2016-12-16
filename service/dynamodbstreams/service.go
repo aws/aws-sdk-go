@@ -41,8 +41,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName        = "streams.dynamodb" // Service endpoint prefix API calls made to.
-	EndpointsServiceID = ServiceName        // Service ID for Regions and Endpoints metadata.
+	ServiceName = "streams.dynamodb" // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName        // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the DynamoDBStreams client with a session.
@@ -56,7 +56,7 @@ const (
 //     // Create a DynamoDBStreams client with additional configuration
 //     svc := dynamodbstreams.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *DynamoDBStreams {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

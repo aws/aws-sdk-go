@@ -167,8 +167,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName        = "gamelift"  // Service endpoint prefix API calls made to.
-	EndpointsServiceID = ServiceName // Service ID for Regions and Endpoints metadata.
+	ServiceName = "gamelift"  // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the GameLift client with a session.
@@ -182,7 +182,7 @@ const (
 //     // Create a GameLift client with additional configuration
 //     svc := gamelift.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *GameLift {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
