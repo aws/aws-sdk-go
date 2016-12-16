@@ -28,6 +28,8 @@ type ShapeRef struct {
 	Payload          string
 	IdempotencyToken bool `json:"idempotencyToken"`
 	Deprecated       bool `json:"deprecated"`
+
+	OrigShapeName string `json:"-"`
 }
 
 // ErrorInfo represents the error block of a shape's structure
@@ -69,6 +71,8 @@ type Shape struct {
 	refs       []*ShapeRef // References to this shape
 	resolvePkg string      // use this package in the goType() if present
 
+	OrigShapeName string `json:"-"`
+
 	// Defines if the shape is a placeholder and should not be used directly
 	Placeholder bool
 
@@ -105,11 +109,13 @@ func (s *Shape) GoTags(root, required bool) string {
 // the associated API's reference to use newName.
 func (s *Shape) Rename(newName string) {
 	for _, r := range s.refs {
+		r.OrigShapeName = r.ShapeName
 		r.ShapeName = newName
 	}
 
 	delete(s.API.Shapes, s.ShapeName)
 	s.API.Shapes[newName] = s
+	s.OrigShapeName = s.ShapeName
 	s.ShapeName = newName
 }
 
@@ -469,8 +475,19 @@ func (s *Shape) NestedShape() *Shape {
 	return nestedShape
 }
 
-var structShapeTmpl = template.Must(template.New("StructShape").Parse(`
+var structShapeTmpl = template.Must(template.New("StructShape").Funcs(template.FuncMap{
+	"isBlacklistedService": func(a *API) bool {
+		_, ok := blacklistedServices[a.name]
+		return ok
+	},
+}).Parse(`
 {{ .Docstring }}
+{{ $blacklisted := isBlacklistedService .API -}}
+{{ if not $blacklisted -}} 
+{{ if ne $.OrigShapeName "" -}}
+// Please also see ` + redirectsURL + `/goto/WebAPI/{{ $.API.Metadata.UID }}/{{ $.OrigShapeName }}
+{{ end -}}
+{{ end -}}
 {{ $context := . -}}
 type {{ .ShapeName }} struct {
 	_ struct{} {{ .GoTags true false }}
