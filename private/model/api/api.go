@@ -308,13 +308,13 @@ var initRequest func(*request.Request)
 {{ $serviceName := ServiceNameValue . -}}
 {{ $endpointID := EndpointsIDValue . -}}
 
+{{ if not .NoConstServiceNames -}}
 // Service information constants
 const (
-{{ if not .NoConstServiceNames -}}
 	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
-{{- end }}
 	EndpointsServiceID = {{ $endpointID }} // Service ID for Regions and Endpoints metadata.
 )
+{{- end }}
 
 // New creates a new instance of the {{ .StructName }} client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -327,7 +327,7 @@ const (
 //     // Create a {{ .StructName }} client with additional configuration
 //     svc := {{ .PackageName }}.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
-	c := p.ClientConfig(EndpointsServiceID, cfgs...)
+	c := p.ClientConfig({{ $endpointID }}, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

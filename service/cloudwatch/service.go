@@ -55,7 +55,7 @@ const (
 //     // Create a CloudWatch client with additional configuration
 //     svc := cloudwatch.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *CloudWatch {
-	c := p.ClientConfig(EndpointsServiceID, cfgs...)
+	c := p.ClientConfig(ServiceName, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

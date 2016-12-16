@@ -67,7 +67,7 @@ const (
 //     // Create a ApplicationAutoScaling client with additional configuration
 //     svc := applicationautoscaling.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ApplicationAutoScaling {
-	c := p.ClientConfig(EndpointsServiceID, cfgs...)
+	c := p.ClientConfig("application-autoscaling", cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

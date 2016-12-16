@@ -43,7 +43,7 @@ const (
 //     // Create a DeviceFarm client with additional configuration
 //     svc := devicefarm.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *DeviceFarm {
-	c := p.ClientConfig(EndpointsServiceID, cfgs...)
+	c := p.ClientConfig(ServiceName, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
