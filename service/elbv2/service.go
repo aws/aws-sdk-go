@@ -69,8 +69,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "elasticloadbalancing"
+// Service information constants
+const (
+	ServiceName = "elasticloadbalancing" // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName            // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the ELBV2 client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -83,7 +86,7 @@ const ServiceName = "elasticloadbalancing"
 //     // Create a ELBV2 client with additional configuration
 //     svc := elbv2.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ELBV2 {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

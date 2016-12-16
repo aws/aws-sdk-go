@@ -34,8 +34,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "elasticache"
+// Service information constants
+const (
+	ServiceName = "elasticache" // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName   // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the ElastiCache client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -48,7 +51,7 @@ const ServiceName = "elasticache"
 //     // Create a ElastiCache client with additional configuration
 //     svc := elasticache.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ElastiCache {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

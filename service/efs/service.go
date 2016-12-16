@@ -28,8 +28,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "elasticfilesystem"
+// Service information constants
+const (
+	ServiceName = "elasticfilesystem" // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName         // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the EFS client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -42,7 +45,7 @@ const ServiceName = "elasticfilesystem"
 //     // Create a EFS client with additional configuration
 //     svc := efs.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *EFS {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

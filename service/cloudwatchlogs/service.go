@@ -53,8 +53,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "logs"
+// Service information constants
+const (
+	ServiceName = "logs"      // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the CloudWatchLogs client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -67,7 +70,7 @@ const ServiceName = "logs"
 //     // Create a CloudWatchLogs client with additional configuration
 //     svc := cloudwatchlogs.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *CloudWatchLogs {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

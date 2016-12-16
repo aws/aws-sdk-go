@@ -39,8 +39,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "streams.dynamodb"
+// Service information constants
+const (
+	ServiceName = "streams.dynamodb" // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName        // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the DynamoDBStreams client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -53,7 +56,7 @@ const ServiceName = "streams.dynamodb"
 //     // Create a DynamoDBStreams client with additional configuration
 //     svc := dynamodbstreams.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *DynamoDBStreams {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

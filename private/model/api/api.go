@@ -64,6 +64,7 @@ type Metadata struct {
 	JSONVersion         string
 	TargetPrefix        string
 	Protocol            string
+	EndpointsID         string
 }
 
 var serviceAliases map[string]string
@@ -281,6 +282,22 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
+	"EndpointsIDConstValue": func(a *API) string {
+		if a.NoConstServiceNames {
+			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+		}
+		if a.Metadata.EndpointPrefix == a.Metadata.EndpointsID {
+			return "ServiceName"
+		}
+		return fmt.Sprintf("%q", a.Metadata.EndpointsID)
+	},
+	"EndpointsIDValue": func(a *API) string {
+		if a.NoConstServiceNames {
+			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
+		}
+
+		return "EndpointsID"
+	},
 }).Parse(`
 {{ .Documentation }}//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
@@ -295,11 +312,14 @@ var initClient func(*client.Client)
 var initRequest func(*request.Request)
 {{ end }}
 
-{{ if not .NoConstServiceNames }}
-	// A ServiceName is the name of the service the client will make API calls to.
-	const ServiceName = "{{ .Metadata.EndpointPrefix }}"
-{{ end }}
-{{ $serviceName := ServiceNameValue . -}}
+
+{{ if not .NoConstServiceNames -}}
+// Service information constants
+const (
+	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
+	EndpointsID = {{ EndpointsIDConstValue . }} // Service ID for Regions and Endpoints metadata.
+)
+{{- end }}
 
 // New creates a new instance of the {{ .StructName }} client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -312,7 +332,7 @@ var initRequest func(*request.Request)
 //     // Create a {{ .StructName }} client with additional configuration
 //     svc := {{ .PackageName }}.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
-	c := p.ClientConfig({{ $serviceName }}, cfgs...)
+	c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -327,7 +347,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
     	Client: client.New(
     		cfg,
     		metadata.ClientInfo{
-			ServiceName: {{ $serviceName }},
+			ServiceName: {{ ServiceNameValue . }},
 			SigningName: signingName,
 			SigningRegion: signingRegion,
 			Endpoint:     endpoint,
