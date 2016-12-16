@@ -11,8 +11,9 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30
 type CloudHSM struct {
 	*client.Client
 }
@@ -23,8 +24,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "cloudhsm"
+// Service information constants
+const (
+	ServiceName = "cloudhsm"  // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the CloudHSM client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -37,7 +41,7 @@ const ServiceName = "cloudhsm"
 //     // Create a CloudHSM client with additional configuration
 //     svc := cloudhsm.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *CloudHSM {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

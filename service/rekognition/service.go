@@ -12,7 +12,7 @@ import (
 )
 
 // This is Amazon Rekognition API guide.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type Rekognition struct {
 	*client.Client
@@ -24,8 +24,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "rekognition"
+// Service information constants
+const (
+	ServiceName = "rekognition" // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName   // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the Rekognition client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -38,7 +41,7 @@ const ServiceName = "rekognition"
 //     // Create a Rekognition client with additional configuration
 //     svc := rekognition.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *Rekognition {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

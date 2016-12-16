@@ -36,6 +36,7 @@ const opGenerateDataSet = "GenerateDataSet"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSet
 func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDataSetInput) (req *request.Request, output *GenerateDataSetOutput) {
 	op := &request.Operation{
 		Name:       opGenerateDataSet,
@@ -77,6 +78,7 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 //   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSet
 func (c *MarketplaceCommerceAnalytics) GenerateDataSet(input *GenerateDataSetInput) (*GenerateDataSetOutput, error) {
 	req, out := c.GenerateDataSetRequest(input)
 	err := req.Send()
@@ -109,6 +111,7 @@ const opStartSupportDataExport = "StartSupportDataExport"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport
 func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *StartSupportDataExportInput) (req *request.Request, output *StartSupportDataExportOutput) {
 	op := &request.Operation{
 		Name:       opStartSupportDataExport,
@@ -151,6 +154,7 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 //   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport
 func (c *MarketplaceCommerceAnalytics) StartSupportDataExport(input *StartSupportDataExportInput) (*StartSupportDataExportOutput, error) {
 	req, out := c.StartSupportDataExportRequest(input)
 	err := req.Send()
@@ -158,6 +162,7 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExport(input *StartSuppor
 }
 
 // Container for the parameters to the GenerateDataSet operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSetRequest
 type GenerateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -341,6 +346,7 @@ func (s *GenerateDataSetInput) SetSnsTopicArn(v string) *GenerateDataSetInput {
 }
 
 // Container for the result of the GenerateDataSet operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSetResult
 type GenerateDataSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -367,6 +373,7 @@ func (s *GenerateDataSetOutput) SetDataSetRequestId(v string) *GenerateDataSetOu
 }
 
 // Container for the parameters to the StartSupportDataExport operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExportRequest
 type StartSupportDataExportInput struct {
 	_ struct{} `type:"structure"`
 
@@ -515,6 +522,7 @@ func (s *StartSupportDataExportInput) SetSnsTopicArn(v string) *StartSupportData
 }
 
 // Container for the result of the StartSupportDataExport operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExportResult
 type StartSupportDataExportOutput struct {
 	_ struct{} `type:"structure"`
 

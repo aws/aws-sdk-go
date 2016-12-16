@@ -24,7 +24,7 @@ import (
 //
 // This documentation serves as reference only. For a broader overview of the
 // Amazon SWF programming model, see the Amazon SWF Developer Guide (http://docs.aws.amazon.com/amazonswf/latest/developerguide/).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type SWF struct {
 	*client.Client
@@ -36,8 +36,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "swf"
+// Service information constants
+const (
+	ServiceName = "swf"       // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the SWF client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -50,7 +53,7 @@ const ServiceName = "swf"
 //     // Create a SWF client with additional configuration
 //     svc := swf.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *SWF {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

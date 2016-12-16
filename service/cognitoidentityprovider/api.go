@@ -40,6 +40,7 @@ const opAddCustomAttributes = "AddCustomAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AddCustomAttributes
 func (c *CognitoIdentityProvider) AddCustomAttributesRequest(input *AddCustomAttributesInput) (req *request.Request, output *AddCustomAttributesOutput) {
 	op := &request.Operation{
 		Name:       opAddCustomAttributes,
@@ -91,6 +92,7 @@ func (c *CognitoIdentityProvider) AddCustomAttributesRequest(input *AddCustomAtt
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AddCustomAttributes
 func (c *CognitoIdentityProvider) AddCustomAttributes(input *AddCustomAttributesInput) (*AddCustomAttributesOutput, error) {
 	req, out := c.AddCustomAttributesRequest(input)
 	err := req.Send()
@@ -123,6 +125,7 @@ const opAdminAddUserToGroup = "AdminAddUserToGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminAddUserToGroup
 func (c *CognitoIdentityProvider) AdminAddUserToGroupRequest(input *AdminAddUserToGroupInput) (req *request.Request, output *AdminAddUserToGroupOutput) {
 	op := &request.Operation{
 		Name:       opAdminAddUserToGroup,
@@ -177,6 +180,7 @@ func (c *CognitoIdentityProvider) AdminAddUserToGroupRequest(input *AdminAddUser
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminAddUserToGroup
 func (c *CognitoIdentityProvider) AdminAddUserToGroup(input *AdminAddUserToGroupInput) (*AdminAddUserToGroupOutput, error) {
 	req, out := c.AdminAddUserToGroupRequest(input)
 	err := req.Send()
@@ -209,6 +213,7 @@ const opAdminConfirmSignUp = "AdminConfirmSignUp"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminConfirmSignUp
 func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmSignUpInput) (req *request.Request, output *AdminConfirmSignUpOutput) {
 	op := &request.Operation{
 		Name:       opAdminConfirmSignUp,
@@ -282,6 +287,7 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmS
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminConfirmSignUp
 func (c *CognitoIdentityProvider) AdminConfirmSignUp(input *AdminConfirmSignUpInput) (*AdminConfirmSignUpOutput, error) {
 	req, out := c.AdminConfirmSignUpRequest(input)
 	err := req.Send()
@@ -314,6 +320,7 @@ const opAdminCreateUser = "AdminCreateUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUser
 func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserInput) (req *request.Request, output *AdminCreateUserOutput) {
 	op := &request.Operation{
 		Name:       opAdminCreateUser,
@@ -409,6 +416,7 @@ func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserI
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUser
 func (c *CognitoIdentityProvider) AdminCreateUser(input *AdminCreateUserInput) (*AdminCreateUserOutput, error) {
 	req, out := c.AdminCreateUserRequest(input)
 	err := req.Send()
@@ -441,6 +449,7 @@ const opAdminDeleteUser = "AdminDeleteUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUser
 func (c *CognitoIdentityProvider) AdminDeleteUserRequest(input *AdminDeleteUserInput) (req *request.Request, output *AdminDeleteUserOutput) {
 	op := &request.Operation{
 		Name:       opAdminDeleteUser,
@@ -495,6 +504,7 @@ func (c *CognitoIdentityProvider) AdminDeleteUserRequest(input *AdminDeleteUserI
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUser
 func (c *CognitoIdentityProvider) AdminDeleteUser(input *AdminDeleteUserInput) (*AdminDeleteUserOutput, error) {
 	req, out := c.AdminDeleteUserRequest(input)
 	err := req.Send()
@@ -527,6 +537,7 @@ const opAdminDeleteUserAttributes = "AdminDeleteUserAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserAttributes
 func (c *CognitoIdentityProvider) AdminDeleteUserAttributesRequest(input *AdminDeleteUserAttributesInput) (req *request.Request, output *AdminDeleteUserAttributesOutput) {
 	op := &request.Operation{
 		Name:       opAdminDeleteUserAttributes,
@@ -580,6 +591,7 @@ func (c *CognitoIdentityProvider) AdminDeleteUserAttributesRequest(input *AdminD
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserAttributes
 func (c *CognitoIdentityProvider) AdminDeleteUserAttributes(input *AdminDeleteUserAttributesInput) (*AdminDeleteUserAttributesOutput, error) {
 	req, out := c.AdminDeleteUserAttributesRequest(input)
 	err := req.Send()
@@ -612,6 +624,7 @@ const opAdminDisableUser = "AdminDisableUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableUser
 func (c *CognitoIdentityProvider) AdminDisableUserRequest(input *AdminDisableUserInput) (req *request.Request, output *AdminDisableUserOutput) {
 	op := &request.Operation{
 		Name:       opAdminDisableUser,
@@ -664,6 +677,7 @@ func (c *CognitoIdentityProvider) AdminDisableUserRequest(input *AdminDisableUse
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableUser
 func (c *CognitoIdentityProvider) AdminDisableUser(input *AdminDisableUserInput) (*AdminDisableUserOutput, error) {
 	req, out := c.AdminDisableUserRequest(input)
 	err := req.Send()
@@ -696,6 +710,7 @@ const opAdminEnableUser = "AdminEnableUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminEnableUser
 func (c *CognitoIdentityProvider) AdminEnableUserRequest(input *AdminEnableUserInput) (req *request.Request, output *AdminEnableUserOutput) {
 	op := &request.Operation{
 		Name:       opAdminEnableUser,
@@ -748,6 +763,7 @@ func (c *CognitoIdentityProvider) AdminEnableUserRequest(input *AdminEnableUserI
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminEnableUser
 func (c *CognitoIdentityProvider) AdminEnableUser(input *AdminEnableUserInput) (*AdminEnableUserOutput, error) {
 	req, out := c.AdminEnableUserRequest(input)
 	err := req.Send()
@@ -780,6 +796,7 @@ const opAdminForgetDevice = "AdminForgetDevice"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminForgetDevice
 func (c *CognitoIdentityProvider) AdminForgetDeviceRequest(input *AdminForgetDeviceInput) (req *request.Request, output *AdminForgetDeviceOutput) {
 	op := &request.Operation{
 		Name:       opAdminForgetDevice,
@@ -837,6 +854,7 @@ func (c *CognitoIdentityProvider) AdminForgetDeviceRequest(input *AdminForgetDev
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminForgetDevice
 func (c *CognitoIdentityProvider) AdminForgetDevice(input *AdminForgetDeviceInput) (*AdminForgetDeviceOutput, error) {
 	req, out := c.AdminForgetDeviceRequest(input)
 	err := req.Send()
@@ -869,6 +887,7 @@ const opAdminGetDevice = "AdminGetDevice"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetDevice
 func (c *CognitoIdentityProvider) AdminGetDeviceRequest(input *AdminGetDeviceInput) (req *request.Request, output *AdminGetDeviceOutput) {
 	op := &request.Operation{
 		Name:       opAdminGetDevice,
@@ -921,6 +940,7 @@ func (c *CognitoIdentityProvider) AdminGetDeviceRequest(input *AdminGetDeviceInp
 //   * NotAuthorizedException
 //   This exception gets thrown when a user is not authorized.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetDevice
 func (c *CognitoIdentityProvider) AdminGetDevice(input *AdminGetDeviceInput) (*AdminGetDeviceOutput, error) {
 	req, out := c.AdminGetDeviceRequest(input)
 	err := req.Send()
@@ -953,6 +973,7 @@ const opAdminGetUser = "AdminGetUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetUser
 func (c *CognitoIdentityProvider) AdminGetUserRequest(input *AdminGetUserInput) (req *request.Request, output *AdminGetUserOutput) {
 	op := &request.Operation{
 		Name:       opAdminGetUser,
@@ -1006,6 +1027,7 @@ func (c *CognitoIdentityProvider) AdminGetUserRequest(input *AdminGetUserInput) 
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetUser
 func (c *CognitoIdentityProvider) AdminGetUser(input *AdminGetUserInput) (*AdminGetUserOutput, error) {
 	req, out := c.AdminGetUserRequest(input)
 	err := req.Send()
@@ -1038,6 +1060,7 @@ const opAdminInitiateAuth = "AdminInitiateAuth"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminInitiateAuth
 func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateAuthInput) (req *request.Request, output *AdminInitiateAuthOutput) {
 	op := &request.Operation{
 		Name:       opAdminInitiateAuth,
@@ -1125,6 +1148,7 @@ func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateA
 //   * UserNotConfirmedException
 //   This exception is thrown when a user is not confirmed successfully.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminInitiateAuth
 func (c *CognitoIdentityProvider) AdminInitiateAuth(input *AdminInitiateAuthInput) (*AdminInitiateAuthOutput, error) {
 	req, out := c.AdminInitiateAuthRequest(input)
 	err := req.Send()
@@ -1157,6 +1181,7 @@ const opAdminListDevices = "AdminListDevices"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListDevices
 func (c *CognitoIdentityProvider) AdminListDevicesRequest(input *AdminListDevicesInput) (req *request.Request, output *AdminListDevicesOutput) {
 	op := &request.Operation{
 		Name:       opAdminListDevices,
@@ -1209,6 +1234,7 @@ func (c *CognitoIdentityProvider) AdminListDevicesRequest(input *AdminListDevice
 //   * NotAuthorizedException
 //   This exception gets thrown when a user is not authorized.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListDevices
 func (c *CognitoIdentityProvider) AdminListDevices(input *AdminListDevicesInput) (*AdminListDevicesOutput, error) {
 	req, out := c.AdminListDevicesRequest(input)
 	err := req.Send()
@@ -1241,6 +1267,7 @@ const opAdminListGroupsForUser = "AdminListGroupsForUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListGroupsForUser
 func (c *CognitoIdentityProvider) AdminListGroupsForUserRequest(input *AdminListGroupsForUserInput) (req *request.Request, output *AdminListGroupsForUserOutput) {
 	op := &request.Operation{
 		Name:       opAdminListGroupsForUser,
@@ -1293,6 +1320,7 @@ func (c *CognitoIdentityProvider) AdminListGroupsForUserRequest(input *AdminList
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListGroupsForUser
 func (c *CognitoIdentityProvider) AdminListGroupsForUser(input *AdminListGroupsForUserInput) (*AdminListGroupsForUserOutput, error) {
 	req, out := c.AdminListGroupsForUserRequest(input)
 	err := req.Send()
@@ -1325,6 +1353,7 @@ const opAdminRemoveUserFromGroup = "AdminRemoveUserFromGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRemoveUserFromGroup
 func (c *CognitoIdentityProvider) AdminRemoveUserFromGroupRequest(input *AdminRemoveUserFromGroupInput) (req *request.Request, output *AdminRemoveUserFromGroupOutput) {
 	op := &request.Operation{
 		Name:       opAdminRemoveUserFromGroup,
@@ -1379,6 +1408,7 @@ func (c *CognitoIdentityProvider) AdminRemoveUserFromGroupRequest(input *AdminRe
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRemoveUserFromGroup
 func (c *CognitoIdentityProvider) AdminRemoveUserFromGroup(input *AdminRemoveUserFromGroupInput) (*AdminRemoveUserFromGroupOutput, error) {
 	req, out := c.AdminRemoveUserFromGroupRequest(input)
 	err := req.Send()
@@ -1411,6 +1441,7 @@ const opAdminResetUserPassword = "AdminResetUserPassword"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminResetUserPassword
 func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminResetUserPasswordInput) (req *request.Request, output *AdminResetUserPasswordOutput) {
 	op := &request.Operation{
 		Name:       opAdminResetUserPassword,
@@ -1490,6 +1521,7 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminResetUserPassword
 func (c *CognitoIdentityProvider) AdminResetUserPassword(input *AdminResetUserPasswordInput) (*AdminResetUserPasswordOutput, error) {
 	req, out := c.AdminResetUserPasswordRequest(input)
 	err := req.Send()
@@ -1522,6 +1554,7 @@ const opAdminRespondToAuthChallenge = "AdminRespondToAuthChallenge"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRespondToAuthChallenge
 func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *AdminRespondToAuthChallengeInput) (req *request.Request, output *AdminRespondToAuthChallengeOutput) {
 	op := &request.Operation{
 		Name:       opAdminRespondToAuthChallenge,
@@ -1626,6 +1659,7 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 //   * UserNotConfirmedException
 //   This exception is thrown when a user is not confirmed successfully.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRespondToAuthChallenge
 func (c *CognitoIdentityProvider) AdminRespondToAuthChallenge(input *AdminRespondToAuthChallengeInput) (*AdminRespondToAuthChallengeOutput, error) {
 	req, out := c.AdminRespondToAuthChallengeRequest(input)
 	err := req.Send()
@@ -1658,6 +1692,7 @@ const opAdminSetUserSettings = "AdminSetUserSettings"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserSettings
 func (c *CognitoIdentityProvider) AdminSetUserSettingsRequest(input *AdminSetUserSettingsInput) (req *request.Request, output *AdminSetUserSettingsOutput) {
 	op := &request.Operation{
 		Name:       opAdminSetUserSettings,
@@ -1706,6 +1741,7 @@ func (c *CognitoIdentityProvider) AdminSetUserSettingsRequest(input *AdminSetUse
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserSettings
 func (c *CognitoIdentityProvider) AdminSetUserSettings(input *AdminSetUserSettingsInput) (*AdminSetUserSettingsOutput, error) {
 	req, out := c.AdminSetUserSettingsRequest(input)
 	err := req.Send()
@@ -1738,6 +1774,7 @@ const opAdminUpdateDeviceStatus = "AdminUpdateDeviceStatus"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateDeviceStatus
 func (c *CognitoIdentityProvider) AdminUpdateDeviceStatusRequest(input *AdminUpdateDeviceStatusInput) (req *request.Request, output *AdminUpdateDeviceStatusOutput) {
 	op := &request.Operation{
 		Name:       opAdminUpdateDeviceStatus,
@@ -1793,6 +1830,7 @@ func (c *CognitoIdentityProvider) AdminUpdateDeviceStatusRequest(input *AdminUpd
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateDeviceStatus
 func (c *CognitoIdentityProvider) AdminUpdateDeviceStatus(input *AdminUpdateDeviceStatusInput) (*AdminUpdateDeviceStatusOutput, error) {
 	req, out := c.AdminUpdateDeviceStatusRequest(input)
 	err := req.Send()
@@ -1825,6 +1863,7 @@ const opAdminUpdateUserAttributes = "AdminUpdateUserAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateUserAttributes
 func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminUpdateUserAttributesInput) (req *request.Request, output *AdminUpdateUserAttributesOutput) {
 	op := &request.Operation{
 		Name:       opAdminUpdateUserAttributes,
@@ -1896,6 +1935,7 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateUserAttributes
 func (c *CognitoIdentityProvider) AdminUpdateUserAttributes(input *AdminUpdateUserAttributesInput) (*AdminUpdateUserAttributesOutput, error) {
 	req, out := c.AdminUpdateUserAttributesRequest(input)
 	err := req.Send()
@@ -1928,6 +1968,7 @@ const opAdminUserGlobalSignOut = "AdminUserGlobalSignOut"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUserGlobalSignOut
 func (c *CognitoIdentityProvider) AdminUserGlobalSignOutRequest(input *AdminUserGlobalSignOutInput) (req *request.Request, output *AdminUserGlobalSignOutOutput) {
 	op := &request.Operation{
 		Name:       opAdminUserGlobalSignOut,
@@ -1980,6 +2021,7 @@ func (c *CognitoIdentityProvider) AdminUserGlobalSignOutRequest(input *AdminUser
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUserGlobalSignOut
 func (c *CognitoIdentityProvider) AdminUserGlobalSignOut(input *AdminUserGlobalSignOutInput) (*AdminUserGlobalSignOutOutput, error) {
 	req, out := c.AdminUserGlobalSignOutRequest(input)
 	err := req.Send()
@@ -2012,6 +2054,7 @@ const opChangePassword = "ChangePassword"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePassword
 func (c *CognitoIdentityProvider) ChangePasswordRequest(input *ChangePasswordInput) (req *request.Request, output *ChangePasswordOutput) {
 	op := &request.Operation{
 		Name:       opChangePassword,
@@ -2077,6 +2120,7 @@ func (c *CognitoIdentityProvider) ChangePasswordRequest(input *ChangePasswordInp
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePassword
 func (c *CognitoIdentityProvider) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput, error) {
 	req, out := c.ChangePasswordRequest(input)
 	err := req.Send()
@@ -2109,6 +2153,7 @@ const opConfirmDevice = "ConfirmDevice"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDevice
 func (c *CognitoIdentityProvider) ConfirmDeviceRequest(input *ConfirmDeviceInput) (req *request.Request, output *ConfirmDeviceOutput) {
 	op := &request.Operation{
 		Name:       opConfirmDevice,
@@ -2181,6 +2226,7 @@ func (c *CognitoIdentityProvider) ConfirmDeviceRequest(input *ConfirmDeviceInput
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDevice
 func (c *CognitoIdentityProvider) ConfirmDevice(input *ConfirmDeviceInput) (*ConfirmDeviceOutput, error) {
 	req, out := c.ConfirmDeviceRequest(input)
 	err := req.Send()
@@ -2213,6 +2259,7 @@ const opConfirmForgotPassword = "ConfirmForgotPassword"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPassword
 func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmForgotPasswordInput) (req *request.Request, output *ConfirmForgotPasswordOutput) {
 	op := &request.Operation{
 		Name:       opConfirmForgotPassword,
@@ -2299,6 +2346,7 @@ func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmFor
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPassword
 func (c *CognitoIdentityProvider) ConfirmForgotPassword(input *ConfirmForgotPasswordInput) (*ConfirmForgotPasswordOutput, error) {
 	req, out := c.ConfirmForgotPasswordRequest(input)
 	err := req.Send()
@@ -2331,6 +2379,7 @@ const opConfirmSignUp = "ConfirmSignUp"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUp
 func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput) (req *request.Request, output *ConfirmSignUpOutput) {
 	op := &request.Operation{
 		Name:       opConfirmSignUp,
@@ -2416,6 +2465,7 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUp
 func (c *CognitoIdentityProvider) ConfirmSignUp(input *ConfirmSignUpInput) (*ConfirmSignUpOutput, error) {
 	req, out := c.ConfirmSignUpRequest(input)
 	err := req.Send()
@@ -2448,6 +2498,7 @@ const opCreateGroup = "CreateGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateGroup
 func (c *CognitoIdentityProvider) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateGroup,
@@ -2505,6 +2556,7 @@ func (c *CognitoIdentityProvider) CreateGroupRequest(input *CreateGroupInput) (r
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateGroup
 func (c *CognitoIdentityProvider) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 	req, out := c.CreateGroupRequest(input)
 	err := req.Send()
@@ -2537,6 +2589,7 @@ const opCreateUserImportJob = "CreateUserImportJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserImportJob
 func (c *CognitoIdentityProvider) CreateUserImportJobRequest(input *CreateUserImportJobInput) (req *request.Request, output *CreateUserImportJobOutput) {
 	op := &request.Operation{
 		Name:       opCreateUserImportJob,
@@ -2591,6 +2644,7 @@ func (c *CognitoIdentityProvider) CreateUserImportJobRequest(input *CreateUserIm
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserImportJob
 func (c *CognitoIdentityProvider) CreateUserImportJob(input *CreateUserImportJobInput) (*CreateUserImportJobOutput, error) {
 	req, out := c.CreateUserImportJobRequest(input)
 	err := req.Send()
@@ -2623,6 +2677,7 @@ const opCreateUserPool = "CreateUserPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPool
 func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInput) (req *request.Request, output *CreateUserPoolOutput) {
 	op := &request.Operation{
 		Name:       opCreateUserPool,
@@ -2688,6 +2743,7 @@ func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInp
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPool
 func (c *CognitoIdentityProvider) CreateUserPool(input *CreateUserPoolInput) (*CreateUserPoolOutput, error) {
 	req, out := c.CreateUserPoolRequest(input)
 	err := req.Send()
@@ -2720,6 +2776,7 @@ const opCreateUserPoolClient = "CreateUserPoolClient"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolClient
 func (c *CognitoIdentityProvider) CreateUserPoolClientRequest(input *CreateUserPoolClientInput) (req *request.Request, output *CreateUserPoolClientOutput) {
 	op := &request.Operation{
 		Name:       opCreateUserPoolClient,
@@ -2771,6 +2828,7 @@ func (c *CognitoIdentityProvider) CreateUserPoolClientRequest(input *CreateUserP
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolClient
 func (c *CognitoIdentityProvider) CreateUserPoolClient(input *CreateUserPoolClientInput) (*CreateUserPoolClientOutput, error) {
 	req, out := c.CreateUserPoolClientRequest(input)
 	err := req.Send()
@@ -2803,6 +2861,7 @@ const opDeleteGroup = "DeleteGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteGroup
 func (c *CognitoIdentityProvider) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteGroup,
@@ -2854,6 +2913,7 @@ func (c *CognitoIdentityProvider) DeleteGroupRequest(input *DeleteGroupInput) (r
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteGroup
 func (c *CognitoIdentityProvider) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 	req, out := c.DeleteGroupRequest(input)
 	err := req.Send()
@@ -2886,6 +2946,7 @@ const opDeleteUser = "DeleteUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUser
 func (c *CognitoIdentityProvider) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUser,
@@ -2945,6 +3006,7 @@ func (c *CognitoIdentityProvider) DeleteUserRequest(input *DeleteUserInput) (req
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUser
 func (c *CognitoIdentityProvider) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
 	err := req.Send()
@@ -2977,6 +3039,7 @@ const opDeleteUserAttributes = "DeleteUserAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributes
 func (c *CognitoIdentityProvider) DeleteUserAttributesRequest(input *DeleteUserAttributesInput) (req *request.Request, output *DeleteUserAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUserAttributes,
@@ -3034,6 +3097,7 @@ func (c *CognitoIdentityProvider) DeleteUserAttributesRequest(input *DeleteUserA
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributes
 func (c *CognitoIdentityProvider) DeleteUserAttributes(input *DeleteUserAttributesInput) (*DeleteUserAttributesOutput, error) {
 	req, out := c.DeleteUserAttributesRequest(input)
 	err := req.Send()
@@ -3066,6 +3130,7 @@ const opDeleteUserPool = "DeleteUserPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPool
 func (c *CognitoIdentityProvider) DeleteUserPoolRequest(input *DeleteUserPoolInput) (req *request.Request, output *DeleteUserPoolOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUserPool,
@@ -3119,6 +3184,7 @@ func (c *CognitoIdentityProvider) DeleteUserPoolRequest(input *DeleteUserPoolInp
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPool
 func (c *CognitoIdentityProvider) DeleteUserPool(input *DeleteUserPoolInput) (*DeleteUserPoolOutput, error) {
 	req, out := c.DeleteUserPoolRequest(input)
 	err := req.Send()
@@ -3151,6 +3217,7 @@ const opDeleteUserPoolClient = "DeleteUserPoolClient"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolClient
 func (c *CognitoIdentityProvider) DeleteUserPoolClientRequest(input *DeleteUserPoolClientInput) (req *request.Request, output *DeleteUserPoolClientOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUserPoolClient,
@@ -3200,6 +3267,7 @@ func (c *CognitoIdentityProvider) DeleteUserPoolClientRequest(input *DeleteUserP
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolClient
 func (c *CognitoIdentityProvider) DeleteUserPoolClient(input *DeleteUserPoolClientInput) (*DeleteUserPoolClientOutput, error) {
 	req, out := c.DeleteUserPoolClientRequest(input)
 	err := req.Send()
@@ -3232,6 +3300,7 @@ const opDescribeUserImportJob = "DescribeUserImportJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserImportJob
 func (c *CognitoIdentityProvider) DescribeUserImportJobRequest(input *DescribeUserImportJobInput) (req *request.Request, output *DescribeUserImportJobOutput) {
 	op := &request.Operation{
 		Name:       opDescribeUserImportJob,
@@ -3279,6 +3348,7 @@ func (c *CognitoIdentityProvider) DescribeUserImportJobRequest(input *DescribeUs
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserImportJob
 func (c *CognitoIdentityProvider) DescribeUserImportJob(input *DescribeUserImportJobInput) (*DescribeUserImportJobOutput, error) {
 	req, out := c.DescribeUserImportJobRequest(input)
 	err := req.Send()
@@ -3311,6 +3381,7 @@ const opDescribeUserPool = "DescribeUserPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPool
 func (c *CognitoIdentityProvider) DescribeUserPoolRequest(input *DescribeUserPoolInput) (req *request.Request, output *DescribeUserPoolOutput) {
 	op := &request.Operation{
 		Name:       opDescribeUserPool,
@@ -3362,6 +3433,7 @@ func (c *CognitoIdentityProvider) DescribeUserPoolRequest(input *DescribeUserPoo
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPool
 func (c *CognitoIdentityProvider) DescribeUserPool(input *DescribeUserPoolInput) (*DescribeUserPoolOutput, error) {
 	req, out := c.DescribeUserPoolRequest(input)
 	err := req.Send()
@@ -3394,6 +3466,7 @@ const opDescribeUserPoolClient = "DescribeUserPoolClient"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolClient
 func (c *CognitoIdentityProvider) DescribeUserPoolClientRequest(input *DescribeUserPoolClientInput) (req *request.Request, output *DescribeUserPoolClientOutput) {
 	op := &request.Operation{
 		Name:       opDescribeUserPoolClient,
@@ -3442,6 +3515,7 @@ func (c *CognitoIdentityProvider) DescribeUserPoolClientRequest(input *DescribeU
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolClient
 func (c *CognitoIdentityProvider) DescribeUserPoolClient(input *DescribeUserPoolClientInput) (*DescribeUserPoolClientOutput, error) {
 	req, out := c.DescribeUserPoolClientRequest(input)
 	err := req.Send()
@@ -3474,6 +3548,7 @@ const opForgetDevice = "ForgetDevice"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDevice
 func (c *CognitoIdentityProvider) ForgetDeviceRequest(input *ForgetDeviceInput) (req *request.Request, output *ForgetDeviceOutput) {
 	op := &request.Operation{
 		Name:       opForgetDevice,
@@ -3535,6 +3610,7 @@ func (c *CognitoIdentityProvider) ForgetDeviceRequest(input *ForgetDeviceInput) 
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDevice
 func (c *CognitoIdentityProvider) ForgetDevice(input *ForgetDeviceInput) (*ForgetDeviceOutput, error) {
 	req, out := c.ForgetDeviceRequest(input)
 	err := req.Send()
@@ -3567,6 +3643,7 @@ const opForgotPassword = "ForgotPassword"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPassword
 func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInput) (req *request.Request, output *ForgotPasswordOutput) {
 	op := &request.Operation{
 		Name:       opForgotPassword,
@@ -3654,6 +3731,7 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPassword
 func (c *CognitoIdentityProvider) ForgotPassword(input *ForgotPasswordInput) (*ForgotPasswordOutput, error) {
 	req, out := c.ForgotPasswordRequest(input)
 	err := req.Send()
@@ -3686,6 +3764,7 @@ const opGetCSVHeader = "GetCSVHeader"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetCSVHeader
 func (c *CognitoIdentityProvider) GetCSVHeaderRequest(input *GetCSVHeaderInput) (req *request.Request, output *GetCSVHeaderOutput) {
 	op := &request.Operation{
 		Name:       opGetCSVHeader,
@@ -3734,6 +3813,7 @@ func (c *CognitoIdentityProvider) GetCSVHeaderRequest(input *GetCSVHeaderInput) 
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetCSVHeader
 func (c *CognitoIdentityProvider) GetCSVHeader(input *GetCSVHeaderInput) (*GetCSVHeaderOutput, error) {
 	req, out := c.GetCSVHeaderRequest(input)
 	err := req.Send()
@@ -3766,6 +3846,7 @@ const opGetDevice = "GetDevice"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDevice
 func (c *CognitoIdentityProvider) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, output *GetDeviceOutput) {
 	op := &request.Operation{
 		Name:       opGetDevice,
@@ -3825,6 +3906,7 @@ func (c *CognitoIdentityProvider) GetDeviceRequest(input *GetDeviceInput) (req *
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDevice
 func (c *CognitoIdentityProvider) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
 	err := req.Send()
@@ -3857,6 +3939,7 @@ const opGetGroup = "GetGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetGroup
 func (c *CognitoIdentityProvider) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
 	op := &request.Operation{
 		Name:       opGetGroup,
@@ -3906,6 +3989,7 @@ func (c *CognitoIdentityProvider) GetGroupRequest(input *GetGroupInput) (req *re
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetGroup
 func (c *CognitoIdentityProvider) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	req, out := c.GetGroupRequest(input)
 	err := req.Send()
@@ -3938,6 +4022,7 @@ const opGetUser = "GetUser"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUser
 func (c *CognitoIdentityProvider) GetUserRequest(input *GetUserInput) (req *request.Request, output *GetUserOutput) {
 	op := &request.Operation{
 		Name:       opGetUser,
@@ -3995,6 +4080,7 @@ func (c *CognitoIdentityProvider) GetUserRequest(input *GetUserInput) (req *requ
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUser
 func (c *CognitoIdentityProvider) GetUser(input *GetUserInput) (*GetUserOutput, error) {
 	req, out := c.GetUserRequest(input)
 	err := req.Send()
@@ -4027,6 +4113,7 @@ const opGetUserAttributeVerificationCode = "GetUserAttributeVerificationCode"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCode
 func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input *GetUserAttributeVerificationCodeInput) (req *request.Request, output *GetUserAttributeVerificationCodeOutput) {
 	op := &request.Operation{
 		Name:       opGetUserAttributeVerificationCode,
@@ -4117,6 +4204,7 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCode
 func (c *CognitoIdentityProvider) GetUserAttributeVerificationCode(input *GetUserAttributeVerificationCodeInput) (*GetUserAttributeVerificationCodeOutput, error) {
 	req, out := c.GetUserAttributeVerificationCodeRequest(input)
 	err := req.Send()
@@ -4149,6 +4237,7 @@ const opGlobalSignOut = "GlobalSignOut"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOut
 func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput) (req *request.Request, output *GlobalSignOutOutput) {
 	op := &request.Operation{
 		Name:       opGlobalSignOut,
@@ -4202,6 +4291,7 @@ func (c *CognitoIdentityProvider) GlobalSignOutRequest(input *GlobalSignOutInput
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOut
 func (c *CognitoIdentityProvider) GlobalSignOut(input *GlobalSignOutInput) (*GlobalSignOutOutput, error) {
 	req, out := c.GlobalSignOutRequest(input)
 	err := req.Send()
@@ -4234,6 +4324,7 @@ const opInitiateAuth = "InitiateAuth"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuth
 func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) (req *request.Request, output *InitiateAuthOutput) {
 	op := &request.Operation{
 		Name:       opInitiateAuth,
@@ -4305,6 +4396,7 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuth
 func (c *CognitoIdentityProvider) InitiateAuth(input *InitiateAuthInput) (*InitiateAuthOutput, error) {
 	req, out := c.InitiateAuthRequest(input)
 	err := req.Send()
@@ -4337,6 +4429,7 @@ const opListDevices = "ListDevices"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevices
 func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (req *request.Request, output *ListDevicesOutput) {
 	op := &request.Operation{
 		Name:       opListDevices,
@@ -4396,6 +4489,7 @@ func (c *CognitoIdentityProvider) ListDevicesRequest(input *ListDevicesInput) (r
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevices
 func (c *CognitoIdentityProvider) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
 	req, out := c.ListDevicesRequest(input)
 	err := req.Send()
@@ -4428,6 +4522,7 @@ const opListGroups = "ListGroups"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListGroups
 func (c *CognitoIdentityProvider) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
 	op := &request.Operation{
 		Name:       opListGroups,
@@ -4477,6 +4572,7 @@ func (c *CognitoIdentityProvider) ListGroupsRequest(input *ListGroupsInput) (req
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListGroups
 func (c *CognitoIdentityProvider) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	req, out := c.ListGroupsRequest(input)
 	err := req.Send()
@@ -4509,6 +4605,7 @@ const opListUserImportJobs = "ListUserImportJobs"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserImportJobs
 func (c *CognitoIdentityProvider) ListUserImportJobsRequest(input *ListUserImportJobsInput) (req *request.Request, output *ListUserImportJobsOutput) {
 	op := &request.Operation{
 		Name:       opListUserImportJobs,
@@ -4556,6 +4653,7 @@ func (c *CognitoIdentityProvider) ListUserImportJobsRequest(input *ListUserImpor
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserImportJobs
 func (c *CognitoIdentityProvider) ListUserImportJobs(input *ListUserImportJobsInput) (*ListUserImportJobsOutput, error) {
 	req, out := c.ListUserImportJobsRequest(input)
 	err := req.Send()
@@ -4588,6 +4686,7 @@ const opListUserPoolClients = "ListUserPoolClients"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolClients
 func (c *CognitoIdentityProvider) ListUserPoolClientsRequest(input *ListUserPoolClientsInput) (req *request.Request, output *ListUserPoolClientsOutput) {
 	op := &request.Operation{
 		Name:       opListUserPoolClients,
@@ -4635,6 +4734,7 @@ func (c *CognitoIdentityProvider) ListUserPoolClientsRequest(input *ListUserPool
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolClients
 func (c *CognitoIdentityProvider) ListUserPoolClients(input *ListUserPoolClientsInput) (*ListUserPoolClientsOutput, error) {
 	req, out := c.ListUserPoolClientsRequest(input)
 	err := req.Send()
@@ -4667,6 +4767,7 @@ const opListUserPools = "ListUserPools"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPools
 func (c *CognitoIdentityProvider) ListUserPoolsRequest(input *ListUserPoolsInput) (req *request.Request, output *ListUserPoolsOutput) {
 	op := &request.Operation{
 		Name:       opListUserPools,
@@ -4710,6 +4811,7 @@ func (c *CognitoIdentityProvider) ListUserPoolsRequest(input *ListUserPoolsInput
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPools
 func (c *CognitoIdentityProvider) ListUserPools(input *ListUserPoolsInput) (*ListUserPoolsOutput, error) {
 	req, out := c.ListUserPoolsRequest(input)
 	err := req.Send()
@@ -4742,6 +4844,7 @@ const opListUsers = "ListUsers"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsers
 func (c *CognitoIdentityProvider) ListUsersRequest(input *ListUsersInput) (req *request.Request, output *ListUsersOutput) {
 	op := &request.Operation{
 		Name:       opListUsers,
@@ -4789,6 +4892,7 @@ func (c *CognitoIdentityProvider) ListUsersRequest(input *ListUsersInput) (req *
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsers
 func (c *CognitoIdentityProvider) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 	req, out := c.ListUsersRequest(input)
 	err := req.Send()
@@ -4821,6 +4925,7 @@ const opListUsersInGroup = "ListUsersInGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersInGroup
 func (c *CognitoIdentityProvider) ListUsersInGroupRequest(input *ListUsersInGroupInput) (req *request.Request, output *ListUsersInGroupOutput) {
 	op := &request.Operation{
 		Name:       opListUsersInGroup,
@@ -4870,6 +4975,7 @@ func (c *CognitoIdentityProvider) ListUsersInGroupRequest(input *ListUsersInGrou
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersInGroup
 func (c *CognitoIdentityProvider) ListUsersInGroup(input *ListUsersInGroupInput) (*ListUsersInGroupOutput, error) {
 	req, out := c.ListUsersInGroupRequest(input)
 	err := req.Send()
@@ -4902,6 +5008,7 @@ const opResendConfirmationCode = "ResendConfirmationCode"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCode
 func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendConfirmationCodeInput) (req *request.Request, output *ResendConfirmationCodeOutput) {
 	op := &request.Operation{
 		Name:       opResendConfirmationCode,
@@ -4987,6 +5094,7 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCode
 func (c *CognitoIdentityProvider) ResendConfirmationCode(input *ResendConfirmationCodeInput) (*ResendConfirmationCodeOutput, error) {
 	req, out := c.ResendConfirmationCodeRequest(input)
 	err := req.Send()
@@ -5019,6 +5127,7 @@ const opRespondToAuthChallenge = "RespondToAuthChallenge"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallenge
 func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondToAuthChallengeInput) (req *request.Request, output *RespondToAuthChallengeOutput) {
 	op := &request.Operation{
 		Name:       opRespondToAuthChallenge,
@@ -5121,6 +5230,7 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallenge
 func (c *CognitoIdentityProvider) RespondToAuthChallenge(input *RespondToAuthChallengeInput) (*RespondToAuthChallengeOutput, error) {
 	req, out := c.RespondToAuthChallengeRequest(input)
 	err := req.Send()
@@ -5153,6 +5263,7 @@ const opSetUserSettings = "SetUserSettings"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettings
 func (c *CognitoIdentityProvider) SetUserSettingsRequest(input *SetUserSettingsInput) (req *request.Request, output *SetUserSettingsOutput) {
 	op := &request.Operation{
 		Name:       opSetUserSettings,
@@ -5208,6 +5319,7 @@ func (c *CognitoIdentityProvider) SetUserSettingsRequest(input *SetUserSettingsI
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettings
 func (c *CognitoIdentityProvider) SetUserSettings(input *SetUserSettingsInput) (*SetUserSettingsOutput, error) {
 	req, out := c.SetUserSettingsRequest(input)
 	err := req.Send()
@@ -5240,6 +5352,7 @@ const opSignUp = "SignUp"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUp
 func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *request.Request, output *SignUpOutput) {
 	op := &request.Operation{
 		Name:       opSignUp,
@@ -5326,6 +5439,7 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //   * CodeDeliveryFailureException
 //   This exception is thrown when a verification code fails to deliver successfully.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUp
 func (c *CognitoIdentityProvider) SignUp(input *SignUpInput) (*SignUpOutput, error) {
 	req, out := c.SignUpRequest(input)
 	err := req.Send()
@@ -5358,6 +5472,7 @@ const opStartUserImportJob = "StartUserImportJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StartUserImportJob
 func (c *CognitoIdentityProvider) StartUserImportJobRequest(input *StartUserImportJobInput) (req *request.Request, output *StartUserImportJobOutput) {
 	op := &request.Operation{
 		Name:       opStartUserImportJob,
@@ -5408,6 +5523,7 @@ func (c *CognitoIdentityProvider) StartUserImportJobRequest(input *StartUserImpo
 //   * NotAuthorizedException
 //   This exception gets thrown when a user is not authorized.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StartUserImportJob
 func (c *CognitoIdentityProvider) StartUserImportJob(input *StartUserImportJobInput) (*StartUserImportJobOutput, error) {
 	req, out := c.StartUserImportJobRequest(input)
 	err := req.Send()
@@ -5440,6 +5556,7 @@ const opStopUserImportJob = "StopUserImportJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StopUserImportJob
 func (c *CognitoIdentityProvider) StopUserImportJobRequest(input *StopUserImportJobInput) (req *request.Request, output *StopUserImportJobOutput) {
 	op := &request.Operation{
 		Name:       opStopUserImportJob,
@@ -5490,6 +5607,7 @@ func (c *CognitoIdentityProvider) StopUserImportJobRequest(input *StopUserImport
 //   * NotAuthorizedException
 //   This exception gets thrown when a user is not authorized.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StopUserImportJob
 func (c *CognitoIdentityProvider) StopUserImportJob(input *StopUserImportJobInput) (*StopUserImportJobOutput, error) {
 	req, out := c.StopUserImportJobRequest(input)
 	err := req.Send()
@@ -5522,6 +5640,7 @@ const opUpdateDeviceStatus = "UpdateDeviceStatus"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatus
 func (c *CognitoIdentityProvider) UpdateDeviceStatusRequest(input *UpdateDeviceStatusInput) (req *request.Request, output *UpdateDeviceStatusOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDeviceStatus,
@@ -5581,6 +5700,7 @@ func (c *CognitoIdentityProvider) UpdateDeviceStatusRequest(input *UpdateDeviceS
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatus
 func (c *CognitoIdentityProvider) UpdateDeviceStatus(input *UpdateDeviceStatusInput) (*UpdateDeviceStatusOutput, error) {
 	req, out := c.UpdateDeviceStatusRequest(input)
 	err := req.Send()
@@ -5613,6 +5733,7 @@ const opUpdateGroup = "UpdateGroup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateGroup
 func (c *CognitoIdentityProvider) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
 	op := &request.Operation{
 		Name:       opUpdateGroup,
@@ -5662,6 +5783,7 @@ func (c *CognitoIdentityProvider) UpdateGroupRequest(input *UpdateGroupInput) (r
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateGroup
 func (c *CognitoIdentityProvider) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
 	req, out := c.UpdateGroupRequest(input)
 	err := req.Send()
@@ -5694,6 +5816,7 @@ const opUpdateUserAttributes = "UpdateUserAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributes
 func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserAttributesInput) (req *request.Request, output *UpdateUserAttributesOutput) {
 	op := &request.Operation{
 		Name:       opUpdateUserAttributes,
@@ -5793,6 +5916,7 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributes
 func (c *CognitoIdentityProvider) UpdateUserAttributes(input *UpdateUserAttributesInput) (*UpdateUserAttributesOutput, error) {
 	req, out := c.UpdateUserAttributesRequest(input)
 	err := req.Send()
@@ -5825,6 +5949,7 @@ const opUpdateUserPool = "UpdateUserPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPool
 func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInput) (req *request.Request, output *UpdateUserPoolOutput) {
 	op := &request.Operation{
 		Name:       opUpdateUserPool,
@@ -5896,6 +6021,7 @@ func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInp
 //   This exception is thrown when Amazon Cognito is not allowed to use your email
 //   identity. HTTP status code: 400.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPool
 func (c *CognitoIdentityProvider) UpdateUserPool(input *UpdateUserPoolInput) (*UpdateUserPoolOutput, error) {
 	req, out := c.UpdateUserPoolRequest(input)
 	err := req.Send()
@@ -5928,6 +6054,7 @@ const opUpdateUserPoolClient = "UpdateUserPoolClient"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolClient
 func (c *CognitoIdentityProvider) UpdateUserPoolClientRequest(input *UpdateUserPoolClientInput) (req *request.Request, output *UpdateUserPoolClientOutput) {
 	op := &request.Operation{
 		Name:       opUpdateUserPoolClient,
@@ -5976,6 +6103,7 @@ func (c *CognitoIdentityProvider) UpdateUserPoolClientRequest(input *UpdateUserP
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolClient
 func (c *CognitoIdentityProvider) UpdateUserPoolClient(input *UpdateUserPoolClientInput) (*UpdateUserPoolClientOutput, error) {
 	req, out := c.UpdateUserPoolClientRequest(input)
 	err := req.Send()
@@ -6008,6 +6136,7 @@ const opVerifyUserAttribute = "VerifyUserAttribute"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute
 func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAttributeInput) (req *request.Request, output *VerifyUserAttributeOutput) {
 	op := &request.Operation{
 		Name:       opVerifyUserAttribute,
@@ -6076,6 +6205,7 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttribute
 func (c *CognitoIdentityProvider) VerifyUserAttribute(input *VerifyUserAttributeInput) (*VerifyUserAttributeOutput, error) {
 	req, out := c.VerifyUserAttributeRequest(input)
 	err := req.Send()
@@ -6083,6 +6213,7 @@ func (c *CognitoIdentityProvider) VerifyUserAttribute(input *VerifyUserAttribute
 }
 
 // Represents the request to add custom attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AddCustomAttributesRequest
 type AddCustomAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6152,6 +6283,7 @@ func (s *AddCustomAttributesInput) SetUserPoolId(v string) *AddCustomAttributesI
 }
 
 // Represents the response from the server for the request to add custom attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AddCustomAttributesResponse
 type AddCustomAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6166,6 +6298,7 @@ func (s AddCustomAttributesOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminAddUserToGroupRequest
 type AdminAddUserToGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6241,6 +6374,7 @@ func (s *AdminAddUserToGroupInput) SetUsername(v string) *AdminAddUserToGroupInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminAddUserToGroupOutput
 type AdminAddUserToGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6256,6 +6390,7 @@ func (s AdminAddUserToGroupOutput) GoString() string {
 }
 
 // Represents the request to confirm user registration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminConfirmSignUpRequest
 type AdminConfirmSignUpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6315,6 +6450,7 @@ func (s *AdminConfirmSignUpInput) SetUsername(v string) *AdminConfirmSignUpInput
 }
 
 // Represents the response from the server for the request to confirm registration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminConfirmSignUpResponse
 type AdminConfirmSignUpOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6330,6 +6466,7 @@ func (s AdminConfirmSignUpOutput) GoString() string {
 }
 
 // The type of configuration for creating a new user profile.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUserConfigType
 type AdminCreateUserConfigType struct {
 	_ struct{} `type:"structure"`
 
@@ -6391,6 +6528,7 @@ func (s *AdminCreateUserConfigType) SetUnusedAccountValidityDays(v int64) *Admin
 }
 
 // Represents the request to create a user in the specified user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUserRequest
 type AdminCreateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6591,6 +6729,7 @@ func (s *AdminCreateUserInput) SetValidationData(v []*AttributeType) *AdminCreat
 }
 
 // Represents the response from the server to the request to create the user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminCreateUserResponse
 type AdminCreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6615,6 +6754,7 @@ func (s *AdminCreateUserOutput) SetUser(v *UserType) *AdminCreateUserOutput {
 }
 
 // Represents the request to delete user attributes as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserAttributesRequest
 type AdminDeleteUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6689,6 +6829,7 @@ func (s *AdminDeleteUserAttributesInput) SetUsername(v string) *AdminDeleteUserA
 
 // Represents the response received from the server for a request to delete
 // user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserAttributesResponse
 type AdminDeleteUserAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6704,6 +6845,7 @@ func (s AdminDeleteUserAttributesOutput) GoString() string {
 }
 
 // Represents the request to delete a user as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserRequest
 type AdminDeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6762,6 +6904,7 @@ func (s *AdminDeleteUserInput) SetUsername(v string) *AdminDeleteUserInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDeleteUserOutput
 type AdminDeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6777,6 +6920,7 @@ func (s AdminDeleteUserOutput) GoString() string {
 }
 
 // Represents the request to disable any user as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableUserRequest
 type AdminDisableUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6837,6 +6981,7 @@ func (s *AdminDisableUserInput) SetUsername(v string) *AdminDisableUserInput {
 
 // Represents the response received from the server to disable the user as an
 // administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminDisableUserResponse
 type AdminDisableUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6852,6 +6997,7 @@ func (s AdminDisableUserOutput) GoString() string {
 }
 
 // Represents the request that enables the user as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminEnableUserRequest
 type AdminEnableUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6912,6 +7058,7 @@ func (s *AdminEnableUserInput) SetUsername(v string) *AdminEnableUserInput {
 
 // Represents the response from the server for the request to enable a user
 // as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminEnableUserResponse
 type AdminEnableUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6927,6 +7074,7 @@ func (s AdminEnableUserOutput) GoString() string {
 }
 
 // Sends the forgot device request, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminForgetDeviceRequest
 type AdminForgetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7002,6 +7150,7 @@ func (s *AdminForgetDeviceInput) SetUsername(v string) *AdminForgetDeviceInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminForgetDeviceOutput
 type AdminForgetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7017,6 +7166,7 @@ func (s AdminForgetDeviceOutput) GoString() string {
 }
 
 // Represents the request to get the device, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetDeviceRequest
 type AdminGetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7093,6 +7243,7 @@ func (s *AdminGetDeviceInput) SetUsername(v string) *AdminGetDeviceInput {
 }
 
 // Gets the device response, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetDeviceResponse
 type AdminGetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7119,6 +7270,7 @@ func (s *AdminGetDeviceOutput) SetDevice(v *DeviceType) *AdminGetDeviceOutput {
 }
 
 // Represents the request to get the specified user as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetUserRequest
 type AdminGetUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7180,6 +7332,7 @@ func (s *AdminGetUserInput) SetUsername(v string) *AdminGetUserInput {
 
 // Represents the response from the server from the request to get the specified
 // user as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminGetUserResponse
 type AdminGetUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7270,6 +7423,7 @@ func (s *AdminGetUserOutput) SetUsername(v string) *AdminGetUserOutput {
 }
 
 // Initiates the authorization request, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminInitiateAuthRequest
 type AdminInitiateAuthInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7361,6 +7515,7 @@ func (s *AdminInitiateAuthInput) SetUserPoolId(v string) *AdminInitiateAuthInput
 }
 
 // Initiates the authentication response, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminInitiateAuthResponse
 type AdminInitiateAuthOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7412,6 +7567,7 @@ func (s *AdminInitiateAuthOutput) SetSession(v string) *AdminInitiateAuthOutput 
 }
 
 // Represents the request to list devices, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListDevicesRequest
 type AdminListDevicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7492,6 +7648,7 @@ func (s *AdminListDevicesInput) SetUsername(v string) *AdminListDevicesInput {
 }
 
 // Lists the device's response, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListDevicesResponse
 type AdminListDevicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7524,6 +7681,7 @@ func (s *AdminListDevicesOutput) SetPaginationToken(v string) *AdminListDevicesO
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListGroupsForUserRequest
 type AdminListGroupsForUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7604,6 +7762,7 @@ func (s *AdminListGroupsForUserInput) SetUsername(v string) *AdminListGroupsForU
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminListGroupsForUserResponse
 type AdminListGroupsForUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7637,6 +7796,7 @@ func (s *AdminListGroupsForUserOutput) SetNextToken(v string) *AdminListGroupsFo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRemoveUserFromGroupRequest
 type AdminRemoveUserFromGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7712,6 +7872,7 @@ func (s *AdminRemoveUserFromGroupInput) SetUsername(v string) *AdminRemoveUserFr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRemoveUserFromGroupOutput
 type AdminRemoveUserFromGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7727,6 +7888,7 @@ func (s AdminRemoveUserFromGroupOutput) GoString() string {
 }
 
 // Represents the request to reset a user's password as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminResetUserPasswordRequest
 type AdminResetUserPasswordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7786,6 +7948,7 @@ func (s *AdminResetUserPasswordInput) SetUsername(v string) *AdminResetUserPassw
 }
 
 // Represents the response from the server to reset a user password as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminResetUserPasswordResponse
 type AdminResetUserPasswordOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7801,6 +7964,7 @@ func (s AdminResetUserPasswordOutput) GoString() string {
 }
 
 // The request to respond to the authentication challenge, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRespondToAuthChallengeRequest
 type AdminRespondToAuthChallengeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7895,6 +8059,7 @@ func (s *AdminRespondToAuthChallengeInput) SetUserPoolId(v string) *AdminRespond
 }
 
 // Responds to the authentication challenge, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminRespondToAuthChallengeResponse
 type AdminRespondToAuthChallengeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7946,6 +8111,7 @@ func (s *AdminRespondToAuthChallengeOutput) SetSession(v string) *AdminRespondTo
 }
 
 // Represents the request to set user settings as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserSettingsRequest
 type AdminSetUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8030,6 +8196,7 @@ func (s *AdminSetUserSettingsInput) SetUsername(v string) *AdminSetUserSettingsI
 }
 
 // Represents the response from the server to set user settings as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminSetUserSettingsResponse
 type AdminSetUserSettingsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8045,6 +8212,7 @@ func (s AdminSetUserSettingsOutput) GoString() string {
 }
 
 // The request to update the device status, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateDeviceStatusRequest
 type AdminUpdateDeviceStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8130,6 +8298,7 @@ func (s *AdminUpdateDeviceStatusInput) SetUsername(v string) *AdminUpdateDeviceS
 }
 
 // The status response from the request to update the device, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateDeviceStatusResponse
 type AdminUpdateDeviceStatusOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8145,6 +8314,7 @@ func (s AdminUpdateDeviceStatusOutput) GoString() string {
 }
 
 // Represents the request to update the user's attributes as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateUserAttributesRequest
 type AdminUpdateUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8229,6 +8399,7 @@ func (s *AdminUpdateUserAttributesInput) SetUsername(v string) *AdminUpdateUserA
 
 // Represents the response from the server for the request to update user attributes
 // as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUpdateUserAttributesResponse
 type AdminUpdateUserAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8244,6 +8415,7 @@ func (s AdminUpdateUserAttributesOutput) GoString() string {
 }
 
 // The request to sign out of all devices, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUserGlobalSignOutRequest
 type AdminUserGlobalSignOutInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8303,6 +8475,7 @@ func (s *AdminUserGlobalSignOutInput) SetUsername(v string) *AdminUserGlobalSign
 }
 
 // The global sign-out response, as an administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AdminUserGlobalSignOutResponse
 type AdminUserGlobalSignOutOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8318,6 +8491,7 @@ func (s AdminUserGlobalSignOutOutput) GoString() string {
 }
 
 // Specifies whether the attribute is standard or custom.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AttributeType
 type AttributeType struct {
 	_ struct{} `type:"structure"`
 
@@ -8369,6 +8543,7 @@ func (s *AttributeType) SetValue(v string) *AttributeType {
 }
 
 // The result type of the authentication result.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/AuthenticationResultType
 type AuthenticationResultType struct {
 	_ struct{} `type:"structure"`
 
@@ -8438,6 +8613,7 @@ func (s *AuthenticationResultType) SetTokenType(v string) *AuthenticationResultT
 }
 
 // Represents the request to change a user password.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePasswordRequest
 type ChangePasswordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8506,6 +8682,7 @@ func (s *ChangePasswordInput) SetProposedPassword(v string) *ChangePasswordInput
 }
 
 // The response from the server to the change password request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ChangePasswordResponse
 type ChangePasswordOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8521,6 +8698,7 @@ func (s ChangePasswordOutput) GoString() string {
 }
 
 // The type of code delivery details being returned from the server.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CodeDeliveryDetailsType
 type CodeDeliveryDetailsType struct {
 	_ struct{} `type:"structure"`
 
@@ -8563,6 +8741,7 @@ func (s *CodeDeliveryDetailsType) SetDestination(v string) *CodeDeliveryDetailsT
 }
 
 // Confirms the device request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDeviceRequest
 type ConfirmDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8640,6 +8819,7 @@ func (s *ConfirmDeviceInput) SetDeviceSecretVerifierConfig(v *DeviceSecretVerifi
 }
 
 // Confirms the device response.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmDeviceResponse
 type ConfirmDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8665,6 +8845,7 @@ func (s *ConfirmDeviceOutput) SetUserConfirmationNecessary(v bool) *ConfirmDevic
 }
 
 // The request representing the confirmation for a password reset.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPasswordRequest
 type ConfirmForgotPasswordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8773,6 +8954,7 @@ func (s *ConfirmForgotPasswordInput) SetUsername(v string) *ConfirmForgotPasswor
 
 // The response from the server that results from a user's request to retrieve
 // a forgotten password.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmForgotPasswordResponse
 type ConfirmForgotPasswordOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8788,6 +8970,7 @@ func (s ConfirmForgotPasswordOutput) GoString() string {
 }
 
 // Represents the request to confirm registration of a user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUpRequest
 type ConfirmSignUpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8891,6 +9074,7 @@ func (s *ConfirmSignUpInput) SetUsername(v string) *ConfirmSignUpInput {
 }
 
 // Represents the response from the server for the registration confirmation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ConfirmSignUpResponse
 type ConfirmSignUpOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8905,6 +9089,7 @@ func (s ConfirmSignUpOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateGroupRequest
 type CreateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9007,6 +9192,7 @@ func (s *CreateGroupInput) SetUserPoolId(v string) *CreateGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateGroupResponse
 type CreateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9031,6 +9217,7 @@ func (s *CreateGroupOutput) SetGroup(v *GroupType) *CreateGroupOutput {
 }
 
 // Represents the request to create the user import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserImportJobRequest
 type CreateUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9108,6 +9295,7 @@ func (s *CreateUserImportJobInput) SetUserPoolId(v string) *CreateUserImportJobI
 
 // Represents the response from the server to the request to create the user
 // import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserImportJobResponse
 type CreateUserImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9132,6 +9320,7 @@ func (s *CreateUserImportJobOutput) SetUserImportJob(v *UserImportJobType) *Crea
 }
 
 // Represents the request to create a user pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolClientRequest
 type CreateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9237,6 +9426,7 @@ func (s *CreateUserPoolClientInput) SetWriteAttributes(v []*string) *CreateUserP
 }
 
 // Represents the response from the server to create a user pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolClientResponse
 type CreateUserPoolClientOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9261,6 +9451,7 @@ func (s *CreateUserPoolClientOutput) SetUserPoolClient(v *UserPoolClientType) *C
 }
 
 // Represents the request to create a user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolRequest
 type CreateUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9492,6 +9683,7 @@ func (s *CreateUserPoolInput) SetUserPoolTags(v map[string]*string) *CreateUserP
 
 // Represents the response from the server for the request to create a user
 // pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/CreateUserPoolResponse
 type CreateUserPoolOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9515,6 +9707,7 @@ func (s *CreateUserPoolOutput) SetUserPool(v *UserPoolType) *CreateUserPoolOutpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteGroupRequest
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9573,6 +9766,7 @@ func (s *DeleteGroupInput) SetUserPoolId(v string) *DeleteGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteGroupOutput
 type DeleteGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9588,6 +9782,7 @@ func (s DeleteGroupOutput) GoString() string {
 }
 
 // Represents the request to delete user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributesRequest
 type DeleteUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9636,6 +9831,7 @@ func (s *DeleteUserAttributesInput) SetUserAttributeNames(v []*string) *DeleteUs
 }
 
 // Represents the response from the server to delete user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserAttributesResponse
 type DeleteUserAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9651,6 +9847,7 @@ func (s DeleteUserAttributesOutput) GoString() string {
 }
 
 // Represents the request to delete a user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserRequest
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9674,6 +9871,7 @@ func (s *DeleteUserInput) SetAccessToken(v string) *DeleteUserInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserOutput
 type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9689,6 +9887,7 @@ func (s DeleteUserOutput) GoString() string {
 }
 
 // Represents the request to delete a user pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolClientRequest
 type DeleteUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9747,6 +9946,7 @@ func (s *DeleteUserPoolClientInput) SetUserPoolId(v string) *DeleteUserPoolClien
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolClientOutput
 type DeleteUserPoolClientOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9762,6 +9962,7 @@ func (s DeleteUserPoolClientOutput) GoString() string {
 }
 
 // Represents the request to delete a user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolRequest
 type DeleteUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9803,6 +10004,7 @@ func (s *DeleteUserPoolInput) SetUserPoolId(v string) *DeleteUserPoolInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeleteUserPoolOutput
 type DeleteUserPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9818,6 +10020,7 @@ func (s DeleteUserPoolOutput) GoString() string {
 }
 
 // Represents the request to describe the user import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserImportJobRequest
 type DescribeUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9878,6 +10081,7 @@ func (s *DescribeUserImportJobInput) SetUserPoolId(v string) *DescribeUserImport
 
 // Represents the response from the server to the request to describe the user
 // import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserImportJobResponse
 type DescribeUserImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9902,6 +10106,7 @@ func (s *DescribeUserImportJobOutput) SetUserImportJob(v *UserImportJobType) *De
 }
 
 // Represents the request to describe a user pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolClientRequest
 type DescribeUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9962,6 +10167,7 @@ func (s *DescribeUserPoolClientInput) SetUserPoolId(v string) *DescribeUserPoolC
 
 // Represents the response from the server from a request to describe the user
 // pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolClientResponse
 type DescribeUserPoolClientOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9986,6 +10192,7 @@ func (s *DescribeUserPoolClientOutput) SetUserPoolClient(v *UserPoolClientType) 
 }
 
 // Represents the request to describe the user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolRequest
 type DescribeUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10028,6 +10235,7 @@ func (s *DescribeUserPoolInput) SetUserPoolId(v string) *DescribeUserPoolInput {
 }
 
 // Represents the response to describe the user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DescribeUserPoolResponse
 type DescribeUserPoolOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10052,6 +10260,7 @@ func (s *DescribeUserPoolOutput) SetUserPool(v *UserPoolType) *DescribeUserPoolO
 }
 
 // The type of configuration for the user pool's device tracking.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeviceConfigurationType
 type DeviceConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -10086,6 +10295,7 @@ func (s *DeviceConfigurationType) SetDeviceOnlyRememberedOnUserPrompt(v bool) *D
 }
 
 // The device verifier against which it will be authenticated.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeviceSecretVerifierConfigType
 type DeviceSecretVerifierConfigType struct {
 	_ struct{} `type:"structure"`
 
@@ -10119,6 +10329,7 @@ func (s *DeviceSecretVerifierConfigType) SetSalt(v string) *DeviceSecretVerifier
 }
 
 // The device type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/DeviceType
 type DeviceType struct {
 	_ struct{} `type:"structure"`
 
@@ -10179,6 +10390,7 @@ func (s *DeviceType) SetDeviceLastModifiedDate(v time.Time) *DeviceType {
 }
 
 // The email configuration type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/EmailConfigurationType
 type EmailConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -10225,6 +10437,7 @@ func (s *EmailConfigurationType) SetSourceArn(v string) *EmailConfigurationType 
 }
 
 // Represents the request to forget the device.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDeviceRequest
 type ForgetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10275,6 +10488,7 @@ func (s *ForgetDeviceInput) SetDeviceKey(v string) *ForgetDeviceInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgetDeviceOutput
 type ForgetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10290,6 +10504,7 @@ func (s ForgetDeviceOutput) GoString() string {
 }
 
 // Represents the request to reset a user's password.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPasswordRequest
 type ForgotPasswordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10364,6 +10579,7 @@ func (s *ForgotPasswordInput) SetUsername(v string) *ForgotPasswordInput {
 
 // Respresents the response from the server regarding the request to reset a
 // password.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ForgotPasswordResponse
 type ForgotPasswordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10390,6 +10606,7 @@ func (s *ForgotPasswordOutput) SetCodeDeliveryDetails(v *CodeDeliveryDetailsType
 
 // Represents the request to get the header information for the .csv file for
 // the user import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetCSVHeaderRequest
 type GetCSVHeaderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10433,6 +10650,7 @@ func (s *GetCSVHeaderInput) SetUserPoolId(v string) *GetCSVHeaderInput {
 
 // Represents the response from the server to the request to get the header
 // information for the .csv file for the user import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetCSVHeaderResponse
 type GetCSVHeaderOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10466,6 +10684,7 @@ func (s *GetCSVHeaderOutput) SetUserPoolId(v string) *GetCSVHeaderOutput {
 }
 
 // Represents the request to get the device.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDeviceRequest
 type GetDeviceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10517,6 +10736,7 @@ func (s *GetDeviceInput) SetDeviceKey(v string) *GetDeviceInput {
 }
 
 // Gets the device response.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetDeviceResponse
 type GetDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10542,6 +10762,7 @@ func (s *GetDeviceOutput) SetDevice(v *DeviceType) *GetDeviceOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetGroupRequest
 type GetGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10600,6 +10821,7 @@ func (s *GetGroupInput) SetUserPoolId(v string) *GetGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetGroupResponse
 type GetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10624,6 +10846,7 @@ func (s *GetGroupOutput) SetGroup(v *GroupType) *GetGroupOutput {
 }
 
 // Represents the request to get user attribute verification.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCodeRequest
 type GetUserAttributeVerificationCodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10678,6 +10901,7 @@ func (s *GetUserAttributeVerificationCodeInput) SetAttributeName(v string) *GetU
 
 // The verification code response returned by the server response to get the
 // user attribute verification code.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserAttributeVerificationCodeResponse
 type GetUserAttributeVerificationCodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10703,6 +10927,7 @@ func (s *GetUserAttributeVerificationCodeOutput) SetCodeDeliveryDetails(v *CodeD
 }
 
 // Represents the request to get information about the user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserRequest
 type GetUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10729,6 +10954,7 @@ func (s *GetUserInput) SetAccessToken(v string) *GetUserInput {
 
 // Represents the response from the server from the request to get information
 // about the user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GetUserResponse
 type GetUserOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10775,6 +11001,7 @@ func (s *GetUserOutput) SetUsername(v string) *GetUserOutput {
 }
 
 // Represents the request to sign out all devices.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOutRequest
 type GlobalSignOutInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10799,6 +11026,7 @@ func (s *GlobalSignOutInput) SetAccessToken(v string) *GlobalSignOutInput {
 }
 
 // The response to the request to sign out all devices.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GlobalSignOutResponse
 type GlobalSignOutOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10814,6 +11042,7 @@ func (s GlobalSignOutOutput) GoString() string {
 }
 
 // The group type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/GroupType
 type GroupType struct {
 	_ struct{} `type:"structure"`
 
@@ -10905,6 +11134,7 @@ func (s *GroupType) SetUserPoolId(v string) *GroupType {
 }
 
 // Initiates the authentication request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuthRequest
 type InitiateAuthInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10979,6 +11209,7 @@ func (s *InitiateAuthInput) SetClientMetadata(v map[string]*string) *InitiateAut
 }
 
 // Initiates the authentication response.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/InitiateAuthResponse
 type InitiateAuthOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11031,6 +11262,7 @@ func (s *InitiateAuthOutput) SetSession(v string) *InitiateAuthOutput {
 }
 
 // Specifies the type of configuration for AWS Lambda triggers.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/LambdaConfigType
 type LambdaConfigType struct {
 	_ struct{} `type:"structure"`
 
@@ -11152,6 +11384,7 @@ func (s *LambdaConfigType) SetVerifyAuthChallengeResponse(v string) *LambdaConfi
 }
 
 // Represents the request to list the devices.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevicesRequest
 type ListDevicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11212,6 +11445,7 @@ func (s *ListDevicesInput) SetPaginationToken(v string) *ListDevicesInput {
 }
 
 // Represents the response to list devices.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListDevicesResponse
 type ListDevicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11244,6 +11478,7 @@ func (s *ListDevicesOutput) SetPaginationToken(v string) *ListDevicesOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListGroupsRequest
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11307,6 +11542,7 @@ func (s *ListGroupsInput) SetUserPoolId(v string) *ListGroupsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListGroupsResponse
 type ListGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11341,6 +11577,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 }
 
 // Represents the request to list the user import jobs.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserImportJobsRequest
 type ListUserImportJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11414,6 +11651,7 @@ func (s *ListUserImportJobsInput) SetUserPoolId(v string) *ListUserImportJobsInp
 
 // Represents the response from the server to the request to list the user import
 // jobs.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserImportJobsResponse
 type ListUserImportJobsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11448,6 +11686,7 @@ func (s *ListUserImportJobsOutput) SetUserImportJobs(v []*UserImportJobType) *Li
 }
 
 // Represents the request to list the user pool clients.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolClientsRequest
 type ListUserPoolClientsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11516,6 +11755,7 @@ func (s *ListUserPoolClientsInput) SetUserPoolId(v string) *ListUserPoolClientsI
 }
 
 // Represents the response from the server that lists user pool clients.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolClientsResponse
 type ListUserPoolClientsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11550,6 +11790,7 @@ func (s *ListUserPoolClientsOutput) SetUserPoolClients(v []*UserPoolClientDescri
 }
 
 // Represents the request to list user pools.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolsRequest
 type ListUserPoolsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11606,6 +11847,7 @@ func (s *ListUserPoolsInput) SetNextToken(v string) *ListUserPoolsInput {
 }
 
 // Represents the response to list user pools.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUserPoolsResponse
 type ListUserPoolsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11639,6 +11881,7 @@ func (s *ListUserPoolsOutput) SetUserPools(v []*UserPoolDescriptionType) *ListUs
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersInGroupRequest
 type ListUsersInGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11719,6 +11962,7 @@ func (s *ListUsersInGroupInput) SetUserPoolId(v string) *ListUsersInGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersInGroupResponse
 type ListUsersInGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11753,6 +11997,7 @@ func (s *ListUsersInGroupOutput) SetUsers(v []*UserType) *ListUsersInGroupOutput
 }
 
 // Represents the request to list users.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersRequest
 type ListUsersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11835,6 +12080,7 @@ func (s *ListUsersInput) SetUserPoolId(v string) *ListUsersInput {
 }
 
 // The response from the request to list users.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ListUsersResponse
 type ListUsersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11869,6 +12115,7 @@ func (s *ListUsersOutput) SetUsers(v []*UserType) *ListUsersOutput {
 }
 
 // Specifies the different settings for multi-factor authentication (MFA).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/MFAOptionType
 type MFAOptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -11915,6 +12162,7 @@ func (s *MFAOptionType) SetDeliveryMedium(v string) *MFAOptionType {
 }
 
 // The message template structure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/MessageTemplateType
 type MessageTemplateType struct {
 	_ struct{} `type:"structure"`
 
@@ -11976,6 +12224,7 @@ func (s *MessageTemplateType) SetSMSMessage(v string) *MessageTemplateType {
 }
 
 // The new device metadata type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/NewDeviceMetadataType
 type NewDeviceMetadataType struct {
 	_ struct{} `type:"structure"`
 
@@ -12010,6 +12259,7 @@ func (s *NewDeviceMetadataType) SetDeviceKey(v string) *NewDeviceMetadataType {
 
 // The minimum and maximum value of an attribute that is of the number data
 // type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/NumberAttributeConstraintsType
 type NumberAttributeConstraintsType struct {
 	_ struct{} `type:"structure"`
 
@@ -12043,6 +12293,7 @@ func (s *NumberAttributeConstraintsType) SetMinValue(v string) *NumberAttributeC
 }
 
 // The password policy type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/PasswordPolicyType
 type PasswordPolicyType struct {
 	_ struct{} `type:"structure"`
 
@@ -12121,6 +12372,7 @@ func (s *PasswordPolicyType) SetRequireUppercase(v bool) *PasswordPolicyType {
 }
 
 // Represents the request to resend the confirmation code.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCodeRequest
 type ResendConfirmationCodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12194,6 +12446,7 @@ func (s *ResendConfirmationCodeInput) SetUsername(v string) *ResendConfirmationC
 
 // The response from the server when the Amazon Cognito Your User Pools service
 // makes the request to resend a confirmation code.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/ResendConfirmationCodeResponse
 type ResendConfirmationCodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12219,6 +12472,7 @@ func (s *ResendConfirmationCodeOutput) SetCodeDeliveryDetails(v *CodeDeliveryDet
 }
 
 // The request to respond to an authentication challenge.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallengeRequest
 type RespondToAuthChallengeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12296,6 +12550,7 @@ func (s *RespondToAuthChallengeInput) SetSession(v string) *RespondToAuthChallen
 }
 
 // The response to respond to the authentication challenge.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RespondToAuthChallengeResponse
 type RespondToAuthChallengeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12348,6 +12603,7 @@ func (s *RespondToAuthChallengeOutput) SetSession(v string) *RespondToAuthChalle
 }
 
 // Contains information about the schema attribute.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SchemaAttributeType
 type SchemaAttributeType struct {
 	_ struct{} `type:"structure"`
 
@@ -12441,6 +12697,7 @@ func (s *SchemaAttributeType) SetStringAttributeConstraints(v *StringAttributeCo
 }
 
 // Represents the request to set user settings.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettingsRequest
 type SetUserSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12504,6 +12761,7 @@ func (s *SetUserSettingsInput) SetMFAOptions(v []*MFAOptionType) *SetUserSetting
 }
 
 // The response from the server for a set user settings request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SetUserSettingsResponse
 type SetUserSettingsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12519,6 +12777,7 @@ func (s SetUserSettingsOutput) GoString() string {
 }
 
 // Represents the request to register a user.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUpRequest
 type SignUpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12646,6 +12905,7 @@ func (s *SignUpInput) SetValidationData(v []*AttributeType) *SignUpInput {
 }
 
 // The response from the server for a registration request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SignUpResponse
 type SignUpOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12680,6 +12940,7 @@ func (s *SignUpOutput) SetUserConfirmed(v bool) *SignUpOutput {
 }
 
 // The SMS configuratoin type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/SmsConfigurationType
 type SmsConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -12732,6 +12993,7 @@ func (s *SmsConfigurationType) SetSnsCallerArn(v string) *SmsConfigurationType {
 }
 
 // Represents the request to start the user import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StartUserImportJobRequest
 type StartUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12792,6 +13054,7 @@ func (s *StartUserImportJobInput) SetUserPoolId(v string) *StartUserImportJobInp
 
 // Represents the response from the server to the request to start the user
 // import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StartUserImportJobResponse
 type StartUserImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12816,6 +13079,7 @@ func (s *StartUserImportJobOutput) SetUserImportJob(v *UserImportJobType) *Start
 }
 
 // Represents the request to stop the user import job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StopUserImportJobRequest
 type StopUserImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12876,6 +13140,7 @@ func (s *StopUserImportJobInput) SetUserPoolId(v string) *StopUserImportJobInput
 
 // Represents the response from the server to the request to stop the user import
 // job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StopUserImportJobResponse
 type StopUserImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12900,6 +13165,7 @@ func (s *StopUserImportJobOutput) SetUserImportJob(v *UserImportJobType) *StopUs
 }
 
 // The type of constraints associated with an attribute of the string type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/StringAttributeConstraintsType
 type StringAttributeConstraintsType struct {
 	_ struct{} `type:"structure"`
 
@@ -12933,6 +13199,7 @@ func (s *StringAttributeConstraintsType) SetMinLength(v string) *StringAttribute
 }
 
 // Represents the request to update the device status.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatusRequest
 type UpdateDeviceStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12998,6 +13265,7 @@ func (s *UpdateDeviceStatusInput) SetDeviceRememberedStatus(v string) *UpdateDev
 }
 
 // The response to the request to update the device status.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateDeviceStatusResponse
 type UpdateDeviceStatusOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13012,6 +13280,7 @@ func (s UpdateDeviceStatusOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateGroupRequest
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13102,6 +13371,7 @@ func (s *UpdateGroupInput) SetUserPoolId(v string) *UpdateGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateGroupResponse
 type UpdateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13126,6 +13396,7 @@ func (s *UpdateGroupOutput) SetGroup(v *GroupType) *UpdateGroupOutput {
 }
 
 // Represents the request to update user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributesRequest
 type UpdateUserAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13184,6 +13455,7 @@ func (s *UpdateUserAttributesInput) SetUserAttributes(v []*AttributeType) *Updat
 }
 
 // Represents the response from the server for the request to update user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserAttributesResponse
 type UpdateUserAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13209,6 +13481,7 @@ func (s *UpdateUserAttributesOutput) SetCodeDeliveryDetailsList(v []*CodeDeliver
 }
 
 // Represents the request to update the user pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolClientRequest
 type UpdateUserPoolClientInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13318,6 +13591,7 @@ func (s *UpdateUserPoolClientInput) SetWriteAttributes(v []*string) *UpdateUserP
 
 // Represents the response from the server to the request to update the user
 // pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolClientResponse
 type UpdateUserPoolClientOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13343,6 +13617,7 @@ func (s *UpdateUserPoolClientOutput) SetUserPoolClient(v *UserPoolClientType) *U
 }
 
 // Represents the request to update the user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolRequest
 type UpdateUserPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13551,6 +13826,7 @@ func (s *UpdateUserPoolInput) SetUserPoolTags(v map[string]*string) *UpdateUserP
 
 // Represents the response from the server when you make a request to update
 // the user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UpdateUserPoolResponse
 type UpdateUserPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13566,6 +13842,7 @@ func (s UpdateUserPoolOutput) GoString() string {
 }
 
 // The user import job type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserImportJobType
 type UserImportJobType struct {
 	_ struct{} `type:"structure"`
 
@@ -13721,6 +13998,7 @@ func (s *UserImportJobType) SetUserPoolId(v string) *UserImportJobType {
 }
 
 // The description of the user pool client.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserPoolClientDescription
 type UserPoolClientDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -13764,6 +14042,7 @@ func (s *UserPoolClientDescription) SetUserPoolId(v string) *UserPoolClientDescr
 }
 
 // A user pool of the client type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserPoolClientType
 type UserPoolClientType struct {
 	_ struct{} `type:"structure"`
 
@@ -13869,6 +14148,7 @@ func (s *UserPoolClientType) SetWriteAttributes(v []*string) *UserPoolClientType
 }
 
 // A user pool description.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserPoolDescriptionType
 type UserPoolDescriptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -13938,6 +14218,7 @@ func (s *UserPoolDescriptionType) SetStatus(v string) *UserPoolDescriptionType {
 }
 
 // The type of policy in a user pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserPoolPolicyType
 type UserPoolPolicyType struct {
 	_ struct{} `type:"structure"`
 
@@ -13977,6 +14258,7 @@ func (s *UserPoolPolicyType) SetPasswordPolicy(v *PasswordPolicyType) *UserPoolP
 }
 
 // A container with information about the user pool type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserPoolType
 type UserPoolType struct {
 	_ struct{} `type:"structure"`
 
@@ -14208,6 +14490,7 @@ func (s *UserPoolType) SetUserPoolTags(v map[string]*string) *UserPoolType {
 }
 
 // The user type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/UserType
 type UserType struct {
 	_ struct{} `type:"structure"`
 
@@ -14296,6 +14579,7 @@ func (s *UserType) SetUsername(v string) *UserType {
 }
 
 // Represents the request to verify user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttributeRequest
 type VerifyUserAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14365,6 +14649,7 @@ func (s *VerifyUserAttributeInput) SetCode(v string) *VerifyUserAttributeInput {
 
 // A container representing the response from the server from the request to
 // verify user attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/VerifyUserAttributeResponse
 type VerifyUserAttributeOutput struct {
 	_ struct{} `type:"structure"`
 }

@@ -28,8 +28,9 @@ import (
 // on analyzing results and solving problems. AWS Batch reduces operational
 // complexities, saves time, and reduces costs, which makes it easy for developers,
 // scientists, and engineers to run their batch jobs in the AWS Cloud.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10
 type Batch struct {
 	*client.Client
 }
@@ -40,8 +41,11 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "batch"
+// Service information constants
+const (
+	ServiceName = "batch"     // Service endpoint prefix API calls made to.
+	EndpointsID = ServiceName // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the Batch client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -54,7 +58,7 @@ const ServiceName = "batch"
 //     // Create a Batch client with additional configuration
 //     svc := batch.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *Batch {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

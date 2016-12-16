@@ -39,6 +39,7 @@ const opCreateIdentityPool = "CreateIdentityPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/CreateIdentityPool
 func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInput) (req *request.Request, output *IdentityPool) {
 	op := &request.Operation{
 		Name:       opCreateIdentityPool,
@@ -95,6 +96,7 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 //   * LimitExceededException
 //   Thrown when the total number of user pools has exceeded a preset limit.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/CreateIdentityPool
 func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*IdentityPool, error) {
 	req, out := c.CreateIdentityPoolRequest(input)
 	err := req.Send()
@@ -127,6 +129,7 @@ const opDeleteIdentities = "DeleteIdentities"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentities
 func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) (req *request.Request, output *DeleteIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIdentities,
@@ -168,6 +171,7 @@ func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) 
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentities
 func (c *CognitoIdentity) DeleteIdentities(input *DeleteIdentitiesInput) (*DeleteIdentitiesOutput, error) {
 	req, out := c.DeleteIdentitiesRequest(input)
 	err := req.Send()
@@ -200,6 +204,7 @@ const opDeleteIdentityPool = "DeleteIdentityPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentityPool
 func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *request.Request, output *DeleteIdentityPoolOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIdentityPool,
@@ -250,6 +255,7 @@ func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInp
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentityPool
 func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (*DeleteIdentityPoolOutput, error) {
 	req, out := c.DeleteIdentityPoolRequest(input)
 	err := req.Send()
@@ -282,6 +288,7 @@ const opDescribeIdentity = "DescribeIdentity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentity
 func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) (req *request.Request, output *IdentityDescription) {
 	op := &request.Operation{
 		Name:       opDescribeIdentity,
@@ -330,6 +337,7 @@ func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) 
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentity
 func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (*IdentityDescription, error) {
 	req, out := c.DescribeIdentityRequest(input)
 	err := req.Send()
@@ -362,6 +370,7 @@ const opDescribeIdentityPool = "DescribeIdentityPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentityPool
 func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoolInput) (req *request.Request, output *IdentityPool) {
 	op := &request.Operation{
 		Name:       opDescribeIdentityPool,
@@ -410,6 +419,7 @@ func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoo
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentityPool
 func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput) (*IdentityPool, error) {
 	req, out := c.DescribeIdentityPoolRequest(input)
 	err := req.Send()
@@ -442,6 +452,7 @@ const opGetCredentialsForIdentity = "GetCredentialsForIdentity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetCredentialsForIdentity
 func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentialsForIdentityInput) (req *request.Request, output *GetCredentialsForIdentityOutput) {
 	op := &request.Operation{
 		Name:       opGetCredentialsForIdentity,
@@ -504,6 +515,7 @@ func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentials
 //   An exception thrown when a dependent service such as Facebook or Twitter
 //   is not responding
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetCredentialsForIdentity
 func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIdentityInput) (*GetCredentialsForIdentityOutput, error) {
 	req, out := c.GetCredentialsForIdentityRequest(input)
 	err := req.Send()
@@ -536,6 +548,7 @@ const opGetId = "GetId"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetId
 func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *request.Request, output *GetIdOutput) {
 	op := &request.Operation{
 		Name:       opGetId,
@@ -595,6 +608,7 @@ func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *request.Request,
 //   An exception thrown when a dependent service such as Facebook or Twitter
 //   is not responding
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetId
 func (c *CognitoIdentity) GetId(input *GetIdInput) (*GetIdOutput, error) {
 	req, out := c.GetIdRequest(input)
 	err := req.Send()
@@ -627,6 +641,7 @@ const opGetIdentityPoolRoles = "GetIdentityPoolRoles"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdentityPoolRoles
 func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRolesInput) (req *request.Request, output *GetIdentityPoolRolesOutput) {
 	op := &request.Operation{
 		Name:       opGetIdentityPoolRoles,
@@ -678,6 +693,7 @@ func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRole
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdentityPoolRoles
 func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput) (*GetIdentityPoolRolesOutput, error) {
 	req, out := c.GetIdentityPoolRolesRequest(input)
 	err := req.Send()
@@ -710,6 +726,7 @@ const opGetOpenIdToken = "GetOpenIdToken"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdToken
 func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req *request.Request, output *GetOpenIdTokenOutput) {
 	op := &request.Operation{
 		Name:       opGetOpenIdToken,
@@ -769,6 +786,7 @@ func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req
 //   An exception thrown when a dependent service such as Facebook or Twitter
 //   is not responding
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdToken
 func (c *CognitoIdentity) GetOpenIdToken(input *GetOpenIdTokenInput) (*GetOpenIdTokenOutput, error) {
 	req, out := c.GetOpenIdTokenRequest(input)
 	err := req.Send()
@@ -801,6 +819,7 @@ const opGetOpenIdTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenForDeveloperIdentity
 func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOpenIdTokenForDeveloperIdentityInput) (req *request.Request, output *GetOpenIdTokenForDeveloperIdentityOutput) {
 	op := &request.Operation{
 		Name:       opGetOpenIdTokenForDeveloperIdentity,
@@ -869,6 +888,7 @@ func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOp
 //   The provided developer user identifier is already registered with Cognito
 //   under a different identity ID.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenForDeveloperIdentity
 func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentity(input *GetOpenIdTokenForDeveloperIdentityInput) (*GetOpenIdTokenForDeveloperIdentityOutput, error) {
 	req, out := c.GetOpenIdTokenForDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -901,6 +921,7 @@ const opListIdentities = "ListIdentities"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentities
 func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Request, output *ListIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opListIdentities,
@@ -948,6 +969,7 @@ func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentities
 func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput, error) {
 	req, out := c.ListIdentitiesRequest(input)
 	err := req.Send()
@@ -980,6 +1002,7 @@ const opListIdentityPools = "ListIdentityPools"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentityPools
 func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput) (req *request.Request, output *ListIdentityPoolsOutput) {
 	op := &request.Operation{
 		Name:       opListIdentityPools,
@@ -1023,6 +1046,7 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentityPools
 func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*ListIdentityPoolsOutput, error) {
 	req, out := c.ListIdentityPoolsRequest(input)
 	err := req.Send()
@@ -1055,6 +1079,7 @@ const opLookupDeveloperIdentity = "LookupDeveloperIdentity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/LookupDeveloperIdentity
 func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperIdentityInput) (req *request.Request, output *LookupDeveloperIdentityOutput) {
 	op := &request.Operation{
 		Name:       opLookupDeveloperIdentity,
@@ -1113,6 +1138,7 @@ func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperI
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/LookupDeveloperIdentity
 func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentityInput) (*LookupDeveloperIdentityOutput, error) {
 	req, out := c.LookupDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -1145,6 +1171,7 @@ const opMergeDeveloperIdentities = "MergeDeveloperIdentities"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentities
 func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperIdentitiesInput) (req *request.Request, output *MergeDeveloperIdentitiesOutput) {
 	op := &request.Operation{
 		Name:       opMergeDeveloperIdentities,
@@ -1202,6 +1229,7 @@ func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperI
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentities
 func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentitiesInput) (*MergeDeveloperIdentitiesOutput, error) {
 	req, out := c.MergeDeveloperIdentitiesRequest(input)
 	err := req.Send()
@@ -1234,6 +1262,7 @@ const opSetIdentityPoolRoles = "SetIdentityPoolRoles"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRoles
 func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *request.Request, output *SetIdentityPoolRolesOutput) {
 	op := &request.Operation{
 		Name:       opSetIdentityPoolRoles,
@@ -1291,6 +1320,7 @@ func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRole
 //   * ConcurrentModificationException
 //   Thrown if there are parallel requests to modify a resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRoles
 func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput) (*SetIdentityPoolRolesOutput, error) {
 	req, out := c.SetIdentityPoolRolesRequest(input)
 	err := req.Send()
@@ -1323,6 +1353,7 @@ const opUnlinkDeveloperIdentity = "UnlinkDeveloperIdentity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkDeveloperIdentity
 func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *request.Request, output *UnlinkDeveloperIdentityOutput) {
 	op := &request.Operation{
 		Name:       opUnlinkDeveloperIdentity,
@@ -1379,6 +1410,7 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperI
 //   * InternalErrorException
 //   Thrown when the service encounters an error during processing the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkDeveloperIdentity
 func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentityInput) (*UnlinkDeveloperIdentityOutput, error) {
 	req, out := c.UnlinkDeveloperIdentityRequest(input)
 	err := req.Send()
@@ -1411,6 +1443,7 @@ const opUnlinkIdentity = "UnlinkIdentity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkIdentity
 func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *request.Request, output *UnlinkIdentityOutput) {
 	op := &request.Operation{
 		Name:       opUnlinkIdentity,
@@ -1470,6 +1503,7 @@ func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req
 //   An exception thrown when a dependent service such as Facebook or Twitter
 //   is not responding
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkIdentity
 func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (*UnlinkIdentityOutput, error) {
 	req, out := c.UnlinkIdentityRequest(input)
 	err := req.Send()
@@ -1502,6 +1536,7 @@ const opUpdateIdentityPool = "UpdateIdentityPool"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UpdateIdentityPool
 func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *request.Request, output *IdentityPool) {
 	op := &request.Operation{
 		Name:       opUpdateIdentityPool,
@@ -1559,6 +1594,7 @@ func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *r
 //   * LimitExceededException
 //   Thrown when the total number of user pools has exceeded a preset limit.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UpdateIdentityPool
 func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (*IdentityPool, error) {
 	req, out := c.UpdateIdentityPoolRequest(input)
 	err := req.Send()
@@ -1566,6 +1602,7 @@ func (c *CognitoIdentity) UpdateIdentityPool(input *IdentityPool) (*IdentityPool
 }
 
 // Input to the CreateIdentityPool action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/CreateIdentityPoolInput
 type CreateIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1687,6 +1724,7 @@ func (s *CreateIdentityPoolInput) SetSupportedLoginProviders(v map[string]*strin
 }
 
 // Credentials for the provided identity ID.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/Credentials
 type Credentials struct {
 	_ struct{} `type:"structure"`
 
@@ -1738,6 +1776,7 @@ func (s *Credentials) SetSessionToken(v string) *Credentials {
 }
 
 // Input to the DeleteIdentities action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentitiesInput
 type DeleteIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1780,6 +1819,7 @@ func (s *DeleteIdentitiesInput) SetIdentityIdsToDelete(v []*string) *DeleteIdent
 }
 
 // Returned in response to a successful DeleteIdentities operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentitiesResponse
 type DeleteIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1805,6 +1845,7 @@ func (s *DeleteIdentitiesOutput) SetUnprocessedIdentityIds(v []*UnprocessedIdent
 }
 
 // Input to the DeleteIdentityPool action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentityPoolInput
 type DeleteIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1846,6 +1887,7 @@ func (s *DeleteIdentityPoolInput) SetIdentityPoolId(v string) *DeleteIdentityPoo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DeleteIdentityPoolOutput
 type DeleteIdentityPoolOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1861,6 +1903,7 @@ func (s DeleteIdentityPoolOutput) GoString() string {
 }
 
 // Input to the DescribeIdentity action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentityInput
 type DescribeIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1903,6 +1946,7 @@ func (s *DescribeIdentityInput) SetIdentityId(v string) *DescribeIdentityInput {
 }
 
 // Input to the DescribeIdentityPool action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/DescribeIdentityPoolInput
 type DescribeIdentityPoolInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1945,6 +1989,7 @@ func (s *DescribeIdentityPoolInput) SetIdentityPoolId(v string) *DescribeIdentit
 }
 
 // Input to the GetCredentialsForIdentity action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetCredentialsForIdentityInput
 type GetCredentialsForIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2011,6 +2056,7 @@ func (s *GetCredentialsForIdentityInput) SetLogins(v map[string]*string) *GetCre
 }
 
 // Returned in response to a successful GetCredentialsForIdentity operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetCredentialsForIdentityResponse
 type GetCredentialsForIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2044,6 +2090,7 @@ func (s *GetCredentialsForIdentityOutput) SetIdentityId(v string) *GetCredential
 }
 
 // Input to the GetId action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdInput
 type GetIdInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2114,6 +2161,7 @@ func (s *GetIdInput) SetLogins(v map[string]*string) *GetIdInput {
 }
 
 // Returned in response to a GetId request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdResponse
 type GetIdOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2138,6 +2186,7 @@ func (s *GetIdOutput) SetIdentityId(v string) *GetIdOutput {
 }
 
 // Input to the GetIdentityPoolRoles action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdentityPoolRolesInput
 type GetIdentityPoolRolesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2180,6 +2229,7 @@ func (s *GetIdentityPoolRolesInput) SetIdentityPoolId(v string) *GetIdentityPool
 }
 
 // Returned in response to a successful GetIdentityPoolRoles operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetIdentityPoolRolesResponse
 type GetIdentityPoolRolesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2214,6 +2264,7 @@ func (s *GetIdentityPoolRolesOutput) SetRoles(v map[string]*string) *GetIdentity
 }
 
 // Input to the GetOpenIdTokenForDeveloperIdentity action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenForDeveloperIdentityInput
 type GetOpenIdTokenForDeveloperIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2309,6 +2360,7 @@ func (s *GetOpenIdTokenForDeveloperIdentityInput) SetTokenDuration(v int64) *Get
 }
 
 // Returned in response to a successful GetOpenIdTokenForDeveloperIdentity request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenForDeveloperIdentityResponse
 type GetOpenIdTokenForDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2342,6 +2394,7 @@ func (s *GetOpenIdTokenForDeveloperIdentityOutput) SetToken(v string) *GetOpenId
 }
 
 // Input to the GetOpenIdToken action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenInput
 type GetOpenIdTokenInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2396,6 +2449,7 @@ func (s *GetOpenIdTokenInput) SetLogins(v map[string]*string) *GetOpenIdTokenInp
 }
 
 // Returned in response to a successful GetOpenIdToken request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetOpenIdTokenResponse
 type GetOpenIdTokenOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2430,6 +2484,7 @@ func (s *GetOpenIdTokenOutput) SetToken(v string) *GetOpenIdTokenOutput {
 }
 
 // A description of the identity.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/IdentityDescription
 type IdentityDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2481,6 +2536,7 @@ func (s *IdentityDescription) SetLogins(v []*string) *IdentityDescription {
 }
 
 // An object representing a Cognito identity pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/IdentityPool
 type IdentityPool struct {
 	_ struct{} `type:"structure"`
 
@@ -2613,6 +2669,7 @@ func (s *IdentityPool) SetSupportedLoginProviders(v map[string]*string) *Identit
 }
 
 // A description of the identity pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/IdentityPoolShortDescription
 type IdentityPoolShortDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2646,6 +2703,7 @@ func (s *IdentityPoolShortDescription) SetIdentityPoolName(v string) *IdentityPo
 }
 
 // Input to the ListIdentities action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentitiesInput
 type ListIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2728,6 +2786,7 @@ func (s *ListIdentitiesInput) SetNextToken(v string) *ListIdentitiesInput {
 }
 
 // The response to a ListIdentities request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentitiesResponse
 type ListIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2770,6 +2829,7 @@ func (s *ListIdentitiesOutput) SetNextToken(v string) *ListIdentitiesOutput {
 }
 
 // Input to the ListIdentityPools action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentityPoolsInput
 type ListIdentityPoolsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2824,6 +2884,7 @@ func (s *ListIdentityPoolsInput) SetNextToken(v string) *ListIdentityPoolsInput 
 }
 
 // The result of a successful ListIdentityPools action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/ListIdentityPoolsResponse
 type ListIdentityPoolsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2857,6 +2918,7 @@ func (s *ListIdentityPoolsOutput) SetNextToken(v string) *ListIdentityPoolsOutpu
 }
 
 // Input to the LookupDeveloperIdentityInput action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/LookupDeveloperIdentityInput
 type LookupDeveloperIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2954,6 +3016,7 @@ func (s *LookupDeveloperIdentityInput) SetNextToken(v string) *LookupDeveloperId
 }
 
 // Returned in response to a successful LookupDeveloperIdentity action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/LookupDeveloperIdentityResponse
 type LookupDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3003,6 +3066,7 @@ func (s *LookupDeveloperIdentityOutput) SetNextToken(v string) *LookupDeveloperI
 }
 
 // Input to the MergeDeveloperIdentities action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentitiesInput
 type MergeDeveloperIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3100,6 +3164,7 @@ func (s *MergeDeveloperIdentitiesInput) SetSourceUserIdentifier(v string) *Merge
 }
 
 // Returned in response to a successful MergeDeveloperIdentities action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentitiesResponse
 type MergeDeveloperIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3125,6 +3190,7 @@ func (s *MergeDeveloperIdentitiesOutput) SetIdentityId(v string) *MergeDeveloper
 
 // A provider representing an Amazon Cognito Identity User Pool and its client
 // ID.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/CognitoIdentityProvider
 type Provider struct {
 	_ struct{} `type:"structure"`
 
@@ -3175,6 +3241,7 @@ func (s *Provider) SetProviderName(v string) *Provider {
 }
 
 // Input to the SetIdentityPoolRoles action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRolesInput
 type SetIdentityPoolRolesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3232,6 +3299,7 @@ func (s *SetIdentityPoolRolesInput) SetRoles(v map[string]*string) *SetIdentityP
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRolesOutput
 type SetIdentityPoolRolesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3247,6 +3315,7 @@ func (s SetIdentityPoolRolesOutput) GoString() string {
 }
 
 // Input to the UnlinkDeveloperIdentity action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkDeveloperIdentityInput
 type UnlinkDeveloperIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3339,6 +3408,7 @@ func (s *UnlinkDeveloperIdentityInput) SetIdentityPoolId(v string) *UnlinkDevelo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkDeveloperIdentityOutput
 type UnlinkDeveloperIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3354,6 +3424,7 @@ func (s UnlinkDeveloperIdentityOutput) GoString() string {
 }
 
 // Input to the UnlinkIdentity action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkIdentityInput
 type UnlinkIdentityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3423,6 +3494,7 @@ func (s *UnlinkIdentityInput) SetLoginsToRemove(v []*string) *UnlinkIdentityInpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnlinkIdentityOutput
 type UnlinkIdentityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3439,6 +3511,7 @@ func (s UnlinkIdentityOutput) GoString() string {
 
 // An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
 // and IdentityId.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/UnprocessedIdentityId
 type UnprocessedIdentityId struct {
 	_ struct{} `type:"structure"`
 

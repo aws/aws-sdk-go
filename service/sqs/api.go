@@ -38,6 +38,7 @@ const opAddPermission = "AddPermission"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/AddPermission
 func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
 	op := &request.Operation{
 		Name:       opAddPermission,
@@ -94,6 +95,7 @@ func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Requ
 //   been reached. AddPermission returns this error if the maximum number of permissions
 //   for the queue has already been reached.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/AddPermission
 func (c *SQS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, error) {
 	req, out := c.AddPermissionRequest(input)
 	err := req.Send()
@@ -126,6 +128,7 @@ const opChangeMessageVisibility = "ChangeMessageVisibility"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibility
 func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *request.Request, output *ChangeMessageVisibilityOutput) {
 	op := &request.Operation{
 		Name:       opChangeMessageVisibility,
@@ -199,6 +202,7 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 //   * ReceiptHandleIsInvalid
 //   The receipt handle provided is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibility
 func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*ChangeMessageVisibilityOutput, error) {
 	req, out := c.ChangeMessageVisibilityRequest(input)
 	err := req.Send()
@@ -231,6 +235,7 @@ const opChangeMessageVisibilityBatch = "ChangeMessageVisibilityBatch"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatch
 func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *request.Request, output *ChangeMessageVisibilityBatchOutput) {
 	op := &request.Operation{
 		Name:       opChangeMessageVisibilityBatch,
@@ -287,6 +292,7 @@ func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibility
 //   * AWS.SimpleQueueService.InvalidBatchEntryId
 //   The Id of a batch entry in a batch request doesn't abide by the specification.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatch
 func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchInput) (*ChangeMessageVisibilityBatchOutput, error) {
 	req, out := c.ChangeMessageVisibilityBatchRequest(input)
 	err := req.Send()
@@ -319,6 +325,7 @@ const opCreateQueue = "CreateQueue"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/CreateQueue
 func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request, output *CreateQueueOutput) {
 	op := &request.Operation{
 		Name:       opCreateQueue,
@@ -396,6 +403,7 @@ func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request,
 //   if the request includes attributes whose values differ from those of the
 //   existing queue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/CreateQueue
 func (c *SQS) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
 	req, out := c.CreateQueueRequest(input)
 	err := req.Send()
@@ -428,6 +436,7 @@ const opDeleteMessage = "DeleteMessage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessage
 func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Request, output *DeleteMessageOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMessage,
@@ -483,6 +492,7 @@ func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Requ
 //   * ReceiptHandleIsInvalid
 //   The receipt handle provided is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessage
 func (c *SQS) DeleteMessage(input *DeleteMessageInput) (*DeleteMessageOutput, error) {
 	req, out := c.DeleteMessageRequest(input)
 	err := req.Send()
@@ -515,6 +525,7 @@ const opDeleteMessageBatch = "DeleteMessageBatch"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatch
 func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *request.Request, output *DeleteMessageBatchOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMessageBatch,
@@ -570,6 +581,7 @@ func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *re
 //   * AWS.SimpleQueueService.InvalidBatchEntryId
 //   The Id of a batch entry in a batch request doesn't abide by the specification.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatch
 func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (*DeleteMessageBatchOutput, error) {
 	req, out := c.DeleteMessageBatchRequest(input)
 	err := req.Send()
@@ -602,6 +614,7 @@ const opDeleteQueue = "DeleteQueue"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue
 func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request, output *DeleteQueueOutput) {
 	op := &request.Operation{
 		Name:       opDeleteQueue,
@@ -646,6 +659,7 @@ func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request,
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation DeleteQueue for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueue
 func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
 	req, out := c.DeleteQueueRequest(input)
 	err := req.Send()
@@ -678,6 +692,7 @@ const opGetQueueAttributes = "GetQueueAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributes
 func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *request.Request, output *GetQueueAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetQueueAttributes,
@@ -718,6 +733,7 @@ func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *re
 //   * InvalidAttributeName
 //   The attribute referred to doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributes
 func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttributesOutput, error) {
 	req, out := c.GetQueueAttributesRequest(input)
 	err := req.Send()
@@ -750,6 +766,7 @@ const opGetQueueUrl = "GetQueueUrl"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueUrl
 func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request, output *GetQueueUrlOutput) {
 	op := &request.Operation{
 		Name:       opGetQueueUrl,
@@ -789,6 +806,7 @@ func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request,
 //   * AWS.SimpleQueueService.NonExistentQueue
 //   The queue referred to doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueUrl
 func (c *SQS) GetQueueUrl(input *GetQueueUrlInput) (*GetQueueUrlOutput, error) {
 	req, out := c.GetQueueUrlRequest(input)
 	err := req.Send()
@@ -821,6 +839,7 @@ const opListDeadLetterSourceQueues = "ListDeadLetterSourceQueues"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueues
 func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *request.Request, output *ListDeadLetterSourceQueuesOutput) {
 	op := &request.Operation{
 		Name:       opListDeadLetterSourceQueues,
@@ -858,6 +877,7 @@ func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueue
 //   * AWS.SimpleQueueService.NonExistentQueue
 //   The queue referred to doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueues
 func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput) (*ListDeadLetterSourceQueuesOutput, error) {
 	req, out := c.ListDeadLetterSourceQueuesRequest(input)
 	err := req.Send()
@@ -890,6 +910,7 @@ const opListQueues = "ListQueues"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListQueues
 func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, output *ListQueuesOutput) {
 	op := &request.Operation{
 		Name:       opListQueues,
@@ -919,6 +940,7 @@ func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, o
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation ListQueues for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListQueues
 func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
 	req, out := c.ListQueuesRequest(input)
 	err := req.Send()
@@ -951,6 +973,7 @@ const opPurgeQueue = "PurgeQueue"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/PurgeQueue
 func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, output *PurgeQueueOutput) {
 	op := &request.Operation{
 		Name:       opPurgeQueue,
@@ -999,6 +1022,7 @@ func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, o
 //   within the last 60 seconds, the time it can take to delete the messages in
 //   the queue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/PurgeQueue
 func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, error) {
 	req, out := c.PurgeQueueRequest(input)
 	err := req.Send()
@@ -1031,6 +1055,7 @@ const opReceiveMessage = "ReceiveMessage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ReceiveMessage
 func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Request, output *ReceiveMessageOutput) {
 	op := &request.Operation{
 		Name:       opReceiveMessage,
@@ -1112,6 +1137,7 @@ func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Re
 //   been reached. AddPermission returns this error if the maximum number of permissions
 //   for the queue has already been reached.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ReceiveMessage
 func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput, error) {
 	req, out := c.ReceiveMessageRequest(input)
 	err := req.Send()
@@ -1144,6 +1170,7 @@ const opRemovePermission = "RemovePermission"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/RemovePermission
 func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
 	op := &request.Operation{
 		Name:       opRemovePermission,
@@ -1174,6 +1201,7 @@ func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *reques
 //
 // See the AWS API reference guide for Amazon Simple Queue Service's
 // API operation RemovePermission for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/RemovePermission
 func (c *SQS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
 	req, out := c.RemovePermissionRequest(input)
 	err := req.Send()
@@ -1206,6 +1234,7 @@ const opSendMessage = "SendMessage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessage
 func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request, output *SendMessageOutput) {
 	op := &request.Operation{
 		Name:       opSendMessage,
@@ -1250,6 +1279,7 @@ func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request,
 //   * AWS.SimpleQueueService.UnsupportedOperation
 //   Error code 400. Unsupported operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessage
 func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, error) {
 	req, out := c.SendMessageRequest(input)
 	err := req.Send()
@@ -1282,6 +1312,7 @@ const opSendMessageBatch = "SendMessageBatch"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatch
 func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *request.Request, output *SendMessageBatchOutput) {
 	op := &request.Operation{
 		Name:       opSendMessageBatch,
@@ -1360,6 +1391,7 @@ func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *reques
 //   * AWS.SimpleQueueService.UnsupportedOperation
 //   Error code 400. Unsupported operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatch
 func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchOutput, error) {
 	req, out := c.SendMessageBatchRequest(input)
 	err := req.Send()
@@ -1392,6 +1424,7 @@ const opSetQueueAttributes = "SetQueueAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SetQueueAttributes
 func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *request.Request, output *SetQueueAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetQueueAttributes,
@@ -1433,12 +1466,14 @@ func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *re
 //   * InvalidAttributeName
 //   The attribute referred to doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SetQueueAttributes
 func (c *SQS) SetQueueAttributes(input *SetQueueAttributesInput) (*SetQueueAttributesOutput, error) {
 	req, out := c.SetQueueAttributesRequest(input)
 	err := req.Send()
 	return out, err
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/AddPermissionRequest
 type AddPermissionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1535,6 +1570,7 @@ func (s *AddPermissionInput) SetQueueUrl(v string) *AddPermissionInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/AddPermissionOutput
 type AddPermissionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1551,6 +1587,7 @@ func (s AddPermissionOutput) GoString() string {
 
 // This is used in the responses of batch API to give a detailed description
 // of the result of an action on each entry in the request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/BatchResultErrorEntry
 type BatchResultErrorEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -1607,6 +1644,7 @@ func (s *BatchResultErrorEntry) SetSenderFault(v bool) *BatchResultErrorEntry {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatchRequest
 type ChangeMessageVisibilityBatchInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1675,6 +1713,7 @@ func (s *ChangeMessageVisibilityBatchInput) SetQueueUrl(v string) *ChangeMessage
 // For each message in the batch, the response contains a ChangeMessageVisibilityBatchResultEntry
 // tag if the message succeeds or a BatchResultErrorEntry tag if the message
 // fails.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatchResult
 type ChangeMessageVisibilityBatchOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1723,6 +1762,7 @@ func (s *ChangeMessageVisibilityBatchOutput) SetSuccessful(v []*ChangeMessageVis
 // &ChangeMessageVisibilityBatchRequestEntry.1.ReceiptHandle=<replaceable>Your_Receipt_Handle</replaceable>
 //
 // &ChangeMessageVisibilityBatchRequestEntry.1.VisibilityTimeout=45
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatchRequestEntry
 type ChangeMessageVisibilityBatchRequestEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -1787,6 +1827,7 @@ func (s *ChangeMessageVisibilityBatchRequestEntry) SetVisibilityTimeout(v int64)
 }
 
 // Encloses the id of an entry in ChangeMessageVisibilityBatch.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityBatchResultEntry
 type ChangeMessageVisibilityBatchResultEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -1812,6 +1853,7 @@ func (s *ChangeMessageVisibilityBatchResultEntry) SetId(v string) *ChangeMessage
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityRequest
 type ChangeMessageVisibilityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1882,6 +1924,7 @@ func (s *ChangeMessageVisibilityInput) SetVisibilityTimeout(v int64) *ChangeMess
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ChangeMessageVisibilityOutput
 type ChangeMessageVisibilityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1896,6 +1939,7 @@ func (s ChangeMessageVisibilityOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/CreateQueueRequest
 type CreateQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2033,6 +2077,7 @@ func (s *CreateQueueInput) SetQueueName(v string) *CreateQueueInput {
 }
 
 // Returns the QueueUrl element of the created queue.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/CreateQueueResult
 type CreateQueueOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2056,6 +2101,7 @@ func (s *CreateQueueOutput) SetQueueUrl(v string) *CreateQueueOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatchRequest
 type DeleteMessageBatchInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2123,6 +2169,7 @@ func (s *DeleteMessageBatchInput) SetQueueUrl(v string) *DeleteMessageBatchInput
 // For each message in the batch, the response contains a DeleteMessageBatchResultEntry
 // tag if the message is deleted or a BatchResultErrorEntry tag if the message
 // can't be deleted.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatchResult
 type DeleteMessageBatchOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2160,6 +2207,7 @@ func (s *DeleteMessageBatchOutput) SetSuccessful(v []*DeleteMessageBatchResultEn
 }
 
 // Encloses a receipt handle and an identifier for it.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatchRequestEntry
 type DeleteMessageBatchRequestEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2215,6 +2263,7 @@ func (s *DeleteMessageBatchRequestEntry) SetReceiptHandle(v string) *DeleteMessa
 }
 
 // Encloses the id an entry in DeleteMessageBatch.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageBatchResultEntry
 type DeleteMessageBatchResultEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2240,6 +2289,7 @@ func (s *DeleteMessageBatchResultEntry) SetId(v string) *DeleteMessageBatchResul
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageRequest
 type DeleteMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2294,6 +2344,7 @@ func (s *DeleteMessageInput) SetReceiptHandle(v string) *DeleteMessageInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteMessageOutput
 type DeleteMessageOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2308,6 +2359,7 @@ func (s DeleteMessageOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueueRequest
 type DeleteQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2348,6 +2400,7 @@ func (s *DeleteQueueInput) SetQueueUrl(v string) *DeleteQueueInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/DeleteQueueOutput
 type DeleteQueueOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2362,6 +2415,7 @@ func (s DeleteQueueOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributesRequest
 type GetQueueAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2475,6 +2529,7 @@ func (s *GetQueueAttributesInput) SetQueueUrl(v string) *GetQueueAttributesInput
 }
 
 // A list of returned queue attributes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueAttributesResult
 type GetQueueAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2498,6 +2553,7 @@ func (s *GetQueueAttributesOutput) SetAttributes(v map[string]*string) *GetQueue
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueUrlRequest
 type GetQueueUrlInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2550,6 +2606,7 @@ func (s *GetQueueUrlInput) SetQueueOwnerAWSAccountId(v string) *GetQueueUrlInput
 
 // For more information, see Responses (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html)
 // in the Amazon SQS Developer Guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/GetQueueUrlResult
 type GetQueueUrlOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2573,6 +2630,7 @@ func (s *GetQueueUrlOutput) SetQueueUrl(v string) *GetQueueUrlOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueuesRequest
 type ListDeadLetterSourceQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2614,6 +2672,7 @@ func (s *ListDeadLetterSourceQueuesInput) SetQueueUrl(v string) *ListDeadLetterS
 }
 
 // A list of your dead letter source queues.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListDeadLetterSourceQueuesResult
 type ListDeadLetterSourceQueuesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2640,6 +2699,7 @@ func (s *ListDeadLetterSourceQueuesOutput) SetQueueUrls(v []*string) *ListDeadLe
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListQueuesRequest
 type ListQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2667,6 +2727,7 @@ func (s *ListQueuesInput) SetQueueNamePrefix(v string) *ListQueuesInput {
 }
 
 // A list of your queues.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ListQueuesResult
 type ListQueuesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2691,6 +2752,7 @@ func (s *ListQueuesOutput) SetQueueUrls(v []*string) *ListQueuesOutput {
 }
 
 // An Amazon SQS message.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/Message
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -2787,6 +2849,7 @@ func (s *Message) SetReceiptHandle(v string) *Message {
 // body should not be empty or null. All parts of the message attribute, including
 // name, type, and value, are included in the message size restriction, which
 // is currently 256 KB (262,144 bytes).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/MessageAttributeValue
 type MessageAttributeValue struct {
 	_ struct{} `type:"structure"`
 
@@ -2870,6 +2933,7 @@ func (s *MessageAttributeValue) SetStringValue(v string) *MessageAttributeValue 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/PurgeQueueRequest
 type PurgeQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2911,6 +2975,7 @@ func (s *PurgeQueueInput) SetQueueUrl(v string) *PurgeQueueInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/PurgeQueueOutput
 type PurgeQueueOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2925,6 +2990,7 @@ func (s PurgeQueueOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ReceiveMessageRequest
 type ReceiveMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3152,6 +3218,7 @@ func (s *ReceiveMessageInput) SetWaitTimeSeconds(v int64) *ReceiveMessageInput {
 }
 
 // A list of received messages.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/ReceiveMessageResult
 type ReceiveMessageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3175,6 +3242,7 @@ func (s *ReceiveMessageOutput) SetMessages(v []*Message) *ReceiveMessageOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/RemovePermissionRequest
 type RemovePermissionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3230,6 +3298,7 @@ func (s *RemovePermissionInput) SetQueueUrl(v string) *RemovePermissionInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/RemovePermissionOutput
 type RemovePermissionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3244,6 +3313,7 @@ func (s RemovePermissionOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatchRequest
 type SendMessageBatchInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3311,6 +3381,7 @@ func (s *SendMessageBatchInput) SetQueueUrl(v string) *SendMessageBatchInput {
 // For each message in the batch, the response contains a SendMessageBatchResultEntry
 // tag if the message succeeds or a BatchResultErrorEntry tag if the message
 // fails.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatchResult
 type SendMessageBatchOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3349,6 +3420,7 @@ func (s *SendMessageBatchOutput) SetSuccessful(v []*SendMessageBatchResultEntry)
 }
 
 // Contains the details of a single Amazon SQS message along with a Id.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatchRequestEntry
 type SendMessageBatchRequestEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -3528,6 +3600,7 @@ func (s *SendMessageBatchRequestEntry) SetMessageGroupId(v string) *SendMessageB
 }
 
 // Encloses a message ID for successfully enqueued message of a SendMessageBatch.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageBatchResultEntry
 type SendMessageBatchResultEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -3604,6 +3677,7 @@ func (s *SendMessageBatchResultEntry) SetSequenceNumber(v string) *SendMessageBa
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageRequest
 type SendMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3784,6 +3858,7 @@ func (s *SendMessageInput) SetQueueUrl(v string) *SendMessageInput {
 }
 
 // The MD5OfMessageBody and MessageId elements.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SendMessageResult
 type SendMessageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3847,6 +3922,7 @@ func (s *SendMessageOutput) SetSequenceNumber(v string) *SendMessageOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SetQueueAttributesRequest
 type SetQueueAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3975,6 +4051,7 @@ func (s *SetQueueAttributesInput) SetQueueUrl(v string) *SetQueueAttributesInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05/SetQueueAttributesOutput
 type SetQueueAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
