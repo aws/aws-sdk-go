@@ -277,7 +277,6 @@ func (a *API) APIGoCode() string {
 }
 
 var blacklistedServices = map[string]struct{}{
-	"apigateway":        struct{}{},
 	"budgets":           struct{}{},
 	"cloudsearch":       struct{}{},
 	"cloudsearchdomain": struct{}{},

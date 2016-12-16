@@ -37,6 +37,8 @@ const opCreateApiKey = "CreateApiKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateApiKey
 func (c *APIGateway) CreateApiKeyRequest(input *CreateApiKeyInput) (req *request.Request, output *ApiKey) {
 	op := &request.Operation{
 		Name:       opCreateApiKey,
@@ -117,6 +119,8 @@ const opCreateAuthorizer = "CreateAuthorizer"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateAuthorizer
 func (c *APIGateway) CreateAuthorizerRequest(input *CreateAuthorizerInput) (req *request.Request, output *Authorizer) {
 	op := &request.Operation{
 		Name:       opCreateAuthorizer,
@@ -194,6 +198,8 @@ const opCreateBasePathMapping = "CreateBasePathMapping"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateBasePathMapping
 func (c *APIGateway) CreateBasePathMappingRequest(input *CreateBasePathMappingInput) (req *request.Request, output *BasePathMapping) {
 	op := &request.Operation{
 		Name:       opCreateBasePathMapping,
@@ -269,6 +275,8 @@ const opCreateDeployment = "CreateDeployment"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDeployment
 func (c *APIGateway) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request.Request, output *Deployment) {
 	op := &request.Operation{
 		Name:       opCreateDeployment,
@@ -351,6 +359,8 @@ const opCreateDocumentationPart = "CreateDocumentationPart"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDocumentationPart
 func (c *APIGateway) CreateDocumentationPartRequest(input *CreateDocumentationPartInput) (req *request.Request, output *DocumentationPart) {
 	op := &request.Operation{
 		Name:       opCreateDocumentationPart,
@@ -427,6 +437,8 @@ const opCreateDocumentationVersion = "CreateDocumentationVersion"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDocumentationVersion
 func (c *APIGateway) CreateDocumentationVersionRequest(input *CreateDocumentationVersionInput) (req *request.Request, output *DocumentationVersion) {
 	op := &request.Operation{
 		Name:       opCreateDocumentationVersion,
@@ -503,6 +515,8 @@ const opCreateDomainName = "CreateDomainName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDomainName
 func (c *APIGateway) CreateDomainNameRequest(input *CreateDomainNameInput) (req *request.Request, output *DomainName) {
 	op := &request.Operation{
 		Name:       opCreateDomainName,
@@ -575,6 +589,8 @@ const opCreateModel = "CreateModel"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateModel
 func (c *APIGateway) CreateModelRequest(input *CreateModelInput) (req *request.Request, output *Model) {
 	op := &request.Operation{
 		Name:       opCreateModel,
@@ -653,6 +669,8 @@ const opCreateResource = "CreateResource"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateResource
 func (c *APIGateway) CreateResourceRequest(input *CreateResourceInput) (req *request.Request, output *Resource) {
 	op := &request.Operation{
 		Name:       opCreateResource,
@@ -731,6 +749,8 @@ const opCreateRestApi = "CreateRestApi"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateRestApi
 func (c *APIGateway) CreateRestApiRequest(input *CreateRestApiInput) (req *request.Request, output *RestApi) {
 	op := &request.Operation{
 		Name:       opCreateRestApi,
@@ -803,6 +823,8 @@ const opCreateStage = "CreateStage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateStage
 func (c *APIGateway) CreateStageRequest(input *CreateStageInput) (req *request.Request, output *Stage) {
 	op := &request.Operation{
 		Name:       opCreateStage,
@@ -882,6 +904,8 @@ const opCreateUsagePlan = "CreateUsagePlan"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateUsagePlan
 func (c *APIGateway) CreateUsagePlanRequest(input *CreateUsagePlanInput) (req *request.Request, output *UsagePlan) {
 	op := &request.Operation{
 		Name:       opCreateUsagePlan,
@@ -961,6 +985,8 @@ const opCreateUsagePlanKey = "CreateUsagePlanKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateUsagePlanKey
 func (c *APIGateway) CreateUsagePlanKeyRequest(input *CreateUsagePlanKeyInput) (req *request.Request, output *UsagePlanKey) {
 	op := &request.Operation{
 		Name:       opCreateUsagePlanKey,
@@ -1036,6 +1062,8 @@ const opDeleteApiKey = "DeleteApiKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteApiKey
 func (c *APIGateway) DeleteApiKeyRequest(input *DeleteApiKeyInput) (req *request.Request, output *DeleteApiKeyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApiKey,
@@ -1107,6 +1135,8 @@ const opDeleteAuthorizer = "DeleteAuthorizer"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteAuthorizer
 func (c *APIGateway) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req *request.Request, output *DeleteAuthorizerOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAuthorizer,
@@ -1186,6 +1216,8 @@ const opDeleteBasePathMapping = "DeleteBasePathMapping"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteBasePathMapping
 func (c *APIGateway) DeleteBasePathMappingRequest(input *DeleteBasePathMappingInput) (req *request.Request, output *DeleteBasePathMappingOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBasePathMapping,
@@ -1257,6 +1289,8 @@ const opDeleteClientCertificate = "DeleteClientCertificate"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteClientCertificate
 func (c *APIGateway) DeleteClientCertificateRequest(input *DeleteClientCertificateInput) (req *request.Request, output *DeleteClientCertificateOutput) {
 	op := &request.Operation{
 		Name:       opDeleteClientCertificate,
@@ -1331,6 +1365,8 @@ const opDeleteDeployment = "DeleteDeployment"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDeployment
 func (c *APIGateway) DeleteDeploymentRequest(input *DeleteDeploymentInput) (req *request.Request, output *DeleteDeploymentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDeployment,
@@ -1406,6 +1442,8 @@ const opDeleteDocumentationPart = "DeleteDocumentationPart"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDocumentationPart
 func (c *APIGateway) DeleteDocumentationPartRequest(input *DeleteDocumentationPartInput) (req *request.Request, output *DeleteDocumentationPartOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDocumentationPart,
@@ -1481,6 +1519,8 @@ const opDeleteDocumentationVersion = "DeleteDocumentationVersion"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDocumentationVersion
 func (c *APIGateway) DeleteDocumentationVersionRequest(input *DeleteDocumentationVersionInput) (req *request.Request, output *DeleteDocumentationVersionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDocumentationVersion,
@@ -1556,6 +1596,8 @@ const opDeleteDomainName = "DeleteDomainName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDomainName
 func (c *APIGateway) DeleteDomainNameRequest(input *DeleteDomainNameInput) (req *request.Request, output *DeleteDomainNameOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDomainName,
@@ -1627,6 +1669,8 @@ const opDeleteIntegration = "DeleteIntegration"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteIntegration
 func (c *APIGateway) DeleteIntegrationRequest(input *DeleteIntegrationInput) (req *request.Request, output *DeleteIntegrationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIntegration,
@@ -1701,6 +1745,8 @@ const opDeleteIntegrationResponse = "DeleteIntegrationResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteIntegrationResponse
 func (c *APIGateway) DeleteIntegrationResponseRequest(input *DeleteIntegrationResponseInput) (req *request.Request, output *DeleteIntegrationResponseOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIntegrationResponse,
@@ -1778,6 +1824,8 @@ const opDeleteMethod = "DeleteMethod"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteMethod
 func (c *APIGateway) DeleteMethodRequest(input *DeleteMethodInput) (req *request.Request, output *DeleteMethodOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMethod,
@@ -1852,6 +1900,8 @@ const opDeleteMethodResponse = "DeleteMethodResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteMethodResponse
 func (c *APIGateway) DeleteMethodResponseRequest(input *DeleteMethodResponseInput) (req *request.Request, output *DeleteMethodResponseOutput) {
 	op := &request.Operation{
 		Name:       opDeleteMethodResponse,
@@ -1929,6 +1979,8 @@ const opDeleteModel = "DeleteModel"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteModel
 func (c *APIGateway) DeleteModelRequest(input *DeleteModelInput) (req *request.Request, output *DeleteModelOutput) {
 	op := &request.Operation{
 		Name:       opDeleteModel,
@@ -2006,6 +2058,8 @@ const opDeleteResource = "DeleteResource"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteResource
 func (c *APIGateway) DeleteResourceRequest(input *DeleteResourceInput) (req *request.Request, output *DeleteResourceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteResource,
@@ -2083,6 +2137,8 @@ const opDeleteRestApi = "DeleteRestApi"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteRestApi
 func (c *APIGateway) DeleteRestApiRequest(input *DeleteRestApiInput) (req *request.Request, output *DeleteRestApiOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRestApi,
@@ -2157,6 +2213,8 @@ const opDeleteStage = "DeleteStage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteStage
 func (c *APIGateway) DeleteStageRequest(input *DeleteStageInput) (req *request.Request, output *DeleteStageOutput) {
 	op := &request.Operation{
 		Name:       opDeleteStage,
@@ -2231,6 +2289,8 @@ const opDeleteUsagePlan = "DeleteUsagePlan"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteUsagePlan
 func (c *APIGateway) DeleteUsagePlanRequest(input *DeleteUsagePlanInput) (req *request.Request, output *DeleteUsagePlanOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUsagePlan,
@@ -2305,6 +2365,8 @@ const opDeleteUsagePlanKey = "DeleteUsagePlanKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteUsagePlanKey
 func (c *APIGateway) DeleteUsagePlanKeyRequest(input *DeleteUsagePlanKeyInput) (req *request.Request, output *DeleteUsagePlanKeyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteUsagePlanKey,
@@ -2383,6 +2445,8 @@ const opFlushStageAuthorizersCache = "FlushStageAuthorizersCache"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/FlushStageAuthorizersCache
 func (c *APIGateway) FlushStageAuthorizersCacheRequest(input *FlushStageAuthorizersCacheInput) (req *request.Request, output *FlushStageAuthorizersCacheOutput) {
 	op := &request.Operation{
 		Name:       opFlushStageAuthorizersCache,
@@ -2457,6 +2521,8 @@ const opFlushStageCache = "FlushStageCache"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/FlushStageCache
 func (c *APIGateway) FlushStageCacheRequest(input *FlushStageCacheInput) (req *request.Request, output *FlushStageCacheOutput) {
 	op := &request.Operation{
 		Name:       opFlushStageCache,
@@ -2531,6 +2597,8 @@ const opGenerateClientCertificate = "GenerateClientCertificate"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GenerateClientCertificate
 func (c *APIGateway) GenerateClientCertificateRequest(input *GenerateClientCertificateInput) (req *request.Request, output *ClientCertificate) {
 	op := &request.Operation{
 		Name:       opGenerateClientCertificate,
@@ -2600,6 +2668,8 @@ const opGetAccount = "GetAccount"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAccount
 func (c *APIGateway) GetAccountRequest(input *GetAccountInput) (req *request.Request, output *Account) {
 	op := &request.Operation{
 		Name:       opGetAccount,
@@ -2669,6 +2739,8 @@ const opGetApiKey = "GetApiKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetApiKey
 func (c *APIGateway) GetApiKeyRequest(input *GetApiKeyInput) (req *request.Request, output *ApiKey) {
 	op := &request.Operation{
 		Name:       opGetApiKey,
@@ -2738,6 +2810,8 @@ const opGetApiKeys = "GetApiKeys"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetApiKeys
 func (c *APIGateway) GetApiKeysRequest(input *GetApiKeysInput) (req *request.Request, output *GetApiKeysOutput) {
 	op := &request.Operation{
 		Name:       opGetApiKeys,
@@ -2838,6 +2912,8 @@ const opGetAuthorizer = "GetAuthorizer"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizer
 func (c *APIGateway) GetAuthorizerRequest(input *GetAuthorizerInput) (req *request.Request, output *Authorizer) {
 	op := &request.Operation{
 		Name:       opGetAuthorizer,
@@ -2909,6 +2985,8 @@ const opGetAuthorizers = "GetAuthorizers"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizers
 func (c *APIGateway) GetAuthorizersRequest(input *GetAuthorizersInput) (req *request.Request, output *GetAuthorizersOutput) {
 	op := &request.Operation{
 		Name:       opGetAuthorizers,
@@ -2983,6 +3061,8 @@ const opGetBasePathMapping = "GetBasePathMapping"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetBasePathMapping
 func (c *APIGateway) GetBasePathMappingRequest(input *GetBasePathMappingInput) (req *request.Request, output *BasePathMapping) {
 	op := &request.Operation{
 		Name:       opGetBasePathMapping,
@@ -3052,6 +3132,8 @@ const opGetBasePathMappings = "GetBasePathMappings"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetBasePathMappings
 func (c *APIGateway) GetBasePathMappingsRequest(input *GetBasePathMappingsInput) (req *request.Request, output *GetBasePathMappingsOutput) {
 	op := &request.Operation{
 		Name:       opGetBasePathMappings,
@@ -3152,6 +3234,8 @@ const opGetClientCertificate = "GetClientCertificate"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetClientCertificate
 func (c *APIGateway) GetClientCertificateRequest(input *GetClientCertificateInput) (req *request.Request, output *ClientCertificate) {
 	op := &request.Operation{
 		Name:       opGetClientCertificate,
@@ -3221,6 +3305,8 @@ const opGetClientCertificates = "GetClientCertificates"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetClientCertificates
 func (c *APIGateway) GetClientCertificatesRequest(input *GetClientCertificatesInput) (req *request.Request, output *GetClientCertificatesOutput) {
 	op := &request.Operation{
 		Name:       opGetClientCertificates,
@@ -3321,6 +3407,8 @@ const opGetDeployment = "GetDeployment"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDeployment
 func (c *APIGateway) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Request, output *Deployment) {
 	op := &request.Operation{
 		Name:       opGetDeployment,
@@ -3393,6 +3481,8 @@ const opGetDeployments = "GetDeployments"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDeployments
 func (c *APIGateway) GetDeploymentsRequest(input *GetDeploymentsInput) (req *request.Request, output *GetDeploymentsOutput) {
 	op := &request.Operation{
 		Name:       opGetDeployments,
@@ -3496,6 +3586,8 @@ const opGetDocumentationPart = "GetDocumentationPart"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationPart
 func (c *APIGateway) GetDocumentationPartRequest(input *GetDocumentationPartInput) (req *request.Request, output *DocumentationPart) {
 	op := &request.Operation{
 		Name:       opGetDocumentationPart,
@@ -3563,6 +3655,8 @@ const opGetDocumentationParts = "GetDocumentationParts"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationParts
 func (c *APIGateway) GetDocumentationPartsRequest(input *GetDocumentationPartsInput) (req *request.Request, output *GetDocumentationPartsOutput) {
 	op := &request.Operation{
 		Name:       opGetDocumentationParts,
@@ -3633,6 +3727,8 @@ const opGetDocumentationVersion = "GetDocumentationVersion"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationVersion
 func (c *APIGateway) GetDocumentationVersionRequest(input *GetDocumentationVersionInput) (req *request.Request, output *DocumentationVersion) {
 	op := &request.Operation{
 		Name:       opGetDocumentationVersion,
@@ -3700,6 +3796,8 @@ const opGetDocumentationVersions = "GetDocumentationVersions"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationVersions
 func (c *APIGateway) GetDocumentationVersionsRequest(input *GetDocumentationVersionsInput) (req *request.Request, output *GetDocumentationVersionsOutput) {
 	op := &request.Operation{
 		Name:       opGetDocumentationVersions,
@@ -3770,6 +3868,8 @@ const opGetDomainName = "GetDomainName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainName
 func (c *APIGateway) GetDomainNameRequest(input *GetDomainNameInput) (req *request.Request, output *DomainName) {
 	op := &request.Operation{
 		Name:       opGetDomainName,
@@ -3843,6 +3943,8 @@ const opGetDomainNames = "GetDomainNames"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainNames
 func (c *APIGateway) GetDomainNamesRequest(input *GetDomainNamesInput) (req *request.Request, output *GetDomainNamesOutput) {
 	op := &request.Operation{
 		Name:       opGetDomainNames,
@@ -3943,6 +4045,8 @@ const opGetExport = "GetExport"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetExport
 func (c *APIGateway) GetExportRequest(input *GetExportInput) (req *request.Request, output *GetExportOutput) {
 	op := &request.Operation{
 		Name:       opGetExport,
@@ -4015,6 +4119,8 @@ const opGetIntegration = "GetIntegration"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetIntegration
 func (c *APIGateway) GetIntegrationRequest(input *GetIntegrationInput) (req *request.Request, output *Integration) {
 	op := &request.Operation{
 		Name:       opGetIntegration,
@@ -4084,6 +4190,8 @@ const opGetIntegrationResponse = "GetIntegrationResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetIntegrationResponse
 func (c *APIGateway) GetIntegrationResponseRequest(input *GetIntegrationResponseInput) (req *request.Request, output *IntegrationResponse) {
 	op := &request.Operation{
 		Name:       opGetIntegrationResponse,
@@ -4153,6 +4261,8 @@ const opGetMethod = "GetMethod"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetMethod
 func (c *APIGateway) GetMethodRequest(input *GetMethodInput) (req *request.Request, output *Method) {
 	op := &request.Operation{
 		Name:       opGetMethod,
@@ -4222,6 +4332,8 @@ const opGetMethodResponse = "GetMethodResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetMethodResponse
 func (c *APIGateway) GetMethodResponseRequest(input *GetMethodResponseInput) (req *request.Request, output *MethodResponse) {
 	op := &request.Operation{
 		Name:       opGetMethodResponse,
@@ -4291,6 +4403,8 @@ const opGetModel = "GetModel"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetModel
 func (c *APIGateway) GetModelRequest(input *GetModelInput) (req *request.Request, output *Model) {
 	op := &request.Operation{
 		Name:       opGetModel,
@@ -4360,6 +4474,8 @@ const opGetModelTemplate = "GetModelTemplate"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetModelTemplate
 func (c *APIGateway) GetModelTemplateRequest(input *GetModelTemplateInput) (req *request.Request, output *GetModelTemplateOutput) {
 	op := &request.Operation{
 		Name:       opGetModelTemplate,
@@ -4433,6 +4549,8 @@ const opGetModels = "GetModels"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetModels
 func (c *APIGateway) GetModelsRequest(input *GetModelsInput) (req *request.Request, output *GetModelsOutput) {
 	op := &request.Operation{
 		Name:       opGetModels,
@@ -4536,6 +4654,8 @@ const opGetResource = "GetResource"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetResource
 func (c *APIGateway) GetResourceRequest(input *GetResourceInput) (req *request.Request, output *Resource) {
 	op := &request.Operation{
 		Name:       opGetResource,
@@ -4605,6 +4725,8 @@ const opGetResources = "GetResources"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetResources
 func (c *APIGateway) GetResourcesRequest(input *GetResourcesInput) (req *request.Request, output *GetResourcesOutput) {
 	op := &request.Operation{
 		Name:       opGetResources,
@@ -4708,6 +4830,8 @@ const opGetRestApi = "GetRestApi"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetRestApi
 func (c *APIGateway) GetRestApiRequest(input *GetRestApiInput) (req *request.Request, output *RestApi) {
 	op := &request.Operation{
 		Name:       opGetRestApi,
@@ -4777,6 +4901,8 @@ const opGetRestApis = "GetRestApis"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetRestApis
 func (c *APIGateway) GetRestApisRequest(input *GetRestApisInput) (req *request.Request, output *GetRestApisOutput) {
 	op := &request.Operation{
 		Name:       opGetRestApis,
@@ -4877,6 +5003,8 @@ const opGetSdk = "GetSdk"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetSdk
 func (c *APIGateway) GetSdkRequest(input *GetSdkInput) (req *request.Request, output *GetSdkOutput) {
 	op := &request.Operation{
 		Name:       opGetSdk,
@@ -4949,6 +5077,8 @@ const opGetStage = "GetStage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetStage
 func (c *APIGateway) GetStageRequest(input *GetStageInput) (req *request.Request, output *Stage) {
 	op := &request.Operation{
 		Name:       opGetStage,
@@ -5018,6 +5148,8 @@ const opGetStages = "GetStages"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetStages
 func (c *APIGateway) GetStagesRequest(input *GetStagesInput) (req *request.Request, output *GetStagesOutput) {
 	op := &request.Operation{
 		Name:       opGetStages,
@@ -5087,6 +5219,8 @@ const opGetUsage = "GetUsage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsage
 func (c *APIGateway) GetUsageRequest(input *GetUsageInput) (req *request.Request, output *Usage) {
 	op := &request.Operation{
 		Name:       opGetUsage,
@@ -5190,6 +5324,8 @@ const opGetUsagePlan = "GetUsagePlan"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlan
 func (c *APIGateway) GetUsagePlanRequest(input *GetUsagePlanInput) (req *request.Request, output *UsagePlan) {
 	op := &request.Operation{
 		Name:       opGetUsagePlan,
@@ -5262,6 +5398,8 @@ const opGetUsagePlanKey = "GetUsagePlanKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlanKey
 func (c *APIGateway) GetUsagePlanKeyRequest(input *GetUsagePlanKeyInput) (req *request.Request, output *UsagePlanKey) {
 	op := &request.Operation{
 		Name:       opGetUsagePlanKey,
@@ -5334,6 +5472,8 @@ const opGetUsagePlanKeys = "GetUsagePlanKeys"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlanKeys
 func (c *APIGateway) GetUsagePlanKeysRequest(input *GetUsagePlanKeysInput) (req *request.Request, output *GetUsagePlanKeysOutput) {
 	op := &request.Operation{
 		Name:       opGetUsagePlanKeys,
@@ -5438,6 +5578,8 @@ const opGetUsagePlans = "GetUsagePlans"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlans
 func (c *APIGateway) GetUsagePlansRequest(input *GetUsagePlansInput) (req *request.Request, output *GetUsagePlansOutput) {
 	op := &request.Operation{
 		Name:       opGetUsagePlans,
@@ -5544,6 +5686,8 @@ const opImportApiKeys = "ImportApiKeys"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ImportApiKeys
 func (c *APIGateway) ImportApiKeysRequest(input *ImportApiKeysInput) (req *request.Request, output *ImportApiKeysOutput) {
 	op := &request.Operation{
 		Name:       opImportApiKeys,
@@ -5622,6 +5766,8 @@ const opImportDocumentationParts = "ImportDocumentationParts"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ImportDocumentationParts
 func (c *APIGateway) ImportDocumentationPartsRequest(input *ImportDocumentationPartsInput) (req *request.Request, output *ImportDocumentationPartsOutput) {
 	op := &request.Operation{
 		Name:       opImportDocumentationParts,
@@ -5695,6 +5841,8 @@ const opImportRestApi = "ImportRestApi"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ImportRestApi
 func (c *APIGateway) ImportRestApiRequest(input *ImportRestApiInput) (req *request.Request, output *RestApi) {
 	op := &request.Operation{
 		Name:       opImportRestApi,
@@ -5771,6 +5919,8 @@ const opPutIntegration = "PutIntegration"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutIntegration
 func (c *APIGateway) PutIntegrationRequest(input *PutIntegrationInput) (req *request.Request, output *Integration) {
 	op := &request.Operation{
 		Name:       opPutIntegration,
@@ -5846,6 +5996,8 @@ const opPutIntegrationResponse = "PutIntegrationResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutIntegrationResponse
 func (c *APIGateway) PutIntegrationResponseRequest(input *PutIntegrationResponseInput) (req *request.Request, output *IntegrationResponse) {
 	op := &request.Operation{
 		Name:       opPutIntegrationResponse,
@@ -5924,6 +6076,8 @@ const opPutMethod = "PutMethod"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutMethod
 func (c *APIGateway) PutMethodRequest(input *PutMethodInput) (req *request.Request, output *Method) {
 	op := &request.Operation{
 		Name:       opPutMethod,
@@ -6002,6 +6156,8 @@ const opPutMethodResponse = "PutMethodResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutMethodResponse
 func (c *APIGateway) PutMethodResponseRequest(input *PutMethodResponseInput) (req *request.Request, output *MethodResponse) {
 	op := &request.Operation{
 		Name:       opPutMethodResponse,
@@ -6080,6 +6236,8 @@ const opPutRestApi = "PutRestApi"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutRestApi
 func (c *APIGateway) PutRestApiRequest(input *PutRestApiInput) (req *request.Request, output *RestApi) {
 	op := &request.Operation{
 		Name:       opPutRestApi,
@@ -6161,6 +6319,8 @@ const opTestInvokeAuthorizer = "TestInvokeAuthorizer"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeAuthorizer
 func (c *APIGateway) TestInvokeAuthorizerRequest(input *TestInvokeAuthorizerInput) (req *request.Request, output *TestInvokeAuthorizerOutput) {
 	op := &request.Operation{
 		Name:       opTestInvokeAuthorizer,
@@ -6236,6 +6396,8 @@ const opTestInvokeMethod = "TestInvokeMethod"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeMethod
 func (c *APIGateway) TestInvokeMethodRequest(input *TestInvokeMethodInput) (req *request.Request, output *TestInvokeMethodOutput) {
 	op := &request.Operation{
 		Name:       opTestInvokeMethod,
@@ -6309,6 +6471,8 @@ const opUpdateAccount = "UpdateAccount"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAccount
 func (c *APIGateway) UpdateAccountRequest(input *UpdateAccountInput) (req *request.Request, output *Account) {
 	op := &request.Operation{
 		Name:       opUpdateAccount,
@@ -6381,6 +6545,8 @@ const opUpdateApiKey = "UpdateApiKey"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateApiKey
 func (c *APIGateway) UpdateApiKeyRequest(input *UpdateApiKeyInput) (req *request.Request, output *ApiKey) {
 	op := &request.Operation{
 		Name:       opUpdateApiKey,
@@ -6456,6 +6622,8 @@ const opUpdateAuthorizer = "UpdateAuthorizer"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAuthorizer
 func (c *APIGateway) UpdateAuthorizerRequest(input *UpdateAuthorizerInput) (req *request.Request, output *Authorizer) {
 	op := &request.Operation{
 		Name:       opUpdateAuthorizer,
@@ -6530,6 +6698,8 @@ const opUpdateBasePathMapping = "UpdateBasePathMapping"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateBasePathMapping
 func (c *APIGateway) UpdateBasePathMappingRequest(input *UpdateBasePathMappingInput) (req *request.Request, output *BasePathMapping) {
 	op := &request.Operation{
 		Name:       opUpdateBasePathMapping,
@@ -6605,6 +6775,8 @@ const opUpdateClientCertificate = "UpdateClientCertificate"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateClientCertificate
 func (c *APIGateway) UpdateClientCertificateRequest(input *UpdateClientCertificateInput) (req *request.Request, output *ClientCertificate) {
 	op := &request.Operation{
 		Name:       opUpdateClientCertificate,
@@ -6677,6 +6849,8 @@ const opUpdateDeployment = "UpdateDeployment"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDeployment
 func (c *APIGateway) UpdateDeploymentRequest(input *UpdateDeploymentInput) (req *request.Request, output *Deployment) {
 	op := &request.Operation{
 		Name:       opUpdateDeployment,
@@ -6752,6 +6926,8 @@ const opUpdateDocumentationPart = "UpdateDocumentationPart"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDocumentationPart
 func (c *APIGateway) UpdateDocumentationPartRequest(input *UpdateDocumentationPartInput) (req *request.Request, output *DocumentationPart) {
 	op := &request.Operation{
 		Name:       opUpdateDocumentationPart,
@@ -6828,6 +7004,8 @@ const opUpdateDocumentationVersion = "UpdateDocumentationVersion"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDocumentationVersion
 func (c *APIGateway) UpdateDocumentationVersionRequest(input *UpdateDocumentationVersionInput) (req *request.Request, output *DocumentationVersion) {
 	op := &request.Operation{
 		Name:       opUpdateDocumentationVersion,
@@ -6901,6 +7079,8 @@ const opUpdateDomainName = "UpdateDomainName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDomainName
 func (c *APIGateway) UpdateDomainNameRequest(input *UpdateDomainNameInput) (req *request.Request, output *DomainName) {
 	op := &request.Operation{
 		Name:       opUpdateDomainName,
@@ -6976,6 +7156,8 @@ const opUpdateIntegration = "UpdateIntegration"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateIntegration
 func (c *APIGateway) UpdateIntegrationRequest(input *UpdateIntegrationInput) (req *request.Request, output *Integration) {
 	op := &request.Operation{
 		Name:       opUpdateIntegration,
@@ -7051,6 +7233,8 @@ const opUpdateIntegrationResponse = "UpdateIntegrationResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateIntegrationResponse
 func (c *APIGateway) UpdateIntegrationResponseRequest(input *UpdateIntegrationResponseInput) (req *request.Request, output *IntegrationResponse) {
 	op := &request.Operation{
 		Name:       opUpdateIntegrationResponse,
@@ -7126,6 +7310,8 @@ const opUpdateMethod = "UpdateMethod"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateMethod
 func (c *APIGateway) UpdateMethodRequest(input *UpdateMethodInput) (req *request.Request, output *Method) {
 	op := &request.Operation{
 		Name:       opUpdateMethod,
@@ -7201,6 +7387,8 @@ const opUpdateMethodResponse = "UpdateMethodResponse"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateMethodResponse
 func (c *APIGateway) UpdateMethodResponseRequest(input *UpdateMethodResponseInput) (req *request.Request, output *MethodResponse) {
 	op := &request.Operation{
 		Name:       opUpdateMethodResponse,
@@ -7279,6 +7467,8 @@ const opUpdateModel = "UpdateModel"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateModel
 func (c *APIGateway) UpdateModelRequest(input *UpdateModelInput) (req *request.Request, output *Model) {
 	op := &request.Operation{
 		Name:       opUpdateModel,
@@ -7354,6 +7544,8 @@ const opUpdateResource = "UpdateResource"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateResource
 func (c *APIGateway) UpdateResourceRequest(input *UpdateResourceInput) (req *request.Request, output *Resource) {
 	op := &request.Operation{
 		Name:       opUpdateResource,
@@ -7429,6 +7621,8 @@ const opUpdateRestApi = "UpdateRestApi"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateRestApi
 func (c *APIGateway) UpdateRestApiRequest(input *UpdateRestApiInput) (req *request.Request, output *RestApi) {
 	op := &request.Operation{
 		Name:       opUpdateRestApi,
@@ -7504,6 +7698,8 @@ const opUpdateStage = "UpdateStage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateStage
 func (c *APIGateway) UpdateStageRequest(input *UpdateStageInput) (req *request.Request, output *Stage) {
 	op := &request.Operation{
 		Name:       opUpdateStage,
@@ -7579,6 +7775,8 @@ const opUpdateUsage = "UpdateUsage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateUsage
 func (c *APIGateway) UpdateUsageRequest(input *UpdateUsageInput) (req *request.Request, output *Usage) {
 	op := &request.Operation{
 		Name:       opUpdateUsage,
@@ -7652,6 +7850,8 @@ const opUpdateUsagePlan = "UpdateUsagePlan"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateUsagePlan
 func (c *APIGateway) UpdateUsagePlanRequest(input *UpdateUsagePlanInput) (req *request.Request, output *UsagePlan) {
 	op := &request.Operation{
 		Name:       opUpdateUsagePlan,
@@ -8171,6 +8371,7 @@ func (s *ClientCertificate) SetPemEncodedCertificate(v string) *ClientCertificat
 }
 
 // Request to create an ApiKey resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateApiKeyRequest
 type CreateApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8251,6 +8452,7 @@ func (s *CreateApiKeyInput) SetValue(v string) *CreateApiKeyInput {
 }
 
 // Request to add a new Authorizer to an existing RestApi resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateAuthorizerRequest
 type CreateAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8387,6 +8589,7 @@ func (s *CreateAuthorizerInput) SetType(v string) *CreateAuthorizerInput {
 }
 
 // Requests Amazon API Gateway to create a new BasePathMapping resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateBasePathMappingRequest
 type CreateBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8463,6 +8666,7 @@ func (s *CreateBasePathMappingInput) SetStage(v string) *CreateBasePathMappingIn
 }
 
 // Requests Amazon API Gateway to create a Deployment resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDeploymentRequest
 type CreateDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8559,6 +8763,7 @@ func (s *CreateDeploymentInput) SetVariables(v map[string]*string) *CreateDeploy
 }
 
 // Creates a new documentation part of a given API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDocumentationPartRequest
 type CreateDocumentationPartInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8634,6 +8839,7 @@ func (s *CreateDocumentationPartInput) SetRestApiId(v string) *CreateDocumentati
 }
 
 // Creates a new documentation version of a given API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDocumentationVersionRequest
 type CreateDocumentationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8706,6 +8912,7 @@ func (s *CreateDocumentationVersionInput) SetStageName(v string) *CreateDocument
 }
 
 // A request to create a new domain name.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateDomainNameRequest
 type CreateDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8806,6 +9013,7 @@ func (s *CreateDomainNameInput) SetDomainName(v string) *CreateDomainNameInput {
 }
 
 // Request to add a new Model to an existing RestApi resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateModelRequest
 type CreateModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8892,6 +9100,7 @@ func (s *CreateModelInput) SetSchema(v string) *CreateModelInput {
 }
 
 // Requests Amazon API Gateway to create a Resource resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateResourceRequest
 type CreateResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8959,6 +9168,7 @@ func (s *CreateResourceInput) SetRestApiId(v string) *CreateResourceInput {
 }
 
 // The POST Request to add a new RestApi resource to your collection.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateRestApiRequest
 type CreateRestApiInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9035,6 +9245,7 @@ func (s *CreateRestApiInput) SetVersion(v string) *CreateRestApiInput {
 }
 
 // Requests Amazon API Gateway to create a Stage resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateStageRequest
 type CreateStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9151,6 +9362,7 @@ func (s *CreateStageInput) SetVariables(v map[string]*string) *CreateStageInput 
 // The POST request to create a usage plan with the name, description, throttle
 // limits and quota limits, as well as the associated API stages, specified
 // in the payload.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateUsagePlanRequest
 type CreateUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9227,6 +9439,7 @@ func (s *CreateUsagePlanInput) SetThrottle(v *ThrottleSettings) *CreateUsagePlan
 
 // The POST request to create a usage plan key for adding an existing API key
 // to a usage plan.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/CreateUsagePlanKeyRequest
 type CreateUsagePlanKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9295,6 +9508,7 @@ func (s *CreateUsagePlanKeyInput) SetUsagePlanId(v string) *CreateUsagePlanKeyIn
 }
 
 // A request to delete the ApiKey resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteApiKeyRequest
 type DeleteApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9348,6 +9562,7 @@ func (s DeleteApiKeyOutput) GoString() string {
 }
 
 // Request to delete an existing Authorizer resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteAuthorizerRequest
 type DeleteAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9415,6 +9630,7 @@ func (s DeleteAuthorizerOutput) GoString() string {
 }
 
 // A request to delete the BasePathMapping resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteBasePathMappingRequest
 type DeleteBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9482,6 +9698,7 @@ func (s DeleteBasePathMappingOutput) GoString() string {
 }
 
 // A request to delete the ClientCertificate resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteClientCertificateRequest
 type DeleteClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9535,6 +9752,7 @@ func (s DeleteClientCertificateOutput) GoString() string {
 }
 
 // Requests Amazon API Gateway to delete a Deployment resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDeploymentRequest
 type DeleteDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9602,6 +9820,7 @@ func (s DeleteDeploymentOutput) GoString() string {
 }
 
 // Deletes an existing documentation part of an API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDocumentationPartRequest
 type DeleteDocumentationPartInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9670,6 +9889,7 @@ func (s DeleteDocumentationPartOutput) GoString() string {
 }
 
 // Deletes an existing documentation version of an API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDocumentationVersionRequest
 type DeleteDocumentationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9737,6 +9957,7 @@ func (s DeleteDocumentationVersionOutput) GoString() string {
 }
 
 // A request to delete the DomainName resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteDomainNameRequest
 type DeleteDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9790,6 +10011,7 @@ func (s DeleteDomainNameOutput) GoString() string {
 }
 
 // Represents a delete integration request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteIntegrationRequest
 type DeleteIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9871,6 +10093,7 @@ func (s DeleteIntegrationOutput) GoString() string {
 }
 
 // Represents a delete integration response request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteIntegrationResponseRequest
 type DeleteIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9966,6 +10189,7 @@ func (s DeleteIntegrationResponseOutput) GoString() string {
 }
 
 // Request to delete an existing Method resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteMethodRequest
 type DeleteMethodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10047,6 +10271,7 @@ func (s DeleteMethodOutput) GoString() string {
 }
 
 // A request to delete an existing MethodResponse resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteMethodResponseRequest
 type DeleteMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10142,6 +10367,7 @@ func (s DeleteMethodResponseOutput) GoString() string {
 }
 
 // Request to delete an existing model in an existing RestApi resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteModelRequest
 type DeleteModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10209,6 +10435,7 @@ func (s DeleteModelOutput) GoString() string {
 }
 
 // Request to delete a Resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteResourceRequest
 type DeleteResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10276,6 +10503,7 @@ func (s DeleteResourceOutput) GoString() string {
 }
 
 // Request to delete the specified API from your collection.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteRestApiRequest
 type DeleteRestApiInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10329,6 +10557,7 @@ func (s DeleteRestApiOutput) GoString() string {
 }
 
 // Requests Amazon API Gateway to delete a Stage resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteStageRequest
 type DeleteStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10396,6 +10625,7 @@ func (s DeleteStageOutput) GoString() string {
 }
 
 // The DELETE request to delete a uasge plan of a given plan Id.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteUsagePlanRequest
 type DeleteUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10436,6 +10666,7 @@ func (s *DeleteUsagePlanInput) SetUsagePlanId(v string) *DeleteUsagePlanInput {
 
 // The DELETE request to delete a usage plan key and remove the underlying API
 // key from the associated usage plan.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DeleteUsagePlanKeyRequest
 type DeleteUsagePlanKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10849,6 +11080,7 @@ func (s *DomainName) SetDomainName(v string) *DomainName {
 }
 
 // Request to flush authorizer cache entries on a specified stage.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/FlushStageAuthorizersCacheRequest
 type FlushStageAuthorizersCacheInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10916,6 +11148,7 @@ func (s FlushStageAuthorizersCacheOutput) GoString() string {
 }
 
 // Requests Amazon API Gateway to flush a stage's cache.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/FlushStageCacheRequest
 type FlushStageCacheInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10983,6 +11216,7 @@ func (s FlushStageCacheOutput) GoString() string {
 }
 
 // A request to generate a ClientCertificate resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GenerateClientCertificateRequest
 type GenerateClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11008,6 +11242,7 @@ func (s *GenerateClientCertificateInput) SetDescription(v string) *GenerateClien
 
 // Requests Amazon API Gateway to get information about the current Account
 // resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAccountRequest
 type GetAccountInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -11023,6 +11258,7 @@ func (s GetAccountInput) GoString() string {
 }
 
 // A request to get information about the current ApiKey resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetApiKeyRequest
 type GetApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11072,6 +11308,7 @@ func (s *GetApiKeyInput) SetIncludeValue(v bool) *GetApiKeyInput {
 }
 
 // A request to get information about the current ApiKeys resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetApiKeysRequest
 type GetApiKeysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11136,6 +11373,7 @@ func (s *GetApiKeysInput) SetPosition(v string) *GetApiKeysInput {
 // Represents a collection of API keys as represented by an ApiKeys resource.
 //
 // Use API Keys (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-api-keys.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ApiKeys
 type GetApiKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11178,6 +11416,7 @@ func (s *GetApiKeysOutput) SetWarnings(v []*string) *GetApiKeysOutput {
 }
 
 // Request to describe an existing Authorizer resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizerRequest
 type GetAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11231,6 +11470,7 @@ func (s *GetAuthorizerInput) SetRestApiId(v string) *GetAuthorizerInput {
 }
 
 // Request to describe an existing Authorizers resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetAuthorizersRequest
 type GetAuthorizersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11291,6 +11531,7 @@ func (s *GetAuthorizersInput) SetRestApiId(v string) *GetAuthorizersInput {
 // Represents a collection of Authorizer resources.
 //
 // Enable custom authorization (http://docs.aws.amazon.com/apigateway/latest/developerguide/use-custom-authorizer.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Authorizers
 type GetAuthorizersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11323,6 +11564,7 @@ func (s *GetAuthorizersOutput) SetPosition(v string) *GetAuthorizersOutput {
 }
 
 // Request to describe a BasePathMapping resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetBasePathMappingRequest
 type GetBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11379,6 +11621,7 @@ func (s *GetBasePathMappingInput) SetDomainName(v string) *GetBasePathMappingInp
 }
 
 // A request to get information about a collection of BasePathMapping resources.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetBasePathMappingsRequest
 type GetBasePathMappingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11441,6 +11684,7 @@ func (s *GetBasePathMappingsInput) SetPosition(v string) *GetBasePathMappingsInp
 // Represents a collection of BasePathMapping resources.
 //
 // Use Custom Domain Names (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/BasePathMappings
 type GetBasePathMappingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11474,6 +11718,7 @@ func (s *GetBasePathMappingsOutput) SetPosition(v string) *GetBasePathMappingsOu
 }
 
 // A request to get information about the current ClientCertificate resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetClientCertificateRequest
 type GetClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11513,6 +11758,7 @@ func (s *GetClientCertificateInput) SetClientCertificateId(v string) *GetClientC
 }
 
 // A request to get information about a collection of ClientCertificate resources.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetClientCertificatesRequest
 type GetClientCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11551,6 +11797,7 @@ func (s *GetClientCertificatesInput) SetPosition(v string) *GetClientCertificate
 // Represents a collection of ClientCertificate resources.
 //
 // Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ClientCertificates
 type GetClientCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11584,6 +11831,7 @@ func (s *GetClientCertificatesOutput) SetPosition(v string) *GetClientCertificat
 }
 
 // Requests Amazon API Gateway to get information about a Deployment resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDeploymentRequest
 type GetDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11638,6 +11886,7 @@ func (s *GetDeploymentInput) SetRestApiId(v string) *GetDeploymentInput {
 }
 
 // Requests Amazon API Gateway to get information about a Deployments collection.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDeploymentsRequest
 type GetDeploymentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11709,6 +11958,7 @@ func (s *GetDeploymentsInput) SetRestApiId(v string) *GetDeploymentsInput {
 // Deploying an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-deploy-api.html),
 // AWS CLI (http://docs.aws.amazon.com/cli/latest/reference/apigateway/get-deployment.html),
 // AWS SDKs (https://aws.amazon.com/tools/)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Deployments
 type GetDeploymentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11742,6 +11992,7 @@ func (s *GetDeploymentsOutput) SetPosition(v string) *GetDeploymentsOutput {
 }
 
 // Gets a specified documentation part of a given API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationPartRequest
 type GetDocumentationPartInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11797,6 +12048,7 @@ func (s *GetDocumentationPartInput) SetRestApiId(v string) *GetDocumentationPart
 
 // Gets the documentation parts of an API. The result may be filtered by the
 // type, name, or path of API entities (targets).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationPartsRequest
 type GetDocumentationPartsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11885,6 +12137,7 @@ func (s *GetDocumentationPartsInput) SetType(v string) *GetDocumentationPartsInp
 // The collection of documentation parts of an API.
 //
 // Documenting an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html), DocumentationPart
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DocumentationParts
 type GetDocumentationPartsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11918,6 +12171,7 @@ func (s *GetDocumentationPartsOutput) SetPosition(v string) *GetDocumentationPar
 }
 
 // Gets a documentation snapshot of an API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationVersionRequest
 type GetDocumentationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11972,6 +12226,7 @@ func (s *GetDocumentationVersionInput) SetRestApiId(v string) *GetDocumentationV
 }
 
 // Gets the documentation versions of an API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDocumentationVersionsRequest
 type GetDocumentationVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12037,6 +12292,7 @@ func (s *GetDocumentationVersionsInput) SetRestApiId(v string) *GetDocumentation
 //
 // Documenting an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
 // DocumentationPart, DocumentationVersion
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DocumentationVersions
 type GetDocumentationVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12070,6 +12326,7 @@ func (s *GetDocumentationVersionsOutput) SetPosition(v string) *GetDocumentation
 }
 
 // Request to get the name of a DomainName resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainNameRequest
 type GetDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12109,6 +12366,7 @@ func (s *GetDomainNameInput) SetDomainName(v string) *GetDomainNameInput {
 }
 
 // Request to describe a collection of DomainName resources.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetDomainNamesRequest
 type GetDomainNamesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12145,6 +12403,7 @@ func (s *GetDomainNamesInput) SetPosition(v string) *GetDomainNamesInput {
 // Represents a collection of DomainName resources.
 //
 // Use Client-Side Certificate (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DomainNames
 type GetDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12178,6 +12437,7 @@ func (s *GetDomainNamesOutput) SetPosition(v string) *GetDomainNamesOutput {
 }
 
 // Request a new export of a RestApi for a particular Stage.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetExportRequest
 type GetExportInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12271,6 +12531,7 @@ func (s *GetExportInput) SetStageName(v string) *GetExportInput {
 }
 
 // The binary blob response to GetExport, which contains the generated SDK.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ExportResponse
 type GetExportOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -12314,6 +12575,7 @@ func (s *GetExportOutput) SetContentType(v string) *GetExportOutput {
 }
 
 // Represents a get integration request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetIntegrationRequest
 type GetIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12381,6 +12643,7 @@ func (s *GetIntegrationInput) SetRestApiId(v string) *GetIntegrationInput {
 }
 
 // Represents a get integration response request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetIntegrationResponseRequest
 type GetIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12462,6 +12725,7 @@ func (s *GetIntegrationResponseInput) SetStatusCode(v string) *GetIntegrationRes
 }
 
 // Request to describe an existing Method resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetMethodRequest
 type GetMethodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12529,6 +12793,7 @@ func (s *GetMethodInput) SetRestApiId(v string) *GetMethodInput {
 }
 
 // Request to describe a MethodResponse resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetMethodResponseRequest
 type GetMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12610,6 +12875,7 @@ func (s *GetMethodResponseInput) SetStatusCode(v string) *GetMethodResponseInput
 }
 
 // Request to list information about a model in an existing RestApi resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetModelRequest
 type GetModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12674,6 +12940,7 @@ func (s *GetModelInput) SetRestApiId(v string) *GetModelInput {
 }
 
 // Request to generate a sample mapping template used to transform the payload.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetModelTemplateRequest
 type GetModelTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12729,6 +12996,7 @@ func (s *GetModelTemplateInput) SetRestApiId(v string) *GetModelTemplateInput {
 // Represents a mapping template used to transform a payload.
 //
 // Mapping Templates (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html#models-mappings-mappings)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Template
 type GetModelTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12754,6 +13022,7 @@ func (s *GetModelTemplateOutput) SetValue(v string) *GetModelTemplateOutput {
 }
 
 // Request to list existing Models defined for a RestApi resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetModelsRequest
 type GetModelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12815,6 +13084,7 @@ func (s *GetModelsInput) SetRestApiId(v string) *GetModelsInput {
 // Represents a collection of Model resources.
 //
 // Method, MethodResponse, Models and Mappings (http://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Models
 type GetModelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12847,6 +13117,7 @@ func (s *GetModelsOutput) SetPosition(v string) *GetModelsOutput {
 }
 
 // Request to list information about a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetResourceRequest
 type GetResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12900,6 +13171,7 @@ func (s *GetResourceInput) SetRestApiId(v string) *GetResourceInput {
 }
 
 // Request to list information about a collection of resources.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetResourcesRequest
 type GetResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12961,6 +13233,7 @@ func (s *GetResourcesInput) SetRestApiId(v string) *GetResourcesInput {
 // Represents a collection of Resource resources.
 //
 // Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Resources
 type GetResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12993,6 +13266,7 @@ func (s *GetResourcesOutput) SetPosition(v string) *GetResourcesOutput {
 }
 
 // The GET request to list an existing RestApi defined for your collection.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetRestApiRequest
 type GetRestApiInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13032,6 +13306,7 @@ func (s *GetRestApiInput) SetRestApiId(v string) *GetRestApiInput {
 }
 
 // The GET request to list existing RestApis defined for your collection.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetRestApisRequest
 type GetRestApisInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13070,6 +13345,7 @@ func (s *GetRestApisInput) SetPosition(v string) *GetRestApisInput {
 // with your collection. A collection offers a paginated view of your APIs.
 //
 // Create an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-create-api.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/RestApis
 type GetRestApisOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13102,6 +13378,7 @@ func (s *GetRestApisOutput) SetPosition(v string) *GetRestApisOutput {
 }
 
 // Request a new generated client SDK for a RestApi and Stage.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetSdkRequest
 type GetSdkInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13182,6 +13459,7 @@ func (s *GetSdkInput) SetStageName(v string) *GetSdkInput {
 }
 
 // The binary blob response to GetSdk, which contains the generated SDK.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/SdkResponse
 type GetSdkOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -13224,6 +13502,7 @@ func (s *GetSdkOutput) SetContentType(v string) *GetSdkOutput {
 }
 
 // Requests Amazon API Gateway to get information about a Stage resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetStageRequest
 type GetStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13278,6 +13557,7 @@ func (s *GetStageInput) SetStageName(v string) *GetStageInput {
 }
 
 // Requests Amazon API Gateway to get information about one or more Stage resources.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetStagesRequest
 type GetStagesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13328,6 +13608,7 @@ func (s *GetStagesInput) SetRestApiId(v string) *GetStagesInput {
 // A list of Stage resources that are associated with the ApiKey resource.
 //
 // Deploying API in Stages (http://docs.aws.amazon.com/apigateway/latest/developerguide/stages.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/Stages
 type GetStagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13353,6 +13634,7 @@ func (s *GetStagesOutput) SetItem(v []*Stage) *GetStagesOutput {
 
 // The GET request to get the usage data of a usage plan in a specified time
 // interval.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsageRequest
 type GetUsageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13447,6 +13729,7 @@ func (s *GetUsageInput) SetUsagePlanId(v string) *GetUsageInput {
 }
 
 // The GET request to get a usage plan of a given plan identifier.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlanRequest
 type GetUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13486,6 +13769,7 @@ func (s *GetUsagePlanInput) SetUsagePlanId(v string) *GetUsagePlanInput {
 }
 
 // The GET request to get a usage plan key of a given key identifier.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlanKeyRequest
 type GetUsagePlanKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13542,6 +13826,7 @@ func (s *GetUsagePlanKeyInput) SetUsagePlanId(v string) *GetUsagePlanKeyInput {
 
 // The GET request to get all the usage plan keys representing the API keys
 // added to a specified usage plan.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlanKeysRequest
 type GetUsagePlanKeysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13614,6 +13899,7 @@ func (s *GetUsagePlanKeysInput) SetUsagePlanId(v string) *GetUsagePlanKeysInput 
 // associated API keys and, possibly, other types of keys.
 //
 // Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UsagePlanKeys
 type GetUsagePlanKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13646,6 +13932,7 @@ func (s *GetUsagePlanKeysOutput) SetPosition(v string) *GetUsagePlanKeysOutput {
 }
 
 // The GET request to get all the usage plans of the caller's account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/GetUsagePlansRequest
 type GetUsagePlansInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13691,6 +13978,7 @@ func (s *GetUsagePlansInput) SetPosition(v string) *GetUsagePlansInput {
 // Represents a collection of usage plans for an AWS account.
 //
 // Create and Use Usage Plans (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UsagePlans
 type GetUsagePlansOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13724,6 +14012,7 @@ func (s *GetUsagePlansOutput) SetPosition(v string) *GetUsagePlansOutput {
 
 // The POST request to import API keys from an external source, such as a CSV-formatted
 // file.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ImportApiKeysRequest
 type ImportApiKeysInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -13789,6 +14078,7 @@ func (s *ImportApiKeysInput) SetFormat(v string) *ImportApiKeysInput {
 }
 
 // The identifier of an ApiKey used in a UsagePlan.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ApiKeyIds
 type ImportApiKeysOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13822,6 +14112,7 @@ func (s *ImportApiKeysOutput) SetWarnings(v []*string) *ImportApiKeysOutput {
 }
 
 // Import documentation parts from an external (e.g., Swagger) definition file.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ImportDocumentationPartsRequest
 type ImportDocumentationPartsInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -13904,6 +14195,7 @@ func (s *ImportDocumentationPartsInput) SetRestApiId(v string) *ImportDocumentat
 // Documenting an API (http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-documenting-api.html),
 // documentationpart:import (http://docs.aws.amazon.com/apigateway/api-reference/link-relation/documentationpart-import/),
 // DocumentationPart
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/DocumentationPartIds
 type ImportDocumentationPartsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13938,6 +14230,7 @@ func (s *ImportDocumentationPartsOutput) SetWarnings(v []*string) *ImportDocumen
 
 // A POST request to import an API to Amazon API Gateway using an input of an
 // API definition file.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/ImportRestApiRequest
 type ImportRestApiInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -14896,6 +15189,7 @@ func (s *PatchOperation) SetValue(v string) *PatchOperation {
 }
 
 // Represents a put integration request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutIntegrationRequest
 type PutIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15095,6 +15389,7 @@ func (s *PutIntegrationInput) SetUri(v string) *PutIntegrationInput {
 }
 
 // Represents a put integration response request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutIntegrationResponseRequest
 type PutIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15232,6 +15527,7 @@ func (s *PutIntegrationResponseInput) SetStatusCode(v string) *PutIntegrationRes
 }
 
 // Request to add a method to an existing Resource resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutMethodRequest
 type PutMethodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15359,6 +15655,7 @@ func (s *PutMethodInput) SetRestApiId(v string) *PutMethodInput {
 }
 
 // Request to add a MethodResponse to an existing Method resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutMethodResponseRequest
 type PutMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15471,6 +15768,7 @@ func (s *PutMethodResponseInput) SetStatusCode(v string) *PutMethodResponseInput
 
 // A PUT request to update an existing API, with external API definitions specified
 // as the request body.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/PutRestApiRequest
 type PutRestApiInput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -15965,6 +16263,7 @@ func (s *StageKey) SetStageName(v string) *StageKey {
 }
 
 // Make a request to simulate the execution of an Authorizer.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeAuthorizerRequest
 type TestInvokeAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16067,6 +16366,7 @@ func (s *TestInvokeAuthorizerInput) SetStageVariables(v map[string]*string) *Tes
 }
 
 // Represents the response of the test invoke request for a custom Authorizer
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeAuthorizerResponse
 type TestInvokeAuthorizerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16147,6 +16447,7 @@ func (s *TestInvokeAuthorizerOutput) SetPrincipalId(v string) *TestInvokeAuthori
 }
 
 // Make a request to simulate the execution of a Method.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeMethodRequest
 type TestInvokeMethodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16265,6 +16566,7 @@ func (s *TestInvokeMethodInput) SetStageVariables(v map[string]*string) *TestInv
 // Represents the response of the test invoke request in the HTTP method.
 //
 // Test API using the API Gateway console (http://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-test-method.html#how-to-test-method-console)
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/TestInvokeMethodResponse
 type TestInvokeMethodOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16361,6 +16663,7 @@ func (s *ThrottleSettings) SetRateLimit(v float64) *ThrottleSettings {
 
 // Requests Amazon API Gateway to change information about the current Account
 // resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAccountRequest
 type UpdateAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16386,6 +16689,7 @@ func (s *UpdateAccountInput) SetPatchOperations(v []*PatchOperation) *UpdateAcco
 }
 
 // A request to change information about an ApiKey resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateApiKeyRequest
 type UpdateApiKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16435,6 +16739,7 @@ func (s *UpdateApiKeyInput) SetPatchOperations(v []*PatchOperation) *UpdateApiKe
 }
 
 // Request to update an existing Authorizer resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateAuthorizerRequest
 type UpdateAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16498,6 +16803,7 @@ func (s *UpdateAuthorizerInput) SetRestApiId(v string) *UpdateAuthorizerInput {
 }
 
 // A request to change information about the BasePathMapping resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateBasePathMappingRequest
 type UpdateBasePathMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16561,6 +16867,7 @@ func (s *UpdateBasePathMappingInput) SetPatchOperations(v []*PatchOperation) *Up
 }
 
 // A request to change information about an ClientCertificate resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateClientCertificateRequest
 type UpdateClientCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16610,6 +16917,7 @@ func (s *UpdateClientCertificateInput) SetPatchOperations(v []*PatchOperation) *
 }
 
 // Requests Amazon API Gateway to change information about a Deployment resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDeploymentRequest
 type UpdateDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16675,6 +16983,7 @@ func (s *UpdateDeploymentInput) SetRestApiId(v string) *UpdateDeploymentInput {
 }
 
 // Updates an existing documentation part of a given API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDocumentationPartRequest
 type UpdateDocumentationPartInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16738,6 +17047,7 @@ func (s *UpdateDocumentationPartInput) SetRestApiId(v string) *UpdateDocumentati
 }
 
 // Updates an existing documentation version of an API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDocumentationVersionRequest
 type UpdateDocumentationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16801,6 +17111,7 @@ func (s *UpdateDocumentationVersionInput) SetRestApiId(v string) *UpdateDocument
 }
 
 // A request to change information about the DomainName resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateDomainNameRequest
 type UpdateDomainNameInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16850,6 +17161,7 @@ func (s *UpdateDomainNameInput) SetPatchOperations(v []*PatchOperation) *UpdateD
 }
 
 // Represents an update integration request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateIntegrationRequest
 type UpdateIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16927,6 +17239,7 @@ func (s *UpdateIntegrationInput) SetRestApiId(v string) *UpdateIntegrationInput 
 }
 
 // Represents an update integration response request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateIntegrationResponseRequest
 type UpdateIntegrationResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17018,6 +17331,7 @@ func (s *UpdateIntegrationResponseInput) SetStatusCode(v string) *UpdateIntegrat
 }
 
 // Request to update an existing Method resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateMethodRequest
 type UpdateMethodInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17095,6 +17409,7 @@ func (s *UpdateMethodInput) SetRestApiId(v string) *UpdateMethodInput {
 }
 
 // A request to update an existing MethodResponse resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateMethodResponseRequest
 type UpdateMethodResponseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17186,6 +17501,7 @@ func (s *UpdateMethodResponseInput) SetStatusCode(v string) *UpdateMethodRespons
 }
 
 // Request to update an existing model in an existing RestApi resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateModelRequest
 type UpdateModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17249,6 +17565,7 @@ func (s *UpdateModelInput) SetRestApiId(v string) *UpdateModelInput {
 }
 
 // Request to change information about a Resource resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateResourceRequest
 type UpdateResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17312,6 +17629,7 @@ func (s *UpdateResourceInput) SetRestApiId(v string) *UpdateResourceInput {
 }
 
 // Request to update an existing RestApi resource in your collection.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateRestApiRequest
 type UpdateRestApiInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17361,6 +17679,7 @@ func (s *UpdateRestApiInput) SetRestApiId(v string) *UpdateRestApiInput {
 }
 
 // Requests Amazon API Gateway to change information about a Stage resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateStageRequest
 type UpdateStageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17426,6 +17745,7 @@ func (s *UpdateStageInput) SetStageName(v string) *UpdateStageInput {
 
 // The PATCH request to grant a temporary extension to the reamining quota of
 // a usage plan associated with a specified API key.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateUsageRequest
 type UpdateUsageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17490,6 +17810,7 @@ func (s *UpdateUsageInput) SetUsagePlanId(v string) *UpdateUsageInput {
 }
 
 // The PATCH request to update a usage plan of a given plan Id.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/apigateway-2015-07-09/UpdateUsagePlanRequest
 type UpdateUsagePlanInput struct {
 	_ struct{} `type:"structure"`
 
