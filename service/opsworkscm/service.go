@@ -46,8 +46,10 @@ import (
 //
 // All API operations allow for 5 requests per second with a burst of 10 requests
 // per second.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01
 type OpsWorksCM struct {
 	*client.Client
 }

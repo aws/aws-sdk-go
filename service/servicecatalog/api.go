@@ -37,6 +37,7 @@ const opAcceptPortfolioShare = "AcceptPortfolioShare"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShare
 func (c *ServiceCatalog) AcceptPortfolioShareRequest(input *AcceptPortfolioShareInput) (req *request.Request, output *AcceptPortfolioShareOutput) {
 	op := &request.Operation{
 		Name:       opAcceptPortfolioShare,
@@ -108,6 +109,7 @@ const opAssociatePrincipalWithPortfolio = "AssociatePrincipalWithPortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolio
 func (c *ServiceCatalog) AssociatePrincipalWithPortfolioRequest(input *AssociatePrincipalWithPortfolioInput) (req *request.Request, output *AssociatePrincipalWithPortfolioOutput) {
 	op := &request.Operation{
 		Name:       opAssociatePrincipalWithPortfolio,
@@ -179,6 +181,7 @@ const opAssociateProductWithPortfolio = "AssociateProductWithPortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolio
 func (c *ServiceCatalog) AssociateProductWithPortfolioRequest(input *AssociateProductWithPortfolioInput) (req *request.Request, output *AssociateProductWithPortfolioOutput) {
 	op := &request.Operation{
 		Name:       opAssociateProductWithPortfolio,
@@ -250,6 +253,7 @@ const opCreateConstraint = "CreateConstraint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint
 func (c *ServiceCatalog) CreateConstraintRequest(input *CreateConstraintInput) (req *request.Request, output *CreateConstraintOutput) {
 	op := &request.Operation{
 		Name:       opCreateConstraint,
@@ -324,6 +328,7 @@ const opCreatePortfolio = "CreatePortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolio
 func (c *ServiceCatalog) CreatePortfolioRequest(input *CreatePortfolioInput) (req *request.Request, output *CreatePortfolioOutput) {
 	op := &request.Operation{
 		Name:       opCreatePortfolio,
@@ -392,6 +397,7 @@ const opCreatePortfolioShare = "CreatePortfolioShare"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShare
 func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShareInput) (req *request.Request, output *CreatePortfolioShareOutput) {
 	op := &request.Operation{
 		Name:       opCreatePortfolioShare,
@@ -463,6 +469,7 @@ const opCreateProduct = "CreateProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProduct
 func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *request.Request, output *CreateProductOutput) {
 	op := &request.Operation{
 		Name:       opCreateProduct,
@@ -531,6 +538,7 @@ const opCreateProvisioningArtifact = "CreateProvisioningArtifact"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact
 func (c *ServiceCatalog) CreateProvisioningArtifactRequest(input *CreateProvisioningArtifactInput) (req *request.Request, output *CreateProvisioningArtifactOutput) {
 	op := &request.Operation{
 		Name:       opCreateProvisioningArtifact,
@@ -603,6 +611,7 @@ const opDeleteConstraint = "DeleteConstraint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraint
 func (c *ServiceCatalog) DeleteConstraintRequest(input *DeleteConstraintInput) (req *request.Request, output *DeleteConstraintOutput) {
 	op := &request.Operation{
 		Name:       opDeleteConstraint,
@@ -670,6 +679,7 @@ const opDeletePortfolio = "DeletePortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolio
 func (c *ServiceCatalog) DeletePortfolioRequest(input *DeletePortfolioInput) (req *request.Request, output *DeletePortfolioOutput) {
 	op := &request.Operation{
 		Name:       opDeletePortfolio,
@@ -743,6 +753,7 @@ const opDeletePortfolioShare = "DeletePortfolioShare"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShare
 func (c *ServiceCatalog) DeletePortfolioShareRequest(input *DeletePortfolioShareInput) (req *request.Request, output *DeletePortfolioShareOutput) {
 	op := &request.Operation{
 		Name:       opDeletePortfolioShare,
@@ -807,6 +818,7 @@ const opDeleteProduct = "DeleteProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct
 func (c *ServiceCatalog) DeleteProductRequest(input *DeleteProductInput) (req *request.Request, output *DeleteProductOutput) {
 	op := &request.Operation{
 		Name:       opDeleteProduct,
@@ -879,6 +891,7 @@ const opDeleteProvisioningArtifact = "DeleteProvisioningArtifact"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifact
 func (c *ServiceCatalog) DeleteProvisioningArtifactRequest(input *DeleteProvisioningArtifactInput) (req *request.Request, output *DeleteProvisioningArtifactOutput) {
 	op := &request.Operation{
 		Name:       opDeleteProvisioningArtifact,
@@ -953,6 +966,7 @@ const opDescribeConstraint = "DescribeConstraint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraint
 func (c *ServiceCatalog) DescribeConstraintRequest(input *DescribeConstraintInput) (req *request.Request, output *DescribeConstraintOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConstraint,
@@ -1017,6 +1031,7 @@ const opDescribePortfolio = "DescribePortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolio
 func (c *ServiceCatalog) DescribePortfolioRequest(input *DescribePortfolioInput) (req *request.Request, output *DescribePortfolioOutput) {
 	op := &request.Operation{
 		Name:       opDescribePortfolio,
@@ -1082,6 +1097,7 @@ const opDescribeProduct = "DescribeProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProduct
 func (c *ServiceCatalog) DescribeProductRequest(input *DescribeProductInput) (req *request.Request, output *DescribeProductOutput) {
 	op := &request.Operation{
 		Name:       opDescribeProduct,
@@ -1152,6 +1168,7 @@ const opDescribeProductAsAdmin = "DescribeProductAsAdmin"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdmin
 func (c *ServiceCatalog) DescribeProductAsAdminRequest(input *DescribeProductAsAdminInput) (req *request.Request, output *DescribeProductAsAdminOutput) {
 	op := &request.Operation{
 		Name:       opDescribeProductAsAdmin,
@@ -1216,6 +1233,7 @@ const opDescribeProductView = "DescribeProductView"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductView
 func (c *ServiceCatalog) DescribeProductViewRequest(input *DescribeProductViewInput) (req *request.Request, output *DescribeProductViewOutput) {
 	op := &request.Operation{
 		Name:       opDescribeProductView,
@@ -1286,6 +1304,7 @@ const opDescribeProvisioningArtifact = "DescribeProvisioningArtifact"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifact
 func (c *ServiceCatalog) DescribeProvisioningArtifactRequest(input *DescribeProvisioningArtifactInput) (req *request.Request, output *DescribeProvisioningArtifactOutput) {
 	op := &request.Operation{
 		Name:       opDescribeProvisioningArtifact,
@@ -1350,6 +1369,7 @@ const opDescribeProvisioningParameters = "DescribeProvisioningParameters"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters
 func (c *ServiceCatalog) DescribeProvisioningParametersRequest(input *DescribeProvisioningParametersInput) (req *request.Request, output *DescribeProvisioningParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeProvisioningParameters,
@@ -1420,6 +1440,7 @@ const opDescribeRecord = "DescribeRecord"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecord
 func (c *ServiceCatalog) DescribeRecordRequest(input *DescribeRecordInput) (req *request.Request, output *DescribeRecordOutput) {
 	op := &request.Operation{
 		Name:       opDescribeRecord,
@@ -1486,6 +1507,7 @@ const opDisassociatePrincipalFromPortfolio = "DisassociatePrincipalFromPortfolio
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolio
 func (c *ServiceCatalog) DisassociatePrincipalFromPortfolioRequest(input *DisassociatePrincipalFromPortfolioInput) (req *request.Request, output *DisassociatePrincipalFromPortfolioOutput) {
 	op := &request.Operation{
 		Name:       opDisassociatePrincipalFromPortfolio,
@@ -1553,6 +1575,7 @@ const opDisassociateProductFromPortfolio = "DisassociateProductFromPortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolio
 func (c *ServiceCatalog) DisassociateProductFromPortfolioRequest(input *DisassociateProductFromPortfolioInput) (req *request.Request, output *DisassociateProductFromPortfolioOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateProductFromPortfolio,
@@ -1620,6 +1643,7 @@ const opListAcceptedPortfolioShares = "ListAcceptedPortfolioShares"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioShares
 func (c *ServiceCatalog) ListAcceptedPortfolioSharesRequest(input *ListAcceptedPortfolioSharesInput) (req *request.Request, output *ListAcceptedPortfolioSharesOutput) {
 	op := &request.Operation{
 		Name:       opListAcceptedPortfolioShares,
@@ -1684,6 +1708,7 @@ const opListConstraintsForPortfolio = "ListConstraintsForPortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolio
 func (c *ServiceCatalog) ListConstraintsForPortfolioRequest(input *ListConstraintsForPortfolioInput) (req *request.Request, output *ListConstraintsForPortfolioOutput) {
 	op := &request.Operation{
 		Name:       opListConstraintsForPortfolio,
@@ -1752,6 +1777,7 @@ const opListLaunchPaths = "ListLaunchPaths"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPaths
 func (c *ServiceCatalog) ListLaunchPathsRequest(input *ListLaunchPathsInput) (req *request.Request, output *ListLaunchPathsOutput) {
 	op := &request.Operation{
 		Name:       opListLaunchPaths,
@@ -1821,6 +1847,7 @@ const opListPortfolioAccess = "ListPortfolioAccess"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccess
 func (c *ServiceCatalog) ListPortfolioAccessRequest(input *ListPortfolioAccessInput) (req *request.Request, output *ListPortfolioAccessOutput) {
 	op := &request.Operation{
 		Name:       opListPortfolioAccess,
@@ -1886,6 +1913,7 @@ const opListPortfolios = "ListPortfolios"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolios
 func (c *ServiceCatalog) ListPortfoliosRequest(input *ListPortfoliosInput) (req *request.Request, output *ListPortfoliosOutput) {
 	op := &request.Operation{
 		Name:       opListPortfolios,
@@ -1950,6 +1978,7 @@ const opListPortfoliosForProduct = "ListPortfoliosForProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProduct
 func (c *ServiceCatalog) ListPortfoliosForProductRequest(input *ListPortfoliosForProductInput) (req *request.Request, output *ListPortfoliosForProductOutput) {
 	op := &request.Operation{
 		Name:       opListPortfoliosForProduct,
@@ -2017,6 +2046,7 @@ const opListPrincipalsForPortfolio = "ListPrincipalsForPortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolio
 func (c *ServiceCatalog) ListPrincipalsForPortfolioRequest(input *ListPrincipalsForPortfolioInput) (req *request.Request, output *ListPrincipalsForPortfolioOutput) {
 	op := &request.Operation{
 		Name:       opListPrincipalsForPortfolio,
@@ -2084,6 +2114,7 @@ const opListProvisioningArtifacts = "ListProvisioningArtifacts"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifacts
 func (c *ServiceCatalog) ListProvisioningArtifactsRequest(input *ListProvisioningArtifactsInput) (req *request.Request, output *ListProvisioningArtifactsOutput) {
 	op := &request.Operation{
 		Name:       opListProvisioningArtifacts,
@@ -2151,6 +2182,7 @@ const opListRecordHistory = "ListRecordHistory"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistory
 func (c *ServiceCatalog) ListRecordHistoryRequest(input *ListRecordHistoryInput) (req *request.Request, output *ListRecordHistoryOutput) {
 	op := &request.Operation{
 		Name:       opListRecordHistory,
@@ -2216,6 +2248,7 @@ const opProvisionProduct = "ProvisionProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct
 func (c *ServiceCatalog) ProvisionProductRequest(input *ProvisionProductInput) (req *request.Request, output *ProvisionProductOutput) {
 	op := &request.Operation{
 		Name:       opProvisionProduct,
@@ -2291,6 +2324,7 @@ const opRejectPortfolioShare = "RejectPortfolioShare"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShare
 func (c *ServiceCatalog) RejectPortfolioShareRequest(input *RejectPortfolioShareInput) (req *request.Request, output *RejectPortfolioShareOutput) {
 	op := &request.Operation{
 		Name:       opRejectPortfolioShare,
@@ -2355,6 +2389,7 @@ const opScanProvisionedProducts = "ScanProvisionedProducts"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProducts
 func (c *ServiceCatalog) ScanProvisionedProductsRequest(input *ScanProvisionedProductsInput) (req *request.Request, output *ScanProvisionedProductsOutput) {
 	op := &request.Operation{
 		Name:       opScanProvisionedProducts,
@@ -2420,6 +2455,7 @@ const opSearchProducts = "SearchProducts"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProducts
 func (c *ServiceCatalog) SearchProductsRequest(input *SearchProductsInput) (req *request.Request, output *SearchProductsOutput) {
 	op := &request.Operation{
 		Name:       opSearchProducts,
@@ -2488,6 +2524,7 @@ const opSearchProductsAsAdmin = "SearchProductsAsAdmin"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdmin
 func (c *ServiceCatalog) SearchProductsAsAdminRequest(input *SearchProductsAsAdminInput) (req *request.Request, output *SearchProductsAsAdminOutput) {
 	op := &request.Operation{
 		Name:       opSearchProductsAsAdmin,
@@ -2558,6 +2595,7 @@ const opTerminateProvisionedProduct = "TerminateProvisionedProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProduct
 func (c *ServiceCatalog) TerminateProvisionedProductRequest(input *TerminateProvisionedProductInput) (req *request.Request, output *TerminateProvisionedProductOutput) {
 	op := &request.Operation{
 		Name:       opTerminateProvisionedProduct,
@@ -2629,6 +2667,7 @@ const opUpdateConstraint = "UpdateConstraint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraint
 func (c *ServiceCatalog) UpdateConstraintRequest(input *UpdateConstraintInput) (req *request.Request, output *UpdateConstraintOutput) {
 	op := &request.Operation{
 		Name:       opUpdateConstraint,
@@ -2696,6 +2735,7 @@ const opUpdatePortfolio = "UpdatePortfolio"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio
 func (c *ServiceCatalog) UpdatePortfolioRequest(input *UpdatePortfolioInput) (req *request.Request, output *UpdatePortfolioOutput) {
 	op := &request.Operation{
 		Name:       opUpdatePortfolio,
@@ -2768,6 +2808,7 @@ const opUpdateProduct = "UpdateProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProduct
 func (c *ServiceCatalog) UpdateProductRequest(input *UpdateProductInput) (req *request.Request, output *UpdateProductOutput) {
 	op := &request.Operation{
 		Name:       opUpdateProduct,
@@ -2835,6 +2876,7 @@ const opUpdateProvisionedProduct = "UpdateProvisionedProduct"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProduct
 func (c *ServiceCatalog) UpdateProvisionedProductRequest(input *UpdateProvisionedProductInput) (req *request.Request, output *UpdateProvisionedProductOutput) {
 	op := &request.Operation{
 		Name:       opUpdateProvisionedProduct,
@@ -2908,6 +2950,7 @@ const opUpdateProvisioningArtifact = "UpdateProvisioningArtifact"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact
 func (c *ServiceCatalog) UpdateProvisioningArtifactRequest(input *UpdateProvisioningArtifactInput) (req *request.Request, output *UpdateProvisioningArtifactOutput) {
 	op := &request.Operation{
 		Name:       opUpdateProvisioningArtifact,

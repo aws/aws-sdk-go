@@ -26,8 +26,10 @@ import (
 // To get started, verify prerequisites and configure managed instances (Linux
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/systems-manager-prereqs.html))
 // (Windows (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/systems-manager-prereqs.html)).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06
 type SSM struct {
 	*client.Client
 }

@@ -61,8 +61,10 @@ import (
 // in the AWS Support User Guide for information about how to use this service
 // to create and manage your support cases, and how to call Trusted Advisor
 // for results of checks on your resources.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15
 type Support struct {
 	*client.Client
 }

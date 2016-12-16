@@ -43,8 +43,10 @@ import (
 //    * Handling error responses
 //
 // For a list of available SDKs, see Tools for Amazon Web Services (http://aws.amazon.com/tools/).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sqs-2012-11-05
 type SQS struct {
 	*client.Client
 }

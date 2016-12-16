@@ -30,8 +30,10 @@ import (
 // Amazon CloudFormation makes use of other AWS products. If you need additional
 // technical information about a specific AWS product, you can find the product's
 // technical documentation at http://docs.aws.amazon.com/ (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudformation-2010-05-15
 type CloudFormation struct {
 	*client.Client
 }

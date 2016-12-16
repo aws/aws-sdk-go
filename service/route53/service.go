@@ -12,8 +12,10 @@ import (
 )
 
 // Route53 is a client for Route 53.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01
 type Route53 struct {
 	*client.Client
 }

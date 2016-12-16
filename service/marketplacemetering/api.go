@@ -37,6 +37,7 @@ const opBatchMeterUsage = "BatchMeterUsage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/BatchMeterUsage
 func (c *MarketplaceMetering) BatchMeterUsageRequest(input *BatchMeterUsageInput) (req *request.Request, output *BatchMeterUsageOutput) {
 	op := &request.Operation{
 		Name:       opBatchMeterUsage,
@@ -128,6 +129,7 @@ const opMeterUsage = "MeterUsage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/MeterUsage
 func (c *MarketplaceMetering) MeterUsageRequest(input *MeterUsageInput) (req *request.Request, output *MeterUsageOutput) {
 	op := &request.Operation{
 		Name:       opMeterUsage,
@@ -220,6 +222,7 @@ const opResolveCustomer = "ResolveCustomer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/ResolveCustomer
 func (c *MarketplaceMetering) ResolveCustomerRequest(input *ResolveCustomerInput) (req *request.Request, output *ResolveCustomerOutput) {
 	op := &request.Operation{
 		Name:       opResolveCustomer,
@@ -277,6 +280,7 @@ func (c *MarketplaceMetering) ResolveCustomer(input *ResolveCustomerInput) (*Res
 
 // A BatchMeterUsageRequest contains UsageRecords, which indicate quantities
 // of usage within your application.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/BatchMeterUsageRequest
 type BatchMeterUsageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -347,6 +351,7 @@ func (s *BatchMeterUsageInput) SetUsageRecords(v []*UsageRecord) *BatchMeterUsag
 
 // Contains the UsageRecords processed by BatchMeterUsage and any records that
 // have failed due to transient error.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/BatchMeterUsageResult
 type BatchMeterUsageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -382,6 +387,7 @@ func (s *BatchMeterUsageOutput) SetUnprocessedRecords(v []*UsageRecord) *BatchMe
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/MeterUsageRequest
 type MeterUsageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -488,6 +494,7 @@ func (s *MeterUsageInput) SetUsageQuantity(v int64) *MeterUsageInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/MeterUsageResult
 type MeterUsageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -511,6 +518,7 @@ func (s *MeterUsageOutput) SetMeteringRecordId(v string) *MeterUsageOutput {
 }
 
 // Contains input to the ResolveCustomer operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/ResolveCustomerRequest
 type ResolveCustomerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -553,6 +561,7 @@ func (s *ResolveCustomerInput) SetRegistrationToken(v string) *ResolveCustomerIn
 
 // The result of the ResolveCustomer operation. Contains the CustomerIdentifier
 // and product code.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/ResolveCustomerResult
 type ResolveCustomerOutput struct {
 	_ struct{} `type:"structure"`
 

@@ -18,8 +18,10 @@ import (
 // who need detailed information about the AWS WAF API actions, data types,
 // and errors. For detailed information about AWS WAF features and an overview
 // of how to use the AWS WAF API, see the AWS WAF Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24
 type WAF struct {
 	*client.Client
 }

@@ -17,8 +17,10 @@ import (
 // ECR supports private Docker repositories with resource-based permissions
 // using AWS IAM so that specific users or Amazon EC2 instances can access repositories
 // and images. Developers can use the Docker CLI to author and manage images.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21
 type ECR struct {
 	*client.Client
 }

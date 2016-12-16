@@ -35,8 +35,10 @@ import (
 // or commands, as well as how to work with AWS Management Console, see What
 // Is AWS Config? (http://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html)
 // in the AWS Config Developer Guide.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12
 type ConfigService struct {
 	*client.Client
 }

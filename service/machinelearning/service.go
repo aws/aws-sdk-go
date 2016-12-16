@@ -12,8 +12,9 @@ import (
 )
 
 // Definition of the public APIs exposed by Amazon Machine Learning
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
 type MachineLearning struct {
 	*client.Client
 }

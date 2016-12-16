@@ -42,8 +42,9 @@ import (
 //    - The Getting Started section walks you through the process of creating
 //    a vault, uploading archives, creating jobs to download archives, retrieving
 //    the job output, and deleting archives.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
 type Glacier struct {
 	*client.Client
 }

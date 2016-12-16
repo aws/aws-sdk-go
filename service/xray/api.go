@@ -36,6 +36,7 @@ const opBatchGetTraces = "BatchGetTraces"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/BatchGetTraces
 func (c *XRay) BatchGetTracesRequest(input *BatchGetTracesInput) (req *request.Request, output *BatchGetTracesOutput) {
 	op := &request.Operation{
 		Name:       opBatchGetTraces,
@@ -105,6 +106,7 @@ const opGetServiceGraph = "GetServiceGraph"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetServiceGraph
 func (c *XRay) GetServiceGraphRequest(input *GetServiceGraphInput) (req *request.Request, output *GetServiceGraphOutput) {
 	op := &request.Operation{
 		Name:       opGetServiceGraph,
@@ -176,6 +178,7 @@ const opGetTraceGraph = "GetTraceGraph"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceGraph
 func (c *XRay) GetTraceGraphRequest(input *GetTraceGraphInput) (req *request.Request, output *GetTraceGraphOutput) {
 	op := &request.Operation{
 		Name:       opGetTraceGraph,
@@ -243,6 +246,7 @@ const opGetTraceSummaries = "GetTraceSummaries"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummaries
 func (c *XRay) GetTraceSummariesRequest(input *GetTraceSummariesInput) (req *request.Request, output *GetTraceSummariesOutput) {
 	op := &request.Operation{
 		Name:       opGetTraceSummaries,
@@ -311,6 +315,7 @@ const opPutTelemetryRecords = "PutTelemetryRecords"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTelemetryRecords
 func (c *XRay) PutTelemetryRecordsRequest(input *PutTelemetryRecordsInput) (req *request.Request, output *PutTelemetryRecordsOutput) {
 	op := &request.Operation{
 		Name:       opPutTelemetryRecords,
@@ -378,6 +383,7 @@ const opPutTraceSegments = "PutTraceSegments"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegments
 func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *request.Request, output *PutTraceSegmentsOutput) {
 	op := &request.Operation{
 		Name:       opPutTraceSegments,
@@ -569,6 +575,7 @@ func (s *BackendConnectionErrors) SetUnknownHostCount(v int64) *BackendConnectio
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/BatchGetTracesRequest
 type BatchGetTracesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -616,6 +623,7 @@ func (s *BatchGetTracesInput) SetTraceIds(v []*string) *BatchGetTracesInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/BatchGetTracesResult
 type BatchGetTracesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -863,6 +871,7 @@ func (s *FaultStatistics) SetTotalCount(v int64) *FaultStatistics {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetServiceGraphRequest
 type GetServiceGraphInput struct {
 	_ struct{} `type:"structure"`
 
@@ -924,6 +933,7 @@ func (s *GetServiceGraphInput) SetStartTime(v time.Time) *GetServiceGraphInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetServiceGraphResult
 type GetServiceGraphOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -975,6 +985,7 @@ func (s *GetServiceGraphOutput) SetStartTime(v time.Time) *GetServiceGraphOutput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceGraphRequest
 type GetTraceGraphInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1022,6 +1033,7 @@ func (s *GetTraceGraphInput) SetTraceIds(v []*string) *GetTraceGraphInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceGraphResult
 type GetTraceGraphOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1054,6 +1066,7 @@ func (s *GetTraceGraphOutput) SetServices(v []*Service) *GetTraceGraphOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummariesRequest
 type GetTraceSummariesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1135,6 +1148,7 @@ func (s *GetTraceSummariesInput) SetStartTime(v time.Time) *GetTraceSummariesInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummariesResult
 type GetTraceSummariesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1281,6 +1295,7 @@ func (s *Http) SetUserAgent(v string) *Http {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTelemetryRecordsRequest
 type PutTelemetryRecordsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1341,6 +1356,7 @@ func (s *PutTelemetryRecordsInput) SetTelemetryRecords(v []*TelemetryRecord) *Pu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTelemetryRecordsResult
 type PutTelemetryRecordsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1355,6 +1371,7 @@ func (s PutTelemetryRecordsOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegmentsRequest
 type PutTraceSegmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1432,6 +1449,7 @@ func (s *PutTraceSegmentsInput) SetTraceSegmentDocuments(v []*string) *PutTraceS
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegmentsResult
 type PutTraceSegmentsOutput struct {
 	_ struct{} `type:"structure"`
 

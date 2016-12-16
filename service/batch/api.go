@@ -36,6 +36,7 @@ const opCancelJob = "CancelJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob
 func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
 	op := &request.Operation{
 		Name:       opCancelJob,
@@ -109,6 +110,7 @@ const opCreateComputeEnvironment = "CreateComputeEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment
 func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentInput) (req *request.Request, output *CreateComputeEnvironmentOutput) {
 	op := &request.Operation{
 		Name:       opCreateComputeEnvironment,
@@ -199,6 +201,7 @@ const opCreateJobQueue = "CreateJobQueue"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueue
 func (c *Batch) CreateJobQueueRequest(input *CreateJobQueueInput) (req *request.Request, output *CreateJobQueueOutput) {
 	op := &request.Operation{
 		Name:       opCreateJobQueue,
@@ -276,6 +279,7 @@ const opDeleteComputeEnvironment = "DeleteComputeEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironment
 func (c *Batch) DeleteComputeEnvironmentRequest(input *DeleteComputeEnvironmentInput) (req *request.Request, output *DeleteComputeEnvironmentOutput) {
 	op := &request.Operation{
 		Name:       opDeleteComputeEnvironment,
@@ -349,6 +353,7 @@ const opDeleteJobQueue = "DeleteJobQueue"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueue
 func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.Request, output *DeleteJobQueueOutput) {
 	op := &request.Operation{
 		Name:       opDeleteJobQueue,
@@ -423,6 +428,7 @@ const opDeregisterJobDefinition = "DeregisterJobDefinition"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinition
 func (c *Batch) DeregisterJobDefinitionRequest(input *DeregisterJobDefinitionInput) (req *request.Request, output *DeregisterJobDefinitionOutput) {
 	op := &request.Operation{
 		Name:       opDeregisterJobDefinition,
@@ -492,6 +498,7 @@ const opDescribeComputeEnvironments = "DescribeComputeEnvironments"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironments
 func (c *Batch) DescribeComputeEnvironmentsRequest(input *DescribeComputeEnvironmentsInput) (req *request.Request, output *DescribeComputeEnvironmentsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeComputeEnvironments,
@@ -565,6 +572,7 @@ const opDescribeJobDefinitions = "DescribeJobDefinitions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitions
 func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput) (req *request.Request, output *DescribeJobDefinitionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeJobDefinitions,
@@ -635,6 +643,7 @@ const opDescribeJobQueues = "DescribeJobQueues"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueues
 func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *request.Request, output *DescribeJobQueuesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeJobQueues,
@@ -704,6 +713,7 @@ const opDescribeJobs = "DescribeJobs"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobs
 func (c *Batch) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Request, output *DescribeJobsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeJobs,
@@ -773,6 +783,7 @@ const opListJobs = "ListJobs"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobs
 func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
 	op := &request.Operation{
 		Name:       opListJobs,
@@ -843,6 +854,7 @@ const opRegisterJobDefinition = "RegisterJobDefinition"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinition
 func (c *Batch) RegisterJobDefinitionRequest(input *RegisterJobDefinitionInput) (req *request.Request, output *RegisterJobDefinitionOutput) {
 	op := &request.Operation{
 		Name:       opRegisterJobDefinition,
@@ -912,6 +924,7 @@ const opSubmitJob = "SubmitJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJob
 func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, output *SubmitJobOutput) {
 	op := &request.Operation{
 		Name:       opSubmitJob,
@@ -982,6 +995,7 @@ const opTerminateJob = "TerminateJob"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob
 func (c *Batch) TerminateJobRequest(input *TerminateJobInput) (req *request.Request, output *TerminateJobOutput) {
 	op := &request.Operation{
 		Name:       opTerminateJob,
@@ -1053,6 +1067,7 @@ const opUpdateComputeEnvironment = "UpdateComputeEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironment
 func (c *Batch) UpdateComputeEnvironmentRequest(input *UpdateComputeEnvironmentInput) (req *request.Request, output *UpdateComputeEnvironmentOutput) {
 	op := &request.Operation{
 		Name:       opUpdateComputeEnvironment,
@@ -1122,6 +1137,7 @@ const opUpdateJobQueue = "UpdateJobQueue"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueue
 func (c *Batch) UpdateJobQueueRequest(input *UpdateJobQueueInput) (req *request.Request, output *UpdateJobQueueOutput) {
 	op := &request.Operation{
 		Name:       opUpdateJobQueue,
@@ -1165,6 +1181,7 @@ func (c *Batch) UpdateJobQueue(input *UpdateJobQueueInput) (*UpdateJobQueueOutpu
 	return out, err
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJobRequest
 type CancelJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1219,6 +1236,7 @@ func (s *CancelJobInput) SetReason(v string) *CancelJobInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJobResponse
 type CancelJobOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2040,6 +2058,7 @@ func (s *ContainerProperties) SetVolumes(v []*Volume) *ContainerProperties {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironmentRequest
 type CreateComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2134,6 +2153,7 @@ func (s *CreateComputeEnvironmentInput) SetType(v string) *CreateComputeEnvironm
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironmentResponse
 type CreateComputeEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2166,6 +2186,7 @@ func (s *CreateComputeEnvironmentOutput) SetComputeEnvironmentName(v string) *Cr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueueRequest
 type CreateJobQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2260,6 +2281,7 @@ func (s *CreateJobQueueInput) SetState(v string) *CreateJobQueueInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueueResponse
 type CreateJobQueueOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2296,6 +2318,7 @@ func (s *CreateJobQueueOutput) SetJobQueueName(v string) *CreateJobQueueOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironmentRequest
 type DeleteComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2334,6 +2357,7 @@ func (s *DeleteComputeEnvironmentInput) SetComputeEnvironment(v string) *DeleteC
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironmentResponse
 type DeleteComputeEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2348,6 +2372,7 @@ func (s DeleteComputeEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueueRequest
 type DeleteJobQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2386,6 +2411,7 @@ func (s *DeleteJobQueueInput) SetJobQueue(v string) *DeleteJobQueueInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueueResponse
 type DeleteJobQueueOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2400,6 +2426,7 @@ func (s DeleteJobQueueOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinitionRequest
 type DeregisterJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2439,6 +2466,7 @@ func (s *DeregisterJobDefinitionInput) SetJobDefinition(v string) *DeregisterJob
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinitionResponse
 type DeregisterJobDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2453,6 +2481,7 @@ func (s DeregisterJobDefinitionOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironmentsRequest
 type DescribeComputeEnvironmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2509,6 +2538,7 @@ func (s *DescribeComputeEnvironmentsInput) SetNextToken(v string) *DescribeCompu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironmentsResponse
 type DescribeComputeEnvironmentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2544,6 +2574,7 @@ func (s *DescribeComputeEnvironmentsOutput) SetNextToken(v string) *DescribeComp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitionsRequest
 type DescribeJobDefinitionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2617,6 +2648,7 @@ func (s *DescribeJobDefinitionsInput) SetStatus(v string) *DescribeJobDefinition
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitionsResponse
 type DescribeJobDefinitionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2652,6 +2684,7 @@ func (s *DescribeJobDefinitionsOutput) SetNextToken(v string) *DescribeJobDefini
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueuesRequest
 type DescribeJobQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2707,6 +2740,7 @@ func (s *DescribeJobQueuesInput) SetNextToken(v string) *DescribeJobQueuesInput 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueuesResponse
 type DescribeJobQueuesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2742,6 +2776,7 @@ func (s *DescribeJobQueuesOutput) SetNextToken(v string) *DescribeJobQueuesOutpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobsRequest
 type DescribeJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2780,6 +2815,7 @@ func (s *DescribeJobsInput) SetJobs(v []*string) *DescribeJobsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobsResponse
 type DescribeJobsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3255,6 +3291,7 @@ func (s *KeyValuePair) SetValue(v string) *KeyValuePair {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobsRequest
 type ListJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3333,6 +3370,7 @@ func (s *ListJobsInput) SetNextToken(v string) *ListJobsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobsResponse
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3413,6 +3451,7 @@ func (s *MountPoint) SetSourceVolume(v string) *MountPoint {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinitionRequest
 type RegisterJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3491,6 +3530,7 @@ func (s *RegisterJobDefinitionInput) SetType(v string) *RegisterJobDefinitionInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinitionResponse
 type RegisterJobDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3538,6 +3578,7 @@ func (s *RegisterJobDefinitionOutput) SetRevision(v int64) *RegisterJobDefinitio
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJobRequest
 type SubmitJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3643,6 +3684,7 @@ func (s *SubmitJobInput) SetParameters(v map[string]*string) *SubmitJobInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJobResponse
 type SubmitJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3679,6 +3721,7 @@ func (s *SubmitJobOutput) SetJobName(v string) *SubmitJobOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJobRequest
 type TerminateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3733,6 +3776,7 @@ func (s *TerminateJobInput) SetReason(v string) *TerminateJobInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJobResponse
 type TerminateJobOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3814,6 +3858,7 @@ func (s *Ulimit) SetSoftLimit(v int64) *Ulimit {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironmentRequest
 type UpdateComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3884,6 +3929,7 @@ func (s *UpdateComputeEnvironmentInput) SetState(v string) *UpdateComputeEnviron
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironmentResponse
 type UpdateComputeEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3916,6 +3962,7 @@ func (s *UpdateComputeEnvironmentOutput) SetComputeEnvironmentName(v string) *Up
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueueRequest
 type UpdateJobQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3997,6 +4044,7 @@ func (s *UpdateJobQueueInput) SetState(v string) *UpdateJobQueueInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueueResponse
 type UpdateJobQueueOutput struct {
 	_ struct{} `type:"structure"`
 

@@ -39,6 +39,7 @@ const opAcceptCertificateTransfer = "AcceptCertificateTransfer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AcceptCertificateTransfer
 func (c *IoT) AcceptCertificateTransferRequest(input *AcceptCertificateTransferInput) (req *request.Request, output *AcceptCertificateTransferOutput) {
 	op := &request.Operation{
 		Name:       opAcceptCertificateTransfer,
@@ -128,6 +129,7 @@ const opAttachPrincipalPolicy = "AttachPrincipalPolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachPrincipalPolicy
 func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (req *request.Request, output *AttachPrincipalPolicyOutput) {
 	op := &request.Operation{
 		Name:       opAttachPrincipalPolicy,
@@ -213,6 +215,7 @@ const opAttachThingPrincipal = "AttachThingPrincipal"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachThingPrincipal
 func (c *IoT) AttachThingPrincipalRequest(input *AttachThingPrincipalInput) (req *request.Request, output *AttachThingPrincipalOutput) {
 	op := &request.Operation{
 		Name:       opAttachThingPrincipal,
@@ -292,6 +295,7 @@ const opCancelCertificateTransfer = "CancelCertificateTransfer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CancelCertificateTransfer
 func (c *IoT) CancelCertificateTransferRequest(input *CancelCertificateTransferInput) (req *request.Request, output *CancelCertificateTransferOutput) {
 	op := &request.Operation{
 		Name:       opCancelCertificateTransfer,
@@ -386,6 +390,7 @@ const opCreateCertificateFromCsr = "CreateCertificateFromCsr"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsr
 func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInput) (req *request.Request, output *CreateCertificateFromCsrOutput) {
 	op := &request.Operation{
 		Name:       opCreateCertificateFromCsr,
@@ -499,6 +504,7 @@ const opCreateKeysAndCertificate = "CreateKeysAndCertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateKeysAndCertificate
 func (c *IoT) CreateKeysAndCertificateRequest(input *CreateKeysAndCertificateInput) (req *request.Request, output *CreateKeysAndCertificateOutput) {
 	op := &request.Operation{
 		Name:       opCreateKeysAndCertificate,
@@ -579,6 +585,7 @@ const opCreatePolicy = "CreatePolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreatePolicy
 func (c *IoT) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Request, output *CreatePolicyOutput) {
 	op := &request.Operation{
 		Name:       opCreatePolicy,
@@ -665,6 +672,7 @@ const opCreatePolicyVersion = "CreatePolicyVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreatePolicyVersion
 func (c *IoT) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *request.Request, output *CreatePolicyVersionOutput) {
 	op := &request.Operation{
 		Name:       opCreatePolicyVersion,
@@ -757,6 +765,7 @@ const opCreateThing = "CreateThing"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateThing
 func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request, output *CreateThingOutput) {
 	op := &request.Operation{
 		Name:       opCreateThing,
@@ -839,6 +848,7 @@ const opCreateThingType = "CreateThingType"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateThingType
 func (c *IoT) CreateThingTypeRequest(input *CreateThingTypeInput) (req *request.Request, output *CreateThingTypeOutput) {
 	op := &request.Operation{
 		Name:       opCreateThingType,
@@ -918,6 +928,7 @@ const opCreateTopicRule = "CreateTopicRule"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateTopicRule
 func (c *IoT) CreateTopicRuleRequest(input *CreateTopicRuleInput) (req *request.Request, output *CreateTopicRuleOutput) {
 	op := &request.Operation{
 		Name:       opCreateTopicRule,
@@ -998,6 +1009,7 @@ const opDeleteCACertificate = "DeleteCACertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCACertificate
 func (c *IoT) DeleteCACertificateRequest(input *DeleteCACertificateInput) (req *request.Request, output *DeleteCACertificateOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCACertificate,
@@ -1080,6 +1092,7 @@ const opDeleteCertificate = "DeleteCertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCertificate
 func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *request.Request, output *DeleteCertificateOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCertificate,
@@ -1172,6 +1185,7 @@ const opDeletePolicy = "DeletePolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeletePolicy
 func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Request, output *DeletePolicyOutput) {
 	op := &request.Operation{
 		Name:       opDeletePolicy,
@@ -1266,6 +1280,7 @@ const opDeletePolicyVersion = "DeletePolicyVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeletePolicyVersion
 func (c *IoT) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *request.Request, output *DeletePolicyVersionOutput) {
 	op := &request.Operation{
 		Name:       opDeletePolicyVersion,
@@ -1353,6 +1368,7 @@ const opDeleteRegistrationCode = "DeleteRegistrationCode"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteRegistrationCode
 func (c *IoT) DeleteRegistrationCodeRequest(input *DeleteRegistrationCodeInput) (req *request.Request, output *DeleteRegistrationCodeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRegistrationCode,
@@ -1429,6 +1445,7 @@ const opDeleteThing = "DeleteThing"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThing
 func (c *IoT) DeleteThingRequest(input *DeleteThingInput) (req *request.Request, output *DeleteThingOutput) {
 	op := &request.Operation{
 		Name:       opDeleteThing,
@@ -1512,6 +1529,7 @@ const opDeleteThingType = "DeleteThingType"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingType
 func (c *IoT) DeleteThingTypeRequest(input *DeleteThingTypeInput) (req *request.Request, output *DeleteThingTypeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteThingType,
@@ -1595,6 +1613,7 @@ const opDeleteTopicRule = "DeleteTopicRule"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteTopicRule
 func (c *IoT) DeleteTopicRuleRequest(input *DeleteTopicRuleInput) (req *request.Request, output *DeleteTopicRuleOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTopicRule,
@@ -1670,6 +1689,7 @@ const opDeprecateThingType = "DeprecateThingType"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeprecateThingType
 func (c *IoT) DeprecateThingTypeRequest(input *DeprecateThingTypeInput) (req *request.Request, output *DeprecateThingTypeOutput) {
 	op := &request.Operation{
 		Name:       opDeprecateThingType,
@@ -1750,6 +1770,7 @@ const opDescribeCACertificate = "DescribeCACertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCACertificate
 func (c *IoT) DescribeCACertificateRequest(input *DescribeCACertificateInput) (req *request.Request, output *DescribeCACertificateOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCACertificate,
@@ -1829,6 +1850,7 @@ const opDescribeCertificate = "DescribeCertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCertificate
 func (c *IoT) DescribeCertificateRequest(input *DescribeCertificateInput) (req *request.Request, output *DescribeCertificateOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCertificate,
@@ -1908,6 +1930,7 @@ const opDescribeEndpoint = "DescribeEndpoint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeEndpoint
 func (c *IoT) DescribeEndpointRequest(input *DescribeEndpointInput) (req *request.Request, output *DescribeEndpointOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEndpoint,
@@ -1978,6 +2001,7 @@ const opDescribeThing = "DescribeThing"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeThing
 func (c *IoT) DescribeThingRequest(input *DescribeThingInput) (req *request.Request, output *DescribeThingOutput) {
 	op := &request.Operation{
 		Name:       opDescribeThing,
@@ -2057,6 +2081,7 @@ const opDescribeThingType = "DescribeThingType"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeThingType
 func (c *IoT) DescribeThingTypeRequest(input *DescribeThingTypeInput) (req *request.Request, output *DescribeThingTypeOutput) {
 	op := &request.Operation{
 		Name:       opDescribeThingType,
@@ -2136,6 +2161,7 @@ const opDetachPrincipalPolicy = "DetachPrincipalPolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DetachPrincipalPolicy
 func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (req *request.Request, output *DetachPrincipalPolicyOutput) {
 	op := &request.Operation{
 		Name:       opDetachPrincipalPolicy,
@@ -2217,6 +2243,7 @@ const opDetachThingPrincipal = "DetachThingPrincipal"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DetachThingPrincipal
 func (c *IoT) DetachThingPrincipalRequest(input *DetachThingPrincipalInput) (req *request.Request, output *DetachThingPrincipalOutput) {
 	op := &request.Operation{
 		Name:       opDetachThingPrincipal,
@@ -2296,6 +2323,7 @@ const opDisableTopicRule = "DisableTopicRule"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DisableTopicRule
 func (c *IoT) DisableTopicRuleRequest(input *DisableTopicRuleInput) (req *request.Request, output *DisableTopicRuleOutput) {
 	op := &request.Operation{
 		Name:       opDisableTopicRule,
@@ -2371,6 +2399,7 @@ const opEnableTopicRule = "EnableTopicRule"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/EnableTopicRule
 func (c *IoT) EnableTopicRuleRequest(input *EnableTopicRuleInput) (req *request.Request, output *EnableTopicRuleOutput) {
 	op := &request.Operation{
 		Name:       opEnableTopicRule,
@@ -2446,6 +2475,7 @@ const opGetLoggingOptions = "GetLoggingOptions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetLoggingOptions
 func (c *IoT) GetLoggingOptionsRequest(input *GetLoggingOptionsInput) (req *request.Request, output *GetLoggingOptionsOutput) {
 	op := &request.Operation{
 		Name:       opGetLoggingOptions,
@@ -2516,6 +2546,7 @@ const opGetPolicy = "GetPolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetPolicy
 func (c *IoT) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
 	op := &request.Operation{
 		Name:       opGetPolicy,
@@ -2596,6 +2627,7 @@ const opGetPolicyVersion = "GetPolicyVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetPolicyVersion
 func (c *IoT) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *request.Request, output *GetPolicyVersionOutput) {
 	op := &request.Operation{
 		Name:       opGetPolicyVersion,
@@ -2675,6 +2707,7 @@ const opGetRegistrationCode = "GetRegistrationCode"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetRegistrationCode
 func (c *IoT) GetRegistrationCodeRequest(input *GetRegistrationCodeInput) (req *request.Request, output *GetRegistrationCodeOutput) {
 	op := &request.Operation{
 		Name:       opGetRegistrationCode,
@@ -2751,6 +2784,7 @@ const opGetTopicRule = "GetTopicRule"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetTopicRule
 func (c *IoT) GetTopicRuleRequest(input *GetTopicRuleInput) (req *request.Request, output *GetTopicRuleOutput) {
 	op := &request.Operation{
 		Name:       opGetTopicRule,
@@ -2824,6 +2858,7 @@ const opListCACertificates = "ListCACertificates"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCACertificates
 func (c *IoT) ListCACertificatesRequest(input *ListCACertificatesInput) (req *request.Request, output *ListCACertificatesOutput) {
 	op := &request.Operation{
 		Name:       opListCACertificates,
@@ -2903,6 +2938,7 @@ const opListCertificates = "ListCertificates"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificates
 func (c *IoT) ListCertificatesRequest(input *ListCertificatesInput) (req *request.Request, output *ListCertificatesOutput) {
 	op := &request.Operation{
 		Name:       opListCertificates,
@@ -2982,6 +3018,7 @@ const opListCertificatesByCA = "ListCertificatesByCA"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificatesByCA
 func (c *IoT) ListCertificatesByCARequest(input *ListCertificatesByCAInput) (req *request.Request, output *ListCertificatesByCAOutput) {
 	op := &request.Operation{
 		Name:       opListCertificatesByCA,
@@ -3058,6 +3095,7 @@ const opListOutgoingCertificates = "ListOutgoingCertificates"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListOutgoingCertificates
 func (c *IoT) ListOutgoingCertificatesRequest(input *ListOutgoingCertificatesInput) (req *request.Request, output *ListOutgoingCertificatesOutput) {
 	op := &request.Operation{
 		Name:       opListOutgoingCertificates,
@@ -3134,6 +3172,7 @@ const opListPolicies = "ListPolicies"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicies
 func (c *IoT) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Request, output *ListPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opListPolicies,
@@ -3210,6 +3249,7 @@ const opListPolicyPrincipals = "ListPolicyPrincipals"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicyPrincipals
 func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req *request.Request, output *ListPolicyPrincipalsOutput) {
 	op := &request.Operation{
 		Name:       opListPolicyPrincipals,
@@ -3289,6 +3329,7 @@ const opListPolicyVersions = "ListPolicyVersions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicyVersions
 func (c *IoT) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *request.Request, output *ListPolicyVersionsOutput) {
 	op := &request.Operation{
 		Name:       opListPolicyVersions,
@@ -3368,6 +3409,7 @@ const opListPrincipalPolicies = "ListPrincipalPolicies"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalPolicies
 func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (req *request.Request, output *ListPrincipalPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opListPrincipalPolicies,
@@ -3448,6 +3490,7 @@ const opListPrincipalThings = "ListPrincipalThings"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalThings
 func (c *IoT) ListPrincipalThingsRequest(input *ListPrincipalThingsInput) (req *request.Request, output *ListPrincipalThingsOutput) {
 	op := &request.Operation{
 		Name:       opListPrincipalThings,
@@ -3527,6 +3570,7 @@ const opListThingPrincipals = "ListThingPrincipals"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingPrincipals
 func (c *IoT) ListThingPrincipalsRequest(input *ListThingPrincipalsInput) (req *request.Request, output *ListThingPrincipalsOutput) {
 	op := &request.Operation{
 		Name:       opListThingPrincipals,
@@ -3606,6 +3650,7 @@ const opListThingTypes = "ListThingTypes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingTypes
 func (c *IoT) ListThingTypesRequest(input *ListThingTypesInput) (req *request.Request, output *ListThingTypesOutput) {
 	op := &request.Operation{
 		Name:       opListThingTypes,
@@ -3682,6 +3727,7 @@ const opListThings = "ListThings"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThings
 func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, output *ListThingsOutput) {
 	op := &request.Operation{
 		Name:       opListThings,
@@ -3761,6 +3807,7 @@ const opListTopicRules = "ListTopicRules"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListTopicRules
 func (c *IoT) ListTopicRulesRequest(input *ListTopicRulesInput) (req *request.Request, output *ListTopicRulesOutput) {
 	op := &request.Operation{
 		Name:       opListTopicRules,
@@ -3831,6 +3878,7 @@ const opRegisterCACertificate = "RegisterCACertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCACertificate
 func (c *IoT) RegisterCACertificateRequest(input *RegisterCACertificateInput) (req *request.Request, output *RegisterCACertificateOutput) {
 	op := &request.Operation{
 		Name:       opRegisterCACertificate,
@@ -3925,6 +3973,7 @@ const opRegisterCertificate = "RegisterCertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCertificate
 func (c *IoT) RegisterCertificateRequest(input *RegisterCertificateInput) (req *request.Request, output *RegisterCertificateOutput) {
 	op := &request.Operation{
 		Name:       opRegisterCertificate,
@@ -4017,6 +4066,7 @@ const opRejectCertificateTransfer = "RejectCertificateTransfer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RejectCertificateTransfer
 func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferInput) (req *request.Request, output *RejectCertificateTransferOutput) {
 	op := &request.Operation{
 		Name:       opRejectCertificateTransfer,
@@ -4110,6 +4160,7 @@ const opReplaceTopicRule = "ReplaceTopicRule"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ReplaceTopicRule
 func (c *IoT) ReplaceTopicRuleRequest(input *ReplaceTopicRuleInput) (req *request.Request, output *ReplaceTopicRuleOutput) {
 	op := &request.Operation{
 		Name:       opReplaceTopicRule,
@@ -4190,6 +4241,7 @@ const opSetDefaultPolicyVersion = "SetDefaultPolicyVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/SetDefaultPolicyVersion
 func (c *IoT) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *request.Request, output *SetDefaultPolicyVersionOutput) {
 	op := &request.Operation{
 		Name:       opSetDefaultPolicyVersion,
@@ -4274,6 +4326,7 @@ const opSetLoggingOptions = "SetLoggingOptions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/SetLoggingOptions
 func (c *IoT) SetLoggingOptionsRequest(input *SetLoggingOptionsInput) (req *request.Request, output *SetLoggingOptionsOutput) {
 	op := &request.Operation{
 		Name:       opSetLoggingOptions,
@@ -4346,6 +4399,7 @@ const opTransferCertificate = "TransferCertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/TransferCertificate
 func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *request.Request, output *TransferCertificateOutput) {
 	op := &request.Operation{
 		Name:       opTransferCertificate,
@@ -4443,6 +4497,7 @@ const opUpdateCACertificate = "UpdateCACertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCACertificate
 func (c *IoT) UpdateCACertificateRequest(input *UpdateCACertificateInput) (req *request.Request, output *UpdateCACertificateOutput) {
 	op := &request.Operation{
 		Name:       opUpdateCACertificate,
@@ -4524,6 +4579,7 @@ const opUpdateCertificate = "UpdateCertificate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCertificate
 func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *request.Request, output *UpdateCertificateOutput) {
 	op := &request.Operation{
 		Name:       opUpdateCertificate,
@@ -4614,6 +4670,7 @@ const opUpdateThing = "UpdateThing"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThing
 func (c *IoT) UpdateThingRequest(input *UpdateThingInput) (req *request.Request, output *UpdateThingOutput) {
 	op := &request.Operation{
 		Name:       opUpdateThing,
@@ -4672,6 +4729,7 @@ func (c *IoT) UpdateThing(input *UpdateThingInput) (*UpdateThingOutput, error) {
 }
 
 // The input for the AcceptCertificateTransfer operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AcceptCertificateTransferRequest
 type AcceptCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4932,6 +4990,7 @@ func (s *Action) SetSqs(v *SqsAction) *Action {
 }
 
 // The input for the AttachPrincipalPolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachPrincipalPolicyRequest
 type AttachPrincipalPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5003,6 +5062,7 @@ func (s AttachPrincipalPolicyOutput) GoString() string {
 }
 
 // The input for the AttachThingPrincipal operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachThingPrincipalRequest
 type AttachThingPrincipalInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5059,6 +5119,7 @@ func (s *AttachThingPrincipalInput) SetThingName(v string) *AttachThingPrincipal
 }
 
 // The output from the AttachThingPrincipal operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/AttachThingPrincipalResponse
 type AttachThingPrincipalOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5247,6 +5308,7 @@ func (s *CACertificateDescription) SetStatus(v string) *CACertificateDescription
 }
 
 // The input for the CancelCertificateTransfer operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CancelCertificateTransferRequest
 type CancelCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5647,6 +5709,7 @@ func (s *CloudwatchMetricAction) SetRoleArn(v string) *CloudwatchMetricAction {
 }
 
 // The input for the CreateCertificateFromCsr operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsrRequest
 type CreateCertificateFromCsrInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5698,6 +5761,7 @@ func (s *CreateCertificateFromCsrInput) SetSetAsActive(v bool) *CreateCertificat
 }
 
 // The output from the CreateCertificateFromCsr operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateCertificateFromCsrResponse
 type CreateCertificateFromCsrOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5742,6 +5806,7 @@ func (s *CreateCertificateFromCsrOutput) SetCertificatePem(v string) *CreateCert
 }
 
 // The input for the CreateKeysAndCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateKeysAndCertificateRequest
 type CreateKeysAndCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5766,6 +5831,7 @@ func (s *CreateKeysAndCertificateInput) SetSetAsActive(v bool) *CreateKeysAndCer
 }
 
 // The output of the CreateKeysAndCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateKeysAndCertificateResponse
 type CreateKeysAndCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5818,6 +5884,7 @@ func (s *CreateKeysAndCertificateOutput) SetKeyPair(v *KeyPair) *CreateKeysAndCe
 }
 
 // The input for the CreatePolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreatePolicyRequest
 type CreatePolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5875,6 +5942,7 @@ func (s *CreatePolicyInput) SetPolicyName(v string) *CreatePolicyInput {
 }
 
 // The output from the CreatePolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreatePolicyResponse
 type CreatePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5926,6 +5994,7 @@ func (s *CreatePolicyOutput) SetPolicyVersionId(v string) *CreatePolicyOutput {
 }
 
 // The input for the CreatePolicyVersion operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreatePolicyVersionRequest
 type CreatePolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5994,6 +6063,7 @@ func (s *CreatePolicyVersionInput) SetSetAsDefault(v bool) *CreatePolicyVersionI
 }
 
 // The output of the CreatePolicyVersion operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreatePolicyVersionResponse
 type CreatePolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6045,6 +6115,7 @@ func (s *CreatePolicyVersionOutput) SetPolicyVersionId(v string) *CreatePolicyVe
 }
 
 // The input for the CreateThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateThingRequest
 type CreateThingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6111,6 +6182,7 @@ func (s *CreateThingInput) SetThingTypeName(v string) *CreateThingInput {
 }
 
 // The output of the CreateThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateThingResponse
 type CreateThingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6144,6 +6216,7 @@ func (s *CreateThingOutput) SetThingName(v string) *CreateThingOutput {
 }
 
 // The input for the CreateThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateThingTypeRequest
 type CreateThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6197,6 +6270,7 @@ func (s *CreateThingTypeInput) SetThingTypeProperties(v *ThingTypeProperties) *C
 }
 
 // The output of the CreateThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateThingTypeResponse
 type CreateThingTypeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6230,6 +6304,7 @@ func (s *CreateThingTypeOutput) SetThingTypeName(v string) *CreateThingTypeOutpu
 }
 
 // The input for the CreateTopicRule operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/CreateTopicRuleRequest
 type CreateTopicRuleInput struct {
 	_ struct{} `type:"structure" payload:"TopicRulePayload"`
 
@@ -6305,6 +6380,7 @@ func (s CreateTopicRuleOutput) GoString() string {
 }
 
 // Input for the DeleteCACertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCACertificateRequest
 type DeleteCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6347,6 +6423,7 @@ func (s *DeleteCACertificateInput) SetCertificateId(v string) *DeleteCACertifica
 }
 
 // The output for the DeleteCACertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCACertificateResponse
 type DeleteCACertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6362,6 +6439,7 @@ func (s DeleteCACertificateOutput) GoString() string {
 }
 
 // The input for the DeleteCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteCertificateRequest
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6418,6 +6496,7 @@ func (s DeleteCertificateOutput) GoString() string {
 }
 
 // The input for the DeletePolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeletePolicyRequest
 type DeletePolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6474,6 +6553,7 @@ func (s DeletePolicyOutput) GoString() string {
 }
 
 // The input for the DeletePolicyVersion operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeletePolicyVersionRequest
 type DeletePolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6544,6 +6624,7 @@ func (s DeletePolicyVersionOutput) GoString() string {
 }
 
 // The input for the DeleteRegistrationCode operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteRegistrationCodeRequest
 type DeleteRegistrationCodeInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6559,6 +6640,7 @@ func (s DeleteRegistrationCodeInput) GoString() string {
 }
 
 // The output for the DeleteRegistrationCode operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteRegistrationCodeResponse
 type DeleteRegistrationCodeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6574,6 +6656,7 @@ func (s DeleteRegistrationCodeOutput) GoString() string {
 }
 
 // The input for the DeleteThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingRequest
 type DeleteThingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6627,6 +6710,7 @@ func (s *DeleteThingInput) SetThingName(v string) *DeleteThingInput {
 }
 
 // The output of the DeleteThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingResponse
 type DeleteThingOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6642,6 +6726,7 @@ func (s DeleteThingOutput) GoString() string {
 }
 
 // The input for the DeleteThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingTypeRequest
 type DeleteThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6684,6 +6769,7 @@ func (s *DeleteThingTypeInput) SetThingTypeName(v string) *DeleteThingTypeInput 
 }
 
 // The output for the DeleteThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteThingTypeResponse
 type DeleteThingTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6699,6 +6785,7 @@ func (s DeleteThingTypeOutput) GoString() string {
 }
 
 // The input for the DeleteTopicRule operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeleteTopicRuleRequest
 type DeleteTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6755,6 +6842,7 @@ func (s DeleteTopicRuleOutput) GoString() string {
 }
 
 // The input for the DeprecateThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeprecateThingTypeRequest
 type DeprecateThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6807,6 +6895,7 @@ func (s *DeprecateThingTypeInput) SetUndoDeprecate(v bool) *DeprecateThingTypeIn
 }
 
 // The output for the DeprecateThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DeprecateThingTypeResponse
 type DeprecateThingTypeOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6822,6 +6911,7 @@ func (s DeprecateThingTypeOutput) GoString() string {
 }
 
 // The input for the DescribeCACertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCACertificateRequest
 type DescribeCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6864,6 +6954,7 @@ func (s *DescribeCACertificateInput) SetCertificateId(v string) *DescribeCACerti
 }
 
 // The output from the DescribeCACertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCACertificateResponse
 type DescribeCACertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6888,6 +6979,7 @@ func (s *DescribeCACertificateOutput) SetCertificateDescription(v *CACertificate
 }
 
 // The input for the DescribeCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCertificateRequest
 type DescribeCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6930,6 +7022,7 @@ func (s *DescribeCertificateInput) SetCertificateId(v string) *DescribeCertifica
 }
 
 // The output of the DescribeCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeCertificateResponse
 type DescribeCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6954,6 +7047,7 @@ func (s *DescribeCertificateOutput) SetCertificateDescription(v *CertificateDesc
 }
 
 // The input for the DescribeEndpoint operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeEndpointRequest
 type DescribeEndpointInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6969,6 +7063,7 @@ func (s DescribeEndpointInput) GoString() string {
 }
 
 // The output from the DescribeEndpoint operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeEndpointResponse
 type DescribeEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6993,6 +7088,7 @@ func (s *DescribeEndpointOutput) SetEndpointAddress(v string) *DescribeEndpointO
 }
 
 // The input for the DescribeThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeThingRequest
 type DescribeThingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7035,6 +7131,7 @@ func (s *DescribeThingInput) SetThingName(v string) *DescribeThingInput {
 }
 
 // The output from the DescribeThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeThingResponse
 type DescribeThingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7099,6 +7196,7 @@ func (s *DescribeThingOutput) SetVersion(v int64) *DescribeThingOutput {
 }
 
 // The input for the DescribeThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeThingTypeRequest
 type DescribeThingTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7141,6 +7239,7 @@ func (s *DescribeThingTypeInput) SetThingTypeName(v string) *DescribeThingTypeIn
 }
 
 // The output for the DescribeThingType operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DescribeThingTypeResponse
 type DescribeThingTypeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7186,6 +7285,7 @@ func (s *DescribeThingTypeOutput) SetThingTypeProperties(v *ThingTypeProperties)
 }
 
 // The input for the DetachPrincipalPolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DetachPrincipalPolicyRequest
 type DetachPrincipalPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7259,6 +7359,7 @@ func (s DetachPrincipalPolicyOutput) GoString() string {
 }
 
 // The input for the DetachThingPrincipal operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DetachThingPrincipalRequest
 type DetachThingPrincipalInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7317,6 +7418,7 @@ func (s *DetachThingPrincipalInput) SetThingName(v string) *DetachThingPrincipal
 }
 
 // The output from the DetachThingPrincipal operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DetachThingPrincipalResponse
 type DetachThingPrincipalOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7332,6 +7434,7 @@ func (s DetachThingPrincipalOutput) GoString() string {
 }
 
 // The input for the DisableTopicRuleRequest operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/DisableTopicRuleRequest
 type DisableTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7694,6 +7797,7 @@ func (s *ElasticsearchAction) SetType(v string) *ElasticsearchAction {
 }
 
 // The input for the EnableTopicRuleRequest operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/EnableTopicRuleRequest
 type EnableTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7814,6 +7918,7 @@ func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
 }
 
 // The input for the GetLoggingOptions operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetLoggingOptionsRequest
 type GetLoggingOptionsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7829,6 +7934,7 @@ func (s GetLoggingOptionsInput) GoString() string {
 }
 
 // The output from the GetLoggingOptions operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetLoggingOptionsResponse
 type GetLoggingOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7862,6 +7968,7 @@ func (s *GetLoggingOptionsOutput) SetRoleArn(v string) *GetLoggingOptionsOutput 
 }
 
 // The input for the GetPolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetPolicyRequest
 type GetPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7904,6 +8011,7 @@ func (s *GetPolicyInput) SetPolicyName(v string) *GetPolicyInput {
 }
 
 // The output from the GetPolicy operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetPolicyResponse
 type GetPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7955,6 +8063,7 @@ func (s *GetPolicyOutput) SetPolicyName(v string) *GetPolicyOutput {
 }
 
 // The input for the GetPolicyVersion operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetPolicyVersionRequest
 type GetPolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8011,6 +8120,7 @@ func (s *GetPolicyVersionInput) SetPolicyVersionId(v string) *GetPolicyVersionIn
 }
 
 // The output from the GetPolicyVersion operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetPolicyVersionResponse
 type GetPolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8071,6 +8181,7 @@ func (s *GetPolicyVersionOutput) SetPolicyVersionId(v string) *GetPolicyVersionO
 }
 
 // The input to the GetRegistrationCode operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetRegistrationCodeRequest
 type GetRegistrationCodeInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8086,6 +8197,7 @@ func (s GetRegistrationCodeInput) GoString() string {
 }
 
 // The output from the GetRegistrationCode operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetRegistrationCodeResponse
 type GetRegistrationCodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8110,6 +8222,7 @@ func (s *GetRegistrationCodeOutput) SetRegistrationCode(v string) *GetRegistrati
 }
 
 // The input for the GetTopicRule operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetTopicRuleRequest
 type GetTopicRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8152,6 +8265,7 @@ func (s *GetTopicRuleInput) SetRuleName(v string) *GetTopicRuleInput {
 }
 
 // The output from the GetTopicRule operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/GetTopicRuleResponse
 type GetTopicRuleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8319,6 +8433,7 @@ func (s *LambdaAction) SetFunctionArn(v string) *LambdaAction {
 }
 
 // Input for the ListCACertificates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCACertificatesRequest
 type ListCACertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8374,6 +8489,7 @@ func (s *ListCACertificatesInput) SetPageSize(v int64) *ListCACertificatesInput 
 }
 
 // The output from the ListCACertificates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCACertificatesResponse
 type ListCACertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8407,6 +8523,7 @@ func (s *ListCACertificatesOutput) SetNextMarker(v string) *ListCACertificatesOu
 }
 
 // The input to the ListCertificatesByCA operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificatesByCARequest
 type ListCertificatesByCAInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8481,6 +8598,7 @@ func (s *ListCertificatesByCAInput) SetPageSize(v int64) *ListCertificatesByCAIn
 }
 
 // The output of the ListCertificatesByCA operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificatesByCAResponse
 type ListCertificatesByCAOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8515,6 +8633,7 @@ func (s *ListCertificatesByCAOutput) SetNextMarker(v string) *ListCertificatesBy
 }
 
 // The input for the ListCertificates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificatesRequest
 type ListCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8571,6 +8690,7 @@ func (s *ListCertificatesInput) SetPageSize(v int64) *ListCertificatesInput {
 }
 
 // The output of the ListCertificates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListCertificatesResponse
 type ListCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8605,6 +8725,7 @@ func (s *ListCertificatesOutput) SetNextMarker(v string) *ListCertificatesOutput
 }
 
 // The input to the ListOutgoingCertificates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListOutgoingCertificatesRequest
 type ListOutgoingCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8661,6 +8782,7 @@ func (s *ListOutgoingCertificatesInput) SetPageSize(v int64) *ListOutgoingCertif
 }
 
 // The output from the ListOutgoingCertificates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListOutgoingCertificatesResponse
 type ListOutgoingCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8694,6 +8816,7 @@ func (s *ListOutgoingCertificatesOutput) SetOutgoingCertificates(v []*OutgoingCe
 }
 
 // The input for the ListPolicies operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPoliciesRequest
 type ListPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8750,6 +8873,7 @@ func (s *ListPoliciesInput) SetPageSize(v int64) *ListPoliciesInput {
 }
 
 // The output from the ListPolicies operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPoliciesResponse
 type ListPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8784,6 +8908,7 @@ func (s *ListPoliciesOutput) SetPolicies(v []*Policy) *ListPoliciesOutput {
 }
 
 // The input for the ListPolicyPrincipals operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicyPrincipalsRequest
 type ListPolicyPrincipalsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8857,6 +8982,7 @@ func (s *ListPolicyPrincipalsInput) SetPolicyName(v string) *ListPolicyPrincipal
 }
 
 // The output from the ListPolicyPrincipals operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicyPrincipalsResponse
 type ListPolicyPrincipalsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8891,6 +9017,7 @@ func (s *ListPolicyPrincipalsOutput) SetPrincipals(v []*string) *ListPolicyPrinc
 }
 
 // The input for the ListPolicyVersions operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicyVersionsRequest
 type ListPolicyVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8933,6 +9060,7 @@ func (s *ListPolicyVersionsInput) SetPolicyName(v string) *ListPolicyVersionsInp
 }
 
 // The output from the ListPolicyVersions operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPolicyVersionsResponse
 type ListPolicyVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8957,6 +9085,7 @@ func (s *ListPolicyVersionsOutput) SetPolicyVersions(v []*PolicyVersion) *ListPo
 }
 
 // The input for the ListPrincipalPolicies operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalPoliciesRequest
 type ListPrincipalPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9027,6 +9156,7 @@ func (s *ListPrincipalPoliciesInput) SetPrincipal(v string) *ListPrincipalPolici
 }
 
 // The output from the ListPrincipalPolicies operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalPoliciesResponse
 type ListPrincipalPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9061,6 +9191,7 @@ func (s *ListPrincipalPoliciesOutput) SetPolicies(v []*Policy) *ListPrincipalPol
 }
 
 // The input for the ListPrincipalThings operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalThingsRequest
 type ListPrincipalThingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9122,6 +9253,7 @@ func (s *ListPrincipalThingsInput) SetPrincipal(v string) *ListPrincipalThingsIn
 }
 
 // The output from the ListPrincipalThings operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListPrincipalThingsResponse
 type ListPrincipalThingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9156,6 +9288,7 @@ func (s *ListPrincipalThingsOutput) SetThings(v []*string) *ListPrincipalThingsO
 }
 
 // The input for the ListThingPrincipal operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingPrincipalsRequest
 type ListThingPrincipalsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9198,6 +9331,7 @@ func (s *ListThingPrincipalsInput) SetThingName(v string) *ListThingPrincipalsIn
 }
 
 // The output from the ListThingPrincipals operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingPrincipalsResponse
 type ListThingPrincipalsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9222,6 +9356,7 @@ func (s *ListThingPrincipalsOutput) SetPrincipals(v []*string) *ListThingPrincip
 }
 
 // The input for the ListThingTypes operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingTypesRequest
 type ListThingTypesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9281,6 +9416,7 @@ func (s *ListThingTypesInput) SetThingTypeName(v string) *ListThingTypesInput {
 }
 
 // The output for the ListThingTypes operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingTypesResponse
 type ListThingTypesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9315,6 +9451,7 @@ func (s *ListThingTypesOutput) SetThingTypes(v []*ThingTypeDefinition) *ListThin
 }
 
 // The input for the ListThings operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingsRequest
 type ListThingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9392,6 +9529,7 @@ func (s *ListThingsInput) SetThingTypeName(v string) *ListThingsInput {
 }
 
 // The output from the ListThings operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListThingsResponse
 type ListThingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9426,6 +9564,7 @@ func (s *ListThingsOutput) SetThings(v []*ThingAttribute) *ListThingsOutput {
 }
 
 // The input for the ListTopicRules operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListTopicRulesRequest
 type ListTopicRulesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9490,6 +9629,7 @@ func (s *ListTopicRulesInput) SetTopic(v string) *ListTopicRulesInput {
 }
 
 // The output from the ListTopicRules operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ListTopicRulesResponse
 type ListTopicRulesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9755,6 +9895,7 @@ func (s *PutItemInput) SetTableName(v string) *PutItemInput {
 }
 
 // The input to the RegisterCACertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCACertificateRequest
 type RegisterCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9832,6 +9973,7 @@ func (s *RegisterCACertificateInput) SetVerificationCertificate(v string) *Regis
 }
 
 // The output from the RegisterCACertificateResponse operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCACertificateResponse
 type RegisterCACertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9865,6 +10007,7 @@ func (s *RegisterCACertificateOutput) SetCertificateId(v string) *RegisterCACert
 }
 
 // The input to the RegisterCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCertificateRequest
 type RegisterCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9936,6 +10079,7 @@ func (s *RegisterCertificateInput) SetStatus(v string) *RegisterCertificateInput
 }
 
 // The output from the RegisterCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RegisterCertificateResponse
 type RegisterCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9969,6 +10113,7 @@ func (s *RegisterCertificateOutput) SetCertificateId(v string) *RegisterCertific
 }
 
 // The input for the RejectCertificateTransfer operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/RejectCertificateTransferRequest
 type RejectCertificateTransferInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10034,6 +10179,7 @@ func (s RejectCertificateTransferOutput) GoString() string {
 }
 
 // The input for the ReplaceTopicRule operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/ReplaceTopicRuleRequest
 type ReplaceTopicRuleInput struct {
 	_ struct{} `type:"structure" payload:"TopicRulePayload"`
 
@@ -10239,6 +10385,7 @@ func (s *S3Action) SetRoleArn(v string) *S3Action {
 }
 
 // The input for the SetDefaultPolicyVersion operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/SetDefaultPolicyVersionRequest
 type SetDefaultPolicyVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10309,6 +10456,7 @@ func (s SetDefaultPolicyVersionOutput) GoString() string {
 }
 
 // The input for the SetLoggingOptions operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/SetLoggingOptionsRequest
 type SetLoggingOptionsInput struct {
 	_ struct{} `type:"structure" payload:"LoggingOptionsPayload"`
 
@@ -10901,6 +11049,7 @@ func (s *TopicRulePayload) SetSql(v string) *TopicRulePayload {
 }
 
 // The input for the TransferCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/TransferCertificateRequest
 type TransferCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10966,6 +11115,7 @@ func (s *TransferCertificateInput) SetTransferMessage(v string) *TransferCertifi
 }
 
 // The output from the TransferCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/TransferCertificateResponse
 type TransferCertificateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11050,6 +11200,7 @@ func (s *TransferData) SetTransferMessage(v string) *TransferData {
 }
 
 // The input to the UpdateCACertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCACertificateRequest
 type UpdateCACertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11128,6 +11279,7 @@ func (s UpdateCACertificateOutput) GoString() string {
 }
 
 // The input for the UpdateCertificate operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateCertificateRequest
 type UpdateCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11205,6 +11357,7 @@ func (s UpdateCertificateOutput) GoString() string {
 }
 
 // The input for the UpdateThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingRequest
 type UpdateThingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11293,6 +11446,7 @@ func (s *UpdateThingInput) SetThingTypeName(v string) *UpdateThingInput {
 }
 
 // The output from the UpdateThing operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-2015-05-28/UpdateThingResponse
 type UpdateThingOutput struct {
 	_ struct{} `type:"structure"`
 }

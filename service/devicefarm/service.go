@@ -14,8 +14,10 @@ import (
 // AWS Device Farm is a service that enables mobile app developers to test Android,
 // iOS, and Fire OS apps on physical phones, tablets, and other devices in the
 // cloud.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23
 type DeviceFarm struct {
 	*client.Client
 }

@@ -39,6 +39,7 @@ const opAbortEnvironmentUpdate = "AbortEnvironmentUpdate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AbortEnvironmentUpdate
 func (c *ElasticBeanstalk) AbortEnvironmentUpdateRequest(input *AbortEnvironmentUpdateInput) (req *request.Request, output *AbortEnvironmentUpdateOutput) {
 	op := &request.Operation{
 		Name:       opAbortEnvironmentUpdate,
@@ -107,6 +108,7 @@ const opApplyEnvironmentManagedAction = "ApplyEnvironmentManagedAction"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplyEnvironmentManagedAction
 func (c *ElasticBeanstalk) ApplyEnvironmentManagedActionRequest(input *ApplyEnvironmentManagedActionInput) (req *request.Request, output *ApplyEnvironmentManagedActionOutput) {
 	op := &request.Operation{
 		Name:       opApplyEnvironmentManagedAction,
@@ -176,6 +178,7 @@ const opCheckDNSAvailability = "CheckDNSAvailability"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CheckDNSAvailability
 func (c *ElasticBeanstalk) CheckDNSAvailabilityRequest(input *CheckDNSAvailabilityInput) (req *request.Request, output *CheckDNSAvailabilityOutput) {
 	op := &request.Operation{
 		Name:       opCheckDNSAvailability,
@@ -235,6 +238,7 @@ const opComposeEnvironments = "ComposeEnvironments"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ComposeEnvironments
 func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironmentsInput) (req *request.Request, output *EnvironmentDescriptionsMessage) {
 	op := &request.Operation{
 		Name:       opComposeEnvironments,
@@ -309,6 +313,7 @@ const opCreateApplication = "CreateApplication"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplication
 func (c *ElasticBeanstalk) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *ApplicationDescriptionMessage) {
 	op := &request.Operation{
 		Name:       opCreateApplication,
@@ -374,6 +379,7 @@ const opCreateApplicationVersion = "CreateApplicationVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplicationVersion
 func (c *ElasticBeanstalk) CreateApplicationVersionRequest(input *CreateApplicationVersionInput) (req *request.Request, output *ApplicationVersionDescriptionMessage) {
 	op := &request.Operation{
 		Name:       opCreateApplicationVersion,
@@ -474,6 +480,7 @@ const opCreateConfigurationTemplate = "CreateConfigurationTemplate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateConfigurationTemplate
 func (c *ElasticBeanstalk) CreateConfigurationTemplateRequest(input *CreateConfigurationTemplateInput) (req *request.Request, output *ConfigurationSettingsDescription) {
 	op := &request.Operation{
 		Name:       opCreateConfigurationTemplate,
@@ -555,6 +562,7 @@ const opCreateEnvironment = "CreateEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateEnvironment
 func (c *ElasticBeanstalk) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *request.Request, output *EnvironmentDescription) {
 	op := &request.Operation{
 		Name:       opCreateEnvironment,
@@ -624,6 +632,7 @@ const opCreateStorageLocation = "CreateStorageLocation"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateStorageLocation
 func (c *ElasticBeanstalk) CreateStorageLocationRequest(input *CreateStorageLocationInput) (req *request.Request, output *CreateStorageLocationOutput) {
 	op := &request.Operation{
 		Name:       opCreateStorageLocation,
@@ -697,6 +706,7 @@ const opDeleteApplication = "DeleteApplication"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplication
 func (c *ElasticBeanstalk) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApplication,
@@ -768,6 +778,7 @@ const opDeleteApplicationVersion = "DeleteApplicationVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplicationVersion
 func (c *ElasticBeanstalk) DeleteApplicationVersionRequest(input *DeleteApplicationVersionInput) (req *request.Request, output *DeleteApplicationVersionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApplicationVersion,
@@ -856,6 +867,7 @@ const opDeleteConfigurationTemplate = "DeleteConfigurationTemplate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteConfigurationTemplate
 func (c *ElasticBeanstalk) DeleteConfigurationTemplateRequest(input *DeleteConfigurationTemplateInput) (req *request.Request, output *DeleteConfigurationTemplateOutput) {
 	op := &request.Operation{
 		Name:       opDeleteConfigurationTemplate,
@@ -927,6 +939,7 @@ const opDeleteEnvironmentConfiguration = "DeleteEnvironmentConfiguration"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteEnvironmentConfiguration
 func (c *ElasticBeanstalk) DeleteEnvironmentConfigurationRequest(input *DeleteEnvironmentConfigurationInput) (req *request.Request, output *DeleteEnvironmentConfigurationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEnvironmentConfiguration,
@@ -995,6 +1008,7 @@ const opDescribeApplicationVersions = "DescribeApplicationVersions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeApplicationVersions
 func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApplicationVersionsInput) (req *request.Request, output *DescribeApplicationVersionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeApplicationVersions,
@@ -1054,6 +1068,7 @@ const opDescribeApplications = "DescribeApplications"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeApplications
 func (c *ElasticBeanstalk) DescribeApplicationsRequest(input *DescribeApplicationsInput) (req *request.Request, output *DescribeApplicationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeApplications,
@@ -1113,6 +1128,7 @@ const opDescribeConfigurationOptions = "DescribeConfigurationOptions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationOptions
 func (c *ElasticBeanstalk) DescribeConfigurationOptionsRequest(input *DescribeConfigurationOptionsInput) (req *request.Request, output *DescribeConfigurationOptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigurationOptions,
@@ -1181,6 +1197,7 @@ const opDescribeConfigurationSettings = "DescribeConfigurationSettings"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationSettings
 func (c *ElasticBeanstalk) DescribeConfigurationSettingsRequest(input *DescribeConfigurationSettingsInput) (req *request.Request, output *DescribeConfigurationSettingsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigurationSettings,
@@ -1257,6 +1274,7 @@ const opDescribeEnvironmentHealth = "DescribeEnvironmentHealth"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentHealth
 func (c *ElasticBeanstalk) DescribeEnvironmentHealthRequest(input *DescribeEnvironmentHealthInput) (req *request.Request, output *DescribeEnvironmentHealthOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEnvironmentHealth,
@@ -1327,6 +1345,7 @@ const opDescribeEnvironmentManagedActionHistory = "DescribeEnvironmentManagedAct
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionHistory
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionHistoryRequest(input *DescribeEnvironmentManagedActionHistoryInput) (req *request.Request, output *DescribeEnvironmentManagedActionHistoryOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEnvironmentManagedActionHistory,
@@ -1391,6 +1410,7 @@ const opDescribeEnvironmentManagedActions = "DescribeEnvironmentManagedActions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActions
 func (c *ElasticBeanstalk) DescribeEnvironmentManagedActionsRequest(input *DescribeEnvironmentManagedActionsInput) (req *request.Request, output *DescribeEnvironmentManagedActionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEnvironmentManagedActions,
@@ -1455,6 +1475,7 @@ const opDescribeEnvironmentResources = "DescribeEnvironmentResources"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentResources
 func (c *ElasticBeanstalk) DescribeEnvironmentResourcesRequest(input *DescribeEnvironmentResourcesInput) (req *request.Request, output *DescribeEnvironmentResourcesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEnvironmentResources,
@@ -1520,6 +1541,7 @@ const opDescribeEnvironments = "DescribeEnvironments"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironments
 func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *request.Request, output *EnvironmentDescriptionsMessage) {
 	op := &request.Operation{
 		Name:       opDescribeEnvironments,
@@ -1579,6 +1601,7 @@ const opDescribeEvents = "DescribeEvents"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEvents
 func (c *ElasticBeanstalk) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEvents,
@@ -1671,6 +1694,7 @@ const opDescribeInstancesHealth = "DescribeInstancesHealth"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeInstancesHealth
 func (c *ElasticBeanstalk) DescribeInstancesHealthRequest(input *DescribeInstancesHealthInput) (req *request.Request, output *DescribeInstancesHealthOutput) {
 	op := &request.Operation{
 		Name:       opDescribeInstancesHealth,
@@ -1740,6 +1764,7 @@ const opListAvailableSolutionStacks = "ListAvailableSolutionStacks"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListAvailableSolutionStacks
 func (c *ElasticBeanstalk) ListAvailableSolutionStacksRequest(input *ListAvailableSolutionStacksInput) (req *request.Request, output *ListAvailableSolutionStacksOutput) {
 	op := &request.Operation{
 		Name:       opListAvailableSolutionStacks,
@@ -1799,6 +1824,7 @@ const opRebuildEnvironment = "RebuildEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RebuildEnvironment
 func (c *ElasticBeanstalk) RebuildEnvironmentRequest(input *RebuildEnvironmentInput) (req *request.Request, output *RebuildEnvironmentOutput) {
 	op := &request.Operation{
 		Name:       opRebuildEnvironment,
@@ -1867,6 +1893,7 @@ const opRequestEnvironmentInfo = "RequestEnvironmentInfo"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RequestEnvironmentInfo
 func (c *ElasticBeanstalk) RequestEnvironmentInfoRequest(input *RequestEnvironmentInfoInput) (req *request.Request, output *RequestEnvironmentInfoOutput) {
 	op := &request.Operation{
 		Name:       opRequestEnvironmentInfo,
@@ -1942,6 +1969,7 @@ const opRestartAppServer = "RestartAppServer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RestartAppServer
 func (c *ElasticBeanstalk) RestartAppServerRequest(input *RestartAppServerInput) (req *request.Request, output *RestartAppServerOutput) {
 	op := &request.Operation{
 		Name:       opRestartAppServer,
@@ -2004,6 +2032,7 @@ const opRetrieveEnvironmentInfo = "RetrieveEnvironmentInfo"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RetrieveEnvironmentInfo
 func (c *ElasticBeanstalk) RetrieveEnvironmentInfoRequest(input *RetrieveEnvironmentInfoInput) (req *request.Request, output *RetrieveEnvironmentInfoOutput) {
 	op := &request.Operation{
 		Name:       opRetrieveEnvironmentInfo,
@@ -2067,6 +2096,7 @@ const opSwapEnvironmentCNAMEs = "SwapEnvironmentCNAMEs"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/SwapEnvironmentCNAMEs
 func (c *ElasticBeanstalk) SwapEnvironmentCNAMEsRequest(input *SwapEnvironmentCNAMEsInput) (req *request.Request, output *SwapEnvironmentCNAMEsOutput) {
 	op := &request.Operation{
 		Name:       opSwapEnvironmentCNAMEs,
@@ -2128,6 +2158,7 @@ const opTerminateEnvironment = "TerminateEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/TerminateEnvironment
 func (c *ElasticBeanstalk) TerminateEnvironmentRequest(input *TerminateEnvironmentInput) (req *request.Request, output *EnvironmentDescription) {
 	op := &request.Operation{
 		Name:       opTerminateEnvironment,
@@ -2193,6 +2224,7 @@ const opUpdateApplication = "UpdateApplication"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplication
 func (c *ElasticBeanstalk) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *ApplicationDescriptionMessage) {
 	op := &request.Operation{
 		Name:       opUpdateApplication,
@@ -2255,6 +2287,7 @@ const opUpdateApplicationVersion = "UpdateApplicationVersion"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationVersion
 func (c *ElasticBeanstalk) UpdateApplicationVersionRequest(input *UpdateApplicationVersionInput) (req *request.Request, output *ApplicationVersionDescriptionMessage) {
 	op := &request.Operation{
 		Name:       opUpdateApplicationVersion,
@@ -2317,6 +2350,7 @@ const opUpdateConfigurationTemplate = "UpdateConfigurationTemplate"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateConfigurationTemplate
 func (c *ElasticBeanstalk) UpdateConfigurationTemplateRequest(input *UpdateConfigurationTemplateInput) (req *request.Request, output *ConfigurationSettingsDescription) {
 	op := &request.Operation{
 		Name:       opUpdateConfigurationTemplate,
@@ -2393,6 +2427,7 @@ const opUpdateEnvironment = "UpdateEnvironment"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateEnvironment
 func (c *ElasticBeanstalk) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *request.Request, output *EnvironmentDescription) {
 	op := &request.Operation{
 		Name:       opUpdateEnvironment,
@@ -2471,6 +2506,7 @@ const opValidateConfigurationSettings = "ValidateConfigurationSettings"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ValidateConfigurationSettings
 func (c *ElasticBeanstalk) ValidateConfigurationSettingsRequest(input *ValidateConfigurationSettingsInput) (req *request.Request, output *ValidateConfigurationSettingsOutput) {
 	op := &request.Operation{
 		Name:       opValidateConfigurationSettings,
@@ -2517,6 +2553,7 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigur
 	return out, err
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/AbortEnvironmentUpdateMessage
 type AbortEnvironmentUpdateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2850,6 +2887,7 @@ func (s *ApplicationVersionDescriptionMessage) SetApplicationVersion(v *Applicat
 }
 
 // Request to execute a scheduled managed action immediately.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplyEnvironmentManagedActionRequest
 type ApplyEnvironmentManagedActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2907,6 +2945,7 @@ func (s *ApplyEnvironmentManagedActionInput) SetEnvironmentName(v string) *Apply
 }
 
 // The result message containing information about the managed action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplyEnvironmentManagedActionResult
 type ApplyEnvironmentManagedActionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3160,6 +3199,7 @@ func (s *CPUUtilization) SetUser(v float64) *CPUUtilization {
 }
 
 // Results message indicating whether a CNAME is available.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CheckDNSAvailabilityMessage
 type CheckDNSAvailabilityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3202,6 +3242,7 @@ func (s *CheckDNSAvailabilityInput) SetCNAMEPrefix(v string) *CheckDNSAvailabili
 }
 
 // Indicates if the specified CNAME is available.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CheckDNSAvailabilityResultMessage
 type CheckDNSAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3240,6 +3281,7 @@ func (s *CheckDNSAvailabilityOutput) SetFullyQualifiedCNAME(v string) *CheckDNSA
 }
 
 // Request to create or update a group of environments.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ComposeEnvironmentsMessage
 type ComposeEnvironmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3635,6 +3677,7 @@ func (s *ConfigurationSettingsDescription) SetTemplateName(v string) *Configurat
 }
 
 // Request to create an application.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplicationMessage
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3688,6 +3731,7 @@ func (s *CreateApplicationInput) SetDescription(v string) *CreateApplicationInpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateApplicationVersionMessage
 type CreateApplicationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3827,6 +3871,7 @@ func (s *CreateApplicationVersionInput) SetVersionLabel(v string) *CreateApplica
 }
 
 // Request to create a configuration template.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateConfigurationTemplateMessage
 type CreateConfigurationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3977,6 +4022,7 @@ func (s *CreateConfigurationTemplateInput) SetTemplateName(v string) *CreateConf
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateEnvironmentMessage
 type CreateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4218,6 +4264,7 @@ func (s CreateStorageLocationInput) GoString() string {
 }
 
 // Results of a CreateStorageLocationResult call.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/CreateStorageLocationResultMessage
 type CreateStorageLocationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4242,6 +4289,7 @@ func (s *CreateStorageLocationOutput) SetS3Bucket(v string) *CreateStorageLocati
 }
 
 // Request to delete an application.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplicationMessage
 type DeleteApplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4308,6 +4356,7 @@ func (s DeleteApplicationOutput) GoString() string {
 }
 
 // Request to delete an application version.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteApplicationVersionMessage
 type DeleteApplicationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4392,6 +4441,7 @@ func (s DeleteApplicationVersionOutput) GoString() string {
 }
 
 // Request to delete a configuration template.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteConfigurationTemplateMessage
 type DeleteConfigurationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4465,6 +4515,7 @@ func (s DeleteConfigurationTemplateOutput) GoString() string {
 }
 
 // Request to delete a draft environment configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DeleteEnvironmentConfigurationMessage
 type DeleteEnvironmentConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4598,6 +4649,7 @@ func (s *Deployment) SetVersionLabel(v string) *Deployment {
 }
 
 // Request to describe application versions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeApplicationVersionsMessage
 type DescribeApplicationVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4665,6 +4717,7 @@ func (s *DescribeApplicationVersionsInput) SetVersionLabels(v []*string) *Descri
 }
 
 // Result message wrapping a list of application version descriptions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplicationVersionDescriptionsMessage
 type DescribeApplicationVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4699,6 +4752,7 @@ func (s *DescribeApplicationVersionsOutput) SetNextToken(v string) *DescribeAppl
 }
 
 // Request to describe one or more applications.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeApplicationsMessage
 type DescribeApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4724,6 +4778,7 @@ func (s *DescribeApplicationsInput) SetApplicationNames(v []*string) *DescribeAp
 }
 
 // Result message containing a list of application descriptions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ApplicationDescriptionsMessage
 type DescribeApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4748,6 +4803,7 @@ func (s *DescribeApplicationsOutput) SetApplications(v []*ApplicationDescription
 }
 
 // Result message containig a list of application version descriptions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationOptionsMessage
 type DescribeConfigurationOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4840,6 +4896,7 @@ func (s *DescribeConfigurationOptionsInput) SetTemplateName(v string) *DescribeC
 }
 
 // Describes the settings for a specified configuration set.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ConfigurationOptionsDescription
 type DescribeConfigurationOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4874,6 +4931,7 @@ func (s *DescribeConfigurationOptionsOutput) SetSolutionStackName(v string) *Des
 
 // Result message containing all of the configuration settings for a specified
 // solution stack or configuration template.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationSettingsMessage
 type DescribeConfigurationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4950,6 +5008,7 @@ func (s *DescribeConfigurationSettingsInput) SetTemplateName(v string) *Describe
 }
 
 // The results from a request to change the configuration settings of an environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ConfigurationSettingsDescriptions
 type DescribeConfigurationSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4974,6 +5033,7 @@ func (s *DescribeConfigurationSettingsOutput) SetConfigurationSettings(v []*Conf
 }
 
 // See the example below to learn how to create a request body.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentHealthRequest
 type DescribeEnvironmentHealthInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5034,6 +5094,7 @@ func (s *DescribeEnvironmentHealthInput) SetEnvironmentName(v string) *DescribeE
 }
 
 // Health details for an AWS Elastic Beanstalk environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentHealthResult
 type DescribeEnvironmentHealthOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5125,6 +5186,7 @@ func (s *DescribeEnvironmentHealthOutput) SetStatus(v string) *DescribeEnvironme
 }
 
 // Request to list completed and failed managed actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionHistoryRequest
 type DescribeEnvironmentManagedActionHistoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5189,6 +5251,7 @@ func (s *DescribeEnvironmentManagedActionHistoryInput) SetNextToken(v string) *D
 }
 
 // A result message containing a list of completed and failed managed actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionHistoryResult
 type DescribeEnvironmentManagedActionHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5223,6 +5286,7 @@ func (s *DescribeEnvironmentManagedActionHistoryOutput) SetNextToken(v string) *
 }
 
 // Request to list an environment's upcoming and in-progress managed actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionsRequest
 type DescribeEnvironmentManagedActionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5265,6 +5329,7 @@ func (s *DescribeEnvironmentManagedActionsInput) SetStatus(v string) *DescribeEn
 }
 
 // The result message containing a list of managed actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentManagedActionsResult
 type DescribeEnvironmentManagedActionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5289,6 +5354,7 @@ func (s *DescribeEnvironmentManagedActionsOutput) SetManagedActions(v []*Managed
 }
 
 // Request to describe the resources in an environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentResourcesMessage
 type DescribeEnvironmentResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5343,6 +5409,7 @@ func (s *DescribeEnvironmentResourcesInput) SetEnvironmentName(v string) *Descri
 }
 
 // Result message containing a list of environment resource descriptions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/EnvironmentResourceDescriptionsMessage
 type DescribeEnvironmentResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5367,6 +5434,7 @@ func (s *DescribeEnvironmentResourcesOutput) SetEnvironmentResources(v *Environm
 }
 
 // Request to describe one or more environments.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEnvironmentsMessage
 type DescribeEnvironmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5462,6 +5530,7 @@ func (s *DescribeEnvironmentsInput) SetVersionLabel(v string) *DescribeEnvironme
 }
 
 // Request to retrieve a list of events for an environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeEventsMessage
 type DescribeEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5611,6 +5680,7 @@ func (s *DescribeEventsInput) SetVersionLabel(v string) *DescribeEventsInput {
 }
 
 // Result message wrapping a list of event descriptions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/EventDescriptionsMessage
 type DescribeEventsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5645,6 +5715,7 @@ func (s *DescribeEventsOutput) SetNextToken(v string) *DescribeEventsOutput {
 }
 
 // Parameters for a call to DescribeInstancesHealth.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeInstancesHealthRequest
 type DescribeInstancesHealthInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5714,6 +5785,7 @@ func (s *DescribeInstancesHealthInput) SetNextToken(v string) *DescribeInstances
 
 // Detailed health information about the Amazon EC2 instances in an AWS Elastic
 // Beanstalk environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeInstancesHealthResult
 type DescribeInstancesHealthOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6563,6 +6635,7 @@ func (s ListAvailableSolutionStacksInput) GoString() string {
 }
 
 // A list of available AWS Elastic Beanstalk solution stacks.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ListAvailableSolutionStacksResultMessage
 type ListAvailableSolutionStacksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6966,6 +7039,7 @@ func (s *Queue) SetURL(v string) *Queue {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RebuildEnvironmentMessage
 type RebuildEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7035,6 +7109,7 @@ func (s RebuildEnvironmentOutput) GoString() string {
 
 // Request to retrieve logs from an environment and store them in your Elastic
 // Beanstalk storage bucket.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RequestEnvironmentInfoMessage
 type RequestEnvironmentInfoInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7122,6 +7197,7 @@ func (s RequestEnvironmentInfoOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RestartAppServerMessage
 type RestartAppServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7190,6 +7266,7 @@ func (s RestartAppServerOutput) GoString() string {
 }
 
 // Request to download logs retrieved with RequestEnvironmentInfo.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RetrieveEnvironmentInfoMessage
 type RetrieveEnvironmentInfoInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7262,6 +7339,7 @@ func (s *RetrieveEnvironmentInfoInput) SetInfoType(v string) *RetrieveEnvironmen
 }
 
 // Result message containing a description of the requested environment info.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/RetrieveEnvironmentInfoResultMessage
 type RetrieveEnvironmentInfoOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7653,6 +7731,7 @@ func (s *StatusCodes) SetStatus5xx(v int64) *StatusCodes {
 }
 
 // Swaps the CNAMEs of two environments.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/SwapEnvironmentCNAMEsMessage
 type SwapEnvironmentCNAMEsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7833,6 +7912,7 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // Request to terminate an environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/TerminateEnvironmentMessage
 type TerminateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7943,6 +8023,7 @@ func (s *Trigger) SetName(v string) *Trigger {
 }
 
 // Request to update an application.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationMessage
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7996,6 +8077,7 @@ func (s *UpdateApplicationInput) SetDescription(v string) *UpdateApplicationInpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateApplicationVersionMessage
 type UpdateApplicationVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8070,6 +8152,7 @@ func (s *UpdateApplicationVersionInput) SetVersionLabel(v string) *UpdateApplica
 }
 
 // The result message containing the options for the specified solution stack.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateConfigurationTemplateMessage
 type UpdateConfigurationTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8186,6 +8269,7 @@ func (s *UpdateConfigurationTemplateInput) SetTemplateName(v string) *UpdateConf
 }
 
 // Request to update an environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/UpdateEnvironmentMessage
 type UpdateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8373,6 +8457,7 @@ func (s *UpdateEnvironmentInput) SetVersionLabel(v string) *UpdateEnvironmentInp
 }
 
 // A list of validation messages for a specified configuration template.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ValidateConfigurationSettingsMessage
 type ValidateConfigurationSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8468,6 +8553,7 @@ func (s *ValidateConfigurationSettingsInput) SetTemplateName(v string) *Validate
 }
 
 // Provides a list of validation messages.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/ConfigurationSettingsValidationMessages
 type ValidateConfigurationSettingsOutput struct {
 	_ struct{} `type:"structure"`
 

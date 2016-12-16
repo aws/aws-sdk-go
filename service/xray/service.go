@@ -13,8 +13,10 @@ import (
 
 // AWS X-Ray provides APIs for managing debug traces and retrieving service
 // maps and other data created by processing those traces.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12
 type XRay struct {
 	*client.Client
 }

@@ -38,6 +38,7 @@ const opAddPermission = "AddPermission"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/AddPermission
 func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
 	op := &request.Operation{
 		Name:       opAddPermission,
@@ -114,6 +115,7 @@ const opCheckIfPhoneNumberIsOptedOut = "CheckIfPhoneNumberIsOptedOut"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CheckIfPhoneNumberIsOptedOut
 func (c *SNS) CheckIfPhoneNumberIsOptedOutRequest(input *CheckIfPhoneNumberIsOptedOutInput) (req *request.Request, output *CheckIfPhoneNumberIsOptedOutOutput) {
 	op := &request.Operation{
 		Name:       opCheckIfPhoneNumberIsOptedOut,
@@ -193,6 +195,7 @@ const opConfirmSubscription = "ConfirmSubscription"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ConfirmSubscription
 func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *request.Request, output *ConfirmSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opConfirmSubscription,
@@ -273,6 +276,7 @@ const opCreatePlatformApplication = "CreatePlatformApplication"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreatePlatformApplication
 func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *request.Request, output *CreatePlatformApplicationOutput) {
 	op := &request.Operation{
 		Name:       opCreatePlatformApplication,
@@ -368,6 +372,7 @@ const opCreatePlatformEndpoint = "CreatePlatformEndpoint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreatePlatformEndpoint
 func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *request.Request, output *CreatePlatformEndpointOutput) {
 	op := &request.Operation{
 		Name:       opCreatePlatformEndpoint,
@@ -454,6 +459,7 @@ const opCreateTopic = "CreateTopic"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreateTopic
 func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *request.Request, output *CreateTopicOutput) {
 	op := &request.Operation{
 		Name:       opCreateTopic,
@@ -531,6 +537,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/DeleteEndpoint
 func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
 	op := &request.Operation{
 		Name:       opDeleteEndpoint,
@@ -608,6 +615,7 @@ const opDeletePlatformApplication = "DeletePlatformApplication"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/DeletePlatformApplication
 func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *request.Request, output *DeletePlatformApplicationOutput) {
 	op := &request.Operation{
 		Name:       opDeletePlatformApplication,
@@ -682,6 +690,7 @@ const opDeleteTopic = "DeleteTopic"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/DeleteTopic
 func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *request.Request, output *DeleteTopicOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTopic,
@@ -760,6 +769,7 @@ const opGetEndpointAttributes = "GetEndpointAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetEndpointAttributes
 func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *request.Request, output *GetEndpointAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetEndpointAttributes,
@@ -835,6 +845,7 @@ const opGetPlatformApplicationAttributes = "GetPlatformApplicationAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetPlatformApplicationAttributes
 func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *request.Request, output *GetPlatformApplicationAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetPlatformApplicationAttributes,
@@ -910,6 +921,7 @@ const opGetSMSAttributes = "GetSMSAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetSMSAttributes
 func (c *SNS) GetSMSAttributesRequest(input *GetSMSAttributesInput) (req *request.Request, output *GetSMSAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetSMSAttributes,
@@ -986,6 +998,7 @@ const opGetSubscriptionAttributes = "GetSubscriptionAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetSubscriptionAttributes
 func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *request.Request, output *GetSubscriptionAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetSubscriptionAttributes,
@@ -1059,6 +1072,7 @@ const opGetTopicAttributes = "GetTopicAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetTopicAttributes
 func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *request.Request, output *GetTopicAttributesOutput) {
 	op := &request.Operation{
 		Name:       opGetTopicAttributes,
@@ -1133,6 +1147,7 @@ const opListEndpointsByPlatformApplication = "ListEndpointsByPlatformApplication
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListEndpointsByPlatformApplication
 func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *request.Request, output *ListEndpointsByPlatformApplicationOutput) {
 	op := &request.Operation{
 		Name:       opListEndpointsByPlatformApplication,
@@ -1244,6 +1259,7 @@ const opListPhoneNumbersOptedOut = "ListPhoneNumbersOptedOut"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListPhoneNumbersOptedOut
 func (c *SNS) ListPhoneNumbersOptedOutRequest(input *ListPhoneNumbersOptedOutInput) (req *request.Request, output *ListPhoneNumbersOptedOutOutput) {
 	op := &request.Operation{
 		Name:       opListPhoneNumbersOptedOut,
@@ -1326,6 +1342,7 @@ const opListPlatformApplications = "ListPlatformApplications"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListPlatformApplications
 func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *request.Request, output *ListPlatformApplicationsOutput) {
 	op := &request.Operation{
 		Name:       opListPlatformApplications,
@@ -1434,6 +1451,7 @@ const opListSubscriptions = "ListSubscriptions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListSubscriptions
 func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *request.Request, output *ListSubscriptionsOutput) {
 	op := &request.Operation{
 		Name:       opListSubscriptions,
@@ -1538,6 +1556,7 @@ const opListSubscriptionsByTopic = "ListSubscriptionsByTopic"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListSubscriptionsByTopic
 func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *request.Request, output *ListSubscriptionsByTopicOutput) {
 	op := &request.Operation{
 		Name:       opListSubscriptionsByTopic,
@@ -1645,6 +1664,7 @@ const opListTopics = "ListTopics"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListTopics
 func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *request.Request, output *ListTopicsOutput) {
 	op := &request.Operation{
 		Name:       opListTopics,
@@ -1748,6 +1768,7 @@ const opOptInPhoneNumber = "OptInPhoneNumber"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/OptInPhoneNumber
 func (c *SNS) OptInPhoneNumberRequest(input *OptInPhoneNumberInput) (req *request.Request, output *OptInPhoneNumberOutput) {
 	op := &request.Operation{
 		Name:       opOptInPhoneNumber,
@@ -1825,6 +1846,7 @@ const opPublish = "Publish"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/Publish
 func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output *PublishOutput) {
 	op := &request.Operation{
 		Name:       opPublish,
@@ -1918,6 +1940,7 @@ const opRemovePermission = "RemovePermission"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/RemovePermission
 func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
 	op := &request.Operation{
 		Name:       opRemovePermission,
@@ -1993,6 +2016,7 @@ const opSetEndpointAttributes = "SetEndpointAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetEndpointAttributes
 func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *request.Request, output *SetEndpointAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetEndpointAttributes,
@@ -2070,6 +2094,7 @@ const opSetPlatformApplicationAttributes = "SetPlatformApplicationAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetPlatformApplicationAttributes
 func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *request.Request, output *SetPlatformApplicationAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetPlatformApplicationAttributes,
@@ -2149,6 +2174,7 @@ const opSetSMSAttributes = "SetSMSAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSMSAttributes
 func (c *SNS) SetSMSAttributesRequest(input *SetSMSAttributesInput) (req *request.Request, output *SetSMSAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetSMSAttributes,
@@ -2229,6 +2255,7 @@ const opSetSubscriptionAttributes = "SetSubscriptionAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSubscriptionAttributes
 func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *request.Request, output *SetSubscriptionAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetSubscriptionAttributes,
@@ -2304,6 +2331,7 @@ const opSetTopicAttributes = "SetTopicAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetTopicAttributes
 func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *request.Request, output *SetTopicAttributesOutput) {
 	op := &request.Operation{
 		Name:       opSetTopicAttributes,
@@ -2379,6 +2407,7 @@ const opSubscribe = "Subscribe"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/Subscribe
 func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *request.Request, output *SubscribeOutput) {
 	op := &request.Operation{
 		Name:       opSubscribe,
@@ -2458,6 +2487,7 @@ const opUnsubscribe = "Unsubscribe"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/Unsubscribe
 func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *request.Request, output *UnsubscribeOutput) {
 	op := &request.Operation{
 		Name:       opUnsubscribe,
@@ -2650,6 +2680,7 @@ func (s *CheckIfPhoneNumberIsOptedOutInput) SetPhoneNumber(v string) *CheckIfPho
 }
 
 // The response from the CheckIfPhoneNumberIsOptedOut action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CheckIfPhoneNumberIsOptedOutResponse
 type CheckIfPhoneNumberIsOptedOutOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2745,6 +2776,7 @@ func (s *ConfirmSubscriptionInput) SetTopicArn(v string) *ConfirmSubscriptionInp
 }
 
 // Response for ConfirmSubscriptions action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ConfirmSubscriptionResponse
 type ConfirmSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2839,6 +2871,7 @@ func (s *CreatePlatformApplicationInput) SetPlatform(v string) *CreatePlatformAp
 }
 
 // Response from CreatePlatformApplication action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreatePlatformApplicationResponse
 type CreatePlatformApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2940,6 +2973,7 @@ func (s *CreatePlatformEndpointInput) SetToken(v string) *CreatePlatformEndpoint
 }
 
 // Response from CreateEndpoint action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreateEndpointResponse
 type CreatePlatformEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3007,6 +3041,7 @@ func (s *CreateTopicInput) SetName(v string) *CreateTopicInput {
 }
 
 // Response from CreateTopic action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreateTopicResponse
 type CreateTopicOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3261,6 +3296,7 @@ func (s *GetEndpointAttributesInput) SetEndpointArn(v string) *GetEndpointAttrib
 }
 
 // Response from GetEndpointAttributes of the EndpointArn.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetEndpointAttributesResponse
 type GetEndpointAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3337,6 +3373,7 @@ func (s *GetPlatformApplicationAttributesInput) SetPlatformApplicationArn(v stri
 }
 
 // Response for GetPlatformApplicationAttributes action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetPlatformApplicationAttributesResponse
 type GetPlatformApplicationAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3403,6 +3440,7 @@ func (s *GetSMSAttributesInput) SetAttributes(v []*string) *GetSMSAttributesInpu
 }
 
 // The response from the GetSMSAttributes request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetSMSAttributesResponse
 type GetSMSAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3466,6 +3504,7 @@ func (s *GetSubscriptionAttributesInput) SetSubscriptionArn(v string) *GetSubscr
 }
 
 // Response for GetSubscriptionAttributes action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetSubscriptionAttributesResponse
 type GetSubscriptionAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3546,6 +3585,7 @@ func (s *GetTopicAttributesInput) SetTopicArn(v string) *GetTopicAttributesInput
 }
 
 // Response for GetTopicAttributes action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetTopicAttributesResponse
 type GetTopicAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3643,6 +3683,7 @@ func (s *ListEndpointsByPlatformApplicationInput) SetPlatformApplicationArn(v st
 }
 
 // Response for ListEndpointsByPlatformApplication action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListEndpointsByPlatformApplicationResponse
 type ListEndpointsByPlatformApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3703,6 +3744,7 @@ func (s *ListPhoneNumbersOptedOutInput) SetNextToken(v string) *ListPhoneNumbers
 }
 
 // The response from the ListPhoneNumbersOptedOut action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListPhoneNumbersOptedOutResponse
 type ListPhoneNumbersOptedOutOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3763,6 +3805,7 @@ func (s *ListPlatformApplicationsInput) SetNextToken(v string) *ListPlatformAppl
 }
 
 // Response for ListPlatformApplications action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListPlatformApplicationsResponse
 type ListPlatformApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3845,6 +3888,7 @@ func (s *ListSubscriptionsByTopicInput) SetTopicArn(v string) *ListSubscriptions
 }
 
 // Response for ListSubscriptionsByTopic action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListSubscriptionsByTopicResponse
 type ListSubscriptionsByTopicOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3903,6 +3947,7 @@ func (s *ListSubscriptionsInput) SetNextToken(v string) *ListSubscriptionsInput 
 }
 
 // Response for ListSubscriptions action
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListSubscriptionsResponse
 type ListSubscriptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3960,6 +4005,7 @@ func (s *ListTopicsInput) SetNextToken(v string) *ListTopicsInput {
 }
 
 // Response for ListTopics action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListTopicsResponse
 type ListTopicsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4103,6 +4149,7 @@ func (s *OptInPhoneNumberInput) SetPhoneNumber(v string) *OptInPhoneNumberInput 
 }
 
 // The response for the OptInPhoneNumber action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/OptInPhoneNumberResponse
 type OptInPhoneNumberOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4322,6 +4369,7 @@ func (s *PublishInput) SetTopicArn(v string) *PublishInput {
 }
 
 // Response for Publish action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/PublishResponse
 type PublishOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4705,6 +4753,7 @@ func (s *SetSMSAttributesInput) SetAttributes(v map[string]*string) *SetSMSAttri
 }
 
 // The response for the SetSMSAttributes action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SetSMSAttributesResponse
 type SetSMSAttributesOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4975,6 +5024,7 @@ func (s *SubscribeInput) SetTopicArn(v string) *SubscribeInput {
 }
 
 // Response for Subscribe action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/SubscribeResponse
 type SubscribeOutput struct {
 	_ struct{} `type:"structure"`
 

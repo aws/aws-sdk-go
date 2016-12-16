@@ -37,6 +37,7 @@ const opDeleteLexicon = "DeleteLexicon"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/DeleteLexicon
 func (c *Polly) DeleteLexiconRequest(input *DeleteLexiconInput) (req *request.Request, output *DeleteLexiconOutput) {
 	op := &request.Operation{
 		Name:       opDeleteLexicon,
@@ -113,6 +114,7 @@ const opDescribeVoices = "DescribeVoices"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/DescribeVoices
 func (c *Polly) DescribeVoicesRequest(input *DescribeVoicesInput) (req *request.Request, output *DescribeVoicesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeVoices,
@@ -197,6 +199,7 @@ const opGetLexicon = "GetLexicon"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/GetLexicon
 func (c *Polly) GetLexiconRequest(input *GetLexiconInput) (req *request.Request, output *GetLexiconOutput) {
 	op := &request.Operation{
 		Name:       opGetLexicon,
@@ -270,6 +273,7 @@ const opListLexicons = "ListLexicons"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/ListLexicons
 func (c *Polly) ListLexiconsRequest(input *ListLexiconsInput) (req *request.Request, output *ListLexiconsOutput) {
 	op := &request.Operation{
 		Name:       opListLexicons,
@@ -339,6 +343,7 @@ const opPutLexicon = "PutLexicon"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/PutLexicon
 func (c *Polly) PutLexiconRequest(input *PutLexiconInput) (req *request.Request, output *PutLexiconOutput) {
 	op := &request.Operation{
 		Name:       opPutLexicon,
@@ -429,6 +434,7 @@ const opSynthesizeSpeech = "SynthesizeSpeech"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/polly-2016-06-10/SynthesizeSpeech
 func (c *Polly) SynthesizeSpeechRequest(input *SynthesizeSpeechInput) (req *request.Request, output *SynthesizeSpeechOutput) {
 	op := &request.Operation{
 		Name:       opSynthesizeSpeech,

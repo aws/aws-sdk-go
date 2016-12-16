@@ -36,6 +36,7 @@ const opCreateActivity = "CreateActivity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivity
 func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Request, output *CreateActivityOutput) {
 	op := &request.Operation{
 		Name:       opCreateActivity,
@@ -104,6 +105,7 @@ const opCreateStateMachine = "CreateStateMachine"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachine
 func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *request.Request, output *CreateStateMachineOutput) {
 	op := &request.Operation{
 		Name:       opCreateStateMachine,
@@ -185,6 +187,7 @@ const opDeleteActivity = "DeleteActivity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteActivity
 func (c *SFN) DeleteActivityRequest(input *DeleteActivityInput) (req *request.Request, output *DeleteActivityOutput) {
 	op := &request.Operation{
 		Name:       opDeleteActivity,
@@ -249,6 +252,7 @@ const opDeleteStateMachine = "DeleteStateMachine"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachine
 func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *request.Request, output *DeleteStateMachineOutput) {
 	op := &request.Operation{
 		Name:       opDeleteStateMachine,
@@ -314,6 +318,7 @@ const opDescribeActivity = "DescribeActivity"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeActivity
 func (c *SFN) DescribeActivityRequest(input *DescribeActivityInput) (req *request.Request, output *DescribeActivityOutput) {
 	op := &request.Operation{
 		Name:       opDescribeActivity,
@@ -381,6 +386,7 @@ const opDescribeExecution = "DescribeExecution"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution
 func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *request.Request, output *DescribeExecutionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeExecution,
@@ -448,6 +454,7 @@ const opDescribeStateMachine = "DescribeStateMachine"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachine
 func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req *request.Request, output *DescribeStateMachineOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStateMachine,
@@ -515,6 +522,7 @@ const opGetActivityTask = "GetActivityTask"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask
 func (c *SFN) GetActivityTaskRequest(input *GetActivityTaskInput) (req *request.Request, output *GetActivityTaskOutput) {
 	op := &request.Operation{
 		Name:       opGetActivityTask,
@@ -595,6 +603,7 @@ const opGetExecutionHistory = "GetExecutionHistory"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory
 func (c *SFN) GetExecutionHistoryRequest(input *GetExecutionHistoryInput) (req *request.Request, output *GetExecutionHistoryOutput) {
 	op := &request.Operation{
 		Name:       opGetExecutionHistory,
@@ -700,6 +709,7 @@ const opListActivities = "ListActivities"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListActivities
 func (c *SFN) ListActivitiesRequest(input *ListActivitiesInput) (req *request.Request, output *ListActivitiesOutput) {
 	op := &request.Operation{
 		Name:       opListActivities,
@@ -797,6 +807,7 @@ const opListExecutions = "ListExecutions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutions
 func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Request, output *ListExecutionsOutput) {
 	op := &request.Operation{
 		Name:       opListExecutions,
@@ -900,6 +911,7 @@ const opListStateMachines = "ListStateMachines"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachines
 func (c *SFN) ListStateMachinesRequest(input *ListStateMachinesInput) (req *request.Request, output *ListStateMachinesOutput) {
 	op := &request.Operation{
 		Name:       opListStateMachines,
@@ -997,6 +1009,7 @@ const opSendTaskFailure = "SendTaskFailure"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure
 func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.Request, output *SendTaskFailureOutput) {
 	op := &request.Operation{
 		Name:       opSendTaskFailure,
@@ -1067,6 +1080,7 @@ const opSendTaskHeartbeat = "SendTaskHeartbeat"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat
 func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *request.Request, output *SendTaskHeartbeatOutput) {
 	op := &request.Operation{
 		Name:       opSendTaskHeartbeat,
@@ -1149,6 +1163,7 @@ const opSendTaskSuccess = "SendTaskSuccess"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess
 func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.Request, output *SendTaskSuccessOutput) {
 	op := &request.Operation{
 		Name:       opSendTaskSuccess,
@@ -1223,6 +1238,7 @@ const opStartExecution = "StartExecution"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecution
 func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Request, output *StartExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStartExecution,
@@ -1306,6 +1322,7 @@ const opStopExecution = "StopExecution"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecution
 func (c *SFN) StopExecutionRequest(input *StopExecutionInput) (req *request.Request, output *StopExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStopExecution,

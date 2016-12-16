@@ -37,6 +37,7 @@ const opCreateBudget = "CreateBudget"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateBudget
 func (c *Budgets) CreateBudgetRequest(input *CreateBudgetInput) (req *request.Request, output *CreateBudgetOutput) {
 	op := &request.Operation{
 		Name:       opCreateBudget,
@@ -113,6 +114,7 @@ const opCreateNotification = "CreateNotification"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateNotification
 func (c *Budgets) CreateNotificationRequest(input *CreateNotificationInput) (req *request.Request, output *CreateNotificationOutput) {
 	op := &request.Operation{
 		Name:       opCreateNotification,
@@ -193,6 +195,7 @@ const opCreateSubscriber = "CreateSubscriber"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateSubscriber
 func (c *Budgets) CreateSubscriberRequest(input *CreateSubscriberInput) (req *request.Request, output *CreateSubscriberOutput) {
 	op := &request.Operation{
 		Name:       opCreateSubscriber,
@@ -269,6 +272,7 @@ const opDeleteBudget = "DeleteBudget"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteBudget
 func (c *Budgets) DeleteBudgetRequest(input *DeleteBudgetInput) (req *request.Request, output *DeleteBudgetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBudget,
@@ -341,6 +345,7 @@ const opDeleteNotification = "DeleteNotification"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteNotification
 func (c *Budgets) DeleteNotificationRequest(input *DeleteNotificationInput) (req *request.Request, output *DeleteNotificationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteNotification,
@@ -413,6 +418,7 @@ const opDeleteSubscriber = "DeleteSubscriber"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteSubscriber
 func (c *Budgets) DeleteSubscriberRequest(input *DeleteSubscriberInput) (req *request.Request, output *DeleteSubscriberOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSubscriber,
@@ -485,6 +491,7 @@ const opDescribeBudget = "DescribeBudget"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeBudget
 func (c *Budgets) DescribeBudgetRequest(input *DescribeBudgetInput) (req *request.Request, output *DescribeBudgetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBudget,
@@ -557,6 +564,7 @@ const opDescribeBudgets = "DescribeBudgets"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeBudgets
 func (c *Budgets) DescribeBudgetsRequest(input *DescribeBudgetsInput) (req *request.Request, output *DescribeBudgetsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBudgets,
@@ -636,6 +644,7 @@ const opDescribeNotificationsForBudget = "DescribeNotificationsForBudget"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeNotificationsForBudget
 func (c *Budgets) DescribeNotificationsForBudgetRequest(input *DescribeNotificationsForBudgetInput) (req *request.Request, output *DescribeNotificationsForBudgetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeNotificationsForBudget,
@@ -715,6 +724,7 @@ const opDescribeSubscribersForNotification = "DescribeSubscribersForNotification
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeSubscribersForNotification
 func (c *Budgets) DescribeSubscribersForNotificationRequest(input *DescribeSubscribersForNotificationInput) (req *request.Request, output *DescribeSubscribersForNotificationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSubscribersForNotification,
@@ -794,6 +804,7 @@ const opUpdateBudget = "UpdateBudget"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateBudget
 func (c *Budgets) UpdateBudgetRequest(input *UpdateBudgetInput) (req *request.Request, output *UpdateBudgetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateBudget,
@@ -866,6 +877,7 @@ const opUpdateNotification = "UpdateNotification"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateNotification
 func (c *Budgets) UpdateNotificationRequest(input *UpdateNotificationInput) (req *request.Request, output *UpdateNotificationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateNotification,
@@ -938,6 +950,7 @@ const opUpdateSubscriber = "UpdateSubscriber"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateSubscriber
 func (c *Budgets) UpdateSubscriberRequest(input *UpdateSubscriberInput) (req *request.Request, output *UpdateSubscriberOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSubscriber,
@@ -1260,6 +1273,7 @@ func (s *CostTypes) SetUseBlended(v bool) *CostTypes {
 }
 
 // Request of CreateBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateBudgetRequest
 type CreateBudgetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1340,6 +1354,7 @@ func (s *CreateBudgetInput) SetNotificationsWithSubscribers(v []*NotificationWit
 }
 
 // Response of CreateBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateBudgetResponse
 type CreateBudgetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1355,6 +1370,7 @@ func (s CreateBudgetOutput) GoString() string {
 }
 
 // Request of CreateNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateNotificationRequest
 type CreateNotificationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1458,6 +1474,7 @@ func (s *CreateNotificationInput) SetSubscribers(v []*Subscriber) *CreateNotific
 }
 
 // Response of CreateNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateNotificationResponse
 type CreateNotificationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1473,6 +1490,7 @@ func (s CreateNotificationOutput) GoString() string {
 }
 
 // Request of CreateSubscriber
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateSubscriberRequest
 type CreateSubscriberInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1569,6 +1587,7 @@ func (s *CreateSubscriberInput) SetSubscriber(v *Subscriber) *CreateSubscriberIn
 }
 
 // Response of CreateSubscriber
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/CreateSubscriberResponse
 type CreateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1584,6 +1603,7 @@ func (s CreateSubscriberOutput) GoString() string {
 }
 
 // Request of DeleteBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteBudgetRequest
 type DeleteBudgetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1640,6 +1660,7 @@ func (s *DeleteBudgetInput) SetBudgetName(v string) *DeleteBudgetInput {
 }
 
 // Response of DeleteBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteBudgetResponse
 type DeleteBudgetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1655,6 +1676,7 @@ func (s DeleteBudgetOutput) GoString() string {
 }
 
 // Request of DeleteNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteNotificationRequest
 type DeleteNotificationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1731,6 +1753,7 @@ func (s *DeleteNotificationInput) SetNotification(v *Notification) *DeleteNotifi
 }
 
 // Response of DeleteNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteNotificationResponse
 type DeleteNotificationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1746,6 +1769,7 @@ func (s DeleteNotificationOutput) GoString() string {
 }
 
 // Request of DeleteSubscriber
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteSubscriberRequest
 type DeleteSubscriberInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1842,6 +1866,7 @@ func (s *DeleteSubscriberInput) SetSubscriber(v *Subscriber) *DeleteSubscriberIn
 }
 
 // Response of DeleteSubscriber
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DeleteSubscriberResponse
 type DeleteSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1857,6 +1882,7 @@ func (s DeleteSubscriberOutput) GoString() string {
 }
 
 // Request of DescribeBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeBudgetRequest
 type DescribeBudgetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1913,6 +1939,7 @@ func (s *DescribeBudgetInput) SetBudgetName(v string) *DescribeBudgetInput {
 }
 
 // Response of DescribeBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeBudgetResponse
 type DescribeBudgetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1937,6 +1964,7 @@ func (s *DescribeBudgetOutput) SetBudget(v *Budget) *DescribeBudgetOutput {
 }
 
 // Request of DescribeBudgets
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeBudgetsRequest
 type DescribeBudgetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2001,6 +2029,7 @@ func (s *DescribeBudgetsInput) SetNextToken(v string) *DescribeBudgetsInput {
 }
 
 // Response of DescribeBudgets
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeBudgetsResponse
 type DescribeBudgetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2034,6 +2063,7 @@ func (s *DescribeBudgetsOutput) SetNextToken(v string) *DescribeBudgetsOutput {
 }
 
 // Request of DescribeNotificationsForBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeNotificationsForBudgetRequest
 type DescribeNotificationsForBudgetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2112,6 +2142,7 @@ func (s *DescribeNotificationsForBudgetInput) SetNextToken(v string) *DescribeNo
 }
 
 // Response of GetNotificationsForBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeNotificationsForBudgetResponse
 type DescribeNotificationsForBudgetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2145,6 +2176,7 @@ func (s *DescribeNotificationsForBudgetOutput) SetNotifications(v []*Notificatio
 }
 
 // Request of DescribeSubscribersForNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeSubscribersForNotificationRequest
 type DescribeSubscribersForNotificationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2243,6 +2275,7 @@ func (s *DescribeSubscribersForNotificationInput) SetNotification(v *Notificatio
 }
 
 // Response of DescribeSubscribersForNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/DescribeSubscribersForNotificationResponse
 type DescribeSubscribersForNotificationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2583,6 +2616,7 @@ func (s *TimePeriod) SetStart(v time.Time) *TimePeriod {
 }
 
 // Request of UpdateBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateBudgetRequest
 type UpdateBudgetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2644,6 +2678,7 @@ func (s *UpdateBudgetInput) SetNewBudget(v *Budget) *UpdateBudgetInput {
 }
 
 // Response of UpdateBudget
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateBudgetResponse
 type UpdateBudgetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2659,6 +2694,7 @@ func (s UpdateBudgetOutput) GoString() string {
 }
 
 // Request of UpdateNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateNotificationRequest
 type UpdateNotificationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2755,6 +2791,7 @@ func (s *UpdateNotificationInput) SetOldNotification(v *Notification) *UpdateNot
 }
 
 // Response of UpdateNotification
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateNotificationResponse
 type UpdateNotificationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2770,6 +2807,7 @@ func (s UpdateNotificationOutput) GoString() string {
 }
 
 // Request of UpdateSubscriber
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateSubscriberRequest
 type UpdateSubscriberInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2886,6 +2924,7 @@ func (s *UpdateSubscriberInput) SetOldSubscriber(v *Subscriber) *UpdateSubscribe
 }
 
 // Response of UpdateSubscriber
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/budgets-2016-10-20/UpdateSubscriberResponse
 type UpdateSubscriberOutput struct {
 	_ struct{} `type:"structure"`
 }

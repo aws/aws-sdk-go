@@ -36,6 +36,7 @@ const opAssociateNode = "AssociateNode"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNode
 func (c *OpsWorksCM) AssociateNodeRequest(input *AssociateNodeInput) (req *request.Request, output *AssociateNodeOutput) {
 	op := &request.Operation{
 		Name:       opAssociateNode,
@@ -105,6 +106,7 @@ const opCreateBackup = "CreateBackup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackup
 func (c *OpsWorksCM) CreateBackupRequest(input *CreateBackupInput) (req *request.Request, output *CreateBackupOutput) {
 	op := &request.Operation{
 		Name:       opCreateBackup,
@@ -192,6 +194,7 @@ const opCreateServer = "CreateServer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServer
 func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request.Request, output *CreateServerOutput) {
 	op := &request.Operation{
 		Name:       opCreateServer,
@@ -287,6 +290,7 @@ const opDeleteBackup = "DeleteBackup"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackup
 func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request.Request, output *DeleteBackupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBackup,
@@ -364,6 +368,7 @@ const opDeleteServer = "DeleteServer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServer
 func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request.Request, output *DeleteServerOutput) {
 	op := &request.Operation{
 		Name:       opDeleteServer,
@@ -445,6 +450,7 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributes
 func (c *OpsWorksCM) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAccountAttributes,
@@ -507,6 +513,7 @@ const opDescribeBackups = "DescribeBackups"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackups
 func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.Request, output *DescribeBackupsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBackups,
@@ -583,6 +590,7 @@ const opDescribeEvents = "DescribeEvents"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEvents
 func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeEvents,
@@ -659,6 +667,7 @@ const opDescribeNodeAssociationStatus = "DescribeNodeAssociationStatus"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatus
 func (c *OpsWorksCM) DescribeNodeAssociationStatusRequest(input *DescribeNodeAssociationStatusInput) (req *request.Request, output *DescribeNodeAssociationStatusOutput) {
 	op := &request.Operation{
 		Name:       opDescribeNodeAssociationStatus,
@@ -724,6 +733,7 @@ const opDescribeServers = "DescribeServers"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServers
 func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *request.Request, output *DescribeServersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeServers,
@@ -801,6 +811,7 @@ const opDisassociateNode = "DisassociateNode"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNode
 func (c *OpsWorksCM) DisassociateNodeRequest(input *DisassociateNodeInput) (req *request.Request, output *DisassociateNodeOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateNode,
@@ -870,6 +881,7 @@ const opRestoreServer = "RestoreServer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServer
 func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *request.Request, output *RestoreServerOutput) {
 	op := &request.Operation{
 		Name:       opRestoreServer,
@@ -951,6 +963,7 @@ const opStartMaintenance = "StartMaintenance"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenance
 func (c *OpsWorksCM) StartMaintenanceRequest(input *StartMaintenanceInput) (req *request.Request, output *StartMaintenanceOutput) {
 	op := &request.Operation{
 		Name:       opStartMaintenance,
@@ -1030,6 +1043,7 @@ const opUpdateServer = "UpdateServer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServer
 func (c *OpsWorksCM) UpdateServerRequest(input *UpdateServerInput) (req *request.Request, output *UpdateServerOutput) {
 	op := &request.Operation{
 		Name:       opUpdateServer,
@@ -1103,6 +1117,7 @@ const opUpdateServerEngineAttributes = "UpdateServerEngineAttributes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributes
 func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngineAttributesInput) (req *request.Request, output *UpdateServerEngineAttributesOutput) {
 	op := &request.Operation{
 		Name:       opUpdateServerEngineAttributes,
@@ -1208,6 +1223,7 @@ func (s *AccountAttribute) SetUsed(v int64) *AccountAttribute {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNodeRequest
 type AssociateNodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1267,6 +1283,7 @@ func (s *AssociateNodeInput) SetServerName(v string) *AssociateNodeInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNodeResponse
 type AssociateNodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1530,6 +1547,7 @@ func (s *Backup) SetUserArn(v string) *Backup {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackupRequest
 type CreateBackupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1580,6 +1598,7 @@ func (s *CreateBackupInput) SetServerName(v string) *CreateBackupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackupResponse
 type CreateBackupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1603,6 +1622,7 @@ func (s *CreateBackupOutput) SetBackup(v *Backup) *CreateBackupOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServerRequest
 type CreateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1855,6 +1875,7 @@ func (s *CreateServerInput) SetSubnetIds(v []*string) *CreateServerInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServerResponse
 type CreateServerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1878,6 +1899,7 @@ func (s *CreateServerOutput) SetServer(v *Server) *CreateServerOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackupRequest
 type DeleteBackupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1917,6 +1939,7 @@ func (s *DeleteBackupInput) SetBackupId(v string) *DeleteBackupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackupResponse
 type DeleteBackupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1931,6 +1954,7 @@ func (s DeleteBackupOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServerRequest
 type DeleteServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1972,6 +1996,7 @@ func (s *DeleteServerInput) SetServerName(v string) *DeleteServerInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServerResponse
 type DeleteServerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1986,6 +2011,7 @@ func (s DeleteServerOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributesRequest
 type DescribeAccountAttributesInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2000,6 +2026,7 @@ func (s DescribeAccountAttributesInput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeAccountAttributesResponse
 type DescribeAccountAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2023,6 +2050,7 @@ func (s *DescribeAccountAttributesOutput) SetAttributes(v []*AccountAttribute) *
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackupsRequest
 type DescribeBackupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2100,6 +2128,7 @@ func (s *DescribeBackupsInput) SetServerName(v string) *DescribeBackupsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackupsResponse
 type DescribeBackupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2139,6 +2168,7 @@ func (s *DescribeBackupsOutput) SetNextToken(v string) *DescribeBackupsOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEventsRequest
 type DescribeEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2212,6 +2242,7 @@ func (s *DescribeEventsInput) SetServerName(v string) *DescribeEventsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEventsResponse
 type DescribeEventsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2251,6 +2282,7 @@ func (s *DescribeEventsOutput) SetServerEvents(v []*ServerEvent) *DescribeEvents
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatusRequest
 type DescribeNodeAssociationStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2302,6 +2334,7 @@ func (s *DescribeNodeAssociationStatusInput) SetServerName(v string) *DescribeNo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatusResponse
 type DescribeNodeAssociationStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2324,6 +2357,7 @@ func (s *DescribeNodeAssociationStatusOutput) SetNodeAssociationStatus(v string)
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServersRequest
 type DescribeServersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2392,6 +2426,7 @@ func (s *DescribeServersInput) SetServerName(v string) *DescribeServersInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServersResponse
 type DescribeServersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2431,6 +2466,7 @@ func (s *DescribeServersOutput) SetServers(v []*Server) *DescribeServersOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNodeRequest
 type DisassociateNodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2490,6 +2526,7 @@ func (s *DisassociateNodeInput) SetServerName(v string) *DisassociateNodeInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNodeResponse
 type DisassociateNodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2545,6 +2582,7 @@ func (s *EngineAttribute) SetValue(v string) *EngineAttribute {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServerRequest
 type RestoreServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2622,6 +2660,7 @@ func (s *RestoreServerInput) SetServerName(v string) *RestoreServerInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServerResponse
 type RestoreServerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2915,6 +2954,7 @@ func (s *ServerEvent) SetServerName(v string) *ServerEvent {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenanceRequest
 type StartMaintenanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2956,6 +2996,7 @@ func (s *StartMaintenanceInput) SetServerName(v string) *StartMaintenanceInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenanceResponse
 type StartMaintenanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2979,6 +3020,7 @@ func (s *StartMaintenanceOutput) SetServer(v *Server) *StartMaintenanceOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributesRequest
 type UpdateServerEngineAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3046,6 +3088,7 @@ func (s *UpdateServerEngineAttributesInput) SetServerName(v string) *UpdateServe
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributesResponse
 type UpdateServerEngineAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3069,6 +3112,7 @@ func (s *UpdateServerEngineAttributesOutput) SetServer(v *Server) *UpdateServerE
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerRequest
 type UpdateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3155,6 +3199,7 @@ func (s *UpdateServerInput) SetServerName(v string) *UpdateServerInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerResponse
 type UpdateServerOutput struct {
 	_ struct{} `type:"structure"`
 

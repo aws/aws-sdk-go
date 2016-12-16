@@ -36,6 +36,7 @@ const opBuildSuggesters = "BuildSuggesters"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/BuildSuggesters
 func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *request.Request, output *BuildSuggestersOutput) {
 	op := &request.Operation{
 		Name:       opBuildSuggesters,
@@ -110,6 +111,7 @@ const opCreateDomain = "CreateDomain"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/CreateDomain
 func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
 	op := &request.Operation{
 		Name:       opCreateDomain,
@@ -183,6 +185,7 @@ const opDefineAnalysisScheme = "DefineAnalysisScheme"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineAnalysisScheme
 func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *request.Request, output *DefineAnalysisSchemeOutput) {
 	op := &request.Operation{
 		Name:       opDefineAnalysisScheme,
@@ -264,6 +267,7 @@ const opDefineExpression = "DefineExpression"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineExpression
 func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *request.Request, output *DefineExpressionOutput) {
 	op := &request.Operation{
 		Name:       opDefineExpression,
@@ -345,6 +349,7 @@ const opDefineIndexField = "DefineIndexField"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineIndexField
 func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *request.Request, output *DefineIndexFieldOutput) {
 	op := &request.Operation{
 		Name:       opDefineIndexField,
@@ -430,6 +435,7 @@ const opDefineSuggester = "DefineSuggester"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineSuggester
 func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *request.Request, output *DefineSuggesterOutput) {
 	op := &request.Operation{
 		Name:       opDefineSuggester,
@@ -513,6 +519,7 @@ const opDeleteAnalysisScheme = "DeleteAnalysisScheme"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteAnalysisScheme
 func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *request.Request, output *DeleteAnalysisSchemeOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAnalysisScheme,
@@ -590,6 +597,7 @@ const opDeleteDomain = "DeleteDomain"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteDomain
 func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDomain,
@@ -661,6 +669,7 @@ const opDeleteExpression = "DeleteExpression"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteExpression
 func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *request.Request, output *DeleteExpressionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteExpression,
@@ -738,6 +747,7 @@ const opDeleteIndexField = "DeleteIndexField"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteIndexField
 func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *request.Request, output *DeleteIndexFieldOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIndexField,
@@ -815,6 +825,7 @@ const opDeleteSuggester = "DeleteSuggester"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteSuggester
 func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *request.Request, output *DeleteSuggesterOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSuggester,
@@ -892,6 +903,7 @@ const opDescribeAnalysisSchemes = "DescribeAnalysisSchemes"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeAnalysisSchemes
 func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *request.Request, output *DescribeAnalysisSchemesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAnalysisSchemes,
@@ -970,6 +982,7 @@ const opDescribeAvailabilityOptions = "DescribeAvailabilityOptions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeAvailabilityOptions
 func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *request.Request, output *DescribeAvailabilityOptionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAvailabilityOptions,
@@ -1055,6 +1068,7 @@ const opDescribeDomains = "DescribeDomains"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeDomains
 func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *request.Request, output *DescribeDomainsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDomains,
@@ -1128,6 +1142,7 @@ const opDescribeExpressions = "DescribeExpressions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeExpressions
 func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *request.Request, output *DescribeExpressionsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeExpressions,
@@ -1205,6 +1220,7 @@ const opDescribeIndexFields = "DescribeIndexFields"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeIndexFields
 func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *request.Request, output *DescribeIndexFieldsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeIndexFields,
@@ -1282,6 +1298,7 @@ const opDescribeScalingParameters = "DescribeScalingParameters"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeScalingParameters
 func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *request.Request, output *DescribeScalingParametersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeScalingParameters,
@@ -1357,6 +1374,7 @@ const opDescribeServiceAccessPolicies = "DescribeServiceAccessPolicies"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeServiceAccessPolicies
 func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *request.Request, output *DescribeServiceAccessPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeServiceAccessPolicies,
@@ -1434,6 +1452,7 @@ const opDescribeSuggesters = "DescribeSuggesters"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeSuggesters
 func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *request.Request, output *DescribeSuggestersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSuggesters,
@@ -1512,6 +1531,7 @@ const opIndexDocuments = "IndexDocuments"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/IndexDocuments
 func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *request.Request, output *IndexDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opIndexDocuments,
@@ -1586,6 +1606,7 @@ const opListDomainNames = "ListDomainNames"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/ListDomainNames
 func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *request.Request, output *ListDomainNamesOutput) {
 	op := &request.Operation{
 		Name:       opListDomainNames,
@@ -1650,6 +1671,7 @@ const opUpdateAvailabilityOptions = "UpdateAvailabilityOptions"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateAvailabilityOptions
 func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *request.Request, output *UpdateAvailabilityOptionsOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAvailabilityOptions,
@@ -1736,6 +1758,7 @@ const opUpdateScalingParameters = "UpdateScalingParameters"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateScalingParameters
 func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *request.Request, output *UpdateScalingParametersOutput) {
 	op := &request.Operation{
 		Name:       opUpdateScalingParameters,
@@ -1821,6 +1844,7 @@ const opUpdateServiceAccessPolicies = "UpdateServiceAccessPolicies"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateServiceAccessPolicies
 func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *request.Request, output *UpdateServiceAccessPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opUpdateServiceAccessPolicies,
@@ -2148,6 +2172,7 @@ func (s *AvailabilityOptionsStatus) SetStatus(v *OptionStatus) *AvailabilityOpti
 
 // Container for the parameters to the BuildSuggester operation. Specifies the
 // name of the domain you want to update.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/BuildSuggestersRequest
 type BuildSuggestersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2194,6 +2219,7 @@ func (s *BuildSuggestersInput) SetDomainName(v string) *BuildSuggestersInput {
 
 // The result of a BuildSuggester request. Contains a list of the fields used
 // for suggestions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/BuildSuggestersResponse
 type BuildSuggestersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2219,6 +2245,7 @@ func (s *BuildSuggestersOutput) SetFieldNames(v []*string) *BuildSuggestersOutpu
 
 // Container for the parameters to the CreateDomain operation. Specifies a name
 // for the new search domain.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/CreateDomainRequest
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2264,6 +2291,7 @@ func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 
 // The result of a CreateDomainRequest. Contains the status of a newly created
 // domain.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/CreateDomainResponse
 type CreateDomainOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2448,6 +2476,7 @@ func (s *DateOptions) SetSourceField(v string) *DateOptions {
 
 // Container for the parameters to the DefineAnalysisScheme operation. Specifies
 // the name of the domain you want to update and the analysis scheme configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineAnalysisSchemeRequest
 type DefineAnalysisSchemeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2516,6 +2545,7 @@ func (s *DefineAnalysisSchemeInput) SetDomainName(v string) *DefineAnalysisSchem
 
 // The result of a DefineAnalysisScheme request. Contains the status of the
 // newly-configured analysis scheme.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineAnalysisSchemeResponse
 type DefineAnalysisSchemeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2544,6 +2574,7 @@ func (s *DefineAnalysisSchemeOutput) SetAnalysisScheme(v *AnalysisSchemeStatus) 
 // Container for the parameters to the DefineExpression operation. Specifies
 // the name of the domain you want to update and the expression you want to
 // configure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineExpressionRequest
 type DefineExpressionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2611,6 +2642,7 @@ func (s *DefineExpressionInput) SetExpression(v *Expression) *DefineExpressionIn
 
 // The result of a DefineExpression request. Contains the status of the newly-configured
 // expression.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineExpressionResponse
 type DefineExpressionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2638,6 +2670,7 @@ func (s *DefineExpressionOutput) SetExpression(v *ExpressionStatus) *DefineExpre
 
 // Container for the parameters to the DefineIndexField operation. Specifies
 // the name of the domain you want to update and the index field configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineIndexFieldRequest
 type DefineIndexFieldInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2703,6 +2736,7 @@ func (s *DefineIndexFieldInput) SetIndexField(v *IndexField) *DefineIndexFieldIn
 
 // The result of a DefineIndexField request. Contains the status of the newly-configured
 // index field.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineIndexFieldResponse
 type DefineIndexFieldOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2730,6 +2764,7 @@ func (s *DefineIndexFieldOutput) SetIndexField(v *IndexFieldStatus) *DefineIndex
 
 // Container for the parameters to the DefineSuggester operation. Specifies
 // the name of the domain you want to update and the suggester configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineSuggesterRequest
 type DefineSuggesterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2797,6 +2832,7 @@ func (s *DefineSuggesterInput) SetSuggester(v *Suggester) *DefineSuggesterInput 
 
 // The result of a DefineSuggester request. Contains the status of the newly-configured
 // suggester.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DefineSuggesterResponse
 type DefineSuggesterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2825,6 +2861,7 @@ func (s *DefineSuggesterOutput) SetSuggester(v *SuggesterStatus) *DefineSuggeste
 // Container for the parameters to the DeleteAnalysisScheme operation. Specifies
 // the name of the domain you want to update and the analysis scheme you want
 // to delete.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteAnalysisSchemeRequest
 type DeleteAnalysisSchemeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2888,6 +2925,7 @@ func (s *DeleteAnalysisSchemeInput) SetDomainName(v string) *DeleteAnalysisSchem
 
 // The result of a DeleteAnalysisScheme request. Contains the status of the
 // deleted analysis scheme.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteAnalysisSchemeResponse
 type DeleteAnalysisSchemeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2915,6 +2953,7 @@ func (s *DeleteAnalysisSchemeOutput) SetAnalysisScheme(v *AnalysisSchemeStatus) 
 
 // Container for the parameters to the DeleteDomain operation. Specifies the
 // name of the domain you want to delete.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteDomainRequest
 type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2958,6 +2997,7 @@ func (s *DeleteDomainInput) SetDomainName(v string) *DeleteDomainInput {
 
 // The result of a DeleteDomain request. Contains the status of a newly deleted
 // domain, or no status if the domain has already been completely deleted.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteDomainResponse
 type DeleteDomainOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2984,6 +3024,7 @@ func (s *DeleteDomainOutput) SetDomainStatus(v *DomainStatus) *DeleteDomainOutpu
 // Container for the parameters to the DeleteExpression operation. Specifies
 // the name of the domain you want to update and the name of the expression
 // you want to delete.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteExpressionRequest
 type DeleteExpressionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3047,6 +3088,7 @@ func (s *DeleteExpressionInput) SetExpressionName(v string) *DeleteExpressionInp
 
 // The result of a DeleteExpression request. Specifies the expression being
 // deleted.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteExpressionResponse
 type DeleteExpressionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3075,6 +3117,7 @@ func (s *DeleteExpressionOutput) SetExpression(v *ExpressionStatus) *DeleteExpre
 // Container for the parameters to the DeleteIndexField operation. Specifies
 // the name of the domain you want to update and the name of the index field
 // you want to delete.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteIndexFieldRequest
 type DeleteIndexFieldInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3138,6 +3181,7 @@ func (s *DeleteIndexFieldInput) SetIndexFieldName(v string) *DeleteIndexFieldInp
 }
 
 // The result of a DeleteIndexField request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteIndexFieldResponse
 type DeleteIndexFieldOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3166,6 +3210,7 @@ func (s *DeleteIndexFieldOutput) SetIndexField(v *IndexFieldStatus) *DeleteIndex
 // Container for the parameters to the DeleteSuggester operation. Specifies
 // the name of the domain you want to update and name of the suggester you want
 // to delete.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteSuggesterRequest
 type DeleteSuggesterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3229,6 +3274,7 @@ func (s *DeleteSuggesterInput) SetSuggesterName(v string) *DeleteSuggesterInput 
 
 // The result of a DeleteSuggester request. Contains the status of the deleted
 // suggester.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DeleteSuggesterResponse
 type DeleteSuggesterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3259,6 +3305,7 @@ func (s *DeleteSuggesterOutput) SetSuggester(v *SuggesterStatus) *DeleteSuggeste
 // analysis schemes, specify the names of the analysis schemes you want to describe.
 // To show the active configuration and exclude any pending changes, set the
 // Deployed option to true.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeAnalysisSchemesRequest
 type DescribeAnalysisSchemesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3321,6 +3368,7 @@ func (s *DescribeAnalysisSchemesInput) SetDomainName(v string) *DescribeAnalysis
 
 // The result of a DescribeAnalysisSchemes request. Contains the analysis schemes
 // configured for the domain specified in the request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeAnalysisSchemesResponse
 type DescribeAnalysisSchemesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3350,6 +3398,7 @@ func (s *DescribeAnalysisSchemesOutput) SetAnalysisSchemes(v []*AnalysisSchemeSt
 // Specifies the name of the domain you want to describe. To show the active
 // configuration and exclude any pending changes, set the Deployed option to
 // true.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeAvailabilityOptionsRequest
 type DescribeAvailabilityOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3403,6 +3452,7 @@ func (s *DescribeAvailabilityOptionsInput) SetDomainName(v string) *DescribeAvai
 
 // The result of a DescribeAvailabilityOptions request. Indicates whether or
 // not the Multi-AZ option is enabled for the domain specified in the request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeAvailabilityOptionsResponse
 type DescribeAvailabilityOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3430,6 +3480,7 @@ func (s *DescribeAvailabilityOptionsOutput) SetAvailabilityOptions(v *Availabili
 // Container for the parameters to the DescribeDomains operation. By default
 // shows the status of all domains. To restrict the response to particular domains,
 // specify the names of the domains you want to describe.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeDomainsRequest
 type DescribeDomainsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3455,6 +3506,7 @@ func (s *DescribeDomainsInput) SetDomainNames(v []*string) *DescribeDomainsInput
 
 // The result of a DescribeDomains request. Contains the status of the domains
 // specified in the request or all domains owned by the account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeDomainsResponse
 type DescribeDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3485,6 +3537,7 @@ func (s *DescribeDomainsOutput) SetDomainStatusList(v []*DomainStatus) *Describe
 // particular expressions, specify the names of the expressions you want to
 // describe. To show the active configuration and exclude any pending changes,
 // set the Deployed option to true.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeExpressionsRequest
 type DescribeExpressionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3548,6 +3601,7 @@ func (s *DescribeExpressionsInput) SetExpressionNames(v []*string) *DescribeExpr
 
 // The result of a DescribeExpressions request. Contains the expressions configured
 // for the domain specified in the request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeExpressionsResponse
 type DescribeExpressionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3578,6 +3632,7 @@ func (s *DescribeExpressionsOutput) SetExpressions(v []*ExpressionStatus) *Descr
 // particular index fields, specify the names of the index fields you want to
 // describe. To show the active configuration and exclude any pending changes,
 // set the Deployed option to true.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeIndexFieldsRequest
 type DescribeIndexFieldsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3641,6 +3696,7 @@ func (s *DescribeIndexFieldsInput) SetFieldNames(v []*string) *DescribeIndexFiel
 
 // The result of a DescribeIndexFields request. Contains the index fields configured
 // for the domain specified in the request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeIndexFieldsResponse
 type DescribeIndexFieldsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3668,6 +3724,7 @@ func (s *DescribeIndexFieldsOutput) SetIndexFields(v []*IndexFieldStatus) *Descr
 
 // Container for the parameters to the DescribeScalingParameters operation.
 // Specifies the name of the domain you want to describe.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeScalingParametersRequest
 type DescribeScalingParametersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3714,6 +3771,7 @@ func (s *DescribeScalingParametersInput) SetDomainName(v string) *DescribeScalin
 
 // The result of a DescribeScalingParameters request. Contains the scaling parameters
 // configured for the domain specified in the request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeScalingParametersResponse
 type DescribeScalingParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3743,6 +3801,7 @@ func (s *DescribeScalingParametersOutput) SetScalingParameters(v *ScalingParamet
 // Specifies the name of the domain you want to describe. To show the active
 // configuration and exclude any pending changes, set the Deployed option to
 // true.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeServiceAccessPoliciesRequest
 type DescribeServiceAccessPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3795,6 +3854,7 @@ func (s *DescribeServiceAccessPoliciesInput) SetDomainName(v string) *DescribeSe
 }
 
 // The result of a DescribeServiceAccessPolicies request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeServiceAccessPoliciesResponse
 type DescribeServiceAccessPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3825,6 +3885,7 @@ func (s *DescribeServiceAccessPoliciesOutput) SetAccessPolicies(v *AccessPolicie
 // particular suggesters, specify the names of the suggesters you want to describe.
 // To show the active configuration and exclude any pending changes, set the
 // Deployed option to true.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeSuggestersRequest
 type DescribeSuggestersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3886,6 +3947,7 @@ func (s *DescribeSuggestersInput) SetSuggesterNames(v []*string) *DescribeSugges
 }
 
 // The result of a DescribeSuggesters request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/DescribeSuggestersResponse
 type DescribeSuggestersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4381,6 +4443,7 @@ func (s *ExpressionStatus) SetStatus(v *OptionStatus) *ExpressionStatus {
 
 // Container for the parameters to the IndexDocuments operation. Specifies the
 // name of the domain you want to re-index.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/IndexDocumentsRequest
 type IndexDocumentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4427,6 +4490,7 @@ func (s *IndexDocumentsInput) SetDomainName(v string) *IndexDocumentsInput {
 
 // The result of an IndexDocuments request. Contains the status of the indexing
 // operation, including the fields being indexed.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/IndexDocumentsResponse
 type IndexDocumentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5001,6 +5065,7 @@ func (s ListDomainNamesInput) GoString() string {
 
 // The result of a ListDomainNames request. Contains a list of the domains owned
 // by an account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/ListDomainNamesResponse
 type ListDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5628,6 +5693,7 @@ func (s *TextOptions) SetSourceField(v string) *TextOptions {
 // Container for the parameters to the UpdateAvailabilityOptions operation.
 // Specifies the name of the domain you want to update and the Multi-AZ availability
 // option.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateAvailabilityOptionsRequest
 type UpdateAvailabilityOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5691,6 +5757,7 @@ func (s *UpdateAvailabilityOptionsInput) SetMultiAZ(v bool) *UpdateAvailabilityO
 
 // The result of a UpdateAvailabilityOptions request. Contains the status of
 // the domain's availability options.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateAvailabilityOptionsResponse
 type UpdateAvailabilityOptionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5718,6 +5785,7 @@ func (s *UpdateAvailabilityOptionsOutput) SetAvailabilityOptions(v *Availability
 // Container for the parameters to the UpdateScalingParameters operation. Specifies
 // the name of the domain you want to update and the scaling parameters you
 // want to configure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateScalingParametersRequest
 type UpdateScalingParametersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5778,6 +5846,7 @@ func (s *UpdateScalingParametersInput) SetScalingParameters(v *ScalingParameters
 
 // The result of a UpdateScalingParameters request. Contains the status of the
 // newly-configured scaling parameters.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateScalingParametersResponse
 type UpdateScalingParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5806,6 +5875,7 @@ func (s *UpdateScalingParametersOutput) SetScalingParameters(v *ScalingParameter
 // Container for the parameters to the UpdateServiceAccessPolicies operation.
 // Specifies the name of the domain you want to update and the access rules
 // you want to configure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateServiceAccessPoliciesRequest
 type UpdateServiceAccessPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5867,6 +5937,7 @@ func (s *UpdateServiceAccessPoliciesInput) SetDomainName(v string) *UpdateServic
 
 // The result of an UpdateServiceAccessPolicies request. Contains the new access
 // policies.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearch-2013-01-01/UpdateServiceAccessPoliciesResponse
 type UpdateServiceAccessPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 

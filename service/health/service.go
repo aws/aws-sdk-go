@@ -49,8 +49,10 @@ import (
 // The HTTP endpoint for the AWS Health API is:
 //
 //    * https://health.us-east-1.amazonaws.com
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04
 type Health struct {
 	*client.Client
 }
