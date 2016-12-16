@@ -14,8 +14,9 @@ import (
 // This is the AWS Directory Service API Reference. This guide provides detailed
 // information about AWS Directory Service operations, data types, parameters,
 // and errors.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16
 type DirectoryService struct {
 	*client.Client
 }

@@ -19,7 +19,7 @@ import (
 // logging, and create and manage policies and credentials to authenticate things.
 //
 // For more information about how AWS IoT works, see the Developer Guide (http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type IoT struct {
 	*client.Client

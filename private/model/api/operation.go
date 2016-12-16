@@ -45,7 +45,9 @@ func (o *Operation) HasOutput() bool {
 }
 
 // tplOperation defines a template for rendering an API Operation
-var tplOperation = template.Must(template.New("operation").Parse(`
+var tplOperation = template.Must(template.New("operation").Funcs(template.FuncMap{
+	"GetCrosslinkURL": GetCrosslinkURL,
+}).Parse(`
 const op{{ .ExportedName }} = "{{ .Name }}"
 
 // {{ .ExportedName }}Request generates a "aws/request.Request" representing the
@@ -71,7 +73,11 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+{{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.APIName $.API.Metadata.UID $.ExportedName -}}
+{{ if ne $crosslinkURL "" -}} 
 //
+// Please also see {{ $crosslinkURL }}
+{{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	`input {{ .InputRef.GoType }}) (req *request.Request, output {{ .OutputRef.GoType }}) {
 	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) }}if c.Client.Config.Logger != nil {
@@ -125,6 +131,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 {{ $errDoc }}{{ end }}
 //
 {{ end -}}
+{{ end -}}
+{{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.APIName $.API.Metadata.UID $.ExportedName -}}
+{{ if ne $crosslinkURL "" -}} 
+// Please also see {{ $crosslinkURL }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
 	`input {{ .InputRef.GoType }}) ({{ .OutputRef.GoType }}, error) {

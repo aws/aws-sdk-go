@@ -13,8 +13,9 @@ import (
 
 // This reference provides detailed information about the Amazon WorkSpaces
 // operations.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08
 type WorkSpaces struct {
 	*client.Client
 }

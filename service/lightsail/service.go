@@ -24,8 +24,9 @@ import (
 // To use the Lightsail API or the CLI, you will need to use AWS Identity and
 // Access Management (IAM) to generate access keys. For details about how to
 // set this up, see the Lightsail Dev Guide (http://lightsail.aws.amazon.com/ls/docs/how-to/articles/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28
 type Lightsail struct {
 	*client.Client
 }

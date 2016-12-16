@@ -13,8 +13,9 @@ import (
 
 // Amazon Mobile Analytics is a service for collecting, visualizing, and understanding
 // app usage data at scale.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/
 type MobileAnalytics struct {
 	*client.Client
 }

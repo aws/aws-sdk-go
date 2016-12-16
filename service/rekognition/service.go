@@ -12,7 +12,7 @@ import (
 )
 
 // This is Amazon Rekognition API guide.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type Rekognition struct {
 	*client.Client

@@ -124,8 +124,9 @@ import (
 // For conceptual information about modifying data, see Working with Items (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
 // and Query and Scan Operations (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html)
 // in the Amazon DynamoDB Developer Guide.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dynamodb-2012-08-10
 type DynamoDB struct {
 	*client.Client
 }

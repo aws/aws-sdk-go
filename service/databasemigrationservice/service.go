@@ -18,8 +18,9 @@ import (
 // migrations such as Oracle to Oracle, as well as heterogeneous migrations
 // between different database platforms, such as Oracle to MySQL or SQL Server
 // to PostgreSQL.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01
 type DatabaseMigrationService struct {
 	*client.Client
 }

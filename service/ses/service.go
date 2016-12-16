@@ -18,8 +18,9 @@ import (
 // For a list of Amazon SES endpoints to use in service requests, see Regions
 // and Amazon SES (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html)
 // in the Amazon SES Developer Guide.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01
 type SES struct {
 	*client.Client
 }

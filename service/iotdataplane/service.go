@@ -17,8 +17,9 @@ import (
 // publish messages over HTTP (Publish) and retrieve, update, and delete thing
 // shadows. A thing shadow is a persistent representation of your things and
 // their state in the AWS cloud.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28
 type IoTDataPlane struct {
 	*client.Client
 }

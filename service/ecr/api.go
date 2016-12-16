@@ -36,6 +36,7 @@ const opBatchCheckLayerAvailability = "BatchCheckLayerAvailability"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchCheckLayerAvailability
 func (c *ECR) BatchCheckLayerAvailabilityRequest(input *BatchCheckLayerAvailabilityInput) (req *request.Request, output *BatchCheckLayerAvailabilityOutput) {
 	op := &request.Operation{
 		Name:       opBatchCheckLayerAvailability,
@@ -80,6 +81,7 @@ func (c *ECR) BatchCheckLayerAvailabilityRequest(input *BatchCheckLayerAvailabil
 //   * ServerException
 //   These errors are usually caused by a server-side issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchCheckLayerAvailability
 func (c *ECR) BatchCheckLayerAvailability(input *BatchCheckLayerAvailabilityInput) (*BatchCheckLayerAvailabilityOutput, error) {
 	req, out := c.BatchCheckLayerAvailabilityRequest(input)
 	err := req.Send()
@@ -112,6 +114,7 @@ const opBatchDeleteImage = "BatchDeleteImage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchDeleteImage
 func (c *ECR) BatchDeleteImageRequest(input *BatchDeleteImageInput) (req *request.Request, output *BatchDeleteImageOutput) {
 	op := &request.Operation{
 		Name:       opBatchDeleteImage,
@@ -153,6 +156,7 @@ func (c *ECR) BatchDeleteImageRequest(input *BatchDeleteImageInput) (req *reques
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchDeleteImage
 func (c *ECR) BatchDeleteImage(input *BatchDeleteImageInput) (*BatchDeleteImageOutput, error) {
 	req, out := c.BatchDeleteImageRequest(input)
 	err := req.Send()
@@ -185,6 +189,7 @@ const opBatchGetImage = "BatchGetImage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchGetImage
 func (c *ECR) BatchGetImageRequest(input *BatchGetImageInput) (req *request.Request, output *BatchGetImageOutput) {
 	op := &request.Operation{
 		Name:       opBatchGetImage,
@@ -226,6 +231,7 @@ func (c *ECR) BatchGetImageRequest(input *BatchGetImageInput) (req *request.Requ
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchGetImage
 func (c *ECR) BatchGetImage(input *BatchGetImageInput) (*BatchGetImageOutput, error) {
 	req, out := c.BatchGetImageRequest(input)
 	err := req.Send()
@@ -258,6 +264,7 @@ const opCompleteLayerUpload = "CompleteLayerUpload"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CompleteLayerUpload
 func (c *ECR) CompleteLayerUploadRequest(input *CompleteLayerUploadInput) (req *request.Request, output *CompleteLayerUploadOutput) {
 	op := &request.Operation{
 		Name:       opCompleteLayerUpload,
@@ -320,6 +327,7 @@ func (c *ECR) CompleteLayerUploadRequest(input *CompleteLayerUploadInput) (req *
 //   * EmptyUploadException
 //   The specified layer upload does not contain any layer parts.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CompleteLayerUpload
 func (c *ECR) CompleteLayerUpload(input *CompleteLayerUploadInput) (*CompleteLayerUploadOutput, error) {
 	req, out := c.CompleteLayerUploadRequest(input)
 	err := req.Send()
@@ -352,6 +360,7 @@ const opCreateRepository = "CreateRepository"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CreateRepository
 func (c *ECR) CreateRepositoryRequest(input *CreateRepositoryInput) (req *request.Request, output *CreateRepositoryOutput) {
 	op := &request.Operation{
 		Name:       opCreateRepository,
@@ -397,6 +406,7 @@ func (c *ECR) CreateRepositoryRequest(input *CreateRepositoryInput) (req *reques
 //   (http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
 //   in the Amazon EC2 Container Registry User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CreateRepository
 func (c *ECR) CreateRepository(input *CreateRepositoryInput) (*CreateRepositoryOutput, error) {
 	req, out := c.CreateRepositoryRequest(input)
 	err := req.Send()
@@ -429,6 +439,7 @@ const opDeleteRepository = "DeleteRepository"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepository
 func (c *ECR) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *request.Request, output *DeleteRepositoryOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRepository,
@@ -474,6 +485,7 @@ func (c *ECR) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *reques
 //   The specified repository contains images. To delete a repository that contains
 //   images, you must force the deletion with the force parameter.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepository
 func (c *ECR) DeleteRepository(input *DeleteRepositoryInput) (*DeleteRepositoryOutput, error) {
 	req, out := c.DeleteRepositoryRequest(input)
 	err := req.Send()
@@ -506,6 +518,7 @@ const opDeleteRepositoryPolicy = "DeleteRepositoryPolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepositoryPolicy
 func (c *ECR) DeleteRepositoryPolicyRequest(input *DeleteRepositoryPolicyInput) (req *request.Request, output *DeleteRepositoryPolicyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRepositoryPolicy,
@@ -550,6 +563,7 @@ func (c *ECR) DeleteRepositoryPolicyRequest(input *DeleteRepositoryPolicyInput) 
 //   The specified repository and registry combination does not have an associated
 //   repository policy.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepositoryPolicy
 func (c *ECR) DeleteRepositoryPolicy(input *DeleteRepositoryPolicyInput) (*DeleteRepositoryPolicyOutput, error) {
 	req, out := c.DeleteRepositoryPolicyRequest(input)
 	err := req.Send()
@@ -582,6 +596,7 @@ const opDescribeImages = "DescribeImages"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeImages
 func (c *ECR) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Request, output *DescribeImagesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeImages,
@@ -637,6 +652,7 @@ func (c *ECR) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Re
 //   * ImageNotFoundException
 //   The image requested does not exist in the specified repository.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeImages
 func (c *ECR) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput, error) {
 	req, out := c.DescribeImagesRequest(input)
 	err := req.Send()
@@ -694,6 +710,7 @@ const opDescribeRepositories = "DescribeRepositories"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeRepositories
 func (c *ECR) DescribeRepositoriesRequest(input *DescribeRepositoriesInput) (req *request.Request, output *DescribeRepositoriesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeRepositories,
@@ -740,6 +757,7 @@ func (c *ECR) DescribeRepositoriesRequest(input *DescribeRepositoriesInput) (req
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeRepositories
 func (c *ECR) DescribeRepositories(input *DescribeRepositoriesInput) (*DescribeRepositoriesOutput, error) {
 	req, out := c.DescribeRepositoriesRequest(input)
 	err := req.Send()
@@ -797,6 +815,7 @@ const opGetAuthorizationToken = "GetAuthorizationToken"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetAuthorizationToken
 func (c *ECR) GetAuthorizationTokenRequest(input *GetAuthorizationTokenInput) (req *request.Request, output *GetAuthorizationTokenOutput) {
 	op := &request.Operation{
 		Name:       opGetAuthorizationToken,
@@ -840,6 +859,7 @@ func (c *ECR) GetAuthorizationTokenRequest(input *GetAuthorizationTokenInput) (r
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetAuthorizationToken
 func (c *ECR) GetAuthorizationToken(input *GetAuthorizationTokenInput) (*GetAuthorizationTokenOutput, error) {
 	req, out := c.GetAuthorizationTokenRequest(input)
 	err := req.Send()
@@ -872,6 +892,7 @@ const opGetDownloadUrlForLayer = "GetDownloadUrlForLayer"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetDownloadUrlForLayer
 func (c *ECR) GetDownloadUrlForLayerRequest(input *GetDownloadUrlForLayerInput) (req *request.Request, output *GetDownloadUrlForLayerOutput) {
 	op := &request.Operation{
 		Name:       opGetDownloadUrlForLayer,
@@ -924,6 +945,7 @@ func (c *ECR) GetDownloadUrlForLayerRequest(input *GetDownloadUrlForLayerInput) 
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetDownloadUrlForLayer
 func (c *ECR) GetDownloadUrlForLayer(input *GetDownloadUrlForLayerInput) (*GetDownloadUrlForLayerOutput, error) {
 	req, out := c.GetDownloadUrlForLayerRequest(input)
 	err := req.Send()
@@ -956,6 +978,7 @@ const opGetRepositoryPolicy = "GetRepositoryPolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetRepositoryPolicy
 func (c *ECR) GetRepositoryPolicyRequest(input *GetRepositoryPolicyInput) (req *request.Request, output *GetRepositoryPolicyOutput) {
 	op := &request.Operation{
 		Name:       opGetRepositoryPolicy,
@@ -1000,6 +1023,7 @@ func (c *ECR) GetRepositoryPolicyRequest(input *GetRepositoryPolicyInput) (req *
 //   The specified repository and registry combination does not have an associated
 //   repository policy.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetRepositoryPolicy
 func (c *ECR) GetRepositoryPolicy(input *GetRepositoryPolicyInput) (*GetRepositoryPolicyOutput, error) {
 	req, out := c.GetRepositoryPolicyRequest(input)
 	err := req.Send()
@@ -1032,6 +1056,7 @@ const opInitiateLayerUpload = "InitiateLayerUpload"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/InitiateLayerUpload
 func (c *ECR) InitiateLayerUploadRequest(input *InitiateLayerUploadInput) (req *request.Request, output *InitiateLayerUploadOutput) {
 	op := &request.Operation{
 		Name:       opInitiateLayerUpload,
@@ -1075,6 +1100,7 @@ func (c *ECR) InitiateLayerUploadRequest(input *InitiateLayerUploadInput) (req *
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/InitiateLayerUpload
 func (c *ECR) InitiateLayerUpload(input *InitiateLayerUploadInput) (*InitiateLayerUploadOutput, error) {
 	req, out := c.InitiateLayerUploadRequest(input)
 	err := req.Send()
@@ -1107,6 +1133,7 @@ const opListImages = "ListImages"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ListImages
 func (c *ECR) ListImagesRequest(input *ListImagesInput) (req *request.Request, output *ListImagesOutput) {
 	op := &request.Operation{
 		Name:       opListImages,
@@ -1159,6 +1186,7 @@ func (c *ECR) ListImagesRequest(input *ListImagesInput) (req *request.Request, o
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ListImages
 func (c *ECR) ListImages(input *ListImagesInput) (*ListImagesOutput, error) {
 	req, out := c.ListImagesRequest(input)
 	err := req.Send()
@@ -1216,6 +1244,7 @@ const opPutImage = "PutImage"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutImage
 func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, output *PutImageOutput) {
 	op := &request.Operation{
 		Name:       opPutImage,
@@ -1273,6 +1302,7 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 //   (http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
 //   in the Amazon EC2 Container Registry User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutImage
 func (c *ECR) PutImage(input *PutImageInput) (*PutImageOutput, error) {
 	req, out := c.PutImageRequest(input)
 	err := req.Send()
@@ -1305,6 +1335,7 @@ const opSetRepositoryPolicy = "SetRepositoryPolicy"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/SetRepositoryPolicy
 func (c *ECR) SetRepositoryPolicyRequest(input *SetRepositoryPolicyInput) (req *request.Request, output *SetRepositoryPolicyOutput) {
 	op := &request.Operation{
 		Name:       opSetRepositoryPolicy,
@@ -1345,6 +1376,7 @@ func (c *ECR) SetRepositoryPolicyRequest(input *SetRepositoryPolicyInput) (req *
 //   The specified repository could not be found. Check the spelling of the specified
 //   repository and ensure that you are performing operations on the correct registry.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/SetRepositoryPolicy
 func (c *ECR) SetRepositoryPolicy(input *SetRepositoryPolicyInput) (*SetRepositoryPolicyOutput, error) {
 	req, out := c.SetRepositoryPolicyRequest(input)
 	err := req.Send()
@@ -1377,6 +1409,7 @@ const opUploadLayerPart = "UploadLayerPart"
 //        fmt.Println(resp)
 //    }
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/UploadLayerPart
 func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.Request, output *UploadLayerPartOutput) {
 	op := &request.Operation{
 		Name:       opUploadLayerPart,
@@ -1434,6 +1467,7 @@ func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.
 //   (http://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
 //   in the Amazon EC2 Container Registry User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/UploadLayerPart
 func (c *ECR) UploadLayerPart(input *UploadLayerPartInput) (*UploadLayerPartOutput, error) {
 	req, out := c.UploadLayerPartRequest(input)
 	err := req.Send()
@@ -1441,6 +1475,7 @@ func (c *ECR) UploadLayerPart(input *UploadLayerPartInput) (*UploadLayerPartOutp
 }
 
 // An object representing authorization data for an Amazon ECR registry.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/AuthorizationData
 type AuthorizationData struct {
 	_ struct{} `type:"structure"`
 
@@ -1487,6 +1522,7 @@ func (s *AuthorizationData) SetProxyEndpoint(v string) *AuthorizationData {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchCheckLayerAvailabilityRequest
 type BatchCheckLayerAvailabilityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1555,6 +1591,7 @@ func (s *BatchCheckLayerAvailabilityInput) SetRepositoryName(v string) *BatchChe
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchCheckLayerAvailabilityResponse
 type BatchCheckLayerAvailabilityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1590,6 +1627,7 @@ func (s *BatchCheckLayerAvailabilityOutput) SetLayers(v []*Layer) *BatchCheckLay
 
 // Deletes specified images within a specified repository. Images are specified
 // with either the imageTag or imageDigest.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchDeleteImageRequest
 type BatchDeleteImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1659,6 +1697,7 @@ func (s *BatchDeleteImageInput) SetRepositoryName(v string) *BatchDeleteImageInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchDeleteImageResponse
 type BatchDeleteImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1691,6 +1730,7 @@ func (s *BatchDeleteImageOutput) SetImageIds(v []*ImageIdentifier) *BatchDeleteI
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchGetImageRequest
 type BatchGetImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1760,6 +1800,7 @@ func (s *BatchGetImageInput) SetRepositoryName(v string) *BatchGetImageInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/BatchGetImageResponse
 type BatchGetImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1792,6 +1833,7 @@ func (s *BatchGetImageOutput) SetImages(v []*Image) *BatchGetImageOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CompleteLayerUploadRequest
 type CompleteLayerUploadInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1875,6 +1917,7 @@ func (s *CompleteLayerUploadInput) SetUploadId(v string) *CompleteLayerUploadInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CompleteLayerUploadResponse
 type CompleteLayerUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1925,6 +1968,7 @@ func (s *CompleteLayerUploadOutput) SetUploadId(v string) *CompleteLayerUploadOu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CreateRepositoryRequest
 type CreateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1968,6 +2012,7 @@ func (s *CreateRepositoryInput) SetRepositoryName(v string) *CreateRepositoryInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/CreateRepositoryResponse
 type CreateRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1991,6 +2036,7 @@ func (s *CreateRepositoryOutput) SetRepository(v *Repository) *CreateRepositoryO
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepositoryRequest
 type DeleteRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2051,6 +2097,7 @@ func (s *DeleteRepositoryInput) SetRepositoryName(v string) *DeleteRepositoryInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepositoryResponse
 type DeleteRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2074,6 +2121,7 @@ func (s *DeleteRepositoryOutput) SetRepository(v *Repository) *DeleteRepositoryO
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepositoryPolicyRequest
 type DeleteRepositoryPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2127,6 +2175,7 @@ func (s *DeleteRepositoryPolicyInput) SetRepositoryName(v string) *DeleteReposit
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DeleteRepositoryPolicyResponse
 type DeleteRepositoryPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2169,6 +2218,7 @@ func (s *DeleteRepositoryPolicyOutput) SetRepositoryName(v string) *DeleteReposi
 }
 
 // An object representing a filter on a DescribeImages operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeImagesFilter
 type DescribeImagesFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -2193,6 +2243,7 @@ func (s *DescribeImagesFilter) SetTagStatus(v string) *DescribeImagesFilter {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeImagesRequest
 type DescribeImagesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2297,6 +2348,7 @@ func (s *DescribeImagesInput) SetRepositoryName(v string) *DescribeImagesInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeImagesResponse
 type DescribeImagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2332,6 +2384,7 @@ func (s *DescribeImagesOutput) SetNextToken(v string) *DescribeImagesOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeRepositoriesRequest
 type DescribeRepositoriesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2414,6 +2467,7 @@ func (s *DescribeRepositoriesInput) SetRepositoryNames(v []*string) *DescribeRep
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/DescribeRepositoriesResponse
 type DescribeRepositoriesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2449,6 +2503,7 @@ func (s *DescribeRepositoriesOutput) SetRepositories(v []*Repository) *DescribeR
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetAuthorizationTokenRequest
 type GetAuthorizationTokenInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2487,6 +2542,7 @@ func (s *GetAuthorizationTokenInput) SetRegistryIds(v []*string) *GetAuthorizati
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetAuthorizationTokenResponse
 type GetAuthorizationTokenOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2511,6 +2567,7 @@ func (s *GetAuthorizationTokenOutput) SetAuthorizationData(v []*AuthorizationDat
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetDownloadUrlForLayerRequest
 type GetDownloadUrlForLayerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2576,6 +2633,7 @@ func (s *GetDownloadUrlForLayerInput) SetRepositoryName(v string) *GetDownloadUr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetDownloadUrlForLayerResponse
 type GetDownloadUrlForLayerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2608,6 +2666,7 @@ func (s *GetDownloadUrlForLayerOutput) SetLayerDigest(v string) *GetDownloadUrlF
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetRepositoryPolicyRequest
 type GetRepositoryPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2659,6 +2718,7 @@ func (s *GetRepositoryPolicyInput) SetRepositoryName(v string) *GetRepositoryPol
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/GetRepositoryPolicyResponse
 type GetRepositoryPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2701,6 +2761,7 @@ func (s *GetRepositoryPolicyOutput) SetRepositoryName(v string) *GetRepositoryPo
 }
 
 // An object representing an Amazon ECR image.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/Image
 type Image struct {
 	_ struct{} `type:"structure"`
 
@@ -2752,6 +2813,7 @@ func (s *Image) SetRepositoryName(v string) *Image {
 }
 
 // An object that describes an image returned by a DescribeImages operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ImageDetail
 type ImageDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -2827,6 +2889,7 @@ func (s *ImageDetail) SetRepositoryName(v string) *ImageDetail {
 }
 
 // An object representing an Amazon ECR image failure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ImageFailure
 type ImageFailure struct {
 	_ struct{} `type:"structure"`
 
@@ -2869,6 +2932,7 @@ func (s *ImageFailure) SetImageId(v *ImageIdentifier) *ImageFailure {
 }
 
 // An object with identifying information for an Amazon ECR image.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ImageIdentifier
 type ImageIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -2901,6 +2965,7 @@ func (s *ImageIdentifier) SetImageTag(v string) *ImageIdentifier {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/InitiateLayerUploadRequest
 type InitiateLayerUploadInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2952,6 +3017,7 @@ func (s *InitiateLayerUploadInput) SetRepositoryName(v string) *InitiateLayerUpl
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/InitiateLayerUploadResponse
 type InitiateLayerUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2987,6 +3053,7 @@ func (s *InitiateLayerUploadOutput) SetUploadId(v string) *InitiateLayerUploadOu
 }
 
 // An object representing an Amazon ECR image layer.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/Layer
 type Layer struct {
 	_ struct{} `type:"structure"`
 
@@ -3030,6 +3097,7 @@ func (s *Layer) SetLayerSize(v int64) *Layer {
 }
 
 // An object representing an Amazon ECR image layer failure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/LayerFailure
 type LayerFailure struct {
 	_ struct{} `type:"structure"`
 
@@ -3072,6 +3140,7 @@ func (s *LayerFailure) SetLayerDigest(v string) *LayerFailure {
 }
 
 // An object representing a filter on a ListImages operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ListImagesFilter
 type ListImagesFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -3096,6 +3165,7 @@ func (s *ListImagesFilter) SetTagStatus(v string) *ListImagesFilter {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ListImagesRequest
 type ListImagesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3190,6 +3260,7 @@ func (s *ListImagesInput) SetRepositoryName(v string) *ListImagesInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/ListImagesResponse
 type ListImagesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3225,6 +3296,7 @@ func (s *ListImagesOutput) SetNextToken(v string) *ListImagesOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutImageRequest
 type PutImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3291,6 +3363,7 @@ func (s *PutImageInput) SetRepositoryName(v string) *PutImageInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/PutImageResponse
 type PutImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3315,6 +3388,7 @@ func (s *PutImageOutput) SetImage(v *Image) *PutImageOutput {
 }
 
 // An object representing a repository.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/Repository
 type Repository struct {
 	_ struct{} `type:"structure"`
 
@@ -3379,6 +3453,7 @@ func (s *Repository) SetRepositoryUri(v string) *Repository {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/SetRepositoryPolicyRequest
 type SetRepositoryPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3455,6 +3530,7 @@ func (s *SetRepositoryPolicyInput) SetRepositoryName(v string) *SetRepositoryPol
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/SetRepositoryPolicyResponse
 type SetRepositoryPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3496,6 +3572,7 @@ func (s *SetRepositoryPolicyOutput) SetRepositoryName(v string) *SetRepositoryPo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/UploadLayerPartRequest
 type UploadLayerPartInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3606,6 +3683,7 @@ func (s *UploadLayerPartInput) SetUploadId(v string) *UploadLayerPartInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecr-2015-09-21/UploadLayerPartResponse
 type UploadLayerPartOutput struct {
 	_ struct{} `type:"structure"`
 

@@ -34,7 +34,7 @@ var excludeServices = map[string]struct{}{
 // If the SERVICES environment variable is set, and this service is not apart of the list
 // this service will be skipped.
 func newGenerateInfo(modelFile, svcPath, svcImportPath string) *generateInfo {
-	g := &generateInfo{API: &api.API{SvcClientImportPath: svcImportPath}}
+	g := &generateInfo{API: &api.API{SvcClientImportPath: svcImportPath, BaseCrosslinkURL: "https://docs.aws.amazon.com"}}
 	g.API.Attach(modelFile)
 
 	if _, ok := excludeServices[g.API.PackageName()]; ok {

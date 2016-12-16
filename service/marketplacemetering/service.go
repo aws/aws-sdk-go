@@ -32,8 +32,9 @@ import (
 //    the buyer submits a Registration Token through the browser. The Registration
 //    Token is resolved through this API to obtain a CustomerIdentifier and
 //    Product Code.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14
 type MarketplaceMetering struct {
 	*client.Client
 }

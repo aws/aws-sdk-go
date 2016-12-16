@@ -19,8 +19,9 @@ import (
 // Your User Pools.
 //
 // For more information, see the Amazon Cognito Documentation.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18
 type CognitoIdentityProvider struct {
 	*client.Client
 }

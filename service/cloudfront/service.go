@@ -15,8 +15,9 @@ import (
 // who need detailed information about the CloudFront API actions, data types,
 // and errors. For detailed information about CloudFront features and their
 // associated API calls, see the Amazon CloudFront Developer Guide.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25
 type CloudFront struct {
 	*client.Client
 }

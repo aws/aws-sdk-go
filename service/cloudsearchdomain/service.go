@@ -21,7 +21,7 @@ import (
 // You submit suggest requests to the search endpoint.
 //
 // For more information, see the Amazon CloudSearch Developer Guide (http://docs.aws.amazon.com/cloudsearch/latest/developerguide).
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
 type CloudSearchDomain struct {
 	*client.Client

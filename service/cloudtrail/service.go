@@ -32,8 +32,9 @@ import (
 // See the AWS CloudTrail User Guide (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)
 // for information about the data that is included with each AWS API call listed
 // in the log files.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01
 type CloudTrail struct {
 	*client.Client
 }

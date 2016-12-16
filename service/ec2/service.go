@@ -15,8 +15,9 @@ import (
 // in the Amazon Web Services (AWS) cloud. Using Amazon EC2 eliminates your
 // need to invest in hardware up front, so you can develop and deploy applications
 // faster.
-//The service client's operations are safe to be used concurrently.
+// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15
 type EC2 struct {
 	*client.Client
 }

@@ -51,6 +51,8 @@ type API struct {
 	imports     map[string]bool
 	name        string
 	path        string
+
+	BaseCrosslinkURL string
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -64,6 +66,7 @@ type Metadata struct {
 	JSONVersion         string
 	TargetPrefix        string
 	Protocol            string
+	UID                 string
 	EndpointsID         string
 }
 
@@ -274,6 +277,38 @@ func (a *API) APIGoCode() string {
 	return code
 }
 
+var noCrossLinkServices = map[string]struct{}{
+	"apigateway":        struct{}{},
+	"budgets":           struct{}{},
+	"cloudsearch":       struct{}{},
+	"cloudsearchdomain": struct{}{},
+	"discovery":         struct{}{},
+	"elastictranscoder": struct{}{},
+	"es":                struct{}{},
+	"glacier":           struct{}{},
+	"importexport":      struct{}{},
+	"iot":               struct{}{},
+	"iot-data":          struct{}{},
+	"lambda":            struct{}{},
+	"machinelearning":   struct{}{},
+	"rekognition":       struct{}{},
+	"s3":                struct{}{},
+	"sdb":               struct{}{},
+	"swf":               struct{}{},
+}
+
+func GetCrosslinkURL(baseURL, name, uid string, params ...string) string {
+	_, ok := noCrossLinkServices[strings.ToLower(name)]
+	if !ok {
+		return strings.Join(append([]string{baseURL, "goto", "WebAPI", uid}, params...), "/")
+	}
+	return ""
+}
+
+func (a *API) APIName() string {
+	return a.name
+}
+
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 	"ServiceNameValue": func(a *API) string {
@@ -282,6 +317,7 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
+	"GetCrosslinkURL": GetCrosslinkURL,
 	"EndpointsIDConstValue": func(a *API) string {
 		if a.NoConstServiceNames {
 			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
@@ -299,8 +335,12 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		return "EndpointsID"
 	},
 }).Parse(`
-{{ .Documentation }}//The service client's operations are safe to be used concurrently.
+{{ .Documentation }}// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
+{{ $crosslinkURL := GetCrosslinkURL $.BaseCrosslinkURL $.APIName $.Metadata.UID -}}
+{{ if ne $crosslinkURL "" -}} 
+// Please also see {{ $crosslinkURL }}
+{{ end -}}
 type {{ .StructName }} struct {
 	*client.Client
 }
