@@ -49,9 +49,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "redshift"        // Service endpoint prefix API calls made to.
-	ServiceFullName = "Amazon Redshift" // Service friendly name.
-	EndpointsKey    = ServiceName       // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "redshift"  // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the Redshift client with a session.
@@ -65,7 +64,7 @@ const (
 //     // Create a Redshift client with additional configuration
 //     svc := redshift.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *Redshift {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

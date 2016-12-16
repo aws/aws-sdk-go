@@ -26,9 +26,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "kinesisanalytics"         // Service endpoint prefix API calls made to.
-	ServiceFullName = "Amazon Kinesis Analytics" // Service friendly name.
-	EndpointsKey    = ServiceName                // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "kinesisanalytics" // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName        // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the KinesisAnalytics client with a session.
@@ -42,7 +41,7 @@ const (
 //     // Create a KinesisAnalytics client with additional configuration
 //     svc := kinesisanalytics.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *KinesisAnalytics {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

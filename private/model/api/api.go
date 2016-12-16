@@ -64,7 +64,7 @@ type Metadata struct {
 	JSONVersion         string
 	TargetPrefix        string
 	Protocol            string
-	EndpointsKey        string
+	EndpointsID         string
 }
 
 var serviceAliases map[string]string
@@ -282,14 +282,14 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
-	"EndpointsKeyValue": func(a *API) string {
+	"EndpointsIDValue": func(a *API) string {
 		if a.NoConstServiceNames {
 			return fmt.Sprintf("%q", a.Metadata.EndpointPrefix)
 		}
-		if a.Metadata.EndpointPrefix == a.Metadata.EndpointsKey {
+		if a.Metadata.EndpointPrefix == a.Metadata.EndpointsID {
 			return "ServiceName"
 		}
-		return fmt.Sprintf("%q", a.Metadata.EndpointsKey)
+		return fmt.Sprintf("%q", a.Metadata.EndpointsID)
 	},
 }).Parse(`
 {{ .Documentation }}//The service client's operations are safe to be used concurrently.
@@ -306,16 +306,15 @@ var initRequest func(*request.Request)
 {{ end }}
 
 {{ $serviceName := ServiceNameValue . -}}
-{{ $endpointsKey := EndpointsKeyValue . -}}
+{{ $endpointID := EndpointsIDValue . -}}
 
-{{ if not .NoConstServiceNames -}}
 // Service information constants
 const (
+{{ if not .NoConstServiceNames -}}
 	ServiceName = "{{ .Metadata.EndpointPrefix }}" // Service endpoint prefix API calls made to.
-	ServiceFullName = "{{ .Metadata.ServiceFullName }}" // Service friendly name.
-	EndpointsKey = {{ $endpointsKey }} // Service entry in Regions and Endpoints metadata.
-)
 {{- end }}
+	EndpointsServiceID = {{ $endpointID }} // Service ID for Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the {{ .StructName }} client with a session.
 // If additional configuration is needed for the client instance use the optional
@@ -328,7 +327,7 @@ const (
 //     // Create a {{ .StructName }} client with additional configuration
 //     svc := {{ .PackageName }}.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
-	c := p.ClientConfig({{ $endpointsKey }}, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

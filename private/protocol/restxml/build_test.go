@@ -49,6 +49,11 @@ type InputService1ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice1protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService1ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -60,7 +65,7 @@ type InputService1ProtocolTest struct {
 //     // Create a InputService1ProtocolTest client with additional configuration
 //     svc := inputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService1ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService1ProtocolTest {
-	c := p.ClientConfig("inputservice1protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService1ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -317,6 +322,11 @@ type InputService2ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice2protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService2ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -328,7 +338,7 @@ type InputService2ProtocolTest struct {
 //     // Create a InputService2ProtocolTest client with additional configuration
 //     svc := inputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService2ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService2ProtocolTest {
-	c := p.ClientConfig("inputservice2protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService2ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -471,6 +481,11 @@ type InputService3ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice3protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService3ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -482,7 +497,7 @@ type InputService3ProtocolTest struct {
 //     // Create a InputService3ProtocolTest client with additional configuration
 //     svc := inputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService3ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService3ProtocolTest {
-	c := p.ClientConfig("inputservice3protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService3ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -692,6 +707,11 @@ type InputService4ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice4protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService4ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -703,7 +723,7 @@ type InputService4ProtocolTest struct {
 //     // Create a InputService4ProtocolTest client with additional configuration
 //     svc := inputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService4ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService4ProtocolTest {
-	c := p.ClientConfig("inputservice4protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService4ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -850,6 +870,11 @@ type InputService5ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice5protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService5ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -861,7 +886,7 @@ type InputService5ProtocolTest struct {
 //     // Create a InputService5ProtocolTest client with additional configuration
 //     svc := inputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService5ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService5ProtocolTest {
-	c := p.ClientConfig("inputservice5protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService5ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -980,6 +1005,11 @@ type InputService6ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice6protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService6ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -991,7 +1021,7 @@ type InputService6ProtocolTest struct {
 //     // Create a InputService6ProtocolTest client with additional configuration
 //     svc := inputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService6ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService6ProtocolTest {
-	c := p.ClientConfig("inputservice6protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService6ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1110,6 +1140,11 @@ type InputService7ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice7protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService7ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1121,7 +1156,7 @@ type InputService7ProtocolTest struct {
 //     // Create a InputService7ProtocolTest client with additional configuration
 //     svc := inputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService7ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService7ProtocolTest {
-	c := p.ClientConfig("inputservice7protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService7ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1240,6 +1275,11 @@ type InputService8ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice8protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService8ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1251,7 +1291,7 @@ type InputService8ProtocolTest struct {
 //     // Create a InputService8ProtocolTest client with additional configuration
 //     svc := inputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService8ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService8ProtocolTest {
-	c := p.ClientConfig("inputservice8protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService8ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1370,6 +1410,11 @@ type InputService9ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice9protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService9ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1381,7 +1426,7 @@ type InputService9ProtocolTest struct {
 //     // Create a InputService9ProtocolTest client with additional configuration
 //     svc := inputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService9ProtocolTest {
-	c := p.ClientConfig("inputservice9protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService9ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1512,6 +1557,11 @@ type InputService10ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice10protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService10ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1523,7 +1573,7 @@ type InputService10ProtocolTest struct {
 //     // Create a InputService10ProtocolTest client with additional configuration
 //     svc := inputservice10protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService10ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService10ProtocolTest {
-	c := p.ClientConfig("inputservice10protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService10ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1663,6 +1713,11 @@ type InputService11ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice11protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService11ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1674,7 +1729,7 @@ type InputService11ProtocolTest struct {
 //     // Create a InputService11ProtocolTest client with additional configuration
 //     svc := inputservice11protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService11ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService11ProtocolTest {
-	c := p.ClientConfig("inputservice11protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService11ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1793,6 +1848,11 @@ type InputService12ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice12protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService12ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1804,7 +1864,7 @@ type InputService12ProtocolTest struct {
 //     // Create a InputService12ProtocolTest client with additional configuration
 //     svc := inputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService12ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService12ProtocolTest {
-	c := p.ClientConfig("inputservice12protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService12ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -1923,6 +1983,11 @@ type InputService13ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice13protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService13ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -1934,7 +1999,7 @@ type InputService13ProtocolTest struct {
 //     // Create a InputService13ProtocolTest client with additional configuration
 //     svc := inputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService13ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService13ProtocolTest {
-	c := p.ClientConfig("inputservice13protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService13ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -2061,6 +2126,11 @@ type InputService14ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice14protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService14ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -2072,7 +2142,7 @@ type InputService14ProtocolTest struct {
 //     // Create a InputService14ProtocolTest client with additional configuration
 //     svc := inputservice14protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService14ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService14ProtocolTest {
-	c := p.ClientConfig("inputservice14protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService14ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -2199,6 +2269,11 @@ type InputService15ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice15protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService15ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -2210,7 +2285,7 @@ type InputService15ProtocolTest struct {
 //     // Create a InputService15ProtocolTest client with additional configuration
 //     svc := inputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService15ProtocolTest {
-	c := p.ClientConfig("inputservice15protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService15ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -2329,6 +2404,11 @@ type InputService16ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice16protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService16ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -2340,7 +2420,7 @@ type InputService16ProtocolTest struct {
 //     // Create a InputService16ProtocolTest client with additional configuration
 //     svc := inputservice16protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService16ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService16ProtocolTest {
-	c := p.ClientConfig("inputservice16protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService16ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -2522,6 +2602,11 @@ type InputService17ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice17protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService17ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -2533,7 +2618,7 @@ type InputService17ProtocolTest struct {
 //     // Create a InputService17ProtocolTest client with additional configuration
 //     svc := inputservice17protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService17ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService17ProtocolTest {
-	c := p.ClientConfig("inputservice17protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService17ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -2853,6 +2938,11 @@ type InputService18ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice18protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService18ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -2864,7 +2954,7 @@ type InputService18ProtocolTest struct {
 //     // Create a InputService18ProtocolTest client with additional configuration
 //     svc := inputservice18protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService18ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService18ProtocolTest {
-	c := p.ClientConfig("inputservice18protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService18ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -3015,6 +3105,11 @@ type InputService19ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice19protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService19ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -3026,7 +3121,7 @@ type InputService19ProtocolTest struct {
 //     // Create a InputService19ProtocolTest client with additional configuration
 //     svc := inputservice19protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService19ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService19ProtocolTest {
-	c := p.ClientConfig("inputservice19protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService19ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -3153,6 +3248,11 @@ type InputService20ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice20protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService20ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -3164,7 +3264,7 @@ type InputService20ProtocolTest struct {
 //     // Create a InputService20ProtocolTest client with additional configuration
 //     svc := inputservice20protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService20ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService20ProtocolTest {
-	c := p.ClientConfig("inputservice20protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService20ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -3346,6 +3446,11 @@ type InputService21ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice21protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService21ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -3357,7 +3462,7 @@ type InputService21ProtocolTest struct {
 //     // Create a InputService21ProtocolTest client with additional configuration
 //     svc := inputservice21protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService21ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService21ProtocolTest {
-	c := p.ClientConfig("inputservice21protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService21ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -3827,6 +3932,11 @@ type InputService22ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice22protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService22ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -3838,7 +3948,7 @@ type InputService22ProtocolTest struct {
 //     // Create a InputService22ProtocolTest client with additional configuration
 //     svc := inputservice22protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService22ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService22ProtocolTest {
-	c := p.ClientConfig("inputservice22protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService22ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
@@ -3957,6 +4067,11 @@ type InputService23ProtocolTest struct {
 	*client.Client
 }
 
+// Service information constants
+const (
+	EndpointsServiceID = "inputservice23protocoltest" // Service ID for Regions and Endpoints metadata.
+)
+
 // New creates a new instance of the InputService23ProtocolTest client with a session.
 // If additional configuration is needed for the client instance use the optional
 // aws.Config parameter to add your extra config.
@@ -3968,7 +4083,7 @@ type InputService23ProtocolTest struct {
 //     // Create a InputService23ProtocolTest client with additional configuration
 //     svc := inputservice23protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService23ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService23ProtocolTest {
-	c := p.ClientConfig("inputservice23protocoltest", cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newInputService23ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

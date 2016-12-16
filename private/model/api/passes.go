@@ -262,22 +262,22 @@ func (a *API) removeUnusedShapes() {
 	}
 }
 
-// Represents the service package name to EndpointsKey mapping
+// Represents the service package name to EndpointsID mapping
 var custEndpointsKey = map[string]string{
 	"applicationautoscaling": "application-autoscaling",
 }
 
-// Sents the EndpointsKey field of Metadata  with the value of the
-// EndpointPrefix if EndpointsKey is not set. Also adds
+// Sents the EndpointsID field of Metadata  with the value of the
+// EndpointPrefix if EndpointsID is not set. Also adds
 // customizations for services if EndpointPrefix is not a valid key.
 func (a *API) setMetadataEndpointsKey() {
-	if len(a.Metadata.EndpointsKey) != 0 {
+	if len(a.Metadata.EndpointsID) != 0 {
 		return
 	}
 
 	if v, ok := custEndpointsKey[a.PackageName()]; ok {
-		a.Metadata.EndpointsKey = v
+		a.Metadata.EndpointsID = v
 	} else {
-		a.Metadata.EndpointsKey = a.Metadata.EndpointPrefix
+		a.Metadata.EndpointsID = a.Metadata.EndpointPrefix
 	}
 }

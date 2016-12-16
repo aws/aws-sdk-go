@@ -29,9 +29,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "ec2"                          // Service endpoint prefix API calls made to.
-	ServiceFullName = "Amazon Elastic Compute Cloud" // Service friendly name.
-	EndpointsKey    = ServiceName                    // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "ec2"       // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the EC2 client with a session.
@@ -45,7 +44,7 @@ const (
 //     // Create a EC2 client with additional configuration
 //     svc := ec2.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *EC2 {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

@@ -78,9 +78,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "iam"                                // Service endpoint prefix API calls made to.
-	ServiceFullName = "AWS Identity and Access Management" // Service friendly name.
-	EndpointsKey    = ServiceName                          // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "iam"       // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the IAM client with a session.
@@ -94,7 +93,7 @@ const (
 //     // Create a IAM client with additional configuration
 //     svc := iam.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *IAM {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

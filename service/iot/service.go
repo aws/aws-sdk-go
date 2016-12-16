@@ -33,9 +33,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "iot"       // Service endpoint prefix API calls made to.
-	ServiceFullName = "AWS IoT"   // Service friendly name.
-	EndpointsKey    = ServiceName // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "iot"       // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the IoT client with a session.
@@ -49,7 +48,7 @@ const (
 //     // Create a IoT client with additional configuration
 //     svc := iot.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *IoT {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

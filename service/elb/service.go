@@ -52,9 +52,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "elasticloadbalancing"   // Service endpoint prefix API calls made to.
-	ServiceFullName = "Elastic Load Balancing" // Service friendly name.
-	EndpointsKey    = ServiceName              // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "elasticloadbalancing" // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName            // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the ELB client with a session.
@@ -68,7 +67,7 @@ const (
 //     // Create a ELB client with additional configuration
 //     svc := elb.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ELB {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 

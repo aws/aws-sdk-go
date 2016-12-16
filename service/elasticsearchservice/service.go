@@ -31,9 +31,8 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName     = "es"                           // Service endpoint prefix API calls made to.
-	ServiceFullName = "Amazon Elasticsearch Service" // Service friendly name.
-	EndpointsKey    = ServiceName                    // Service entry in Regions and Endpoints metadata.
+	ServiceName        = "es"        // Service endpoint prefix API calls made to.
+	EndpointsServiceID = ServiceName // Service ID for Regions and Endpoints metadata.
 )
 
 // New creates a new instance of the ElasticsearchService client with a session.
@@ -47,7 +46,7 @@ const (
 //     // Create a ElasticsearchService client with additional configuration
 //     svc := elasticsearchservice.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *ElasticsearchService {
-	c := p.ClientConfig(ServiceName, cfgs...)
+	c := p.ClientConfig(EndpointsServiceID, cfgs...)
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
