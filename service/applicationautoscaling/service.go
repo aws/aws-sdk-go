@@ -51,7 +51,7 @@ var initClient func(*client.Client)
 var initRequest func(*request.Request)
 
 // A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "autoscaling"
+const ServiceName = "application-autoscaling"
 
 // New creates a new instance of the ApplicationAutoScaling client with a session.
 // If additional configuration is needed for the client instance use the optional
