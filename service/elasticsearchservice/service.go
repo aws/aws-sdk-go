@@ -19,7 +19,6 @@ import (
 // regions and endpoints, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticsearch-service-regions).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/es-2015-01-01
 type ElasticsearchService struct {
 	*client.Client

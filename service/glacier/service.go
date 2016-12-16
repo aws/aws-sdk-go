@@ -44,7 +44,6 @@ import (
 //    the job output, and deleting archives.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 type Glacier struct {
 	*client.Client
 }

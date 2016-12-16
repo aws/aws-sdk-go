@@ -34,7 +34,6 @@ import (
 // in the log files.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01
 type CloudTrail struct {
 	*client.Client

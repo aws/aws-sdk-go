@@ -26,7 +26,6 @@ import (
 // to Tools for Amazon Web Services (http://aws.amazon.com/tools/).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31
 type SNS struct {
 	*client.Client

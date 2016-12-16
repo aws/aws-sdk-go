@@ -31,7 +31,6 @@ import (
 // and the Developer Guide for iOS (http://docs.aws.amazon.com/mobile/sdkforios/developerguide/cognito-sync.html).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-sync-2014-06-30
 type CognitoSync struct {
 	*client.Client

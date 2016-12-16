@@ -14,7 +14,6 @@ import (
 // The AWS Elastic Transcoder Service.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 type ElasticTranscoder struct {
 	*client.Client
 }

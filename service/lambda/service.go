@@ -20,7 +20,6 @@ import (
 // in the AWS Lambda Developer Guide.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 type Lambda struct {
 	*client.Client
 }

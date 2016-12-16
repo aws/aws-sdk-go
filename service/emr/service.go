@@ -17,7 +17,6 @@ import (
 // machine learning, scientific simulation, and data warehousing.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31
 type EMR struct {
 	*client.Client

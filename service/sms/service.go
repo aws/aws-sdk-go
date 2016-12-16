@@ -15,7 +15,6 @@ import (
 // to EC2.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24
 type SMS struct {
 	*client.Client

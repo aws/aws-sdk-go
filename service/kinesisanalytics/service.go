@@ -14,7 +14,6 @@ import (
 // KinesisAnalytics is a client for Kinesis Analytics.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesisanalytics-2015-08-14
 type KinesisAnalytics struct {
 	*client.Client

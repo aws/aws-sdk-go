@@ -22,7 +22,6 @@ import (
 // Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28
 type WAFRegional struct {
 	*client.Client

@@ -46,10 +46,7 @@ func (o *Operation) HasOutput() bool {
 
 // tplOperation defines a template for rendering an API Operation
 var tplOperation = template.Must(template.New("operation").Funcs(template.FuncMap{
-	"isBlacklistedService": func(a *API) bool {
-		_, ok := blacklistedServices[a.name]
-		return ok
-	},
+	"isBlacklistedService": isBlacklistedService,
 }).Parse(`
 const op{{ .ExportedName }} = "{{ .Name }}"
 
@@ -76,9 +73,9 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
 {{ $blacklisted := isBlacklistedService .API -}}
 {{ if not $blacklisted -}} 
+//
 // Please also see ` + redirectsURL + `/goto/WebAPI/{{ $.API.Metadata.UID }}/{{ .ExportedName }}
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +

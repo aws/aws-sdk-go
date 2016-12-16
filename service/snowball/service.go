@@ -21,7 +21,6 @@ import (
 // For more information, see the User Guide (http://docs.aws.amazon.com/AWSImportExport/latest/ug/api-reference.html).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30
 type Snowball struct {
 	*client.Client

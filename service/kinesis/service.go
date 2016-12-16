@@ -15,7 +15,6 @@ import (
 // time processing of streaming big data.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/kinesis-2013-12-02
 type Kinesis struct {
 	*client.Client

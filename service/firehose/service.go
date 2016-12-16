@@ -16,7 +16,6 @@ import (
 // S3), Amazon Elasticsearch Service (Amazon ES), and Amazon Redshift.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04
 type Firehose struct {
 	*client.Client

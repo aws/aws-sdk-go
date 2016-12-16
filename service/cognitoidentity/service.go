@@ -45,7 +45,6 @@ import (
 // more, see the AWS Mobile SDK Developer Guide (http://docs.aws.amazon.com/mobile/index.html).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30
 type CognitoIdentity struct {
 	*client.Client

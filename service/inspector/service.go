@@ -16,7 +16,6 @@ import (
 // Inspector User Guide (http://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/inspector-2016-02-16
 type Inspector struct {
 	*client.Client

@@ -33,8 +33,6 @@ const opCompareFaces = "CompareFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CompareFaces
 func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *request.Request, output *CompareFacesOutput) {
 	op := &request.Operation{
 		Name:       opCompareFaces,
@@ -148,8 +146,6 @@ const opCreateCollection = "CreateCollection"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CreateCollection
 func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req *request.Request, output *CreateCollectionOutput) {
 	op := &request.Operation{
 		Name:       opCreateCollection,
@@ -242,8 +238,6 @@ const opDeleteCollection = "DeleteCollection"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DeleteCollection
 func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req *request.Request, output *DeleteCollectionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCollection,
@@ -329,8 +323,6 @@ const opDeleteFaces = "DeleteFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DeleteFaces
 func (c *Rekognition) DeleteFacesRequest(input *DeleteFacesInput) (req *request.Request, output *DeleteFacesOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFaces,
@@ -416,8 +408,6 @@ const opDetectFaces = "DetectFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectFaces
 func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.Request, output *DetectFacesOutput) {
 	op := &request.Operation{
 		Name:       opDetectFaces,
@@ -523,8 +513,6 @@ const opDetectLabels = "DetectLabels"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectLabels
 func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *request.Request, output *DetectLabelsOutput) {
 	op := &request.Operation{
 		Name:       opDetectLabels,
@@ -658,8 +646,6 @@ const opIndexFaces = "IndexFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/IndexFaces
 func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Request, output *IndexFacesOutput) {
 	op := &request.Operation{
 		Name:       opIndexFaces,
@@ -779,8 +765,6 @@ const opListCollections = "ListCollections"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListCollections
 func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *request.Request, output *ListCollectionsOutput) {
 	op := &request.Operation{
 		Name:       opListCollections,
@@ -903,8 +887,6 @@ const opListFaces = "ListFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListFaces
 func (c *Rekognition) ListFacesRequest(input *ListFacesInput) (req *request.Request, output *ListFacesOutput) {
 	op := &request.Operation{
 		Name:       opListFaces,
@@ -1025,8 +1007,6 @@ const opSearchFaces = "SearchFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/SearchFaces
 func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.Request, output *SearchFacesOutput) {
 	op := &request.Operation{
 		Name:       opSearchFaces,
@@ -1125,8 +1105,6 @@ const opSearchFacesByImage = "SearchFacesByImage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/SearchFacesByImage
 func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) (req *request.Request, output *SearchFacesByImageOutput) {
 	op := &request.Operation{
 		Name:       opSearchFacesByImage,
@@ -1319,7 +1297,6 @@ func (s *BoundingBox) SetWidth(v float64) *BoundingBox {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CompareFacesRequest
 type CompareFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1427,7 +1404,6 @@ func (s *CompareFacesMatch) SetSimilarity(v float64) *CompareFacesMatch {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CompareFacesResponse
 type CompareFacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1570,7 +1546,6 @@ func (s *ComparedSourceImageFace) SetConfidence(v float64) *ComparedSourceImageF
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CreateCollectionRequest
 type CreateCollectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1612,7 +1587,6 @@ func (s *CreateCollectionInput) SetCollectionId(v string) *CreateCollectionInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/CreateCollectionResponse
 type CreateCollectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1646,7 +1620,6 @@ func (s *CreateCollectionOutput) SetStatusCode(v int64) *CreateCollectionOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DeleteCollectionRequest
 type DeleteCollectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1688,7 +1661,6 @@ func (s *DeleteCollectionInput) SetCollectionId(v string) *DeleteCollectionInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DeleteCollectionResponse
 type DeleteCollectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1712,7 +1684,6 @@ func (s *DeleteCollectionOutput) SetStatusCode(v int64) *DeleteCollectionOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DeleteFacesRequest
 type DeleteFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1771,7 +1742,6 @@ func (s *DeleteFacesInput) SetFaceIds(v []*string) *DeleteFacesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DeleteFacesResponse
 type DeleteFacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1795,7 +1765,6 @@ func (s *DeleteFacesOutput) SetDeletedFaces(v []*string) *DeleteFacesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectFacesRequest
 type DetectFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1855,7 +1824,6 @@ func (s *DetectFacesInput) SetImage(v *Image) *DetectFacesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectFacesResponse
 type DetectFacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1895,7 +1863,6 @@ func (s *DetectFacesOutput) SetOrientationCorrection(v string) *DetectFacesOutpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectLabelsRequest
 type DetectLabelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1962,7 +1929,6 @@ func (s *DetectLabelsInput) SetMinConfidence(v float64) *DetectLabelsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/DetectLabelsResponse
 type DetectLabelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2522,7 +2488,6 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/IndexFacesRequest
 type IndexFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2612,7 +2577,6 @@ func (s *IndexFacesInput) SetImage(v *Image) *IndexFacesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/IndexFacesResponse
 type IndexFacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2729,7 +2693,6 @@ func (s *Landmark) SetY(v float64) *Landmark {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListCollectionsRequest
 type ListCollectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2762,7 +2725,6 @@ func (s *ListCollectionsInput) SetNextToken(v string) *ListCollectionsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListCollectionsResponse
 type ListCollectionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2796,7 +2758,6 @@ func (s *ListCollectionsOutput) SetNextToken(v string) *ListCollectionsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListFacesRequest
 type ListFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2858,7 +2819,6 @@ func (s *ListFacesInput) SetNextToken(v string) *ListFacesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/ListFacesResponse
 type ListFacesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3063,7 +3023,6 @@ func (s *S3Object) SetVersion(v string) *S3Object {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/SearchFacesByImageRequest
 type SearchFacesByImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3148,7 +3107,6 @@ func (s *SearchFacesByImageInput) SetMaxFaces(v int64) *SearchFacesByImageInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/SearchFacesByImageResponse
 type SearchFacesByImageOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3192,7 +3150,6 @@ func (s *SearchFacesByImageOutput) SetSearchedFaceConfidence(v float64) *SearchF
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/SearchFacesRequest
 type SearchFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3272,7 +3229,6 @@ func (s *SearchFacesInput) SetMaxFaces(v int64) *SearchFacesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rekognition-2016-06-27/SearchFacesResponse
 type SearchFacesOutput struct {
 	_ struct{} `type:"structure"`
 

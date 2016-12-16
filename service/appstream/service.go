@@ -14,7 +14,6 @@ import (
 // API documentation for Amazon AppStream 2.0.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01
 type AppStream struct {
 	*client.Client

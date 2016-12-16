@@ -18,7 +18,6 @@ import (
 // Advanced APIs, see the AWS WAF and AWS Shield Developer Guide (http://docs.aws.amazon.com/waf/latest/developerguide/).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02
 type Shield struct {
 	*client.Client

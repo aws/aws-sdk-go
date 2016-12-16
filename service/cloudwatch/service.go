@@ -28,7 +28,6 @@ import (
 // into resource utilization, application performance, and operational health.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01
 type CloudWatch struct {
 	*client.Client

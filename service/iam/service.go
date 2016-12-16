@@ -66,7 +66,6 @@ import (
 //    an access key ID and secret access key.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08
 type IAM struct {
 	*client.Client

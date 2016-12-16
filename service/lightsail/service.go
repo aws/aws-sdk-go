@@ -26,7 +26,6 @@ import (
 // set this up, see the Lightsail Dev Guide (http://lightsail.aws.amazon.com/ls/docs/how-to/articles/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28
 type Lightsail struct {
 	*client.Client

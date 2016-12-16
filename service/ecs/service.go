@@ -25,7 +25,6 @@ import (
 // or worry about scaling your management infrastructure.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13
 type ECS struct {
 	*client.Client

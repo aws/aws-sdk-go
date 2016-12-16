@@ -65,7 +65,6 @@ import (
 // volume and snapshot IDs coming in 2016 (https://forums.aws.amazon.com/ann.jspa?annID=3557).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30
 type StorageGateway struct {
 	*client.Client

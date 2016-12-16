@@ -296,6 +296,11 @@ var blacklistedServices = map[string]struct{}{
 	"swf":               struct{}{},
 }
 
+func isBlacklistedService(a *API) bool {
+	_, ok := blacklistedServices[strings.ToLower(a.name)]
+	return ok
+}
+
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 	"ServiceNameValue": func(a *API) string {
@@ -304,14 +309,10 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
-	"isBlacklistedService": func(a *API) bool {
-		_, ok := blacklistedServices[strings.ToLower(a.name)]
-		return ok
-	},
+	"isBlacklistedService": isBlacklistedService,
 }).Parse(`
 {{ .Documentation }}// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 {{ $blacklisted := isBlacklistedService . -}}
 {{ if not $blacklisted -}} 
 // Please also see ` + redirectsURL + `/goto/WebAPI/{{ .Metadata.UID }}

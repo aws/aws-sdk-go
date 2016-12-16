@@ -63,7 +63,6 @@ import (
 // for results of checks on your resources.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15
 type Support struct {
 	*client.Client

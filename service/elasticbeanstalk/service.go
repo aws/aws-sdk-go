@@ -30,7 +30,6 @@ import (
 // in the Amazon Web Services Glossary.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01
 type ElasticBeanstalk struct {
 	*client.Client

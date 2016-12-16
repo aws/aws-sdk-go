@@ -35,8 +35,6 @@ const opSearch = "Search"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/Search
 func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Request, output *SearchOutput) {
 	op := &request.Operation{
 		Name:       opSearch,
@@ -120,8 +118,6 @@ const opSuggest = "Suggest"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/Suggest
 func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Request, output *SuggestOutput) {
 	op := &request.Operation{
 		Name:       opSuggest,
@@ -201,8 +197,6 @@ const opUploadDocuments = "UploadDocuments"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/UploadDocuments
 func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *request.Request, output *UploadDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opUploadDocuments,
@@ -557,7 +551,6 @@ func (s *Hits) SetStart(v int64) *Hits {
 }
 
 // Container for the parameters to the Search request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/SearchRequest
 type SearchInput struct {
 	_ struct{} `type:"structure"`
 
@@ -971,7 +964,6 @@ func (s *SearchInput) SetStats(v string) *SearchInput {
 
 // The result of a Search request. Contains the documents that match the specified
 // search criteria and any requested fields, highlights, and facet information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/SearchResponse
 type SearchOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1057,7 +1049,6 @@ func (s *SearchStatus) SetTimems(v int64) *SearchStatus {
 }
 
 // Container for the parameters to the Suggest request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/SuggestRequest
 type SuggestInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1162,7 +1153,6 @@ func (s *SuggestModel) SetSuggestions(v []*SuggestionMatch) *SuggestModel {
 }
 
 // Contains the response to a Suggest request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/SuggestResponse
 type SuggestOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1273,7 +1263,6 @@ func (s *SuggestionMatch) SetSuggestion(v string) *SuggestionMatch {
 }
 
 // Container for the parameters to the UploadDocuments request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/UploadDocumentsRequest
 type UploadDocumentsInput struct {
 	_ struct{} `type:"structure" payload:"Documents"`
 
@@ -1331,7 +1320,6 @@ func (s *UploadDocumentsInput) SetDocuments(v io.ReadSeeker) *UploadDocumentsInp
 }
 
 // Contains the response to an UploadDocuments request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudsearchdomain-2013-01-01/UploadDocumentsResponse
 type UploadDocumentsOutput struct {
 	_ struct{} `type:"structure"`
 

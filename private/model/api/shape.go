@@ -476,10 +476,7 @@ func (s *Shape) NestedShape() *Shape {
 }
 
 var structShapeTmpl = template.Must(template.New("StructShape").Funcs(template.FuncMap{
-	"isBlacklistedService": func(a *API) bool {
-		_, ok := blacklistedServices[a.name]
-		return ok
-	},
+	"isBlacklistedService": isBlacklistedService,
 }).Parse(`
 {{ .Docstring }}
 {{ $blacklisted := isBlacklistedService .API -}}

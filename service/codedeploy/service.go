@@ -66,7 +66,6 @@ import (
 //    revisions.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codedeploy-2014-10-06
 type CodeDeploy struct {
 	*client.Client

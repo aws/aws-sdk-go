@@ -35,8 +35,6 @@ const opCancelJob = "CancelJob"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CancelJob
 func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
 	op := &request.Operation{
 		Name:       opCancelJob,
@@ -123,8 +121,6 @@ const opCreateJob = "CreateJob"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreateJob
 func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *request.Request, output *CreateJobResponse) {
 	op := &request.Operation{
 		Name:       opCreateJob,
@@ -213,8 +209,6 @@ const opCreatePipeline = "CreatePipeline"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreatePipeline
 func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
 	op := &request.Operation{
 		Name:       opCreatePipeline,
@@ -297,8 +291,6 @@ const opCreatePreset = "CreatePreset"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreatePreset
 func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *request.Request, output *CreatePresetOutput) {
 	op := &request.Operation{
 		Name:       opCreatePreset,
@@ -390,8 +382,6 @@ const opDeletePipeline = "DeletePipeline"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/DeletePipeline
 func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
 	op := &request.Operation{
 		Name:       opDeletePipeline,
@@ -478,8 +468,6 @@ const opDeletePreset = "DeletePreset"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/DeletePreset
 func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *request.Request, output *DeletePresetOutput) {
 	op := &request.Operation{
 		Name:       opDeletePreset,
@@ -560,8 +548,6 @@ const opListJobsByPipeline = "ListJobsByPipeline"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListJobsByPipeline
 func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *request.Request, output *ListJobsByPipelineOutput) {
 	op := &request.Operation{
 		Name:       opListJobsByPipeline,
@@ -675,8 +661,6 @@ const opListJobsByStatus = "ListJobsByStatus"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListJobsByStatus
 func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *request.Request, output *ListJobsByStatusOutput) {
 	op := &request.Operation{
 		Name:       opListJobsByStatus,
@@ -788,8 +772,6 @@ const opListPipelines = "ListPipelines"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListPipelines
 func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
 	op := &request.Operation{
 		Name:       opListPipelines,
@@ -895,8 +877,6 @@ const opListPresets = "ListPresets"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListPresets
 func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *request.Request, output *ListPresetsOutput) {
 	op := &request.Operation{
 		Name:       opListPresets,
@@ -1002,8 +982,6 @@ const opReadJob = "ReadJob"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadJob
 func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *request.Request, output *ReadJobOutput) {
 	op := &request.Operation{
 		Name:       opReadJob,
@@ -1082,8 +1060,6 @@ const opReadPipeline = "ReadPipeline"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadPipeline
 func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *request.Request, output *ReadPipelineOutput) {
 	op := &request.Operation{
 		Name:       opReadPipeline,
@@ -1162,8 +1138,6 @@ const opReadPreset = "ReadPreset"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadPreset
 func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *request.Request, output *ReadPresetOutput) {
 	op := &request.Operation{
 		Name:       opReadPreset,
@@ -1242,8 +1216,6 @@ const opTestRole = "TestRole"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/TestRole
 func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.Request, output *TestRoleOutput) {
 	if c.Client.Config.Logger != nil {
 		c.Client.Config.Logger.Log("This operation, TestRole, has been deprecated")
@@ -1331,8 +1303,6 @@ const opUpdatePipeline = "UpdatePipeline"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipeline
 func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
 	op := &request.Operation{
 		Name:       opUpdatePipeline,
@@ -1420,8 +1390,6 @@ const opUpdatePipelineNotifications = "UpdatePipelineNotifications"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineNotifications
 func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *request.Request, output *UpdatePipelineNotificationsOutput) {
 	op := &request.Operation{
 		Name:       opUpdatePipelineNotifications,
@@ -1508,8 +1476,6 @@ const opUpdatePipelineStatus = "UpdatePipelineStatus"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineStatus
 func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *request.Request, output *UpdatePipelineStatusOutput) {
 	op := &request.Operation{
 		Name:       opUpdatePipelineStatus,
@@ -2020,7 +1986,6 @@ func (s *AudioParameters) SetSampleRate(v string) *AudioParameters {
 }
 
 // The CancelJobRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CancelJobRequest
 type CancelJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2064,7 +2029,6 @@ func (s *CancelJobInput) SetId(v string) *CancelJobInput {
 
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CancelJobResponse
 type CancelJobOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2369,7 +2333,6 @@ func (s *Clip) SetTimeSpan(v *TimeSpan) *Clip {
 }
 
 // The CreateJobRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreateJobRequest
 type CreateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2938,7 +2901,6 @@ func (s *CreateJobResponse) SetJob(v *Job) *CreateJobResponse {
 }
 
 // The CreatePipelineRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreatePipelineRequest
 type CreatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3247,7 +3209,6 @@ func (s *CreatePipelineInput) SetThumbnailConfig(v *PipelineOutputConfig) *Creat
 
 // When you create a pipeline, Elastic Transcoder returns the values that you
 // specified in the request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreatePipelineResponse
 type CreatePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3287,7 +3248,6 @@ func (s *CreatePipelineOutput) SetWarnings(v []*Warning) *CreatePipelineOutput {
 }
 
 // The CreatePresetRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreatePresetRequest
 type CreatePresetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3388,7 +3348,6 @@ func (s *CreatePresetInput) SetVideo(v *VideoParameters) *CreatePresetInput {
 }
 
 // The CreatePresetResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/CreatePresetResponse
 type CreatePresetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3426,7 +3385,6 @@ func (s *CreatePresetOutput) SetWarning(v string) *CreatePresetOutput {
 }
 
 // The DeletePipelineRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/DeletePipelineRequest
 type DeletePipelineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3466,7 +3424,6 @@ func (s *DeletePipelineInput) SetId(v string) *DeletePipelineInput {
 }
 
 // The DeletePipelineResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/DeletePipelineResponse
 type DeletePipelineOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3482,7 +3439,6 @@ func (s DeletePipelineOutput) GoString() string {
 }
 
 // The DeletePresetRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/DeletePresetRequest
 type DeletePresetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3522,7 +3478,6 @@ func (s *DeletePresetInput) SetId(v string) *DeletePresetInput {
 }
 
 // The DeletePresetResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/DeletePresetResponse
 type DeletePresetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4730,7 +4685,6 @@ func (s *JobWatermark) SetPresetWatermarkId(v string) *JobWatermark {
 }
 
 // The ListJobsByPipelineRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListJobsByPipelineRequest
 type ListJobsByPipelineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4790,7 +4744,6 @@ func (s *ListJobsByPipelineInput) SetPipelineId(v string) *ListJobsByPipelineInp
 }
 
 // The ListJobsByPipelineResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListJobsByPipelineResponse
 type ListJobsByPipelineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4826,7 +4779,6 @@ func (s *ListJobsByPipelineOutput) SetNextPageToken(v string) *ListJobsByPipelin
 }
 
 // The ListJobsByStatusRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListJobsByStatusRequest
 type ListJobsByStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4888,7 +4840,6 @@ func (s *ListJobsByStatusInput) SetStatus(v string) *ListJobsByStatusInput {
 }
 
 // The ListJobsByStatusResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListJobsByStatusResponse
 type ListJobsByStatusOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4924,7 +4875,6 @@ func (s *ListJobsByStatusOutput) SetNextPageToken(v string) *ListJobsByStatusOut
 }
 
 // The ListPipelineRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListPipelinesRequest
 type ListPipelinesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4961,7 +4911,6 @@ func (s *ListPipelinesInput) SetPageToken(v string) *ListPipelinesInput {
 }
 
 // A list of the pipelines associated with the current AWS account.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListPipelinesResponse
 type ListPipelinesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4997,7 +4946,6 @@ func (s *ListPipelinesOutput) SetPipelines(v []*Pipeline) *ListPipelinesOutput {
 }
 
 // The ListPresetsRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListPresetsRequest
 type ListPresetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5034,7 +4982,6 @@ func (s *ListPresetsInput) SetPageToken(v string) *ListPresetsInput {
 }
 
 // The ListPresetsResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ListPresetsResponse
 type ListPresetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6135,7 +6082,6 @@ func (s *PresetWatermark) SetVerticalOffset(v string) *PresetWatermark {
 }
 
 // The ReadJobRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadJobRequest
 type ReadJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6175,7 +6121,6 @@ func (s *ReadJobInput) SetId(v string) *ReadJobInput {
 }
 
 // The ReadJobResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadJobResponse
 type ReadJobOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6200,7 +6145,6 @@ func (s *ReadJobOutput) SetJob(v *Job) *ReadJobOutput {
 }
 
 // The ReadPipelineRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadPipelineRequest
 type ReadPipelineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6240,7 +6184,6 @@ func (s *ReadPipelineInput) SetId(v string) *ReadPipelineInput {
 }
 
 // The ReadPipelineResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadPipelineResponse
 type ReadPipelineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6279,7 +6222,6 @@ func (s *ReadPipelineOutput) SetWarnings(v []*Warning) *ReadPipelineOutput {
 }
 
 // The ReadPresetRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadPresetRequest
 type ReadPresetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6319,7 +6261,6 @@ func (s *ReadPresetInput) SetId(v string) *ReadPresetInput {
 }
 
 // The ReadPresetResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/ReadPresetResponse
 type ReadPresetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6344,7 +6285,6 @@ func (s *ReadPresetOutput) SetPreset(v *Preset) *ReadPresetOutput {
 }
 
 // The TestRoleRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/TestRoleRequest
 type TestRoleInput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
@@ -6430,7 +6370,6 @@ func (s *TestRoleInput) SetTopics(v []*string) *TestRoleInput {
 }
 
 // The TestRoleResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/TestRoleResponse
 type TestRoleOutput struct {
 	_ struct{} `deprecated:"true" type:"structure"`
 
@@ -6693,7 +6632,6 @@ func (s *Timing) SetSubmitTimeMillis(v int64) *Timing {
 }
 
 // The UpdatePipelineRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineRequest
 type UpdatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6963,7 +6901,6 @@ func (s *UpdatePipelineInput) SetThumbnailConfig(v *PipelineOutputConfig) *Updat
 }
 
 // The UpdatePipelineNotificationsRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineNotificationsRequest
 type UpdatePipelineNotificationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7039,7 +6976,6 @@ func (s *UpdatePipelineNotificationsInput) SetNotifications(v *Notifications) *U
 }
 
 // The UpdatePipelineNotificationsResponse structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineNotificationsResponse
 type UpdatePipelineNotificationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7066,7 +7002,6 @@ func (s *UpdatePipelineNotificationsOutput) SetPipeline(v *Pipeline) *UpdatePipe
 
 // When you update a pipeline, Elastic Transcoder returns the values that you
 // specified in the request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineResponse
 type UpdatePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7105,7 +7040,6 @@ func (s *UpdatePipelineOutput) SetWarnings(v []*Warning) *UpdatePipelineOutput {
 }
 
 // The UpdatePipelineStatusRequest structure.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineStatusRequest
 type UpdatePipelineStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7164,7 +7098,6 @@ func (s *UpdatePipelineStatusInput) SetStatus(v string) *UpdatePipelineStatusInp
 
 // When you update status for a pipeline, Elastic Transcoder returns the values
 // that you specified in the request.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elastictranscoder-2012-09-25/UpdatePipelineStatusResponse
 type UpdatePipelineStatusOutput struct {
 	_ struct{} `type:"structure"`
 

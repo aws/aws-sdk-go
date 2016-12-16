@@ -16,7 +16,6 @@ import (
 // in conjunction with the Amazon CloudWatch and Elastic Load Balancing services.
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01
 type AutoScaling struct {
 	*client.Client

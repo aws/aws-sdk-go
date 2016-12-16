@@ -29,7 +29,6 @@ import (
 // API (the subject of this document).
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23
 type SFN struct {
 	*client.Client
