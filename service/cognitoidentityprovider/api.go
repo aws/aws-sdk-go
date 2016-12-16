@@ -97,6 +97,92 @@ func (c *CognitoIdentityProvider) AddCustomAttributes(input *AddCustomAttributes
 	return out, err
 }
 
+const opAdminAddUserToGroup = "AdminAddUserToGroup"
+
+// AdminAddUserToGroupRequest generates a "aws/request.Request" representing the
+// client's request for the AdminAddUserToGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See AdminAddUserToGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AdminAddUserToGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AdminAddUserToGroupRequest method.
+//    req, resp := client.AdminAddUserToGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) AdminAddUserToGroupRequest(input *AdminAddUserToGroupInput) (req *request.Request, output *AdminAddUserToGroupOutput) {
+	op := &request.Operation{
+		Name:       opAdminAddUserToGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AdminAddUserToGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &AdminAddUserToGroupOutput{}
+	req.Data = output
+	return
+}
+
+// AdminAddUserToGroup API operation for Amazon Cognito Identity Provider.
+//
+// Adds the specified user to the specified group.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation AdminAddUserToGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * UserNotFoundException
+//   This exception is thrown when a user is not found.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) AdminAddUserToGroup(input *AdminAddUserToGroupInput) (*AdminAddUserToGroupOutput, error) {
+	req, out := c.AdminAddUserToGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opAdminConfirmSignUp = "AdminConfirmSignUp"
 
 // AdminConfirmSignUpRequest generates a "aws/request.Request" representing the
@@ -144,6 +230,8 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmS
 //
 // Confirms user registration as an admin without using a confirmation code.
 // Works on any user.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -376,6 +464,8 @@ func (c *CognitoIdentityProvider) AdminDeleteUserRequest(input *AdminDeleteUserI
 //
 // Deletes a user as an administrator. Works on any user.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -459,6 +549,8 @@ func (c *CognitoIdentityProvider) AdminDeleteUserAttributesRequest(input *AdminD
 // Deletes the user attributes in a user pool as an administrator. Works on
 // any user.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -541,6 +633,8 @@ func (c *CognitoIdentityProvider) AdminDisableUserRequest(input *AdminDisableUse
 //
 // Disables the specified user as an administrator. Works on any user.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -622,6 +716,8 @@ func (c *CognitoIdentityProvider) AdminEnableUserRequest(input *AdminEnableUserI
 // AdminEnableUser API operation for Amazon Cognito Identity Provider.
 //
 // Enables the specified user as an administrator. Works on any user.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -706,6 +802,8 @@ func (c *CognitoIdentityProvider) AdminForgetDeviceRequest(input *AdminForgetDev
 // AdminForgetDevice API operation for Amazon Cognito Identity Provider.
 //
 // Forgets the device, as an administrator.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -792,6 +890,8 @@ func (c *CognitoIdentityProvider) AdminGetDeviceRequest(input *AdminGetDeviceInp
 //
 // Gets the device, as an administrator.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -875,6 +975,8 @@ func (c *CognitoIdentityProvider) AdminGetUserRequest(input *AdminGetUserInput) 
 // Gets the specified user by user name in a user pool as an administrator.
 // Works on any user.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -956,6 +1058,8 @@ func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateA
 // AdminInitiateAuth API operation for Amazon Cognito Identity Provider.
 //
 // Initiates the authentication flow, as an administrator.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1074,6 +1178,8 @@ func (c *CognitoIdentityProvider) AdminListDevicesRequest(input *AdminListDevice
 //
 // Lists devices, as an administrator.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1105,6 +1211,176 @@ func (c *CognitoIdentityProvider) AdminListDevicesRequest(input *AdminListDevice
 //
 func (c *CognitoIdentityProvider) AdminListDevices(input *AdminListDevicesInput) (*AdminListDevicesOutput, error) {
 	req, out := c.AdminListDevicesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opAdminListGroupsForUser = "AdminListGroupsForUser"
+
+// AdminListGroupsForUserRequest generates a "aws/request.Request" representing the
+// client's request for the AdminListGroupsForUser operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See AdminListGroupsForUser for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AdminListGroupsForUser method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AdminListGroupsForUserRequest method.
+//    req, resp := client.AdminListGroupsForUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) AdminListGroupsForUserRequest(input *AdminListGroupsForUserInput) (req *request.Request, output *AdminListGroupsForUserOutput) {
+	op := &request.Operation{
+		Name:       opAdminListGroupsForUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AdminListGroupsForUserInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AdminListGroupsForUserOutput{}
+	req.Data = output
+	return
+}
+
+// AdminListGroupsForUser API operation for Amazon Cognito Identity Provider.
+//
+// Lists the groups that the user belongs to.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation AdminListGroupsForUser for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * UserNotFoundException
+//   This exception is thrown when a user is not found.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) AdminListGroupsForUser(input *AdminListGroupsForUserInput) (*AdminListGroupsForUserOutput, error) {
+	req, out := c.AdminListGroupsForUserRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opAdminRemoveUserFromGroup = "AdminRemoveUserFromGroup"
+
+// AdminRemoveUserFromGroupRequest generates a "aws/request.Request" representing the
+// client's request for the AdminRemoveUserFromGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See AdminRemoveUserFromGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the AdminRemoveUserFromGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the AdminRemoveUserFromGroupRequest method.
+//    req, resp := client.AdminRemoveUserFromGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) AdminRemoveUserFromGroupRequest(input *AdminRemoveUserFromGroupInput) (req *request.Request, output *AdminRemoveUserFromGroupOutput) {
+	op := &request.Operation{
+		Name:       opAdminRemoveUserFromGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AdminRemoveUserFromGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &AdminRemoveUserFromGroupOutput{}
+	req.Data = output
+	return
+}
+
+// AdminRemoveUserFromGroup API operation for Amazon Cognito Identity Provider.
+//
+// Removes the specified user from the specified group.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation AdminRemoveUserFromGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * UserNotFoundException
+//   This exception is thrown when a user is not found.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) AdminRemoveUserFromGroup(input *AdminRemoveUserFromGroupInput) (*AdminRemoveUserFromGroupOutput, error) {
+	req, out := c.AdminRemoveUserFromGroupRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1166,6 +1442,8 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 // is selected and a verified email exists for the user, calling this API will
 // also result in sending a message to the end user with the code to change
 // their password.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1264,6 +1542,8 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 // AdminRespondToAuthChallenge API operation for Amazon Cognito Identity Provider.
 //
 // Responds to an authentication challenge, as an administrator.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1399,6 +1679,8 @@ func (c *CognitoIdentityProvider) AdminSetUserSettingsRequest(input *AdminSetUse
 //
 // Sets all the user settings for a specified user name. Works on any user.
 //
+// Requires developer credentials.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1476,6 +1758,8 @@ func (c *CognitoIdentityProvider) AdminUpdateDeviceStatusRequest(input *AdminUpd
 // AdminUpdateDeviceStatus API operation for Amazon Cognito Identity Provider.
 //
 // Updates the device status as an administrator.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1562,6 +1846,8 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 //
 // Updates the specified user's attributes, including developer attributes,
 // as an administrator. Works on any user.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1662,6 +1948,8 @@ func (c *CognitoIdentityProvider) AdminUserGlobalSignOutRequest(input *AdminUser
 // AdminUserGlobalSignOut API operation for Amazon Cognito Identity Provider.
 //
 // Signs out users from all devices, as an administrator.
+//
+// Requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2134,6 +2422,95 @@ func (c *CognitoIdentityProvider) ConfirmSignUp(input *ConfirmSignUpInput) (*Con
 	return out, err
 }
 
+const opCreateGroup = "CreateGroup"
+
+// CreateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See CreateGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the CreateGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the CreateGroupRequest method.
+//    req, resp := client.CreateGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateGroupOutput{}
+	req.Data = output
+	return
+}
+
+// CreateGroup API operation for Amazon Cognito Identity Provider.
+//
+// Creates a new group in the specified user pool.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation CreateGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * GroupExistsException
+//   This exception is thrown when Amazon Cognito encounters a group that already
+//   exists in the user pool.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * LimitExceededException
+//   This exception is thrown when a user exceeds the limit for a requested AWS
+//   resource.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
+	req, out := c.CreateGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateUserImportJob = "CreateUserImportJob"
 
 // CreateUserImportJobRequest generates a "aws/request.Request" representing the
@@ -2305,6 +2682,9 @@ func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInp
 //   * NotAuthorizedException
 //   This exception gets thrown when a user is not authorized.
 //
+//   * UserPoolTaggingException
+//   This exception gets thrown when a user pool tag cannot be set or updated.
+//
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
@@ -2393,6 +2773,89 @@ func (c *CognitoIdentityProvider) CreateUserPoolClientRequest(input *CreateUserP
 //
 func (c *CognitoIdentityProvider) CreateUserPoolClient(input *CreateUserPoolClientInput) (*CreateUserPoolClientOutput, error) {
 	req, out := c.CreateUserPoolClientRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteGroup = "DeleteGroup"
+
+// DeleteGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See DeleteGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the DeleteGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the DeleteGroupRequest method.
+//    req, resp := client.DeleteGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Remove(jsonrpc.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
+	output = &DeleteGroupOutput{}
+	req.Data = output
+	return
+}
+
+// DeleteGroup API operation for Amazon Cognito Identity Provider.
+//
+// Deletes a group. Currently only groups with no members can be deleted.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation DeleteGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
+	req, out := c.DeleteGroupRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -2893,6 +3356,9 @@ func (c *CognitoIdentityProvider) DescribeUserPoolRequest(input *DescribeUserPoo
 //   * NotAuthorizedException
 //   This exception gets thrown when a user is not authorized.
 //
+//   * UserPoolTaggingException
+//   This exception gets thrown when a user pool tag cannot be set or updated.
+//
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
 //
@@ -3361,6 +3827,87 @@ func (c *CognitoIdentityProvider) GetDeviceRequest(input *GetDeviceInput) (req *
 //
 func (c *CognitoIdentityProvider) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetGroup = "GetGroup"
+
+// GetGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See GetGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the GetGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the GetGroupRequest method.
+//    req, resp := client.GetGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetGroupOutput{}
+	req.Data = output
+	return
+}
+
+// GetGroup API operation for Amazon Cognito Identity Provider.
+//
+// Gets a group.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation GetGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
+	req, out := c.GetGroupRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -3855,6 +4402,87 @@ func (c *CognitoIdentityProvider) ListDevices(input *ListDevicesInput) (*ListDev
 	return out, err
 }
 
+const opListGroups = "ListGroups"
+
+// ListGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListGroups operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ListGroups for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListGroups method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListGroupsRequest method.
+//    req, resp := client.ListGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListGroupsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListGroupsOutput{}
+	req.Data = output
+	return
+}
+
+// ListGroups API operation for Amazon Cognito Identity Provider.
+//
+// Lists the groups associated with a user pool.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation ListGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
+	req, out := c.ListGroupsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListUserImportJobs = "ListUserImportJobs"
 
 // ListUserImportJobsRequest generates a "aws/request.Request" representing the
@@ -4163,6 +4791,87 @@ func (c *CognitoIdentityProvider) ListUsersRequest(input *ListUsersInput) (req *
 //
 func (c *CognitoIdentityProvider) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 	req, out := c.ListUsersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListUsersInGroup = "ListUsersInGroup"
+
+// ListUsersInGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ListUsersInGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ListUsersInGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ListUsersInGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ListUsersInGroupRequest method.
+//    req, resp := client.ListUsersInGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) ListUsersInGroupRequest(input *ListUsersInGroupInput) (req *request.Request, output *ListUsersInGroupOutput) {
+	op := &request.Operation{
+		Name:       opListUsersInGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListUsersInGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListUsersInGroupOutput{}
+	req.Data = output
+	return
+}
+
+// ListUsersInGroup API operation for Amazon Cognito Identity Provider.
+//
+// Lists the users in the specified group.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation ListUsersInGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) ListUsersInGroup(input *ListUsersInGroupInput) (*ListUsersInGroupOutput, error) {
+	req, out := c.ListUsersInGroupRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -4878,6 +5587,87 @@ func (c *CognitoIdentityProvider) UpdateDeviceStatus(input *UpdateDeviceStatusIn
 	return out, err
 }
 
+const opUpdateGroup = "UpdateGroup"
+
+// UpdateGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGroup operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See UpdateGroup for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the UpdateGroup method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the UpdateGroupRequest method.
+//    req, resp := client.UpdateGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+func (c *CognitoIdentityProvider) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateGroupOutput{}
+	req.Data = output
+	return
+}
+
+// UpdateGroup API operation for Amazon Cognito Identity Provider.
+//
+// Updates the specified group with the specified attributes.
+//
+// Requires developer credentials.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation UpdateGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ResourceNotFoundException
+//   This exception is thrown when the Amazon Cognito service cannot find the
+//   requested resource.
+//
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * TooManyRequestsException
+//   This exception gets thrown when the user has made too many requests for a
+//   given operation.
+//
+//   * NotAuthorizedException
+//   This exception gets thrown when a user is not authorized.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+func (c *CognitoIdentityProvider) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
+	req, out := c.UpdateGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opUpdateUserAttributes = "UpdateUserAttributes"
 
 // UpdateUserAttributesRequest generates a "aws/request.Request" representing the
@@ -5098,6 +5888,9 @@ func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInp
 //   provided for SMS configuration. This can happen if you do not trust cognito-idp.amazonaws.com
 //   or the external ID provided in the role does not match what is provided in
 //   the SMS configuration for the user pool.
+//
+//   * UserPoolTaggingException
+//   This exception gets thrown when a user pool tag cannot be set or updated.
 //
 //   * InvalidEmailRoleAccessPolicyException
 //   This exception is thrown when Amazon Cognito is not allowed to use your email
@@ -5373,6 +6166,95 @@ func (s AddCustomAttributesOutput) GoString() string {
 	return s.String()
 }
 
+type AdminAddUserToGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The group name.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+
+	// The username for the user.
+	//
+	// Username is a required field
+	Username *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AdminAddUserToGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminAddUserToGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminAddUserToGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminAddUserToGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AdminAddUserToGroupInput) SetGroupName(v string) *AdminAddUserToGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *AdminAddUserToGroupInput) SetUserPoolId(v string) *AdminAddUserToGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *AdminAddUserToGroupInput) SetUsername(v string) *AdminAddUserToGroupInput {
+	s.Username = &v
+	return s
+}
+
+type AdminAddUserToGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AdminAddUserToGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminAddUserToGroupOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the request to confirm user registration.
 type AdminConfirmSignUpInput struct {
 	_ struct{} `type:"structure"`
@@ -5461,6 +6343,7 @@ type AdminCreateUserConfigType struct {
 	// The user account expiration limit, in days, after which the account is no
 	// longer usable. To reset the account after that time limit, you must call
 	// AdminCreateUser again, specifying "RESEND" for the MessageAction parameter.
+	// The default value for this paameter is 7.
 	UnusedAccountValidityDays *int64 `type:"integer"`
 }
 
@@ -6639,6 +7522,208 @@ func (s *AdminListDevicesOutput) SetDevices(v []*DeviceType) *AdminListDevicesOu
 func (s *AdminListDevicesOutput) SetPaginationToken(v string) *AdminListDevicesOutput {
 	s.PaginationToken = &v
 	return s
+}
+
+type AdminListGroupsForUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The limit of the request to list groups.
+	Limit *int64 `type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `min:"1" type:"string"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+
+	// The username for the user.
+	//
+	// Username is a required field
+	Username *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AdminListGroupsForUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminListGroupsForUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminListGroupsForUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminListGroupsForUserInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *AdminListGroupsForUserInput) SetLimit(v int64) *AdminListGroupsForUserInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *AdminListGroupsForUserInput) SetNextToken(v string) *AdminListGroupsForUserInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *AdminListGroupsForUserInput) SetUserPoolId(v string) *AdminListGroupsForUserInput {
+	s.UserPoolId = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *AdminListGroupsForUserInput) SetUsername(v string) *AdminListGroupsForUserInput {
+	s.Username = &v
+	return s
+}
+
+type AdminListGroupsForUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The groups that the user belongs to.
+	Groups []*GroupType `type:"list"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AdminListGroupsForUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminListGroupsForUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *AdminListGroupsForUserOutput) SetGroups(v []*GroupType) *AdminListGroupsForUserOutput {
+	s.Groups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *AdminListGroupsForUserOutput) SetNextToken(v string) *AdminListGroupsForUserOutput {
+	s.NextToken = &v
+	return s
+}
+
+type AdminRemoveUserFromGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The group name.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+
+	// The username for the user.
+	//
+	// Username is a required field
+	Username *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AdminRemoveUserFromGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminRemoveUserFromGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdminRemoveUserFromGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdminRemoveUserFromGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+	if s.Username != nil && len(*s.Username) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Username", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AdminRemoveUserFromGroupInput) SetGroupName(v string) *AdminRemoveUserFromGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *AdminRemoveUserFromGroupInput) SetUserPoolId(v string) *AdminRemoveUserFromGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *AdminRemoveUserFromGroupInput) SetUsername(v string) *AdminRemoveUserFromGroupInput {
+	s.Username = &v
+	return s
+}
+
+type AdminRemoveUserFromGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AdminRemoveUserFromGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdminRemoveUserFromGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the request to reset a user's password as an administrator.
@@ -7820,6 +8905,131 @@ func (s ConfirmSignUpOutput) GoString() string {
 	return s.String()
 }
 
+type CreateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string containing the description of the group.
+	Description *string `type:"string"`
+
+	// The name of the group. Must be unique.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// A nonnegative integer value that specifies the precedence of this group relative
+	// to the other groups that a user can belong to in the user pool. Zero is the
+	// highest precedence value. Groups with lower Precedence values take precedence
+	// over groups with higher or null Precedence values. If a user belongs to two
+	// or more groups, it is the group with the lowest precedence value whose role
+	// ARN will be used in the cognito:roles and cognito:preferred_role claims in
+	// the user's tokens.
+	//
+	// Two groups can have the same Precedence value. If this happens, neither group
+	// takes precedence over the other. If two groups with the same Precedence have
+	// the same role ARN, that role is used in the cognito:preferred_role claim
+	// in tokens for users in each group. If the two groups have different role
+	// ARNs, the cognito:preferred_role claim is not set in users' tokens.
+	//
+	// The default Precedence value is null.
+	Precedence *int64 `type:"integer"`
+
+	// The role ARN for the group.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateGroupInput) SetDescription(v string) *CreateGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *CreateGroupInput) SetGroupName(v string) *CreateGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetPrecedence sets the Precedence field's value.
+func (s *CreateGroupInput) SetPrecedence(v int64) *CreateGroupInput {
+	s.Precedence = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateGroupInput) SetRoleArn(v string) *CreateGroupInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *CreateGroupInput) SetUserPoolId(v string) *CreateGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+type CreateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group object for the group.
+	Group *GroupType `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *CreateGroupOutput) SetGroup(v *GroupType) *CreateGroupOutput {
+	s.Group = v
+	return s
+}
+
 // Represents the request to create the user import job.
 type CreateUserImportJobInput struct {
 	_ struct{} `type:"structure"`
@@ -7940,7 +9150,7 @@ type CreateUserPoolClientInput struct {
 	// The read attributes.
 	ReadAttributes []*string `type:"list"`
 
-	// Refreshes the token validity.
+	// The validity of the refresh token, in days.
 	RefreshTokenValidity *int64 `type:"integer"`
 
 	// The user pool ID for the user pool where you want to create a user pool client.
@@ -8102,6 +9312,10 @@ type CreateUserPoolInput struct {
 
 	// A string representing the SMS verification message.
 	SmsVerificationMessage *string `min:"6" type:"string"`
+
+	// The cost allocation tags for the user pool. For more information, see Adding
+	// Cost Allocation Tags to Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html)
+	UserPoolTags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -8270,6 +9484,12 @@ func (s *CreateUserPoolInput) SetSmsVerificationMessage(v string) *CreateUserPoo
 	return s
 }
 
+// SetUserPoolTags sets the UserPoolTags field's value.
+func (s *CreateUserPoolInput) SetUserPoolTags(v map[string]*string) *CreateUserPoolInput {
+	s.UserPoolTags = v
+	return s
+}
+
 // Represents the response from the server for the request to create a user
 // pool.
 type CreateUserPoolOutput struct {
@@ -8293,6 +9513,78 @@ func (s CreateUserPoolOutput) GoString() string {
 func (s *CreateUserPoolOutput) SetUserPool(v *UserPoolType) *CreateUserPoolOutput {
 	s.UserPool = v
 	return s
+}
+
+type DeleteGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the group.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *DeleteGroupInput) SetGroupName(v string) *DeleteGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *DeleteGroupInput) SetUserPoolId(v string) *DeleteGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+type DeleteGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the request to delete user attributes.
@@ -9250,6 +10542,87 @@ func (s *GetDeviceOutput) SetDevice(v *DeviceType) *GetDeviceOutput {
 	return s
 }
 
+type GetGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the group.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GetGroupInput) SetGroupName(v string) *GetGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *GetGroupInput) SetUserPoolId(v string) *GetGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+type GetGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group object for the group.
+	Group *GroupType `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *GetGroupOutput) SetGroup(v *GroupType) *GetGroupOutput {
+	s.Group = v
+	return s
+}
+
 // Represents the request to get user attribute verification.
 type GetUserAttributeVerificationCodeInput struct {
 	_ struct{} `type:"structure"`
@@ -9438,6 +10811,97 @@ func (s GlobalSignOutOutput) String() string {
 // GoString returns the string representation
 func (s GlobalSignOutOutput) GoString() string {
 	return s.String()
+}
+
+// The group type.
+type GroupType struct {
+	_ struct{} `type:"structure"`
+
+	// The date the group was created.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A string containing the description of the group.
+	Description *string `type:"string"`
+
+	// The name of the group.
+	GroupName *string `min:"1" type:"string"`
+
+	// The date the group was last modified.
+	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// A nonnegative integer value that specifies the precedence of this group relative
+	// to the other groups that a user can belong to in the user pool. If a user
+	// belongs to two or more groups, it is the group with the highest precedence
+	// whose role ARN will be used in the cognito:roles and cognito:preferred_role
+	// claims in the user's tokens. Groups with higher Precedence values take precedence
+	// over groups with lower Precedence values or with null Precedence values.
+	//
+	// Two groups can have the same Precedence value. If this happens, neither group
+	// takes precedence over the other. If two groups with the same Precedence have
+	// the same role ARN, that role is used in the cognito:preferred_role claim
+	// in tokens for users in each group. If the two groups have different role
+	// ARNs, the cognito:preferred_role claim is not set in users' tokens.
+	//
+	// The default Precedence value is null.
+	Precedence *int64 `type:"integer"`
+
+	// The role ARN for the group.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The user pool ID for the user pool.
+	UserPoolId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GroupType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupType) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GroupType) SetCreationDate(v time.Time) *GroupType {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GroupType) SetDescription(v string) *GroupType {
+	s.Description = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GroupType) SetGroupName(v string) *GroupType {
+	s.GroupName = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *GroupType) SetLastModifiedDate(v time.Time) *GroupType {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetPrecedence sets the Precedence field's value.
+func (s *GroupType) SetPrecedence(v int64) *GroupType {
+	s.Precedence = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GroupType) SetRoleArn(v string) *GroupType {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *GroupType) SetUserPoolId(v string) *GroupType {
+	s.UserPoolId = &v
+	return s
 }
 
 // Initiates the authentication request.
@@ -9780,6 +11244,102 @@ func (s *ListDevicesOutput) SetPaginationToken(v string) *ListDevicesOutput {
 	return s
 }
 
+type ListGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The limit of the request to list groups.
+	Limit *int64 `type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `min:"1" type:"string"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListGroupsInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListGroupsInput) SetLimit(v int64) *ListGroupsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGroupsInput) SetNextToken(v string) *ListGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *ListGroupsInput) SetUserPoolId(v string) *ListGroupsInput {
+	s.UserPoolId = &v
+	return s
+}
+
+type ListGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group objects for the groups.
+	Groups []*GroupType `type:"list"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroups sets the Groups field's value.
+func (s *ListGroupsOutput) SetGroups(v []*GroupType) *ListGroupsOutput {
+	s.Groups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Represents the request to list the user import jobs.
 type ListUserImportJobsInput struct {
 	_ struct{} `type:"structure"`
@@ -10076,6 +11636,119 @@ func (s *ListUserPoolsOutput) SetNextToken(v string) *ListUserPoolsOutput {
 // SetUserPools sets the UserPools field's value.
 func (s *ListUserPoolsOutput) SetUserPools(v []*UserPoolDescriptionType) *ListUserPoolsOutput {
 	s.UserPools = v
+	return s
+}
+
+type ListUsersInGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the group.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// The limit of the request to list users.
+	Limit *int64 `type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `min:"1" type:"string"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListUsersInGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListUsersInGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUsersInGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUsersInGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *ListUsersInGroupInput) SetGroupName(v string) *ListUsersInGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListUsersInGroupInput) SetLimit(v int64) *ListUsersInGroupInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersInGroupInput) SetNextToken(v string) *ListUsersInGroupInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *ListUsersInGroupInput) SetUserPoolId(v string) *ListUsersInGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+type ListUsersInGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `min:"1" type:"string"`
+
+	// The users returned in the request to list users.
+	Users []*UserType `type:"list"`
+}
+
+// String returns the string representation
+func (s ListUsersInGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListUsersInGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUsersInGroupOutput) SetNextToken(v string) *ListUsersInGroupOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *ListUsersInGroupOutput) SetUsers(v []*UserType) *ListUsersInGroupOutput {
+	s.Users = v
 	return s
 }
 
@@ -11339,6 +13012,119 @@ func (s UpdateDeviceStatusOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string containing the new description of the group.
+	Description *string `type:"string"`
+
+	// The name of the group.
+	//
+	// GroupName is a required field
+	GroupName *string `min:"1" type:"string" required:"true"`
+
+	// The new precedence value for the group. For more information about this parameter,
+	// see CreateGroupRequest (API_CreateGroupRequeste.html).
+	Precedence *int64 `type:"integer"`
+
+	// The new role ARN for the group. This is used for setting the cognito:roles
+	// and cognito:preferred_role claims in the token.
+	RoleArn *string `min:"20" type:"string"`
+
+	// The user pool ID for the user pool.
+	//
+	// UserPoolId is a required field
+	UserPoolId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateGroupInput"}
+	if s.GroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupName"))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.UserPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserPoolId"))
+	}
+	if s.UserPoolId != nil && len(*s.UserPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserPoolId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateGroupInput) SetDescription(v string) *UpdateGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *UpdateGroupInput) SetGroupName(v string) *UpdateGroupInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetPrecedence sets the Precedence field's value.
+func (s *UpdateGroupInput) SetPrecedence(v int64) *UpdateGroupInput {
+	s.Precedence = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateGroupInput) SetRoleArn(v string) *UpdateGroupInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetUserPoolId sets the UserPoolId field's value.
+func (s *UpdateGroupInput) SetUserPoolId(v string) *UpdateGroupInput {
+	s.UserPoolId = &v
+	return s
+}
+
+type UpdateGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The group object for the group.
+	Group *GroupType `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroup sets the Group field's value.
+func (s *UpdateGroupOutput) SetGroup(v *GroupType) *UpdateGroupOutput {
+	s.Group = v
+	return s
+}
+
 // Represents the request to update user attributes.
 type UpdateUserAttributesInput struct {
 	_ struct{} `type:"structure"`
@@ -11440,7 +13226,7 @@ type UpdateUserPoolClientInput struct {
 	// The read-only attributes of the user pool.
 	ReadAttributes []*string `type:"list"`
 
-	// The validity of the refresh token.
+	// The validity of the refresh token, in days.
 	RefreshTokenValidity *int64 `type:"integer"`
 
 	// The user pool ID for the user pool where you want to update the user pool
@@ -11610,6 +13396,10 @@ type UpdateUserPoolInput struct {
 	//
 	// UserPoolId is a required field
 	UserPoolId *string `min:"1" type:"string" required:"true"`
+
+	// The cost allocation tags for the user pool. For more information, see Adding
+	// Cost Allocation Tags to Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html)
+	UserPoolTags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -11750,6 +13540,12 @@ func (s *UpdateUserPoolInput) SetSmsVerificationMessage(v string) *UpdateUserPoo
 // SetUserPoolId sets the UserPoolId field's value.
 func (s *UpdateUserPoolInput) SetUserPoolId(v string) *UpdateUserPoolInput {
 	s.UserPoolId = &v
+	return s
+}
+
+// SetUserPoolTags sets the UserPoolTags field's value.
+func (s *UpdateUserPoolInput) SetUserPoolTags(v map[string]*string) *UpdateUserPoolInput {
+	s.UserPoolTags = v
 	return s
 }
 
@@ -11924,7 +13720,7 @@ func (s *UserImportJobType) SetUserPoolId(v string) *UserImportJobType {
 	return s
 }
 
-// The description of the user poool client.
+// The description of the user pool client.
 type UserPoolClientDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -11992,7 +13788,7 @@ type UserPoolClientType struct {
 	// The Read-only attributes.
 	ReadAttributes []*string `type:"list"`
 
-	// The validity of the refresh token.
+	// The validity of the refresh token, in days.
 	RefreshTokenValidity *int64 `type:"integer"`
 
 	// The user pool ID for the user pool client.
@@ -12257,6 +14053,10 @@ type UserPoolType struct {
 
 	// The status of a user pool.
 	Status *string `type:"string" enum:"StatusType"`
+
+	// The cost allocation tags for the user pool. For more information, see Adding
+	// Cost Allocation Tags to Your User Pool (http://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-cost-allocation-tagging.html)
+	UserPoolTags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -12398,6 +14198,12 @@ func (s *UserPoolType) SetSmsVerificationMessage(v string) *UserPoolType {
 // SetStatus sets the Status field's value.
 func (s *UserPoolType) SetStatus(v string) *UserPoolType {
 	s.Status = &v
+	return s
+}
+
+// SetUserPoolTags sets the UserPoolTags field's value.
+func (s *UserPoolType) SetUserPoolTags(v map[string]*string) *UserPoolType {
+	s.UserPoolTags = v
 	return s
 }
 
