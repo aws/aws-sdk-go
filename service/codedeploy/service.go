@@ -76,8 +76,12 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "codedeploy"
+// Service information constants
+const (
+	ServiceName     = "codedeploy"     // Service endpoint prefix API calls made to.
+	ServiceFullName = "AWS CodeDeploy" // Service friendly name.
+	EndpointsKey    = ServiceName      // Service entry in Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the CodeDeploy client with a session.
 // If additional configuration is needed for the client instance use the optional

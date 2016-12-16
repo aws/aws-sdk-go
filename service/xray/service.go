@@ -25,8 +25,12 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "xray"
+// Service information constants
+const (
+	ServiceName     = "xray"      // Service endpoint prefix API calls made to.
+	ServiceFullName = "AWS X-Ray" // Service friendly name.
+	EndpointsKey    = ServiceName // Service entry in Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the XRay client with a session.
 // If additional configuration is needed for the client instance use the optional

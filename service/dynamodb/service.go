@@ -136,8 +136,12 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "dynamodb"
+// Service information constants
+const (
+	ServiceName     = "dynamodb"        // Service endpoint prefix API calls made to.
+	ServiceFullName = "Amazon DynamoDB" // Service friendly name.
+	EndpointsKey    = ServiceName       // Service entry in Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the DynamoDB client with a session.
 // If additional configuration is needed for the client instance use the optional

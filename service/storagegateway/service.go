@@ -75,8 +75,12 @@ var initClient func(*client.Client)
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// A ServiceName is the name of the service the client will make API calls to.
-const ServiceName = "storagegateway"
+// Service information constants
+const (
+	ServiceName     = "storagegateway"      // Service endpoint prefix API calls made to.
+	ServiceFullName = "AWS Storage Gateway" // Service friendly name.
+	EndpointsKey    = ServiceName           // Service entry in Regions and Endpoints metadata.
+)
 
 // New creates a new instance of the StorageGateway client with a session.
 // If additional configuration is needed for the client instance use the optional
