@@ -56,9 +56,8 @@ import (
 // successfully made to STS, who made the request, when it was made, and so
 // on. To learn more about CloudTrail, including how to turn it on and find
 // your log files, see the AWS CloudTrail User Guide (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/what_is_cloud_trail_top_level.html).
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15
 type STS struct {
 	*client.Client
 }

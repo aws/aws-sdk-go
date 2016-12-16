@@ -23,9 +23,8 @@ import (
 // requirements. Amazon EC2 Container Service eliminates the need for you to
 // operate your own cluster management and configuration management systems
 // or worry about scaling your management infrastructure.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13
 type ECS struct {
 	*client.Client
 }

@@ -24,9 +24,8 @@ import (
 //    * AWS Service Catalog Administrator Guide (http://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html)
 //
 //    * AWS Service Catalog User Guide (http://docs.aws.amazon.com/servicecatalog/latest/userguide/introduction.html)
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10
 type ServiceCatalog struct {
 	*client.Client
 }

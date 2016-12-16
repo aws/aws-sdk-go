@@ -36,7 +36,6 @@ const opCreateActivity = "CreateActivity"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivity
 func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Request, output *CreateActivityOutput) {
 	op := &request.Operation{
 		Name:       opCreateActivity,
@@ -73,7 +72,6 @@ func (c *SFN) CreateActivityRequest(input *CreateActivityInput) (req *request.Re
 //   * InvalidName
 //   The provided name is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivity
 func (c *SFN) CreateActivity(input *CreateActivityInput) (*CreateActivityOutput, error) {
 	req, out := c.CreateActivityRequest(input)
 	err := req.Send()
@@ -106,7 +104,6 @@ const opCreateStateMachine = "CreateStateMachine"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachine
 func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *request.Request, output *CreateStateMachineOutput) {
 	op := &request.Operation{
 		Name:       opCreateStateMachine,
@@ -156,7 +153,6 @@ func (c *SFN) CreateStateMachineRequest(input *CreateStateMachineInput) (req *re
 //   The maximum number of state machines has been reached. Existing state machines
 //   must be deleted before a new state machine can be created.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachine
 func (c *SFN) CreateStateMachine(input *CreateStateMachineInput) (*CreateStateMachineOutput, error) {
 	req, out := c.CreateStateMachineRequest(input)
 	err := req.Send()
@@ -189,7 +185,6 @@ const opDeleteActivity = "DeleteActivity"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteActivity
 func (c *SFN) DeleteActivityRequest(input *DeleteActivityInput) (req *request.Request, output *DeleteActivityOutput) {
 	op := &request.Operation{
 		Name:       opDeleteActivity,
@@ -222,7 +217,6 @@ func (c *SFN) DeleteActivityRequest(input *DeleteActivityInput) (req *request.Re
 //   * InvalidArn
 //   The provided Amazon Resource Name (ARN) is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteActivity
 func (c *SFN) DeleteActivity(input *DeleteActivityInput) (*DeleteActivityOutput, error) {
 	req, out := c.DeleteActivityRequest(input)
 	err := req.Send()
@@ -255,7 +249,6 @@ const opDeleteStateMachine = "DeleteStateMachine"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachine
 func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *request.Request, output *DeleteStateMachineOutput) {
 	op := &request.Operation{
 		Name:       opDeleteStateMachine,
@@ -289,7 +282,6 @@ func (c *SFN) DeleteStateMachineRequest(input *DeleteStateMachineInput) (req *re
 //   * InvalidArn
 //   The provided Amazon Resource Name (ARN) is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachine
 func (c *SFN) DeleteStateMachine(input *DeleteStateMachineInput) (*DeleteStateMachineOutput, error) {
 	req, out := c.DeleteStateMachineRequest(input)
 	err := req.Send()
@@ -322,7 +314,6 @@ const opDescribeActivity = "DescribeActivity"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeActivity
 func (c *SFN) DescribeActivityRequest(input *DescribeActivityInput) (req *request.Request, output *DescribeActivityOutput) {
 	op := &request.Operation{
 		Name:       opDescribeActivity,
@@ -358,7 +349,6 @@ func (c *SFN) DescribeActivityRequest(input *DescribeActivityInput) (req *reques
 //   * InvalidArn
 //   The provided Amazon Resource Name (ARN) is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeActivity
 func (c *SFN) DescribeActivity(input *DescribeActivityInput) (*DescribeActivityOutput, error) {
 	req, out := c.DescribeActivityRequest(input)
 	err := req.Send()
@@ -391,7 +381,6 @@ const opDescribeExecution = "DescribeExecution"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution
 func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *request.Request, output *DescribeExecutionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeExecution,
@@ -427,7 +416,6 @@ func (c *SFN) DescribeExecutionRequest(input *DescribeExecutionInput) (req *requ
 //   * InvalidArn
 //   The provided Amazon Resource Name (ARN) is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecution
 func (c *SFN) DescribeExecution(input *DescribeExecutionInput) (*DescribeExecutionOutput, error) {
 	req, out := c.DescribeExecutionRequest(input)
 	err := req.Send()
@@ -460,7 +448,6 @@ const opDescribeStateMachine = "DescribeStateMachine"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachine
 func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req *request.Request, output *DescribeStateMachineOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStateMachine,
@@ -496,7 +483,6 @@ func (c *SFN) DescribeStateMachineRequest(input *DescribeStateMachineInput) (req
 //   * StateMachineDoesNotExist
 //   The specified state machine does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachine
 func (c *SFN) DescribeStateMachine(input *DescribeStateMachineInput) (*DescribeStateMachineOutput, error) {
 	req, out := c.DescribeStateMachineRequest(input)
 	err := req.Send()
@@ -529,7 +515,6 @@ const opGetActivityTask = "GetActivityTask"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask
 func (c *SFN) GetActivityTaskRequest(input *GetActivityTaskInput) (req *request.Request, output *GetActivityTaskOutput) {
 	op := &request.Operation{
 		Name:       opGetActivityTask,
@@ -578,7 +563,6 @@ func (c *SFN) GetActivityTaskRequest(input *GetActivityTaskInput) (req *request.
 //   * InvalidArn
 //   The provided Amazon Resource Name (ARN) is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTask
 func (c *SFN) GetActivityTask(input *GetActivityTaskInput) (*GetActivityTaskOutput, error) {
 	req, out := c.GetActivityTaskRequest(input)
 	err := req.Send()
@@ -611,7 +595,6 @@ const opGetExecutionHistory = "GetExecutionHistory"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory
 func (c *SFN) GetExecutionHistoryRequest(input *GetExecutionHistoryInput) (req *request.Request, output *GetExecutionHistoryOutput) {
 	op := &request.Operation{
 		Name:       opGetExecutionHistory,
@@ -660,7 +643,6 @@ func (c *SFN) GetExecutionHistoryRequest(input *GetExecutionHistoryInput) (req *
 //   * InvalidToken
 //   The provided token is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistory
 func (c *SFN) GetExecutionHistory(input *GetExecutionHistoryInput) (*GetExecutionHistoryOutput, error) {
 	req, out := c.GetExecutionHistoryRequest(input)
 	err := req.Send()
@@ -718,7 +700,6 @@ const opListActivities = "ListActivities"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListActivities
 func (c *SFN) ListActivitiesRequest(input *ListActivitiesInput) (req *request.Request, output *ListActivitiesOutput) {
 	op := &request.Operation{
 		Name:       opListActivities,
@@ -759,7 +740,6 @@ func (c *SFN) ListActivitiesRequest(input *ListActivitiesInput) (req *request.Re
 //   * InvalidToken
 //   The provided token is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListActivities
 func (c *SFN) ListActivities(input *ListActivitiesInput) (*ListActivitiesOutput, error) {
 	req, out := c.ListActivitiesRequest(input)
 	err := req.Send()
@@ -817,7 +797,6 @@ const opListExecutions = "ListExecutions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutions
 func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Request, output *ListExecutionsOutput) {
 	op := &request.Operation{
 		Name:       opListExecutions,
@@ -864,7 +843,6 @@ func (c *SFN) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Re
 //   * StateMachineDoesNotExist
 //   The specified state machine does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutions
 func (c *SFN) ListExecutions(input *ListExecutionsInput) (*ListExecutionsOutput, error) {
 	req, out := c.ListExecutionsRequest(input)
 	err := req.Send()
@@ -922,7 +900,6 @@ const opListStateMachines = "ListStateMachines"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachines
 func (c *SFN) ListStateMachinesRequest(input *ListStateMachinesInput) (req *request.Request, output *ListStateMachinesOutput) {
 	op := &request.Operation{
 		Name:       opListStateMachines,
@@ -963,7 +940,6 @@ func (c *SFN) ListStateMachinesRequest(input *ListStateMachinesInput) (req *requ
 //   * InvalidToken
 //   The provided token is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachines
 func (c *SFN) ListStateMachines(input *ListStateMachinesInput) (*ListStateMachinesOutput, error) {
 	req, out := c.ListStateMachinesRequest(input)
 	err := req.Send()
@@ -1021,7 +997,6 @@ const opSendTaskFailure = "SendTaskFailure"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure
 func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.Request, output *SendTaskFailureOutput) {
 	op := &request.Operation{
 		Name:       opSendTaskFailure,
@@ -1060,7 +1035,6 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 //   * TaskTimedOut
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure
 func (c *SFN) SendTaskFailure(input *SendTaskFailureInput) (*SendTaskFailureOutput, error) {
 	req, out := c.SendTaskFailureRequest(input)
 	err := req.Send()
@@ -1093,7 +1067,6 @@ const opSendTaskHeartbeat = "SendTaskHeartbeat"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat
 func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *request.Request, output *SendTaskHeartbeatOutput) {
 	op := &request.Operation{
 		Name:       opSendTaskHeartbeat,
@@ -1144,7 +1117,6 @@ func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *requ
 //   * TaskTimedOut
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat
 func (c *SFN) SendTaskHeartbeat(input *SendTaskHeartbeatInput) (*SendTaskHeartbeatOutput, error) {
 	req, out := c.SendTaskHeartbeatRequest(input)
 	err := req.Send()
@@ -1177,7 +1149,6 @@ const opSendTaskSuccess = "SendTaskSuccess"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess
 func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.Request, output *SendTaskSuccessOutput) {
 	op := &request.Operation{
 		Name:       opSendTaskSuccess,
@@ -1220,7 +1191,6 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 //   * TaskTimedOut
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess
 func (c *SFN) SendTaskSuccess(input *SendTaskSuccessInput) (*SendTaskSuccessOutput, error) {
 	req, out := c.SendTaskSuccessRequest(input)
 	err := req.Send()
@@ -1253,7 +1223,6 @@ const opStartExecution = "StartExecution"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecution
 func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Request, output *StartExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStartExecution,
@@ -1305,7 +1274,6 @@ func (c *SFN) StartExecutionRequest(input *StartExecutionInput) (req *request.Re
 //   * StateMachineDeleting
 //   The specified state machine is being deleted.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecution
 func (c *SFN) StartExecution(input *StartExecutionInput) (*StartExecutionOutput, error) {
 	req, out := c.StartExecutionRequest(input)
 	err := req.Send()
@@ -1338,7 +1306,6 @@ const opStopExecution = "StopExecution"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecution
 func (c *SFN) StopExecutionRequest(input *StopExecutionInput) (req *request.Request, output *StopExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStopExecution,
@@ -1374,14 +1341,12 @@ func (c *SFN) StopExecutionRequest(input *StopExecutionInput) (req *request.Requ
 //   * InvalidArn
 //   The provided Amazon Resource Name (ARN) is invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecution
 func (c *SFN) StopExecution(input *StopExecutionInput) (*StopExecutionOutput, error) {
 	req, out := c.StopExecutionRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivityFailedEventDetails
 type ActivityFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1414,7 +1379,6 @@ func (s *ActivityFailedEventDetails) SetError(v string) *ActivityFailedEventDeta
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivityListItem
 type ActivityListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -1462,7 +1426,6 @@ func (s *ActivityListItem) SetName(v string) *ActivityListItem {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivityScheduleFailedEventDetails
 type ActivityScheduleFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1495,7 +1458,6 @@ func (s *ActivityScheduleFailedEventDetails) SetError(v string) *ActivitySchedul
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivityScheduledEventDetails
 type ActivityScheduledEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1548,7 +1510,6 @@ func (s *ActivityScheduledEventDetails) SetTimeoutInSeconds(v int64) *ActivitySc
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivityStartedEventDetails
 type ActivityStartedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1573,7 +1534,6 @@ func (s *ActivityStartedEventDetails) SetWorkerName(v string) *ActivityStartedEv
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivitySucceededEventDetails
 type ActivitySucceededEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1597,7 +1557,6 @@ func (s *ActivitySucceededEventDetails) SetOutput(v string) *ActivitySucceededEv
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ActivityTimedOutEventDetails
 type ActivityTimedOutEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1630,7 +1589,6 @@ func (s *ActivityTimedOutEventDetails) SetError(v string) *ActivityTimedOutEvent
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivityInput
 type CreateActivityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1673,7 +1631,6 @@ func (s *CreateActivityInput) SetName(v string) *CreateActivityInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateActivityOutput
 type CreateActivityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1710,7 +1667,6 @@ func (s *CreateActivityOutput) SetCreationDate(v time.Time) *CreateActivityOutpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachineInput
 type CreateStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1787,7 +1743,6 @@ func (s *CreateStateMachineInput) SetRoleArn(v string) *CreateStateMachineInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/CreateStateMachineOutput
 type CreateStateMachineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1824,7 +1779,6 @@ func (s *CreateStateMachineOutput) SetStateMachineArn(v string) *CreateStateMach
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteActivityInput
 type DeleteActivityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1866,7 +1820,6 @@ func (s *DeleteActivityInput) SetActivityArn(v string) *DeleteActivityInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteActivityOutput
 type DeleteActivityOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1881,7 +1834,6 @@ func (s DeleteActivityOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachineInput
 type DeleteStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1923,7 +1875,6 @@ func (s *DeleteStateMachineInput) SetStateMachineArn(v string) *DeleteStateMachi
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DeleteStateMachineOutput
 type DeleteStateMachineOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1938,7 +1889,6 @@ func (s DeleteStateMachineOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeActivityInput
 type DescribeActivityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1980,7 +1930,6 @@ func (s *DescribeActivityInput) SetActivityArn(v string) *DescribeActivityInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeActivityOutput
 type DescribeActivityOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2028,7 +1977,6 @@ func (s *DescribeActivityOutput) SetName(v string) *DescribeActivityOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecutionInput
 type DescribeExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2070,7 +2018,6 @@ func (s *DescribeExecutionInput) SetExecutionArn(v string) *DescribeExecutionInp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeExecutionOutput
 type DescribeExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2167,7 +2114,6 @@ func (s *DescribeExecutionOutput) SetStopDate(v time.Time) *DescribeExecutionOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineInput
 type DescribeStateMachineInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2209,7 +2155,6 @@ func (s *DescribeStateMachineInput) SetStateMachineArn(v string) *DescribeStateM
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/DescribeStateMachineOutput
 type DescribeStateMachineOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2289,7 +2234,6 @@ func (s *DescribeStateMachineOutput) SetStatus(v string) *DescribeStateMachineOu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ExecutionAbortedEventDetails
 type ExecutionAbortedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -2322,7 +2266,6 @@ func (s *ExecutionAbortedEventDetails) SetError(v string) *ExecutionAbortedEvent
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ExecutionFailedEventDetails
 type ExecutionFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -2355,7 +2298,6 @@ func (s *ExecutionFailedEventDetails) SetError(v string) *ExecutionFailedEventDe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ExecutionListItem
 type ExecutionListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -2434,7 +2376,6 @@ func (s *ExecutionListItem) SetStopDate(v time.Time) *ExecutionListItem {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ExecutionStartedEventDetails
 type ExecutionStartedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -2468,7 +2409,6 @@ func (s *ExecutionStartedEventDetails) SetRoleArn(v string) *ExecutionStartedEve
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ExecutionSucceededEventDetails
 type ExecutionSucceededEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -2492,7 +2432,6 @@ func (s *ExecutionSucceededEventDetails) SetOutput(v string) *ExecutionSucceeded
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ExecutionTimedOutEventDetails
 type ExecutionTimedOutEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -2525,7 +2464,6 @@ func (s *ExecutionTimedOutEventDetails) SetError(v string) *ExecutionTimedOutEve
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTaskInput
 type GetActivityTaskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2581,7 +2519,6 @@ func (s *GetActivityTaskInput) SetWorkerName(v string) *GetActivityTaskInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetActivityTaskOutput
 type GetActivityTaskOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2616,7 +2553,6 @@ func (s *GetActivityTaskOutput) SetTaskToken(v string) *GetActivityTaskOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistoryInput
 type GetExecutionHistoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2698,7 +2634,6 @@ func (s *GetExecutionHistoryInput) SetReverseOrder(v bool) *GetExecutionHistoryI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/GetExecutionHistoryOutput
 type GetExecutionHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2738,7 +2673,6 @@ func (s *GetExecutionHistoryOutput) SetNextToken(v string) *GetExecutionHistoryO
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/HistoryEvent
 type HistoryEvent struct {
 	_ struct{} `type:"structure"`
 
@@ -2947,7 +2881,6 @@ func (s *HistoryEvent) SetType(v string) *HistoryEvent {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/LambdaFunctionFailedEventDetails
 type LambdaFunctionFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -2980,7 +2913,6 @@ func (s *LambdaFunctionFailedEventDetails) SetError(v string) *LambdaFunctionFai
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/LambdaFunctionScheduleFailedEventDetails
 type LambdaFunctionScheduleFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3013,7 +2945,6 @@ func (s *LambdaFunctionScheduleFailedEventDetails) SetError(v string) *LambdaFun
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/LambdaFunctionScheduledEventDetails
 type LambdaFunctionScheduledEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3057,7 +2988,6 @@ func (s *LambdaFunctionScheduledEventDetails) SetTimeoutInSeconds(v int64) *Lamb
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/LambdaFunctionStartFailedEventDetails
 type LambdaFunctionStartFailedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3090,7 +3020,6 @@ func (s *LambdaFunctionStartFailedEventDetails) SetError(v string) *LambdaFuncti
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/LambdaFunctionSucceededEventDetails
 type LambdaFunctionSucceededEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3114,7 +3043,6 @@ func (s *LambdaFunctionSucceededEventDetails) SetOutput(v string) *LambdaFunctio
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/LambdaFunctionTimedOutEventDetails
 type LambdaFunctionTimedOutEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3147,7 +3075,6 @@ func (s *LambdaFunctionTimedOutEventDetails) SetError(v string) *LambdaFunctionT
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListActivitiesInput
 type ListActivitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3203,7 +3130,6 @@ func (s *ListActivitiesInput) SetNextToken(v string) *ListActivitiesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListActivitiesOutput
 type ListActivitiesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3243,7 +3169,6 @@ func (s *ListActivitiesOutput) SetNextToken(v string) *ListActivitiesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutionsInput
 type ListExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3327,7 +3252,6 @@ func (s *ListExecutionsInput) SetStatusFilter(v string) *ListExecutionsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListExecutionsOutput
 type ListExecutionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3367,7 +3291,6 @@ func (s *ListExecutionsOutput) SetNextToken(v string) *ListExecutionsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachinesInput
 type ListStateMachinesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3423,7 +3346,6 @@ func (s *ListStateMachinesInput) SetNextToken(v string) *ListStateMachinesInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/ListStateMachinesOutput
 type ListStateMachinesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3461,7 +3383,6 @@ func (s *ListStateMachinesOutput) SetStateMachines(v []*StateMachineListItem) *L
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailureInput
 type SendTaskFailureInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3522,7 +3443,6 @@ func (s *SendTaskFailureInput) SetTaskToken(v string) *SendTaskFailureInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailureOutput
 type SendTaskFailureOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3537,7 +3457,6 @@ func (s SendTaskFailureOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeatInput
 type SendTaskHeartbeatInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3580,7 +3499,6 @@ func (s *SendTaskHeartbeatInput) SetTaskToken(v string) *SendTaskHeartbeatInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeatOutput
 type SendTaskHeartbeatOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3595,7 +3513,6 @@ func (s SendTaskHeartbeatOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccessInput
 type SendTaskSuccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3652,7 +3569,6 @@ func (s *SendTaskSuccessInput) SetTaskToken(v string) *SendTaskSuccessInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccessOutput
 type SendTaskSuccessOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3667,7 +3583,6 @@ func (s SendTaskSuccessOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecutionInput
 type StartExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3731,7 +3646,6 @@ func (s *StartExecutionInput) SetStateMachineArn(v string) *StartExecutionInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartExecutionOutput
 type StartExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3768,7 +3682,6 @@ func (s *StartExecutionOutput) SetStartDate(v time.Time) *StartExecutionOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StateEnteredEventDetails
 type StateEnteredEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3803,7 +3716,6 @@ func (s *StateEnteredEventDetails) SetName(v string) *StateEnteredEventDetails {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StateExitedEventDetails
 type StateExitedEventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3838,7 +3750,6 @@ func (s *StateExitedEventDetails) SetOutput(v string) *StateExitedEventDetails {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StateMachineListItem
 type StateMachineListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -3886,7 +3797,6 @@ func (s *StateMachineListItem) SetStateMachineArn(v string) *StateMachineListIte
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecutionInput
 type StopExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3946,7 +3856,6 @@ func (s *StopExecutionInput) SetExecutionArn(v string) *StopExecutionInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StopExecutionOutput
 type StopExecutionOutput struct {
 	_ struct{} `type:"structure"`
 

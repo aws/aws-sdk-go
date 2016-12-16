@@ -35,6 +35,7 @@ const opSearch = "Search"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Request, output *SearchOutput) {
 	op := &request.Operation{
 		Name:       opSearch,
@@ -118,6 +119,7 @@ const opSuggest = "Suggest"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Request, output *SuggestOutput) {
 	op := &request.Operation{
 		Name:       opSuggest,
@@ -197,6 +199,7 @@ const opUploadDocuments = "UploadDocuments"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *request.Request, output *UploadDocumentsOutput) {
 	op := &request.Operation{
 		Name:       opUploadDocuments,

@@ -33,9 +33,8 @@ import (
 // service, reporting progress to the web service as it does so. When the task
 // is done, the task runner reports the final success or failure of the task
 // to the web service.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/datapipeline-2012-10-29
 type DataPipeline struct {
 	*client.Client
 }

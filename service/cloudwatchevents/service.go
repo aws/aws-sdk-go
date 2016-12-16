@@ -27,9 +27,8 @@ import (
 //    EBS volume.
 // For more information about Amazon CloudWatch Events features, see the Amazon
 // CloudWatch Developer Guide (http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide).
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07
 type CloudWatchEvents struct {
 	*client.Client
 }

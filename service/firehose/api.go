@@ -37,7 +37,6 @@ const opCreateDeliveryStream = "CreateDeliveryStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CreateDeliveryStream
 func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput) (req *request.Request, output *CreateDeliveryStreamOutput) {
 	op := &request.Operation{
 		Name:       opCreateDeliveryStream,
@@ -125,7 +124,6 @@ func (c *Firehose) CreateDeliveryStreamRequest(input *CreateDeliveryStreamInput)
 //   * ResourceInUseException
 //   The resource is already in use and not available for this operation.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CreateDeliveryStream
 func (c *Firehose) CreateDeliveryStream(input *CreateDeliveryStreamInput) (*CreateDeliveryStreamOutput, error) {
 	req, out := c.CreateDeliveryStreamRequest(input)
 	err := req.Send()
@@ -158,7 +156,6 @@ const opDeleteDeliveryStream = "DeleteDeliveryStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DeleteDeliveryStream
 func (c *Firehose) DeleteDeliveryStreamRequest(input *DeleteDeliveryStreamInput) (req *request.Request, output *DeleteDeliveryStreamOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDeliveryStream,
@@ -205,7 +202,6 @@ func (c *Firehose) DeleteDeliveryStreamRequest(input *DeleteDeliveryStreamInput)
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DeleteDeliveryStream
 func (c *Firehose) DeleteDeliveryStream(input *DeleteDeliveryStreamInput) (*DeleteDeliveryStreamOutput, error) {
 	req, out := c.DeleteDeliveryStreamRequest(input)
 	err := req.Send()
@@ -238,7 +234,6 @@ const opDescribeDeliveryStream = "DescribeDeliveryStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DescribeDeliveryStream
 func (c *Firehose) DescribeDeliveryStreamRequest(input *DescribeDeliveryStreamInput) (req *request.Request, output *DescribeDeliveryStreamOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDeliveryStream,
@@ -274,7 +269,6 @@ func (c *Firehose) DescribeDeliveryStreamRequest(input *DescribeDeliveryStreamIn
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DescribeDeliveryStream
 func (c *Firehose) DescribeDeliveryStream(input *DescribeDeliveryStreamInput) (*DescribeDeliveryStreamOutput, error) {
 	req, out := c.DescribeDeliveryStreamRequest(input)
 	err := req.Send()
@@ -307,7 +301,6 @@ const opListDeliveryStreams = "ListDeliveryStreams"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ListDeliveryStreams
 func (c *Firehose) ListDeliveryStreamsRequest(input *ListDeliveryStreamsInput) (req *request.Request, output *ListDeliveryStreamsOutput) {
 	op := &request.Operation{
 		Name:       opListDeliveryStreams,
@@ -343,7 +336,6 @@ func (c *Firehose) ListDeliveryStreamsRequest(input *ListDeliveryStreamsInput) (
 //
 // See the AWS API reference guide for Amazon Kinesis Firehose's
 // API operation ListDeliveryStreams for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ListDeliveryStreams
 func (c *Firehose) ListDeliveryStreams(input *ListDeliveryStreamsInput) (*ListDeliveryStreamsOutput, error) {
 	req, out := c.ListDeliveryStreamsRequest(input)
 	err := req.Send()
@@ -376,7 +368,6 @@ const opPutRecord = "PutRecord"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecord
 func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request, output *PutRecordOutput) {
 	op := &request.Operation{
 		Name:       opPutRecord,
@@ -450,7 +441,6 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 //   been exceeded. For more information about limits and how to request an increase,
 //   see Amazon Kinesis Firehose Limits (http://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecord
 func (c *Firehose) PutRecord(input *PutRecordInput) (*PutRecordOutput, error) {
 	req, out := c.PutRecordRequest(input)
 	err := req.Send()
@@ -483,7 +473,6 @@ const opPutRecordBatch = "PutRecordBatch"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordBatch
 func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *request.Request, output *PutRecordBatchOutput) {
 	op := &request.Operation{
 		Name:       opPutRecordBatch,
@@ -580,7 +569,6 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 //   been exceeded. For more information about limits and how to request an increase,
 //   see Amazon Kinesis Firehose Limits (http://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordBatch
 func (c *Firehose) PutRecordBatch(input *PutRecordBatchInput) (*PutRecordBatchOutput, error) {
 	req, out := c.PutRecordBatchRequest(input)
 	err := req.Send()
@@ -613,7 +601,6 @@ const opUpdateDestination = "UpdateDestination"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/UpdateDestination
 func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req *request.Request, output *UpdateDestinationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDestination,
@@ -687,7 +674,6 @@ func (c *Firehose) UpdateDestinationRequest(input *UpdateDestinationInput) (req 
 //   Another modification has already happened. Fetch VersionId again and use
 //   it to update the destination.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/UpdateDestination
 func (c *Firehose) UpdateDestination(input *UpdateDestinationInput) (*UpdateDestinationOutput, error) {
 	req, out := c.UpdateDestinationRequest(input)
 	err := req.Send()
@@ -697,7 +683,6 @@ func (c *Firehose) UpdateDestination(input *UpdateDestinationInput) (*UpdateDest
 // Describes hints for the buffering to perform before delivering data to the
 // destination. Please note that these options are treated as hints, and therefore
 // Firehose may choose to use different values when it is optimal.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/BufferingHints
 type BufferingHints struct {
 	_ struct{} `type:"structure"`
 
@@ -753,7 +738,6 @@ func (s *BufferingHints) SetSizeInMBs(v int64) *BufferingHints {
 }
 
 // Describes CloudWatch logging options for your delivery stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CloudWatchLoggingOptions
 type CloudWatchLoggingOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -798,7 +782,6 @@ func (s *CloudWatchLoggingOptions) SetLogStreamName(v string) *CloudWatchLogging
 }
 
 // Describes a COPY command for Amazon Redshift.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CopyCommand
 type CopyCommand struct {
 	_ struct{} `type:"structure"`
 
@@ -878,7 +861,6 @@ func (s *CopyCommand) SetDataTableName(v string) *CopyCommand {
 }
 
 // Contains the parameters for CreateDeliveryStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CreateDeliveryStreamInput
 type CreateDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -968,7 +950,6 @@ func (s *CreateDeliveryStreamInput) SetS3DestinationConfiguration(v *S3Destinati
 }
 
 // Contains the output of CreateDeliveryStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/CreateDeliveryStreamOutput
 type CreateDeliveryStreamOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -993,7 +974,6 @@ func (s *CreateDeliveryStreamOutput) SetDeliveryStreamARN(v string) *CreateDeliv
 }
 
 // Contains the parameters for DeleteDeliveryStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DeleteDeliveryStreamInput
 type DeleteDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1036,7 +1016,6 @@ func (s *DeleteDeliveryStreamInput) SetDeliveryStreamName(v string) *DeleteDeliv
 }
 
 // Contains the output of DeleteDeliveryStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DeleteDeliveryStreamOutput
 type DeleteDeliveryStreamOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1052,7 +1031,6 @@ func (s DeleteDeliveryStreamOutput) GoString() string {
 }
 
 // Contains information about a delivery stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DeliveryStreamDescription
 type DeliveryStreamDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -1156,7 +1134,6 @@ func (s *DeliveryStreamDescription) SetVersionId(v string) *DeliveryStreamDescri
 }
 
 // Contains the parameters for DescribeDeliveryStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DescribeDeliveryStreamInput
 type DescribeDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1225,7 +1202,6 @@ func (s *DescribeDeliveryStreamInput) SetLimit(v int64) *DescribeDeliveryStreamI
 }
 
 // Contains the output of DescribeDeliveryStream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DescribeDeliveryStreamOutput
 type DescribeDeliveryStreamOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1252,7 +1228,6 @@ func (s *DescribeDeliveryStreamOutput) SetDeliveryStreamDescription(v *DeliveryS
 }
 
 // Describes the destination for a delivery stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/DestinationDescription
 type DestinationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -1307,7 +1282,6 @@ func (s *DestinationDescription) SetS3DestinationDescription(v *S3DestinationDes
 
 // Describes the buffering to perform before delivering data to the Amazon ES
 // destination.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ElasticsearchBufferingHints
 type ElasticsearchBufferingHints struct {
 	_ struct{} `type:"structure"`
 
@@ -1363,7 +1337,6 @@ func (s *ElasticsearchBufferingHints) SetSizeInMBs(v int64) *ElasticsearchBuffer
 }
 
 // Describes the configuration of a destination in Amazon ES.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ElasticsearchDestinationConfiguration
 type ElasticsearchDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -1542,7 +1515,6 @@ func (s *ElasticsearchDestinationConfiguration) SetTypeName(v string) *Elasticse
 }
 
 // The destination description in Amazon ES.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ElasticsearchDestinationDescription
 type ElasticsearchDestinationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -1648,7 +1620,6 @@ func (s *ElasticsearchDestinationDescription) SetTypeName(v string) *Elasticsear
 }
 
 // Describes an update for a destination in Amazon ES.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ElasticsearchDestinationUpdate
 type ElasticsearchDestinationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -1787,7 +1758,6 @@ func (s *ElasticsearchDestinationUpdate) SetTypeName(v string) *ElasticsearchDes
 
 // Configures retry behavior in the event that Firehose is unable to deliver
 // documents to Amazon ES.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ElasticsearchRetryOptions
 type ElasticsearchRetryOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -1816,7 +1786,6 @@ func (s *ElasticsearchRetryOptions) SetDurationInSeconds(v int64) *Elasticsearch
 }
 
 // Describes the encryption for a destination in Amazon S3.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/EncryptionConfiguration
 type EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -1866,7 +1835,6 @@ func (s *EncryptionConfiguration) SetNoEncryptionConfig(v string) *EncryptionCon
 }
 
 // Describes an encryption key for a destination in Amazon S3.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/KMSEncryptionConfig
 type KMSEncryptionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -1910,7 +1878,6 @@ func (s *KMSEncryptionConfig) SetAWSKMSKeyARN(v string) *KMSEncryptionConfig {
 }
 
 // Contains the parameters for ListDeliveryStreams.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ListDeliveryStreamsInput
 type ListDeliveryStreamsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1960,7 +1927,6 @@ func (s *ListDeliveryStreamsInput) SetLimit(v int64) *ListDeliveryStreamsInput {
 }
 
 // Contains the output of ListDeliveryStreams.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/ListDeliveryStreamsOutput
 type ListDeliveryStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1998,7 +1964,6 @@ func (s *ListDeliveryStreamsOutput) SetHasMoreDeliveryStreams(v bool) *ListDeliv
 }
 
 // Contains the parameters for PutRecordBatch.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordBatchInput
 type PutRecordBatchInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2068,7 +2033,6 @@ func (s *PutRecordBatchInput) SetRecords(v []*Record) *PutRecordBatchInput {
 }
 
 // Contains the output of PutRecordBatch.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordBatchOutput
 type PutRecordBatchOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2110,7 +2074,6 @@ func (s *PutRecordBatchOutput) SetRequestResponses(v []*PutRecordBatchResponseEn
 // If the record is successfully added to your delivery stream, it receives
 // a record ID. If the record fails to be added to your delivery stream, the
 // result includes an error code and an error message.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordBatchResponseEntry
 type PutRecordBatchResponseEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2153,7 +2116,6 @@ func (s *PutRecordBatchResponseEntry) SetRecordId(v string) *PutRecordBatchRespo
 }
 
 // Contains the parameters for PutRecord.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordInput
 type PutRecordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2215,7 +2177,6 @@ func (s *PutRecordInput) SetRecord(v *Record) *PutRecordInput {
 }
 
 // Contains the output of PutRecord.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/PutRecordOutput
 type PutRecordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2242,7 +2203,6 @@ func (s *PutRecordOutput) SetRecordId(v string) *PutRecordOutput {
 }
 
 // The unit of data in a delivery stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/Record
 type Record struct {
 	_ struct{} `type:"structure"`
 
@@ -2285,7 +2245,6 @@ func (s *Record) SetData(v []byte) *Record {
 }
 
 // Describes the configuration of a destination in Amazon Redshift.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/RedshiftDestinationConfiguration
 type RedshiftDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2441,7 +2400,6 @@ func (s *RedshiftDestinationConfiguration) SetUsername(v string) *RedshiftDestin
 }
 
 // Describes a destination in Amazon Redshift.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/RedshiftDestinationDescription
 type RedshiftDestinationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2531,7 +2489,6 @@ func (s *RedshiftDestinationDescription) SetUsername(v string) *RedshiftDestinat
 }
 
 // Describes an update for a destination in Amazon Redshift.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/RedshiftDestinationUpdate
 type RedshiftDestinationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -2657,7 +2614,6 @@ func (s *RedshiftDestinationUpdate) SetUsername(v string) *RedshiftDestinationUp
 
 // Configures retry behavior in the event that Firehose is unable to deliver
 // documents to Amazon Redshift.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/RedshiftRetryOptions
 type RedshiftRetryOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -2686,7 +2642,6 @@ func (s *RedshiftRetryOptions) SetDurationInSeconds(v int64) *RedshiftRetryOptio
 }
 
 // Describes the configuration of a destination in Amazon S3.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/S3DestinationConfiguration
 type S3DestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2812,7 +2767,6 @@ func (s *S3DestinationConfiguration) SetRoleARN(v string) *S3DestinationConfigur
 }
 
 // Describes a destination in Amazon S3.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/S3DestinationDescription
 type S3DestinationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2908,7 +2862,6 @@ func (s *S3DestinationDescription) SetRoleARN(v string) *S3DestinationDescriptio
 }
 
 // Describes an update for a destination in Amazon S3.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/S3DestinationUpdate
 type S3DestinationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -3024,7 +2977,6 @@ func (s *S3DestinationUpdate) SetRoleARN(v string) *S3DestinationUpdate {
 }
 
 // Contains the parameters for UpdateDestination.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/UpdateDestinationInput
 type UpdateDestinationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3148,7 +3100,6 @@ func (s *UpdateDestinationInput) SetS3DestinationUpdate(v *S3DestinationUpdate) 
 }
 
 // Contains the output of UpdateDestination.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/firehose-2015-08-04/UpdateDestinationOutput
 type UpdateDestinationOutput struct {
 	_ struct{} `type:"structure"`
 }

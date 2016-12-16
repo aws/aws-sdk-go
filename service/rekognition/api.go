@@ -33,6 +33,7 @@ const opCompareFaces = "CompareFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *request.Request, output *CompareFacesOutput) {
 	op := &request.Operation{
 		Name:       opCompareFaces,
@@ -146,6 +147,7 @@ const opCreateCollection = "CreateCollection"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req *request.Request, output *CreateCollectionOutput) {
 	op := &request.Operation{
 		Name:       opCreateCollection,
@@ -238,6 +240,7 @@ const opDeleteCollection = "DeleteCollection"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req *request.Request, output *DeleteCollectionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteCollection,
@@ -323,6 +326,7 @@ const opDeleteFaces = "DeleteFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) DeleteFacesRequest(input *DeleteFacesInput) (req *request.Request, output *DeleteFacesOutput) {
 	op := &request.Operation{
 		Name:       opDeleteFaces,
@@ -408,6 +412,7 @@ const opDetectFaces = "DetectFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.Request, output *DetectFacesOutput) {
 	op := &request.Operation{
 		Name:       opDetectFaces,
@@ -513,6 +518,7 @@ const opDetectLabels = "DetectLabels"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *request.Request, output *DetectLabelsOutput) {
 	op := &request.Operation{
 		Name:       opDetectLabels,
@@ -646,6 +652,7 @@ const opIndexFaces = "IndexFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Request, output *IndexFacesOutput) {
 	op := &request.Operation{
 		Name:       opIndexFaces,
@@ -765,6 +772,7 @@ const opListCollections = "ListCollections"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *request.Request, output *ListCollectionsOutput) {
 	op := &request.Operation{
 		Name:       opListCollections,
@@ -887,6 +895,7 @@ const opListFaces = "ListFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) ListFacesRequest(input *ListFacesInput) (req *request.Request, output *ListFacesOutput) {
 	op := &request.Operation{
 		Name:       opListFaces,
@@ -1007,6 +1016,7 @@ const opSearchFaces = "SearchFaces"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.Request, output *SearchFacesOutput) {
 	op := &request.Operation{
 		Name:       opSearchFaces,
@@ -1105,6 +1115,7 @@ const opSearchFacesByImage = "SearchFacesByImage"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) (req *request.Request, output *SearchFacesByImageOutput) {
 	op := &request.Operation{
 		Name:       opSearchFacesByImage,

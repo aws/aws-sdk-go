@@ -34,7 +34,6 @@ const opAddAttachmentsToSet = "AddAttachmentsToSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddAttachmentsToSet
 func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (req *request.Request, output *AddAttachmentsToSetOutput) {
 	op := &request.Operation{
 		Name:       opAddAttachmentsToSet,
@@ -91,7 +90,6 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 //   The limit for the number of attachment sets created in a short period of
 //   time has been exceeded.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddAttachmentsToSet
 func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAttachmentsToSetOutput, error) {
 	req, out := c.AddAttachmentsToSetRequest(input)
 	err := req.Send()
@@ -124,7 +122,6 @@ const opAddCommunicationToCase = "AddCommunicationToCase"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddCommunicationToCase
 func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInput) (req *request.Request, output *AddCommunicationToCaseOutput) {
 	op := &request.Operation{
 		Name:       opAddCommunicationToCase,
@@ -174,7 +171,6 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 //   The expiration time of the attachment set has passed. The set expires 1 hour
 //   after it is created.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddCommunicationToCase
 func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (*AddCommunicationToCaseOutput, error) {
 	req, out := c.AddCommunicationToCaseRequest(input)
 	err := req.Send()
@@ -207,7 +203,6 @@ const opCreateCase = "CreateCase"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCase
 func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Request, output *CreateCaseOutput) {
 	op := &request.Operation{
 		Name:       opCreateCase,
@@ -293,7 +288,6 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 //   The expiration time of the attachment set has passed. The set expires 1 hour
 //   after it is created.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCase
 func (c *Support) CreateCase(input *CreateCaseInput) (*CreateCaseOutput, error) {
 	req, out := c.CreateCaseRequest(input)
 	err := req.Send()
@@ -326,7 +320,6 @@ const opDescribeAttachment = "DescribeAttachment"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeAttachment
 func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req *request.Request, output *DescribeAttachmentOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAttachment,
@@ -369,7 +362,6 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 //   * AttachmentIdNotFound
 //   An attachment with the specified ID could not be found.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeAttachment
 func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (*DescribeAttachmentOutput, error) {
 	req, out := c.DescribeAttachmentRequest(input)
 	err := req.Send()
@@ -402,7 +394,6 @@ const opDescribeCases = "DescribeCases"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCases
 func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.Request, output *DescribeCasesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCases,
@@ -458,7 +449,6 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 //   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCases
 func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput, error) {
 	req, out := c.DescribeCasesRequest(input)
 	err := req.Send()
@@ -516,7 +506,6 @@ const opDescribeCommunications = "DescribeCommunications"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCommunications
 func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInput) (req *request.Request, output *DescribeCommunicationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeCommunications,
@@ -567,7 +556,6 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 //   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCommunications
 func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*DescribeCommunicationsOutput, error) {
 	req, out := c.DescribeCommunicationsRequest(input)
 	err := req.Send()
@@ -625,7 +613,6 @@ const opDescribeServices = "DescribeServices"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeServices
 func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *request.Request, output *DescribeServicesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeServices,
@@ -668,7 +655,6 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *re
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeServices
 func (c *Support) DescribeServices(input *DescribeServicesInput) (*DescribeServicesOutput, error) {
 	req, out := c.DescribeServicesRequest(input)
 	err := req.Send()
@@ -701,7 +687,6 @@ const opDescribeSeverityLevels = "DescribeSeverityLevels"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeSeverityLevels
 func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInput) (req *request.Request, output *DescribeSeverityLevelsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSeverityLevels,
@@ -736,7 +721,6 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeSeverityLevels
 func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (*DescribeSeverityLevelsOutput, error) {
 	req, out := c.DescribeSeverityLevelsRequest(input)
 	err := req.Send()
@@ -769,7 +753,6 @@ const opDescribeTrustedAdvisorCheckRefreshStatuses = "DescribeTrustedAdvisorChec
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckRefreshStatuses
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (req *request.Request, output *DescribeTrustedAdvisorCheckRefreshStatusesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckRefreshStatuses,
@@ -807,7 +790,6 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckRefreshStatuses
 func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (*DescribeTrustedAdvisorCheckRefreshStatusesOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckRefreshStatusesRequest(input)
 	err := req.Send()
@@ -840,7 +822,6 @@ const opDescribeTrustedAdvisorCheckResult = "DescribeTrustedAdvisorCheckResult"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckResult
 func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTrustedAdvisorCheckResultInput) (req *request.Request, output *DescribeTrustedAdvisorCheckResultOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckResult,
@@ -892,7 +873,6 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckResult
 func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdvisorCheckResultInput) (*DescribeTrustedAdvisorCheckResultOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckResultRequest(input)
 	err := req.Send()
@@ -925,7 +905,6 @@ const opDescribeTrustedAdvisorCheckSummaries = "DescribeTrustedAdvisorCheckSumma
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckSummaries
 func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTrustedAdvisorCheckSummariesInput) (req *request.Request, output *DescribeTrustedAdvisorCheckSummariesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckSummaries,
@@ -961,7 +940,6 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckSummaries
 func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdvisorCheckSummariesInput) (*DescribeTrustedAdvisorCheckSummariesOutput, error) {
 	req, out := c.DescribeTrustedAdvisorCheckSummariesRequest(input)
 	err := req.Send()
@@ -994,7 +972,6 @@ const opDescribeTrustedAdvisorChecks = "DescribeTrustedAdvisorChecks"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorChecks
 func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvisorChecksInput) (req *request.Request, output *DescribeTrustedAdvisorChecksOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorChecks,
@@ -1030,7 +1007,6 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorChecks
 func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChecksInput) (*DescribeTrustedAdvisorChecksOutput, error) {
 	req, out := c.DescribeTrustedAdvisorChecksRequest(input)
 	err := req.Send()
@@ -1063,7 +1039,6 @@ const opRefreshTrustedAdvisorCheck = "RefreshTrustedAdvisorCheck"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/RefreshTrustedAdvisorCheck
 func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisorCheckInput) (req *request.Request, output *RefreshTrustedAdvisorCheckOutput) {
 	op := &request.Operation{
 		Name:       opRefreshTrustedAdvisorCheck,
@@ -1112,7 +1087,6 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 //   * InternalServerError
 //   An internal server error occurred.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/RefreshTrustedAdvisorCheck
 func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckInput) (*RefreshTrustedAdvisorCheckOutput, error) {
 	req, out := c.RefreshTrustedAdvisorCheckRequest(input)
 	err := req.Send()
@@ -1145,7 +1119,6 @@ const opResolveCase = "ResolveCase"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase
 func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Request, output *ResolveCaseOutput) {
 	op := &request.Operation{
 		Name:       opResolveCase,
@@ -1182,14 +1155,12 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 //   * CaseIdNotFound
 //   The requested caseId could not be located.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase
 func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, error) {
 	req, out := c.ResolveCaseRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddAttachmentsToSetRequest
 type AddAttachmentsToSetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1243,7 +1214,6 @@ func (s *AddAttachmentsToSetInput) SetAttachments(v []*Attachment) *AddAttachmen
 
 // The ID and expiry time of the attachment set returned by the AddAttachmentsToSet
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddAttachmentsToSetResponse
 type AddAttachmentsToSetOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1280,7 +1250,6 @@ func (s *AddAttachmentsToSetOutput) SetExpiryTime(v string) *AddAttachmentsToSet
 }
 
 // To be written.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddCommunicationToCaseRequest
 type AddCommunicationToCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1353,7 +1322,6 @@ func (s *AddCommunicationToCaseInput) SetCommunicationBody(v string) *AddCommuni
 }
 
 // The result of the AddCommunicationToCase operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AddCommunicationToCaseResponse
 type AddCommunicationToCaseOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1379,7 +1347,6 @@ func (s *AddCommunicationToCaseOutput) SetResult(v bool) *AddCommunicationToCase
 
 // An attachment to a case communication. The attachment consists of the file
 // name and the content of the file.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/Attachment
 type Attachment struct {
 	_ struct{} `type:"structure"`
 
@@ -1416,7 +1383,6 @@ func (s *Attachment) SetFileName(v string) *Attachment {
 
 // The file name and ID of an attachment to a case communication. You can use
 // the ID to retrieve the attachment with the DescribeAttachment operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/AttachmentDetails
 type AttachmentDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1485,7 +1451,6 @@ func (s *AttachmentDetails) SetFileName(v string) *AttachmentDetails {
 //    * submittedBy. The email address of the account that submitted the case.
 //
 //    * timeCreated. The time the case was created, in ISO-8601 format.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CaseDetails
 type CaseDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1617,7 +1582,6 @@ func (s *CaseDetails) SetTimeCreated(v string) *CaseDetails {
 // A JSON-formatted name/value pair that represents the category name and category
 // code of the problem, selected from the DescribeServices response for each
 // AWS service.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/Category
 type Category struct {
 	_ struct{} `type:"structure"`
 
@@ -1653,7 +1617,6 @@ func (s *Category) SetName(v string) *Category {
 // A communication associated with an AWS Support case. The communication consists
 // of the case ID, the message body, attachment information, the account email
 // address, and the date and time of the communication.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/Communication
 type Communication struct {
 	_ struct{} `type:"structure"`
 
@@ -1714,7 +1677,6 @@ func (s *Communication) SetTimeCreated(v string) *Communication {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCaseRequest
 type CreateCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1844,7 +1806,6 @@ func (s *CreateCaseInput) SetSubject(v string) *CreateCaseInput {
 
 // The AWS Support case ID returned by a successful completion of the CreateCase
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCaseResponse
 type CreateCaseOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1869,7 +1830,6 @@ func (s *CreateCaseOutput) SetCaseId(v string) *CreateCaseOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeAttachmentRequest
 type DescribeAttachmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1911,7 +1871,6 @@ func (s *DescribeAttachmentInput) SetAttachmentId(v string) *DescribeAttachmentI
 
 // The content and file name of the attachment returned by the DescribeAttachment
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeAttachmentResponse
 type DescribeAttachmentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1935,7 +1894,6 @@ func (s *DescribeAttachmentOutput) SetAttachment(v *Attachment) *DescribeAttachm
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCasesRequest
 type DescribeCasesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2053,7 +2011,6 @@ func (s *DescribeCasesInput) SetNextToken(v string) *DescribeCasesInput {
 
 // Returns an array of CaseDetails objects and a nextToken that defines a point
 // for pagination in the result set.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCasesResponse
 type DescribeCasesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2086,7 +2043,6 @@ func (s *DescribeCasesOutput) SetNextToken(v string) *DescribeCasesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCommunicationsRequest
 type DescribeCommunicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2168,7 +2124,6 @@ func (s *DescribeCommunicationsInput) SetNextToken(v string) *DescribeCommunicat
 }
 
 // The communications returned by the DescribeCommunications operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCommunicationsResponse
 type DescribeCommunicationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2201,7 +2156,6 @@ func (s *DescribeCommunicationsOutput) SetNextToken(v string) *DescribeCommunica
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeServicesRequest
 type DescribeServicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2237,7 +2191,6 @@ func (s *DescribeServicesInput) SetServiceCodeList(v []*string) *DescribeService
 }
 
 // The list of AWS services returned by the DescribeServices operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeServicesResponse
 type DescribeServicesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2261,7 +2214,6 @@ func (s *DescribeServicesOutput) SetServices(v []*Service) *DescribeServicesOutp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeSeverityLevelsRequest
 type DescribeSeverityLevelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2288,7 +2240,6 @@ func (s *DescribeSeverityLevelsInput) SetLanguage(v string) *DescribeSeverityLev
 }
 
 // The list of severity levels returned by the DescribeSeverityLevels operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeSeverityLevelsResponse
 type DescribeSeverityLevelsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2313,7 +2264,6 @@ func (s *DescribeSeverityLevelsOutput) SetSeverityLevels(v []*SeverityLevel) *De
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckRefreshStatusesRequest
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2356,7 +2306,6 @@ func (s *DescribeTrustedAdvisorCheckRefreshStatusesInput) SetCheckIds(v []*strin
 
 // The statuses of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckRefreshStatuses
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckRefreshStatusesResponse
 type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2382,7 +2331,6 @@ func (s *DescribeTrustedAdvisorCheckRefreshStatusesOutput) SetStatuses(v []*Trus
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckResultRequest
 type DescribeTrustedAdvisorCheckResultInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2434,7 +2382,6 @@ func (s *DescribeTrustedAdvisorCheckResultInput) SetLanguage(v string) *Describe
 
 // The result of the Trusted Advisor check returned by the DescribeTrustedAdvisorCheckResult
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckResultResponse
 type DescribeTrustedAdvisorCheckResultOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2458,7 +2405,6 @@ func (s *DescribeTrustedAdvisorCheckResultOutput) SetResult(v *TrustedAdvisorChe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckSummariesRequest
 type DescribeTrustedAdvisorCheckSummariesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2499,7 +2445,6 @@ func (s *DescribeTrustedAdvisorCheckSummariesInput) SetCheckIds(v []*string) *De
 
 // The summaries of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckSummaries
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorCheckSummariesResponse
 type DescribeTrustedAdvisorCheckSummariesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2525,7 +2470,6 @@ func (s *DescribeTrustedAdvisorCheckSummariesOutput) SetSummaries(v []*TrustedAd
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorChecksRequest
 type DescribeTrustedAdvisorChecksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2568,7 +2512,6 @@ func (s *DescribeTrustedAdvisorChecksInput) SetLanguage(v string) *DescribeTrust
 
 // Information about the Trusted Advisor checks returned by the DescribeTrustedAdvisorChecks
 // operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeTrustedAdvisorChecksResponse
 type DescribeTrustedAdvisorChecksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2595,7 +2538,6 @@ func (s *DescribeTrustedAdvisorChecksOutput) SetChecks(v []*TrustedAdvisorCheckD
 }
 
 // The five most recent communications associated with the case.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/RecentCaseCommunications
 type RecentCaseCommunications struct {
 	_ struct{} `type:"structure"`
 
@@ -2628,7 +2570,6 @@ func (s *RecentCaseCommunications) SetNextToken(v string) *RecentCaseCommunicati
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/RefreshTrustedAdvisorCheckRequest
 type RefreshTrustedAdvisorCheckInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2670,7 +2611,6 @@ func (s *RefreshTrustedAdvisorCheckInput) SetCheckId(v string) *RefreshTrustedAd
 }
 
 // The current refresh status of a Trusted Advisor check.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/RefreshTrustedAdvisorCheckResponse
 type RefreshTrustedAdvisorCheckOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2697,7 +2637,6 @@ func (s *RefreshTrustedAdvisorCheckOutput) SetStatus(v *TrustedAdvisorCheckRefre
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCaseRequest
 type ResolveCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2723,7 +2662,6 @@ func (s *ResolveCaseInput) SetCaseId(v string) *ResolveCaseInput {
 }
 
 // The status of the case returned by the ResolveCase operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCaseResponse
 type ResolveCaseOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2757,7 +2695,6 @@ func (s *ResolveCaseOutput) SetInitialCaseStatus(v string) *ResolveCaseOutput {
 }
 
 // Information about an AWS service returned by the DescribeServices operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/Service
 type Service struct {
 	_ struct{} `type:"structure"`
 
@@ -2805,7 +2742,6 @@ func (s *Service) SetName(v string) *Service {
 
 // A code and name pair that represent a severity level that can be applied
 // to a support case.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/SeverityLevel
 type SeverityLevel struct {
 	_ struct{} `type:"structure"`
 
@@ -2841,7 +2777,6 @@ func (s *SeverityLevel) SetName(v string) *SeverityLevel {
 
 // The container for summary information that relates to the category of the
 // Trusted Advisor check.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorCategorySpecificSummary
 type TrustedAdvisorCategorySpecificSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -2867,7 +2802,6 @@ func (s *TrustedAdvisorCategorySpecificSummary) SetCostOptimizing(v *TrustedAdvi
 }
 
 // The description and metadata for a Trusted Advisor check.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorCheckDescription
 type TrustedAdvisorCheckDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2943,7 +2877,6 @@ func (s *TrustedAdvisorCheckDescription) SetName(v string) *TrustedAdvisorCheckD
 }
 
 // The refresh status of a Trusted Advisor check.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorCheckRefreshStatus
 type TrustedAdvisorCheckRefreshStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -2994,7 +2927,6 @@ func (s *TrustedAdvisorCheckRefreshStatus) SetStatus(v string) *TrustedAdvisorCh
 }
 
 // The results of a Trusted Advisor check returned by DescribeTrustedAdvisorCheckResult.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorCheckResult
 type TrustedAdvisorCheckResult struct {
 	_ struct{} `type:"structure"`
 
@@ -3080,7 +3012,6 @@ func (s *TrustedAdvisorCheckResult) SetTimestamp(v string) *TrustedAdvisorCheckR
 
 // A summary of a Trusted Advisor check result, including the alert status,
 // last refresh, and number of resources examined.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorCheckSummary
 type TrustedAdvisorCheckSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3164,7 +3095,6 @@ func (s *TrustedAdvisorCheckSummary) SetTimestamp(v string) *TrustedAdvisorCheck
 
 // The estimated cost savings that might be realized if the recommended actions
 // are taken.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorCostOptimizingSummary
 type TrustedAdvisorCostOptimizingSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3204,7 +3134,6 @@ func (s *TrustedAdvisorCostOptimizingSummary) SetEstimatedPercentMonthlySavings(
 }
 
 // Contains information about a resource identified by a Trusted Advisor check.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorResourceDetail
 type TrustedAdvisorResourceDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -3277,7 +3206,6 @@ func (s *TrustedAdvisorResourceDetail) SetStatus(v string) *TrustedAdvisorResour
 
 // Details about AWS resources that were analyzed in a call to Trusted Advisor
 // DescribeTrustedAdvisorCheckSummaries.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/TrustedAdvisorResourcesSummary
 type TrustedAdvisorResourcesSummary struct {
 	_ struct{} `type:"structure"`
 

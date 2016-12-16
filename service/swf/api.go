@@ -38,6 +38,7 @@ const opCountClosedWorkflowExecutions = "CountClosedWorkflowExecutions"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionCount) {
 	op := &request.Operation{
 		Name:       opCountClosedWorkflowExecutions,
@@ -130,6 +131,7 @@ const opCountOpenWorkflowExecutions = "CountOpenWorkflowExecutions"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionCount) {
 	op := &request.Operation{
 		Name:       opCountOpenWorkflowExecutions,
@@ -222,6 +224,7 @@ const opCountPendingActivityTasks = "CountPendingActivityTasks"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksInput) (req *request.Request, output *PendingTaskCount) {
 	op := &request.Operation{
 		Name:       opCountPendingActivityTasks,
@@ -312,6 +315,7 @@ const opCountPendingDecisionTasks = "CountPendingDecisionTasks"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksInput) (req *request.Request, output *PendingTaskCount) {
 	op := &request.Operation{
 		Name:       opCountPendingDecisionTasks,
@@ -402,6 +406,7 @@ const opDeprecateActivityType = "DeprecateActivityType"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (req *request.Request, output *DeprecateActivityTypeOutput) {
 	op := &request.Operation{
 		Name:       opDeprecateActivityType,
@@ -499,6 +504,7 @@ const opDeprecateDomain = "DeprecateDomain"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *request.Request, output *DeprecateDomainOutput) {
 	op := &request.Operation{
 		Name:       opDeprecateDomain,
@@ -596,6 +602,7 @@ const opDeprecateWorkflowType = "DeprecateWorkflowType"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (req *request.Request, output *DeprecateWorkflowTypeOutput) {
 	op := &request.Operation{
 		Name:       opDeprecateWorkflowType,
@@ -694,6 +701,7 @@ const opDescribeActivityType = "DescribeActivityType"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req *request.Request, output *DescribeActivityTypeOutput) {
 	op := &request.Operation{
 		Name:       opDescribeActivityType,
@@ -785,6 +793,7 @@ const opDescribeDomain = "DescribeDomain"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Request, output *DescribeDomainOutput) {
 	op := &request.Operation{
 		Name:       opDescribeDomain,
@@ -872,6 +881,7 @@ const opDescribeWorkflowExecution = "DescribeWorkflowExecution"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionInput) (req *request.Request, output *DescribeWorkflowExecutionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeWorkflowExecution,
@@ -960,6 +970,7 @@ const opDescribeWorkflowType = "DescribeWorkflowType"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req *request.Request, output *DescribeWorkflowTypeOutput) {
 	op := &request.Operation{
 		Name:       opDescribeWorkflowType,
@@ -1051,6 +1062,7 @@ const opGetWorkflowExecutionHistory = "GetWorkflowExecutionHistory"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHistoryInput) (req *request.Request, output *GetWorkflowExecutionHistoryOutput) {
 	op := &request.Operation{
 		Name:       opGetWorkflowExecutionHistory,
@@ -1171,6 +1183,7 @@ const opListActivityTypes = "ListActivityTypes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *request.Request, output *ListActivityTypesOutput) {
 	op := &request.Operation{
 		Name:       opListActivityTypes,
@@ -1292,6 +1305,7 @@ const opListClosedWorkflowExecutions = "ListClosedWorkflowExecutions"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionInfos) {
 	op := &request.Operation{
 		Name:       opListClosedWorkflowExecutions,
@@ -1417,6 +1431,7 @@ const opListDomains = "ListDomains"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
 	op := &request.Operation{
 		Name:       opListDomains,
@@ -1533,6 +1548,7 @@ const opListOpenWorkflowExecutions = "ListOpenWorkflowExecutions"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionInfos) {
 	op := &request.Operation{
 		Name:       opListOpenWorkflowExecutions,
@@ -1658,6 +1674,7 @@ const opListWorkflowTypes = "ListWorkflowTypes"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *request.Request, output *ListWorkflowTypesOutput) {
 	op := &request.Operation{
 		Name:       opListWorkflowTypes,
@@ -1777,6 +1794,7 @@ const opPollForActivityTask = "PollForActivityTask"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *request.Request, output *PollForActivityTaskOutput) {
 	op := &request.Operation{
 		Name:       opPollForActivityTask,
@@ -1877,6 +1895,7 @@ const opPollForDecisionTask = "PollForDecisionTask"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *request.Request, output *PollForDecisionTaskOutput) {
 	op := &request.Operation{
 		Name:       opPollForDecisionTask,
@@ -2016,6 +2035,7 @@ const opRecordActivityTaskHeartbeat = "RecordActivityTaskHeartbeat"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartbeatInput) (req *request.Request, output *RecordActivityTaskHeartbeatOutput) {
 	op := &request.Operation{
 		Name:       opRecordActivityTaskHeartbeat,
@@ -2121,6 +2141,7 @@ const opRegisterActivityType = "RegisterActivityType"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req *request.Request, output *RegisterActivityTypeOutput) {
 	op := &request.Operation{
 		Name:       opRegisterActivityType,
@@ -2227,6 +2248,7 @@ const opRegisterDomain = "RegisterDomain"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *request.Request, output *RegisterDomainOutput) {
 	op := &request.Operation{
 		Name:       opRegisterDomain,
@@ -2320,6 +2342,7 @@ const opRegisterWorkflowType = "RegisterWorkflowType"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req *request.Request, output *RegisterWorkflowTypeOutput) {
 	op := &request.Operation{
 		Name:       opRegisterWorkflowType,
@@ -2429,6 +2452,7 @@ const opRequestCancelWorkflowExecution = "RequestCancelWorkflowExecution"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflowExecutionInput) (req *request.Request, output *RequestCancelWorkflowExecutionOutput) {
 	op := &request.Operation{
 		Name:       opRequestCancelWorkflowExecution,
@@ -2524,6 +2548,7 @@ const opRespondActivityTaskCanceled = "RespondActivityTaskCanceled"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCanceledInput) (req *request.Request, output *RespondActivityTaskCanceledOutput) {
 	op := &request.Operation{
 		Name:       opRespondActivityTaskCanceled,
@@ -2624,6 +2649,7 @@ const opRespondActivityTaskCompleted = "RespondActivityTaskCompleted"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskCompletedInput) (req *request.Request, output *RespondActivityTaskCompletedOutput) {
 	op := &request.Operation{
 		Name:       opRespondActivityTaskCompleted,
@@ -2723,6 +2749,7 @@ const opRespondActivityTaskFailed = "RespondActivityTaskFailed"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedInput) (req *request.Request, output *RespondActivityTaskFailedOutput) {
 	op := &request.Operation{
 		Name:       opRespondActivityTaskFailed,
@@ -2819,6 +2846,7 @@ const opRespondDecisionTaskCompleted = "RespondDecisionTaskCompleted"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskCompletedInput) (req *request.Request, output *RespondDecisionTaskCompletedOutput) {
 	op := &request.Operation{
 		Name:       opRespondDecisionTaskCompleted,
@@ -2905,6 +2933,7 @@ const opSignalWorkflowExecution = "SignalWorkflowExecution"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput) (req *request.Request, output *SignalWorkflowExecutionOutput) {
 	op := &request.Operation{
 		Name:       opSignalWorkflowExecution,
@@ -2998,6 +3027,7 @@ const opStartWorkflowExecution = "StartWorkflowExecution"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) (req *request.Request, output *StartWorkflowExecutionOutput) {
 	op := &request.Operation{
 		Name:       opStartWorkflowExecution,
@@ -3111,6 +3141,7 @@ const opTerminateWorkflowExecution = "TerminateWorkflowExecution"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutionInput) (req *request.Request, output *TerminateWorkflowExecutionOutput) {
 	op := &request.Operation{
 		Name:       opTerminateWorkflowExecution,

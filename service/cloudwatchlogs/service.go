@@ -41,9 +41,8 @@ import (
 //    The CloudWatch Logs agent makes it easy to quickly send both rotated and
 //    non-rotated log data off of a host and into the log service. You can then
 //    access the raw log data when you need it.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28
 type CloudWatchLogs struct {
 	*client.Client
 }

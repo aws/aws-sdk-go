@@ -37,7 +37,6 @@ const opCreateTags = "CreateTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTags
 func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, output *CreateTagsOutput) {
 	op := &request.Operation{
 		Name:       opCreateTags,
@@ -87,7 +86,6 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTags
 func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
@@ -120,7 +118,6 @@ const opDeleteTags = "DeleteTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTags
 func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
 	op := &request.Operation{
 		Name:       opDeleteTags,
@@ -169,7 +166,6 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTags
 func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
@@ -202,7 +198,6 @@ const opDescribeAgents = "DescribeAgents"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents
 func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgentsInput) (req *request.Request, output *DescribeAgentsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAgents,
@@ -247,7 +242,6 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents
 func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput) (*DescribeAgentsOutput, error) {
 	req, out := c.DescribeAgentsRequest(input)
 	err := req.Send()
@@ -280,7 +274,6 @@ const opDescribeConfigurations = "DescribeConfigurations"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurations
 func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *DescribeConfigurationsInput) (req *request.Request, output *DescribeConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeConfigurations,
@@ -327,7 +320,6 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurations
 func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConfigurationsInput) (*DescribeConfigurationsOutput, error) {
 	req, out := c.DescribeConfigurationsRequest(input)
 	err := req.Send()
@@ -360,7 +352,6 @@ const opDescribeExportConfigurations = "DescribeExportConfigurations"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input *DescribeExportConfigurationsInput) (req *request.Request, output *DescribeExportConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeExportConfigurations,
@@ -409,7 +400,6 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 func (c *ApplicationDiscoveryService) DescribeExportConfigurations(input *DescribeExportConfigurationsInput) (*DescribeExportConfigurationsOutput, error) {
 	req, out := c.DescribeExportConfigurationsRequest(input)
 	err := req.Send()
@@ -442,7 +432,6 @@ const opDescribeTags = "DescribeTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTags
 func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTags,
@@ -491,7 +480,6 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTags
 func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -524,7 +512,6 @@ const opExportConfigurations = "ExportConfigurations"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportConfigurationsInput) (req *request.Request, output *ExportConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opExportConfigurations,
@@ -575,7 +562,6 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 //   * OperationNotPermittedException
 //   This operation is not permitted.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 func (c *ApplicationDiscoveryService) ExportConfigurations(input *ExportConfigurationsInput) (*ExportConfigurationsOutput, error) {
 	req, out := c.ExportConfigurationsRequest(input)
 	err := req.Send()
@@ -608,7 +594,6 @@ const opListConfigurations = "ListConfigurations"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurations
 func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfigurationsInput) (req *request.Request, output *ListConfigurationsOutput) {
 	op := &request.Operation{
 		Name:       opListConfigurations,
@@ -657,7 +642,6 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurations
 func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsOutput, error) {
 	req, out := c.ListConfigurationsRequest(input)
 	err := req.Send()
@@ -690,7 +674,6 @@ const opStartDataCollectionByAgentIds = "StartDataCollectionByAgentIds"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input *StartDataCollectionByAgentIdsInput) (req *request.Request, output *StartDataCollectionByAgentIdsOutput) {
 	op := &request.Operation{
 		Name:       opStartDataCollectionByAgentIds,
@@ -735,7 +718,6 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *StartDataCollectionByAgentIdsInput) (*StartDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StartDataCollectionByAgentIdsRequest(input)
 	err := req.Send()
@@ -768,7 +750,6 @@ const opStopDataCollectionByAgentIds = "StopDataCollectionByAgentIds"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input *StopDataCollectionByAgentIdsInput) (req *request.Request, output *StopDataCollectionByAgentIdsOutput) {
 	op := &request.Operation{
 		Name:       opStopDataCollectionByAgentIds,
@@ -812,7 +793,6 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 //   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDataCollectionByAgentIdsInput) (*StopDataCollectionByAgentIdsOutput, error) {
 	req, out := c.StopDataCollectionByAgentIdsRequest(input)
 	err := req.Send()
@@ -822,7 +802,6 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDa
 // Information about agents that were instructed to start collecting data. Information
 // includes the agent ID, a description of the operation, and whether or not
 // the agent configuration was updated.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AgentConfigurationStatus
 type AgentConfigurationStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -869,7 +848,6 @@ func (s *AgentConfigurationStatus) SetOperationSucceeded(v bool) *AgentConfigura
 // Information about agents associated with the user’s AWS account. Information
 // includes agent IDs, IP addresses, media access control (MAC) addresses, agent
 // health, hostname where the agent resides, and agent version for each agent.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AgentInfo
 type AgentInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -940,7 +918,6 @@ func (s *AgentInfo) SetVersion(v string) *AgentInfo {
 }
 
 // Network details about the host where the agent resides.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AgentNetworkInfo
 type AgentNetworkInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -975,7 +952,6 @@ func (s *AgentNetworkInfo) SetMacAddress(v string) *AgentNetworkInfo {
 
 // Tags for a configuration item. Tags are metadata that help you categorize
 // IT assets.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ConfigurationTag
 type ConfigurationTag struct {
 	_ struct{} `type:"structure"`
 
@@ -1037,7 +1013,6 @@ func (s *ConfigurationTag) SetValue(v string) *ConfigurationTag {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTagsRequest
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1103,7 +1078,6 @@ func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTagsResponse
 type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1118,7 +1092,6 @@ func (s CreateTagsOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTagsRequest
 type DeleteTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1179,7 +1152,6 @@ func (s *DeleteTagsInput) SetTags(v []*Tag) *DeleteTagsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTagsResponse
 type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1194,7 +1166,6 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgentsRequest
 type DescribeAgentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1238,7 +1209,6 @@ func (s *DescribeAgentsInput) SetNextToken(v string) *DescribeAgentsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgentsResponse
 type DescribeAgentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1274,7 +1244,6 @@ func (s *DescribeAgentsOutput) SetNextToken(v string) *DescribeAgentsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurationsRequest
 type DescribeConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1313,7 +1282,6 @@ func (s *DescribeConfigurationsInput) SetConfigurationIds(v []*string) *Describe
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurationsResponse
 type DescribeConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1337,7 +1305,6 @@ func (s *DescribeConfigurationsOutput) SetConfigurations(v []map[string]*string)
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurationsRequest
 type DescribeExportConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1382,7 +1349,6 @@ func (s *DescribeExportConfigurationsInput) SetNextToken(v string) *DescribeExpo
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurationsResponse
 type DescribeExportConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1419,7 +1385,6 @@ func (s *DescribeExportConfigurationsOutput) SetNextToken(v string) *DescribeExp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTagsRequest
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1483,7 +1448,6 @@ func (s *DescribeTagsInput) SetNextToken(v string) *DescribeTagsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTagsResponse
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1517,7 +1481,6 @@ func (s *DescribeTagsOutput) SetTags(v []*ConfigurationTag) *DescribeTagsOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurationsInput
 type ExportConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1532,7 +1495,6 @@ func (s ExportConfigurationsInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurationsResponse
 type ExportConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1558,7 +1520,6 @@ func (s *ExportConfigurationsOutput) SetExportId(v string) *ExportConfigurations
 
 // Information regarding the export status of the discovered data. The value
 // is an array of objects.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportInfo
 type ExportInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -1630,7 +1591,6 @@ func (s *ExportInfo) SetStatusMessage(v string) *ExportInfo {
 }
 
 // A filter that can use conditional operators.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/Filter
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -1781,7 +1741,6 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurationsRequest
 type ListConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1861,7 +1820,6 @@ func (s *ListConfigurationsInput) SetNextToken(v string) *ListConfigurationsInpu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurationsResponse
 type ListConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1895,7 +1853,6 @@ func (s *ListConfigurationsOutput) SetNextToken(v string) *ListConfigurationsOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIdsRequest
 type StartDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1940,7 +1897,6 @@ func (s *StartDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StartData
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIdsResponse
 type StartDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1966,7 +1922,6 @@ func (s *StartDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIdsRequest
 type StopDataCollectionByAgentIdsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2005,7 +1960,6 @@ func (s *StopDataCollectionByAgentIdsInput) SetAgentIds(v []*string) *StopDataCo
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIdsResponse
 type StopDataCollectionByAgentIdsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2032,7 +1986,6 @@ func (s *StopDataCollectionByAgentIdsOutput) SetAgentsConfigurationStatus(v []*A
 }
 
 // Metadata that help you categorize IT assets.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -2086,7 +2039,6 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // The name of a tag filter. Valid names are: tagKey, tagValue, configurationId.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/TagFilter
 type TagFilter struct {
 	_ struct{} `type:"structure"`
 

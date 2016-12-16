@@ -36,7 +36,6 @@ const opAllocateStaticIp = "AllocateStaticIp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AllocateStaticIp
 func (c *Lightsail) AllocateStaticIpRequest(input *AllocateStaticIpInput) (req *request.Request, output *AllocateStaticIpOutput) {
 	op := &request.Operation{
 		Name:       opAllocateStaticIp,
@@ -90,7 +89,6 @@ func (c *Lightsail) AllocateStaticIpRequest(input *AllocateStaticIpInput) (req *
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AllocateStaticIp
 func (c *Lightsail) AllocateStaticIp(input *AllocateStaticIpInput) (*AllocateStaticIpOutput, error) {
 	req, out := c.AllocateStaticIpRequest(input)
 	err := req.Send()
@@ -123,7 +121,6 @@ const opAttachStaticIp = "AttachStaticIp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachStaticIp
 func (c *Lightsail) AttachStaticIpRequest(input *AttachStaticIpInput) (req *request.Request, output *AttachStaticIpOutput) {
 	op := &request.Operation{
 		Name:       opAttachStaticIp,
@@ -177,7 +174,6 @@ func (c *Lightsail) AttachStaticIpRequest(input *AttachStaticIpInput) (req *requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachStaticIp
 func (c *Lightsail) AttachStaticIp(input *AttachStaticIpInput) (*AttachStaticIpOutput, error) {
 	req, out := c.AttachStaticIpRequest(input)
 	err := req.Send()
@@ -210,7 +206,6 @@ const opCloseInstancePublicPorts = "CloseInstancePublicPorts"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CloseInstancePublicPorts
 func (c *Lightsail) CloseInstancePublicPortsRequest(input *CloseInstancePublicPortsInput) (req *request.Request, output *CloseInstancePublicPortsOutput) {
 	op := &request.Operation{
 		Name:       opCloseInstancePublicPorts,
@@ -264,7 +259,6 @@ func (c *Lightsail) CloseInstancePublicPortsRequest(input *CloseInstancePublicPo
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CloseInstancePublicPorts
 func (c *Lightsail) CloseInstancePublicPorts(input *CloseInstancePublicPortsInput) (*CloseInstancePublicPortsOutput, error) {
 	req, out := c.CloseInstancePublicPortsRequest(input)
 	err := req.Send()
@@ -297,7 +291,6 @@ const opCreateDomain = "CreateDomain"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomain
 func (c *Lightsail) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
 	op := &request.Operation{
 		Name:       opCreateDomain,
@@ -351,7 +344,6 @@ func (c *Lightsail) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomain
 func (c *Lightsail) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
 	err := req.Send()
@@ -384,7 +376,6 @@ const opCreateDomainEntry = "CreateDomainEntry"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomainEntry
 func (c *Lightsail) CreateDomainEntryRequest(input *CreateDomainEntryInput) (req *request.Request, output *CreateDomainEntryOutput) {
 	op := &request.Operation{
 		Name:       opCreateDomainEntry,
@@ -439,7 +430,6 @@ func (c *Lightsail) CreateDomainEntryRequest(input *CreateDomainEntryInput) (req
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomainEntry
 func (c *Lightsail) CreateDomainEntry(input *CreateDomainEntryInput) (*CreateDomainEntryOutput, error) {
 	req, out := c.CreateDomainEntryRequest(input)
 	err := req.Send()
@@ -472,7 +462,6 @@ const opCreateInstanceSnapshot = "CreateInstanceSnapshot"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstanceSnapshot
 func (c *Lightsail) CreateInstanceSnapshotRequest(input *CreateInstanceSnapshotInput) (req *request.Request, output *CreateInstanceSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCreateInstanceSnapshot,
@@ -527,7 +516,6 @@ func (c *Lightsail) CreateInstanceSnapshotRequest(input *CreateInstanceSnapshotI
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstanceSnapshot
 func (c *Lightsail) CreateInstanceSnapshot(input *CreateInstanceSnapshotInput) (*CreateInstanceSnapshotOutput, error) {
 	req, out := c.CreateInstanceSnapshotRequest(input)
 	err := req.Send()
@@ -560,7 +548,6 @@ const opCreateInstances = "CreateInstances"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstances
 func (c *Lightsail) CreateInstancesRequest(input *CreateInstancesInput) (req *request.Request, output *CreateInstancesOutput) {
 	op := &request.Operation{
 		Name:       opCreateInstances,
@@ -614,7 +601,6 @@ func (c *Lightsail) CreateInstancesRequest(input *CreateInstancesInput) (req *re
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstances
 func (c *Lightsail) CreateInstances(input *CreateInstancesInput) (*CreateInstancesOutput, error) {
 	req, out := c.CreateInstancesRequest(input)
 	err := req.Send()
@@ -647,7 +633,6 @@ const opCreateInstancesFromSnapshot = "CreateInstancesFromSnapshot"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstancesFromSnapshot
 func (c *Lightsail) CreateInstancesFromSnapshotRequest(input *CreateInstancesFromSnapshotInput) (req *request.Request, output *CreateInstancesFromSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opCreateInstancesFromSnapshot,
@@ -702,7 +687,6 @@ func (c *Lightsail) CreateInstancesFromSnapshotRequest(input *CreateInstancesFro
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstancesFromSnapshot
 func (c *Lightsail) CreateInstancesFromSnapshot(input *CreateInstancesFromSnapshotInput) (*CreateInstancesFromSnapshotOutput, error) {
 	req, out := c.CreateInstancesFromSnapshotRequest(input)
 	err := req.Send()
@@ -735,7 +719,6 @@ const opCreateKeyPair = "CreateKeyPair"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPair
 func (c *Lightsail) CreateKeyPairRequest(input *CreateKeyPairInput) (req *request.Request, output *CreateKeyPairOutput) {
 	op := &request.Operation{
 		Name:       opCreateKeyPair,
@@ -789,7 +772,6 @@ func (c *Lightsail) CreateKeyPairRequest(input *CreateKeyPairInput) (req *reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPair
 func (c *Lightsail) CreateKeyPair(input *CreateKeyPairInput) (*CreateKeyPairOutput, error) {
 	req, out := c.CreateKeyPairRequest(input)
 	err := req.Send()
@@ -822,7 +804,6 @@ const opDeleteDomain = "DeleteDomain"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomain
 func (c *Lightsail) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDomain,
@@ -876,7 +857,6 @@ func (c *Lightsail) DeleteDomainRequest(input *DeleteDomainInput) (req *request.
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomain
 func (c *Lightsail) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, error) {
 	req, out := c.DeleteDomainRequest(input)
 	err := req.Send()
@@ -909,7 +889,6 @@ const opDeleteDomainEntry = "DeleteDomainEntry"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomainEntry
 func (c *Lightsail) DeleteDomainEntryRequest(input *DeleteDomainEntryInput) (req *request.Request, output *DeleteDomainEntryOutput) {
 	op := &request.Operation{
 		Name:       opDeleteDomainEntry,
@@ -963,7 +942,6 @@ func (c *Lightsail) DeleteDomainEntryRequest(input *DeleteDomainEntryInput) (req
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomainEntry
 func (c *Lightsail) DeleteDomainEntry(input *DeleteDomainEntryInput) (*DeleteDomainEntryOutput, error) {
 	req, out := c.DeleteDomainEntryRequest(input)
 	err := req.Send()
@@ -996,7 +974,6 @@ const opDeleteInstance = "DeleteInstance"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstance
 func (c *Lightsail) DeleteInstanceRequest(input *DeleteInstanceInput) (req *request.Request, output *DeleteInstanceOutput) {
 	op := &request.Operation{
 		Name:       opDeleteInstance,
@@ -1050,7 +1027,6 @@ func (c *Lightsail) DeleteInstanceRequest(input *DeleteInstanceInput) (req *requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstance
 func (c *Lightsail) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOutput, error) {
 	req, out := c.DeleteInstanceRequest(input)
 	err := req.Send()
@@ -1083,7 +1059,6 @@ const opDeleteInstanceSnapshot = "DeleteInstanceSnapshot"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstanceSnapshot
 func (c *Lightsail) DeleteInstanceSnapshotRequest(input *DeleteInstanceSnapshotInput) (req *request.Request, output *DeleteInstanceSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opDeleteInstanceSnapshot,
@@ -1137,7 +1112,6 @@ func (c *Lightsail) DeleteInstanceSnapshotRequest(input *DeleteInstanceSnapshotI
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstanceSnapshot
 func (c *Lightsail) DeleteInstanceSnapshot(input *DeleteInstanceSnapshotInput) (*DeleteInstanceSnapshotOutput, error) {
 	req, out := c.DeleteInstanceSnapshotRequest(input)
 	err := req.Send()
@@ -1170,7 +1144,6 @@ const opDeleteKeyPair = "DeleteKeyPair"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteKeyPair
 func (c *Lightsail) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *request.Request, output *DeleteKeyPairOutput) {
 	op := &request.Operation{
 		Name:       opDeleteKeyPair,
@@ -1224,7 +1197,6 @@ func (c *Lightsail) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteKeyPair
 func (c *Lightsail) DeleteKeyPair(input *DeleteKeyPairInput) (*DeleteKeyPairOutput, error) {
 	req, out := c.DeleteKeyPairRequest(input)
 	err := req.Send()
@@ -1257,7 +1229,6 @@ const opDetachStaticIp = "DetachStaticIp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachStaticIp
 func (c *Lightsail) DetachStaticIpRequest(input *DetachStaticIpInput) (req *request.Request, output *DetachStaticIpOutput) {
 	op := &request.Operation{
 		Name:       opDetachStaticIp,
@@ -1311,7 +1282,6 @@ func (c *Lightsail) DetachStaticIpRequest(input *DetachStaticIpInput) (req *requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachStaticIp
 func (c *Lightsail) DetachStaticIp(input *DetachStaticIpInput) (*DetachStaticIpOutput, error) {
 	req, out := c.DetachStaticIpRequest(input)
 	err := req.Send()
@@ -1344,7 +1314,6 @@ const opDownloadDefaultKeyPair = "DownloadDefaultKeyPair"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DownloadDefaultKeyPair
 func (c *Lightsail) DownloadDefaultKeyPairRequest(input *DownloadDefaultKeyPairInput) (req *request.Request, output *DownloadDefaultKeyPairOutput) {
 	op := &request.Operation{
 		Name:       opDownloadDefaultKeyPair,
@@ -1398,7 +1367,6 @@ func (c *Lightsail) DownloadDefaultKeyPairRequest(input *DownloadDefaultKeyPairI
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DownloadDefaultKeyPair
 func (c *Lightsail) DownloadDefaultKeyPair(input *DownloadDefaultKeyPairInput) (*DownloadDefaultKeyPairOutput, error) {
 	req, out := c.DownloadDefaultKeyPairRequest(input)
 	err := req.Send()
@@ -1431,7 +1399,6 @@ const opGetActiveNames = "GetActiveNames"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetActiveNames
 func (c *Lightsail) GetActiveNamesRequest(input *GetActiveNamesInput) (req *request.Request, output *GetActiveNamesOutput) {
 	op := &request.Operation{
 		Name:       opGetActiveNames,
@@ -1485,7 +1452,6 @@ func (c *Lightsail) GetActiveNamesRequest(input *GetActiveNamesInput) (req *requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetActiveNames
 func (c *Lightsail) GetActiveNames(input *GetActiveNamesInput) (*GetActiveNamesOutput, error) {
 	req, out := c.GetActiveNamesRequest(input)
 	err := req.Send()
@@ -1518,7 +1484,6 @@ const opGetBlueprints = "GetBlueprints"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBlueprints
 func (c *Lightsail) GetBlueprintsRequest(input *GetBlueprintsInput) (req *request.Request, output *GetBlueprintsOutput) {
 	op := &request.Operation{
 		Name:       opGetBlueprints,
@@ -1575,7 +1540,6 @@ func (c *Lightsail) GetBlueprintsRequest(input *GetBlueprintsInput) (req *reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBlueprints
 func (c *Lightsail) GetBlueprints(input *GetBlueprintsInput) (*GetBlueprintsOutput, error) {
 	req, out := c.GetBlueprintsRequest(input)
 	err := req.Send()
@@ -1608,7 +1572,6 @@ const opGetBundles = "GetBundles"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBundles
 func (c *Lightsail) GetBundlesRequest(input *GetBundlesInput) (req *request.Request, output *GetBundlesOutput) {
 	op := &request.Operation{
 		Name:       opGetBundles,
@@ -1663,7 +1626,6 @@ func (c *Lightsail) GetBundlesRequest(input *GetBundlesInput) (req *request.Requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBundles
 func (c *Lightsail) GetBundles(input *GetBundlesInput) (*GetBundlesOutput, error) {
 	req, out := c.GetBundlesRequest(input)
 	err := req.Send()
@@ -1696,7 +1658,6 @@ const opGetDomain = "GetDomain"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomain
 func (c *Lightsail) GetDomainRequest(input *GetDomainInput) (req *request.Request, output *GetDomainOutput) {
 	op := &request.Operation{
 		Name:       opGetDomain,
@@ -1750,7 +1711,6 @@ func (c *Lightsail) GetDomainRequest(input *GetDomainInput) (req *request.Reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomain
 func (c *Lightsail) GetDomain(input *GetDomainInput) (*GetDomainOutput, error) {
 	req, out := c.GetDomainRequest(input)
 	err := req.Send()
@@ -1783,7 +1743,6 @@ const opGetDomains = "GetDomains"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomains
 func (c *Lightsail) GetDomainsRequest(input *GetDomainsInput) (req *request.Request, output *GetDomainsOutput) {
 	op := &request.Operation{
 		Name:       opGetDomains,
@@ -1837,7 +1796,6 @@ func (c *Lightsail) GetDomainsRequest(input *GetDomainsInput) (req *request.Requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomains
 func (c *Lightsail) GetDomains(input *GetDomainsInput) (*GetDomainsOutput, error) {
 	req, out := c.GetDomainsRequest(input)
 	err := req.Send()
@@ -1870,7 +1828,6 @@ const opGetInstance = "GetInstance"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstance
 func (c *Lightsail) GetInstanceRequest(input *GetInstanceInput) (req *request.Request, output *GetInstanceOutput) {
 	op := &request.Operation{
 		Name:       opGetInstance,
@@ -1925,7 +1882,6 @@ func (c *Lightsail) GetInstanceRequest(input *GetInstanceInput) (req *request.Re
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstance
 func (c *Lightsail) GetInstance(input *GetInstanceInput) (*GetInstanceOutput, error) {
 	req, out := c.GetInstanceRequest(input)
 	err := req.Send()
@@ -1958,7 +1914,6 @@ const opGetInstanceAccessDetails = "GetInstanceAccessDetails"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceAccessDetails
 func (c *Lightsail) GetInstanceAccessDetailsRequest(input *GetInstanceAccessDetailsInput) (req *request.Request, output *GetInstanceAccessDetailsOutput) {
 	op := &request.Operation{
 		Name:       opGetInstanceAccessDetails,
@@ -2013,7 +1968,6 @@ func (c *Lightsail) GetInstanceAccessDetailsRequest(input *GetInstanceAccessDeta
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceAccessDetails
 func (c *Lightsail) GetInstanceAccessDetails(input *GetInstanceAccessDetailsInput) (*GetInstanceAccessDetailsOutput, error) {
 	req, out := c.GetInstanceAccessDetailsRequest(input)
 	err := req.Send()
@@ -2046,7 +2000,6 @@ const opGetInstanceMetricData = "GetInstanceMetricData"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceMetricData
 func (c *Lightsail) GetInstanceMetricDataRequest(input *GetInstanceMetricDataInput) (req *request.Request, output *GetInstanceMetricDataOutput) {
 	op := &request.Operation{
 		Name:       opGetInstanceMetricData,
@@ -2101,7 +2054,6 @@ func (c *Lightsail) GetInstanceMetricDataRequest(input *GetInstanceMetricDataInp
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceMetricData
 func (c *Lightsail) GetInstanceMetricData(input *GetInstanceMetricDataInput) (*GetInstanceMetricDataOutput, error) {
 	req, out := c.GetInstanceMetricDataRequest(input)
 	err := req.Send()
@@ -2134,7 +2086,6 @@ const opGetInstancePortStates = "GetInstancePortStates"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstancePortStates
 func (c *Lightsail) GetInstancePortStatesRequest(input *GetInstancePortStatesInput) (req *request.Request, output *GetInstancePortStatesOutput) {
 	op := &request.Operation{
 		Name:       opGetInstancePortStates,
@@ -2188,7 +2139,6 @@ func (c *Lightsail) GetInstancePortStatesRequest(input *GetInstancePortStatesInp
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstancePortStates
 func (c *Lightsail) GetInstancePortStates(input *GetInstancePortStatesInput) (*GetInstancePortStatesOutput, error) {
 	req, out := c.GetInstancePortStatesRequest(input)
 	err := req.Send()
@@ -2221,7 +2171,6 @@ const opGetInstanceSnapshot = "GetInstanceSnapshot"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshot
 func (c *Lightsail) GetInstanceSnapshotRequest(input *GetInstanceSnapshotInput) (req *request.Request, output *GetInstanceSnapshotOutput) {
 	op := &request.Operation{
 		Name:       opGetInstanceSnapshot,
@@ -2275,7 +2224,6 @@ func (c *Lightsail) GetInstanceSnapshotRequest(input *GetInstanceSnapshotInput) 
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshot
 func (c *Lightsail) GetInstanceSnapshot(input *GetInstanceSnapshotInput) (*GetInstanceSnapshotOutput, error) {
 	req, out := c.GetInstanceSnapshotRequest(input)
 	err := req.Send()
@@ -2308,7 +2256,6 @@ const opGetInstanceSnapshots = "GetInstanceSnapshots"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshots
 func (c *Lightsail) GetInstanceSnapshotsRequest(input *GetInstanceSnapshotsInput) (req *request.Request, output *GetInstanceSnapshotsOutput) {
 	op := &request.Operation{
 		Name:       opGetInstanceSnapshots,
@@ -2362,7 +2309,6 @@ func (c *Lightsail) GetInstanceSnapshotsRequest(input *GetInstanceSnapshotsInput
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshots
 func (c *Lightsail) GetInstanceSnapshots(input *GetInstanceSnapshotsInput) (*GetInstanceSnapshotsOutput, error) {
 	req, out := c.GetInstanceSnapshotsRequest(input)
 	err := req.Send()
@@ -2395,7 +2341,6 @@ const opGetInstanceState = "GetInstanceState"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceState
 func (c *Lightsail) GetInstanceStateRequest(input *GetInstanceStateInput) (req *request.Request, output *GetInstanceStateOutput) {
 	op := &request.Operation{
 		Name:       opGetInstanceState,
@@ -2449,7 +2394,6 @@ func (c *Lightsail) GetInstanceStateRequest(input *GetInstanceStateInput) (req *
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceState
 func (c *Lightsail) GetInstanceState(input *GetInstanceStateInput) (*GetInstanceStateOutput, error) {
 	req, out := c.GetInstanceStateRequest(input)
 	err := req.Send()
@@ -2482,7 +2426,6 @@ const opGetInstances = "GetInstances"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstances
 func (c *Lightsail) GetInstancesRequest(input *GetInstancesInput) (req *request.Request, output *GetInstancesOutput) {
 	op := &request.Operation{
 		Name:       opGetInstances,
@@ -2537,7 +2480,6 @@ func (c *Lightsail) GetInstancesRequest(input *GetInstancesInput) (req *request.
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstances
 func (c *Lightsail) GetInstances(input *GetInstancesInput) (*GetInstancesOutput, error) {
 	req, out := c.GetInstancesRequest(input)
 	err := req.Send()
@@ -2570,7 +2512,6 @@ const opGetKeyPair = "GetKeyPair"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPair
 func (c *Lightsail) GetKeyPairRequest(input *GetKeyPairInput) (req *request.Request, output *GetKeyPairOutput) {
 	op := &request.Operation{
 		Name:       opGetKeyPair,
@@ -2624,7 +2565,6 @@ func (c *Lightsail) GetKeyPairRequest(input *GetKeyPairInput) (req *request.Requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPair
 func (c *Lightsail) GetKeyPair(input *GetKeyPairInput) (*GetKeyPairOutput, error) {
 	req, out := c.GetKeyPairRequest(input)
 	err := req.Send()
@@ -2657,7 +2597,6 @@ const opGetKeyPairs = "GetKeyPairs"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPairs
 func (c *Lightsail) GetKeyPairsRequest(input *GetKeyPairsInput) (req *request.Request, output *GetKeyPairsOutput) {
 	op := &request.Operation{
 		Name:       opGetKeyPairs,
@@ -2711,7 +2650,6 @@ func (c *Lightsail) GetKeyPairsRequest(input *GetKeyPairsInput) (req *request.Re
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPairs
 func (c *Lightsail) GetKeyPairs(input *GetKeyPairsInput) (*GetKeyPairsOutput, error) {
 	req, out := c.GetKeyPairsRequest(input)
 	err := req.Send()
@@ -2744,7 +2682,6 @@ const opGetOperation = "GetOperation"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperation
 func (c *Lightsail) GetOperationRequest(input *GetOperationInput) (req *request.Request, output *GetOperationOutput) {
 	op := &request.Operation{
 		Name:       opGetOperation,
@@ -2800,7 +2737,6 @@ func (c *Lightsail) GetOperationRequest(input *GetOperationInput) (req *request.
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperation
 func (c *Lightsail) GetOperation(input *GetOperationInput) (*GetOperationOutput, error) {
 	req, out := c.GetOperationRequest(input)
 	err := req.Send()
@@ -2833,7 +2769,6 @@ const opGetOperations = "GetOperations"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperations
 func (c *Lightsail) GetOperationsRequest(input *GetOperationsInput) (req *request.Request, output *GetOperationsOutput) {
 	op := &request.Operation{
 		Name:       opGetOperations,
@@ -2891,7 +2826,6 @@ func (c *Lightsail) GetOperationsRequest(input *GetOperationsInput) (req *reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperations
 func (c *Lightsail) GetOperations(input *GetOperationsInput) (*GetOperationsOutput, error) {
 	req, out := c.GetOperationsRequest(input)
 	err := req.Send()
@@ -2924,7 +2858,6 @@ const opGetOperationsForResource = "GetOperationsForResource"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationsForResource
 func (c *Lightsail) GetOperationsForResourceRequest(input *GetOperationsForResourceInput) (req *request.Request, output *GetOperationsForResourceOutput) {
 	op := &request.Operation{
 		Name:       opGetOperationsForResource,
@@ -2978,7 +2911,6 @@ func (c *Lightsail) GetOperationsForResourceRequest(input *GetOperationsForResou
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationsForResource
 func (c *Lightsail) GetOperationsForResource(input *GetOperationsForResourceInput) (*GetOperationsForResourceOutput, error) {
 	req, out := c.GetOperationsForResourceRequest(input)
 	err := req.Send()
@@ -3011,7 +2943,6 @@ const opGetRegions = "GetRegions"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions
 func (c *Lightsail) GetRegionsRequest(input *GetRegionsInput) (req *request.Request, output *GetRegionsOutput) {
 	op := &request.Operation{
 		Name:       opGetRegions,
@@ -3065,7 +2996,6 @@ func (c *Lightsail) GetRegionsRequest(input *GetRegionsInput) (req *request.Requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegions
 func (c *Lightsail) GetRegions(input *GetRegionsInput) (*GetRegionsOutput, error) {
 	req, out := c.GetRegionsRequest(input)
 	err := req.Send()
@@ -3098,7 +3028,6 @@ const opGetStaticIp = "GetStaticIp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIp
 func (c *Lightsail) GetStaticIpRequest(input *GetStaticIpInput) (req *request.Request, output *GetStaticIpOutput) {
 	op := &request.Operation{
 		Name:       opGetStaticIp,
@@ -3152,7 +3081,6 @@ func (c *Lightsail) GetStaticIpRequest(input *GetStaticIpInput) (req *request.Re
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIp
 func (c *Lightsail) GetStaticIp(input *GetStaticIpInput) (*GetStaticIpOutput, error) {
 	req, out := c.GetStaticIpRequest(input)
 	err := req.Send()
@@ -3185,7 +3113,6 @@ const opGetStaticIps = "GetStaticIps"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIps
 func (c *Lightsail) GetStaticIpsRequest(input *GetStaticIpsInput) (req *request.Request, output *GetStaticIpsOutput) {
 	op := &request.Operation{
 		Name:       opGetStaticIps,
@@ -3239,7 +3166,6 @@ func (c *Lightsail) GetStaticIpsRequest(input *GetStaticIpsInput) (req *request.
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIps
 func (c *Lightsail) GetStaticIps(input *GetStaticIpsInput) (*GetStaticIpsOutput, error) {
 	req, out := c.GetStaticIpsRequest(input)
 	err := req.Send()
@@ -3272,7 +3198,6 @@ const opImportKeyPair = "ImportKeyPair"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ImportKeyPair
 func (c *Lightsail) ImportKeyPairRequest(input *ImportKeyPairInput) (req *request.Request, output *ImportKeyPairOutput) {
 	op := &request.Operation{
 		Name:       opImportKeyPair,
@@ -3326,7 +3251,6 @@ func (c *Lightsail) ImportKeyPairRequest(input *ImportKeyPairInput) (req *reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ImportKeyPair
 func (c *Lightsail) ImportKeyPair(input *ImportKeyPairInput) (*ImportKeyPairOutput, error) {
 	req, out := c.ImportKeyPairRequest(input)
 	err := req.Send()
@@ -3359,7 +3283,6 @@ const opIsVpcPeered = "IsVpcPeered"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/IsVpcPeered
 func (c *Lightsail) IsVpcPeeredRequest(input *IsVpcPeeredInput) (req *request.Request, output *IsVpcPeeredOutput) {
 	op := &request.Operation{
 		Name:       opIsVpcPeered,
@@ -3413,7 +3336,6 @@ func (c *Lightsail) IsVpcPeeredRequest(input *IsVpcPeeredInput) (req *request.Re
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/IsVpcPeered
 func (c *Lightsail) IsVpcPeered(input *IsVpcPeeredInput) (*IsVpcPeeredOutput, error) {
 	req, out := c.IsVpcPeeredRequest(input)
 	err := req.Send()
@@ -3446,7 +3368,6 @@ const opOpenInstancePublicPorts = "OpenInstancePublicPorts"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/OpenInstancePublicPorts
 func (c *Lightsail) OpenInstancePublicPortsRequest(input *OpenInstancePublicPortsInput) (req *request.Request, output *OpenInstancePublicPortsOutput) {
 	op := &request.Operation{
 		Name:       opOpenInstancePublicPorts,
@@ -3500,7 +3421,6 @@ func (c *Lightsail) OpenInstancePublicPortsRequest(input *OpenInstancePublicPort
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/OpenInstancePublicPorts
 func (c *Lightsail) OpenInstancePublicPorts(input *OpenInstancePublicPortsInput) (*OpenInstancePublicPortsOutput, error) {
 	req, out := c.OpenInstancePublicPortsRequest(input)
 	err := req.Send()
@@ -3533,7 +3453,6 @@ const opPeerVpc = "PeerVpc"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PeerVpc
 func (c *Lightsail) PeerVpcRequest(input *PeerVpcInput) (req *request.Request, output *PeerVpcOutput) {
 	op := &request.Operation{
 		Name:       opPeerVpc,
@@ -3587,7 +3506,6 @@ func (c *Lightsail) PeerVpcRequest(input *PeerVpcInput) (req *request.Request, o
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PeerVpc
 func (c *Lightsail) PeerVpc(input *PeerVpcInput) (*PeerVpcOutput, error) {
 	req, out := c.PeerVpcRequest(input)
 	err := req.Send()
@@ -3620,7 +3538,6 @@ const opRebootInstance = "RebootInstance"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootInstance
 func (c *Lightsail) RebootInstanceRequest(input *RebootInstanceInput) (req *request.Request, output *RebootInstanceOutput) {
 	op := &request.Operation{
 		Name:       opRebootInstance,
@@ -3677,7 +3594,6 @@ func (c *Lightsail) RebootInstanceRequest(input *RebootInstanceInput) (req *requ
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootInstance
 func (c *Lightsail) RebootInstance(input *RebootInstanceInput) (*RebootInstanceOutput, error) {
 	req, out := c.RebootInstanceRequest(input)
 	err := req.Send()
@@ -3710,7 +3626,6 @@ const opReleaseStaticIp = "ReleaseStaticIp"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ReleaseStaticIp
 func (c *Lightsail) ReleaseStaticIpRequest(input *ReleaseStaticIpInput) (req *request.Request, output *ReleaseStaticIpOutput) {
 	op := &request.Operation{
 		Name:       opReleaseStaticIp,
@@ -3764,7 +3679,6 @@ func (c *Lightsail) ReleaseStaticIpRequest(input *ReleaseStaticIpInput) (req *re
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ReleaseStaticIp
 func (c *Lightsail) ReleaseStaticIp(input *ReleaseStaticIpInput) (*ReleaseStaticIpOutput, error) {
 	req, out := c.ReleaseStaticIpRequest(input)
 	err := req.Send()
@@ -3797,7 +3711,6 @@ const opStartInstance = "StartInstance"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartInstance
 func (c *Lightsail) StartInstanceRequest(input *StartInstanceInput) (req *request.Request, output *StartInstanceOutput) {
 	op := &request.Operation{
 		Name:       opStartInstance,
@@ -3852,7 +3765,6 @@ func (c *Lightsail) StartInstanceRequest(input *StartInstanceInput) (req *reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartInstance
 func (c *Lightsail) StartInstance(input *StartInstanceInput) (*StartInstanceOutput, error) {
 	req, out := c.StartInstanceRequest(input)
 	err := req.Send()
@@ -3885,7 +3797,6 @@ const opStopInstance = "StopInstance"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopInstance
 func (c *Lightsail) StopInstanceRequest(input *StopInstanceInput) (req *request.Request, output *StopInstanceOutput) {
 	op := &request.Operation{
 		Name:       opStopInstance,
@@ -3939,7 +3850,6 @@ func (c *Lightsail) StopInstanceRequest(input *StopInstanceInput) (req *request.
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopInstance
 func (c *Lightsail) StopInstance(input *StopInstanceInput) (*StopInstanceOutput, error) {
 	req, out := c.StopInstanceRequest(input)
 	err := req.Send()
@@ -3972,7 +3882,6 @@ const opUnpeerVpc = "UnpeerVpc"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UnpeerVpc
 func (c *Lightsail) UnpeerVpcRequest(input *UnpeerVpcInput) (req *request.Request, output *UnpeerVpcOutput) {
 	op := &request.Operation{
 		Name:       opUnpeerVpc,
@@ -4026,7 +3935,6 @@ func (c *Lightsail) UnpeerVpcRequest(input *UnpeerVpcInput) (req *request.Reques
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UnpeerVpc
 func (c *Lightsail) UnpeerVpc(input *UnpeerVpcInput) (*UnpeerVpcOutput, error) {
 	req, out := c.UnpeerVpcRequest(input)
 	err := req.Send()
@@ -4059,7 +3967,6 @@ const opUpdateDomainEntry = "UpdateDomainEntry"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateDomainEntry
 func (c *Lightsail) UpdateDomainEntryRequest(input *UpdateDomainEntryInput) (req *request.Request, output *UpdateDomainEntryOutput) {
 	op := &request.Operation{
 		Name:       opUpdateDomainEntry,
@@ -4113,14 +4020,12 @@ func (c *Lightsail) UpdateDomainEntryRequest(input *UpdateDomainEntryInput) (req
 //   * UnauthenticatedException
 //   Lightsail throws this exception when the user has not been authenticated.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateDomainEntry
 func (c *Lightsail) UpdateDomainEntry(input *UpdateDomainEntryInput) (*UpdateDomainEntryOutput, error) {
 	req, out := c.UpdateDomainEntryRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AllocateStaticIpRequest
 type AllocateStaticIpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4159,7 +4064,6 @@ func (s *AllocateStaticIpInput) SetStaticIpName(v string) *AllocateStaticIpInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AllocateStaticIpResult
 type AllocateStaticIpOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4184,7 +4088,6 @@ func (s *AllocateStaticIpOutput) SetOperations(v []*Operation) *AllocateStaticIp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachStaticIpRequest
 type AttachStaticIpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4237,7 +4140,6 @@ func (s *AttachStaticIpInput) SetStaticIpName(v string) *AttachStaticIpInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AttachStaticIpResult
 type AttachStaticIpOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4262,7 +4164,6 @@ func (s *AttachStaticIpOutput) SetOperations(v []*Operation) *AttachStaticIpOutp
 }
 
 // Describes an Availability Zone.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/AvailabilityZone
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -4296,7 +4197,6 @@ func (s *AvailabilityZone) SetZoneName(v string) *AvailabilityZone {
 }
 
 // Describes a blueprint (a virtual private server image).
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Blueprint
 type Blueprint struct {
 	_ struct{} `type:"structure"`
 
@@ -4416,7 +4316,6 @@ func (s *Blueprint) SetVersionCode(v string) *Blueprint {
 
 // Describes a bundle, which is a set of specs describing your virtual private
 // server (or instance).
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Bundle
 type Bundle struct {
 	_ struct{} `type:"structure"`
 
@@ -4521,7 +4420,6 @@ func (s *Bundle) SetTransferPerMonthInGb(v int64) *Bundle {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CloseInstancePublicPortsRequest
 type CloseInstancePublicPortsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4574,7 +4472,6 @@ func (s *CloseInstancePublicPortsInput) SetPortInfo(v *PortInfo) *CloseInstanceP
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CloseInstancePublicPortsResult
 type CloseInstancePublicPortsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4598,7 +4495,6 @@ func (s *CloseInstancePublicPortsOutput) SetOperation(v *Operation) *CloseInstan
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomainEntryRequest
 type CreateDomainEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4653,7 +4549,6 @@ func (s *CreateDomainEntryInput) SetDomainName(v string) *CreateDomainEntryInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomainEntryResult
 type CreateDomainEntryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4677,7 +4572,6 @@ func (s *CreateDomainEntryOutput) SetOperation(v *Operation) *CreateDomainEntryO
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomainRequest
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4721,7 +4615,6 @@ func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateDomainResult
 type CreateDomainOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4746,7 +4639,6 @@ func (s *CreateDomainOutput) SetOperation(v *Operation) *CreateDomainOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstanceSnapshotRequest
 type CreateInstanceSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4799,7 +4691,6 @@ func (s *CreateInstanceSnapshotInput) SetInstanceSnapshotName(v string) *CreateI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstanceSnapshotResult
 type CreateInstanceSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4824,7 +4715,6 @@ func (s *CreateInstanceSnapshotOutput) SetOperations(v []*Operation) *CreateInst
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstancesFromSnapshotRequest
 type CreateInstancesFromSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4933,7 +4823,6 @@ func (s *CreateInstancesFromSnapshotInput) SetUserData(v string) *CreateInstance
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstancesFromSnapshotResult
 type CreateInstancesFromSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4958,7 +4847,6 @@ func (s *CreateInstancesFromSnapshotOutput) SetOperations(v []*Operation) *Creat
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstancesRequest
 type CreateInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5077,7 +4965,6 @@ func (s *CreateInstancesInput) SetUserData(v string) *CreateInstancesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateInstancesResult
 type CreateInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5102,7 +4989,6 @@ func (s *CreateInstancesOutput) SetOperations(v []*Operation) *CreateInstancesOu
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPairRequest
 type CreateKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5141,7 +5027,6 @@ func (s *CreateKeyPairInput) SetKeyPairName(v string) *CreateKeyPairInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateKeyPairResult
 type CreateKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5194,7 +5079,6 @@ func (s *CreateKeyPairOutput) SetPublicKeyBase64(v string) *CreateKeyPairOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomainEntryRequest
 type DeleteDomainEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5247,7 +5131,6 @@ func (s *DeleteDomainEntryInput) SetDomainName(v string) *DeleteDomainEntryInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomainEntryResult
 type DeleteDomainEntryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5272,7 +5155,6 @@ func (s *DeleteDomainEntryOutput) SetOperation(v *Operation) *DeleteDomainEntryO
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomainRequest
 type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5311,7 +5193,6 @@ func (s *DeleteDomainInput) SetDomainName(v string) *DeleteDomainInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteDomainResult
 type DeleteDomainOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5336,7 +5217,6 @@ func (s *DeleteDomainOutput) SetOperation(v *Operation) *DeleteDomainOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstanceRequest
 type DeleteInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5375,7 +5255,6 @@ func (s *DeleteInstanceInput) SetInstanceName(v string) *DeleteInstanceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstanceResult
 type DeleteInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5400,7 +5279,6 @@ func (s *DeleteInstanceOutput) SetOperations(v []*Operation) *DeleteInstanceOutp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstanceSnapshotRequest
 type DeleteInstanceSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5439,7 +5317,6 @@ func (s *DeleteInstanceSnapshotInput) SetInstanceSnapshotName(v string) *DeleteI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteInstanceSnapshotResult
 type DeleteInstanceSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5464,7 +5341,6 @@ func (s *DeleteInstanceSnapshotOutput) SetOperations(v []*Operation) *DeleteInst
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteKeyPairRequest
 type DeleteKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5503,7 +5379,6 @@ func (s *DeleteKeyPairInput) SetKeyPairName(v string) *DeleteKeyPairInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteKeyPairResult
 type DeleteKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5528,7 +5403,6 @@ func (s *DeleteKeyPairOutput) SetOperation(v *Operation) *DeleteKeyPairOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachStaticIpRequest
 type DetachStaticIpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5567,7 +5441,6 @@ func (s *DetachStaticIpInput) SetStaticIpName(v string) *DetachStaticIpInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DetachStaticIpResult
 type DetachStaticIpOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5593,7 +5466,6 @@ func (s *DetachStaticIpOutput) SetOperations(v []*Operation) *DetachStaticIpOutp
 }
 
 // Describes the hard disk (an SSD).
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Disk
 type Disk struct {
 	_ struct{} `type:"structure"`
 
@@ -5738,7 +5610,6 @@ func (s *Disk) SetSupportCode(v string) *Disk {
 }
 
 // Describes a domain where you are storing recordsets in Lightsail.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Domain
 type Domain struct {
 	_ struct{} `type:"structure"`
 
@@ -5819,7 +5690,6 @@ func (s *Domain) SetSupportCode(v string) *Domain {
 }
 
 // Describes a domain recordset entry.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DomainEntry
 type DomainEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -5879,7 +5749,6 @@ func (s *DomainEntry) SetType(v string) *DomainEntry {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DownloadDefaultKeyPairRequest
 type DownloadDefaultKeyPairInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5894,7 +5763,6 @@ func (s DownloadDefaultKeyPairInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DownloadDefaultKeyPairResult
 type DownloadDefaultKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5927,7 +5795,6 @@ func (s *DownloadDefaultKeyPairOutput) SetPublicKeyBase64(v string) *DownloadDef
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetActiveNamesRequest
 type GetActiveNamesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5951,7 +5818,6 @@ func (s *GetActiveNamesInput) SetPageToken(v string) *GetActiveNamesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetActiveNamesResult
 type GetActiveNamesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5985,7 +5851,6 @@ func (s *GetActiveNamesOutput) SetNextPageToken(v string) *GetActiveNamesOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBlueprintsRequest
 type GetBlueprintsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6019,7 +5884,6 @@ func (s *GetBlueprintsInput) SetPageToken(v string) *GetBlueprintsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBlueprintsResult
 type GetBlueprintsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6054,7 +5918,6 @@ func (s *GetBlueprintsOutput) SetNextPageToken(v string) *GetBlueprintsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBundlesRequest
 type GetBundlesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6089,7 +5952,6 @@ func (s *GetBundlesInput) SetPageToken(v string) *GetBundlesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetBundlesResult
 type GetBundlesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6124,7 +5986,6 @@ func (s *GetBundlesOutput) SetNextPageToken(v string) *GetBundlesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomainRequest
 type GetDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6163,7 +6024,6 @@ func (s *GetDomainInput) SetDomainName(v string) *GetDomainInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomainResult
 type GetDomainOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6188,7 +6048,6 @@ func (s *GetDomainOutput) SetDomain(v *Domain) *GetDomainOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomainsRequest
 type GetDomainsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6213,7 +6072,6 @@ func (s *GetDomainsInput) SetPageToken(v string) *GetDomainsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetDomainsResult
 type GetDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6248,7 +6106,6 @@ func (s *GetDomainsOutput) SetNextPageToken(v string) *GetDomainsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceAccessDetailsRequest
 type GetInstanceAccessDetailsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6296,7 +6153,6 @@ func (s *GetInstanceAccessDetailsInput) SetProtocol(v string) *GetInstanceAccess
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceAccessDetailsResult
 type GetInstanceAccessDetailsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6321,7 +6177,6 @@ func (s *GetInstanceAccessDetailsOutput) SetAccessDetails(v *InstanceAccessDetai
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceRequest
 type GetInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6360,7 +6215,6 @@ func (s *GetInstanceInput) SetInstanceName(v string) *GetInstanceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceMetricDataRequest
 type GetInstanceMetricDataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6486,7 +6340,6 @@ func (s *GetInstanceMetricDataInput) SetUnit(v string) *GetInstanceMetricDataInp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceMetricDataResult
 type GetInstanceMetricDataOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6520,7 +6373,6 @@ func (s *GetInstanceMetricDataOutput) SetMetricName(v string) *GetInstanceMetric
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceResult
 type GetInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6544,7 +6396,6 @@ func (s *GetInstanceOutput) SetInstance(v *Instance) *GetInstanceOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstancePortStatesRequest
 type GetInstancePortStatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6583,7 +6434,6 @@ func (s *GetInstancePortStatesInput) SetInstanceName(v string) *GetInstancePortS
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstancePortStatesResult
 type GetInstancePortStatesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6607,7 +6457,6 @@ func (s *GetInstancePortStatesOutput) SetPortStates(v []*string) *GetInstancePor
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshotRequest
 type GetInstanceSnapshotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6646,7 +6495,6 @@ func (s *GetInstanceSnapshotInput) SetInstanceSnapshotName(v string) *GetInstanc
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshotResult
 type GetInstanceSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6671,7 +6519,6 @@ func (s *GetInstanceSnapshotOutput) SetInstanceSnapshot(v *InstanceSnapshot) *Ge
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshotsRequest
 type GetInstanceSnapshotsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6696,7 +6543,6 @@ func (s *GetInstanceSnapshotsInput) SetPageToken(v string) *GetInstanceSnapshots
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceSnapshotsResult
 type GetInstanceSnapshotsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6731,7 +6577,6 @@ func (s *GetInstanceSnapshotsOutput) SetNextPageToken(v string) *GetInstanceSnap
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceStateRequest
 type GetInstanceStateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6770,7 +6615,6 @@ func (s *GetInstanceStateInput) SetInstanceName(v string) *GetInstanceStateInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstanceStateResult
 type GetInstanceStateOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6794,7 +6638,6 @@ func (s *GetInstanceStateOutput) SetState(v *InstanceState) *GetInstanceStateOut
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstancesRequest
 type GetInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6819,7 +6662,6 @@ func (s *GetInstancesInput) SetPageToken(v string) *GetInstancesInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetInstancesResult
 type GetInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6853,7 +6695,6 @@ func (s *GetInstancesOutput) SetNextPageToken(v string) *GetInstancesOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPairRequest
 type GetKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6892,7 +6733,6 @@ func (s *GetKeyPairInput) SetKeyPairName(v string) *GetKeyPairInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPairResult
 type GetKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6916,7 +6756,6 @@ func (s *GetKeyPairOutput) SetKeyPair(v *KeyPair) *GetKeyPairOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPairsRequest
 type GetKeyPairsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6941,7 +6780,6 @@ func (s *GetKeyPairsInput) SetPageToken(v string) *GetKeyPairsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetKeyPairsResult
 type GetKeyPairsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6975,7 +6813,6 @@ func (s *GetKeyPairsOutput) SetNextPageToken(v string) *GetKeyPairsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationRequest
 type GetOperationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7014,7 +6851,6 @@ func (s *GetOperationInput) SetOperationId(v string) *GetOperationInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationResult
 type GetOperationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7039,7 +6875,6 @@ func (s *GetOperationOutput) SetOperation(v *Operation) *GetOperationOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationsForResourceRequest
 type GetOperationsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7088,7 +6923,6 @@ func (s *GetOperationsForResourceInput) SetResourceName(v string) *GetOperations
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationsForResourceResult
 type GetOperationsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7122,7 +6956,6 @@ func (s *GetOperationsForResourceOutput) SetOperations(v []*Operation) *GetOpera
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationsRequest
 type GetOperationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7147,7 +6980,6 @@ func (s *GetOperationsInput) SetPageToken(v string) *GetOperationsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetOperationsResult
 type GetOperationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7182,7 +7014,6 @@ func (s *GetOperationsOutput) SetOperations(v []*Operation) *GetOperationsOutput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegionsRequest
 type GetRegionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7208,7 +7039,6 @@ func (s *GetRegionsInput) SetIncludeAvailabilityZones(v bool) *GetRegionsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetRegionsResult
 type GetRegionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7233,7 +7063,6 @@ func (s *GetRegionsOutput) SetRegions(v []*Region) *GetRegionsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIpRequest
 type GetStaticIpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7272,7 +7101,6 @@ func (s *GetStaticIpInput) SetStaticIpName(v string) *GetStaticIpInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIpResult
 type GetStaticIpOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7297,7 +7125,6 @@ func (s *GetStaticIpOutput) SetStaticIp(v *StaticIp) *GetStaticIpOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIpsRequest
 type GetStaticIpsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7322,7 +7149,6 @@ func (s *GetStaticIpsInput) SetPageToken(v string) *GetStaticIpsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetStaticIpsResult
 type GetStaticIpsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7357,7 +7183,6 @@ func (s *GetStaticIpsOutput) SetStaticIps(v []*StaticIp) *GetStaticIpsOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ImportKeyPairRequest
 type ImportKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7410,7 +7235,6 @@ func (s *ImportKeyPairInput) SetPublicKeyBase64(v string) *ImportKeyPairInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ImportKeyPairResult
 type ImportKeyPairOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7435,7 +7259,6 @@ func (s *ImportKeyPairOutput) SetOperation(v *Operation) *ImportKeyPairOutput {
 }
 
 // Describes an instance (a virtual private server).
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Instance
 type Instance struct {
 	_ struct{} `type:"structure"`
 
@@ -7618,7 +7441,6 @@ func (s *Instance) SetUsername(v string) *Instance {
 
 // The parameters for gaining temporary access to one of your Amazon Lightsail
 // instances.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/InstanceAccessDetails
 type InstanceAccessDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -7708,7 +7530,6 @@ func (s *InstanceAccessDetails) SetUsername(v string) *InstanceAccessDetails {
 }
 
 // Describes the hardware for the instance.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/InstanceHardware
 type InstanceHardware struct {
 	_ struct{} `type:"structure"`
 
@@ -7751,7 +7572,6 @@ func (s *InstanceHardware) SetRamSizeInGb(v float64) *InstanceHardware {
 }
 
 // Describes monthly data transfer rates and port information for an instance.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/InstanceNetworking
 type InstanceNetworking struct {
 	_ struct{} `type:"structure"`
 
@@ -7786,7 +7606,6 @@ func (s *InstanceNetworking) SetPorts(v []*InstancePortInfo) *InstanceNetworking
 }
 
 // Describes information about the instance ports.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/InstancePortInfo
 type InstancePortInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -7865,7 +7684,6 @@ func (s *InstancePortInfo) SetToPort(v int64) *InstancePortInfo {
 }
 
 // Describes the snapshot of the virtual private server, or instance.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/InstanceSnapshot
 type InstanceSnapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -8003,7 +7821,6 @@ func (s *InstanceSnapshot) SetSupportCode(v string) *InstanceSnapshot {
 }
 
 // Describes the virtual private server (or instance) status.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/InstanceState
 type InstanceState struct {
 	_ struct{} `type:"structure"`
 
@@ -8036,7 +7853,6 @@ func (s *InstanceState) SetName(v string) *InstanceState {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/IsVpcPeeredRequest
 type IsVpcPeeredInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8051,7 +7867,6 @@ func (s IsVpcPeeredInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/IsVpcPeeredResult
 type IsVpcPeeredOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8076,7 +7891,6 @@ func (s *IsVpcPeeredOutput) SetIsPeered(v bool) *IsVpcPeeredOutput {
 }
 
 // Describes the SSH key pair.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/KeyPair
 type KeyPair struct {
 	_ struct{} `type:"structure"`
 
@@ -8157,7 +7971,6 @@ func (s *KeyPair) SetSupportCode(v string) *KeyPair {
 }
 
 // Describes the metric data point.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/MetricDatapoint
 type MetricDatapoint struct {
 	_ struct{} `type:"structure"`
 
@@ -8237,7 +8050,6 @@ func (s *MetricDatapoint) SetUnit(v string) *MetricDatapoint {
 
 // Describes the monthly data transfer in and out of your virtual private server
 // (or instance).
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/MonthlyTransfer
 type MonthlyTransfer struct {
 	_ struct{} `type:"structure"`
 
@@ -8261,7 +8073,6 @@ func (s *MonthlyTransfer) SetGbPerMonthAllocated(v int64) *MonthlyTransfer {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/OpenInstancePublicPortsRequest
 type OpenInstancePublicPortsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8314,7 +8125,6 @@ func (s *OpenInstancePublicPortsInput) SetPortInfo(v *PortInfo) *OpenInstancePub
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/OpenInstancePublicPortsResult
 type OpenInstancePublicPortsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8339,7 +8149,6 @@ func (s *OpenInstancePublicPortsOutput) SetOperation(v *Operation) *OpenInstance
 }
 
 // Describes the API operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Operation
 type Operation struct {
 	_ struct{} `type:"structure"`
 
@@ -8462,7 +8271,6 @@ func (s *Operation) SetStatusChangedAt(v time.Time) *Operation {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PeerVpcRequest
 type PeerVpcInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8477,7 +8285,6 @@ func (s PeerVpcInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PeerVpcResult
 type PeerVpcOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8503,7 +8310,6 @@ func (s *PeerVpcOutput) SetOperation(v *Operation) *PeerVpcOutput {
 
 // Describes information about the ports on your virtual private server (or
 // instance).
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/PortInfo
 type PortInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -8545,7 +8351,6 @@ func (s *PortInfo) SetToPort(v int64) *PortInfo {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootInstanceRequest
 type RebootInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8584,7 +8389,6 @@ func (s *RebootInstanceInput) SetInstanceName(v string) *RebootInstanceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RebootInstanceResult
 type RebootInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8609,7 +8413,6 @@ func (s *RebootInstanceOutput) SetOperations(v []*Operation) *RebootInstanceOutp
 }
 
 // Describes the AWS Region.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/Region
 type Region struct {
 	_ struct{} `type:"structure"`
 
@@ -8670,7 +8473,6 @@ func (s *Region) SetName(v string) *Region {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ReleaseStaticIpRequest
 type ReleaseStaticIpInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8709,7 +8511,6 @@ func (s *ReleaseStaticIpInput) SetStaticIpName(v string) *ReleaseStaticIpInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ReleaseStaticIpResult
 type ReleaseStaticIpOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8734,7 +8535,6 @@ func (s *ReleaseStaticIpOutput) SetOperations(v []*Operation) *ReleaseStaticIpOu
 }
 
 // Describes the resource location.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/ResourceLocation
 type ResourceLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -8767,7 +8567,6 @@ func (s *ResourceLocation) SetRegionName(v string) *ResourceLocation {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartInstanceRequest
 type StartInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8806,7 +8605,6 @@ func (s *StartInstanceInput) SetInstanceName(v string) *StartInstanceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StartInstanceResult
 type StartInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8831,7 +8629,6 @@ func (s *StartInstanceOutput) SetOperations(v []*Operation) *StartInstanceOutput
 }
 
 // Describes the static IP.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StaticIp
 type StaticIp struct {
 	_ struct{} `type:"structure"`
 
@@ -8929,7 +8726,6 @@ func (s *StaticIp) SetSupportCode(v string) *StaticIp {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopInstanceRequest
 type StopInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8968,7 +8764,6 @@ func (s *StopInstanceInput) SetInstanceName(v string) *StopInstanceInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/StopInstanceResult
 type StopInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8992,7 +8787,6 @@ func (s *StopInstanceOutput) SetOperations(v []*Operation) *StopInstanceOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UnpeerVpcRequest
 type UnpeerVpcInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9007,7 +8801,6 @@ func (s UnpeerVpcInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UnpeerVpcResult
 type UnpeerVpcOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9031,7 +8824,6 @@ func (s *UnpeerVpcOutput) SetOperation(v *Operation) *UnpeerVpcOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateDomainEntryRequest
 type UpdateDomainEntryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9084,7 +8876,6 @@ func (s *UpdateDomainEntryInput) SetDomainName(v string) *UpdateDomainEntryInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateDomainEntryResult
 type UpdateDomainEntryOutput struct {
 	_ struct{} `type:"structure"`
 

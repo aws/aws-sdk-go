@@ -12,9 +12,8 @@ import (
 )
 
 // Route53Domains is a client for Amazon Route 53 Domains.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53domains-2014-05-15
 type Route53Domains struct {
 	*client.Client
 }

@@ -36,7 +36,6 @@ const opDeleteThingShadow = "DeleteThingShadow"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/DeleteThingShadow
 func (c *IoTDataPlane) DeleteThingShadowRequest(input *DeleteThingShadowInput) (req *request.Request, output *DeleteThingShadowOutput) {
 	op := &request.Operation{
 		Name:       opDeleteThingShadow,
@@ -93,7 +92,6 @@ func (c *IoTDataPlane) DeleteThingShadowRequest(input *DeleteThingShadowInput) (
 //   * UnsupportedDocumentEncodingException
 //   The document encoding is not supported.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/DeleteThingShadow
 func (c *IoTDataPlane) DeleteThingShadow(input *DeleteThingShadowInput) (*DeleteThingShadowOutput, error) {
 	req, out := c.DeleteThingShadowRequest(input)
 	err := req.Send()
@@ -126,7 +124,6 @@ const opGetThingShadow = "GetThingShadow"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/GetThingShadow
 func (c *IoTDataPlane) GetThingShadowRequest(input *GetThingShadowInput) (req *request.Request, output *GetThingShadowOutput) {
 	op := &request.Operation{
 		Name:       opGetThingShadow,
@@ -183,7 +180,6 @@ func (c *IoTDataPlane) GetThingShadowRequest(input *GetThingShadowInput) (req *r
 //   * UnsupportedDocumentEncodingException
 //   The document encoding is not supported.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/GetThingShadow
 func (c *IoTDataPlane) GetThingShadow(input *GetThingShadowInput) (*GetThingShadowOutput, error) {
 	req, out := c.GetThingShadowRequest(input)
 	err := req.Send()
@@ -216,7 +212,6 @@ const opPublish = "Publish"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/Publish
 func (c *IoTDataPlane) PublishRequest(input *PublishInput) (req *request.Request, output *PublishOutput) {
 	op := &request.Operation{
 		Name:       opPublish,
@@ -263,7 +258,6 @@ func (c *IoTDataPlane) PublishRequest(input *PublishInput) (req *request.Request
 //   * MethodNotAllowedException
 //   The specified combination of HTTP verb and URI is not supported.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/Publish
 func (c *IoTDataPlane) Publish(input *PublishInput) (*PublishOutput, error) {
 	req, out := c.PublishRequest(input)
 	err := req.Send()
@@ -296,7 +290,6 @@ const opUpdateThingShadow = "UpdateThingShadow"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/UpdateThingShadow
 func (c *IoTDataPlane) UpdateThingShadowRequest(input *UpdateThingShadowInput) (req *request.Request, output *UpdateThingShadowOutput) {
 	op := &request.Operation{
 		Name:       opUpdateThingShadow,
@@ -356,7 +349,6 @@ func (c *IoTDataPlane) UpdateThingShadowRequest(input *UpdateThingShadowInput) (
 //   * UnsupportedDocumentEncodingException
 //   The document encoding is not supported.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/UpdateThingShadow
 func (c *IoTDataPlane) UpdateThingShadow(input *UpdateThingShadowInput) (*UpdateThingShadowOutput, error) {
 	req, out := c.UpdateThingShadowRequest(input)
 	err := req.Send()
@@ -364,7 +356,6 @@ func (c *IoTDataPlane) UpdateThingShadow(input *UpdateThingShadowInput) (*Update
 }
 
 // The input for the DeleteThingShadow operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/DeleteThingShadowRequest
 type DeleteThingShadowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -407,7 +398,6 @@ func (s *DeleteThingShadowInput) SetThingName(v string) *DeleteThingShadowInput 
 }
 
 // The output from the DeleteThingShadow operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/DeleteThingShadowResponse
 type DeleteThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -434,7 +424,6 @@ func (s *DeleteThingShadowOutput) SetPayload(v []byte) *DeleteThingShadowOutput 
 }
 
 // The input for the GetThingShadow operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/GetThingShadowRequest
 type GetThingShadowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -477,7 +466,6 @@ func (s *GetThingShadowInput) SetThingName(v string) *GetThingShadowInput {
 }
 
 // The output from the GetThingShadow operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/GetThingShadowResponse
 type GetThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -502,7 +490,6 @@ func (s *GetThingShadowOutput) SetPayload(v []byte) *GetThingShadowOutput {
 }
 
 // The input for the Publish operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/PublishRequest
 type PublishInput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -559,7 +546,6 @@ func (s *PublishInput) SetTopic(v string) *PublishInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/PublishOutput
 type PublishOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -575,7 +561,6 @@ func (s PublishOutput) GoString() string {
 }
 
 // The input for the UpdateThingShadow operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/UpdateThingShadowRequest
 type UpdateThingShadowInput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -632,7 +617,6 @@ func (s *UpdateThingShadowInput) SetThingName(v string) *UpdateThingShadowInput 
 }
 
 // The output from the UpdateThingShadow operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/UpdateThingShadowResponse
 type UpdateThingShadowOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 

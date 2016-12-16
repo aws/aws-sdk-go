@@ -16,9 +16,8 @@ import (
 // You can use ACM to manage SSL/TLS certificates for your AWS-based websites
 // and applications. For general information about using ACM, see the AWS Certificate
 // Manager User Guide (http://docs.aws.amazon.com/acm/latest/userguide/).
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08
 type ACM struct {
 	*client.Client
 }

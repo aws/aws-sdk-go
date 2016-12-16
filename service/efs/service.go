@@ -16,9 +16,8 @@ import (
 // capacity is elastic, growing and shrinking automatically as you add and remove
 // files, so your applications have the storage they need, when they need it.
 // For more information, see the User Guide (http://docs.aws.amazon.com/efs/latest/ug/api-reference.html).
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01
 type EFS struct {
 	*client.Client
 }

@@ -77,9 +77,8 @@ import (
 //
 // You can specify Chef 12, 11.10, or 11.4 for your Linux stack. We recommend
 // migrating your existing Linux stacks to Chef 12 as soon as possible.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/opsworks-2013-02-18
 type OpsWorks struct {
 	*client.Client
 }

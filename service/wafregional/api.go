@@ -35,7 +35,6 @@ const opAssociateWebACL = "AssociateWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/AssociateWebACL
 func (c *WAFRegional) AssociateWebACLRequest(input *AssociateWebACLInput) (req *request.Request, output *AssociateWebACLOutput) {
 	op := &request.Operation{
 		Name:       opAssociateWebACL,
@@ -106,7 +105,6 @@ func (c *WAFRegional) AssociateWebACLRequest(input *AssociateWebACLInput) (req *
 //   The operation failed because the entity referenced is temporarily unavailable.
 //   Retry your request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/AssociateWebACL
 func (c *WAFRegional) AssociateWebACL(input *AssociateWebACLInput) (*AssociateWebACLOutput, error) {
 	req, out := c.AssociateWebACLRequest(input)
 	err := req.Send()
@@ -139,7 +137,6 @@ const opCreateByteMatchSet = "CreateByteMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateByteMatchSet
 func (c *WAFRegional) CreateByteMatchSetRequest(input *waf.CreateByteMatchSetInput) (req *request.Request, output *waf.CreateByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateByteMatchSet,
@@ -237,7 +234,6 @@ func (c *WAFRegional) CreateByteMatchSetRequest(input *waf.CreateByteMatchSetInp
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateByteMatchSet
 func (c *WAFRegional) CreateByteMatchSet(input *waf.CreateByteMatchSetInput) (*waf.CreateByteMatchSetOutput, error) {
 	req, out := c.CreateByteMatchSetRequest(input)
 	err := req.Send()
@@ -270,7 +266,6 @@ const opCreateIPSet = "CreateIPSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateIPSet
 func (c *WAFRegional) CreateIPSetRequest(input *waf.CreateIPSetInput) (req *request.Request, output *waf.CreateIPSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateIPSet,
@@ -368,7 +363,6 @@ func (c *WAFRegional) CreateIPSetRequest(input *waf.CreateIPSetInput) (req *requ
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateIPSet
 func (c *WAFRegional) CreateIPSet(input *waf.CreateIPSetInput) (*waf.CreateIPSetOutput, error) {
 	req, out := c.CreateIPSetRequest(input)
 	err := req.Send()
@@ -401,7 +395,6 @@ const opCreateRule = "CreateRule"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateRule
 func (c *WAFRegional) CreateRuleRequest(input *waf.CreateRuleInput) (req *request.Request, output *waf.CreateRuleOutput) {
 	op := &request.Operation{
 		Name:       opCreateRule,
@@ -509,7 +502,6 @@ func (c *WAFRegional) CreateRuleRequest(input *waf.CreateRuleInput) (req *reques
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateRule
 func (c *WAFRegional) CreateRule(input *waf.CreateRuleInput) (*waf.CreateRuleOutput, error) {
 	req, out := c.CreateRuleRequest(input)
 	err := req.Send()
@@ -542,7 +534,6 @@ const opCreateSizeConstraintSet = "CreateSizeConstraintSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateSizeConstraintSet
 func (c *WAFRegional) CreateSizeConstraintSetRequest(input *waf.CreateSizeConstraintSetInput) (req *request.Request, output *waf.CreateSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateSizeConstraintSet,
@@ -641,7 +632,6 @@ func (c *WAFRegional) CreateSizeConstraintSetRequest(input *waf.CreateSizeConstr
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateSizeConstraintSet
 func (c *WAFRegional) CreateSizeConstraintSet(input *waf.CreateSizeConstraintSetInput) (*waf.CreateSizeConstraintSetOutput, error) {
 	req, out := c.CreateSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -674,7 +664,6 @@ const opCreateSqlInjectionMatchSet = "CreateSqlInjectionMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateSqlInjectionMatchSet
 func (c *WAFRegional) CreateSqlInjectionMatchSetRequest(input *waf.CreateSqlInjectionMatchSetInput) (req *request.Request, output *waf.CreateSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateSqlInjectionMatchSet,
@@ -769,7 +758,6 @@ func (c *WAFRegional) CreateSqlInjectionMatchSetRequest(input *waf.CreateSqlInje
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateSqlInjectionMatchSet
 func (c *WAFRegional) CreateSqlInjectionMatchSet(input *waf.CreateSqlInjectionMatchSetInput) (*waf.CreateSqlInjectionMatchSetOutput, error) {
 	req, out := c.CreateSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -802,7 +790,6 @@ const opCreateWebACL = "CreateWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateWebACL
 func (c *WAFRegional) CreateWebACLRequest(input *waf.CreateWebACLInput) (req *request.Request, output *waf.CreateWebACLOutput) {
 	op := &request.Operation{
 		Name:       opCreateWebACL,
@@ -909,7 +896,6 @@ func (c *WAFRegional) CreateWebACLRequest(input *waf.CreateWebACLInput) (req *re
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateWebACL
 func (c *WAFRegional) CreateWebACL(input *waf.CreateWebACLInput) (*waf.CreateWebACLOutput, error) {
 	req, out := c.CreateWebACLRequest(input)
 	err := req.Send()
@@ -942,7 +928,6 @@ const opCreateXssMatchSet = "CreateXssMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateXssMatchSet
 func (c *WAFRegional) CreateXssMatchSetRequest(input *waf.CreateXssMatchSetInput) (req *request.Request, output *waf.CreateXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opCreateXssMatchSet,
@@ -1038,7 +1023,6 @@ func (c *WAFRegional) CreateXssMatchSetRequest(input *waf.CreateXssMatchSetInput
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/CreateXssMatchSet
 func (c *WAFRegional) CreateXssMatchSet(input *waf.CreateXssMatchSetInput) (*waf.CreateXssMatchSetOutput, error) {
 	req, out := c.CreateXssMatchSetRequest(input)
 	err := req.Send()
@@ -1071,7 +1055,6 @@ const opDeleteByteMatchSet = "DeleteByteMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteByteMatchSet
 func (c *WAFRegional) DeleteByteMatchSetRequest(input *waf.DeleteByteMatchSetInput) (req *request.Request, output *waf.DeleteByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteByteMatchSet,
@@ -1152,7 +1135,6 @@ func (c *WAFRegional) DeleteByteMatchSetRequest(input *waf.DeleteByteMatchSetInp
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteByteMatchSet
 func (c *WAFRegional) DeleteByteMatchSet(input *waf.DeleteByteMatchSetInput) (*waf.DeleteByteMatchSetOutput, error) {
 	req, out := c.DeleteByteMatchSetRequest(input)
 	err := req.Send()
@@ -1185,7 +1167,6 @@ const opDeleteIPSet = "DeleteIPSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteIPSet
 func (c *WAFRegional) DeleteIPSetRequest(input *waf.DeleteIPSetInput) (req *request.Request, output *waf.DeleteIPSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteIPSet,
@@ -1265,7 +1246,6 @@ func (c *WAFRegional) DeleteIPSetRequest(input *waf.DeleteIPSetInput) (req *requ
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteIPSet
 func (c *WAFRegional) DeleteIPSet(input *waf.DeleteIPSetInput) (*waf.DeleteIPSetOutput, error) {
 	req, out := c.DeleteIPSetRequest(input)
 	err := req.Send()
@@ -1298,7 +1278,6 @@ const opDeleteRule = "DeleteRule"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteRule
 func (c *WAFRegional) DeleteRuleRequest(input *waf.DeleteRuleInput) (req *request.Request, output *waf.DeleteRuleOutput) {
 	op := &request.Operation{
 		Name:       opDeleteRule,
@@ -1378,7 +1357,6 @@ func (c *WAFRegional) DeleteRuleRequest(input *waf.DeleteRuleInput) (req *reques
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteRule
 func (c *WAFRegional) DeleteRule(input *waf.DeleteRuleInput) (*waf.DeleteRuleOutput, error) {
 	req, out := c.DeleteRuleRequest(input)
 	err := req.Send()
@@ -1411,7 +1389,6 @@ const opDeleteSizeConstraintSet = "DeleteSizeConstraintSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteSizeConstraintSet
 func (c *WAFRegional) DeleteSizeConstraintSetRequest(input *waf.DeleteSizeConstraintSetInput) (req *request.Request, output *waf.DeleteSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSizeConstraintSet,
@@ -1492,7 +1469,6 @@ func (c *WAFRegional) DeleteSizeConstraintSetRequest(input *waf.DeleteSizeConstr
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteSizeConstraintSet
 func (c *WAFRegional) DeleteSizeConstraintSet(input *waf.DeleteSizeConstraintSetInput) (*waf.DeleteSizeConstraintSetOutput, error) {
 	req, out := c.DeleteSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -1525,7 +1501,6 @@ const opDeleteSqlInjectionMatchSet = "DeleteSqlInjectionMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteSqlInjectionMatchSet
 func (c *WAFRegional) DeleteSqlInjectionMatchSetRequest(input *waf.DeleteSqlInjectionMatchSetInput) (req *request.Request, output *waf.DeleteSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSqlInjectionMatchSet,
@@ -1607,7 +1582,6 @@ func (c *WAFRegional) DeleteSqlInjectionMatchSetRequest(input *waf.DeleteSqlInje
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteSqlInjectionMatchSet
 func (c *WAFRegional) DeleteSqlInjectionMatchSet(input *waf.DeleteSqlInjectionMatchSetInput) (*waf.DeleteSqlInjectionMatchSetOutput, error) {
 	req, out := c.DeleteSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -1640,7 +1614,6 @@ const opDeleteWebACL = "DeleteWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteWebACL
 func (c *WAFRegional) DeleteWebACLRequest(input *waf.DeleteWebACLInput) (req *request.Request, output *waf.DeleteWebACLOutput) {
 	op := &request.Operation{
 		Name:       opDeleteWebACL,
@@ -1717,7 +1690,6 @@ func (c *WAFRegional) DeleteWebACLRequest(input *waf.DeleteWebACLInput) (req *re
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteWebACL
 func (c *WAFRegional) DeleteWebACL(input *waf.DeleteWebACLInput) (*waf.DeleteWebACLOutput, error) {
 	req, out := c.DeleteWebACLRequest(input)
 	err := req.Send()
@@ -1750,7 +1722,6 @@ const opDeleteXssMatchSet = "DeleteXssMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteXssMatchSet
 func (c *WAFRegional) DeleteXssMatchSetRequest(input *waf.DeleteXssMatchSetInput) (req *request.Request, output *waf.DeleteXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteXssMatchSet,
@@ -1831,7 +1802,6 @@ func (c *WAFRegional) DeleteXssMatchSetRequest(input *waf.DeleteXssMatchSetInput
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DeleteXssMatchSet
 func (c *WAFRegional) DeleteXssMatchSet(input *waf.DeleteXssMatchSetInput) (*waf.DeleteXssMatchSetOutput, error) {
 	req, out := c.DeleteXssMatchSetRequest(input)
 	err := req.Send()
@@ -1864,7 +1834,6 @@ const opDisassociateWebACL = "DisassociateWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DisassociateWebACL
 func (c *WAFRegional) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *request.Request, output *DisassociateWebACLOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateWebACL,
@@ -1931,7 +1900,6 @@ func (c *WAFRegional) DisassociateWebACLRequest(input *DisassociateWebACLInput) 
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DisassociateWebACL
 func (c *WAFRegional) DisassociateWebACL(input *DisassociateWebACLInput) (*DisassociateWebACLOutput, error) {
 	req, out := c.DisassociateWebACLRequest(input)
 	err := req.Send()
@@ -1964,7 +1932,6 @@ const opGetByteMatchSet = "GetByteMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetByteMatchSet
 func (c *WAFRegional) GetByteMatchSetRequest(input *waf.GetByteMatchSetInput) (req *request.Request, output *waf.GetByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opGetByteMatchSet,
@@ -2005,7 +1972,6 @@ func (c *WAFRegional) GetByteMatchSetRequest(input *waf.GetByteMatchSetInput) (r
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetByteMatchSet
 func (c *WAFRegional) GetByteMatchSet(input *waf.GetByteMatchSetInput) (*waf.GetByteMatchSetOutput, error) {
 	req, out := c.GetByteMatchSetRequest(input)
 	err := req.Send()
@@ -2038,7 +2004,6 @@ const opGetChangeToken = "GetChangeToken"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetChangeToken
 func (c *WAFRegional) GetChangeTokenRequest(input *waf.GetChangeTokenInput) (req *request.Request, output *waf.GetChangeTokenOutput) {
 	op := &request.Operation{
 		Name:       opGetChangeToken,
@@ -2086,7 +2051,6 @@ func (c *WAFRegional) GetChangeTokenRequest(input *waf.GetChangeTokenInput) (req
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetChangeToken
 func (c *WAFRegional) GetChangeToken(input *waf.GetChangeTokenInput) (*waf.GetChangeTokenOutput, error) {
 	req, out := c.GetChangeTokenRequest(input)
 	err := req.Send()
@@ -2119,7 +2083,6 @@ const opGetChangeTokenStatus = "GetChangeTokenStatus"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetChangeTokenStatus
 func (c *WAFRegional) GetChangeTokenStatusRequest(input *waf.GetChangeTokenStatusInput) (req *request.Request, output *waf.GetChangeTokenStatusOutput) {
 	op := &request.Operation{
 		Name:       opGetChangeTokenStatus,
@@ -2166,7 +2129,6 @@ func (c *WAFRegional) GetChangeTokenStatusRequest(input *waf.GetChangeTokenStatu
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetChangeTokenStatus
 func (c *WAFRegional) GetChangeTokenStatus(input *waf.GetChangeTokenStatusInput) (*waf.GetChangeTokenStatusOutput, error) {
 	req, out := c.GetChangeTokenStatusRequest(input)
 	err := req.Send()
@@ -2199,7 +2161,6 @@ const opGetIPSet = "GetIPSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetIPSet
 func (c *WAFRegional) GetIPSetRequest(input *waf.GetIPSetInput) (req *request.Request, output *waf.GetIPSetOutput) {
 	op := &request.Operation{
 		Name:       opGetIPSet,
@@ -2240,7 +2201,6 @@ func (c *WAFRegional) GetIPSetRequest(input *waf.GetIPSetInput) (req *request.Re
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetIPSet
 func (c *WAFRegional) GetIPSet(input *waf.GetIPSetInput) (*waf.GetIPSetOutput, error) {
 	req, out := c.GetIPSetRequest(input)
 	err := req.Send()
@@ -2273,7 +2233,6 @@ const opGetRule = "GetRule"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetRule
 func (c *WAFRegional) GetRuleRequest(input *waf.GetRuleInput) (req *request.Request, output *waf.GetRuleOutput) {
 	op := &request.Operation{
 		Name:       opGetRule,
@@ -2315,7 +2274,6 @@ func (c *WAFRegional) GetRuleRequest(input *waf.GetRuleInput) (req *request.Requ
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetRule
 func (c *WAFRegional) GetRule(input *waf.GetRuleInput) (*waf.GetRuleOutput, error) {
 	req, out := c.GetRuleRequest(input)
 	err := req.Send()
@@ -2348,7 +2306,6 @@ const opGetSampledRequests = "GetSampledRequests"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetSampledRequests
 func (c *WAFRegional) GetSampledRequestsRequest(input *waf.GetSampledRequestsInput) (req *request.Request, output *waf.GetSampledRequestsOutput) {
 	op := &request.Operation{
 		Name:       opGetSampledRequests,
@@ -2395,7 +2352,6 @@ func (c *WAFRegional) GetSampledRequestsRequest(input *waf.GetSampledRequestsInp
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetSampledRequests
 func (c *WAFRegional) GetSampledRequests(input *waf.GetSampledRequestsInput) (*waf.GetSampledRequestsOutput, error) {
 	req, out := c.GetSampledRequestsRequest(input)
 	err := req.Send()
@@ -2428,7 +2384,6 @@ const opGetSizeConstraintSet = "GetSizeConstraintSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetSizeConstraintSet
 func (c *WAFRegional) GetSizeConstraintSetRequest(input *waf.GetSizeConstraintSetInput) (req *request.Request, output *waf.GetSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opGetSizeConstraintSet,
@@ -2469,7 +2424,6 @@ func (c *WAFRegional) GetSizeConstraintSetRequest(input *waf.GetSizeConstraintSe
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetSizeConstraintSet
 func (c *WAFRegional) GetSizeConstraintSet(input *waf.GetSizeConstraintSetInput) (*waf.GetSizeConstraintSetOutput, error) {
 	req, out := c.GetSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -2502,7 +2456,6 @@ const opGetSqlInjectionMatchSet = "GetSqlInjectionMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetSqlInjectionMatchSet
 func (c *WAFRegional) GetSqlInjectionMatchSetRequest(input *waf.GetSqlInjectionMatchSetInput) (req *request.Request, output *waf.GetSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opGetSqlInjectionMatchSet,
@@ -2543,7 +2496,6 @@ func (c *WAFRegional) GetSqlInjectionMatchSetRequest(input *waf.GetSqlInjectionM
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetSqlInjectionMatchSet
 func (c *WAFRegional) GetSqlInjectionMatchSet(input *waf.GetSqlInjectionMatchSetInput) (*waf.GetSqlInjectionMatchSetOutput, error) {
 	req, out := c.GetSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -2576,7 +2528,6 @@ const opGetWebACL = "GetWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetWebACL
 func (c *WAFRegional) GetWebACLRequest(input *waf.GetWebACLInput) (req *request.Request, output *waf.GetWebACLOutput) {
 	op := &request.Operation{
 		Name:       opGetWebACL,
@@ -2617,7 +2568,6 @@ func (c *WAFRegional) GetWebACLRequest(input *waf.GetWebACLInput) (req *request.
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetWebACL
 func (c *WAFRegional) GetWebACL(input *waf.GetWebACLInput) (*waf.GetWebACLOutput, error) {
 	req, out := c.GetWebACLRequest(input)
 	err := req.Send()
@@ -2650,7 +2600,6 @@ const opGetWebACLForResource = "GetWebACLForResource"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetWebACLForResource
 func (c *WAFRegional) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (req *request.Request, output *GetWebACLForResourceOutput) {
 	op := &request.Operation{
 		Name:       opGetWebACLForResource,
@@ -2721,7 +2670,6 @@ func (c *WAFRegional) GetWebACLForResourceRequest(input *GetWebACLForResourceInp
 //   The operation failed because the entity referenced is temporarily unavailable.
 //   Retry your request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetWebACLForResource
 func (c *WAFRegional) GetWebACLForResource(input *GetWebACLForResourceInput) (*GetWebACLForResourceOutput, error) {
 	req, out := c.GetWebACLForResourceRequest(input)
 	err := req.Send()
@@ -2754,7 +2702,6 @@ const opGetXssMatchSet = "GetXssMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetXssMatchSet
 func (c *WAFRegional) GetXssMatchSetRequest(input *waf.GetXssMatchSetInput) (req *request.Request, output *waf.GetXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opGetXssMatchSet,
@@ -2795,7 +2742,6 @@ func (c *WAFRegional) GetXssMatchSetRequest(input *waf.GetXssMatchSetInput) (req
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetXssMatchSet
 func (c *WAFRegional) GetXssMatchSet(input *waf.GetXssMatchSetInput) (*waf.GetXssMatchSetOutput, error) {
 	req, out := c.GetXssMatchSetRequest(input)
 	err := req.Send()
@@ -2828,7 +2774,6 @@ const opListByteMatchSets = "ListByteMatchSets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListByteMatchSets
 func (c *WAFRegional) ListByteMatchSetsRequest(input *waf.ListByteMatchSetsInput) (req *request.Request, output *waf.ListByteMatchSetsOutput) {
 	op := &request.Operation{
 		Name:       opListByteMatchSets,
@@ -2866,7 +2811,6 @@ func (c *WAFRegional) ListByteMatchSetsRequest(input *waf.ListByteMatchSetsInput
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListByteMatchSets
 func (c *WAFRegional) ListByteMatchSets(input *waf.ListByteMatchSetsInput) (*waf.ListByteMatchSetsOutput, error) {
 	req, out := c.ListByteMatchSetsRequest(input)
 	err := req.Send()
@@ -2899,7 +2843,6 @@ const opListIPSets = "ListIPSets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListIPSets
 func (c *WAFRegional) ListIPSetsRequest(input *waf.ListIPSetsInput) (req *request.Request, output *waf.ListIPSetsOutput) {
 	op := &request.Operation{
 		Name:       opListIPSets,
@@ -2937,7 +2880,6 @@ func (c *WAFRegional) ListIPSetsRequest(input *waf.ListIPSetsInput) (req *reques
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListIPSets
 func (c *WAFRegional) ListIPSets(input *waf.ListIPSetsInput) (*waf.ListIPSetsOutput, error) {
 	req, out := c.ListIPSetsRequest(input)
 	err := req.Send()
@@ -2970,7 +2912,6 @@ const opListResourcesForWebACL = "ListResourcesForWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListResourcesForWebACL
 func (c *WAFRegional) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput) (req *request.Request, output *ListResourcesForWebACLOutput) {
 	op := &request.Operation{
 		Name:       opListResourcesForWebACL,
@@ -3011,7 +2952,6 @@ func (c *WAFRegional) ListResourcesForWebACLRequest(input *ListResourcesForWebAC
 //   * WAFNonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListResourcesForWebACL
 func (c *WAFRegional) ListResourcesForWebACL(input *ListResourcesForWebACLInput) (*ListResourcesForWebACLOutput, error) {
 	req, out := c.ListResourcesForWebACLRequest(input)
 	err := req.Send()
@@ -3044,7 +2984,6 @@ const opListRules = "ListRules"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListRules
 func (c *WAFRegional) ListRulesRequest(input *waf.ListRulesInput) (req *request.Request, output *waf.ListRulesOutput) {
 	op := &request.Operation{
 		Name:       opListRules,
@@ -3082,7 +3021,6 @@ func (c *WAFRegional) ListRulesRequest(input *waf.ListRulesInput) (req *request.
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListRules
 func (c *WAFRegional) ListRules(input *waf.ListRulesInput) (*waf.ListRulesOutput, error) {
 	req, out := c.ListRulesRequest(input)
 	err := req.Send()
@@ -3115,7 +3053,6 @@ const opListSizeConstraintSets = "ListSizeConstraintSets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListSizeConstraintSets
 func (c *WAFRegional) ListSizeConstraintSetsRequest(input *waf.ListSizeConstraintSetsInput) (req *request.Request, output *waf.ListSizeConstraintSetsOutput) {
 	op := &request.Operation{
 		Name:       opListSizeConstraintSets,
@@ -3153,7 +3090,6 @@ func (c *WAFRegional) ListSizeConstraintSetsRequest(input *waf.ListSizeConstrain
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListSizeConstraintSets
 func (c *WAFRegional) ListSizeConstraintSets(input *waf.ListSizeConstraintSetsInput) (*waf.ListSizeConstraintSetsOutput, error) {
 	req, out := c.ListSizeConstraintSetsRequest(input)
 	err := req.Send()
@@ -3186,7 +3122,6 @@ const opListSqlInjectionMatchSets = "ListSqlInjectionMatchSets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListSqlInjectionMatchSets
 func (c *WAFRegional) ListSqlInjectionMatchSetsRequest(input *waf.ListSqlInjectionMatchSetsInput) (req *request.Request, output *waf.ListSqlInjectionMatchSetsOutput) {
 	op := &request.Operation{
 		Name:       opListSqlInjectionMatchSets,
@@ -3224,7 +3159,6 @@ func (c *WAFRegional) ListSqlInjectionMatchSetsRequest(input *waf.ListSqlInjecti
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListSqlInjectionMatchSets
 func (c *WAFRegional) ListSqlInjectionMatchSets(input *waf.ListSqlInjectionMatchSetsInput) (*waf.ListSqlInjectionMatchSetsOutput, error) {
 	req, out := c.ListSqlInjectionMatchSetsRequest(input)
 	err := req.Send()
@@ -3257,7 +3191,6 @@ const opListWebACLs = "ListWebACLs"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListWebACLs
 func (c *WAFRegional) ListWebACLsRequest(input *waf.ListWebACLsInput) (req *request.Request, output *waf.ListWebACLsOutput) {
 	op := &request.Operation{
 		Name:       opListWebACLs,
@@ -3295,7 +3228,6 @@ func (c *WAFRegional) ListWebACLsRequest(input *waf.ListWebACLsInput) (req *requ
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListWebACLs
 func (c *WAFRegional) ListWebACLs(input *waf.ListWebACLsInput) (*waf.ListWebACLsOutput, error) {
 	req, out := c.ListWebACLsRequest(input)
 	err := req.Send()
@@ -3328,7 +3260,6 @@ const opListXssMatchSets = "ListXssMatchSets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListXssMatchSets
 func (c *WAFRegional) ListXssMatchSetsRequest(input *waf.ListXssMatchSetsInput) (req *request.Request, output *waf.ListXssMatchSetsOutput) {
 	op := &request.Operation{
 		Name:       opListXssMatchSets,
@@ -3366,7 +3297,6 @@ func (c *WAFRegional) ListXssMatchSetsRequest(input *waf.ListXssMatchSetsInput) 
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListXssMatchSets
 func (c *WAFRegional) ListXssMatchSets(input *waf.ListXssMatchSetsInput) (*waf.ListXssMatchSetsOutput, error) {
 	req, out := c.ListXssMatchSetsRequest(input)
 	err := req.Send()
@@ -3399,7 +3329,6 @@ const opUpdateByteMatchSet = "UpdateByteMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateByteMatchSet
 func (c *WAFRegional) UpdateByteMatchSetRequest(input *waf.UpdateByteMatchSetInput) (req *request.Request, output *waf.UpdateByteMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateByteMatchSet,
@@ -3549,7 +3478,6 @@ func (c *WAFRegional) UpdateByteMatchSetRequest(input *waf.UpdateByteMatchSetInp
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateByteMatchSet
 func (c *WAFRegional) UpdateByteMatchSet(input *waf.UpdateByteMatchSetInput) (*waf.UpdateByteMatchSetOutput, error) {
 	req, out := c.UpdateByteMatchSetRequest(input)
 	err := req.Send()
@@ -3582,7 +3510,6 @@ const opUpdateIPSet = "UpdateIPSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateIPSet
 func (c *WAFRegional) UpdateIPSetRequest(input *waf.UpdateIPSetInput) (req *request.Request, output *waf.UpdateIPSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateIPSet,
@@ -3752,7 +3679,6 @@ func (c *WAFRegional) UpdateIPSetRequest(input *waf.UpdateIPSetInput) (req *requ
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateIPSet
 func (c *WAFRegional) UpdateIPSet(input *waf.UpdateIPSetInput) (*waf.UpdateIPSetOutput, error) {
 	req, out := c.UpdateIPSetRequest(input)
 	err := req.Send()
@@ -3785,7 +3711,6 @@ const opUpdateRule = "UpdateRule"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateRule
 func (c *WAFRegional) UpdateRuleRequest(input *waf.UpdateRuleInput) (req *request.Request, output *waf.UpdateRuleOutput) {
 	op := &request.Operation{
 		Name:       opUpdateRule,
@@ -3939,7 +3864,6 @@ func (c *WAFRegional) UpdateRuleRequest(input *waf.UpdateRuleInput) (req *reques
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateRule
 func (c *WAFRegional) UpdateRule(input *waf.UpdateRuleInput) (*waf.UpdateRuleOutput, error) {
 	req, out := c.UpdateRuleRequest(input)
 	err := req.Send()
@@ -3972,7 +3896,6 @@ const opUpdateSizeConstraintSet = "UpdateSizeConstraintSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateSizeConstraintSet
 func (c *WAFRegional) UpdateSizeConstraintSetRequest(input *waf.UpdateSizeConstraintSetInput) (req *request.Request, output *waf.UpdateSizeConstraintSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSizeConstraintSet,
@@ -4132,7 +4055,6 @@ func (c *WAFRegional) UpdateSizeConstraintSetRequest(input *waf.UpdateSizeConstr
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateSizeConstraintSet
 func (c *WAFRegional) UpdateSizeConstraintSet(input *waf.UpdateSizeConstraintSetInput) (*waf.UpdateSizeConstraintSetOutput, error) {
 	req, out := c.UpdateSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -4165,7 +4087,6 @@ const opUpdateSqlInjectionMatchSet = "UpdateSqlInjectionMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateSqlInjectionMatchSet
 func (c *WAFRegional) UpdateSqlInjectionMatchSetRequest(input *waf.UpdateSqlInjectionMatchSetInput) (req *request.Request, output *waf.UpdateSqlInjectionMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSqlInjectionMatchSet,
@@ -4310,7 +4231,6 @@ func (c *WAFRegional) UpdateSqlInjectionMatchSetRequest(input *waf.UpdateSqlInje
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateSqlInjectionMatchSet
 func (c *WAFRegional) UpdateSqlInjectionMatchSet(input *waf.UpdateSqlInjectionMatchSetInput) (*waf.UpdateSqlInjectionMatchSetOutput, error) {
 	req, out := c.UpdateSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -4343,7 +4263,6 @@ const opUpdateWebACL = "UpdateWebACL"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateWebACL
 func (c *WAFRegional) UpdateWebACLRequest(input *waf.UpdateWebACLInput) (req *request.Request, output *waf.UpdateWebACLOutput) {
 	op := &request.Operation{
 		Name:       opUpdateWebACL,
@@ -4509,7 +4428,6 @@ func (c *WAFRegional) UpdateWebACLRequest(input *waf.UpdateWebACLInput) (req *re
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateWebACL
 func (c *WAFRegional) UpdateWebACL(input *waf.UpdateWebACLInput) (*waf.UpdateWebACLOutput, error) {
 	req, out := c.UpdateWebACLRequest(input)
 	err := req.Send()
@@ -4542,7 +4460,6 @@ const opUpdateXssMatchSet = "UpdateXssMatchSet"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateXssMatchSet
 func (c *WAFRegional) UpdateXssMatchSetRequest(input *waf.UpdateXssMatchSetInput) (req *request.Request, output *waf.UpdateXssMatchSetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateXssMatchSet,
@@ -4687,14 +4604,12 @@ func (c *WAFRegional) UpdateXssMatchSetRequest(input *waf.UpdateXssMatchSetInput
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/UpdateXssMatchSet
 func (c *WAFRegional) UpdateXssMatchSet(input *waf.UpdateXssMatchSetInput) (*waf.UpdateXssMatchSetOutput, error) {
 	req, out := c.UpdateXssMatchSetRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/AssociateWebACLRequest
 type AssociateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4753,7 +4668,6 @@ func (s *AssociateWebACLInput) SetWebACLId(v string) *AssociateWebACLInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/AssociateWebACLResponse
 type AssociateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4768,7 +4682,6 @@ func (s AssociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DisassociateWebACLRequest
 type DisassociateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4811,7 +4724,6 @@ func (s *DisassociateWebACLInput) SetResourceArn(v string) *DisassociateWebACLIn
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/DisassociateWebACLResponse
 type DisassociateWebACLOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4826,7 +4738,6 @@ func (s DisassociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetWebACLForResourceRequest
 type GetWebACLForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4868,7 +4779,6 @@ func (s *GetWebACLForResourceInput) SetResourceArn(v string) *GetWebACLForResour
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/GetWebACLForResourceResponse
 type GetWebACLForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4893,7 +4803,6 @@ func (s *GetWebACLForResourceOutput) SetWebACLSummary(v *waf.WebACLSummary) *Get
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListResourcesForWebACLRequest
 type ListResourcesForWebACLInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4936,7 +4845,6 @@ func (s *ListResourcesForWebACLInput) SetWebACLId(v string) *ListResourcesForWeb
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-regional-2016-11-28/ListResourcesForWebACLResponse
 type ListResourcesForWebACLOutput struct {
 	_ struct{} `type:"structure"`
 

@@ -36,6 +36,7 @@ const opCreateBudget = "CreateBudget"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) CreateBudgetRequest(input *CreateBudgetInput) (req *request.Request, output *CreateBudgetOutput) {
 	op := &request.Operation{
 		Name:       opCreateBudget,
@@ -111,6 +112,7 @@ const opCreateNotification = "CreateNotification"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) CreateNotificationRequest(input *CreateNotificationInput) (req *request.Request, output *CreateNotificationOutput) {
 	op := &request.Operation{
 		Name:       opCreateNotification,
@@ -190,6 +192,7 @@ const opCreateSubscriber = "CreateSubscriber"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) CreateSubscriberRequest(input *CreateSubscriberInput) (req *request.Request, output *CreateSubscriberOutput) {
 	op := &request.Operation{
 		Name:       opCreateSubscriber,
@@ -265,6 +268,7 @@ const opDeleteBudget = "DeleteBudget"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DeleteBudgetRequest(input *DeleteBudgetInput) (req *request.Request, output *DeleteBudgetOutput) {
 	op := &request.Operation{
 		Name:       opDeleteBudget,
@@ -336,6 +340,7 @@ const opDeleteNotification = "DeleteNotification"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DeleteNotificationRequest(input *DeleteNotificationInput) (req *request.Request, output *DeleteNotificationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteNotification,
@@ -407,6 +412,7 @@ const opDeleteSubscriber = "DeleteSubscriber"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DeleteSubscriberRequest(input *DeleteSubscriberInput) (req *request.Request, output *DeleteSubscriberOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSubscriber,
@@ -478,6 +484,7 @@ const opDescribeBudget = "DescribeBudget"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DescribeBudgetRequest(input *DescribeBudgetInput) (req *request.Request, output *DescribeBudgetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBudget,
@@ -549,6 +556,7 @@ const opDescribeBudgets = "DescribeBudgets"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DescribeBudgetsRequest(input *DescribeBudgetsInput) (req *request.Request, output *DescribeBudgetsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeBudgets,
@@ -627,6 +635,7 @@ const opDescribeNotificationsForBudget = "DescribeNotificationsForBudget"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DescribeNotificationsForBudgetRequest(input *DescribeNotificationsForBudgetInput) (req *request.Request, output *DescribeNotificationsForBudgetOutput) {
 	op := &request.Operation{
 		Name:       opDescribeNotificationsForBudget,
@@ -705,6 +714,7 @@ const opDescribeSubscribersForNotification = "DescribeSubscribersForNotification
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) DescribeSubscribersForNotificationRequest(input *DescribeSubscribersForNotificationInput) (req *request.Request, output *DescribeSubscribersForNotificationOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSubscribersForNotification,
@@ -783,6 +793,7 @@ const opUpdateBudget = "UpdateBudget"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) UpdateBudgetRequest(input *UpdateBudgetInput) (req *request.Request, output *UpdateBudgetOutput) {
 	op := &request.Operation{
 		Name:       opUpdateBudget,
@@ -854,6 +865,7 @@ const opUpdateNotification = "UpdateNotification"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) UpdateNotificationRequest(input *UpdateNotificationInput) (req *request.Request, output *UpdateNotificationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateNotification,
@@ -925,6 +937,7 @@ const opUpdateSubscriber = "UpdateSubscriber"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
+//
 func (c *Budgets) UpdateSubscriberRequest(input *UpdateSubscriberInput) (req *request.Request, output *UpdateSubscriberOutput) {
 	op := &request.Operation{
 		Name:       opUpdateSubscriber,

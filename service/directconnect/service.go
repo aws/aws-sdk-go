@@ -23,9 +23,8 @@ import (
 // example, you can provision a single connection to any AWS Direct Connect
 // location in the US and use it to access public AWS services in all US Regions
 // and AWS GovCloud (US).
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25
 type DirectConnect struct {
 	*client.Client
 }

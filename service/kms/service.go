@@ -82,9 +82,8 @@ import (
 //    * GenerateDataKey
 //
 //    * GenerateDataKeyWithoutPlaintext
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01
 type KMS struct {
 	*client.Client
 }

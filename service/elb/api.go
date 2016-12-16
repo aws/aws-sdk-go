@@ -37,7 +37,6 @@ const opAddTags = "AddTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTags
 func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
 	op := &request.Operation{
 		Name:       opAddTags,
@@ -84,7 +83,6 @@ func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 //   * DuplicateTagKeys
 //   A tag key was specified more than once.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTags
 func (c *ELB) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -117,7 +115,6 @@ const opApplySecurityGroupsToLoadBalancer = "ApplySecurityGroupsToLoadBalancer"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancer
 func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroupsToLoadBalancerInput) (req *request.Request, output *ApplySecurityGroupsToLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opApplySecurityGroupsToLoadBalancer,
@@ -161,7 +158,6 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroup
 //   * InvalidSecurityGroup
 //   One or more of the specified security groups do not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancer
 func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoadBalancerInput) (*ApplySecurityGroupsToLoadBalancerOutput, error) {
 	req, out := c.ApplySecurityGroupsToLoadBalancerRequest(input)
 	err := req.Send()
@@ -194,7 +190,6 @@ const opAttachLoadBalancerToSubnets = "AttachLoadBalancerToSubnets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnets
 func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubnetsInput) (req *request.Request, output *AttachLoadBalancerToSubnetsOutput) {
 	op := &request.Operation{
 		Name:       opAttachLoadBalancerToSubnets,
@@ -242,7 +237,6 @@ func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubn
 //   * InvalidSubnet
 //   The specified VPC has no associated Internet gateway.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnets
 func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInput) (*AttachLoadBalancerToSubnetsOutput, error) {
 	req, out := c.AttachLoadBalancerToSubnetsRequest(input)
 	err := req.Send()
@@ -275,7 +269,6 @@ const opConfigureHealthCheck = "ConfigureHealthCheck"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheck
 func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req *request.Request, output *ConfigureHealthCheckOutput) {
 	op := &request.Operation{
 		Name:       opConfigureHealthCheck,
@@ -313,7 +306,6 @@ func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req
 //   * LoadBalancerNotFound
 //   The specified load balancer does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheck
 func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (*ConfigureHealthCheckOutput, error) {
 	req, out := c.ConfigureHealthCheckRequest(input)
 	err := req.Send()
@@ -346,7 +338,6 @@ const opCreateAppCookieStickinessPolicy = "CreateAppCookieStickinessPolicy"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicy
 func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStickinessPolicyInput) (req *request.Request, output *CreateAppCookieStickinessPolicyOutput) {
 	op := &request.Operation{
 		Name:       opCreateAppCookieStickinessPolicy,
@@ -402,7 +393,6 @@ func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStick
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicy
 func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPolicyInput) (*CreateAppCookieStickinessPolicyOutput, error) {
 	req, out := c.CreateAppCookieStickinessPolicyRequest(input)
 	err := req.Send()
@@ -435,7 +425,6 @@ const opCreateLBCookieStickinessPolicy = "CreateLBCookieStickinessPolicy"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicy
 func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickinessPolicyInput) (req *request.Request, output *CreateLBCookieStickinessPolicyOutput) {
 	op := &request.Operation{
 		Name:       opCreateLBCookieStickinessPolicy,
@@ -493,7 +482,6 @@ func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickin
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicy
 func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPolicyInput) (*CreateLBCookieStickinessPolicyOutput, error) {
 	req, out := c.CreateLBCookieStickinessPolicyRequest(input)
 	err := req.Send()
@@ -526,7 +514,6 @@ const opCreateLoadBalancer = "CreateLoadBalancer"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancer
 func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *request.Request, output *CreateLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opCreateLoadBalancer,
@@ -606,7 +593,6 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *re
 //   * UnsupportedProtocol
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancer
 func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (*CreateLoadBalancerOutput, error) {
 	req, out := c.CreateLoadBalancerRequest(input)
 	err := req.Send()
@@ -639,7 +625,6 @@ const opCreateLoadBalancerListeners = "CreateLoadBalancerListeners"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListeners
 func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *request.Request, output *CreateLoadBalancerListenersOutput) {
 	op := &request.Operation{
 		Name:       opCreateLoadBalancerListeners,
@@ -694,7 +679,6 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 //   * UnsupportedProtocol
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListeners
 func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInput) (*CreateLoadBalancerListenersOutput, error) {
 	req, out := c.CreateLoadBalancerListenersRequest(input)
 	err := req.Send()
@@ -727,7 +711,6 @@ const opCreateLoadBalancerPolicy = "CreateLoadBalancerPolicy"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerPolicy
 func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInput) (req *request.Request, output *CreateLoadBalancerPolicyOutput) {
 	op := &request.Operation{
 		Name:       opCreateLoadBalancerPolicy,
@@ -776,7 +759,6 @@ func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInp
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerPolicy
 func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (*CreateLoadBalancerPolicyOutput, error) {
 	req, out := c.CreateLoadBalancerPolicyRequest(input)
 	err := req.Send()
@@ -809,7 +791,6 @@ const opDeleteLoadBalancer = "DeleteLoadBalancer"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancer
 func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *request.Request, output *DeleteLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opDeleteLoadBalancer,
@@ -846,7 +827,6 @@ func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *re
 //
 // See the AWS API reference guide for Elastic Load Balancing's
 // API operation DeleteLoadBalancer for usage and error information.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancer
 func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (*DeleteLoadBalancerOutput, error) {
 	req, out := c.DeleteLoadBalancerRequest(input)
 	err := req.Send()
@@ -879,7 +859,6 @@ const opDeleteLoadBalancerListeners = "DeleteLoadBalancerListeners"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerListeners
 func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *request.Request, output *DeleteLoadBalancerListenersOutput) {
 	op := &request.Operation{
 		Name:       opDeleteLoadBalancerListeners,
@@ -912,7 +891,6 @@ func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListen
 //   * LoadBalancerNotFound
 //   The specified load balancer does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerListeners
 func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInput) (*DeleteLoadBalancerListenersOutput, error) {
 	req, out := c.DeleteLoadBalancerListenersRequest(input)
 	err := req.Send()
@@ -945,7 +923,6 @@ const opDeleteLoadBalancerPolicy = "DeleteLoadBalancerPolicy"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerPolicy
 func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInput) (req *request.Request, output *DeleteLoadBalancerPolicyOutput) {
 	op := &request.Operation{
 		Name:       opDeleteLoadBalancerPolicy,
@@ -982,7 +959,6 @@ func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInp
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerPolicy
 func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (*DeleteLoadBalancerPolicyOutput, error) {
 	req, out := c.DeleteLoadBalancerPolicyRequest(input)
 	err := req.Send()
@@ -1015,7 +991,6 @@ const opDeregisterInstancesFromLoadBalancer = "DeregisterInstancesFromLoadBalanc
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterInstancesFromLoadBalancer
 func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *request.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opDeregisterInstancesFromLoadBalancer,
@@ -1059,7 +1034,6 @@ func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstan
 //   * InvalidInstance
 //   The specified endpoint is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterInstancesFromLoadBalancer
 func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFromLoadBalancerInput) (*DeregisterInstancesFromLoadBalancerOutput, error) {
 	req, out := c.DeregisterInstancesFromLoadBalancerRequest(input)
 	err := req.Send()
@@ -1092,7 +1066,6 @@ const opDescribeInstanceHealth = "DescribeInstanceHealth"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeInstanceHealth
 func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *request.Request, output *DescribeInstanceHealthOutput) {
 	op := &request.Operation{
 		Name:       opDescribeInstanceHealth,
@@ -1133,7 +1106,6 @@ func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) 
 //   * InvalidInstance
 //   The specified endpoint is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeInstanceHealth
 func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (*DescribeInstanceHealthOutput, error) {
 	req, out := c.DescribeInstanceHealthRequest(input)
 	err := req.Send()
@@ -1166,7 +1138,6 @@ const opDescribeLoadBalancerAttributes = "DescribeLoadBalancerAttributes"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerAttributes
 func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerAttributesInput) (req *request.Request, output *DescribeLoadBalancerAttributesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeLoadBalancerAttributes,
@@ -1202,7 +1173,6 @@ func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerA
 //   * LoadBalancerAttributeNotFound
 //   The specified load balancer attribute does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerAttributes
 func (c *ELB) DescribeLoadBalancerAttributes(input *DescribeLoadBalancerAttributesInput) (*DescribeLoadBalancerAttributesOutput, error) {
 	req, out := c.DescribeLoadBalancerAttributesRequest(input)
 	err := req.Send()
@@ -1235,7 +1205,6 @@ const opDescribeLoadBalancerPolicies = "DescribeLoadBalancerPolicies"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPolicies
 func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPoliciesInput) (req *request.Request, output *DescribeLoadBalancerPoliciesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeLoadBalancerPolicies,
@@ -1278,7 +1247,6 @@ func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPol
 //   * PolicyNotFound
 //   One or more of the specified policies do not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPolicies
 func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesInput) (*DescribeLoadBalancerPoliciesOutput, error) {
 	req, out := c.DescribeLoadBalancerPoliciesRequest(input)
 	err := req.Send()
@@ -1311,7 +1279,6 @@ const opDescribeLoadBalancerPolicyTypes = "DescribeLoadBalancerPolicyTypes"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPolicyTypes
 func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancerPolicyTypesInput) (req *request.Request, output *DescribeLoadBalancerPolicyTypesOutput) {
 	op := &request.Operation{
 		Name:       opDescribeLoadBalancerPolicyTypes,
@@ -1355,7 +1322,6 @@ func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancer
 //   * PolicyTypeNotFound
 //   One or more of the specified policy types do not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPolicyTypes
 func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyTypesInput) (*DescribeLoadBalancerPolicyTypesOutput, error) {
 	req, out := c.DescribeLoadBalancerPolicyTypesRequest(input)
 	err := req.Send()
@@ -1388,7 +1354,6 @@ const opDescribeLoadBalancers = "DescribeLoadBalancers"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancers
 func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *request.Request, output *DescribeLoadBalancersOutput) {
 	op := &request.Operation{
 		Name:       opDescribeLoadBalancers,
@@ -1431,7 +1396,6 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 //   * DependencyThrottle
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancers
 func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*DescribeLoadBalancersOutput, error) {
 	req, out := c.DescribeLoadBalancersRequest(input)
 	err := req.Send()
@@ -1489,7 +1453,6 @@ const opDescribeTags = "DescribeTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeTags
 func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
 	op := &request.Operation{
 		Name:       opDescribeTags,
@@ -1522,7 +1485,6 @@ func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 //   * LoadBalancerNotFound
 //   The specified load balancer does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeTags
 func (c *ELB) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -1555,7 +1517,6 @@ const opDetachLoadBalancerFromSubnets = "DetachLoadBalancerFromSubnets"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DetachLoadBalancerFromSubnets
 func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFromSubnetsInput) (req *request.Request, output *DetachLoadBalancerFromSubnetsOutput) {
 	op := &request.Operation{
 		Name:       opDetachLoadBalancerFromSubnets,
@@ -1596,7 +1557,6 @@ func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFrom
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DetachLoadBalancerFromSubnets
 func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnetsInput) (*DetachLoadBalancerFromSubnetsOutput, error) {
 	req, out := c.DetachLoadBalancerFromSubnetsRequest(input)
 	err := req.Send()
@@ -1629,7 +1589,6 @@ const opDisableAvailabilityZonesForLoadBalancer = "DisableAvailabilityZonesForLo
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DisableAvailabilityZonesForLoadBalancer
 func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *request.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opDisableAvailabilityZonesForLoadBalancer,
@@ -1675,7 +1634,6 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvail
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DisableAvailabilityZonesForLoadBalancer
 func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *DisableAvailabilityZonesForLoadBalancerInput) (*DisableAvailabilityZonesForLoadBalancerOutput, error) {
 	req, out := c.DisableAvailabilityZonesForLoadBalancerRequest(input)
 	err := req.Send()
@@ -1708,7 +1666,6 @@ const opEnableAvailabilityZonesForLoadBalancer = "EnableAvailabilityZonesForLoad
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/EnableAvailabilityZonesForLoadBalancer
 func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *request.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opEnableAvailabilityZonesForLoadBalancer,
@@ -1748,7 +1705,6 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailab
 //   * LoadBalancerNotFound
 //   The specified load balancer does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/EnableAvailabilityZonesForLoadBalancer
 func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZonesForLoadBalancerInput) (*EnableAvailabilityZonesForLoadBalancerOutput, error) {
 	req, out := c.EnableAvailabilityZonesForLoadBalancerRequest(input)
 	err := req.Send()
@@ -1781,7 +1737,6 @@ const opModifyLoadBalancerAttributes = "ModifyLoadBalancerAttributes"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ModifyLoadBalancerAttributes
 func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttributesInput) (req *request.Request, output *ModifyLoadBalancerAttributesOutput) {
 	op := &request.Operation{
 		Name:       opModifyLoadBalancerAttributes,
@@ -1835,7 +1790,6 @@ func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttri
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ModifyLoadBalancerAttributes
 func (c *ELB) ModifyLoadBalancerAttributes(input *ModifyLoadBalancerAttributesInput) (*ModifyLoadBalancerAttributesOutput, error) {
 	req, out := c.ModifyLoadBalancerAttributesRequest(input)
 	err := req.Send()
@@ -1868,7 +1822,6 @@ const opRegisterInstancesWithLoadBalancer = "RegisterInstancesWithLoadBalancer"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterInstancesWithLoadBalancer
 func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *request.Request, output *RegisterInstancesWithLoadBalancerOutput) {
 	op := &request.Operation{
 		Name:       opRegisterInstancesWithLoadBalancer,
@@ -1926,7 +1879,6 @@ func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesW
 //   * InvalidInstance
 //   The specified endpoint is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterInstancesWithLoadBalancer
 func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoadBalancerInput) (*RegisterInstancesWithLoadBalancerOutput, error) {
 	req, out := c.RegisterInstancesWithLoadBalancerRequest(input)
 	err := req.Send()
@@ -1959,7 +1911,6 @@ const opRemoveTags = "RemoveTags"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RemoveTags
 func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
 	op := &request.Operation{
 		Name:       opRemoveTags,
@@ -1992,7 +1943,6 @@ func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 //   * LoadBalancerNotFound
 //   The specified load balancer does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RemoveTags
 func (c *ELB) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -2025,7 +1975,6 @@ const opSetLoadBalancerListenerSSLCertificate = "SetLoadBalancerListenerSSLCerti
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificate
 func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalancerListenerSSLCertificateInput) (req *request.Request, output *SetLoadBalancerListenerSSLCertificateOutput) {
 	op := &request.Operation{
 		Name:       opSetLoadBalancerListenerSSLCertificate,
@@ -2079,7 +2028,6 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 //   * UnsupportedProtocol
 
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificate
 func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListenerSSLCertificateInput) (*SetLoadBalancerListenerSSLCertificateOutput, error) {
 	req, out := c.SetLoadBalancerListenerSSLCertificateRequest(input)
 	err := req.Send()
@@ -2112,7 +2060,6 @@ const opSetLoadBalancerPoliciesForBackendServer = "SetLoadBalancerPoliciesForBac
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServer
 func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalancerPoliciesForBackendServerInput) (req *request.Request, output *SetLoadBalancerPoliciesForBackendServerOutput) {
 	op := &request.Operation{
 		Name:       opSetLoadBalancerPoliciesForBackendServer,
@@ -2166,7 +2113,6 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalan
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServer
 func (c *ELB) SetLoadBalancerPoliciesForBackendServer(input *SetLoadBalancerPoliciesForBackendServerInput) (*SetLoadBalancerPoliciesForBackendServerOutput, error) {
 	req, out := c.SetLoadBalancerPoliciesForBackendServerRequest(input)
 	err := req.Send()
@@ -2199,7 +2145,6 @@ const opSetLoadBalancerPoliciesOfListener = "SetLoadBalancerPoliciesOfListener"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListener
 func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPoliciesOfListenerInput) (req *request.Request, output *SetLoadBalancerPoliciesOfListenerOutput) {
 	op := &request.Operation{
 		Name:       opSetLoadBalancerPoliciesOfListener,
@@ -2250,7 +2195,6 @@ func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPol
 //   * InvalidConfigurationRequest
 //   The requested configuration change is not valid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListener
 func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOfListenerInput) (*SetLoadBalancerPoliciesOfListenerOutput, error) {
 	req, out := c.SetLoadBalancerPoliciesOfListenerRequest(input)
 	err := req.Send()
@@ -2258,7 +2202,6 @@ func (c *ELB) SetLoadBalancerPoliciesOfListener(input *SetLoadBalancerPoliciesOf
 }
 
 // Information about the AccessLog attribute.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AccessLog
 type AccessLog struct {
 	_ struct{} `type:"structure"`
 
@@ -2330,7 +2273,6 @@ func (s *AccessLog) SetS3BucketPrefix(v string) *AccessLog {
 }
 
 // Contains the parameters for AddTags.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTagsInput
 type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2397,7 +2339,6 @@ func (s *AddTagsInput) SetTags(v []*Tag) *AddTagsInput {
 }
 
 // Contains the output of AddTags.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddTagsOutput
 type AddTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2413,7 +2354,6 @@ func (s AddTagsOutput) GoString() string {
 }
 
 // This data type is reserved.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AdditionalAttribute
 type AdditionalAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -2447,7 +2387,6 @@ func (s *AdditionalAttribute) SetValue(v string) *AdditionalAttribute {
 }
 
 // Information about a policy for application-controlled session stickiness.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AppCookieStickinessPolicy
 type AppCookieStickinessPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -2482,7 +2421,6 @@ func (s *AppCookieStickinessPolicy) SetPolicyName(v string) *AppCookieStickiness
 }
 
 // Contains the parameters for ApplySecurityGroupsToLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancerInput
 type ApplySecurityGroupsToLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2537,7 +2475,6 @@ func (s *ApplySecurityGroupsToLoadBalancerInput) SetSecurityGroups(v []*string) 
 }
 
 // Contains the output of ApplySecurityGroupsToLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ApplySecurityGroupsToLoadBalancerOutput
 type ApplySecurityGroupsToLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2562,7 +2499,6 @@ func (s *ApplySecurityGroupsToLoadBalancerOutput) SetSecurityGroups(v []*string)
 }
 
 // Contains the parameters for AttachLoaBalancerToSubnets.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnetsInput
 type AttachLoadBalancerToSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2617,7 +2553,6 @@ func (s *AttachLoadBalancerToSubnetsInput) SetSubnets(v []*string) *AttachLoadBa
 }
 
 // Contains the output of AttachLoadBalancerToSubnets.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AttachLoadBalancerToSubnetsOutput
 type AttachLoadBalancerToSubnetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2642,7 +2577,6 @@ func (s *AttachLoadBalancerToSubnetsOutput) SetSubnets(v []*string) *AttachLoadB
 }
 
 // Information about the configuration of an EC2 instance.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/BackendServerDescription
 type BackendServerDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2676,7 +2610,6 @@ func (s *BackendServerDescription) SetPolicyNames(v []*string) *BackendServerDes
 }
 
 // Contains the parameters for ConfigureHealthCheck.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheckInput
 type ConfigureHealthCheckInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2735,7 +2668,6 @@ func (s *ConfigureHealthCheckInput) SetLoadBalancerName(v string) *ConfigureHeal
 }
 
 // Contains the output of ConfigureHealthCheck.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConfigureHealthCheckOutput
 type ConfigureHealthCheckOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2760,7 +2692,6 @@ func (s *ConfigureHealthCheckOutput) SetHealthCheck(v *HealthCheck) *ConfigureHe
 }
 
 // Information about the ConnectionDraining attribute.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConnectionDraining
 type ConnectionDraining struct {
 	_ struct{} `type:"structure"`
 
@@ -2810,7 +2741,6 @@ func (s *ConnectionDraining) SetTimeout(v int64) *ConnectionDraining {
 }
 
 // Information about the ConnectionSettings attribute.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ConnectionSettings
 type ConnectionSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -2854,7 +2784,6 @@ func (s *ConnectionSettings) SetIdleTimeout(v int64) *ConnectionSettings {
 }
 
 // Contains the parameters for CreateAppCookieStickinessPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicyInput
 type CreateAppCookieStickinessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2924,7 +2853,6 @@ func (s *CreateAppCookieStickinessPolicyInput) SetPolicyName(v string) *CreateAp
 }
 
 // Contains the output for CreateAppCookieStickinessPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAppCookieStickinessPolicyOutput
 type CreateAppCookieStickinessPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2940,7 +2868,6 @@ func (s CreateAppCookieStickinessPolicyOutput) GoString() string {
 }
 
 // Contains the parameters for CreateLBCookieStickinessPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicyInput
 type CreateLBCookieStickinessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3008,7 +2935,6 @@ func (s *CreateLBCookieStickinessPolicyInput) SetPolicyName(v string) *CreateLBC
 }
 
 // Contains the output for CreateLBCookieStickinessPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLBCookieStickinessPolicyOutput
 type CreateLBCookieStickinessPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3024,7 +2950,6 @@ func (s CreateLBCookieStickinessPolicyOutput) GoString() string {
 }
 
 // Contains the parameters for CreateLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAccessPointInput
 type CreateLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3172,7 +3097,6 @@ func (s *CreateLoadBalancerInput) SetTags(v []*Tag) *CreateLoadBalancerInput {
 }
 
 // Contains the parameters for CreateLoadBalancerListeners.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListenerInput
 type CreateLoadBalancerListenersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3236,7 +3160,6 @@ func (s *CreateLoadBalancerListenersInput) SetLoadBalancerName(v string) *Create
 }
 
 // Contains the parameters for CreateLoadBalancerListener.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListenerOutput
 type CreateLoadBalancerListenersOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3252,7 +3175,6 @@ func (s CreateLoadBalancerListenersOutput) GoString() string {
 }
 
 // Contains the output for CreateLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateAccessPointOutput
 type CreateLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3277,7 +3199,6 @@ func (s *CreateLoadBalancerOutput) SetDNSName(v string) *CreateLoadBalancerOutpu
 }
 
 // Contains the parameters for CreateLoadBalancerPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerPolicyInput
 type CreateLoadBalancerPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3355,7 +3276,6 @@ func (s *CreateLoadBalancerPolicyInput) SetPolicyTypeName(v string) *CreateLoadB
 }
 
 // Contains the output of CreateLoadBalancerPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerPolicyOutput
 type CreateLoadBalancerPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3371,7 +3291,6 @@ func (s CreateLoadBalancerPolicyOutput) GoString() string {
 }
 
 // Information about the CrossZoneLoadBalancing attribute.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CrossZoneLoadBalancing
 type CrossZoneLoadBalancing struct {
 	_ struct{} `type:"structure"`
 
@@ -3411,7 +3330,6 @@ func (s *CrossZoneLoadBalancing) SetEnabled(v bool) *CrossZoneLoadBalancing {
 }
 
 // Contains the parameters for DeleteLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteAccessPointInput
 type DeleteLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3451,7 +3369,6 @@ func (s *DeleteLoadBalancerInput) SetLoadBalancerName(v string) *DeleteLoadBalan
 }
 
 // Contains the parameters for DeleteLoadBalancerListeners.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerListenerInput
 type DeleteLoadBalancerListenersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3505,7 +3422,6 @@ func (s *DeleteLoadBalancerListenersInput) SetLoadBalancerPorts(v []*int64) *Del
 }
 
 // Contains the output of DeleteLoadBalancerListeners.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerListenerOutput
 type DeleteLoadBalancerListenersOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3521,7 +3437,6 @@ func (s DeleteLoadBalancerListenersOutput) GoString() string {
 }
 
 // Contains the output of DeleteLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteAccessPointOutput
 type DeleteLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3537,7 +3452,6 @@ func (s DeleteLoadBalancerOutput) GoString() string {
 }
 
 // Contains the parameters for DeleteLoadBalancerPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerPolicyInput
 type DeleteLoadBalancerPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3591,7 +3505,6 @@ func (s *DeleteLoadBalancerPolicyInput) SetPolicyName(v string) *DeleteLoadBalan
 }
 
 // Contains the output of DeleteLoadBalancerPolicy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeleteLoadBalancerPolicyOutput
 type DeleteLoadBalancerPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3607,7 +3520,6 @@ func (s DeleteLoadBalancerPolicyOutput) GoString() string {
 }
 
 // Contains the parameters for DeregisterInstancesFromLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterEndPointsInput
 type DeregisterInstancesFromLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3661,7 +3573,6 @@ func (s *DeregisterInstancesFromLoadBalancerInput) SetLoadBalancerName(v string)
 }
 
 // Contains the output of DeregisterInstancesFromLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DeregisterEndPointsOutput
 type DeregisterInstancesFromLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3686,7 +3597,6 @@ func (s *DeregisterInstancesFromLoadBalancerOutput) SetInstances(v []*Instance) 
 }
 
 // Contains the parameters for DescribeInstanceHealth.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeEndPointStateInput
 type DescribeInstanceHealthInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3735,7 +3645,6 @@ func (s *DescribeInstanceHealthInput) SetLoadBalancerName(v string) *DescribeIns
 }
 
 // Contains the output for DescribeInstanceHealth.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeEndPointStateOutput
 type DescribeInstanceHealthOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3760,7 +3669,6 @@ func (s *DescribeInstanceHealthOutput) SetInstanceStates(v []*InstanceState) *De
 }
 
 // Contains the parameters for DescribeLoadBalancerAttributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerAttributesInput
 type DescribeLoadBalancerAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3800,7 +3708,6 @@ func (s *DescribeLoadBalancerAttributesInput) SetLoadBalancerName(v string) *Des
 }
 
 // Contains the output of DescribeLoadBalancerAttributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerAttributesOutput
 type DescribeLoadBalancerAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3825,7 +3732,6 @@ func (s *DescribeLoadBalancerAttributesOutput) SetLoadBalancerAttributes(v *Load
 }
 
 // Contains the parameters for DescribeLoadBalancerPolicies.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPoliciesInput
 type DescribeLoadBalancerPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3859,7 +3765,6 @@ func (s *DescribeLoadBalancerPoliciesInput) SetPolicyNames(v []*string) *Describ
 }
 
 // Contains the output of DescribeLoadBalancerPolicies.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPoliciesOutput
 type DescribeLoadBalancerPoliciesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3884,7 +3789,6 @@ func (s *DescribeLoadBalancerPoliciesOutput) SetPolicyDescriptions(v []*PolicyDe
 }
 
 // Contains the parameters for DescribeLoadBalancerPolicyTypes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPolicyTypesInput
 type DescribeLoadBalancerPolicyTypesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3910,7 +3814,6 @@ func (s *DescribeLoadBalancerPolicyTypesInput) SetPolicyTypeNames(v []*string) *
 }
 
 // Contains the output of DescribeLoadBalancerPolicyTypes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancerPolicyTypesOutput
 type DescribeLoadBalancerPolicyTypesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3935,7 +3838,6 @@ func (s *DescribeLoadBalancerPolicyTypesOutput) SetPolicyTypeDescriptions(v []*P
 }
 
 // Contains the parameters for DescribeLoadBalancers.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeAccessPointsInput
 type DescribeLoadBalancersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3993,7 +3895,6 @@ func (s *DescribeLoadBalancersInput) SetPageSize(v int64) *DescribeLoadBalancers
 }
 
 // Contains the parameters for DescribeLoadBalancers.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeAccessPointsOutput
 type DescribeLoadBalancersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4028,7 +3929,6 @@ func (s *DescribeLoadBalancersOutput) SetNextMarker(v string) *DescribeLoadBalan
 }
 
 // Contains the parameters for DescribeTags.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeTagsInput
 type DescribeTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4071,7 +3971,6 @@ func (s *DescribeTagsInput) SetLoadBalancerNames(v []*string) *DescribeTagsInput
 }
 
 // Contains the output for DescribeTags.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeTagsOutput
 type DescribeTagsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4096,7 +3995,6 @@ func (s *DescribeTagsOutput) SetTagDescriptions(v []*TagDescription) *DescribeTa
 }
 
 // Contains the parameters for DetachLoadBalancerFromSubnets.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DetachLoadBalancerFromSubnetsInput
 type DetachLoadBalancerFromSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4150,7 +4048,6 @@ func (s *DetachLoadBalancerFromSubnetsInput) SetSubnets(v []*string) *DetachLoad
 }
 
 // Contains the output of DetachLoadBalancerFromSubnets.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DetachLoadBalancerFromSubnetsOutput
 type DetachLoadBalancerFromSubnetsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4175,7 +4072,6 @@ func (s *DetachLoadBalancerFromSubnetsOutput) SetSubnets(v []*string) *DetachLoa
 }
 
 // Contains the parameters for DisableAvailabilityZonesForLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RemoveAvailabilityZonesInput
 type DisableAvailabilityZonesForLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4229,7 +4125,6 @@ func (s *DisableAvailabilityZonesForLoadBalancerInput) SetLoadBalancerName(v str
 }
 
 // Contains the output for DisableAvailabilityZonesForLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RemoveAvailabilityZonesOutput
 type DisableAvailabilityZonesForLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4254,7 +4149,6 @@ func (s *DisableAvailabilityZonesForLoadBalancerOutput) SetAvailabilityZones(v [
 }
 
 // Contains the parameters for EnableAvailabilityZonesForLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddAvailabilityZonesInput
 type EnableAvailabilityZonesForLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4308,7 +4202,6 @@ func (s *EnableAvailabilityZonesForLoadBalancerInput) SetLoadBalancerName(v stri
 }
 
 // Contains the output of EnableAvailabilityZonesForLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/AddAvailabilityZonesOutput
 type EnableAvailabilityZonesForLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4333,7 +4226,6 @@ func (s *EnableAvailabilityZonesForLoadBalancerOutput) SetAvailabilityZones(v []
 }
 
 // Information about a health check.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/HealthCheck
 type HealthCheck struct {
 	_ struct{} `type:"structure"`
 
@@ -4464,7 +4356,6 @@ func (s *HealthCheck) SetUnhealthyThreshold(v int64) *HealthCheck {
 }
 
 // The ID of an EC2 instance.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/Instance
 type Instance struct {
 	_ struct{} `type:"structure"`
 
@@ -4489,7 +4380,6 @@ func (s *Instance) SetInstanceId(v string) *Instance {
 }
 
 // Information about the state of an EC2 instance.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/InstanceState
 type InstanceState struct {
 	_ struct{} `type:"structure"`
 
@@ -4574,7 +4464,6 @@ func (s *InstanceState) SetState(v string) *InstanceState {
 }
 
 // Information about a policy for duration-based session stickiness.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/LBCookieStickinessPolicy
 type LBCookieStickinessPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -4615,7 +4504,6 @@ func (s *LBCookieStickinessPolicy) SetPolicyName(v string) *LBCookieStickinessPo
 // For information about the protocols and the ports supported by Elastic Load
 // Balancing, see Listeners for Your Classic Load Balancer (http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html)
 // in the Classic Load Balancers Guide.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/Listener
 type Listener struct {
 	_ struct{} `type:"structure"`
 
@@ -4717,7 +4605,6 @@ func (s *Listener) SetSSLCertificateId(v string) *Listener {
 }
 
 // The policies enabled for a listener.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ListenerDescription
 type ListenerDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -4755,7 +4642,6 @@ func (s *ListenerDescription) SetPolicyNames(v []*string) *ListenerDescription {
 }
 
 // The attributes for a load balancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/LoadBalancerAttributes
 type LoadBalancerAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -4864,7 +4750,6 @@ func (s *LoadBalancerAttributes) SetCrossZoneLoadBalancing(v *CrossZoneLoadBalan
 }
 
 // Information about a load balancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/LoadBalancerDescription
 type LoadBalancerDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5037,7 +4922,6 @@ func (s *LoadBalancerDescription) SetVPCId(v string) *LoadBalancerDescription {
 }
 
 // Contains the parameters for ModifyLoadBalancerAttributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ModifyLoadBalancerAttributesInput
 type ModifyLoadBalancerAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5096,7 +4980,6 @@ func (s *ModifyLoadBalancerAttributesInput) SetLoadBalancerName(v string) *Modif
 }
 
 // Contains the output of ModifyLoadBalancerAttributes.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/ModifyLoadBalancerAttributesOutput
 type ModifyLoadBalancerAttributesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5130,7 +5013,6 @@ func (s *ModifyLoadBalancerAttributesOutput) SetLoadBalancerName(v string) *Modi
 }
 
 // The policies for a load balancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/Policies
 type Policies struct {
 	_ struct{} `type:"structure"`
 
@@ -5173,7 +5055,6 @@ func (s *Policies) SetOtherPolicies(v []*string) *Policies {
 }
 
 // Information about a policy attribute.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/PolicyAttribute
 type PolicyAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -5207,7 +5088,6 @@ func (s *PolicyAttribute) SetAttributeValue(v string) *PolicyAttribute {
 }
 
 // Information about a policy attribute.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/PolicyAttributeDescription
 type PolicyAttributeDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5241,7 +5121,6 @@ func (s *PolicyAttributeDescription) SetAttributeValue(v string) *PolicyAttribut
 }
 
 // Information about a policy attribute type.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/PolicyAttributeTypeDescription
 type PolicyAttributeTypeDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5312,7 +5191,6 @@ func (s *PolicyAttributeTypeDescription) SetDescription(v string) *PolicyAttribu
 }
 
 // Information about a policy.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/PolicyDescription
 type PolicyDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5355,7 +5233,6 @@ func (s *PolicyDescription) SetPolicyTypeName(v string) *PolicyDescription {
 }
 
 // Information about a policy type.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/PolicyTypeDescription
 type PolicyTypeDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5399,7 +5276,6 @@ func (s *PolicyTypeDescription) SetPolicyTypeName(v string) *PolicyTypeDescripti
 }
 
 // Contains the parameters for RegisterInstancesWithLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterEndPointsInput
 type RegisterInstancesWithLoadBalancerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5453,7 +5329,6 @@ func (s *RegisterInstancesWithLoadBalancerInput) SetLoadBalancerName(v string) *
 }
 
 // Contains the output of RegisterInstancesWithLoadBalancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RegisterEndPointsOutput
 type RegisterInstancesWithLoadBalancerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5478,7 +5353,6 @@ func (s *RegisterInstancesWithLoadBalancerOutput) SetInstances(v []*Instance) *R
 }
 
 // Contains the parameters for RemoveTags.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RemoveTagsInput
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5546,7 +5420,6 @@ func (s *RemoveTagsInput) SetTags(v []*TagKeyOnly) *RemoveTagsInput {
 }
 
 // Contains the output of RemoveTags.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/RemoveTagsOutput
 type RemoveTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5562,7 +5435,6 @@ func (s RemoveTagsOutput) GoString() string {
 }
 
 // Contains the parameters for SetLoadBalancerListenerSSLCertificate.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificateInput
 type SetLoadBalancerListenerSSLCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5630,7 +5502,6 @@ func (s *SetLoadBalancerListenerSSLCertificateInput) SetSSLCertificateId(v strin
 }
 
 // Contains the output of SetLoadBalancerListenerSSLCertificate.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificateOutput
 type SetLoadBalancerListenerSSLCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5646,7 +5517,6 @@ func (s SetLoadBalancerListenerSSLCertificateOutput) GoString() string {
 }
 
 // Contains the parameters for SetLoadBalancerPoliciesForBackendServer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServerInput
 type SetLoadBalancerPoliciesForBackendServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5715,7 +5585,6 @@ func (s *SetLoadBalancerPoliciesForBackendServerInput) SetPolicyNames(v []*strin
 }
 
 // Contains the output of SetLoadBalancerPoliciesForBackendServer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesForBackendServerOutput
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5731,7 +5600,6 @@ func (s SetLoadBalancerPoliciesForBackendServerOutput) GoString() string {
 }
 
 // Contains the parameters for SetLoadBalancePoliciesOfListener.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListenerInput
 type SetLoadBalancerPoliciesOfListenerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5801,7 +5669,6 @@ func (s *SetLoadBalancerPoliciesOfListenerInput) SetPolicyNames(v []*string) *Se
 }
 
 // Contains the output of SetLoadBalancePoliciesOfListener.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerPoliciesOfListenerOutput
 type SetLoadBalancerPoliciesOfListenerOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5817,7 +5684,6 @@ func (s SetLoadBalancerPoliciesOfListenerOutput) GoString() string {
 }
 
 // Information about a source security group.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SourceSecurityGroup
 type SourceSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -5851,7 +5717,6 @@ func (s *SourceSecurityGroup) SetOwnerAlias(v string) *SourceSecurityGroup {
 }
 
 // Information about a tag.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -5903,7 +5768,6 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // The tags associated with a load balancer.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/TagDescription
 type TagDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5937,7 +5801,6 @@ func (s *TagDescription) SetTags(v []*Tag) *TagDescription {
 }
 
 // The key of a tag.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/TagKeyOnly
 type TagKeyOnly struct {
 	_ struct{} `type:"structure"`
 

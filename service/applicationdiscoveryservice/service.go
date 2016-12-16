@@ -213,9 +213,8 @@ import (
 //    * DescribeExportConfigurations: Gets the status of the data export. When
 //    the export is complete, the service returns an Amazon S3 URL where you
 //    can download CSV files that include the data.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01
 type ApplicationDiscoveryService struct {
 	*client.Client
 }

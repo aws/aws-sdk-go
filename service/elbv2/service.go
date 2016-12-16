@@ -57,9 +57,8 @@ import (
 //
 // All Elastic Load Balancing operations are idempotent, which means that they
 // complete at most one time. If you repeat an operation, it succeeds.
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01
 type ELBV2 struct {
 	*client.Client
 }

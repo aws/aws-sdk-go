@@ -54,9 +54,8 @@ import (
 //
 //    * For more information about how to use the Query API, see Using the Query
 //    API (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Using_the_Query_API.html).
-// The service client's operations are safe to be used concurrently.
+//The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31
 type RDS struct {
 	*client.Client
 }

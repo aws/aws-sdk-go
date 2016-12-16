@@ -37,7 +37,6 @@ const opDescribeStream = "DescribeStream"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/DescribeStream
 func (c *DynamoDBStreams) DescribeStreamRequest(input *DescribeStreamInput) (req *request.Request, output *DescribeStreamOutput) {
 	op := &request.Operation{
 		Name:       opDescribeStream,
@@ -83,7 +82,6 @@ func (c *DynamoDBStreams) DescribeStreamRequest(input *DescribeStreamInput) (req
 //   * InternalServerError
 //   An error occurred on the server side.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/DescribeStream
 func (c *DynamoDBStreams) DescribeStream(input *DescribeStreamInput) (*DescribeStreamOutput, error) {
 	req, out := c.DescribeStreamRequest(input)
 	err := req.Send()
@@ -116,7 +114,6 @@ const opGetRecords = "GetRecords"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetRecords
 func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *request.Request, output *GetRecordsOutput) {
 	op := &request.Operation{
 		Name:       opGetRecords,
@@ -189,7 +186,6 @@ func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *reques
 //      request, a stream record in the shard exceeds the 24 hour period and is
 //      trimmed. This causes the iterator to access a record that no longer exists.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetRecords
 func (c *DynamoDBStreams) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, error) {
 	req, out := c.GetRecordsRequest(input)
 	err := req.Send()
@@ -222,7 +218,6 @@ const opGetShardIterator = "GetShardIterator"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetShardIterator
 func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) (req *request.Request, output *GetShardIteratorOutput) {
 	op := &request.Operation{
 		Name:       opGetShardIterator,
@@ -276,7 +271,6 @@ func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) 
 //      request, a stream record in the shard exceeds the 24 hour period and is
 //      trimmed. This causes the iterator to access a record that no longer exists.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetShardIterator
 func (c *DynamoDBStreams) GetShardIterator(input *GetShardIteratorInput) (*GetShardIteratorOutput, error) {
 	req, out := c.GetShardIteratorRequest(input)
 	err := req.Send()
@@ -309,7 +303,6 @@ const opListStreams = "ListStreams"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/ListStreams
 func (c *DynamoDBStreams) ListStreamsRequest(input *ListStreamsInput) (req *request.Request, output *ListStreamsOutput) {
 	op := &request.Operation{
 		Name:       opListStreams,
@@ -349,7 +342,6 @@ func (c *DynamoDBStreams) ListStreamsRequest(input *ListStreamsInput) (req *requ
 //   * InternalServerError
 //   An error occurred on the server side.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/ListStreams
 func (c *DynamoDBStreams) ListStreams(input *ListStreamsInput) (*ListStreamsOutput, error) {
 	req, out := c.ListStreamsRequest(input)
 	err := req.Send()
@@ -357,7 +349,6 @@ func (c *DynamoDBStreams) ListStreams(input *ListStreamsInput) (*ListStreamsOutp
 }
 
 // Represents the input of a DescribeStream operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/DescribeStreamInput
 type DescribeStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -425,7 +416,6 @@ func (s *DescribeStreamInput) SetStreamArn(v string) *DescribeStreamInput {
 }
 
 // Represents the output of a DescribeStream operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/DescribeStreamOutput
 type DescribeStreamOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -453,7 +443,6 @@ func (s *DescribeStreamOutput) SetStreamDescription(v *StreamDescription) *Descr
 }
 
 // Represents the input of a GetRecords operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetRecordsInput
 type GetRecordsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -510,7 +499,6 @@ func (s *GetRecordsInput) SetShardIterator(v string) *GetRecordsInput {
 }
 
 // Represents the output of a GetRecords operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetRecordsOutput
 type GetRecordsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -546,7 +534,6 @@ func (s *GetRecordsOutput) SetRecords(v []*Record) *GetRecordsOutput {
 }
 
 // Represents the input of a GetShardIterator operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetShardIteratorInput
 type GetShardIteratorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -648,7 +635,6 @@ func (s *GetShardIteratorInput) SetStreamArn(v string) *GetShardIteratorInput {
 }
 
 // Represents the output of a GetShardIterator operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/GetShardIteratorOutput
 type GetShardIteratorOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -675,7 +661,6 @@ func (s *GetShardIteratorOutput) SetShardIterator(v string) *GetShardIteratorOut
 }
 
 // Represents the input of a ListStreams operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/ListStreamsInput
 type ListStreamsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -740,7 +725,6 @@ func (s *ListStreamsInput) SetTableName(v string) *ListStreamsInput {
 }
 
 // Represents the output of a ListStreams operation.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/ListStreamsOutput
 type ListStreamsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -783,7 +767,6 @@ func (s *ListStreamsOutput) SetStreams(v []*Stream) *ListStreamsOutput {
 }
 
 // A description of a unique event within a stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/Record
 type Record struct {
 	_ struct{} `type:"structure"`
 
@@ -868,7 +851,6 @@ func (s *Record) SetEventVersion(v string) *Record {
 
 // The beginning and ending sequence numbers for the stream records contained
 // within a shard.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/SequenceNumberRange
 type SequenceNumberRange struct {
 	_ struct{} `type:"structure"`
 
@@ -902,7 +884,6 @@ func (s *SequenceNumberRange) SetStartingSequenceNumber(v string) *SequenceNumbe
 }
 
 // A uniquely identified group of stream records within a stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/Shard
 type Shard struct {
 	_ struct{} `type:"structure"`
 
@@ -945,7 +926,6 @@ func (s *Shard) SetShardId(v string) *Shard {
 }
 
 // Represents all of the data describing a particular stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/Stream
 type Stream struct {
 	_ struct{} `type:"structure"`
 
@@ -999,7 +979,6 @@ func (s *Stream) SetTableName(v string) *Stream {
 }
 
 // Represents all of the data describing a particular stream.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/StreamDescription
 type StreamDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -1137,7 +1116,6 @@ func (s *StreamDescription) SetTableName(v string) *StreamDescription {
 
 // A description of a single data modification that was performed on an item
 // in a DynamoDB table.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/streams-dynamodb-2012-08-10/StreamRecord
 type StreamRecord struct {
 	_ struct{} `type:"structure"`
 

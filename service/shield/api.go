@@ -36,7 +36,6 @@ const opCreateProtection = "CreateProtection"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtection
 func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *request.Request, output *CreateProtectionOutput) {
 	op := &request.Operation{
 		Name:       opCreateProtection,
@@ -93,7 +92,6 @@ func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *req
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtection
 func (c *Shield) CreateProtection(input *CreateProtectionInput) (*CreateProtectionOutput, error) {
 	req, out := c.CreateProtectionRequest(input)
 	err := req.Send()
@@ -126,7 +124,6 @@ const opCreateSubscription = "CreateSubscription"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateSubscription
 func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req *request.Request, output *CreateSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opCreateSubscription,
@@ -163,7 +160,6 @@ func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req 
 //   * ResourceAlreadyExistsException
 //   Exception indicating the specified resource already exists.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateSubscription
 func (c *Shield) CreateSubscription(input *CreateSubscriptionInput) (*CreateSubscriptionOutput, error) {
 	req, out := c.CreateSubscriptionRequest(input)
 	err := req.Send()
@@ -196,7 +192,6 @@ const opDeleteProtection = "DeleteProtection"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtection
 func (c *Shield) DeleteProtectionRequest(input *DeleteProtectionInput) (req *request.Request, output *DeleteProtectionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteProtection,
@@ -237,7 +232,6 @@ func (c *Shield) DeleteProtectionRequest(input *DeleteProtectionInput) (req *req
 //   Exception that indicates that the protection state has been modified by another
 //   client. You can retry the request.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtection
 func (c *Shield) DeleteProtection(input *DeleteProtectionInput) (*DeleteProtectionOutput, error) {
 	req, out := c.DeleteProtectionRequest(input)
 	err := req.Send()
@@ -270,7 +264,6 @@ const opDeleteSubscription = "DeleteSubscription"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscription
 func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req *request.Request, output *DeleteSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opDeleteSubscription,
@@ -311,7 +304,6 @@ func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req 
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscription
 func (c *Shield) DeleteSubscription(input *DeleteSubscriptionInput) (*DeleteSubscriptionOutput, error) {
 	req, out := c.DeleteSubscriptionRequest(input)
 	err := req.Send()
@@ -344,7 +336,6 @@ const opDescribeAttack = "DescribeAttack"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttack
 func (c *Shield) DescribeAttackRequest(input *DescribeAttackInput) (req *request.Request, output *DescribeAttackOutput) {
 	op := &request.Operation{
 		Name:       opDescribeAttack,
@@ -381,7 +372,6 @@ func (c *Shield) DescribeAttackRequest(input *DescribeAttackInput) (req *request
 //   * InvalidParameterException
 //   Exception that indicates that the parameters passed to the API are invalid.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttack
 func (c *Shield) DescribeAttack(input *DescribeAttackInput) (*DescribeAttackOutput, error) {
 	req, out := c.DescribeAttackRequest(input)
 	err := req.Send()
@@ -414,7 +404,6 @@ const opDescribeProtection = "DescribeProtection"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtection
 func (c *Shield) DescribeProtectionRequest(input *DescribeProtectionInput) (req *request.Request, output *DescribeProtectionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeProtection,
@@ -451,7 +440,6 @@ func (c *Shield) DescribeProtectionRequest(input *DescribeProtectionInput) (req 
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtection
 func (c *Shield) DescribeProtection(input *DescribeProtectionInput) (*DescribeProtectionOutput, error) {
 	req, out := c.DescribeProtectionRequest(input)
 	err := req.Send()
@@ -484,7 +472,6 @@ const opDescribeSubscription = "DescribeSubscription"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeSubscription
 func (c *Shield) DescribeSubscriptionRequest(input *DescribeSubscriptionInput) (req *request.Request, output *DescribeSubscriptionOutput) {
 	op := &request.Operation{
 		Name:       opDescribeSubscription,
@@ -521,7 +508,6 @@ func (c *Shield) DescribeSubscriptionRequest(input *DescribeSubscriptionInput) (
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeSubscription
 func (c *Shield) DescribeSubscription(input *DescribeSubscriptionInput) (*DescribeSubscriptionOutput, error) {
 	req, out := c.DescribeSubscriptionRequest(input)
 	err := req.Send()
@@ -554,7 +540,6 @@ const opListAttacks = "ListAttacks"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListAttacks
 func (c *Shield) ListAttacksRequest(input *ListAttacksInput) (req *request.Request, output *ListAttacksOutput) {
 	op := &request.Operation{
 		Name:       opListAttacks,
@@ -596,7 +581,6 @@ func (c *Shield) ListAttacksRequest(input *ListAttacksInput) (req *request.Reque
 //   Exception that indicates that the operation would not cause any change to
 //   occur.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListAttacks
 func (c *Shield) ListAttacks(input *ListAttacksInput) (*ListAttacksOutput, error) {
 	req, out := c.ListAttacksRequest(input)
 	err := req.Send()
@@ -629,7 +613,6 @@ const opListProtections = "ListProtections"
 //        fmt.Println(resp)
 //    }
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtections
 func (c *Shield) ListProtectionsRequest(input *ListProtectionsInput) (req *request.Request, output *ListProtectionsOutput) {
 	op := &request.Operation{
 		Name:       opListProtections,
@@ -666,7 +649,6 @@ func (c *Shield) ListProtectionsRequest(input *ListProtectionsInput) (req *reque
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist.
 //
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtections
 func (c *Shield) ListProtections(input *ListProtectionsInput) (*ListProtectionsOutput, error) {
 	req, out := c.ListProtectionsRequest(input)
 	err := req.Send()
@@ -674,7 +656,6 @@ func (c *Shield) ListProtections(input *ListProtectionsInput) (*ListProtectionsO
 }
 
 // The details of a DDoS attack.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AttackDetail
 type AttackDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -754,7 +735,6 @@ func (s *AttackDetail) SetSubResources(v []*SubResourceSummary) *AttackDetail {
 }
 
 // Summarizes all DDoS attacks for a specified time period.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AttackSummary
 type AttackSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -815,7 +795,6 @@ func (s *AttackSummary) SetStartTime(v time.Time) *AttackSummary {
 }
 
 // Describes the attack.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/AttackVectorDescription
 type AttackVectorDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -841,7 +820,6 @@ func (s *AttackVectorDescription) SetVectorType(v string) *AttackVectorDescripti
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtectionRequest
 type CreateProtectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -900,7 +878,6 @@ func (s *CreateProtectionInput) SetResourceArn(v string) *CreateProtectionInput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtectionResponse
 type CreateProtectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -924,7 +901,6 @@ func (s *CreateProtectionOutput) SetProtectionId(v string) *CreateProtectionOutp
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateSubscriptionRequest
 type CreateSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -939,7 +915,6 @@ func (s CreateSubscriptionInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateSubscriptionResponse
 type CreateSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -954,7 +929,6 @@ func (s CreateSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtectionRequest
 type DeleteProtectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -996,7 +970,6 @@ func (s *DeleteProtectionInput) SetProtectionId(v string) *DeleteProtectionInput
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteProtectionResponse
 type DeleteProtectionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1011,7 +984,6 @@ func (s DeleteProtectionOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscriptionRequest
 type DeleteSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1026,7 +998,6 @@ func (s DeleteSubscriptionInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DeleteSubscriptionResponse
 type DeleteSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1041,7 +1012,6 @@ func (s DeleteSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttackRequest
 type DescribeAttackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1083,7 +1053,6 @@ func (s *DescribeAttackInput) SetAttackId(v string) *DescribeAttackInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeAttackResponse
 type DescribeAttackOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1107,7 +1076,6 @@ func (s *DescribeAttackOutput) SetAttack(v *AttackDetail) *DescribeAttackOutput 
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtectionRequest
 type DescribeProtectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1149,7 +1117,6 @@ func (s *DescribeProtectionInput) SetProtectionId(v string) *DescribeProtectionI
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeProtectionResponse
 type DescribeProtectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1173,7 +1140,6 @@ func (s *DescribeProtectionOutput) SetProtection(v *Protection) *DescribeProtect
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeSubscriptionRequest
 type DescribeSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1188,7 +1154,6 @@ func (s DescribeSubscriptionInput) GoString() string {
 	return s.String()
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/DescribeSubscriptionResponse
 type DescribeSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1212,7 +1177,6 @@ func (s *DescribeSubscriptionOutput) SetSubscription(v *Subscription) *DescribeS
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListAttacksRequest
 type ListAttacksInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1288,7 +1252,6 @@ func (s *ListAttacksInput) SetStartTime(v *TimeRange) *ListAttacksInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListAttacksResponse
 type ListAttacksOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1324,7 +1287,6 @@ func (s *ListAttacksOutput) SetNextToken(v string) *ListAttacksOutput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtectionsRequest
 type ListProtectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1372,7 +1334,6 @@ func (s *ListProtectionsInput) SetNextToken(v string) *ListProtectionsInput {
 	return s
 }
 
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/ListProtectionsResponse
 type ListProtectionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1410,7 +1371,6 @@ func (s *ListProtectionsOutput) SetProtections(v []*Protection) *ListProtections
 }
 
 // The mitigation applied to a DDoS attack.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/Mitigation
 type Mitigation struct {
 	_ struct{} `type:"structure"`
 
@@ -1435,7 +1395,6 @@ func (s *Mitigation) SetMitigationName(v string) *Mitigation {
 }
 
 // An object that represents a resource that is under DDoS protection.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/Protection
 type Protection struct {
 	_ struct{} `type:"structure"`
 
@@ -1478,7 +1437,6 @@ func (s *Protection) SetResourceArn(v string) *Protection {
 }
 
 // The attack information for the specified SubResource.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/SubResourceSummary
 type SubResourceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -1530,7 +1488,6 @@ func (s *SubResourceSummary) SetType(v string) *SubResourceSummary {
 }
 
 // Information about the AWS Shield Advanced subscription for an account.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/Subscription
 type Subscription struct {
 	_ struct{} `type:"structure"`
 
@@ -1564,7 +1521,6 @@ func (s *Subscription) SetTimeCommitmentInSeconds(v int64) *Subscription {
 }
 
 // A summary of information about the attack.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/SummarizedAttackVector
 type SummarizedAttackVector struct {
 	_ struct{} `type:"structure"`
 
@@ -1600,7 +1556,6 @@ func (s *SummarizedAttackVector) SetVectorType(v string) *SummarizedAttackVector
 }
 
 // The counter that describes a DDoS attack.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/SummarizedCounter
 type SummarizedCounter struct {
 	_ struct{} `type:"structure"`
 
@@ -1670,7 +1625,6 @@ func (s *SummarizedCounter) SetUnit(v string) *SummarizedCounter {
 }
 
 // The time range.
-// Please also see https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/TimeRange
 type TimeRange struct {
 	_ struct{} `type:"structure"`
 
