@@ -98,6 +98,7 @@ func (c *DirectoryService) AddIpRoutesRequest(input *AddIpRoutesInput) (req *req
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddIpRoutes
 func (c *DirectoryService) AddIpRoutes(input *AddIpRoutesInput) (*AddIpRoutesOutput, error) {
 	req, out := c.AddIpRoutesRequest(input)
 	err := req.Send()
@@ -177,6 +178,7 @@ func (c *DirectoryService) AddTagsToResourceRequest(input *AddTagsToResourceInpu
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddTagsToResource
 func (c *DirectoryService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -251,6 +253,7 @@ func (c *DirectoryService) CancelSchemaExtensionRequest(input *CancelSchemaExten
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CancelSchemaExtension
 func (c *DirectoryService) CancelSchemaExtension(input *CancelSchemaExtensionInput) (*CancelSchemaExtensionOutput, error) {
 	req, out := c.CancelSchemaExtensionRequest(input)
 	err := req.Send()
@@ -332,6 +335,7 @@ func (c *DirectoryService) ConnectDirectoryRequest(input *ConnectDirectoryInput)
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ConnectDirectory
 func (c *DirectoryService) ConnectDirectory(input *ConnectDirectoryInput) (*ConnectDirectoryOutput, error) {
 	req, out := c.ConnectDirectoryRequest(input)
 	err := req.Send()
@@ -414,6 +418,7 @@ func (c *DirectoryService) CreateAliasRequest(input *CreateAliasInput) (req *req
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateAlias
 func (c *DirectoryService) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
 	err := req.Send()
@@ -501,6 +506,7 @@ func (c *DirectoryService) CreateComputerRequest(input *CreateComputerInput) (re
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateComputer
 func (c *DirectoryService) CreateComputer(input *CreateComputerInput) (*CreateComputerOutput, error) {
 	req, out := c.CreateComputerRequest(input)
 	err := req.Send()
@@ -586,6 +592,7 @@ func (c *DirectoryService) CreateConditionalForwarderRequest(input *CreateCondit
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateConditionalForwarder
 func (c *DirectoryService) CreateConditionalForwarder(input *CreateConditionalForwarderInput) (*CreateConditionalForwarderOutput, error) {
 	req, out := c.CreateConditionalForwarderRequest(input)
 	err := req.Send()
@@ -667,6 +674,7 @@ func (c *DirectoryService) CreateDirectoryRequest(input *CreateDirectoryInput) (
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateDirectory
 func (c *DirectoryService) CreateDirectory(input *CreateDirectoryInput) (*CreateDirectoryOutput, error) {
 	req, out := c.CreateDirectoryRequest(input)
 	err := req.Send()
@@ -751,6 +759,7 @@ func (c *DirectoryService) CreateMicrosoftADRequest(input *CreateMicrosoftADInpu
 //   * UnsupportedOperationException
 //   The operation is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateMicrosoftAD
 func (c *DirectoryService) CreateMicrosoftAD(input *CreateMicrosoftADInput) (*CreateMicrosoftADOutput, error) {
 	req, out := c.CreateMicrosoftADRequest(input)
 	err := req.Send()
@@ -832,6 +841,7 @@ func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (re
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateSnapshot
 func (c *DirectoryService) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
@@ -919,6 +929,7 @@ func (c *DirectoryService) CreateTrustRequest(input *CreateTrustInput) (req *req
 //   * UnsupportedOperationException
 //   The operation is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateTrust
 func (c *DirectoryService) CreateTrust(input *CreateTrustInput) (*CreateTrustOutput, error) {
 	req, out := c.CreateTrustRequest(input)
 	err := req.Send()
@@ -999,6 +1010,7 @@ func (c *DirectoryService) DeleteConditionalForwarderRequest(input *DeleteCondit
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteConditionalForwarder
 func (c *DirectoryService) DeleteConditionalForwarder(input *DeleteConditionalForwarderInput) (*DeleteConditionalForwarderOutput, error) {
 	req, out := c.DeleteConditionalForwarderRequest(input)
 	err := req.Send()
@@ -1075,6 +1087,7 @@ func (c *DirectoryService) DeleteDirectoryRequest(input *DeleteDirectoryInput) (
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteDirectory
 func (c *DirectoryService) DeleteDirectory(input *DeleteDirectoryInput) (*DeleteDirectoryOutput, error) {
 	req, out := c.DeleteDirectoryRequest(input)
 	err := req.Send()
@@ -1149,6 +1162,7 @@ func (c *DirectoryService) DeleteSnapshotRequest(input *DeleteSnapshotInput) (re
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteSnapshot
 func (c *DirectoryService) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	err := req.Send()
@@ -1227,6 +1241,7 @@ func (c *DirectoryService) DeleteTrustRequest(input *DeleteTrustInput) (req *req
 //   * UnsupportedOperationException
 //   The operation is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteTrust
 func (c *DirectoryService) DeleteTrust(input *DeleteTrustInput) (*DeleteTrustOutput, error) {
 	req, out := c.DeleteTrustRequest(input)
 	err := req.Send()
@@ -1301,6 +1316,7 @@ func (c *DirectoryService) DeregisterEventTopicRequest(input *DeregisterEventTop
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeregisterEventTopic
 func (c *DirectoryService) DeregisterEventTopic(input *DeregisterEventTopicInput) (*DeregisterEventTopicOutput, error) {
 	req, out := c.DeregisterEventTopicRequest(input)
 	err := req.Send()
@@ -1384,6 +1400,7 @@ func (c *DirectoryService) DescribeConditionalForwardersRequest(input *DescribeC
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeConditionalForwarders
 func (c *DirectoryService) DescribeConditionalForwarders(input *DescribeConditionalForwardersInput) (*DescribeConditionalForwardersOutput, error) {
 	req, out := c.DescribeConditionalForwardersRequest(input)
 	err := req.Send()
@@ -1472,6 +1489,7 @@ func (c *DirectoryService) DescribeDirectoriesRequest(input *DescribeDirectories
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeDirectories
 func (c *DirectoryService) DescribeDirectories(input *DescribeDirectoriesInput) (*DescribeDirectoriesOutput, error) {
 	req, out := c.DescribeDirectoriesRequest(input)
 	err := req.Send()
@@ -1550,6 +1568,7 @@ func (c *DirectoryService) DescribeEventTopicsRequest(input *DescribeEventTopics
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeEventTopics
 func (c *DirectoryService) DescribeEventTopics(input *DescribeEventTopicsInput) (*DescribeEventTopicsOutput, error) {
 	req, out := c.DescribeEventTopicsRequest(input)
 	err := req.Send()
@@ -1634,6 +1653,7 @@ func (c *DirectoryService) DescribeSnapshotsRequest(input *DescribeSnapshotsInpu
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeSnapshots
 func (c *DirectoryService) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	err := req.Send()
@@ -1717,6 +1737,7 @@ func (c *DirectoryService) DescribeTrustsRequest(input *DescribeTrustsInput) (re
 //   * UnsupportedOperationException
 //   The operation is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeTrusts
 func (c *DirectoryService) DescribeTrusts(input *DescribeTrustsInput) (*DescribeTrustsOutput, error) {
 	req, out := c.DescribeTrustsRequest(input)
 	err := req.Send()
@@ -1789,6 +1810,7 @@ func (c *DirectoryService) DisableRadiusRequest(input *DisableRadiusInput) (req 
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableRadius
 func (c *DirectoryService) DisableRadius(input *DisableRadiusInput) (*DisableRadiusOutput, error) {
 	req, out := c.DisableRadiusRequest(input)
 	err := req.Send()
@@ -1866,6 +1888,7 @@ func (c *DirectoryService) DisableSsoRequest(input *DisableSsoInput) (req *reque
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableSso
 func (c *DirectoryService) DisableSso(input *DisableSsoInput) (*DisableSsoOutput, error) {
 	req, out := c.DisableSsoRequest(input)
 	err := req.Send()
@@ -1944,6 +1967,7 @@ func (c *DirectoryService) EnableRadiusRequest(input *EnableRadiusInput) (req *r
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableRadius
 func (c *DirectoryService) EnableRadius(input *EnableRadiusInput) (*EnableRadiusOutput, error) {
 	req, out := c.EnableRadiusRequest(input)
 	err := req.Send()
@@ -2021,6 +2045,7 @@ func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *request
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableSso
 func (c *DirectoryService) EnableSso(input *EnableSsoInput) (*EnableSsoOutput, error) {
 	req, out := c.EnableSsoRequest(input)
 	err := req.Send()
@@ -2092,6 +2117,7 @@ func (c *DirectoryService) GetDirectoryLimitsRequest(input *GetDirectoryLimitsIn
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/GetDirectoryLimits
 func (c *DirectoryService) GetDirectoryLimits(input *GetDirectoryLimitsInput) (*GetDirectoryLimitsOutput, error) {
 	req, out := c.GetDirectoryLimitsRequest(input)
 	err := req.Send()
@@ -2163,6 +2189,7 @@ func (c *DirectoryService) GetSnapshotLimitsRequest(input *GetSnapshotLimitsInpu
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/GetSnapshotLimits
 func (c *DirectoryService) GetSnapshotLimits(input *GetSnapshotLimitsInput) (*GetSnapshotLimitsOutput, error) {
 	req, out := c.GetSnapshotLimitsRequest(input)
 	err := req.Send()
@@ -2240,6 +2267,7 @@ func (c *DirectoryService) ListIpRoutesRequest(input *ListIpRoutesInput) (req *r
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListIpRoutes
 func (c *DirectoryService) ListIpRoutes(input *ListIpRoutesInput) (*ListIpRoutesOutput, error) {
 	req, out := c.ListIpRoutesRequest(input)
 	err := req.Send()
@@ -2314,6 +2342,7 @@ func (c *DirectoryService) ListSchemaExtensionsRequest(input *ListSchemaExtensio
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListSchemaExtensions
 func (c *DirectoryService) ListSchemaExtensions(input *ListSchemaExtensionsInput) (*ListSchemaExtensionsOutput, error) {
 	req, out := c.ListSchemaExtensionsRequest(input)
 	err := req.Send()
@@ -2391,6 +2420,7 @@ func (c *DirectoryService) ListTagsForResourceRequest(input *ListTagsForResource
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListTagsForResource
 func (c *DirectoryService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -2470,6 +2500,7 @@ func (c *DirectoryService) RegisterEventTopicRequest(input *RegisterEventTopicIn
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RegisterEventTopic
 func (c *DirectoryService) RegisterEventTopic(input *RegisterEventTopicInput) (*RegisterEventTopicOutput, error) {
 	req, out := c.RegisterEventTopicRequest(input)
 	err := req.Send()
@@ -2547,6 +2578,7 @@ func (c *DirectoryService) RemoveIpRoutesRequest(input *RemoveIpRoutesInput) (re
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveIpRoutes
 func (c *DirectoryService) RemoveIpRoutes(input *RemoveIpRoutesInput) (*RemoveIpRoutesOutput, error) {
 	req, out := c.RemoveIpRoutesRequest(input)
 	err := req.Send()
@@ -2621,6 +2653,7 @@ func (c *DirectoryService) RemoveTagsFromResourceRequest(input *RemoveTagsFromRe
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveTagsFromResource
 func (c *DirectoryService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -2703,6 +2736,7 @@ func (c *DirectoryService) RestoreFromSnapshotRequest(input *RestoreFromSnapshot
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RestoreFromSnapshot
 func (c *DirectoryService) RestoreFromSnapshot(input *RestoreFromSnapshotInput) (*RestoreFromSnapshotOutput, error) {
 	req, out := c.RestoreFromSnapshotRequest(input)
 	err := req.Send()
@@ -2785,6 +2819,7 @@ func (c *DirectoryService) StartSchemaExtensionRequest(input *StartSchemaExtensi
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/StartSchemaExtension
 func (c *DirectoryService) StartSchemaExtension(input *StartSchemaExtensionInput) (*StartSchemaExtensionOutput, error) {
 	req, out := c.StartSchemaExtensionRequest(input)
 	err := req.Send()
@@ -2865,6 +2900,7 @@ func (c *DirectoryService) UpdateConditionalForwarderRequest(input *UpdateCondit
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateConditionalForwarder
 func (c *DirectoryService) UpdateConditionalForwarder(input *UpdateConditionalForwarderInput) (*UpdateConditionalForwarderOutput, error) {
 	req, out := c.UpdateConditionalForwarderRequest(input)
 	err := req.Send()
@@ -2940,6 +2976,7 @@ func (c *DirectoryService) UpdateRadiusRequest(input *UpdateRadiusInput) (req *r
 //   * ServiceException
 //   An exception has occurred in AWS Directory Service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateRadius
 func (c *DirectoryService) UpdateRadius(input *UpdateRadiusInput) (*UpdateRadiusOutput, error) {
 	req, out := c.UpdateRadiusRequest(input)
 	err := req.Send()
@@ -3021,6 +3058,7 @@ func (c *DirectoryService) VerifyTrustRequest(input *VerifyTrustInput) (req *req
 //   * UnsupportedOperationException
 //   The operation is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/VerifyTrust
 func (c *DirectoryService) VerifyTrust(input *VerifyTrustInput) (*VerifyTrustOutput, error) {
 	req, out := c.VerifyTrustRequest(input)
 	err := req.Send()
@@ -3226,6 +3264,7 @@ func (s AddTagsToResourceOutput) GoString() string {
 }
 
 // Represents a named directory attribute.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Attribute
 type Attribute struct {
 	_ struct{} `type:"structure"`
 
@@ -3340,6 +3379,7 @@ func (s CancelSchemaExtensionOutput) GoString() string {
 }
 
 // Contains information about a computer account in a directory.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Computer
 type Computer struct {
 	_ struct{} `type:"structure"`
 
@@ -3385,6 +3425,7 @@ func (s *Computer) SetComputerName(v string) *Computer {
 // Points to a remote domain with which you are setting up a trust relationship.
 // Conditional forwarders are required in order to set up a trust relationship
 // with another domain.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ConditionalForwarder
 type ConditionalForwarder struct {
 	_ struct{} `type:"structure"`
 
@@ -5119,6 +5160,7 @@ func (s *DescribeTrustsOutput) SetTrusts(v []*Trust) *DescribeTrustsOutput {
 
 // Contains information for the ConnectDirectory operation when an AD Connector
 // directory is being created.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DirectoryConnectSettings
 type DirectoryConnectSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -5211,6 +5253,7 @@ func (s *DirectoryConnectSettings) SetVpcId(v string) *DirectoryConnectSettings 
 }
 
 // Contains information about an AD Connector directory.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DirectoryConnectSettingsDescription
 type DirectoryConnectSettingsDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5280,6 +5323,7 @@ func (s *DirectoryConnectSettingsDescription) SetVpcId(v string) *DirectoryConne
 }
 
 // Contains information about an AWS Directory Service directory.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DirectoryDescription
 type DirectoryDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5470,6 +5514,7 @@ func (s *DirectoryDescription) SetVpcSettings(v *DirectoryVpcSettingsDescription
 }
 
 // Contains directory limit information for a region.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DirectoryLimits
 type DirectoryLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -5566,6 +5611,7 @@ func (s *DirectoryLimits) SetConnectedDirectoriesLimitReached(v bool) *Directory
 }
 
 // Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DirectoryVpcSettings
 type DirectoryVpcSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -5621,6 +5667,7 @@ func (s *DirectoryVpcSettings) SetVpcId(v string) *DirectoryVpcSettings {
 }
 
 // Contains information about the directory.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DirectoryVpcSettingsDescription
 type DirectoryVpcSettingsDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5986,6 +6033,7 @@ func (s EnableSsoOutput) GoString() string {
 }
 
 // Information about SNS topic and AWS Directory Service directory associations.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EventTopic
 type EventTopic struct {
 	_ struct{} `type:"structure"`
 
@@ -6156,6 +6204,7 @@ func (s *GetSnapshotLimitsOutput) SetSnapshotLimits(v *SnapshotLimits) *GetSnaps
 
 // IP address block. This is often the address block of the DNS server used
 // for your on-premises domain.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/IpRoute
 type IpRoute struct {
 	_ struct{} `type:"structure"`
 
@@ -6191,6 +6240,7 @@ func (s *IpRoute) SetDescription(v string) *IpRoute {
 }
 
 // Information about one or more IP address blocks.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/IpRouteInfo
 type IpRouteInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -6539,6 +6589,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 
 // Contains information about a Remote Authentication Dial In User Service (RADIUS)
 // server.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RadiusSettings
 type RadiusSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -6918,6 +6969,7 @@ func (s RestoreFromSnapshotOutput) GoString() string {
 }
 
 // Information about a schema extension.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/SchemaExtensionInfo
 type SchemaExtensionInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -6997,6 +7049,7 @@ func (s *SchemaExtensionInfo) SetStartDateTime(v time.Time) *SchemaExtensionInfo
 }
 
 // Describes a directory snapshot.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Snapshot
 type Snapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -7066,6 +7119,7 @@ func (s *Snapshot) SetType(v string) *Snapshot {
 }
 
 // Contains manual snapshot limit information for a directory.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/SnapshotLimits
 type SnapshotLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -7219,6 +7273,7 @@ func (s *StartSchemaExtensionOutput) SetSchemaExtensionId(v string) *StartSchema
 
 // Metadata assigned to an Amazon Directory Services directory consisting of
 // a key-value pair.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7280,6 +7335,7 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // Describes a trust relationship between an Microsoft AD in the AWS cloud and
 // an external domain.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Trust
 type Trust struct {
 	_ struct{} `type:"structure"`
 

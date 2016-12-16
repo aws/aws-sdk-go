@@ -129,6 +129,7 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //   Returned if the AWS account has already created maximum number of file systems
 //   allowed per account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateFileSystem
 func (c *EFS) CreateFileSystem(input *CreateFileSystemInput) (*FileSystemDescription, error) {
 	req, out := c.CreateFileSystemRequest(input)
 	err := req.Send()
@@ -332,6 +333,7 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //   * UnsupportedAvailabilityZone
 
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateMountTarget
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {
 	req, out := c.CreateMountTargetRequest(input)
 	err := req.Send()
@@ -413,6 +415,7 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 //   Returned if the specified FileSystemId does not exist in the requester's
 //   AWS account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateTags
 func (c *EFS) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
@@ -506,6 +509,7 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 //   * FileSystemInUse
 //   Returned if a file system has mount targets.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystem
 func (c *EFS) DeleteFileSystem(input *DeleteFileSystemInput) (*DeleteFileSystemOutput, error) {
 	req, out := c.DeleteFileSystemRequest(input)
 	err := req.Send()
@@ -609,6 +613,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 //   Returned if there is no mount target with the specified ID found in the caller's
 //   account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteMountTarget
 func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTargetOutput, error) {
 	req, out := c.DeleteMountTargetRequest(input)
 	err := req.Send()
@@ -691,6 +696,7 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 //   Returned if the specified FileSystemId does not exist in the requester's
 //   AWS account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteTags
 func (c *EFS) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
@@ -789,6 +795,7 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 //   Returned if the specified FileSystemId does not exist in the requester's
 //   AWS account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeFileSystems
 func (c *EFS) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFileSystemsOutput, error) {
 	req, out := c.DescribeFileSystemsRequest(input)
 	err := req.Send()
@@ -875,6 +882,7 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 //   * IncorrectMountTargetState
 //   Returned if the mount target is not in the correct state for the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups
 func (c *EFS) DescribeMountTargetSecurityGroups(input *DescribeMountTargetSecurityGroupsInput) (*DescribeMountTargetSecurityGroupsOutput, error) {
 	req, out := c.DescribeMountTargetSecurityGroupsRequest(input)
 	err := req.Send()
@@ -958,6 +966,7 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 //   Returned if there is no mount target with the specified ID found in the caller's
 //   account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargets
 func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeMountTargetsOutput, error) {
 	req, out := c.DescribeMountTargetsRequest(input)
 	err := req.Send()
@@ -1036,6 +1045,7 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 //   Returned if the specified FileSystemId does not exist in the requester's
 //   AWS account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeTags
 func (c *EFS) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -1137,6 +1147,7 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 //   Returned if one of the specified security groups does not exist in the subnet's
 //   VPC.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroups
 func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGroupsInput) (*ModifyMountTargetSecurityGroupsOutput, error) {
 	req, out := c.ModifyMountTargetSecurityGroupsRequest(input)
 	err := req.Send()
@@ -1335,6 +1346,7 @@ func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateTagsOutput
 type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1388,6 +1400,7 @@ func (s *DeleteFileSystemInput) SetFileSystemId(v string) *DeleteFileSystemInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystemOutput
 type DeleteFileSystemOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1441,6 +1454,7 @@ func (s *DeleteMountTargetInput) SetMountTargetId(v string) *DeleteMountTargetIn
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteMountTargetOutput
 type DeleteMountTargetOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1508,6 +1522,7 @@ func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteTagsOutput
 type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1931,6 +1946,7 @@ func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
 }
 
 // Description of the file system.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/FileSystemDescription
 type FileSystemDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2062,6 +2078,7 @@ func (s *FileSystemDescription) SetSizeInBytes(v *FileSystemSize) *FileSystemDes
 // if the file system is not modified for a period longer than a couple of hours.
 // Otherwise, the value is not necessarily the exact size the file system was
 // at any instant in time.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/FileSystemSize
 type FileSystemSize struct {
 	_ struct{} `type:"structure"`
 
@@ -2145,6 +2162,7 @@ func (s *ModifyMountTargetSecurityGroupsInput) SetSecurityGroups(v []*string) *M
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ModifyMountTargetSecurityGroupsOutput
 type ModifyMountTargetSecurityGroupsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2160,6 +2178,7 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 }
 
 // Provides a description of a mount target.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/MountTargetDescription
 type MountTargetDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2248,6 +2267,7 @@ func (s *MountTargetDescription) SetSubnetId(v string) *MountTargetDescription {
 
 // A tag is a key-value pair. Allowed characters: letters, whitespace, and numbers,
 // representable in UTF-8, and the following characters: + - = . _ : /
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 

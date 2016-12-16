@@ -77,6 +77,7 @@ func (c *CloudHSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req 
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/AddTagsToResource
 func (c *CloudHSM) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -149,6 +150,7 @@ func (c *CloudHSM) CreateHapgRequest(input *CreateHapgInput) (req *request.Reque
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/CreateHapg
 func (c *CloudHSM) CreateHapg(input *CreateHapgInput) (*CreateHapgOutput, error) {
 	req, out := c.CreateHapgRequest(input)
 	err := req.Send()
@@ -230,6 +232,7 @@ func (c *CloudHSM) CreateHsmRequest(input *CreateHsmInput) (req *request.Request
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/CreateHsm
 func (c *CloudHSM) CreateHsm(input *CreateHsmInput) (*CreateHsmOutput, error) {
 	req, out := c.CreateHsmRequest(input)
 	err := req.Send()
@@ -301,6 +304,7 @@ func (c *CloudHSM) CreateLunaClientRequest(input *CreateLunaClientInput) (req *r
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/CreateLunaClient
 func (c *CloudHSM) CreateLunaClient(input *CreateLunaClientInput) (*CreateLunaClientOutput, error) {
 	req, out := c.CreateLunaClientRequest(input)
 	err := req.Send()
@@ -372,6 +376,7 @@ func (c *CloudHSM) DeleteHapgRequest(input *DeleteHapgInput) (req *request.Reque
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/DeleteHapg
 func (c *CloudHSM) DeleteHapg(input *DeleteHapgInput) (*DeleteHapgOutput, error) {
 	req, out := c.DeleteHapgRequest(input)
 	err := req.Send()
@@ -444,6 +449,7 @@ func (c *CloudHSM) DeleteHsmRequest(input *DeleteHsmInput) (req *request.Request
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/DeleteHsm
 func (c *CloudHSM) DeleteHsm(input *DeleteHsmInput) (*DeleteHsmOutput, error) {
 	req, out := c.DeleteHsmRequest(input)
 	err := req.Send()
@@ -515,6 +521,7 @@ func (c *CloudHSM) DeleteLunaClientRequest(input *DeleteLunaClientInput) (req *r
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/DeleteLunaClient
 func (c *CloudHSM) DeleteLunaClient(input *DeleteLunaClientInput) (*DeleteLunaClientOutput, error) {
 	req, out := c.DeleteLunaClientRequest(input)
 	err := req.Send()
@@ -586,6 +593,7 @@ func (c *CloudHSM) DescribeHapgRequest(input *DescribeHapgInput) (req *request.R
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/DescribeHapg
 func (c *CloudHSM) DescribeHapg(input *DescribeHapgInput) (*DescribeHapgOutput, error) {
 	req, out := c.DescribeHapgRequest(input)
 	err := req.Send()
@@ -658,6 +666,7 @@ func (c *CloudHSM) DescribeHsmRequest(input *DescribeHsmInput) (req *request.Req
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/DescribeHsm
 func (c *CloudHSM) DescribeHsm(input *DescribeHsmInput) (*DescribeHsmOutput, error) {
 	req, out := c.DescribeHsmRequest(input)
 	err := req.Send()
@@ -729,6 +738,7 @@ func (c *CloudHSM) DescribeLunaClientRequest(input *DescribeLunaClientInput) (re
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/DescribeLunaClient
 func (c *CloudHSM) DescribeLunaClient(input *DescribeLunaClientInput) (*DescribeLunaClientOutput, error) {
 	req, out := c.DescribeLunaClientRequest(input)
 	err := req.Send()
@@ -801,6 +811,7 @@ func (c *CloudHSM) GetConfigRequest(input *GetConfigInput) (req *request.Request
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/GetConfig
 func (c *CloudHSM) GetConfig(input *GetConfigInput) (*GetConfigOutput, error) {
 	req, out := c.GetConfigRequest(input)
 	err := req.Send()
@@ -872,6 +883,7 @@ func (c *CloudHSM) ListAvailableZonesRequest(input *ListAvailableZonesInput) (re
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ListAvailableZones
 func (c *CloudHSM) ListAvailableZones(input *ListAvailableZonesInput) (*ListAvailableZonesOutput, error) {
 	req, out := c.ListAvailableZonesRequest(input)
 	err := req.Send()
@@ -948,6 +960,7 @@ func (c *CloudHSM) ListHapgsRequest(input *ListHapgsInput) (req *request.Request
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ListHapgs
 func (c *CloudHSM) ListHapgs(input *ListHapgsInput) (*ListHapgsOutput, error) {
 	req, out := c.ListHapgsRequest(input)
 	err := req.Send()
@@ -1025,6 +1038,7 @@ func (c *CloudHSM) ListHsmsRequest(input *ListHsmsInput) (req *request.Request, 
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ListHsms
 func (c *CloudHSM) ListHsms(input *ListHsmsInput) (*ListHsmsOutput, error) {
 	req, out := c.ListHsmsRequest(input)
 	err := req.Send()
@@ -1101,6 +1115,7 @@ func (c *CloudHSM) ListLunaClientsRequest(input *ListLunaClientsInput) (req *req
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ListLunaClients
 func (c *CloudHSM) ListLunaClients(input *ListLunaClientsInput) (*ListLunaClientsOutput, error) {
 	req, out := c.ListLunaClientsRequest(input)
 	err := req.Send()
@@ -1172,6 +1187,7 @@ func (c *CloudHSM) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ListTagsForResource
 func (c *CloudHSM) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -1243,6 +1259,7 @@ func (c *CloudHSM) ModifyHapgRequest(input *ModifyHapgInput) (req *request.Reque
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ModifyHapg
 func (c *CloudHSM) ModifyHapg(input *ModifyHapgInput) (*ModifyHapgOutput, error) {
 	req, out := c.ModifyHapgRequest(input)
 	err := req.Send()
@@ -1320,6 +1337,7 @@ func (c *CloudHSM) ModifyHsmRequest(input *ModifyHsmInput) (req *request.Request
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ModifyHsm
 func (c *CloudHSM) ModifyHsm(input *ModifyHsmInput) (*ModifyHsmOutput, error) {
 	req, out := c.ModifyHsmRequest(input)
 	err := req.Send()
@@ -1388,6 +1406,7 @@ func (c *CloudHSM) ModifyLunaClientRequest(input *ModifyLunaClientInput) (req *r
 //   * CloudHsmServiceException
 //   Indicates that an exception occurred in the AWS CloudHSM service.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/ModifyLunaClient
 func (c *CloudHSM) ModifyLunaClient(input *ModifyLunaClientInput) (*ModifyLunaClientOutput, error) {
 	req, out := c.ModifyLunaClientRequest(input)
 	err := req.Send()
@@ -1462,6 +1481,7 @@ func (c *CloudHSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceIn
 //   * InvalidRequestException
 //   Indicates that one or more of the request parameters are not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/RemoveTagsFromResource
 func (c *CloudHSM) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -3285,6 +3305,7 @@ func (s *RemoveTagsFromResourceOutput) SetStatus(v string) *RemoveTagsFromResour
 
 // A key-value pair that identifies or specifies metadata about an AWS CloudHSM
 // resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudhsm-2014-05-30/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 

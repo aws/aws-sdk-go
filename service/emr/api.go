@@ -73,6 +73,7 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *requ
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceGroups
 func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGroupsOutput, error) {
 	req, out := c.AddInstanceGroupsRequest(input)
 	err := req.Send()
@@ -161,6 +162,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddJobFlowSteps
 func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutput, error) {
 	req, out := c.AddJobFlowStepsRequest(input)
 	err := req.Send()
@@ -232,6 +234,7 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddTags
 func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -305,6 +308,7 @@ func (c *EMR) CancelStepsRequest(input *CancelStepsInput) (req *request.Request,
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CancelSteps
 func (c *EMR) CancelSteps(input *CancelStepsInput) (*CancelStepsOutput, error) {
 	req, out := c.CancelStepsRequest(input)
 	err := req.Send()
@@ -374,6 +378,7 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateSecurityConfiguration
 func (c *EMR) CreateSecurityConfiguration(input *CreateSecurityConfigurationInput) (*CreateSecurityConfigurationOutput, error) {
 	req, out := c.CreateSecurityConfigurationRequest(input)
 	err := req.Send()
@@ -442,6 +447,7 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteSecurityConfiguration
 func (c *EMR) DeleteSecurityConfiguration(input *DeleteSecurityConfigurationInput) (*DeleteSecurityConfigurationOutput, error) {
 	req, out := c.DeleteSecurityConfigurationRequest(input)
 	err := req.Send()
@@ -511,6 +517,7 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeCluster
 func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutput, error) {
 	req, out := c.DescribeClusterRequest(input)
 	err := req.Send()
@@ -599,6 +606,7 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeJobFlows
 func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsOutput, error) {
 	req, out := c.DescribeJobFlowsRequest(input)
 	err := req.Send()
@@ -668,6 +676,7 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeSecurityConfiguration
 func (c *EMR) DescribeSecurityConfiguration(input *DescribeSecurityConfigurationInput) (*DescribeSecurityConfigurationOutput, error) {
 	req, out := c.DescribeSecurityConfigurationRequest(input)
 	err := req.Send()
@@ -736,6 +745,7 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStep
 func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error) {
 	req, out := c.DescribeStepRequest(input)
 	err := req.Send()
@@ -810,6 +820,7 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListBootstrapActions
 func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBootstrapActionsOutput, error) {
 	req, out := c.ListBootstrapActionsRequest(input)
 	err := req.Send()
@@ -913,6 +924,7 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListClusters
 func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error) {
 	req, out := c.ListClustersRequest(input)
 	err := req.Send()
@@ -1012,6 +1024,7 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceGroups
 func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceGroupsOutput, error) {
 	req, out := c.ListInstanceGroupsRequest(input)
 	err := req.Send()
@@ -1115,6 +1128,7 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstances
 func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
 	req, out := c.ListInstancesRequest(input)
 	err := req.Send()
@@ -1211,6 +1225,7 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSecurityConfigurations
 func (c *EMR) ListSecurityConfigurations(input *ListSecurityConfigurationsInput) (*ListSecurityConfigurationsOutput, error) {
 	req, out := c.ListSecurityConfigurationsRequest(input)
 	err := req.Send()
@@ -1286,6 +1301,7 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSteps
 func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 	req, out := c.ListStepsRequest(input)
 	err := req.Send()
@@ -1382,6 +1398,7 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceGroups
 func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyInstanceGroupsOutput, error) {
 	req, out := c.ModifyInstanceGroupsRequest(input)
 	err := req.Send()
@@ -1445,6 +1462,7 @@ func (c *EMR) PutAutoScalingPolicyRequest(input *PutAutoScalingPolicyInput) (req
 //
 // See the AWS API reference guide for Amazon Elastic MapReduce's
 // API operation PutAutoScalingPolicy for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoScalingPolicy
 func (c *EMR) PutAutoScalingPolicy(input *PutAutoScalingPolicyInput) (*PutAutoScalingPolicyOutput, error) {
 	req, out := c.PutAutoScalingPolicyRequest(input)
 	err := req.Send()
@@ -1506,6 +1524,7 @@ func (c *EMR) RemoveAutoScalingPolicyRequest(input *RemoveAutoScalingPolicyInput
 //
 // See the AWS API reference guide for Amazon Elastic MapReduce's
 // API operation RemoveAutoScalingPolicy for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoScalingPolicy
 func (c *EMR) RemoveAutoScalingPolicy(input *RemoveAutoScalingPolicyInput) (*RemoveAutoScalingPolicyOutput, error) {
 	req, out := c.RemoveAutoScalingPolicyRequest(input)
 	err := req.Send()
@@ -1579,6 +1598,7 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveTags
 func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -1667,6 +1687,7 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RunJobFlow
 func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
 	req, out := c.RunJobFlowRequest(input)
 	err := req.Send()
@@ -1751,6 +1772,7 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetTerminationProtection
 func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*SetTerminationProtectionOutput, error) {
 	req, out := c.SetTerminationProtectionRequest(input)
 	err := req.Send()
@@ -1824,6 +1846,7 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetVisibleToAllUsers
 func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibleToAllUsersOutput, error) {
 	req, out := c.SetVisibleToAllUsersRequest(input)
 	err := req.Send()
@@ -1900,6 +1923,7 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 //   Indicates that an error occurred while processing the request and that the
 //   request was not completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/TerminateJobFlows
 func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (*TerminateJobFlowsOutput, error) {
 	req, out := c.TerminateJobFlowsRequest(input)
 	err := req.Send()
@@ -1907,6 +1931,7 @@ func (c *EMR) TerminateJobFlows(input *TerminateJobFlowsInput) (*TerminateJobFlo
 }
 
 // Input to an AddInstanceGroups call.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceGroupsInput
 type AddInstanceGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1970,6 +1995,7 @@ func (s *AddInstanceGroupsInput) SetJobFlowId(v string) *AddInstanceGroupsInput 
 }
 
 // Output from an AddInstanceGroups call.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddInstanceGroupsOutput
 type AddInstanceGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2003,6 +2029,7 @@ func (s *AddInstanceGroupsOutput) SetJobFlowId(v string) *AddInstanceGroupsOutpu
 }
 
 // The input argument to the AddJobFlowSteps operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddJobFlowStepsInput
 type AddJobFlowStepsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2067,6 +2094,7 @@ func (s *AddJobFlowStepsInput) SetSteps(v []*StepConfig) *AddJobFlowStepsInput {
 }
 
 // The output for the AddJobFlowSteps operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddJobFlowStepsOutput
 type AddJobFlowStepsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2091,6 +2119,7 @@ func (s *AddJobFlowStepsOutput) SetStepIds(v []*string) *AddJobFlowStepsOutput {
 }
 
 // This input identifies a cluster and a list of tags to attach.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddTagsInput
 type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2148,6 +2177,7 @@ func (s *AddTagsInput) SetTags(v []*Tag) *AddTagsInput {
 }
 
 // This output indicates the result of adding tags to a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AddTagsOutput
 type AddTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2180,6 +2210,7 @@ func (s AddTagsOutput) GoString() string {
 // In Amazon EMR releases 4.0 and greater, the only accepted parameter is the
 // application name. To pass arguments to applications, you supply a configuration
 // for each application.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Application
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -2235,6 +2266,7 @@ func (s *Application) SetVersion(v string) *Application {
 // in an Amazon EMR cluster. An automatic scaling policy defines how an instance
 // group dynamically adds and terminates EC2 instances in response to the value
 // of a CloudWatch metric. See PutAutoScalingPolicy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AutoScalingPolicy
 type AutoScalingPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -2308,6 +2340,7 @@ func (s *AutoScalingPolicy) SetRules(v []*ScalingRule) *AutoScalingPolicy {
 // in an Amazon EMR cluster. The automatic scaling policy defines how an instance
 // group dynamically adds and terminates EC2 instances in response to the value
 // of a CloudWatch metric. See PutAutoScalingPolicy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AutoScalingPolicyDescription
 type AutoScalingPolicyDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -2352,6 +2385,7 @@ func (s *AutoScalingPolicyDescription) SetStatus(v *AutoScalingPolicyStatus) *Au
 }
 
 // The reason for an AutoScalingPolicyStatus change.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AutoScalingPolicyStateChangeReason
 type AutoScalingPolicyStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -2389,6 +2423,7 @@ func (s *AutoScalingPolicyStateChangeReason) SetMessage(v string) *AutoScalingPo
 }
 
 // The status of an automatic scaling policy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/AutoScalingPolicyStatus
 type AutoScalingPolicyStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -2421,6 +2456,7 @@ func (s *AutoScalingPolicyStatus) SetStateChangeReason(v *AutoScalingPolicyState
 }
 
 // Configuration of a bootstrap action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/BootstrapActionConfig
 type BootstrapActionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -2479,6 +2515,7 @@ func (s *BootstrapActionConfig) SetScriptBootstrapAction(v *ScriptBootstrapActio
 }
 
 // Reports the configuration of a bootstrap action in a job flow.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/BootstrapActionDetail
 type BootstrapActionDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -2502,6 +2539,7 @@ func (s *BootstrapActionDetail) SetBootstrapActionConfig(v *BootstrapActionConfi
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CancelStepsInfo
 type CancelStepsInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -2541,6 +2579,7 @@ func (s *CancelStepsInfo) SetStepId(v string) *CancelStepsInfo {
 }
 
 // The input argument to the CancelSteps operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CancelStepsInput
 type CancelStepsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2576,6 +2615,7 @@ func (s *CancelStepsInput) SetStepIds(v []*string) *CancelStepsInput {
 }
 
 // The output for the CancelSteps operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CancelStepsOutput
 type CancelStepsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2603,6 +2643,7 @@ func (s *CancelStepsOutput) SetCancelStepsInfoList(v []*CancelStepsInfo) *Cancel
 // The definition of a CloudWatch metric alarm, which determines when an automatic
 // scaling activity is triggered. When the defined alarm conditions are satisfied,
 // scaling activity begins.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CloudWatchAlarmDefinition
 type CloudWatchAlarmDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -2737,6 +2778,7 @@ func (s *CloudWatchAlarmDefinition) SetUnit(v string) *CloudWatchAlarmDefinition
 }
 
 // The detailed description of the cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Cluster
 type Cluster struct {
 	_ struct{} `type:"structure"`
 
@@ -2962,6 +3004,7 @@ func (s *Cluster) SetVisibleToAllUsers(v bool) *Cluster {
 }
 
 // The reason that the cluster changed to its current state.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ClusterStateChangeReason
 type ClusterStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -2995,6 +3038,7 @@ func (s *ClusterStateChangeReason) SetMessage(v string) *ClusterStateChangeReaso
 }
 
 // The detailed status of the cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ClusterStatus
 type ClusterStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -3038,6 +3082,7 @@ func (s *ClusterStatus) SetTimeline(v *ClusterTimeline) *ClusterStatus {
 }
 
 // The summary description of the cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ClusterSummary
 type ClusterSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3094,6 +3139,7 @@ func (s *ClusterSummary) SetStatus(v *ClusterStatus) *ClusterSummary {
 }
 
 // Represents the timeline of the cluster's lifecycle.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ClusterTimeline
 type ClusterTimeline struct {
 	_ struct{} `type:"structure"`
 
@@ -3136,6 +3182,7 @@ func (s *ClusterTimeline) SetReadyDateTime(v time.Time) *ClusterTimeline {
 }
 
 // An entity describing an executable that runs on a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Command
 type Command struct {
 	_ struct{} `type:"structure"`
 
@@ -3184,6 +3231,7 @@ func (s *Command) SetScriptPath(v string) *Command {
 // EMR. The Configuration object is a JSON object which is defined by a classification
 // and a set of properties. Configurations can be nested, so a configuration
 // may have its own Configuration objects listed.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Configuration
 type Configuration struct {
 	_ struct{} `type:"structure"`
 
@@ -3226,6 +3274,7 @@ func (s *Configuration) SetProperties(v map[string]*string) *Configuration {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateSecurityConfigurationInput
 type CreateSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3278,6 +3327,7 @@ func (s *CreateSecurityConfigurationInput) SetSecurityConfiguration(v string) *C
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/CreateSecurityConfigurationOutput
 type CreateSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3314,6 +3364,7 @@ func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityCon
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteSecurityConfigurationInput
 type DeleteSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3352,6 +3403,7 @@ func (s *DeleteSecurityConfigurationInput) SetName(v string) *DeleteSecurityConf
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DeleteSecurityConfigurationOutput
 type DeleteSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3367,6 +3419,7 @@ func (s DeleteSecurityConfigurationOutput) GoString() string {
 }
 
 // This input determines which cluster to describe.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeClusterInput
 type DescribeClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3406,6 +3459,7 @@ func (s *DescribeClusterInput) SetClusterId(v string) *DescribeClusterInput {
 }
 
 // This output contains the description of the cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeClusterOutput
 type DescribeClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3430,6 +3484,7 @@ func (s *DescribeClusterOutput) SetCluster(v *Cluster) *DescribeClusterOutput {
 }
 
 // The input for the DescribeJobFlows operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeJobFlowsInput
 type DescribeJobFlowsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3481,6 +3536,7 @@ func (s *DescribeJobFlowsInput) SetJobFlowStates(v []*string) *DescribeJobFlowsI
 }
 
 // The output for the DescribeJobFlows operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeJobFlowsOutput
 type DescribeJobFlowsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3504,6 +3560,7 @@ func (s *DescribeJobFlowsOutput) SetJobFlows(v []*JobFlowDetail) *DescribeJobFlo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeSecurityConfigurationInput
 type DescribeSecurityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3542,6 +3599,7 @@ func (s *DescribeSecurityConfigurationInput) SetName(v string) *DescribeSecurity
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeSecurityConfigurationOutput
 type DescribeSecurityConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3584,6 +3642,7 @@ func (s *DescribeSecurityConfigurationOutput) SetSecurityConfiguration(v string)
 }
 
 // This input determines which step to describe.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStepInput
 type DescribeStepInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3637,6 +3696,7 @@ func (s *DescribeStepInput) SetStepId(v string) *DescribeStepInput {
 }
 
 // This output contains the description of the cluster step.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/DescribeStepOutput
 type DescribeStepOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3662,6 +3722,7 @@ func (s *DescribeStepOutput) SetStep(v *Step) *DescribeStepOutput {
 
 // Configuration of requested EBS block device associated with the instance
 // group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/EbsBlockDevice
 type EbsBlockDevice struct {
 	_ struct{} `type:"structure"`
 
@@ -3697,6 +3758,7 @@ func (s *EbsBlockDevice) SetVolumeSpecification(v *VolumeSpecification) *EbsBloc
 
 // Configuration of requested EBS block device associated with the instance
 // group with count of volumes that will be associated to every instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/EbsBlockDeviceConfig
 type EbsBlockDeviceConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -3752,6 +3814,7 @@ func (s *EbsBlockDeviceConfig) SetVolumesPerInstance(v int64) *EbsBlockDeviceCon
 }
 
 // The Amazon EBS configuration of a cluster instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/EbsConfiguration
 type EbsConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3805,6 +3868,7 @@ func (s *EbsConfiguration) SetEbsOptimized(v bool) *EbsConfiguration {
 }
 
 // EBS block device that's attached to an EC2 instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/EbsVolume
 type EbsVolume struct {
 	_ struct{} `type:"structure"`
 
@@ -3839,6 +3903,7 @@ func (s *EbsVolume) SetVolumeId(v string) *EbsVolume {
 
 // Provides information about the EC2 instances in a cluster grouped by category.
 // For example, key name, subnet ID, IAM instance profile, and so on.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Ec2InstanceAttributes
 type Ec2InstanceAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -3946,6 +4011,7 @@ func (s *Ec2InstanceAttributes) SetServiceAccessSecurityGroup(v string) *Ec2Inst
 
 // The details of the step failure. The service attempts to detect the root
 // cause for many common failures.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/FailureDetails
 type FailureDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3995,6 +4061,7 @@ func (s *FailureDetails) SetReason(v string) *FailureDetails {
 // A job flow step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/HadoopJarStepConfig
 type HadoopJarStepConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4066,6 +4133,7 @@ func (s *HadoopJarStepConfig) SetProperties(v []*KeyValue) *HadoopJarStepConfig 
 // A cluster step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/HadoopStepConfig
 type HadoopStepConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4120,6 +4188,7 @@ func (s *HadoopStepConfig) SetProperties(v map[string]*string) *HadoopStepConfig
 }
 
 // Represents an EC2 instance provisioned as part of cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Instance
 type Instance struct {
 	_ struct{} `type:"structure"`
 
@@ -4217,6 +4286,7 @@ func (s *Instance) SetStatus(v *InstanceStatus) *Instance {
 
 // This entity represents an instance group, which is a group of instances that
 // have common purpose. For example, CORE instance group is used for HDFS.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroup
 type InstanceGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -4369,6 +4439,7 @@ func (s *InstanceGroup) SetStatus(v *InstanceGroupStatus) *InstanceGroup {
 }
 
 // Configuration defining a new instance group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroupConfig
 type InstanceGroupConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4512,6 +4583,7 @@ func (s *InstanceGroupConfig) SetName(v string) *InstanceGroupConfig {
 }
 
 // Detailed information about an instance group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroupDetail
 type InstanceGroupDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -4669,6 +4741,7 @@ func (s *InstanceGroupDetail) SetState(v string) *InstanceGroupDetail {
 }
 
 // Modify an instance group size.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroupModifyConfig
 type InstanceGroupModifyConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4736,6 +4809,7 @@ func (s *InstanceGroupModifyConfig) SetShrinkPolicy(v *ShrinkPolicy) *InstanceGr
 }
 
 // The status change reason details for the instance group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroupStateChangeReason
 type InstanceGroupStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -4769,6 +4843,7 @@ func (s *InstanceGroupStateChangeReason) SetMessage(v string) *InstanceGroupStat
 }
 
 // The details of the instance group status.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroupStatus
 type InstanceGroupStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -4811,6 +4886,7 @@ func (s *InstanceGroupStatus) SetTimeline(v *InstanceGroupTimeline) *InstanceGro
 }
 
 // The timeline of the instance group lifecycle.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceGroupTimeline
 type InstanceGroupTimeline struct {
 	_ struct{} `type:"structure"`
 
@@ -4854,6 +4930,7 @@ func (s *InstanceGroupTimeline) SetReadyDateTime(v time.Time) *InstanceGroupTime
 
 // Custom policy for requesting termination protection or termination of specific
 // instances when shrinking an instance group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceResizePolicy
 type InstanceResizePolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -4897,6 +4974,7 @@ func (s *InstanceResizePolicy) SetInstancesToTerminate(v []*string) *InstanceRes
 }
 
 // The details of the status change reason for the instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceStateChangeReason
 type InstanceStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -4930,6 +5008,7 @@ func (s *InstanceStateChangeReason) SetMessage(v string) *InstanceStateChangeRea
 }
 
 // The instance status details.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceStatus
 type InstanceStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -4972,6 +5051,7 @@ func (s *InstanceStatus) SetTimeline(v *InstanceTimeline) *InstanceStatus {
 }
 
 // The timeline of the instance lifecycle.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/InstanceTimeline
 type InstanceTimeline struct {
 	_ struct{} `type:"structure"`
 
@@ -5014,6 +5094,7 @@ func (s *InstanceTimeline) SetReadyDateTime(v time.Time) *InstanceTimeline {
 }
 
 // A description of a job flow.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/JobFlowDetail
 type JobFlowDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -5189,6 +5270,7 @@ func (s *JobFlowDetail) SetVisibleToAllUsers(v bool) *JobFlowDetail {
 }
 
 // Describes the status of the job flow.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/JobFlowExecutionStatusDetail
 type JobFlowExecutionStatusDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -5266,6 +5348,7 @@ func (s *JobFlowExecutionStatusDetail) SetState(v string) *JobFlowExecutionStatu
 // must contain at least InstanceGroups, which is the recommended configuration.
 // However, a valid alternative is to have MasterInstanceType, SlaveInstanceType,
 // and InstanceCount (all three must be present).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/JobFlowInstancesConfig
 type JobFlowInstancesConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -5463,6 +5546,7 @@ func (s *JobFlowInstancesConfig) SetTerminationProtected(v bool) *JobFlowInstanc
 }
 
 // Specify the type of Amazon EC2 instances to run the job flow on.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/JobFlowInstancesDetail
 type JobFlowInstancesDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -5612,6 +5696,7 @@ func (s *JobFlowInstancesDetail) SetTerminationProtected(v bool) *JobFlowInstanc
 }
 
 // A key value pair.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/KeyValue
 type KeyValue struct {
 	_ struct{} `type:"structure"`
 
@@ -5645,6 +5730,7 @@ func (s *KeyValue) SetValue(v string) *KeyValue {
 }
 
 // This input determines which bootstrap actions to retrieve.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListBootstrapActionsInput
 type ListBootstrapActionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5693,6 +5779,7 @@ func (s *ListBootstrapActionsInput) SetMarker(v string) *ListBootstrapActionsInp
 }
 
 // This output contains the bootstrap actions detail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListBootstrapActionsOutput
 type ListBootstrapActionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5727,6 +5814,7 @@ func (s *ListBootstrapActionsOutput) SetMarker(v string) *ListBootstrapActionsOu
 
 // This input determines how the ListClusters action filters the list of clusters
 // that it returns.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListClustersInput
 type ListClustersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5779,6 +5867,7 @@ func (s *ListClustersInput) SetMarker(v string) *ListClustersInput {
 
 // This contains a ClusterSummaryList with the cluster details; for example,
 // the cluster IDs, names, and status.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListClustersOutput
 type ListClustersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5812,6 +5901,7 @@ func (s *ListClustersOutput) SetMarker(v string) *ListClustersOutput {
 }
 
 // This input determines which instance groups to retrieve.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceGroupsInput
 type ListInstanceGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5860,6 +5950,7 @@ func (s *ListInstanceGroupsInput) SetMarker(v string) *ListInstanceGroupsInput {
 }
 
 // This input determines which instance groups to retrieve.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstanceGroupsOutput
 type ListInstanceGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5893,6 +5984,7 @@ func (s *ListInstanceGroupsOutput) SetMarker(v string) *ListInstanceGroupsOutput
 }
 
 // This input determines which instances to list.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstancesInput
 type ListInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5969,6 +6061,7 @@ func (s *ListInstancesInput) SetMarker(v string) *ListInstancesInput {
 }
 
 // This output contains the list of instances.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListInstancesOutput
 type ListInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6001,6 +6094,7 @@ func (s *ListInstancesOutput) SetMarker(v string) *ListInstancesOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSecurityConfigurationsInput
 type ListSecurityConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6024,6 +6118,7 @@ func (s *ListSecurityConfigurationsInput) SetMarker(v string) *ListSecurityConfi
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListSecurityConfigurationsOutput
 type ListSecurityConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6059,6 +6154,7 @@ func (s *ListSecurityConfigurationsOutput) SetSecurityConfigurations(v []*Securi
 }
 
 // This input determines which steps to list.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListStepsInput
 type ListStepsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6126,6 +6222,7 @@ func (s *ListStepsInput) SetStepStates(v []*string) *ListStepsInput {
 
 // This output contains the list of steps returned in reverse order. This means
 // that the last step is the first element in the list.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ListStepsOutput
 type ListStepsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6164,6 +6261,7 @@ func (s *ListStepsOutput) SetSteps(v []*StepSummary) *ListStepsOutput {
 // is ${emr:cluster_id}. This enables the rule to bootstrap when the cluster
 // ID becomes available, and also enables a single automatic scaling policy
 // to be reused for multiple clusters and instance groups.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/MetricDimension
 type MetricDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -6197,6 +6295,7 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 }
 
 // Change the size of some instance groups.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceGroupsInput
 type ModifyInstanceGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6249,6 +6348,7 @@ func (s *ModifyInstanceGroupsInput) SetInstanceGroups(v []*InstanceGroupModifyCo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ModifyInstanceGroupsOutput
 type ModifyInstanceGroupsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6264,6 +6364,7 @@ func (s ModifyInstanceGroupsOutput) GoString() string {
 }
 
 // The Amazon EC2 location for the job flow.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PlacementType
 type PlacementType struct {
 	_ struct{} `type:"structure"`
 
@@ -6302,6 +6403,7 @@ func (s *PlacementType) SetAvailabilityZone(v string) *PlacementType {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoScalingPolicyInput
 type PutAutoScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6375,6 +6477,7 @@ func (s *PutAutoScalingPolicyInput) SetInstanceGroupId(v string) *PutAutoScaling
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoScalingPolicyOutput
 type PutAutoScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6417,6 +6520,7 @@ func (s *PutAutoScalingPolicyOutput) SetInstanceGroupId(v string) *PutAutoScalin
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoScalingPolicyInput
 type RemoveAutoScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6470,6 +6574,7 @@ func (s *RemoveAutoScalingPolicyInput) SetInstanceGroupId(v string) *RemoveAutoS
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoScalingPolicyOutput
 type RemoveAutoScalingPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6485,6 +6590,7 @@ func (s RemoveAutoScalingPolicyOutput) GoString() string {
 }
 
 // This input identifies a cluster and a list of tags to remove.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveTagsInput
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6539,6 +6645,7 @@ func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
 }
 
 // This output indicates the result of removing tags from a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveTagsOutput
 type RemoveTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6554,6 +6661,7 @@ func (s RemoveTagsOutput) GoString() string {
 }
 
 // Input to the RunJobFlow operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RunJobFlowInput
 type RunJobFlowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6872,6 +6980,7 @@ func (s *RunJobFlowInput) SetVisibleToAllUsers(v bool) *RunJobFlowInput {
 }
 
 // The result of the RunJobFlow operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RunJobFlowOutput
 type RunJobFlowOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6897,6 +7006,7 @@ func (s *RunJobFlowOutput) SetJobFlowId(v string) *RunJobFlowOutput {
 
 // The type of adjustment the automatic scaling activity makes when triggered,
 // and the periodicity of the adjustment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ScalingAction
 type ScalingAction struct {
 	_ struct{} `type:"structure"`
 
@@ -6954,6 +7064,7 @@ func (s *ScalingAction) SetSimpleScalingPolicyConfiguration(v *SimpleScalingPoli
 // The upper and lower EC2 instance limits for an automatic scaling policy.
 // Automatic scaling activities triggered by automatic scaling rules will not
 // cause an instance group to grow above or below these limits.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ScalingConstraints
 type ScalingConstraints struct {
 	_ struct{} `type:"structure"`
 
@@ -7014,6 +7125,7 @@ func (s *ScalingConstraints) SetMinCapacity(v int64) *ScalingConstraints {
 // CloudWatch metric alarm that triggers activity, how EC2 instances are added
 // or removed, and the periodicity of adjustments. The automatic scaling policy
 // for an instance group can comprise one or more automatic scaling rules.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ScalingRule
 type ScalingRule struct {
 	_ struct{} `type:"structure"`
 
@@ -7102,6 +7214,7 @@ func (s *ScalingRule) SetTrigger(v *ScalingTrigger) *ScalingRule {
 }
 
 // The conditions that trigger an automatic scaling activity.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ScalingTrigger
 type ScalingTrigger struct {
 	_ struct{} `type:"structure"`
 
@@ -7147,6 +7260,7 @@ func (s *ScalingTrigger) SetCloudWatchAlarmDefinition(v *CloudWatchAlarmDefiniti
 }
 
 // Configuration of the script to run during a bootstrap action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ScriptBootstrapActionConfig
 type ScriptBootstrapActionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7196,6 +7310,7 @@ func (s *ScriptBootstrapActionConfig) SetPath(v string) *ScriptBootstrapActionCo
 }
 
 // The creation date and time, and name, of a security configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SecurityConfigurationSummary
 type SecurityConfigurationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7229,6 +7344,7 @@ func (s *SecurityConfigurationSummary) SetName(v string) *SecurityConfigurationS
 }
 
 // The input argument to the TerminationProtection operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetTerminationProtectionInput
 type SetTerminationProtectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7285,6 +7401,7 @@ func (s *SetTerminationProtectionInput) SetTerminationProtected(v bool) *SetTerm
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetTerminationProtectionOutput
 type SetTerminationProtectionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7300,6 +7417,7 @@ func (s SetTerminationProtectionOutput) GoString() string {
 }
 
 // The input to the SetVisibleToAllUsers action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetVisibleToAllUsersInput
 type SetVisibleToAllUsersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7356,6 +7474,7 @@ func (s *SetVisibleToAllUsersInput) SetVisibleToAllUsers(v bool) *SetVisibleToAl
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SetVisibleToAllUsersOutput
 type SetVisibleToAllUsersOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7372,6 +7491,7 @@ func (s SetVisibleToAllUsersOutput) GoString() string {
 
 // Policy for customizing shrink operations. Allows configuration of decommissioning
 // timeout and targeted instance shrinking.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/ShrinkPolicy
 type ShrinkPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -7409,6 +7529,7 @@ func (s *ShrinkPolicy) SetInstanceResizePolicy(v *InstanceResizePolicy) *ShrinkP
 // An automatic scaling configuration, which describes how the policy adds or
 // removes instances, the cooldown period, and the number of EC2 instances that
 // will be added each time the CloudWatch metric alarm condition is satisfied.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SimpleScalingPolicyConfiguration
 type SimpleScalingPolicyConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7484,6 +7605,7 @@ func (s *SimpleScalingPolicyConfiguration) SetScalingAdjustment(v int64) *Simple
 }
 
 // This represents a step in a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Step
 type Step struct {
 	_ struct{} `type:"structure"`
 
@@ -7545,6 +7667,7 @@ func (s *Step) SetStatus(v *StepStatus) *Step {
 }
 
 // Specification of a job flow step.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepConfig
 type StepConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7612,6 +7735,7 @@ func (s *StepConfig) SetName(v string) *StepConfig {
 }
 
 // Combines the execution state and configuration of a step.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepDetail
 type StepDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -7649,6 +7773,7 @@ func (s *StepDetail) SetStepConfig(v *StepConfig) *StepDetail {
 }
 
 // The execution state of a step.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepExecutionStatusDetail
 type StepExecutionStatusDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -7713,6 +7838,7 @@ func (s *StepExecutionStatusDetail) SetState(v string) *StepExecutionStatusDetai
 }
 
 // The details of the step state change reason.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepStateChangeReason
 type StepStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -7747,6 +7873,7 @@ func (s *StepStateChangeReason) SetMessage(v string) *StepStateChangeReason {
 }
 
 // The execution status details of the cluster step.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepStatus
 type StepStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -7799,6 +7926,7 @@ func (s *StepStatus) SetTimeline(v *StepTimeline) *StepStatus {
 }
 
 // The summary of the cluster step.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepSummary
 type StepSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7860,6 +7988,7 @@ func (s *StepSummary) SetStatus(v *StepStatus) *StepSummary {
 }
 
 // The timeline of the cluster step lifecycle.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/StepTimeline
 type StepTimeline struct {
 	_ struct{} `type:"structure"`
 
@@ -7904,6 +8033,7 @@ func (s *StepTimeline) SetStartDateTime(v time.Time) *StepTimeline {
 // The list of supported product configurations which allow user-supplied arguments.
 // EMR accepts these arguments and forwards them to the corresponding installation
 // script as bootstrap action arguments.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/SupportedProductConfig
 type SupportedProductConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7941,6 +8071,7 @@ func (s *SupportedProductConfig) SetName(v string) *SupportedProductConfig {
 // various ways, such as grouping clusters to track your Amazon EMR resource
 // allocation costs. For more information, see Tagging Amazon EMR Resources
 // (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-plan-tags.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7976,6 +8107,7 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // Input to the TerminateJobFlows operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/TerminateJobFlowsInput
 type TerminateJobFlowsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8014,6 +8146,7 @@ func (s *TerminateJobFlowsInput) SetJobFlowIds(v []*string) *TerminateJobFlowsIn
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/TerminateJobFlowsOutput
 type TerminateJobFlowsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8030,6 +8163,7 @@ func (s TerminateJobFlowsOutput) GoString() string {
 
 // EBS volume specifications such as volume type, IOPS, and size (GiB) that
 // will be requested for the EBS volume attached to an EC2 instance in the cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/VolumeSpecification
 type VolumeSpecification struct {
 	_ struct{} `type:"structure"`
 

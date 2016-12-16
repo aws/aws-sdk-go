@@ -135,6 +135,7 @@ func (c *WAF) CreateByteMatchSetRequest(input *CreateByteMatchSetInput) (req *re
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateByteMatchSet
 func (c *WAF) CreateByteMatchSet(input *CreateByteMatchSetInput) (*CreateByteMatchSetOutput, error) {
 	req, out := c.CreateByteMatchSetRequest(input)
 	err := req.Send()
@@ -265,6 +266,7 @@ func (c *WAF) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Request,
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateIPSet
 func (c *WAF) CreateIPSet(input *CreateIPSetInput) (*CreateIPSetOutput, error) {
 	req, out := c.CreateIPSetRequest(input)
 	err := req.Send()
@@ -405,6 +407,7 @@ func (c *WAF) CreateRuleRequest(input *CreateRuleInput) (req *request.Request, o
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateRule
 func (c *WAF) CreateRule(input *CreateRuleInput) (*CreateRuleOutput, error) {
 	req, out := c.CreateRuleRequest(input)
 	err := req.Send()
@@ -536,6 +539,7 @@ func (c *WAF) CreateSizeConstraintSetRequest(input *CreateSizeConstraintSetInput
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateSizeConstraintSet
 func (c *WAF) CreateSizeConstraintSet(input *CreateSizeConstraintSetInput) (*CreateSizeConstraintSetOutput, error) {
 	req, out := c.CreateSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -663,6 +667,7 @@ func (c *WAF) CreateSqlInjectionMatchSetRequest(input *CreateSqlInjectionMatchSe
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateSqlInjectionMatchSet
 func (c *WAF) CreateSqlInjectionMatchSet(input *CreateSqlInjectionMatchSetInput) (*CreateSqlInjectionMatchSetOutput, error) {
 	req, out := c.CreateSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -802,6 +807,7 @@ func (c *WAF) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Reques
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateWebACL
 func (c *WAF) CreateWebACL(input *CreateWebACLInput) (*CreateWebACLOutput, error) {
 	req, out := c.CreateWebACLRequest(input)
 	err := req.Send()
@@ -930,6 +936,7 @@ func (c *WAF) CreateXssMatchSetRequest(input *CreateXssMatchSetInput) (req *requ
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/CreateXssMatchSet
 func (c *WAF) CreateXssMatchSet(input *CreateXssMatchSetInput) (*CreateXssMatchSetOutput, error) {
 	req, out := c.CreateXssMatchSetRequest(input)
 	err := req.Send()
@@ -1043,6 +1050,7 @@ func (c *WAF) DeleteByteMatchSetRequest(input *DeleteByteMatchSetInput) (req *re
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteByteMatchSet
 func (c *WAF) DeleteByteMatchSet(input *DeleteByteMatchSetInput) (*DeleteByteMatchSetOutput, error) {
 	req, out := c.DeleteByteMatchSetRequest(input)
 	err := req.Send()
@@ -1155,6 +1163,7 @@ func (c *WAF) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Request,
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteIPSet
 func (c *WAF) DeleteIPSet(input *DeleteIPSetInput) (*DeleteIPSetOutput, error) {
 	req, out := c.DeleteIPSetRequest(input)
 	err := req.Send()
@@ -1267,6 +1276,7 @@ func (c *WAF) DeleteRuleRequest(input *DeleteRuleInput) (req *request.Request, o
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteRule
 func (c *WAF) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, error) {
 	req, out := c.DeleteRuleRequest(input)
 	err := req.Send()
@@ -1380,6 +1390,7 @@ func (c *WAF) DeleteSizeConstraintSetRequest(input *DeleteSizeConstraintSetInput
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteSizeConstraintSet
 func (c *WAF) DeleteSizeConstraintSet(input *DeleteSizeConstraintSetInput) (*DeleteSizeConstraintSetOutput, error) {
 	req, out := c.DeleteSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -1494,6 +1505,7 @@ func (c *WAF) DeleteSqlInjectionMatchSetRequest(input *DeleteSqlInjectionMatchSe
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteSqlInjectionMatchSet
 func (c *WAF) DeleteSqlInjectionMatchSet(input *DeleteSqlInjectionMatchSetInput) (*DeleteSqlInjectionMatchSetOutput, error) {
 	req, out := c.DeleteSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -1603,6 +1615,7 @@ func (c *WAF) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Reques
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteWebACL
 func (c *WAF) DeleteWebACL(input *DeleteWebACLInput) (*DeleteWebACLOutput, error) {
 	req, out := c.DeleteWebACLRequest(input)
 	err := req.Send()
@@ -1716,6 +1729,7 @@ func (c *WAF) DeleteXssMatchSetRequest(input *DeleteXssMatchSetInput) (req *requ
 //
 //      * You tried to delete an IPSet that references one or more IP addresses.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/DeleteXssMatchSet
 func (c *WAF) DeleteXssMatchSet(input *DeleteXssMatchSetInput) (*DeleteXssMatchSetOutput, error) {
 	req, out := c.DeleteXssMatchSetRequest(input)
 	err := req.Send()
@@ -1789,6 +1803,7 @@ func (c *WAF) GetByteMatchSetRequest(input *GetByteMatchSetInput) (req *request.
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetByteMatchSet
 func (c *WAF) GetByteMatchSet(input *GetByteMatchSetInput) (*GetByteMatchSetOutput, error) {
 	req, out := c.GetByteMatchSetRequest(input)
 	err := req.Send()
@@ -1869,6 +1884,7 @@ func (c *WAF) GetChangeTokenRequest(input *GetChangeTokenInput) (req *request.Re
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetChangeToken
 func (c *WAF) GetChangeToken(input *GetChangeTokenInput) (*GetChangeTokenOutput, error) {
 	req, out := c.GetChangeTokenRequest(input)
 	err := req.Send()
@@ -1948,6 +1964,7 @@ func (c *WAF) GetChangeTokenStatusRequest(input *GetChangeTokenStatusInput) (req
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetChangeTokenStatus
 func (c *WAF) GetChangeTokenStatus(input *GetChangeTokenStatusInput) (*GetChangeTokenStatusOutput, error) {
 	req, out := c.GetChangeTokenStatusRequest(input)
 	err := req.Send()
@@ -2021,6 +2038,7 @@ func (c *WAF) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, outpu
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetIPSet
 func (c *WAF) GetIPSet(input *GetIPSetInput) (*GetIPSetOutput, error) {
 	req, out := c.GetIPSetRequest(input)
 	err := req.Send()
@@ -2095,6 +2113,7 @@ func (c *WAF) GetRuleRequest(input *GetRuleInput) (req *request.Request, output 
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetRule
 func (c *WAF) GetRule(input *GetRuleInput) (*GetRuleOutput, error) {
 	req, out := c.GetRuleRequest(input)
 	err := req.Send()
@@ -2174,6 +2193,7 @@ func (c *WAF) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *re
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetSampledRequests
 func (c *WAF) GetSampledRequests(input *GetSampledRequestsInput) (*GetSampledRequestsOutput, error) {
 	req, out := c.GetSampledRequestsRequest(input)
 	err := req.Send()
@@ -2247,6 +2267,7 @@ func (c *WAF) GetSizeConstraintSetRequest(input *GetSizeConstraintSetInput) (req
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetSizeConstraintSet
 func (c *WAF) GetSizeConstraintSet(input *GetSizeConstraintSetInput) (*GetSizeConstraintSetOutput, error) {
 	req, out := c.GetSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -2320,6 +2341,7 @@ func (c *WAF) GetSqlInjectionMatchSetRequest(input *GetSqlInjectionMatchSetInput
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetSqlInjectionMatchSet
 func (c *WAF) GetSqlInjectionMatchSet(input *GetSqlInjectionMatchSetInput) (*GetSqlInjectionMatchSetOutput, error) {
 	req, out := c.GetSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -2393,6 +2415,7 @@ func (c *WAF) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, out
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetWebACL
 func (c *WAF) GetWebACL(input *GetWebACLInput) (*GetWebACLOutput, error) {
 	req, out := c.GetWebACLRequest(input)
 	err := req.Send()
@@ -2466,6 +2489,7 @@ func (c *WAF) GetXssMatchSetRequest(input *GetXssMatchSetInput) (req *request.Re
 //   * NonexistentItemException
 //   The operation failed because the referenced object doesn't exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/GetXssMatchSet
 func (c *WAF) GetXssMatchSet(input *GetXssMatchSetInput) (*GetXssMatchSetOutput, error) {
 	req, out := c.GetXssMatchSetRequest(input)
 	err := req.Send()
@@ -2536,6 +2560,7 @@ func (c *WAF) ListByteMatchSetsRequest(input *ListByteMatchSetsInput) (req *requ
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListByteMatchSets
 func (c *WAF) ListByteMatchSets(input *ListByteMatchSetsInput) (*ListByteMatchSetsOutput, error) {
 	req, out := c.ListByteMatchSetsRequest(input)
 	err := req.Send()
@@ -2606,6 +2631,7 @@ func (c *WAF) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Request, o
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListIPSets
 func (c *WAF) ListIPSets(input *ListIPSetsInput) (*ListIPSetsOutput, error) {
 	req, out := c.ListIPSetsRequest(input)
 	err := req.Send()
@@ -2676,6 +2702,7 @@ func (c *WAF) ListRulesRequest(input *ListRulesInput) (req *request.Request, out
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListRules
 func (c *WAF) ListRules(input *ListRulesInput) (*ListRulesOutput, error) {
 	req, out := c.ListRulesRequest(input)
 	err := req.Send()
@@ -2746,6 +2773,7 @@ func (c *WAF) ListSizeConstraintSetsRequest(input *ListSizeConstraintSetsInput) 
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListSizeConstraintSets
 func (c *WAF) ListSizeConstraintSets(input *ListSizeConstraintSetsInput) (*ListSizeConstraintSetsOutput, error) {
 	req, out := c.ListSizeConstraintSetsRequest(input)
 	err := req.Send()
@@ -2816,6 +2844,7 @@ func (c *WAF) ListSqlInjectionMatchSetsRequest(input *ListSqlInjectionMatchSetsI
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListSqlInjectionMatchSets
 func (c *WAF) ListSqlInjectionMatchSets(input *ListSqlInjectionMatchSetsInput) (*ListSqlInjectionMatchSetsOutput, error) {
 	req, out := c.ListSqlInjectionMatchSetsRequest(input)
 	err := req.Send()
@@ -2886,6 +2915,7 @@ func (c *WAF) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Request,
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListWebACLs
 func (c *WAF) ListWebACLs(input *ListWebACLsInput) (*ListWebACLsOutput, error) {
 	req, out := c.ListWebACLsRequest(input)
 	err := req.Send()
@@ -2956,6 +2986,7 @@ func (c *WAF) ListXssMatchSetsRequest(input *ListXssMatchSetsInput) (req *reques
 //   The operation failed because you tried to create, update, or delete an object
 //   by using an invalid account identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ListXssMatchSets
 func (c *WAF) ListXssMatchSets(input *ListXssMatchSetsInput) (*ListXssMatchSetsOutput, error) {
 	req, out := c.ListXssMatchSetsRequest(input)
 	err := req.Send()
@@ -3138,6 +3169,7 @@ func (c *WAF) UpdateByteMatchSetRequest(input *UpdateByteMatchSetInput) (req *re
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateByteMatchSet
 func (c *WAF) UpdateByteMatchSet(input *UpdateByteMatchSetInput) (*UpdateByteMatchSetOutput, error) {
 	req, out := c.UpdateByteMatchSetRequest(input)
 	err := req.Send()
@@ -3340,6 +3372,7 @@ func (c *WAF) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Request,
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateIPSet
 func (c *WAF) UpdateIPSet(input *UpdateIPSetInput) (*UpdateIPSetOutput, error) {
 	req, out := c.UpdateIPSetRequest(input)
 	err := req.Send()
@@ -3526,6 +3559,7 @@ func (c *WAF) UpdateRuleRequest(input *UpdateRuleInput) (req *request.Request, o
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateRule
 func (c *WAF) UpdateRule(input *UpdateRuleInput) (*UpdateRuleOutput, error) {
 	req, out := c.UpdateRuleRequest(input)
 	err := req.Send()
@@ -3718,6 +3752,7 @@ func (c *WAF) UpdateSizeConstraintSetRequest(input *UpdateSizeConstraintSetInput
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateSizeConstraintSet
 func (c *WAF) UpdateSizeConstraintSet(input *UpdateSizeConstraintSetInput) (*UpdateSizeConstraintSetOutput, error) {
 	req, out := c.UpdateSizeConstraintSetRequest(input)
 	err := req.Send()
@@ -3895,6 +3930,7 @@ func (c *WAF) UpdateSqlInjectionMatchSetRequest(input *UpdateSqlInjectionMatchSe
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateSqlInjectionMatchSet
 func (c *WAF) UpdateSqlInjectionMatchSet(input *UpdateSqlInjectionMatchSetInput) (*UpdateSqlInjectionMatchSetOutput, error) {
 	req, out := c.UpdateSqlInjectionMatchSetRequest(input)
 	err := req.Send()
@@ -4093,6 +4129,7 @@ func (c *WAF) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Reques
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateWebACL
 func (c *WAF) UpdateWebACL(input *UpdateWebACLInput) (*UpdateWebACLOutput, error) {
 	req, out := c.UpdateWebACLRequest(input)
 	err := req.Send()
@@ -4270,6 +4307,7 @@ func (c *WAF) UpdateXssMatchSetRequest(input *UpdateXssMatchSetInput) (req *requ
 //   see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the AWS WAF Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/UpdateXssMatchSet
 func (c *WAF) UpdateXssMatchSet(input *UpdateXssMatchSetInput) (*UpdateXssMatchSetOutput, error) {
 	req, out := c.UpdateXssMatchSetRequest(input)
 	err := req.Send()
@@ -4283,6 +4321,7 @@ func (c *WAF) UpdateXssMatchSet(input *UpdateXssMatchSetInput) (*UpdateXssMatchS
 //
 // To specify whether to insert or delete a Rule, use the Action parameter in
 // the WebACLUpdate data type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ActivatedRule
 type ActivatedRule struct {
 	_ struct{} `type:"structure"`
 
@@ -4383,6 +4422,7 @@ func (s *ActivatedRule) SetRuleId(v string) *ActivatedRule {
 // want AWS WAF to search for. If a ByteMatchSet contains more than one ByteMatchTuple
 // object, a request needs to match the settings in only one ByteMatchTuple
 // to be considered a match.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ByteMatchSet
 type ByteMatchSet struct {
 	_ struct{} `type:"structure"`
 
@@ -4438,6 +4478,7 @@ func (s *ByteMatchSet) SetName(v string) *ByteMatchSet {
 
 // Returned by ListByteMatchSets. Each ByteMatchSetSummary object includes the
 // Name and ByteMatchSetId for one ByteMatchSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ByteMatchSetSummary
 type ByteMatchSetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -4481,6 +4522,7 @@ func (s *ByteMatchSetSummary) SetName(v string) *ByteMatchSetSummary {
 
 // In an UpdateByteMatchSet request, ByteMatchSetUpdate specifies whether to
 // insert or delete a ByteMatchTuple and includes the settings for the ByteMatchTuple.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ByteMatchSetUpdate
 type ByteMatchSetUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -4544,6 +4586,7 @@ func (s *ByteMatchSetUpdate) SetByteMatchTuple(v *ByteMatchTuple) *ByteMatchSetU
 // The bytes (typically a string that corresponds with ASCII characters) that
 // you want AWS WAF to search for in web requests, the location in requests
 // that you want AWS WAF to search, and other settings.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/ByteMatchTuple
 type ByteMatchTuple struct {
 	_ struct{} `type:"structure"`
 
@@ -6119,6 +6162,7 @@ func (s *DeleteXssMatchSetOutput) SetChangeToken(v string) *DeleteXssMatchSetOut
 }
 
 // Specifies where in a web request to look for TargetString.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/FieldToMatch
 type FieldToMatch struct {
 	_ struct{} `type:"structure"`
 
@@ -6992,6 +7036,7 @@ func (s *GetXssMatchSetOutput) SetXssMatchSet(v *XssMatchSet) *GetXssMatchSetOut
 // type that appears as Headers in the response syntax. HTTPHeader contains
 // the names and values of all of the headers that appear in one of the web
 // requests that were returned by GetSampledRequests.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/HTTPHeader
 type HTTPHeader struct {
 	_ struct{} `type:"structure"`
 
@@ -7027,6 +7072,7 @@ func (s *HTTPHeader) SetValue(v string) *HTTPHeader {
 // The response from a GetSampledRequests request includes an HTTPRequest complex
 // type that appears as Request in the response syntax. HTTPRequest contains
 // information about one of the web requests that were returned by GetSampledRequests.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/HTTPRequest
 type HTTPRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7117,6 +7163,7 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 // you can specify a /128, /64, /56, /48, /32, /24, /16, or /8 CIDR. For more
 // information about CIDR notation, see the Wikipedia entry Classless Inter-Domain
 // Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/IPSet
 type IPSet struct {
 	_ struct{} `type:"structure"`
 
@@ -7179,6 +7226,7 @@ func (s *IPSet) SetName(v string) *IPSet {
 
 // Specifies the IP address type (IPV4 or IPV6) and the IP address range (in
 // CIDR format) that web requests originate from.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/IPSetDescriptor
 type IPSetDescriptor struct {
 	_ struct{} `type:"structure"`
 
@@ -7250,6 +7298,7 @@ func (s *IPSetDescriptor) SetValue(v string) *IPSetDescriptor {
 }
 
 // Contains the identifier and the name of the IPSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/IPSetSummary
 type IPSetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7289,6 +7338,7 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 }
 
 // Specifies the type of update to perform to an IPSet with UpdateIPSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/IPSetUpdate
 type IPSetUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -7983,6 +8033,7 @@ func (s *ListXssMatchSetsOutput) SetXssMatchSets(v []*XssMatchSetSummary) *ListX
 // SizeConstraintSet objects that you want to add to a Rule and, for each object,
 // indicates whether you want to negate the settings, for example, requests
 // that do NOT originate from the IP address 192.0.2.44.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/Predicate
 type Predicate struct {
 	_ struct{} `type:"structure"`
 
@@ -8075,6 +8126,7 @@ func (s *Predicate) SetType(v string) *Predicate {
 //
 // To match the settings in this Rule, a request must originate from 192.0.2.44
 // AND include a User-Agent header for which the value is BadBot.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/Rule
 type Rule struct {
 	_ struct{} `type:"structure"`
 
@@ -8139,6 +8191,7 @@ func (s *Rule) SetRuleId(v string) *Rule {
 }
 
 // Contains the identifier and the friendly name or description of the Rule.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/RuleSummary
 type RuleSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -8183,6 +8236,7 @@ func (s *RuleSummary) SetRuleId(v string) *RuleSummary {
 
 // Specifies a Predicate (such as an IPSet) and indicates whether you want to
 // add it to a Rule or delete it from a Rule.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/RuleUpdate
 type RuleUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -8245,6 +8299,7 @@ func (s *RuleUpdate) SetPredicate(v *Predicate) *RuleUpdate {
 // complex type that appears as SampledRequests in the response syntax. SampledHTTPRequests
 // contains one SampledHTTPRequest object for each web request that is returned
 // by GetSampledRequests.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SampledHTTPRequest
 type SampledHTTPRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -8307,6 +8362,7 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 // uses the Size, ComparisonOperator, and FieldToMatch to build an expression
 // in the form of "SizeComparisonOperator size in bytes of FieldToMatch". If
 // that expression is true, the SizeConstraint is considered to match.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SizeConstraint
 type SizeConstraint struct {
 	_ struct{} `type:"structure"`
 
@@ -8494,6 +8550,7 @@ func (s *SizeConstraint) SetTextTransformation(v string) *SizeConstraint {
 // of web requests that you want AWS WAF to inspect the size of. If a SizeConstraintSet
 // contains more than one SizeConstraint object, a request only needs to match
 // one constraint to be considered a match.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SizeConstraintSet
 type SizeConstraintSet struct {
 	_ struct{} `type:"structure"`
 
@@ -8546,6 +8603,7 @@ func (s *SizeConstraintSet) SetSizeConstraints(v []*SizeConstraint) *SizeConstra
 }
 
 // The Id and Name of a SizeConstraintSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SizeConstraintSetSummary
 type SizeConstraintSetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -8591,6 +8649,7 @@ func (s *SizeConstraintSetSummary) SetSizeConstraintSetId(v string) *SizeConstra
 // Specifies the part of a web request that you want to inspect the size of
 // and indicates whether you want to add the specification to a SizeConstraintSet
 // or delete it from a SizeConstraintSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SizeConstraintSetUpdate
 type SizeConstraintSetUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -8658,6 +8717,7 @@ func (s *SizeConstraintSetUpdate) SetSizeConstraint(v *SizeConstraint) *SizeCons
 // of the header. If a SqlInjectionMatchSet contains more than one SqlInjectionMatchTuple
 // object, a request needs to include snippets of SQL code in only one of the
 // specified parts of the request to be considered a match.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SqlInjectionMatchSet
 type SqlInjectionMatchSet struct {
 	_ struct{} `type:"structure"`
 
@@ -8711,6 +8771,7 @@ func (s *SqlInjectionMatchSet) SetSqlInjectionMatchTuples(v []*SqlInjectionMatch
 }
 
 // The Id and Name of a SqlInjectionMatchSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SqlInjectionMatchSetSummary
 type SqlInjectionMatchSetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -8756,6 +8817,7 @@ func (s *SqlInjectionMatchSetSummary) SetSqlInjectionMatchSetId(v string) *SqlIn
 // Specifies the part of a web request that you want to inspect for snippets
 // of malicious SQL code and indicates whether you want to add the specification
 // to a SqlInjectionMatchSet or delete it from a SqlInjectionMatchSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SqlInjectionMatchSetUpdate
 type SqlInjectionMatchSetUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -8819,6 +8881,7 @@ func (s *SqlInjectionMatchSetUpdate) SetSqlInjectionMatchTuple(v *SqlInjectionMa
 // Specifies the part of a web request that you want AWS WAF to inspect for
 // snippets of malicious SQL code and, if you want AWS WAF to inspect a header,
 // the name of the header.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/SqlInjectionMatchTuple
 type SqlInjectionMatchTuple struct {
 	_ struct{} `type:"structure"`
 
@@ -8955,6 +9018,7 @@ func (s *SqlInjectionMatchTuple) SetTextTransformation(v string) *SqlInjectionMa
 // If your resource receives more than 5,000 requests during that period, AWS
 // WAF stops sampling after the 5,000th request. In that case, EndTime is the
 // time that AWS WAF received the 5,000th request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/TimeWindow
 type TimeWindow struct {
 	_ struct{} `type:"structure"`
 
@@ -9856,6 +9920,7 @@ func (s *UpdateXssMatchSetOutput) SetChangeToken(v string) *UpdateXssMatchSetOut
 // the conditions in a rule. For the default action in a WebACL, specifies the
 // action that you want AWS WAF to take when a web request doesn't match all
 // of the conditions in any of the rules in a WebACL.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/WafAction
 type WafAction struct {
 	_ struct{} `type:"structure"`
 
@@ -9912,6 +9977,7 @@ func (s *WafAction) SetType(v string) *WafAction {
 // the requests that you want AWS WAF to filter. If you add more than one Rule
 // to a WebACL, a request needs to match only one of the specifications to be
 // allowed, blocked, or counted. For more information, see UpdateWebACL.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/WebACL
 type WebACL struct {
 	_ struct{} `type:"structure"`
 
@@ -9987,6 +10053,7 @@ func (s *WebACL) SetWebACLId(v string) *WebACL {
 }
 
 // Contains the identifier and the name or description of the WebACL.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/WebACLSummary
 type WebACLSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -10029,6 +10096,7 @@ func (s *WebACLSummary) SetWebACLId(v string) *WebACLSummary {
 }
 
 // Specifies whether to insert a Rule into or delete a Rule from a WebACL.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/WebACLUpdate
 type WebACLUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -10095,6 +10163,7 @@ func (s *WebACLUpdate) SetActivatedRule(v *ActivatedRule) *WebACLUpdate {
 // If a XssMatchSet contains more than one XssMatchTuple object, a request needs
 // to include cross-site scripting attacks in only one of the specified parts
 // of the request to be considered a match.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/XssMatchSet
 type XssMatchSet struct {
 	_ struct{} `type:"structure"`
 
@@ -10147,6 +10216,7 @@ func (s *XssMatchSet) SetXssMatchTuples(v []*XssMatchTuple) *XssMatchSet {
 }
 
 // The Id and Name of an XssMatchSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/XssMatchSetSummary
 type XssMatchSetSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -10191,6 +10261,7 @@ func (s *XssMatchSetSummary) SetXssMatchSetId(v string) *XssMatchSetSummary {
 // Specifies the part of a web request that you want to inspect for cross-site
 // scripting attacks and indicates whether you want to add the specification
 // to an XssMatchSet or delete it from an XssMatchSet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/XssMatchSetUpdate
 type XssMatchSetUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -10254,6 +10325,7 @@ func (s *XssMatchSetUpdate) SetXssMatchTuple(v *XssMatchTuple) *XssMatchSetUpdat
 // Specifies the part of a web request that you want AWS WAF to inspect for
 // cross-site scripting attacks and, if you want AWS WAF to inspect a header,
 // the name of the header.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/waf-2015-08-24/XssMatchTuple
 type XssMatchTuple struct {
 	_ struct{} `type:"structure"`
 

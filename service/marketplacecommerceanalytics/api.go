@@ -78,6 +78,7 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 //   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSet
 func (c *MarketplaceCommerceAnalytics) GenerateDataSet(input *GenerateDataSetInput) (*GenerateDataSetOutput, error) {
 	req, out := c.GenerateDataSetRequest(input)
 	err := req.Send()
@@ -153,6 +154,7 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 //   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport
 func (c *MarketplaceCommerceAnalytics) StartSupportDataExport(input *StartSupportDataExportInput) (*StartSupportDataExportOutput, error) {
 	req, out := c.StartSupportDataExportRequest(input)
 	err := req.Send()

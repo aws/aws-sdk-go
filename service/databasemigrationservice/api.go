@@ -73,6 +73,7 @@ func (c *DatabaseMigrationService) AddTagsToResourceRequest(input *AddTagsToReso
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AddTagsToResource
 func (c *DatabaseMigrationService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -154,6 +155,7 @@ func (c *DatabaseMigrationService) CreateEndpointRequest(input *CreateEndpointIn
 //   * AccessDeniedFault
 //   AWS DMS was denied access to the endpoint.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateEndpoint
 func (c *DatabaseMigrationService) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
 	req, out := c.CreateEndpointRequest(input)
 	err := req.Send()
@@ -248,6 +250,7 @@ func (c *DatabaseMigrationService) CreateReplicationInstanceRequest(input *Creat
 //   * KMSKeyNotAccessibleFault
 //   AWS DMS cannot access the KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationInstance
 func (c *DatabaseMigrationService) CreateReplicationInstance(input *CreateReplicationInstanceInput) (*CreateReplicationInstanceOutput, error) {
 	req, out := c.CreateReplicationInstanceRequest(input)
 	err := req.Send()
@@ -329,6 +332,7 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 //   * InvalidSubnet
 //   The subnet provided is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationSubnetGroup
 func (c *DatabaseMigrationService) CreateReplicationSubnetGroup(input *CreateReplicationSubnetGroupInput) (*CreateReplicationSubnetGroupOutput, error) {
 	req, out := c.CreateReplicationSubnetGroupRequest(input)
 	err := req.Send()
@@ -407,6 +411,7 @@ func (c *DatabaseMigrationService) CreateReplicationTaskRequest(input *CreateRep
 //   * ResourceQuotaExceededFault
 //   The quota for this resource quota has been exceeded.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/CreateReplicationTask
 func (c *DatabaseMigrationService) CreateReplicationTask(input *CreateReplicationTaskInput) (*CreateReplicationTaskOutput, error) {
 	req, out := c.CreateReplicationTaskRequest(input)
 	err := req.Send()
@@ -476,6 +481,7 @@ func (c *DatabaseMigrationService) DeleteCertificateRequest(input *DeleteCertifi
 //   The resource is in a state that prevents it from being used for database
 //   migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteCertificate
 func (c *DatabaseMigrationService) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -548,6 +554,7 @@ func (c *DatabaseMigrationService) DeleteEndpointRequest(input *DeleteEndpointIn
 //   The resource is in a state that prevents it from being used for database
 //   migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteEndpoint
 func (c *DatabaseMigrationService) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
 	req, out := c.DeleteEndpointRequest(input)
 	err := req.Send()
@@ -620,6 +627,7 @@ func (c *DatabaseMigrationService) DeleteReplicationInstanceRequest(input *Delet
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationInstance
 func (c *DatabaseMigrationService) DeleteReplicationInstance(input *DeleteReplicationInstanceInput) (*DeleteReplicationInstanceOutput, error) {
 	req, out := c.DeleteReplicationInstanceRequest(input)
 	err := req.Send()
@@ -689,6 +697,7 @@ func (c *DatabaseMigrationService) DeleteReplicationSubnetGroupRequest(input *De
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationSubnetGroup
 func (c *DatabaseMigrationService) DeleteReplicationSubnetGroup(input *DeleteReplicationSubnetGroupInput) (*DeleteReplicationSubnetGroupOutput, error) {
 	req, out := c.DeleteReplicationSubnetGroupRequest(input)
 	err := req.Send()
@@ -758,6 +767,7 @@ func (c *DatabaseMigrationService) DeleteReplicationTaskRequest(input *DeleteRep
 //   The resource is in a state that prevents it from being used for database
 //   migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DeleteReplicationTask
 func (c *DatabaseMigrationService) DeleteReplicationTask(input *DeleteReplicationTaskInput) (*DeleteReplicationTaskOutput, error) {
 	req, out := c.DeleteReplicationTaskRequest(input)
 	err := req.Send()
@@ -823,6 +833,7 @@ func (c *DatabaseMigrationService) DescribeAccountAttributesRequest(input *Descr
 //
 // See the AWS API reference guide for AWS Database Migration Service's
 // API operation DescribeAccountAttributes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeAccountAttributes
 func (c *DatabaseMigrationService) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
 	req, out := c.DescribeAccountAttributesRequest(input)
 	err := req.Send()
@@ -888,6 +899,7 @@ func (c *DatabaseMigrationService) DescribeCertificatesRequest(input *DescribeCe
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeCertificates
 func (c *DatabaseMigrationService) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeCertificatesOutput, error) {
 	req, out := c.DescribeCertificatesRequest(input)
 	err := req.Send()
@@ -954,6 +966,7 @@ func (c *DatabaseMigrationService) DescribeConnectionsRequest(input *DescribeCon
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeConnections
 func (c *DatabaseMigrationService) DescribeConnections(input *DescribeConnectionsInput) (*DescribeConnectionsOutput, error) {
 	req, out := c.DescribeConnectionsRequest(input)
 	err := req.Send()
@@ -1014,6 +1027,7 @@ func (c *DatabaseMigrationService) DescribeEndpointTypesRequest(input *DescribeE
 //
 // See the AWS API reference guide for AWS Database Migration Service's
 // API operation DescribeEndpointTypes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointTypes
 func (c *DatabaseMigrationService) DescribeEndpointTypes(input *DescribeEndpointTypesInput) (*DescribeEndpointTypesOutput, error) {
 	req, out := c.DescribeEndpointTypesRequest(input)
 	err := req.Send()
@@ -1079,6 +1093,7 @@ func (c *DatabaseMigrationService) DescribeEndpointsRequest(input *DescribeEndpo
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpoints
 func (c *DatabaseMigrationService) DescribeEndpoints(input *DescribeEndpointsInput) (*DescribeEndpointsOutput, error) {
 	req, out := c.DescribeEndpointsRequest(input)
 	err := req.Send()
@@ -1140,6 +1155,7 @@ func (c *DatabaseMigrationService) DescribeOrderableReplicationInstancesRequest(
 //
 // See the AWS API reference guide for AWS Database Migration Service's
 // API operation DescribeOrderableReplicationInstances for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeOrderableReplicationInstances
 func (c *DatabaseMigrationService) DescribeOrderableReplicationInstances(input *DescribeOrderableReplicationInstancesInput) (*DescribeOrderableReplicationInstancesOutput, error) {
 	req, out := c.DescribeOrderableReplicationInstancesRequest(input)
 	err := req.Send()
@@ -1209,6 +1225,7 @@ func (c *DatabaseMigrationService) DescribeRefreshSchemasStatusRequest(input *De
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeRefreshSchemasStatus
 func (c *DatabaseMigrationService) DescribeRefreshSchemasStatus(input *DescribeRefreshSchemasStatusInput) (*DescribeRefreshSchemasStatusOutput, error) {
 	req, out := c.DescribeRefreshSchemasStatusRequest(input)
 	err := req.Send()
@@ -1275,6 +1292,7 @@ func (c *DatabaseMigrationService) DescribeReplicationInstancesRequest(input *De
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationInstances
 func (c *DatabaseMigrationService) DescribeReplicationInstances(input *DescribeReplicationInstancesInput) (*DescribeReplicationInstancesOutput, error) {
 	req, out := c.DescribeReplicationInstancesRequest(input)
 	err := req.Send()
@@ -1340,6 +1358,7 @@ func (c *DatabaseMigrationService) DescribeReplicationSubnetGroupsRequest(input 
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationSubnetGroups
 func (c *DatabaseMigrationService) DescribeReplicationSubnetGroups(input *DescribeReplicationSubnetGroupsInput) (*DescribeReplicationSubnetGroupsOutput, error) {
 	req, out := c.DescribeReplicationSubnetGroupsRequest(input)
 	err := req.Send()
@@ -1406,6 +1425,7 @@ func (c *DatabaseMigrationService) DescribeReplicationTasksRequest(input *Descri
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeReplicationTasks
 func (c *DatabaseMigrationService) DescribeReplicationTasks(input *DescribeReplicationTasksInput) (*DescribeReplicationTasksOutput, error) {
 	req, out := c.DescribeReplicationTasksRequest(input)
 	err := req.Send()
@@ -1475,6 +1495,7 @@ func (c *DatabaseMigrationService) DescribeSchemasRequest(input *DescribeSchemas
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeSchemas
 func (c *DatabaseMigrationService) DescribeSchemas(input *DescribeSchemasInput) (*DescribeSchemasOutput, error) {
 	req, out := c.DescribeSchemasRequest(input)
 	err := req.Send()
@@ -1545,6 +1566,7 @@ func (c *DatabaseMigrationService) DescribeTableStatisticsRequest(input *Describ
 //   The resource is in a state that prevents it from being used for database
 //   migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeTableStatistics
 func (c *DatabaseMigrationService) DescribeTableStatistics(input *DescribeTableStatisticsInput) (*DescribeTableStatisticsOutput, error) {
 	req, out := c.DescribeTableStatisticsRequest(input)
 	err := req.Send()
@@ -1613,6 +1635,7 @@ func (c *DatabaseMigrationService) ImportCertificateRequest(input *ImportCertifi
 //   * InvalidCertificateFault
 //   The certificate was not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ImportCertificate
 func (c *DatabaseMigrationService) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
 	req, out := c.ImportCertificateRequest(input)
 	err := req.Send()
@@ -1678,6 +1701,7 @@ func (c *DatabaseMigrationService) ListTagsForResourceRequest(input *ListTagsFor
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ListTagsForResource
 func (c *DatabaseMigrationService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -1753,6 +1777,7 @@ func (c *DatabaseMigrationService) ModifyEndpointRequest(input *ModifyEndpointIn
 //   * KMSKeyNotAccessibleFault
 //   AWS DMS cannot access the KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyEndpoint
 func (c *DatabaseMigrationService) ModifyEndpoint(input *ModifyEndpointInput) (*ModifyEndpointOutput, error) {
 	req, out := c.ModifyEndpointRequest(input)
 	err := req.Send()
@@ -1838,6 +1863,7 @@ func (c *DatabaseMigrationService) ModifyReplicationInstanceRequest(input *Modif
 //   * UpgradeDependencyFailureFault
 //   An upgrade dependency is preventing the database migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationInstance
 func (c *DatabaseMigrationService) ModifyReplicationInstance(input *ModifyReplicationInstanceInput) (*ModifyReplicationInstanceOutput, error) {
 	req, out := c.ModifyReplicationInstanceRequest(input)
 	err := req.Send()
@@ -1919,6 +1945,7 @@ func (c *DatabaseMigrationService) ModifyReplicationSubnetGroupRequest(input *Mo
 //   * InvalidSubnet
 //   The subnet provided is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationSubnetGroup
 func (c *DatabaseMigrationService) ModifyReplicationSubnetGroup(input *ModifyReplicationSubnetGroupInput) (*ModifyReplicationSubnetGroupOutput, error) {
 	req, out := c.ModifyReplicationSubnetGroupRequest(input)
 	err := req.Send()
@@ -1997,6 +2024,7 @@ func (c *DatabaseMigrationService) ModifyReplicationTaskRequest(input *ModifyRep
 //   * KMSKeyNotAccessibleFault
 //   AWS DMS cannot access the KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ModifyReplicationTask
 func (c *DatabaseMigrationService) ModifyReplicationTask(input *ModifyReplicationTaskInput) (*ModifyReplicationTaskOutput, error) {
 	req, out := c.ModifyReplicationTaskRequest(input)
 	err := req.Send()
@@ -2074,6 +2102,7 @@ func (c *DatabaseMigrationService) RefreshSchemasRequest(input *RefreshSchemasIn
 //   * ResourceQuotaExceededFault
 //   The quota for this resource quota has been exceeded.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RefreshSchemas
 func (c *DatabaseMigrationService) RefreshSchemas(input *RefreshSchemasInput) (*RefreshSchemasOutput, error) {
 	req, out := c.RefreshSchemasRequest(input)
 	err := req.Send()
@@ -2139,6 +2168,7 @@ func (c *DatabaseMigrationService) RemoveTagsFromResourceRequest(input *RemoveTa
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RemoveTagsFromResource
 func (c *DatabaseMigrationService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -2208,6 +2238,7 @@ func (c *DatabaseMigrationService) StartReplicationTaskRequest(input *StartRepli
 //   The resource is in a state that prevents it from being used for database
 //   migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StartReplicationTask
 func (c *DatabaseMigrationService) StartReplicationTask(input *StartReplicationTaskInput) (*StartReplicationTaskOutput, error) {
 	req, out := c.StartReplicationTaskRequest(input)
 	err := req.Send()
@@ -2277,6 +2308,7 @@ func (c *DatabaseMigrationService) StopReplicationTaskRequest(input *StopReplica
 //   The resource is in a state that prevents it from being used for database
 //   migration.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/StopReplicationTask
 func (c *DatabaseMigrationService) StopReplicationTask(input *StopReplicationTaskInput) (*StopReplicationTaskOutput, error) {
 	req, out := c.StopReplicationTaskRequest(input)
 	err := req.Send()
@@ -2352,6 +2384,7 @@ func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionIn
 //   * ResourceQuotaExceededFault
 //   The quota for this resource quota has been exceeded.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TestConnection
 func (c *DatabaseMigrationService) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
 	req, out := c.TestConnectionRequest(input)
 	err := req.Send()
@@ -2360,6 +2393,7 @@ func (c *DatabaseMigrationService) TestConnection(input *TestConnectionInput) (*
 
 // Describes a quota for an AWS account, for example, the number of replication
 // instances allowed.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AccountQuota
 type AccountQuota struct {
 	_ struct{} `type:"structure"`
 
@@ -2471,6 +2505,7 @@ func (s AddTagsToResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/AvailabilityZone
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -2496,6 +2531,7 @@ func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 
 // The SSL certificate that can be used to encrypt connections between the endpoints
 // and the replication instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/Certificate
 type Certificate struct {
 	_ struct{} `type:"structure"`
 
@@ -2603,6 +2639,7 @@ func (s *Certificate) SetValidToDate(v time.Time) *Certificate {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/Connection
 type Connection struct {
 	_ struct{} `type:"structure"`
 
@@ -4800,6 +4837,7 @@ func (s *DescribeTableStatisticsOutput) SetTableStatistics(v []*TableStatistics)
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/Endpoint
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -4942,6 +4980,7 @@ func (s *Endpoint) SetUsername(v string) *Endpoint {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/Filter
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -5705,6 +5744,7 @@ func (s *ModifyReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Mo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/OrderableReplicationInstance
 type OrderableReplicationInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -5866,6 +5906,7 @@ func (s *RefreshSchemasOutput) SetRefreshSchemasStatus(v *RefreshSchemasStatus) 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/RefreshSchemasStatus
 type RefreshSchemasStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -5994,6 +6035,7 @@ func (s RemoveTagsFromResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReplicationInstance
 type ReplicationInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -6220,6 +6262,7 @@ func (s *ReplicationInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembersh
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReplicationPendingModifiedValues
 type ReplicationPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -6275,6 +6318,7 @@ func (s *ReplicationPendingModifiedValues) SetReplicationInstanceClass(v string)
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReplicationSubnetGroup
 type ReplicationSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6334,6 +6378,7 @@ func (s *ReplicationSubnetGroup) SetVpcId(v string) *ReplicationSubnetGroup {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReplicationTask
 type ReplicationTask struct {
 	_ struct{} `type:"structure"`
 
@@ -6483,6 +6528,7 @@ func (s *ReplicationTask) SetTargetEndpointArn(v string) *ReplicationTask {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/ReplicationTaskStats
 type ReplicationTaskStats struct {
 	_ struct{} `type:"structure"`
 
@@ -6700,6 +6746,7 @@ func (s *StopReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Stop
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/Subnet
 type Subnet struct {
 	_ struct{} `type:"structure"`
 
@@ -6741,6 +6788,7 @@ func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/SupportedEndpointType
 type SupportedEndpointType struct {
 	_ struct{} `type:"structure"`
 
@@ -6783,6 +6831,7 @@ func (s *SupportedEndpointType) SetSupportsCDC(v bool) *SupportedEndpointType {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TableStatistics
 type TableStatistics struct {
 	_ struct{} `type:"structure"`
 
@@ -6879,6 +6928,7 @@ func (s *TableStatistics) SetUpdates(v int64) *TableStatistics {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -6994,6 +7044,7 @@ func (s *TestConnectionOutput) SetConnection(v *Connection) *TestConnectionOutpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/VpcSecurityGroupMembership
 type VpcSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 

@@ -92,6 +92,7 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 //   * InvalidARN
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/AddTagsToResource
 func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagListMessage, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -176,6 +177,7 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *Authorize
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/AuthorizeCacheSecurityGroupIngress
 func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSecurityGroupIngressInput) (*AuthorizeCacheSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeCacheSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -322,6 +324,7 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *reques
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CopySnapshot
 func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error) {
 	req, out := c.CopySnapshotRequest(input)
 	err := req.Send()
@@ -440,6 +443,7 @@ func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) 
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheCluster
 func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*CreateCacheClusterOutput, error) {
 	req, out := c.CreateCacheClusterRequest(input)
 	err := req.Send()
@@ -520,6 +524,7 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheParameterGroup
 func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroupInput) (*CreateCacheParameterGroupOutput, error) {
 	req, out := c.CreateCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -601,6 +606,7 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheSecurityGroup
 func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupInput) (*CreateCacheSecurityGroupOutput, error) {
 	req, out := c.CreateCacheSecurityGroupRequest(input)
 	err := req.Send()
@@ -681,6 +687,7 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 //   * InvalidSubnet
 //   An invalid subnet identifier was specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheSubnetGroup
 func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput) (*CreateCacheSubnetGroupOutput, error) {
 	req, out := c.CreateCacheSubnetGroupRequest(input)
 	err := req.Send()
@@ -817,6 +824,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateReplicationGroup
 func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput) (*CreateReplicationGroupOutput, error) {
 	req, out := c.CreateReplicationGroupRequest(input)
 	err := req.Send()
@@ -918,6 +926,7 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *re
 //   * InvalidParameterValue
 //   The value for a parameter is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateSnapshot
 func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
 	err := req.Send()
@@ -1023,6 +1032,7 @@ func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) 
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheCluster
 func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*DeleteCacheClusterOutput, error) {
 	req, out := c.DeleteCacheClusterRequest(input)
 	err := req.Send()
@@ -1102,6 +1112,7 @@ func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParamet
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheParameterGroup
 func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroupInput) (*DeleteCacheParameterGroupOutput, error) {
 	req, out := c.DeleteCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -1182,6 +1193,7 @@ func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurity
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheSecurityGroup
 func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupInput) (*DeleteCacheSecurityGroupOutput, error) {
 	req, out := c.DeleteCacheSecurityGroupRequest(input)
 	err := req.Send()
@@ -1256,6 +1268,7 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 //   The requested cache subnet group name does not refer to an existing cache
 //   subnet group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheSubnetGroup
 func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput) (*DeleteCacheSubnetGroupOutput, error) {
 	req, out := c.DeleteCacheSubnetGroupRequest(input)
 	err := req.Send()
@@ -1358,6 +1371,7 @@ func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGrou
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteReplicationGroup
 func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput) (*DeleteReplicationGroupOutput, error) {
 	req, out := c.DeleteReplicationGroupRequest(input)
 	err := req.Send()
@@ -1437,6 +1451,7 @@ func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *re
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteSnapshot
 func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
 	err := req.Send()
@@ -1535,6 +1550,7 @@ func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersI
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheClusters
 func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (*DescribeCacheClustersOutput, error) {
 	req, out := c.DescribeCacheClustersRequest(input)
 	err := req.Send()
@@ -1626,6 +1642,7 @@ func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEng
 //
 // See the AWS API reference guide for Amazon ElastiCache's
 // API operation DescribeCacheEngineVersions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheEngineVersions
 func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVersionsInput) (*DescribeCacheEngineVersionsOutput, error) {
 	req, out := c.DescribeCacheEngineVersionsRequest(input)
 	err := req.Send()
@@ -1731,6 +1748,7 @@ func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCachePa
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheParameterGroups
 func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameterGroupsInput) (*DescribeCacheParameterGroupsOutput, error) {
 	req, out := c.DescribeCacheParameterGroupsRequest(input)
 	err := req.Send()
@@ -1834,6 +1852,7 @@ func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParamet
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheParameters
 func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInput) (*DescribeCacheParametersOutput, error) {
 	req, out := c.DescribeCacheParametersRequest(input)
 	err := req.Send()
@@ -1938,6 +1957,7 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSec
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheSecurityGroups
 func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGroupsInput) (*DescribeCacheSecurityGroupsOutput, error) {
 	req, out := c.DescribeCacheSecurityGroupsRequest(input)
 	err := req.Send()
@@ -2036,6 +2056,7 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubne
 //   The requested cache subnet group name does not refer to an existing cache
 //   subnet group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeCacheSubnetGroups
 func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroupsInput) (*DescribeCacheSubnetGroupsOutput, error) {
 	req, out := c.DescribeCacheSubnetGroupsRequest(input)
 	err := req.Send()
@@ -2136,6 +2157,7 @@ func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngi
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeEngineDefaultParameters
 func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	err := req.Send()
@@ -2241,6 +2263,7 @@ func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *re
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeEvents
 func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -2347,6 +2370,7 @@ func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicatio
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeReplicationGroups
 func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroupsInput) (*DescribeReplicationGroupsOutput, error) {
 	req, out := c.DescribeReplicationGroupsRequest(input)
 	err := req.Send()
@@ -2450,6 +2474,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedC
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeReservedCacheNodes
 func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNodesInput) (*DescribeReservedCacheNodesOutput, error) {
 	req, out := c.DescribeReservedCacheNodesRequest(input)
 	err := req.Send()
@@ -2552,6 +2577,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *Describe
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeReservedCacheNodesOfferings
 func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReservedCacheNodesOfferingsInput) (*DescribeReservedCacheNodesOfferingsOutput, error) {
 	req, out := c.DescribeReservedCacheNodesOfferingsRequest(input)
 	err := req.Send()
@@ -2662,6 +2688,7 @@ func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (r
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeSnapshots
 func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
 	req, out := c.DescribeSnapshotsRequest(input)
 	err := req.Send()
@@ -2766,6 +2793,7 @@ func (c *ElastiCache) ListAllowedNodeTypeModificationsRequest(input *ListAllowed
 //   * InvalidParameterValue
 //   The value for a parameter is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ListAllowedNodeTypeModifications
 func (c *ElastiCache) ListAllowedNodeTypeModifications(input *ListAllowedNodeTypeModificationsInput) (*ListAllowedNodeTypeModificationsOutput, error) {
 	req, out := c.ListAllowedNodeTypeModificationsRequest(input)
 	err := req.Send()
@@ -2844,6 +2872,7 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //   * InvalidARN
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ListTagsForResource
 func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*TagListMessage, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -2946,6 +2975,7 @@ func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) 
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyCacheCluster
 func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*ModifyCacheClusterOutput, error) {
 	req, out := c.ModifyCacheClusterRequest(input)
 	err := req.Send()
@@ -3024,6 +3054,7 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyCacheParameterGroup
 func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
 	req, out := c.ModifyCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -3100,6 +3131,7 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 //   * InvalidSubnet
 //   An invalid subnet identifier was specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyCacheSubnetGroup
 func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput) (*ModifyCacheSubnetGroupOutput, error) {
 	req, out := c.ModifyCacheSubnetGroupRequest(input)
 	err := req.Send()
@@ -3212,6 +3244,7 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyReplicationGroup
 func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput) (*ModifyReplicationGroupOutput, error) {
 	req, out := c.ModifyReplicationGroupRequest(input)
 	err := req.Send()
@@ -3290,6 +3323,7 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/PurchaseReservedCacheNodesOffering
 func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReservedCacheNodesOfferingInput) (*PurchaseReservedCacheNodesOfferingOutput, error) {
 	req, out := c.PurchaseReservedCacheNodesOfferingRequest(input)
 	err := req.Send()
@@ -3367,6 +3401,7 @@ func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) 
 //   * CacheClusterNotFound
 //   The requested cache cluster ID does not refer to an existing cache cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/RebootCacheCluster
 func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*RebootCacheClusterOutput, error) {
 	req, out := c.RebootCacheClusterRequest(input)
 	err := req.Send()
@@ -3441,6 +3476,7 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 //   * TagNotFound
 //   The requested tag was not found on this resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/RemoveTagsFromResource
 func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*TagListMessage, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -3520,6 +3556,7 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ResetCacheParameterGroup
 func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
 	req, out := c.ResetCacheParameterGroupRequest(input)
 	err := req.Send()
@@ -3600,6 +3637,7 @@ func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheS
 //   * InvalidParameterCombination
 //   Two or more incompatible parameters were specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/RevokeCacheSecurityGroupIngress
 func (c *ElastiCache) RevokeCacheSecurityGroupIngress(input *RevokeCacheSecurityGroupIngressInput) (*RevokeCacheSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeCacheSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -3768,6 +3806,7 @@ func (s *AuthorizeCacheSecurityGroupIngressOutput) SetCacheSecurityGroup(v *Cach
 }
 
 // Describes an Availability Zone in which the cache cluster is launched.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/AvailabilityZone
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -3792,6 +3831,7 @@ func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 }
 
 // Contains all of the attributes of a specific cache cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheCluster
 type CacheCluster struct {
 	_ struct{} `type:"structure"`
 
@@ -4085,6 +4125,7 @@ func (s *CacheCluster) SetSnapshotWindow(v string) *CacheCluster {
 }
 
 // Provides all of the details about a particular cache engine version.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheEngineVersion
 type CacheEngineVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -4186,6 +4227,7 @@ func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
 // Product Features and Details (http://aws.amazon.com/elasticache/details)
 // and either Cache Node Type-Specific Parameters for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Memcached.html#ParameterGroups.Memcached.NodeSpecific)
 // or Cache Node Type-Specific Parameters for Redis (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheParameterGroups.Redis.html#ParameterGroups.Redis.NodeSpecific).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheNode
 type CacheNode struct {
 	_ struct{} `type:"structure"`
 
@@ -4270,6 +4312,7 @@ func (s *CacheNode) SetSourceCacheNodeId(v string) *CacheNode {
 // A parameter that has a different value for each cache node type it is applied
 // to. For example, in a Redis cache cluster, a cache.m1.large cache node type
 // would have a larger maxmemory value than a cache.m1.small type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheNodeTypeSpecificParameter
 type CacheNodeTypeSpecificParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -4371,6 +4414,7 @@ func (s *CacheNodeTypeSpecificParameter) SetSource(v string) *CacheNodeTypeSpeci
 }
 
 // A value that applies only to a certain cache node type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheNodeTypeSpecificValue
 type CacheNodeTypeSpecificValue struct {
 	_ struct{} `type:"structure"`
 
@@ -4404,6 +4448,7 @@ func (s *CacheNodeTypeSpecificValue) SetValue(v string) *CacheNodeTypeSpecificVa
 }
 
 // Represents the output of a CreateCacheParameterGroup operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheParameterGroup
 type CacheParameterGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -4453,6 +4498,7 @@ func (s *CacheParameterGroup) SetDescription(v string) *CacheParameterGroup {
 //    * ModifyCacheParameterGroup
 //
 //    * ResetCacheParameterGroup
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheParameterGroupNameMessage
 type CacheParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -4477,6 +4523,7 @@ func (s *CacheParameterGroupNameMessage) SetCacheParameterGroupName(v string) *C
 }
 
 // Status of the cache parameter group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheParameterGroupStatus
 type CacheParameterGroupStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -4526,6 +4573,7 @@ func (s *CacheParameterGroupStatus) SetParameterApplyStatus(v string) *CachePara
 //    * CreateCacheSecurityGroup
 //
 //    * RevokeCacheSecurityGroupIngress
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheSecurityGroup
 type CacheSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -4578,6 +4626,7 @@ func (s *CacheSecurityGroup) SetOwnerId(v string) *CacheSecurityGroup {
 }
 
 // Represents a cache cluster's status within a particular cache security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheSecurityGroupMembership
 type CacheSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -4617,6 +4666,7 @@ func (s *CacheSecurityGroupMembership) SetStatus(v string) *CacheSecurityGroupMe
 //    * CreateCacheSubnetGroup
 //
 //    * ModifyCacheSubnetGroup
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CacheSubnetGroup
 type CacheSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6188,6 +6238,7 @@ func (s *DeleteCacheParameterGroupInput) SetCacheParameterGroupName(v string) *D
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheParameterGroupOutput
 type DeleteCacheParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6244,6 +6295,7 @@ func (s *DeleteCacheSecurityGroupInput) SetCacheSecurityGroupName(v string) *Del
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheSecurityGroupOutput
 type DeleteCacheSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6300,6 +6352,7 @@ func (s *DeleteCacheSubnetGroupInput) SetCacheSubnetGroupName(v string) *DeleteC
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteCacheSubnetGroupOutput
 type DeleteCacheSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7857,6 +7910,7 @@ func (s *DescribeSnapshotsOutput) SetSnapshots(v []*Snapshot) *DescribeSnapshots
 }
 
 // Provides ownership and status information for an Amazon EC2 security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/EC2SecurityGroup
 type EC2SecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -7900,6 +7954,7 @@ func (s *EC2SecurityGroup) SetStatus(v string) *EC2SecurityGroup {
 
 // Represents the information required for client programs to connect to a cache
 // node.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/Endpoint
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -7933,6 +7988,7 @@ func (s *Endpoint) SetPort(v int64) *Endpoint {
 }
 
 // Represents the output of a DescribeEngineDefaultParameters operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/EngineDefaults
 type EngineDefaults struct {
 	_ struct{} `type:"structure"`
 
@@ -7990,6 +8046,7 @@ func (s *EngineDefaults) SetParameters(v []*Parameter) *EngineDefaults {
 // Represents a single occurrence of something interesting within the system.
 // Some examples of events are creating a cache cluster, adding or removing
 // a cache node, or rebooting a node.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/Event
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -8991,6 +9048,7 @@ func (s *ModifyReplicationGroupOutput) SetReplicationGroup(v *ReplicationGroup) 
 // Represents a collection of cache nodes in a replication group. One node in
 // the node group is the read/write primary node. All the other nodes are read-only
 // Replica nodes.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/NodeGroup
 type NodeGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -9057,6 +9115,7 @@ func (s *NodeGroup) SetStatus(v string) *NodeGroup {
 // node group (shard) configuration options. Each node group (shard) configuration
 // has the following: Slots, PrimaryAvailabilityZone, ReplicaAvailabilityZones,
 // ReplicaCount.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/NodeGroupConfiguration
 type NodeGroupConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9114,6 +9173,7 @@ func (s *NodeGroupConfiguration) SetSlots(v string) *NodeGroupConfiguration {
 }
 
 // Represents a single node within a node group (shard).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/NodeGroupMember
 type NodeGroupMember struct {
 	_ struct{} `type:"structure"`
 
@@ -9176,6 +9236,7 @@ func (s *NodeGroupMember) SetReadEndpoint(v *Endpoint) *NodeGroupMember {
 }
 
 // Represents an individual cache node in a snapshot of a cache cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/NodeSnapshot
 type NodeSnapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -9257,6 +9318,7 @@ func (s *NodeSnapshot) SetSnapshotCreateTime(v time.Time) *NodeSnapshot {
 // Describes a notification topic and its status. Notification topics are used
 // for publishing ElastiCache events to subscribers using Amazon Simple Notification
 // Service (SNS).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/NotificationConfiguration
 type NotificationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9291,6 +9353,7 @@ func (s *NotificationConfiguration) SetTopicStatus(v string) *NotificationConfig
 
 // Describes an individual setting that controls some aspect of ElastiCache
 // behavior.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/Parameter
 type Parameter struct {
 	_ struct{} `type:"structure"`
 
@@ -9392,6 +9455,7 @@ func (s *Parameter) SetSource(v string) *Parameter {
 }
 
 // Describes a name-value pair that is used to update the value of a parameter.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ParameterNameValue
 type ParameterNameValue struct {
 	_ struct{} `type:"structure"`
 
@@ -9426,6 +9490,7 @@ func (s *ParameterNameValue) SetParameterValue(v string) *ParameterNameValue {
 
 // A group of settings that are applied to the cache cluster in the future,
 // or that are currently being applied.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/PendingModifiedValues
 type PendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -9655,6 +9720,7 @@ func (s *RebootCacheClusterOutput) SetCacheCluster(v *CacheCluster) *RebootCache
 
 // Contains the specific price and frequency of a recurring charges for a reserved
 // cache node, or for a reserved cache node offering.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/RecurringCharge
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
 
@@ -9747,6 +9813,7 @@ func (s *RemoveTagsFromResourceInput) SetTagKeys(v []*string) *RemoveTagsFromRes
 }
 
 // Contains all of the attributes of a specific Redis replication group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ReplicationGroup
 type ReplicationGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -9889,6 +9956,7 @@ func (s *ReplicationGroup) SetStatus(v string) *ReplicationGroup {
 
 // The settings to be applied to the Redis replication group, either immediately
 // or during the next maintenance window.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ReplicationGroupPendingModifiedValues
 type ReplicationGroupPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -9931,6 +9999,7 @@ func (s *ReplicationGroupPendingModifiedValues) SetPrimaryClusterId(v string) *R
 }
 
 // Represents the output of a PurchaseReservedCacheNodesOffering operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ReservedCacheNode
 type ReservedCacheNode struct {
 	_ struct{} `type:"structure"`
 
@@ -10091,6 +10160,7 @@ func (s *ReservedCacheNode) SetUsagePrice(v float64) *ReservedCacheNode {
 }
 
 // Describes all of the attributes of a reserved cache node offering.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ReservedCacheNodesOffering
 type ReservedCacheNodesOffering struct {
 	_ struct{} `type:"structure"`
 
@@ -10379,6 +10449,7 @@ func (s *RevokeCacheSecurityGroupIngressOutput) SetCacheSecurityGroup(v *CacheSe
 }
 
 // Represents a single cache security group and its status.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/SecurityGroupMembership
 type SecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -10415,6 +10486,7 @@ func (s *SecurityGroupMembership) SetStatus(v string) *SecurityGroupMembership {
 
 // Represents a copy of an entire Redis cache cluster as of the time when the
 // snapshot was taken.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/Snapshot
 type Snapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -10736,6 +10808,7 @@ func (s *Snapshot) SetVpcId(v string) *Snapshot {
 // Represents the subnet associated with a cache cluster. This parameter refers
 // to subnets defined in Amazon Virtual Private Cloud (Amazon VPC) and used
 // with ElastiCache.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/Subnet
 type Subnet struct {
 	_ struct{} `type:"structure"`
 
@@ -10771,6 +10844,7 @@ func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
 // A cost allocation Tag that can be added to an ElastiCache cluster or replication
 // group. Tags are composed of a Key/Value pair. A tag with a null Value is
 // permitted.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -10805,6 +10879,7 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // Represents the output from the AddTagsToResource, ListTagsOnResource, and
 // RemoveTagsFromResource operations.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/TagListMessage
 type TagListMessage struct {
 	_ struct{} `type:"structure"`
 

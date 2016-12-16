@@ -51,6 +51,8 @@ type API struct {
 	imports     map[string]bool
 	name        string
 	path        string
+
+	BaseCrosslinkURL string
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -66,8 +68,6 @@ type Metadata struct {
 	Protocol            string
 	UID                 string
 }
-
-const redirectsURL = "https://docs.aws.amazon.com"
 
 var serviceAliases map[string]string
 
@@ -276,7 +276,8 @@ func (a *API) APIGoCode() string {
 	return code
 }
 
-var blacklistedServices = map[string]struct{}{
+var noCrossLinkServices = map[string]struct{}{
+	"apigateway":        struct{}{},
 	"budgets":           struct{}{},
 	"cloudsearch":       struct{}{},
 	"cloudsearchdomain": struct{}{},
@@ -295,9 +296,16 @@ var blacklistedServices = map[string]struct{}{
 	"swf":               struct{}{},
 }
 
-func isBlacklistedService(a *API) bool {
-	_, ok := blacklistedServices[strings.ToLower(a.name)]
-	return ok
+func GetCrosslinkURL(baseURL, name, uid string, params ...string) string {
+	_, ok := noCrossLinkServices[strings.ToLower(name)]
+	if !ok {
+		return strings.Join(append([]string{baseURL, "goto", "WebAPI", uid}, params...), "/")
+	}
+	return ""
+}
+
+func (a *API) APIName() string {
+	return a.name
 }
 
 // A tplService defines the template for the service generated code.
@@ -308,13 +316,13 @@ var tplService = template.Must(template.New("service").Funcs(template.FuncMap{
 		}
 		return "ServiceName"
 	},
-	"isBlacklistedService": isBlacklistedService,
+	"GetCrosslinkURL": GetCrosslinkURL,
 }).Parse(`
 {{ .Documentation }}// The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-{{ $blacklisted := isBlacklistedService . -}}
-{{ if not $blacklisted -}} 
-// Please also see ` + redirectsURL + `/goto/WebAPI/{{ .Metadata.UID }}
+{{ $crosslinkURL := GetCrosslinkURL $.BaseCrosslinkURL $.APIName $.Metadata.UID -}}
+{{ if ne $crosslinkURL "" -}} 
+// Please also see {{ $crosslinkURL }}
 {{ end -}}
 type {{ .StructName }} struct {
 	*client.Client

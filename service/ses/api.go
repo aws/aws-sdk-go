@@ -86,6 +86,7 @@ func (c *SES) CloneReceiptRuleSetRequest(input *CloneReceiptRuleSetInput) (req *
 //   Indicates that a resource could not be created because of service limits.
 //   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CloneReceiptRuleSet
 func (c *SES) CloneReceiptRuleSet(input *CloneReceiptRuleSetInput) (*CloneReceiptRuleSetOutput, error) {
 	req, out := c.CloneReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -165,6 +166,7 @@ func (c *SES) CreateConfigurationSetRequest(input *CreateConfigurationSetInput) 
 //   Indicates that a resource could not be created because of service limits.
 //   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSet
 func (c *SES) CreateConfigurationSet(input *CreateConfigurationSetInput) (*CreateConfigurationSetOutput, error) {
 	req, out := c.CreateConfigurationSetRequest(input)
 	err := req.Send()
@@ -256,6 +258,7 @@ func (c *SES) CreateConfigurationSetEventDestinationRequest(input *CreateConfigu
 //   Indicates that a resource could not be created because of service limits.
 //   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateConfigurationSetEventDestination
 func (c *SES) CreateConfigurationSetEventDestination(input *CreateConfigurationSetEventDestinationInput) (*CreateConfigurationSetEventDestinationOutput, error) {
 	req, out := c.CreateConfigurationSetEventDestinationRequest(input)
 	err := req.Send()
@@ -330,6 +333,7 @@ func (c *SES) CreateReceiptFilterRequest(input *CreateReceiptFilterInput) (req *
 //   * AlreadyExists
 //   Indicates that a resource could not be created because of a naming conflict.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptFilter
 func (c *SES) CreateReceiptFilter(input *CreateReceiptFilterInput) (*CreateReceiptFilterOutput, error) {
 	req, out := c.CreateReceiptFilterRequest(input)
 	err := req.Send()
@@ -427,6 +431,7 @@ func (c *SES) CreateReceiptRuleRequest(input *CreateReceiptRuleInput) (req *requ
 //   Indicates that a resource could not be created because of service limits.
 //   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptRule
 func (c *SES) CreateReceiptRule(input *CreateReceiptRuleInput) (*CreateReceiptRuleOutput, error) {
 	req, out := c.CreateReceiptRuleRequest(input)
 	err := req.Send()
@@ -501,6 +506,7 @@ func (c *SES) CreateReceiptRuleSetRequest(input *CreateReceiptRuleSetInput) (req
 //   Indicates that a resource could not be created because of service limits.
 //   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CreateReceiptRuleSet
 func (c *SES) CreateReceiptRuleSet(input *CreateReceiptRuleSetInput) (*CreateReceiptRuleSetOutput, error) {
 	req, out := c.CreateReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -571,6 +577,7 @@ func (c *SES) DeleteConfigurationSetRequest(input *DeleteConfigurationSetInput) 
 //   * ConfigurationSetDoesNotExist
 //   Indicates that the configuration set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSet
 func (c *SES) DeleteConfigurationSet(input *DeleteConfigurationSetInput) (*DeleteConfigurationSetOutput, error) {
 	req, out := c.DeleteConfigurationSetRequest(input)
 	err := req.Send()
@@ -645,6 +652,7 @@ func (c *SES) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfigu
 //   * EventDestinationDoesNotExist
 //   Indicates that the event destination does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteConfigurationSetEventDestination
 func (c *SES) DeleteConfigurationSetEventDestination(input *DeleteConfigurationSetEventDestinationInput) (*DeleteConfigurationSetEventDestinationOutput, error) {
 	req, out := c.DeleteConfigurationSetEventDestinationRequest(input)
 	err := req.Send()
@@ -708,6 +716,7 @@ func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *request.Re
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteIdentity for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteIdentity
 func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (*DeleteIdentityOutput, error) {
 	req, out := c.DeleteIdentityRequest(input)
 	err := req.Send()
@@ -779,6 +788,7 @@ func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteIdentityPolicy for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteIdentityPolicy
 func (c *SES) DeleteIdentityPolicy(input *DeleteIdentityPolicyInput) (*DeleteIdentityPolicyOutput, error) {
 	req, out := c.DeleteIdentityPolicyRequest(input)
 	err := req.Send()
@@ -844,6 +854,7 @@ func (c *SES) DeleteReceiptFilterRequest(input *DeleteReceiptFilterInput) (req *
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteReceiptFilter for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptFilter
 func (c *SES) DeleteReceiptFilter(input *DeleteReceiptFilterInput) (*DeleteReceiptFilterOutput, error) {
 	req, out := c.DeleteReceiptFilterRequest(input)
 	err := req.Send()
@@ -914,6 +925,7 @@ func (c *SES) DeleteReceiptRuleRequest(input *DeleteReceiptRuleInput) (req *requ
 //   * RuleSetDoesNotExist
 //   Indicates that the provided receipt rule set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptRule
 func (c *SES) DeleteReceiptRule(input *DeleteReceiptRuleInput) (*DeleteReceiptRuleOutput, error) {
 	req, out := c.DeleteReceiptRuleRequest(input)
 	err := req.Send()
@@ -986,6 +998,7 @@ func (c *SES) DeleteReceiptRuleSetRequest(input *DeleteReceiptRuleSetInput) (req
 //   * CannotDelete
 //   Indicates that the delete operation could not be completed.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteReceiptRuleSet
 func (c *SES) DeleteReceiptRuleSet(input *DeleteReceiptRuleSetInput) (*DeleteReceiptRuleSetOutput, error) {
 	req, out := c.DeleteReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -1053,6 +1066,7 @@ func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddres
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteVerifiedEmailAddress for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteVerifiedEmailAddress
 func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput) (*DeleteVerifiedEmailAddressOutput, error) {
 	req, out := c.DeleteVerifiedEmailAddressRequest(input)
 	err := req.Send()
@@ -1119,6 +1133,7 @@ func (c *SES) DescribeActiveReceiptRuleSetRequest(input *DescribeActiveReceiptRu
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DescribeActiveReceiptRuleSet for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeActiveReceiptRuleSet
 func (c *SES) DescribeActiveReceiptRuleSet(input *DescribeActiveReceiptRuleSetInput) (*DescribeActiveReceiptRuleSetOutput, error) {
 	req, out := c.DescribeActiveReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -1189,6 +1204,7 @@ func (c *SES) DescribeConfigurationSetRequest(input *DescribeConfigurationSetInp
 //   * ConfigurationSetDoesNotExist
 //   Indicates that the configuration set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeConfigurationSet
 func (c *SES) DescribeConfigurationSet(input *DescribeConfigurationSetInput) (*DescribeConfigurationSetOutput, error) {
 	req, out := c.DescribeConfigurationSetRequest(input)
 	err := req.Send()
@@ -1262,6 +1278,7 @@ func (c *SES) DescribeReceiptRuleRequest(input *DescribeReceiptRuleInput) (req *
 //   * RuleSetDoesNotExist
 //   Indicates that the provided receipt rule set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeReceiptRule
 func (c *SES) DescribeReceiptRule(input *DescribeReceiptRuleInput) (*DescribeReceiptRuleOutput, error) {
 	req, out := c.DescribeReceiptRuleRequest(input)
 	err := req.Send()
@@ -1332,6 +1349,7 @@ func (c *SES) DescribeReceiptRuleSetRequest(input *DescribeReceiptRuleSetInput) 
 //   * RuleSetDoesNotExist
 //   Indicates that the provided receipt rule set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DescribeReceiptRuleSet
 func (c *SES) DescribeReceiptRuleSet(input *DescribeReceiptRuleSetInput) (*DescribeReceiptRuleSetOutput, error) {
 	req, out := c.DescribeReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -1413,6 +1431,7 @@ func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesI
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetIdentityDkimAttributes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityDkimAttributes
 func (c *SES) GetIdentityDkimAttributes(input *GetIdentityDkimAttributesInput) (*GetIdentityDkimAttributesOutput, error) {
 	req, out := c.GetIdentityDkimAttributesRequest(input)
 	err := req.Send()
@@ -1477,6 +1496,7 @@ func (c *SES) GetIdentityMailFromDomainAttributesRequest(input *GetIdentityMailF
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetIdentityMailFromDomainAttributes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityMailFromDomainAttributes
 func (c *SES) GetIdentityMailFromDomainAttributes(input *GetIdentityMailFromDomainAttributesInput) (*GetIdentityMailFromDomainAttributesOutput, error) {
 	req, out := c.GetIdentityMailFromDomainAttributesRequest(input)
 	err := req.Send()
@@ -1544,6 +1564,7 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetIdentityNotificationAttributes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityNotificationAttributes
 func (c *SES) GetIdentityNotificationAttributes(input *GetIdentityNotificationAttributesInput) (*GetIdentityNotificationAttributesOutput, error) {
 	req, out := c.GetIdentityNotificationAttributesRequest(input)
 	err := req.Send()
@@ -1616,6 +1637,7 @@ func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetIdentityPolicies for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityPolicies
 func (c *SES) GetIdentityPolicies(input *GetIdentityPoliciesInput) (*GetIdentityPoliciesOutput, error) {
 	req, out := c.GetIdentityPoliciesRequest(input)
 	err := req.Send()
@@ -1681,6 +1703,7 @@ func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerific
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetIdentityVerificationAttributes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetIdentityVerificationAttributes
 func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAttributesInput) (*GetIdentityVerificationAttributesOutput, error) {
 	req, out := c.GetIdentityVerificationAttributesRequest(input)
 	err := req.Send()
@@ -1743,6 +1766,7 @@ func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *request.Reques
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetSendQuota for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetSendQuota
 func (c *SES) GetSendQuota(input *GetSendQuotaInput) (*GetSendQuotaOutput, error) {
 	req, out := c.GetSendQuotaRequest(input)
 	err := req.Send()
@@ -1808,6 +1832,7 @@ func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *requ
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetSendStatistics for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetSendStatistics
 func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (*GetSendStatisticsOutput, error) {
 	req, out := c.GetSendStatisticsRequest(input)
 	err := req.Send()
@@ -1874,6 +1899,7 @@ func (c *SES) ListConfigurationSetsRequest(input *ListConfigurationSetsInput) (r
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListConfigurationSets for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListConfigurationSets
 func (c *SES) ListConfigurationSets(input *ListConfigurationSetsInput) (*ListConfigurationSetsOutput, error) {
 	req, out := c.ListConfigurationSetsRequest(input)
 	err := req.Send()
@@ -1943,6 +1969,7 @@ func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *request.Re
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListIdentities for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListIdentities
 func (c *SES) ListIdentities(input *ListIdentitiesInput) (*ListIdentitiesOutput, error) {
 	req, out := c.ListIdentitiesRequest(input)
 	err := req.Send()
@@ -2039,6 +2066,7 @@ func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListIdentityPolicies for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListIdentityPolicies
 func (c *SES) ListIdentityPolicies(input *ListIdentityPoliciesInput) (*ListIdentityPoliciesOutput, error) {
 	req, out := c.ListIdentityPoliciesRequest(input)
 	err := req.Send()
@@ -2104,6 +2132,7 @@ func (c *SES) ListReceiptFiltersRequest(input *ListReceiptFiltersInput) (req *re
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListReceiptFilters for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListReceiptFilters
 func (c *SES) ListReceiptFilters(input *ListReceiptFiltersInput) (*ListReceiptFiltersOutput, error) {
 	req, out := c.ListReceiptFiltersRequest(input)
 	err := req.Send()
@@ -2172,6 +2201,7 @@ func (c *SES) ListReceiptRuleSetsRequest(input *ListReceiptRuleSetsInput) (req *
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListReceiptRuleSets for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListReceiptRuleSets
 func (c *SES) ListReceiptRuleSets(input *ListReceiptRuleSetsInput) (*ListReceiptRuleSetsOutput, error) {
 	req, out := c.ListReceiptRuleSetsRequest(input)
 	err := req.Send()
@@ -2237,6 +2267,7 @@ func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddresse
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListVerifiedEmailAddresses for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListVerifiedEmailAddresses
 func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput) (*ListVerifiedEmailAddressesOutput, error) {
 	req, out := c.ListVerifiedEmailAddressesRequest(input)
 	err := req.Send()
@@ -2313,6 +2344,7 @@ func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *requ
 //   Indicates that the provided policy is invalid. Check the error stack for
 //   more information about what caused the error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/PutIdentityPolicy
 func (c *SES) PutIdentityPolicy(input *PutIdentityPolicyInput) (*PutIdentityPolicyOutput, error) {
 	req, out := c.PutIdentityPolicyRequest(input)
 	err := req.Send()
@@ -2390,6 +2422,7 @@ func (c *SES) ReorderReceiptRuleSetRequest(input *ReorderReceiptRuleSetInput) (r
 //   * RuleDoesNotExist
 //   Indicates that the provided receipt rule does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReorderReceiptRuleSet
 func (c *SES) ReorderReceiptRuleSet(input *ReorderReceiptRuleSetInput) (*ReorderReceiptRuleSetOutput, error) {
 	req, out := c.ReorderReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -2466,6 +2499,7 @@ func (c *SES) SendBounceRequest(input *SendBounceInput) (req *request.Request, o
 //   Indicates that the action failed, and the message could not be sent. Check
 //   the error stack for more information about what caused the error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendBounce
 func (c *SES) SendBounce(input *SendBounceInput) (*SendBounceOutput, error) {
 	req, out := c.SendBounceRequest(input)
 	err := req.Send()
@@ -2565,6 +2599,7 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 //   * ConfigurationSetDoesNotExist
 //   Indicates that the configuration set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendEmail
 func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
 	req, out := c.SendEmailRequest(input)
 	err := req.Send()
@@ -2696,6 +2731,7 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *request.Reques
 //   * ConfigurationSetDoesNotExist
 //   Indicates that the configuration set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendRawEmail
 func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error) {
 	req, out := c.SendRawEmailRequest(input)
 	err := req.Send()
@@ -2769,6 +2805,7 @@ func (c *SES) SetActiveReceiptRuleSetRequest(input *SetActiveReceiptRuleSetInput
 //   * RuleSetDoesNotExist
 //   Indicates that the provided receipt rule set does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetActiveReceiptRuleSet
 func (c *SES) SetActiveReceiptRuleSet(input *SetActiveReceiptRuleSetInput) (*SetActiveReceiptRuleSetOutput, error) {
 	req, out := c.SetActiveReceiptRuleSetRequest(input)
 	err := req.Send()
@@ -2845,6 +2882,7 @@ func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) 
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation SetIdentityDkimEnabled for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityDkimEnabled
 func (c *SES) SetIdentityDkimEnabled(input *SetIdentityDkimEnabledInput) (*SetIdentityDkimEnabledOutput, error) {
 	req, out := c.SetIdentityDkimEnabledRequest(input)
 	err := req.Send()
@@ -2916,6 +2954,7 @@ func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeed
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation SetIdentityFeedbackForwardingEnabled for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityFeedbackForwardingEnabled
 func (c *SES) SetIdentityFeedbackForwardingEnabled(input *SetIdentityFeedbackForwardingEnabledInput) (*SetIdentityFeedbackForwardingEnabledOutput, error) {
 	req, out := c.SetIdentityFeedbackForwardingEnabledRequest(input)
 	err := req.Send()
@@ -2983,6 +3022,7 @@ func (c *SES) SetIdentityHeadersInNotificationsEnabledRequest(input *SetIdentity
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation SetIdentityHeadersInNotificationsEnabled for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityHeadersInNotificationsEnabled
 func (c *SES) SetIdentityHeadersInNotificationsEnabled(input *SetIdentityHeadersInNotificationsEnabledInput) (*SetIdentityHeadersInNotificationsEnabledOutput, error) {
 	req, out := c.SetIdentityHeadersInNotificationsEnabledRequest(input)
 	err := req.Send()
@@ -3051,6 +3091,7 @@ func (c *SES) SetIdentityMailFromDomainRequest(input *SetIdentityMailFromDomainI
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation SetIdentityMailFromDomain for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityMailFromDomain
 func (c *SES) SetIdentityMailFromDomain(input *SetIdentityMailFromDomainInput) (*SetIdentityMailFromDomainOutput, error) {
 	req, out := c.SetIdentityMailFromDomainRequest(input)
 	err := req.Send()
@@ -3122,6 +3163,7 @@ func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotification
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation SetIdentityNotificationTopic for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetIdentityNotificationTopic
 func (c *SES) SetIdentityNotificationTopic(input *SetIdentityNotificationTopicInput) (*SetIdentityNotificationTopicOutput, error) {
 	req, out := c.SetIdentityNotificationTopicRequest(input)
 	err := req.Send()
@@ -3195,6 +3237,7 @@ func (c *SES) SetReceiptRulePositionRequest(input *SetReceiptRulePositionInput) 
 //   * RuleDoesNotExist
 //   Indicates that the provided receipt rule does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SetReceiptRulePosition
 func (c *SES) SetReceiptRulePosition(input *SetReceiptRulePositionInput) (*SetReceiptRulePositionOutput, error) {
 	req, out := c.SetReceiptRulePositionRequest(input)
 	err := req.Send()
@@ -3282,6 +3325,7 @@ func (c *SES) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfigu
 //   Indicates that the Amazon Kinesis Firehose destination is invalid. See the
 //   error message for details.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateConfigurationSetEventDestination
 func (c *SES) UpdateConfigurationSetEventDestination(input *UpdateConfigurationSetEventDestinationInput) (*UpdateConfigurationSetEventDestinationOutput, error) {
 	req, out := c.UpdateConfigurationSetEventDestinationRequest(input)
 	err := req.Send()
@@ -3376,6 +3420,7 @@ func (c *SES) UpdateReceiptRuleRequest(input *UpdateReceiptRuleInput) (req *requ
 //   Indicates that a resource could not be created because of service limits.
 //   For a list of Amazon SES limits, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/limits.html).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/UpdateReceiptRule
 func (c *SES) UpdateReceiptRule(input *UpdateReceiptRuleInput) (*UpdateReceiptRuleOutput, error) {
 	req, out := c.UpdateReceiptRuleRequest(input)
 	err := req.Send()
@@ -3450,6 +3495,7 @@ func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *reques
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation VerifyDomainDkim for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyDomainDkim
 func (c *SES) VerifyDomainDkim(input *VerifyDomainDkimInput) (*VerifyDomainDkimOutput, error) {
 	req, out := c.VerifyDomainDkimRequest(input)
 	err := req.Send()
@@ -3512,6 +3558,7 @@ func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation VerifyDomainIdentity for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyDomainIdentity
 func (c *SES) VerifyDomainIdentity(input *VerifyDomainIdentityInput) (*VerifyDomainIdentityOutput, error) {
 	req, out := c.VerifyDomainIdentityRequest(input)
 	err := req.Send()
@@ -3580,6 +3627,7 @@ func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *re
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation VerifyEmailAddress for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyEmailAddress
 func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (*VerifyEmailAddressOutput, error) {
 	req, out := c.VerifyEmailAddressRequest(input)
 	err := req.Send()
@@ -3643,6 +3691,7 @@ func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *
 //
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation VerifyEmailIdentity for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyEmailIdentity
 func (c *SES) VerifyEmailIdentity(input *VerifyEmailIdentityInput) (*VerifyEmailIdentityOutput, error) {
 	req, out := c.VerifyEmailIdentityRequest(input)
 	err := req.Send()
@@ -3654,6 +3703,7 @@ func (c *SES) VerifyEmailIdentity(input *VerifyEmailIdentityInput) (*VerifyEmail
 //
 // For information about adding a header using a receipt rule, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-add-header.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/AddHeaderAction
 type AddHeaderAction struct {
 	_ struct{} `type:"structure"`
 
@@ -3711,6 +3761,7 @@ func (s *AddHeaderAction) SetHeaderValue(v string) *AddHeaderAction {
 // Represents the body of the message. You can specify text, HTML, or both.
 // If you use both, then the message should display correctly in the widest
 // variety of email clients.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/Body
 type Body struct {
 	_ struct{} `type:"structure"`
 
@@ -3772,6 +3823,7 @@ func (s *Body) SetText(v *Content) *Body {
 //
 // For information about sending a bounce message in response to a received
 // email, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-bounce.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/BounceAction
 type BounceAction struct {
 	_ struct{} `type:"structure"`
 
@@ -3865,6 +3917,7 @@ func (s *BounceAction) SetTopicArn(v string) *BounceAction {
 //
 // For information about receiving email through Amazon SES, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/BouncedRecipientInfo
 type BouncedRecipientInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -4025,6 +4078,7 @@ func (s CloneReceiptRuleSetOutput) GoString() string {
 // Event destinations, such as Amazon CloudWatch, are associated with configuration
 // sets, which enable you to publish email sending events. For information about
 // using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CloudWatchDestination
 type CloudWatchDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -4079,6 +4133,7 @@ func (s *CloudWatchDestination) SetDimensionConfigurations(v []*CloudWatchDimens
 //
 // For information about publishing email sending events to Amazon CloudWatch,
 // see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/CloudWatchDimensionConfiguration
 type CloudWatchDimensionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4166,6 +4221,7 @@ func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *Cl
 //
 // Configuration sets enable you to publish email sending events. For information
 // about using configuration sets, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ConfigurationSet
 type ConfigurationSet struct {
 	_ struct{} `type:"structure"`
 
@@ -4214,6 +4270,7 @@ func (s *ConfigurationSet) SetName(v string) *ConfigurationSet {
 // By default, the text must be 7-bit ASCII, due to the constraints of the SMTP
 // protocol. If the text must contain any other characters, then you must also
 // specify a character set. Examples include UTF-8, ISO-8859-1, and Shift_JIS.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/Content
 type Content struct {
 	_ struct{} `type:"structure"`
 
@@ -5119,6 +5176,7 @@ func (s *DeleteVerifiedEmailAddressInput) SetEmailAddress(v string) *DeleteVerif
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/DeleteVerifiedEmailAddressOutput
 type DeleteVerifiedEmailAddressOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5443,6 +5501,7 @@ func (s *DescribeReceiptRuleSetOutput) SetRules(v []*ReceiptRule) *DescribeRecei
 // other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
 // of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
 // For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/Destination
 type Destination struct {
 	_ struct{} `type:"structure"`
 
@@ -5495,6 +5554,7 @@ func (s *Destination) SetToAddresses(v []*string) *Destination {
 // to publish email sending events to Amazon CloudWatch or Amazon Kinesis Firehose.
 // For information about using configuration sets, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/EventDestination
 type EventDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -5599,6 +5659,7 @@ func (s *EventDestination) SetName(v string) *EventDestination {
 //
 // For information about receiving email through Amazon SES, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ExtensionField
 type ExtensionField struct {
 	_ struct{} `type:"structure"`
 
@@ -6029,6 +6090,7 @@ func (s *GetIdentityVerificationAttributesOutput) SetVerificationAttributes(v ma
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetSendQuotaInput
 type GetSendQuotaInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6092,6 +6154,7 @@ func (s *GetSendQuotaOutput) SetSentLast24Hours(v float64) *GetSendQuotaOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/GetSendStatisticsInput
 type GetSendStatisticsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6133,6 +6196,7 @@ func (s *GetSendStatisticsOutput) SetSendDataPoints(v []*SendDataPoint) *GetSend
 }
 
 // Represents the DKIM attributes of a verified email address or a domain.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/IdentityDkimAttributes
 type IdentityDkimAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -6192,6 +6256,7 @@ func (s *IdentityDkimAttributes) SetDkimVerificationStatus(v string) *IdentityDk
 
 // Represents the custom MAIL FROM domain attributes of a verified identity
 // (email address or domain).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/IdentityMailFromDomainAttributes
 type IdentityMailFromDomainAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -6255,6 +6320,7 @@ func (s *IdentityMailFromDomainAttributes) SetMailFromDomainStatus(v string) *Id
 // an identity has Amazon Simple Notification Service (Amazon SNS) topics set
 // for bounce, complaint, and/or delivery notifications, and whether feedback
 // forwarding is enabled for bounce and complaint notifications.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/IdentityNotificationAttributes
 type IdentityNotificationAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -6356,6 +6422,7 @@ func (s *IdentityNotificationAttributes) SetHeadersInDeliveryNotificationsEnable
 }
 
 // Represents the verification attributes of a single identity.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/IdentityVerificationAttributes
 type IdentityVerificationAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -6398,6 +6465,7 @@ func (s *IdentityVerificationAttributes) SetVerificationToken(v string) *Identit
 // configuration sets, which enable you to publish email sending events. For
 // information about using configuration sets, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/KinesisFirehoseDestination
 type KinesisFirehoseDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -6463,6 +6531,7 @@ func (s *KinesisFirehoseDestination) SetIAMRoleARN(v string) *KinesisFirehoseDes
 //
 // For information about using AWS Lambda actions in receipt rules, see the
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-lambda.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/LambdaAction
 type LambdaAction struct {
 	_ struct{} `type:"structure"`
 
@@ -6875,6 +6944,7 @@ func (s *ListReceiptRuleSetsOutput) SetRuleSets(v []*ReceiptRuleSetMetadata) *Li
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ListVerifiedEmailAddressesInput
 type ListVerifiedEmailAddressesInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6916,6 +6986,7 @@ func (s *ListVerifiedEmailAddressesOutput) SetVerifiedEmailAddresses(v []*string
 }
 
 // Represents the message to be sent, composed of a subject and a body.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/Message
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -6984,6 +7055,7 @@ func (s *Message) SetSubject(v *Content) *Message {
 //
 // For information about receiving email through Amazon SES, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/MessageDsn
 type MessageDsn struct {
 	_ struct{} `type:"structure"`
 
@@ -7059,6 +7131,7 @@ func (s *MessageDsn) SetReportingMta(v string) *MessageDsn {
 // Message tags, which you use with configuration sets, enable you to publish
 // email sending events. For information about using configuration sets, see
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/MessageTag
 type MessageTag struct {
 	_ struct{} `type:"structure"`
 
@@ -7225,6 +7298,7 @@ func (s PutIdentityPolicyOutput) GoString() string {
 }
 
 // Represents the raw data of the message.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/RawMessage
 type RawMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -7284,6 +7358,7 @@ func (s *RawMessage) SetData(v []byte) *RawMessage {
 //
 // For information about setting up receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReceiptAction
 type ReceiptAction struct {
 	_ struct{} `type:"structure"`
 
@@ -7417,6 +7492,7 @@ func (s *ReceiptAction) SetWorkmailAction(v *WorkmailAction) *ReceiptAction {
 //
 // For information about setting up IP address filters, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReceiptFilter
 type ReceiptFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -7487,6 +7563,7 @@ func (s *ReceiptFilter) SetName(v string) *ReceiptFilter {
 //
 // For information about setting up IP address filters, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReceiptIpFilter
 type ReceiptIpFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -7553,6 +7630,7 @@ func (s *ReceiptIpFilter) SetPolicy(v string) *ReceiptIpFilter {
 //
 // For information about setting up receipt rules, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReceiptRule
 type ReceiptRule struct {
 	_ struct{} `type:"structure"`
 
@@ -7667,6 +7745,7 @@ func (s *ReceiptRule) SetTlsPolicy(v string) *ReceiptRule {
 //
 // For information about setting up receipt rule sets, see the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rule-set.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/ReceiptRuleSetMetadata
 type ReceiptRuleSetMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -7711,6 +7790,7 @@ func (s *ReceiptRuleSetMetadata) SetName(v string) *ReceiptRuleSetMetadata {
 //
 // For information about receiving email through Amazon SES, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/RecipientDsnFields
 type RecipientDsnFields struct {
 	_ struct{} `type:"structure"`
 
@@ -7921,6 +8001,7 @@ func (s ReorderReceiptRuleSetOutput) GoString() string {
 //
 // For information about specifying Amazon S3 actions in receipt rules, see
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-s3.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/S3Action
 type S3Action struct {
 	_ struct{} `type:"structure"`
 
@@ -8037,6 +8118,7 @@ func (s *S3Action) SetTopicArn(v string) *S3Action {
 //
 // For information about using a receipt rule to publish an Amazon SNS notification,
 // see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-sns.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SNSAction
 type SNSAction struct {
 	_ struct{} `type:"structure"`
 
@@ -8237,6 +8319,7 @@ func (s *SendBounceOutput) SetMessageId(v string) *SendBounceOutput {
 
 // Represents sending statistics data. Each SendDataPoint contains statistics
 // for a 15-minute period of sending activity.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/SendDataPoint
 type SendDataPoint struct {
 	_ struct{} `type:"structure"`
 
@@ -9267,6 +9350,7 @@ func (s SetReceiptRulePositionOutput) GoString() string {
 //
 // For information about setting a stop action in a receipt rule, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-stop.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/StopAction
 type StopAction struct {
 	_ struct{} `type:"structure"`
 
@@ -9666,6 +9750,7 @@ func (s *VerifyEmailAddressInput) SetEmailAddress(v string) *VerifyEmailAddressI
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/VerifyEmailAddressOutput
 type VerifyEmailAddressOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -9745,6 +9830,7 @@ func (s VerifyEmailIdentityOutput) GoString() string {
 //
 // For information using a receipt rule to call Amazon WorkMail, see the Amazon
 // SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-workmail.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/email-2010-12-01/WorkmailAction
 type WorkmailAction struct {
 	_ struct{} `type:"structure"`
 

@@ -170,6 +170,7 @@ func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *request.Request, o
 //   and Deactivating AWS STS in an AWS Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 //   in the IAM User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/AssumeRole
 func (c *STS) AssumeRole(input *AssumeRoleInput) (*AssumeRoleOutput, error) {
 	req, out := c.AssumeRoleRequest(input)
 	err := req.Send()
@@ -329,6 +330,7 @@ func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *re
 //   and Deactivating AWS STS in an AWS Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 //   in the IAM User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/AssumeRoleWithSAML
 func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (*AssumeRoleWithSAMLOutput, error) {
 	req, out := c.AssumeRoleWithSAMLRequest(input)
 	err := req.Send()
@@ -517,6 +519,7 @@ func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityI
 //   and Deactivating AWS STS in an AWS Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 //   in the IAM User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/AssumeRoleWithWebIdentity
 func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (*AssumeRoleWithWebIdentityOutput, error) {
 	req, out := c.AssumeRoleWithWebIdentityRequest(input)
 	err := req.Send()
@@ -615,6 +618,7 @@ func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessag
 //   invalid. This can happen if the token contains invalid characters, such as
 //   linebreaks.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/DecodeAuthorizationMessage
 func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput) (*DecodeAuthorizationMessageOutput, error) {
 	req, out := c.DecodeAuthorizationMessageRequest(input)
 	err := req.Send()
@@ -676,6 +680,7 @@ func (c *STS) GetCallerIdentityRequest(input *GetCallerIdentityInput) (req *requ
 //
 // See the AWS API reference guide for AWS Security Token Service's
 // API operation GetCallerIdentity for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/GetCallerIdentity
 func (c *STS) GetCallerIdentity(input *GetCallerIdentityInput) (*GetCallerIdentityOutput, error) {
 	req, out := c.GetCallerIdentityRequest(input)
 	err := req.Send()
@@ -831,6 +836,7 @@ func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *re
 //   and Deactivating AWS STS in an AWS Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 //   in the IAM User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/GetFederationToken
 func (c *STS) GetFederationToken(input *GetFederationTokenInput) (*GetFederationTokenOutput, error) {
 	req, out := c.GetFederationTokenRequest(input)
 	err := req.Send()
@@ -945,6 +951,7 @@ func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *request.
 //   and Deactivating AWS STS in an AWS Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 //   in the IAM User Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/GetSessionToken
 func (c *STS) GetSessionToken(input *GetSessionTokenInput) (*GetSessionTokenOutput, error) {
 	req, out := c.GetSessionTokenRequest(input)
 	err := req.Send()
@@ -1706,6 +1713,7 @@ func (s *AssumeRoleWithWebIdentityOutput) SetSubjectFromWebIdentityToken(v strin
 
 // The identifiers for the temporary security credentials that the operation
 // returns.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/AssumedRoleUser
 type AssumedRoleUser struct {
 	_ struct{} `type:"structure"`
 
@@ -1748,6 +1756,7 @@ func (s *AssumedRoleUser) SetAssumedRoleId(v string) *AssumedRoleUser {
 }
 
 // AWS credentials for API authentication.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/Credentials
 type Credentials struct {
 	_ struct{} `type:"structure"`
 
@@ -1876,6 +1885,7 @@ func (s *DecodeAuthorizationMessageOutput) SetDecodedMessage(v string) *DecodeAu
 }
 
 // Identifiers for the federated user that is associated with the credentials.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sts-2011-06-15/FederatedUser
 type FederatedUser struct {
 	_ struct{} `type:"structure"`
 

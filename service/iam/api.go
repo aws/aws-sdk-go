@@ -91,6 +91,7 @@ func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpen
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AddClientIDToOpenIDConnectProvider
 func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConnectProviderInput) (*AddClientIDToOpenIDConnectProviderOutput, error) {
 	req, out := c.AddClientIDToOpenIDConnectProviderRequest(input)
 	err := req.Send()
@@ -178,6 +179,7 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AddRoleToInstanceProfile
 func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (*AddRoleToInstanceProfileOutput, error) {
 	req, out := c.AddRoleToInstanceProfileRequest(input)
 	err := req.Send()
@@ -254,6 +256,7 @@ func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *request.Re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AddUserToGroup
 func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (*AddUserToGroupOutput, error) {
 	req, out := c.AddUserToGroupRequest(input)
 	err := req.Send()
@@ -341,6 +344,7 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachGroupPolicy
 func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (*AttachGroupPolicyOutput, error) {
 	req, out := c.AttachGroupPolicyRequest(input)
 	err := req.Send()
@@ -432,6 +436,7 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachRolePolicy
 func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (*AttachRolePolicyOutput, error) {
 	req, out := c.AttachRolePolicyRequest(input)
 	err := req.Send()
@@ -519,6 +524,7 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachUserPolicy
 func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (*AttachUserPolicyOutput, error) {
 	req, out := c.AttachUserPolicyRequest(input)
 	err := req.Send()
@@ -614,6 +620,7 @@ func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *request.Re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ChangePassword
 func (c *IAM) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput, error) {
 	req, out := c.ChangePasswordRequest(input)
 	err := req.Send()
@@ -704,6 +711,7 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateAccessKey
 func (c *IAM) CreateAccessKey(input *CreateAccessKeyInput) (*CreateAccessKeyOutput, error) {
 	req, out := c.CreateAccessKeyRequest(input)
 	err := req.Send()
@@ -782,6 +790,7 @@ func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateAccountAlias
 func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (*CreateAccountAliasOutput, error) {
 	req, out := c.CreateAccountAliasRequest(input)
 	err := req.Send()
@@ -864,6 +873,7 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *request.Request,
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateGroup
 func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 	req, out := c.CreateGroupRequest(input)
 	err := req.Send()
@@ -943,6 +953,7 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateInstanceProfile
 func (c *IAM) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateInstanceProfileOutput, error) {
 	req, out := c.CreateInstanceProfileRequest(input)
 	err := req.Send()
@@ -1028,6 +1039,7 @@ func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateLoginProfile
 func (c *IAM) CreateLoginProfile(input *CreateLoginProfileInput) (*CreateLoginProfileOutput, error) {
 	req, out := c.CreateLoginProfileRequest(input)
 	err := req.Send()
@@ -1122,6 +1134,7 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateOpenIDConnectProvider
 func (c *IAM) CreateOpenIDConnectProvider(input *CreateOpenIDConnectProviderInput) (*CreateOpenIDConnectProviderOutput, error) {
 	req, out := c.CreateOpenIDConnectProviderRequest(input)
 	err := req.Send()
@@ -1213,6 +1226,7 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreatePolicy
 func (c *IAM) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, error) {
 	req, out := c.CreatePolicyRequest(input)
 	err := req.Send()
@@ -1306,6 +1320,7 @@ func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreatePolicyVersion
 func (c *IAM) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolicyVersionOutput, error) {
 	req, out := c.CreatePolicyVersionRequest(input)
 	err := req.Send()
@@ -1388,6 +1403,7 @@ func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *request.Request, o
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateRole
 func (c *IAM) CreateRole(input *CreateRoleInput) (*CreateRoleOutput, error) {
 	req, out := c.CreateRoleRequest(input)
 	err := req.Send()
@@ -1487,6 +1503,7 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateSAMLProvider
 func (c *IAM) CreateSAMLProvider(input *CreateSAMLProviderInput) (*CreateSAMLProviderOutput, error) {
 	req, out := c.CreateSAMLProviderRequest(input)
 	err := req.Send()
@@ -1569,6 +1586,7 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *request.Request, o
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateUser
 func (c *IAM) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
 	err := req.Send()
@@ -1656,6 +1674,7 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateVirtualMFADevice
 func (c *IAM) CreateVirtualMFADevice(input *CreateVirtualMFADeviceInput) (*CreateVirtualMFADeviceOutput, error) {
 	req, out := c.CreateVirtualMFADeviceRequest(input)
 	err := req.Send()
@@ -1743,6 +1762,7 @@ func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeactivateMFADevice
 func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (*DeactivateMFADeviceOutput, error) {
 	req, out := c.DeactivateMFADeviceRequest(input)
 	err := req.Send()
@@ -1824,6 +1844,7 @@ func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccessKey
 func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (*DeleteAccessKeyOutput, error) {
 	req, out := c.DeleteAccessKeyRequest(input)
 	err := req.Send()
@@ -1902,6 +1923,7 @@ func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccountAlias
 func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (*DeleteAccountAliasOutput, error) {
 	req, out := c.DeleteAccountAliasRequest(input)
 	err := req.Send()
@@ -1978,6 +2000,7 @@ func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPol
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccountPasswordPolicy
 func (c *IAM) DeleteAccountPasswordPolicy(input *DeleteAccountPasswordPolicyInput) (*DeleteAccountPasswordPolicyOutput, error) {
 	req, out := c.DeleteAccountPasswordPolicyRequest(input)
 	err := req.Send()
@@ -2059,6 +2082,7 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request,
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteGroup
 func (c *IAM) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 	req, out := c.DeleteGroupRequest(input)
 	err := req.Send()
@@ -2141,6 +2165,7 @@ func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteGroupPolicy
 func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (*DeleteGroupPolicyOutput, error) {
 	req, out := c.DeleteGroupPolicyRequest(input)
 	err := req.Send()
@@ -2230,6 +2255,7 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteInstanceProfile
 func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (*DeleteInstanceProfileOutput, error) {
 	req, out := c.DeleteInstanceProfileRequest(input)
 	err := req.Send()
@@ -2318,6 +2344,7 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteLoginProfile
 func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (*DeleteLoginProfileOutput, error) {
 	req, out := c.DeleteLoginProfileRequest(input)
 	err := req.Send()
@@ -2401,6 +2428,7 @@ func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProvi
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteOpenIDConnectProvider
 func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInput) (*DeleteOpenIDConnectProviderOutput, error) {
 	req, out := c.DeleteOpenIDConnectProviderRequest(input)
 	err := req.Send()
@@ -2507,6 +2535,7 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeletePolicy
 func (c *IAM) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
 	err := req.Send()
@@ -2599,6 +2628,7 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeletePolicyVersion
 func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolicyVersionOutput, error) {
 	req, out := c.DeletePolicyVersionRequest(input)
 	err := req.Send()
@@ -2684,6 +2714,7 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *request.Request, o
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteRole
 func (c *IAM) DeleteRole(input *DeleteRoleInput) (*DeleteRoleOutput, error) {
 	req, out := c.DeleteRoleRequest(input)
 	err := req.Send()
@@ -2766,6 +2797,7 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteRolePolicy
 func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (*DeleteRolePolicyOutput, error) {
 	req, out := c.DeleteRolePolicyRequest(input)
 	err := req.Send()
@@ -2853,6 +2885,7 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteSAMLProvider
 func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLProviderOutput, error) {
 	req, out := c.DeleteSAMLProviderRequest(input)
 	err := req.Send()
@@ -2927,6 +2960,7 @@ func (c *IAM) DeleteSSHPublicKeyRequest(input *DeleteSSHPublicKeyInput) (req *re
 //   The request was rejected because it referenced an entity that does not exist.
 //   The error message describes the entity.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteSSHPublicKey
 func (c *IAM) DeleteSSHPublicKey(input *DeleteSSHPublicKeyInput) (*DeleteSSHPublicKeyOutput, error) {
 	req, out := c.DeleteSSHPublicKeyRequest(input)
 	err := req.Send()
@@ -3022,6 +3056,7 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServerCertificate
 func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*DeleteServerCertificateOutput, error) {
 	req, out := c.DeleteServerCertificateRequest(input)
 	err := req.Send()
@@ -3103,6 +3138,7 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteSigningCertificate
 func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (*DeleteSigningCertificateOutput, error) {
 	req, out := c.DeleteSigningCertificateRequest(input)
 	err := req.Send()
@@ -3184,6 +3220,7 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, o
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteUser
 func (c *IAM) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
 	err := req.Send()
@@ -3266,6 +3303,7 @@ func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteUserPolicy
 func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (*DeleteUserPolicyOutput, error) {
 	req, out := c.DeleteUserPolicyRequest(input)
 	err := req.Send()
@@ -3349,6 +3387,7 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteVirtualMFADevice
 func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (*DeleteVirtualMFADeviceOutput, error) {
 	req, out := c.DeleteVirtualMFADeviceRequest(input)
 	err := req.Send()
@@ -3434,6 +3473,7 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachGroupPolicy
 func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (*DetachGroupPolicyOutput, error) {
 	req, out := c.DetachGroupPolicyRequest(input)
 	err := req.Send()
@@ -3519,6 +3559,7 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachRolePolicy
 func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (*DetachRolePolicyOutput, error) {
 	req, out := c.DetachRolePolicyRequest(input)
 	err := req.Send()
@@ -3604,6 +3645,7 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachUserPolicy
 func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (*DetachUserPolicyOutput, error) {
 	req, out := c.DetachUserPolicyRequest(input)
 	err := req.Send()
@@ -3696,6 +3738,7 @@ func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/EnableMFADevice
 func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (*EnableMFADeviceOutput, error) {
 	req, out := c.EnableMFADeviceRequest(input)
 	err := req.Send()
@@ -3768,6 +3811,7 @@ func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GenerateCredentialReport
 func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (*GenerateCredentialReportOutput, error) {
 	req, out := c.GenerateCredentialReportRequest(input)
 	err := req.Send()
@@ -3837,6 +3881,7 @@ func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req
 //   The request was rejected because it referenced an entity that does not exist.
 //   The error message describes the entity.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetAccessKeyLastUsed
 func (c *IAM) GetAccessKeyLastUsed(input *GetAccessKeyLastUsedInput) (*GetAccessKeyLastUsedOutput, error) {
 	req, out := c.GetAccessKeyLastUsedRequest(input)
 	err := req.Send()
@@ -3915,6 +3960,7 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetAccountAuthorizationDetails
 func (c *IAM) GetAccountAuthorizationDetails(input *GetAccountAuthorizationDetailsInput) (*GetAccountAuthorizationDetailsOutput, error) {
 	req, out := c.GetAccountAuthorizationDetailsRequest(input)
 	err := req.Send()
@@ -4011,6 +4057,7 @@ func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetAccountPasswordPolicy
 func (c *IAM) GetAccountPasswordPolicy(input *GetAccountPasswordPolicyInput) (*GetAccountPasswordPolicyOutput, error) {
 	req, out := c.GetAccountPasswordPolicyRequest(input)
 	err := req.Send()
@@ -4081,6 +4128,7 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetAccountSummary
 func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (*GetAccountSummaryOutput, error) {
 	req, out := c.GetAccountSummaryRequest(input)
 	err := req.Send()
@@ -4156,6 +4204,7 @@ func (c *IAM) GetContextKeysForCustomPolicyRequest(input *GetContextKeysForCusto
 //   The request was rejected because an invalid or out-of-range value was supplied
 //   for an input parameter.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetContextKeysForCustomPolicy
 func (c *IAM) GetContextKeysForCustomPolicy(input *GetContextKeysForCustomPolicyInput) (*GetContextKeysForPolicyResponse, error) {
 	req, out := c.GetContextKeysForCustomPolicyRequest(input)
 	err := req.Send()
@@ -4242,6 +4291,7 @@ func (c *IAM) GetContextKeysForPrincipalPolicyRequest(input *GetContextKeysForPr
 //   The request was rejected because an invalid or out-of-range value was supplied
 //   for an input parameter.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetContextKeysForPrincipalPolicy
 func (c *IAM) GetContextKeysForPrincipalPolicy(input *GetContextKeysForPrincipalPolicyInput) (*GetContextKeysForPolicyResponse, error) {
 	req, out := c.GetContextKeysForPrincipalPolicyRequest(input)
 	err := req.Send()
@@ -4324,6 +4374,7 @@ func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetCredentialReport
 func (c *IAM) GetCredentialReport(input *GetCredentialReportInput) (*GetCredentialReportOutput, error) {
 	req, out := c.GetCredentialReportRequest(input)
 	err := req.Send()
@@ -4401,6 +4452,7 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *request.Request, outpu
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetGroup
 func (c *IAM) GetGroup(input *GetGroupInput) (*GetGroupOutput, error) {
 	req, out := c.GetGroupRequest(input)
 	err := req.Send()
@@ -4512,6 +4564,7 @@ func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *request.Re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetGroupPolicy
 func (c *IAM) GetGroupPolicy(input *GetGroupPolicyInput) (*GetGroupPolicyOutput, error) {
 	req, out := c.GetGroupPolicyRequest(input)
 	err := req.Send()
@@ -4585,6 +4638,7 @@ func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetInstanceProfile
 func (c *IAM) GetInstanceProfile(input *GetInstanceProfileInput) (*GetInstanceProfileOutput, error) {
 	req, out := c.GetInstanceProfileRequest(input)
 	err := req.Send()
@@ -4657,6 +4711,7 @@ func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetLoginProfile
 func (c *IAM) GetLoginProfile(input *GetLoginProfileInput) (*GetLoginProfileOutput, error) {
 	req, out := c.GetLoginProfileRequest(input)
 	err := req.Send()
@@ -4732,6 +4787,7 @@ func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetOpenIDConnectProvider
 func (c *IAM) GetOpenIDConnectProvider(input *GetOpenIDConnectProviderInput) (*GetOpenIDConnectProviderOutput, error) {
 	req, out := c.GetOpenIDConnectProviderRequest(input)
 	err := req.Send()
@@ -4819,6 +4875,7 @@ func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetPolicy
 func (c *IAM) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 	req, out := c.GetPolicyRequest(input)
 	err := req.Send()
@@ -4914,6 +4971,7 @@ func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetPolicyVersion
 func (c *IAM) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionOutput, error) {
 	req, out := c.GetPolicyVersionRequest(input)
 	err := req.Send()
@@ -4992,6 +5050,7 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *request.Request, output 
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetRole
 func (c *IAM) GetRole(input *GetRoleInput) (*GetRoleOutput, error) {
 	req, out := c.GetRoleRequest(input)
 	err := req.Send()
@@ -5081,6 +5140,7 @@ func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *request.Requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetRolePolicy
 func (c *IAM) GetRolePolicy(input *GetRolePolicyInput) (*GetRolePolicyOutput, error) {
 	req, out := c.GetRolePolicyRequest(input)
 	err := req.Send()
@@ -5158,6 +5218,7 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetSAMLProvider
 func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (*GetSAMLProviderOutput, error) {
 	req, out := c.GetSAMLProviderRequest(input)
 	err := req.Send()
@@ -5234,6 +5295,7 @@ func (c *IAM) GetSSHPublicKeyRequest(input *GetSSHPublicKeyInput) (req *request.
 //   The request was rejected because the public key encoding format is unsupported
 //   or unrecognized.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetSSHPublicKey
 func (c *IAM) GetSSHPublicKey(input *GetSSHPublicKeyInput) (*GetSSHPublicKeyOutput, error) {
 	req, out := c.GetSSHPublicKeyRequest(input)
 	err := req.Send()
@@ -5309,6 +5371,7 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetServerCertificate
 func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServerCertificateOutput, error) {
 	req, out := c.GetServerCertificateRequest(input)
 	err := req.Send()
@@ -5383,6 +5446,7 @@ func (c *IAM) GetUserRequest(input *GetUserInput) (req *request.Request, output 
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetUser
 func (c *IAM) GetUser(input *GetUserInput) (*GetUserOutput, error) {
 	req, out := c.GetUserRequest(input)
 	err := req.Send()
@@ -5469,6 +5533,7 @@ func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *request.Requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetUserPolicy
 func (c *IAM) GetUserPolicy(input *GetUserPolicyInput) (*GetUserPolicyOutput, error) {
 	req, out := c.GetUserPolicyRequest(input)
 	err := req.Send()
@@ -5557,6 +5622,7 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *request.Re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListAccessKeys
 func (c *IAM) ListAccessKeys(input *ListAccessKeysInput) (*ListAccessKeysOutput, error) {
 	req, out := c.ListAccessKeysRequest(input)
 	err := req.Send()
@@ -5657,6 +5723,7 @@ func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListAccountAliases
 func (c *IAM) ListAccountAliases(input *ListAccountAliasesInput) (*ListAccountAliasesOutput, error) {
 	req, out := c.ListAccountAliasesRequest(input)
 	err := req.Send()
@@ -5773,6 +5840,7 @@ func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesI
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListAttachedGroupPolicies
 func (c *IAM) ListAttachedGroupPolicies(input *ListAttachedGroupPoliciesInput) (*ListAttachedGroupPoliciesOutput, error) {
 	req, out := c.ListAttachedGroupPoliciesRequest(input)
 	err := req.Send()
@@ -5889,6 +5957,7 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListAttachedRolePolicies
 func (c *IAM) ListAttachedRolePolicies(input *ListAttachedRolePoliciesInput) (*ListAttachedRolePoliciesOutput, error) {
 	req, out := c.ListAttachedRolePoliciesRequest(input)
 	err := req.Send()
@@ -6005,6 +6074,7 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListAttachedUserPolicies
 func (c *IAM) ListAttachedUserPolicies(input *ListAttachedUserPoliciesInput) (*ListAttachedUserPoliciesOutput, error) {
 	req, out := c.ListAttachedUserPoliciesRequest(input)
 	err := req.Send()
@@ -6118,6 +6188,7 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListEntitiesForPolicy
 func (c *IAM) ListEntitiesForPolicy(input *ListEntitiesForPolicyInput) (*ListEntitiesForPolicyOutput, error) {
 	req, out := c.ListEntitiesForPolicyRequest(input)
 	err := req.Send()
@@ -6230,6 +6301,7 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListGroupPolicies
 func (c *IAM) ListGroupPolicies(input *ListGroupPoliciesInput) (*ListGroupPoliciesOutput, error) {
 	req, out := c.ListGroupPoliciesRequest(input)
 	err := req.Send()
@@ -6329,6 +6401,7 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, o
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListGroups
 func (c *IAM) ListGroups(input *ListGroupsInput) (*ListGroupsOutput, error) {
 	req, out := c.ListGroupsRequest(input)
 	err := req.Send()
@@ -6432,6 +6505,7 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListGroupsForUser
 func (c *IAM) ListGroupsForUser(input *ListGroupsForUserInput) (*ListGroupsForUserOutput, error) {
 	req, out := c.ListGroupsForUserRequest(input)
 	err := req.Send()
@@ -6533,6 +6607,7 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListInstanceProfiles
 func (c *IAM) ListInstanceProfiles(input *ListInstanceProfilesInput) (*ListInstanceProfilesOutput, error) {
 	req, out := c.ListInstanceProfilesRequest(input)
 	err := req.Send()
@@ -6638,6 +6713,7 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListInstanceProfilesForRole
 func (c *IAM) ListInstanceProfilesForRole(input *ListInstanceProfilesForRoleInput) (*ListInstanceProfilesForRoleOutput, error) {
 	req, out := c.ListInstanceProfilesForRoleRequest(input)
 	err := req.Send()
@@ -6744,6 +6820,7 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *request.Re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListMFADevices
 func (c *IAM) ListMFADevices(input *ListMFADevicesInput) (*ListMFADevicesOutput, error) {
 	req, out := c.ListMFADevicesRequest(input)
 	err := req.Send()
@@ -6836,6 +6913,7 @@ func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvider
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListOpenIDConnectProviders
 func (c *IAM) ListOpenIDConnectProviders(input *ListOpenIDConnectProvidersInput) (*ListOpenIDConnectProvidersOutput, error) {
 	req, out := c.ListOpenIDConnectProvidersRequest(input)
 	err := req.Send()
@@ -6920,6 +6998,7 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListPolicies
 func (c *IAM) ListPolicies(input *ListPoliciesInput) (*ListPoliciesOutput, error) {
 	req, out := c.ListPoliciesRequest(input)
 	err := req.Send()
@@ -7030,6 +7109,7 @@ func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListPolicyVersions
 func (c *IAM) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVersionsOutput, error) {
 	req, out := c.ListPolicyVersionsRequest(input)
 	err := req.Send()
@@ -7141,6 +7221,7 @@ func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListRolePolicies
 func (c *IAM) ListRolePolicies(input *ListRolePoliciesInput) (*ListRolePoliciesOutput, error) {
 	req, out := c.ListRolePoliciesRequest(input)
 	err := req.Send()
@@ -7242,6 +7323,7 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *request.Request, out
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListRoles
 func (c *IAM) ListRoles(input *ListRolesInput) (*ListRolesOutput, error) {
 	req, out := c.ListRolesRequest(input)
 	err := req.Send()
@@ -7335,6 +7417,7 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListSAMLProviders
 func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvidersOutput, error) {
 	req, out := c.ListSAMLProvidersRequest(input)
 	err := req.Send()
@@ -7417,6 +7500,7 @@ func (c *IAM) ListSSHPublicKeysRequest(input *ListSSHPublicKeysInput) (req *requ
 //   The request was rejected because it referenced an entity that does not exist.
 //   The error message describes the entity.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListSSHPublicKeys
 func (c *IAM) ListSSHPublicKeys(input *ListSSHPublicKeysInput) (*ListSSHPublicKeysOutput, error) {
 	req, out := c.ListSSHPublicKeysRequest(input)
 	err := req.Send()
@@ -7522,6 +7606,7 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListServerCertificates
 func (c *IAM) ListServerCertificates(input *ListServerCertificatesInput) (*ListServerCertificatesOutput, error) {
 	req, out := c.ListServerCertificatesRequest(input)
 	err := req.Send()
@@ -7633,6 +7718,7 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListSigningCertificates
 func (c *IAM) ListSigningCertificates(input *ListSigningCertificatesInput) (*ListSigningCertificatesOutput, error) {
 	req, out := c.ListSigningCertificatesRequest(input)
 	err := req.Send()
@@ -7743,6 +7829,7 @@ func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *reques
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUserPolicies
 func (c *IAM) ListUserPolicies(input *ListUserPoliciesInput) (*ListUserPoliciesOutput, error) {
 	req, out := c.ListUserPoliciesRequest(input)
 	err := req.Send()
@@ -7844,6 +7931,7 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *request.Request, out
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListUsers
 func (c *IAM) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
 	req, out := c.ListUsersRequest(input)
 	err := req.Send()
@@ -7940,6 +8028,7 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 //
 // See the AWS API reference guide for AWS Identity and Access Management's
 // API operation ListVirtualMFADevices for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ListVirtualMFADevices
 func (c *IAM) ListVirtualMFADevices(input *ListVirtualMFADevicesInput) (*ListVirtualMFADevicesOutput, error) {
 	req, out := c.ListVirtualMFADevicesRequest(input)
 	err := req.Send()
@@ -8061,6 +8150,7 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *request.Re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PutGroupPolicy
 func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (*PutGroupPolicyOutput, error) {
 	req, out := c.PutGroupPolicyRequest(input)
 	err := req.Send()
@@ -8163,6 +8253,7 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *request.Requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PutRolePolicy
 func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (*PutRolePolicyOutput, error) {
 	req, out := c.PutRolePolicyRequest(input)
 	err := req.Send()
@@ -8259,6 +8350,7 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *request.Requ
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PutUserPolicy
 func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (*PutUserPolicyOutput, error) {
 	req, out := c.PutUserPolicyRequest(input)
 	err := req.Send()
@@ -8340,6 +8432,7 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClient
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveClientIDFromOpenIDConnectProvider
 func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromOpenIDConnectProviderInput) (*RemoveClientIDFromOpenIDConnectProviderOutput, error) {
 	req, out := c.RemoveClientIDFromOpenIDConnectProviderRequest(input)
 	err := req.Send()
@@ -8425,6 +8518,7 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveRoleFromInstanceProfile
 func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfileInput) (*RemoveRoleFromInstanceProfileOutput, error) {
 	req, out := c.RemoveRoleFromInstanceProfileRequest(input)
 	err := req.Send()
@@ -8501,6 +8595,7 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveUserFromGroup
 func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (*RemoveUserFromGroupOutput, error) {
 	req, out := c.RemoveUserFromGroupRequest(input)
 	err := req.Send()
@@ -8586,6 +8681,7 @@ func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ResyncMFADevice
 func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (*ResyncMFADeviceOutput, error) {
 	req, out := c.ResyncMFADeviceRequest(input)
 	err := req.Send()
@@ -8675,6 +8771,7 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SetDefaultPolicyVersion
 func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*SetDefaultPolicyVersionOutput, error) {
 	req, out := c.SetDefaultPolicyVersionRequest(input)
 	err := req.Send()
@@ -8767,6 +8864,7 @@ func (c *IAM) SimulateCustomPolicyRequest(input *SimulateCustomPolicyInput) (req
 //   The request failed because a provided policy could not be successfully evaluated.
 //   An additional detail message indicates the source of the failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SimulateCustomPolicy
 func (c *IAM) SimulateCustomPolicy(input *SimulateCustomPolicyInput) (*SimulatePolicyResponse, error) {
 	req, out := c.SimulateCustomPolicyRequest(input)
 	err := req.Send()
@@ -8898,6 +8996,7 @@ func (c *IAM) SimulatePrincipalPolicyRequest(input *SimulatePrincipalPolicyInput
 //   The request failed because a provided policy could not be successfully evaluated.
 //   An additional detail message indicates the source of the failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SimulatePrincipalPolicy
 func (c *IAM) SimulatePrincipalPolicy(input *SimulatePrincipalPolicyInput) (*SimulatePolicyResponse, error) {
 	req, out := c.SimulatePrincipalPolicyRequest(input)
 	err := req.Send()
@@ -9009,6 +9108,7 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *request.
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateAccessKey
 func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (*UpdateAccessKeyOutput, error) {
 	req, out := c.UpdateAccessKeyRequest(input)
 	err := req.Send()
@@ -9098,6 +9198,7 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateAccountPasswordPolicy
 func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInput) (*UpdateAccountPasswordPolicyOutput, error) {
 	req, out := c.UpdateAccountPasswordPolicyRequest(input)
 	err := req.Send()
@@ -9181,6 +9282,7 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateAssumeRolePolicy
 func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (*UpdateAssumeRolePolicyOutput, error) {
 	req, out := c.UpdateAssumeRolePolicyRequest(input)
 	err := req.Send()
@@ -9271,6 +9373,7 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request,
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateGroup
 func (c *IAM) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
 	req, out := c.UpdateGroupRequest(input)
 	err := req.Send()
@@ -9361,6 +9464,7 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateLoginProfile
 func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (*UpdateLoginProfileOutput, error) {
 	req, out := c.UpdateLoginProfileRequest(input)
 	err := req.Send()
@@ -9451,6 +9555,7 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateOpenIDConnectProviderThumbprint
 func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectProviderThumbprintInput) (*UpdateOpenIDConnectProviderThumbprintOutput, error) {
 	req, out := c.UpdateOpenIDConnectProviderThumbprintRequest(input)
 	err := req.Send()
@@ -9531,6 +9636,7 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *re
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateSAMLProvider
 func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (*UpdateSAMLProviderOutput, error) {
 	req, out := c.UpdateSAMLProviderRequest(input)
 	err := req.Send()
@@ -9608,6 +9714,7 @@ func (c *IAM) UpdateSSHPublicKeyRequest(input *UpdateSSHPublicKeyInput) (req *re
 //   The request was rejected because it referenced an entity that does not exist.
 //   The error message describes the entity.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateSSHPublicKey
 func (c *IAM) UpdateSSHPublicKey(input *UpdateSSHPublicKeyInput) (*UpdateSSHPublicKeyOutput, error) {
 	req, out := c.UpdateSSHPublicKeyRequest(input)
 	err := req.Send()
@@ -9706,6 +9813,7 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateServerCertificate
 func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (*UpdateServerCertificateOutput, error) {
 	req, out := c.UpdateServerCertificateRequest(input)
 	err := req.Send()
@@ -9789,6 +9897,7 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateSigningCertificate
 func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (*UpdateSigningCertificateOutput, error) {
 	req, out := c.UpdateSigningCertificateRequest(input)
 	err := req.Send()
@@ -9886,6 +9995,7 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, o
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateUser
 func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 	req, out := c.UpdateUserRequest(input)
 	err := req.Send()
@@ -9974,6 +10084,7 @@ func (c *IAM) UploadSSHPublicKeyRequest(input *UploadSSHPublicKeyInput) (req *re
 //   The request was rejected because the public key encoding format is unsupported
 //   or unrecognized.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UploadSSHPublicKey
 func (c *IAM) UploadSSHPublicKey(input *UploadSSHPublicKeyInput) (*UploadSSHPublicKeyOutput, error) {
 	req, out := c.UploadSSHPublicKeyRequest(input)
 	err := req.Send()
@@ -10075,6 +10186,7 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UploadServerCertificate
 func (c *IAM) UploadServerCertificate(input *UploadServerCertificateInput) (*UploadServerCertificateOutput, error) {
 	req, out := c.UploadServerCertificateRequest(input)
 	err := req.Send()
@@ -10180,6 +10292,7 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UploadSigningCertificate
 func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*UploadSigningCertificateOutput, error) {
 	req, out := c.UploadSigningCertificateRequest(input)
 	err := req.Send()
@@ -10195,6 +10308,7 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*U
 // You can get a secret access key only when you first create an access key;
 // you cannot recover the secret access key later. If you lose a secret access
 // key, you must create a new access key.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AccessKey
 type AccessKey struct {
 	_ struct{} `type:"structure"`
 
@@ -10267,6 +10381,7 @@ func (s *AccessKey) SetUserName(v string) *AccessKey {
 //
 // This data type is used as a response element in the GetAccessKeyLastUsed
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AccessKeyLastUsed
 type AccessKeyLastUsed struct {
 	_ struct{} `type:"structure"`
 
@@ -10344,6 +10459,7 @@ func (s *AccessKeyLastUsed) SetServiceName(v string) *AccessKeyLastUsed {
 // Contains information about an AWS access key, without its secret key.
 //
 // This data type is used as a response element in the ListAccessKeys action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AccessKeyMetadata
 type AccessKeyMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -10457,6 +10573,7 @@ func (s *AddClientIDToOpenIDConnectProviderInput) SetOpenIDConnectProviderArn(v 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AddClientIDToOpenIDConnectProviderOutput
 type AddClientIDToOpenIDConnectProviderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10538,6 +10655,7 @@ func (s *AddRoleToInstanceProfileInput) SetRoleName(v string) *AddRoleToInstance
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AddRoleToInstanceProfileOutput
 type AddRoleToInstanceProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10619,6 +10737,7 @@ func (s *AddUserToGroupInput) SetUserName(v string) *AddUserToGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AddUserToGroupOutput
 type AddUserToGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10700,6 +10819,7 @@ func (s *AttachGroupPolicyInput) SetPolicyArn(v string) *AttachGroupPolicyInput 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachGroupPolicyOutput
 type AttachGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10781,6 +10901,7 @@ func (s *AttachRolePolicyInput) SetRoleName(v string) *AttachRolePolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachRolePolicyOutput
 type AttachRolePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10862,6 +10983,7 @@ func (s *AttachUserPolicyInput) SetUserName(v string) *AttachUserPolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachUserPolicyOutput
 type AttachUserPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10886,6 +11008,7 @@ func (s AttachUserPolicyOutput) GoString() string {
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/AttachedPolicy
 type AttachedPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -10991,6 +11114,7 @@ func (s *ChangePasswordInput) SetOldPassword(v string) *ChangePasswordInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ChangePasswordOutput
 type ChangePasswordOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -11012,6 +11136,7 @@ func (s ChangePasswordOutput) GoString() string {
 //
 // This data type is used as an input parameter to SimulateCustomPolicy and
 // SimulateCustomPolicy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ContextEntry
 type ContextEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -11185,6 +11310,7 @@ func (s *CreateAccountAliasInput) SetAccountAlias(v string) *CreateAccountAliasI
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/CreateAccountAliasOutput
 type CreateAccountAliasOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12351,6 +12477,7 @@ func (s *DeactivateMFADeviceInput) SetUserName(v string) *DeactivateMFADeviceInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeactivateMFADeviceOutput
 type DeactivateMFADeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12428,6 +12555,7 @@ func (s *DeleteAccessKeyInput) SetUserName(v string) *DeleteAccessKeyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccessKeyOutput
 type DeleteAccessKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12489,6 +12617,7 @@ func (s *DeleteAccountAliasInput) SetAccountAlias(v string) *DeleteAccountAliasI
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccountAliasOutput
 type DeleteAccountAliasOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12503,6 +12632,7 @@ func (s DeleteAccountAliasOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccountPasswordPolicyInput
 type DeleteAccountPasswordPolicyInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12517,6 +12647,7 @@ func (s DeleteAccountPasswordPolicyInput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteAccountPasswordPolicyOutput
 type DeleteAccountPasswordPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12577,6 +12708,7 @@ func (s *DeleteGroupInput) SetGroupName(v string) *DeleteGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteGroupOutput
 type DeleteGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12659,6 +12791,7 @@ func (s *DeleteGroupPolicyInput) SetPolicyName(v string) *DeleteGroupPolicyInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteGroupPolicyOutput
 type DeleteGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12719,6 +12852,7 @@ func (s *DeleteInstanceProfileInput) SetInstanceProfileName(v string) *DeleteIns
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteInstanceProfileOutput
 type DeleteInstanceProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12779,6 +12913,7 @@ func (s *DeleteLoginProfileInput) SetUserName(v string) *DeleteLoginProfileInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteLoginProfileOutput
 type DeleteLoginProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12837,6 +12972,7 @@ func (s *DeleteOpenIDConnectProviderInput) SetOpenIDConnectProviderArn(v string)
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteOpenIDConnectProviderOutput
 type DeleteOpenIDConnectProviderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12897,6 +13033,7 @@ func (s *DeletePolicyInput) SetPolicyArn(v string) *DeletePolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeletePolicyOutput
 type DeletePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -12981,6 +13118,7 @@ func (s *DeletePolicyVersionInput) SetVersionId(v string) *DeletePolicyVersionIn
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeletePolicyVersionOutput
 type DeletePolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13041,6 +13179,7 @@ func (s *DeleteRoleInput) SetRoleName(v string) *DeleteRoleInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteRoleOutput
 type DeleteRoleOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13123,6 +13262,7 @@ func (s *DeleteRolePolicyInput) SetRoleName(v string) *DeleteRolePolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteRolePolicyOutput
 type DeleteRolePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13179,6 +13319,7 @@ func (s *DeleteSAMLProviderInput) SetSAMLProviderArn(v string) *DeleteSAMLProvid
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteSAMLProviderOutput
 type DeleteSAMLProviderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13260,6 +13401,7 @@ func (s *DeleteSSHPublicKeyInput) SetUserName(v string) *DeleteSSHPublicKeyInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteSSHPublicKeyOutput
 type DeleteSSHPublicKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13320,6 +13462,7 @@ func (s *DeleteServerCertificateInput) SetServerCertificateName(v string) *Delet
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteServerCertificateOutput
 type DeleteServerCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13396,6 +13539,7 @@ func (s *DeleteSigningCertificateInput) SetUserName(v string) *DeleteSigningCert
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteSigningCertificateOutput
 type DeleteSigningCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13456,6 +13600,7 @@ func (s *DeleteUserInput) SetUserName(v string) *DeleteUserInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteUserOutput
 type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13538,6 +13683,7 @@ func (s *DeleteUserPolicyInput) SetUserName(v string) *DeleteUserPolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteUserPolicyOutput
 type DeleteUserPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13599,6 +13745,7 @@ func (s *DeleteVirtualMFADeviceInput) SetSerialNumber(v string) *DeleteVirtualMF
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DeleteVirtualMFADeviceOutput
 type DeleteVirtualMFADeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13680,6 +13827,7 @@ func (s *DetachGroupPolicyInput) SetPolicyArn(v string) *DetachGroupPolicyInput 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachGroupPolicyOutput
 type DetachGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13761,6 +13909,7 @@ func (s *DetachRolePolicyInput) SetRoleName(v string) *DetachRolePolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachRolePolicyOutput
 type DetachRolePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13842,6 +13991,7 @@ func (s *DetachUserPolicyInput) SetUserName(v string) *DetachUserPolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/DetachUserPolicyOutput
 type DetachUserPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13962,6 +14112,7 @@ func (s *EnableMFADeviceInput) SetUserName(v string) *EnableMFADeviceInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/EnableMFADeviceOutput
 type EnableMFADeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13980,6 +14131,7 @@ func (s EnableMFADeviceOutput) GoString() string {
 //
 // This data type is used by the return parameter of SimulateCustomPolicy and
 // SimulatePrincipalPolicy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/EvaluationResult
 type EvaluationResult struct {
 	_ struct{} `type:"structure"`
 
@@ -14077,6 +14229,7 @@ func (s *EvaluationResult) SetResourceSpecificResults(v []*ResourceSpecificResul
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GenerateCredentialReportInput
 type GenerateCredentialReportInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14358,6 +14511,7 @@ func (s *GetAccountAuthorizationDetailsOutput) SetUserDetailList(v []*UserDetail
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetAccountPasswordPolicyInput
 type GetAccountPasswordPolicyInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14402,6 +14556,7 @@ func (s *GetAccountPasswordPolicyOutput) SetPasswordPolicy(v *PasswordPolicy) *G
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetAccountSummaryInput
 type GetAccountSummaryInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14491,6 +14646,7 @@ func (s *GetContextKeysForCustomPolicyInput) SetPolicyInputList(v []*string) *Ge
 
 // Contains the response to a successful GetContextKeysForPrincipalPolicy or
 // GetContextKeysForCustomPolicy request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetContextKeysForPolicyResponse
 type GetContextKeysForPolicyResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -14582,6 +14738,7 @@ func (s *GetContextKeysForPrincipalPolicyInput) SetPolicySourceArn(v string) *Ge
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GetCredentialReportInput
 type GetCredentialReportInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -15969,6 +16126,7 @@ func (s *GetUserPolicyOutput) SetUserName(v string) *GetUserPolicyOutput {
 //    * GetGroup
 //
 //    * ListGroups
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/Group
 type Group struct {
 	_ struct{} `type:"structure"`
 
@@ -16049,6 +16207,7 @@ func (s *Group) SetPath(v string) *Group {
 //
 // This data type is used as a response element in the GetAccountAuthorizationDetails
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/GroupDetail
 type GroupDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -16146,6 +16305,7 @@ func (s *GroupDetail) SetPath(v string) *GroupDetail {
 //    * ListInstanceProfiles
 //
 //    * ListInstanceProfilesForRole
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/InstanceProfile
 type InstanceProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -19286,6 +19446,7 @@ func (s *ListVirtualMFADevicesOutput) SetVirtualMFADevices(v []*VirtualMFADevice
 //
 // This data type is used as a response element in the CreateLoginProfile and
 // GetLoginProfile actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/LoginProfile
 type LoginProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -19335,6 +19496,7 @@ func (s *LoginProfile) SetUserName(v string) *LoginProfile {
 // Contains information about an MFA device.
 //
 // This data type is used as a response element in the ListMFADevices action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/MFADevice
 type MFADevice struct {
 	_ struct{} `type:"structure"`
 
@@ -19393,6 +19555,7 @@ func (s *MFADevice) SetUserName(v string) *MFADevice {
 // For more information about managed policies, see Managed Policies and Inline
 // Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ManagedPolicyDetail
 type ManagedPolicyDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -19530,6 +19693,7 @@ func (s *ManagedPolicyDetail) SetUpdateDate(v time.Time) *ManagedPolicyDetail {
 }
 
 // Contains the Amazon Resource Name (ARN) for an IAM OpenID Connect provider.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/OpenIDConnectProviderListEntry
 type OpenIDConnectProviderListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -19561,6 +19725,7 @@ func (s *OpenIDConnectProviderListEntry) SetArn(v string) *OpenIDConnectProvider
 //
 // This data type is used as a response element in the GetAccountPasswordPolicy
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PasswordPolicy
 type PasswordPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -19677,6 +19842,7 @@ func (s *PasswordPolicy) SetRequireUppercaseCharacters(v bool) *PasswordPolicy {
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/Policy
 type Policy struct {
 	_ struct{} `type:"structure"`
 
@@ -19806,6 +19972,7 @@ func (s *Policy) SetUpdateDate(v time.Time) *Policy {
 //
 // This data type is used as a response element in the GetAccountAuthorizationDetails
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PolicyDetail
 type PolicyDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -19846,6 +20013,7 @@ func (s *PolicyDetail) SetPolicyName(v string) *PolicyDetail {
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PolicyGroup
 type PolicyGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -19888,6 +20056,7 @@ func (s *PolicyGroup) SetGroupName(v string) *PolicyGroup {
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PolicyRole
 type PolicyRole struct {
 	_ struct{} `type:"structure"`
 
@@ -19930,6 +20099,7 @@ func (s *PolicyRole) SetRoleName(v string) *PolicyRole {
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PolicyUser
 type PolicyUser struct {
 	_ struct{} `type:"structure"`
 
@@ -19973,6 +20143,7 @@ func (s *PolicyUser) SetUserName(v string) *PolicyUser {
 // For more information about managed policies, refer to Managed Policies and
 // Inline Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html)
 // in the Using IAM guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PolicyVersion
 type PolicyVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -20035,6 +20206,7 @@ func (s *PolicyVersion) SetVersionId(v string) *PolicyVersion {
 // document.
 //
 // This data type is used as a member of the Statement type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/Position
 type Position struct {
 	_ struct{} `type:"structure"`
 
@@ -20157,6 +20329,7 @@ func (s *PutGroupPolicyInput) SetPolicyName(v string) *PutGroupPolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PutGroupPolicyOutput
 type PutGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20261,6 +20434,7 @@ func (s *PutRolePolicyInput) SetRoleName(v string) *PutRolePolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PutRolePolicyOutput
 type PutRolePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20365,6 +20539,7 @@ func (s *PutUserPolicyInput) SetUserName(v string) *PutUserPolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/PutUserPolicyOutput
 type PutUserPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20445,6 +20620,7 @@ func (s *RemoveClientIDFromOpenIDConnectProviderInput) SetOpenIDConnectProviderA
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveClientIDFromOpenIDConnectProviderOutput
 type RemoveClientIDFromOpenIDConnectProviderOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20526,6 +20702,7 @@ func (s *RemoveRoleFromInstanceProfileInput) SetRoleName(v string) *RemoveRoleFr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveRoleFromInstanceProfileOutput
 type RemoveRoleFromInstanceProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20607,6 +20784,7 @@ func (s *RemoveUserFromGroupInput) SetUserName(v string) *RemoveUserFromGroupInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RemoveUserFromGroupOutput
 type RemoveUserFromGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20625,6 +20803,7 @@ func (s RemoveUserFromGroupOutput) GoString() string {
 // resource.
 //
 // This data type is used by a member of the EvaluationResult data type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ResourceSpecificResult
 type ResourceSpecificResult struct {
 	_ struct{} `type:"structure"`
 
@@ -20809,6 +20988,7 @@ func (s *ResyncMFADeviceInput) SetUserName(v string) *ResyncMFADeviceInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ResyncMFADeviceOutput
 type ResyncMFADeviceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -20832,6 +21012,7 @@ func (s ResyncMFADeviceOutput) GoString() string {
 //    * GetRole
 //
 //    * ListRoles
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/Role
 type Role struct {
 	_ struct{} `type:"structure"`
 
@@ -20921,6 +21102,7 @@ func (s *Role) SetRoleName(v string) *Role {
 //
 // This data type is used as a response element in the GetAccountAuthorizationDetails
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/RoleDetail
 type RoleDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -21028,6 +21210,7 @@ func (s *RoleDetail) SetRolePolicyList(v []*PolicyDetail) *RoleDetail {
 }
 
 // Contains the list of SAML providers for this account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SAMLProviderListEntry
 type SAMLProviderListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -21073,6 +21256,7 @@ func (s *SAMLProviderListEntry) SetValidUntil(v time.Time) *SAMLProviderListEntr
 //
 // This data type is used as a response element in the GetSSHPublicKey and UploadSSHPublicKey
 // actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SSHPublicKey
 type SSHPublicKey struct {
 	_ struct{} `type:"structure"`
 
@@ -21156,6 +21340,7 @@ func (s *SSHPublicKey) SetUserName(v string) *SSHPublicKey {
 // Contains information about an SSH public key, without the key's body or fingerprint.
 //
 // This data type is used as a response element in the ListSSHPublicKeys action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SSHPublicKeyMetadata
 type SSHPublicKeyMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -21220,6 +21405,7 @@ func (s *SSHPublicKeyMetadata) SetUserName(v string) *SSHPublicKeyMetadata {
 //
 // This data type is used as a response element in the GetServerCertificate
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ServerCertificate
 type ServerCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -21271,6 +21457,7 @@ func (s *ServerCertificate) SetServerCertificateMetadata(v *ServerCertificateMet
 //
 // This data type is used as a response element in the UploadServerCertificate
 // and ListServerCertificates actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/ServerCertificateMetadata
 type ServerCertificateMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -21419,6 +21606,7 @@ func (s *SetDefaultPolicyVersionInput) SetVersionId(v string) *SetDefaultPolicyV
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SetDefaultPolicyVersionOutput
 type SetDefaultPolicyVersionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -21437,6 +21625,7 @@ func (s SetDefaultPolicyVersionOutput) GoString() string {
 //
 // This data type is used as a response element in the UploadSigningCertificate
 // and ListSigningCertificates actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SigningCertificate
 type SigningCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -21762,6 +21951,7 @@ func (s *SimulateCustomPolicyInput) SetResourcePolicy(v string) *SimulateCustomP
 
 // Contains the response to a successful SimulatePrincipalPolicy or SimulateCustomPolicy
 // request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/SimulatePolicyResponse
 type SimulatePolicyResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -22092,6 +22282,7 @@ func (s *SimulatePrincipalPolicyInput) SetResourcePolicy(v string) *SimulatePrin
 //
 // This data type is used by the MatchedStatements member of the EvaluationResult
 // type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/Statement
 type Statement struct {
 	_ struct{} `type:"structure"`
 
@@ -22220,6 +22411,7 @@ func (s *UpdateAccessKeyInput) SetUserName(v string) *UpdateAccessKeyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateAccessKeyOutput
 type UpdateAccessKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22379,6 +22571,7 @@ func (s *UpdateAccountPasswordPolicyInput) SetRequireUppercaseCharacters(v bool)
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateAccountPasswordPolicyOutput
 type UpdateAccountPasswordPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22462,6 +22655,7 @@ func (s *UpdateAssumeRolePolicyInput) SetRoleName(v string) *UpdateAssumeRolePol
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateAssumeRolePolicyOutput
 type UpdateAssumeRolePolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22557,6 +22751,7 @@ func (s *UpdateGroupInput) SetNewPath(v string) *UpdateGroupInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateGroupOutput
 type UpdateGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22647,6 +22842,7 @@ func (s *UpdateLoginProfileInput) SetUserName(v string) *UpdateLoginProfileInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateLoginProfileOutput
 type UpdateLoginProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22724,6 +22920,7 @@ func (s *UpdateOpenIDConnectProviderThumbprintInput) SetThumbprintList(v []*stri
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateOpenIDConnectProviderThumbprintOutput
 type UpdateOpenIDConnectProviderThumbprintOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22913,6 +23110,7 @@ func (s *UpdateSSHPublicKeyInput) SetUserName(v string) *UpdateSSHPublicKeyInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateSSHPublicKeyOutput
 type UpdateSSHPublicKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23010,6 +23208,7 @@ func (s *UpdateServerCertificateInput) SetServerCertificateName(v string) *Updat
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateServerCertificateOutput
 type UpdateServerCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23102,6 +23301,7 @@ func (s *UpdateSigningCertificateInput) SetUserName(v string) *UpdateSigningCert
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateSigningCertificateOutput
 type UpdateSigningCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23199,6 +23399,7 @@ func (s *UpdateUserInput) SetUserName(v string) *UpdateUserInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UpdateUserOutput
 type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -23572,6 +23773,7 @@ func (s *UploadSigningCertificateOutput) SetCertificate(v *SigningCertificate) *
 //    * GetUser
 //
 //    * ListUsers
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/User
 type User struct {
 	_ struct{} `type:"structure"`
 
@@ -23677,6 +23879,7 @@ func (s *User) SetUserName(v string) *User {
 //
 // This data type is used as a response element in the GetAccountAuthorizationDetails
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/UserDetail
 type UserDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -23773,6 +23976,7 @@ func (s *UserDetail) SetUserPolicyList(v []*PolicyDetail) *UserDetail {
 }
 
 // Contains information about a virtual MFA device.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iam-2010-05-08/VirtualMFADevice
 type VirtualMFADevice struct {
 	_ struct{} `type:"structure"`
 

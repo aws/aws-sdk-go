@@ -81,6 +81,7 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/CreateCluster
 func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
 	err := req.Send()
@@ -213,6 +214,7 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/CreateService
 func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
 	req, out := c.CreateServiceRequest(input)
 	err := req.Send()
@@ -303,6 +305,7 @@ func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Requ
 //   the service to reduce its desired task count to 0 and then delete the service.
 //   For more information, see UpdateService and DeleteService.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteCluster
 func (c *ECS) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, error) {
 	req, out := c.DeleteClusterRequest(input)
 	err := req.Send()
@@ -398,6 +401,7 @@ func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Requ
 //   The specified service could not be found. You can view your available services
 //   with ListServices. Amazon ECS services are cluster-specific and region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeleteService
 func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, error) {
 	req, out := c.DeleteServiceRequest(input)
 	err := req.Send()
@@ -490,6 +494,7 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeregisterContainerInstance
 func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInput) (*DeregisterContainerInstanceOutput, error) {
 	req, out := c.DeregisterContainerInstanceRequest(input)
 	err := req.Send()
@@ -573,6 +578,7 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeregisterTaskDefinition
 func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (*DeregisterTaskDefinitionOutput, error) {
 	req, out := c.DeregisterTaskDefinitionRequest(input)
 	err := req.Send()
@@ -647,6 +653,7 @@ func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *reques
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DescribeClusters
 func (c *ECS) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersOutput, error) {
 	req, out := c.DescribeClustersRequest(input)
 	err := req.Send()
@@ -726,6 +733,7 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DescribeContainerInstances
 func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput) (*DescribeContainerInstancesOutput, error) {
 	req, out := c.DescribeContainerInstancesRequest(input)
 	err := req.Send()
@@ -804,6 +812,7 @@ func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *reques
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DescribeServices
 func (c *ECS) DescribeServices(input *DescribeServicesInput) (*DescribeServicesOutput, error) {
 	req, out := c.DescribeServicesRequest(input)
 	err := req.Send()
@@ -883,6 +892,7 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DescribeTaskDefinition
 func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (*DescribeTaskDefinitionOutput, error) {
 	req, out := c.DescribeTaskDefinitionRequest(input)
 	err := req.Send()
@@ -961,6 +971,7 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *request.Requ
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DescribeTasks
 func (c *ECS) DescribeTasks(input *DescribeTasksInput) (*DescribeTasksOutput, error) {
 	req, out := c.DescribeTasksRequest(input)
 	err := req.Send()
@@ -1035,6 +1046,7 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 //   or resource on behalf of a user that doesn't have permission to use the action
 //   or resource, or specifying an identifier that is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DiscoverPollEndpoint
 func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverPollEndpointOutput, error) {
 	req, out := c.DiscoverPollEndpointRequest(input)
 	err := req.Send()
@@ -1115,6 +1127,7 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListClusters
 func (c *ECS) ListClusters(input *ListClustersInput) (*ListClustersOutput, error) {
 	req, out := c.ListClustersRequest(input)
 	err := req.Send()
@@ -1224,6 +1237,7 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListContainerInstances
 func (c *ECS) ListContainerInstances(input *ListContainerInstancesInput) (*ListContainerInstancesOutput, error) {
 	req, out := c.ListContainerInstancesRequest(input)
 	err := req.Send()
@@ -1333,6 +1347,7 @@ func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *request.Reques
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListServices
 func (c *ECS) ListServices(input *ListServicesInput) (*ListServicesOutput, error) {
 	req, out := c.ListServicesRequest(input)
 	err := req.Send()
@@ -1444,6 +1459,7 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListTaskDefinitionFamilies
 func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput) (*ListTaskDefinitionFamiliesOutput, error) {
 	req, out := c.ListTaskDefinitionFamiliesRequest(input)
 	err := req.Send()
@@ -1551,6 +1567,7 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListTaskDefinitions
 func (c *ECS) ListTaskDefinitions(input *ListTaskDefinitionsInput) (*ListTaskDefinitionsOutput, error) {
 	req, out := c.ListTaskDefinitionsRequest(input)
 	err := req.Send()
@@ -1669,6 +1686,7 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, out
 //   The specified service could not be found. You can view your available services
 //   with ListServices. Amazon ECS services are cluster-specific and region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ListTasks
 func (c *ECS) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
 	req, out := c.ListTasksRequest(input)
 	err := req.Send()
@@ -1768,6 +1786,7 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 //   or resource on behalf of a user that doesn't have permission to use the action
 //   or resource, or specifying an identifier that is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/RegisterContainerInstance
 func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (*RegisterContainerInstanceOutput, error) {
 	req, out := c.RegisterContainerInstanceRequest(input)
 	err := req.Send()
@@ -1858,6 +1877,7 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 //   The specified parameter is invalid. Review the available parameters for the
 //   API request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/RegisterTaskDefinition
 func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*RegisterTaskDefinitionOutput, error) {
 	req, out := c.RegisterTaskDefinitionRequest(input)
 	err := req.Send()
@@ -1940,6 +1960,7 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/RunTask
 func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
 	req, out := c.RunTaskRequest(input)
 	err := req.Send()
@@ -2022,6 +2043,7 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/StartTask
 func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
 	req, out := c.StartTaskRequest(input)
 	err := req.Send()
@@ -2106,6 +2128,7 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *request.Request, outpu
 //   The specified cluster could not be found. You can view your available clusters
 //   with ListClusters. Amazon ECS clusters are region-specific.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/StopTask
 func (c *ECS) StopTask(input *StopTaskInput) (*StopTaskOutput, error) {
 	req, out := c.StopTaskRequest(input)
 	err := req.Send()
@@ -2179,6 +2202,7 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 //   or resource on behalf of a user that doesn't have permission to use the action
 //   or resource, or specifying an identifier that is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/SubmitContainerStateChange
 func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput) (*SubmitContainerStateChangeOutput, error) {
 	req, out := c.SubmitContainerStateChangeRequest(input)
 	err := req.Send()
@@ -2252,6 +2276,7 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 //   or resource on behalf of a user that doesn't have permission to use the action
 //   or resource, or specifying an identifier that is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/SubmitTaskStateChange
 func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitTaskStateChangeOutput, error) {
 	req, out := c.SubmitTaskStateChangeRequest(input)
 	err := req.Send()
@@ -2358,6 +2383,7 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 //   with an update. This could be because the agent running on the container
 //   instance is an older or custom version that does not use our version information.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateContainerAgent
 func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateContainerAgentOutput, error) {
 	req, out := c.UpdateContainerAgentRequest(input)
 	err := req.Send()
@@ -2496,6 +2522,7 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 //   not active. If you have previously deleted a service, you can re-create it
 //   with CreateService.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateService
 func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, error) {
 	req, out := c.UpdateServiceRequest(input)
 	err := req.Send()
@@ -2503,6 +2530,7 @@ func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, er
 }
 
 // The attributes applicable to a container instance when it is registered.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Attribute
 type Attribute struct {
 	_ struct{} `type:"structure"`
 
@@ -2555,6 +2583,7 @@ func (s *Attribute) SetValue(v string) *Attribute {
 // task requests. Each account receives a default cluster the first time you
 // use the Amazon ECS service, but you may also create other clusters. Clusters
 // may contain more than one instance type simultaneously.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Cluster
 type Cluster struct {
 	_ struct{} `type:"structure"`
 
@@ -2639,6 +2668,7 @@ func (s *Cluster) SetStatus(v string) *Cluster {
 }
 
 // A Docker container that is part of a task.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Container
 type Container struct {
 	_ struct{} `type:"structure"`
 
@@ -2719,6 +2749,7 @@ func (s *Container) SetTaskArn(v string) *Container {
 
 // Container definitions are used in task definitions to describe the different
 // containers that are launched as part of a task.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ContainerDefinition
 type ContainerDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -3245,6 +3276,7 @@ func (s *ContainerDefinition) SetWorkingDirectory(v string) *ContainerDefinition
 
 // An EC2 instance that is running the Amazon ECS agent and has been registered
 // with a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ContainerInstance
 type ContainerInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -3392,6 +3424,7 @@ func (s *ContainerInstance) SetVersionInfo(v *VersionInfo) *ContainerInstance {
 }
 
 // The overrides that should be sent to a container.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ContainerOverride
 type ContainerOverride struct {
 	_ struct{} `type:"structure"`
 
@@ -3796,6 +3829,7 @@ func (s *DeleteServiceOutput) SetService(v *Service) *DeleteServiceOutput {
 }
 
 // The details of an Amazon ECS service deployment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Deployment
 type Deployment struct {
 	_ struct{} `type:"structure"`
 
@@ -3888,6 +3922,7 @@ func (s *Deployment) SetUpdatedAt(v time.Time) *Deployment {
 
 // Optional deployment parameters that control how many tasks run during the
 // deployment and the ordering of stopping and starting tasks.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/DeploymentConfiguration
 type DeploymentConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4535,6 +4570,7 @@ func (s *DiscoverPollEndpointOutput) SetTelemetryEndpoint(v string) *DiscoverPol
 }
 
 // A failed resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Failure
 type Failure struct {
 	_ struct{} `type:"structure"`
 
@@ -4569,6 +4605,7 @@ func (s *Failure) SetReason(v string) *Failure {
 
 // Hostnames and IP address entries that are added to the /etc/hosts file of
 // a container via the extraHosts parameter of its ContainerDefinition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/HostEntry
 type HostEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -4622,6 +4659,7 @@ func (s *HostEntry) SetIpAddress(v string) *HostEntry {
 }
 
 // Details on a container instance host volume.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/HostVolumeProperties
 type HostVolumeProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -4652,6 +4690,7 @@ func (s *HostVolumeProperties) SetSourcePath(v string) *HostVolumeProperties {
 }
 
 // A key and value pair object.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/KeyValuePair
 type KeyValuePair struct {
 	_ struct{} `type:"structure"`
 
@@ -5338,6 +5377,7 @@ func (s *ListTasksOutput) SetTaskArns(v []*string) *ListTasksOutput {
 }
 
 // Details on a load balancer that is used with a service.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/LoadBalancer
 type LoadBalancer struct {
 	_ struct{} `type:"structure"`
 
@@ -5394,6 +5434,7 @@ func (s *LoadBalancer) SetTargetGroupArn(v string) *LoadBalancer {
 }
 
 // Log configuration options to send to a custom log driver for the container.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/LogConfiguration
 type LogConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5461,6 +5502,7 @@ func (s *LogConfiguration) SetOptions(v map[string]*string) *LogConfiguration {
 }
 
 // Details on a volume mount point that is used in a container definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/MountPoint
 type MountPoint struct {
 	_ struct{} `type:"structure"`
 
@@ -5508,6 +5550,7 @@ func (s *MountPoint) SetSourceVolume(v string) *MountPoint {
 // instance. After a task reaches the RUNNING status, manual and automatic host
 // and container port assignments are visible in the networkBindings section
 // of DescribeTasks API responses.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/NetworkBinding
 type NetworkBinding struct {
 	_ struct{} `type:"structure"`
 
@@ -5563,6 +5606,7 @@ func (s *NetworkBinding) SetProtocol(v string) *NetworkBinding {
 // definition. After a task reaches the RUNNING status, manual and automatic
 // host and container port assignments are visible in the networkBindings section
 // of DescribeTasks API responses.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/PortMapping
 type PortMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -5898,6 +5942,7 @@ func (s *RegisterTaskDefinitionOutput) SetTaskDefinition(v *TaskDefinition) *Reg
 }
 
 // Describes the resources available for a container instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Resource
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -6102,6 +6147,7 @@ func (s *RunTaskOutput) SetTasks(v []*Task) *RunTaskOutput {
 }
 
 // Details on a service within a cluster
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Service
 type Service struct {
 	_ struct{} `type:"structure"`
 
@@ -6259,6 +6305,7 @@ func (s *Service) SetTaskDefinition(v string) *Service {
 }
 
 // Details on an event associated with a service.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/ServiceEvent
 type ServiceEvent struct {
 	_ struct{} `type:"structure"`
 
@@ -6706,6 +6753,7 @@ func (s *SubmitTaskStateChangeOutput) SetAcknowledgment(v string) *SubmitTaskSta
 }
 
 // Details on a task in a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Task
 type Task struct {
 	_ struct{} `type:"structure"`
 
@@ -6857,6 +6905,7 @@ func (s *Task) SetVersion(v int64) *Task {
 }
 
 // Details of a task definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/TaskDefinition
 type TaskDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -6973,6 +7022,7 @@ func (s *TaskDefinition) SetVolumes(v []*Volume) *TaskDefinition {
 }
 
 // The overrides associated with a task.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/TaskOverride
 type TaskOverride struct {
 	_ struct{} `type:"structure"`
 
@@ -7008,6 +7058,7 @@ func (s *TaskOverride) SetTaskRoleArn(v string) *TaskOverride {
 }
 
 // The ulimit settings to pass to the container.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Ulimit
 type Ulimit struct {
 	_ struct{} `type:"structure"`
 
@@ -7259,6 +7310,7 @@ func (s *UpdateServiceOutput) SetService(v *Service) *UpdateServiceOutput {
 
 // The Docker and Amazon ECS container agent version information about a container
 // instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/VersionInfo
 type VersionInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -7302,6 +7354,7 @@ func (s *VersionInfo) SetDockerVersion(v string) *VersionInfo {
 }
 
 // A data volume used in a task definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/Volume
 type Volume struct {
 	_ struct{} `type:"structure"`
 
@@ -7341,6 +7394,7 @@ func (s *Volume) SetName(v string) *Volume {
 }
 
 // Details on a data volume from another container.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/VolumeFrom
 type VolumeFrom struct {
 	_ struct{} `type:"structure"`
 

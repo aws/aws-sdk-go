@@ -78,6 +78,7 @@ func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, o
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CancelJob
 func (c *Batch) CancelJob(input *CancelJobInput) (*CancelJobOutput, error) {
 	req, out := c.CancelJobRequest(input)
 	err := req.Send()
@@ -169,6 +170,7 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateComputeEnvironment
 func (c *Batch) CreateComputeEnvironment(input *CreateComputeEnvironmentInput) (*CreateComputeEnvironmentOutput, error) {
 	req, out := c.CreateComputeEnvironmentRequest(input)
 	err := req.Send()
@@ -247,6 +249,7 @@ func (c *Batch) CreateJobQueueRequest(input *CreateJobQueueInput) (req *request.
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateJobQueue
 func (c *Batch) CreateJobQueue(input *CreateJobQueueInput) (*CreateJobQueueOutput, error) {
 	req, out := c.CreateJobQueueRequest(input)
 	err := req.Send()
@@ -321,6 +324,7 @@ func (c *Batch) DeleteComputeEnvironmentRequest(input *DeleteComputeEnvironmentI
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteComputeEnvironment
 func (c *Batch) DeleteComputeEnvironment(input *DeleteComputeEnvironmentInput) (*DeleteComputeEnvironmentOutput, error) {
 	req, out := c.DeleteComputeEnvironmentRequest(input)
 	err := req.Send()
@@ -396,6 +400,7 @@ func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteJobQueue
 func (c *Batch) DeleteJobQueue(input *DeleteJobQueueInput) (*DeleteJobQueueOutput, error) {
 	req, out := c.DeleteJobQueueRequest(input)
 	err := req.Send()
@@ -466,6 +471,7 @@ func (c *Batch) DeregisterJobDefinitionRequest(input *DeregisterJobDefinitionInp
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeregisterJobDefinition
 func (c *Batch) DeregisterJobDefinition(input *DeregisterJobDefinitionInput) (*DeregisterJobDefinitionOutput, error) {
 	req, out := c.DeregisterJobDefinitionRequest(input)
 	err := req.Send()
@@ -540,6 +546,7 @@ func (c *Batch) DescribeComputeEnvironmentsRequest(input *DescribeComputeEnviron
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeComputeEnvironments
 func (c *Batch) DescribeComputeEnvironments(input *DescribeComputeEnvironmentsInput) (*DescribeComputeEnvironmentsOutput, error) {
 	req, out := c.DescribeComputeEnvironmentsRequest(input)
 	err := req.Send()
@@ -611,6 +618,7 @@ func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobDefinitions
 func (c *Batch) DescribeJobDefinitions(input *DescribeJobDefinitionsInput) (*DescribeJobDefinitionsOutput, error) {
 	req, out := c.DescribeJobDefinitionsRequest(input)
 	err := req.Send()
@@ -681,6 +689,7 @@ func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *re
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobQueues
 func (c *Batch) DescribeJobQueues(input *DescribeJobQueuesInput) (*DescribeJobQueuesOutput, error) {
 	req, out := c.DescribeJobQueuesRequest(input)
 	err := req.Send()
@@ -751,6 +760,7 @@ func (c *Batch) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Requ
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeJobs
 func (c *Batch) DescribeJobs(input *DescribeJobsInput) (*DescribeJobsOutput, error) {
 	req, out := c.DescribeJobsRequest(input)
 	err := req.Send()
@@ -822,6 +832,7 @@ func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, out
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListJobs
 func (c *Batch) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
 	err := req.Send()
@@ -892,6 +903,7 @@ func (c *Batch) RegisterJobDefinitionRequest(input *RegisterJobDefinitionInput) 
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/RegisterJobDefinition
 func (c *Batch) RegisterJobDefinition(input *RegisterJobDefinitionInput) (*RegisterJobDefinitionOutput, error) {
 	req, out := c.RegisterJobDefinitionRequest(input)
 	err := req.Send()
@@ -963,6 +975,7 @@ func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, o
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/SubmitJob
 func (c *Batch) SubmitJob(input *SubmitJobInput) (*SubmitJobOutput, error) {
 	req, out := c.SubmitJobRequest(input)
 	err := req.Send()
@@ -1035,6 +1048,7 @@ func (c *Batch) TerminateJobRequest(input *TerminateJobInput) (req *request.Requ
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/TerminateJob
 func (c *Batch) TerminateJob(input *TerminateJobInput) (*TerminateJobOutput, error) {
 	req, out := c.TerminateJobRequest(input)
 	err := req.Send()
@@ -1105,6 +1119,7 @@ func (c *Batch) UpdateComputeEnvironmentRequest(input *UpdateComputeEnvironmentI
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateComputeEnvironment
 func (c *Batch) UpdateComputeEnvironment(input *UpdateComputeEnvironmentInput) (*UpdateComputeEnvironmentOutput, error) {
 	req, out := c.UpdateComputeEnvironmentRequest(input)
 	err := req.Send()
@@ -1175,6 +1190,7 @@ func (c *Batch) UpdateJobQueueRequest(input *UpdateJobQueueInput) (req *request.
 //   * ServerException
 //   These errors are usually caused by a server issue.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateJobQueue
 func (c *Batch) UpdateJobQueue(input *UpdateJobQueueInput) (*UpdateJobQueueOutput, error) {
 	req, out := c.UpdateJobQueueRequest(input)
 	err := req.Send()
@@ -1252,6 +1268,7 @@ func (s CancelJobOutput) GoString() string {
 }
 
 // An object representing an AWS Batch compute environment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ComputeEnvironmentDetail
 type ComputeEnvironmentDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -1362,6 +1379,7 @@ func (s *ComputeEnvironmentDetail) SetType(v string) *ComputeEnvironmentDetail {
 // a queue. Compute environments are tried in ascending order. For example,
 // if two compute environments are associated with a job queue, the compute
 // environment with a lower order integer value is tried for job placement first.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ComputeEnvironmentOrder
 type ComputeEnvironmentOrder struct {
 	_ struct{} `type:"structure"`
 
@@ -1415,6 +1433,7 @@ func (s *ComputeEnvironmentOrder) SetOrder(v int64) *ComputeEnvironmentOrder {
 }
 
 // An object representing an AWS Batch compute resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ComputeResource
 type ComputeResource struct {
 	_ struct{} `type:"structure"`
 
@@ -1591,6 +1610,7 @@ func (s *ComputeResource) SetType(v string) *ComputeResource {
 
 // An object representing the attributes of a compute environment that can be
 // updated.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ComputeResourceUpdate
 type ComputeResourceUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -1633,6 +1653,7 @@ func (s *ComputeResourceUpdate) SetMinvCpus(v int64) *ComputeResourceUpdate {
 }
 
 // An object representing the details of a container that is part of a job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ContainerDetail
 type ContainerDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -1787,6 +1808,7 @@ func (s *ContainerDetail) SetVolumes(v []*Volume) *ContainerDetail {
 }
 
 // The overrides that should be sent to a container.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ContainerOverrides
 type ContainerOverrides struct {
 	_ struct{} `type:"structure"`
 
@@ -1844,6 +1866,7 @@ func (s *ContainerOverrides) SetVcpus(v int64) *ContainerOverrides {
 
 // Container properties are used in job definitions to describe the container
 // that is launched as part of a job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ContainerProperties
 type ContainerProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -2844,6 +2867,7 @@ func (s *DescribeJobsOutput) SetJobs(v []*JobDetail) *DescribeJobsOutput {
 // is empty, then the Docker daemon assigns a host path for your data volume,
 // but the data is not guaranteed to persist after the containers associated
 // with it stop running.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/Host
 type Host struct {
 	_ struct{} `type:"structure"`
 
@@ -2874,6 +2898,7 @@ func (s *Host) SetSourcePath(v string) *Host {
 }
 
 // An object representing an AWS Batch job definition.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/JobDefinition
 type JobDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -2963,6 +2988,7 @@ func (s *JobDefinition) SetType(v string) *JobDefinition {
 }
 
 // An object representing an AWS Batch job dependency.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/JobDependency
 type JobDependency struct {
 	_ struct{} `type:"structure"`
 
@@ -2987,6 +3013,7 @@ func (s *JobDependency) SetJobId(v string) *JobDependency {
 }
 
 // An object representing an AWS Batch job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/JobDetail
 type JobDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -3129,6 +3156,7 @@ func (s *JobDetail) SetStoppedAt(v int64) *JobDetail {
 }
 
 // An object representing the details of an AWS Batch job queue.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/JobQueueDetail
 type JobQueueDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -3220,6 +3248,7 @@ func (s *JobQueueDetail) SetStatusReason(v string) *JobQueueDetail {
 }
 
 // An object representing summary details of a job.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/JobSummary
 type JobSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3257,6 +3286,7 @@ func (s *JobSummary) SetJobName(v string) *JobSummary {
 }
 
 // A key-value pair object.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/KeyValuePair
 type KeyValuePair struct {
 	_ struct{} `type:"structure"`
 
@@ -3409,6 +3439,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 }
 
 // Details on a volume mount point that is used in a job's container properties.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/MountPoint
 type MountPoint struct {
 	_ struct{} `type:"structure"`
 
@@ -3792,6 +3823,7 @@ func (s TerminateJobOutput) GoString() string {
 }
 
 // The ulimit settings to pass to the container.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/Ulimit
 type Ulimit struct {
 	_ struct{} `type:"structure"`
 
@@ -4078,6 +4110,7 @@ func (s *UpdateJobQueueOutput) SetJobQueueName(v string) *UpdateJobQueueOutput {
 }
 
 // A data volume used in a job's container properties.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/Volume
 type Volume struct {
 	_ struct{} `type:"structure"`
 

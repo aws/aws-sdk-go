@@ -101,6 +101,7 @@ func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req
 //   * TooManyTagsException
 //   The request contains too many tags. Try the request again with fewer tags.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/AddTagsToCertificate
 func (c *ACM) AddTagsToCertificate(input *AddTagsToCertificateInput) (*AddTagsToCertificateOutput, error) {
 	req, out := c.AddTagsToCertificateRequest(input)
 	err := req.Send()
@@ -184,6 +185,7 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 //   * InvalidArnException
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DeleteCertificate
 func (c *ACM) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
 	err := req.Send()
@@ -257,6 +259,7 @@ func (c *ACM) DescribeCertificateRequest(input *DescribeCertificateInput) (req *
 //   * InvalidArnException
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DescribeCertificate
 func (c *ACM) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
 	req, out := c.DescribeCertificateRequest(input)
 	err := req.Send()
@@ -338,6 +341,7 @@ func (c *ACM) GetCertificateRequest(input *GetCertificateInput) (req *request.Re
 //   * InvalidArnException
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/GetCertificate
 func (c *ACM) GetCertificate(input *GetCertificateInput) (*GetCertificateOutput, error) {
 	req, out := c.GetCertificateRequest(input)
 	err := req.Send()
@@ -436,6 +440,7 @@ func (c *ACM) ImportCertificateRequest(input *ImportCertificateInput) (req *requ
 //   violated. For more information about ACM limits, see the Limits (http://docs.aws.amazon.com/acm/latest/userguide/acm-limits.html)
 //   topic.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ImportCertificate
 func (c *ACM) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
 	req, out := c.ImportCertificateRequest(input)
 	err := req.Send()
@@ -504,6 +509,7 @@ func (c *ACM) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 //
 // See the AWS API reference guide for AWS Certificate Manager's
 // API operation ListCertificates for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListCertificates
 func (c *ACM) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
 	req, out := c.ListCertificatesRequest(input)
 	err := req.Send()
@@ -601,6 +607,7 @@ func (c *ACM) ListTagsForCertificateRequest(input *ListTagsForCertificateInput) 
 //   * InvalidArnException
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ListTagsForCertificate
 func (c *ACM) ListTagsForCertificate(input *ListTagsForCertificateInput) (*ListTagsForCertificateOutput, error) {
 	req, out := c.ListTagsForCertificateRequest(input)
 	err := req.Send()
@@ -683,6 +690,7 @@ func (c *ACM) RemoveTagsFromCertificateRequest(input *RemoveTagsFromCertificateI
 //   One or both of the values that make up the key-value pair is not valid. For
 //   example, you cannot specify a tag value that begins with aws:.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RemoveTagsFromCertificate
 func (c *ACM) RemoveTagsFromCertificate(input *RemoveTagsFromCertificateInput) (*RemoveTagsFromCertificateOutput, error) {
 	req, out := c.RemoveTagsFromCertificateRequest(input)
 	err := req.Send()
@@ -761,6 +769,7 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 //   * InvalidDomainValidationOptionsException
 //   One or more values in the DomainValidationOption structure is incorrect.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RequestCertificate
 func (c *ACM) RequestCertificate(input *RequestCertificateInput) (*RequestCertificateOutput, error) {
 	req, out := c.RequestCertificateRequest(input)
 	err := req.Send()
@@ -849,6 +858,7 @@ func (c *ACM) ResendValidationEmailRequest(input *ResendValidationEmailInput) (r
 //   * InvalidDomainValidationOptionsException
 //   One or more values in the DomainValidationOption structure is incorrect.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmail
 func (c *ACM) ResendValidationEmail(input *ResendValidationEmailInput) (*ResendValidationEmailOutput, error) {
 	req, out := c.ResendValidationEmailRequest(input)
 	err := req.Send()
@@ -930,6 +940,7 @@ func (s *AddTagsToCertificateInput) SetTags(v []*Tag) *AddTagsToCertificateInput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/AddTagsToCertificateOutput
 type AddTagsToCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -946,6 +957,7 @@ func (s AddTagsToCertificateOutput) GoString() string {
 
 // Contains detailed metadata about an ACM Certificate. This structure is returned
 // in the response to a DescribeCertificate request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/CertificateDetail
 type CertificateDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -1166,6 +1178,7 @@ func (s *CertificateDetail) SetType(v string) *CertificateDetail {
 }
 
 // This structure is returned in the response object of ListCertificates action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/CertificateSummary
 type CertificateSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -1252,6 +1265,7 @@ func (s *DeleteCertificateInput) SetCertificateArn(v string) *DeleteCertificateI
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DeleteCertificateOutput
 type DeleteCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1340,6 +1354,7 @@ func (s *DescribeCertificateOutput) SetCertificate(v *CertificateDetail) *Descri
 // Structure that contains the domain name, the base validation domain to which
 // validation email is sent, and the email addresses used to validate the domain
 // identity.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DomainValidation
 type DomainValidation struct {
 	_ struct{} `type:"structure"`
 
@@ -1385,6 +1400,7 @@ func (s *DomainValidation) SetValidationEmails(v []*string) *DomainValidation {
 }
 
 // This structure is used in the request object of the RequestCertificate action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/DomainValidationOption
 type DomainValidationOption struct {
 	_ struct{} `type:"structure"`
 
@@ -1915,6 +1931,7 @@ func (s *RemoveTagsFromCertificateInput) SetTags(v []*Tag) *RemoveTagsFromCertif
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RemoveTagsFromCertificateOutput
 type RemoveTagsFromCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2169,6 +2186,7 @@ func (s *ResendValidationEmailInput) SetValidationDomain(v string) *ResendValida
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ResendValidationEmailOutput
 type ResendValidationEmailOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2184,6 +2202,7 @@ func (s ResendValidationEmailOutput) GoString() string {
 }
 
 // A key-value pair that identifies or specifies metadata about an ACM resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 

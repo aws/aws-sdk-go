@@ -115,6 +115,7 @@ func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, 
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/AddTags
 func (c *CloudTrail) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
 	err := req.Send()
@@ -259,6 +260,7 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/CreateTrail
 func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, error) {
 	req, out := c.CreateTrailRequest(input)
 	err := req.Send()
@@ -346,6 +348,7 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //   This exception is thrown when an operation is called on a trail from a region
 //   other than the region in which the trail was created.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteTrail
 func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, error) {
 	req, out := c.DeleteTrailRequest(input)
 	err := req.Send()
@@ -415,6 +418,7 @@ func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *req
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DescribeTrails
 func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrailsOutput, error) {
 	req, out := c.DescribeTrailsRequest(input)
 	err := req.Send()
@@ -513,6 +517,7 @@ func (c *CloudTrail) GetEventSelectorsRequest(input *GetEventSelectorsInput) (re
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetEventSelectors
 func (c *CloudTrail) GetEventSelectors(input *GetEventSelectorsInput) (*GetEventSelectorsOutput, error) {
 	req, out := c.GetEventSelectorsRequest(input)
 	err := req.Send()
@@ -598,6 +603,7 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *req
 //
 //      * Not be in IP address format (for example, 192.168.5.4)
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/GetTrailStatus
 func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatusOutput, error) {
 	req, out := c.GetTrailStatusRequest(input)
 	err := req.Send()
@@ -680,6 +686,7 @@ func (c *CloudTrail) ListPublicKeysRequest(input *ListPublicKeysInput) (req *req
 //   * InvalidTokenException
 //   Reserved for future use.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListPublicKeys
 func (c *CloudTrail) ListPublicKeys(input *ListPublicKeysInput) (*ListPublicKeysOutput, error) {
 	req, out := c.ListPublicKeysRequest(input)
 	err := req.Send()
@@ -780,6 +787,7 @@ func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request
 //   * InvalidTokenException
 //   Reserved for future use.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ListTags
 func (c *CloudTrail) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
 	req, out := c.ListTagsRequest(input)
 	err := req.Send()
@@ -879,6 +887,7 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *request
 //   Invalid token or token that was previously used in a request with different
 //   parameters. This exception is thrown if the token is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/LookupEvents
 func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput, error) {
 	req, out := c.LookupEventsRequest(input)
 	err := req.Send()
@@ -1009,6 +1018,7 @@ func (c *CloudTrail) PutEventSelectorsRequest(input *PutEventSelectorsInput) (re
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PutEventSelectors
 func (c *CloudTrail) PutEventSelectors(input *PutEventSelectorsInput) (*PutEventSelectorsOutput, error) {
 	req, out := c.PutEventSelectorsRequest(input)
 	err := req.Send()
@@ -1110,6 +1120,7 @@ func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Req
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/RemoveTags
 func (c *CloudTrail) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
@@ -1199,6 +1210,7 @@ func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request
 //   This exception is thrown when an operation is called on a trail from a region
 //   other than the region in which the trail was created.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StartLogging
 func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput, error) {
 	req, out := c.StartLoggingRequest(input)
 	err := req.Send()
@@ -1290,6 +1302,7 @@ func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.R
 //   This exception is thrown when an operation is called on a trail from a region
 //   other than the region in which the trail was created.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/StopLogging
 func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, error) {
 	req, out := c.StopLoggingRequest(input)
 	err := req.Send()
@@ -1438,6 +1451,7 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //   * OperationNotPermittedException
 //   This exception is thrown when the requested operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/UpdateTrail
 func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, error) {
 	req, out := c.UpdateTrailRequest(input)
 	err := req.Send()
@@ -1852,6 +1866,7 @@ func (s *CreateTrailOutput) SetTrailARN(v string) *CreateTrailOutput {
 //
 // The event occurs on an object in an S3 bucket that you didn't specify in
 // the event selector. The trail doesn’t log the event.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DataResource
 type DataResource struct {
 	_ struct{} `type:"structure"`
 
@@ -2033,6 +2048,7 @@ func (s *DescribeTrailsOutput) SetTrailList(v []*Trail) *DescribeTrailsOutput {
 
 // Contains information about an event that was returned by a lookup request.
 // The result includes a representation of a CloudTrail event.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/Event
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -2118,6 +2134,7 @@ func (s *Event) SetUsername(v string) *Event {
 // selector, the trail doesn't log the event.
 //
 // You can configure up to five event selectors for a trail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/EventSelector
 type EventSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -2657,6 +2674,7 @@ func (s *ListTagsOutput) SetResourceTagList(v []*ResourceTag) *ListTagsOutput {
 }
 
 // Specifies an attribute and value that filter the events returned.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/LookupAttribute
 type LookupAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -2844,6 +2862,7 @@ func (s *LookupEventsOutput) SetNextToken(v string) *LookupEventsOutput {
 }
 
 // Contains information about a returned public key.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/PublicKey
 type PublicKey struct {
 	_ struct{} `type:"structure"`
 
@@ -3063,6 +3082,7 @@ func (s RemoveTagsOutput) GoString() string {
 }
 
 // Specifies the type and name of a resource referenced by an event.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/Resource
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -3103,6 +3123,7 @@ func (s *Resource) SetResourceType(v string) *Resource {
 }
 
 // A resource tag.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/ResourceTag
 type ResourceTag struct {
 	_ struct{} `type:"structure"`
 
@@ -3257,6 +3278,7 @@ func (s StopLoggingOutput) GoString() string {
 }
 
 // A custom key-value pair associated with a resource such as a CloudTrail trail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -3307,6 +3329,7 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // The settings for a trail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/Trail
 type Trail struct {
 	_ struct{} `type:"structure"`
 

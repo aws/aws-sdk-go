@@ -101,6 +101,7 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 //   * AuthorizationQuotaExceeded
 //   The authorization quota for the cluster security group has been reached.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeClusterSecurityGroupIngress
 func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterSecurityGroupIngressInput) (*AuthorizeClusterSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeClusterSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -188,6 +189,7 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 //   * LimitExceededFault
 //   The encryption key has exceeded its grant limit in AWS KMS.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeSnapshotAccess
 func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) (*AuthorizeSnapshotAccessOutput, error) {
 	req, out := c.AuthorizeSnapshotAccessRequest(input)
 	err := req.Send()
@@ -277,6 +279,7 @@ func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (
 //   The request would result in the user exceeding the allowed number of cluster
 //   snapshots.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CopyClusterSnapshot
 func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyClusterSnapshotOutput, error) {
 	req, out := c.CopyClusterSnapshotRequest(input)
 	err := req.Send()
@@ -412,6 +415,7 @@ func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *request
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateCluster
 func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
 	err := req.Send()
@@ -499,6 +503,7 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateClusterParameterGroup
 func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGroupInput) (*CreateClusterParameterGroupOutput, error) {
 	req, out := c.CreateClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -581,6 +586,7 @@ func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurit
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateClusterSecurityGroup
 func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupInput) (*CreateClusterSecurityGroupOutput, error) {
 	req, out := c.CreateClusterSecurityGroupRequest(input)
 	err := req.Send()
@@ -668,6 +674,7 @@ func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInpu
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateClusterSnapshot
 func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (*CreateClusterSnapshotOutput, error) {
 	req, out := c.CreateClusterSnapshotRequest(input)
 	err := req.Send()
@@ -768,6 +775,7 @@ func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGro
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateClusterSubnetGroup
 func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput) (*CreateClusterSubnetGroupOutput, error) {
 	req, out := c.CreateClusterSubnetGroupRequest(input)
 	err := req.Send()
@@ -894,6 +902,7 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateEventSubscription
 func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	err := req.Send()
@@ -979,6 +988,7 @@ func (c *Redshift) CreateHsmClientCertificateRequest(input *CreateHsmClientCerti
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateHsmClientCertificate
 func (c *Redshift) CreateHsmClientCertificate(input *CreateHsmClientCertificateInput) (*CreateHsmClientCertificateOutput, error) {
 	req, out := c.CreateHsmClientCertificateRequest(input)
 	err := req.Send()
@@ -1065,6 +1075,7 @@ func (c *Redshift) CreateHsmConfigurationRequest(input *CreateHsmConfigurationIn
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateHsmConfiguration
 func (c *Redshift) CreateHsmConfiguration(input *CreateHsmConfigurationInput) (*CreateHsmConfigurationOutput, error) {
 	req, out := c.CreateHsmConfigurationRequest(input)
 	err := req.Send()
@@ -1154,6 +1165,7 @@ func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrant
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateSnapshotCopyGrant
 func (c *Redshift) CreateSnapshotCopyGrant(input *CreateSnapshotCopyGrantInput) (*CreateSnapshotCopyGrantOutput, error) {
 	req, out := c.CreateSnapshotCopyGrantRequest(input)
 	err := req.Send()
@@ -1233,6 +1245,7 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *request.Reque
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateTags
 func (c *Redshift) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
 	err := req.Send()
@@ -1325,6 +1338,7 @@ func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *request
 //   The request would result in the user exceeding the allowed number of cluster
 //   snapshots.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteCluster
 func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, error) {
 	req, out := c.DeleteClusterRequest(input)
 	err := req.Send()
@@ -1399,6 +1413,7 @@ func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParame
 //   * ClusterParameterGroupNotFound
 //   The parameter group name does not refer to an existing parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterParameterGroup
 func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGroupInput) (*DeleteClusterParameterGroupOutput, error) {
 	req, out := c.DeleteClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -1477,6 +1492,7 @@ func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurit
 //   The cluster security group name does not refer to an existing cluster security
 //   group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSecurityGroup
 func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupInput) (*DeleteClusterSecurityGroupOutput, error) {
 	req, out := c.DeleteClusterSecurityGroupRequest(input)
 	err := req.Send()
@@ -1553,6 +1569,7 @@ func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInpu
 //   * ClusterSnapshotNotFound
 //   The snapshot identifier does not refer to an existing cluster snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSnapshot
 func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotInput) (*DeleteClusterSnapshotOutput, error) {
 	req, out := c.DeleteClusterSnapshotRequest(input)
 	err := req.Send()
@@ -1627,6 +1644,7 @@ func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGro
 //   The cluster subnet group name does not refer to an existing cluster subnet
 //   group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSubnetGroup
 func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput) (*DeleteClusterSubnetGroupOutput, error) {
 	req, out := c.DeleteClusterSubnetGroupRequest(input)
 	err := req.Send()
@@ -1699,6 +1717,7 @@ func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscription
 //   The subscription request is invalid because it is a duplicate request. This
 //   subscription request is already in progress.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteEventSubscription
 func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	err := req.Send()
@@ -1770,6 +1789,7 @@ func (c *Redshift) DeleteHsmClientCertificateRequest(input *DeleteHsmClientCerti
 //   * HsmClientCertificateNotFoundFault
 //   There is no Amazon Redshift HSM client certificate with the specified identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteHsmClientCertificate
 func (c *Redshift) DeleteHsmClientCertificate(input *DeleteHsmClientCertificateInput) (*DeleteHsmClientCertificateOutput, error) {
 	req, out := c.DeleteHsmClientCertificateRequest(input)
 	err := req.Send()
@@ -1841,6 +1861,7 @@ func (c *Redshift) DeleteHsmConfigurationRequest(input *DeleteHsmConfigurationIn
 //   * HsmConfigurationNotFoundFault
 //   There is no Amazon Redshift HSM configuration with the specified identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteHsmConfiguration
 func (c *Redshift) DeleteHsmConfiguration(input *DeleteHsmConfigurationInput) (*DeleteHsmConfigurationOutput, error) {
 	req, out := c.DeleteHsmConfigurationRequest(input)
 	err := req.Send()
@@ -1913,6 +1934,7 @@ func (c *Redshift) DeleteSnapshotCopyGrantRequest(input *DeleteSnapshotCopyGrant
 //   The specified snapshot copy grant can't be found. Make sure that the name
 //   is typed correctly and that the grant exists in the destination region.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteSnapshotCopyGrant
 func (c *Redshift) DeleteSnapshotCopyGrant(input *DeleteSnapshotCopyGrantInput) (*DeleteSnapshotCopyGrantOutput, error) {
 	req, out := c.DeleteSnapshotCopyGrantRequest(input)
 	err := req.Send()
@@ -1984,6 +2006,7 @@ func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Reque
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteTags
 func (c *Redshift) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
 	err := req.Send()
@@ -2076,6 +2099,7 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterParameterGroups
 func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParameterGroupsInput) (*DescribeClusterParameterGroupsOutput, error) {
 	req, out := c.DescribeClusterParameterGroupsRequest(input)
 	err := req.Send()
@@ -2183,6 +2207,7 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 //   * ClusterParameterGroupNotFound
 //   The parameter group name does not refer to an existing parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterParameters
 func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInput) (*DescribeClusterParametersOutput, error) {
 	req, out := c.DescribeClusterParametersRequest(input)
 	err := req.Send()
@@ -2299,6 +2324,7 @@ func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSe
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterSecurityGroups
 func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityGroupsInput) (*DescribeClusterSecurityGroupsOutput, error) {
 	req, out := c.DescribeClusterSecurityGroupsRequest(input)
 	err := req.Send()
@@ -2412,6 +2438,7 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterSnapshots
 func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput) (*DescribeClusterSnapshotsOutput, error) {
 	req, out := c.DescribeClusterSnapshotsRequest(input)
 	err := req.Send()
@@ -2524,6 +2551,7 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterSubnetGroups
 func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroupsInput) (*DescribeClusterSubnetGroupsOutput, error) {
 	req, out := c.DescribeClusterSubnetGroupsRequest(input)
 	err := req.Send()
@@ -2619,6 +2647,7 @@ func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersions
 //
 // See the AWS API reference guide for Amazon Redshift's
 // API operation DescribeClusterVersions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusterVersions
 func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) (*DescribeClusterVersionsOutput, error) {
 	req, out := c.DescribeClusterVersionsRequest(input)
 	err := req.Send()
@@ -2731,6 +2760,7 @@ func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *r
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeClusters
 func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersOutput, error) {
 	req, out := c.DescribeClustersRequest(input)
 	err := req.Send()
@@ -2826,6 +2856,7 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 //
 // See the AWS API reference guide for Amazon Redshift's
 // API operation DescribeDefaultClusterParameters for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDefaultClusterParameters
 func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersInput) (*DescribeDefaultClusterParametersOutput, error) {
 	req, out := c.DescribeDefaultClusterParametersRequest(input)
 	err := req.Send()
@@ -2913,6 +2944,7 @@ func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategories
 //
 // See the AWS API reference guide for Amazon Redshift's
 // API operation DescribeEventCategories for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEventCategories
 func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesInput) (*DescribeEventCategoriesOutput, error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	err := req.Send()
@@ -2987,6 +3019,7 @@ func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscri
 //   An Amazon Redshift event notification subscription with the specified name
 //   does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEventSubscriptions
 func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	err := req.Send()
@@ -3081,6 +3114,7 @@ func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *reque
 //
 // See the AWS API reference guide for Amazon Redshift's
 // API operation DescribeEvents for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEvents
 func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -3192,6 +3226,7 @@ func (c *Redshift) DescribeHsmClientCertificatesRequest(input *DescribeHsmClient
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeHsmClientCertificates
 func (c *Redshift) DescribeHsmClientCertificates(input *DescribeHsmClientCertificatesInput) (*DescribeHsmClientCertificatesOutput, error) {
 	req, out := c.DescribeHsmClientCertificatesRequest(input)
 	err := req.Send()
@@ -3303,6 +3338,7 @@ func (c *Redshift) DescribeHsmConfigurationsRequest(input *DescribeHsmConfigurat
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeHsmConfigurations
 func (c *Redshift) DescribeHsmConfigurations(input *DescribeHsmConfigurationsInput) (*DescribeHsmConfigurationsOutput, error) {
 	req, out := c.DescribeHsmConfigurationsRequest(input)
 	err := req.Send()
@@ -3394,6 +3430,7 @@ func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInpu
 //   * ClusterNotFound
 //   The ClusterIdentifier parameter does not refer to an existing cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeLoggingStatus
 func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (*LoggingStatus, error) {
 	req, out := c.DescribeLoggingStatusRequest(input)
 	err := req.Send()
@@ -3468,6 +3505,7 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 //
 // See the AWS API reference guide for Amazon Redshift's
 // API operation DescribeOrderableClusterOptions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeOrderableClusterOptions
 func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClusterOptionsInput) (*DescribeOrderableClusterOptionsOutput, error) {
 	req, out := c.DescribeOrderableClusterOptionsRequest(input)
 	err := req.Send()
@@ -3576,6 +3614,7 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 //   * UnsupportedOperation
 //   The requested operation isn't supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeReservedNodeOfferings
 func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsInput) (*DescribeReservedNodeOfferingsOutput, error) {
 	req, out := c.DescribeReservedNodeOfferingsRequest(input)
 	err := req.Send()
@@ -3672,6 +3711,7 @@ func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInpu
 //   * ReservedNodeNotFound
 //   The specified reserved compute node not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeReservedNodes
 func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (*DescribeReservedNodesOutput, error) {
 	req, out := c.DescribeReservedNodesRequest(input)
 	err := req.Send()
@@ -3771,6 +3811,7 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *reque
 //   * ResizeNotFound
 //   A resize operation for the specified cluster is not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeResize
 func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOutput, error) {
 	req, out := c.DescribeResizeRequest(input)
 	err := req.Send()
@@ -3845,6 +3886,7 @@ func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopy
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeSnapshotCopyGrants
 func (c *Redshift) DescribeSnapshotCopyGrants(input *DescribeSnapshotCopyGrantsInput) (*DescribeSnapshotCopyGrantsOutput, error) {
 	req, out := c.DescribeSnapshotCopyGrantsRequest(input)
 	err := req.Send()
@@ -3917,6 +3959,7 @@ func (c *Redshift) DescribeTableRestoreStatusRequest(input *DescribeTableRestore
 //   * ClusterNotFound
 //   The ClusterIdentifier parameter does not refer to an existing cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeTableRestoreStatus
 func (c *Redshift) DescribeTableRestoreStatus(input *DescribeTableRestoreStatusInput) (*DescribeTableRestoreStatusOutput, error) {
 	req, out := c.DescribeTableRestoreStatusRequest(input)
 	err := req.Send()
@@ -4007,6 +4050,7 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *request.R
 //   * InvalidTagFault
 //   The tag is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeTags
 func (c *Redshift) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
 	err := req.Send()
@@ -4073,6 +4117,7 @@ func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *reque
 //   * ClusterNotFound
 //   The ClusterIdentifier parameter does not refer to an existing cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisableLogging
 func (c *Redshift) DisableLogging(input *DisableLoggingInput) (*LoggingStatus, error) {
 	req, out := c.DisableLoggingRequest(input)
 	err := req.Send()
@@ -4152,6 +4197,7 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 //   * UnauthorizedOperation
 //   Your account is not authorized to perform the requested operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisableSnapshotCopy
 func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*DisableSnapshotCopyOutput, error) {
 	req, out := c.DisableSnapshotCopyRequest(input)
 	err := req.Send()
@@ -4234,6 +4280,7 @@ func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *request
 //   to Bucket Restrictions and Limitations (http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html)
 //   in the Amazon Simple Storage Service (S3) Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EnableLogging
 func (c *Redshift) EnableLogging(input *EnableLoggingInput) (*LoggingStatus, error) {
 	req, out := c.EnableLoggingRequest(input)
 	err := req.Send()
@@ -4329,6 +4376,7 @@ func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (re
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EnableSnapshotCopy
 func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (*EnableSnapshotCopyOutput, error) {
 	req, out := c.EnableSnapshotCopyRequest(input)
 	err := req.Send()
@@ -4451,6 +4499,7 @@ func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *request
 //   * InvalidElasticIpFault
 //   The Elastic IP (EIP) is invalid or cannot be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyCluster
 func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutput, error) {
 	req, out := c.ModifyClusterRequest(input)
 	err := req.Send()
@@ -4522,6 +4571,7 @@ func (c *Redshift) ModifyClusterIamRolesRequest(input *ModifyClusterIamRolesInpu
 //   * ClusterNotFound
 //   The ClusterIdentifier parameter does not refer to an existing cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterIamRoles
 func (c *Redshift) ModifyClusterIamRoles(input *ModifyClusterIamRolesInput) (*ModifyClusterIamRolesOutput, error) {
 	req, out := c.ModifyClusterIamRolesRequest(input)
 	err := req.Send()
@@ -4596,6 +4646,7 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 //   is in progress that involves the parameter group. Wait a few moments and
 //   try the operation again.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterParameterGroup
 func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, error) {
 	req, out := c.ModifyClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -4684,6 +4735,7 @@ func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGro
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyClusterSubnetGroup
 func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput) (*ModifyClusterSubnetGroupOutput, error) {
 	req, out := c.ModifyClusterSubnetGroupRequest(input)
 	err := req.Send()
@@ -4781,6 +4833,7 @@ func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscription
 //   The subscription request is invalid because it is a duplicate request. This
 //   subscription request is already in progress.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyEventSubscription
 func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	err := req.Send()
@@ -4856,6 +4909,7 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapsho
 //   * InvalidClusterState
 //   The specified cluster is not in the available state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifySnapshotCopyRetentionPeriod
 func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRetentionPeriodInput) (*ModifySnapshotCopyRetentionPeriodOutput, error) {
 	req, out := c.ModifySnapshotCopyRetentionPeriodRequest(input)
 	err := req.Send()
@@ -4940,6 +4994,7 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 //   * UnsupportedOperation
 //   The requested operation isn't supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PurchaseReservedNodeOffering
 func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingInput) (*PurchaseReservedNodeOfferingOutput, error) {
 	req, out := c.PurchaseReservedNodeOfferingRequest(input)
 	err := req.Send()
@@ -5014,6 +5069,7 @@ func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *request
 //   * ClusterNotFound
 //   The ClusterIdentifier parameter does not refer to an existing cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RebootCluster
 func (c *Redshift) RebootCluster(input *RebootClusterInput) (*RebootClusterOutput, error) {
 	req, out := c.RebootClusterRequest(input)
 	err := req.Send()
@@ -5087,6 +5143,7 @@ func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParamete
 //   * ClusterParameterGroupNotFound
 //   The parameter group name does not refer to an existing parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ResetClusterParameterGroup
 func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, error) {
 	req, out := c.ResetClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -5238,6 +5295,7 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RestoreFromClusterSnapshot
 func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, error) {
 	req, out := c.RestoreFromClusterSnapshotRequest(input)
 	err := req.Send()
@@ -5336,6 +5394,7 @@ func (c *Redshift) RestoreTableFromClusterSnapshotRequest(input *RestoreTableFro
 //   * UnsupportedOperation
 //   The requested operation isn't supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RestoreTableFromClusterSnapshot
 func (c *Redshift) RestoreTableFromClusterSnapshot(input *RestoreTableFromClusterSnapshotInput) (*RestoreTableFromClusterSnapshotOutput, error) {
 	req, out := c.RestoreTableFromClusterSnapshotRequest(input)
 	err := req.Send()
@@ -5413,6 +5472,7 @@ func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeCluster
 //   * InvalidClusterSecurityGroupState
 //   The state of the cluster security group is not available.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RevokeClusterSecurityGroupIngress
 func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurityGroupIngressInput) (*RevokeClusterSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeClusterSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -5492,6 +5552,7 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 //   * ClusterSnapshotNotFound
 //   The snapshot identifier does not refer to an existing cluster snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RevokeSnapshotAccess
 func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*RevokeSnapshotAccessOutput, error) {
 	req, out := c.RevokeSnapshotAccessRequest(input)
 	err := req.Send()
@@ -5564,6 +5625,7 @@ func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (
 //   The request cannot be completed because a dependent service is throttling
 //   requests made by Amazon Redshift on your behalf. Wait and retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RotateEncryptionKey
 func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (*RotateEncryptionKeyOutput, error) {
 	req, out := c.RotateEncryptionKeyRequest(input)
 	err := req.Send()
@@ -5571,6 +5633,7 @@ func (c *Redshift) RotateEncryptionKey(input *RotateEncryptionKeyInput) (*Rotate
 }
 
 // Describes an AWS customer account authorized to restore a snapshot.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AccountWithRestoreAccess
 type AccountWithRestoreAccess struct {
 	_ struct{} `type:"structure"`
 
@@ -5778,6 +5841,7 @@ func (s *AuthorizeSnapshotAccessOutput) SetSnapshot(v *Snapshot) *AuthorizeSnaps
 }
 
 // Describes an availability zone.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AvailabilityZone
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -5802,6 +5866,7 @@ func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 }
 
 // Describes a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Cluster
 type Cluster struct {
 	_ struct{} `type:"structure"`
 
@@ -6181,6 +6246,7 @@ func (s *Cluster) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *Cluster
 
 // An AWS Identity and Access Management (IAM) role that can be used by the
 // associated Amazon Redshift cluster to access other AWS services.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterIamRole
 type ClusterIamRole struct {
 	_ struct{} `type:"structure"`
 
@@ -6224,6 +6290,7 @@ func (s *ClusterIamRole) SetIamRoleArn(v string) *ClusterIamRole {
 }
 
 // The identifier of a node in a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterNode
 type ClusterNode struct {
 	_ struct{} `type:"structure"`
 
@@ -6266,6 +6333,7 @@ func (s *ClusterNode) SetPublicIPAddress(v string) *ClusterNode {
 }
 
 // Describes a parameter group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterParameterGroup
 type ClusterParameterGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6317,6 +6385,7 @@ func (s *ClusterParameterGroup) SetTags(v []*Tag) *ClusterParameterGroup {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterParameterGroupNameMessage
 type ClusterParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -6352,6 +6421,7 @@ func (s *ClusterParameterGroupNameMessage) SetParameterGroupStatus(v string) *Cl
 }
 
 // Describes the status of a parameter group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterParameterGroupStatus
 type ClusterParameterGroupStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -6398,6 +6468,7 @@ func (s *ClusterParameterGroupStatus) SetParameterGroupName(v string) *ClusterPa
 }
 
 // Describes the status of a parameter group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterParameterStatus
 type ClusterParameterStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -6463,6 +6534,7 @@ func (s *ClusterParameterStatus) SetParameterName(v string) *ClusterParameterSta
 }
 
 // Describes a security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterSecurityGroup
 type ClusterSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6525,6 +6597,7 @@ func (s *ClusterSecurityGroup) SetTags(v []*Tag) *ClusterSecurityGroup {
 }
 
 // Describes a cluster security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterSecurityGroupMembership
 type ClusterSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -6559,6 +6632,7 @@ func (s *ClusterSecurityGroupMembership) SetStatus(v string) *ClusterSecurityGro
 
 // Returns the destination region and retention period that are configured for
 // cross-region snapshot copy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterSnapshotCopyStatus
 type ClusterSnapshotCopyStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -6603,6 +6677,7 @@ func (s *ClusterSnapshotCopyStatus) SetSnapshotCopyGrantName(v string) *ClusterS
 }
 
 // Describes a subnet group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterSubnetGroup
 type ClusterSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6674,6 +6749,7 @@ func (s *ClusterSubnetGroup) SetVpcId(v string) *ClusterSubnetGroup {
 
 // Describes a cluster version, including the parameter group family and description
 // of the version.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ClusterVersion
 type ClusterVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -8290,6 +8366,7 @@ func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateTagsOutput
 type CreateTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8305,6 +8382,7 @@ func (s CreateTagsOutput) GoString() string {
 }
 
 // Describes the default cluster parameters for a parameter group family.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DefaultClusterParameters
 type DefaultClusterParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -8504,6 +8582,7 @@ func (s *DeleteClusterParameterGroupInput) SetParameterGroupName(v string) *Dele
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterParameterGroupOutput
 type DeleteClusterParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8557,6 +8636,7 @@ func (s *DeleteClusterSecurityGroupInput) SetClusterSecurityGroupName(v string) 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSecurityGroupOutput
 type DeleteClusterSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8689,6 +8769,7 @@ func (s *DeleteClusterSubnetGroupInput) SetClusterSubnetGroupName(v string) *Del
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteClusterSubnetGroupOutput
 type DeleteClusterSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8742,6 +8823,7 @@ func (s *DeleteEventSubscriptionInput) SetSubscriptionName(v string) *DeleteEven
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteEventSubscriptionOutput
 type DeleteEventSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8795,6 +8877,7 @@ func (s *DeleteHsmClientCertificateInput) SetHsmClientCertificateIdentifier(v st
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteHsmClientCertificateOutput
 type DeleteHsmClientCertificateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8848,6 +8931,7 @@ func (s *DeleteHsmConfigurationInput) SetHsmConfigurationIdentifier(v string) *D
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteHsmConfigurationOutput
 type DeleteHsmConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8902,6 +8986,7 @@ func (s *DeleteSnapshotCopyGrantInput) SetSnapshotCopyGrantName(v string) *Delet
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteSnapshotCopyGrantOutput
 type DeleteSnapshotCopyGrantOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -8971,6 +9056,7 @@ func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteTagsOutput
 type DeleteTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -11532,6 +11618,7 @@ func (s *DisableSnapshotCopyOutput) SetCluster(v *Cluster) *DisableSnapshotCopyO
 }
 
 // Describes an Amazon EC2 security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EC2SecurityGroup
 type EC2SecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -11584,6 +11671,7 @@ func (s *EC2SecurityGroup) SetTags(v []*Tag) *EC2SecurityGroup {
 }
 
 // Describes the status of the elastic IP (EIP) address.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ElasticIpStatus
 type ElasticIpStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -11813,6 +11901,7 @@ func (s *EnableSnapshotCopyOutput) SetCluster(v *Cluster) *EnableSnapshotCopyOut
 }
 
 // Describes a connection endpoint.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Endpoint
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -11846,6 +11935,7 @@ func (s *Endpoint) SetPort(v int64) *Endpoint {
 }
 
 // Describes an event.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Event
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -11928,6 +12018,7 @@ func (s *Event) SetSourceType(v string) *Event {
 }
 
 // Describes event categories.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EventCategoriesMap
 type EventCategoriesMap struct {
 	_ struct{} `type:"structure"`
 
@@ -11962,6 +12053,7 @@ func (s *EventCategoriesMap) SetSourceType(v string) *EventCategoriesMap {
 }
 
 // Describes event information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EventInfoMap
 type EventInfoMap struct {
 	_ struct{} `type:"structure"`
 
@@ -12015,6 +12107,7 @@ func (s *EventInfoMap) SetSeverity(v string) *EventInfoMap {
 }
 
 // Describes event subscriptions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/EventSubscription
 type EventSubscription struct {
 	_ struct{} `type:"structure"`
 
@@ -12150,6 +12243,7 @@ func (s *EventSubscription) SetTags(v []*Tag) *EventSubscription {
 // Returns information about an HSM client certificate. The certificate is stored
 // in a secure Hardware Storage Module (HSM), and used by the Amazon Redshift
 // cluster to encrypt data files.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/HsmClientCertificate
 type HsmClientCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -12195,6 +12289,7 @@ func (s *HsmClientCertificate) SetTags(v []*Tag) *HsmClientCertificate {
 // Returns information about an HSM configuration, which is an object that describes
 // to Amazon Redshift clusters the information they require to connect to an
 // HSM where they can store database encryption keys.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/HsmConfiguration
 type HsmConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -12256,6 +12351,7 @@ func (s *HsmConfiguration) SetTags(v []*Tag) *HsmConfiguration {
 }
 
 // Describes the status of changes to HSM settings.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/HsmStatus
 type HsmStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -12303,6 +12399,7 @@ func (s *HsmStatus) SetStatus(v string) *HsmStatus {
 }
 
 // Describes an IP range used in a security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/IPRange
 type IPRange struct {
 	_ struct{} `type:"structure"`
 
@@ -12345,6 +12442,7 @@ func (s *IPRange) SetTags(v []*Tag) *IPRange {
 }
 
 // Describes the status of logging for a cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/LoggingStatus
 type LoggingStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -13233,6 +13331,7 @@ func (s *ModifySnapshotCopyRetentionPeriodOutput) SetCluster(v *Cluster) *Modify
 }
 
 // Describes an orderable cluster option.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/OrderableClusterOption
 type OrderableClusterOption struct {
 	_ struct{} `type:"structure"`
 
@@ -13284,6 +13383,7 @@ func (s *OrderableClusterOption) SetNodeType(v string) *OrderableClusterOption {
 }
 
 // Describes a parameter in a cluster parameter group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Parameter
 type Parameter struct {
 	_ struct{} `type:"structure"`
 
@@ -13387,6 +13487,7 @@ func (s *Parameter) SetSource(v string) *Parameter {
 
 // Describes cluster attributes that are in a pending state. A change to one
 // or more the attributes was requested and is in progress or will be applied.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/PendingModifiedValues
 type PendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -13630,6 +13731,7 @@ func (s *RebootClusterOutput) SetCluster(v *Cluster) *RebootClusterOutput {
 }
 
 // Describes a recurring charge.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RecurringCharge
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
 
@@ -13665,6 +13767,7 @@ func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge
 
 // Describes a reserved node. You can call the DescribeReservedNodeOfferings
 // API to obtain the available reserved node offerings.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ReservedNode
 type ReservedNode struct {
 	_ struct{} `type:"structure"`
 
@@ -13800,6 +13903,7 @@ func (s *ReservedNode) SetUsagePrice(v float64) *ReservedNode {
 }
 
 // Describes a reserved node offering.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ReservedNodeOffering
 type ReservedNodeOffering struct {
 	_ struct{} `type:"structure"`
 
@@ -14311,6 +14415,7 @@ func (s *RestoreFromClusterSnapshotOutput) SetCluster(v *Cluster) *RestoreFromCl
 
 // Describes the status of a cluster restore action. Returns null if the cluster
 // was not created by restoring a snapshot.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RestoreStatus
 type RestoreStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -14787,6 +14892,7 @@ func (s *RotateEncryptionKeyOutput) SetCluster(v *Cluster) *RotateEncryptionKeyO
 }
 
 // Describes a snapshot.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Snapshot
 type Snapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -15099,6 +15205,7 @@ func (s *Snapshot) SetVpcId(v string) *Snapshot {
 // For more information about managing snapshot copy grants, go to Amazon Redshift
 // Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
 // in the Amazon Redshift Cluster Management Guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/SnapshotCopyGrant
 type SnapshotCopyGrant struct {
 	_ struct{} `type:"structure"`
 
@@ -15142,6 +15249,7 @@ func (s *SnapshotCopyGrant) SetTags(v []*Tag) *SnapshotCopyGrant {
 }
 
 // Describes a subnet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Subnet
 type Subnet struct {
 	_ struct{} `type:"structure"`
 
@@ -15184,6 +15292,7 @@ func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 }
 
 // Describes the status of a RestoreTableFromClusterSnapshot operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/TableRestoreStatus
 type TableRestoreStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -15330,6 +15439,7 @@ func (s *TableRestoreStatus) SetTotalDataInMegaBytes(v int64) *TableRestoreStatu
 }
 
 // A tag consisting of a name/value pair for a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -15363,6 +15473,7 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 // A tag and its associated resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/TaggedResource
 type TaggedResource struct {
 	_ struct{} `type:"structure"`
 
@@ -15429,6 +15540,7 @@ func (s *TaggedResource) SetTag(v *Tag) *TaggedResource {
 }
 
 // Describes the members of a VPC security group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/VpcSecurityGroupMembership
 type VpcSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 

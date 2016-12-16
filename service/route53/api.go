@@ -109,6 +109,7 @@ func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHoste
 //   * LimitsExceeded
 //   The limits specified for a resource have been exceeded.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AssociateVPCWithHostedZone
 func (c *Route53) AssociateVPCWithHostedZone(input *AssociateVPCWithHostedZoneInput) (*AssociateVPCWithHostedZoneOutput, error) {
 	req, out := c.AssociateVPCWithHostedZoneRequest(input)
 	err := req.Send()
@@ -282,6 +283,7 @@ func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSet
 //   for the same request, we recommend that you wait, in intervals of increasing
 //   duration, before you try the request again.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeResourceRecordSets
 func (c *Route53) ChangeResourceRecordSets(input *ChangeResourceRecordSetsInput) (*ChangeResourceRecordSetsOutput, error) {
 	req, out := c.ChangeResourceRecordSetsRequest(input)
 	err := req.Send()
@@ -368,6 +370,7 @@ func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput
 //   * ThrottlingException
 
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeTagsForResource
 func (c *Route53) ChangeTagsForResource(input *ChangeTagsForResourceInput) (*ChangeTagsForResourceOutput, error) {
 	req, out := c.ChangeTagsForResourceRequest(input)
 	err := req.Send()
@@ -475,6 +478,7 @@ func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHealthCheck
 func (c *Route53) CreateHealthCheck(input *CreateHealthCheckInput) (*CreateHealthCheckOutput, error) {
 	req, out := c.CreateHealthCheckRequest(input)
 	err := req.Send()
@@ -616,6 +620,7 @@ func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *re
 //   * DelegationSetNotReusable
 //   A reusable delegation set with the specified ID does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateHostedZone
 func (c *Route53) CreateHostedZone(input *CreateHostedZoneInput) (*CreateHostedZoneOutput, error) {
 	req, out := c.CreateHostedZoneRequest(input)
 	err := req.Send()
@@ -715,6 +720,7 @@ func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelega
 //   * DelegationSetAlreadyReusable
 //   The specified delegation set has already been marked as reusable.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateReusableDelegationSet
 func (c *Route53) CreateReusableDelegationSet(input *CreateReusableDelegationSetInput) (*CreateReusableDelegationSetOutput, error) {
 	req, out := c.CreateReusableDelegationSetRequest(input)
 	err := req.Send()
@@ -799,6 +805,7 @@ func (c *Route53) CreateTrafficPolicyRequest(input *CreateTrafficPolicyInput) (r
 //   The format of the traffic policy document that you specified in the Document
 //   element is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicy
 func (c *Route53) CreateTrafficPolicy(input *CreateTrafficPolicyInput) (*CreateTrafficPolicyOutput, error) {
 	req, out := c.CreateTrafficPolicyRequest(input)
 	err := req.Send()
@@ -888,6 +895,7 @@ func (c *Route53) CreateTrafficPolicyInstanceRequest(input *CreateTrafficPolicyI
 //   * TrafficPolicyInstanceAlreadyExists
 //   Traffic policy instance with given Id already exists.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyInstance
 func (c *Route53) CreateTrafficPolicyInstance(input *CreateTrafficPolicyInstanceInput) (*CreateTrafficPolicyInstanceOutput, error) {
 	req, out := c.CreateTrafficPolicyInstanceRequest(input)
 	err := req.Send()
@@ -976,6 +984,7 @@ func (c *Route53) CreateTrafficPolicyVersionRequest(input *CreateTrafficPolicyVe
 //   The format of the traffic policy document that you specified in the Document
 //   element is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateTrafficPolicyVersion
 func (c *Route53) CreateTrafficPolicyVersion(input *CreateTrafficPolicyVersionInput) (*CreateTrafficPolicyVersionOutput, error) {
 	req, out := c.CreateTrafficPolicyVersionRequest(input)
 	err := req.Send()
@@ -1068,6 +1077,7 @@ func (c *Route53) CreateVPCAssociationAuthorizationRequest(input *CreateVPCAssoc
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CreateVPCAssociationAuthorization
 func (c *Route53) CreateVPCAssociationAuthorization(input *CreateVPCAssociationAuthorizationInput) (*CreateVPCAssociationAuthorizationOutput, error) {
 	req, out := c.CreateVPCAssociationAuthorizationRequest(input)
 	err := req.Send()
@@ -1151,6 +1161,7 @@ func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHealthCheck
 func (c *Route53) DeleteHealthCheck(input *DeleteHealthCheckInput) (*DeleteHealthCheckOutput, error) {
 	req, out := c.DeleteHealthCheckRequest(input)
 	err := req.Send()
@@ -1240,6 +1251,7 @@ func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *re
 //   * InvalidDomainName
 //   The specified domain name is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteHostedZone
 func (c *Route53) DeleteHostedZone(input *DeleteHostedZoneInput) (*DeleteHostedZoneOutput, error) {
 	req, out := c.DeleteHostedZoneRequest(input)
 	err := req.Send()
@@ -1323,6 +1335,7 @@ func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelega
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteReusableDelegationSet
 func (c *Route53) DeleteReusableDelegationSet(input *DeleteReusableDelegationSetInput) (*DeleteReusableDelegationSetOutput, error) {
 	req, out := c.DeleteReusableDelegationSetRequest(input)
 	err := req.Send()
@@ -1401,6 +1414,7 @@ func (c *Route53) DeleteTrafficPolicyRequest(input *DeleteTrafficPolicyInput) (r
 //   Another user submitted a request to update the object at the same time that
 //   you did. Retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicy
 func (c *Route53) DeleteTrafficPolicy(input *DeleteTrafficPolicyInput) (*DeleteTrafficPolicyOutput, error) {
 	req, out := c.DeleteTrafficPolicyRequest(input)
 	err := req.Send()
@@ -1483,6 +1497,7 @@ func (c *Route53) DeleteTrafficPolicyInstanceRequest(input *DeleteTrafficPolicyI
 //   for the same request, we recommend that you wait, in intervals of increasing
 //   duration, before you try the request again.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteTrafficPolicyInstance
 func (c *Route53) DeleteTrafficPolicyInstance(input *DeleteTrafficPolicyInstanceInput) (*DeleteTrafficPolicyInstanceOutput, error) {
 	req, out := c.DeleteTrafficPolicyInstanceRequest(input)
 	err := req.Send()
@@ -1572,6 +1587,7 @@ func (c *Route53) DeleteVPCAssociationAuthorizationRequest(input *DeleteVPCAssoc
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DeleteVPCAssociationAuthorization
 func (c *Route53) DeleteVPCAssociationAuthorization(input *DeleteVPCAssociationAuthorizationInput) (*DeleteVPCAssociationAuthorizationOutput, error) {
 	req, out := c.DeleteVPCAssociationAuthorizationRequest(input)
 	err := req.Send()
@@ -1662,6 +1678,7 @@ func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFro
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DisassociateVPCFromHostedZone
 func (c *Route53) DisassociateVPCFromHostedZone(input *DisassociateVPCFromHostedZoneInput) (*DisassociateVPCFromHostedZoneOutput, error) {
 	req, out := c.DisassociateVPCFromHostedZoneRequest(input)
 	err := req.Send()
@@ -1738,6 +1755,7 @@ func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *request.Request,
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetChange
 func (c *Route53) GetChange(input *GetChangeInput) (*GetChangeOutput, error) {
 	req, out := c.GetChangeRequest(input)
 	err := req.Send()
@@ -1802,6 +1820,7 @@ func (c *Route53) GetCheckerIpRangesRequest(input *GetCheckerIpRangesInput) (req
 //
 // See the AWS API reference guide for Amazon Route 53's
 // API operation GetCheckerIpRanges for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetCheckerIpRanges
 func (c *Route53) GetCheckerIpRanges(input *GetCheckerIpRangesInput) (*GetCheckerIpRangesOutput, error) {
 	req, out := c.GetCheckerIpRangesRequest(input)
 	err := req.Send()
@@ -1872,6 +1891,7 @@ func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *reques
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetGeoLocation
 func (c *Route53) GetGeoLocation(input *GetGeoLocationInput) (*GetGeoLocationOutput, error) {
 	req, out := c.GetGeoLocationRequest(input)
 	err := req.Send()
@@ -1949,6 +1969,7 @@ func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *reques
 //   The resource you are trying to access is unsupported on this Amazon Route
 //   53 endpoint. Please consider using a newer endpoint or a tool that does so.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheck
 func (c *Route53) GetHealthCheck(input *GetHealthCheckInput) (*GetHealthCheckOutput, error) {
 	req, out := c.GetHealthCheckRequest(input)
 	err := req.Send()
@@ -2010,6 +2031,7 @@ func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (r
 //
 // See the AWS API reference guide for Amazon Route 53's
 // API operation GetHealthCheckCount for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckCount
 func (c *Route53) GetHealthCheckCount(input *GetHealthCheckCountInput) (*GetHealthCheckCountOutput, error) {
 	req, out := c.GetHealthCheckCountRequest(input)
 	err := req.Send()
@@ -2082,6 +2104,7 @@ func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLa
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckLastFailureReason
 func (c *Route53) GetHealthCheckLastFailureReason(input *GetHealthCheckLastFailureReasonInput) (*GetHealthCheckLastFailureReasonOutput, error) {
 	req, out := c.GetHealthCheckLastFailureReasonRequest(input)
 	err := req.Send()
@@ -2153,6 +2176,7 @@ func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) 
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHealthCheckStatus
 func (c *Route53) GetHealthCheckStatus(input *GetHealthCheckStatusInput) (*GetHealthCheckStatusOutput, error) {
 	req, out := c.GetHealthCheckStatusRequest(input)
 	err := req.Send()
@@ -2223,6 +2247,7 @@ func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *request.
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZone
 func (c *Route53) GetHostedZone(input *GetHostedZoneInput) (*GetHostedZoneOutput, error) {
 	req, out := c.GetHostedZoneRequest(input)
 	err := req.Send()
@@ -2289,6 +2314,7 @@ func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetHostedZoneCount
 func (c *Route53) GetHostedZoneCount(input *GetHostedZoneCountInput) (*GetHostedZoneCountOutput, error) {
 	req, out := c.GetHostedZoneCountRequest(input)
 	err := req.Send()
@@ -2361,6 +2387,7 @@ func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSe
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetReusableDelegationSet
 func (c *Route53) GetReusableDelegationSet(input *GetReusableDelegationSetInput) (*GetReusableDelegationSetOutput, error) {
 	req, out := c.GetReusableDelegationSetRequest(input)
 	err := req.Send()
@@ -2431,6 +2458,7 @@ func (c *Route53) GetTrafficPolicyRequest(input *GetTrafficPolicyInput) (req *re
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicy
 func (c *Route53) GetTrafficPolicy(input *GetTrafficPolicyInput) (*GetTrafficPolicyOutput, error) {
 	req, out := c.GetTrafficPolicyRequest(input)
 	err := req.Send()
@@ -2510,6 +2538,7 @@ func (c *Route53) GetTrafficPolicyInstanceRequest(input *GetTrafficPolicyInstanc
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstance
 func (c *Route53) GetTrafficPolicyInstance(input *GetTrafficPolicyInstanceInput) (*GetTrafficPolicyInstanceOutput, error) {
 	req, out := c.GetTrafficPolicyInstanceRequest(input)
 	err := req.Send()
@@ -2574,6 +2603,7 @@ func (c *Route53) GetTrafficPolicyInstanceCountRequest(input *GetTrafficPolicyIn
 //
 // See the AWS API reference guide for Amazon Route 53's
 // API operation GetTrafficPolicyInstanceCount for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GetTrafficPolicyInstanceCount
 func (c *Route53) GetTrafficPolicyInstanceCount(input *GetTrafficPolicyInstanceCountInput) (*GetTrafficPolicyInstanceCountOutput, error) {
 	req, out := c.GetTrafficPolicyInstanceCountRequest(input)
 	err := req.Send()
@@ -2646,6 +2676,7 @@ func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *re
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListGeoLocations
 func (c *Route53) ListGeoLocations(input *ListGeoLocationsInput) (*ListGeoLocationsOutput, error) {
 	req, out := c.ListGeoLocationsRequest(input)
 	err := req.Send()
@@ -2729,6 +2760,7 @@ func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *re
 //   The resource you are trying to access is unsupported on this Amazon Route
 //   53 endpoint. Please consider using a newer endpoint or a tool that does so.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHealthChecks
 func (c *Route53) ListHealthChecks(input *ListHealthChecksInput) (*ListHealthChecksOutput, error) {
 	req, out := c.ListHealthChecksRequest(input)
 	err := req.Send()
@@ -2856,6 +2888,7 @@ func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *requ
 //   * DelegationSetNotReusable
 //   A reusable delegation set with the specified ID does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZones
 func (c *Route53) ListHostedZones(input *ListHostedZonesInput) (*ListHostedZonesOutput, error) {
 	req, out := c.ListHostedZonesRequest(input)
 	err := req.Send()
@@ -2999,6 +3032,7 @@ func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput
 //   * InvalidDomainName
 //   The specified domain name is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListHostedZonesByName
 func (c *Route53) ListHostedZonesByName(input *ListHostedZonesByNameInput) (*ListHostedZonesByNameOutput, error) {
 	req, out := c.ListHostedZonesByNameRequest(input)
 	err := req.Send()
@@ -3111,6 +3145,7 @@ func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInp
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListResourceRecordSets
 func (c *Route53) ListResourceRecordSets(input *ListResourceRecordSetsInput) (*ListResourceRecordSetsOutput, error) {
 	req, out := c.ListResourceRecordSetsRequest(input)
 	err := req.Send()
@@ -3210,6 +3245,7 @@ func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegatio
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListReusableDelegationSets
 func (c *Route53) ListReusableDelegationSets(input *ListReusableDelegationSetsInput) (*ListReusableDelegationSetsOutput, error) {
 	req, out := c.ListReusableDelegationSetsRequest(input)
 	err := req.Send()
@@ -3296,6 +3332,7 @@ func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //   * ThrottlingException
 
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResource
 func (c *Route53) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -3382,6 +3419,7 @@ func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) 
 //   * ThrottlingException
 
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResources
 func (c *Route53) ListTagsForResources(input *ListTagsForResourcesInput) (*ListTagsForResourcesOutput, error) {
 	req, out := c.ListTagsForResourcesRequest(input)
 	err := req.Send()
@@ -3480,6 +3518,7 @@ func (c *Route53) ListTrafficPoliciesRequest(input *ListTrafficPoliciesInput) (r
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicies
 func (c *Route53) ListTrafficPolicies(input *ListTrafficPoliciesInput) (*ListTrafficPoliciesOutput, error) {
 	req, out := c.ListTrafficPoliciesRequest(input)
 	err := req.Send()
@@ -3587,6 +3626,7 @@ func (c *Route53) ListTrafficPolicyInstancesRequest(input *ListTrafficPolicyInst
 //   * NoSuchTrafficPolicyInstance
 //   No traffic policy instance exists with the specified ID.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstances
 func (c *Route53) ListTrafficPolicyInstances(input *ListTrafficPolicyInstancesInput) (*ListTrafficPolicyInstancesOutput, error) {
 	req, out := c.ListTrafficPolicyInstancesRequest(input)
 	err := req.Send()
@@ -3697,6 +3737,7 @@ func (c *Route53) ListTrafficPolicyInstancesByHostedZoneRequest(input *ListTraff
 //   * NoSuchHostedZone
 //   No hosted zone exists with the ID that you specified.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByHostedZone
 func (c *Route53) ListTrafficPolicyInstancesByHostedZone(input *ListTrafficPolicyInstancesByHostedZoneInput) (*ListTrafficPolicyInstancesByHostedZoneOutput, error) {
 	req, out := c.ListTrafficPolicyInstancesByHostedZoneRequest(input)
 	err := req.Send()
@@ -3806,6 +3847,7 @@ func (c *Route53) ListTrafficPolicyInstancesByPolicyRequest(input *ListTrafficPo
 //   * NoSuchTrafficPolicy
 //   No traffic policy exists with the specified ID.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyInstancesByPolicy
 func (c *Route53) ListTrafficPolicyInstancesByPolicy(input *ListTrafficPolicyInstancesByPolicyInput) (*ListTrafficPolicyInstancesByPolicyOutput, error) {
 	req, out := c.ListTrafficPolicyInstancesByPolicyRequest(input)
 	err := req.Send()
@@ -3907,6 +3949,7 @@ func (c *Route53) ListTrafficPolicyVersionsRequest(input *ListTrafficPolicyVersi
 //   * NoSuchTrafficPolicy
 //   No traffic policy exists with the specified ID.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTrafficPolicyVersions
 func (c *Route53) ListTrafficPolicyVersions(input *ListTrafficPolicyVersionsInput) (*ListTrafficPolicyVersionsOutput, error) {
 	req, out := c.ListTrafficPolicyVersionsRequest(input)
 	err := req.Send()
@@ -3998,6 +4041,7 @@ func (c *Route53) ListVPCAssociationAuthorizationsRequest(input *ListVPCAssociat
 //   * InvalidPaginationToken
 
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizations
 func (c *Route53) ListVPCAssociationAuthorizations(input *ListVPCAssociationAuthorizationsInput) (*ListVPCAssociationAuthorizationsOutput, error) {
 	req, out := c.ListVPCAssociationAuthorizationsRequest(input)
 	err := req.Send()
@@ -4068,6 +4112,7 @@ func (c *Route53) TestDNSAnswerRequest(input *TestDNSAnswerInput) (req *request.
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TestDNSAnswer
 func (c *Route53) TestDNSAnswer(input *TestDNSAnswerInput) (*TestDNSAnswerOutput, error) {
 	req, out := c.TestDNSAnswerRequest(input)
 	err := req.Send()
@@ -4147,6 +4192,7 @@ func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *
 //   The value of HealthCheckVersion in the request doesn't match the value of
 //   HealthCheckVersion in the health check.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHealthCheck
 func (c *Route53) UpdateHealthCheck(input *UpdateHealthCheckInput) (*UpdateHealthCheckOutput, error) {
 	req, out := c.UpdateHealthCheckRequest(input)
 	err := req.Send()
@@ -4216,6 +4262,7 @@ func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentI
 //   * InvalidInput
 //   The input is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateHostedZoneComment
 func (c *Route53) UpdateHostedZoneComment(input *UpdateHostedZoneCommentInput) (*UpdateHostedZoneCommentOutput, error) {
 	req, out := c.UpdateHostedZoneCommentRequest(input)
 	err := req.Send()
@@ -4293,6 +4340,7 @@ func (c *Route53) UpdateTrafficPolicyCommentRequest(input *UpdateTrafficPolicyCo
 //   Another user submitted a request to update the object at the same time that
 //   you did. Retry the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyComment
 func (c *Route53) UpdateTrafficPolicyComment(input *UpdateTrafficPolicyCommentInput) (*UpdateTrafficPolicyCommentOutput, error) {
 	req, out := c.UpdateTrafficPolicyCommentRequest(input)
 	err := req.Send()
@@ -4398,6 +4446,7 @@ func (c *Route53) UpdateTrafficPolicyInstanceRequest(input *UpdateTrafficPolicyI
 //   that has a different DNS type than the current type for the instance. You
 //   specified the type in the JSON document in the CreateTrafficPolicy or CreateTrafficPolicyVersionrequest.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/UpdateTrafficPolicyInstance
 func (c *Route53) UpdateTrafficPolicyInstance(input *UpdateTrafficPolicyInstanceInput) (*UpdateTrafficPolicyInstanceOutput, error) {
 	req, out := c.UpdateTrafficPolicyInstanceRequest(input)
 	err := req.Send()
@@ -4407,6 +4456,7 @@ func (c *Route53) UpdateTrafficPolicyInstance(input *UpdateTrafficPolicyInstance
 // A complex type that identifies the CloudWatch alarm that you want Amazon
 // Route 53 health checkers to use to determine whether this health check is
 // healthy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AlarmIdentifier
 type AlarmIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -4486,6 +4536,7 @@ func (s *AlarmIdentifier) SetRegion(v string) *AlarmIdentifier {
 //
 //    * For information about creating failover resource record sets in a private
 //    hosted zone, see Configuring Failover in a Private Hosted Zone (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-private-hosted-zones.html).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/AliasTarget
 type AliasTarget struct {
 	_ struct{} `type:"structure"`
 
@@ -4827,6 +4878,7 @@ func (s *AssociateVPCWithHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *Associa
 }
 
 // The information for each resource record set that you want to change.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/Change
 type Change struct {
 	_ struct{} `type:"structure"`
 
@@ -4935,6 +4987,7 @@ func (s *Change) SetResourceRecordSet(v *ResourceRecordSet) *Change {
 }
 
 // The information for a change request.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeBatch
 type ChangeBatch struct {
 	_ struct{} `type:"structure"`
 
@@ -4997,6 +5050,7 @@ func (s *ChangeBatch) SetComment(v string) *ChangeBatch {
 
 // A complex type that describes change information about changes made to your
 // hosted zone.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeInfo
 type ChangeInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -5257,6 +5311,7 @@ func (s ChangeTagsForResourceOutput) GoString() string {
 
 // A complex type that contains information about the CloudWatch alarm that
 // Amazon Route 53 is monitoring for this health check.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/CloudWatchAlarmConfiguration
 type CloudWatchAlarmConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -6207,6 +6262,7 @@ func (s *CreateVPCAssociationAuthorizationOutput) SetVPC(v *VPC) *CreateVPCAssoc
 }
 
 // A complex type that describes the name servers for this hosted zone.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/DelegationSet
 type DelegationSet struct {
 	_ struct{} `type:"structure"`
 
@@ -6654,6 +6710,7 @@ func (s DeleteVPCAssociationAuthorizationOutput) GoString() string {
 
 // For the metric that the CloudWatch alarm is associated with, a complex type
 // that contains information about one dimension.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/Dimension
 type Dimension struct {
 	_ struct{} `type:"structure"`
 
@@ -6792,6 +6849,7 @@ func (s *DisassociateVPCFromHostedZoneOutput) SetChangeInfo(v *ChangeInfo) *Disa
 }
 
 // A complex type that contains information about a geo location.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GeoLocation
 type GeoLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -6860,6 +6918,7 @@ func (s *GeoLocation) SetSubdivisionCode(v string) *GeoLocation {
 
 // A complex type that contains the codes and full continent, country, and subdivision
 // names for the specified geolocation code.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/GeoLocationDetails
 type GeoLocationDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -7886,6 +7945,7 @@ func (s *GetTrafficPolicyOutput) SetTrafficPolicy(v *TrafficPolicy) *GetTrafficP
 
 // A complex type that contains information about one health check that is associated
 // with the current AWS account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/HealthCheck
 type HealthCheck struct {
 	_ struct{} `type:"structure"`
 
@@ -7960,6 +8020,7 @@ func (s *HealthCheck) SetId(v string) *HealthCheck {
 }
 
 // A complex type that contains information about the health check.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/HealthCheckConfig
 type HealthCheckConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8346,6 +8407,7 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 
 // A complex type that contains the last failure reason as reported by one Amazon
 // Route 53 health checker.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/HealthCheckObservation
 type HealthCheckObservation struct {
 	_ struct{} `type:"structure"`
 
@@ -8391,6 +8453,7 @@ func (s *HealthCheckObservation) SetStatusReport(v *StatusReport) *HealthCheckOb
 }
 
 // A complex type that contains general information about the hosted zone.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/HostedZone
 type HostedZone struct {
 	_ struct{} `type:"structure"`
 
@@ -8467,6 +8530,7 @@ func (s *HostedZone) SetResourceRecordSetCount(v int64) *HostedZone {
 // A complex type that contains an optional comment about your hosted zone.
 // If you don't want to specify a comment, omit both the HostedZoneConfig and
 // Comment elements.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/HostedZoneConfig
 type HostedZoneConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -10633,6 +10697,7 @@ func (s *ListVPCAssociationAuthorizationsOutput) SetVPCs(v []*VPC) *ListVPCAssoc
 // Information specific to the resource record.
 //
 // If you are creating an alias resource record set, omit ResourceRecord.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ResourceRecord
 type ResourceRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -10681,6 +10746,7 @@ func (s *ResourceRecord) SetValue(v string) *ResourceRecord {
 }
 
 // Information about the resource record set to create or delete.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ResourceRecordSet
 type ResourceRecordSet struct {
 	_ struct{} `type:"structure"`
 
@@ -11175,6 +11241,7 @@ func (s *ResourceRecordSet) SetWeight(v int64) *ResourceRecordSet {
 }
 
 // A complex type containing a resource and its associated tags.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ResourceTagSet
 type ResourceTagSet struct {
 	_ struct{} `type:"structure"`
 
@@ -11222,6 +11289,7 @@ func (s *ResourceTagSet) SetTags(v []*Tag) *ResourceTagSet {
 
 // A complex type that contains the status that one Amazon Route 53 health checker
 // reports and the time of the health check.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/StatusReport
 type StatusReport struct {
 	_ struct{} `type:"structure"`
 
@@ -11260,6 +11328,7 @@ func (s *StatusReport) SetStatus(v string) *StatusReport {
 
 // A complex type that contains information about a tag that you want to add
 // or edit for the specified health check or hosted zone.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -11528,6 +11597,7 @@ func (s *TestDNSAnswerOutput) SetResponseCode(v string) *TestDNSAnswerOutput {
 }
 
 // A complex type that contains settings for a traffic policy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TrafficPolicy
 type TrafficPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -11612,6 +11682,7 @@ func (s *TrafficPolicy) SetVersion(v int64) *TrafficPolicy {
 }
 
 // A complex type that contains settings for the new traffic policy instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TrafficPolicyInstance
 type TrafficPolicyInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -11745,6 +11816,7 @@ func (s *TrafficPolicyInstance) SetTrafficPolicyVersion(v int64) *TrafficPolicyI
 
 // A complex type that contains information about the latest version of one
 // traffic policy that is associated with the current AWS account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TrafficPolicySummary
 type TrafficPolicySummary struct {
 	_ struct{} `type:"structure"`
 
@@ -12488,6 +12560,7 @@ func (s *UpdateTrafficPolicyInstanceOutput) SetTrafficPolicyInstance(v *TrafficP
 
 // A complex type that contains information about an Amazon VPC that is associated
 // with a private hosted zone.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/VPC
 type VPC struct {
 	_ struct{} `type:"structure"`
 

@@ -93,6 +93,7 @@ func (c *IoTDataPlane) DeleteThingShadowRequest(input *DeleteThingShadowInput) (
 //   * UnsupportedDocumentEncodingException
 //   The document encoding is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/DeleteThingShadow
 func (c *IoTDataPlane) DeleteThingShadow(input *DeleteThingShadowInput) (*DeleteThingShadowOutput, error) {
 	req, out := c.DeleteThingShadowRequest(input)
 	err := req.Send()
@@ -182,6 +183,7 @@ func (c *IoTDataPlane) GetThingShadowRequest(input *GetThingShadowInput) (req *r
 //   * UnsupportedDocumentEncodingException
 //   The document encoding is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/GetThingShadow
 func (c *IoTDataPlane) GetThingShadow(input *GetThingShadowInput) (*GetThingShadowOutput, error) {
 	req, out := c.GetThingShadowRequest(input)
 	err := req.Send()
@@ -261,6 +263,7 @@ func (c *IoTDataPlane) PublishRequest(input *PublishInput) (req *request.Request
 //   * MethodNotAllowedException
 //   The specified combination of HTTP verb and URI is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/Publish
 func (c *IoTDataPlane) Publish(input *PublishInput) (*PublishOutput, error) {
 	req, out := c.PublishRequest(input)
 	err := req.Send()
@@ -353,6 +356,7 @@ func (c *IoTDataPlane) UpdateThingShadowRequest(input *UpdateThingShadowInput) (
 //   * UnsupportedDocumentEncodingException
 //   The document encoding is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/UpdateThingShadow
 func (c *IoTDataPlane) UpdateThingShadow(input *UpdateThingShadowInput) (*UpdateThingShadowOutput, error) {
 	req, out := c.UpdateThingShadowRequest(input)
 	err := req.Send()
@@ -555,6 +559,7 @@ func (s *PublishInput) SetTopic(v string) *PublishInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/iot-data-2015-05-28/PublishOutput
 type PublishOutput struct {
 	_ struct{} `type:"structure"`
 }

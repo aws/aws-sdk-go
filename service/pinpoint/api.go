@@ -82,6 +82,7 @@ func (c *Pinpoint) CreateCampaignRequest(input *CreateCampaignInput) (req *reque
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateCampaign
 func (c *Pinpoint) CreateCampaign(input *CreateCampaignInput) (*CreateCampaignOutput, error) {
 	req, out := c.CreateCampaignRequest(input)
 	err := req.Send()
@@ -162,6 +163,7 @@ func (c *Pinpoint) CreateImportJobRequest(input *CreateImportJobInput) (req *req
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateImportJob
 func (c *Pinpoint) CreateImportJob(input *CreateImportJobInput) (*CreateImportJobOutput, error) {
 	req, out := c.CreateImportJobRequest(input)
 	err := req.Send()
@@ -242,6 +244,7 @@ func (c *Pinpoint) CreateSegmentRequest(input *CreateSegmentInput) (req *request
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CreateSegment
 func (c *Pinpoint) CreateSegment(input *CreateSegmentInput) (*CreateSegmentOutput, error) {
 	req, out := c.CreateSegmentRequest(input)
 	err := req.Send()
@@ -322,6 +325,7 @@ func (c *Pinpoint) DeleteApnsChannelRequest(input *DeleteApnsChannelInput) (req 
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteApnsChannel
 func (c *Pinpoint) DeleteApnsChannel(input *DeleteApnsChannelInput) (*DeleteApnsChannelOutput, error) {
 	req, out := c.DeleteApnsChannelRequest(input)
 	err := req.Send()
@@ -402,6 +406,7 @@ func (c *Pinpoint) DeleteCampaignRequest(input *DeleteCampaignInput) (req *reque
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteCampaign
 func (c *Pinpoint) DeleteCampaign(input *DeleteCampaignInput) (*DeleteCampaignOutput, error) {
 	req, out := c.DeleteCampaignRequest(input)
 	err := req.Send()
@@ -482,6 +487,7 @@ func (c *Pinpoint) DeleteGcmChannelRequest(input *DeleteGcmChannelInput) (req *r
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteGcmChannel
 func (c *Pinpoint) DeleteGcmChannel(input *DeleteGcmChannelInput) (*DeleteGcmChannelOutput, error) {
 	req, out := c.DeleteGcmChannelRequest(input)
 	err := req.Send()
@@ -562,6 +568,7 @@ func (c *Pinpoint) DeleteSegmentRequest(input *DeleteSegmentInput) (req *request
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//DeleteSegment
 func (c *Pinpoint) DeleteSegment(input *DeleteSegmentInput) (*DeleteSegmentOutput, error) {
 	req, out := c.DeleteSegmentRequest(input)
 	err := req.Send()
@@ -642,6 +649,7 @@ func (c *Pinpoint) GetApnsChannelRequest(input *GetApnsChannelInput) (req *reque
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetApnsChannel
 func (c *Pinpoint) GetApnsChannel(input *GetApnsChannelInput) (*GetApnsChannelOutput, error) {
 	req, out := c.GetApnsChannelRequest(input)
 	err := req.Send()
@@ -722,6 +730,7 @@ func (c *Pinpoint) GetApplicationSettingsRequest(input *GetApplicationSettingsIn
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetApplicationSettings
 func (c *Pinpoint) GetApplicationSettings(input *GetApplicationSettingsInput) (*GetApplicationSettingsOutput, error) {
 	req, out := c.GetApplicationSettingsRequest(input)
 	err := req.Send()
@@ -802,6 +811,7 @@ func (c *Pinpoint) GetCampaignRequest(input *GetCampaignInput) (req *request.Req
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetCampaign
 func (c *Pinpoint) GetCampaign(input *GetCampaignInput) (*GetCampaignOutput, error) {
 	req, out := c.GetCampaignRequest(input)
 	err := req.Send()
@@ -882,6 +892,7 @@ func (c *Pinpoint) GetCampaignActivitiesRequest(input *GetCampaignActivitiesInpu
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetCampaignActivities
 func (c *Pinpoint) GetCampaignActivities(input *GetCampaignActivitiesInput) (*GetCampaignActivitiesOutput, error) {
 	req, out := c.GetCampaignActivitiesRequest(input)
 	err := req.Send()
@@ -962,6 +973,7 @@ func (c *Pinpoint) GetCampaignVersionRequest(input *GetCampaignVersionInput) (re
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetCampaignVersion
 func (c *Pinpoint) GetCampaignVersion(input *GetCampaignVersionInput) (*GetCampaignVersionOutput, error) {
 	req, out := c.GetCampaignVersionRequest(input)
 	err := req.Send()
@@ -1042,6 +1054,7 @@ func (c *Pinpoint) GetCampaignVersionsRequest(input *GetCampaignVersionsInput) (
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetCampaignVersions
 func (c *Pinpoint) GetCampaignVersions(input *GetCampaignVersionsInput) (*GetCampaignVersionsOutput, error) {
 	req, out := c.GetCampaignVersionsRequest(input)
 	err := req.Send()
@@ -1122,6 +1135,7 @@ func (c *Pinpoint) GetCampaignsRequest(input *GetCampaignsInput) (req *request.R
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetCampaigns
 func (c *Pinpoint) GetCampaigns(input *GetCampaignsInput) (*GetCampaignsOutput, error) {
 	req, out := c.GetCampaignsRequest(input)
 	err := req.Send()
@@ -1202,6 +1216,7 @@ func (c *Pinpoint) GetEndpointRequest(input *GetEndpointInput) (req *request.Req
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetEndpoint
 func (c *Pinpoint) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, error) {
 	req, out := c.GetEndpointRequest(input)
 	err := req.Send()
@@ -1282,6 +1297,7 @@ func (c *Pinpoint) GetGcmChannelRequest(input *GetGcmChannelInput) (req *request
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetGcmChannel
 func (c *Pinpoint) GetGcmChannel(input *GetGcmChannelInput) (*GetGcmChannelOutput, error) {
 	req, out := c.GetGcmChannelRequest(input)
 	err := req.Send()
@@ -1362,6 +1378,7 @@ func (c *Pinpoint) GetImportJobRequest(input *GetImportJobInput) (req *request.R
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetImportJob
 func (c *Pinpoint) GetImportJob(input *GetImportJobInput) (*GetImportJobOutput, error) {
 	req, out := c.GetImportJobRequest(input)
 	err := req.Send()
@@ -1442,6 +1459,7 @@ func (c *Pinpoint) GetImportJobsRequest(input *GetImportJobsInput) (req *request
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetImportJobs
 func (c *Pinpoint) GetImportJobs(input *GetImportJobsInput) (*GetImportJobsOutput, error) {
 	req, out := c.GetImportJobsRequest(input)
 	err := req.Send()
@@ -1522,6 +1540,7 @@ func (c *Pinpoint) GetSegmentRequest(input *GetSegmentInput) (req *request.Reque
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetSegment
 func (c *Pinpoint) GetSegment(input *GetSegmentInput) (*GetSegmentOutput, error) {
 	req, out := c.GetSegmentRequest(input)
 	err := req.Send()
@@ -1602,6 +1621,7 @@ func (c *Pinpoint) GetSegmentImportJobsRequest(input *GetSegmentImportJobsInput)
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetSegmentImportJobs
 func (c *Pinpoint) GetSegmentImportJobs(input *GetSegmentImportJobsInput) (*GetSegmentImportJobsOutput, error) {
 	req, out := c.GetSegmentImportJobsRequest(input)
 	err := req.Send()
@@ -1682,6 +1702,7 @@ func (c *Pinpoint) GetSegmentVersionRequest(input *GetSegmentVersionInput) (req 
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetSegmentVersion
 func (c *Pinpoint) GetSegmentVersion(input *GetSegmentVersionInput) (*GetSegmentVersionOutput, error) {
 	req, out := c.GetSegmentVersionRequest(input)
 	err := req.Send()
@@ -1762,6 +1783,7 @@ func (c *Pinpoint) GetSegmentVersionsRequest(input *GetSegmentVersionsInput) (re
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetSegmentVersions
 func (c *Pinpoint) GetSegmentVersions(input *GetSegmentVersionsInput) (*GetSegmentVersionsOutput, error) {
 	req, out := c.GetSegmentVersionsRequest(input)
 	err := req.Send()
@@ -1842,6 +1864,7 @@ func (c *Pinpoint) GetSegmentsRequest(input *GetSegmentsInput) (req *request.Req
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GetSegments
 func (c *Pinpoint) GetSegments(input *GetSegmentsInput) (*GetSegmentsOutput, error) {
 	req, out := c.GetSegmentsRequest(input)
 	err := req.Send()
@@ -1922,6 +1945,7 @@ func (c *Pinpoint) UpdateApnsChannelRequest(input *UpdateApnsChannelInput) (req 
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateApnsChannel
 func (c *Pinpoint) UpdateApnsChannel(input *UpdateApnsChannelInput) (*UpdateApnsChannelOutput, error) {
 	req, out := c.UpdateApnsChannelRequest(input)
 	err := req.Send()
@@ -2002,6 +2026,7 @@ func (c *Pinpoint) UpdateApplicationSettingsRequest(input *UpdateApplicationSett
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateApplicationSettings
 func (c *Pinpoint) UpdateApplicationSettings(input *UpdateApplicationSettingsInput) (*UpdateApplicationSettingsOutput, error) {
 	req, out := c.UpdateApplicationSettingsRequest(input)
 	err := req.Send()
@@ -2082,6 +2107,7 @@ func (c *Pinpoint) UpdateCampaignRequest(input *UpdateCampaignInput) (req *reque
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateCampaign
 func (c *Pinpoint) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaignOutput, error) {
 	req, out := c.UpdateCampaignRequest(input)
 	err := req.Send()
@@ -2162,6 +2188,7 @@ func (c *Pinpoint) UpdateEndpointRequest(input *UpdateEndpointInput) (req *reque
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateEndpoint
 func (c *Pinpoint) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpointOutput, error) {
 	req, out := c.UpdateEndpointRequest(input)
 	err := req.Send()
@@ -2242,6 +2269,7 @@ func (c *Pinpoint) UpdateEndpointsBatchRequest(input *UpdateEndpointsBatchInput)
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateEndpointsBatch
 func (c *Pinpoint) UpdateEndpointsBatch(input *UpdateEndpointsBatchInput) (*UpdateEndpointsBatchOutput, error) {
 	req, out := c.UpdateEndpointsBatchRequest(input)
 	err := req.Send()
@@ -2322,6 +2350,7 @@ func (c *Pinpoint) UpdateGcmChannelRequest(input *UpdateGcmChannelInput) (req *r
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateGcmChannel
 func (c *Pinpoint) UpdateGcmChannel(input *UpdateGcmChannelInput) (*UpdateGcmChannelOutput, error) {
 	req, out := c.UpdateGcmChannelRequest(input)
 	err := req.Send()
@@ -2402,12 +2431,14 @@ func (c *Pinpoint) UpdateSegmentRequest(input *UpdateSegmentInput) (req *request
 //   * TooManyRequestsException
 //   429 response
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//UpdateSegment
 func (c *Pinpoint) UpdateSegment(input *UpdateSegmentInput) (*UpdateSegmentOutput, error) {
 	req, out := c.UpdateSegmentRequest(input)
 	err := req.Send()
 	return out, err
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//APNSChannelRequest
 type APNSChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -2440,6 +2471,7 @@ func (s *APNSChannelRequest) SetPrivateKey(v string) *APNSChannelRequest {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//APNSChannelResponse
 type APNSChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -2524,6 +2556,7 @@ func (s *APNSChannelResponse) SetVersion(v int64) *APNSChannelResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ActivitiesResponse
 type ActivitiesResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -2547,6 +2580,7 @@ func (s *ActivitiesResponse) SetItem(v []*ActivityResponse) *ActivitiesResponse 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ActivityResponse
 type ActivityResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -2663,6 +2697,7 @@ func (s *ActivityResponse) SetTreatmentId(v string) *ActivityResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ApplicationSettingsResource
 type ApplicationSettingsResource struct {
 	_ struct{} `type:"structure"`
 
@@ -2717,6 +2752,7 @@ func (s *ApplicationSettingsResource) SetQuietTime(v *QuietTime) *ApplicationSet
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//AttributeDimension
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -2747,6 +2783,7 @@ func (s *AttributeDimension) SetValues(v []*string) *AttributeDimension {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CampaignLimits
 type CampaignLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -2779,6 +2816,7 @@ func (s *CampaignLimits) SetTotal(v int64) *CampaignLimits {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CampaignResponse
 type CampaignResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -2968,6 +3006,7 @@ func (s *CampaignResponse) SetVersion(v int64) *CampaignResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CampaignState
 type CampaignState struct {
 	_ struct{} `type:"structure"`
 
@@ -2990,6 +3029,7 @@ func (s *CampaignState) SetCampaignStatus(v string) *CampaignState {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//CampaignsResponse
 type CampaignsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -3510,6 +3550,7 @@ func (s *DeleteSegmentOutput) SetSegmentResponse(v *SegmentResponse) *DeleteSegm
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointBatchItem
 type EndpointBatchItem struct {
 	_ struct{} `type:"structure"`
 
@@ -3631,6 +3672,7 @@ func (s *EndpointBatchItem) SetUser(v *EndpointUser) *EndpointBatchItem {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointBatchRequest
 type EndpointBatchRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -3654,6 +3696,7 @@ func (s *EndpointBatchRequest) SetItem(v []*EndpointBatchItem) *EndpointBatchReq
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointDemographic
 type EndpointDemographic struct {
 	_ struct{} `type:"structure"`
 
@@ -3741,6 +3784,7 @@ func (s *EndpointDemographic) SetTimezone(v string) *EndpointDemographic {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointLocation
 type EndpointLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -3812,6 +3856,7 @@ func (s *EndpointLocation) SetRegion(v string) *EndpointLocation {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointRequest
 type EndpointRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -3925,6 +3970,7 @@ func (s *EndpointRequest) SetUser(v *EndpointUser) *EndpointRequest {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointResponse
 type EndpointResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -4088,6 +4134,7 @@ func (s *EndpointResponse) SetUser(v *EndpointUser) *EndpointResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//EndpointUser
 type EndpointUser struct {
 	_ struct{} `type:"structure"`
 
@@ -4119,6 +4166,7 @@ func (s *EndpointUser) SetUserId(v string) *EndpointUser {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GCMChannelRequest
 type GCMChannelRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -4142,6 +4190,7 @@ func (s *GCMChannelRequest) SetApiKey(v string) *GCMChannelRequest {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//GCMChannelResponse
 type GCMChannelResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5467,6 +5516,7 @@ func (s *GetSegmentsOutput) SetSegmentsResponse(v *SegmentsResponse) *GetSegment
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ImportJobRequest
 type ImportJobRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -5560,6 +5610,7 @@ func (s *ImportJobRequest) SetSegmentName(v string) *ImportJobRequest {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ImportJobResource
 type ImportJobResource struct {
 	_ struct{} `type:"structure"`
 
@@ -5653,6 +5704,7 @@ func (s *ImportJobResource) SetSegmentName(v string) *ImportJobResource {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ImportJobResponse
 type ImportJobResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5785,6 +5837,7 @@ func (s *ImportJobResponse) SetType(v string) *ImportJobResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//ImportJobsResponse
 type ImportJobsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -5818,6 +5871,7 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//Message
 type Message struct {
 	_ struct{} `type:"structure"`
 
@@ -5915,6 +5969,7 @@ func (s *Message) SetUrl(v string) *Message {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//MessageBody
 type MessageBody struct {
 	_ struct{} `type:"structure"`
 
@@ -5945,6 +6000,7 @@ func (s *MessageBody) SetRequestID(v string) *MessageBody {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//MessageConfiguration
 type MessageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5988,6 +6044,7 @@ func (s *MessageConfiguration) SetGCMMessage(v *Message) *MessageConfiguration {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//QuietTime
 type QuietTime struct {
 	_ struct{} `type:"structure"`
 
@@ -6020,6 +6077,7 @@ func (s *QuietTime) SetStart(v string) *QuietTime {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//RecencyDimension
 type RecencyDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -6050,6 +6108,7 @@ func (s *RecencyDimension) SetRecencyType(v string) *RecencyDimension {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//Schedule
 type Schedule struct {
 	_ struct{} `type:"structure"`
 
@@ -6119,6 +6178,7 @@ func (s *Schedule) SetTimezone(v string) *Schedule {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentBehaviors
 type SegmentBehaviors struct {
 	_ struct{} `type:"structure"`
 
@@ -6142,6 +6202,7 @@ func (s *SegmentBehaviors) SetRecency(v *RecencyDimension) *SegmentBehaviors {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentDemographics
 type SegmentDemographics struct {
 	_ struct{} `type:"structure"`
 
@@ -6201,6 +6262,7 @@ func (s *SegmentDemographics) SetPlatform(v *SetDimension) *SegmentDemographics 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentDimensions
 type SegmentDimensions struct {
 	_ struct{} `type:"structure"`
 
@@ -6251,6 +6313,7 @@ func (s *SegmentDimensions) SetLocation(v *SegmentLocation) *SegmentDimensions {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentImportResource
 type SegmentImportResource struct {
 	_ struct{} `type:"structure"`
 
@@ -6312,6 +6375,7 @@ func (s *SegmentImportResource) SetSize(v int64) *SegmentImportResource {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentLocation
 type SegmentLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -6335,6 +6399,7 @@ func (s *SegmentLocation) SetCountry(v *SetDimension) *SegmentLocation {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentResponse
 type SegmentResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6429,6 +6494,7 @@ func (s *SegmentResponse) SetVersion(v int64) *SegmentResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SegmentsResponse
 type SegmentsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6462,6 +6528,7 @@ func (s *SegmentsResponse) SetNextToken(v string) *SegmentsResponse {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//SetDimension
 type SetDimension struct {
 	_ struct{} `type:"structure"`
 
@@ -6492,6 +6559,7 @@ func (s *SetDimension) SetValues(v []*string) *SetDimension {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//TreatmentResource
 type TreatmentResource struct {
 	_ struct{} `type:"structure"`
 
@@ -7116,6 +7184,7 @@ func (s *UpdateSegmentOutput) SetSegmentResponse(v *SegmentResponse) *UpdateSegm
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//WriteApplicationSettingsRequest
 type WriteApplicationSettingsRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7152,6 +7221,7 @@ func (s *WriteApplicationSettingsRequest) SetQuietTime(v *QuietTime) *WriteAppli
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//WriteCampaignRequest
 type WriteCampaignRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7276,6 +7346,7 @@ func (s *WriteCampaignRequest) SetTreatmentName(v string) *WriteCampaignRequest 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//WriteSegmentRequest
 type WriteSegmentRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -7308,6 +7379,7 @@ func (s *WriteSegmentRequest) SetName(v string) *WriteSegmentRequest {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI//WriteTreatmentResource
 type WriteTreatmentResource struct {
 	_ struct{} `type:"structure"`
 

@@ -77,6 +77,7 @@ func (c *ServiceCatalog) AcceptPortfolioShareRequest(input *AcceptPortfolioShare
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShare
 func (c *ServiceCatalog) AcceptPortfolioShare(input *AcceptPortfolioShareInput) (*AcceptPortfolioShareOutput, error) {
 	req, out := c.AcceptPortfolioShareRequest(input)
 	err := req.Send()
@@ -149,6 +150,7 @@ func (c *ServiceCatalog) AssociatePrincipalWithPortfolioRequest(input *Associate
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolio
 func (c *ServiceCatalog) AssociatePrincipalWithPortfolio(input *AssociatePrincipalWithPortfolioInput) (*AssociatePrincipalWithPortfolioOutput, error) {
 	req, out := c.AssociatePrincipalWithPortfolioRequest(input)
 	err := req.Send()
@@ -221,6 +223,7 @@ func (c *ServiceCatalog) AssociateProductWithPortfolioRequest(input *AssociatePr
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolio
 func (c *ServiceCatalog) AssociateProductWithPortfolio(input *AssociateProductWithPortfolioInput) (*AssociateProductWithPortfolioOutput, error) {
 	req, out := c.AssociateProductWithPortfolioRequest(input)
 	err := req.Send()
@@ -296,6 +299,7 @@ func (c *ServiceCatalog) CreateConstraintRequest(input *CreateConstraintInput) (
 //   * DuplicateResourceException
 //   The specified resource is a duplicate.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraint
 func (c *ServiceCatalog) CreateConstraint(input *CreateConstraintInput) (*CreateConstraintOutput, error) {
 	req, out := c.CreateConstraintRequest(input)
 	err := req.Send()
@@ -365,6 +369,7 @@ func (c *ServiceCatalog) CreatePortfolioRequest(input *CreatePortfolioInput) (re
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolio
 func (c *ServiceCatalog) CreatePortfolio(input *CreatePortfolioInput) (*CreatePortfolioOutput, error) {
 	req, out := c.CreatePortfolioRequest(input)
 	err := req.Send()
@@ -437,6 +442,7 @@ func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShare
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShare
 func (c *ServiceCatalog) CreatePortfolioShare(input *CreatePortfolioShareInput) (*CreatePortfolioShareOutput, error) {
 	req, out := c.CreatePortfolioShareRequest(input)
 	err := req.Send()
@@ -506,6 +512,7 @@ func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *r
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProduct
 func (c *ServiceCatalog) CreateProduct(input *CreateProductInput) (*CreateProductOutput, error) {
 	req, out := c.CreateProductRequest(input)
 	err := req.Send()
@@ -579,6 +586,7 @@ func (c *ServiceCatalog) CreateProvisioningArtifactRequest(input *CreateProvisio
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifact
 func (c *ServiceCatalog) CreateProvisioningArtifact(input *CreateProvisioningArtifactInput) (*CreateProvisioningArtifactOutput, error) {
 	req, out := c.CreateProvisioningArtifactRequest(input)
 	err := req.Send()
@@ -647,6 +655,7 @@ func (c *ServiceCatalog) DeleteConstraintRequest(input *DeleteConstraintInput) (
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraint
 func (c *ServiceCatalog) DeleteConstraint(input *DeleteConstraintInput) (*DeleteConstraintOutput, error) {
 	req, out := c.DeleteConstraintRequest(input)
 	err := req.Send()
@@ -721,6 +730,7 @@ func (c *ServiceCatalog) DeletePortfolioRequest(input *DeletePortfolioInput) (re
 //   The operation was requested against a resource that is currently in use.
 //   Free the resource from use and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolio
 func (c *ServiceCatalog) DeletePortfolio(input *DeletePortfolioInput) (*DeletePortfolioOutput, error) {
 	req, out := c.DeletePortfolioRequest(input)
 	err := req.Send()
@@ -786,6 +796,7 @@ func (c *ServiceCatalog) DeletePortfolioShareRequest(input *DeletePortfolioShare
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShare
 func (c *ServiceCatalog) DeletePortfolioShare(input *DeletePortfolioShareInput) (*DeletePortfolioShareOutput, error) {
 	req, out := c.DeletePortfolioShareRequest(input)
 	err := req.Send()
@@ -859,6 +870,7 @@ func (c *ServiceCatalog) DeleteProductRequest(input *DeleteProductInput) (req *r
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProduct
 func (c *ServiceCatalog) DeleteProduct(input *DeleteProductInput) (*DeleteProductOutput, error) {
 	req, out := c.DeleteProductRequest(input)
 	err := req.Send()
@@ -934,6 +946,7 @@ func (c *ServiceCatalog) DeleteProvisioningArtifactRequest(input *DeleteProvisio
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifact
 func (c *ServiceCatalog) DeleteProvisioningArtifact(input *DeleteProvisioningArtifactInput) (*DeleteProvisioningArtifactOutput, error) {
 	req, out := c.DeleteProvisioningArtifactRequest(input)
 	err := req.Send()
@@ -999,6 +1012,7 @@ func (c *ServiceCatalog) DescribeConstraintRequest(input *DescribeConstraintInpu
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraint
 func (c *ServiceCatalog) DescribeConstraint(input *DescribeConstraintInput) (*DescribeConstraintOutput, error) {
 	req, out := c.DescribeConstraintRequest(input)
 	err := req.Send()
@@ -1065,6 +1079,7 @@ func (c *ServiceCatalog) DescribePortfolioRequest(input *DescribePortfolioInput)
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolio
 func (c *ServiceCatalog) DescribePortfolio(input *DescribePortfolioInput) (*DescribePortfolioOutput, error) {
 	req, out := c.DescribePortfolioRequest(input)
 	err := req.Send()
@@ -1136,6 +1151,7 @@ func (c *ServiceCatalog) DescribeProductRequest(input *DescribeProductInput) (re
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProduct
 func (c *ServiceCatalog) DescribeProduct(input *DescribeProductInput) (*DescribeProductOutput, error) {
 	req, out := c.DescribeProductRequest(input)
 	err := req.Send()
@@ -1201,6 +1217,7 @@ func (c *ServiceCatalog) DescribeProductAsAdminRequest(input *DescribeProductAsA
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdmin
 func (c *ServiceCatalog) DescribeProductAsAdmin(input *DescribeProductAsAdminInput) (*DescribeProductAsAdminOutput, error) {
 	req, out := c.DescribeProductAsAdminRequest(input)
 	err := req.Send()
@@ -1272,6 +1289,7 @@ func (c *ServiceCatalog) DescribeProductViewRequest(input *DescribeProductViewIn
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductView
 func (c *ServiceCatalog) DescribeProductView(input *DescribeProductViewInput) (*DescribeProductViewOutput, error) {
 	req, out := c.DescribeProductViewRequest(input)
 	err := req.Send()
@@ -1337,6 +1355,7 @@ func (c *ServiceCatalog) DescribeProvisioningArtifactRequest(input *DescribeProv
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifact
 func (c *ServiceCatalog) DescribeProvisioningArtifact(input *DescribeProvisioningArtifactInput) (*DescribeProvisioningArtifactOutput, error) {
 	req, out := c.DescribeProvisioningArtifactRequest(input)
 	err := req.Send()
@@ -1408,6 +1427,7 @@ func (c *ServiceCatalog) DescribeProvisioningParametersRequest(input *DescribePr
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParameters
 func (c *ServiceCatalog) DescribeProvisioningParameters(input *DescribeProvisioningParametersInput) (*DescribeProvisioningParametersOutput, error) {
 	req, out := c.DescribeProvisioningParametersRequest(input)
 	err := req.Send()
@@ -1475,6 +1495,7 @@ func (c *ServiceCatalog) DescribeRecordRequest(input *DescribeRecordInput) (req 
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecord
 func (c *ServiceCatalog) DescribeRecord(input *DescribeRecordInput) (*DescribeRecordOutput, error) {
 	req, out := c.DescribeRecordRequest(input)
 	err := req.Send()
@@ -1543,6 +1564,7 @@ func (c *ServiceCatalog) DisassociatePrincipalFromPortfolioRequest(input *Disass
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolio
 func (c *ServiceCatalog) DisassociatePrincipalFromPortfolio(input *DisassociatePrincipalFromPortfolioInput) (*DisassociatePrincipalFromPortfolioOutput, error) {
 	req, out := c.DisassociatePrincipalFromPortfolioRequest(input)
 	err := req.Send()
@@ -1611,6 +1633,7 @@ func (c *ServiceCatalog) DisassociateProductFromPortfolioRequest(input *Disassoc
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolio
 func (c *ServiceCatalog) DisassociateProductFromPortfolio(input *DisassociateProductFromPortfolioInput) (*DisassociateProductFromPortfolioOutput, error) {
 	req, out := c.DisassociateProductFromPortfolioRequest(input)
 	err := req.Send()
@@ -1676,6 +1699,7 @@ func (c *ServiceCatalog) ListAcceptedPortfolioSharesRequest(input *ListAcceptedP
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioShares
 func (c *ServiceCatalog) ListAcceptedPortfolioShares(input *ListAcceptedPortfolioSharesInput) (*ListAcceptedPortfolioSharesOutput, error) {
 	req, out := c.ListAcceptedPortfolioSharesRequest(input)
 	err := req.Send()
@@ -1745,6 +1769,7 @@ func (c *ServiceCatalog) ListConstraintsForPortfolioRequest(input *ListConstrain
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolio
 func (c *ServiceCatalog) ListConstraintsForPortfolio(input *ListConstraintsForPortfolioInput) (*ListConstraintsForPortfolioOutput, error) {
 	req, out := c.ListConstraintsForPortfolioRequest(input)
 	err := req.Send()
@@ -1815,6 +1840,7 @@ func (c *ServiceCatalog) ListLaunchPathsRequest(input *ListLaunchPathsInput) (re
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPaths
 func (c *ServiceCatalog) ListLaunchPaths(input *ListLaunchPathsInput) (*ListLaunchPathsOutput, error) {
 	req, out := c.ListLaunchPathsRequest(input)
 	err := req.Send()
@@ -1881,6 +1907,7 @@ func (c *ServiceCatalog) ListPortfolioAccessRequest(input *ListPortfolioAccessIn
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccess
 func (c *ServiceCatalog) ListPortfolioAccess(input *ListPortfolioAccessInput) (*ListPortfolioAccessOutput, error) {
 	req, out := c.ListPortfolioAccessRequest(input)
 	err := req.Send()
@@ -1946,6 +1973,7 @@ func (c *ServiceCatalog) ListPortfoliosRequest(input *ListPortfoliosInput) (req 
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolios
 func (c *ServiceCatalog) ListPortfolios(input *ListPortfoliosInput) (*ListPortfoliosOutput, error) {
 	req, out := c.ListPortfoliosRequest(input)
 	err := req.Send()
@@ -2014,6 +2042,7 @@ func (c *ServiceCatalog) ListPortfoliosForProductRequest(input *ListPortfoliosFo
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProduct
 func (c *ServiceCatalog) ListPortfoliosForProduct(input *ListPortfoliosForProductInput) (*ListPortfoliosForProductOutput, error) {
 	req, out := c.ListPortfoliosForProductRequest(input)
 	err := req.Send()
@@ -2082,6 +2111,7 @@ func (c *ServiceCatalog) ListPrincipalsForPortfolioRequest(input *ListPrincipals
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolio
 func (c *ServiceCatalog) ListPrincipalsForPortfolio(input *ListPrincipalsForPortfolioInput) (*ListPrincipalsForPortfolioOutput, error) {
 	req, out := c.ListPrincipalsForPortfolioRequest(input)
 	err := req.Send()
@@ -2150,6 +2180,7 @@ func (c *ServiceCatalog) ListProvisioningArtifactsRequest(input *ListProvisionin
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifacts
 func (c *ServiceCatalog) ListProvisioningArtifacts(input *ListProvisioningArtifactsInput) (*ListProvisioningArtifactsOutput, error) {
 	req, out := c.ListProvisioningArtifactsRequest(input)
 	err := req.Send()
@@ -2216,6 +2247,7 @@ func (c *ServiceCatalog) ListRecordHistoryRequest(input *ListRecordHistoryInput)
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistory
 func (c *ServiceCatalog) ListRecordHistory(input *ListRecordHistoryInput) (*ListRecordHistoryOutput, error) {
 	req, out := c.ListRecordHistoryRequest(input)
 	err := req.Send()
@@ -2292,6 +2324,7 @@ func (c *ServiceCatalog) ProvisionProductRequest(input *ProvisionProductInput) (
 //   * DuplicateResourceException
 //   The specified resource is a duplicate.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProduct
 func (c *ServiceCatalog) ProvisionProduct(input *ProvisionProductInput) (*ProvisionProductOutput, error) {
 	req, out := c.ProvisionProductRequest(input)
 	err := req.Send()
@@ -2357,6 +2390,7 @@ func (c *ServiceCatalog) RejectPortfolioShareRequest(input *RejectPortfolioShare
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShare
 func (c *ServiceCatalog) RejectPortfolioShare(input *RejectPortfolioShareInput) (*RejectPortfolioShareOutput, error) {
 	req, out := c.RejectPortfolioShareRequest(input)
 	err := req.Send()
@@ -2423,6 +2457,7 @@ func (c *ServiceCatalog) ScanProvisionedProductsRequest(input *ScanProvisionedPr
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProducts
 func (c *ServiceCatalog) ScanProvisionedProducts(input *ScanProvisionedProductsInput) (*ScanProvisionedProductsOutput, error) {
 	req, out := c.ScanProvisionedProductsRequest(input)
 	err := req.Send()
@@ -2492,6 +2527,7 @@ func (c *ServiceCatalog) SearchProductsRequest(input *SearchProductsInput) (req 
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProducts
 func (c *ServiceCatalog) SearchProducts(input *SearchProductsInput) (*SearchProductsOutput, error) {
 	req, out := c.SearchProductsRequest(input)
 	err := req.Send()
@@ -2563,6 +2599,7 @@ func (c *ServiceCatalog) SearchProductsAsAdminRequest(input *SearchProductsAsAdm
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdmin
 func (c *ServiceCatalog) SearchProductsAsAdmin(input *SearchProductsAsAdminInput) (*SearchProductsAsAdminOutput, error) {
 	req, out := c.SearchProductsAsAdminRequest(input)
 	err := req.Send()
@@ -2635,6 +2672,7 @@ func (c *ServiceCatalog) TerminateProvisionedProductRequest(input *TerminateProv
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProduct
 func (c *ServiceCatalog) TerminateProvisionedProduct(input *TerminateProvisionedProductInput) (*TerminateProvisionedProductOutput, error) {
 	req, out := c.TerminateProvisionedProductRequest(input)
 	err := req.Send()
@@ -2703,6 +2741,7 @@ func (c *ServiceCatalog) UpdateConstraintRequest(input *UpdateConstraintInput) (
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraint
 func (c *ServiceCatalog) UpdateConstraint(input *UpdateConstraintInput) (*UpdateConstraintOutput, error) {
 	req, out := c.UpdateConstraintRequest(input)
 	err := req.Send()
@@ -2776,6 +2815,7 @@ func (c *ServiceCatalog) UpdatePortfolioRequest(input *UpdatePortfolioInput) (re
 //   The current limits of the service would have been exceeded by this operation.
 //   Reduce the resource use or increase the service limits and retry the operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolio
 func (c *ServiceCatalog) UpdatePortfolio(input *UpdatePortfolioInput) (*UpdatePortfolioOutput, error) {
 	req, out := c.UpdatePortfolioRequest(input)
 	err := req.Send()
@@ -2844,6 +2884,7 @@ func (c *ServiceCatalog) UpdateProductRequest(input *UpdateProductInput) (req *r
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProduct
 func (c *ServiceCatalog) UpdateProduct(input *UpdateProductInput) (*UpdateProductOutput, error) {
 	req, out := c.UpdateProductRequest(input)
 	err := req.Send()
@@ -2918,6 +2959,7 @@ func (c *ServiceCatalog) UpdateProvisionedProductRequest(input *UpdateProvisione
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProduct
 func (c *ServiceCatalog) UpdateProvisionedProduct(input *UpdateProvisionedProductInput) (*UpdateProvisionedProductOutput, error) {
 	req, out := c.UpdateProvisionedProductRequest(input)
 	err := req.Send()
@@ -2988,12 +3030,14 @@ func (c *ServiceCatalog) UpdateProvisioningArtifactRequest(input *UpdateProvisio
 //   * InvalidParametersException
 //   One or more parameters provided to the operation are invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifact
 func (c *ServiceCatalog) UpdateProvisioningArtifact(input *UpdateProvisioningArtifactInput) (*UpdateProvisioningArtifactOutput, error) {
 	req, out := c.UpdateProvisioningArtifactRequest(input)
 	err := req.Send()
 	return out, err
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShareInput
 type AcceptPortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3053,6 +3097,7 @@ func (s *AcceptPortfolioShareInput) SetPortfolioId(v string) *AcceptPortfolioSha
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AcceptPortfolioShareOutput
 type AcceptPortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3068,6 +3113,7 @@ func (s AcceptPortfolioShareOutput) GoString() string {
 }
 
 // The access level to limit results.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AccessLevelFilter
 type AccessLevelFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -3107,6 +3153,7 @@ func (s *AccessLevelFilter) SetValue(v string) *AccessLevelFilter {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolioInput
 type AssociatePrincipalWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3197,6 +3244,7 @@ func (s *AssociatePrincipalWithPortfolioInput) SetPrincipalType(v string) *Assoc
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociatePrincipalWithPortfolioOutput
 type AssociatePrincipalWithPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3211,6 +3259,7 @@ func (s AssociatePrincipalWithPortfolioOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolioInput
 type AssociateProductWithPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3299,6 +3348,7 @@ func (s *AssociateProductWithPortfolioInput) SetSourcePortfolioId(v string) *Ass
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/AssociateProductWithPortfolioOutput
 type AssociateProductWithPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3314,6 +3364,7 @@ func (s AssociateProductWithPortfolioOutput) GoString() string {
 }
 
 // Detailed constraint information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ConstraintDetail
 type ConstraintDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -3365,6 +3416,7 @@ func (s *ConstraintDetail) SetType(v string) *ConstraintDetail {
 }
 
 // An administrator-specified constraint to apply when provisioning a product.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ConstraintSummary
 type ConstraintSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3397,6 +3449,7 @@ func (s *ConstraintSummary) SetType(v string) *ConstraintSummary {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraintInput
 type CreateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3532,6 +3585,7 @@ func (s *CreateConstraintInput) SetType(v string) *CreateConstraintInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateConstraintOutput
 type CreateConstraintOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3573,6 +3627,7 @@ func (s *CreateConstraintOutput) SetStatus(v string) *CreateConstraintOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioInput
 type CreatePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3696,6 +3751,7 @@ func (s *CreatePortfolioInput) SetTags(v []*Tag) *CreatePortfolioInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioOutput
 type CreatePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3728,6 +3784,7 @@ func (s *CreatePortfolioOutput) SetTags(v []*Tag) *CreatePortfolioOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShareInput
 type CreatePortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3801,6 +3858,7 @@ func (s *CreatePortfolioShareInput) SetPortfolioId(v string) *CreatePortfolioSha
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreatePortfolioShareOutput
 type CreatePortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3815,6 +3873,7 @@ func (s CreatePortfolioShareOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProductInput
 type CreateProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4001,6 +4060,7 @@ func (s *CreateProductInput) SetTags(v []*Tag) *CreateProductInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProductOutput
 type CreateProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4042,6 +4102,7 @@ func (s *CreateProductOutput) SetTags(v []*Tag) *CreateProductOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifactInput
 type CreateProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4139,6 +4200,7 @@ func (s *CreateProvisioningArtifactInput) SetProductId(v string) *CreateProvisio
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/CreateProvisioningArtifactOutput
 type CreateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4180,6 +4242,7 @@ func (s *CreateProvisioningArtifactOutput) SetStatus(v string) *CreateProvisioni
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraintInput
 type DeleteConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4239,6 +4302,7 @@ func (s *DeleteConstraintInput) SetId(v string) *DeleteConstraintInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteConstraintOutput
 type DeleteConstraintOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4253,6 +4317,7 @@ func (s DeleteConstraintOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioInput
 type DeletePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4312,6 +4377,7 @@ func (s *DeletePortfolioInput) SetId(v string) *DeletePortfolioInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioOutput
 type DeletePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4326,6 +4392,7 @@ func (s DeletePortfolioOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShareInput
 type DeletePortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4399,6 +4466,7 @@ func (s *DeletePortfolioShareInput) SetPortfolioId(v string) *DeletePortfolioSha
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeletePortfolioShareOutput
 type DeletePortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4413,6 +4481,7 @@ func (s DeletePortfolioShareOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProductInput
 type DeleteProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4472,6 +4541,7 @@ func (s *DeleteProductInput) SetId(v string) *DeleteProductInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProductOutput
 type DeleteProductOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4486,6 +4556,7 @@ func (s DeleteProductOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifactInput
 type DeleteProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4562,6 +4633,7 @@ func (s *DeleteProvisioningArtifactInput) SetProvisioningArtifactId(v string) *D
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DeleteProvisioningArtifactOutput
 type DeleteProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4576,6 +4648,7 @@ func (s DeleteProvisioningArtifactOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraintInput
 type DescribeConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4635,6 +4708,7 @@ func (s *DescribeConstraintInput) SetId(v string) *DescribeConstraintInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeConstraintOutput
 type DescribeConstraintOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4676,6 +4750,7 @@ func (s *DescribeConstraintOutput) SetStatus(v string) *DescribeConstraintOutput
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioInput
 type DescribePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4735,6 +4810,7 @@ func (s *DescribePortfolioInput) SetId(v string) *DescribePortfolioInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioOutput
 type DescribePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4767,6 +4843,7 @@ func (s *DescribePortfolioOutput) SetTags(v []*Tag) *DescribePortfolioOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdminInput
 type DescribeProductAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4826,6 +4903,7 @@ func (s *DescribeProductAsAdminInput) SetId(v string) *DescribeProductAsAdminInp
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductAsAdminOutput
 type DescribeProductAsAdminOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4858,6 +4936,7 @@ func (s *DescribeProductAsAdminOutput) SetTags(v []*Tag) *DescribeProductAsAdmin
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductInput
 type DescribeProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4917,6 +4996,7 @@ func (s *DescribeProductInput) SetId(v string) *DescribeProductInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductOutput
 type DescribeProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4950,6 +5030,7 @@ func (s *DescribeProductOutput) SetProvisioningArtifacts(v []*ProvisioningArtifa
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductViewInput
 type DescribeProductViewInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5009,6 +5090,7 @@ func (s *DescribeProductViewInput) SetId(v string) *DescribeProductViewInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProductViewOutput
 type DescribeProductViewOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5042,6 +5124,7 @@ func (s *DescribeProductViewOutput) SetProvisioningArtifacts(v []*ProvisioningAr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifactInput
 type DescribeProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5118,6 +5201,7 @@ func (s *DescribeProvisioningArtifactInput) SetProvisioningArtifactId(v string) 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningArtifactOutput
 type DescribeProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5159,6 +5243,7 @@ func (s *DescribeProvisioningArtifactOutput) SetStatus(v string) *DescribeProvis
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParametersInput
 type DescribeProvisioningParametersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5249,6 +5334,7 @@ func (s *DescribeProvisioningParametersInput) SetProvisioningArtifactId(v string
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeProvisioningParametersOutput
 type DescribeProvisioningParametersOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5292,6 +5378,7 @@ func (s *DescribeProvisioningParametersOutput) SetUsageInstructions(v []*UsageIn
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecordInput
 type DescribeRecordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5374,6 +5461,7 @@ func (s *DescribeRecordInput) SetPageToken(v string) *DescribeRecordInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribeRecordOutput
 type DescribeRecordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5418,6 +5506,7 @@ func (s *DescribeRecordOutput) SetRecordOutputs(v []*RecordOutput) *DescribeReco
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolioInput
 type DisassociatePrincipalFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5494,6 +5583,7 @@ func (s *DisassociatePrincipalFromPortfolioInput) SetPrincipalARN(v string) *Dis
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociatePrincipalFromPortfolioOutput
 type DisassociatePrincipalFromPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5508,6 +5598,7 @@ func (s DisassociatePrincipalFromPortfolioOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolioInput
 type DisassociateProductFromPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5584,6 +5675,7 @@ func (s *DisassociateProductFromPortfolioInput) SetProductId(v string) *Disassoc
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DisassociateProductFromPortfolioOutput
 type DisassociateProductFromPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5600,6 +5692,7 @@ func (s DisassociateProductFromPortfolioOutput) GoString() string {
 
 // Summary information about a path for a user to have access to a specified
 // product.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/LaunchPathSummary
 type LaunchPathSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5650,6 +5743,7 @@ func (s *LaunchPathSummary) SetTags(v []*Tag) *LaunchPathSummary {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioSharesInput
 type ListAcceptedPortfolioSharesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5703,6 +5797,7 @@ func (s *ListAcceptedPortfolioSharesInput) SetPageToken(v string) *ListAcceptedP
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListAcceptedPortfolioSharesOutput
 type ListAcceptedPortfolioSharesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5736,6 +5831,7 @@ func (s *ListAcceptedPortfolioSharesOutput) SetPortfolioDetails(v []*PortfolioDe
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolioInput
 type ListConstraintsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5828,6 +5924,7 @@ func (s *ListConstraintsForPortfolioInput) SetProductId(v string) *ListConstrain
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListConstraintsForPortfolioOutput
 type ListConstraintsForPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5861,6 +5958,7 @@ func (s *ListConstraintsForPortfolioOutput) SetNextPageToken(v string) *ListCons
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPathsInput
 type ListLaunchPathsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5942,6 +6040,7 @@ func (s *ListLaunchPathsInput) SetProductId(v string) *ListLaunchPathsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListLaunchPathsOutput
 type ListLaunchPathsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5975,6 +6074,7 @@ func (s *ListLaunchPathsOutput) SetNextPageToken(v string) *ListLaunchPathsOutpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccessInput
 type ListPortfolioAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6034,6 +6134,7 @@ func (s *ListPortfolioAccessInput) SetPortfolioId(v string) *ListPortfolioAccess
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfolioAccessOutput
 type ListPortfolioAccessOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6067,6 +6168,7 @@ func (s *ListPortfolioAccessOutput) SetNextPageToken(v string) *ListPortfolioAcc
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProductInput
 type ListPortfoliosForProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6147,6 +6249,7 @@ func (s *ListPortfoliosForProductInput) SetProductId(v string) *ListPortfoliosFo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosForProductOutput
 type ListPortfoliosForProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6180,6 +6283,7 @@ func (s *ListPortfoliosForProductOutput) SetPortfolioDetails(v []*PortfolioDetai
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosInput
 type ListPortfoliosInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6233,6 +6337,7 @@ func (s *ListPortfoliosInput) SetPageToken(v string) *ListPortfoliosInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPortfoliosOutput
 type ListPortfoliosOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6266,6 +6371,7 @@ func (s *ListPortfoliosOutput) SetPortfolioDetails(v []*PortfolioDetail) *ListPo
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolioInput
 type ListPrincipalsForPortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6346,6 +6452,7 @@ func (s *ListPrincipalsForPortfolioInput) SetPortfolioId(v string) *ListPrincipa
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListPrincipalsForPortfolioOutput
 type ListPrincipalsForPortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6379,6 +6486,7 @@ func (s *ListPrincipalsForPortfolioOutput) SetPrincipals(v []*Principal) *ListPr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifactsInput
 type ListProvisioningArtifactsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6438,6 +6546,7 @@ func (s *ListProvisioningArtifactsInput) SetProductId(v string) *ListProvisionin
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListProvisioningArtifactsOutput
 type ListProvisioningArtifactsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6471,6 +6580,7 @@ func (s *ListProvisioningArtifactsOutput) SetProvisioningArtifactDetails(v []*Pr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistoryInput
 type ListRecordHistoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6543,6 +6653,7 @@ func (s *ListRecordHistoryInput) SetSearchFilter(v *ListRecordHistorySearchFilte
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistoryOutput
 type ListRecordHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6577,6 +6688,7 @@ func (s *ListRecordHistoryOutput) SetRecordDetails(v []*RecordDetail) *ListRecor
 }
 
 // The search filter to limit results when listing request history records.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ListRecordHistorySearchFilter
 type ListRecordHistorySearchFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -6610,6 +6722,7 @@ func (s *ListRecordHistorySearchFilter) SetValue(v string) *ListRecordHistorySea
 }
 
 // The constraints that the administrator has put on the parameter.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ParameterConstraints
 type ParameterConstraints struct {
 	_ struct{} `type:"structure"`
 
@@ -6634,6 +6747,7 @@ func (s *ParameterConstraints) SetAllowedValues(v []*string) *ParameterConstrain
 }
 
 // Detailed portfolio information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/PortfolioDetail
 type PortfolioDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -6703,6 +6817,7 @@ func (s *PortfolioDetail) SetProviderName(v string) *PortfolioDetail {
 }
 
 // A principal's ARN and type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/Principal
 type Principal struct {
 	_ struct{} `type:"structure"`
 
@@ -6737,6 +6852,7 @@ func (s *Principal) SetPrincipalType(v string) *Principal {
 
 // A single product view aggregation value/count pair, containing metadata about
 // each product to which the calling user has access.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewAggregationValue
 type ProductViewAggregationValue struct {
 	_ struct{} `type:"structure"`
 
@@ -6770,6 +6886,7 @@ func (s *ProductViewAggregationValue) SetValue(v string) *ProductViewAggregation
 }
 
 // Detailed product view information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewDetail
 type ProductViewDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -6821,6 +6938,7 @@ func (s *ProductViewDetail) SetStatus(v string) *ProductViewDetail {
 }
 
 // The summary metadata about the specified product.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProductViewSummary
 type ProductViewSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6941,6 +7059,7 @@ func (s *ProductViewSummary) SetType(v string) *ProductViewSummary {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProductInput
 type ProvisionProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7113,6 +7232,7 @@ func (s *ProvisionProductInput) SetTags(v []*Tag) *ProvisionProductInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionProductOutput
 type ProvisionProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7140,6 +7260,7 @@ func (s *ProvisionProductOutput) SetRecordDetail(v *RecordDetail) *ProvisionProd
 }
 
 // Detailed information about a ProvisionedProduct object.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisionedProductDetail
 type ProvisionedProductDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -7239,6 +7360,7 @@ func (s *ProvisionedProductDetail) SetType(v string) *ProvisionedProductDetail {
 }
 
 // Contains information indicating the ways in which a product can be provisioned.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifact
 type ProvisioningArtifact struct {
 	_ struct{} `type:"structure"`
 
@@ -7290,6 +7412,7 @@ func (s *ProvisioningArtifact) SetName(v string) *ProvisioningArtifact {
 }
 
 // Detailed provisioning artifact information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactDetail
 type ProvisioningArtifactDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -7351,6 +7474,7 @@ func (s *ProvisioningArtifactDetail) SetType(v string) *ProvisioningArtifactDeta
 
 // A parameter used to successfully provision the product. This value includes
 // a list of allowable values and additional metadata.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactParameter
 type ProvisioningArtifactParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -7422,6 +7546,7 @@ func (s *ProvisioningArtifactParameter) SetParameterType(v string) *Provisioning
 }
 
 // Provisioning artifact properties.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningArtifactProperties
 type ProvisioningArtifactProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -7491,6 +7616,7 @@ func (s *ProvisioningArtifactProperties) SetType(v string) *ProvisioningArtifact
 }
 
 // The arameter key/value pairs used to provision a product.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ProvisioningParameter
 type ProvisioningParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -7538,6 +7664,7 @@ func (s *ProvisioningParameter) SetValue(v string) *ProvisioningParameter {
 }
 
 // The full details of a specific ProvisionedProduct object.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordDetail
 type RecordDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -7670,6 +7797,7 @@ func (s *RecordDetail) SetUpdatedTime(v time.Time) *RecordDetail {
 }
 
 // The error code and description resulting from an operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordError
 type RecordError struct {
 	_ struct{} `type:"structure"`
 
@@ -7705,6 +7833,7 @@ func (s *RecordError) SetDescription(v string) *RecordError {
 // An output for the specified Product object created as the result of a request.
 // For example, a CloudFormation-backed product that creates an S3 bucket would
 // have an output for the S3 bucket URL.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordOutput
 type RecordOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7747,6 +7876,7 @@ func (s *RecordOutput) SetOutputValue(v string) *RecordOutput {
 }
 
 // A tag associated with the record, stored as a key-value pair.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RecordTag
 type RecordTag struct {
 	_ struct{} `type:"structure"`
 
@@ -7779,6 +7909,7 @@ func (s *RecordTag) SetValue(v string) *RecordTag {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShareInput
 type RejectPortfolioShareInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7838,6 +7969,7 @@ func (s *RejectPortfolioShareInput) SetPortfolioId(v string) *RejectPortfolioSha
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/RejectPortfolioShareOutput
 type RejectPortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7852,6 +7984,7 @@ func (s RejectPortfolioShareOutput) GoString() string {
 	return s.String()
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProductsInput
 type ScanProvisionedProductsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7915,6 +8048,7 @@ func (s *ScanProvisionedProductsInput) SetPageToken(v string) *ScanProvisionedPr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ScanProvisionedProductsOutput
 type ScanProvisionedProductsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7948,6 +8082,7 @@ func (s *ScanProvisionedProductsOutput) SetProvisionedProducts(v []*ProvisionedP
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdminInput
 type SearchProductsAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8061,6 +8196,7 @@ func (s *SearchProductsAsAdminInput) SetSortOrder(v string) *SearchProductsAsAdm
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsAsAdminOutput
 type SearchProductsAsAdminOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8094,6 +8230,7 @@ func (s *SearchProductsAsAdminOutput) SetProductViewDetails(v []*ProductViewDeta
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsInput
 type SearchProductsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8176,6 +8313,7 @@ func (s *SearchProductsInput) SetSortOrder(v string) *SearchProductsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/SearchProductsOutput
 type SearchProductsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8220,6 +8358,7 @@ func (s *SearchProductsOutput) SetProductViewSummaries(v []*ProductViewSummary) 
 
 // Key/value pairs to associate with this provisioning. These tags are entirely
 // discretionary and are propagated to the resources created in the provisioning.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -8278,6 +8417,7 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProductInput
 type TerminateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8376,6 +8516,7 @@ func (s *TerminateProvisionedProductInput) SetTerminateToken(v string) *Terminat
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/TerminateProvisionedProductOutput
 type TerminateProvisionedProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8402,6 +8543,7 @@ func (s *TerminateProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *Te
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraintInput
 type UpdateConstraintInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8470,6 +8612,7 @@ func (s *UpdateConstraintInput) SetId(v string) *UpdateConstraintInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateConstraintOutput
 type UpdateConstraintOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8511,6 +8654,7 @@ func (s *UpdateConstraintOutput) SetStatus(v string) *UpdateConstraintOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioInput
 type UpdatePortfolioInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8631,6 +8775,7 @@ func (s *UpdatePortfolioInput) SetRemoveTags(v []*string) *UpdatePortfolioInput 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioOutput
 type UpdatePortfolioOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8663,6 +8808,7 @@ func (s *UpdatePortfolioOutput) SetTags(v []*Tag) *UpdatePortfolioOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProductInput
 type UpdateProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8813,6 +8959,7 @@ func (s *UpdateProductInput) SetSupportUrl(v string) *UpdateProductInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProductOutput
 type UpdateProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8845,6 +8992,7 @@ func (s *UpdateProductOutput) SetTags(v []*Tag) *UpdateProductOutput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProductInput
 type UpdateProvisionedProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8988,6 +9136,7 @@ func (s *UpdateProvisionedProductInput) SetUpdateToken(v string) *UpdateProvisio
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisionedProductOutput
 type UpdateProvisionedProductOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9014,6 +9163,7 @@ func (s *UpdateProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *Updat
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifactInput
 type UpdateProvisioningArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9108,6 +9258,7 @@ func (s *UpdateProvisioningArtifactInput) SetProvisioningArtifactId(v string) *U
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningArtifactOutput
 type UpdateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9152,6 +9303,7 @@ func (s *UpdateProvisioningArtifactOutput) SetStatus(v string) *UpdateProvisioni
 // The parameter key/value pair used to update a ProvisionedProduct object.
 // If UsePreviousValue is set to true, Value is ignored and the value for Key
 // is kept as previously set (current value).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdateProvisioningParameter
 type UpdateProvisioningParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -9209,6 +9361,7 @@ func (s *UpdateProvisioningParameter) SetValue(v string) *UpdateProvisioningPara
 }
 
 // Additional information provided by the administrator.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UsageInstruction
 type UsageInstruction struct {
 	_ struct{} `type:"structure"`
 

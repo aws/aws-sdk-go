@@ -92,6 +92,7 @@ func (c *ApplicationAutoScaling) DeleteScalingPolicyRequest(input *DeleteScaling
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeleteScalingPolicy
 func (c *ApplicationAutoScaling) DeleteScalingPolicy(input *DeleteScalingPolicyInput) (*DeleteScalingPolicyOutput, error) {
 	req, out := c.DeleteScalingPolicyRequest(input)
 	err := req.Send()
@@ -178,6 +179,7 @@ func (c *ApplicationAutoScaling) DeregisterScalableTargetRequest(input *Deregist
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DeregisterScalableTarget
 func (c *ApplicationAutoScaling) DeregisterScalableTarget(input *DeregisterScalableTargetInput) (*DeregisterScalableTargetOutput, error) {
 	req, out := c.DeregisterScalableTargetRequest(input)
 	err := req.Send()
@@ -267,6 +269,7 @@ func (c *ApplicationAutoScaling) DescribeScalableTargetsRequest(input *DescribeS
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalableTargets
 func (c *ApplicationAutoScaling) DescribeScalableTargets(input *DescribeScalableTargetsInput) (*DescribeScalableTargetsOutput, error) {
 	req, out := c.DescribeScalableTargetsRequest(input)
 	err := req.Send()
@@ -382,6 +385,7 @@ func (c *ApplicationAutoScaling) DescribeScalingActivitiesRequest(input *Describ
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingActivities
 func (c *ApplicationAutoScaling) DescribeScalingActivities(input *DescribeScalingActivitiesInput) (*DescribeScalingActivitiesOutput, error) {
 	req, out := c.DescribeScalingActivitiesRequest(input)
 	err := req.Send()
@@ -505,6 +509,7 @@ func (c *ApplicationAutoScaling) DescribeScalingPoliciesRequest(input *DescribeS
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/DescribeScalingPolicies
 func (c *ApplicationAutoScaling) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
 	req, out := c.DescribeScalingPoliciesRequest(input)
 	err := req.Send()
@@ -628,6 +633,7 @@ func (c *ApplicationAutoScaling) PutScalingPolicyRequest(input *PutScalingPolicy
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/PutScalingPolicy
 func (c *ApplicationAutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
 	req, out := c.PutScalingPolicyRequest(input)
 	err := req.Send()
@@ -714,6 +720,7 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 //   * InternalServiceException
 //   The service encountered an internal error.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/RegisterScalableTarget
 func (c *ApplicationAutoScaling) RegisterScalableTarget(input *RegisterScalableTargetInput) (*RegisterScalableTargetOutput, error) {
 	req, out := c.RegisterScalableTargetRequest(input)
 	err := req.Send()
@@ -721,6 +728,7 @@ func (c *ApplicationAutoScaling) RegisterScalableTarget(input *RegisterScalableT
 }
 
 // Represents a CloudWatch alarm associated with a scaling policy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/Alarm
 type Alarm struct {
 	_ struct{} `type:"structure"`
 
@@ -1719,6 +1727,7 @@ func (s RegisterScalableTargetOutput) GoString() string {
 }
 
 // Represents a scalable target.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ScalableTarget
 type ScalableTarget struct {
 	_ struct{} `type:"structure"`
 
@@ -1833,6 +1842,7 @@ func (s *ScalableTarget) SetServiceNamespace(v string) *ScalableTarget {
 }
 
 // Represents a scaling activity.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ScalingActivity
 type ScalingActivity struct {
 	_ struct{} `type:"structure"`
 
@@ -1984,6 +1994,7 @@ func (s *ScalingActivity) SetStatusMessage(v string) *ScalingActivity {
 }
 
 // Represents a scaling policy.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/ScalingPolicy
 type ScalingPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -2142,6 +2153,7 @@ func (s *ScalingPolicy) SetStepScalingPolicyConfiguration(v *StepScalingPolicyCo
 //    with a null upper bound.
 //
 //    * The upper and lower bound can't be null in the same step adjustment.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/StepAdjustment
 type StepAdjustment struct {
 	_ struct{} `type:"structure"`
 
@@ -2212,6 +2224,7 @@ func (s *StepAdjustment) SetScalingAdjustment(v int64) *StepAdjustment {
 }
 
 // Represents a step scaling policy configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/application-autoscaling-2016-02-06/StepScalingPolicyConfiguration
 type StepScalingPolicyConfiguration struct {
 	_ struct{} `type:"structure"`
 

@@ -78,6 +78,7 @@ func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req 
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateDevicePool
 func (c *DeviceFarm) CreateDevicePool(input *CreateDevicePoolInput) (*CreateDevicePoolOutput, error) {
 	req, out := c.CreateDevicePoolRequest(input)
 	err := req.Send()
@@ -152,6 +153,7 @@ func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateProject
 func (c *DeviceFarm) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
 	req, out := c.CreateProjectRequest(input)
 	err := req.Send()
@@ -226,6 +228,7 @@ func (c *DeviceFarm) CreateRemoteAccessSessionRequest(input *CreateRemoteAccessS
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateRemoteAccessSession
 func (c *DeviceFarm) CreateRemoteAccessSession(input *CreateRemoteAccessSessionInput) (*CreateRemoteAccessSessionOutput, error) {
 	req, out := c.CreateRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -300,6 +303,7 @@ func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *request
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateUpload
 func (c *DeviceFarm) CreateUpload(input *CreateUploadInput) (*CreateUploadOutput, error) {
 	req, out := c.CreateUploadRequest(input)
 	err := req.Send()
@@ -375,6 +379,7 @@ func (c *DeviceFarm) DeleteDevicePoolRequest(input *DeleteDevicePoolInput) (req 
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteDevicePool
 func (c *DeviceFarm) DeleteDevicePool(input *DeleteDevicePoolInput) (*DeleteDevicePoolOutput, error) {
 	req, out := c.DeleteDevicePoolRequest(input)
 	err := req.Send()
@@ -451,6 +456,7 @@ func (c *DeviceFarm) DeleteProjectRequest(input *DeleteProjectInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteProject
 func (c *DeviceFarm) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
 	err := req.Send()
@@ -525,6 +531,7 @@ func (c *DeviceFarm) DeleteRemoteAccessSessionRequest(input *DeleteRemoteAccessS
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRemoteAccessSession
 func (c *DeviceFarm) DeleteRemoteAccessSession(input *DeleteRemoteAccessSessionInput) (*DeleteRemoteAccessSessionOutput, error) {
 	req, out := c.DeleteRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -601,6 +608,7 @@ func (c *DeviceFarm) DeleteRunRequest(input *DeleteRunInput) (req *request.Reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteRun
 func (c *DeviceFarm) DeleteRun(input *DeleteRunInput) (*DeleteRunOutput, error) {
 	req, out := c.DeleteRunRequest(input)
 	err := req.Send()
@@ -675,6 +683,7 @@ func (c *DeviceFarm) DeleteUploadRequest(input *DeleteUploadInput) (req *request
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeleteUpload
 func (c *DeviceFarm) DeleteUpload(input *DeleteUploadInput) (*DeleteUploadOutput, error) {
 	req, out := c.DeleteUploadRequest(input)
 	err := req.Send()
@@ -750,6 +759,7 @@ func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetAccountSettings
 func (c *DeviceFarm) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountSettingsOutput, error) {
 	req, out := c.GetAccountSettingsRequest(input)
 	err := req.Send()
@@ -824,6 +834,7 @@ func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *request.Reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevice
 func (c *DeviceFarm) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) {
 	req, out := c.GetDeviceRequest(input)
 	err := req.Send()
@@ -898,6 +909,7 @@ func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePool
 func (c *DeviceFarm) GetDevicePool(input *GetDevicePoolInput) (*GetDevicePoolOutput, error) {
 	req, out := c.GetDevicePoolRequest(input)
 	err := req.Send()
@@ -972,6 +984,7 @@ func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompa
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetDevicePoolCompatibility
 func (c *DeviceFarm) GetDevicePoolCompatibility(input *GetDevicePoolCompatibilityInput) (*GetDevicePoolCompatibilityOutput, error) {
 	req, out := c.GetDevicePoolCompatibilityRequest(input)
 	err := req.Send()
@@ -1046,6 +1059,7 @@ func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *request.Request, ou
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetJob
 func (c *DeviceFarm) GetJob(input *GetJobInput) (*GetJobOutput, error) {
 	req, out := c.GetJobRequest(input)
 	err := req.Send()
@@ -1135,6 +1149,7 @@ func (c *DeviceFarm) GetOfferingStatusRequest(input *GetOfferingStatusInput) (re
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetOfferingStatus
 func (c *DeviceFarm) GetOfferingStatus(input *GetOfferingStatusInput) (*GetOfferingStatusOutput, error) {
 	req, out := c.GetOfferingStatusRequest(input)
 	err := req.Send()
@@ -1234,6 +1249,7 @@ func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *request.Req
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetProject
 func (c *DeviceFarm) GetProject(input *GetProjectInput) (*GetProjectOutput, error) {
 	req, out := c.GetProjectRequest(input)
 	err := req.Send()
@@ -1308,6 +1324,7 @@ func (c *DeviceFarm) GetRemoteAccessSessionRequest(input *GetRemoteAccessSession
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRemoteAccessSession
 func (c *DeviceFarm) GetRemoteAccessSession(input *GetRemoteAccessSessionInput) (*GetRemoteAccessSessionOutput, error) {
 	req, out := c.GetRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -1382,6 +1399,7 @@ func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *request.Request, ou
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetRun
 func (c *DeviceFarm) GetRun(input *GetRunInput) (*GetRunOutput, error) {
 	req, out := c.GetRunRequest(input)
 	err := req.Send()
@@ -1456,6 +1474,7 @@ func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *request.Request
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetSuite
 func (c *DeviceFarm) GetSuite(input *GetSuiteInput) (*GetSuiteOutput, error) {
 	req, out := c.GetSuiteRequest(input)
 	err := req.Send()
@@ -1530,6 +1549,7 @@ func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *request.Request, 
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetTest
 func (c *DeviceFarm) GetTest(input *GetTestInput) (*GetTestOutput, error) {
 	req, out := c.GetTestRequest(input)
 	err := req.Send()
@@ -1604,6 +1624,7 @@ func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *request.Reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/GetUpload
 func (c *DeviceFarm) GetUpload(input *GetUploadInput) (*GetUploadOutput, error) {
 	req, out := c.GetUploadRequest(input)
 	err := req.Send()
@@ -1680,6 +1701,7 @@ func (c *DeviceFarm) InstallToRemoteAccessSessionRequest(input *InstallToRemoteA
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/InstallToRemoteAccessSession
 func (c *DeviceFarm) InstallToRemoteAccessSession(input *InstallToRemoteAccessSessionInput) (*InstallToRemoteAccessSessionOutput, error) {
 	req, out := c.InstallToRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -1760,6 +1782,7 @@ func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListArtifacts
 func (c *DeviceFarm) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOutput, error) {
 	req, out := c.ListArtifactsRequest(input)
 	err := req.Send()
@@ -1865,6 +1888,7 @@ func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *r
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevicePools
 func (c *DeviceFarm) ListDevicePools(input *ListDevicePoolsInput) (*ListDevicePoolsOutput, error) {
 	req, out := c.ListDevicePoolsRequest(input)
 	err := req.Send()
@@ -1970,6 +1994,7 @@ func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *request.R
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListDevices
 func (c *DeviceFarm) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
 	req, out := c.ListDevicesRequest(input)
 	err := req.Send()
@@ -2075,6 +2100,7 @@ func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *request.Request
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListJobs
 func (c *DeviceFarm) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 	req, out := c.ListJobsRequest(input)
 	err := req.Send()
@@ -2189,6 +2215,7 @@ func (c *DeviceFarm) ListOfferingTransactionsRequest(input *ListOfferingTransact
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferingTransactions
 func (c *DeviceFarm) ListOfferingTransactions(input *ListOfferingTransactionsInput) (*ListOfferingTransactionsOutput, error) {
 	req, out := c.ListOfferingTransactionsRequest(input)
 	err := req.Send()
@@ -2303,6 +2330,7 @@ func (c *DeviceFarm) ListOfferingsRequest(input *ListOfferingsInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListOfferings
 func (c *DeviceFarm) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOutput, error) {
 	req, out := c.ListOfferingsRequest(input)
 	err := req.Send()
@@ -2408,6 +2436,7 @@ func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *request
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListProjects
 func (c *DeviceFarm) ListProjects(input *ListProjectsInput) (*ListProjectsOutput, error) {
 	req, out := c.ListProjectsRequest(input)
 	err := req.Send()
@@ -2507,6 +2536,7 @@ func (c *DeviceFarm) ListRemoteAccessSessionsRequest(input *ListRemoteAccessSess
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRemoteAccessSessions
 func (c *DeviceFarm) ListRemoteAccessSessions(input *ListRemoteAccessSessionsInput) (*ListRemoteAccessSessionsOutput, error) {
 	req, out := c.ListRemoteAccessSessionsRequest(input)
 	err := req.Send()
@@ -2587,6 +2617,7 @@ func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *request.Request
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListRuns
 func (c *DeviceFarm) ListRuns(input *ListRunsInput) (*ListRunsOutput, error) {
 	req, out := c.ListRunsRequest(input)
 	err := req.Send()
@@ -2692,6 +2723,7 @@ func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *request.R
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSamples
 func (c *DeviceFarm) ListSamples(input *ListSamplesInput) (*ListSamplesOutput, error) {
 	req, out := c.ListSamplesRequest(input)
 	err := req.Send()
@@ -2797,6 +2829,7 @@ func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *request.Req
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListSuites
 func (c *DeviceFarm) ListSuites(input *ListSuitesInput) (*ListSuitesOutput, error) {
 	req, out := c.ListSuitesRequest(input)
 	err := req.Send()
@@ -2902,6 +2935,7 @@ func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *request.Reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListTests
 func (c *DeviceFarm) ListTests(input *ListTestsInput) (*ListTestsOutput, error) {
 	req, out := c.ListTestsRequest(input)
 	err := req.Send()
@@ -3007,6 +3041,7 @@ func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUniqueProblems
 func (c *DeviceFarm) ListUniqueProblems(input *ListUniqueProblemsInput) (*ListUniqueProblemsOutput, error) {
 	req, out := c.ListUniqueProblemsRequest(input)
 	err := req.Send()
@@ -3112,6 +3147,7 @@ func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *request.R
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ListUploads
 func (c *DeviceFarm) ListUploads(input *ListUploadsInput) (*ListUploadsOutput, error) {
 	req, out := c.ListUploadsRequest(input)
 	err := req.Send()
@@ -3220,6 +3256,7 @@ func (c *DeviceFarm) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req 
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/PurchaseOffering
 func (c *DeviceFarm) PurchaseOffering(input *PurchaseOfferingInput) (*PurchaseOfferingOutput, error) {
 	req, out := c.PurchaseOfferingRequest(input)
 	err := req.Send()
@@ -3302,6 +3339,7 @@ func (c *DeviceFarm) RenewOfferingRequest(input *RenewOfferingInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/RenewOffering
 func (c *DeviceFarm) RenewOffering(input *RenewOfferingInput) (*RenewOfferingOutput, error) {
 	req, out := c.RenewOfferingRequest(input)
 	err := req.Send()
@@ -3379,6 +3417,7 @@ func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.R
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ScheduleRun
 func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, error) {
 	req, out := c.ScheduleRunRequest(input)
 	err := req.Send()
@@ -3453,6 +3492,7 @@ func (c *DeviceFarm) StopRemoteAccessSessionRequest(input *StopRemoteAccessSessi
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRemoteAccessSession
 func (c *DeviceFarm) StopRemoteAccessSession(input *StopRemoteAccessSessionInput) (*StopRemoteAccessSessionOutput, error) {
 	req, out := c.StopRemoteAccessSessionRequest(input)
 	err := req.Send()
@@ -3532,6 +3572,7 @@ func (c *DeviceFarm) StopRunRequest(input *StopRunInput) (req *request.Request, 
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/StopRun
 func (c *DeviceFarm) StopRun(input *StopRunInput) (*StopRunOutput, error) {
 	req, out := c.StopRunRequest(input)
 	err := req.Send()
@@ -3608,6 +3649,7 @@ func (c *DeviceFarm) UpdateDevicePoolRequest(input *UpdateDevicePoolInput) (req 
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateDevicePool
 func (c *DeviceFarm) UpdateDevicePool(input *UpdateDevicePoolInput) (*UpdateDevicePoolOutput, error) {
 	req, out := c.UpdateDevicePoolRequest(input)
 	err := req.Send()
@@ -3682,6 +3724,7 @@ func (c *DeviceFarm) UpdateProjectRequest(input *UpdateProjectInput) (req *reque
 //   * ServiceAccountException
 //   There was a problem with the service account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UpdateProject
 func (c *DeviceFarm) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
 	req, out := c.UpdateProjectRequest(input)
 	err := req.Send()
@@ -3689,6 +3732,7 @@ func (c *DeviceFarm) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOut
 }
 
 // A container for account-level settings within AWS Device Farm.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/AccountSettings
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -3732,6 +3776,7 @@ func (s *AccountSettings) SetUnmeteredRemoteAccessDevices(v map[string]*int64) *
 }
 
 // Represents the output of a test. Examples of artifacts include logs and screenshots.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Artifact
 type Artifact struct {
 	_ struct{} `type:"structure"`
 
@@ -3844,6 +3889,7 @@ func (s *Artifact) SetUrl(v string) *Artifact {
 // Represents the amount of CPU that an app is using on a physical device.
 //
 // Note that this does not represent system-wide CPU usage.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CPU
 type CPU struct {
 	_ struct{} `type:"structure"`
 
@@ -3887,6 +3933,7 @@ func (s *CPU) SetFrequency(v string) *CPU {
 }
 
 // Represents entity counters.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Counters
 type Counters struct {
 	_ struct{} `type:"structure"`
 
@@ -4136,6 +4183,7 @@ func (s *CreateProjectOutput) SetProject(v *Project) *CreateProjectOutput {
 
 // Creates the configuration settings for a remote access session, including
 // the device model and type.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/CreateRemoteAccessSessionConfiguration
 type CreateRemoteAccessSessionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4714,6 +4762,7 @@ func (s DeleteUploadOutput) GoString() string {
 }
 
 // Represents a device type that an app is tested against.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Device
 type Device struct {
 	_ struct{} `type:"structure"`
 
@@ -4897,6 +4946,7 @@ func (s *Device) SetResolution(v *Resolution) *Device {
 
 // Represents the total (metered or unmetered) minutes used by the resource
 // to run tests. Contains the sum of minutes consumed by all children.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DeviceMinutes
 type DeviceMinutes struct {
 	_ struct{} `type:"structure"`
 
@@ -4942,6 +4992,7 @@ func (s *DeviceMinutes) SetUnmetered(v float64) *DeviceMinutes {
 }
 
 // Represents a collection of device types.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DevicePool
 type DevicePool struct {
 	_ struct{} `type:"structure"`
 
@@ -5009,6 +5060,7 @@ func (s *DevicePool) SetType(v string) *DevicePool {
 }
 
 // Represents a device pool compatibility result.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/DevicePoolCompatibilityResult
 type DevicePoolCompatibilityResult struct {
 	_ struct{} `type:"structure"`
 
@@ -5923,6 +5975,7 @@ func (s *GetUploadOutput) SetUpload(v *Upload) *GetUploadOutput {
 }
 
 // Represents information about incompatibility.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/IncompatibilityMessage
 type IncompatibilityMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -6055,6 +6108,7 @@ func (s *InstallToRemoteAccessSessionOutput) SetAppUpload(v *Upload) *InstallToR
 }
 
 // Represents a device.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Job
 type Job struct {
 	_ struct{} `type:"structure"`
 
@@ -7553,6 +7607,7 @@ func (s *ListUploadsOutput) SetUploads(v []*Upload) *ListUploadsOutput {
 // system degrees (for example 47.6204, -122.3491).
 //
 // Elevation is currently not supported.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Location
 type Location struct {
 	_ struct{} `type:"structure"`
 
@@ -7606,6 +7661,7 @@ func (s *Location) SetLongitude(v float64) *Location {
 }
 
 // A number representing the monetary amount for an offering or transaction.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/MonetaryAmount
 type MonetaryAmount struct {
 	_ struct{} `type:"structure"`
 
@@ -7639,6 +7695,7 @@ func (s *MonetaryAmount) SetCurrencyCode(v string) *MonetaryAmount {
 }
 
 // Represents the metadata of a device offering.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Offering
 type Offering struct {
 	_ struct{} `type:"structure"`
 
@@ -7699,6 +7756,7 @@ func (s *Offering) SetType(v string) *Offering {
 }
 
 // The status of the offering.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/OfferingStatus
 type OfferingStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -7750,6 +7808,7 @@ func (s *OfferingStatus) SetType(v string) *OfferingStatus {
 }
 
 // Represents the metadata of an offering transaction.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/OfferingTransaction
 type OfferingTransaction struct {
 	_ struct{} `type:"structure"`
 
@@ -7801,6 +7860,7 @@ func (s *OfferingTransaction) SetTransactionId(v string) *OfferingTransaction {
 }
 
 // Represents a specific warning or failure.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Problem
 type Problem struct {
 	_ struct{} `type:"structure"`
 
@@ -7895,6 +7955,7 @@ func (s *Problem) SetTest(v *ProblemDetail) *Problem {
 }
 
 // Information about a problem detail.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ProblemDetail
 type ProblemDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -7929,6 +7990,7 @@ func (s *ProblemDetail) SetName(v string) *ProblemDetail {
 
 // Represents an operating-system neutral workspace for running and managing
 // tests.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Project
 type Project struct {
 	_ struct{} `type:"structure"`
 
@@ -8044,6 +8106,7 @@ func (s *PurchaseOfferingOutput) SetOfferingTransaction(v *OfferingTransaction) 
 
 // Represents the set of radios and their states on a device. Examples of radios
 // include Wi-Fi, GPS, Bluetooth, and NFC.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Radios
 type Radios struct {
 	_ struct{} `type:"structure"`
 
@@ -8095,6 +8158,7 @@ func (s *Radios) SetWifi(v bool) *Radios {
 }
 
 // Specifies whether charges for devices will be recurring.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/RecurringCharge
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
 
@@ -8128,6 +8192,7 @@ func (s *RecurringCharge) SetFrequency(v string) *RecurringCharge {
 }
 
 // Represents information about the remote access session.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/RemoteAccessSession
 type RemoteAccessSession struct {
 	_ struct{} `type:"structure"`
 
@@ -8359,6 +8424,7 @@ func (s *RenewOfferingOutput) SetOfferingTransaction(v *OfferingTransaction) *Re
 
 // Represents the screen resolution of a device in height and width, expressed
 // in pixels.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Resolution
 type Resolution struct {
 	_ struct{} `type:"structure"`
 
@@ -8392,6 +8458,7 @@ func (s *Resolution) SetWidth(v int64) *Resolution {
 }
 
 // Represents a condition for a device pool.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Rule
 type Rule struct {
 	_ struct{} `type:"structure"`
 
@@ -8454,6 +8521,7 @@ func (s *Rule) SetValue(v string) *Rule {
 }
 
 // Represents an app on a set of devices with a specific test and configuration.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Run
 type Run struct {
 	_ struct{} `type:"structure"`
 
@@ -8679,6 +8747,7 @@ func (s *Run) SetType(v string) *Run {
 }
 
 // Represents a sample of performance data.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Sample
 type Sample struct {
 	_ struct{} `type:"structure"`
 
@@ -8764,6 +8833,7 @@ func (s *Sample) SetUrl(v string) *Sample {
 
 // Represents the settings for a run. Includes things like location, radio states,
 // auxiliary apps, and network profiles.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ScheduleRunConfiguration
 type ScheduleRunConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9005,6 +9075,7 @@ func (s *ScheduleRunOutput) SetRun(v *Run) *ScheduleRunOutput {
 }
 
 // Represents additional test settings.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/ScheduleRunTest
 type ScheduleRunTest struct {
 	_ struct{} `type:"structure"`
 
@@ -9245,6 +9316,7 @@ func (s *StopRunOutput) SetRun(v *Run) *StopRunOutput {
 }
 
 // Represents a collection of one or more tests.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Suite
 type Suite struct {
 	_ struct{} `type:"structure"`
 
@@ -9427,6 +9499,7 @@ func (s *Suite) SetType(v string) *Suite {
 }
 
 // Represents a condition that is evaluated.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Test
 type Test struct {
 	_ struct{} `type:"structure"`
 
@@ -9609,6 +9682,7 @@ func (s *Test) SetType(v string) *Test {
 }
 
 // A collection of one or more problems, grouped by their result.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/UniqueProblem
 type UniqueProblem struct {
 	_ struct{} `type:"structure"`
 
@@ -9818,6 +9892,7 @@ func (s *UpdateProjectOutput) SetProject(v *Project) *UpdateProjectOutput {
 }
 
 // An app or a set of one or more tests to upload or that have been uploaded.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/devicefarm-2015-06-23/Upload
 type Upload struct {
 	_ struct{} `type:"structure"`
 

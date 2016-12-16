@@ -87,6 +87,7 @@ func (c *RDS) AddRoleToDBClusterRequest(input *AddRoleToDBClusterInput) (req *re
 //   You have exceeded the maximum number of IAM roles that can be associated
 //   with the specified DB cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddRoleToDBCluster
 func (c *RDS) AddRoleToDBCluster(input *AddRoleToDBClusterInput) (*AddRoleToDBClusterOutput, error) {
 	req, out := c.AddRoleToDBClusterRequest(input)
 	err := req.Send()
@@ -155,6 +156,7 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 //   * SourceNotFound
 //   The requested source could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddSourceIdentifierToSubscription
 func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionInput) (*AddSourceIdentifierToSubscriptionOutput, error) {
 	req, out := c.AddSourceIdentifierToSubscriptionRequest(input)
 	err := req.Send()
@@ -233,6 +235,7 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //   * DBClusterNotFoundFault
 //   DBClusterIdentifier does not refer to an existing DB cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddTagsToResource
 func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
 	req, out := c.AddTagsToResourceRequest(input)
 	err := req.Send()
@@ -299,6 +302,7 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 //   * ResourceNotFoundFault
 //   The specified resource ID was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ApplyPendingMaintenanceAction
 func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
 	err := req.Send()
@@ -386,6 +390,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 //   * AuthorizationQuotaExceeded
 //   DB security group authorization quota has been reached.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AuthorizeDBSecurityGroupIngress
 func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIngressInput) (*AuthorizeDBSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeDBSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -458,6 +463,7 @@ func (c *RDS) CopyDBClusterParameterGroupRequest(input *CopyDBClusterParameterGr
 //   * DBParameterGroupAlreadyExists
 //   A DB parameter group with the same name exists.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CopyDBClusterParameterGroup
 func (c *RDS) CopyDBClusterParameterGroup(input *CopyDBClusterParameterGroupInput) (*CopyDBClusterParameterGroupOutput, error) {
 	req, out := c.CopyDBClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -540,6 +546,7 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 //   * KMSKeyNotAccessibleFault
 //   Error accessing KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CopyDBClusterSnapshot
 func (c *RDS) CopyDBClusterSnapshot(input *CopyDBClusterSnapshotInput) (*CopyDBClusterSnapshotOutput, error) {
 	req, out := c.CopyDBClusterSnapshotRequest(input)
 	err := req.Send()
@@ -612,6 +619,7 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 //   Request would result in user exceeding the allowed number of DB parameter
 //   groups.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CopyDBParameterGroup
 func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (*CopyDBParameterGroupOutput, error) {
 	req, out := c.CopyDBParameterGroupRequest(input)
 	err := req.Send()
@@ -695,6 +703,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 //   * KMSKeyNotAccessibleFault
 //   Error accessing KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CopyDBSnapshot
 func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput, error) {
 	req, out := c.CopyDBSnapshotRequest(input)
 	err := req.Send()
@@ -766,6 +775,7 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *request.
 //   * OptionGroupQuotaExceededFault
 //   The quota of 20 option groups was exceeded for this AWS account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CopyOptionGroup
 func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (*CopyOptionGroupOutput, error) {
 	req, out := c.CopyOptionGroupRequest(input)
 	err := req.Send()
@@ -880,6 +890,7 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //   * DBClusterNotFoundFault
 //   DBClusterIdentifier does not refer to an existing DB cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBCluster
 func (c *RDS) CreateDBCluster(input *CreateDBClusterInput) (*CreateDBClusterOutput, error) {
 	req, out := c.CreateDBClusterRequest(input)
 	err := req.Send()
@@ -976,6 +987,7 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 //   * DBParameterGroupAlreadyExists
 //   A DB parameter group with the same name exists.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBClusterParameterGroup
 func (c *RDS) CreateDBClusterParameterGroup(input *CreateDBClusterParameterGroupInput) (*CreateDBClusterParameterGroupOutput, error) {
 	req, out := c.CreateDBClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -1055,6 +1067,7 @@ func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput
 //   * InvalidDBClusterSnapshotStateFault
 //   The supplied value is not a valid DB cluster snapshot state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBClusterSnapshot
 func (c *RDS) CreateDBClusterSnapshot(input *CreateDBClusterSnapshotInput) (*CreateDBClusterSnapshotOutput, error) {
 	req, out := c.CreateDBClusterSnapshotRequest(input)
 	err := req.Send()
@@ -1180,6 +1193,7 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *reques
 //   * DomainNotFoundFault
 //   Domain does not refer to an existing Active Directory Domain.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstance
 func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceOutput, error) {
 	req, out := c.CreateDBInstanceRequest(input)
 	err := req.Send()
@@ -1311,6 +1325,7 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 //   * KMSKeyNotAccessibleFault
 //   Error accessing KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBInstanceReadReplica
 func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInput) (*CreateDBInstanceReadReplicaOutput, error) {
 	req, out := c.CreateDBInstanceReadReplicaRequest(input)
 	err := req.Send()
@@ -1400,6 +1415,7 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 //   * DBParameterGroupAlreadyExists
 //   A DB parameter group with the same name exists.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBParameterGroup
 func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (*CreateDBParameterGroupOutput, error) {
 	req, out := c.CreateDBParameterGroupRequest(input)
 	err := req.Send()
@@ -1474,6 +1490,7 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 //   * DBSecurityGroupNotSupported
 //   A DB security group is not allowed for this action.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBSecurityGroup
 func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (*CreateDBSecurityGroupOutput, error) {
 	req, out := c.CreateDBSecurityGroupRequest(input)
 	err := req.Send()
@@ -1548,6 +1565,7 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *reques
 //   * SnapshotQuotaExceeded
 //   Request would result in user exceeding the allowed number of DB snapshots.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBSnapshot
 func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (*CreateDBSnapshotOutput, error) {
 	req, out := c.CreateDBSnapshotRequest(input)
 	err := req.Send()
@@ -1629,6 +1647,7 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *
 //   The requested subnet is invalid, or multiple subnets were requested that
 //   are not all in a common VPC.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBSubnetGroup
 func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (*CreateDBSubnetGroupOutput, error) {
 	req, out := c.CreateDBSubnetGroupRequest(input)
 	err := req.Send()
@@ -1729,6 +1748,7 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 //   * SourceNotFound
 //   The requested source could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateEventSubscription
 func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
 	req, out := c.CreateEventSubscriptionRequest(input)
 	err := req.Send()
@@ -1797,6 +1817,7 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *requ
 //   * OptionGroupQuotaExceededFault
 //   The quota of 20 option groups was exceeded for this AWS account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateOptionGroup
 func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (*CreateOptionGroupOutput, error) {
 	req, out := c.CreateOptionGroupRequest(input)
 	err := req.Send()
@@ -1879,6 +1900,7 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 //   * InvalidDBClusterSnapshotStateFault
 //   The supplied value is not a valid DB cluster snapshot state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBCluster
 func (c *RDS) DeleteDBCluster(input *DeleteDBClusterInput) (*DeleteDBClusterOutput, error) {
 	req, out := c.DeleteDBClusterRequest(input)
 	err := req.Send()
@@ -1953,6 +1975,7 @@ func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParamet
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterParameterGroup
 func (c *RDS) DeleteDBClusterParameterGroup(input *DeleteDBClusterParameterGroupInput) (*DeleteDBClusterParameterGroupOutput, error) {
 	req, out := c.DeleteDBClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -2027,6 +2050,7 @@ func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput
 //   * DBClusterSnapshotNotFoundFault
 //   DBClusterSnapshotIdentifier does not refer to an existing DB cluster snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterSnapshot
 func (c *RDS) DeleteDBClusterSnapshot(input *DeleteDBClusterSnapshotInput) (*DeleteDBClusterSnapshotOutput, error) {
 	req, out := c.DeleteDBClusterSnapshotRequest(input)
 	err := req.Send()
@@ -2128,6 +2152,7 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 //   * InvalidDBClusterStateFault
 //   The DB cluster is not in a valid state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBInstance
 func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	err := req.Send()
@@ -2199,6 +2224,7 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBParameterGroup
 func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (*DeleteDBParameterGroupOutput, error) {
 	req, out := c.DeleteDBParameterGroupRequest(input)
 	err := req.Send()
@@ -2271,6 +2297,7 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 //   * DBSecurityGroupNotFound
 //   DBSecurityGroupName does not refer to an existing DB security group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBSecurityGroup
 func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (*DeleteDBSecurityGroupOutput, error) {
 	req, out := c.DeleteDBSecurityGroupRequest(input)
 	err := req.Send()
@@ -2342,6 +2369,7 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *reques
 //   * DBSnapshotNotFound
 //   DBSnapshotIdentifier does not refer to an existing DB snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBSnapshot
 func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (*DeleteDBSnapshotOutput, error) {
 	req, out := c.DeleteDBSnapshotRequest(input)
 	err := req.Send()
@@ -2417,6 +2445,7 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 //   * DBSubnetGroupNotFoundFault
 //   DBSubnetGroupName does not refer to an existing DB subnet group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBSubnetGroup
 func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (*DeleteDBSubnetGroupOutput, error) {
 	req, out := c.DeleteDBSubnetGroupRequest(input)
 	err := req.Send()
@@ -2486,6 +2515,7 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput
 //   This error can occur if someone else is modifying a subscription. You should
 //   retry the action.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteEventSubscription
 func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
 	err := req.Send()
@@ -2556,6 +2586,7 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *requ
 //   * InvalidOptionGroupStateFault
 //   The option group is not in the available state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteOptionGroup
 func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGroupOutput, error) {
 	req, out := c.DeleteOptionGroupRequest(input)
 	err := req.Send()
@@ -2621,6 +2652,7 @@ func (c *RDS) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeAccountAttributes for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeAccountAttributes
 func (c *RDS) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (*DescribeAccountAttributesOutput, error) {
 	req, out := c.DescribeAccountAttributesRequest(input)
 	err := req.Send()
@@ -2686,6 +2718,7 @@ func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req
 //   * CertificateNotFound
 //   CertificateIdentifier does not refer to an existing certificate.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeCertificates
 func (c *RDS) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeCertificatesOutput, error) {
 	req, out := c.DescribeCertificatesRequest(input)
 	err := req.Send()
@@ -2756,6 +2789,7 @@ func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterPa
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterParameterGroups
 func (c *RDS) DescribeDBClusterParameterGroups(input *DescribeDBClusterParameterGroupsInput) (*DescribeDBClusterParameterGroupsOutput, error) {
 	req, out := c.DescribeDBClusterParameterGroupsRequest(input)
 	err := req.Send()
@@ -2825,6 +2859,7 @@ func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParamet
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterParameters
 func (c *RDS) DescribeDBClusterParameters(input *DescribeDBClusterParametersInput) (*DescribeDBClusterParametersOutput, error) {
 	req, out := c.DescribeDBClusterParametersRequest(input)
 	err := req.Send()
@@ -2901,6 +2936,7 @@ func (c *RDS) DescribeDBClusterSnapshotAttributesRequest(input *DescribeDBCluste
 //   * DBClusterSnapshotNotFoundFault
 //   DBClusterSnapshotIdentifier does not refer to an existing DB cluster snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterSnapshotAttributes
 func (c *RDS) DescribeDBClusterSnapshotAttributes(input *DescribeDBClusterSnapshotAttributesInput) (*DescribeDBClusterSnapshotAttributesOutput, error) {
 	req, out := c.DescribeDBClusterSnapshotAttributesRequest(input)
 	err := req.Send()
@@ -2970,6 +3006,7 @@ func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshot
 //   * DBClusterSnapshotNotFoundFault
 //   DBClusterSnapshotIdentifier does not refer to an existing DB cluster snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusterSnapshots
 func (c *RDS) DescribeDBClusterSnapshots(input *DescribeDBClusterSnapshotsInput) (*DescribeDBClusterSnapshotsOutput, error) {
 	req, out := c.DescribeDBClusterSnapshotsRequest(input)
 	err := req.Send()
@@ -3039,6 +3076,7 @@ func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *re
 //   * DBClusterNotFoundFault
 //   DBClusterIdentifier does not refer to an existing DB cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBClusters
 func (c *RDS) DescribeDBClusters(input *DescribeDBClustersInput) (*DescribeDBClustersOutput, error) {
 	req, out := c.DescribeDBClustersRequest(input)
 	err := req.Send()
@@ -3105,6 +3143,7 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeDBEngineVersions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBEngineVersions
 func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*DescribeDBEngineVersionsOutput, error) {
 	req, out := c.DescribeDBEngineVersionsRequest(input)
 	err := req.Send()
@@ -3201,6 +3240,7 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 //   * DBInstanceNotFound
 //   DBInstanceIdentifier does not refer to an existing DB instance.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBInstances
 func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBInstancesOutput, error) {
 	req, out := c.DescribeDBInstancesRequest(input)
 	err := req.Send()
@@ -3297,6 +3337,7 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *re
 //   * DBInstanceNotFound
 //   DBInstanceIdentifier does not refer to an existing DB instance.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBLogFiles
 func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLogFilesOutput, error) {
 	req, out := c.DescribeDBLogFilesRequest(input)
 	err := req.Send()
@@ -3395,6 +3436,7 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBParameterGroups
 func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (*DescribeDBParameterGroupsOutput, error) {
 	req, out := c.DescribeDBParameterGroupsRequest(input)
 	err := req.Send()
@@ -3491,6 +3533,7 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBParameters
 func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeDBParametersOutput, error) {
 	req, out := c.DescribeDBParametersRequest(input)
 	err := req.Send()
@@ -3589,6 +3632,7 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 //   * DBSecurityGroupNotFound
 //   DBSecurityGroupName does not refer to an existing DB security group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBSecurityGroups
 func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*DescribeDBSecurityGroupsOutput, error) {
 	req, out := c.DescribeDBSecurityGroupsRequest(input)
 	err := req.Send()
@@ -3690,6 +3734,7 @@ func (c *RDS) DescribeDBSnapshotAttributesRequest(input *DescribeDBSnapshotAttri
 //   * DBSnapshotNotFound
 //   DBSnapshotIdentifier does not refer to an existing DB snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBSnapshotAttributes
 func (c *RDS) DescribeDBSnapshotAttributes(input *DescribeDBSnapshotAttributesInput) (*DescribeDBSnapshotAttributesOutput, error) {
 	req, out := c.DescribeDBSnapshotAttributesRequest(input)
 	err := req.Send()
@@ -3761,6 +3806,7 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 //   * DBSnapshotNotFound
 //   DBSnapshotIdentifier does not refer to an existing DB snapshot.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBSnapshots
 func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBSnapshotsOutput, error) {
 	req, out := c.DescribeDBSnapshotsRequest(input)
 	err := req.Send()
@@ -3860,6 +3906,7 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 //   * DBSubnetGroupNotFoundFault
 //   DBSubnetGroupName does not refer to an existing DB subnet group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBSubnetGroups
 func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*DescribeDBSubnetGroupsOutput, error) {
 	req, out := c.DescribeDBSubnetGroupsRequest(input)
 	err := req.Send()
@@ -3949,6 +3996,7 @@ func (c *RDS) DescribeEngineDefaultClusterParametersRequest(input *DescribeEngin
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeEngineDefaultClusterParameters for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeEngineDefaultClusterParameters
 func (c *RDS) DescribeEngineDefaultClusterParameters(input *DescribeEngineDefaultClusterParametersInput) (*DescribeEngineDefaultClusterParametersOutput, error) {
 	req, out := c.DescribeEngineDefaultClusterParametersRequest(input)
 	err := req.Send()
@@ -4016,6 +4064,7 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeEngineDefaultParameters for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeEngineDefaultParameters
 func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParametersInput) (*DescribeEngineDefaultParametersOutput, error) {
 	req, out := c.DescribeEngineDefaultParametersRequest(input)
 	err := req.Send()
@@ -4104,6 +4153,7 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeEventCategories for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeEventCategories
 func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (*DescribeEventCategoriesOutput, error) {
 	req, out := c.DescribeEventCategoriesRequest(input)
 	err := req.Send()
@@ -4179,6 +4229,7 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 //   * SubscriptionNotFound
 //   The subscription name does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeEventSubscriptions
 func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
 	req, out := c.DescribeEventSubscriptionsRequest(input)
 	err := req.Send()
@@ -4274,6 +4325,7 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Re
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeEvents for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeEvents
 func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -4365,6 +4417,7 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeOptionGroupOptions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeOptionGroupOptions
 func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput) (*DescribeOptionGroupOptionsOutput, error) {
 	req, out := c.DescribeOptionGroupOptionsRequest(input)
 	err := req.Send()
@@ -4461,6 +4514,7 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 //   * OptionGroupNotFoundFault
 //   The specified option group could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeOptionGroups
 func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeOptionGroupsOutput, error) {
 	req, out := c.DescribeOptionGroupsRequest(input)
 	err := req.Send()
@@ -4552,6 +4606,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeOrderableDBInstanceOptions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeOrderableDBInstanceOptions
 func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInstanceOptionsInput) (*DescribeOrderableDBInstanceOptionsOutput, error) {
 	req, out := c.DescribeOrderableDBInstanceOptionsRequest(input)
 	err := req.Send()
@@ -4643,6 +4698,7 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 //   * ResourceNotFoundFault
 //   The specified resource ID was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribePendingMaintenanceActions
 func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanceActionsInput) (*DescribePendingMaintenanceActionsOutput, error) {
 	req, out := c.DescribePendingMaintenanceActionsRequest(input)
 	err := req.Send()
@@ -4715,6 +4771,7 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 //   * ReservedDBInstanceNotFound
 //   The specified reserved DB Instance not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeReservedDBInstances
 func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInput) (*DescribeReservedDBInstancesOutput, error) {
 	req, out := c.DescribeReservedDBInstancesRequest(input)
 	err := req.Send()
@@ -4811,6 +4868,7 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 //   * ReservedDBInstancesOfferingNotFound
 //   Specified offering does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeReservedDBInstancesOfferings
 func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInstancesOfferingsInput) (*DescribeReservedDBInstancesOfferingsOutput, error) {
 	req, out := c.DescribeReservedDBInstancesOfferingsRequest(input)
 	err := req.Send()
@@ -4898,6 +4956,7 @@ func (c *RDS) DescribeSourceRegionsRequest(input *DescribeSourceRegionsInput) (r
 //
 // See the AWS API reference guide for Amazon Relational Database Service's
 // API operation DescribeSourceRegions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeSourceRegions
 func (c *RDS) DescribeSourceRegions(input *DescribeSourceRegionsInput) (*DescribeSourceRegionsOutput, error) {
 	req, out := c.DescribeSourceRegionsRequest(input)
 	err := req.Send()
@@ -4972,6 +5031,7 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 //   * DBLogFileNotFoundFault
 //   LogFileName does not refer to an existing DB log file.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DownloadDBLogFilePortion
 func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*DownloadDBLogFilePortionOutput, error) {
 	req, out := c.DownloadDBLogFilePortionRequest(input)
 	err := req.Send()
@@ -5081,6 +5141,7 @@ func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *requ
 //   * InvalidDBInstanceState
 //   The specified DB instance is not in the available state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/FailoverDBCluster
 func (c *RDS) FailoverDBCluster(input *FailoverDBClusterInput) (*FailoverDBClusterOutput, error) {
 	req, out := c.FailoverDBClusterRequest(input)
 	err := req.Send()
@@ -5155,6 +5216,7 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //   * DBClusterNotFoundFault
 //   DBClusterIdentifier does not refer to an existing DB cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ListTagsForResource
 func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
 	err := req.Send()
@@ -5258,6 +5320,7 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 //   * DBClusterAlreadyExistsFault
 //   User already has a DB cluster with the given identifier.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBCluster
 func (c *RDS) ModifyDBCluster(input *ModifyDBClusterInput) (*ModifyDBClusterOutput, error) {
 	req, out := c.ModifyDBClusterRequest(input)
 	err := req.Send()
@@ -5346,6 +5409,7 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 //   * InvalidDBParameterGroupState
 //   The DB parameter group cannot be deleted because it is in use.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBClusterParameterGroup
 func (c *RDS) ModifyDBClusterParameterGroup(input *ModifyDBClusterParameterGroupInput) (*DBClusterParameterGroupNameMessage, error) {
 	req, out := c.ModifyDBClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -5433,6 +5497,7 @@ func (c *RDS) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSnap
 //   You have exceeded the maximum number of accounts that you can share a manual
 //   DB snapshot with.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBClusterSnapshotAttribute
 func (c *RDS) ModifyDBClusterSnapshotAttribute(input *ModifyDBClusterSnapshotAttributeInput) (*ModifyDBClusterSnapshotAttributeOutput, error) {
 	req, out := c.ModifyDBClusterSnapshotAttributeRequest(input)
 	err := req.Send()
@@ -5552,6 +5617,7 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *reques
 //   * DomainNotFoundFault
 //   Domain does not refer to an existing Active Directory Domain.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBInstance
 func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceOutput, error) {
 	req, out := c.ModifyDBInstanceRequest(input)
 	err := req.Send()
@@ -5637,6 +5703,7 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 //   * InvalidDBParameterGroupState
 //   The DB parameter group cannot be deleted because it is in use.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBParameterGroup
 func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBParameterGroupNameMessage, error) {
 	req, out := c.ModifyDBParameterGroupRequest(input)
 	err := req.Send()
@@ -5724,6 +5791,7 @@ func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeI
 //   You have exceeded the maximum number of accounts that you can share a manual
 //   DB snapshot with.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBSnapshotAttribute
 func (c *RDS) ModifyDBSnapshotAttribute(input *ModifyDBSnapshotAttributeInput) (*ModifyDBSnapshotAttributeOutput, error) {
 	req, out := c.ModifyDBSnapshotAttributeRequest(input)
 	err := req.Send()
@@ -5805,6 +5873,7 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *
 //   The requested subnet is invalid, or multiple subnets were requested that
 //   are not all in a common VPC.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBSubnetGroup
 func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (*ModifyDBSubnetGroupOutput, error) {
 	req, out := c.ModifyDBSubnetGroupRequest(input)
 	err := req.Send()
@@ -5893,6 +5962,7 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 //   * SubscriptionCategoryNotFound
 //   The supplied category does not exist.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyEventSubscription
 func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
 	req, out := c.ModifyEventSubscriptionRequest(input)
 	err := req.Send()
@@ -5961,6 +6031,7 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *requ
 //   * OptionGroupNotFoundFault
 //   The specified option group could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyOptionGroup
 func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (*ModifyOptionGroupOutput, error) {
 	req, out := c.ModifyOptionGroupRequest(input)
 	err := req.Send()
@@ -6034,6 +6105,7 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *re
 //   * DBInstanceNotFound
 //   DBInstanceIdentifier does not refer to an existing DB instance.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/PromoteReadReplica
 func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (*PromoteReadReplicaOutput, error) {
 	req, out := c.PromoteReadReplicaRequest(input)
 	err := req.Send()
@@ -6102,6 +6174,7 @@ func (c *RDS) PromoteReadReplicaDBClusterRequest(input *PromoteReadReplicaDBClus
 //   * InvalidDBClusterStateFault
 //   The DB cluster is not in a valid state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/PromoteReadReplicaDBCluster
 func (c *RDS) PromoteReadReplicaDBCluster(input *PromoteReadReplicaDBClusterInput) (*PromoteReadReplicaDBClusterOutput, error) {
 	req, out := c.PromoteReadReplicaDBClusterRequest(input)
 	err := req.Send()
@@ -6173,6 +6246,7 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 //   * ReservedDBInstanceQuotaExceeded
 //   Request would exceed the user's DB Instance quota.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/PurchaseReservedDBInstancesOffering
 func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInstancesOfferingInput) (*PurchaseReservedDBInstancesOfferingOutput, error) {
 	req, out := c.PurchaseReservedDBInstancesOfferingRequest(input)
 	err := req.Send()
@@ -6257,6 +6331,7 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *reques
 //   * DBInstanceNotFound
 //   DBInstanceIdentifier does not refer to an existing DB instance.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RebootDBInstance
 func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanceOutput, error) {
 	req, out := c.RebootDBInstanceRequest(input)
 	err := req.Send()
@@ -6333,6 +6408,7 @@ func (c *RDS) RemoveRoleFromDBClusterRequest(input *RemoveRoleFromDBClusterInput
 //   * InvalidDBClusterStateFault
 //   The DB cluster is not in a valid state.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveRoleFromDBCluster
 func (c *RDS) RemoveRoleFromDBCluster(input *RemoveRoleFromDBClusterInput) (*RemoveRoleFromDBClusterOutput, error) {
 	req, out := c.RemoveRoleFromDBClusterRequest(input)
 	err := req.Send()
@@ -6401,6 +6477,7 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 //   * SourceNotFound
 //   The requested source could not be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveSourceIdentifierFromSubscription
 func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionInput) (*RemoveSourceIdentifierFromSubscriptionOutput, error) {
 	req, out := c.RemoveSourceIdentifierFromSubscriptionRequest(input)
 	err := req.Send()
@@ -6477,6 +6554,7 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 //   * DBClusterNotFoundFault
 //   DBClusterIdentifier does not refer to an existing DB cluster.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveTagsFromResource
 func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
 	req, out := c.RemoveTagsFromResourceRequest(input)
 	err := req.Send()
@@ -6557,6 +6635,7 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ResetDBClusterParameterGroup
 func (c *RDS) ResetDBClusterParameterGroup(input *ResetDBClusterParameterGroupInput) (*DBClusterParameterGroupNameMessage, error) {
 	req, out := c.ResetDBClusterParameterGroupRequest(input)
 	err := req.Send()
@@ -6631,6 +6710,7 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (r
 //   * DBParameterGroupNotFound
 //   DBParameterGroupName does not refer to an existing DB parameter group.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ResetDBParameterGroup
 func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (*DBParameterGroupNameMessage, error) {
 	req, out := c.ResetDBParameterGroupRequest(input)
 	err := req.Send()
@@ -6744,6 +6824,7 @@ func (c *RDS) RestoreDBClusterFromS3Request(input *RestoreDBClusterFromS3Input) 
 //   able to resolve this error by updating your subnet group to use different
 //   Availability Zones that have more storage available.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBClusterFromS3
 func (c *RDS) RestoreDBClusterFromS3(input *RestoreDBClusterFromS3Input) (*RestoreDBClusterFromS3Output, error) {
 	req, out := c.RestoreDBClusterFromS3Request(input)
 	err := req.Send()
@@ -6870,6 +6951,7 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 //   * KMSKeyNotAccessibleFault
 //   Error accessing KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBClusterFromSnapshot
 func (c *RDS) RestoreDBClusterFromSnapshot(input *RestoreDBClusterFromSnapshotInput) (*RestoreDBClusterFromSnapshotOutput, error) {
 	req, out := c.RestoreDBClusterFromSnapshotRequest(input)
 	err := req.Send()
@@ -6997,6 +7079,7 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 //   * KMSKeyNotAccessibleFault
 //   Error accessing KMS key.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBClusterToPointInTime
 func (c *RDS) RestoreDBClusterToPointInTime(input *RestoreDBClusterToPointInTimeInput) (*RestoreDBClusterToPointInTimeOutput, error) {
 	req, out := c.RestoreDBClusterToPointInTimeRequest(input)
 	err := req.Send()
@@ -7140,6 +7223,7 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 //   * DomainNotFoundFault
 //   Domain does not refer to an existing Active Directory Domain.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceFromDBSnapshot
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
 	err := req.Send()
@@ -7280,6 +7364,7 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 //   * DomainNotFoundFault
 //   Domain does not refer to an existing Active Directory Domain.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RestoreDBInstanceToPointInTime
 func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, error) {
 	req, out := c.RestoreDBInstanceToPointInTimeRequest(input)
 	err := req.Send()
@@ -7358,6 +7443,7 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 //   * InvalidDBSecurityGroupState
 //   The state of the DB security group does not allow deletion.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RevokeDBSecurityGroupIngress
 func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressInput) (*RevokeDBSecurityGroupIngressOutput, error) {
 	req, out := c.RevokeDBSecurityGroupIngressRequest(input)
 	err := req.Send()
@@ -7366,6 +7452,7 @@ func (c *RDS) RevokeDBSecurityGroupIngress(input *RevokeDBSecurityGroupIngressIn
 
 // Describes a quota for an AWS account, for example, the number of DB instances
 // allowed.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AccountQuota
 type AccountQuota struct {
 	_ struct{} `type:"structure"`
 
@@ -7461,6 +7548,7 @@ func (s *AddRoleToDBClusterInput) SetRoleArn(v string) *AddRoleToDBClusterInput 
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddRoleToDBClusterOutput
 type AddRoleToDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7625,6 +7713,7 @@ func (s *AddTagsToResourceInput) SetTags(v []*Tag) *AddTagsToResourceInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AddTagsToResourceOutput
 type AddTagsToResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7867,6 +7956,7 @@ func (s *AuthorizeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurity
 // This data type is used as an element in the following data type:
 //
 //    * OrderableDBInstanceOption
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/AvailabilityZone
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -7891,6 +7981,7 @@ func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 }
 
 // A CA certificate for an AWS account.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Certificate
 type Certificate struct {
 	_ struct{} `type:"structure"`
 
@@ -7960,6 +8051,7 @@ func (s *Certificate) SetValidTill(v time.Time) *Certificate {
 }
 
 // This data type is used as a response element in the action DescribeDBEngineVersions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CharacterSet
 type CharacterSet struct {
 	_ struct{} `type:"structure"`
 
@@ -11268,6 +11360,7 @@ func (s *CreateOptionGroupOutput) SetOptionGroup(v *OptionGroup) *CreateOptionGr
 //    * RestoreDBClusterToPointInTime
 //
 // This data type is used as a response element in the DescribeDBClusters action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBCluster
 type DBCluster struct {
 	_ struct{} `type:"structure"`
 
@@ -11609,6 +11702,7 @@ func (s *DBCluster) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBClu
 }
 
 // Contains information about an instance that is part of a DB cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterMember
 type DBClusterMember struct {
 	_ struct{} `type:"structure"`
 
@@ -11664,6 +11758,7 @@ func (s *DBClusterMember) SetPromotionTier(v int64) *DBClusterMember {
 }
 
 // Contains status information for a DB cluster option group.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterOptionGroupStatus
 type DBClusterOptionGroupStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -11702,6 +11797,7 @@ func (s *DBClusterOptionGroupStatus) SetStatus(v string) *DBClusterOptionGroupSt
 // This data type is used as a request parameter in the DeleteDBClusterParameterGroup
 // action, and as a response element in the DescribeDBClusterParameterGroups
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterParameterGroup
 type DBClusterParameterGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -11754,6 +11850,7 @@ func (s *DBClusterParameterGroup) SetDescription(v string) *DBClusterParameterGr
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterParameterGroupNameMessage
 type DBClusterParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -11789,6 +11886,7 @@ func (s *DBClusterParameterGroupNameMessage) SetDBClusterParameterGroupName(v st
 
 // Describes an AWS Identity and Access Management (IAM) role that is associated
 // with a DB cluster.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterRole
 type DBClusterRole struct {
 	_ struct{} `type:"structure"`
 
@@ -11840,6 +11938,7 @@ func (s *DBClusterRole) SetStatus(v string) *DBClusterRole {
 //
 // This data type is used as a response element in the DescribeDBClusterSnapshots
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterSnapshot
 type DBClusterSnapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -12027,6 +12126,7 @@ func (s *DBClusterSnapshot) SetVpcId(v string) *DBClusterSnapshot {
 // Manual DB cluster snapshot attributes are used to authorize other AWS accounts
 // to restore a manual DB cluster snapshot. For more information, see the ModifyDBClusterSnapshotAttribute
 // API action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterSnapshotAttribute
 type DBClusterSnapshotAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -12075,6 +12175,7 @@ func (s *DBClusterSnapshotAttribute) SetAttributeValues(v []*string) *DBClusterS
 // Manual DB cluster snapshot attributes are used to authorize other AWS accounts
 // to copy or restore a manual DB cluster snapshot. For more information, see
 // the ModifyDBClusterSnapshotAttribute API action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBClusterSnapshotAttributesResult
 type DBClusterSnapshotAttributesResult struct {
 	_ struct{} `type:"structure"`
 
@@ -12109,6 +12210,7 @@ func (s *DBClusterSnapshotAttributesResult) SetDBClusterSnapshotIdentifier(v str
 }
 
 // This data type is used as a response element in the action DescribeDBEngineVersions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBEngineVersion
 type DBEngineVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -12217,6 +12319,7 @@ func (s *DBEngineVersion) SetValidUpgradeTarget(v []*UpgradeTarget) *DBEngineVer
 //    * ModifyDBInstance
 //
 // This data type is used as a response element in the DescribeDBInstances action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBInstance
 type DBInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -12713,6 +12816,7 @@ func (s *DBInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBIn
 }
 
 // Provides a list of status information for a DB instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBInstanceStatusInfo
 type DBInstanceStatusInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -12771,6 +12875,7 @@ func (s *DBInstanceStatusInfo) SetStatusType(v string) *DBInstanceStatusInfo {
 //
 // This data type is used as a request parameter in the DeleteDBParameterGroup
 // action, and as a response element in the DescribeDBParameterGroups action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBParameterGroup
 type DBParameterGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -12824,6 +12929,7 @@ func (s *DBParameterGroup) SetDescription(v string) *DBParameterGroup {
 
 // Contains the result of a successful invocation of the ModifyDBParameterGroup
 // or ResetDBParameterGroup action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBParameterGroupNameMessage
 type DBParameterGroupNameMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -12862,6 +12968,7 @@ func (s *DBParameterGroupNameMessage) SetDBParameterGroupName(v string) *DBParam
 //    * RebootDBInstance
 //
 //    * RestoreDBInstanceFromDBSnapshot
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBParameterGroupStatus
 type DBParameterGroupStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -12906,6 +13013,7 @@ func (s *DBParameterGroupStatus) SetParameterApplyStatus(v string) *DBParameterG
 //
 // This data type is used as a response element in the DescribeDBSecurityGroups
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBSecurityGroup
 type DBSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -12992,6 +13100,7 @@ func (s *DBSecurityGroup) SetVpcId(v string) *DBSecurityGroup {
 //    * RestoreDBInstanceFromDBSnapshot
 //
 //    * RestoreDBInstanceToPointInTime
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBSecurityGroupMembership
 type DBSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -13031,6 +13140,7 @@ func (s *DBSecurityGroupMembership) SetStatus(v string) *DBSecurityGroupMembersh
 //    * DeleteDBSnapshot
 //
 // This data type is used as a response element in the DescribeDBSnapshots action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBSnapshot
 type DBSnapshot struct {
 	_ struct{} `type:"structure"`
 
@@ -13284,6 +13394,7 @@ func (s *DBSnapshot) SetVpcId(v string) *DBSnapshot {
 // Manual DB snapshot attributes are used to authorize other AWS accounts to
 // restore a manual DB snapshot. For more information, see the ModifyDBSnapshotAttribute
 // API.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBSnapshotAttribute
 type DBSnapshotAttribute struct {
 	_ struct{} `type:"structure"`
 
@@ -13331,6 +13442,7 @@ func (s *DBSnapshotAttribute) SetAttributeValues(v []*string) *DBSnapshotAttribu
 // Manual DB snapshot attributes are used to authorize other AWS accounts to
 // copy or restore a manual DB snapshot. For more information, see the ModifyDBSnapshotAttribute
 // API action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBSnapshotAttributesResult
 type DBSnapshotAttributesResult struct {
 	_ struct{} `type:"structure"`
 
@@ -13375,6 +13487,7 @@ func (s *DBSnapshotAttributesResult) SetDBSnapshotIdentifier(v string) *DBSnapsh
 //
 // This data type is used as a response element in the DescribeDBSubnetGroups
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DBSubnetGroup
 type DBSubnetGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -13613,6 +13726,7 @@ func (s *DeleteDBClusterParameterGroupInput) SetDBClusterParameterGroupName(v st
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBClusterParameterGroupOutput
 type DeleteDBClusterParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13872,6 +13986,7 @@ func (s *DeleteDBParameterGroupInput) SetDBParameterGroupName(v string) *DeleteD
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBParameterGroupOutput
 type DeleteDBParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13937,6 +14052,7 @@ func (s *DeleteDBSecurityGroupInput) SetDBSecurityGroupName(v string) *DeleteDBS
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBSecurityGroupOutput
 type DeleteDBSecurityGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14071,6 +14187,7 @@ func (s *DeleteDBSubnetGroupInput) SetDBSubnetGroupName(v string) *DeleteDBSubne
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBSubnetGroupOutput
 type DeleteDBSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14190,6 +14307,7 @@ func (s *DeleteOptionGroupInput) SetOptionGroupName(v string) *DeleteOptionGroup
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteOptionGroupOutput
 type DeleteOptionGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -15346,6 +15464,7 @@ func (s *DescribeDBInstancesOutput) SetMarker(v string) *DescribeDBInstancesOutp
 }
 
 // This data type is used as a response element to DescribeDBLogFiles.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBLogFilesDetails
 type DescribeDBLogFilesDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -17947,6 +18066,7 @@ func (s *DescribeSourceRegionsOutput) SetSourceRegions(v []*SourceRegion) *Descr
 }
 
 // An Active Directory Domain membership record associated with the DB instance.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DomainMembership
 type DomainMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -18153,6 +18273,7 @@ func (s *DownloadDBLogFilePortionOutput) SetMarker(v string) *DownloadDBLogFileP
 //    * DescribeDBSecurityGroups
 //
 //    * RevokeDBSecurityGroupIngress
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/EC2SecurityGroup
 type EC2SecurityGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -18212,6 +18333,7 @@ func (s *EC2SecurityGroup) SetStatus(v string) *EC2SecurityGroup {
 //    * DescribeDBInstances
 //
 //    * DeleteDBInstance
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Endpoint
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -18255,6 +18377,7 @@ func (s *Endpoint) SetPort(v int64) *Endpoint {
 
 // Contains the result of a successful invocation of the DescribeEngineDefaultParameters
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/EngineDefaults
 type EngineDefaults struct {
 	_ struct{} `type:"structure"`
 
@@ -18300,6 +18423,7 @@ func (s *EngineDefaults) SetParameters(v []*Parameter) *EngineDefaults {
 }
 
 // This data type is used as a response element in the DescribeEvents action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Event
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -18370,6 +18494,7 @@ func (s *Event) SetSourceType(v string) *Event {
 
 // Contains the results of a successful invocation of the DescribeEventCategories
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/EventCategoriesMap
 type EventCategoriesMap struct {
 	_ struct{} `type:"structure"`
 
@@ -18404,6 +18529,7 @@ func (s *EventCategoriesMap) SetSourceType(v string) *EventCategoriesMap {
 
 // Contains the results of a successful invocation of the DescribeEventSubscriptions
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/EventSubscription
 type EventSubscription struct {
 	_ struct{} `type:"structure"`
 
@@ -18601,6 +18727,7 @@ func (s *FailoverDBClusterOutput) SetDBCluster(v *DBCluster) *FailoverDBClusterO
 }
 
 // This type is not currently supported.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Filter
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -18655,6 +18782,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 
 // This data type is used as a response element in the DescribeDBSecurityGroups
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/IPRange
 type IPRange struct {
 	_ struct{} `type:"structure"`
 
@@ -20432,6 +20560,7 @@ func (s *ModifyOptionGroupOutput) SetOptionGroup(v *OptionGroup) *ModifyOptionGr
 }
 
 // Option details.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Option
 type Option struct {
 	_ struct{} `type:"structure"`
 
@@ -20530,6 +20659,7 @@ func (s *Option) SetVpcSecurityGroupMemberships(v []*VpcSecurityGroupMembership)
 }
 
 // A list of all available options
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionConfiguration
 type OptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -20613,6 +20743,7 @@ func (s *OptionConfiguration) SetVpcSecurityGroupMemberships(v []*string) *Optio
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionGroup
 type OptionGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -20706,6 +20837,7 @@ func (s *OptionGroup) SetVpcId(v string) *OptionGroup {
 }
 
 // Provides information on the option groups the DB instance is a member of.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionGroupMembership
 type OptionGroupMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -20741,6 +20873,7 @@ func (s *OptionGroupMembership) SetStatus(v string) *OptionGroupMembership {
 }
 
 // Available option.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionGroupOption
 type OptionGroupOption struct {
 	_ struct{} `type:"structure"`
 
@@ -20880,6 +21013,7 @@ func (s *OptionGroupOption) SetPortRequired(v bool) *OptionGroupOption {
 // Option group option settings are used to display settings available for each
 // option with their default values and other information. These values are
 // used with the DescribeOptionGroupOptions action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionGroupOptionSetting
 type OptionGroupOptionSetting struct {
 	_ struct{} `type:"structure"`
 
@@ -20953,6 +21087,7 @@ func (s *OptionGroupOptionSetting) SetSettingName(v string) *OptionGroupOptionSe
 // option. It is used when you modify an option group or describe option groups.
 // For example, the NATIVE_NETWORK_ENCRYPTION option has a setting called SQLNET.ENCRYPTION_SERVER
 // that can have several different values.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionSetting
 type OptionSetting struct {
 	_ struct{} `type:"structure"`
 
@@ -21051,6 +21186,7 @@ func (s *OptionSetting) SetValue(v string) *OptionSetting {
 
 // The version for an option. Option group option versions are returned by the
 // DescribeOptionGroupOptions action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OptionVersion
 type OptionVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -21087,6 +21223,7 @@ func (s *OptionVersion) SetVersion(v string) *OptionVersion {
 //
 // This data type is used as a response element in the DescribeOrderableDBInstanceOptions
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/OrderableDBInstanceOption
 type OrderableDBInstanceOption struct {
 	_ struct{} `type:"structure"`
 
@@ -21215,6 +21352,7 @@ func (s *OrderableDBInstanceOption) SetVpc(v bool) *OrderableDBInstanceOption {
 //
 // This data type is used as a response element in the DescribeEngineDefaultParameters
 // and DescribeDBParameters actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Parameter
 type Parameter struct {
 	_ struct{} `type:"structure"`
 
@@ -21322,6 +21460,7 @@ func (s *Parameter) SetSource(v string) *Parameter {
 }
 
 // Provides information about a pending maintenance action for a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/PendingMaintenanceAction
 type PendingMaintenanceAction struct {
 	_ struct{} `type:"structure"`
 
@@ -21401,6 +21540,7 @@ func (s *PendingMaintenanceAction) SetOptInStatus(v string) *PendingMaintenanceA
 }
 
 // This data type is used as a response element in the ModifyDBInstance action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/PendingModifiedValues
 type PendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
@@ -21942,6 +22082,7 @@ func (s *RebootDBInstanceOutput) SetDBInstance(v *DBInstance) *RebootDBInstanceO
 
 // This data type is used as a response element in the DescribeReservedDBInstances
 // and DescribeReservedDBInstancesOfferings actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RecurringCharge
 type RecurringCharge struct {
 	_ struct{} `type:"structure"`
 
@@ -22028,6 +22169,7 @@ func (s *RemoveRoleFromDBClusterInput) SetRoleArn(v string) *RemoveRoleFromDBClu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveRoleFromDBClusterOutput
 type RemoveRoleFromDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22177,6 +22319,7 @@ func (s *RemoveTagsFromResourceInput) SetTagKeys(v []*string) *RemoveTagsFromRes
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RemoveTagsFromResourceOutput
 type RemoveTagsFromResourceOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -22193,6 +22336,7 @@ func (s RemoveTagsFromResourceOutput) GoString() string {
 
 // This data type is used as a response element in the DescribeReservedDBInstances
 // and PurchaseReservedDBInstancesOffering actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ReservedDBInstance
 type ReservedDBInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -22344,6 +22488,7 @@ func (s *ReservedDBInstance) SetUsagePrice(v float64) *ReservedDBInstance {
 
 // This data type is used as a response element in the DescribeReservedDBInstancesOfferings
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ReservedDBInstancesOffering
 type ReservedDBInstancesOffering struct {
 	_ struct{} `type:"structure"`
 
@@ -22601,6 +22746,7 @@ func (s *ResetDBParameterGroupInput) SetResetAllParameters(v bool) *ResetDBParam
 }
 
 // Describes the pending maintenance actions for a resource.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ResourcePendingMaintenanceActions
 type ResourcePendingMaintenanceActions struct {
 	_ struct{} `type:"structure"`
 
@@ -24387,6 +24533,7 @@ func (s *RevokeDBSecurityGroupIngressOutput) SetDBSecurityGroup(v *DBSecurityGro
 
 // Contains an AWS Region name as the result of a successful call to the DescribeSourceRegions
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/SourceRegion
 type SourceRegion struct {
 	_ struct{} `type:"structure"`
 
@@ -24430,6 +24577,7 @@ func (s *SourceRegion) SetStatus(v string) *SourceRegion {
 
 // This data type is used as a response element in the DescribeDBSubnetGroups
 // action.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Subnet
 type Subnet struct {
 	_ struct{} `type:"structure"`
 
@@ -24476,6 +24624,7 @@ func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 }
 
 // Metadata assigned to an Amazon RDS resource consisting of a key-value pair.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -24517,6 +24666,7 @@ func (s *Tag) SetValue(v string) *Tag {
 // A time zone associated with a DBInstance or a DBSnapshot. This data type
 // is an element in the response to the DescribeDBInstances, the DescribeDBSnapshots,
 // and the DescribeDBEngineVersions actions.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/Timezone
 type Timezone struct {
 	_ struct{} `type:"structure"`
 
@@ -24541,6 +24691,7 @@ func (s *Timezone) SetTimezoneName(v string) *Timezone {
 }
 
 // The version of the database engine that a DB instance can be upgraded to.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/UpgradeTarget
 type UpgradeTarget struct {
 	_ struct{} `type:"structure"`
 
@@ -24604,6 +24755,7 @@ func (s *UpgradeTarget) SetIsMajorVersionUpgrade(v bool) *UpgradeTarget {
 
 // This data type is used as a response element for queries on VPC security
 // group membership.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/VpcSecurityGroupMembership
 type VpcSecurityGroupMembership struct {
 	_ struct{} `type:"structure"`
 

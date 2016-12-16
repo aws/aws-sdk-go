@@ -114,8 +114,8 @@ func (s *Shape) Rename(newName string) {
 	}
 
 	delete(s.API.Shapes, s.ShapeName)
-	s.API.Shapes[newName] = s
 	s.OrigShapeName = s.ShapeName
+	s.API.Shapes[newName] = s
 	s.ShapeName = newName
 }
 
@@ -476,13 +476,18 @@ func (s *Shape) NestedShape() *Shape {
 }
 
 var structShapeTmpl = template.Must(template.New("StructShape").Funcs(template.FuncMap{
-	"isBlacklistedService": isBlacklistedService,
+	"GetCrosslinkURL": GetCrosslinkURL,
 }).Parse(`
 {{ .Docstring }}
-{{ $blacklisted := isBlacklistedService .API -}}
-{{ if not $blacklisted -}} 
 {{ if ne $.OrigShapeName "" -}}
-// Please also see ` + redirectsURL + `/goto/WebAPI/{{ $.API.Metadata.UID }}/{{ $.OrigShapeName }}
+{{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.APIName $.API.Metadata.UID $.OrigShapeName -}}
+{{ if ne $crosslinkURL "" -}} 
+// Please also see {{ $crosslinkURL }}
+{{ end -}}
+{{ else -}}
+{{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.APIName $.API.Metadata.UID $.ShapeName -}}
+{{ if ne $crosslinkURL "" -}} 
+// Please also see {{ $crosslinkURL }}
 {{ end -}}
 {{ end -}}
 {{ $context := . -}}

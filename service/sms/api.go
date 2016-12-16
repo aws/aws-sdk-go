@@ -98,6 +98,7 @@ func (c *SMS) CreateReplicationJobRequest(input *CreateReplicationJobInput) (req
 //   * InternalError
 //   An internal error has occured.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/CreateReplicationJob
 func (c *SMS) CreateReplicationJob(input *CreateReplicationJobInput) (*CreateReplicationJobOutput, error) {
 	req, out := c.CreateReplicationJobRequest(input)
 	err := req.Send()
@@ -182,6 +183,7 @@ func (c *SMS) DeleteReplicationJobRequest(input *DeleteReplicationJobInput) (req
 //   * ReplicationJobNotFoundException
 //   The specified Replication Job cannot be found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteReplicationJob
 func (c *SMS) DeleteReplicationJob(input *DeleteReplicationJobInput) (*DeleteReplicationJobOutput, error) {
 	req, out := c.DeleteReplicationJobRequest(input)
 	err := req.Send()
@@ -262,6 +264,7 @@ func (c *SMS) DeleteServerCatalogRequest(input *DeleteServerCatalogInput) (req *
 //   The request is missing a required parameter. Ensure that you have supplied
 //   all the required parameters for the request.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DeleteServerCatalog
 func (c *SMS) DeleteServerCatalog(input *DeleteServerCatalogInput) (*DeleteServerCatalogOutput, error) {
 	req, out := c.DeleteServerCatalogRequest(input)
 	err := req.Send()
@@ -341,6 +344,7 @@ func (c *SMS) DisassociateConnectorRequest(input *DisassociateConnectorInput) (r
 //   A parameter specified in the request is not valid, is unsupported, or cannot
 //   be used.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/DisassociateConnector
 func (c *SMS) DisassociateConnector(input *DisassociateConnectorInput) (*DisassociateConnectorOutput, error) {
 	req, out := c.DisassociateConnectorRequest(input)
 	err := req.Send()
@@ -413,6 +417,7 @@ func (c *SMS) GetConnectorsRequest(input *GetConnectorsInput) (req *request.Requ
 //   * UnauthorizedOperationException
 //   This user does not have permissions to perform this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetConnectors
 func (c *SMS) GetConnectors(input *GetConnectorsInput) (*GetConnectorsOutput, error) {
 	req, out := c.GetConnectorsRequest(input)
 	err := req.Send()
@@ -519,6 +524,7 @@ func (c *SMS) GetReplicationJobsRequest(input *GetReplicationJobsInput) (req *re
 //   * UnauthorizedOperationException
 //   This user does not have permissions to perform this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetReplicationJobs
 func (c *SMS) GetReplicationJobs(input *GetReplicationJobsInput) (*GetReplicationJobsOutput, error) {
 	req, out := c.GetReplicationJobsRequest(input)
 	err := req.Send()
@@ -625,6 +631,7 @@ func (c *SMS) GetReplicationRunsRequest(input *GetReplicationRunsInput) (req *re
 //   * UnauthorizedOperationException
 //   This user does not have permissions to perform this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetReplicationRuns
 func (c *SMS) GetReplicationRuns(input *GetReplicationRunsInput) (*GetReplicationRunsOutput, error) {
 	req, out := c.GetReplicationRunsRequest(input)
 	err := req.Send()
@@ -722,6 +729,7 @@ func (c *SMS) GetServersRequest(input *GetServersInput) (req *request.Request, o
 //   * UnauthorizedOperationException
 //   This user does not have permissions to perform this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/GetServers
 func (c *SMS) GetServers(input *GetServersInput) (*GetServersOutput, error) {
 	req, out := c.GetServersRequest(input)
 	err := req.Send()
@@ -832,6 +840,7 @@ func (c *SMS) ImportServerCatalogRequest(input *ImportServerCatalogInput) (req *
 //   No connectors are available to handle this request. Please associate connector(s)
 //   and verify any existing connectors are healthy and can respond to requests.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ImportServerCatalog
 func (c *SMS) ImportServerCatalog(input *ImportServerCatalogInput) (*ImportServerCatalogOutput, error) {
 	req, out := c.ImportServerCatalogRequest(input)
 	err := req.Send()
@@ -917,6 +926,7 @@ func (c *SMS) StartOnDemandReplicationRunRequest(input *StartOnDemandReplication
 //   * ReplicationRunLimitExceededException
 //   This user has exceeded the maximum allowed Replication Run limit.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/StartOnDemandReplicationRun
 func (c *SMS) StartOnDemandReplicationRun(input *StartOnDemandReplicationRunInput) (*StartOnDemandReplicationRunOutput, error) {
 	req, out := c.StartOnDemandReplicationRunRequest(input)
 	err := req.Send()
@@ -1006,6 +1016,7 @@ func (c *SMS) UpdateReplicationJobRequest(input *UpdateReplicationJobInput) (req
 //   * InternalError
 //   An internal error has occured.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/UpdateReplicationJob
 func (c *SMS) UpdateReplicationJob(input *UpdateReplicationJobInput) (*UpdateReplicationJobOutput, error) {
 	req, out := c.UpdateReplicationJobRequest(input)
 	err := req.Send()
@@ -1013,6 +1024,7 @@ func (c *SMS) UpdateReplicationJob(input *UpdateReplicationJobInput) (*UpdateRep
 }
 
 // Object representing a Connector
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/Connector
 type Connector struct {
 	_ struct{} `type:"structure"`
 
@@ -1734,6 +1746,7 @@ func (s ImportServerCatalogOutput) GoString() string {
 }
 
 // Object representing a Replication Job
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ReplicationJob
 type ReplicationJob struct {
 	_ struct{} `type:"structure"`
 
@@ -1877,6 +1890,7 @@ func (s *ReplicationJob) SetVmServer(v *VmServer) *ReplicationJob {
 }
 
 // Object representing a Replication Run
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/ReplicationRun
 type ReplicationRun struct {
 	_ struct{} `type:"structure"`
 
@@ -1964,6 +1978,7 @@ func (s *ReplicationRun) SetType(v string) *ReplicationRun {
 }
 
 // Object representing a server
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/Server
 type Server struct {
 	_ struct{} `type:"structure"`
 
@@ -2197,6 +2212,7 @@ func (s UpdateReplicationJobOutput) GoString() string {
 }
 
 // Object representing a VM server
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/VmServer
 type VmServer struct {
 	_ struct{} `type:"structure"`
 
@@ -2257,6 +2273,7 @@ func (s *VmServer) SetVmServerAddress(v *VmServerAddress) *VmServer {
 }
 
 // Object representing a server's location
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/sms-2016-10-24/VmServerAddress
 type VmServerAddress struct {
 	_ struct{} `type:"structure"`
 

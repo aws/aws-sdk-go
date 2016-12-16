@@ -72,6 +72,7 @@ func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *requ
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/AssociateFleet
 func (c *AppStream) AssociateFleet(input *AssociateFleetInput) (*AssociateFleetOutput, error) {
 	req, out := c.AssociateFleetRequest(input)
 	err := req.Send()
@@ -149,6 +150,7 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //   * InvalidRoleException
 //   The specified role is invalid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateFleet
 func (c *AppStream) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
 	err := req.Send()
@@ -217,6 +219,7 @@ func (c *AppStream) CreateStackRequest(input *CreateStackInput) (req *request.Re
 //   * ResourceAlreadyExistsException
 //   The specified resource already exists.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStack
 func (c *AppStream) CreateStack(input *CreateStackInput) (*CreateStackOutput, error) {
 	req, out := c.CreateStackRequest(input)
 	err := req.Send()
@@ -289,6 +292,7 @@ func (c *AppStream) CreateStreamingURLRequest(input *CreateStreamingURLInput) (r
 //   * OperationNotPermittedException
 //   The attempted operation is not permitted.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateStreamingURL
 func (c *AppStream) CreateStreamingURL(input *CreateStreamingURLInput) (*CreateStreamingURLOutput, error) {
 	req, out := c.CreateStreamingURLRequest(input)
 	err := req.Send()
@@ -357,6 +361,7 @@ func (c *AppStream) DeleteFleetRequest(input *DeleteFleetInput) (req *request.Re
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteFleet
 func (c *AppStream) DeleteFleet(input *DeleteFleetInput) (*DeleteFleetOutput, error) {
 	req, out := c.DeleteFleetRequest(input)
 	err := req.Send()
@@ -426,6 +431,7 @@ func (c *AppStream) DeleteStackRequest(input *DeleteStackInput) (req *request.Re
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DeleteStack
 func (c *AppStream) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
 	req, out := c.DeleteStackRequest(input)
 	err := req.Send()
@@ -492,6 +498,7 @@ func (c *AppStream) DescribeFleetsRequest(input *DescribeFleetsInput) (req *requ
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeFleets
 func (c *AppStream) DescribeFleets(input *DescribeFleetsInput) (*DescribeFleetsOutput, error) {
 	req, out := c.DescribeFleetsRequest(input)
 	err := req.Send()
@@ -558,6 +565,7 @@ func (c *AppStream) DescribeImagesRequest(input *DescribeImagesInput) (req *requ
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeImages
 func (c *AppStream) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput, error) {
 	req, out := c.DescribeImagesRequest(input)
 	err := req.Send()
@@ -621,6 +629,7 @@ func (c *AppStream) DescribeSessionsRequest(input *DescribeSessionsInput) (req *
 //
 // See the AWS API reference guide for Amazon AppStream's
 // API operation DescribeSessions for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeSessions
 func (c *AppStream) DescribeSessions(input *DescribeSessionsInput) (*DescribeSessionsOutput, error) {
 	req, out := c.DescribeSessionsRequest(input)
 	err := req.Send()
@@ -688,6 +697,7 @@ func (c *AppStream) DescribeStacksRequest(input *DescribeStacksInput) (req *requ
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeStacks
 func (c *AppStream) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOutput, error) {
 	req, out := c.DescribeStacksRequest(input)
 	err := req.Send()
@@ -756,6 +766,7 @@ func (c *AppStream) DisassociateFleetRequest(input *DisassociateFleetInput) (req
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DisassociateFleet
 func (c *AppStream) DisassociateFleet(input *DisassociateFleetInput) (*DisassociateFleetOutput, error) {
 	req, out := c.DisassociateFleetRequest(input)
 	err := req.Send()
@@ -816,6 +827,7 @@ func (c *AppStream) ExpireSessionRequest(input *ExpireSessionInput) (req *reques
 //
 // See the AWS API reference guide for Amazon AppStream's
 // API operation ExpireSession for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ExpireSession
 func (c *AppStream) ExpireSession(input *ExpireSessionInput) (*ExpireSessionOutput, error) {
 	req, out := c.ExpireSessionRequest(input)
 	err := req.Send()
@@ -876,6 +888,7 @@ func (c *AppStream) ListAssociatedFleetsRequest(input *ListAssociatedFleetsInput
 //
 // See the AWS API reference guide for Amazon AppStream's
 // API operation ListAssociatedFleets for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListAssociatedFleets
 func (c *AppStream) ListAssociatedFleets(input *ListAssociatedFleetsInput) (*ListAssociatedFleetsOutput, error) {
 	req, out := c.ListAssociatedFleetsRequest(input)
 	err := req.Send()
@@ -936,6 +949,7 @@ func (c *AppStream) ListAssociatedStacksRequest(input *ListAssociatedStacksInput
 //
 // See the AWS API reference guide for Amazon AppStream's
 // API operation ListAssociatedStacks for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ListAssociatedStacks
 func (c *AppStream) ListAssociatedStacks(input *ListAssociatedStacksInput) (*ListAssociatedStacksOutput, error) {
 	req, out := c.ListAssociatedStacksRequest(input)
 	err := req.Send()
@@ -1004,6 +1018,7 @@ func (c *AppStream) StartFleetRequest(input *StartFleetInput) (req *request.Requ
 //   * LimitExceededException
 //   The requested limit exceeds the permitted limit for an account.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartFleet
 func (c *AppStream) StartFleet(input *StartFleetInput) (*StartFleetOutput, error) {
 	req, out := c.StartFleetRequest(input)
 	err := req.Send()
@@ -1069,6 +1084,7 @@ func (c *AppStream) StopFleetRequest(input *StopFleetInput) (req *request.Reques
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StopFleet
 func (c *AppStream) StopFleet(input *StopFleetInput) (*StopFleetOutput, error) {
 	req, out := c.StopFleetRequest(input)
 	err := req.Send()
@@ -1145,6 +1161,7 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 //   * ResourceNotFoundException
 //   The specified resource was not found.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateFleet
 func (c *AppStream) UpdateFleet(input *UpdateFleetInput) (*UpdateFleetOutput, error) {
 	req, out := c.UpdateFleetRequest(input)
 	err := req.Send()
@@ -1213,6 +1230,7 @@ func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Re
 //   * ResourceInUseException
 //   The specified resource is in use.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/UpdateStack
 func (c *AppStream) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, error) {
 	req, out := c.UpdateStackRequest(input)
 	err := req.Send()
@@ -1220,6 +1238,7 @@ func (c *AppStream) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, er
 }
 
 // An entry for a single application in the application catalog.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/Application
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -1372,6 +1391,7 @@ func (s AssociateFleetOutput) GoString() string {
 }
 
 // The capacity configuration for the fleet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ComputeCapacity
 type ComputeCapacity struct {
 	_ struct{} `type:"structure"`
 
@@ -1411,6 +1431,7 @@ func (s *ComputeCapacity) SetDesiredInstances(v int64) *ComputeCapacity {
 }
 
 // The capacity information for the fleet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ComputeCapacityStatus
 type ComputeCapacityStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -2447,6 +2468,7 @@ func (s ExpireSessionOutput) GoString() string {
 }
 
 // Contains the parameters for a fleet.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/Fleet
 type Fleet struct {
 	_ struct{} `type:"structure"`
 
@@ -2594,6 +2616,7 @@ func (s *Fleet) SetVpcConfig(v *VpcConfig) *Fleet {
 }
 
 // The details of the fleet error.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/FleetError
 type FleetError struct {
 	_ struct{} `type:"structure"`
 
@@ -2628,6 +2651,7 @@ func (s *FleetError) SetErrorMessage(v string) *FleetError {
 
 // New streaming instances are booted from images. The image stores the application
 // catalog and is connected to fleets.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/Image
 type Image struct {
 	_ struct{} `type:"structure"`
 
@@ -2745,6 +2769,7 @@ func (s *Image) SetVisibility(v string) *Image {
 }
 
 // The reason why the last state change occurred.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/ImageStateChangeReason
 type ImageStateChangeReason struct {
 	_ struct{} `type:"structure"`
 
@@ -2958,6 +2983,7 @@ func (s *ListAssociatedStacksOutput) SetNextToken(v string) *ListAssociatedStack
 }
 
 // Contains the parameters for a streaming session.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/Session
 type Session struct {
 	_ struct{} `type:"structure"`
 
@@ -3028,6 +3054,7 @@ func (s *Session) SetUserId(v string) *Session {
 }
 
 // Details about a stack.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/Stack
 type Stack struct {
 	_ struct{} `type:"structure"`
 
@@ -3454,6 +3481,7 @@ func (s *UpdateStackOutput) SetStack(v *Stack) *UpdateStackOutput {
 }
 
 // The VPC in which the fleet is launched.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/VpcConfig
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
 

@@ -97,6 +97,7 @@ func (c *KMS) CancelKeyDeletionRequest(input *CancelKeyDeletionInput) (req *requ
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/CancelKeyDeletion
 func (c *KMS) CancelKeyDeletion(input *CancelKeyDeletionInput) (*CancelKeyDeletionOutput, error) {
 	req, out := c.CancelKeyDeletionRequest(input)
 	err := req.Send()
@@ -204,6 +205,7 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *request.Request,
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/CreateAlias
 func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
 	err := req.Send()
@@ -304,6 +306,7 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *request.Request,
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/CreateGrant
 func (c *KMS) CreateGrant(input *CreateGrantInput) (*CreateGrantOutput, error) {
 	req, out := c.CreateGrantRequest(input)
 	err := req.Send()
@@ -400,6 +403,7 @@ func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *request.Request, out
 //   see Limits (http://docs.aws.amazon.com/kms/latest/developerguide/limits.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/CreateKey
 func (c *KMS) CreateKey(input *CreateKeyInput) (*CreateKeyOutput, error) {
 	req, out := c.CreateKeyRequest(input)
 	err := req.Send()
@@ -512,6 +516,7 @@ func (c *KMS) DecryptRequest(input *DecryptInput) (req *request.Request, output 
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/Decrypt
 func (c *KMS) Decrypt(input *DecryptInput) (*DecryptOutput, error) {
 	req, out := c.DecryptRequest(input)
 	err := req.Send()
@@ -596,6 +601,7 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Request,
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DeleteAlias
 func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
 	err := req.Send()
@@ -696,6 +702,7 @@ func (c *KMS) DeleteImportedKeyMaterialRequest(input *DeleteImportedKeyMaterialI
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DeleteImportedKeyMaterial
 func (c *KMS) DeleteImportedKeyMaterial(input *DeleteImportedKeyMaterialInput) (*DeleteImportedKeyMaterialOutput, error) {
 	req, out := c.DeleteImportedKeyMaterialRequest(input)
 	err := req.Send()
@@ -773,6 +780,7 @@ func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *request.Request,
 //   The request was rejected because an internal exception occurred. The request
 //   can be retried.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DescribeKey
 func (c *KMS) DescribeKey(input *DescribeKeyInput) (*DescribeKeyOutput, error) {
 	req, out := c.DescribeKeyRequest(input)
 	err := req.Send()
@@ -864,6 +872,7 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *request.Request, o
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DisableKey
 func (c *KMS) DisableKey(input *DisableKeyInput) (*DisableKeyOutput, error) {
 	req, out := c.DisableKeyRequest(input)
 	err := req.Send()
@@ -958,6 +967,7 @@ func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *re
 //   The request was rejected because a specified parameter is not supported or
 //   a specified resource is not valid for this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DisableKeyRotation
 func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (*DisableKeyRotationOutput, error) {
 	req, out := c.DisableKeyRotationRequest(input)
 	err := req.Send()
@@ -1050,6 +1060,7 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *request.Request, out
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/EnableKey
 func (c *KMS) EnableKey(input *EnableKeyInput) (*EnableKeyOutput, error) {
 	req, out := c.EnableKeyRequest(input)
 	err := req.Send()
@@ -1144,6 +1155,7 @@ func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *requ
 //   The request was rejected because a specified parameter is not supported or
 //   a specified resource is not valid for this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/EnableKeyRotation
 func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (*EnableKeyRotationOutput, error) {
 	req, out := c.EnableKeyRotationRequest(input)
 	err := req.Send()
@@ -1258,6 +1270,7 @@ func (c *KMS) EncryptRequest(input *EncryptInput) (req *request.Request, output 
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/Encrypt
 func (c *KMS) Encrypt(input *EncryptInput) (*EncryptOutput, error) {
 	req, out := c.EncryptRequest(input)
 	err := req.Send()
@@ -1396,6 +1409,7 @@ func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *request.
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GenerateDataKey
 func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (*GenerateDataKeyOutput, error) {
 	req, out := c.GenerateDataKeyRequest(input)
 	err := req.Send()
@@ -1505,6 +1519,7 @@ func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWitho
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GenerateDataKeyWithoutPlaintext
 func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlaintextInput) (*GenerateDataKeyWithoutPlaintextOutput, error) {
 	req, out := c.GenerateDataKeyWithoutPlaintextRequest(input)
 	err := req.Send()
@@ -1575,6 +1590,7 @@ func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *request.Re
 //   The request was rejected because an internal exception occurred. The request
 //   can be retried.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GenerateRandom
 func (c *KMS) GenerateRandom(input *GenerateRandomInput) (*GenerateRandomOutput, error) {
 	req, out := c.GenerateRandomRequest(input)
 	err := req.Send()
@@ -1660,6 +1676,7 @@ func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *request.Reques
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GetKeyPolicy
 func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (*GetKeyPolicyOutput, error) {
 	req, out := c.GetKeyPolicyRequest(input)
 	err := req.Send()
@@ -1750,6 +1767,7 @@ func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req
 //   The request was rejected because a specified parameter is not supported or
 //   a specified resource is not valid for this operation.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GetKeyRotationStatus
 func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (*GetKeyRotationStatusOutput, error) {
 	req, out := c.GetKeyRotationStatusRequest(input)
 	err := req.Send()
@@ -1854,6 +1872,7 @@ func (c *KMS) GetParametersForImportRequest(input *GetParametersForImportInput) 
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GetParametersForImport
 func (c *KMS) GetParametersForImport(input *GetParametersForImportInput) (*GetParametersForImportOutput, error) {
 	req, out := c.GetParametersForImportRequest(input)
 	err := req.Send()
@@ -1982,6 +2001,7 @@ func (c *KMS) ImportKeyMaterialRequest(input *ImportKeyMaterialInput) (req *requ
 //   The request was rejected because the provided import token is invalid or
 //   is associated with a different customer master key (CMK).
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ImportKeyMaterial
 func (c *KMS) ImportKeyMaterial(input *ImportKeyMaterialInput) (*ImportKeyMaterialOutput, error) {
 	req, out := c.ImportKeyMaterialRequest(input)
 	err := req.Send()
@@ -2062,6 +2082,7 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *request.Request,
 //   The request was rejected because an internal exception occurred. The request
 //   can be retried.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ListAliases
 func (c *KMS) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 	req, out := c.ListAliasesRequest(input)
 	err := req.Send()
@@ -2182,6 +2203,7 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, o
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ListGrants
 func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsResponse, error) {
 	req, out := c.ListGrantsRequest(input)
 	err := req.Send()
@@ -2298,6 +2320,7 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *request.
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ListKeyPolicies
 func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (*ListKeyPoliciesOutput, error) {
 	req, out := c.ListKeyPoliciesRequest(input)
 	err := req.Send()
@@ -2403,6 +2426,7 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *request.Request, outpu
 //   The request was rejected because the marker that specifies where pagination
 //   should next begin is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ListKeys
 func (c *KMS) ListKeys(input *ListKeysInput) (*ListKeysOutput, error) {
 	req, out := c.ListKeysRequest(input)
 	err := req.Send()
@@ -2513,6 +2537,7 @@ func (c *KMS) ListRetirableGrantsRequest(input *ListRetirableGrantsInput) (req *
 //   The request was rejected because an internal exception occurred. The request
 //   can be retried.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ListRetirableGrants
 func (c *KMS) ListRetirableGrants(input *ListRetirableGrantsInput) (*ListGrantsResponse, error) {
 	req, out := c.ListRetirableGrantsRequest(input)
 	err := req.Send()
@@ -2616,6 +2641,7 @@ func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *request.Reques
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/PutKeyPolicy
 func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (*PutKeyPolicyOutput, error) {
 	req, out := c.PutKeyPolicyRequest(input)
 	err := req.Send()
@@ -2726,6 +2752,7 @@ func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *request.Request, out
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ReEncrypt
 func (c *KMS) ReEncrypt(input *ReEncryptInput) (*ReEncryptOutput, error) {
 	req, out := c.ReEncryptRequest(input)
 	err := req.Send()
@@ -2829,6 +2856,7 @@ func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *request.Request,
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/RetireGrant
 func (c *KMS) RetireGrant(input *RetireGrantInput) (*RetireGrantOutput, error) {
 	req, out := c.RetireGrantRequest(input)
 	err := req.Send()
@@ -2920,6 +2948,7 @@ func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *request.Request,
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/RevokeGrant
 func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, error) {
 	req, out := c.RevokeGrantRequest(input)
 	err := req.Send()
@@ -3020,6 +3049,7 @@ func (c *KMS) ScheduleKeyDeletionRequest(input *ScheduleKeyDeletionInput) (req *
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ScheduleKeyDeletion
 func (c *KMS) ScheduleKeyDeletion(input *ScheduleKeyDeletionInput) (*ScheduleKeyDeletionOutput, error) {
 	req, out := c.ScheduleKeyDeletionRequest(input)
 	err := req.Send()
@@ -3116,6 +3146,7 @@ func (c *KMS) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Request,
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/UpdateAlias
 func (c *KMS) UpdateAlias(input *UpdateAliasInput) (*UpdateAliasOutput, error) {
 	req, out := c.UpdateAliasRequest(input)
 	err := req.Send()
@@ -3203,6 +3234,7 @@ func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req
 //   Key State Affects Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 //   in the AWS Key Management Service Developer Guide.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/UpdateKeyDescription
 func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKeyDescriptionOutput, error) {
 	req, out := c.UpdateKeyDescriptionRequest(input)
 	err := req.Send()
@@ -3210,6 +3242,7 @@ func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKey
 }
 
 // Contains information about an alias.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/AliasListEntry
 type AliasListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -3395,6 +3428,7 @@ func (s *CreateAliasInput) SetTargetKeyId(v string) *CreateAliasInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/CreateAliasOutput
 type CreateAliasOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3912,6 +3946,7 @@ func (s *DeleteAliasInput) SetAliasName(v string) *DeleteAliasInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DeleteAliasOutput
 type DeleteAliasOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3976,6 +4011,7 @@ func (s *DeleteImportedKeyMaterialInput) SetKeyId(v string) *DeleteImportedKeyMa
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DeleteImportedKeyMaterialOutput
 type DeleteImportedKeyMaterialOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4126,6 +4162,7 @@ func (s *DisableKeyInput) SetKeyId(v string) *DisableKeyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DisableKeyOutput
 type DisableKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4187,6 +4224,7 @@ func (s *DisableKeyRotationInput) SetKeyId(v string) *DisableKeyRotationInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/DisableKeyRotationOutput
 type DisableKeyRotationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4248,6 +4286,7 @@ func (s *EnableKeyInput) SetKeyId(v string) *EnableKeyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/EnableKeyOutput
 type EnableKeyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4309,6 +4348,7 @@ func (s *EnableKeyRotationInput) SetKeyId(v string) *EnableKeyRotationInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/EnableKeyRotationOutput
 type EnableKeyRotationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5117,6 +5157,7 @@ func (s *GetParametersForImportOutput) SetPublicKey(v []byte) *GetParametersForI
 // only when a specified encryption context is present. For more information
 // about encryption context, see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encryption-context.html)
 // in the AWS Key Management Service Developer Guide.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GrantConstraints
 type GrantConstraints struct {
 	_ struct{} `type:"structure"`
 
@@ -5158,6 +5199,7 @@ func (s *GrantConstraints) SetEncryptionContextSubset(v map[string]*string) *Gra
 }
 
 // Contains information about an entry in a list of grants.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/GrantListEntry
 type GrantListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -5386,6 +5428,7 @@ func (s ImportKeyMaterialOutput) GoString() string {
 }
 
 // Contains information about each entry in the key list.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/KeyListEntry
 type KeyListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -5422,6 +5465,7 @@ func (s *KeyListEntry) SetKeyId(v string) *KeyListEntry {
 //
 // This data type is used as a response element for the CreateKey and DescribeKey
 // operations.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/KeyMetadata
 type KeyMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -5742,6 +5786,7 @@ func (s *ListGrantsInput) SetMarker(v string) *ListGrantsInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/ListGrantsResponse
 type ListGrantsResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -6221,6 +6266,7 @@ func (s *PutKeyPolicyInput) SetPolicyName(v string) *PutKeyPolicyInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/PutKeyPolicyOutput
 type PutKeyPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6452,6 +6498,7 @@ func (s *RetireGrantInput) SetKeyId(v string) *RetireGrantInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/RetireGrantOutput
 type RetireGrantOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6531,6 +6578,7 @@ func (s *RevokeGrantInput) SetKeyId(v string) *RevokeGrantInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/RevokeGrantOutput
 type RevokeGrantOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6717,6 +6765,7 @@ func (s *UpdateAliasInput) SetTargetKeyId(v string) *UpdateAliasInput {
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/UpdateAliasOutput
 type UpdateAliasOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -6792,6 +6841,7 @@ func (s *UpdateKeyDescriptionInput) SetKeyId(v string) *UpdateKeyDescriptionInpu
 	return s
 }
 
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/kms-2014-11-01/UpdateKeyDescriptionOutput
 type UpdateKeyDescriptionOutput struct {
 	_ struct{} `type:"structure"`
 }

@@ -97,6 +97,7 @@ func (c *MarketplaceMetering) BatchMeterUsageRequest(input *BatchMeterUsageInput
 //   * ThrottlingException
 //   The calls to the MeterUsage API are throttled.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/BatchMeterUsage
 func (c *MarketplaceMetering) BatchMeterUsage(input *BatchMeterUsageInput) (*BatchMeterUsageOutput, error) {
 	req, out := c.BatchMeterUsageRequest(input)
 	err := req.Send()
@@ -190,6 +191,7 @@ func (c *MarketplaceMetering) MeterUsageRequest(input *MeterUsageInput) (req *re
 //   * ThrottlingException
 //   The calls to the MeterUsage API are throttled.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/MeterUsage
 func (c *MarketplaceMetering) MeterUsage(input *MeterUsageInput) (*MeterUsageOutput, error) {
 	req, out := c.MeterUsageRequest(input)
 	err := req.Send()
@@ -272,6 +274,7 @@ func (c *MarketplaceMetering) ResolveCustomerRequest(input *ResolveCustomerInput
 //   An internal error has occurred. Retry your request. If the problem persists,
 //   post a message with details on the AWS forums.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/ResolveCustomer
 func (c *MarketplaceMetering) ResolveCustomer(input *ResolveCustomerInput) (*ResolveCustomerOutput, error) {
 	req, out := c.ResolveCustomerRequest(input)
 	err := req.Send()
@@ -603,6 +606,7 @@ func (s *ResolveCustomerOutput) SetProductCode(v string) *ResolveCustomerOutput 
 //
 // Multiple requests with the same UsageRecords as input will be deduplicated
 // to prevent double charges.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/UsageRecord
 type UsageRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -698,6 +702,7 @@ func (s *UsageRecord) SetTimestamp(v time.Time) *UsageRecord {
 
 // A UsageRecordResult indicates the status of a given UsageRecord processed
 // by BatchMeterUsage.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/meteringmarketplace-2016-01-14/UsageRecordResult
 type UsageRecordResult struct {
 	_ struct{} `type:"structure"`
 

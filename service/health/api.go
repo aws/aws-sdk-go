@@ -86,6 +86,7 @@ func (c *Health) DescribeAffectedEntitiesRequest(input *DescribeAffectedEntities
 //   * UnsupportedLocale
 //   The specified locale is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeAffectedEntities
 func (c *Health) DescribeAffectedEntities(input *DescribeAffectedEntitiesInput) (*DescribeAffectedEntitiesOutput, error) {
 	req, out := c.DescribeAffectedEntitiesRequest(input)
 	err := req.Send()
@@ -173,6 +174,7 @@ func (c *Health) DescribeEntityAggregatesRequest(input *DescribeEntityAggregates
 //
 // See the AWS API reference guide for AWS Health APIs and Notifications's
 // API operation DescribeEntityAggregates for usage and error information.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEntityAggregates
 func (c *Health) DescribeEntityAggregates(input *DescribeEntityAggregatesInput) (*DescribeEntityAggregatesOutput, error) {
 	req, out := c.DescribeEntityAggregatesRequest(input)
 	err := req.Send()
@@ -246,6 +248,7 @@ func (c *Health) DescribeEventAggregatesRequest(input *DescribeEventAggregatesIn
 //   * InvalidPaginationToken
 //   The specified pagination token (nextToken) is not valid.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEventAggregates
 func (c *Health) DescribeEventAggregates(input *DescribeEventAggregatesInput) (*DescribeEventAggregatesOutput, error) {
 	req, out := c.DescribeEventAggregatesRequest(input)
 	err := req.Send()
@@ -343,6 +346,7 @@ func (c *Health) DescribeEventDetailsRequest(input *DescribeEventDetailsInput) (
 //   * UnsupportedLocale
 //   The specified locale is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEventDetails
 func (c *Health) DescribeEventDetails(input *DescribeEventDetailsInput) (*DescribeEventDetailsOutput, error) {
 	req, out := c.DescribeEventDetailsRequest(input)
 	err := req.Send()
@@ -418,6 +422,7 @@ func (c *Health) DescribeEventTypesRequest(input *DescribeEventTypesInput) (req 
 //   * UnsupportedLocale
 //   The specified locale is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEventTypes
 func (c *Health) DescribeEventTypes(input *DescribeEventTypesInput) (*DescribeEventTypesOutput, error) {
 	req, out := c.DescribeEventTypesRequest(input)
 	err := req.Send()
@@ -524,6 +529,7 @@ func (c *Health) DescribeEventsRequest(input *DescribeEventsInput) (req *request
 //   * UnsupportedLocale
 //   The specified locale is not supported.
 //
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DescribeEvents
 func (c *Health) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput, error) {
 	req, out := c.DescribeEventsRequest(input)
 	err := req.Send()
@@ -556,6 +562,7 @@ func (c *Health) DescribeEventsPages(input *DescribeEventsInput, fn func(p *Desc
 }
 
 // Information about an entity that is affected by a Health event.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/AffectedEntity
 type AffectedEntity struct {
 	_ struct{} `type:"structure"`
 
@@ -642,6 +649,7 @@ func (s *AffectedEntity) SetTags(v map[string]*string) *AffectedEntity {
 // set and to is not set: match items where the timestamp value is equal to
 // or after from. If from is not set and to is set: match items where the timestamp
 // value is equal to or before to.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/DateTimeRange
 type DateTimeRange struct {
 	_ struct{} `type:"structure"`
 
@@ -1285,6 +1293,7 @@ func (s *DescribeEventsOutput) SetNextToken(v string) *DescribeEventsOutput {
 
 // The number of entities that are affected by one or more events. Returned
 // by the DescribeEntityAggregates operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EntityAggregate
 type EntityAggregate struct {
 	_ struct{} `type:"structure"`
 
@@ -1319,6 +1328,7 @@ func (s *EntityAggregate) SetEventArn(v string) *EntityAggregate {
 }
 
 // The values to use to filter results from the DescribeAffectedEntities operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EntityFilter
 type EntityFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -1421,6 +1431,7 @@ func (s *EntityFilter) SetTags(v []map[string]*string) *EntityFilter {
 // Summary information about an event, returned by the DescribeEvents operation.
 // The DescribeEventDetails operation also returns this information, as well
 // as the EventDescription and additional event metadata.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/Event
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -1530,6 +1541,7 @@ func (s *Event) SetStatusCode(v string) *Event {
 
 // The number of events of each issue type. Returned by the DescribeEventAggregates
 // operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventAggregate
 type EventAggregate struct {
 	_ struct{} `type:"structure"`
 
@@ -1564,6 +1576,7 @@ func (s *EventAggregate) SetCount(v int64) *EventAggregate {
 
 // The detailed description of the event. Included in the information returned
 // by the DescribeEventDetails operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventDescription
 type EventDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -1590,6 +1603,7 @@ func (s *EventDescription) SetLatestDescription(v string) *EventDescription {
 // Detailed information about an event. A combination of an Event object, an
 // EventDescription object, and additional metadata about the event. Returned
 // by the DescribeEventDetails operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventDetails
 type EventDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -1633,6 +1647,7 @@ func (s *EventDetails) SetEventMetadata(v map[string]*string) *EventDetails {
 
 // Error information returned when a DescribeEventDetails operation cannot find
 // a specified event.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventDetailsErrorItem
 type EventDetailsErrorItem struct {
 	_ struct{} `type:"structure"`
 
@@ -1677,6 +1692,7 @@ func (s *EventDetailsErrorItem) SetEventArn(v string) *EventDetailsErrorItem {
 
 // The values to use to filter results from the DescribeEvents and DescribeEventAggregates
 // operations.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventFilter
 type EventFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -1856,6 +1872,7 @@ func (s *EventFilter) SetTags(v []map[string]*string) *EventFilter {
 // Metadata about a type of event that is reported by AWS Health. Data consists
 // of the category (for example, issue, the service (for example, EC2), and
 // the event type code (for example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT).
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventType
 type EventType struct {
 	_ struct{} `type:"structure"`
 
@@ -1899,6 +1916,7 @@ func (s *EventType) SetService(v string) *EventType {
 }
 
 // The values to use to filter results from the DescribeEventTypes operation.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/health-2016-08-04/EventTypeFilter
 type EventTypeFilter struct {
 	_ struct{} `type:"structure"`
 
