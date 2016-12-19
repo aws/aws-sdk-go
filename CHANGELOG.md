@@ -21,7 +21,7 @@ SDK Bug Fixes
 
 SDK Feature
 ---
-* private/model/api: Adds crosslinking to service documentation (#1010)
+* `private/model/api`: Adds crosslinking to service documentation (#1010)
 Release v1.6.4 (2016-12-15)
 ===
 
