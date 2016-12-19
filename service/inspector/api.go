@@ -4277,8 +4277,6 @@ func (s *DescribeAssessmentTargetsOutput) SetFailedItems(v map[string]*FailedIte
 type DescribeAssessmentTemplatesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN that specifiesthe assessment templates that you want to describe.
-	//
 	// AssessmentTemplateArns is a required field
 	AssessmentTemplateArns []*string `locationName:"assessmentTemplateArns" min:"1" type:"list" required:"true"`
 }
@@ -6587,9 +6585,8 @@ func (s SetTagsForResourceOutput) GoString() string {
 type StartAssessmentRunInput struct {
 	_ struct{} `type:"structure"`
 
-	// You can specify the name for the assessment run, or you can use the auto-generated
-	// name that is based on the assessment template name. The name must be unique
-	// for the assessment template.
+	// You can specify the name for the assessment run. The name must be unique
+	// for the assessment template whose ARN is used to start the assessment run.
 	AssessmentRunName *string `locationName:"assessmentRunName" min:"1" type:"string"`
 
 	// The ARN of the assessment template of the assessment run that you want to

@@ -61,13 +61,19 @@ func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInp
 //
 // Creates a new identity pool. The identity pool is a store of user identity
 // information that is specific to your AWS account. The limit on identity pools
-// is 60 per account. The keys for SupportedLoginProviders are as follows: Facebook:
-// graph.facebook.com
-// Google: accounts.google.com
-// Amazon: www.amazon.com
-// Twitter: api.twitter.com
-// Digits: www.digits.com
-//  You must use AWS Developer credentials to call this API.
+// is 60 per account. The keys for SupportedLoginProviders are as follows:
+//
+//    * Facebook: graph.facebook.com
+//
+//    * Google: accounts.google.com
+//
+//    * Amazon: www.amazon.com
+//
+//    * Twitter: api.twitter.com
+//
+//    * Digits: www.digits.com
+//
+// You must use AWS Developer credentials to call this API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1611,7 +1617,7 @@ type CreateIdentityPoolInput struct {
 	// AllowUnauthenticatedIdentities is a required field
 	AllowUnauthenticatedIdentities *bool `type:"boolean" required:"true"`
 
-	// An array of Amazon Cognito Identity user pools.
+	// An array of Amazon Cognito Identity user pools and their client IDs.
 	CognitoIdentityProviders []*Provider `type:"list"`
 
 	// The "domain" by which Cognito will refer to your users. This name acts as
@@ -2103,13 +2109,19 @@ type GetIdInput struct {
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
+	// The available provider names for Logins are as follows:
 	//
-	// The available provider names for Logins are as follows: Facebook: graph.facebook.com
+	//    * Facebook: graph.facebook.com
 	//
-	// Google: accounts.google.com
-	// Amazon: www.amazon.com
-	// Twitter: api.twitter.com
-	// Digits: www.digits.com
+	//    * Amazon Cognito Identity Provider: cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789
+	//
+	//    * Google: accounts.google.com
+	//
+	//    * Amazon: www.amazon.com
+	//
+	//    * Twitter: api.twitter.com
+	//
+	//    * Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
 }
 
@@ -2236,6 +2248,11 @@ type GetIdentityPoolRolesOutput struct {
 	// An identity pool ID in the format REGION:GUID.
 	IdentityPoolId *string `min:"1" type:"string"`
 
+	// How users for a specific identity provider are to mapped to roles. This is
+	// a String-to-RoleMapping object map. The string identifies the identity provider,
+	// for example, "graph.facebook.com" or "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+	RoleMappings map[string]*RoleMapping `type:"map"`
+
 	// The map of roles associated with this pool. Currently only authenticated
 	// and unauthenticated roles are supported.
 	Roles map[string]*string `type:"map"`
@@ -2254,6 +2271,12 @@ func (s GetIdentityPoolRolesOutput) GoString() string {
 // SetIdentityPoolId sets the IdentityPoolId field's value.
 func (s *GetIdentityPoolRolesOutput) SetIdentityPoolId(v string) *GetIdentityPoolRolesOutput {
 	s.IdentityPoolId = &v
+	return s
+}
+
+// SetRoleMappings sets the RoleMappings field's value.
+func (s *GetIdentityPoolRolesOutput) SetRoleMappings(v map[string]*RoleMapping) *GetIdentityPoolRolesOutput {
+	s.RoleMappings = v
 	return s
 }
 
@@ -2405,8 +2428,9 @@ type GetOpenIdTokenInput struct {
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// When using graph.facebook.com and www.amazon.com, supply the access_token
-	// returned from the provider's authflow. For accounts.google.com or any other
-	// OpenId Connect provider, always include the id_token.
+	// returned from the provider's authflow. For accounts.google.com, an Amazon
+	// Cognito Identity Provider, or any other OpenId Connect provider, always include
+	// the id_token.
 	Logins map[string]*string `type:"map"`
 }
 
@@ -2535,7 +2559,7 @@ func (s *IdentityDescription) SetLogins(v []*string) *IdentityDescription {
 	return s
 }
 
-// An object representing a Cognito identity pool.
+// An object representing an Amazon Cognito identity pool.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/IdentityPool
 type IdentityPool struct {
 	_ struct{} `type:"structure"`
@@ -3065,6 +3089,100 @@ func (s *LookupDeveloperIdentityOutput) SetNextToken(v string) *LookupDeveloperI
 	return s
 }
 
+// A rule that maps a claim name, a claim value, and a match type to a role
+// ARN.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MappingRule
+type MappingRule struct {
+	_ struct{} `type:"structure"`
+
+	// The claim name that must be present in the token, for example, "isAdmin"
+	// or "paid".
+	//
+	// Claim is a required field
+	Claim *string `min:"1" type:"string" required:"true"`
+
+	// The match condition that specifies how closely the claim value in the IdP
+	// token must match Value.
+	//
+	// MatchType is a required field
+	MatchType *string `type:"string" required:"true" enum:"MappingRuleMatchType"`
+
+	// The role ARN.
+	//
+	// RoleARN is a required field
+	RoleARN *string `min:"20" type:"string" required:"true"`
+
+	// A brief string that the claim must match, for example, "paid" or "yes".
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MappingRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MappingRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MappingRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MappingRule"}
+	if s.Claim == nil {
+		invalidParams.Add(request.NewErrParamRequired("Claim"))
+	}
+	if s.Claim != nil && len(*s.Claim) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Claim", 1))
+	}
+	if s.MatchType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchType"))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 20))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClaim sets the Claim field's value.
+func (s *MappingRule) SetClaim(v string) *MappingRule {
+	s.Claim = &v
+	return s
+}
+
+// SetMatchType sets the MatchType field's value.
+func (s *MappingRule) SetMatchType(v string) *MappingRule {
+	s.MatchType = &v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *MappingRule) SetRoleARN(v string) *MappingRule {
+	s.RoleARN = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MappingRule) SetValue(v string) *MappingRule {
+	s.Value = &v
+	return s
+}
+
 // Input to the MergeDeveloperIdentities action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/MergeDeveloperIdentitiesInput
 type MergeDeveloperIdentitiesInput struct {
@@ -3240,6 +3358,132 @@ func (s *Provider) SetProviderName(v string) *Provider {
 	return s
 }
 
+// A role mapping.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/RoleMapping
+type RoleMapping struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify Token or Rules as the Type, AmbiguousRoleResolution is required.
+	//
+	// Specifies the action to be taken if either no rules match the claim value
+	// for the Rules type, or there is no cognito:preferred_role claim and there
+	// are multiple cognito:roles matches for the Token type.
+	AmbiguousRoleResolution *string `type:"string" enum:"AmbiguousRoleResolutionType"`
+
+	// The rules to be used for mapping users to roles.
+	//
+	// If you specify Rules as the role mapping type, RulesConfiguration is required.
+	RulesConfiguration *RulesConfigurationType `type:"structure"`
+
+	// The role mapping type. Token will use cognito:roles and cognito:preferred_role
+	// claims from the Cognito identity provider token to map groups to roles. Rules
+	// will attempt to match claims from the token to map to a role.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"RoleMappingType"`
+}
+
+// String returns the string representation
+func (s RoleMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoleMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RoleMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RoleMapping"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.RulesConfiguration != nil {
+		if err := s.RulesConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RulesConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAmbiguousRoleResolution sets the AmbiguousRoleResolution field's value.
+func (s *RoleMapping) SetAmbiguousRoleResolution(v string) *RoleMapping {
+	s.AmbiguousRoleResolution = &v
+	return s
+}
+
+// SetRulesConfiguration sets the RulesConfiguration field's value.
+func (s *RoleMapping) SetRulesConfiguration(v *RulesConfigurationType) *RoleMapping {
+	s.RulesConfiguration = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RoleMapping) SetType(v string) *RoleMapping {
+	s.Type = &v
+	return s
+}
+
+// A container for rules.
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/RulesConfigurationType
+type RulesConfigurationType struct {
+	_ struct{} `type:"structure"`
+
+	// An array of rules. You can specify up to 25 rules per identity provider.
+	//
+	// Rules are evaluated in order. The first one to match specifies the role.
+	//
+	// Rules is a required field
+	Rules []*MappingRule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s RulesConfigurationType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RulesConfigurationType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RulesConfigurationType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RulesConfigurationType"}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRules sets the Rules field's value.
+func (s *RulesConfigurationType) SetRules(v []*MappingRule) *RulesConfigurationType {
+	s.Rules = v
+	return s
+}
+
 // Input to the SetIdentityPoolRoles action.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetIdentityPoolRolesInput
 type SetIdentityPoolRolesInput struct {
@@ -3249,6 +3493,13 @@ type SetIdentityPoolRolesInput struct {
 	//
 	// IdentityPoolId is a required field
 	IdentityPoolId *string `min:"1" type:"string" required:"true"`
+
+	// How users for a specific identity provider are to mapped to roles. This is
+	// a string to RoleMapping object map. The string identifies the identity provider,
+	// for example, "graph.facebook.com" or "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+	//
+	// Up to 25 rules can be specified per identity provider.
+	RoleMappings map[string]*RoleMapping `type:"map"`
 
 	// The map of roles associated with this pool. For a given role, the key will
 	// be either "authenticated" or "unauthenticated" and the value will be the
@@ -3280,6 +3531,16 @@ func (s *SetIdentityPoolRolesInput) Validate() error {
 	if s.Roles == nil {
 		invalidParams.Add(request.NewErrParamRequired("Roles"))
 	}
+	if s.RoleMappings != nil {
+		for i, v := range s.RoleMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RoleMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3290,6 +3551,12 @@ func (s *SetIdentityPoolRolesInput) Validate() error {
 // SetIdentityPoolId sets the IdentityPoolId field's value.
 func (s *SetIdentityPoolRolesInput) SetIdentityPoolId(v string) *SetIdentityPoolRolesInput {
 	s.IdentityPoolId = &v
+	return s
+}
+
+// SetRoleMappings sets the RoleMappings field's value.
+func (s *SetIdentityPoolRolesInput) SetRoleMappings(v map[string]*RoleMapping) *SetIdentityPoolRolesInput {
+	s.RoleMappings = v
 	return s
 }
 
@@ -3545,9 +3812,39 @@ func (s *UnprocessedIdentityId) SetIdentityId(v string) *UnprocessedIdentityId {
 }
 
 const (
+	// AmbiguousRoleResolutionTypeAuthenticatedRole is a AmbiguousRoleResolutionType enum value
+	AmbiguousRoleResolutionTypeAuthenticatedRole = "AuthenticatedRole"
+
+	// AmbiguousRoleResolutionTypeDeny is a AmbiguousRoleResolutionType enum value
+	AmbiguousRoleResolutionTypeDeny = "Deny"
+)
+
+const (
 	// ErrorCodeAccessDenied is a ErrorCode enum value
 	ErrorCodeAccessDenied = "AccessDenied"
 
 	// ErrorCodeInternalServerError is a ErrorCode enum value
 	ErrorCodeInternalServerError = "InternalServerError"
+)
+
+const (
+	// MappingRuleMatchTypeEquals is a MappingRuleMatchType enum value
+	MappingRuleMatchTypeEquals = "Equals"
+
+	// MappingRuleMatchTypeContains is a MappingRuleMatchType enum value
+	MappingRuleMatchTypeContains = "Contains"
+
+	// MappingRuleMatchTypeStartsWith is a MappingRuleMatchType enum value
+	MappingRuleMatchTypeStartsWith = "StartsWith"
+
+	// MappingRuleMatchTypeNotEqual is a MappingRuleMatchType enum value
+	MappingRuleMatchTypeNotEqual = "NotEqual"
+)
+
+const (
+	// RoleMappingTypeToken is a RoleMappingType enum value
+	RoleMappingTypeToken = "Token"
+
+	// RoleMappingTypeRules is a RoleMappingType enum value
+	RoleMappingTypeRules = "Rules"
 )
