@@ -1,14 +1,14 @@
 {
   "version":"2.0",
   "metadata":{
-    "uid":"inspector-2016-02-16",
     "apiVersion":"2016-02-16",
     "endpointPrefix":"inspector",
     "jsonVersion":"1.1",
     "protocol":"json",
     "serviceFullName":"Amazon Inspector",
     "signatureVersion":"v4",
-    "targetPrefix":"InspectorService"
+    "targetPrefix":"InspectorService",
+    "uid":"inspector-2016-02-16"
   },
   "operations":{
     "AddAttributesToFindings":{

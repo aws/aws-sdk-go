@@ -826,6 +826,12 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *request
 		Name:       opLookupEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -892,6 +898,31 @@ func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput
 	req, out := c.LookupEventsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+// LookupEventsPages iterates over the pages of a LookupEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See LookupEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a LookupEvents operation.
+//    pageNum := 0
+//    err := client.LookupEventsPages(params,
+//        func(page *LookupEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CloudTrail) LookupEventsPages(input *LookupEventsInput, fn func(p *LookupEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.LookupEventsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*LookupEventsOutput), lastPage)
+	})
 }
 
 const opPutEventSelectors = "PutEventSelectors"

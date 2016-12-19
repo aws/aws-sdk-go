@@ -1,3 +1,27 @@
+Release v1.6.5 (2016-12-19)
+===
+
+Service Client Updates
+---
+* `service/cloudformation`: Updates service documentation
+  * Minor doc update for CloudFormation.
+* `service/cloudtrail`: Updates service paginators
+* `service/cognitoidentity`: Updates service API and documentation
+  * We are adding Groups to Cognito user pools. Developers can perform CRUD operations on groups, add and remove users from groups, list users in groups, etc. We are adding fine-grained role-based access control for Cognito identity pools. Developers can configure an identity pool to get the IAM role from an authenticated user's token, or they can configure rules that will map a user to a different role
+* `service/applicationdiscoveryservice`: Updates service API and documentation
+  * Adds new APIs to group discovered servers into Applications with get summary and neighbors. Includes additional filters for ListConfigurations and DescribeAgents API.
+* `service/inspector`: Updates service API, documentation, and examples
+  * Doc-only Update for Inspector: Adding SDK code snippets for Inspector
+* `service/sqs`: Updates service documentation
+
+SDK Bug Fixes
+---
+* `aws/request`: Add PriorRequestNotComplete to throttle retry codes (#1011)
+  * Fixes: Not retrying when PriorRequestNotComplete #1009
+
+SDK Feature
+---
+* private/model/api: Adds crosslinking to service documentation (#1010)
 Release v1.6.4 (2016-12-15)
 ===
 
