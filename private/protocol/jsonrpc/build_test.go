@@ -45,7 +45,6 @@ func init() {
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService1ProtocolTest struct {
 	*client.Client
 }
@@ -126,8 +125,6 @@ const opInputService1TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService1TestCaseOperation1
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input *InputService1TestShapeInputService1TestCaseOperation1Input) (req *request.Request, output *InputService1TestShapeInputService1TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService1TestCaseOperation1,
@@ -155,14 +152,12 @@ func (c *InputService1ProtocolTest) InputService1TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService1TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService1TestCaseOperation1
 func (c *InputService1ProtocolTest) InputService1TestCaseOperation1(input *InputService1TestShapeInputService1TestCaseOperation1Input) (*InputService1TestShapeInputService1TestCaseOperation1Output, error) {
 	req, out := c.InputService1TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService1TestCaseOperation1Input
 type InputService1TestShapeInputService1TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
@@ -175,14 +170,12 @@ func (s *InputService1TestShapeInputService1TestCaseOperation1Input) SetName(v s
 	return s
 }
 
-// Please also see /goto/WebAPI//InputService1TestCaseOperation1Output
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService2ProtocolTest struct {
 	*client.Client
 }
@@ -263,8 +256,6 @@ const opInputService2TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService2TestCaseOperation1
 func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input *InputService2TestShapeInputService2TestCaseOperation1Input) (req *request.Request, output *InputService2TestShapeInputService2TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService2TestCaseOperation1,
@@ -291,14 +282,12 @@ func (c *InputService2ProtocolTest) InputService2TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService2TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService2TestCaseOperation1
 func (c *InputService2ProtocolTest) InputService2TestCaseOperation1(input *InputService2TestShapeInputService2TestCaseOperation1Input) (*InputService2TestShapeInputService2TestCaseOperation1Output, error) {
 	req, out := c.InputService2TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService2TestCaseOperation1Input
 type InputService2TestShapeInputService2TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
@@ -311,14 +300,12 @@ func (s *InputService2TestShapeInputService2TestCaseOperation1Input) SetTimeArg(
 	return s
 }
 
-// Please also see /goto/WebAPI//InputService2TestCaseOperation1Output
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService3ProtocolTest struct {
 	*client.Client
 }
@@ -399,8 +386,6 @@ const opInputService3TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService3TestCaseOperation1
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input *InputService3TestShapeInputShape) (req *request.Request, output *InputService3TestShapeInputService3TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService3TestCaseOperation1,
@@ -427,7 +412,6 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService3TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService3TestCaseOperation1
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation1(input *InputService3TestShapeInputShape) (*InputService3TestShapeInputService3TestCaseOperation1Output, error) {
 	req, out := c.InputService3TestCaseOperation1Request(input)
 	err := req.Send()
@@ -459,8 +443,6 @@ const opInputService3TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService3TestCaseOperation2
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation2Request(input *InputService3TestShapeInputShape) (req *request.Request, output *InputService3TestShapeInputService3TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opInputService3TestCaseOperation2,
@@ -487,24 +469,20 @@ func (c *InputService3ProtocolTest) InputService3TestCaseOperation2Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService3TestCaseOperation2 for usage and error information.
-// Please also see /goto/WebAPI//InputService3TestCaseOperation2
 func (c *InputService3ProtocolTest) InputService3TestCaseOperation2(input *InputService3TestShapeInputShape) (*InputService3TestShapeInputService3TestCaseOperation2Output, error) {
 	req, out := c.InputService3TestCaseOperation2Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService3TestCaseOperation1Output
 type InputService3TestShapeInputService3TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService3TestCaseOperation2Output
 type InputService3TestShapeInputService3TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputShape
 type InputService3TestShapeInputShape struct {
 	_ struct{} `type:"structure"`
 
@@ -528,7 +506,6 @@ func (s *InputService3TestShapeInputShape) SetBlobMap(v map[string][]byte) *Inpu
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService4ProtocolTest struct {
 	*client.Client
 }
@@ -609,8 +586,6 @@ const opInputService4TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService4TestCaseOperation1
 func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input *InputService4TestShapeInputService4TestCaseOperation1Input) (req *request.Request, output *InputService4TestShapeInputService4TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService4TestCaseOperation1,
@@ -638,14 +613,12 @@ func (c *InputService4ProtocolTest) InputService4TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService4TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService4TestCaseOperation1
 func (c *InputService4ProtocolTest) InputService4TestCaseOperation1(input *InputService4TestShapeInputService4TestCaseOperation1Input) (*InputService4TestShapeInputService4TestCaseOperation1Output, error) {
 	req, out := c.InputService4TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService4TestCaseOperation1Input
 type InputService4TestShapeInputService4TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
@@ -658,14 +631,12 @@ func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetListPara
 	return s
 }
 
-// Please also see /goto/WebAPI//InputService4TestCaseOperation1Output
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService5ProtocolTest struct {
 	*client.Client
 }
@@ -746,8 +717,6 @@ const opInputService5TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService5TestCaseOperation1
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input *InputService5TestShapeInputShape) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation1,
@@ -774,7 +743,6 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService5TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService5TestCaseOperation1
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation1(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation1Output, error) {
 	req, out := c.InputService5TestCaseOperation1Request(input)
 	err := req.Send()
@@ -806,8 +774,6 @@ const opInputService5TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService5TestCaseOperation2
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input *InputService5TestShapeInputShape) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation2,
@@ -834,7 +800,6 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation2Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService5TestCaseOperation2 for usage and error information.
-// Please also see /goto/WebAPI//InputService5TestCaseOperation2
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation2(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation2Output, error) {
 	req, out := c.InputService5TestCaseOperation2Request(input)
 	err := req.Send()
@@ -866,8 +831,6 @@ const opInputService5TestCaseOperation3 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService5TestCaseOperation3
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation3Request(input *InputService5TestShapeInputShape) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation3Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation3,
@@ -894,7 +857,6 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation3Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService5TestCaseOperation3 for usage and error information.
-// Please also see /goto/WebAPI//InputService5TestCaseOperation3
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation3(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation3Output, error) {
 	req, out := c.InputService5TestCaseOperation3Request(input)
 	err := req.Send()
@@ -926,8 +888,6 @@ const opInputService5TestCaseOperation4 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService5TestCaseOperation4
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input *InputService5TestShapeInputShape) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation4Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation4,
@@ -954,7 +914,6 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation4Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService5TestCaseOperation4 for usage and error information.
-// Please also see /goto/WebAPI//InputService5TestCaseOperation4
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation4(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation4Output, error) {
 	req, out := c.InputService5TestCaseOperation4Request(input)
 	err := req.Send()
@@ -986,8 +945,6 @@ const opInputService5TestCaseOperation5 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService5TestCaseOperation5
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation5Request(input *InputService5TestShapeInputShape) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation5Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation5,
@@ -1014,7 +971,6 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation5Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService5TestCaseOperation5 for usage and error information.
-// Please also see /goto/WebAPI//InputService5TestCaseOperation5
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation5(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation5Output, error) {
 	req, out := c.InputService5TestCaseOperation5Request(input)
 	err := req.Send()
@@ -1046,8 +1002,6 @@ const opInputService5TestCaseOperation6 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService5TestCaseOperation6
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation6Request(input *InputService5TestShapeInputShape) (req *request.Request, output *InputService5TestShapeInputService5TestCaseOperation6Output) {
 	op := &request.Operation{
 		Name:     opInputService5TestCaseOperation6,
@@ -1074,44 +1028,36 @@ func (c *InputService5ProtocolTest) InputService5TestCaseOperation6Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService5TestCaseOperation6 for usage and error information.
-// Please also see /goto/WebAPI//InputService5TestCaseOperation6
 func (c *InputService5ProtocolTest) InputService5TestCaseOperation6(input *InputService5TestShapeInputShape) (*InputService5TestShapeInputService5TestCaseOperation6Output, error) {
 	req, out := c.InputService5TestCaseOperation6Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService5TestCaseOperation1Output
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService5TestCaseOperation2Output
 type InputService5TestShapeInputService5TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService5TestCaseOperation3Output
 type InputService5TestShapeInputService5TestCaseOperation3Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService5TestCaseOperation4Output
 type InputService5TestShapeInputService5TestCaseOperation4Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService5TestCaseOperation5Output
 type InputService5TestShapeInputService5TestCaseOperation5Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService5TestCaseOperation6Output
 type InputService5TestShapeInputService5TestCaseOperation6Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputShape
 type InputService5TestShapeInputShape struct {
 	_ struct{} `type:"structure"`
 
@@ -1124,7 +1070,6 @@ func (s *InputService5TestShapeInputShape) SetRecursiveStruct(v *InputService5Te
 	return s
 }
 
-// Please also see /goto/WebAPI//RecursiveStructType
 type InputService5TestShapeRecursiveStructType struct {
 	_ struct{} `type:"structure"`
 
@@ -1163,7 +1108,6 @@ func (s *InputService5TestShapeRecursiveStructType) SetRecursiveStruct(v *InputS
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService6ProtocolTest struct {
 	*client.Client
 }
@@ -1244,8 +1188,6 @@ const opInputService6TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService6TestCaseOperation1
 func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputService6TestCaseOperation1Input) (req *request.Request, output *InputService6TestShapeInputService6TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService6TestCaseOperation1,
@@ -1273,14 +1215,12 @@ func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService6TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService6TestCaseOperation1
 func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *InputService6TestShapeInputService6TestCaseOperation1Input) (*InputService6TestShapeInputService6TestCaseOperation1Output, error) {
 	req, out := c.InputService6TestCaseOperation1Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService6TestCaseOperation1Input
 type InputService6TestShapeInputService6TestCaseOperation1Input struct {
 	_ struct{} `type:"structure"`
 
@@ -1293,14 +1233,12 @@ func (s *InputService6TestShapeInputService6TestCaseOperation1Input) SetMap(v ma
 	return s
 }
 
-// Please also see /goto/WebAPI//InputService6TestCaseOperation1Output
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
 // The service client's operations are safe to be used concurrently.
 // It is not safe to mutate any of the client's properties though.
-// Please also see /goto/WebAPI/
 type InputService7ProtocolTest struct {
 	*client.Client
 }
@@ -1379,8 +1317,6 @@ const opInputService7TestCaseOperation1 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService7TestCaseOperation1
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input *InputService7TestShapeInputShape) (req *request.Request, output *InputService7TestShapeInputService7TestCaseOperation1Output) {
 	op := &request.Operation{
 		Name:       opInputService7TestCaseOperation1,
@@ -1408,7 +1344,6 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation1Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService7TestCaseOperation1 for usage and error information.
-// Please also see /goto/WebAPI//InputService7TestCaseOperation1
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation1(input *InputService7TestShapeInputShape) (*InputService7TestShapeInputService7TestCaseOperation1Output, error) {
 	req, out := c.InputService7TestCaseOperation1Request(input)
 	err := req.Send()
@@ -1440,8 +1375,6 @@ const opInputService7TestCaseOperation2 = "OperationName"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-//
-// Please also see /goto/WebAPI//InputService7TestCaseOperation2
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input *InputService7TestShapeInputShape) (req *request.Request, output *InputService7TestShapeInputService7TestCaseOperation2Output) {
 	op := &request.Operation{
 		Name:       opInputService7TestCaseOperation2,
@@ -1469,24 +1402,20 @@ func (c *InputService7ProtocolTest) InputService7TestCaseOperation2Request(input
 //
 // See the AWS API reference guide for 's
 // API operation InputService7TestCaseOperation2 for usage and error information.
-// Please also see /goto/WebAPI//InputService7TestCaseOperation2
 func (c *InputService7ProtocolTest) InputService7TestCaseOperation2(input *InputService7TestShapeInputShape) (*InputService7TestShapeInputService7TestCaseOperation2Output, error) {
 	req, out := c.InputService7TestCaseOperation2Request(input)
 	err := req.Send()
 	return out, err
 }
 
-// Please also see /goto/WebAPI//InputService7TestCaseOperation1Output
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputService7TestCaseOperation2Output
 type InputService7TestShapeInputService7TestCaseOperation2Output struct {
 	_ struct{} `type:"structure"`
 }
 
-// Please also see /goto/WebAPI//InputShape
 type InputService7TestShapeInputShape struct {
 	_ struct{} `type:"structure"`
 
