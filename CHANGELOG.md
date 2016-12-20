@@ -1,3 +1,16 @@
+Release v1.6.6 (2016-12-20)
+===
+
+Service Client Updates
+---
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/firehose`: Updates service API, documentation, and examples
+  * Processing feature enables users to process and modify records before Amazon Firehose delivers them to destinations.
+* `service/route53`: Updates service API and documentation
+  * Enum updates for eu-west-2 and ca-central-1
+* `service/storagegateway`: Updates service API, documentation, and examples
+  * File gateway is a new mode in the AWS Storage Gateway that support a file interface into S3, alongside the current block-based volume and VTL storage. File gateway combines a service and virtual software appliance, enabling you to store and retrieve objects in Amazon S3 using industry standard file protocols such as NFS. The software appliance, or gateway, is deployed into your on-premises environment as a virtual machine (VM) running on VMware ESXi. The gateway provides access to objects in S3 as files on a Network File System (NFS) mount point.
+
 Release v1.6.5 (2016-12-19)
 ===
 

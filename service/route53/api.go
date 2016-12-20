@@ -4557,47 +4557,53 @@ type AliasTarget struct {
 	//    (The environment must have a regionalized domain name.) You can use the
 	//    following methods to get the value of the CNAME attribute:
 	//
-	// AWS Managment Console: For information about how to get the value by using
+	// AWS Management Console: For information about how to get the value by using
 	//    the console, see Using Custom Domains with AWS Elastic Beanstalk (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/customdomains.html)
 	//    in the AWS Elastic Beanstalk Developer Guide.
 	//
-	// Elastic Load Balancing API: Use the DescribeEnvironments action to get the
-	//    value of the CNAME attribute. For more information, see DescribeEnvironments
-	//    (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/API_DescribeEnvironments.html)
+	// Elastic Beanstalk API: Use the DescribeEnvironments action to get the value
+	//    of the CNAME attribute. For more information, see DescribeEnvironments
+	//    (http://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_DescribeEnvironments.html)
 	//    in the AWS Elastic Beanstalk API Reference.
 	//
 	// AWS CLI: Use the describe-environments command to get the value of the CNAME
 	//    attribute. For more information, see describe-environments (http://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/describe-environments.html)
 	//    in the AWS Command Line Interface Reference.
 	//
-	//    * An ELB load balancer: Specify the DNS name associated with the load
-	//    balancer. Get the DNS name by using the AWS Management Console, the ELB
-	//    API, or the AWS CLI. Use the same method to get values for HostedZoneId
+	//    * An ELB load balancer: Specify the DNS name that is associated with the
+	//    load balancer. Get the DNS name by using the AWS Management Console, the
+	//    ELB API, or the AWS CLI. Use the same method to get values for HostedZoneId
 	//    and DNSName. If you get one value from the console and the other value
 	//    from the API or the CLI, creating the resource record set will fail.
 	//
 	// AWS Management Console: Go to the EC2 page, click Load Balancers in the navigation
 	//    pane, choose the load balancer, choose the Description tab, and get the
-	//    value of the DNS Name field that begins with dualstack. Use the same process
-	//    to get the Hosted Zone ID. See HostedZone$Id.
+	//    value of the DNS name field. (If you're routing traffic to a Classic Load
+	//    Balancer, get the value that begins with dualstack.) Use the same process
+	//    to get the value of the Hosted zone field. See AliasTarget$HostedZoneId.
 	//
-	// Elastic Load Balancing API: Use DescribeLoadBalancers (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/APIReference/API_DescribeLoadBalancers.html)
-	//    to get the value of CanonicalHostedZoneName. Use the same process to get
-	//    the CanonicalHostedZoneNameId. See HostedZone$Id.
+	// Elastic Load Balancing API: Use DescribeLoadBalancers to get the value of
+	//    DNSName and CanonicalHostedZoneNameId. (You specify the value of CanonicalHostedZoneNameId
+	//    for AliasTarget$HostedZoneId.) For more information, see the applicable
+	//    guide:
 	//
-	// AWS CLI: Use describe-load-balancers (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/APIReference/API_DescribeLoadBalancers.html)
-	//    to get the value of CanonicalHostedZoneName. Use the same process to get
-	//    the CanonicalHostedZoneNameId. See HostedZoneId.
+	// Classic Load Balancer: DescribeLoadBalancers (http://docs.aws.amazon.com/elasticloadbalancing/2012-06-01/APIReference/API_DescribeLoadBalancers.html)
+	//
+	// Application Load Balancer: DescribeLoadBalancers (http://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
+	//
+	// AWS CLI: Use describe-load-balancers (http://docs.aws.amazon.com/cli/latest/reference/elb/describe-load-balancers.html)
+	//    to get the value of DNSName and CanonicalHostedZoneNameId. (You specify
+	//    the value of CanonicalHostedZoneNameId for AliasTarget$HostedZoneId.)
 	//
 	//    * An Amazon S3 bucket that is configured as a static website: Specify
 	//    the domain name of the Amazon S3 website endpoint in which you created
-	//    the bucket; for example, s3-website-us-east-1.amazonaws.com. For more
+	//    the bucket, for example, s3-website-us-east-1.amazonaws.com. For more
 	//    information about valid values, see the table Amazon Simple Storage Service
 	//    (S3) Website Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
 	//    in the Amazon Web Services General Reference. For more information about
-	//    using S3 buckets for websites, see Hosting a Static Website on Amazon
-	//    S3 (http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
-	//    in the Amazon S3 Developer Guide.
+	//    using S3 buckets for websites, see Getting Started with Amazon Route 53
+	//    (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/getting-started.html)
+	//    in the Amazon Route 53 Developer Guide.
 	//
 	//    * Another Amazon Route 53 resource record set: Specify the value of the
 	//    Name element for a resource record set in the current hosted zone.
@@ -4703,22 +4709,26 @@ type AliasTarget struct {
 	//
 	// AWS Management Console: Go to the Amazon EC2 page, click Load Balancers in
 	// the navigation pane, select the load balancer, and get the value of the Hosted
-	// Zone ID field on the Description tab. Use the same process to get the value
-	// of DNS Name. See HostedZone$Name.
+	// zone field on the Description tab. Use the same process to get the value
+	// of DNS name. (You specify the value of DNS name for AliasTarget$DNSName.)
 	//
 	// Elastic Load Balancing API: Use DescribeLoadBalancers to get the value of
-	// CanonicalHostedZoneNameID. Use the same process to get the CanonicalHostedZoneName.
-	// See HostedZone$Name.
+	// CanonicalHostedZoneNameId and DNSName. (You specify the value of DNSName
+	// for AliasTarget$DNSName.) For more information, see the applicable guide:
+	//
+	// Classic Load Balancer: DescribeLoadBalancers (http://docs.aws.amazon.com/elasticloadbalancing/2012-06-01/APIReference/API_DescribeLoadBalancers.html)
+	//
+	// Application Load Balancer: DescribeLoadBalancers (http://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
 	//
 	// AWS CLI: Use describe-load-balancers (http://docs.aws.amazon.com/cli/latest/reference/elb/describe-load-balancers.html)
-	// to get the value of CanonicalHostedZoneNameID. Use the same process to get
-	// the CanonicalHostedZoneName. See HostedZone$Name.
+	// to get the value of CanonicalHostedZoneNameID and DNSName. (You specify the
+	// value of DNSName for AliasTarget$DNSName.)
 	//
 	// An Amazon S3 bucket configured as a static websiteSpecify the hosted zone
-	// ID for the Amazon S3 website endpoint in which you created the bucket. For
-	// more information about valid values, see the table  Amazon S3 (S3) Website
-	// Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region)
-	// in the Amazon Web Services General Reference.
+	// ID for the region that you created the bucket in. For more information about
+	// valid values, see the table Amazon Simple Storage Service Website Endpoints
+	// (http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the
+	// Amazon Web Services General Reference.
 	//
 	// Another Amazon Route 53 resource record set in your hosted zoneSpecify the
 	// hosted zone ID of your hosted zone. (An alias resource record set can't reference
@@ -5897,7 +5907,7 @@ type CreateTrafficPolicyInstanceInput struct {
 	// sets in the specified hosted zone.
 	//
 	// TrafficPolicyId is a required field
-	TrafficPolicyId *string `type:"string" required:"true"`
+	TrafficPolicyId *string `min:"1" type:"string" required:"true"`
 
 	// The version of the traffic policy that you want to use to create resource
 	// record sets in the specified hosted zone.
@@ -5930,6 +5940,9 @@ func (s *CreateTrafficPolicyInstanceInput) Validate() error {
 	}
 	if s.TrafficPolicyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrafficPolicyId"))
+	}
+	if s.TrafficPolicyId != nil && len(*s.TrafficPolicyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficPolicyId", 1))
 	}
 	if s.TrafficPolicyVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrafficPolicyVersion"))
@@ -6072,7 +6085,7 @@ type CreateTrafficPolicyVersionInput struct {
 	// The ID of the traffic policy for which you want to create a new version.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6093,6 +6106,9 @@ func (s *CreateTrafficPolicyVersionInput) Validate() error {
 	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6501,7 +6517,7 @@ type DeleteTrafficPolicyInput struct {
 	// The ID of the traffic policy that you want to delete.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 
 	// The version number of the traffic policy that you want to delete.
 	//
@@ -6524,6 +6540,9 @@ func (s *DeleteTrafficPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteTrafficPolicyInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 	if s.Version == nil {
 		invalidParams.Add(request.NewErrParamRequired("Version"))
@@ -6563,7 +6582,7 @@ type DeleteTrafficPolicyInstanceInput struct {
 	// policy instance.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6581,6 +6600,9 @@ func (s *DeleteTrafficPolicyInstanceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteTrafficPolicyInstanceInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7749,7 +7771,7 @@ type GetTrafficPolicyInput struct {
 	// The ID of the traffic policy that you want to get information about.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 
 	// The version number of the traffic policy that you want to get information
 	// about.
@@ -7773,6 +7795,9 @@ func (s *GetTrafficPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTrafficPolicyInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 	if s.Version == nil {
 		invalidParams.Add(request.NewErrParamRequired("Version"))
@@ -7856,7 +7881,7 @@ type GetTrafficPolicyInstanceInput struct {
 	// The ID of the traffic policy instance that you want to get information about.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7874,6 +7899,9 @@ func (s *GetTrafficPolicyInstanceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTrafficPolicyInstanceInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -9779,7 +9807,7 @@ type ListTrafficPoliciesInput struct {
 	// element that was returned in the previous response.
 	//
 	// Policies are listed in the order in which they were created.
-	TrafficPolicyIdMarker *string `location:"querystring" locationName:"trafficpolicyid" type:"string"`
+	TrafficPolicyIdMarker *string `location:"querystring" locationName:"trafficpolicyid" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -9790,6 +9818,19 @@ func (s ListTrafficPoliciesInput) String() string {
 // GoString returns the string representation
 func (s ListTrafficPoliciesInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTrafficPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTrafficPoliciesInput"}
+	if s.TrafficPolicyIdMarker != nil && len(*s.TrafficPolicyIdMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficPolicyIdMarker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetMaxItems sets the MaxItems field's value.
@@ -9829,7 +9870,7 @@ type ListTrafficPoliciesOutput struct {
 	// first traffic policy in the next group of MaxItems traffic policies.
 	//
 	// TrafficPolicyIdMarker is a required field
-	TrafficPolicyIdMarker *string `type:"string" required:"true"`
+	TrafficPolicyIdMarker *string `min:"1" type:"string" required:"true"`
 
 	// A list that contains one TrafficPolicySummary element for each traffic policy
 	// that was created by the current AWS account.
@@ -10072,7 +10113,7 @@ type ListTrafficPolicyInstancesByPolicyInput struct {
 	// The ID of the traffic policy for which you want to list traffic policy instances.
 	//
 	// TrafficPolicyId is a required field
-	TrafficPolicyId *string `location:"querystring" locationName:"id" type:"string" required:"true"`
+	TrafficPolicyId *string `location:"querystring" locationName:"id" min:"1" type:"string" required:"true"`
 
 	// For the first request to ListTrafficPolicyInstancesByPolicy, omit this value.
 	//
@@ -10120,6 +10161,9 @@ func (s *ListTrafficPolicyInstancesByPolicyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListTrafficPolicyInstancesByPolicyInput"}
 	if s.TrafficPolicyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrafficPolicyId"))
+	}
+	if s.TrafficPolicyId != nil && len(*s.TrafficPolicyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficPolicyId", 1))
 	}
 	if s.TrafficPolicyVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrafficPolicyVersion"))
@@ -10440,7 +10484,7 @@ type ListTrafficPolicyVersionsInput struct {
 	// all versions.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 
 	// The maximum number of traffic policy versions that you want Amazon Route
 	// 53 to include in the response body for this request. If the specified traffic
@@ -10478,6 +10522,9 @@ func (s *ListTrafficPolicyVersionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListTrafficPolicyVersionsInput"}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11032,7 +11079,7 @@ type ResourceRecordSet struct {
 	// by using ChangeResourceRecordSets, Amazon Route 53 doesn't automatically
 	// delete the traffic policy instance, and you'll continue to be charged for
 	// it even though it's no longer in use.
-	TrafficPolicyInstanceId *string `type:"string"`
+	TrafficPolicyInstanceId *string `min:"1" type:"string"`
 
 	// The DNS record type. For information about different record types and how
 	// data is encoded for them, see Supported DNS Resource Record Types (http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/ResourceRecordTypes.html)
@@ -11137,6 +11184,9 @@ func (s *ResourceRecordSet) Validate() error {
 	}
 	if s.SetIdentifier != nil && len(*s.SetIdentifier) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SetIdentifier", 1))
+	}
+	if s.TrafficPolicyInstanceId != nil && len(*s.TrafficPolicyInstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficPolicyInstanceId", 1))
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
@@ -11615,7 +11665,7 @@ type TrafficPolicy struct {
 	// it.
 	//
 	// Id is a required field
-	Id *string `type:"string" required:"true"`
+	Id *string `min:"1" type:"string" required:"true"`
 
 	// The name that you specified when you created the traffic policy.
 	//
@@ -11695,7 +11745,7 @@ type TrafficPolicyInstance struct {
 	// The ID that Amazon Route 53 assigned to the new traffic policy instance.
 	//
 	// Id is a required field
-	Id *string `type:"string" required:"true"`
+	Id *string `min:"1" type:"string" required:"true"`
 
 	// If State is Failed, an explanation of the reason for the failure. If State
 	// is another value, Message is empty.
@@ -11735,7 +11785,7 @@ type TrafficPolicyInstance struct {
 	// record sets in the specified hosted zone.
 	//
 	// TrafficPolicyId is a required field
-	TrafficPolicyId *string `type:"string" required:"true"`
+	TrafficPolicyId *string `min:"1" type:"string" required:"true"`
 
 	// The DNS type that Amazon Route 53 assigned to all of the resource record
 	// sets that it created for this traffic policy instance.
@@ -11824,7 +11874,7 @@ type TrafficPolicySummary struct {
 	// it.
 	//
 	// Id is a required field
-	Id *string `type:"string" required:"true"`
+	Id *string `min:"1" type:"string" required:"true"`
 
 	// The version number of the latest version of the traffic policy.
 	//
@@ -12355,7 +12405,7 @@ type UpdateTrafficPolicyCommentInput struct {
 	// The value of Id for the traffic policy for which you want to update the comment.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 
 	// The value of Version for the traffic policy for which you want to update
 	// the comment.
@@ -12382,6 +12432,9 @@ func (s *UpdateTrafficPolicyCommentInput) Validate() error {
 	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 	if s.Version == nil {
 		invalidParams.Add(request.NewErrParamRequired("Version"))
@@ -12450,7 +12503,7 @@ type UpdateTrafficPolicyInstanceInput struct {
 	// The ID of the traffic policy instance that you want to update.
 	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 
 	// The TTL that you want Amazon Route 53 to assign to all of the updated resource
 	// record sets.
@@ -12462,7 +12515,7 @@ type UpdateTrafficPolicyInstanceInput struct {
 	// resource record sets for the specified traffic policy instance.
 	//
 	// TrafficPolicyId is a required field
-	TrafficPolicyId *string `type:"string" required:"true"`
+	TrafficPolicyId *string `min:"1" type:"string" required:"true"`
 
 	// The version of the traffic policy that you want Amazon Route 53 to use to
 	// update resource record sets for the specified traffic policy instance.
@@ -12487,11 +12540,17 @@ func (s *UpdateTrafficPolicyInstanceInput) Validate() error {
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
 	if s.TTL == nil {
 		invalidParams.Add(request.NewErrParamRequired("TTL"))
 	}
 	if s.TrafficPolicyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrafficPolicyId"))
+	}
+	if s.TrafficPolicyId != nil && len(*s.TrafficPolicyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrafficPolicyId", 1))
 	}
 	if s.TrafficPolicyVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrafficPolicyVersion"))
@@ -12796,8 +12855,14 @@ const (
 	// ResourceRecordSetRegionUsWest2 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionUsWest2 = "us-west-2"
 
+	// ResourceRecordSetRegionCaCentral1 is a ResourceRecordSetRegion enum value
+	ResourceRecordSetRegionCaCentral1 = "ca-central-1"
+
 	// ResourceRecordSetRegionEuWest1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionEuWest1 = "eu-west-1"
+
+	// ResourceRecordSetRegionEuWest2 is a ResourceRecordSetRegion enum value
+	ResourceRecordSetRegionEuWest2 = "eu-west-2"
 
 	// ResourceRecordSetRegionEuCentral1 is a ResourceRecordSetRegion enum value
 	ResourceRecordSetRegionEuCentral1 = "eu-central-1"
@@ -12865,6 +12930,9 @@ const (
 	// VPCRegionEuWest1 is a VPCRegion enum value
 	VPCRegionEuWest1 = "eu-west-1"
 
+	// VPCRegionEuWest2 is a VPCRegion enum value
+	VPCRegionEuWest2 = "eu-west-2"
+
 	// VPCRegionEuCentral1 is a VPCRegion enum value
 	VPCRegionEuCentral1 = "eu-central-1"
 
@@ -12885,6 +12953,9 @@ const (
 
 	// VPCRegionSaEast1 is a VPCRegion enum value
 	VPCRegionSaEast1 = "sa-east-1"
+
+	// VPCRegionCaCentral1 is a VPCRegion enum value
+	VPCRegionCaCentral1 = "ca-central-1"
 
 	// VPCRegionCnNorth1 is a VPCRegion enum value
 	VPCRegionCnNorth1 = "cn-north-1"
