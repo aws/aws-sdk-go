@@ -151,9 +151,9 @@ func (c *DirectoryService) AddTagsToResourceRequest(input *AddTagsToResourceInpu
 
 // AddTagsToResource API operation for AWS Directory Service.
 //
-// Adds or overwrites one or more tags for the specified Amazon Directory Services
-// directory. Each directory can have a maximum of 50 tags. Each tag consists
-// of a key and optional value. Tag keys must be unique to each resource.
+// Adds or overwrites one or more tags for the specified directory. Each directory
+// can have a maximum of 50 tags. Each tag consists of a key and optional value.
+// Tag keys must be unique to each resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2020,7 +2020,7 @@ func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *request
 
 // EnableSso API operation for AWS Directory Service.
 //
-// Enables single-sign on for a directory.
+// Enables single sign-on for a directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2395,7 +2395,7 @@ func (c *DirectoryService) ListTagsForResourceRequest(input *ListTagsForResource
 
 // ListTagsForResource API operation for AWS Directory Service.
 //
-// Lists all tags on an Amazon Directory Services directory.
+// Lists all tags on a directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2631,7 +2631,7 @@ func (c *DirectoryService) RemoveTagsFromResourceRequest(input *RemoveTagsFromRe
 
 // RemoveTagsFromResource API operation for AWS Directory Service.
 //
-// Removes tags from an Amazon Directory Services directory.
+// Removes tags from a directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3194,7 +3194,7 @@ type AddTagsToResourceInput struct {
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// The tags to be assigned to the Amazon Directory Services directory.
+	// The tags to be assigned to the directory.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -7181,7 +7181,9 @@ type StartSchemaExtensionInput struct {
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
-	// The LDIF file represented as a string. The file size can be no larger than
+	// The LDIF file represented as a string. To construct the LdifContent string,
+	// precede each line as it would be formatted in an ldif file with \n. See the
+	// example request below for more details. The file size can be no larger than
 	// 1MB.
 	//
 	// LdifContent is a required field
@@ -7271,8 +7273,7 @@ func (s *StartSchemaExtensionOutput) SetSchemaExtensionId(v string) *StartSchema
 	return s
 }
 
-// Metadata assigned to an Amazon Directory Services directory consisting of
-// a key-value pair.
+// Metadata assigned to a directory consisting of a key-value pair.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/Tag
 type Tag struct {
 	_ struct{} `type:"structure"`
