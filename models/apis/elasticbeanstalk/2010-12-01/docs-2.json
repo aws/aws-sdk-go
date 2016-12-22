@@ -34,6 +34,7 @@
     "SwapEnvironmentCNAMEs": "<p>Swaps the CNAMEs of two environments.</p>",
     "TerminateEnvironment": "<p>Terminates the specified environment.</p>",
     "UpdateApplication": "<p>Updates the specified application to have the specified properties.</p> <note> <p>If a property (for example, <code>description</code>) is not provided, the value remains unchanged. To clear these properties, specify an empty string.</p> </note>",
+    "UpdateApplicationResourceLifecycle": "<p>Modifies lifecycle settings for an application.</p>",
     "UpdateApplicationVersion": "<p>Updates the specified application version to have the specified properties.</p> <note> <p>If a property (for example, <code>description</code>) is not provided, the value remains unchanged. To clear properties, specify an empty string.</p> </note>",
     "UpdateConfigurationTemplate": "<p>Updates the specified configuration template to have the specified properties or configuration option values.</p> <note> <p>If a property (for example, <code>ApplicationName</code>) is not provided, its value remains unchanged. To clear such properties, specify an empty string.</p> </note> <p>Related Topics</p> <ul> <li> <p> <a>DescribeConfigurationOptions</a> </p> </li> </ul>",
     "UpdateEnvironment": "<p>Updates the environment description, deploys a new application version, updates the configuration settings to an entirely new configuration template, or updates select configuration option values in the running environment.</p> <p> Attempting to update both the release and configuration is not allowed and AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. </p> <p> When updating the configuration settings to a new template or individual settings, a draft configuration is created and <a>DescribeConfigurationSettings</a> for this environment returns two setting descriptions with different <code>DeploymentStatus</code> values. </p>",
@@ -107,6 +108,7 @@
       "refs": {
         "ApplicationDescription$ApplicationName": "<p>The name of the application.</p>",
         "ApplicationNamesList$member": null,
+        "ApplicationResourceLifecycleDescriptionMessage$ApplicationName": "<p>The name of the application.</p>",
         "ApplicationVersionDescription$ApplicationName": "<p>The name of the application to which the application version belongs.</p>",
         "ComposeEnvironmentsMessage$ApplicationName": "<p>The name of the application to which the specified source bundles belong.</p>",
         "ConfigurationSettingsDescription$ApplicationName": "<p>The name of the application associated with this configuration set.</p>",
@@ -127,6 +129,7 @@
         "EventDescription$ApplicationName": "<p>The application associated with the event.</p>",
         "SourceConfiguration$ApplicationName": "<p>The name of the application associated with the configuration.</p>",
         "UpdateApplicationMessage$ApplicationName": "<p>The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>",
+        "UpdateApplicationResourceLifecycleMessage$ApplicationName": "<p>The name of the application.</p>",
         "UpdateApplicationVersionMessage$ApplicationName": "<p>The name of the application associated with this version.</p> <p> If no application is found with this name, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error.</p>",
         "UpdateConfigurationTemplateMessage$ApplicationName": "<p>The name of the application associated with the configuration template to update.</p> <p> If no application is found with this name, <code>UpdateConfigurationTemplate</code> returns an <code>InvalidParameterValue</code> error. </p>",
         "UpdateEnvironmentMessage$ApplicationName": "<p>The name of the application with which the environment is associated.</p>",
@@ -137,6 +140,20 @@
       "base": null,
       "refs": {
         "DescribeApplicationsMessage$ApplicationNames": "<p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.</p>"
+      }
+    },
+    "ApplicationResourceLifecycleConfig": {
+      "base": "<p>The resource lifecycle configuration for an application. Defines lifecycle settings for resources that belong to the application, and the service role that Elastic Beanstalk assumes in order to apply lifecycle settings. The version lifecycle configuration defines lifecycle settings for application versions.</p>",
+      "refs": {
+        "ApplicationDescription$ResourceLifecycleConfig": "<p>The lifecycle settings for the application.</p>",
+        "ApplicationResourceLifecycleDescriptionMessage$ResourceLifecycleConfig": "<p>The lifecycle configuration.</p>",
+        "CreateApplicationMessage$ResourceLifecycleConfig": "<p>Specify an application resource lifecycle configuration to prevent your application from accumulating too many versions.</p>",
+        "UpdateApplicationResourceLifecycleMessage$ResourceLifecycleConfig": "<p>The lifecycle configuration.</p>"
+      }
+    },
+    "ApplicationResourceLifecycleDescriptionMessage": {
+      "base": null,
+      "refs": {
       }
     },
     "ApplicationVersionDescription": {
@@ -160,6 +177,12 @@
     "ApplicationVersionDescriptionsMessage": {
       "base": "<p>Result message wrapping a list of application version descriptions.</p>",
       "refs": {
+      }
+    },
+    "ApplicationVersionLifecycleConfig": {
+      "base": "<p>The application version lifecycle settings for an application. Defines the rules that Elastic Beanstalk applies to an application's versions in order to avoid hitting the per-region limit for application versions.</p> <p>When Elastic Beanstalk deletes an application version from its database, you can no longer deploy that version to an environment. The source bundle remains in S3 unless you configure the rule to delete it.</p>",
+      "refs": {
+        "ApplicationResourceLifecycleConfig$VersionLifecycleConfig": "<p>The application version lifecycle configuration.</p>"
       }
     },
     "ApplicationVersionProccess": {
@@ -214,10 +237,21 @@
         "ListAvailableSolutionStacksResultMessage$SolutionStacks": "<p>A list of available solution stacks.</p>"
       }
     },
+    "BoxedBoolean": {
+      "base": null,
+      "refs": {
+        "MaxAgeRule$Enabled": "<p>Specify <code>true</code> to apply the rule, or <code>false</code> to disable it.</p>",
+        "MaxAgeRule$DeleteSourceFromS3": "<p>Set to <code>true</code> to delete a version's source bundle from Amazon S3 when Elastic Beanstalk deletes the application version.</p>",
+        "MaxCountRule$Enabled": "<p>Specify <code>true</code> to apply the rule, or <code>false</code> to disable it.</p>",
+        "MaxCountRule$DeleteSourceFromS3": "<p>Set to <code>true</code> to delete a version's source bundle from Amazon S3 when Elastic Beanstalk deletes the application version.</p>"
+      }
+    },
     "BoxedInt": {
       "base": null,
       "refs": {
-        "BuildConfiguration$TimeoutInMinutes": "<p>How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.</p>"
+        "BuildConfiguration$TimeoutInMinutes": "<p>How long in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait until timing out any related build that does not get marked as completed. The default is 60 minutes.</p>",
+        "MaxAgeRule$MaxAgeInDays": "<p>Specify the number of days to retain an application versions.</p>",
+        "MaxCountRule$MaxCount": "<p>Specify the maximum number of application versions to retain.</p>"
       }
     },
     "BuildConfiguration": {
@@ -1012,6 +1046,18 @@
         "DescribeEnvironmentManagedActionsResult$ManagedActions": "<p>A list of upcoming and in-progress managed actions.</p>"
       }
     },
+    "MaxAgeRule": {
+      "base": "<p>A lifecycle rule that deletes application versions after the specified number of days.</p>",
+      "refs": {
+        "ApplicationVersionLifecycleConfig$MaxAgeRule": "<p>Specify a max age rule to restrict the length of time that application versions are retained for an application.</p>"
+      }
+    },
+    "MaxCountRule": {
+      "base": "<p>A lifecycle rule that deletes the oldest application version when the maximum count is exceeded.</p>",
+      "refs": {
+        "ApplicationVersionLifecycleConfig$MaxCountRule": "<p>Specify a max count rule to restrict the number of application versions that are retained for an application.</p>"
+      }
+    },
     "MaxRecords": {
       "base": null,
       "refs": {
@@ -1335,6 +1381,7 @@
     "String": {
       "base": null,
       "refs": {
+        "ApplicationResourceLifecycleConfig$ServiceRole": "<p>The ARN of an IAM service role that Elastic Beanstalk has permission to assume.</p>",
         "ApplicationVersionDescription$BuildArn": "<p>Reference to the artifact from the AWS CodeBuild build.</p>",
         "ApplyEnvironmentManagedActionRequest$EnvironmentName": "<p>The name of the target environment.</p>",
         "ApplyEnvironmentManagedActionRequest$EnvironmentId": "<p>The environment ID of the target environment.</p>",
@@ -1492,6 +1539,11 @@
     },
     "UpdateApplicationMessage": {
       "base": "<p>Request to update an application.</p>",
+      "refs": {
+      }
+    },
+    "UpdateApplicationResourceLifecycleMessage": {
+      "base": null,
       "refs": {
       }
     },

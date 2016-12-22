@@ -1,3 +1,18 @@
+Release v1.6.8 (2016-12-22)
+===
+
+Service Client Updates
+---
+* `service/apigateway`: Updates service API and documentation
+  * Amazon API Gateway is adding support for generating SDKs in more languages. This update introduces two new operations used to dynamically discover these SDK types and what configuration each type accepts.
+* `service/directoryservice`: Updates service documentation
+  * Alias of single point of contact/owner from your service team: tangbran@amazon.com or nickpi@amazon.com. Added code snippets for the DS SDKs
+* `service/elasticbeanstalk`: Updates service API and documentation
+* `service/iam`: Updates service API and documentation
+  * Adds service-specific credentials to IAM service to make it easier to onboard CodeCommit customers.  These are username/password credentials that work with a single service.
+* `service/kms`: Updates service API, documentation, and examples
+  * Update docs and add SDK examples
+
 Release v1.6.7 (2016-12-22)
 ===
 
