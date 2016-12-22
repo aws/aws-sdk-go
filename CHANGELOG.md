@@ -1,3 +1,13 @@
+Release v1.6.7 (2016-12-22)
+===
+
+Service Client Updates
+---
+* `service/ecr`: Updates service API and documentation
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/rds`: Updates service API and documentation
+  * Cross Region Encrypted Snapshot Copying (CopyDBSnapshot)
+
 Release v1.6.6 (2016-12-20)
 ===
 

@@ -60,7 +60,8 @@ func (c *ECR) BatchCheckLayerAvailabilityRequest(input *BatchCheckLayerAvailabil
 // repository.
 //
 // This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+// general use by customers for pulling and pushing images. In most cases, you
+// should use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -136,6 +137,13 @@ func (c *ECR) BatchDeleteImageRequest(input *BatchDeleteImageInput) (req *reques
 //
 // Deletes a list of specified images within a specified repository. Images
 // are specified with either imageTag or imageDigest.
+//
+// You can remove a tag from an image by specifying the image's tag in your
+// request. When you remove the last tag from an image, the image is deleted
+// from your repository.
+//
+// You can completely delete an image (and all of its tags) by specifying the
+// image's digest in your request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -289,7 +297,8 @@ func (c *ECR) CompleteLayerUploadRequest(input *CompleteLayerUploadInput) (req *
 // of the image layer for data validation purposes.
 //
 // This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+// general use by customers for pulling and pushing images. In most cases, you
+// should use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -622,8 +631,8 @@ func (c *ECR) DescribeImagesRequest(input *DescribeImagesInput) (req *request.Re
 
 // DescribeImages API operation for Amazon EC2 Container Registry.
 //
-// Returns metadata about the images in a repository, including image size and
-// creation date.
+// Returns metadata about the images in a repository, including image size,
+// image tags, and creation date.
 //
 // Beginning with Docker version 1.9, the Docker client compresses image layers
 // before pushing them to a V2 Docker registry. The output of the docker images
@@ -916,7 +925,8 @@ func (c *ECR) GetDownloadUrlForLayerRequest(input *GetDownloadUrlForLayerInput) 
 // layer. You can only get URLs for image layers that are referenced in an image.
 //
 // This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+// general use by customers for pulling and pushing images. In most cases, you
+// should use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1079,7 +1089,8 @@ func (c *ECR) InitiateLayerUploadRequest(input *InitiateLayerUploadInput) (req *
 // Notify Amazon ECR that you intend to upload an image layer.
 //
 // This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+// general use by customers for pulling and pushing images. In most cases, you
+// should use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1264,10 +1275,11 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 
 // PutImage API operation for Amazon EC2 Container Registry.
 //
-// Creates or updates the image manifest associated with an image.
+// Creates or updates the image manifest and tags associated with an image.
 //
 // This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+// general use by customers for pulling and pushing images. In most cases, you
+// should use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1432,7 +1444,8 @@ func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.
 // Uploads an image layer part to Amazon ECR.
 //
 // This operation is used by the Amazon ECR proxy, and it is not intended for
-// general use by customers. Use the docker CLI to pull, tag, and push images.
+// general use by customers for pulling and pushing images. In most cases, you
+// should use the docker CLI to pull, tag, and push images.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1734,6 +1747,12 @@ func (s *BatchDeleteImageOutput) SetImageIds(v []*ImageIdentifier) *BatchDeleteI
 type BatchGetImageInput struct {
 	_ struct{} `type:"structure"`
 
+	// The accepted media types for the request.
+	//
+	// Valid values: application/vnd.docker.distribution.manifest.v1+json | application/vnd.docker.distribution.manifest.v2+json
+	// | application/vnd.oci.image.manifest.v1+json
+	AcceptedMediaTypes []*string `locationName:"acceptedMediaTypes" min:"1" type:"list"`
+
 	// A list of image ID references that correspond to images to describe. The
 	// format of the imageIds reference is imageTag=tag or imageDigest=digest.
 	//
@@ -1763,6 +1782,9 @@ func (s BatchGetImageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *BatchGetImageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchGetImageInput"}
+	if s.AcceptedMediaTypes != nil && len(s.AcceptedMediaTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AcceptedMediaTypes", 1))
+	}
 	if s.ImageIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImageIds"))
 	}
@@ -1780,6 +1802,12 @@ func (s *BatchGetImageInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAcceptedMediaTypes sets the AcceptedMediaTypes field's value.
+func (s *BatchGetImageInput) SetAcceptedMediaTypes(v []*string) *BatchGetImageInput {
+	s.AcceptedMediaTypes = v
+	return s
 }
 
 // SetImageIds sets the ImageIds field's value.
@@ -2269,8 +2297,8 @@ type DescribeImagesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The AWS account ID associated with the registry that contains the repository
-	// in which to list images. If you do not specify a registry, the default registry
-	// is assumed.
+	// in which to describe images. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// A list of repositories to describe. If this parameter is omitted, then all
@@ -3057,8 +3085,7 @@ func (s *InitiateLayerUploadOutput) SetUploadId(v string) *InitiateLayerUploadOu
 type Layer struct {
 	_ struct{} `type:"structure"`
 
-	// The availability status of the image layer. Valid values are AVAILABLE and
-	// UNAVAILABLE.
+	// The availability status of the image layer.
 	LayerAvailability *string `locationName:"layerAvailability" type:"string" enum:"LayerAvailability"`
 
 	// The sha256 digest of the image layer.
@@ -3066,6 +3093,10 @@ type Layer struct {
 
 	// The size, in bytes, of the image layer.
 	LayerSize *int64 `locationName:"layerSize" type:"long"`
+
+	// The media type of the layer, such as application/vnd.docker.image.rootfs.diff.tar.gzip
+	// or application/vnd.oci.image.layer.v1.tar+gzip.
+	MediaType *string `locationName:"mediaType" type:"string"`
 }
 
 // String returns the string representation
@@ -3093,6 +3124,12 @@ func (s *Layer) SetLayerDigest(v string) *Layer {
 // SetLayerSize sets the LayerSize field's value.
 func (s *Layer) SetLayerSize(v int64) *Layer {
 	s.LayerSize = &v
+	return s
+}
+
+// SetMediaType sets the MediaType field's value.
+func (s *Layer) SetMediaType(v string) *Layer {
+	s.MediaType = &v
 	return s
 }
 
@@ -3305,6 +3342,10 @@ type PutImageInput struct {
 	// ImageManifest is a required field
 	ImageManifest *string `locationName:"imageManifest" type:"string" required:"true"`
 
+	// The tag to associate with the image. This parameter is required for images
+	// that use the Docker Image Manifest V2 Schema 2 or OCI formats.
+	ImageTag *string `locationName:"imageTag" type:"string"`
+
 	// The AWS account ID associated with the registry that contains the repository
 	// in which to put the image. If you do not specify a registry, the default
 	// registry is assumed.
@@ -3348,6 +3389,12 @@ func (s *PutImageInput) Validate() error {
 // SetImageManifest sets the ImageManifest field's value.
 func (s *PutImageInput) SetImageManifest(v string) *PutImageInput {
 	s.ImageManifest = &v
+	return s
+}
+
+// SetImageTag sets the ImageTag field's value.
+func (s *PutImageInput) SetImageTag(v string) *PutImageInput {
+	s.ImageTag = &v
 	return s
 }
 
