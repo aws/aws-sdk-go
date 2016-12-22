@@ -680,6 +680,49 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 //
 // You can not copy an encrypted DB snapshot from another AWS region.
 //
+// You can copy an encrypted DB snapshot from another AWS region. In that case,
+// the region where you call the CopyDBSnapshot action is the destination region
+// for the encrypted DB snapshot to be copied to. To copy an encrypted DB snapshot
+// from another region, you must provide the following values:
+//
+//    * KmsKeyId - the AWS Key Management System (KMS) key identifier for the
+//    key to use to encrypt the copy of the DB snapshot in the destination region.
+//
+//    * PreSignedUrl - a URL that contains a Signature Version 4 signed request
+//    for the CopyDBSnapshot action to be called in the source region where
+//    the DB snapshot will be copied from. The pre-signed URL must be a valid
+//    request for the CopyDBSnapshot API action that can be executed in the
+//    source region that contains the encrypted DB snapshot to be copied.
+//
+// The pre-signed URL request must contain the following parameter values:
+//
+// KmsKeyId - The KMS key identifier for the key to use to encrypt the copy
+//    of the DB snapshot in the destination region. This is the same identifier
+//    for both the CopyDBSnapshot action that is called in the destination region,
+//    and the action contained in the pre-signed URL.
+//
+// SourceDBSnapshotIdentifier - the DB snapshot identifier for the encrypted
+//    snapshot to be copied. This identifier must be in the Amazon Resource
+//    Name (ARN) format for the source region. For example, if you are copying
+//    an encrypted DB snapshot from the us-west-2 region, then your SourceDBSnapshotIdentifier
+//    would look like Example: arn:aws:rds:us-west-2:123456789012:snapshot:mysql-instance1-snapshot-20161115.
+//
+// To learn how to generate a Signature Version 4 signed request, see  Authenticating
+//    Requests: Using Query Parameters (AWS Signature Version 4) (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
+//    and  Signature Version 4 Signing Process (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//
+//    * TargetDBSnapshotIdentifier - the identifier for the new copy of the
+//    DB snapshot in the destination region.
+//
+//    * SourceDBSnapshotIdentifier - the DB snapshot identifier for the encrypted
+//    snapshot to be copied. This identifier must be in the ARN format for the
+//    source region and is the same value as the SourceDBSnapshotIdentifier
+//    in the pre-signed URL.
+//
+// For more information on copying encrypted snapshots from one region to another,
+// see  Copying an Encrypted DB Snapshot to Another Region in the Amazon RDS
+// User Guide. (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html#USER_CopySnapshot.Encrypted.CrossRegion)
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8462,6 +8505,9 @@ type CopyDBSnapshotInput struct {
 	// otherwise false. The default is false.
 	CopyTags *bool `type:"boolean"`
 
+	// DestinationRegion is used for presigning the request to a given region.
+	DestinationRegion *string `type:"string"`
+
 	// The AWS KMS key ID for an encrypted DB snapshot. The KMS key ID is the Amazon
 	// Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS
 	// encryption key.
@@ -8475,9 +8521,47 @@ type CopyDBSnapshotInput struct {
 	// you don't specify a value for KmsKeyId, then the copy of the DB snapshot
 	// is encrypted with the same KMS key as the source DB snapshot.
 	//
+	// If you copy an encrypted DB snapshot from your AWS account, you can specify
+	// a value for KmsKeyId to encrypt the copy with a new KMS encryption key. If
+	// you don't specify a value for KmsKeyId, then the copy of the DB snapshot
+	// is encrypted with the same KMS key as the source DB snapshot. If you copy
+	// an encrypted snapshot to a different AWS region, then you must specify a
+	// KMS key for the destination AWS region.
+	//
 	// If you copy an encrypted DB snapshot that is shared from another AWS account,
 	// then you must specify a value for KmsKeyId.
+	//
+	// To copy an encrypted DB snapshot to another region, you must set KmsKeyId
+	// to the KMS key ID used to encrypt the copy of the DB snapshot in the destination
+	// region. KMS encryption keys are specific to the region that they are created
+	// in, and you cannot use encryption keys from one region in another region.
 	KmsKeyId *string `type:"string"`
+
+	// The URL that contains a Signature Version 4 signed request for the CopyDBSnapshot
+	// API action in the AWS region that contains the source DB snapshot to copy.
+	// The PreSignedUrl parameter must be used when copying an encrypted DB snapshot
+	// from another AWS region.
+	//
+	// The pre-signed URL must be a valid request for the CopyDBSnapshot API action
+	// that can be executed in the source region that contains the encrypted DB
+	// snapshot to be copied. The pre-signed URL request must contain the following
+	// parameter values:
+	//
+	//    * KmsKeyId - The KMS key identifier for the key to use to encrypt the
+	//    copy of the DB snapshot in the destination region. This is the same identifier
+	//    for both the CopyDBSnapshot action that is called in the destination region,
+	//    and the action contained in the pre-signed URL.
+	//
+	//    * SourceDBSnapshotIdentifier - the DB snapshot identifier for the encrypted
+	//    snapshot to be copied. This identifier must be in the Amazon Resource
+	//    Name (ARN) format for the source region. For example, if you are copying
+	//    an encrypted DB snapshot from the us-west-2 region, then your SourceDBSnapshotIdentifier
+	//    would look like Example: arn:aws:rds:us-west-2:123456789012:snapshot:mysql-instance1-snapshot-20161115.
+	//
+	// To learn how to generate a Signature Version 4 signed request, see  Authenticating
+	// Requests: Using Query Parameters (AWS Signature Version 4) (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
+	// and  Signature Version 4 Signing Process (http://docs.aws.amazon.com/http:/docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+	PreSignedUrl *string `type:"string"`
 
 	// The identifier for the source DB snapshot.
 	//
@@ -8503,6 +8587,11 @@ type CopyDBSnapshotInput struct {
 	//
 	// SourceDBSnapshotIdentifier is a required field
 	SourceDBSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// SourceRegion is the source region where the resource exists. This is not
+	// sent over the wire and is only used for presigning. This value should always
+	// have the same region as the source ARN.
+	SourceRegion *string `type:"string" ignore:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -8557,15 +8646,33 @@ func (s *CopyDBSnapshotInput) SetCopyTags(v bool) *CopyDBSnapshotInput {
 	return s
 }
 
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *CopyDBSnapshotInput) SetDestinationRegion(v string) *CopyDBSnapshotInput {
+	s.DestinationRegion = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CopyDBSnapshotInput) SetKmsKeyId(v string) *CopyDBSnapshotInput {
 	s.KmsKeyId = &v
 	return s
 }
 
+// SetPreSignedUrl sets the PreSignedUrl field's value.
+func (s *CopyDBSnapshotInput) SetPreSignedUrl(v string) *CopyDBSnapshotInput {
+	s.PreSignedUrl = &v
+	return s
+}
+
 // SetSourceDBSnapshotIdentifier sets the SourceDBSnapshotIdentifier field's value.
 func (s *CopyDBSnapshotInput) SetSourceDBSnapshotIdentifier(v string) *CopyDBSnapshotInput {
 	s.SourceDBSnapshotIdentifier = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CopyDBSnapshotInput) SetSourceRegion(v string) *CopyDBSnapshotInput {
+	s.SourceRegion = &v
 	return s
 }
 
