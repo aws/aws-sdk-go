@@ -51,11 +51,10 @@ func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpen
 		input = &AddClientIDToOpenIDConnectProviderInput{}
 	}
 
+	output = &AddClientIDToOpenIDConnectProviderOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AddClientIDToOpenIDConnectProviderOutput{}
-	req.Data = output
 	return
 }
 
@@ -136,11 +135,10 @@ func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInp
 		input = &AddRoleToInstanceProfileInput{}
 	}
 
+	output = &AddRoleToInstanceProfileOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AddRoleToInstanceProfileOutput{}
-	req.Data = output
 	return
 }
 
@@ -224,11 +222,10 @@ func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *request.Re
 		input = &AddUserToGroupInput{}
 	}
 
+	output = &AddUserToGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AddUserToGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -301,11 +298,10 @@ func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *requ
 		input = &AttachGroupPolicyInput{}
 	}
 
+	output = &AttachGroupPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AttachGroupPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -389,11 +385,10 @@ func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *reques
 		input = &AttachRolePolicyInput{}
 	}
 
+	output = &AttachRolePolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AttachRolePolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -481,11 +476,10 @@ func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *reques
 		input = &AttachUserPolicyInput{}
 	}
 
+	output = &AttachUserPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AttachUserPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -569,11 +563,10 @@ func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *request.Re
 		input = &ChangePasswordInput{}
 	}
 
+	output = &ChangePasswordOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &ChangePasswordOutput{}
-	req.Data = output
 	return
 }
 
@@ -665,9 +658,8 @@ func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *request.
 		input = &CreateAccessKeyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateAccessKeyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -756,11 +748,10 @@ func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *re
 		input = &CreateAccountAliasInput{}
 	}
 
+	output = &CreateAccountAliasOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &CreateAccountAliasOutput{}
-	req.Data = output
 	return
 }
 
@@ -835,9 +826,8 @@ func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *request.Request,
 		input = &CreateGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -918,9 +908,8 @@ func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (r
 		input = &CreateInstanceProfileInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateInstanceProfileOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -998,9 +987,8 @@ func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *re
 		input = &CreateLoginProfileInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateLoginProfileOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1084,9 +1072,8 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 		input = &CreateOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateOpenIDConnectProviderOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1179,9 +1166,8 @@ func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Reques
 		input = &CreatePolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreatePolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1271,9 +1257,8 @@ func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 		input = &CreatePolicyVersionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreatePolicyVersionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1365,9 +1350,8 @@ func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *request.Request, o
 		input = &CreateRoleInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateRoleOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1448,9 +1432,8 @@ func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *re
 		input = &CreateSAMLProviderInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateSAMLProviderOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1548,9 +1531,8 @@ func (c *IAM) CreateServiceSpecificCredentialRequest(input *CreateServiceSpecifi
 		input = &CreateServiceSpecificCredentialInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateServiceSpecificCredentialOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1635,9 +1617,8 @@ func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *request.Request, o
 		input = &CreateUserInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateUserOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1718,9 +1699,8 @@ func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) 
 		input = &CreateVirtualMFADeviceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateVirtualMFADeviceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1806,11 +1786,10 @@ func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *
 		input = &DeactivateMFADeviceInput{}
 	}
 
+	output = &DeactivateMFADeviceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeactivateMFADeviceOutput{}
-	req.Data = output
 	return
 }
 
@@ -1894,11 +1873,10 @@ func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *request.
 		input = &DeleteAccessKeyInput{}
 	}
 
+	output = &DeleteAccessKeyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteAccessKeyOutput{}
-	req.Data = output
 	return
 }
 
@@ -1976,11 +1954,10 @@ func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *re
 		input = &DeleteAccountAliasInput{}
 	}
 
+	output = &DeleteAccountAliasOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteAccountAliasOutput{}
-	req.Data = output
 	return
 }
 
@@ -2055,11 +2032,10 @@ func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPol
 		input = &DeleteAccountPasswordPolicyInput{}
 	}
 
+	output = &DeleteAccountPasswordPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteAccountPasswordPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -2132,11 +2108,10 @@ func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request,
 		input = &DeleteGroupInput{}
 	}
 
+	output = &DeleteGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -2214,11 +2189,10 @@ func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *requ
 		input = &DeleteGroupPolicyInput{}
 	}
 
+	output = &DeleteGroupPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteGroupPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -2297,11 +2271,10 @@ func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (r
 		input = &DeleteInstanceProfileInput{}
 	}
 
+	output = &DeleteInstanceProfileOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteInstanceProfileOutput{}
-	req.Data = output
 	return
 }
 
@@ -2387,11 +2360,10 @@ func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *re
 		input = &DeleteLoginProfileInput{}
 	}
 
+	output = &DeleteLoginProfileOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteLoginProfileOutput{}
-	req.Data = output
 	return
 }
 
@@ -2476,11 +2448,10 @@ func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProvi
 		input = &DeleteOpenIDConnectProviderInput{}
 	}
 
+	output = &DeleteOpenIDConnectProviderOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteOpenIDConnectProviderOutput{}
-	req.Data = output
 	return
 }
 
@@ -2560,11 +2531,10 @@ func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 		input = &DeletePolicyInput{}
 	}
 
+	output = &DeletePolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeletePolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -2667,11 +2637,10 @@ func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 		input = &DeletePolicyVersionInput{}
 	}
 
+	output = &DeletePolicyVersionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeletePolicyVersionOutput{}
-	req.Data = output
 	return
 }
 
@@ -2760,11 +2729,10 @@ func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *request.Request, o
 		input = &DeleteRoleInput{}
 	}
 
+	output = &DeleteRoleOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteRoleOutput{}
-	req.Data = output
 	return
 }
 
@@ -2846,11 +2814,10 @@ func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *reques
 		input = &DeleteRolePolicyInput{}
 	}
 
+	output = &DeleteRolePolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteRolePolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -2929,11 +2896,10 @@ func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *re
 		input = &DeleteSAMLProviderInput{}
 	}
 
+	output = &DeleteSAMLProviderOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteSAMLProviderOutput{}
-	req.Data = output
 	return
 }
 
@@ -3017,11 +2983,10 @@ func (c *IAM) DeleteSSHPublicKeyRequest(input *DeleteSSHPublicKeyInput) (req *re
 		input = &DeleteSSHPublicKeyInput{}
 	}
 
+	output = &DeleteSSHPublicKeyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteSSHPublicKeyOutput{}
-	req.Data = output
 	return
 }
 
@@ -3092,11 +3057,10 @@ func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput
 		input = &DeleteServerCertificateInput{}
 	}
 
+	output = &DeleteServerCertificateOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteServerCertificateOutput{}
-	req.Data = output
 	return
 }
 
@@ -3188,11 +3152,10 @@ func (c *IAM) DeleteServiceSpecificCredentialRequest(input *DeleteServiceSpecifi
 		input = &DeleteServiceSpecificCredentialInput{}
 	}
 
+	output = &DeleteServiceSpecificCredentialOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteServiceSpecificCredentialOutput{}
-	req.Data = output
 	return
 }
 
@@ -3257,11 +3220,10 @@ func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInp
 		input = &DeleteSigningCertificateInput{}
 	}
 
+	output = &DeleteSigningCertificateOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteSigningCertificateOutput{}
-	req.Data = output
 	return
 }
 
@@ -3339,11 +3301,10 @@ func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, o
 		input = &DeleteUserInput{}
 	}
 
+	output = &DeleteUserOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteUserOutput{}
-	req.Data = output
 	return
 }
 
@@ -3421,11 +3382,10 @@ func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *reques
 		input = &DeleteUserPolicyInput{}
 	}
 
+	output = &DeleteUserPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteUserPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -3504,11 +3464,10 @@ func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) 
 		input = &DeleteVirtualMFADeviceInput{}
 	}
 
+	output = &DeleteVirtualMFADeviceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteVirtualMFADeviceOutput{}
-	req.Data = output
 	return
 }
 
@@ -3588,11 +3547,10 @@ func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *requ
 		input = &DetachGroupPolicyInput{}
 	}
 
+	output = &DetachGroupPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DetachGroupPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -3674,11 +3632,10 @@ func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *reques
 		input = &DetachRolePolicyInput{}
 	}
 
+	output = &DetachRolePolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DetachRolePolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -3760,11 +3717,10 @@ func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *reques
 		input = &DetachUserPolicyInput{}
 	}
 
+	output = &DetachUserPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DetachUserPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -3846,11 +3802,10 @@ func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *request.
 		input = &EnableMFADeviceInput{}
 	}
 
+	output = &EnableMFADeviceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &EnableMFADeviceOutput{}
-	req.Data = output
 	return
 }
 
@@ -3939,9 +3894,8 @@ func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInp
 		input = &GenerateCredentialReportInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GenerateCredentialReportOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4012,9 +3966,8 @@ func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req
 		input = &GetAccessKeyLastUsedInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetAccessKeyLastUsedOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4088,9 +4041,8 @@ func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizati
 		input = &GetAccountAuthorizationDetailsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetAccountAuthorizationDetailsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4186,9 +4138,8 @@ func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInp
 		input = &GetAccountPasswordPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetAccountPasswordPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4258,9 +4209,8 @@ func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *requ
 		input = &GetAccountSummaryInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetAccountSummaryOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4329,9 +4279,8 @@ func (c *IAM) GetContextKeysForCustomPolicyRequest(input *GetContextKeysForCusto
 		input = &GetContextKeysForCustomPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetContextKeysForPolicyResponse{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4405,9 +4354,8 @@ func (c *IAM) GetContextKeysForPrincipalPolicyRequest(input *GetContextKeysForPr
 		input = &GetContextKeysForPrincipalPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetContextKeysForPolicyResponse{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4492,9 +4440,8 @@ func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *
 		input = &GetCredentialReportInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetCredentialReportOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4581,9 +4528,8 @@ func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *request.Request, outpu
 		input = &GetGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4678,9 +4624,8 @@ func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *request.Re
 		input = &GetGroupPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetGroupPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4765,9 +4710,8 @@ func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *re
 		input = &GetInstanceProfileInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetInstanceProfileOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4839,9 +4783,8 @@ func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *request.
 		input = &GetLoginProfileInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetLoginProfileOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4912,9 +4855,8 @@ func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInp
 		input = &GetOpenIDConnectProviderInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetOpenIDConnectProviderOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4988,9 +4930,8 @@ func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 		input = &GetPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5076,9 +5017,8 @@ func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *reques
 		input = &GetPolicyVersionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetPolicyVersionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5172,9 +5112,8 @@ func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *request.Request, output 
 		input = &GetRoleInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetRoleOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5251,9 +5190,8 @@ func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *request.Requ
 		input = &GetRolePolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetRolePolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5341,9 +5279,8 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *request.
 		input = &GetSAMLProviderInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetSAMLProviderOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5419,9 +5356,8 @@ func (c *IAM) GetSSHPublicKeyRequest(input *GetSSHPublicKeyInput) (req *request.
 		input = &GetSSHPublicKeyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetSSHPublicKeyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5496,9 +5432,8 @@ func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req
 		input = &GetServerCertificateInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetServerCertificateOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5572,9 +5507,8 @@ func (c *IAM) GetUserRequest(input *GetUserInput) (req *request.Request, output 
 		input = &GetUserInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetUserOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5647,9 +5581,8 @@ func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *request.Requ
 		input = &GetUserPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetUserPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5740,9 +5673,8 @@ func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *request.Re
 		input = &ListAccessKeysInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAccessKeysOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5854,9 +5786,8 @@ func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *re
 		input = &ListAccountAliasesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAccountAliasesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5955,9 +5886,8 @@ func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesI
 		input = &ListAttachedGroupPoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAttachedGroupPoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6072,9 +6002,8 @@ func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInp
 		input = &ListAttachedRolePoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAttachedRolePoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6189,9 +6118,8 @@ func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInp
 		input = &ListAttachedUserPoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAttachedUserPoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6306,9 +6234,8 @@ func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (r
 		input = &ListEntitiesForPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListEntitiesForPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6420,9 +6347,8 @@ func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *requ
 		input = &ListGroupPoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListGroupPoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6533,9 +6459,8 @@ func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, o
 		input = &ListGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6633,9 +6558,8 @@ func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *requ
 		input = &ListGroupsForUserInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListGroupsForUserOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6737,9 +6661,8 @@ func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req
 		input = &ListInstanceProfilesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListInstanceProfilesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6839,9 +6762,8 @@ func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForR
 		input = &ListInstanceProfilesForRoleInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListInstanceProfilesForRoleOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6945,9 +6867,8 @@ func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *request.Re
 		input = &ListMFADevicesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListMFADevicesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7046,9 +6967,8 @@ func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvider
 		input = &ListOpenIDConnectProvidersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListOpenIDConnectProvidersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7120,9 +7040,8 @@ func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 		input = &ListPoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListPoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7230,9 +7149,8 @@ func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *re
 		input = &ListPolicyVersionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListPolicyVersionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7341,9 +7259,8 @@ func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *reques
 		input = &ListRolePoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListRolePoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7453,9 +7370,8 @@ func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *request.Request, out
 		input = &ListRolesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListRolesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7549,9 +7465,8 @@ func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *requ
 		input = &ListSAMLProvidersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListSAMLProvidersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7624,9 +7539,8 @@ func (c *IAM) ListSSHPublicKeysRequest(input *ListSSHPublicKeysInput) (req *requ
 		input = &ListSSHPublicKeysInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListSSHPublicKeysOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7732,9 +7646,8 @@ func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) 
 		input = &ListServerCertificatesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListServerCertificatesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7832,9 +7745,8 @@ func (c *IAM) ListServiceSpecificCredentialsRequest(input *ListServiceSpecificCr
 		input = &ListServiceSpecificCredentialsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListServiceSpecificCredentialsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7914,9 +7826,8 @@ func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput
 		input = &ListSigningCertificatesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListSigningCertificatesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -8026,9 +7937,8 @@ func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *reques
 		input = &ListUserPoliciesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListUserPoliciesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -8137,9 +8047,8 @@ func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *request.Request, out
 		input = &ListUsersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListUsersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -8239,9 +8148,8 @@ func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (r
 		input = &ListVirtualMFADevicesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListVirtualMFADevicesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -8330,11 +8238,10 @@ func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *request.Re
 		input = &PutGroupPolicyInput{}
 	}
 
+	output = &PutGroupPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutGroupPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -8427,11 +8334,10 @@ func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *request.Requ
 		input = &PutRolePolicyInput{}
 	}
 
+	output = &PutRolePolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutRolePolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -8530,11 +8436,10 @@ func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *request.Requ
 		input = &PutUserPolicyInput{}
 	}
 
+	output = &PutUserPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutUserPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -8627,11 +8532,10 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClient
 		input = &RemoveClientIDFromOpenIDConnectProviderInput{}
 	}
 
+	output = &RemoveClientIDFromOpenIDConnectProviderOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &RemoveClientIDFromOpenIDConnectProviderOutput{}
-	req.Data = output
 	return
 }
 
@@ -8709,11 +8613,10 @@ func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstance
 		input = &RemoveRoleFromInstanceProfileInput{}
 	}
 
+	output = &RemoveRoleFromInstanceProfileOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &RemoveRoleFromInstanceProfileOutput{}
-	req.Data = output
 	return
 }
 
@@ -8795,11 +8698,10 @@ func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *
 		input = &RemoveUserFromGroupInput{}
 	}
 
+	output = &RemoveUserFromGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &RemoveUserFromGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -8872,9 +8774,8 @@ func (c *IAM) ResetServiceSpecificCredentialRequest(input *ResetServiceSpecificC
 		input = &ResetServiceSpecificCredentialInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ResetServiceSpecificCredentialOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -8942,11 +8843,10 @@ func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *request.
 		input = &ResyncMFADeviceInput{}
 	}
 
+	output = &ResyncMFADeviceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &ResyncMFADeviceOutput{}
-	req.Data = output
 	return
 }
 
@@ -9028,11 +8928,10 @@ func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 		input = &SetDefaultPolicyVersionInput{}
 	}
 
+	output = &SetDefaultPolicyVersionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &SetDefaultPolicyVersionOutput{}
-	req.Data = output
 	return
 }
 
@@ -9124,9 +9023,8 @@ func (c *IAM) SimulateCustomPolicyRequest(input *SimulateCustomPolicyInput) (req
 		input = &SimulateCustomPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &SimulatePolicyResponse{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -9242,9 +9140,8 @@ func (c *IAM) SimulatePrincipalPolicyRequest(input *SimulatePrincipalPolicyInput
 		input = &SimulatePrincipalPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &SimulatePolicyResponse{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -9368,11 +9265,10 @@ func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *request.
 		input = &UpdateAccessKeyInput{}
 	}
 
+	output = &UpdateAccessKeyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateAccessKeyOutput{}
-	req.Data = output
 	return
 }
 
@@ -9455,11 +9351,10 @@ func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPol
 		input = &UpdateAccountPasswordPolicyInput{}
 	}
 
+	output = &UpdateAccountPasswordPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateAccountPasswordPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -9545,11 +9440,10 @@ func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) 
 		input = &UpdateAssumeRolePolicyInput{}
 	}
 
+	output = &UpdateAssumeRolePolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateAssumeRolePolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -9629,11 +9523,10 @@ func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request,
 		input = &UpdateGroupInput{}
 	}
 
+	output = &UpdateGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -9720,11 +9613,10 @@ func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *re
 		input = &UpdateLoginProfileInput{}
 	}
 
+	output = &UpdateLoginProfileOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateLoginProfileOutput{}
-	req.Data = output
 	return
 }
 
@@ -9811,11 +9703,10 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDCo
 		input = &UpdateOpenIDConnectProviderThumbprintInput{}
 	}
 
+	output = &UpdateOpenIDConnectProviderThumbprintOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateOpenIDConnectProviderThumbprintOutput{}
-	req.Data = output
 	return
 }
 
@@ -9902,9 +9793,8 @@ func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *re
 		input = &UpdateSAMLProviderInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UpdateSAMLProviderOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -9983,11 +9873,10 @@ func (c *IAM) UpdateSSHPublicKeyRequest(input *UpdateSSHPublicKeyInput) (req *re
 		input = &UpdateSSHPublicKeyInput{}
 	}
 
+	output = &UpdateSSHPublicKeyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateSSHPublicKeyOutput{}
-	req.Data = output
 	return
 }
 
@@ -10061,11 +9950,10 @@ func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput
 		input = &UpdateServerCertificateInput{}
 	}
 
+	output = &UpdateServerCertificateOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateServerCertificateOutput{}
-	req.Data = output
 	return
 }
 
@@ -10160,11 +10048,10 @@ func (c *IAM) UpdateServiceSpecificCredentialRequest(input *UpdateServiceSpecifi
 		input = &UpdateServiceSpecificCredentialInput{}
 	}
 
+	output = &UpdateServiceSpecificCredentialOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateServiceSpecificCredentialOutput{}
-	req.Data = output
 	return
 }
 
@@ -10232,11 +10119,10 @@ func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInp
 		input = &UpdateSigningCertificateInput{}
 	}
 
+	output = &UpdateSigningCertificateOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateSigningCertificateOutput{}
-	req.Data = output
 	return
 }
 
@@ -10316,11 +10202,10 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, o
 		input = &UpdateUserInput{}
 	}
 
+	output = &UpdateUserOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &UpdateUserOutput{}
-	req.Data = output
 	return
 }
 
@@ -10414,9 +10299,8 @@ func (c *IAM) UploadSSHPublicKeyRequest(input *UploadSSHPublicKeyInput) (req *re
 		input = &UploadSSHPublicKeyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UploadSSHPublicKeyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -10503,9 +10387,8 @@ func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput
 		input = &UploadServerCertificateInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UploadServerCertificateOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -10605,9 +10488,8 @@ func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInp
 		input = &UploadSigningCertificateInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UploadSigningCertificateOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

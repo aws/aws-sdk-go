@@ -50,9 +50,8 @@ func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req 
 		input = &AbortMultipartUploadInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AbortMultipartUploadOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -117,9 +116,8 @@ func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput)
 		input = &CompleteMultipartUploadInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CompleteMultipartUploadOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -175,9 +173,8 @@ func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *request.Request, ou
 		input = &CopyObjectInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CopyObjectOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -239,9 +236,8 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 		input = &CreateBucketInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateBucketOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -306,9 +302,8 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 		input = &CreateMultipartUploadInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateMultipartUploadOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -370,11 +365,10 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *request.Request
 		input = &DeleteBucketInput{}
 	}
 
+	output = &DeleteBucketOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketOutput{}
-	req.Data = output
 	return
 }
 
@@ -431,11 +425,10 @@ func (c *S3) DeleteBucketAnalyticsConfigurationRequest(input *DeleteBucketAnalyt
 		input = &DeleteBucketAnalyticsConfigurationInput{}
 	}
 
+	output = &DeleteBucketAnalyticsConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketAnalyticsConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -492,11 +485,10 @@ func (c *S3) DeleteBucketCorsRequest(input *DeleteBucketCorsInput) (req *request
 		input = &DeleteBucketCorsInput{}
 	}
 
+	output = &DeleteBucketCorsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketCorsOutput{}
-	req.Data = output
 	return
 }
 
@@ -552,11 +544,10 @@ func (c *S3) DeleteBucketInventoryConfigurationRequest(input *DeleteBucketInvent
 		input = &DeleteBucketInventoryConfigurationInput{}
 	}
 
+	output = &DeleteBucketInventoryConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketInventoryConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -613,11 +604,10 @@ func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (re
 		input = &DeleteBucketLifecycleInput{}
 	}
 
+	output = &DeleteBucketLifecycleOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketLifecycleOutput{}
-	req.Data = output
 	return
 }
 
@@ -673,11 +663,10 @@ func (c *S3) DeleteBucketMetricsConfigurationRequest(input *DeleteBucketMetricsC
 		input = &DeleteBucketMetricsConfigurationInput{}
 	}
 
+	output = &DeleteBucketMetricsConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketMetricsConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -734,11 +723,10 @@ func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *req
 		input = &DeleteBucketPolicyInput{}
 	}
 
+	output = &DeleteBucketPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -794,11 +782,10 @@ func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput)
 		input = &DeleteBucketReplicationInput{}
 	}
 
+	output = &DeleteBucketReplicationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketReplicationOutput{}
-	req.Data = output
 	return
 }
 
@@ -854,11 +841,10 @@ func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *r
 		input = &DeleteBucketTaggingInput{}
 	}
 
+	output = &DeleteBucketTaggingOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketTaggingOutput{}
-	req.Data = output
 	return
 }
 
@@ -914,11 +900,10 @@ func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *r
 		input = &DeleteBucketWebsiteInput{}
 	}
 
+	output = &DeleteBucketWebsiteOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteBucketWebsiteOutput{}
-	req.Data = output
 	return
 }
 
@@ -974,9 +959,8 @@ func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *request.Request
 		input = &DeleteObjectInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteObjectOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1034,9 +1018,8 @@ func (c *S3) DeleteObjectTaggingRequest(input *DeleteObjectTaggingInput) (req *r
 		input = &DeleteObjectTaggingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteObjectTaggingOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1092,9 +1075,8 @@ func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *request.Reque
 		input = &DeleteObjectsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteObjectsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1151,9 +1133,8 @@ func (c *S3) GetBucketAccelerateConfigurationRequest(input *GetBucketAccelerateC
 		input = &GetBucketAccelerateConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketAccelerateConfigurationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1209,9 +1190,8 @@ func (c *S3) GetBucketAclRequest(input *GetBucketAclInput) (req *request.Request
 		input = &GetBucketAclInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketAclOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1267,9 +1247,8 @@ func (c *S3) GetBucketAnalyticsConfigurationRequest(input *GetBucketAnalyticsCon
 		input = &GetBucketAnalyticsConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketAnalyticsConfigurationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1326,9 +1305,8 @@ func (c *S3) GetBucketCorsRequest(input *GetBucketCorsInput) (req *request.Reque
 		input = &GetBucketCorsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketCorsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1384,9 +1362,8 @@ func (c *S3) GetBucketInventoryConfigurationRequest(input *GetBucketInventoryCon
 		input = &GetBucketInventoryConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketInventoryConfigurationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1446,9 +1423,8 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *req
 		input = &GetBucketLifecycleInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketLifecycleOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1504,9 +1480,8 @@ func (c *S3) GetBucketLifecycleConfigurationRequest(input *GetBucketLifecycleCon
 		input = &GetBucketLifecycleConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketLifecycleConfigurationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1562,9 +1537,8 @@ func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *reque
 		input = &GetBucketLocationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketLocationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1620,9 +1594,8 @@ func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *request
 		input = &GetBucketLoggingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketLoggingOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1679,9 +1652,8 @@ func (c *S3) GetBucketMetricsConfigurationRequest(input *GetBucketMetricsConfigu
 		input = &GetBucketMetricsConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketMetricsConfigurationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1741,9 +1713,8 @@ func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurat
 		input = &GetBucketNotificationConfigurationRequest{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &NotificationConfigurationDeprecated{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1799,9 +1770,8 @@ func (c *S3) GetBucketNotificationConfigurationRequest(input *GetBucketNotificat
 		input = &GetBucketNotificationConfigurationRequest{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &NotificationConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1857,9 +1827,8 @@ func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *request.R
 		input = &GetBucketPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1915,9 +1884,8 @@ func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req 
 		input = &GetBucketReplicationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketReplicationOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1973,9 +1941,8 @@ func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput)
 		input = &GetBucketRequestPaymentInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketRequestPaymentOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2031,9 +1998,8 @@ func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *request
 		input = &GetBucketTaggingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketTaggingOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2089,9 +2055,8 @@ func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *r
 		input = &GetBucketVersioningInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketVersioningOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2147,9 +2112,8 @@ func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *request
 		input = &GetBucketWebsiteInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetBucketWebsiteOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2205,9 +2169,8 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) (req *request.Request, outp
 		input = &GetObjectInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetObjectOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2268,9 +2231,8 @@ func (c *S3) GetObjectAclRequest(input *GetObjectAclInput) (req *request.Request
 		input = &GetObjectAclInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetObjectAclOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2331,9 +2293,8 @@ func (c *S3) GetObjectTaggingRequest(input *GetObjectTaggingInput) (req *request
 		input = &GetObjectTaggingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetObjectTaggingOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2389,9 +2350,8 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *request
 		input = &GetObjectTorrentInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetObjectTorrentOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2447,11 +2407,10 @@ func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *request.Request, ou
 		input = &HeadBucketInput{}
 	}
 
+	output = &HeadBucketOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &HeadBucketOutput{}
-	req.Data = output
 	return
 }
 
@@ -2513,9 +2472,8 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *request.Request, ou
 		input = &HeadObjectInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &HeadObjectOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2578,9 +2536,8 @@ func (c *S3) ListBucketAnalyticsConfigurationsRequest(input *ListBucketAnalytics
 		input = &ListBucketAnalyticsConfigurationsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListBucketAnalyticsConfigurationsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2636,9 +2593,8 @@ func (c *S3) ListBucketInventoryConfigurationsRequest(input *ListBucketInventory
 		input = &ListBucketInventoryConfigurationsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListBucketInventoryConfigurationsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2694,9 +2650,8 @@ func (c *S3) ListBucketMetricsConfigurationsRequest(input *ListBucketMetricsConf
 		input = &ListBucketMetricsConfigurationsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListBucketMetricsConfigurationsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2752,9 +2707,8 @@ func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *request.Request, 
 		input = &ListBucketsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListBucketsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2816,9 +2770,8 @@ func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req 
 		input = &ListMultipartUploadsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListMultipartUploadsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2905,9 +2858,8 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *req
 		input = &ListObjectVersionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListObjectVersionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2994,9 +2946,8 @@ func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *request.Request, 
 		input = &ListObjectsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListObjectsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3090,9 +3041,8 @@ func (c *S3) ListObjectsV2Request(input *ListObjectsV2Input) (req *request.Reque
 		input = &ListObjectsV2Input{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListObjectsV2Output{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3187,9 +3137,8 @@ func (c *S3) ListPartsRequest(input *ListPartsInput) (req *request.Request, outp
 		input = &ListPartsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListPartsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3270,11 +3219,10 @@ func (c *S3) PutBucketAccelerateConfigurationRequest(input *PutBucketAccelerateC
 		input = &PutBucketAccelerateConfigurationInput{}
 	}
 
+	output = &PutBucketAccelerateConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketAccelerateConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3330,11 +3278,10 @@ func (c *S3) PutBucketAclRequest(input *PutBucketAclInput) (req *request.Request
 		input = &PutBucketAclInput{}
 	}
 
+	output = &PutBucketAclOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketAclOutput{}
-	req.Data = output
 	return
 }
 
@@ -3390,11 +3337,10 @@ func (c *S3) PutBucketAnalyticsConfigurationRequest(input *PutBucketAnalyticsCon
 		input = &PutBucketAnalyticsConfigurationInput{}
 	}
 
+	output = &PutBucketAnalyticsConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketAnalyticsConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3451,11 +3397,10 @@ func (c *S3) PutBucketCorsRequest(input *PutBucketCorsInput) (req *request.Reque
 		input = &PutBucketCorsInput{}
 	}
 
+	output = &PutBucketCorsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketCorsOutput{}
-	req.Data = output
 	return
 }
 
@@ -3511,11 +3456,10 @@ func (c *S3) PutBucketInventoryConfigurationRequest(input *PutBucketInventoryCon
 		input = &PutBucketInventoryConfigurationInput{}
 	}
 
+	output = &PutBucketInventoryConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketInventoryConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3575,11 +3519,10 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *req
 		input = &PutBucketLifecycleInput{}
 	}
 
+	output = &PutBucketLifecycleOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketLifecycleOutput{}
-	req.Data = output
 	return
 }
 
@@ -3635,11 +3578,10 @@ func (c *S3) PutBucketLifecycleConfigurationRequest(input *PutBucketLifecycleCon
 		input = &PutBucketLifecycleConfigurationInput{}
 	}
 
+	output = &PutBucketLifecycleConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketLifecycleConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3696,11 +3638,10 @@ func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *request
 		input = &PutBucketLoggingInput{}
 	}
 
+	output = &PutBucketLoggingOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketLoggingOutput{}
-	req.Data = output
 	return
 }
 
@@ -3758,11 +3699,10 @@ func (c *S3) PutBucketMetricsConfigurationRequest(input *PutBucketMetricsConfigu
 		input = &PutBucketMetricsConfigurationInput{}
 	}
 
+	output = &PutBucketMetricsConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketMetricsConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3822,11 +3762,10 @@ func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (re
 		input = &PutBucketNotificationInput{}
 	}
 
+	output = &PutBucketNotificationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketNotificationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3882,11 +3821,10 @@ func (c *S3) PutBucketNotificationConfigurationRequest(input *PutBucketNotificat
 		input = &PutBucketNotificationConfigurationInput{}
 	}
 
+	output = &PutBucketNotificationConfigurationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketNotificationConfigurationOutput{}
-	req.Data = output
 	return
 }
 
@@ -3942,11 +3880,10 @@ func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *request.R
 		input = &PutBucketPolicyInput{}
 	}
 
+	output = &PutBucketPolicyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketPolicyOutput{}
-	req.Data = output
 	return
 }
 
@@ -4003,11 +3940,10 @@ func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req 
 		input = &PutBucketReplicationInput{}
 	}
 
+	output = &PutBucketReplicationOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketReplicationOutput{}
-	req.Data = output
 	return
 }
 
@@ -4064,11 +4000,10 @@ func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput)
 		input = &PutBucketRequestPaymentInput{}
 	}
 
+	output = &PutBucketRequestPaymentOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketRequestPaymentOutput{}
-	req.Data = output
 	return
 }
 
@@ -4128,11 +4063,10 @@ func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *request
 		input = &PutBucketTaggingInput{}
 	}
 
+	output = &PutBucketTaggingOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketTaggingOutput{}
-	req.Data = output
 	return
 }
 
@@ -4188,11 +4122,10 @@ func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *r
 		input = &PutBucketVersioningInput{}
 	}
 
+	output = &PutBucketVersioningOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketVersioningOutput{}
-	req.Data = output
 	return
 }
 
@@ -4249,11 +4182,10 @@ func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *request
 		input = &PutBucketWebsiteInput{}
 	}
 
+	output = &PutBucketWebsiteOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restxml.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &PutBucketWebsiteOutput{}
-	req.Data = output
 	return
 }
 
@@ -4309,9 +4241,8 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) (req *request.Request, outp
 		input = &PutObjectInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PutObjectOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4367,9 +4298,8 @@ func (c *S3) PutObjectAclRequest(input *PutObjectAclInput) (req *request.Request
 		input = &PutObjectAclInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PutObjectAclOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4431,9 +4361,8 @@ func (c *S3) PutObjectTaggingRequest(input *PutObjectTaggingInput) (req *request
 		input = &PutObjectTaggingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PutObjectTaggingOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4489,9 +4418,8 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *request.Reque
 		input = &RestoreObjectInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RestoreObjectOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4552,9 +4480,8 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *request.Request, ou
 		input = &UploadPartInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UploadPartOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4616,9 +4543,8 @@ func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *request.Req
 		input = &UploadPartCopyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UploadPartCopyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

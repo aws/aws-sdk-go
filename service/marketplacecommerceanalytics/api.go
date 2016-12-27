@@ -48,9 +48,8 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 		input = &GenerateDataSetInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GenerateDataSetOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -123,9 +122,8 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 		input = &StartSupportDataExportInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &StartSupportDataExportOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

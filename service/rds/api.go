@@ -51,11 +51,10 @@ func (c *RDS) AddRoleToDBClusterRequest(input *AddRoleToDBClusterInput) (req *re
 		input = &AddRoleToDBClusterInput{}
 	}
 
+	output = &AddRoleToDBClusterOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AddRoleToDBClusterOutput{}
-	req.Data = output
 	return
 }
 
@@ -132,9 +131,8 @@ func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifie
 		input = &AddSourceIdentifierToSubscriptionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AddSourceIdentifierToSubscriptionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -201,11 +199,10 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 		input = &AddTagsToResourceInput{}
 	}
 
+	output = &AddTagsToResourceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &AddTagsToResourceOutput{}
-	req.Data = output
 	return
 }
 
@@ -280,9 +277,8 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 		input = &ApplyPendingMaintenanceActionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ApplyPendingMaintenanceActionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -347,9 +343,8 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 		input = &AuthorizeDBSecurityGroupIngressInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AuthorizeDBSecurityGroupIngressOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -435,9 +430,8 @@ func (c *RDS) CopyDBClusterParameterGroupRequest(input *CopyDBClusterParameterGr
 		input = &CopyDBClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CopyDBClusterParameterGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -508,9 +502,8 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 		input = &CopyDBClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CopyDBClusterSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -591,9 +584,8 @@ func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req
 		input = &CopyDBParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CopyDBParameterGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -664,9 +656,8 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 		input = &CopyDBSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CopyDBSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -791,9 +782,8 @@ func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *request.
 		input = &CopyOptionGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CopyOptionGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -863,9 +853,8 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 		input = &CreateDBClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -978,9 +967,8 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 		input = &CreateDBClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBClusterParameterGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1075,9 +1063,8 @@ func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput
 		input = &CreateDBClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBClusterSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1155,9 +1142,8 @@ func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *reques
 		input = &CreateDBInstanceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBInstanceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1281,9 +1267,8 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 		input = &CreateDBInstanceReadReplicaInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBInstanceReadReplicaOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1413,9 +1398,8 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 		input = &CreateDBParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBParameterGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1503,9 +1487,8 @@ func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (r
 		input = &CreateDBSecurityGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBSecurityGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1578,9 +1561,8 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *reques
 		input = &CreateDBSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1653,9 +1635,8 @@ func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *
 		input = &CreateDBSubnetGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateDBSubnetGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1735,9 +1716,8 @@ func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput
 		input = &CreateEventSubscriptionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateEventSubscriptionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1836,9 +1816,8 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *requ
 		input = &CreateOptionGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateOptionGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1905,9 +1884,8 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 		input = &DeleteDBClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteDBClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1988,11 +1966,10 @@ func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParamet
 		input = &DeleteDBClusterParameterGroupInput{}
 	}
 
+	output = &DeleteDBClusterParameterGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteDBClusterParameterGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -2063,9 +2040,8 @@ func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput
 		input = &DeleteDBClusterSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteDBClusterSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2138,9 +2114,8 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *reques
 		input = &DeleteDBInstanceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteDBInstanceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2240,11 +2215,10 @@ func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) 
 		input = &DeleteDBParameterGroupInput{}
 	}
 
+	output = &DeleteDBParameterGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteDBParameterGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -2312,11 +2286,10 @@ func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (r
 		input = &DeleteDBSecurityGroupInput{}
 	}
 
+	output = &DeleteDBSecurityGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteDBSecurityGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -2385,9 +2358,8 @@ func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *reques
 		input = &DeleteDBSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteDBSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2457,11 +2429,10 @@ func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *
 		input = &DeleteDBSubnetGroupInput{}
 	}
 
+	output = &DeleteDBSubnetGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteDBSubnetGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -2533,9 +2504,8 @@ func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput
 		input = &DeleteEventSubscriptionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteEventSubscriptionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2603,11 +2573,10 @@ func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *requ
 		input = &DeleteOptionGroupInput{}
 	}
 
+	output = &DeleteOptionGroupOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteOptionGroupOutput{}
-	req.Data = output
 	return
 }
 
@@ -2674,9 +2643,8 @@ func (c *RDS) DescribeAccountAttributesRequest(input *DescribeAccountAttributesI
 		input = &DescribeAccountAttributesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeAccountAttributesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2740,9 +2708,8 @@ func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req
 		input = &DescribeCertificatesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeCertificatesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2806,9 +2773,8 @@ func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterPa
 		input = &DescribeDBClusterParameterGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBClusterParameterGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2877,9 +2843,8 @@ func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParamet
 		input = &DescribeDBClusterParametersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBClusterParametersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2947,9 +2912,8 @@ func (c *RDS) DescribeDBClusterSnapshotAttributesRequest(input *DescribeDBCluste
 		input = &DescribeDBClusterSnapshotAttributesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBClusterSnapshotAttributesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3024,9 +2988,8 @@ func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshot
 		input = &DescribeDBClusterSnapshotsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBClusterSnapshotsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3094,9 +3057,8 @@ func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *re
 		input = &DescribeDBClustersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBClustersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3170,9 +3132,8 @@ func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInp
 		input = &DescribeDBEngineVersionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBEngineVersionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3262,9 +3223,8 @@ func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *
 		input = &DescribeDBInstancesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBInstancesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3359,9 +3319,8 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *re
 		input = &DescribeDBLogFilesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBLogFilesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3456,9 +3415,8 @@ func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsI
 		input = &DescribeDBParameterGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBParameterGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3555,9 +3513,8 @@ func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req
 		input = &DescribeDBParametersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBParametersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3652,9 +3609,8 @@ func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInp
 		input = &DescribeDBSecurityGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBSecurityGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3745,9 +3701,8 @@ func (c *RDS) DescribeDBSnapshotAttributesRequest(input *DescribeDBSnapshotAttri
 		input = &DescribeDBSnapshotAttributesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBSnapshotAttributesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3828,9 +3783,8 @@ func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *
 		input = &DescribeDBSnapshotsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBSnapshotsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -3925,9 +3879,8 @@ func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) 
 		input = &DescribeDBSubnetGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeDBSubnetGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4019,9 +3972,8 @@ func (c *RDS) DescribeEngineDefaultClusterParametersRequest(input *DescribeEngin
 		input = &DescribeEngineDefaultClusterParametersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeEngineDefaultClusterParametersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4090,9 +4042,8 @@ func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaul
 		input = &DescribeEngineDefaultParametersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeEngineDefaultParametersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4177,9 +4128,8 @@ func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput
 		input = &DescribeEventCategoriesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeEventCategoriesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4247,9 +4197,8 @@ func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscription
 		input = &DescribeEventSubscriptionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeEventSubscriptionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4348,9 +4297,8 @@ func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Re
 		input = &DescribeEventsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeEventsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4444,9 +4392,8 @@ func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOption
 		input = &DescribeOptionGroupOptionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeOptionGroupOptionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4536,9 +4483,8 @@ func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req
 		input = &DescribeOptionGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeOptionGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4633,9 +4579,8 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 		input = &DescribeOrderableDBInstanceOptionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeOrderableDBInstanceOptionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4719,9 +4664,8 @@ func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMai
 		input = &DescribePendingMaintenanceActionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribePendingMaintenanceActionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4792,9 +4736,8 @@ func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstan
 		input = &DescribeReservedDBInstancesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeReservedDBInstancesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4890,9 +4833,8 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReserve
 		input = &DescribeReservedDBInstancesOfferingsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeReservedDBInstancesOfferingsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -4981,9 +4923,8 @@ func (c *RDS) DescribeSourceRegionsRequest(input *DescribeSourceRegionsInput) (r
 		input = &DescribeSourceRegionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeSourceRegionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5050,9 +4991,8 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 		input = &DownloadDBLogFilePortionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DownloadDBLogFilePortionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5144,9 +5084,8 @@ func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *requ
 		input = &FailoverDBClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FailoverDBClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5229,9 +5168,8 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 		input = &ListTagsForResourceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListTagsForResourceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5304,9 +5242,8 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 		input = &ModifyDBClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyDBClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5408,9 +5345,8 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 		input = &ModifyDBClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DBClusterParameterGroupNameMessage{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5497,9 +5433,8 @@ func (c *RDS) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSnap
 		input = &ModifyDBClusterSnapshotAttributeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyDBClusterSnapshotAttributeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5585,9 +5520,8 @@ func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *reques
 		input = &ModifyDBInstanceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyDBInstanceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5705,9 +5639,8 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 		input = &ModifyDBParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DBParameterGroupNameMessage{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5791,9 +5724,8 @@ func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeI
 		input = &ModifyDBSnapshotAttributeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyDBSnapshotAttributeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5879,9 +5811,8 @@ func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *
 		input = &ModifyDBSubnetGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyDBSubnetGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -5961,9 +5892,8 @@ func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput
 		input = &ModifyEventSubscriptionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyEventSubscriptionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6050,9 +5980,8 @@ func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *requ
 		input = &ModifyOptionGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ModifyOptionGroupOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6119,9 +6048,8 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *re
 		input = &PromoteReadReplicaInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PromoteReadReplicaOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6193,9 +6121,8 @@ func (c *RDS) PromoteReadReplicaDBClusterRequest(input *PromoteReadReplicaDBClus
 		input = &PromoteReadReplicaDBClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PromoteReadReplicaDBClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6262,9 +6189,8 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReserved
 		input = &PurchaseReservedDBInstancesOfferingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PurchaseReservedDBInstancesOfferingOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6334,9 +6260,8 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *reques
 		input = &RebootDBInstanceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RebootDBInstanceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6419,11 +6344,10 @@ func (c *RDS) RemoveRoleFromDBClusterRequest(input *RemoveRoleFromDBClusterInput
 		input = &RemoveRoleFromDBClusterInput{}
 	}
 
+	output = &RemoveRoleFromDBClusterOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &RemoveRoleFromDBClusterOutput{}
-	req.Data = output
 	return
 }
 
@@ -6496,9 +6420,8 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceI
 		input = &RemoveSourceIdentifierFromSubscriptionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RemoveSourceIdentifierFromSubscriptionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6565,11 +6488,10 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 		input = &RemoveTagsFromResourceInput{}
 	}
 
+	output = &RemoveTagsFromResourceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(query.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &RemoveTagsFromResourceOutput{}
-	req.Data = output
 	return
 }
 
@@ -6642,9 +6564,8 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 		input = &ResetDBClusterParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DBClusterParameterGroupNameMessage{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6723,9 +6644,8 @@ func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (r
 		input = &ResetDBParameterGroupInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DBParameterGroupNameMessage{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6798,9 +6718,8 @@ func (c *RDS) RestoreDBClusterFromS3Request(input *RestoreDBClusterFromS3Input) 
 		input = &RestoreDBClusterFromS3Input{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RestoreDBClusterFromS3Output{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -6912,9 +6831,8 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 		input = &RestoreDBClusterFromSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RestoreDBClusterFromSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7039,9 +6957,8 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 		input = &RestoreDBClusterToPointInTimeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RestoreDBClusterToPointInTimeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7167,9 +7084,8 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 		input = &RestoreDBInstanceFromDBSnapshotInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RestoreDBInstanceFromDBSnapshotOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7311,9 +7227,8 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 		input = &RestoreDBInstanceToPointInTimeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RestoreDBInstanceToPointInTimeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -7452,9 +7367,8 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 		input = &RevokeDBSecurityGroupIngressInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RevokeDBSecurityGroupIngressOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

@@ -51,9 +51,8 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 		input = &CreateFileSystemInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FileSystemDescription{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -174,9 +173,8 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 		input = &CreateMountTargetInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &MountTargetDescription{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -378,11 +376,10 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 		input = &CreateTagsInput{}
 	}
 
+	output = &CreateTagsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &CreateTagsOutput{}
-	req.Data = output
 	return
 }
 
@@ -460,11 +457,10 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 		input = &DeleteFileSystemInput{}
 	}
 
+	output = &DeleteFileSystemOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteFileSystemOutput{}
-	req.Data = output
 	return
 }
 
@@ -554,11 +550,10 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 		input = &DeleteMountTargetInput{}
 	}
 
+	output = &DeleteMountTargetOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteMountTargetOutput{}
-	req.Data = output
 	return
 }
 
@@ -658,11 +653,10 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 		input = &DeleteTagsInput{}
 	}
 
+	output = &DeleteTagsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteTagsOutput{}
-	req.Data = output
 	return
 }
 
@@ -741,9 +735,8 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 		input = &DescribeFileSystemsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeFileSystemsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -840,9 +833,8 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 		input = &DescribeMountTargetSecurityGroupsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeMountTargetSecurityGroupsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -927,9 +919,8 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 		input = &DescribeMountTargetsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeMountTargetsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1011,9 +1002,8 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 		input = &DescribeTagsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeTagsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1090,11 +1080,10 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 		input = &ModifyMountTargetSecurityGroupsInput{}
 	}
 
+	output = &ModifyMountTargetSecurityGroupsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &ModifyMountTargetSecurityGroupsOutput{}
-	req.Data = output
 	return
 }
 
