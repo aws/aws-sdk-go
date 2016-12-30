@@ -49,9 +49,8 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 		input = &AddPermissionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AddPermissionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -144,9 +143,8 @@ func (c *Lambda) CreateAliasRequest(input *CreateAliasInput) (req *request.Reque
 		input = &CreateAliasInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AliasConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -226,9 +224,8 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 		input = &CreateEventSourceMappingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &EventSourceMappingConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -328,9 +325,8 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 		input = &CreateFunctionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FunctionConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -418,11 +414,10 @@ func (c *Lambda) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Reque
 		input = &DeleteAliasInput{}
 	}
 
+	output = &DeleteAliasOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteAliasOutput{}
-	req.Data = output
 	return
 }
 
@@ -494,9 +489,8 @@ func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMapping
 		input = &DeleteEventSourceMappingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &EventSourceMappingConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -573,11 +567,10 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request
 		input = &DeleteFunctionInput{}
 	}
 
+	output = &DeleteFunctionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &DeleteFunctionOutput{}
-	req.Data = output
 	return
 }
 
@@ -665,9 +658,8 @@ func (c *Lambda) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req 
 		input = &GetAccountSettingsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetAccountSettingsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -737,9 +729,8 @@ func (c *Lambda) GetAliasRequest(input *GetAliasInput) (req *request.Request, ou
 		input = &GetAliasInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AliasConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -816,9 +807,8 @@ func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput)
 		input = &GetEventSourceMappingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &EventSourceMappingConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -894,9 +884,8 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *request.Reque
 		input = &GetFunctionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetFunctionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -981,9 +970,8 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 		input = &GetFunctionConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FunctionConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1068,9 +1056,8 @@ func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, 
 		input = &GetPolicyInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &GetPolicyOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1152,9 +1139,8 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 		input = &InvokeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &InvokeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1298,9 +1284,8 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 		input = &InvokeAsyncInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &InvokeAsyncOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1374,9 +1359,8 @@ func (c *Lambda) ListAliasesRequest(input *ListAliasesInput) (req *request.Reque
 		input = &ListAliasesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAliasesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1460,9 +1444,8 @@ func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsIn
 		input = &ListEventSourceMappingsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListEventSourceMappingsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1578,9 +1561,8 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *request.R
 		input = &ListFunctionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListFunctionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1677,9 +1659,8 @@ func (c *Lambda) ListVersionsByFunctionRequest(input *ListVersionsByFunctionInpu
 		input = &ListVersionsByFunctionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListVersionsByFunctionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1753,9 +1734,8 @@ func (c *Lambda) PublishVersionRequest(input *PublishVersionInput) (req *request
 		input = &PublishVersionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FunctionConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1835,11 +1815,10 @@ func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *req
 		input = &RemovePermissionInput{}
 	}
 
+	output = &RemovePermissionOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Remove(restjson.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBackNamed(protocol.UnmarshalDiscardBodyHandler)
-	output = &RemovePermissionOutput{}
-	req.Data = output
 	return
 }
 
@@ -1924,9 +1903,8 @@ func (c *Lambda) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Reque
 		input = &UpdateAliasInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &AliasConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2003,9 +1981,8 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 		input = &UpdateEventSourceMappingInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &EventSourceMappingConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2097,9 +2074,8 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 		input = &UpdateFunctionCodeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FunctionConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2183,9 +2159,8 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 		input = &UpdateFunctionConfigurationInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &FunctionConfiguration{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

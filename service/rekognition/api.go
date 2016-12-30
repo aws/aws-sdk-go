@@ -44,9 +44,8 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 		input = &CompareFacesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CompareFacesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -157,9 +156,8 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 		input = &CreateCollectionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateCollectionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -249,9 +247,8 @@ func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req
 		input = &DeleteCollectionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteCollectionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -334,9 +331,8 @@ func (c *Rekognition) DeleteFacesRequest(input *DeleteFacesInput) (req *request.
 		input = &DeleteFacesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteFacesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -419,9 +415,8 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 		input = &DetectFacesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DetectFacesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -524,9 +519,8 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 		input = &DetectLabelsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DetectLabelsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -657,9 +651,8 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 		input = &IndexFacesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &IndexFacesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -782,9 +775,8 @@ func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *
 		input = &ListCollectionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListCollectionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -904,9 +896,8 @@ func (c *Rekognition) ListFacesRequest(input *ListFacesInput) (req *request.Requ
 		input = &ListFacesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListFacesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1018,9 +1009,8 @@ func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.
 		input = &SearchFacesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &SearchFacesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1116,9 +1106,8 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 		input = &SearchFacesByImageInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &SearchFacesByImageOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

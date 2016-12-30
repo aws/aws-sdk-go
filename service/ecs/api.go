@@ -49,9 +49,8 @@ func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 		input = &CreateClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -126,9 +125,8 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 		input = &CreateServiceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &CreateServiceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -339,9 +337,8 @@ func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Requ
 		input = &DeleteClusterInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteClusterOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -430,9 +427,8 @@ func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Requ
 		input = &DeleteServiceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteServiceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -526,9 +522,8 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 		input = &DeregisterContainerInstanceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeregisterContainerInstanceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -619,9 +614,8 @@ func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInp
 		input = &DeregisterTaskDefinitionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeregisterTaskDefinitionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -703,9 +697,8 @@ func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *reques
 		input = &DescribeClustersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeClustersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -778,9 +771,8 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 		input = &DescribeContainerInstancesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeContainerInstancesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -858,9 +850,8 @@ func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *reques
 		input = &DescribeServicesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeServicesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -937,9 +928,8 @@ func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) 
 		input = &DescribeTaskDefinitionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeTaskDefinitionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1017,9 +1007,8 @@ func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *request.Requ
 		input = &DescribeTasksInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DescribeTasksOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1096,9 +1085,8 @@ func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req
 		input = &DiscoverPollEndpointInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DiscoverPollEndpointOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1254,9 +1242,8 @@ func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 		input = &ListClustersInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListClustersOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1360,9 +1347,8 @@ func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) 
 		input = &ListContainerInstancesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListContainerInstancesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1474,9 +1460,8 @@ func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *request.Reques
 		input = &ListServicesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListServicesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1584,9 +1569,8 @@ func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamilie
 		input = &ListTaskDefinitionFamiliesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListTaskDefinitionFamiliesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1696,9 +1680,8 @@ func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *
 		input = &ListTaskDefinitionsInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListTaskDefinitionsOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1804,9 +1787,8 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, out
 		input = &ListTasksInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListTasksOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2000,9 +1982,8 @@ func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceI
 		input = &RegisterContainerInstanceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RegisterContainerInstanceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2075,9 +2056,8 @@ func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) 
 		input = &RegisterTaskDefinitionInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RegisterTaskDefinitionOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2166,9 +2146,8 @@ func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output 
 		input = &RunTaskInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &RunTaskOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2253,9 +2232,8 @@ func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, out
 		input = &StartTaskInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &StartTaskOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2337,9 +2315,8 @@ func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *request.Request, outpu
 		input = &StopTaskInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &StopTaskOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2422,9 +2399,8 @@ func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChang
 		input = &SubmitContainerStateChangeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &SubmitContainerStateChangeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2496,9 +2472,8 @@ func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (r
 		input = &SubmitTaskStateChangeInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &SubmitTaskStateChangeOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2570,9 +2545,8 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 		input = &UpdateContainerAgentInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UpdateContainerAgentOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -2677,9 +2651,8 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 		input = &UpdateServiceInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &UpdateServiceOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
