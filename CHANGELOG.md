@@ -1,3 +1,14 @@
+Release v1.6.9 (2016-12-30)
+===
+
+Service Client Updates
+---
+* `service/codedeploy`: Updates service API and documentation
+  * CodeDeploy will support Iam Session Arns in addition to Iam User Arns for on premise host authentication.
+* `service/ecs`: Updates service API and documentation
+  * Amazon EC2 Container Service (ECS) now supports the ability to customize the placement of tasks on container instances.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.6.8 (2016-12-22)
 ===
 
