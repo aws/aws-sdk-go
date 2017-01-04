@@ -11308,14 +11308,14 @@ type ChangePasswordInput struct {
 	// The new password. The new password must conform to the AWS account's password
 	// policy, if one exists.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of almost any printable ASCII character
-	// from the space (\u0020) through the end of the ASCII character range (\u00FF).
-	// You can also include the tab (\u0009), line feed (\u000A), and carriage return
-	// (\u000D) characters. Although any of these characters are valid in a password,
-	// note that many tools, such as the AWS Management Console, might restrict
-	// the ability to enter certain characters because they have special meaning
-	// within that tool.
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of almost any printable ASCII
+	// character from the space (\u0020) through the end of the ASCII character
+	// range (\u00FF). You can also include the tab (\u0009), line feed (\u000A),
+	// and carriage return (\u000D) characters. Although any of these characters
+	// are valid in a password, note that many tools, such as the AWS Management
+	// Console, might restrict the ability to enter certain characters because they
+	// have special meaning within that tool.
 	//
 	// NewPassword is a required field
 	NewPassword *string `min:"1" type:"string" required:"true"`
@@ -11781,14 +11781,14 @@ type CreateLoginProfileInput struct {
 
 	// The new password for the user.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of almost any printable ASCII character
-	// from the space (\u0020) through the end of the ASCII character range (\u00FF).
-	// You can also include the tab (\u0009), line feed (\u000A), and carriage return
-	// (\u000D) characters. Although any of these characters are valid in a password,
-	// note that many tools, such as the AWS Management Console, might restrict
-	// the ability to enter certain characters because they have special meaning
-	// within that tool.
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of almost any printable ASCII
+	// character from the space (\u0020) through the end of the ASCII character
+	// range (\u00FF). You can also include the tab (\u0009), line feed (\u000A),
+	// and carriage return (\u000D) characters. Although any of these characters
+	// are valid in a password, note that many tools, such as the AWS Management
+	// Console, might restrict the ability to enter certain characters because they
+	// have special meaning within that tool.
 	//
 	// Password is a required field
 	Password *string `min:"1" type:"string" required:"true"`
@@ -12042,11 +12042,12 @@ type CreatePolicyInput struct {
 	// The JSON policy document that you want to use as the content for the new
 	// policy.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -12159,11 +12160,12 @@ type CreatePolicyVersionInput struct {
 	// The JSON policy document that you want to use as the content for this new
 	// version of the policy.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -12262,11 +12264,12 @@ type CreateRoleInput struct {
 	// The trust relationship policy document that grants an entity permission to
 	// assume the role.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// AssumeRolePolicyDocument is a required field
 	AssumeRolePolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -15031,11 +15034,12 @@ type GetContextKeysForCustomPolicyInput struct {
 	// in those policies. Each document is specified as a string containing the
 	// complete, valid JSON text of an IAM policy.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyInputList is a required field
 	PolicyInputList []*string `type:"list" required:"true"`
@@ -15103,11 +15107,12 @@ type GetContextKeysForPrincipalPolicyInput struct {
 	// An optional list of additional policies for which you want the list of context
 	// keys that are referenced.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	PolicyInputList []*string `type:"list"`
 
 	// The ARN of a user, group, or role whose policies contain the context keys
@@ -20754,11 +20759,12 @@ type PutGroupPolicyInput struct {
 
 	// The policy document.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -20850,11 +20856,12 @@ type PutRolePolicyInput struct {
 
 	// The policy document.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -20955,11 +20962,12 @@ type PutUserPolicyInput struct {
 
 	// The policy document.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -22518,11 +22526,12 @@ type SimulateCustomPolicyInput struct {
 	// or one of the AssumeRole (http://docs.aws.amazon.com/IAM/latest/APIReference/API_AssumeRole.html)
 	// APIs to restrict what a user can do while using the temporary credentials.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyInputList is a required field
 	PolicyInputList []*string `type:"list" required:"true"`
@@ -22601,11 +22610,12 @@ type SimulateCustomPolicyInput struct {
 	// Each resource in the simulation is treated as if it had this policy attached.
 	// You can include only one resource-based policy in a simulation.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	ResourcePolicy *string `min:"1" type:"string"`
 }
 
@@ -22829,11 +22839,12 @@ type SimulatePrincipalPolicyInput struct {
 	// Each document is specified as a string containing the complete, valid JSON
 	// text of an IAM policy.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	PolicyInputList []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of a user, group, or role whose policies you
@@ -22920,11 +22931,12 @@ type SimulatePrincipalPolicyInput struct {
 	// Each resource in the simulation is treated as if it had this policy attached.
 	// You can include only one resource-based policy in a simulation.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	ResourcePolicy *string `min:"1" type:"string"`
 }
 
@@ -23366,11 +23378,12 @@ type UpdateAssumeRolePolicyInput struct {
 
 	// The policy that grants an entity permission to assume the role.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PolicyDocument is a required field
 	PolicyDocument *string `min:"1" type:"string" required:"true"`
@@ -23546,13 +23559,14 @@ type UpdateLoginProfileInput struct {
 
 	// The new password for the specified IAM user.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D). However, the format can be further
-	// restricted by the account administrator by setting a password policy on the
-	// AWS account. For more information, see UpdateAccountPasswordPolicy.
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D). However,
+	// the format can be further restricted by the account administrator by setting
+	// a password policy on the AWS account. For more information, see UpdateAccountPasswordPolicy.
 	Password *string `min:"1" type:"string"`
 
 	// Allows this new password to be used only once by requiring the specified
@@ -24288,11 +24302,12 @@ type UploadSSHPublicKeyInput struct {
 	// The SSH public key. The public key must be encoded in ssh-rsa format or PEM
 	// format.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// SSHPublicKeyBody is a required field
 	SSHPublicKeyBody *string `min:"1" type:"string" required:"true"`
@@ -24382,11 +24397,12 @@ type UploadServerCertificateInput struct {
 
 	// The contents of the public key certificate in PEM-encoded format.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// CertificateBody is a required field
 	CertificateBody *string `min:"1" type:"string" required:"true"`
@@ -24394,11 +24410,12 @@ type UploadServerCertificateInput struct {
 	// The contents of the certificate chain. This is typically a concatenation
 	// of the PEM-encoded public key certificates of the chain.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	CertificateChain *string `min:"1" type:"string"`
 
 	// The path for the server certificate. For more information about paths, see
@@ -24420,11 +24437,12 @@ type UploadServerCertificateInput struct {
 
 	// The contents of the private key in PEM-encoded format.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// PrivateKey is a required field
 	PrivateKey *string `min:"1" type:"string" required:"true"`
@@ -24546,11 +24564,12 @@ type UploadSigningCertificateInput struct {
 
 	// The contents of the signing certificate.
 	//
-	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
-	// a string of characters consisting of any printable ASCII character ranging
-	// from the space character (\u0020) through end of the ASCII character range
-	// (\u00FF). It also includes the special characters tab (\u0009), line feed
-	// (\u000A), and carriage return (\u000D).
+	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
+	// parameter is a string of characters consisting of any printable ASCII character
+	// ranging from the space character (\u0020) through end of the ASCII character
+	// range as well as the printable characters in the Basic Latin and Latin-1
+	// Supplement character set (through \u00FF). It also includes the special characters
+	// tab (\u0009), line feed (\u000A), and carriage return (\u000D).
 	//
 	// CertificateBody is a required field
 	CertificateBody *string `min:"1" type:"string" required:"true"`
@@ -24847,7 +24866,7 @@ func (s *UserDetail) SetUserPolicyList(v []*PolicyDetail) *UserDetail {
 type VirtualMFADevice struct {
 	_ struct{} `type:"structure"`
 
-	// The Base32 seed defined as specified in RFC3548 (http://www.ietf.org/rfc/rfc3548.txt).
+	// The Base32 seed defined as specified in RFC3548 (https://tools.ietf.org/html/rfc3548.txt).
 	// The Base32StringSeed is Base64-encoded.
 	//
 	// Base32StringSeed is automatically base64 encoded/decoded by the SDK.
