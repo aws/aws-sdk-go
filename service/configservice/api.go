@@ -2863,9 +2863,6 @@ func (s *ConfigStreamDeliveryInfo) SetLastStatusChangeTime(v time.Time) *ConfigS
 }
 
 // A list that contains detailed configurations of a specified resource.
-//
-// Currently, the list does not contain information about non-AWS components
-// (for example, applications on your Amazon EC2 instances).
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ConfigurationItem
 type ConfigurationItem struct {
 	_ struct{} `type:"structure"`
@@ -5771,17 +5768,25 @@ type SourceDetail struct {
 	// then MessageType must use the ScheduledNotification value.
 	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
 
-	// The type of notification that triggers AWS Config to run an evaluation. You
-	// can specify the following notification types:
+	// The type of notification that triggers AWS Config to run an evaluation for
+	// a rule. You can specify the following notification types:
 	//
-	// ConfigurationItemChangeNotification - Triggers an evaluation when AWS Config
-	// delivers a configuration item change notification.
+	//    * ConfigurationItemChangeNotification - Triggers an evaluation when AWS
+	//    Config delivers a configuration item as a result of a resource change.
 	//
-	// ScheduledNotification - Triggers a periodic evaluation at the frequency specified
-	// for MaximumExecutionFrequency.
+	//    * OversizedConfigurationItemChangeNotification - Triggers an evaluation
+	//    when AWS Config delivers an oversized configuration item. AWS Config may
+	//    generate this notification type when a resource changes and the notification
+	//    exceeds the maximum size allowed by Amazon SNS.
 	//
-	// ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation when
-	// AWS Config delivers a configuration snapshot.
+	//    * ScheduledNotification - Triggers a periodic evaluation at the frequency
+	//    specified for MaximumExecutionFrequency.
+	//
+	//    * ConfigurationSnapshotDeliveryCompleted - Triggers a periodic evaluation
+	//    when AWS Config delivers a configuration snapshot.
+	//
+	// If you want your custom rule to be triggered by configuration changes, specify
+	// both ConfigurationItemChangeNotification and OversizedConfigurationItemChangeNotification.
 	MessageType *string `type:"string" enum:"MessageType"`
 }
 
@@ -6076,6 +6081,9 @@ const (
 
 	// MessageTypeScheduledNotification is a MessageType enum value
 	MessageTypeScheduledNotification = "ScheduledNotification"
+
+	// MessageTypeOversizedConfigurationItemChangeNotification is a MessageType enum value
+	MessageTypeOversizedConfigurationItemChangeNotification = "OversizedConfigurationItemChangeNotification"
 )
 
 const (

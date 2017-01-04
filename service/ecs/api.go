@@ -261,9 +261,8 @@ func (c *ECS) DeleteAttributesRequest(input *DeleteAttributesInput) (req *reques
 		input = &DeleteAttributesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &DeleteAttributesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1159,9 +1158,8 @@ func (c *ECS) ListAttributesRequest(input *ListAttributesInput) (req *request.Re
 		input = &ListAttributesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &ListAttributesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 
@@ -1899,9 +1897,8 @@ func (c *ECS) PutAttributesRequest(input *PutAttributesInput) (req *request.Requ
 		input = &PutAttributesInput{}
 	}
 
-	req = c.newRequest(op, input, output)
 	output = &PutAttributesOutput{}
-	req.Data = output
+	req = c.newRequest(op, input, output)
 	return
 }
 

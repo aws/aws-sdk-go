@@ -243,15 +243,15 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // Sets the requesterManaged property of the network interface to true, and
 //    the requesterId value to EFS.
 //
-// Each Amazon EFS mount target has one corresponding requestor-managed EC2
+// Each Amazon EFS mount target has one corresponding requester-managed EC2
 //    network interface. After the network interface is created, Amazon EFS
 //    sets the NetworkInterfaceId field in the mount target's description to
 //    the network interface ID, and the IpAddress field to its address. If network
 //    interface creation fails, the entire CreateMountTarget operation fails.
 //
 // The CreateMountTarget call returns only after creating the network interface,
-// but while the mount target state is still creating. You can check the mount
-// target creation status by calling the DescribeFileSystems operation, which
+// but while the mount target state is still creating, you can check the mount
+// target creation status by calling the DescribeMountTargets operation, which
 // among other things returns the mount target state.
 //
 // We recommend you create a mount target in each of the Availability Zones.
