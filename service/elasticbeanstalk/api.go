@@ -2797,7 +2797,7 @@ type ApplicationMetrics struct {
 	Duration *int64 `type:"integer"`
 
 	// Represents the average latency for the slowest X percent of requests over
-	// the last 10 seconds. Latencies are in seconds with one milisecond resolution.
+	// the last 10 seconds. Latencies are in seconds with one millisecond resolution.
 	Latency *Latency `type:"structure"`
 
 	// Average number of requests handled by the web server per second over the
