@@ -5025,7 +5025,7 @@ func (s *DescribeApplicationsOutput) SetApplications(v []*ApplicationDescription
 	return s
 }
 
-// Result message containig a list of application version descriptions.
+// Result message containing a list of application version descriptions.
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticbeanstalk-2010-12-01/DescribeConfigurationOptionsMessage
 type DescribeConfigurationOptionsInput struct {
 	_ struct{} `type:"structure"`
