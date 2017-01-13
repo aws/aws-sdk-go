@@ -1041,7 +1041,11 @@ var awsPartition = partition{
 			},
 		},
 		"metering.marketplace": service{
-
+			Defaults: endpoint{
+				CredentialScope: credentialScope{
+					Service: "aws-marketplace",
+				},
+			},
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
 				"ap-southeast-1": endpoint{},
