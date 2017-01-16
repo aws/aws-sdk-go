@@ -480,6 +480,10 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 //   One or more AWS Config rules in the request are invalid. Verify that the
 //   rule names are correct and try again.
 //
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the NextToken string that was
+//   returned in the previous response to get the next page of results.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeComplianceByConfigRule
 func (c *ConfigService) DescribeComplianceByConfigRule(input *DescribeComplianceByConfigRuleInput) (*DescribeComplianceByConfigRuleOutput, error) {
 	req, out := c.DescribeComplianceByConfigRuleRequest(input)
@@ -571,7 +575,7 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 //   are valid and try again.
 //
 //   * InvalidNextTokenException
-//   The specified next token is invalid. Specify the nextToken string that was
+//   The specified next token is invalid. Specify the NextToken string that was
 //   returned in the previous response to get the next page of results.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeComplianceByResource
@@ -647,6 +651,10 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 //   One or more of the specified parameters are invalid. Verify that your parameters
 //   are valid and try again.
 //
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the NextToken string that was
+//   returned in the previous response to get the next page of results.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigRuleEvaluationStatus
 func (c *ConfigService) DescribeConfigRuleEvaluationStatus(input *DescribeConfigRuleEvaluationStatusInput) (*DescribeConfigRuleEvaluationStatusOutput, error) {
 	req, out := c.DescribeConfigRuleEvaluationStatusRequest(input)
@@ -712,6 +720,10 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 //   * NoSuchConfigRuleException
 //   One or more AWS Config rules in the request are invalid. Verify that the
 //   rule names are correct and try again.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the NextToken string that was
+//   returned in the previous response to get the next page of results.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeConfigRules
 func (c *ConfigService) DescribeConfigRules(input *DescribeConfigRulesInput) (*DescribeConfigRulesOutput, error) {
@@ -1060,7 +1072,7 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 //   are valid and try again.
 //
 //   * InvalidNextTokenException
-//   The specified next token is invalid. Specify the nextToken string that was
+//   The specified next token is invalid. Specify the NextToken string that was
 //   returned in the previous response to get the next page of results.
 //
 //   * NoSuchConfigRuleException
@@ -1355,7 +1367,7 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 //   The specified limit is outside the allowable range.
 //
 //   * InvalidNextTokenException
-//   The specified next token is invalid. Specify the nextToken string that was
+//   The specified next token is invalid. Specify the NextToken string that was
 //   returned in the previous response to get the next page of results.
 //
 //   * NoAvailableConfigurationRecorderException
@@ -1472,7 +1484,7 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 //   The specified limit is outside the allowable range.
 //
 //   * InvalidNextTokenException
-//   The specified next token is invalid. Specify the nextToken string that was
+//   The specified next token is invalid. Specify the NextToken string that was
 //   returned in the previous response to get the next page of results.
 //
 //   * NoAvailableConfigurationRecorderException
@@ -3702,7 +3714,7 @@ type DescribeComplianceByConfigRuleInput struct {
 	// Specify one or more AWS Config rule names to filter the results by rule.
 	ConfigRuleNames []*string `type:"list"`
 
-	// The nextToken string returned on a previous page that you use to get the
+	// The NextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 }
@@ -3783,7 +3795,7 @@ type DescribeComplianceByResourceInput struct {
 	// Config uses the default.
 	Limit *int64 `type:"integer"`
 
-	// The nextToken string returned on a previous page that you use to get the
+	// The NextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
@@ -3983,7 +3995,7 @@ type DescribeConfigRulesInput struct {
 	// specify any names, AWS Config returns details for all your rules.
 	ConfigRuleNames []*string `type:"list"`
 
-	// The nextToken string returned on a previous page that you use to get the
+	// The NextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 }
@@ -4541,7 +4553,7 @@ type GetComplianceDetailsByConfigRuleInput struct {
 	// Config uses the default.
 	Limit *int64 `type:"integer"`
 
-	// The nextToken string returned on a previous page that you use to get the
+	// The NextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 }
@@ -4640,7 +4652,7 @@ type GetComplianceDetailsByResourceInput struct {
 	// The allowed values are COMPLIANT, NON_COMPLIANT, and NOT_APPLICABLE.
 	ComplianceTypes []*string `type:"list"`
 
-	// The nextToken string returned on a previous page that you use to get the
+	// The NextToken string returned on a previous page that you use to get the
 	// next page of results in a paginated response.
 	NextToken *string `type:"string"`
 
