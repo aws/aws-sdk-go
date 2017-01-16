@@ -1,3 +1,17 @@
+Release v1.6.11 (2017-01-16)
+===
+
+Service Client Updates
+---
+* `service/configservice`: Updates service API, documentation, and paginators
+* `service/costandusagereportservice`: Adds new service
+  * The AWS Cost and Usage Report Service API allows you to enable and disable the Cost & Usage report, as well as modify the report name, the data granularity, and the delivery preferences.
+* `service/dynamodb`: Updates service API, documentation, and examples
+  * Snippets for the DynamoDB API.
+* `service/elasticache`: Updates service API, documentation, and examples
+  * Adds new code examples.
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+
 Release v1.6.10 (2017-01-04)
 ===
 

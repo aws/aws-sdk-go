@@ -165,6 +165,11 @@
             "us-west-2": {}
           }
         },
+        "batch": {
+          "endpoints": {
+            "us-east-1": {}
+          }
+        },
         "budgets": {
           "endpoints": {
             "aws-global": {
@@ -355,6 +360,11 @@
             "us-east-2": {},
             "us-west-1": {},
             "us-west-2": {}
+          }
+        },
+        "cur": {
+          "endpoints": {
+            "us-east-1": {}
           }
         },
         "data.iot": {

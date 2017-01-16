@@ -4794,7 +4794,7 @@ type CreateCacheClusterInput struct {
 	// assumes single-az mode.
 	AZMode *string `type:"string" enum:"AZMode"`
 
-	// The password used to access a password protected server.
+	// Reserved parameter. The password used to access a password protected server.
 	//
 	// Password constraints:
 	//
@@ -5515,7 +5515,7 @@ func (s *CreateCacheSubnetGroupOutput) SetCacheSubnetGroup(v *CacheSubnetGroup) 
 type CreateReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The password used to access a password protected server.
+	// Reserved parameter. The password used to access a password protected server.
 	//
 	// Password constraints:
 	//
