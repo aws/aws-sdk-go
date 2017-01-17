@@ -1090,7 +1090,8 @@ type SynthesizeSpeechOutput struct {
 	//    is audio/ogg.
 	//
 	//    *  If you request pcm as the OutputFormat, the ContentType returned is
-	//    audio/pcm.
+	//    audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format.
+	//
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
 
 	// Number of characters synthesized.

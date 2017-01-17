@@ -1827,6 +1827,10 @@ type DetectFacesOutput struct {
 	// degrees, it corrects orientation, performs face detection, and then returns
 	// the faces. That is, the bounding box coordinates in the response are based
 	// on the corrected orientation.
+	//
+	// If the source image Exif metadata populates the orientation field, Amazon
+	// Rekognition does not perform orientation correction and the value of OrientationCorrection
+	// will be nil.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -1929,6 +1933,10 @@ type DetectLabelsOutput struct {
 	// this value to correct the orientation. If Amazon Rekognition detects that
 	// the input image was rotated (for example, by 90 degrees), it first corrects
 	// the orientation before detecting the labels.
+	//
+	// If the source image Exif metadata populates the orientation field, Amazon
+	// Rekognition does not perform orientation correction and the value of OrientationCorrection
+	// will be nil.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -2399,6 +2407,11 @@ func (s *Gender) SetValue(v string) *Gender {
 // are using and whether or not you are using the AWS SDK. For more information,
 // see example4.
 //
+// If you use the Amazon CLI to call Amazon Rekognition operations, passing
+// image bytes using the Bytes property is not supported. You must first upload
+// the image to an Amazon S3 bucket and then call the operation using the S3Object
+// property.
+//
 // For Amazon Rekognition to process an S3 object, the user must have permission
 // to access the S3 object. For more information, see manage-access-resource-policies.
 type Image struct {
@@ -2518,6 +2531,11 @@ type IndexFacesInput struct {
 	// are using and whether or not you are using the AWS SDK. For more information,
 	// see example4.
 	//
+	// If you use the Amazon CLI to call Amazon Rekognition operations, passing
+	// image bytes using the Bytes property is not supported. You must first upload
+	// the image to an Amazon S3 bucket and then call the operation using the S3Object
+	// property.
+	//
 	// For Amazon Rekognition to process an S3 object, the user must have permission
 	// to access the S3 object. For more information, see manage-access-resource-policies.
 	//
@@ -2597,6 +2615,10 @@ type IndexFacesOutput struct {
 	// was rotated, it returns the degree of rotation. You can use this value to
 	// correct the orientation and also appropriately analyze the bounding box coordinates
 	// that are returned.
+	//
+	// If the source image Exif metadata populates the orientation field, Amazon
+	// Rekognition does not perform orientation correction and the value of OrientationCorrection
+	// will be nil.
 	OrientationCorrection *string `type:"string" enum:"OrientationCorrection"`
 }
 
@@ -3059,6 +3081,11 @@ type SearchFacesByImageInput struct {
 	// You may need to Base64-encode the image bytes depending on the language you
 	// are using and whether or not you are using the AWS SDK. For more information,
 	// see example4.
+	//
+	// If you use the Amazon CLI to call Amazon Rekognition operations, passing
+	// image bytes using the Bytes property is not supported. You must first upload
+	// the image to an Amazon S3 bucket and then call the operation using the S3Object
+	// property.
 	//
 	// For Amazon Rekognition to process an S3 object, the user must have permission
 	// to access the S3 object. For more information, see manage-access-resource-policies.

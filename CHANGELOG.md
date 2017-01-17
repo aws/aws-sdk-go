@@ -1,3 +1,20 @@
+Release v1.6.12 (2017-01-17)
+===
+
+Service Client Updates
+---
+* `service/dynamodb`: Updates service API, documentation, and paginators
+  * Tagging Support for Amazon DynamoDB Tables and Indexes
+* `aws/endpoints`: Updated Regions and Endpoints metadata.
+* `service/glacier`: Updates service API, paginators, and examples
+  * Doc-only Update for Glacier: Added code snippets
+* `service/polly`: Updates service documentation and examples
+  * Doc-only update for Amazon Polly -- added snippets
+* `service/rekognition`: Updates service documentation and paginators
+  * Added code samples to Rekognition reference topics.
+* `service/route53`: Updates service API and paginators
+  * Add ca-central-1 and eu-west-2 enum values to CloudWatchRegion enum
+
 Release v1.6.11 (2017-01-16)
 ===
 
