@@ -12649,11 +12649,17 @@ const (
 	// CloudWatchRegionUsWest2 is a CloudWatchRegion enum value
 	CloudWatchRegionUsWest2 = "us-west-2"
 
+	// CloudWatchRegionCaCentral1 is a CloudWatchRegion enum value
+	CloudWatchRegionCaCentral1 = "ca-central-1"
+
 	// CloudWatchRegionEuCentral1 is a CloudWatchRegion enum value
 	CloudWatchRegionEuCentral1 = "eu-central-1"
 
 	// CloudWatchRegionEuWest1 is a CloudWatchRegion enum value
 	CloudWatchRegionEuWest1 = "eu-west-1"
+
+	// CloudWatchRegionEuWest2 is a CloudWatchRegion enum value
+	CloudWatchRegionEuWest2 = "eu-west-2"
 
 	// CloudWatchRegionApSouth1 is a CloudWatchRegion enum value
 	CloudWatchRegionApSouth1 = "ap-south-1"
