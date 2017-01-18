@@ -872,7 +872,7 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 // Creates a new Amazon Aurora DB cluster.
 //
 // You can use the ReplicationSourceIdentifier parameter to create the DB cluster
-// as a Read Replica of another DB cluster.
+// as a Read Replica of another DB cluster or Amazon RDS MySQL DB instance.
 //
 // For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
 // in the Amazon RDS User Guide.
@@ -8928,8 +8928,8 @@ type CreateDBClusterInput struct {
 	// Constraints: Minimum 30-minute window.
 	PreferredMaintenanceWindow *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the source DB cluster if this DB cluster
-	// is created as a Read Replica.
+	// The Amazon Resource Name (ARN) of the source DB instance or DB cluster if
+	// this DB cluster is created as a Read Replica.
 	ReplicationSourceIdentifier *string `type:"string"`
 
 	// Specifies whether the DB cluster is encrypted.
@@ -12528,6 +12528,10 @@ type DBInstance struct {
 	// PubliclyAccessible value has not been set, the DB instance will be private.
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// Contains one or more identifiers of Aurora DB clusters that are read replicas
+	// of this DB instance.
+	ReadReplicaDBClusterIdentifiers []*string `locationNameList:"ReadReplicaDBClusterIdentifier" type:"list"`
+
 	// Contains one or more identifiers of the Read Replicas associated with this
 	// DB instance.
 	ReadReplicaDBInstanceIdentifiers []*string `locationNameList:"ReadReplicaDBInstanceIdentifier" type:"list"`
@@ -12799,6 +12803,12 @@ func (s *DBInstance) SetPromotionTier(v int64) *DBInstance {
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *DBInstance) SetPubliclyAccessible(v bool) *DBInstance {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetReadReplicaDBClusterIdentifiers sets the ReadReplicaDBClusterIdentifiers field's value.
+func (s *DBInstance) SetReadReplicaDBClusterIdentifiers(v []*string) *DBInstance {
+	s.ReadReplicaDBClusterIdentifiers = v
 	return s
 }
 
