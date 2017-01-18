@@ -2424,6 +2424,7 @@
         "AutoMinorVersionUpgrade":{"shape":"Boolean"},
         "ReadReplicaSourceDBInstanceIdentifier":{"shape":"String"},
         "ReadReplicaDBInstanceIdentifiers":{"shape":"ReadReplicaDBInstanceIdentifierList"},
+        "ReadReplicaDBClusterIdentifiers":{"shape":"ReadReplicaDBClusterIdentifierList"},
         "LicenseModel":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupMemberships":{"shape":"OptionGroupMembershipList"},
@@ -4356,6 +4357,13 @@
       "type":"structure",
       "members":{
         "ReservedDBInstance":{"shape":"ReservedDBInstance"}
+      }
+    },
+    "ReadReplicaDBClusterIdentifierList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"ReadReplicaDBClusterIdentifier"
       }
     },
     "ReadReplicaDBInstanceIdentifierList":{

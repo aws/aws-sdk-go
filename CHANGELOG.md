@@ -1,3 +1,10 @@
+Release v1.6.13 (2017-01-18)
+===
+
+Service Client Updates
+---
+* `service/rds`: Updates service API, documentation, and paginators
+
 Release v1.6.12 (2017-01-17)
 ===
 
