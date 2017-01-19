@@ -13530,6 +13530,10 @@
         "GroupName":{
           "shape":"String",
           "locationName":"groupName"
+        },
+        "Tenancy":{
+          "shape":"Tenancy",
+          "locationName":"tenancy"
         }
       }
     },
