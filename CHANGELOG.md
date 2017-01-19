@@ -1,3 +1,11 @@
+Release v1.6.14 (2017-01-19)
+===
+
+Service Client Updates
+---
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Amazon EC2 Spot instances now support dedicated tenancy, providing the ability to run Spot instances single-tenant manner on physically isolated hardware within a VPC to satisfy security, privacy, or other compliance requirements. Dedicated Spot instances can be requested using RequestSpotInstances and RequestSpotFleet.
+
 Release v1.6.13 (2017-01-18)
 ===
 
