@@ -12,8 +12,8 @@ import (
 )
 
 // The AWS Health API provides programmatic access to the AWS Health information
-// that is presented in the AWS Personal Health Dashboard. You can get information
-// about events that affect your AWS resources:
+// that is presented in the AWS Personal Health Dashboard (https://phd.aws.amazon.com/phd/home#/).
+// You can get information about events that affect your AWS resources:
 //
 //    * DescribeEvents: Summary information about events.
 //

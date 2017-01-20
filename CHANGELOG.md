@@ -1,3 +1,12 @@
+Release v1.6.15 (2017-01-20)
+===
+
+Service Client Updates
+---
+* `service/acm`: Updates service API, documentation, and paginators
+  * Update for AWS Certificate Manager: Updated response elements for DescribeCertificate API in support of managed renewal
+* `service/health`: Updates service documentation
+
 Release v1.6.14 (2017-01-19)
 ===
 
