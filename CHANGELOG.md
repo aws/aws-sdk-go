@@ -1,3 +1,13 @@
+Release v1.6.17 (2017-01-25)
+===
+
+Service Client Updates
+---
+* `service/elbv2`: Updates service API, documentation, and paginators
+  * Application Load Balancers now support native Internet Protocol version 6 (IPv6) in an Amazon Virtual Private Cloud (VPC). With this ability, clients can now connect to the Application Load Balancer in a dual-stack mode via either IPv4 or IPv6.
+* `service/rds`: Updates service API and documentation
+  * Cross Region Read Replica Copying (CreateDBInstanceReadReplica)
+
 Release v1.6.16 (2017-01-24)
 ===
 

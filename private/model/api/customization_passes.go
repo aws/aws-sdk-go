@@ -33,7 +33,7 @@ func (a *API) customizationPasses() {
 	var svcCustomizations = map[string]func(*API){
 		"s3":         s3Customizations,
 		"cloudfront": cloudfrontCustomizations,
-		"rds":             rdsCustomizations,
+		"rds":        rdsCustomizations,
 	}
 
 	for k, _ := range mergeServices {
@@ -145,6 +145,7 @@ func mergeServicesCustomizations(a *API) {
 func rdsCustomizations(a *API) {
 	inputs := []string{
 		"CopyDBSnapshotInput",
+		"CreateDBInstanceReadReplicaInput",
 	}
 	for _, input := range inputs {
 		if ref, ok := a.Shapes[input]; ok {
