@@ -1,3 +1,15 @@
+Release v1.6.16 (2017-01-24)
+===
+
+Service Client Updates
+---
+* `service/codebuild`: Updates service documentation and paginators
+  * Documentation updates
+* `service/codecommit`: Updates service API, documentation, and paginators
+  * AWS CodeCommit now includes the option to view the differences between a commit and its parent commit from within the console. You can view the differences inline (Unified view) or side by side (Split view). To view information about the differences between a commit and something other than its parent, you can use the AWS CLI and the get-differences and get-blob commands, or you can use the GetDifferences and GetBlob APIs.
+* `service/ecs`: Updates service API and documentation
+  * Amazon ECS now supports a state for container instances that can be used to drain a container instance in preparation for maintenance or cluster scale down.
+
 Release v1.6.15 (2017-01-20)
 ===
 
