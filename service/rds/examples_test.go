@@ -542,12 +542,16 @@ func ExampleRDS_CreateDBInstanceReadReplica() {
 		CopyTagsToSnapshot:         aws.Bool(true),
 		DBInstanceClass:            aws.String("String"),
 		DBSubnetGroupName:          aws.String("String"),
+		DestinationRegion:          aws.String("String"),
 		Iops:                       aws.Int64(1),
+		KmsKeyId:                   aws.String("String"),
 		MonitoringInterval:         aws.Int64(1),
 		MonitoringRoleArn:          aws.String("String"),
 		OptionGroupName:            aws.String("String"),
 		Port:                       aws.Int64(1),
+		PreSignedUrl:               aws.String("String"),
 		PubliclyAccessible:         aws.Bool(true),
+		SourceRegion:               aws.String("String"),
 		StorageType:                aws.String("String"),
 		Tags: []*rds.Tag{
 			{ // Required
