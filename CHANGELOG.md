@@ -1,3 +1,17 @@
+Release v1.6.18 (2017-01-27)
+===
+
+Service Client Updates
+---
+* `service/clouddirectory`: Adds new service
+  * Amazon Cloud Directory is a highly scalable, high performance, multi-tenant directory service in the cloud. Its web-based directories make it easy for you to organize and manage application resources such as users, groups, locations, devices, policies, and the rich relationships between them.
+* `service/codedeploy`: Updates service API, documentation, and paginators
+  * This release of AWS CodeDeploy introduces support for blue/green deployments. In a blue/green deployment, the current set of instances in a deployment group is replaced by new instances that have the latest application revision installed on them. After traffic is rerouted behind a load balancer to the replacement instances, the original instances can be terminated automatically or kept running for other uses.
+* `service/ec2`: Updates service API and documentation
+  * Adds instance health check functionality to replace unhealthy EC2 Spot fleet instances with fresh ones.
+* `service/rds`: Updates service API and documentation
+  * Snapshot Engine Version Upgrade
+
 Release v1.6.17 (2017-01-25)
 ===
 

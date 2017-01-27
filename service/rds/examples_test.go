@@ -2386,6 +2386,32 @@ func ExampleRDS_ModifyDBParameterGroup() {
 	fmt.Println(resp)
 }
 
+func ExampleRDS_ModifyDBSnapshot() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := rds.New(sess)
+
+	params := &rds.ModifyDBSnapshotInput{
+		DBSnapshotIdentifier: aws.String("String"), // Required
+		EngineVersion:        aws.String("String"),
+	}
+	resp, err := svc.ModifyDBSnapshot(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_ModifyDBSnapshotAttribute() {
 	sess, err := session.NewSession()
 	if err != nil {

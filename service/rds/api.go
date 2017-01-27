@@ -931,6 +931,13 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //   * DBClusterNotFoundFault
 //   DBClusterIdentifier does not refer to an existing DB cluster.
 //
+//   * DBInstanceNotFound
+//   DBInstanceIdentifier does not refer to an existing DB instance.
+//
+//   * DBSubnetGroupDoesNotCoverEnoughAZs
+//   Subnets in the DB subnet group should cover at least two Availability Zones
+//   unless there is only one Availability Zone.
+//
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBCluster
 func (c *RDS) CreateDBCluster(input *CreateDBClusterInput) (*CreateDBClusterOutput, error) {
 	req, out := c.CreateDBClusterRequest(input)
@@ -1292,6 +1299,61 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 // as specified below.
 //
 // The source DB instance must have backup retention enabled.
+//
+// You can create an encrypted Read Replica in a different AWS Region than the
+// source DB instance. In that case, the region where you call the CreateDBInstanceReadReplica
+// action is the destination region of the encrypted Read Replica. The source
+// DB instance must be encrypted.
+//
+// To create an encrypted Read Replica in another AWS Region, you must provide
+// the following values:
+//
+//    * KmsKeyId - The AWS Key Management System (KMS) key identifier for the
+//    key to use to encrypt the Read Replica in the destination region.
+//
+//    * PreSignedUrl - A URL that contains a Signature Version 4 signed request
+//    for the  CreateDBInstanceReadReplica API action in the AWS region that
+//    contains the source DB instance. The PreSignedUrl parameter must be used
+//    when encrypting a Read Replica from another AWS region.
+//
+// The presigned URL must be a valid request for the CreateDBInstanceReadReplica
+//    API action that can be executed in the source region that contains the
+//    encrypted DB instance. The presigned URL request must contain the following
+//    parameter values:
+//
+// DestinationRegion - The AWS Region that the Read Replica is created in. This
+//    region is the same one where the CreateDBInstanceReadReplica action is
+//    called that contains this presigned URL.
+//
+//  For example, if you create an encrypted Read Replica in the us-east-1 region,
+//    and the source DB instance is in the west-2 region, then you call the
+//    CreateDBInstanceReadReplica action in the us-east-1 region and provide
+//    a presigned URL that contains a call to the CreateDBInstanceReadReplica
+//    action in the us-west-2 region. For this example, the DestinationRegion
+//    in the presigned URL must be set to the us-east-1 region.
+//
+// KmsKeyId - The KMS key identifier for the key to use to encrypt the Read
+//    Replica in the destination region. This is the same identifier for both
+//    the CreateDBInstanceReadReplica action that is called in the destination
+//    region, and the action contained in the presigned URL.
+//
+// SourceDBInstanceIdentifier - The DB instance identifier for the encrypted
+//    Read Replica to be created. This identifier must be in the Amazon Resource
+//    Name (ARN) format for the source region. For example, if you create an
+//    encrypted Read Replica from a DB instance in the us-west-2 region, then
+//    your SourceDBInstanceIdentifier would look like this example:  arn:aws:rds:us-west-2:123456789012:instance:mysql-instance1-instance-20161115.
+//
+// To learn how to generate a Signature Version 4 signed request, see  Authenticating
+//    Requests: Using Query Parameters (AWS Signature Version 4) (http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
+//    and  Signature Version 4 Signing Process (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//
+//    * DBInstanceIdentifier - The identifier for the encrypted Read Replica
+//    in the destination region.
+//
+//    * SourceDBInstanceIdentifier - The DB instance identifier for the encrypted
+//    Read Replica. This identifier must be in the ARN format for the source
+//    region and is the same value as the SourceDBInstanceIdentifier in the
+//    presigned URL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5691,6 +5753,76 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBParameterGroup
 func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBParameterGroupNameMessage, error) {
 	req, out := c.ModifyDBParameterGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opModifyDBSnapshot = "ModifyDBSnapshot"
+
+// ModifyDBSnapshotRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBSnapshot operation. The "output" return
+// value can be used to capture response data after the request's "Send" method
+// is called.
+//
+// See ModifyDBSnapshot for usage and error information.
+//
+// Creating a request object using this method should be used when you want to inject
+// custom logic into the request's lifecycle using a custom handler, or if you want to
+// access properties on the request object before or after sending the request. If
+// you just want the service response, call the ModifyDBSnapshot method directly
+// instead.
+//
+// Note: You must call the "Send" method on the returned request object in order
+// to execute the request.
+//
+//    // Example sending a request using the ModifyDBSnapshotRequest method.
+//    req, resp := client.ModifyDBSnapshotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBSnapshot
+func (c *RDS) ModifyDBSnapshotRequest(input *ModifyDBSnapshotInput) (req *request.Request, output *ModifyDBSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opModifyDBSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBSnapshotInput{}
+	}
+
+	output = &ModifyDBSnapshotOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyDBSnapshot API operation for Amazon Relational Database Service.
+//
+// Updates a manual DB snapshot, which can be encrypted or not encrypted, with
+// a new engine version. You can update the engine version to either a new major
+// or minor engine version.
+//
+// Amazon RDS supports upgrading a MySQL DB snapshot from MySQL 5.1 to MySQL
+// 5.5.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation ModifyDBSnapshot for usage and error information.
+//
+// Returned Error Codes:
+//   * DBSnapshotNotFound
+//   DBSnapshotIdentifier does not refer to an existing DB snapshot.
+//
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBSnapshot
+func (c *RDS) ModifyDBSnapshot(input *ModifyDBSnapshotInput) (*ModifyDBSnapshotOutput, error) {
+	req, out := c.ModifyDBSnapshotRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -20471,6 +20603,84 @@ func (s ModifyDBSnapshotAttributeOutput) GoString() string {
 // SetDBSnapshotAttributesResult sets the DBSnapshotAttributesResult field's value.
 func (s *ModifyDBSnapshotAttributeOutput) SetDBSnapshotAttributesResult(v *DBSnapshotAttributesResult) *ModifyDBSnapshotAttributeOutput {
 	s.DBSnapshotAttributesResult = v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBSnapshotMessage
+type ModifyDBSnapshotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the DB snapshot to modify.
+	//
+	// DBSnapshotIdentifier is a required field
+	DBSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// The engine version to update the DB snapshot to.
+	EngineVersion *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModifyDBSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBSnapshotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyDBSnapshotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyDBSnapshotInput"}
+	if s.DBSnapshotIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBSnapshotIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBSnapshotIdentifier sets the DBSnapshotIdentifier field's value.
+func (s *ModifyDBSnapshotInput) SetDBSnapshotIdentifier(v string) *ModifyDBSnapshotInput {
+	s.DBSnapshotIdentifier = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyDBSnapshotInput) SetEngineVersion(v string) *ModifyDBSnapshotInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// Please also see https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBSnapshotResult
+type ModifyDBSnapshotOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//    * CreateDBSnapshot
+	//
+	//    * DeleteDBSnapshot
+	//
+	// This data type is used as a response element in the DescribeDBSnapshots action.
+	DBSnapshot *DBSnapshot `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBSnapshot sets the DBSnapshot field's value.
+func (s *ModifyDBSnapshotOutput) SetDBSnapshot(v *DBSnapshot) *ModifyDBSnapshotOutput {
+	s.DBSnapshot = v
 	return s
 }
 
