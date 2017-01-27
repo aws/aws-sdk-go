@@ -83,18 +83,18 @@ func (c *SSM) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 // API operation AddTagsToResource for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidResourceType
+//   * ErrCodeInvalidResourceType "InvalidResourceType"
 //   The resource type is not valid. If you are attempting to tag an instance,
 //   the instance must be a registered, managed instance.
 //
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * TooManyTagsError
+//   * ErrCodeTooManyTagsError "TooManyTagsError"
 //   The Targets parameter includes too many tags. Remove one or more tags and
 //   try the command again.
 //
@@ -161,13 +161,13 @@ func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Requ
 // API operation CancelCommand for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidCommandId
+//   * ErrCodeInvalidCommandId "InvalidCommandId"
 
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -182,7 +182,7 @@ func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Requ
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * DuplicateInstanceId
+//   * ErrCodeDuplicateInstanceId "DuplicateInstanceId"
 //   You cannot specify an instance ID in more than one association.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CancelCommand
@@ -253,7 +253,7 @@ func (c *SSM) CreateActivationRequest(input *CreateActivationInput) (req *reques
 // API operation CreateActivation for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateActivation
@@ -325,22 +325,22 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 // API operation CreateAssociation for usage and error information.
 //
 // Returned Error Codes:
-//   * AssociationAlreadyExists
+//   * ErrCodeAssociationAlreadyExists "AssociationAlreadyExists"
 //   The specified association already exists.
 //
-//   * AssociationLimitExceeded
+//   * ErrCodeAssociationLimitExceeded "AssociationLimitExceeded"
 //   You can have at most 2,000 active associations.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -355,22 +355,22 @@ func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *requ
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * UnsupportedPlatformType
+//   * ErrCodeUnsupportedPlatformType "UnsupportedPlatformType"
 //   The document does not support the platform type of the given instance ID(s).
 //   For example, you sent an SSM document for a Windows instance to a Linux instance.
 //
-//   * InvalidOutputLocation
+//   * ErrCodeInvalidOutputLocation "InvalidOutputLocation"
 //   The output location is not valid or does not exist.
 //
-//   * InvalidParameters
+//   * ErrCodeInvalidParameters "InvalidParameters"
 //   You must specify values for all required parameters in the SSM document.
 //   You can only supply values to parameters defined in the SSM document.
 //
-//   * InvalidTarget
+//   * ErrCodeInvalidTarget "InvalidTarget"
 //   The target is not valid or does not exist. It might not be configured for
 //   EC2 Systems Manager or you might not have permission to perform the operation.
 //
-//   * InvalidSchedule
+//   * ErrCodeInvalidSchedule "InvalidSchedule"
 //   The schedule is invalid. Verify your cron or rate expression and try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateAssociation
@@ -442,16 +442,16 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 // API operation CreateAssociationBatch for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -466,28 +466,28 @@ func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) 
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidParameters
+//   * ErrCodeInvalidParameters "InvalidParameters"
 //   You must specify values for all required parameters in the SSM document.
 //   You can only supply values to parameters defined in the SSM document.
 //
-//   * DuplicateInstanceId
+//   * ErrCodeDuplicateInstanceId "DuplicateInstanceId"
 //   You cannot specify an instance ID in more than one association.
 //
-//   * AssociationLimitExceeded
+//   * ErrCodeAssociationLimitExceeded "AssociationLimitExceeded"
 //   You can have at most 2,000 active associations.
 //
-//   * UnsupportedPlatformType
+//   * ErrCodeUnsupportedPlatformType "UnsupportedPlatformType"
 //   The document does not support the platform type of the given instance ID(s).
 //   For example, you sent an SSM document for a Windows instance to a Linux instance.
 //
-//   * InvalidOutputLocation
+//   * ErrCodeInvalidOutputLocation "InvalidOutputLocation"
 //   The output location is not valid or does not exist.
 //
-//   * InvalidTarget
+//   * ErrCodeInvalidTarget "InvalidTarget"
 //   The target is not valid or does not exist. It might not be configured for
 //   EC2 Systems Manager or you might not have permission to perform the operation.
 //
-//   * InvalidSchedule
+//   * ErrCodeInvalidSchedule "InvalidSchedule"
 //   The schedule is invalid. Verify your cron or rate expression and try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateAssociationBatch
@@ -555,22 +555,22 @@ func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *request.Re
 // API operation CreateDocument for usage and error information.
 //
 // Returned Error Codes:
-//   * DocumentAlreadyExists
+//   * ErrCodeDocumentAlreadyExists "DocumentAlreadyExists"
 //   The specified SSM document already exists.
 //
-//   * MaxDocumentSizeExceeded
+//   * ErrCodeMaxDocumentSizeExceeded "MaxDocumentSizeExceeded"
 //   The size limit of an SSM document is 64 KB.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocumentContent
+//   * ErrCodeInvalidDocumentContent "InvalidDocumentContent"
 //   The content for the SSM document is not valid.
 //
-//   * DocumentLimitExceeded
+//   * ErrCodeDocumentLimitExceeded "DocumentLimitExceeded"
 //   You can have at most 200 active SSM documents.
 //
-//   * InvalidDocumentSchemaVersion
+//   * ErrCodeInvalidDocumentSchemaVersion "InvalidDocumentSchemaVersion"
 //   The version of the document schema is not supported.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateDocument
@@ -635,15 +635,15 @@ func (c *SSM) CreateMaintenanceWindowRequest(input *CreateMaintenanceWindowInput
 // API operation CreateMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * IdempotentParameterMismatch
+//   * ErrCodeIdempotentParameterMismatch "IdempotentParameterMismatch"
 //   Error returned when an idempotent operation is retried and the parameters
 //   don’t match the original call to the API with the same idempotency token.
 //
-//   * ResourceLimitExceededException
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
 //   Error returned when the caller has exceeded the default resource limits (e.g.
 //   too many Maintenance Windows have been created).
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreateMaintenanceWindow
@@ -708,15 +708,15 @@ func (c *SSM) CreatePatchBaselineRequest(input *CreatePatchBaselineInput) (req *
 // API operation CreatePatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * IdempotentParameterMismatch
+//   * ErrCodeIdempotentParameterMismatch "IdempotentParameterMismatch"
 //   Error returned when an idempotent operation is retried and the parameters
 //   don’t match the original call to the API with the same idempotency token.
 //
-//   * ResourceLimitExceededException
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
 //   Error returned when the caller has exceeded the default resource limits (e.g.
 //   too many Maintenance Windows have been created).
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/CreatePatchBaseline
@@ -784,15 +784,15 @@ func (c *SSM) DeleteActivationRequest(input *DeleteActivationInput) (req *reques
 // API operation DeleteActivation for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidActivationId
+//   * ErrCodeInvalidActivationId "InvalidActivationId"
 //   The activation ID is not valid. Verify the you entered the correct ActivationId
 //   or ActivationCode and try again.
 //
-//   * InvalidActivation
+//   * ErrCodeInvalidActivation "InvalidActivation"
 //   The activation is not valid. The activation might have been deleted, or the
 //   ActivationId and the ActivationCode do not match.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeleteActivation
@@ -862,16 +862,16 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *requ
 // API operation DeleteAssociation for usage and error information.
 //
 // Returned Error Codes:
-//   * AssociationDoesNotExist
+//   * ErrCodeAssociationDoesNotExist "AssociationDoesNotExist"
 //   The specified association does not exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -886,7 +886,7 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *requ
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * TooManyUpdates
+//   * ErrCodeTooManyUpdates "TooManyUpdates"
 //   There are concurrent updates for a resource that supports one update at a
 //   time.
 //
@@ -955,17 +955,17 @@ func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Re
 // API operation DeleteDocument for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidDocumentOperation
+//   * ErrCodeInvalidDocumentOperation "InvalidDocumentOperation"
 //   You attempted to delete a document while it is still shared. You must stop
 //   sharing the document before you can delete it.
 //
-//   * AssociatedInstances
+//   * ErrCodeAssociatedInstances "AssociatedInstances"
 //   You must disassociate an SSM document from all instances before you can delete
 //   it.
 //
@@ -1031,7 +1031,7 @@ func (c *SSM) DeleteMaintenanceWindowRequest(input *DeleteMaintenanceWindowInput
 // API operation DeleteMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeleteMaintenanceWindow
@@ -1096,10 +1096,10 @@ func (c *SSM) DeleteParameterRequest(input *DeleteParameterInput) (req *request.
 // API operation DeleteParameter for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * ParameterNotFound
+//   * ErrCodeParameterNotFound "ParameterNotFound"
 //   The parameter could not be found. Verify the name and try again.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeleteParameter
@@ -1164,11 +1164,11 @@ func (c *SSM) DeletePatchBaselineRequest(input *DeletePatchBaselineInput) (req *
 // API operation DeletePatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * ResourceInUseException
+//   * ErrCodeResourceInUseException "ResourceInUseException"
 //   Error returned if an attempt is made to delete a patch baseline that is registered
 //   for a patch group.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeletePatchBaseline
@@ -1235,7 +1235,7 @@ func (c *SSM) DeregisterManagedInstanceRequest(input *DeregisterManagedInstanceI
 // API operation DeregisterManagedInstance for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -1250,7 +1250,7 @@ func (c *SSM) DeregisterManagedInstanceRequest(input *DeregisterManagedInstanceI
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeregisterManagedInstance
@@ -1315,11 +1315,11 @@ func (c *SSM) DeregisterPatchBaselineForPatchGroupRequest(input *DeregisterPatch
 // API operation DeregisterPatchBaselineForPatchGroup for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeregisterPatchBaselineForPatchGroup
@@ -1384,11 +1384,11 @@ func (c *SSM) DeregisterTargetFromMaintenanceWindowRequest(input *DeregisterTarg
 // API operation DeregisterTargetFromMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeregisterTargetFromMaintenanceWindow
@@ -1453,11 +1453,11 @@ func (c *SSM) DeregisterTaskFromMaintenanceWindowRequest(input *DeregisterTaskFr
 // API operation DeregisterTaskFromMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DeregisterTaskFromMaintenanceWindow
@@ -1530,14 +1530,14 @@ func (c *SSM) DescribeActivationsRequest(input *DescribeActivationsInput) (req *
 // API operation DescribeActivations for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidFilter
+//   * ErrCodeInvalidFilter "InvalidFilter"
 //   The filter name is not valid. Verify the you entered the correct name and
 //   try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeActivations
@@ -1627,16 +1627,16 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 // API operation DescribeAssociation for usage and error information.
 //
 // Returned Error Codes:
-//   * AssociationDoesNotExist
+//   * ErrCodeAssociationDoesNotExist "AssociationDoesNotExist"
 //   The specified association does not exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -1713,10 +1713,10 @@ func (c *SSM) DescribeAutomationExecutionsRequest(input *DescribeAutomationExecu
 // API operation DescribeAutomationExecutions for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAutomationExecutions
@@ -1781,7 +1781,7 @@ func (c *SSM) DescribeAvailablePatchesRequest(input *DescribeAvailablePatchesInp
 // API operation DescribeAvailablePatches for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeAvailablePatches
@@ -1846,13 +1846,13 @@ func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *reques
 // API operation DescribeDocument for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeDocument
@@ -1919,13 +1919,13 @@ func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissio
 // API operation DescribeDocumentPermission for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidPermissionType
+//   * ErrCodeInvalidPermissionType "InvalidPermissionType"
 //   The permission type is not supported. Share is the only supported permission
 //   type.
 //
@@ -1991,10 +1991,10 @@ func (c *SSM) DescribeEffectiveInstanceAssociationsRequest(input *DescribeEffect
 // API operation DescribeEffectiveInstanceAssociations for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -2009,7 +2009,7 @@ func (c *SSM) DescribeEffectiveInstanceAssociationsRequest(input *DescribeEffect
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeEffectiveInstanceAssociations
@@ -2075,15 +2075,15 @@ func (c *SSM) DescribeEffectivePatchesForPatchBaselineRequest(input *DescribeEff
 // API operation DescribeEffectivePatchesForPatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeEffectivePatchesForPatchBaseline
@@ -2148,10 +2148,10 @@ func (c *SSM) DescribeInstanceAssociationsStatusRequest(input *DescribeInstanceA
 // API operation DescribeInstanceAssociationsStatus for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -2166,7 +2166,7 @@ func (c *SSM) DescribeInstanceAssociationsStatusRequest(input *DescribeInstanceA
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstanceAssociationsStatus
@@ -2242,10 +2242,10 @@ func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformat
 // API operation DescribeInstanceInformation for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -2260,13 +2260,13 @@ func (c *SSM) DescribeInstanceInformationRequest(input *DescribeInstanceInformat
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
-//   * InvalidInstanceInformationFilterValue
+//   * ErrCodeInvalidInstanceInformationFilterValue "InvalidInstanceInformationFilterValue"
 //   The specified filter value is not valid.
 //
-//   * InvalidFilterKey
+//   * ErrCodeInvalidFilterKey "InvalidFilterKey"
 //   The specified key is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstanceInformation
@@ -2356,10 +2356,10 @@ func (c *SSM) DescribeInstancePatchStatesRequest(input *DescribeInstancePatchSta
 // API operation DescribeInstancePatchStates for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstancePatchStates
@@ -2425,14 +2425,14 @@ func (c *SSM) DescribeInstancePatchStatesForPatchGroupRequest(input *DescribeIns
 // API operation DescribeInstancePatchStatesForPatchGroup for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidFilter
+//   * ErrCodeInvalidFilter "InvalidFilter"
 //   The filter name is not valid. Verify the you entered the correct name and
 //   try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstancePatchStatesForPatchGroup
@@ -2498,10 +2498,10 @@ func (c *SSM) DescribeInstancePatchesRequest(input *DescribeInstancePatchesInput
 // API operation DescribeInstancePatches for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -2516,11 +2516,11 @@ func (c *SSM) DescribeInstancePatchesRequest(input *DescribeInstancePatchesInput
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidFilter
+//   * ErrCodeInvalidFilter "InvalidFilter"
 //   The filter name is not valid. Verify the you entered the correct name and
 //   try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeInstancePatches
@@ -2586,11 +2586,11 @@ func (c *SSM) DescribeMaintenanceWindowExecutionTaskInvocationsRequest(input *De
 // API operation DescribeMaintenanceWindowExecutionTaskInvocations for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowExecutionTaskInvocations
@@ -2655,11 +2655,11 @@ func (c *SSM) DescribeMaintenanceWindowExecutionTasksRequest(input *DescribeMain
 // API operation DescribeMaintenanceWindowExecutionTasks for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowExecutionTasks
@@ -2726,7 +2726,7 @@ func (c *SSM) DescribeMaintenanceWindowExecutionsRequest(input *DescribeMaintena
 // API operation DescribeMaintenanceWindowExecutions for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowExecutions
@@ -2791,11 +2791,11 @@ func (c *SSM) DescribeMaintenanceWindowTargetsRequest(input *DescribeMaintenance
 // API operation DescribeMaintenanceWindowTargets for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowTargets
@@ -2860,11 +2860,11 @@ func (c *SSM) DescribeMaintenanceWindowTasksRequest(input *DescribeMaintenanceWi
 // API operation DescribeMaintenanceWindowTasks for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindowTasks
@@ -2929,7 +2929,7 @@ func (c *SSM) DescribeMaintenanceWindowsRequest(input *DescribeMaintenanceWindow
 // API operation DescribeMaintenanceWindows for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeMaintenanceWindows
@@ -2994,13 +2994,13 @@ func (c *SSM) DescribeParametersRequest(input *DescribeParametersInput) (req *re
 // API operation DescribeParameters for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidFilterValue
+//   * ErrCodeInvalidFilterValue "InvalidFilterValue"
 //   The filter value is not valid. Verify the value and try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeParameters
@@ -3065,7 +3065,7 @@ func (c *SSM) DescribePatchBaselinesRequest(input *DescribePatchBaselinesInput) 
 // API operation DescribePatchBaselines for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribePatchBaselines
@@ -3130,10 +3130,10 @@ func (c *SSM) DescribePatchGroupStateRequest(input *DescribePatchGroupStateInput
 // API operation DescribePatchGroupState for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribePatchGroupState
@@ -3198,7 +3198,7 @@ func (c *SSM) DescribePatchGroupsRequest(input *DescribePatchGroupsInput) (req *
 // API operation DescribePatchGroups for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribePatchGroups
@@ -3263,11 +3263,11 @@ func (c *SSM) GetAutomationExecutionRequest(input *GetAutomationExecutionInput) 
 // API operation GetAutomationExecution for usage and error information.
 //
 // Returned Error Codes:
-//   * AutomationExecutionNotFoundException
+//   * ErrCodeAutomationExecutionNotFoundException "AutomationExecutionNotFoundException"
 //   There is no automation execution information for the requested automation
 //   execution ID.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetAutomationExecution
@@ -3333,13 +3333,13 @@ func (c *SSM) GetCommandInvocationRequest(input *GetCommandInvocationInput) (req
 // API operation GetCommandInvocation for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidCommandId
+//   * ErrCodeInvalidCommandId "InvalidCommandId"
 
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -3354,10 +3354,10 @@ func (c *SSM) GetCommandInvocationRequest(input *GetCommandInvocationInput) (req
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidPluginName
+//   * ErrCodeInvalidPluginName "InvalidPluginName"
 //   The plugin name is not valid.
 //
-//   * InvocationDoesNotExist
+//   * ErrCodeInvocationDoesNotExist "InvocationDoesNotExist"
 //   The command ID and instance ID you specified did not match any invocations.
 //   Verify the command ID adn the instance ID and try again.
 //
@@ -3423,7 +3423,7 @@ func (c *SSM) GetDefaultPatchBaselineRequest(input *GetDefaultPatchBaselineInput
 // API operation GetDefaultPatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetDefaultPatchBaseline
@@ -3490,7 +3490,7 @@ func (c *SSM) GetDeployablePatchSnapshotForInstanceRequest(input *GetDeployableP
 // API operation GetDeployablePatchSnapshotForInstance for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetDeployablePatchSnapshotForInstance
@@ -3555,13 +3555,13 @@ func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *request.Request,
 // API operation GetDocument for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetDocument
@@ -3626,20 +3626,20 @@ func (c *SSM) GetInventoryRequest(input *GetInventoryInput) (req *request.Reques
 // API operation GetInventory for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidFilter
+//   * ErrCodeInvalidFilter "InvalidFilter"
 //   The filter name is not valid. Verify the you entered the correct name and
 //   try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
-//   * InvalidTypeNameException
+//   * ErrCodeInvalidTypeNameException "InvalidTypeNameException"
 //   The parameter type name is not valid.
 //
-//   * InvalidResultAttributeException
+//   * ErrCodeInvalidResultAttributeException "InvalidResultAttributeException"
 //   The specified inventory item result attribute is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetInventory
@@ -3705,13 +3705,13 @@ func (c *SSM) GetInventorySchemaRequest(input *GetInventorySchemaInput) (req *re
 // API operation GetInventorySchema for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidTypeNameException
+//   * ErrCodeInvalidTypeNameException "InvalidTypeNameException"
 //   The parameter type name is not valid.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetInventorySchema
@@ -3776,11 +3776,11 @@ func (c *SSM) GetMaintenanceWindowRequest(input *GetMaintenanceWindowInput) (req
 // API operation GetMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetMaintenanceWindow
@@ -3846,11 +3846,11 @@ func (c *SSM) GetMaintenanceWindowExecutionRequest(input *GetMaintenanceWindowEx
 // API operation GetMaintenanceWindowExecution for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetMaintenanceWindowExecution
@@ -3916,11 +3916,11 @@ func (c *SSM) GetMaintenanceWindowExecutionTaskRequest(input *GetMaintenanceWind
 // API operation GetMaintenanceWindowExecutionTask for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetMaintenanceWindowExecutionTask
@@ -3985,13 +3985,13 @@ func (c *SSM) GetParameterHistoryRequest(input *GetParameterHistoryInput) (req *
 // API operation GetParameterHistory for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * ParameterNotFound
+//   * ErrCodeParameterNotFound "ParameterNotFound"
 //   The parameter could not be found. Verify the name and try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetParameterHistory
@@ -4056,7 +4056,7 @@ func (c *SSM) GetParametersRequest(input *GetParametersInput) (req *request.Requ
 // API operation GetParameters for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetParameters
@@ -4121,15 +4121,15 @@ func (c *SSM) GetPatchBaselineRequest(input *GetPatchBaselineInput) (req *reques
 // API operation GetPatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetPatchBaseline
@@ -4195,7 +4195,7 @@ func (c *SSM) GetPatchBaselineForPatchGroupRequest(input *GetPatchBaselineForPat
 // API operation GetPatchBaselineForPatchGroup for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/GetPatchBaselineForPatchGroup
@@ -4266,10 +4266,10 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *reques
 // API operation ListAssociations for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListAssociations
@@ -4369,13 +4369,13 @@ func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) 
 // API operation ListCommandInvocations for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidCommandId
+//   * ErrCodeInvalidCommandId "InvalidCommandId"
 
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -4390,10 +4390,10 @@ func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) 
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidFilterKey
+//   * ErrCodeInvalidFilterKey "InvalidFilterKey"
 //   The specified key is not valid.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListCommandInvocations
@@ -4489,13 +4489,13 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 // API operation ListCommands for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidCommandId
+//   * ErrCodeInvalidCommandId "InvalidCommandId"
 
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -4510,10 +4510,10 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidFilterKey
+//   * ErrCodeInvalidFilterKey "InvalidFilterKey"
 //   The specified key is not valid.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListCommands
@@ -4603,13 +4603,13 @@ func (c *SSM) ListDocumentVersionsRequest(input *ListDocumentVersionsInput) (req
 // API operation ListDocumentVersions for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListDocumentVersions
@@ -4680,13 +4680,13 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Requ
 // API operation ListDocuments for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
-//   * InvalidFilterKey
+//   * ErrCodeInvalidFilterKey "InvalidFilterKey"
 //   The specified key is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListDocuments
@@ -4776,10 +4776,10 @@ func (c *SSM) ListInventoryEntriesRequest(input *ListInventoryEntriesInput) (req
 // API operation ListInventoryEntries for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -4794,14 +4794,14 @@ func (c *SSM) ListInventoryEntriesRequest(input *ListInventoryEntriesInput) (req
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidTypeNameException
+//   * ErrCodeInvalidTypeNameException "InvalidTypeNameException"
 //   The parameter type name is not valid.
 //
-//   * InvalidFilter
+//   * ErrCodeInvalidFilter "InvalidFilter"
 //   The filter name is not valid. Verify the you entered the correct name and
 //   try again.
 //
-//   * InvalidNextToken
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
 //   The specified token is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListInventoryEntries
@@ -4866,15 +4866,15 @@ func (c *SSM) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidResourceType
+//   * ErrCodeInvalidResourceType "InvalidResourceType"
 //   The resource type is not valid. If you are attempting to tag an instance,
 //   the instance must be a registered, managed instance.
 //
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListTagsForResource
@@ -4942,22 +4942,22 @@ func (c *SSM) ModifyDocumentPermissionRequest(input *ModifyDocumentPermissionInp
 // API operation ModifyDocumentPermission for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidPermissionType
+//   * ErrCodeInvalidPermissionType "InvalidPermissionType"
 //   The permission type is not supported. Share is the only supported permission
 //   type.
 //
-//   * DocumentPermissionLimit
+//   * ErrCodeDocumentPermissionLimit "DocumentPermissionLimit"
 //   The document cannot be shared with more AWS user accounts. You can share
 //   a document with a maximum of 20 accounts. You can publicly share up to five
 //   documents. If you need to increase this limit, contact AWS Support.
 //
-//   * DocumentLimitExceeded
+//   * ErrCodeDocumentLimitExceeded "DocumentLimitExceeded"
 //   You can have at most 200 active SSM documents.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ModifyDocumentPermission
@@ -5024,10 +5024,10 @@ func (c *SSM) PutInventoryRequest(input *PutInventoryInput) (req *request.Reques
 // API operation PutInventory for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -5042,26 +5042,26 @@ func (c *SSM) PutInventoryRequest(input *PutInventoryInput) (req *request.Reques
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidTypeNameException
+//   * ErrCodeInvalidTypeNameException "InvalidTypeNameException"
 //   The parameter type name is not valid.
 //
-//   * InvalidItemContentException
+//   * ErrCodeInvalidItemContentException "InvalidItemContentException"
 //   One or more content items is not valid.
 //
-//   * TotalSizeLimitExceededException
+//   * ErrCodeTotalSizeLimitExceededException "TotalSizeLimitExceededException"
 //   The size of inventory data has exceeded the total size limit for the resource.
 //
-//   * ItemSizeLimitExceededException
+//   * ErrCodeItemSizeLimitExceededException "ItemSizeLimitExceededException"
 //   The inventory item size has exceeded the size limit.
 //
-//   * ItemContentMismatchException
+//   * ErrCodeItemContentMismatchException "ItemContentMismatchException"
 //   The inventory item has invalid content.
 //
-//   * CustomSchemaCountLimitExceededException
+//   * ErrCodeCustomSchemaCountLimitExceededException "CustomSchemaCountLimitExceededException"
 //   You have exceeded the limit for custom schemas. Delete one or more custom
 //   schemas and try again.
 //
-//   * UnsupportedInventorySchemaVersionException
+//   * ErrCodeUnsupportedInventorySchemaVersionException "UnsupportedInventorySchemaVersionException"
 //   Inventory item type schema version has to match supported versions in the
 //   service. Check output of GetInventorySchema to see the available schema version
 //   for each type.
@@ -5128,24 +5128,24 @@ func (c *SSM) PutParameterRequest(input *PutParameterInput) (req *request.Reques
 // API operation PutParameter for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidKeyId
+//   * ErrCodeInvalidKeyId "InvalidKeyId"
 //   The query key ID is not valid.
 //
-//   * ParameterLimitExceeded
+//   * ErrCodeParameterLimitExceeded "ParameterLimitExceeded"
 //   You have exceeded the number of parameters for this AWS account. Delete one
 //   or more parameters and try again.
 //
-//   * TooManyUpdates
+//   * ErrCodeTooManyUpdates "TooManyUpdates"
 //   There are concurrent updates for a resource that supports one update at a
 //   time.
 //
-//   * ParameterAlreadyExists
+//   * ErrCodeParameterAlreadyExists "ParameterAlreadyExists"
 //   The parameter already exists. You can't create duplicate parameters.
 //
-//   * UnsupportedParameterType
+//   * ErrCodeUnsupportedParameterType "UnsupportedParameterType"
 //   The parameter type is not supported.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/PutParameter
@@ -5210,15 +5210,15 @@ func (c *SSM) RegisterDefaultPatchBaselineRequest(input *RegisterDefaultPatchBas
 // API operation RegisterDefaultPatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/RegisterDefaultPatchBaseline
@@ -5283,23 +5283,23 @@ func (c *SSM) RegisterPatchBaselineForPatchGroupRequest(input *RegisterPatchBase
 // API operation RegisterPatchBaselineForPatchGroup for usage and error information.
 //
 // Returned Error Codes:
-//   * AlreadyExistsException
+//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
 //   Error returned if an attempt is made to register a patch group with a patch
 //   baseline that is already registered with a different patch baseline.
 //
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * ResourceLimitExceededException
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
 //   Error returned when the caller has exceeded the default resource limits (e.g.
 //   too many Maintenance Windows have been created).
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/RegisterPatchBaselineForPatchGroup
@@ -5364,19 +5364,19 @@ func (c *SSM) RegisterTargetWithMaintenanceWindowRequest(input *RegisterTargetWi
 // API operation RegisterTargetWithMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * IdempotentParameterMismatch
+//   * ErrCodeIdempotentParameterMismatch "IdempotentParameterMismatch"
 //   Error returned when an idempotent operation is retried and the parameters
 //   don’t match the original call to the API with the same idempotency token.
 //
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * ResourceLimitExceededException
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
 //   Error returned when the caller has exceeded the default resource limits (e.g.
 //   too many Maintenance Windows have been created).
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/RegisterTargetWithMaintenanceWindow
@@ -5441,19 +5441,19 @@ func (c *SSM) RegisterTaskWithMaintenanceWindowRequest(input *RegisterTaskWithMa
 // API operation RegisterTaskWithMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * IdempotentParameterMismatch
+//   * ErrCodeIdempotentParameterMismatch "IdempotentParameterMismatch"
 //   Error returned when an idempotent operation is retried and the parameters
 //   don’t match the original call to the API with the same idempotency token.
 //
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * ResourceLimitExceededException
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
 //   Error returned when the caller has exceeded the default resource limits (e.g.
 //   too many Maintenance Windows have been created).
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/RegisterTaskWithMaintenanceWindow
@@ -5518,15 +5518,15 @@ func (c *SSM) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 // API operation RemoveTagsFromResource for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidResourceType
+//   * ErrCodeInvalidResourceType "InvalidResourceType"
 //   The resource type is not valid. If you are attempting to tag an instance,
 //   the instance must be a registered, managed instance.
 //
-//   * InvalidResourceId
+//   * ErrCodeInvalidResourceId "InvalidResourceId"
 //   The resource ID is not valid. Verify that you entered the correct ID and
 //   try again.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/RemoveTagsFromResource
@@ -5591,13 +5591,13 @@ func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request,
 // API operation SendCommand for usage and error information.
 //
 // Returned Error Codes:
-//   * DuplicateInstanceId
+//   * ErrCodeDuplicateInstanceId "DuplicateInstanceId"
 //   You cannot specify an instance ID in more than one association.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -5612,31 +5612,31 @@ func (c *SSM) SendCommandRequest(input *SendCommandInput) (req *request.Request,
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidOutputFolder
+//   * ErrCodeInvalidOutputFolder "InvalidOutputFolder"
 //   The S3 bucket does not exist.
 //
-//   * InvalidParameters
+//   * ErrCodeInvalidParameters "InvalidParameters"
 //   You must specify values for all required parameters in the SSM document.
 //   You can only supply values to parameters defined in the SSM document.
 //
-//   * UnsupportedPlatformType
+//   * ErrCodeUnsupportedPlatformType "UnsupportedPlatformType"
 //   The document does not support the platform type of the given instance ID(s).
 //   For example, you sent an SSM document for a Windows instance to a Linux instance.
 //
-//   * MaxDocumentSizeExceeded
+//   * ErrCodeMaxDocumentSizeExceeded "MaxDocumentSizeExceeded"
 //   The size limit of an SSM document is 64 KB.
 //
-//   * InvalidRole
+//   * ErrCodeInvalidRole "InvalidRole"
 //   The role name can't contain invalid characters. Also verify that you specified
 //   an IAM role for notifications that includes the required trust policy. For
 //   information about configuring the IAM role for Run Command notifications,
 //   see Getting Amazon SNS Notifications When a Command Changes Status (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rc-sns.html)
 //   in the Amazon Elastic Compute Cloud User Guide .
 //
-//   * InvalidNotificationConfig
+//   * ErrCodeInvalidNotificationConfig "InvalidNotificationConfig"
 //   One or more configuration items is not valid. Verify that a valid Amazon
 //   Resource Name (ARN) was provided for an Amazon SNS topic.
 //
@@ -5702,22 +5702,22 @@ func (c *SSM) StartAutomationExecutionRequest(input *StartAutomationExecutionInp
 // API operation StartAutomationExecution for usage and error information.
 //
 // Returned Error Codes:
-//   * AutomationDefinitionNotFoundException
+//   * ErrCodeAutomationDefinitionNotFoundException "AutomationDefinitionNotFoundException"
 //   An Automation document with the specified name could not be found.
 //
-//   * InvalidAutomationExecutionParametersException
+//   * ErrCodeInvalidAutomationExecutionParametersException "InvalidAutomationExecutionParametersException"
 //   The supplied parameters for invoking the specified Automation document are
 //   incorrect. For example, they may not match the set of parameters permitted
 //   for the specified Automation document.
 //
-//   * AutomationExecutionLimitExceededException
+//   * ErrCodeAutomationExecutionLimitExceededException "AutomationExecutionLimitExceededException"
 //   The number of simultaneously running Automation executions exceeded the allowable
 //   limit.
 //
-//   * AutomationDefinitionVersionNotFoundException
+//   * ErrCodeAutomationDefinitionVersionNotFoundException "AutomationDefinitionVersionNotFoundException"
 //   An Automation document with the specified name and version could not be found.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/StartAutomationExecution
@@ -5782,11 +5782,11 @@ func (c *SSM) StopAutomationExecutionRequest(input *StopAutomationExecutionInput
 // API operation StopAutomationExecution for usage and error information.
 //
 // Returned Error Codes:
-//   * AutomationExecutionNotFoundException
+//   * ErrCodeAutomationExecutionNotFoundException "AutomationExecutionNotFoundException"
 //   There is no automation execution information for the requested automation
 //   execution ID.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/StopAutomationExecution
@@ -5852,29 +5852,29 @@ func (c *SSM) UpdateAssociationRequest(input *UpdateAssociationInput) (req *requ
 // API operation UpdateAssociation for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidSchedule
+//   * ErrCodeInvalidSchedule "InvalidSchedule"
 //   The schedule is invalid. Verify your cron or rate expression and try again.
 //
-//   * InvalidParameters
+//   * ErrCodeInvalidParameters "InvalidParameters"
 //   You must specify values for all required parameters in the SSM document.
 //   You can only supply values to parameters defined in the SSM document.
 //
-//   * InvalidOutputLocation
+//   * ErrCodeInvalidOutputLocation "InvalidOutputLocation"
 //   The output location is not valid or does not exist.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
-//   * AssociationDoesNotExist
+//   * ErrCodeAssociationDoesNotExist "AssociationDoesNotExist"
 //   The specified association does not exist.
 //
-//   * InvalidUpdate
+//   * ErrCodeInvalidUpdate "InvalidUpdate"
 //   The update is not valid.
 //
-//   * TooManyUpdates
+//   * ErrCodeTooManyUpdates "TooManyUpdates"
 //   There are concurrent updates for a resource that supports one update at a
 //   time.
 //
@@ -5940,10 +5940,10 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 // API operation UpdateAssociationStatus for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -5958,16 +5958,16 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * AssociationDoesNotExist
+//   * ErrCodeAssociationDoesNotExist "AssociationDoesNotExist"
 //   The specified association does not exist.
 //
-//   * StatusUnchanged
+//   * ErrCodeStatusUnchanged "StatusUnchanged"
 //   The updated status is the same as the current status.
 //
-//   * TooManyUpdates
+//   * ErrCodeTooManyUpdates "TooManyUpdates"
 //   There are concurrent updates for a resource that supports one update at a
 //   time.
 //
@@ -6033,30 +6033,30 @@ func (c *SSM) UpdateDocumentRequest(input *UpdateDocumentInput) (req *request.Re
 // API operation UpdateDocument for usage and error information.
 //
 // Returned Error Codes:
-//   * MaxDocumentSizeExceeded
+//   * ErrCodeMaxDocumentSizeExceeded "MaxDocumentSizeExceeded"
 //   The size limit of an SSM document is 64 KB.
 //
-//   * DocumentVersionLimitExceeded
+//   * ErrCodeDocumentVersionLimitExceeded "DocumentVersionLimitExceeded"
 //   The document has too many versions. Delete one or more document versions
 //   and try again.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * DuplicateDocumentContent
+//   * ErrCodeDuplicateDocumentContent "DuplicateDocumentContent"
 //   The content of the association document matches another document. Change
 //   the content of the document and try again.
 //
-//   * InvalidDocumentContent
+//   * ErrCodeInvalidDocumentContent "InvalidDocumentContent"
 //   The content for the SSM document is not valid.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
-//   * InvalidDocumentSchemaVersion
+//   * ErrCodeInvalidDocumentSchemaVersion "InvalidDocumentSchemaVersion"
 //   The version of the document schema is not supported.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateDocument
@@ -6121,16 +6121,16 @@ func (c *SSM) UpdateDocumentDefaultVersionRequest(input *UpdateDocumentDefaultVe
 // API operation UpdateDocumentDefaultVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
-//   * InvalidDocument
+//   * ErrCodeInvalidDocument "InvalidDocument"
 //   The specified document does not exist.
 //
-//   * InvalidDocumentVersion
+//   * ErrCodeInvalidDocumentVersion "InvalidDocumentVersion"
 //   The document version is not valid or does not exist.
 //
-//   * InvalidDocumentSchemaVersion
+//   * ErrCodeInvalidDocumentSchemaVersion "InvalidDocumentSchemaVersion"
 //   The version of the document schema is not supported.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateDocumentDefaultVersion
@@ -6195,11 +6195,11 @@ func (c *SSM) UpdateMaintenanceWindowRequest(input *UpdateMaintenanceWindowInput
 // API operation UpdateMaintenanceWindow for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateMaintenanceWindow
@@ -6265,7 +6265,7 @@ func (c *SSM) UpdateManagedInstanceRoleRequest(input *UpdateManagedInstanceRoleI
 // API operation UpdateManagedInstanceRole for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInstanceId
+//   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
 //
 //   You do not have permission to access the instance.
@@ -6280,7 +6280,7 @@ func (c *SSM) UpdateManagedInstanceRoleRequest(input *UpdateManagedInstanceRoleI
 //   The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 //   Stopping. Invalid states are: Shutting-down and Terminated.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateManagedInstanceRole
@@ -6346,11 +6346,11 @@ func (c *SSM) UpdatePatchBaselineRequest(input *UpdatePatchBaselineInput) (req *
 // API operation UpdatePatchBaseline for usage and error information.
 //
 // Returned Error Codes:
-//   * DoesNotExistException
+//   * ErrCodeDoesNotExistException "DoesNotExistException"
 //   Error returned when the ID specified for a resource (e.g. a Maintenance Window)
 //   doesn’t exist.
 //
-//   * InternalServerError
+//   * ErrCodeInternalServerError "InternalServerError"
 //   An error occurred on the server side.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdatePatchBaseline

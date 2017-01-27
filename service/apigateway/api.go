@@ -67,22 +67,22 @@ func (c *APIGateway) CreateApiKeyRequest(input *CreateApiKeyInput) (req *request
 // API operation CreateApiKey for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) CreateApiKey(input *CreateApiKeyInput) (*ApiKey, error) {
@@ -146,19 +146,19 @@ func (c *APIGateway) CreateAuthorizerRequest(input *CreateAuthorizerInput) (req 
 // API operation CreateAuthorizer for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateAuthorizer(input *CreateAuthorizerInput) (*Authorizer, error) {
@@ -220,19 +220,19 @@ func (c *APIGateway) CreateBasePathMappingRequest(input *CreateBasePathMappingIn
 // API operation CreateBasePathMapping for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateBasePathMapping(input *CreateBasePathMappingInput) (*BasePathMapping, error) {
@@ -295,25 +295,25 @@ func (c *APIGateway) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 // API operation CreateDeployment for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ServiceUnavailableException
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 
 //
 func (c *APIGateway) CreateDeployment(input *CreateDeploymentInput) (*Deployment, error) {
@@ -373,22 +373,22 @@ func (c *APIGateway) CreateDocumentationPartRequest(input *CreateDocumentationPa
 // API operation CreateDocumentationPart for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateDocumentationPart(input *CreateDocumentationPartInput) (*DocumentationPart, error) {
@@ -448,22 +448,22 @@ func (c *APIGateway) CreateDocumentationVersionRequest(input *CreateDocumentatio
 // API operation CreateDocumentationVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateDocumentationVersion(input *CreateDocumentationVersionInput) (*DocumentationVersion, error) {
@@ -525,16 +525,16 @@ func (c *APIGateway) CreateDomainNameRequest(input *CreateDomainNameInput) (req 
 // API operation CreateDomainName for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateDomainName(input *CreateDomainNameInput) (*DomainName, error) {
@@ -596,22 +596,22 @@ func (c *APIGateway) CreateModelRequest(input *CreateModelInput) (req *request.R
 // API operation CreateModel for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateModel(input *CreateModelInput) (*Model, error) {
@@ -673,22 +673,22 @@ func (c *APIGateway) CreateResourceRequest(input *CreateResourceInput) (req *req
 // API operation CreateResource for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateResource(input *CreateResourceInput) (*Resource, error) {
@@ -750,16 +750,16 @@ func (c *APIGateway) CreateRestApiRequest(input *CreateRestApiInput) (req *reque
 // API operation CreateRestApi for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateRestApi(input *CreateRestApiInput) (*RestApi, error) {
@@ -822,22 +822,22 @@ func (c *APIGateway) CreateStageRequest(input *CreateStageInput) (req *request.R
 // API operation CreateStage for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateStage(input *CreateStageInput) (*Stage, error) {
@@ -900,22 +900,22 @@ func (c *APIGateway) CreateUsagePlanRequest(input *CreateUsagePlanInput) (req *r
 // API operation CreateUsagePlan for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
 func (c *APIGateway) CreateUsagePlan(input *CreateUsagePlanInput) (*UsagePlan, error) {
@@ -977,19 +977,19 @@ func (c *APIGateway) CreateUsagePlanKeyRequest(input *CreateUsagePlanKeyInput) (
 // API operation CreateUsagePlanKey for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) CreateUsagePlanKey(input *CreateUsagePlanKeyInput) (*UsagePlanKey, error) {
@@ -1053,13 +1053,13 @@ func (c *APIGateway) DeleteApiKeyRequest(input *DeleteApiKeyInput) (req *request
 // API operation DeleteApiKey for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteApiKey(input *DeleteApiKeyInput) (*DeleteApiKeyOutput, error) {
@@ -1125,19 +1125,19 @@ func (c *APIGateway) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req 
 // API operation DeleteAuthorizer for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) DeleteAuthorizer(input *DeleteAuthorizerInput) (*DeleteAuthorizerOutput, error) {
@@ -1201,13 +1201,13 @@ func (c *APIGateway) DeleteBasePathMappingRequest(input *DeleteBasePathMappingIn
 // API operation DeleteBasePathMapping for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteBasePathMapping(input *DeleteBasePathMappingInput) (*DeleteBasePathMappingOutput, error) {
@@ -1271,16 +1271,16 @@ func (c *APIGateway) DeleteClientCertificateRequest(input *DeleteClientCertifica
 // API operation DeleteClientCertificate for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
 func (c *APIGateway) DeleteClientCertificate(input *DeleteClientCertificateInput) (*DeleteClientCertificateOutput, error) {
@@ -1345,16 +1345,16 @@ func (c *APIGateway) DeleteDeploymentRequest(input *DeleteDeploymentInput) (req 
 // API operation DeleteDeployment for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteDeployment(input *DeleteDeploymentInput) (*DeleteDeploymentOutput, error) {
@@ -1416,19 +1416,19 @@ func (c *APIGateway) DeleteDocumentationPartRequest(input *DeleteDocumentationPa
 // API operation DeleteDocumentationPart for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
 func (c *APIGateway) DeleteDocumentationPart(input *DeleteDocumentationPartInput) (*DeleteDocumentationPartOutput, error) {
@@ -1490,19 +1490,19 @@ func (c *APIGateway) DeleteDocumentationVersionRequest(input *DeleteDocumentatio
 // API operation DeleteDocumentationVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteDocumentationVersion(input *DeleteDocumentationVersionInput) (*DeleteDocumentationVersionOutput, error) {
@@ -1566,13 +1566,13 @@ func (c *APIGateway) DeleteDomainNameRequest(input *DeleteDomainNameInput) (req 
 // API operation DeleteDomainName for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteDomainName(input *DeleteDomainNameInput) (*DeleteDomainNameOutput, error) {
@@ -1636,16 +1636,16 @@ func (c *APIGateway) DeleteIntegrationRequest(input *DeleteIntegrationInput) (re
 // API operation DeleteIntegration for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) DeleteIntegration(input *DeleteIntegrationInput) (*DeleteIntegrationOutput, error) {
@@ -1709,19 +1709,19 @@ func (c *APIGateway) DeleteIntegrationResponseRequest(input *DeleteIntegrationRe
 // API operation DeleteIntegrationResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) DeleteIntegrationResponse(input *DeleteIntegrationResponseInput) (*DeleteIntegrationResponseOutput, error) {
@@ -1785,16 +1785,16 @@ func (c *APIGateway) DeleteMethodRequest(input *DeleteMethodInput) (req *request
 // API operation DeleteMethod for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) DeleteMethod(input *DeleteMethodInput) (*DeleteMethodOutput, error) {
@@ -1858,19 +1858,19 @@ func (c *APIGateway) DeleteMethodResponseRequest(input *DeleteMethodResponseInpu
 // API operation DeleteMethodResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) DeleteMethodResponse(input *DeleteMethodResponseInput) (*DeleteMethodResponseOutput, error) {
@@ -1934,19 +1934,19 @@ func (c *APIGateway) DeleteModelRequest(input *DeleteModelInput) (req *request.R
 // API operation DeleteModel for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) DeleteModel(input *DeleteModelInput) (*DeleteModelOutput, error) {
@@ -2010,19 +2010,19 @@ func (c *APIGateway) DeleteResourceRequest(input *DeleteResourceInput) (req *req
 // API operation DeleteResource for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteResource(input *DeleteResourceInput) (*DeleteResourceOutput, error) {
@@ -2086,16 +2086,16 @@ func (c *APIGateway) DeleteRestApiRequest(input *DeleteRestApiInput) (req *reque
 // API operation DeleteRestApi for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
 func (c *APIGateway) DeleteRestApi(input *DeleteRestApiInput) (*DeleteRestApiOutput, error) {
@@ -2159,16 +2159,16 @@ func (c *APIGateway) DeleteStageRequest(input *DeleteStageInput) (req *request.R
 // API operation DeleteStage for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
 func (c *APIGateway) DeleteStage(input *DeleteStageInput) (*DeleteStageOutput, error) {
@@ -2232,16 +2232,16 @@ func (c *APIGateway) DeleteUsagePlanRequest(input *DeleteUsagePlanInput) (req *r
 // API operation DeleteUsagePlan for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
 func (c *APIGateway) DeleteUsagePlan(input *DeleteUsagePlanInput) (*DeleteUsagePlanOutput, error) {
@@ -2306,19 +2306,19 @@ func (c *APIGateway) DeleteUsagePlanKeyRequest(input *DeleteUsagePlanKeyInput) (
 // API operation DeleteUsagePlanKey for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) DeleteUsagePlanKey(input *DeleteUsagePlanKeyInput) (*DeleteUsagePlanKeyOutput, error) {
@@ -2382,16 +2382,16 @@ func (c *APIGateway) FlushStageAuthorizersCacheRequest(input *FlushStageAuthoriz
 // API operation FlushStageAuthorizersCache for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) FlushStageAuthorizersCache(input *FlushStageAuthorizersCacheInput) (*FlushStageAuthorizersCacheOutput, error) {
@@ -2455,16 +2455,16 @@ func (c *APIGateway) FlushStageCacheRequest(input *FlushStageCacheInput) (req *r
 // API operation FlushStageCache for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) FlushStageCache(input *FlushStageCacheInput) (*FlushStageCacheOutput, error) {
@@ -2526,13 +2526,13 @@ func (c *APIGateway) GenerateClientCertificateRequest(input *GenerateClientCerti
 // API operation GenerateClientCertificate for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
 func (c *APIGateway) GenerateClientCertificate(input *GenerateClientCertificateInput) (*ClientCertificate, error) {
@@ -2594,13 +2594,13 @@ func (c *APIGateway) GetAccountRequest(input *GetAccountInput) (req *request.Req
 // API operation GetAccount for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetAccount(input *GetAccountInput) (*Account, error) {
@@ -2662,13 +2662,13 @@ func (c *APIGateway) GetApiKeyRequest(input *GetApiKeyInput) (req *request.Reque
 // API operation GetApiKey for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetApiKey(input *GetApiKeyInput) (*ApiKey, error) {
@@ -2736,13 +2736,13 @@ func (c *APIGateway) GetApiKeysRequest(input *GetApiKeysInput) (req *request.Req
 // API operation GetApiKeys for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetApiKeys(input *GetApiKeysInput) (*GetApiKeysOutput, error) {
@@ -2831,13 +2831,13 @@ func (c *APIGateway) GetAuthorizerRequest(input *GetAuthorizerInput) (req *reque
 // API operation GetAuthorizer for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetAuthorizer(input *GetAuthorizerInput) (*Authorizer, error) {
@@ -2901,16 +2901,16 @@ func (c *APIGateway) GetAuthorizersRequest(input *GetAuthorizersInput) (req *req
 // API operation GetAuthorizers for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetAuthorizers(input *GetAuthorizersInput) (*GetAuthorizersOutput, error) {
@@ -2972,13 +2972,13 @@ func (c *APIGateway) GetBasePathMappingRequest(input *GetBasePathMappingInput) (
 // API operation GetBasePathMapping for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetBasePathMapping(input *GetBasePathMappingInput) (*BasePathMapping, error) {
@@ -3046,13 +3046,13 @@ func (c *APIGateway) GetBasePathMappingsRequest(input *GetBasePathMappingsInput)
 // API operation GetBasePathMappings for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetBasePathMappings(input *GetBasePathMappingsInput) (*GetBasePathMappingsOutput, error) {
@@ -3139,13 +3139,13 @@ func (c *APIGateway) GetClientCertificateRequest(input *GetClientCertificateInpu
 // API operation GetClientCertificate for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetClientCertificate(input *GetClientCertificateInput) (*ClientCertificate, error) {
@@ -3213,13 +3213,13 @@ func (c *APIGateway) GetClientCertificatesRequest(input *GetClientCertificatesIn
 // API operation GetClientCertificates for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetClientCertificates(input *GetClientCertificatesInput) (*GetClientCertificatesOutput, error) {
@@ -3306,16 +3306,16 @@ func (c *APIGateway) GetDeploymentRequest(input *GetDeploymentInput) (req *reque
 // API operation GetDeployment for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ServiceUnavailableException
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 
 //
 func (c *APIGateway) GetDeployment(input *GetDeploymentInput) (*Deployment, error) {
@@ -3383,16 +3383,16 @@ func (c *APIGateway) GetDeploymentsRequest(input *GetDeploymentsInput) (req *req
 // API operation GetDeployments for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ServiceUnavailableException
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 
 //
 func (c *APIGateway) GetDeployments(input *GetDeploymentsInput) (*GetDeploymentsOutput, error) {
@@ -3477,13 +3477,13 @@ func (c *APIGateway) GetDocumentationPartRequest(input *GetDocumentationPartInpu
 // API operation GetDocumentationPart for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetDocumentationPart(input *GetDocumentationPartInput) (*DocumentationPart, error) {
@@ -3543,16 +3543,16 @@ func (c *APIGateway) GetDocumentationPartsRequest(input *GetDocumentationPartsIn
 // API operation GetDocumentationParts for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetDocumentationParts(input *GetDocumentationPartsInput) (*GetDocumentationPartsOutput, error) {
@@ -3612,13 +3612,13 @@ func (c *APIGateway) GetDocumentationVersionRequest(input *GetDocumentationVersi
 // API operation GetDocumentationVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetDocumentationVersion(input *GetDocumentationVersionInput) (*DocumentationVersion, error) {
@@ -3678,16 +3678,16 @@ func (c *APIGateway) GetDocumentationVersionsRequest(input *GetDocumentationVers
 // API operation GetDocumentationVersions for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetDocumentationVersions(input *GetDocumentationVersionsInput) (*GetDocumentationVersionsOutput, error) {
@@ -3750,16 +3750,16 @@ func (c *APIGateway) GetDomainNameRequest(input *GetDomainNameInput) (req *reque
 // API operation GetDomainName for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ServiceUnavailableException
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetDomainName(input *GetDomainNameInput) (*DomainName, error) {
@@ -3827,13 +3827,13 @@ func (c *APIGateway) GetDomainNamesRequest(input *GetDomainNamesInput) (req *req
 // API operation GetDomainNames for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetDomainNames(input *GetDomainNamesInput) (*GetDomainNamesOutput, error) {
@@ -3920,16 +3920,16 @@ func (c *APIGateway) GetExportRequest(input *GetExportInput) (req *request.Reque
 // API operation GetExport for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetExport(input *GetExportInput) (*GetExportOutput, error) {
@@ -3991,13 +3991,13 @@ func (c *APIGateway) GetIntegrationRequest(input *GetIntegrationInput) (req *req
 // API operation GetIntegration for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetIntegration(input *GetIntegrationInput) (*Integration, error) {
@@ -4059,13 +4059,13 @@ func (c *APIGateway) GetIntegrationResponseRequest(input *GetIntegrationResponse
 // API operation GetIntegrationResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetIntegrationResponse(input *GetIntegrationResponseInput) (*IntegrationResponse, error) {
@@ -4127,13 +4127,13 @@ func (c *APIGateway) GetMethodRequest(input *GetMethodInput) (req *request.Reque
 // API operation GetMethod for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetMethod(input *GetMethodInput) (*Method, error) {
@@ -4195,13 +4195,13 @@ func (c *APIGateway) GetMethodResponseRequest(input *GetMethodResponseInput) (re
 // API operation GetMethodResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetMethodResponse(input *GetMethodResponseInput) (*MethodResponse, error) {
@@ -4263,13 +4263,13 @@ func (c *APIGateway) GetModelRequest(input *GetModelInput) (req *request.Request
 // API operation GetModel for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetModel(input *GetModelInput) (*Model, error) {
@@ -4332,16 +4332,16 @@ func (c *APIGateway) GetModelTemplateRequest(input *GetModelTemplateInput) (req 
 // API operation GetModelTemplate for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetModelTemplate(input *GetModelTemplateInput) (*GetModelTemplateOutput, error) {
@@ -4409,16 +4409,16 @@ func (c *APIGateway) GetModelsRequest(input *GetModelsInput) (req *request.Reque
 // API operation GetModels for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetModels(input *GetModelsInput) (*GetModelsOutput, error) {
@@ -4505,13 +4505,13 @@ func (c *APIGateway) GetResourceRequest(input *GetResourceInput) (req *request.R
 // API operation GetResource for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetResource(input *GetResourceInput) (*Resource, error) {
@@ -4579,16 +4579,16 @@ func (c *APIGateway) GetResourcesRequest(input *GetResourcesInput) (req *request
 // API operation GetResources for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetResources(input *GetResourcesInput) (*GetResourcesOutput, error) {
@@ -4675,13 +4675,13 @@ func (c *APIGateway) GetRestApiRequest(input *GetRestApiInput) (req *request.Req
 // API operation GetRestApi for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetRestApi(input *GetRestApiInput) (*RestApi, error) {
@@ -4749,13 +4749,13 @@ func (c *APIGateway) GetRestApisRequest(input *GetRestApisInput) (req *request.R
 // API operation GetRestApis for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetRestApis(input *GetRestApisInput) (*GetRestApisOutput, error) {
@@ -4842,16 +4842,16 @@ func (c *APIGateway) GetSdkRequest(input *GetSdkInput) (req *request.Request, ou
 // API operation GetSdk for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetSdk(input *GetSdkInput) (*GetSdkOutput, error) {
@@ -4911,13 +4911,13 @@ func (c *APIGateway) GetSdkTypeRequest(input *GetSdkTypeInput) (req *request.Req
 // API operation GetSdkType for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetSdkType(input *GetSdkTypeInput) (*SdkType, error) {
@@ -4977,10 +4977,10 @@ func (c *APIGateway) GetSdkTypesRequest(input *GetSdkTypesInput) (req *request.R
 // API operation GetSdkTypes for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetSdkTypes(input *GetSdkTypesInput) (*GetSdkTypesOutput, error) {
@@ -5042,13 +5042,13 @@ func (c *APIGateway) GetStageRequest(input *GetStageInput) (req *request.Request
 // API operation GetStage for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetStage(input *GetStageInput) (*Stage, error) {
@@ -5110,13 +5110,13 @@ func (c *APIGateway) GetStagesRequest(input *GetStagesInput) (req *request.Reque
 // API operation GetStages for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetStages(input *GetStagesInput) (*GetStagesOutput, error) {
@@ -5184,16 +5184,16 @@ func (c *APIGateway) GetUsageRequest(input *GetUsageInput) (req *request.Request
 // API operation GetUsage for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetUsage(input *GetUsageInput) (*Usage, error) {
@@ -5280,16 +5280,16 @@ func (c *APIGateway) GetUsagePlanRequest(input *GetUsagePlanInput) (req *request
 // API operation GetUsagePlan for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetUsagePlan(input *GetUsagePlanInput) (*UsagePlan, error) {
@@ -5351,16 +5351,16 @@ func (c *APIGateway) GetUsagePlanKeyRequest(input *GetUsagePlanKeyInput) (req *r
 // API operation GetUsagePlanKey for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetUsagePlanKey(input *GetUsagePlanKeyInput) (*UsagePlanKey, error) {
@@ -5429,16 +5429,16 @@ func (c *APIGateway) GetUsagePlanKeysRequest(input *GetUsagePlanKeysInput) (req 
 // API operation GetUsagePlanKeys for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) GetUsagePlanKeys(input *GetUsagePlanKeysInput) (*GetUsagePlanKeysOutput, error) {
@@ -5531,19 +5531,19 @@ func (c *APIGateway) GetUsagePlansRequest(input *GetUsagePlansInput) (req *reque
 // API operation GetUsagePlans for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
 func (c *APIGateway) GetUsagePlans(input *GetUsagePlansInput) (*GetUsagePlansOutput, error) {
@@ -5630,22 +5630,22 @@ func (c *APIGateway) ImportApiKeysRequest(input *ImportApiKeysInput) (req *reque
 // API operation ImportApiKeys for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) ImportApiKeys(input *ImportApiKeysInput) (*ImportApiKeysOutput, error) {
@@ -5705,19 +5705,19 @@ func (c *APIGateway) ImportDocumentationPartsRequest(input *ImportDocumentationP
 // API operation ImportDocumentationParts for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) ImportDocumentationParts(input *ImportDocumentationPartsInput) (*ImportDocumentationPartsOutput, error) {
@@ -5780,19 +5780,19 @@ func (c *APIGateway) ImportRestApiRequest(input *ImportRestApiInput) (req *reque
 // API operation ImportRestApi for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) ImportRestApi(input *ImportRestApiInput) (*RestApi, error) {
@@ -5854,19 +5854,19 @@ func (c *APIGateway) PutIntegrationRequest(input *PutIntegrationInput) (req *req
 // API operation PutIntegration for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) PutIntegration(input *PutIntegrationInput) (*Integration, error) {
@@ -5928,22 +5928,22 @@ func (c *APIGateway) PutIntegrationResponseRequest(input *PutIntegrationResponse
 // API operation PutIntegrationResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) PutIntegrationResponse(input *PutIntegrationResponseInput) (*IntegrationResponse, error) {
@@ -6005,22 +6005,22 @@ func (c *APIGateway) PutMethodRequest(input *PutMethodInput) (req *request.Reque
 // API operation PutMethod for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) PutMethod(input *PutMethodInput) (*Method, error) {
@@ -6082,22 +6082,22 @@ func (c *APIGateway) PutMethodResponseRequest(input *PutMethodResponseInput) (re
 // API operation PutMethodResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) PutMethodResponse(input *PutMethodResponseInput) (*MethodResponse, error) {
@@ -6162,22 +6162,22 @@ func (c *APIGateway) PutRestApiRequest(input *PutRestApiInput) (req *request.Req
 // API operation PutRestApi for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) PutRestApi(input *PutRestApiInput) (*RestApi, error) {
@@ -6242,16 +6242,16 @@ func (c *APIGateway) TestInvokeAuthorizerRequest(input *TestInvokeAuthorizerInpu
 // API operation TestInvokeAuthorizer for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) TestInvokeAuthorizer(input *TestInvokeAuthorizerInput) (*TestInvokeAuthorizerOutput, error) {
@@ -6314,16 +6314,16 @@ func (c *APIGateway) TestInvokeMethodRequest(input *TestInvokeMethodInput) (req 
 // API operation TestInvokeMethod for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) TestInvokeMethod(input *TestInvokeMethodInput) (*TestInvokeMethodOutput, error) {
@@ -6385,16 +6385,16 @@ func (c *APIGateway) UpdateAccountRequest(input *UpdateAccountInput) (req *reque
 // API operation UpdateAccount for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateAccount(input *UpdateAccountInput) (*Account, error) {
@@ -6456,19 +6456,19 @@ func (c *APIGateway) UpdateApiKeyRequest(input *UpdateApiKeyInput) (req *request
 // API operation UpdateApiKey for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) UpdateApiKey(input *UpdateApiKeyInput) (*ApiKey, error) {
@@ -6532,16 +6532,16 @@ func (c *APIGateway) UpdateAuthorizerRequest(input *UpdateAuthorizerInput) (req 
 // API operation UpdateAuthorizer for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateAuthorizer(input *UpdateAuthorizerInput) (*Authorizer, error) {
@@ -6603,19 +6603,19 @@ func (c *APIGateway) UpdateBasePathMappingRequest(input *UpdateBasePathMappingIn
 // API operation UpdateBasePathMapping for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateBasePathMapping(input *UpdateBasePathMappingInput) (*BasePathMapping, error) {
@@ -6677,16 +6677,16 @@ func (c *APIGateway) UpdateClientCertificateRequest(input *UpdateClientCertifica
 // API operation UpdateClientCertificate for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
 func (c *APIGateway) UpdateClientCertificate(input *UpdateClientCertificateInput) (*ClientCertificate, error) {
@@ -6748,19 +6748,19 @@ func (c *APIGateway) UpdateDeploymentRequest(input *UpdateDeploymentInput) (req 
 // API operation UpdateDeployment for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ServiceUnavailableException
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 
 //
 func (c *APIGateway) UpdateDeployment(input *UpdateDeploymentInput) (*Deployment, error) {
@@ -6820,22 +6820,22 @@ func (c *APIGateway) UpdateDocumentationPartRequest(input *UpdateDocumentationPa
 // API operation UpdateDocumentationPart for usage and error information.
 //
 // Returned Error Codes:
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateDocumentationPart(input *UpdateDocumentationPartInput) (*DocumentationPart, error) {
@@ -6895,19 +6895,19 @@ func (c *APIGateway) UpdateDocumentationVersionRequest(input *UpdateDocumentatio
 // API operation UpdateDocumentationVersion for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateDocumentationVersion(input *UpdateDocumentationVersionInput) (*DocumentationVersion, error) {
@@ -6969,19 +6969,19 @@ func (c *APIGateway) UpdateDomainNameRequest(input *UpdateDomainNameInput) (req 
 // API operation UpdateDomainName for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateDomainName(input *UpdateDomainNameInput) (*DomainName, error) {
@@ -7043,19 +7043,19 @@ func (c *APIGateway) UpdateIntegrationRequest(input *UpdateIntegrationInput) (re
 // API operation UpdateIntegration for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) UpdateIntegration(input *UpdateIntegrationInput) (*Integration, error) {
@@ -7117,19 +7117,19 @@ func (c *APIGateway) UpdateIntegrationResponseRequest(input *UpdateIntegrationRe
 // API operation UpdateIntegrationResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateIntegrationResponse(input *UpdateIntegrationResponseInput) (*IntegrationResponse, error) {
@@ -7191,19 +7191,19 @@ func (c *APIGateway) UpdateMethodRequest(input *UpdateMethodInput) (req *request
 // API operation UpdateMethod for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateMethod(input *UpdateMethodInput) (*Method, error) {
@@ -7265,22 +7265,22 @@ func (c *APIGateway) UpdateMethodResponseRequest(input *UpdateMethodResponseInpu
 // API operation UpdateMethodResponse for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateMethodResponse(input *UpdateMethodResponseInput) (*MethodResponse, error) {
@@ -7342,19 +7342,19 @@ func (c *APIGateway) UpdateModelRequest(input *UpdateModelInput) (req *request.R
 // API operation UpdateModel for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateModel(input *UpdateModelInput) (*Model, error) {
@@ -7416,19 +7416,19 @@ func (c *APIGateway) UpdateResourceRequest(input *UpdateResourceInput) (req *req
 // API operation UpdateResource for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateResource(input *UpdateResourceInput) (*Resource, error) {
@@ -7490,19 +7490,19 @@ func (c *APIGateway) UpdateRestApiRequest(input *UpdateRestApiInput) (req *reque
 // API operation UpdateRestApi for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateRestApi(input *UpdateRestApiInput) (*RestApi, error) {
@@ -7564,19 +7564,19 @@ func (c *APIGateway) UpdateStageRequest(input *UpdateStageInput) (req *request.R
 // API operation UpdateStage for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
 func (c *APIGateway) UpdateStage(input *UpdateStageInput) (*Stage, error) {
@@ -7639,16 +7639,16 @@ func (c *APIGateway) UpdateUsageRequest(input *UpdateUsageInput) (req *request.R
 // API operation UpdateUsage for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
 func (c *APIGateway) UpdateUsage(input *UpdateUsageInput) (*Usage, error) {
@@ -7710,19 +7710,19 @@ func (c *APIGateway) UpdateUsagePlanRequest(input *UpdateUsagePlanInput) (req *r
 // API operation UpdateUsagePlan for usage and error information.
 //
 // Returned Error Codes:
-//   * UnauthorizedException
+//   * ErrCodeUnauthorizedException "UnauthorizedException"
 
 //
-//   * TooManyRequestsException
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 
 //
-//   * BadRequestException
+//   * ErrCodeBadRequestException "BadRequestException"
 
 //
-//   * NotFoundException
+//   * ErrCodeNotFoundException "NotFoundException"
 
 //
-//   * ConflictException
+//   * ErrCodeConflictException "ConflictException"
 
 //
 func (c *APIGateway) UpdateUsagePlan(input *UpdateUsagePlanInput) (*UsagePlan, error) {

@@ -66,7 +66,7 @@ func (c *CodeBuild) BatchGetBuildsRequest(input *BatchGetBuildsInput) (req *requ
 // API operation BatchGetBuilds for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetBuilds
@@ -131,7 +131,7 @@ func (c *CodeBuild) BatchGetProjectsRequest(input *BatchGetProjectsInput) (req *
 // API operation BatchGetProjects for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/BatchGetProjects
@@ -196,14 +196,14 @@ func (c *CodeBuild) CreateProjectRequest(input *CreateProjectInput) (req *reques
 // API operation CreateProject for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
-//   * ResourceAlreadyExistsException
+//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
 //   The specified AWS resource cannot be created, because an AWS resource with
 //   the same settings already exists.
 //
-//   * AccountLimitExceededException
+//   * ErrCodeAccountLimitExceededException "AccountLimitExceededException"
 //   An AWS service limit was exceeded for the calling AWS account.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateProject
@@ -268,7 +268,7 @@ func (c *CodeBuild) DeleteProjectRequest(input *DeleteProjectInput) (req *reques
 // API operation DeleteProject for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteProject
@@ -333,7 +333,7 @@ func (c *CodeBuild) ListBuildsRequest(input *ListBuildsInput) (req *request.Requ
 // API operation ListBuilds for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListBuilds
@@ -399,10 +399,10 @@ func (c *CodeBuild) ListBuildsForProjectRequest(input *ListBuildsForProjectInput
 // API operation ListBuildsForProject for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified AWS resource cannot be found.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListBuildsForProject
@@ -528,7 +528,7 @@ func (c *CodeBuild) ListProjectsRequest(input *ListProjectsInput) (req *request.
 // API operation ListProjects for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListProjects
@@ -593,13 +593,13 @@ func (c *CodeBuild) StartBuildRequest(input *StartBuildInput) (req *request.Requ
 // API operation StartBuild for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified AWS resource cannot be found.
 //
-//   * AccountLimitExceededException
+//   * ErrCodeAccountLimitExceededException "AccountLimitExceededException"
 //   An AWS service limit was exceeded for the calling AWS account.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StartBuild
@@ -664,10 +664,10 @@ func (c *CodeBuild) StopBuildRequest(input *StopBuildInput) (req *request.Reques
 // API operation StopBuild for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified AWS resource cannot be found.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StopBuild
@@ -732,10 +732,10 @@ func (c *CodeBuild) UpdateProjectRequest(input *UpdateProjectInput) (req *reques
 // API operation UpdateProject for usage and error information.
 //
 // Returned Error Codes:
-//   * InvalidInputException
+//   * ErrCodeInvalidInputException "InvalidInputException"
 //   The input value that was provided is not valid.
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified AWS resource cannot be found.
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateProject
