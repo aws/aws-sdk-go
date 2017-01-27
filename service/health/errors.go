@@ -4,9 +4,15 @@ package health
 
 const (
 
+	// ErrCodeInvalidPaginationToken for service response error code
+	// "InvalidPaginationToken".
+	//
 	// The specified pagination token (nextToken) is not valid.
 	ErrCodeInvalidPaginationToken = "InvalidPaginationToken"
 
+	// ErrCodeUnsupportedLocale for service response error code
+	// "UnsupportedLocale".
+	//
 	// The specified locale is not supported.
 	ErrCodeUnsupportedLocale = "UnsupportedLocale"
 )

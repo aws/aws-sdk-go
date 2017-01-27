@@ -4,17 +4,29 @@ package waf
 
 const (
 
+	// ErrCodeDisallowedNameException for service response error code
+	// "DisallowedNameException".
+	//
 	// The name specified is invalid.
 	ErrCodeDisallowedNameException = "DisallowedNameException"
 
+	// ErrCodeInternalErrorException for service response error code
+	// "InternalErrorException".
+	//
 	// The operation failed because of a system problem, even though the request
 	// was valid. Retry your request.
 	ErrCodeInternalErrorException = "InternalErrorException"
 
+	// ErrCodeInvalidAccountException for service response error code
+	// "InvalidAccountException".
+	//
 	// The operation failed because you tried to create, update, or delete an object
 	// by using an invalid account identifier.
 	ErrCodeInvalidAccountException = "InvalidAccountException"
 
+	// ErrCodeInvalidOperationException for service response error code
+	// "InvalidOperationException".
+	//
 	// The operation failed because there was nothing to do. For example:
 	//
 	//    * You tried to remove a Rule from a WebACL, but the Rule isn't in the
@@ -36,6 +48,9 @@ const (
 	//    already exists in the specified WebACL.
 	ErrCodeInvalidOperationException = "InvalidOperationException"
 
+	// ErrCodeInvalidParameterException for service response error code
+	// "InvalidParameterException".
+	//
 	// The operation failed because AWS WAF didn't recognize a parameter in the
 	// request. For example:
 	//
@@ -62,12 +77,18 @@ const (
 	//    a resource with which a web ACL cannot be associated.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
+	// ErrCodeLimitsExceededException for service response error code
+	// "LimitsExceededException".
+	//
 	// The operation exceeds a resource limit, for example, the maximum number of
 	// WebACL objects that you can create for an AWS account. For more information,
 	// see Limits (http://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 	// in the AWS WAF Developer Guide.
 	ErrCodeLimitsExceededException = "LimitsExceededException"
 
+	// ErrCodeNonEmptyEntityException for service response error code
+	// "NonEmptyEntityException".
+	//
 	// The operation failed because you tried to delete an object that isn't empty.
 	// For example:
 	//
@@ -82,6 +103,9 @@ const (
 	//    * You tried to delete an IPSet that references one or more IP addresses.
 	ErrCodeNonEmptyEntityException = "NonEmptyEntityException"
 
+	// ErrCodeNonexistentContainerException for service response error code
+	// "NonexistentContainerException".
+	//
 	// The operation failed because you tried to add an object to or delete an object
 	// from another object that doesn't exist. For example:
 	//
@@ -98,9 +122,15 @@ const (
 	//    a ByteMatchSet that doesn't exist.
 	ErrCodeNonexistentContainerException = "NonexistentContainerException"
 
+	// ErrCodeNonexistentItemException for service response error code
+	// "NonexistentItemException".
+	//
 	// The operation failed because the referenced object doesn't exist.
 	ErrCodeNonexistentItemException = "NonexistentItemException"
 
+	// ErrCodeReferencedItemException for service response error code
+	// "ReferencedItemException".
+	//
 	// The operation failed because you tried to delete an object that is still
 	// in use. For example:
 	//
@@ -109,6 +139,9 @@ const (
 	//    * You tried to delete a Rule that is still referenced by a WebACL.
 	ErrCodeReferencedItemException = "ReferencedItemException"
 
+	// ErrCodeStaleDataException for service response error code
+	// "StaleDataException".
+	//
 	// The operation failed because you tried to create, update, or delete an object
 	// by using a change token that has already been used.
 	ErrCodeStaleDataException = "StaleDataException"

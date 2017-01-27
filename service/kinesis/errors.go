@@ -4,17 +4,29 @@ package kinesis
 
 const (
 
+	// ErrCodeExpiredIteratorException for service response error code
+	// "ExpiredIteratorException".
+	//
 	// The provided iterator exceeds the maximum age allowed.
 	ErrCodeExpiredIteratorException = "ExpiredIteratorException"
 
+	// ErrCodeInvalidArgumentException for service response error code
+	// "InvalidArgumentException".
+	//
 	// A specified parameter exceeds its restrictions, is not supported, or can't
 	// be used. For more information, see the returned message.
 	ErrCodeInvalidArgumentException = "InvalidArgumentException"
 
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
 	// The requested resource exceeds the maximum number allowed, or the number
 	// of concurrent stream requests exceeds the maximum number allowed (5).
 	ErrCodeLimitExceededException = "LimitExceededException"
 
+	// ErrCodeProvisionedThroughputExceededException for service response error code
+	// "ProvisionedThroughputExceededException".
+	//
 	// The request rate for the stream is too high, or the requested data is too
 	// large for the available throughput. Reduce the frequency or size of your
 	// requests. For more information, see Streams Limits (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html)
@@ -23,10 +35,16 @@ const (
 	// in the AWS General Reference.
 	ErrCodeProvisionedThroughputExceededException = "ProvisionedThroughputExceededException"
 
+	// ErrCodeResourceInUseException for service response error code
+	// "ResourceInUseException".
+	//
 	// The resource is not available for this operation. For successful operation,
 	// the resource needs to be in the ACTIVE state.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
 	// The requested resource could not be found. The stream might not be specified
 	// correctly.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"

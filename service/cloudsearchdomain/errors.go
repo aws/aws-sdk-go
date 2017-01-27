@@ -4,9 +4,15 @@ package cloudsearchdomain
 
 const (
 
+	// ErrCodeDocumentServiceException for service response error code
+	// "DocumentServiceException".
+	//
 	// Information about any problems encountered while processing an upload request.
 	ErrCodeDocumentServiceException = "DocumentServiceException"
 
+	// ErrCodeSearchException for service response error code
+	// "SearchException".
+	//
 	// Information about any problems encountered while processing a search request.
 	ErrCodeSearchException = "SearchException"
 )

@@ -4,16 +4,28 @@ package dynamodb
 
 const (
 
+	// ErrCodeConditionalCheckFailedException for service response error code
+	// "ConditionalCheckFailedException".
+	//
 	// A condition specified in the operation could not be evaluated.
 	ErrCodeConditionalCheckFailedException = "ConditionalCheckFailedException"
 
+	// ErrCodeInternalServerError for service response error code
+	// "InternalServerError".
+	//
 	// An error occurred on the server side.
 	ErrCodeInternalServerError = "InternalServerError"
 
+	// ErrCodeItemCollectionSizeLimitExceededException for service response error code
+	// "ItemCollectionSizeLimitExceededException".
+	//
 	// An item collection is too large. This exception is only returned for tables
 	// that have one or more local secondary indexes.
 	ErrCodeItemCollectionSizeLimitExceededException = "ItemCollectionSizeLimitExceededException"
 
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
 	// The number of concurrent table requests (cumulative number of tables in the
 	// CREATING, DELETING or UPDATING state) exceeds the maximum allowed of 10.
 	//
@@ -24,6 +36,9 @@ const (
 	// The total limit of tables in the ACTIVE state is 250.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
+	// ErrCodeProvisionedThroughputExceededException for service response error code
+	// "ProvisionedThroughputExceededException".
+	//
 	// Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
 	// requests that receive this exception. Your request is eventually successful,
 	// unless your retry queue is too large to finish. Reduce the frequency of requests
@@ -32,11 +47,17 @@ const (
 	// in the Amazon DynamoDB Developer Guide.
 	ErrCodeProvisionedThroughputExceededException = "ProvisionedThroughputExceededException"
 
+	// ErrCodeResourceInUseException for service response error code
+	// "ResourceInUseException".
+	//
 	// The operation conflicts with the resource's availability. For example, you
 	// attempted to recreate an existing table, or tried to delete a table currently
 	// in the CREATING state.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
 	// The operation tried to access a nonexistent table or index. The resource
 	// might not be specified correctly, or its status might not be ACTIVE.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"

@@ -4,14 +4,23 @@ package dynamodbstreams
 
 const (
 
+	// ErrCodeExpiredIteratorException for service response error code
+	// "ExpiredIteratorException".
+	//
 	// The shard iterator has expired and can no longer be used to retrieve stream
 	// records. A shard iterator expires 15 minutes after it is retrieved using
 	// the GetShardIterator action.
 	ErrCodeExpiredIteratorException = "ExpiredIteratorException"
 
+	// ErrCodeInternalServerError for service response error code
+	// "InternalServerError".
+	//
 	// An error occurred on the server side.
 	ErrCodeInternalServerError = "InternalServerError"
 
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
 	// Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
 	// requests that receive this exception. Your request is eventually successful,
 	// unless your retry queue is too large to finish. Reduce the frequency of requests
@@ -20,9 +29,15 @@ const (
 	// in the Amazon DynamoDB Developer Guide.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
 	// The operation tried to access a nonexistent stream.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeTrimmedDataAccessException for service response error code
+	// "TrimmedDataAccessException".
+	//
 	// The operation attempted to read past the oldest stream record in a shard.
 	//
 	// In DynamoDB Streams, there is a 24 hour limit on data retention. Stream records
