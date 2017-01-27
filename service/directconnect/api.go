@@ -71,11 +71,11 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 // API operation AllocateConnectionOnInterconnect for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -149,11 +149,11 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 // API operation AllocatePrivateVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -231,11 +231,11 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 // API operation AllocatePublicVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -305,11 +305,11 @@ func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) 
 // API operation ConfirmConnection for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -379,11 +379,11 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 // API operation ConfirmPrivateVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -452,11 +452,11 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 // API operation ConfirmPublicVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -534,11 +534,11 @@ func (c *DirectConnect) CreateBGPPeerRequest(input *CreateBGPPeerInput) (req *re
 // API operation CreateBGPPeer for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -613,11 +613,11 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 // API operation CreateConnection for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -700,11 +700,11 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 // API operation CreateInterconnect for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -772,11 +772,11 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 // API operation CreatePrivateVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -849,11 +849,11 @@ func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicV
 // API operation CreatePublicVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -921,11 +921,11 @@ func (c *DirectConnect) DeleteBGPPeerRequest(input *DeleteBGPPeerInput) (req *re
 // API operation DeleteBGPPeer for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -996,11 +996,11 @@ func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (r
 // API operation DeleteConnection for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1068,11 +1068,11 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 // API operation DeleteInterconnect for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1138,11 +1138,11 @@ func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterf
 // API operation DeleteVirtualInterface for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1214,11 +1214,11 @@ func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLo
 // API operation DescribeConnectionLoa for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1286,11 +1286,11 @@ func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInp
 // API operation DescribeConnections for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1358,11 +1358,11 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 // API operation DescribeConnectionsOnInterconnect for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1434,11 +1434,11 @@ func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconne
 // API operation DescribeInterconnectLoa for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1506,11 +1506,11 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 // API operation DescribeInterconnects for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1578,11 +1578,11 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 // API operation DescribeLocations for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1648,11 +1648,11 @@ func (c *DirectConnect) DescribeTagsRequest(input *DescribeTagsInput) (req *requ
 // API operation DescribeTags for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1724,11 +1724,11 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 // API operation DescribeVirtualGateways for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1805,11 +1805,11 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 // API operation DescribeVirtualInterfaces for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1880,18 +1880,18 @@ func (c *DirectConnect) TagResourceRequest(input *TagResourceInput) (req *reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Codes:
-//   * DuplicateTagKeysException
+//   * ErrCodeDuplicateTagKeysException "DuplicateTagKeysException"
 //   A tag key was specified more than once.
 //
-//   * TooManyTagsException
+//   * ErrCodeTooManyTagsException "TooManyTagsException"
 //   You have reached the limit on the number of tags that can be assigned to
 //   a Direct Connect resource.
 //
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //
@@ -1957,11 +1957,11 @@ func (c *DirectConnect) UntagResourceRequest(input *UntagResourceInput) (req *re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Codes:
-//   * ServerException
+//   * ErrCodeServerException "ServerException"
 //   A server-side error occurred during the API call. The error message will
 //   contain additional details about the cause.
 //
-//   * ClientException
+//   * ErrCodeClientException "ClientException"
 //   The API was called with invalid parameters. The error message will contain
 //   additional details about the cause.
 //

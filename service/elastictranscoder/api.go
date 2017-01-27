@@ -67,25 +67,25 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *reques
 // API operation CancelJob for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * ResourceInUseException
+//   * ErrCodeResourceInUseException "ResourceInUseException"
 //   The resource you are attempting to change is in use. For example, you are
 //   attempting to delete a pipeline that is currently in use.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -154,25 +154,25 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *reques
 // API operation CreateJob for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 //   Too many operations for a given AWS account. For example, the number of pipelines
 //   exceeds the maximum allowed.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -235,25 +235,25 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 // API operation CreatePipeline for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 //   Too many operations for a given AWS account. For example, the number of pipelines
 //   exceeds the maximum allowed.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -330,20 +330,20 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 // API operation CreatePreset for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * LimitExceededException
+//   * ErrCodeLimitExceededException "LimitExceededException"
 //   Too many operations for a given AWS account. For example, the number of pipelines
 //   exceeds the maximum allowed.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -410,25 +410,25 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 // API operation DeletePipeline for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * ResourceInUseException
+//   * ErrCodeResourceInUseException "ResourceInUseException"
 //   The resource you are attempting to change is in use. For example, you are
 //   attempting to delete a pipeline that is currently in use.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -493,21 +493,21 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 // API operation DeletePreset for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -580,21 +580,21 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 // API operation ListJobsByPipeline for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -690,21 +690,21 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 // API operation ListJobsByStatus for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -799,16 +799,16 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 // API operation ListPipelines for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -903,16 +903,16 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *re
 // API operation ListPresets for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1000,21 +1000,21 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *request.Re
 // API operation ReadJob for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1077,21 +1077,21 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 // API operation ReadPipeline for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1154,21 +1154,21 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *requ
 // API operation ReadPreset for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1240,21 +1240,21 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.
 // API operation TestRole for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1322,25 +1322,25 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 // API operation UpdatePipeline for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * ResourceInUseException
+//   * ErrCodeResourceInUseException "ResourceInUseException"
 //   The resource you are attempting to change is in use. For example, you are
 //   attempting to delete a pipeline that is currently in use.
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1407,25 +1407,25 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 // API operation UpdatePipelineNotifications for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * ResourceInUseException
+//   * ErrCodeResourceInUseException "ResourceInUseException"
 //   The resource you are attempting to change is in use. For example, you are
 //   attempting to delete a pipeline that is currently in use.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
@@ -1495,25 +1495,25 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 // API operation UpdatePipelineStatus for usage and error information.
 //
 // Returned Error Codes:
-//   * ValidationException
+//   * ErrCodeValidationException "ValidationException"
 //   One or more required parameter values were not provided in the request.
 //
-//   * IncompatibleVersionException
+//   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
 
 //
-//   * ResourceNotFoundException
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
 //   pipeline to which you're trying to add a job doesn't exist or is still being
 //   created.
 //
-//   * ResourceInUseException
+//   * ErrCodeResourceInUseException "ResourceInUseException"
 //   The resource you are attempting to change is in use. For example, you are
 //   attempting to delete a pipeline that is currently in use.
 //
-//   * AccessDeniedException
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
 //
-//   * InternalServiceException
+//   * ErrCodeInternalServiceException "InternalServiceException"
 //   Elastic Transcoder encountered an unexpected exception while trying to fulfill
 //   the request.
 //
