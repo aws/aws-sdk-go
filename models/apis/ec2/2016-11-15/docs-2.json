@@ -893,6 +893,7 @@
         "SpotFleetLaunchSpecification$EbsOptimized": "<p>Indicates whether the instances are optimized for EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS Optimized instance.</p> <p>Default: <code>false</code> </p>",
         "SpotFleetMonitoring$Enabled": "<p>Enables monitoring for the instance.</p> <p>Default: <code>false</code> </p>",
         "SpotFleetRequestConfigData$TerminateInstancesWithExpiration": "<p>Indicates whether running Spot instances should be terminated when the Spot fleet request expires.</p>",
+        "SpotFleetRequestConfigData$ReplaceUnhealthyInstances": "<p>Indicates whether Spot fleet should replace unhealthy instances.</p>",
         "StartInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "StopInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "StopInstancesRequest$Force": "<p>Forces the instances to stop. The instances do not have an opportunity to flush file system caches or file system metadata. If you use this option, you must perform file system check and repair procedures. This option is not recommended for Windows instances.</p> <p>Default: <code>false</code> </p>",
@@ -3218,6 +3219,12 @@
       "base": "<p>Describes an instance to export.</p>",
       "refs": {
         "ExportTask$InstanceExportDetails": "<p>Information about the instance to export.</p>"
+      }
+    },
+    "InstanceHealthStatus": {
+      "base": null,
+      "refs": {
+        "ActiveInstance$InstanceHealth": "<p>The health status of the instance. If the status of both the instance status check and the system status check is <code>impaired</code>, the health status of the instance is <code>unhealthy</code>. Otherwise, the health status is <code>healthy</code>.</p>"
       }
     },
     "InstanceIdSet": {

@@ -2051,6 +2051,10 @@
         "SpotInstanceRequestId":{
           "shape":"String",
           "locationName":"spotInstanceRequestId"
+        },
+        "InstanceHealth":{
+          "shape":"InstanceHealthStatus",
+          "locationName":"instanceHealth"
         }
       }
     },
@@ -8735,6 +8739,13 @@
         }
       }
     },
+    "InstanceHealthStatus":{
+      "type":"string",
+      "enum":[
+        "healthy",
+        "unhealthy"
+      ]
+    },
     "InstanceIdSet":{
       "type":"list",
       "member":{
@@ -13372,6 +13383,10 @@
         "Type":{
           "shape":"FleetType",
           "locationName":"type"
+        },
+        "ReplaceUnhealthyInstances":{
+          "shape":"Boolean",
+          "locationName":"replaceUnhealthyInstances"
         }
       }
     },
