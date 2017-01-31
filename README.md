@@ -36,8 +36,8 @@ Please use these community resources for getting help. We use the GitHub issues 
 * Ask a question on [StackOverflow](http://stackoverflow.com/) and tag it with the `aws-sdk-go` tag.
 * Come join the AWS SDK for Go community chat on [gitter](https://gitter.im/aws/aws-sdk-go)
 * The [#aws](https://gophers.slack.com/messages/aws/) channel on gopher.slack.com
-* Open a support ticket with AWS Support
-* If you think you may of found a bug, please open an issue.
+* Open a support ticket with [AWS Support](http://docs.aws.amazon.com/awssupport/latest/user/getting-started.html)
+* If you think you may of found a bug, please open an [issue](https://github.com/aws/aws-sdk-go/issues/new).
 
 ## Opening Issues
 
