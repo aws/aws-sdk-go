@@ -597,7 +597,6 @@ func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *re
 //   A tag key was specified more than once.
 //
 //   * ErrCodeUnsupportedProtocolException "UnsupportedProtocol"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancer
 func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (*CreateLoadBalancerOutput, error) {
@@ -684,7 +683,6 @@ func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListen
 //   The requested configuration change is not valid.
 //
 //   * ErrCodeUnsupportedProtocolException "UnsupportedProtocol"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/CreateLoadBalancerListeners
 func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInput) (*CreateLoadBalancerListenersOutput, error) {
@@ -1411,7 +1409,6 @@ func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (r
 //   The specified load balancer does not exist.
 //
 //   * ErrCodeDependencyThrottleException "DependencyThrottle"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/DescribeLoadBalancers
 func (c *ELB) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*DescribeLoadBalancersOutput, error) {
@@ -2051,7 +2048,6 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalance
 //   The requested configuration change is not valid.
 //
 //   * ErrCodeUnsupportedProtocolException "UnsupportedProtocol"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancing-2012-06-01/SetLoadBalancerListenerSSLCertificate
 func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListenerSSLCertificateInput) (*SetLoadBalancerListenerSSLCertificateOutput, error) {

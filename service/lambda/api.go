@@ -99,7 +99,6 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 //   Lambda function access policy is limited to 20 KB.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, error) {
 	req, out := c.AddPermissionRequest(input)
@@ -180,7 +179,6 @@ func (c *Lambda) CreateAliasRequest(input *CreateAliasInput) (req *request.Reque
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) CreateAlias(input *CreateAliasInput) (*AliasConfiguration, error) {
 	req, out := c.CreateAliasRequest(input)
@@ -277,7 +275,6 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //   The resource already exists.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The resource (for example, a Lambda function or access policy statement)
@@ -367,7 +364,6 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 //   The resource already exists.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeCodeStorageExceededException "CodeStorageExceededException"
 //   You have exceeded your maximum total code size per account. Limits (http://docs.aws.amazon.com/lambda/latest/dg/limits.html)
@@ -445,7 +441,6 @@ func (c *Lambda) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Reque
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
@@ -523,7 +518,6 @@ func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMapping
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) DeleteEventSourceMapping(input *DeleteEventSourceMappingInput) (*EventSourceMappingConfiguration, error) {
 	req, out := c.DeleteEventSourceMappingRequest(input)
@@ -606,7 +600,6 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request
 //   specified in the request does not exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One of the parameters in the request is invalid. For example, if you provided
@@ -682,7 +675,6 @@ func (c *Lambda) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req 
 //
 // Returned Error Codes:
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeServiceException "ServiceException"
 //   The AWS Lambda service encountered an internal error.
@@ -763,7 +755,6 @@ func (c *Lambda) GetAliasRequest(input *GetAliasInput) (req *request.Request, ou
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) GetAlias(input *GetAliasInput) (*AliasConfiguration, error) {
 	req, out := c.GetAliasRequest(input)
@@ -840,7 +831,6 @@ func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput)
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) GetEventSourceMapping(input *GetEventSourceMappingInput) (*EventSourceMappingConfiguration, error) {
 	req, out := c.GetEventSourceMappingRequest(input)
@@ -921,7 +911,6 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *request.Reque
 //   specified in the request does not exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One of the parameters in the request is invalid. For example, if you provided
@@ -1007,7 +996,6 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 //   specified in the request does not exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One of the parameters in the request is invalid. For example, if you provided
@@ -1090,7 +1078,6 @@ func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, 
 //   specified in the request does not exist.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One of the parameters in the request is invalid. For example, if you provided
@@ -1185,7 +1172,6 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   The content type of the Invoke request body is not JSON.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   One of the parameters in the request is invalid. For example, if you provided
@@ -1210,7 +1196,6 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   using the execution role provided for the Lambda function.
 //
 //   * ErrCodeEC2AccessDeniedException "EC2AccessDeniedException"
-
 //
 //   * ErrCodeInvalidSubnetIDException "InvalidSubnetIDException"
 //   The Subnet ID provided in the Lambda function VPC configuration is invalid.
@@ -1393,7 +1378,6 @@ func (c *Lambda) ListAliasesRequest(input *ListAliasesInput) (req *request.Reque
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 	req, out := c.ListAliasesRequest(input)
@@ -1485,7 +1469,6 @@ func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsIn
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) ListEventSourceMappings(input *ListEventSourceMappingsInput) (*ListEventSourceMappingsOutput, error) {
 	req, out := c.ListEventSourceMappingsRequest(input)
@@ -1589,7 +1572,6 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *request.R
 //   The AWS Lambda service encountered an internal error.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput, error) {
 	req, out := c.ListFunctionsRequest(input)
@@ -1689,7 +1671,6 @@ func (c *Lambda) ListVersionsByFunctionRequest(input *ListVersionsByFunctionInpu
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) ListVersionsByFunction(input *ListVersionsByFunctionInput) (*ListVersionsByFunctionOutput, error) {
 	req, out := c.ListVersionsByFunctionRequest(input)
@@ -1767,7 +1748,6 @@ func (c *Lambda) PublishVersionRequest(input *PublishVersionInput) (req *request
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeCodeStorageExceededException "CodeStorageExceededException"
 //   You have exceeded your maximum total code size per account. Limits (http://docs.aws.amazon.com/lambda/latest/dg/limits.html)
@@ -1858,7 +1838,6 @@ func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *req
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
 	req, out := c.RemovePermissionRequest(input)
@@ -1936,7 +1915,6 @@ func (c *Lambda) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Reque
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) UpdateAlias(input *UpdateAliasInput) (*AliasConfiguration, error) {
 	req, out := c.UpdateAliasRequest(input)
@@ -2026,7 +2004,6 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeResourceConflictException "ResourceConflictException"
 //   The resource already exists.
@@ -2111,7 +2088,6 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 //   * ErrCodeCodeStorageExceededException "CodeStorageExceededException"
 //   You have exceeded your maximum total code size per account. Limits (http://docs.aws.amazon.com/lambda/latest/dg/limits.html)
@@ -2198,7 +2174,6 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 //   API, that AWS Lambda is unable to assume you will get this exception.
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
-
 //
 func (c *Lambda) UpdateFunctionConfiguration(input *UpdateFunctionConfigurationInput) (*FunctionConfiguration, error) {
 	req, out := c.UpdateFunctionConfigurationRequest(input)

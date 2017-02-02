@@ -981,7 +981,6 @@ func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *re
 //   Indicates an internal service error.
 //
 //   * ErrCodeInvalidConfigurationException "InvalidConfigurationException"
-
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   Thrown if the request is throttled.
@@ -1233,7 +1232,6 @@ func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) 
 //   Indicates an internal service error.
 //
 //   * ErrCodeInvalidConfigurationException "InvalidConfigurationException"
-
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   Thrown if the request is throttled.
@@ -1317,7 +1315,6 @@ func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatase
 //   Indicates an internal service error.
 //
 //   * ErrCodeInvalidConfigurationException "InvalidConfigurationException"
-
 //
 //   * ErrCodeTooManyRequestsException "TooManyRequestsException"
 //   Thrown if the request is throttled.

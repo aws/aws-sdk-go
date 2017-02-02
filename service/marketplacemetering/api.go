@@ -255,7 +255,6 @@ func (c *MarketplaceMetering) ResolveCustomerRequest(input *ResolveCustomerInput
 //
 // Returned Error Codes:
 //   * ErrCodeInvalidTokenException "InvalidTokenException"
-
 //
 //   * ErrCodeExpiredTokenException "ExpiredTokenException"
 //   The submitted registration token has expired. This can happen if the buyer's

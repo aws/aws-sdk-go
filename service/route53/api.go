@@ -365,7 +365,6 @@ func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput
 //   duration, before you try the request again.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ChangeTagsForResource
 func (c *Route53) ChangeTagsForResource(input *ChangeTagsForResourceInput) (*ChangeTagsForResourceOutput, error) {
@@ -3293,7 +3292,6 @@ func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //   duration, before you try the request again.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResource
 func (c *Route53) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3379,7 +3377,6 @@ func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) 
 //   duration, before you try the request again.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListTagsForResources
 func (c *Route53) ListTagsForResources(input *ListTagsForResourcesInput) (*ListTagsForResourcesOutput, error) {
@@ -3995,7 +3992,6 @@ func (c *Route53) ListVPCAssociationAuthorizationsRequest(input *ListVPCAssociat
 //   The input is not valid.
 //
 //   * ErrCodeInvalidPaginationToken "InvalidPaginationToken"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/ListVPCAssociationAuthorizations
 func (c *Route53) ListVPCAssociationAuthorizations(input *ListVPCAssociationAuthorizationsInput) (*ListVPCAssociationAuthorizationsOutput, error) {
