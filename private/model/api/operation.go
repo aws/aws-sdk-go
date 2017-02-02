@@ -127,8 +127,9 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 {{ range $_, $err := .ErrorRefs -}}
 	{{ $errDoc := $err.IndentedDocstring -}}
 //   * {{ $err.Shape.ErrorCodeName }} "{{ $err.Shape.ErrorName}}"
-{{ if $errDoc -}}
-{{ $errDoc }}{{ end }}
+{{ if $err.Docstring -}}
+{{ $errDoc }}
+{{ end -}}
 //
 {{ end -}}
 {{ end -}}
