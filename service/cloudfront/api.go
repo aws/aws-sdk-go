@@ -157,7 +157,6 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //
 // Returned Error Codes:
 //   * ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
-
 //
 //   * ErrCodeDistributionAlreadyExists "DistributionAlreadyExists"
 //   The caller reference you attempted to create the distribution with is associated
@@ -180,10 +179,8 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   One or more of your trusted signers do not exist.
 //
 //   * ErrCodeInvalidViewerCertificate "InvalidViewerCertificate"
-
 //
 //   * ErrCodeInvalidMinimumProtocolVersion "InvalidMinimumProtocolVersion"
-
 //
 //   * ErrCodeMissingBody "MissingBody"
 //   This operation requires a body. Ensure that the body is present and the Content-Type
@@ -204,10 +201,8 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   a slash (/).
 //
 //   * ErrCodeInvalidErrorCode "InvalidErrorCode"
-
 //
 //   * ErrCodeInvalidResponseCode "InvalidResponseCode"
-
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   The argument is invalid.
@@ -237,10 +232,8 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   when expected.
 //
 //   * ErrCodeTooManyHeadersInForwardedValues "TooManyHeadersInForwardedValues"
-
 //
 //   * ErrCodeInvalidHeadersForS3Origin "InvalidHeadersForS3Origin"
-
 //
 //   * ErrCodeInconsistentQuantities "InconsistentQuantities"
 //   The value of Quantity and the size of Items do not match.
@@ -249,29 +242,22 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   You cannot create anymore custom SSL/TLS certificates.
 //
 //   * ErrCodeInvalidLocationCode "InvalidLocationCode"
-
 //
 //   * ErrCodeInvalidGeoRestrictionParameter "InvalidGeoRestrictionParameter"
-
 //
 //   * ErrCodeInvalidProtocolSettings "InvalidProtocolSettings"
 //   You cannot specify SSLv3 as the minimum protocol version if you only want
 //   to support only clients that support Server Name Indication (SNI).
 //
 //   * ErrCodeInvalidTTLOrder "InvalidTTLOrder"
-
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
-
 //
 //   * ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
-
 //
 //   * ErrCodeTooManyQueryStringParameters "TooManyQueryStringParameters"
-
 //
 //   * ErrCodeInvalidQueryStringParameters "InvalidQueryStringParameters"
-
 //
 //   * ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
 //   Processing your request would cause the maximum number of distributions with
@@ -347,7 +333,6 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //
 // Returned Error Codes:
 //   * ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
-
 //
 //   * ErrCodeDistributionAlreadyExists "DistributionAlreadyExists"
 //   The caller reference you attempted to create the distribution with is associated
@@ -370,10 +355,8 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   One or more of your trusted signers do not exist.
 //
 //   * ErrCodeInvalidViewerCertificate "InvalidViewerCertificate"
-
 //
 //   * ErrCodeInvalidMinimumProtocolVersion "InvalidMinimumProtocolVersion"
-
 //
 //   * ErrCodeMissingBody "MissingBody"
 //   This operation requires a body. Ensure that the body is present and the Content-Type
@@ -394,10 +377,8 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   a slash (/).
 //
 //   * ErrCodeInvalidErrorCode "InvalidErrorCode"
-
 //
 //   * ErrCodeInvalidResponseCode "InvalidResponseCode"
-
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   The argument is invalid.
@@ -427,10 +408,8 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   when expected.
 //
 //   * ErrCodeTooManyHeadersInForwardedValues "TooManyHeadersInForwardedValues"
-
 //
 //   * ErrCodeInvalidHeadersForS3Origin "InvalidHeadersForS3Origin"
-
 //
 //   * ErrCodeInconsistentQuantities "InconsistentQuantities"
 //   The value of Quantity and the size of Items do not match.
@@ -439,32 +418,24 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   You cannot create anymore custom SSL/TLS certificates.
 //
 //   * ErrCodeInvalidLocationCode "InvalidLocationCode"
-
 //
 //   * ErrCodeInvalidGeoRestrictionParameter "InvalidGeoRestrictionParameter"
-
 //
 //   * ErrCodeInvalidProtocolSettings "InvalidProtocolSettings"
 //   You cannot specify SSLv3 as the minimum protocol version if you only want
 //   to support only clients that support Server Name Indication (SNI).
 //
 //   * ErrCodeInvalidTTLOrder "InvalidTTLOrder"
-
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
-
 //
 //   * ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
-
 //
 //   * ErrCodeInvalidTagging "InvalidTagging"
-
 //
 //   * ErrCodeTooManyQueryStringParameters "TooManyQueryStringParameters"
-
 //
 //   * ErrCodeInvalidQueryStringParameters "InvalidQueryStringParameters"
-
 //
 //   * ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
 //   Processing your request would cause the maximum number of distributions with
@@ -553,7 +524,6 @@ func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (
 //   The specified distribution does not exist.
 //
 //   * ErrCodeBatchTooLarge "BatchTooLarge"
-
 //
 //   * ErrCodeTooManyInvalidationsInProgress "TooManyInvalidationsInProgress"
 //   You have exceeded the maximum number of allowable InProgress invalidation
@@ -652,10 +622,8 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 //
 // Returned Error Codes:
 //   * ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
-
 //
 //   * ErrCodeStreamingDistributionAlreadyExists "StreamingDistributionAlreadyExists"
-
 //
 //   * ErrCodeInvalidOrigin "InvalidOrigin"
 //   The Amazon S3 origin server specified does not refer to a valid Amazon S3
@@ -678,7 +646,6 @@ func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDi
 //   header is set.
 //
 //   * ErrCodeTooManyStreamingDistributionCNAMEs "TooManyStreamingDistributionCNAMEs"
-
 //
 //   * ErrCodeTooManyStreamingDistributions "TooManyStreamingDistributions"
 //   Processing your request would cause you to exceed the maximum number of streaming
@@ -753,10 +720,8 @@ func (c *CloudFront) CreateStreamingDistributionWithTagsRequest(input *CreateStr
 //
 // Returned Error Codes:
 //   * ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
-
 //
 //   * ErrCodeStreamingDistributionAlreadyExists "StreamingDistributionAlreadyExists"
-
 //
 //   * ErrCodeInvalidOrigin "InvalidOrigin"
 //   The Amazon S3 origin server specified does not refer to a valid Amazon S3
@@ -779,7 +744,6 @@ func (c *CloudFront) CreateStreamingDistributionWithTagsRequest(input *CreateStr
 //   header is set.
 //
 //   * ErrCodeTooManyStreamingDistributionCNAMEs "TooManyStreamingDistributionCNAMEs"
-
 //
 //   * ErrCodeTooManyStreamingDistributions "TooManyStreamingDistributions"
 //   Processing your request would cause you to exceed the maximum number of streaming
@@ -792,7 +756,6 @@ func (c *CloudFront) CreateStreamingDistributionWithTagsRequest(input *CreateStr
 //   The value of Quantity and the size of Items do not match.
 //
 //   * ErrCodeInvalidTagging "InvalidTagging"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25/CreateStreamingDistributionWithTags
 func (c *CloudFront) CreateStreamingDistributionWithTags(input *CreateStreamingDistributionWithTagsInput) (*CreateStreamingDistributionWithTagsOutput, error) {
@@ -872,7 +835,6 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 //   to false.
 //
 //   * ErrCodeOriginAccessIdentityInUse "OriginAccessIdentityInUse"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25/DeleteCloudFrontOriginAccessIdentity
 func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFrontOriginAccessIdentityInput) (*DeleteCloudFrontOriginAccessIdentityOutput, error) {
@@ -942,7 +904,6 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 //   Access denied.
 //
 //   * ErrCodeDistributionNotDisabled "DistributionNotDisabled"
-
 //
 //   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
 //   The If-Match version is missing or not valid for the distribution.
@@ -1057,7 +1018,6 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 //   Access denied.
 //
 //   * ErrCodeStreamingDistributionNotDisabled "StreamingDistributionNotDisabled"
-
 //
 //   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
 //   The If-Match version is missing or not valid for the distribution.
@@ -1807,7 +1767,6 @@ func (c *CloudFront) ListDistributionsByWebACLIdRequest(input *ListDistributions
 //   The argument is invalid.
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25/ListDistributionsByWebACLId
 func (c *CloudFront) ListDistributionsByWebACLId(input *ListDistributionsByWebACLIdInput) (*ListDistributionsByWebACLIdOutput, error) {
@@ -2076,10 +2035,8 @@ func (c *CloudFront) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 //   The argument is invalid.
 //
 //   * ErrCodeInvalidTagging "InvalidTagging"
-
 //
 //   * ErrCodeNoSuchResource "NoSuchResource"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25/ListTagsForResource
 func (c *CloudFront) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2152,10 +2109,8 @@ func (c *CloudFront) TagResourceRequest(input *TagResourceInput) (req *request.R
 //   The argument is invalid.
 //
 //   * ErrCodeInvalidTagging "InvalidTagging"
-
 //
 //   * ErrCodeNoSuchResource "NoSuchResource"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25/TagResource
 func (c *CloudFront) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2228,10 +2183,8 @@ func (c *CloudFront) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //   The argument is invalid.
 //
 //   * ErrCodeInvalidTagging "InvalidTagging"
-
 //
 //   * ErrCodeNoSuchResource "NoSuchResource"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2016-11-25/UntagResource
 func (c *CloudFront) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2387,7 +2340,6 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   Access denied.
 //
 //   * ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
-
 //
 //   * ErrCodeIllegalUpdate "IllegalUpdate"
 //   Origin and CallerReference cannot be updated.
@@ -2417,10 +2369,8 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   a slash (/).
 //
 //   * ErrCodeInvalidErrorCode "InvalidErrorCode"
-
 //
 //   * ErrCodeInvalidResponseCode "InvalidResponseCode"
-
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   The argument is invalid.
@@ -2435,10 +2385,8 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   One or more of your trusted signers do not exist.
 //
 //   * ErrCodeInvalidViewerCertificate "InvalidViewerCertificate"
-
 //
 //   * ErrCodeInvalidMinimumProtocolVersion "InvalidMinimumProtocolVersion"
-
 //
 //   * ErrCodeInvalidRequiredProtocol "InvalidRequiredProtocol"
 //   This operation requires the HTTPS protocol. Ensure that you specify the HTTPS
@@ -2465,10 +2413,8 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   when expected.
 //
 //   * ErrCodeTooManyHeadersInForwardedValues "TooManyHeadersInForwardedValues"
-
 //
 //   * ErrCodeInvalidHeadersForS3Origin "InvalidHeadersForS3Origin"
-
 //
 //   * ErrCodeInconsistentQuantities "InconsistentQuantities"
 //   The value of Quantity and the size of Items do not match.
@@ -2477,25 +2423,18 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   You cannot create anymore custom SSL/TLS certificates.
 //
 //   * ErrCodeInvalidLocationCode "InvalidLocationCode"
-
 //
 //   * ErrCodeInvalidGeoRestrictionParameter "InvalidGeoRestrictionParameter"
-
 //
 //   * ErrCodeInvalidTTLOrder "InvalidTTLOrder"
-
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
-
 //
 //   * ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
-
 //
 //   * ErrCodeTooManyQueryStringParameters "TooManyQueryStringParameters"
-
 //
 //   * ErrCodeInvalidQueryStringParameters "InvalidQueryStringParameters"
-
 //
 //   * ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
 //   Processing your request would cause the maximum number of distributions with
@@ -2574,7 +2513,6 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 //   Access denied.
 //
 //   * ErrCodeCNAMEAlreadyExists "CNAMEAlreadyExists"
-
 //
 //   * ErrCodeIllegalUpdate "IllegalUpdate"
 //   Origin and CallerReference cannot be updated.
@@ -2594,7 +2532,6 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 //   to false.
 //
 //   * ErrCodeTooManyStreamingDistributionCNAMEs "TooManyStreamingDistributionCNAMEs"
-
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   The argument is invalid.

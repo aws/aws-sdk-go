@@ -739,7 +739,6 @@ func (c *WorkSpaces) ModifyWorkspacePropertiesRequest(input *ModifyWorkspaceProp
 //   The resource could not be found.
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
-
 //
 //   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
 //   The specified resource is not available.

@@ -71,10 +71,8 @@ func (c *MachineLearning) AddTagsRequest(input *AddTagsInput) (req *request.Requ
 //   value.
 //
 //   * ErrCodeInvalidTagException "InvalidTagException"
-
 //
 //   * ErrCodeTagLimitExceededException "TagLimitExceededException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   A specified resource cannot be located.
@@ -1127,7 +1125,6 @@ func (c *MachineLearning) DeleteTagsRequest(input *DeleteTagsInput) (req *reques
 //   value.
 //
 //   * ErrCodeInvalidTagException "InvalidTagException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   A specified resource cannot be located.

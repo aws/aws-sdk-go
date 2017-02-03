@@ -1039,13 +1039,11 @@ func (c *SFN) SendTaskFailureRequest(input *SendTaskFailureInput) (req *request.
 //
 // Returned Error Codes:
 //   * ErrCodeTaskDoesNotExist "TaskDoesNotExist"
-
 //
 //   * ErrCodeInvalidToken "InvalidToken"
 //   The provided token is invalid.
 //
 //   * ErrCodeTaskTimedOut "TaskTimedOut"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskFailure
 func (c *SFN) SendTaskFailure(input *SendTaskFailureInput) (*SendTaskFailureOutput, error) {
@@ -1122,13 +1120,11 @@ func (c *SFN) SendTaskHeartbeatRequest(input *SendTaskHeartbeatInput) (req *requ
 //
 // Returned Error Codes:
 //   * ErrCodeTaskDoesNotExist "TaskDoesNotExist"
-
 //
 //   * ErrCodeInvalidToken "InvalidToken"
 //   The provided token is invalid.
 //
 //   * ErrCodeTaskTimedOut "TaskTimedOut"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskHeartbeat
 func (c *SFN) SendTaskHeartbeat(input *SendTaskHeartbeatInput) (*SendTaskHeartbeatOutput, error) {
@@ -1194,7 +1190,6 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 //
 // Returned Error Codes:
 //   * ErrCodeTaskDoesNotExist "TaskDoesNotExist"
-
 //
 //   * ErrCodeInvalidOutput "InvalidOutput"
 //   The provided JSON output data is invalid.
@@ -1203,7 +1198,6 @@ func (c *SFN) SendTaskSuccessRequest(input *SendTaskSuccessInput) (req *request.
 //   The provided token is invalid.
 //
 //   * ErrCodeTaskTimedOut "TaskTimedOut"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/SendTaskSuccess
 func (c *SFN) SendTaskSuccess(input *SendTaskSuccessInput) (*SendTaskSuccessOutput, error) {

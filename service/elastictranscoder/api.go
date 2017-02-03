@@ -71,7 +71,6 @@ func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *reques
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -158,7 +157,6 @@ func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *reques
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -239,7 +237,6 @@ func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (r
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
@@ -334,7 +331,6 @@ func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
@@ -414,7 +410,6 @@ func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (r
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -497,7 +492,6 @@ func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -584,7 +578,6 @@ func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineI
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -694,7 +687,6 @@ func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -803,7 +795,6 @@ func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
@@ -907,7 +898,6 @@ func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *re
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
@@ -1004,7 +994,6 @@ func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *request.Re
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -1081,7 +1070,6 @@ func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -1158,7 +1146,6 @@ func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *requ
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -1244,7 +1231,6 @@ func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -1326,7 +1312,6 @@ func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (r
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeAccessDeniedException "AccessDeniedException"
 //   General authentication failure. The request was not signed correctly.
@@ -1411,7 +1396,6 @@ func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipe
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the
@@ -1499,7 +1483,6 @@ func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineSta
 //   One or more required parameter values were not provided in the request.
 //
 //   * ErrCodeIncompatibleVersionException "IncompatibleVersionException"
-
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The requested resource does not exist or is not available. For example, the

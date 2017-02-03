@@ -329,7 +329,6 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //   VPC.
 //
 //   * ErrCodeUnsupportedAvailabilityZone "UnsupportedAvailabilityZone"
-
 //
 // Please also see https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateMountTarget
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {

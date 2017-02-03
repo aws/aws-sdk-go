@@ -3048,7 +3048,6 @@ func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) 
 //   action.
 //
 //   * ErrCodeDefaultUndefinedFault "DefaultUndefinedFault"
-
 //
 func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (*StartWorkflowExecutionOutput, error) {
 	req, out := c.StartWorkflowExecutionRequest(input)

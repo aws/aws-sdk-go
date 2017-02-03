@@ -165,7 +165,6 @@ func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Requ
 //   An error occurred on the server side.
 //
 //   * ErrCodeInvalidCommandId "InvalidCommandId"
-
 //
 //   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
@@ -3337,7 +3336,6 @@ func (c *SSM) GetCommandInvocationRequest(input *GetCommandInvocationInput) (req
 //   An error occurred on the server side.
 //
 //   * ErrCodeInvalidCommandId "InvalidCommandId"
-
 //
 //   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
@@ -4373,7 +4371,6 @@ func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) 
 //   An error occurred on the server side.
 //
 //   * ErrCodeInvalidCommandId "InvalidCommandId"
-
 //
 //   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
@@ -4493,7 +4490,6 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 //   An error occurred on the server side.
 //
 //   * ErrCodeInvalidCommandId "InvalidCommandId"
-
 //
 //   * ErrCodeInvalidInstanceId "InvalidInstanceId"
 //   The following problems can cause this exception:
