@@ -369,7 +369,7 @@
     "SnapshotCompleted": {
       "delay": 15,
       "operation": "DescribeSnapshots",
-      "maxAttempts": 40,
+      "maxAttempts": 60,
       "acceptors": [
         {
           "expected": "completed",
