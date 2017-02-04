@@ -153,7 +153,7 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	r.ExpireTime = expireTime
 	r.NotHoist = false
 
-	if r.Operation.BeforePresignFn != nil {
+	if r.Operation != nil && r.Operation.BeforePresignFn != nil {
 		r = r.copy()
 		err := r.Operation.BeforePresignFn(r)
 		if err != nil {
