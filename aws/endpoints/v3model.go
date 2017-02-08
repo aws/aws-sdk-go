@@ -80,7 +80,11 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 
 	s, hasService := p.Services[service]
 	if !hasService {
-		return resolved, NewUnknownServiceError(p.ID, service, serviceList(p.Services))
+		if !opt.ResolveUnknownService {
+			// Only return error if the resolver will not fallback to creating
+			// endpoint based on service endpoint ID passed in.
+			return resolved, NewUnknownServiceError(p.ID, service, serviceList(p.Services))
+		}
 	}
 
 	e, hasEndpoint := s.endpointForRegion(region)

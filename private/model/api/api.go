@@ -68,6 +68,8 @@ type Metadata struct {
 	Protocol            string
 	UID                 string
 	EndpointsID         string
+
+	NoResolveEndpoint bool
 }
 
 var serviceAliases map[string]string
@@ -382,7 +384,16 @@ const (
 //     // Create a {{ .StructName }} client with additional configuration
 //     svc := {{ .PackageName }}.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
-	c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
+	{{ if .Metadata.NoResolveEndpoint -}}
+		var c client.Config
+		if v, ok := p.(client.ConfigNoResolveEndpointProvider); ok {
+			c = v.ClientConfigNoResolveEndpoint(cfgs...)
+		} else {
+			c = p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
+		}
+	{{- else -}}
+		c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
+	{{- end }}
 	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion, c.SigningName)
 }
 
