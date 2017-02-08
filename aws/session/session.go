@@ -421,6 +421,9 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 	}, err
 }
 
+// ClientConfigNoResolveEndpoint is the same as ClientConfig with the exception
+// that the EndpointResolver will not be used to resolve the endpoint. The only
+// endpoint set must come from the aws.Config.Endpoint field.
 func (s *Session) ClientConfigNoResolveEndpoint(cfgs ...*aws.Config) client.Config {
 	s = s.Copy(cfgs...)
 
