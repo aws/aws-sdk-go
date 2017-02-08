@@ -405,7 +405,7 @@ func (s *Session) clientConfigWithErr(serviceName string, cfgs ...*aws.Config) (
 				opt.DisableSSL = aws.BoolValue(s.Config.DisableSSL)
 				opt.UseDualStack = aws.BoolValue(s.Config.UseDualStack)
 
-				// Suppor the condition where the service is modeled but its
+				// Support the condition where the service is modeled but its
 				// endpoint metadata is not available.
 				opt.ResolveUnknownService = true
 			},
