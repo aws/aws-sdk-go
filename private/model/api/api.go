@@ -265,7 +265,6 @@ var tplAPI = template.Must(template.New("api").Parse(`
 // APIGoCode renders the API in Go code. Returning it as a string
 func (a *API) APIGoCode() string {
 	a.resetImports()
-	delete(a.imports, "github.com/aws/aws-sdk-go/aws")
 	a.imports["github.com/aws/aws-sdk-go/aws/awsutil"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
 	if a.OperationHasOutputPlaceholder() {
@@ -576,6 +575,7 @@ var _ {{ .StructName }}API = (*{{ .PackageName }}.{{ .StructName }})(nil)
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
+		"github.com/aws/aws-sdk-go/aws":                   true,
 		"github.com/aws/aws-sdk-go/aws/request":           true,
 		path.Join(a.SvcClientImportPath, a.PackageName()): true,
 	}

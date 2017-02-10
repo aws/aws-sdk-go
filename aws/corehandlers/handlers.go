@@ -134,6 +134,16 @@ var SendHandler = request.NamedHandler{Name: "core.SendHandler", Fn: func(r *req
 		// Catch all other request errors.
 		r.Error = awserr.New("RequestError", "send request failed", err)
 		r.Retryable = aws.Bool(true) // network errors are retryable
+
+		// Override the error with a context canceled error, if that was canceled.
+		ctx := r.Context()
+		select {
+		case <-ctx.Done():
+			r.Error = awserr.New(request.CanceledErrorCode,
+				"request context canceled", ctx.Err())
+			r.Retryable = aws.Bool(false)
+		default:
+		}
 	}
 }}
 
@@ -156,7 +166,25 @@ var AfterRetryHandler = request.NamedHandler{Name: "core.AfterRetryHandler", Fn:
 
 	if r.WillRetry() {
 		r.RetryDelay = r.RetryRules(r)
-		r.Config.SleepDelay(r.RetryDelay)
+
+		if sleepFn := r.Config.SleepDelay; sleepFn != nil {
+			// Fallback to default retry delay
+			sleepFn(r.RetryDelay)
+		} else {
+			t := time.NewTimer(r.RetryDelay)
+			defer t.Stop()
+
+			ctx := r.Context()
+			select {
+			case <-t.C:
+				break
+			case <-ctx.Done():
+				r.Error = awserr.New(request.CanceledErrorCode,
+					"request context canceled", ctx.Err())
+				r.Retryable = aws.Bool(false)
+				return
+			}
+		}
 
 		// when the expired token exception occurs the credentials
 		// need to be expired locally so that the next request to

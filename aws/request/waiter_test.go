@@ -1,10 +1,12 @@
-package waiter_test
+package request_test
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 
@@ -13,7 +15,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
-	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 type mockClient struct {
@@ -42,6 +43,14 @@ func (c *mockClient) MockRequest(input *MockInput) (*request.Request, *MockOutpu
 	req := c.NewRequest(op, input, output)
 	req.Data = output
 	return req, output
+}
+
+func BuildNewMockRequest(c *mockClient, in *MockInput) func([]request.Option) (*request.Request, error) {
+	return func(opts []request.Option) (*request.Request, error) {
+		req, _ := c.MockRequest(in)
+		req.ApplyOptions(opts...)
+		return req, nil
+	}
 }
 
 func TestWaiterPathAll(t *testing.T) {
@@ -88,26 +97,21 @@ func TestWaiterPathAll(t *testing.T) {
 		reqNum++
 	})
 
-	waiterCfg := waiter.Config{
-		Operation:   "Mock",
-		Delay:       0,
+	w := request.Waiter{
 		MaxAttempts: 10,
-		Acceptors: []waiter.WaitAcceptor{
+		Delay:       request.ConstantWaiterDelay(0),
+		Acceptors: []request.WaiterAcceptor{
 			{
-				State:    "success",
-				Matcher:  "pathAll",
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathAllWaiterMatch,
 				Argument: "States[].State",
 				Expected: "running",
 			},
 		},
-	}
-	w := waiter.Waiter{
-		Client: svc,
-		Input:  &MockInput{},
-		Config: waiterCfg,
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
 	}
 
-	err := w.Wait()
+	err := w.WaitWithContext(aws.BackgroundContext())
 	assert.NoError(t, err)
 	assert.Equal(t, 3, numBuiltReq)
 	assert.Equal(t, 3, reqNum)
@@ -157,26 +161,21 @@ func TestWaiterPath(t *testing.T) {
 		reqNum++
 	})
 
-	waiterCfg := waiter.Config{
-		Operation:   "Mock",
-		Delay:       0,
+	w := request.Waiter{
 		MaxAttempts: 10,
-		Acceptors: []waiter.WaitAcceptor{
+		Delay:       request.ConstantWaiterDelay(0),
+		Acceptors: []request.WaiterAcceptor{
 			{
-				State:    "success",
-				Matcher:  "path",
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathWaiterMatch,
 				Argument: "States[].State",
 				Expected: "running",
 			},
 		},
-	}
-	w := waiter.Waiter{
-		Client: svc,
-		Input:  &MockInput{},
-		Config: waiterCfg,
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
 	}
 
-	err := w.Wait()
+	err := w.WaitWithContext(aws.BackgroundContext())
 	assert.NoError(t, err)
 	assert.Equal(t, 3, numBuiltReq)
 	assert.Equal(t, 3, reqNum)
@@ -226,34 +225,29 @@ func TestWaiterFailure(t *testing.T) {
 		reqNum++
 	})
 
-	waiterCfg := waiter.Config{
-		Operation:   "Mock",
-		Delay:       0,
+	w := request.Waiter{
 		MaxAttempts: 10,
-		Acceptors: []waiter.WaitAcceptor{
+		Delay:       request.ConstantWaiterDelay(0),
+		Acceptors: []request.WaiterAcceptor{
 			{
-				State:    "success",
-				Matcher:  "pathAll",
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathAllWaiterMatch,
 				Argument: "States[].State",
 				Expected: "running",
 			},
 			{
-				State:    "failure",
-				Matcher:  "pathAny",
+				State:    request.FailureWaiterState,
+				Matcher:  request.PathAnyWaiterMatch,
 				Argument: "States[].State",
 				Expected: "stopping",
 			},
 		},
-	}
-	w := waiter.Waiter{
-		Client: svc,
-		Input:  &MockInput{},
-		Config: waiterCfg,
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
 	}
 
-	err := w.Wait().(awserr.Error)
+	err := w.WaitWithContext(aws.BackgroundContext()).(awserr.Error)
 	assert.Error(t, err)
-	assert.Equal(t, "ResourceNotReady", err.Code())
+	assert.Equal(t, request.WaiterResourceNotReadyErrorCode, err.Code())
 	assert.Equal(t, "failed waiting for successful resource state", err.Message())
 	assert.Equal(t, 3, numBuiltReq)
 	assert.Equal(t, 3, reqNum)
@@ -319,32 +313,27 @@ func TestWaiterError(t *testing.T) {
 		}
 	})
 
-	waiterCfg := waiter.Config{
-		Operation:   "Mock",
-		Delay:       0,
+	w := request.Waiter{
 		MaxAttempts: 10,
-		Acceptors: []waiter.WaitAcceptor{
+		Delay:       request.ConstantWaiterDelay(0),
+		Acceptors: []request.WaiterAcceptor{
 			{
-				State:    "success",
-				Matcher:  "pathAll",
+				State:    request.SuccessWaiterState,
+				Matcher:  request.PathAllWaiterMatch,
 				Argument: "States[].State",
 				Expected: "running",
 			},
 			{
-				State:    "retry",
-				Matcher:  "error",
+				State:    request.RetryWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
 				Argument: "",
 				Expected: "MockException",
 			},
 		},
-	}
-	w := waiter.Waiter{
-		Client: svc,
-		Input:  &MockInput{},
-		Config: waiterCfg,
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
 	}
 
-	err := w.Wait()
+	err := w.WaitWithContext(aws.BackgroundContext())
 	assert.NoError(t, err)
 	assert.Equal(t, 3, numBuiltReq)
 	assert.Equal(t, 3, reqNum)
@@ -376,26 +365,195 @@ func TestWaiterStatus(t *testing.T) {
 		}
 	})
 
-	waiterCfg := waiter.Config{
-		Operation:   "Mock",
-		Delay:       0,
+	w := request.Waiter{
 		MaxAttempts: 10,
-		Acceptors: []waiter.WaitAcceptor{
+		Delay:       request.ConstantWaiterDelay(0),
+		Acceptors: []request.WaiterAcceptor{
 			{
-				State:    "success",
-				Matcher:  "status",
+				State:    request.SuccessWaiterState,
+				Matcher:  request.StatusWaiterMatch,
 				Argument: "",
 				Expected: 404,
 			},
 		},
-	}
-	w := waiter.Waiter{
-		Client: svc,
-		Input:  &MockInput{},
-		Config: waiterCfg,
+		NewRequest: BuildNewMockRequest(svc, &MockInput{}),
 	}
 
-	err := w.Wait()
+	err := w.WaitWithContext(aws.BackgroundContext())
 	assert.NoError(t, err)
 	assert.Equal(t, 3, reqNum)
+}
+
+func TestWaiter_ApplyOptions(t *testing.T) {
+	w := request.Waiter{}
+
+	logger := aws.NewDefaultLogger()
+
+	w.ApplyOptions(
+		request.WithWaiterLogger(logger),
+		request.WithWaiterRequestOptions(request.WithLogLevel(aws.LogDebug)),
+		request.WithWaiterMaxAttempts(2),
+		request.WithWaiterDelay(request.ConstantWaiterDelay(5*time.Second)),
+	)
+
+	if e, a := logger, w.Logger; e != a {
+		t.Errorf("expect logger to be set, and match, was not, %v, %v", e, a)
+	}
+
+	if len(w.RequestOptions) != 1 {
+		t.Fatalf("expect request options to be set to only a single option, %v", w.RequestOptions)
+	}
+	r := request.Request{}
+	r.ApplyOptions(w.RequestOptions...)
+	if e, a := aws.LogDebug, r.Config.LogLevel.Value(); e != a {
+		t.Errorf("expect %v loglevel got %v", e, a)
+	}
+
+	if e, a := 2, w.MaxAttempts; e != a {
+		t.Errorf("expect %d retryer max attempts, got %d", e, a)
+	}
+	if e, a := 5*time.Second, w.Delay(0); e != a {
+		t.Errorf("expect %d retryer delay, got %d", e, a)
+	}
+}
+
+func TestWaiter_WithContextCanceled(t *testing.T) {
+	c := awstesting.NewClient()
+
+	ctx := &awstesting.FakeContext{DoneCh: make(chan struct{})}
+	reqCount := 0
+
+	w := request.Waiter{
+		Name:        "TestWaiter",
+		MaxAttempts: 10,
+		Delay:       request.ConstantWaiterDelay(1 * time.Millisecond),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.StatusWaiterMatch,
+				Expected: 200,
+			},
+		},
+		Logger: aws.NewDefaultLogger(),
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			req := c.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
+			req.HTTPResponse = &http.Response{StatusCode: http.StatusNotFound}
+			req.Handlers.Clear()
+			req.Data = struct{}{}
+			req.Handlers.Send.PushBack(func(r *request.Request) {
+				if reqCount == 1 {
+					ctx.Error = fmt.Errorf("context canceled")
+					close(ctx.DoneCh)
+				}
+				reqCount++
+			})
+
+			return req, nil
+		},
+	}
+
+	err := w.WaitWithContext(ctx)
+
+	if err == nil {
+		t.Fatalf("expect waiter to be canceled.")
+	}
+	aerr := err.(awserr.Error)
+	if e, a := request.CanceledErrorCode, aerr.Code(); e != a {
+		t.Errorf("expect %q error code, got %q", e, a)
+	}
+	if e, a := 2, reqCount; e != a {
+		t.Errorf("expect %d requests, got %d", e, a)
+	}
+}
+
+func TestWaiter_WithContext(t *testing.T) {
+	c := awstesting.NewClient()
+
+	ctx := &awstesting.FakeContext{DoneCh: make(chan struct{})}
+	reqCount := 0
+
+	statuses := []int{http.StatusNotFound, http.StatusOK}
+
+	w := request.Waiter{
+		Name:        "TestWaiter",
+		MaxAttempts: 10,
+		Delay:       request.ConstantWaiterDelay(1 * time.Millisecond),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.StatusWaiterMatch,
+				Expected: 200,
+			},
+		},
+		Logger: aws.NewDefaultLogger(),
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			req := c.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
+			req.HTTPResponse = &http.Response{StatusCode: statuses[reqCount]}
+			req.Handlers.Clear()
+			req.Data = struct{}{}
+			req.Handlers.Send.PushBack(func(r *request.Request) {
+				if reqCount == 1 {
+					ctx.Error = fmt.Errorf("context canceled")
+					close(ctx.DoneCh)
+				}
+				reqCount++
+			})
+
+			return req, nil
+		},
+	}
+
+	err := w.WaitWithContext(ctx)
+
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+	if e, a := 2, reqCount; e != a {
+		t.Errorf("expect %d requests, got %d", e, a)
+	}
+}
+
+func TestWaiter_AttemptsExpires(t *testing.T) {
+	c := awstesting.NewClient()
+
+	ctx := &awstesting.FakeContext{DoneCh: make(chan struct{})}
+	reqCount := 0
+
+	w := request.Waiter{
+		Name:        "TestWaiter",
+		MaxAttempts: 2,
+		Delay:       request.ConstantWaiterDelay(1 * time.Millisecond),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.StatusWaiterMatch,
+				Expected: 200,
+			},
+		},
+		Logger: aws.NewDefaultLogger(),
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			req := c.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
+			req.HTTPResponse = &http.Response{StatusCode: http.StatusNotFound}
+			req.Handlers.Clear()
+			req.Data = struct{}{}
+			req.Handlers.Send.PushBack(func(r *request.Request) {
+				reqCount++
+			})
+
+			return req, nil
+		},
+	}
+
+	err := w.WaitWithContext(ctx)
+
+	if err == nil {
+		t.Fatalf("expect error did not get one")
+	}
+	aerr := err.(awserr.Error)
+	if e, a := request.WaiterResourceNotReadyErrorCode, aerr.Code(); e != a {
+		t.Errorf("expect %q error code, got %q", e, a)
+	}
+	if e, a := 2, reqCount; e != a {
+		t.Errorf("expect %d requests, got %d", e, a)
+	}
 }
