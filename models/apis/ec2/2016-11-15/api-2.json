@@ -81,6 +81,15 @@
       },
       "input":{"shape":"AssociateDhcpOptionsRequest"}
     },
+    "AssociateIamInstanceProfile":{
+      "name":"AssociateIamInstanceProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateIamInstanceProfileRequest"},
+      "output":{"shape":"AssociateIamInstanceProfileResult"}
+    },
     "AssociateRouteTable":{
       "name":"AssociateRouteTable",
       "http":{
@@ -852,6 +861,15 @@
       "input":{"shape":"DescribeHostsRequest"},
       "output":{"shape":"DescribeHostsResult"}
     },
+    "DescribeIamInstanceProfileAssociations":{
+      "name":"DescribeIamInstanceProfileAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIamInstanceProfileAssociationsRequest"},
+      "output":{"shape":"DescribeIamInstanceProfileAssociationsResult"}
+    },
     "DescribeIdFormat":{
       "name":"DescribeIdFormat",
       "http":{
@@ -1387,6 +1405,15 @@
       },
       "input":{"shape":"DisassociateAddressRequest"}
     },
+    "DisassociateIamInstanceProfile":{
+      "name":"DisassociateIamInstanceProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateIamInstanceProfileRequest"},
+      "output":{"shape":"DisassociateIamInstanceProfileResult"}
+    },
     "DisassociateRouteTable":{
       "name":"DisassociateRouteTable",
       "http":{
@@ -1750,6 +1777,15 @@
       },
       "input":{"shape":"ReleaseHostsRequest"},
       "output":{"shape":"ReleaseHostsResult"}
+    },
+    "ReplaceIamInstanceProfileAssociation":{
+      "name":"ReplaceIamInstanceProfileAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ReplaceIamInstanceProfileAssociationRequest"},
+      "output":{"shape":"ReplaceIamInstanceProfileAssociationResult"}
     },
     "ReplaceNetworkAclAssociation":{
       "name":"ReplaceNetworkAclAssociation",
@@ -2323,6 +2359,26 @@
         "VpcId":{"shape":"String"}
       }
     },
+    "AssociateIamInstanceProfileRequest":{
+      "type":"structure",
+      "required":[
+        "IamInstanceProfile",
+        "InstanceId"
+      ],
+      "members":{
+        "IamInstanceProfile":{"shape":"IamInstanceProfileSpecification"},
+        "InstanceId":{"shape":"String"}
+      }
+    },
+    "AssociateIamInstanceProfileResult":{
+      "type":"structure",
+      "members":{
+        "IamInstanceProfileAssociation":{
+          "shape":"IamInstanceProfileAssociation",
+          "locationName":"iamInstanceProfileAssociation"
+        }
+      }
+    },
     "AssociateRouteTableRequest":{
       "type":"structure",
       "required":[
@@ -2408,6 +2464,13 @@
           "shape":"VpcIpv6CidrBlockAssociation",
           "locationName":"ipv6CidrBlockAssociation"
         }
+      }
+    },
+    "AssociationIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"AssociationId"
       }
     },
     "AttachClassicLinkVpcRequest":{
@@ -4954,6 +5017,34 @@
         }
       }
     },
+    "DescribeIamInstanceProfileAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "AssociationIds":{
+          "shape":"AssociationIdList",
+          "locationName":"AssociationId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeIamInstanceProfileAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "IamInstanceProfileAssociations":{
+          "shape":"IamInstanceProfileAssociationSet",
+          "locationName":"iamInstanceProfileAssociationSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeIdFormatRequest":{
       "type":"structure",
       "members":{
@@ -6712,6 +6803,22 @@
         "AssociationId":{"shape":"String"}
       }
     },
+    "DisassociateIamInstanceProfileRequest":{
+      "type":"structure",
+      "required":["AssociationId"],
+      "members":{
+        "AssociationId":{"shape":"String"}
+      }
+    },
+    "DisassociateIamInstanceProfileResult":{
+      "type":"structure",
+      "members":{
+        "IamInstanceProfileAssociation":{
+          "shape":"IamInstanceProfileAssociation",
+          "locationName":"iamInstanceProfileAssociation"
+        }
+      }
+    },
     "DisassociateRouteTableRequest":{
       "type":"structure",
       "required":["AssociationId"],
@@ -7708,6 +7815,47 @@
           "locationName":"id"
         }
       }
+    },
+    "IamInstanceProfileAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{
+          "shape":"String",
+          "locationName":"associationId"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "IamInstanceProfile":{
+          "shape":"IamInstanceProfile",
+          "locationName":"iamInstanceProfile"
+        },
+        "State":{
+          "shape":"IamInstanceProfileAssociationState",
+          "locationName":"state"
+        },
+        "Timestamp":{
+          "shape":"DateTime",
+          "locationName":"timestamp"
+        }
+      }
+    },
+    "IamInstanceProfileAssociationSet":{
+      "type":"list",
+      "member":{
+        "shape":"IamInstanceProfileAssociation",
+        "locationName":"item"
+      }
+    },
+    "IamInstanceProfileAssociationState":{
+      "type":"string",
+      "enum":[
+        "associating",
+        "associated",
+        "disassociating",
+        "disassociated"
+      ]
     },
     "IamInstanceProfileSpecification":{
       "type":"structure",
@@ -11255,6 +11403,26 @@
         "Unsuccessful":{
           "shape":"UnsuccessfulItemList",
           "locationName":"unsuccessful"
+        }
+      }
+    },
+    "ReplaceIamInstanceProfileAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "IamInstanceProfile",
+        "AssociationId"
+      ],
+      "members":{
+        "IamInstanceProfile":{"shape":"IamInstanceProfileSpecification"},
+        "AssociationId":{"shape":"String"}
+      }
+    },
+    "ReplaceIamInstanceProfileAssociationResult":{
+      "type":"structure",
+      "members":{
+        "IamInstanceProfileAssociation":{
+          "shape":"IamInstanceProfileAssociation",
+          "locationName":"iamInstanceProfileAssociation"
         }
       }
     },

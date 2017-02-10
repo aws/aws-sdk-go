@@ -251,6 +251,35 @@ func ExampleEC2_AssociateDhcpOptions() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_AssociateIamInstanceProfile() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.AssociateIamInstanceProfileInput{
+		IamInstanceProfile: &ec2.IamInstanceProfileSpecification{ // Required
+			Arn:  aws.String("String"),
+			Name: aws.String("String"),
+		},
+		InstanceId: aws.String("String"), // Required
+	}
+	resp, err := svc.AssociateIamInstanceProfile(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_AssociateRouteTable() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -3001,6 +3030,46 @@ func ExampleEC2_DescribeHosts() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeIamInstanceProfileAssociations() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.DescribeIamInstanceProfileAssociationsInput{
+		AssociationIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeIamInstanceProfileAssociations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeIdFormat() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -5128,6 +5197,31 @@ func ExampleEC2_DisassociateAddress() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DisassociateIamInstanceProfile() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.DisassociateIamInstanceProfileInput{
+		AssociationId: aws.String("String"), // Required
+	}
+	resp, err := svc.DisassociateIamInstanceProfile(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DisassociateRouteTable() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -6541,6 +6635,35 @@ func ExampleEC2_ReleaseHosts() {
 		},
 	}
 	resp, err := svc.ReleaseHosts(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_ReplaceIamInstanceProfileAssociation() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.ReplaceIamInstanceProfileAssociationInput{
+		AssociationId: aws.String("String"), // Required
+		IamInstanceProfile: &ec2.IamInstanceProfileSpecification{ // Required
+			Arn:  aws.String("String"),
+			Name: aws.String("String"),
+		},
+	}
+	resp, err := svc.ReplaceIamInstanceProfileAssociation(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

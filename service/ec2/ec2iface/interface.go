@@ -91,6 +91,10 @@ type EC2API interface {
 
 	AssociateDhcpOptions(*ec2.AssociateDhcpOptionsInput) (*ec2.AssociateDhcpOptionsOutput, error)
 
+	AssociateIamInstanceProfileRequest(*ec2.AssociateIamInstanceProfileInput) (*request.Request, *ec2.AssociateIamInstanceProfileOutput)
+
+	AssociateIamInstanceProfile(*ec2.AssociateIamInstanceProfileInput) (*ec2.AssociateIamInstanceProfileOutput, error)
+
 	AssociateRouteTableRequest(*ec2.AssociateRouteTableInput) (*request.Request, *ec2.AssociateRouteTableOutput)
 
 	AssociateRouteTable(*ec2.AssociateRouteTableInput) (*ec2.AssociateRouteTableOutput, error)
@@ -447,6 +451,10 @@ type EC2API interface {
 
 	DescribeHosts(*ec2.DescribeHostsInput) (*ec2.DescribeHostsOutput, error)
 
+	DescribeIamInstanceProfileAssociationsRequest(*ec2.DescribeIamInstanceProfileAssociationsInput) (*request.Request, *ec2.DescribeIamInstanceProfileAssociationsOutput)
+
+	DescribeIamInstanceProfileAssociations(*ec2.DescribeIamInstanceProfileAssociationsInput) (*ec2.DescribeIamInstanceProfileAssociationsOutput, error)
+
 	DescribeIdFormatRequest(*ec2.DescribeIdFormatInput) (*request.Request, *ec2.DescribeIdFormatOutput)
 
 	DescribeIdFormat(*ec2.DescribeIdFormatInput) (*ec2.DescribeIdFormatOutput, error)
@@ -707,6 +715,10 @@ type EC2API interface {
 
 	DisassociateAddress(*ec2.DisassociateAddressInput) (*ec2.DisassociateAddressOutput, error)
 
+	DisassociateIamInstanceProfileRequest(*ec2.DisassociateIamInstanceProfileInput) (*request.Request, *ec2.DisassociateIamInstanceProfileOutput)
+
+	DisassociateIamInstanceProfile(*ec2.DisassociateIamInstanceProfileInput) (*ec2.DisassociateIamInstanceProfileOutput, error)
+
 	DisassociateRouteTableRequest(*ec2.DisassociateRouteTableInput) (*request.Request, *ec2.DisassociateRouteTableOutput)
 
 	DisassociateRouteTable(*ec2.DisassociateRouteTableInput) (*ec2.DisassociateRouteTableOutput, error)
@@ -874,6 +886,10 @@ type EC2API interface {
 	ReleaseHostsRequest(*ec2.ReleaseHostsInput) (*request.Request, *ec2.ReleaseHostsOutput)
 
 	ReleaseHosts(*ec2.ReleaseHostsInput) (*ec2.ReleaseHostsOutput, error)
+
+	ReplaceIamInstanceProfileAssociationRequest(*ec2.ReplaceIamInstanceProfileAssociationInput) (*request.Request, *ec2.ReplaceIamInstanceProfileAssociationOutput)
+
+	ReplaceIamInstanceProfileAssociation(*ec2.ReplaceIamInstanceProfileAssociationInput) (*ec2.ReplaceIamInstanceProfileAssociationOutput, error)
 
 	ReplaceNetworkAclAssociationRequest(*ec2.ReplaceNetworkAclAssociationInput) (*request.Request, *ec2.ReplaceNetworkAclAssociationOutput)
 
