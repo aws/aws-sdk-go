@@ -1182,6 +1182,44 @@ func (c *Rekognition) SearchFacesByImage(input *SearchFacesByImageInput) (*Searc
 	return out, err
 }
 
+// Structure containing the estimated age range, in years, for a face.
+//
+// Rekognition estimates an age-range for faces detected in the input image.
+// Estimated age ranges can overlap; a face of a 5 year old may have an estimated
+// range of 4-6 whilst the face of a 6 year old may have an estimated range
+// of 4-8.
+type AgeRange struct {
+	_ struct{} `type:"structure"`
+
+	// The highest estimated age.
+	High *int64 `type:"integer"`
+
+	// The lowest estimated age.
+	Low *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AgeRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AgeRange) GoString() string {
+	return s.String()
+}
+
+// SetHigh sets the High field's value.
+func (s *AgeRange) SetHigh(v int64) *AgeRange {
+	s.High = &v
+	return s
+}
+
+// SetLow sets the Low field's value.
+func (s *AgeRange) SetLow(v int64) *AgeRange {
+	s.Low = &v
+	return s
+}
+
 // Indicates whether or not the face has a beard, and the confidence level in
 // the determination.
 type Beard struct {
@@ -2149,6 +2187,10 @@ func (s *Face) SetImageId(v string) *Face {
 type FaceDetail struct {
 	_ struct{} `type:"structure"`
 
+	// The estimated age range, in years, for the face. Low represents the lowest
+	// estimated age and High represents the highest estimated age.
+	AgeRange *AgeRange `type:"structure"`
+
 	// Indicates whether or not the face has a beard, and the confidence level in
 	// the determination.
 	Beard *Beard `type:"structure"`
@@ -2209,6 +2251,12 @@ func (s FaceDetail) String() string {
 // GoString returns the string representation
 func (s FaceDetail) GoString() string {
 	return s.String()
+}
+
+// SetAgeRange sets the AgeRange field's value.
+func (s *FaceDetail) SetAgeRange(v *AgeRange) *FaceDetail {
+	s.AgeRange = v
+	return s
 }
 
 // SetBeard sets the Beard field's value.
