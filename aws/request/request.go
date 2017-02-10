@@ -344,6 +344,12 @@ func (r *Request) GetBody() io.ReadSeeker {
 //
 // Send will not close the request.Request's body.
 func (r *Request) Send() error {
+	defer func() {
+		// Regardless of success or failure of the request trigger the Complete
+		// request handlers.
+		r.Handlers.Complete.Run(r)
+	}()
+
 	for {
 		if aws.BoolValue(r.Retryable) {
 			if r.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
