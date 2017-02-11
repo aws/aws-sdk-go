@@ -5888,6 +5888,10 @@ func (s *CreateCachediSCSIVolumeOutput) SetVolumeARN(v string) *CreateCachediSCS
 type CreateNFSFileShareInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of clients that are allowed to access the file gateway. The list
+	// must contain either valid IP addresses or valid CIDR blocks.
+	ClientList []*string `min:"1" type:"list"`
+
 	// A unique string value that you supply that is used by file gateway to ensure
 	// idempotent file share creation.
 	//
@@ -5941,6 +5945,9 @@ func (s CreateNFSFileShareInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateNFSFileShareInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateNFSFileShareInput"}
+	if s.ClientList != nil && len(s.ClientList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientList", 1))
+	}
 	if s.ClientToken == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
 	}
@@ -5981,6 +5988,12 @@ func (s *CreateNFSFileShareInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientList sets the ClientList field's value.
+func (s *CreateNFSFileShareInput) SetClientList(v []*string) *CreateNFSFileShareInput {
+	s.ClientList = v
+	return s
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -10024,6 +10037,10 @@ func (s *NFSFileShareDefaults) SetOwnerId(v int64) *NFSFileShareDefaults {
 type NFSFileShareInfo struct {
 	_ struct{} `type:"structure"`
 
+	// The list of clients that are allowed to access the file gateway. The list
+	// must contain either valid IP addresses or valid CIDR blocks.
+	ClientList []*string `min:"1" type:"list"`
+
 	// The default storage class for objects put into an Amazon S3 bucket by file
 	// gateway. Possible values are S3_STANDARD or S3_STANDARD_IA. If this field
 	// is not populated, the default value S3_STANDARD is used. Optional.
@@ -10075,6 +10092,12 @@ func (s NFSFileShareInfo) String() string {
 // GoString returns the string representation
 func (s NFSFileShareInfo) GoString() string {
 	return s.String()
+}
+
+// SetClientList sets the ClientList field's value.
+func (s *NFSFileShareInfo) SetClientList(v []*string) *NFSFileShareInfo {
+	s.ClientList = v
+	return s
 }
 
 // SetDefaultStorageClass sets the DefaultStorageClass field's value.
@@ -11744,6 +11767,10 @@ func (s *UpdateMaintenanceStartTimeOutput) SetGatewayARN(v string) *UpdateMainte
 type UpdateNFSFileShareInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of clients that are allowed to access the file gateway. The list
+	// must contain either valid IP addresses or valid CIDR blocks.
+	ClientList []*string `min:"1" type:"list"`
+
 	// The default storage class for objects put into an Amazon S3 bucket by a file
 	// gateway. Possible values are S3_STANDARD or S3_STANDARD_IA. If this field
 	// is not populated, the default value S3_STANDARD is used. Optional.
@@ -11779,6 +11806,9 @@ func (s UpdateNFSFileShareInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateNFSFileShareInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateNFSFileShareInput"}
+	if s.ClientList != nil && len(s.ClientList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientList", 1))
+	}
 	if s.DefaultStorageClass != nil && len(*s.DefaultStorageClass) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("DefaultStorageClass", 5))
 	}
@@ -11801,6 +11831,12 @@ func (s *UpdateNFSFileShareInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientList sets the ClientList field's value.
+func (s *UpdateNFSFileShareInput) SetClientList(v []*string) *UpdateNFSFileShareInput {
+	s.ClientList = v
+	return s
 }
 
 // SetDefaultStorageClass sets the DefaultStorageClass field's value.
