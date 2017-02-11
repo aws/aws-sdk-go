@@ -22,7 +22,7 @@ var sess *session.Session = session.NewSession(config)
 var svc *dynamodb.DynamoDB = dynamodb.New()
 getter.DynamoDB = dynamodbiface.DynamoDBAPI(svc)
 // Finally
-getter.DyanmoDB.GetItem(/* ... */)
+getter.DynamoDB.GetItem(/* ... */)
 ```
 
 ## Querying in tests
@@ -37,7 +37,7 @@ type fakeDynamoDB struct {
 var getter = new(ItemGetter)
 getter.DynamoDB = &fakeDynamoDB{}
 // And to run it (assuming you've mocked fakeDynamoDB.GetItem)
-getter.DyanmoDB.GetItem(/* ... */)
+getter.DynamoDB.GetItem(/* ... */)
 ```
 
 ## Output
