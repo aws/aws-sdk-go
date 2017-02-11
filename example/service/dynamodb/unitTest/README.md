@@ -12,7 +12,7 @@ type ItemGetter struct {
 }
 ```
 
-## Querying actual DyanmoDB
+## Querying actual DynamoDB
 You'll need an `*aws.Config` and `*session.Session` for these to work correctly:
 ```go
 // Setup
