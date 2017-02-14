@@ -146,13 +146,31 @@ configuration and support for MFA.
 	role_arn = arn:aws:iam::<account_number>:role/<role_name>
 	source_profile = profile_with_creds
 	external_id = 1234
-	mfa_serial = not supported!
+	mfa_serial = 0987
 	role_session_name = session_name
 
 Region is the region the SDK should use for looking up AWS service endpoints
 and signing requests.
 
 	region = us-east-1
+
+Assume Role with MFA token
+
+When creating a session a new session option was added, AssumeRoleTokenProvider.
+The value of this field will be passed to the stscreds.AssumeRoleProvider if
+the shared config enables assume role with MFA, and the SDK will be assuming
+the role. This allows you to configure the SDK via the shared config to assume
+a role with MFA tokens.
+
+Note to use the SDK with the shared config and assume role the SharedConfigState
+session option must be SharedConfigEnable, or the AWS_SDK_LOAD_CONFIG environment
+variable set.
+
+Assume role with MFA is enabled via the shared config when the
+mfa_serial field is set.
+
+If mfa_serial is set, and the SDK will assume the role with MFA an error will
+be returned by the SDK if the session.Options.AssumeRoletokenProvider is not set.
 
 Environment Variables
 

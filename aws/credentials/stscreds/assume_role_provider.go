@@ -14,6 +14,21 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
+// StdinTokenProvider will prompt on stdout and read from stdin for a string value.
+// An error is returned if reading from stdin fails.
+//
+// Use this function go read MFA tokens from stdin. The function makes no attempt
+// to make atomic prompts from stdin across multiple gorouties.
+//
+// Will wait forever until something is provided on the stdin.
+func StdinTokenProvider() (string, error) {
+	var v string
+	fmt.Printf("Assume Role MFA token code: ")
+	_, err := fmt.Scanln(&v)
+
+	return v, err
+}
+
 // ProviderName provides a name of AssumeRole provider
 const ProviderName = "AssumeRoleProvider"
 
@@ -66,6 +81,22 @@ type AssumeRoleProvider struct {
 	// for MFA). If the role being assumed requires MFA and if the TokenCode value
 	// is missing or expired, the AssumeRole call returns an "access denied" error.
 	TokenCode *string
+
+	// TokenProvider if set will be used to retrieve a MFA token from. The value
+	// returned by the function will be used as the TokenCode in the Retrieve
+	// call. A basic implementation of the token provider is credentials.StdinTokenProvide.
+	//
+	// This token provider will be called when ever the assumed role's
+	// credentials need to be refreshed. Within the context of service clients
+	// all sharing the same session the SDK will ensure calls to the token
+	// provider are atomic. When sharing a token provider across multiple
+	// sessions additional syncronization logic is needed to ensure the
+	// token providers do not introduce race conditions. It is recommend to
+	// share the session where possible.
+	//
+	// If both TokenCode and TokenProvider is set, TokenProvider will be used and
+	// TokenCode is ignored.
+	TokenProvider func() (string, error)
 
 	// ExpiryWindow will allow the credentials to trigger refreshing prior to
 	// the credentials actually expiring. This is beneficial so race conditions
@@ -139,9 +170,19 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 	if p.Policy != nil {
 		input.Policy = p.Policy
 	}
-	if p.SerialNumber != nil && p.TokenCode != nil {
-		input.SerialNumber = p.SerialNumber
-		input.TokenCode = p.TokenCode
+	if p.SerialNumber != nil {
+		if p.TokenCode != nil {
+			input.SerialNumber = p.SerialNumber
+			input.TokenCode = p.TokenCode
+		} else {
+			input.SerialNumber = p.SerialNumber
+			provider := p.TokenProvider
+			code, err := provider()
+			if err != nil {
+				return credentials.Value{ProviderName: ProviderName}, err
+			}
+			input.TokenCode = aws.String(code)
+		}
 	}
 	roleOutput, err := p.Client.AssumeRole(input)
 
