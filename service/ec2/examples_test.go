@@ -4636,6 +4636,47 @@ func ExampleEC2_DescribeVolumes() {
 	fmt.Println(resp)
 }
 
+func ExampleEC2_DescribeVolumesModifications() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.DescribeVolumesModificationsInput{
+		DryRun: aws.Bool(true),
+		Filters: []*ec2.Filter{
+			{ // Required
+				Name: aws.String("String"),
+				Values: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("String"),
+		VolumeIds: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeVolumesModifications(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleEC2_DescribeVpcAttribute() {
 	sess, err := session.NewSession()
 	if err != nil {
@@ -6191,6 +6232,35 @@ func ExampleEC2_ModifySubnetAttribute() {
 		},
 	}
 	resp, err := svc.ModifySubnetAttribute(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleEC2_ModifyVolume() {
+	sess, err := session.NewSession()
+	if err != nil {
+		fmt.Println("failed to create session,", err)
+		return
+	}
+
+	svc := ec2.New(sess)
+
+	params := &ec2.ModifyVolumeInput{
+		VolumeId:   aws.String("String"), // Required
+		DryRun:     aws.Bool(true),
+		Iops:       aws.Int64(1),
+		Size:       aws.Int64(1),
+		VolumeType: aws.String("VolumeType"),
+	}
+	resp, err := svc.ModifyVolume(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

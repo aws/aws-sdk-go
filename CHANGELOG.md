@@ -1,3 +1,11 @@
+Release v1.6.22 (2017-02-14)
+===
+
+Service Client Updates
+---
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Adds support for the new Modify Volumes apis.
+
 Release v1.6.21 (2017-02-11)
 ===
 
