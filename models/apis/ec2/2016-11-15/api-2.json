@@ -1248,6 +1248,15 @@
       "input":{"shape":"DescribeVolumesRequest"},
       "output":{"shape":"DescribeVolumesResult"}
     },
+    "DescribeVolumesModifications":{
+      "name":"DescribeVolumesModifications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeVolumesModificationsRequest"},
+      "output":{"shape":"DescribeVolumesModificationsResult"}
+    },
     "DescribeVpcAttribute":{
       "name":"DescribeVpcAttribute",
       "http":{
@@ -1655,6 +1664,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"ModifySubnetAttributeRequest"}
+    },
+    "ModifyVolume":{
+      "name":"ModifyVolume",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyVolumeRequest"},
+      "output":{"shape":"ModifyVolumeResult"}
     },
     "ModifyVolumeAttribute":{
       "name":"ModifyVolumeAttribute",
@@ -6303,6 +6321,35 @@
         }
       }
     },
+    "DescribeVolumesModificationsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "VolumeIds":{
+          "shape":"VolumeIdStringList",
+          "locationName":"VolumeId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeVolumesModificationsResult":{
+      "type":"structure",
+      "members":{
+        "VolumesModifications":{
+          "shape":"VolumeModificationList",
+          "locationName":"volumeModificationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeVolumesRequest":{
       "type":"structure",
       "members":{
@@ -10027,6 +10074,26 @@
         },
         "VolumeId":{"shape":"String"},
         "AutoEnableIO":{"shape":"AttributeBooleanValue"}
+      }
+    },
+    "ModifyVolumeRequest":{
+      "type":"structure",
+      "required":["VolumeId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "VolumeId":{"shape":"String"},
+        "Size":{"shape":"Integer"},
+        "VolumeType":{"shape":"VolumeType"},
+        "Iops":{"shape":"Integer"}
+      }
+    },
+    "ModifyVolumeResult":{
+      "type":"structure",
+      "members":{
+        "VolumeModification":{
+          "shape":"VolumeModification",
+          "locationName":"volumeModification"
+        }
       }
     },
     "ModifyVpcAttributeRequest":{
@@ -14574,6 +14641,75 @@
         "shape":"Volume",
         "locationName":"item"
       }
+    },
+    "VolumeModification":{
+      "type":"structure",
+      "members":{
+        "VolumeId":{
+          "shape":"String",
+          "locationName":"volumeId"
+        },
+        "ModificationState":{
+          "shape":"VolumeModificationState",
+          "locationName":"modificationState"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        },
+        "TargetSize":{
+          "shape":"Integer",
+          "locationName":"targetSize"
+        },
+        "TargetIops":{
+          "shape":"Integer",
+          "locationName":"targetIops"
+        },
+        "TargetVolumeType":{
+          "shape":"VolumeType",
+          "locationName":"targetVolumeType"
+        },
+        "OriginalSize":{
+          "shape":"Integer",
+          "locationName":"originalSize"
+        },
+        "OriginalIops":{
+          "shape":"Integer",
+          "locationName":"originalIops"
+        },
+        "OriginalVolumeType":{
+          "shape":"VolumeType",
+          "locationName":"originalVolumeType"
+        },
+        "Progress":{
+          "shape":"Long",
+          "locationName":"progress"
+        },
+        "StartTime":{
+          "shape":"DateTime",
+          "locationName":"startTime"
+        },
+        "EndTime":{
+          "shape":"DateTime",
+          "locationName":"endTime"
+        }
+      }
+    },
+    "VolumeModificationList":{
+      "type":"list",
+      "member":{
+        "shape":"VolumeModification",
+        "locationName":"item"
+      }
+    },
+    "VolumeModificationState":{
+      "type":"string",
+      "enum":[
+        "modifying",
+        "optimizing",
+        "completed",
+        "failed"
+      ]
     },
     "VolumeState":{
       "type":"string",
