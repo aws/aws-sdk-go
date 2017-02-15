@@ -1,3 +1,11 @@
+Release v1.6.23 (2017-02-15)
+===
+
+Service Client Updates
+---
+* `service/kms`: Updates service API, documentation, paginators, and examples
+  * his release of AWS Key Management Service introduces the ability to tag keys. Tagging keys can help you organize your keys and track your KMS costs in the cost allocation report. This release also increases the maximum length of a key ID to accommodate ARNs that include a long key alias.
+
 Release v1.6.22 (2017-02-14)
 ===
 
