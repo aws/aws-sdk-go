@@ -3300,6 +3300,10 @@ type Provider struct {
 	// The provider name for an Amazon Cognito Identity User Pool. For example,
 	// cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789.
 	ProviderName *string `min:"1" type:"string"`
+
+	// TRUE if server-side token validation is enabled for the identity provider’s
+	// token.
+	ServerSideTokenCheck *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -3337,6 +3341,12 @@ func (s *Provider) SetClientId(v string) *Provider {
 // SetProviderName sets the ProviderName field's value.
 func (s *Provider) SetProviderName(v string) *Provider {
 	s.ProviderName = &v
+	return s
+}
+
+// SetServerSideTokenCheck sets the ServerSideTokenCheck field's value.
+func (s *Provider) SetServerSideTokenCheck(v bool) *Provider {
+	s.ServerSideTokenCheck = &v
 	return s
 }
 
