@@ -176,3 +176,34 @@ func TestEncodeEmbeddedPointerStruct(t *testing.T) {
 	}
 	assert.Equal(t, expect, actual)
 }
+
+func TestEncodeUnixTime(t *testing.T) {
+	type A struct {
+		Normal time.Time
+		Tagged time.Time `dynamodbav:",unixtime"`
+		Typed  UnixTime
+	}
+
+	a := A{
+		Normal: time.Unix(123, 0),
+		Tagged: time.Unix(456, 0),
+		Typed:  UnixTime(time.Unix(789, 0)),
+	}
+
+	actual, err := Marshal(a)
+	assert.NoError(t, err)
+	expect := &dynamodb.AttributeValue{
+		M: map[string]*dynamodb.AttributeValue{
+			"Normal": {
+				S: aws.String("1969-12-31T16:02:03-08:00"),
+			},
+			"Tagged": {
+				N: aws.String("456"),
+			},
+			"Typed": {
+				N: aws.String("789"),
+			},
+		},
+	}
+	assert.Equal(t, expect, actual)
+}
