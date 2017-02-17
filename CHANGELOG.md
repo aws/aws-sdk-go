@@ -1,3 +1,11 @@
+Release v1.6.25 (2017-02-17)
+===
+
+Service Client Updates
+---
+* `service/directconnect`: Updates service API, documentation, and paginators
+  * This update will introduce the ability for Direct Connect customers to take advantage of Link Aggregation (LAG).     This allows you to bundle many individual physical interfaces into a single logical interface, referred to as a LAG.     This makes administration much simpler as the majority of configuration is done on the LAG while you are free     to add or remove physical interfaces from the bundle as bandwidth demand increases or decreases. A concrete example     of the simplification added by LAG is that customers need only a single BGP session as opposed to one session per     physical connection.
+
 Release v1.6.24 (2017-02-16)
 ===
 
