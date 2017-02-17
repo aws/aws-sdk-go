@@ -113,6 +113,7 @@ type Marshaler interface {
 //		Field []string `dynamodbav:",stringset"`
 //
 //		// Field will be marshaled as Unix time number in seconds.
+//		// This tag is only valid with time.Time typed struct fields.
 //		Field time.Time `dynamodbav:",unixtime"`
 //
 // The omitempty tag is only used during Marshaling and is ignored for
