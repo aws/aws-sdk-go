@@ -174,18 +174,20 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 		if p.TokenCode != nil {
 			input.SerialNumber = p.SerialNumber
 			input.TokenCode = p.TokenCode
-		} else {
+		} else if p.TokenProvider != nil {
 			input.SerialNumber = p.SerialNumber
-			provider := p.TokenProvider
-			code, err := provider()
+			code, err := p.TokenProvider()
 			if err != nil {
 				return credentials.Value{ProviderName: ProviderName}, err
 			}
 			input.TokenCode = aws.String(code)
+		} else {
+			return credentials.Value{ProviderName: ProviderName},
+				fmt.Errorf("assume role with MFA enabled, but neither TokenCode nor TokenProvider are set.")
 		}
 	}
-	roleOutput, err := p.Client.AssumeRole(input)
 
+	roleOutput, err := p.Client.AssumeRole(input)
 	if err != nil {
 		return credentials.Value{ProviderName: ProviderName}, err
 	}

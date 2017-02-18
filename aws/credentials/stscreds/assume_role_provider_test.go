@@ -114,6 +114,26 @@ func TestAssumeRoleProvider_WithTokenProviderError(t *testing.T) {
 	assert.Empty(t, creds.SessionToken)
 }
 
+func TestAssumeRoleProvider_MFAWithNoToken(t *testing.T) {
+	stub := &stubSTS{
+		TestInput: func(in *sts.AssumeRoleInput) {
+			assert.Fail(t, "API request should not of been called")
+		},
+	}
+	p := &AssumeRoleProvider{
+		Client:       stub,
+		RoleARN:      "roleARN",
+		SerialNumber: aws.String("0123456789"),
+	}
+
+	creds, err := p.Retrieve()
+	assert.Error(t, err)
+
+	assert.Empty(t, creds.AccessKeyID)
+	assert.Empty(t, creds.SecretAccessKey)
+	assert.Empty(t, creds.SessionToken)
+}
+
 func BenchmarkAssumeRoleProvider(b *testing.B) {
 	stub := &stubSTS{}
 	p := &AssumeRoleProvider{
