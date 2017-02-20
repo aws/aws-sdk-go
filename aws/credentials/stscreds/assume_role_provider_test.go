@@ -102,7 +102,7 @@ func TestAssumeRoleProvider_WithTokenProviderError(t *testing.T) {
 		RoleARN:      "roleARN",
 		SerialNumber: aws.String("0123456789"),
 		TokenProvider: func() (string, error) {
-			return "", fmt.Errorf("error occured")
+			return "", fmt.Errorf("error occurred")
 		},
 	}
 

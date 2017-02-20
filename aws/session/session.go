@@ -157,7 +157,7 @@ type Options struct {
 	// credentials need to be refreshed. Within the context of service clients
 	// all sharing the same session the SDK will ensure calls to the token
 	// provider are atomic. When sharing a token provider across multiple
-	// sessions additional syncronization logic is needed to ensure the
+	// sessions additional synchronization logic is needed to ensure the
 	// token providers do not introduce race conditions. It is recommend to
 	// share the session where possible.
 	//
