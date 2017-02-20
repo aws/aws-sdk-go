@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/service/sts"
@@ -183,7 +184,8 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 			input.TokenCode = aws.String(code)
 		} else {
 			return credentials.Value{ProviderName: ProviderName},
-				fmt.Errorf("assume role with MFA enabled, but neither TokenCode nor TokenProvider are set.")
+				awserr.New("AssumeRoleTokenNotAvailable",
+					"assume role with MFA enabled, but neither TokenCode nor TokenProvider are set", nil)
 		}
 	}
 
