@@ -172,9 +172,17 @@ mfa_serial field is set.
 If mfa_serial is set, and the SDK will assume the role with MFA an error will
 be returned by the SDK if the session.Options.AssumeRoletokenProvider is not set.
 
+The following example will provide a TokenProvider that will be used by the SDK
+if the default credential chain is enabled for shared configuration and the
+shared config or shared credentials are set to assume a role with MFA.
+
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		AssumeRoleTokenProvider: stscreds.StdinTokenProvider,
 	}))
+
+    // Create service client value configured for credentials
+    // from assumed role.
+    svc := s3.New(sess)
 
 To setup assume role outside of a session see the stscrds.AssumeRoleProvider
 documentation.
