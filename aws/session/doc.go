@@ -172,6 +172,13 @@ mfa_serial field is set.
 If mfa_serial is set, and the SDK will assume the role with MFA an error will
 be returned by the SDK if the session.Options.AssumeRoletokenProvider is not set.
 
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
+		AssumeRoleTokenProvider: stscreds.StdinTokenProvider,
+	}))
+
+To setup assume role outside of a session see the stscrds.AssumeRoleProvider
+documentation.
+
 Environment Variables
 
 When a Session is created several environment variables can be set to adjust
